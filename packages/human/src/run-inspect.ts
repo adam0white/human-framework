@@ -167,6 +167,12 @@ export function inspectCurrentRun(
           case 'condition':
             parts.push({ select, value: condition(actor) });
             break;
+          case 'affect':
+            parts.push({ select, value: { mood: actor.affect.mood, emotions: actor.affect.emotions } });
+            break;
+          case 'expectations':
+            parts.push({ select, value: actor.memory.expectations });
+            break;
           case 'skills':
             parts.push({ select, value: readings(actor) });
             break;
@@ -296,6 +302,12 @@ export function inspectCurrentRun(
           case 'condition':
             parts.push({ select, value: condition(actor) });
             break;
+          case 'affect':
+            parts.push({ select, value: { mood: actor.affect.mood, emotions: actor.affect.emotions } });
+            break;
+          case 'expectations':
+            parts.push({ select, value: actor.memory.expectations });
+            break;
           case 'skills':
             parts.push({ select, value: readings(actor) });
             break;
@@ -363,6 +375,8 @@ export function inspectCurrentRun(
           case 'summary':
             parts.push({ select, value: { kind: 'unobserved' } });
             break;
+          case 'affect':
+          case 'expectations':
           case 'needs':
           case 'skills':
           case 'body':

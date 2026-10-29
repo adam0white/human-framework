@@ -10,7 +10,8 @@ import {
   projectCastClaimTransfer,
 } from '../src/life.ts';
 import { createPersona } from '../src/persona.ts';
-import { admitPortablePerson, projectPortablePerson } from '../src/persona-portable.ts';
+import { admitPortablePerson, claimPortablePerson, projectPortablePerson } from '../src/persona-portable.ts';
+import { PORTABLE_READERS } from '../src/portable-readers.ts';
 
 const castId = 'hf.cast.burak.stairwell';
 const actor = () =>
@@ -78,6 +79,54 @@ describe('portable shelf contract', () => {
       }),
     ).toThrow(/unfinished responsibilities/);
     expect(p).toEqual(frozen);
+  });
+  it('carries Selin from Voice into her Good Hands role', async () => {
+    const id = 'hf.cast.selin.voice';
+    const person = createPerson({
+      id: 'selin',
+      name: 'Selin',
+      bornAt: -32 * 525960,
+      sex: 'female',
+      seed: 9,
+      traits: canonicalCast(id).traits,
+      values: canonicalCast(id).values,
+    });
+    person.body.satiety = 0.41;
+    const transfer = projectPortablePerson({
+      castId: id,
+      game: 'voice',
+      engine: '2.23.0',
+      person,
+      history: ['Called Halil.'],
+    });
+    const parent = await createPersona({
+      format: 'hf-persona/1',
+      castId: id,
+      castRevision: canonicalCast(id).revision,
+      branchId: 'voice-control',
+      parentRevision: null,
+      source: { game: 'voice', engine: '2.23.0', build: 'control', rules: 'portable-1' },
+      transfer,
+      limitations: [],
+    });
+    const opening = createPerson({
+      id: 'selin-voice',
+      name: 'Selin',
+      bornAt: -32 * 525960,
+      sex: 'female',
+      seed: 10,
+      traits: canonicalCast(id).traits,
+      values: canonicalCast(id).values,
+    });
+    expect(admitPortablePerson(parent, 'goodhands', opening).body.satiety).toBe(0.41);
+    const readers = PORTABLE_READERS as Record<string, { client: string; perPersonSkips: boolean }>;
+    const ready = readers.goodhands;
+    try {
+      delete readers.goodhands;
+      expect(() => claimPortablePerson(parent, 'voice')).toThrow(/read-only.*goodhands/);
+    } finally {
+      if (ready) readers.goodhands = ready;
+    }
   });
   it('locks projected arrivals until a genuine current-actor departure succeeds', async () => {
     const parent = await createPersona({

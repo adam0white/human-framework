@@ -7313,6 +7313,8 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
               { kind: 'literal', value: 'skills' },
               { kind: 'literal', value: 'body' },
               { kind: 'literal', value: 'condition' },
+              { kind: 'literal', value: 'affect' },
+              { kind: 'literal', value: 'expectations' },
               { kind: 'literal', value: 'needs' },
               { kind: 'literal', value: 'beliefs' },
               { kind: 'literal', value: 'sourceTrust' },
@@ -7362,6 +7364,19 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   PreviewQuery: {
     kind: 'object',
     fields: {
+      select: {
+        optional: true,
+        shape: {
+          kind: 'array',
+          element: {
+            kind: 'union',
+            options: [
+              { kind: 'literal', value: 'affect' },
+              { kind: 'literal', value: 'expectations' },
+            ],
+          },
+        },
+      },
       bodyForecast: {
         optional: true,
         shape: {

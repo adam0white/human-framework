@@ -1,6 +1,6 @@
 /** Live rules can read current host facets without asking for a portable person. */
 import { expect, test } from 'vitest';
-import { exportRun, inspect, replay, step } from '../src/index.ts';
+import { exportRun, inspect, preview, replay, restoreRun, step } from '../src/index.ts';
 import type { Run } from '../src/run-schema.ts';
 import {
   actionRequest,
@@ -108,5 +108,81 @@ test('pending and active actors expose actual host traits and current held norms
   expect(exportRun(run).current.people.ada?.activity).toMatchObject({ offer: { actionId: 'work' } });
   read(run);
   const archive = exportRun(run);
+  expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+});
+
+/** G4: current feelings and learning remain readable during pending/active work. */
+test('live affect and expectations use detached host/self reads and keep other minds unknown', () => {
+  const ada = authoredPerson('ada', 'Ada');
+  ada.state.affect.emotions = [
+    { id: 'fear', intensity: 0.7, cause: 'night:west', targetId: 'west', since: START, halfLifeMs: 60_000 },
+  ];
+  ada.state.expectations = [{ key: 'work@west', needs: {}, samples: 2, successRate: 0.3, valence: -0.6 }];
+  const run = setup([ada, authoredPerson('bora', 'Bora')]);
+  const work = exampleOffers('ada', ['work'])[0];
+  if (!work) throw new Error('Missing work');
+  const request = actionRequest(
+    need(step(run, { until: START, inputs: openingInputs([{ id: 'ada', offers: [work] }]) })),
+    'start',
+  );
+  const select = ['affect', 'expectations'] as const;
+  const read = (current: Run) => {
+    const before = exportRun(current);
+    const host = need(inspect(current, { perspective: { kind: 'host' }, people: ['ada'], select }));
+    const person = host.people[0];
+    if (person?.kind !== 'host') throw new Error('Missing host reading');
+    const parts = person.parts;
+    expect(parts).toStrictEqual([
+      {
+        select: 'affect',
+        value: {
+          mood: before.current.people.ada?.affect.mood,
+          emotions: before.current.people.ada?.affect.emotions,
+        },
+      },
+      { select: 'expectations', value: before.current.people.ada?.memory.expectations },
+    ]);
+    expect(parts?.[0]?.value).toMatchObject({
+      emotions: [{ id: 'fear', cause: 'night:west', targetId: 'west', intensity: 0.7 }],
+    });
+    const self = need(
+      inspect(current, { perspective: { kind: 'person', observer: 'ada' }, people: ['ada'], select }),
+    );
+    expect(self.people[0]?.parts).toStrictEqual(parts);
+    const other = need(
+      inspect(current, { perspective: { kind: 'person', observer: 'bora' }, people: ['ada'], select }),
+    );
+    expect(other.people[0]?.parts).toStrictEqual(
+      select.map((select) => ({ select, value: { kind: 'unobserved' } })),
+    );
+    const forecast = need(
+      preview(current, { perspective: { kind: 'host' }, person: 'ada', until: START, inputs: [], select }),
+    );
+    expect(forecast.reading?.parts).toStrictEqual(parts);
+    const imagined = need(
+      preview(current, {
+        perspective: { kind: 'person', observer: 'bora' },
+        person: 'ada',
+        until: START,
+        inputs: [],
+        select,
+      }),
+    );
+    expect(imagined.reading).toStrictEqual(other.people[0]);
+    const affect = parts?.find((part) => part.select === 'affect')?.value;
+    if (!affect) throw new Error('Missing affect');
+    Reflect.set(affect.emotions[0] ?? {}, 'intensity', 0);
+    expect(exportRun(current)).toStrictEqual(before);
+  };
+  read(run);
+  need(
+    step(run, {
+      until: START,
+      inputs: [resolutionInput(request, 0, { disposition: 'accepted', observations: [] })],
+    }),
+  );
+  read(run);
+  const archive = exportRun(run);
+  read(need(restoreRun(JSON.parse(JSON.stringify(archive)))));
   expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
 });

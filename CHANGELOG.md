@@ -11,6 +11,18 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.11.0] — 2026-10-29
+
+Engine: 4.11.0.
+
+### Live person readings
+
+- `inspect` selects `affect` (mood and named feelings with intensity, cause and target) and `expectations` (learned action/target outcomes), including pending and active work. Host and self receive detached current readings. Other observers receive `unobserved`; hidden feelings and learning are not inferred from target truth.
+- `preview.select` requests the same faculties at its conditional endpoint through the inspection projector. Another-person previews keep these readings unobserved and retain their observer-held impression evidence. Reads consume no RNG and do not alter the live Run. No opt-in faculty, archive inspection or portable-departure workaround is introduced.
+- Client 0.5.10 binds all five Voice roles to their existing cast identities. The general peer-reader write gate remains closed until actual peer capability is verified. Kit 0.5.27 pins the companion client. The central host checks portable claims before admitting each person, so refused writes become named skips.
+
+Migration: the engine/schema identity changes; start a fresh run for older archives. The existing G4 display row owns these readings and the G2 registry owns role identity. This release does not by itself migrate Watch, Voice or Well or certify peer deployments.
+
 ## [4.10.0] — 2026-10-29
 
 Engine: 4.10.0.

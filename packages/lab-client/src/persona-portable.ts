@@ -14,6 +14,13 @@ import { PORTABLE_READERS } from './portable-readers.ts';
 
 // SCOPE: roles bind identity only; clinical, departure and ownership checks still apply.
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
+  voice: {
+    'hf.cast.halil.voice': 'halil',
+    'hf.cast.selin.voice': 'selin',
+    'hf.cast.riza.voice': 'riza',
+    'hf.cast.hacer.voice': 'hacer',
+    'hf.cast.osman.voice': 'osman',
+  },
   valley: {
     'hf.cast.yusuf.warren': 'yusuf-usta',
     'hf.cast.meryem.warren': 'meryem-visitor',
