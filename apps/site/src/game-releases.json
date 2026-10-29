@@ -1,0 +1,128 @@
+{
+  "murmur": {
+    "framework": "4.8.0",
+    "commit": "be833fb0f42745030d546655947ae9c1e12f6b88",
+    "release": "https://murmur.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "stairwell": {
+    "framework": "4.8.1",
+    "commit": "3163e8e522117d658d1c6678f9d906d12eaeb886",
+    "release": "https://stairwell.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "pass": {
+    "framework": "4.8.1",
+    "commit": "3aed109da7033faa6db14704a7c29c0ada272a87",
+    "release": "https://pass.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "glance": {
+    "framework": "4.8.0",
+    "commit": "a1d4d4294c7a91b1b1d34eee8dcd2673c5699070",
+    "release": "https://glance.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "watch": {
+    "framework": "3.2.0",
+    "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
+    "release": "https://human.adamwhite.work/release.json",
+    "checked": "2026-10-29",
+    "reason": "The live game still uses HF 3.x. Its 4.x bridge and deployment have not been verified; check again November 3, 2026."
+  },
+  "hearsay": {
+    "framework": "4.8.0",
+    "commit": "82f5c254d33ee4360a5283ea226f7ff818c51fc4",
+    "release": "https://hearsay.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "goodhands": {
+    "framework": "4.8.1",
+    "commit": "dccf97d65d8e144ae125758b6e56630db0f348a3",
+    "release": "https://goodhands.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "valley": {
+    "framework": "3.0.0",
+    "commit": "4c6a57bac99b1ac2f60fac08f811fd9593a8811a",
+    "release": "https://valley.adamwhite.work/release.json",
+    "checked": "2026-10-29",
+    "reason": "Stays on HF 3.x while it waits for the HF 4.9/4.10 speed-up."
+  },
+  "voice": {
+    "framework": "3.2.0",
+    "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
+    "release": "https://human.adamwhite.work/release.json",
+    "checked": "2026-10-29",
+    "reason": "The live game still uses HF 3.x. Its 4.x bridge and deployment have not been verified; check again November 3, 2026."
+  },
+  "well": {
+    "framework": "3.2.0",
+    "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
+    "release": "https://human.adamwhite.work/release.json",
+    "checked": "2026-10-29",
+    "reason": "The live game still uses HF 3.x. Its 4.x bridge and deployment have not been verified; check again November 3, 2026."
+  },
+  "warren": {
+    "framework": "4.8.1",
+    "commit": "2990a7cb24360dcd48a358a50e6cbd16015daea0",
+    "release": "https://warren.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "repair": {
+    "framework": "4.8.0",
+    "commit": "d48782129bbf015e2b2bf1475d144838c095c93f",
+    "release": "https://repair.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "neighbours": {
+    "framework": "3.0.0",
+    "commit": "7b0dcd1c494b39975219df5ed6ee05d616ba731b",
+    "release": "https://neighbours.adamwhite.work/release.json",
+    "checked": "2026-10-29",
+    "reason": "The live release still reports HF 3.x. A 4.x deployment has not been verified; check again November 3, 2026."
+  },
+  "rope": {
+    "framework": "4.8.1",
+    "commit": "9f17680d89ab0eb3d99082f16b228d8262ebd70c",
+    "release": "https://rope.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "commonstead": {
+    "framework": "4.8.1",
+    "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+    "release": "https://commonstead.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "smoke": {
+    "framework": "4.8.0",
+    "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
+    "release": "https://smoke.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "word": {
+    "framework": "4.0.0",
+    "commit": "0fbe19a5a5e4dc8915c4406f31f49f0f43990050",
+    "release": "https://word.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "child": {
+    "framework": "3.2.0",
+    "commit": "c6f74826cb1ae4590ee321202da097b344bea131",
+    "release": "https://child.adamwhite.work/release.json",
+    "checked": "2026-10-29",
+    "reason": "Stays on HF 3.x. Its next workload gate is November 24, 2026."
+  },
+  "days": {
+    "framework": "4.8.1",
+    "commit": "2741f06a0e4c96ffdec26e2e5b6b8874765dc126",
+    "release": "https://days.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  },
+  "lefthand": {
+    "framework": "4.8.0",
+    "commit": "a71b4486dfc6c639865fdb64eace7e61986177c9",
+    "release": "https://lefthand.adamwhite.work/release.json",
+    "checked": "2026-10-29"
+  }
+}

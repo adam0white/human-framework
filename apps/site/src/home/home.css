@@ -163,7 +163,12 @@ p {
   display: grid;
   gap: 12px;
 }
+.games > li {
+  display: flex;
+  flex-direction: column;
+}
 .game {
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -303,7 +308,6 @@ p {
   }
   .game {
     display: grid;
-    height: 100%;
     grid-template-columns: minmax(0, 1fr);
     align-content: start;
   }
@@ -328,4 +332,10 @@ p {
   flex-wrap: wrap;
   align-items: center;
   gap: 12px 20px;
+}
+
+.game-version {
+  display: block;
+  margin-block: 0.5rem;
+  font-size: 0.9rem;
 }

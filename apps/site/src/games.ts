@@ -31,6 +31,11 @@ export const FACULTIES: [string, string][] = [
   ['Conscience', 'a person’s own understanding of each norm'],
   ['Inner life', 'a nudge toward good or ill, and looking back on the day'],
   ['Relationships', 'trust, favours, gossip, marriage, grief'],
+  ['Narration', 'clear accounts of what a person did and why, with reviewed wording that can vary'],
+  [
+    'Portable roles',
+    'a person can enter another game with remembered experience; each game checks what it can carry over',
+  ],
   ['A whole life', 'birth, upbringing, aging, natural death'],
 ];
 
