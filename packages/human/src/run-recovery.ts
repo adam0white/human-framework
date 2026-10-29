@@ -57,7 +57,7 @@ function carriesEvidence(input: T.DeepReadonly<T.Input>, person: T.PersonId, id:
 
 /** Current validation is independent of historical reproduction. */
 function validateCurrent(
-  archive: T.DeepReadonly<ExpandedRunArchive>,
+  archive: Pick<T.DeepReadonly<ExpandedRunArchive>, 'current' | 'initial' | 'history'>,
   parametersHash: T.Hash,
 ): T.Result<true> {
   const state = archive.current;
@@ -702,6 +702,16 @@ export function executeAcceptedTransaction(
   return { ok: true, value: verified };
 }
 
+/** Both recovery carriers validate complete executed state after replay. */
+export function validateReconstructedState(
+  archive: Pick<T.DeepReadonly<ExpandedRunArchive>, 'current' | 'initial' | 'history'>,
+  parametersHash: T.Hash,
+): T.Result<true> {
+  const journals = checkReconstructedJournals(archive);
+  if (!journals.ok) return journals;
+  return validateCurrent(archive, parametersHash);
+}
+
 function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T.Run> {
   const admitted = admit(input, operations);
   if (!admitted.ok) return admitted;
@@ -720,9 +730,7 @@ function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T
     return reject('$.current', 'executed initial state, history or current archive differs');
   // Validate complete executed journals before retaining only their archive window.
   const expanded = { ...verified, current: readKernel(run).current };
-  const journals = checkReconstructedJournals(expanded);
-  if (!journals.ok) return journals;
-  const valid = validateCurrent(expanded, admitted.value.parameters.hash);
+  const valid = validateReconstructedState(expanded, admitted.value.parameters.hash);
   if (!valid.ok) return valid;
   return {
     ok: true,

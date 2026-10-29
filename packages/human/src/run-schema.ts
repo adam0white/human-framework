@@ -358,6 +358,8 @@ export type InspectQuery = {
     | 'skills'
     | 'body'
     | 'condition'
+    | 'affect'
+    | 'expectations'
     | 'needs'
     | 'beliefs'
     | 'sourceTrust'
@@ -403,6 +405,8 @@ export type BodyForecastLoad = {
   load: BodyLoad;
 };
 export type PreviewQuery = {
+  /** Selected private faculties at the conditional endpoint; others remain unobserved. */
+  select?: readonly ('affect' | 'expectations')[];
   /** Conditional declared loads, starting at the live run time; bounded by the body owner. */
   bodyForecast?: readonly BodyForecastLoad[];
   perspective: Perspective;
@@ -415,8 +419,14 @@ export type ImpressionReading = {
   targetId: PersonId;
   cues: readonly { key: string; value: number; confidence: Unit; seenAt?: Time }[];
 };
+/** Felt condition, without internal decay timestamps or parameters. */
+export type AffectReading = {
+  mood: AffectState['mood'];
+  emotions: readonly Pick<Emotion, 'id' | 'intensity' | 'cause' | 'targetId'>[];
+};
 export type ConditionReading = { outwardSigns: OutwardSigns; selfReport: OutwardSigns };
 export type PreviewResult = {
+  reading?: PersonView;
   /** Observer-held cues, including zero-confidence priors for missing condition cues. */
   impression?: ImpressionReading;
   bodyForecast?: { person: PersonId; from: Time; spans: readonly BodyForecastSpan[] };
@@ -2771,6 +2781,8 @@ export type BeliefReading = Omit<Belief, 'logOdds'> & { credence: Unit };
 export type HostParts = {
   needs: readonly NeedReading[];
   condition: ConditionReading;
+  affect: AffectReading;
+  expectations: readonly ActionExpectation[];
   traits: Traits;
   heldNorms: readonly HeldNorm[];
   skills: readonly SkillReading[];
@@ -2797,10 +2809,12 @@ export type SelfBody = { perceived: BodyReadout['perceived'] };
 export type SelfParts = {
   needs: readonly NeedReading[];
   condition: ConditionReading;
+  affect: AffectReading;
+  expectations: readonly ActionExpectation[];
   traits: Knowledge<Traits>;
   heldNorms: readonly HeldNorm[];
   skills: readonly SkillReading[];
-  summary: { name: string; mood: AffectState['mood'] };
+  summary: { name: string };
   body: SelfBody;
   beliefs: readonly BeliefReading[];
   sourceTrust: Readonly<Record<Id, Unit>>;
@@ -2818,6 +2832,8 @@ export type SelfParts = {
 export type OtherParts = {
   needs: Knowledge<readonly NeedReading[]>;
   condition: ImpressionReading;
+  affect: Knowledge<AffectReading>;
+  expectations: Knowledge<readonly ActionExpectation[]>;
   traits: Knowledge<Traits>;
   heldNorms: Knowledge<readonly HeldNorm[]>;
   skills: Knowledge<readonly SkillReading[]>;

@@ -30,6 +30,7 @@ export type {
   ActorActivity,
   ActualConsequences,
   AdviceReading,
+  AffectReading,
   AuthoredPersonState,
   BeliefReading,
   BodyForecastLoad,

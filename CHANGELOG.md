@@ -15,8 +15,19 @@ absolute links in sections, since they are copied into the release page.
 
 Engine: 4.10.0.
 
-- Add a separately tagged append-only recovery journal. `exportRunJournal` emits complete initial authoring once, then only new accepted transactions. A run-bound cursor refuses another run, fork or changed opening. Each chunk binds its predecessor, inclusive transaction range and digest; the committed head refuses incomplete or reordered prefixes. Hosts must atomically commit chunks, matching host snapshot and head before advancing the cursor.
-- `restoreRunJournal` executes the entire committed history through the same constructors and transaction verifier as native recovery. Optional event/state checkpoints remain verified and retained. This does not introduce trusted-snapshot restore, discard accepted inputs or bound semantic history. Native archive format 7 remains complete and self-contained; the journal is a separate persistence protocol. Previous exact engine builds remain refused under the existing 4.x policy.
+### Live person readings
+
+- `inspect` selects `affect` (mood and named feelings with intensity, cause and target) and `expectations` (learned action/target outcomes), including pending and active work. Host and self receive detached current readings. Other observers receive `unobserved`; hidden feelings and learning are not inferred from target truth.
+- Felt emotion readings omit internal decay timestamps and parameters. Mood leaves through `affect` only; the self summary contains the name.
+- `preview.select` requests the same faculties at its conditional endpoint through the inspection projector. Another-person previews keep these readings unobserved and retain their observer-held impression evidence. Reads consume no RNG and do not alter the live Run. No opt-in faculty, archive inspection or portable-departure workaround is introduced.
+- Client 0.5.9 binds all five Voice roles to their existing cast identities. The general peer-reader write gate remains closed until actual peer capability is verified. Kit 0.5.26 pins the companion client. The central host checks portable claims before admitting each person, so refused writes become named skips.
+
+Migration: the engine/schema identity changes; start a fresh run for older archives. The existing G4 display row owns these readings and the G2 registry owns role identity. This release does not by itself migrate Watch, Voice or Well or certify peer deployments.
+
+### Autosave and recovery
+
+- Keep one route per persistence purpose: complete native archives for downloads and playtest replay exports; the append-only journal for autosave only. `exportRunJournal` emits complete initial authoring once, then only new accepted transactions. A run-bound cursor refuses another run, fork or changed opening. Each chunk binds its predecessor, inclusive transaction range and digest; the committed head refuses incomplete or reordered prefixes. Hosts must atomically commit chunks, matching host snapshot and head before advancing the cursor.
+- `restoreRunJournal` executes the entire committed history through the same constructors, transaction verifier and final reconstructed-state validation as native recovery. Optional event/state checkpoints remain verified and retained. This does not introduce trusted-snapshot restore, discard accepted inputs or bound semantic history. Native archive format 7 remains complete and self-contained. Previous exact engine builds remain refused under the existing 4.x policy.
 - Avoid repeated construction of trait-shift data inside the need loop while preserving its exact arithmetic and iteration order. Frozen JSON validation checks descriptor membership directly instead of searching each array index in all prior keys. Canonical replay-hash expectations and mutable admission remain unchanged.
 - Add the opt-in `node scripts/bench-journal.ts [--full]` headless control. It reports newly written and cumulative bytes, checkpoint costs, complete native recovery and continuation. It is synthetic evidence, separate from Valley's day-12/881-day gates and Child's chapter budgets.
 - Prepare client 0.5.9 with exact HF 4.10.0 and kit 0.5.26 with the compatible client peer. Publication and game adoption require separate receipts.

@@ -128,6 +128,15 @@ export function inspectCurrentRun(
       ),
     })),
   });
+  const affect = (actor: T.ActorState): T.AffectReading => ({
+    mood: actor.affect.mood,
+    emotions: actor.affect.emotions.map(({ id, intensity, cause, targetId }) => ({
+      id,
+      intensity,
+      cause,
+      ...(targetId === undefined ? {} : { targetId }),
+    })),
+  });
   const advice = (actor: T.ActorState): T.AdviceReading =>
     standingAdvice({ will: actor.will, now: state.at }, state.at).map((item) => ({
       ...item,
@@ -166,6 +175,12 @@ export function inspectCurrentRun(
             break;
           case 'condition':
             parts.push({ select, value: condition(actor) });
+            break;
+          case 'affect':
+            parts.push({ select, value: affect(actor) });
+            break;
+          case 'expectations':
+            parts.push({ select, value: actor.memory.expectations });
             break;
           case 'skills':
             parts.push({ select, value: readings(actor) });
@@ -280,7 +295,7 @@ export function inspectCurrentRun(
             parts.push({ select, value: actor.conscience.norms });
             break;
           case 'summary':
-            parts.push({ select, value: { name: actor.name, mood: actor.affect.mood } });
+            parts.push({ select, value: { name: actor.name } });
             break;
           case 'needs':
             parts.push({
@@ -295,6 +310,12 @@ export function inspectCurrentRun(
             break;
           case 'condition':
             parts.push({ select, value: condition(actor) });
+            break;
+          case 'affect':
+            parts.push({ select, value: affect(actor) });
+            break;
+          case 'expectations':
+            parts.push({ select, value: actor.memory.expectations });
             break;
           case 'skills':
             parts.push({ select, value: readings(actor) });
@@ -363,6 +384,8 @@ export function inspectCurrentRun(
           case 'summary':
             parts.push({ select, value: { kind: 'unobserved' } });
             break;
+          case 'affect':
+          case 'expectations':
           case 'needs':
           case 'skills':
           case 'body':

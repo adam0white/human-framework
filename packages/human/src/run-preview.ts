@@ -4,6 +4,7 @@ import { cloneData } from './core/clone.ts';
 import { createPerson, createRun } from './run.ts';
 import { hashCanonical } from './run-canonical.ts';
 import { conditionImpression, imaginedPerson } from './run-imagination.ts';
+import { inspectCurrentRun } from './run-inspect.ts';
 import { forkKernel, freezeData, readKernel } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
 import { bodyPerception } from './run-person.ts';
@@ -17,6 +18,8 @@ export function preview(
 ): T.Result<T.DeepReadonly<T.PreviewResult>> {
   const parsed = validateData('PreviewQuery', input);
   if (!parsed.ok) return parsed;
+  if (input.select && new Set(input.select).size !== input.select.length)
+    return { ok: false, error: { code: 'duplicate-id', path: '$.select', message: 'duplicate selection' } };
   const query = parsed.value,
     record = readKernel(run);
   if (!record.current.people[query.person])
@@ -102,6 +105,7 @@ export function preview(
         value: freezeData({
           ...result.value,
           perspective: query.perspective,
+          ...(query.select ? { reading: selectedReading(run, query) } : {}),
           impression: conditionImpression(observer, query.person, record.current.at),
           knowledgeLimit: [
             'This answer uses only the observer’s held impressions and explicit hypothetical offers and suggestions.',
@@ -238,6 +242,7 @@ export function preview(
     value: freezeData({
       at: result.value.at,
       hypothetical: true,
+      ...(query.select ? { reading: selectedReading(fork, query) } : {}),
       ...(bodyForecast ? { bodyForecast } : {}),
       perspective: query.perspective,
       possibilities,
@@ -257,4 +262,17 @@ export function preview(
       ],
     }),
   };
+}
+
+/** Use the same detached, knowledge-bounded projection as live inspection. */
+function selectedReading(run: T.Run, query: T.DeepReadonly<T.PreviewQuery>): T.DeepReadonly<T.PersonView> {
+  const result = inspectCurrentRun(run, {
+    perspective: query.perspective,
+    people: [query.person],
+    select: query.select ?? [],
+  });
+  if (!result.ok) throw new TypeError(result.error.message);
+  const person = result.value.people[0];
+  if (!person) throw new TypeError('Preview reading disappeared');
+  return person;
 }

@@ -45,6 +45,8 @@ export async function claimSiteCastBatch<T>(
     try {
       lifeAdmission(input, source.game);
       nativeCastSource(source.game, input.parent);
+      // Refuse shared writes before admitting this person into the host world.
+      if (portablePassport(input.parent)) claimPortablePerson(input.parent, source.game);
       await options.admitPerson?.(structuredClone(input));
       inputs.push(input);
     } catch (error) {

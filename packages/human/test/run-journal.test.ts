@@ -16,7 +16,7 @@ import {
 import { archiveSnapshot } from '../src/run-archive.ts';
 import { hashCanonical } from '../src/run-canonical.ts';
 import { packHistory, unpackHistory } from '../src/run-history.ts';
-import { journalChunkDigest } from '../src/run-journal.ts';
+import { journalChunkDigest, restoreJournal } from '../src/run-journal.ts';
 import { forkKernel, readKernel } from '../src/run-kernel.ts';
 import type {
   AcceptedTransaction,
@@ -131,12 +131,32 @@ it('appends exact new evidence, rejects forks and corrupt prefixes, then restore
   transaction.stateHash = '0'.repeat(64);
   const invalidBody = { ...checkpointBody, history: packHistory(checkpointed) };
   const invalidChunk = { ...invalidBody, digest: journalChunkDigest(invalidBody) };
-  expect(
-    restoreRunJournal({
-      ...checkpointArchive,
-      chunks: [invalidChunk],
-      head: { ...checkpointArchive.head, digest: invalidChunk.digest },
-    }).ok,
-  ).toBe(false);
+  const invalidCheckpoint = restoreRunJournal({
+    ...checkpointArchive,
+    chunks: [invalidChunk],
+    head: { ...checkpointArchive.head, digest: invalidChunk.digest },
+  });
+  expect(invalidCheckpoint.ok).toBe(false);
+  if (!invalidCheckpoint.ok) expect(invalidCheckpoint.error.path).toContain('$.chunks[0].history[0]');
   expect(unpackHistory(checkpointChunk.history)).toEqual(readRunHistory(exportRun(recovered.run)));
+});
+
+it('validates the complete executed state before accepting journal recovery', () => {
+  const run = accepted(createRun(emptyRunSpec()));
+  accepted(step(run, { until: 1, inputs: [change(1)] }));
+  const exported = accepted(exportRunJournal(run));
+  const archive = { opening: exported.opening, chunks: [exported.chunk], head: exported.head };
+  const recovered = restoreJournal(archive, {
+    createRun,
+    createPerson,
+    exportRun,
+    step(target, input) {
+      const result = step(target, input);
+      if (result.ok) readKernel(target).current.counters.nextEvent += 1;
+      return result;
+    },
+  });
+  expect(recovered.ok).toBe(false);
+  if (!recovered.ok) expect(recovered.error.path).toBe('$.current.counters.nextEvent');
+  expect(restoreRunJournal(archive).ok).toBe(true);
 });
