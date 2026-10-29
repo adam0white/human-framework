@@ -9,6 +9,7 @@ import {
   restoreRun,
   step,
 } from '../src/index.ts';
+import type { Input, NewbornContext } from '../src/run-schema.ts';
 import {
   accepted,
   numericalPerson as authoredNumericalPerson,
@@ -360,57 +361,112 @@ it('records offscreen conception and maternal delivery without inventing actors'
   expect(state.receipts.allocated.some((receipt) => receipt.reference.kind === 'episode')).toBe(true);
 });
 
-it('materializes an inherited newborn with a separate recorded construction stream', () => {
-  const spec = numericalSpec(7),
-    run = accepted(createRun(spec));
+it('materializes an inherited newborn with authored social premises and a separate genetic stream', () => {
+  const spec = numericalSpec(7);
+  spec.definitions.sources = [
+    ...spec.definitions.sources,
+    { type: 'person', id: 'mother' },
+    { type: 'person', id: 'father' },
+  ];
   const mother = numericalPerson(7),
     father = numericalPerson(7);
   mother.id = 'mother';
   father.id = 'father';
   father.identity.sex = 'male';
-  accepted(createPerson(run, mother));
-  accepted(createPerson(run, father));
   const { body, needs, reserve, retention, affect, promptings, review } = numericalPerson(7).state;
-  accepted(
-    step(run, {
-      until: 1,
-      inputs: [
-        {
-          id: 'newborn',
-          at: 0,
-          source: { type: 'host', id: spec.host.id },
-          kind: 'lifecycle.received',
-          payload: {
-            type: 'birth',
-            child: {
-              kind: 'create',
-              newborn: {
-                kind: 'two-parent-derived',
-                id: 'child',
-                identity: { name: 'Child' },
-                sex: { kind: 'draw' },
-                parents: [
-                  { kind: 'actor', id: 'mother' },
-                  { kind: 'actor', id: 'father' },
-                ],
-                context: { body, needs, reserve, retention, affect, promptings, review },
-              },
-            },
-            delivery: { kind: 'not-recorded' },
-            basis: { evidence: { kind: 'evidence', id: 'birth-proof' }, worldRevision: 0 },
-          },
+  const context: NewbornContext = { body, needs, reserve, retention, affect, promptings, review };
+  const relationships = [
+    {
+      otherId: 'mother',
+      affection: 0.8,
+      trust: 0.7,
+      respect: 0.6,
+      familiarity: 0.5,
+      roles: ['parent'],
+      ledger: 0,
+      lastInteraction: 0,
+    },
+  ] satisfies NonNullable<NewbornContext['relationships']>;
+  const voices = [{ voiceId: 'mother', trust: 0.75 }];
+  const make = () => {
+    const run = accepted(createRun(spec));
+    accepted(createPerson(run, mother));
+    accepted(createPerson(run, father));
+    return run;
+  };
+  const birth = (initial: NewbornContext): Input => ({
+    id: 'newborn',
+    at: 0,
+    source: { type: 'host', id: spec.host.id },
+    kind: 'lifecycle.received',
+    payload: {
+      type: 'birth',
+      child: {
+        kind: 'create',
+        newborn: {
+          kind: 'two-parent-derived',
+          id: 'child',
+          identity: { name: 'Child' },
+          sex: { kind: 'draw' },
+          parents: [
+            { kind: 'actor', id: 'mother' },
+            { kind: 'actor', id: 'father' },
+          ],
+          context: initial,
         },
-      ],
-    }),
-  );
-  const state = exportRun(run).current;
-  expect(state.people.child?.life.bornAt).toBe(0);
+      },
+      delivery: { kind: 'not-recorded' },
+      basis: { evidence: { kind: 'evidence', id: 'birth-proof' }, worldRevision: 0 },
+    },
+  });
+  const run = make(),
+    empty = make();
+  accepted(step(run, { until: 0, inputs: [birth({ ...context, relationships, voices })] }));
+  accepted(step(empty, { until: 0, inputs: [birth(context)] }));
+  const archive = exportRun(run),
+    state = archive.current,
+    child = state.people.child,
+    emptyState = exportRun(empty).current;
+  expect(child?.life.bornAt).toBe(0);
+  expect(child?.social.relationships).toEqual(relationships);
+  expect(child?.will.voices).toMatchObject(voices);
+  expect(emptyState.people.child?.social.relationships).toEqual([]);
+  expect(emptyState.people.child?.will.voices).toEqual([]);
+  expect(child?.traits).toEqual(emptyState.people.child?.traits);
+  expect(child?.family.aptitudes).toEqual(emptyState.people.child?.family.aptitudes);
+  expect(child?.values).toEqual(emptyState.people.child?.values);
+  expect(Object.values(child?.values ?? {})).toEqual(Array(10).fill(0.5));
+  expect(state.lifecycle.origins).toEqual(emptyState.lifecycle.origins);
   expect(state.lifecycle.origins.find((origin) => origin.person === 'child')?.origin.kind).toBe(
     'two-parent-derived',
   );
   const stream = state.lifecycle.streams.find((stream) => stream.identity.kind === 'inheritance');
   expect(stream?.uniformDraws).toBe(25);
   expect(stream?.status).toBe('completed');
+  expect(state.lifecycle.streams).toEqual(emptyState.lifecycle.streams);
+  expect(state.people.mother).toEqual(emptyState.people.mother);
+  expect(state.people.father).toEqual(emptyState.people.father);
+
+  const restored = accepted(restoreRun(JSON.parse(JSON.stringify(archive))));
+  expect(exportRun(restored)).toEqual(archive);
+  const reproduced = accepted(replay(archive));
+  expect(reproduced.verified).toBe(true);
+  expect(reproduced.fullHash).toBe(archive.hashes.full);
+  accepted(step(run, { until: 1, inputs: [] }));
+  accepted(step(restored, { until: 1, inputs: [] }));
+  expect(exportRun(restored)).toEqual(exportRun(run));
+
+  // The ordinary addPerson admission path refuses undeclared ties and voices atomically.
+  for (const invalid of [
+    { ...context, relationships: relationships.map((tie) => ({ ...tie, otherId: 'missing-person' })) },
+    { ...context, voices: [{ voiceId: 'missing-voice', trust: 0.75 }] },
+  ]) {
+    const refused = make(),
+      before = exportRun(refused);
+    const result = step(refused, { until: 0, inputs: [birth(invalid)] });
+    expect(result.ok).toBe(false);
+    expect(exportRun(refused)).toEqual(before);
+  }
 });
 
 it('admits multiple kin scopes for one current fact revision without duplicate scope authorities', () => {

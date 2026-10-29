@@ -2736,7 +2736,7 @@ export class Frame {
       cursor,
     );
     cursor = aptitudes.rng;
-    const person: T.PersonAuthoring = {
+    const person: T.DeepReadonly<T.PersonAuthoring> = {
       id: input.id,
       identity: { ...input.identity, birthAt: this.state.at, sex },
       biography: [],
@@ -2754,8 +2754,8 @@ export class Frame {
         consequences: [],
         sourceTrust: [],
         context: { scarcity: { kind: 'unobserved' }, smoking: { kind: 'unobserved' } },
-        relationships: [],
-        voices: [],
+        relationships: input.context.relationships ?? [],
+        voices: input.context.voices ?? [],
         agenda: {
           commitments: [],
           goals: [],

@@ -456,3 +456,8 @@ The 2026-11-03 checkpoint reviews the existing `hf401` patch and the first bridg
 ### G4 CENTRAL-GAPS live readings — 2026-10-29 candidate
 
 The existing G4 row owns `inspect` selections `affect` and `expectations`. Watch needs learned adverse action/target expectations after immediate fear fades; Voice needs named feelings/causes and learned place/person expectations; Well needs the dominant named emotion, intensity and target. Host/self reads work during pending and active actions. Other observers receive `unobserved` for these private faculties. `preview.select` uses the same projector at the conditional endpoint and never reads another person's hidden truth. No host actor formulas or archive fields become UI contracts. G2 adds Voice's existing five registry roles while retaining the generalized peer-reader write gate. Publication and the three complete game ports remain separate acceptance receipts.
+
+
+### CENTRAL-GAPS lifecycle context — 2026-10-29 candidate
+
+The existing G1 bridge and G10 lifecycle controls also cover Watch's inherited newborns. Their authored child-side parent ties and parental voices were discarded because `NewbornContext` did not admit either field. The 4.11 candidate preserves optional initial relationships and voices through the existing birth input and normal person admission. Omission still produces empty social context. Biological parentage does not imply known caregivers or authority. The framework still derives traits and aptitudes. Watch must prove household, care, retelling and proposal behavior after adopting the published contract; source controls are not a delivered game port.

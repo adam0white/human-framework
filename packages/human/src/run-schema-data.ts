@@ -4731,6 +4731,14 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       affect: { optional: false, shape: { kind: 'ref', name: 'InitialAffect' } },
       promptings: { optional: false, shape: { kind: 'ref', name: 'InitialPromptings' } },
       review: { optional: false, shape: { kind: 'ref', name: 'InitialReview' } },
+      relationships: {
+        optional: true,
+        shape: { kind: 'array', element: { kind: 'ref', name: 'InitialRelationship' } },
+      },
+      voices: {
+        optional: true,
+        shape: { kind: 'array', element: { kind: 'ref', name: 'InitialVoice' } },
+      },
     },
   },
   InheritedNewborn: {

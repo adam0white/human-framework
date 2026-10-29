@@ -2991,10 +2991,12 @@ export type GeneticOrigin =
 export type TraitBasis =
   | { kind: 'explicit-authoring'; evidence: EvidenceRef }
   | { kind: 'unknown-genetics-prior'; prior: 'source-population-midpoint' };
+// Initial social ties and voices are authored premises, never inferred from genetic parents.
 export type NewbornContext = Pick<
   AuthoredPersonState,
   'body' | 'needs' | 'reserve' | 'retention' | 'affect' | 'promptings' | 'review'
->;
+> &
+  Partial<Pick<AuthoredPersonState, 'relationships' | 'voices'>>;
 export type InheritedNewborn = {
   kind: 'two-parent-derived';
   id: PersonId;
