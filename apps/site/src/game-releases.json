@@ -28,7 +28,7 @@
     "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-29",
-    "reason": "The live game still uses HF 3.x. Its 4.x bridge and deployment have not been verified; check again November 3, 2026."
+    "reason": "Stays on HF 3.2: HF 4.9 cannot expose learned fears of a particular watch posting during active work. Port blocker reviewed October 29; recheck November 3, 2026."
   },
   "hearsay": {
     "framework": "4.8.0",
@@ -54,14 +54,14 @@
     "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-29",
-    "reason": "The live game still uses HF 3.x. Its 4.x bridge and deployment have not been verified; check again November 3, 2026."
+    "reason": "Stays on HF 3.2: HF 4.9 lacks the live feelings and learned expectations used by Halil’s display. Carryover also needs a Voice role in the lab client. Recheck November 3, 2026."
   },
   "well": {
     "framework": "3.2.0",
     "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-29",
-    "reason": "The live game still uses HF 3.x. Its 4.x bridge and deployment have not been verified; check again November 3, 2026."
+    "reason": "Stays on HF 3.2: HF 4.9 lacks the named feelings shown while villagers work. Port blocker reviewed October 29; recheck November 3, 2026."
   },
   "warren": {
     "framework": "4.8.1",
