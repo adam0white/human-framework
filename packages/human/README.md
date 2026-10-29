@@ -384,7 +384,7 @@ not claim divine acceptance or a religious ruling. Norm reasons describe only
 the person's own understanding.
 
 Phrasebooks also replace verdict predicates and reason sentences through the same
-`wordings` and `voices` tables. This faculty is always on. Add at least four
+`wordings` and `voices` tables. This faculty is always on. Add one or more
 distinct alternatives under a closed semantic key; omitted keys use plain English.
 Unknown keys refuse admission with `invalid-schema` and a message naming the key.
 For example, a person's table may contain:
@@ -417,13 +417,26 @@ lexicon.voices = { ...lexicon.voices, selim: { ...lexicon.voices?.selim, ...frag
 Verdict keys are `verdict.assented`, `verdict.complied`, `verdict.deferred`,
 `verdict.modified`, `verdict.refused`, `verdict.commanded` and `verdict.cannot`.
 The last describes recorded inability; ordinary refusal uses `verdict.refused`.
-Deferred and modified predicates require `{alternative}`. It contains the recorded
-counter-offer label only when a selected alternative or commitment was recorded.
-Placeholder labels such as `later` use the neutral `do something else` fallback.
-Known labels expand to plain English (for example, `Fajr` becomes `the dawn
-prayer`). Labels can be noun phrases; use a frame such as the quoted-label
-examples above rather than assuming they follow `I` as a verb. Other
-verdicts have no slots. Reason keys use `reason.` followed by a catalogued exact
+Deferred and modified fragments require `{alternative}` when a winning action is
+recorded. It contains the action's counter-offer label. Author those labels as
+base verb phrases if using frames such as `after I {alternative}`. A deferral
+without a winning action, or behind a commitment, uses `verdict.deferred.later`
+with no slots. It never inserts a promise label or an invented action. Keep the
+promise's actual words in the host's recorded-promise explanation.
+
+Games can author complete sentences, including contractions and exclamations:
+
+```ts
+const replies = {
+  'suggestion.resolved': ['{verdict}{reason}'],
+  'verdict.assented': ["Yes! Let's go."],
+  'verdict.deferred': ['I will {alternative} first.'],
+  'verdict.deferred.later': ['Not yet. Ask me again later.'],
+};
+```
+
+The wrapper and fragments use the same existing phrasebook route, without a switch.
+Other verdicts have no slots. Reason keys use `reason.` followed by a catalogued exact
 reason or family, such as `reason.need:rest`, `reason.distrust`, `reason.norm` or
 `reason.skill`. The exported `NARRATION_FRAGMENTS` catalog lists every admitted key and its slots.
 Reason variants are complete sentences without slots.
@@ -446,13 +459,10 @@ aggregate does not retain each reply’s alternative. Label expansions, other
 daily-summary fragments and inspection/chronicle-change projections remain
 built-in English.
 
-The window excludes the two previous alternatives for each person and meaning.
-Every built-in event frame has at least four alternatives. Authored tables must also
-contain at least four distinct variants; shorter tables are refused at admission.
-With four variants, excluding two leaves at least two choices on every draw;
-excluding three would force a repeating four-line cycle. Unrelated events do not
-clear a person's window. This is a deliberate change
-from older versions that admitted one- or two-line tables.
+The window excludes up to two previous alternatives for each person and meaning,
+while always leaving at least one candidate. A single authored wrapper stays fixed;
+two alternatives alternate. With four or more alternatives, two recent choices stay
+excluded. Unrelated events do not clear a person's window.
 
 At emission, mood, trust in the advising voice and strength of the habit for the
 chosen act are captured in broad tenth bands. Low mood, distrust and practiced

@@ -127,8 +127,6 @@ it('rejects malformed wording data before a run is created', () => {
   for (const invalid of [
     { 'unknown.key': ['A.'] },
     { 'decision.wait': [] },
-    { 'decision.wait': ['Wait.'] },
-    { 'decision.wait': ['Wait.', 'Pause.', 'Stay.'] },
     { 'decision.wait': ['A.', 'A.'] },
     { 'decision.wait': [' '] },
     { 'decision.act': ['I will {action}.'] },
@@ -276,12 +274,9 @@ it('keeps a missing winning alternative neutral and an authored objection out of
   const table: Lexicon = {
     ...lex,
     wordings: {
-      'verdict.deferred': [
-        'will first {alternative}',
-        'will wait until I {alternative}',
-        'will consider it after I {alternative}',
-        'must first {alternative}',
-      ],
+      'verdict.deferred': ['I will {alternative} first.'],
+      'verdict.deferred.later': ['Not yet. Ask me again later.'],
+      'suggestion.resolved': ['{verdict}{reason}'],
       'reason.norm': [
         'This conflicts with my rule.',
         'My rule forbids this.',
@@ -296,7 +291,7 @@ it('keeps a missing winning alternative neutral and an authored objection out of
     decisionId: 'd',
     resolution: { voiceId: 'v', verdict: 'deferred', reason: 'preference', counterOffer: { label: 'later' } },
   };
-  expect(describeWording(deferred, table)?.slots.verdict).toBe('will first do something else');
+  expect(describeWording(deferred, table)?.slots.verdict).toBe('Not yet. Ask me again later.');
   expect(
     describeWording(
       {
@@ -305,7 +300,7 @@ it('keeps a missing winning alternative neutral and an authored objection out of
       },
       table,
     )?.slots.verdict,
-  ).toContain('the dawn prayer');
+  ).toBe('Not yet. Ask me again later.');
   const event = wait('motive');
   event.data = {
     kind: 'decision',
@@ -365,7 +360,9 @@ it('headless control: reads, pagination, restore continuation and replay retain 
     if (withVariants)
       spec.definitions.lexicon.wordings = {
         'verdict.refused': ['refused it', 'declined it', 'said no to it', 'would not do it'],
-        'verdict.cannot': ['cannot act', 'cannot manage it', 'cannot do it', 'am unable to act'],
+        'suggestion.resolved': ['{verdict}{reason}'],
+        'verdict.cannot': ["I can't do that."],
+        'verdict.deferred.later': ['Not yet. Ask me again later.'],
         'reason.need:food': ['I need a meal.', 'I am hungry.', 'Food comes first.', 'I need food.'],
         'decision.act': [
           'My next step is to {action}.{why}',
@@ -542,4 +539,28 @@ it('headless control: reads, pagination, restore continuation and replay retain 
   );
   expect(need(replay(exportRun(decisionRun))).verified).toBe(true);
   expect(exportRun(need(restoreRun(exportRun(decisionRun))))).toEqual(exportRun(decisionRun));
+});
+
+it('records a single authored sentence without adding a subject, punctuation or a tentative opening', () => {
+  const spec = exampleSpec();
+  spec.definitions.lexicon.wordings = {
+    'suggestion.resolved': ['{verdict}{reason}'],
+    'verdict.assented': ["Yes! Let's go."],
+  };
+  expect(createRun(spec).ok).toBe(true);
+  const event = wait('answer');
+  event.data = {
+    kind: 'suggestion-resolved',
+    adviceId: 'a',
+    decisionId: 'd',
+    resolution: { voiceId: 'v', verdict: 'assented', reason: '' },
+  };
+  const state: Pick<RunState, 'wording'> = { wording: {} };
+  for (let i = 0; i < 4; i++) {
+    selectEventWording(event, spec.definitions.lexicon, 7, state);
+    expect(event.wording?.fragments?.['verdict.assented']).toBe(0);
+    expect(rendererOwner.render(event, { kind: 'host' }, spec.definitions.lexicon, 7)[0]?.text).toBe(
+      "Yes! Let's go.",
+    );
+  }
 });

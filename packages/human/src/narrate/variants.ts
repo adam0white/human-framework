@@ -35,8 +35,8 @@ export function wordingIssue(
         return issue(`${label} has an unknown key`);
       const defaults = NARRATION_TEMPLATES[key as keyof typeof NARRATION_TEMPLATES];
       const expected = JSON.stringify(fragment?.slots ?? templateSlots(defaults?.[0] ?? ''));
-      if (variants.length < 4 || new Set(variants).size !== variants.length)
-        return issue(`${label} needs at least four distinct strings`);
+      if (variants.length < 1 || new Set(variants).size !== variants.length)
+        return issue(`${label} needs at least one distinct string`);
       for (const variant of variants)
         if (!variant.trim() || JSON.stringify(templateSlots(variant)) !== expected)
           return issue(`${label} must keep exactly the template's named slots`);
@@ -63,10 +63,11 @@ export function selectEventWording(
       : createRng(stableHash(JSON.stringify(['hf:wording:2', seed, identity])));
     const occurrence = (prior?.occurrence ?? 0) + 1;
     if (!Number.isSafeInteger(occurrence)) throw new EngineLimitError('Wording occurrence exhausted');
-    // Every admitted phrasebook has at least four alternatives. Keep the last
-    // two choices out of the next draw, leaving at least two candidates. Context changes the preference for concise wording:
+    // Keep up to two recent choices out, always leaving a candidate. A single
+    // authored wrapper needs no artificial punctuation variants. Context changes the preference for concise wording:
     // low mood, distrust and well-practised acts favour shorter alternatives.
-    const excluded = new Set(prior?.recent ?? []);
+    const window = Math.min(2, variants.length - 1);
+    const excluded = new Set(window ? (prior?.recent ?? []).slice(-window) : []);
     const candidates = variants.map((text, index) => ({ text, index })).filter((v) => !excluded.has(v.index));
     const shortest = Math.min(...variants.map((text) => text.length));
     const longest = Math.max(...variants.map((text) => text.length));
