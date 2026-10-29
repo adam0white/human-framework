@@ -267,9 +267,12 @@ if (workload === 'child') {
     JSON.stringify({
       stage: 'result',
       minute: g.valley.minute,
-      people: 53,
+      people: Object.keys(archive.current.people).length,
+      initialPeople: archive.initial.people.length,
       wholeHostMs,
-      msPerYearPerson: wholeHostMs / (((g.valley.minute - 420) / (1440 * 365.25)) * 53),
+      msPerYearPerson:
+        wholeHostMs / (((g.valley.minute - 420) / (1440 * 365.25)) * archive.initial.people.length),
+      normalization: 'Elapsed game years times initially authored people; not integrated actor-years',
       archiveBytes: Buffer.byteLength(raw),
       exportMs,
       restoreMs,
