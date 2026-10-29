@@ -806,9 +806,13 @@ export function validateNarrativeJson(value: unknown, path = ''): ValidationIssu
     if (immutable) {
       const own = Reflect.ownKeys(x);
       immutable = own.every((key) => {
-        if (typeof key !== 'string' || (!fields.includes(key) && !(Array.isArray(x) && key === 'length')))
-          return false;
-        return Object.hasOwn(Object.getOwnPropertyDescriptor(x, key) ?? {}, 'value');
+        if (typeof key !== 'string') return false;
+        const descriptor = Object.getOwnPropertyDescriptor(x, key);
+        return (
+          descriptor !== undefined &&
+          Object.hasOwn(descriptor, 'value') &&
+          (descriptor.enumerable === true || (Array.isArray(x) && key === 'length'))
+        );
       });
     }
     for (const key of fields) {

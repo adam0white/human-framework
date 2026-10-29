@@ -77,4 +77,13 @@ it('reuses immutable closed days while mutable admissions and accessor values re
   expect(validateNarrativeJson(accessor)).toEqual([]);
   value = Number.NaN;
   expect(validateNarrativeJson(accessor).map((issue) => issue.path)).toEqual(['value']);
+  // Array length is its sole permitted hidden field. A frozen array accessor
+  // still reads its current value rather than becoming an immutable JSON proof.
+  let arrayValue = 1;
+  const array = [1];
+  Object.defineProperty(array, '0', { enumerable: true, get: () => arrayValue });
+  Object.freeze(array);
+  expect(validateNarrativeJson(array)).toEqual([]);
+  arrayValue = Number.NaN;
+  expect(validateNarrativeJson(array).map((issue) => issue.path)).toEqual(['0']);
 });

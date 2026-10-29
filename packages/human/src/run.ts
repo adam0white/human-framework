@@ -11,6 +11,7 @@ import { RUN_ENGINE } from './run-engine.ts';
 import { packHistory } from './run-history.ts';
 import { inspectCurrentRun } from './run-inspect.ts';
 import { validateActor } from './run-integrity.ts';
+import { exportJournal, restoreJournal } from './run-journal.ts';
 import {
   commitTransaction,
   freezeData,
@@ -247,4 +248,17 @@ export function restoreRun(input: unknown): T.Result<T.Run> {
 }
 export function replay(input: unknown): T.Result<T.DeepReadonly<T.ReplayResult>> {
   return replayCurrentRun(input, { createRun, createPerson, step, exportRun });
+}
+
+/** Persist the returned head and chunks atomically with the matching host snapshot
+ * before replacing a prior cursor. A retained cursor supports deterministic retry. */
+export function exportRunJournal(
+  run: T.Run,
+  cursor?: T.RunJournalCursor,
+): T.Result<T.DeepReadonly<T.RunJournalExport>> {
+  return exportJournal(run, cursor);
+}
+/** Reconstruct the complete committed journal prefix by actual dispatch. */
+export function restoreRunJournal(input: unknown): T.Result<T.DeepReadonly<T.RunJournalRestored>> {
+  return restoreJournal(input, { createRun, createPerson, step, exportRun });
 }

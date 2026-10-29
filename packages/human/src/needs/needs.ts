@@ -46,6 +46,7 @@ const PSYCHOLOGICAL_NEEDS = [
   'leisure',
   'meaning',
 ] as const;
+const NEED_ORDER = [...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS] as const;
 
 export const NEEDS_DEFAULTS = {
   /** Exponent on the relative deficit below threshold (2 = quadratic). */
@@ -379,17 +380,17 @@ export function needSatisfactionAt(context: NeedKernelContext, at: number): numb
     den = 0;
   const { traits: t, values: v } = readCharacterTrajectory(context.character, at),
     k = d.traitCoefficient;
-  for (const id of [...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS]) {
-    const shifts: Partial<Record<NeedId, number>> = {
-      belonging: t.extraversion - 0.5,
-      safety: t.emotionality - 0.5,
-      leisure: 0.5 * (t.openness - 0.5) + 0.5 * (v.stimulation - 0.5),
-      competence: t.conscientiousness - 0.5,
-      meaning: v.tradition - 0.5,
-      autonomy: v.selfDirection - 0.5,
-      esteem: v.achievement - 0.5,
-      relief: 0.5 * (t.emotionality - 0.5),
-    };
+  const shifts: Partial<Record<NeedId, number>> = {
+    belonging: t.extraversion - 0.5,
+    safety: t.emotionality - 0.5,
+    leisure: 0.5 * (t.openness - 0.5) + 0.5 * (v.stimulation - 0.5),
+    competence: t.conscientiousness - 0.5,
+    meaning: v.tradition - 0.5,
+    autonomy: v.selfDirection - 0.5,
+    esteem: v.achievement - 0.5,
+    relief: 0.5 * (t.emotionality - 0.5),
+  };
+  for (const id of NEED_ORDER) {
     const threshold = clamp(d.thresholds[id] + k * (shifts[id] ?? 0), lowThreshold, highThreshold);
     const level = clamp01(levels[id]),
       deficit = clamp01((threshold - level) / threshold);

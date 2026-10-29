@@ -17,6 +17,7 @@ import type {
   PreviewQuery,
   Result,
   RunArchive,
+  RunJournalArchive,
   RunSpec,
   RunTuning,
   StepBatch,
@@ -45,6 +46,7 @@ type RootData = {
   InspectQuery: InspectQuery;
   PreviewQuery: PreviewQuery;
   RunArchive: RunArchive;
+  RunJournalArchive: RunJournalArchive;
   RunHistory: readonly AcceptedTransaction[];
   PersonaProjection: PersonaProjection;
   CalendarProjection: CalendarProjection;
