@@ -11,6 +11,16 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.14.0] — 2026-10-29
+
+Engine: 4.14.0.
+
+- Add `forkRun(run)` for an independent branch of an already admitted live run. It retains the complete accepted history and detaches mutable state, pending boundaries, journals and indexes through the same kernel fork used by preview. It returns an opaque run; all actor changes still enter through `step`, and all readings leave through `inspect` or `preview`.
+- Keep cold `restoreRun` and `replay` validation unchanged. Hosts no longer need to execute the whole accepted past merely to branch a live counterfactual. Host world state remains the host's responsibility; journal cursors cannot cross branches.
+- Prepare companion client 0.5.13 with exact HF 4.14.0 and kit 0.5.30 with that client peer. Central game adoption is a separate port.
+
+Migration: use `forkRun` only with a live run from this package instance. Continue using `restoreRun` for untrusted serialized files. Copy the host world separately. Current engine archives require a fresh run under the existing 4.x policy. No faculty, physics, retention limit or authored person changes.
+
 ## [4.13.0] — 2026-10-29
 
 Engine: 4.13.0.
