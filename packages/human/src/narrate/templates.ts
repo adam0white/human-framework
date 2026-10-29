@@ -1,10 +1,10 @@
 /** Closed fallback templates for event meanings. */
 export const NARRATION_TEMPLATES = {
   'review.kept': [
-    'Today I kept these commitments: {items}.',
-    'I kept these commitments today: {items}.',
-    'These are the commitments I kept today: {items}.',
-    'I kept each of these commitments today: {items}.',
+    'Today I kept the following: {items}.',
+    'I kept the following today: {items}.',
+    'I kept my word today about the following: {items}.',
+    'I kept each of the following today: {items}.',
   ],
   'review.unresolved': [
     'I keep thinking about {items}.',
@@ -13,10 +13,10 @@ export const NARRATION_TEMPLATES = {
     'I am still considering {items}.',
   ],
   'review.resolved': [
-    'I did not keep these commitments: {items}. Next time I will be ready.',
-    'I missed these commitments: {items}. Next time I will be ready.',
-    'I missed these commitments: {items}. I intend to be ready next time.',
-    'I did not keep these commitments: {items}. I intend to be ready next time.',
+    'I did not keep the following: {items}. Next time I will be ready.',
+    'I missed the following: {items}. Next time I will be ready.',
+    'I missed the following: {items}. I intend to be ready next time.',
+    'I did not keep the following: {items}. I intend to be ready next time.',
   ],
   'prompting.assented': [
     'I had an urge to {action}. I chose to {action}.',
@@ -25,10 +25,10 @@ export const NARRATION_TEMPLATES = {
     'I wanted to {action}, and I decided to {action}.',
   ],
   'prompting.turned': [
-    'I had an urge to {action}. I used a practised response and chose otherwise.',
-    'I considered whether to {action}, but used a practised response to stop myself.',
-    'I thought I might {action}. I used a response I had practised instead.',
-    'When I wanted to {action}, I used a practised response and chose otherwise.',
+    'I had an urge to {action}. I used a practiced response and chose otherwise.',
+    'I considered whether to {action}, but used a practiced response to stop myself.',
+    'I thought I might {action}. I used a response I had practiced instead.',
+    'When I wanted to {action}, I used a practiced response and chose otherwise.',
   ],
   'prompting.other': [
     'I had an urge to {action}. I did not act on it.',
@@ -80,10 +80,10 @@ export const NARRATION_TEMPLATES = {
     'I can describe my day this way. {summary}',
   ],
   'year.closed': [
-    'Across {days} recorded days, I kept {kept} commitments and broke {broken}.',
-    'In {days} recorded days, I broke {broken} commitments and kept {kept}.',
-    'I kept {kept} commitments and broke {broken} across {days} recorded days.',
-    'My record for {days} days shows {kept} commitments kept and {broken} broken.',
+    'Across my {days}-day record, I kept {kept} and did not keep {broken}.',
+    'In my {days}-day record, I did not keep {broken}, and I kept {kept}.',
+    'I kept {kept} and did not keep {broken} during my {days}-day record.',
+    'My {days}-day record shows {kept} kept and {broken} not kept.',
   ],
   'body.died': [
     'The person has died.',

@@ -484,7 +484,7 @@ export type RunState = {
   offers: Readonly<Record<PersonId, ReceivedOfferBook>>;
   routines: readonly ActiveRoutine[];
   rng: RunRngState;
-  wording: Readonly<Record<string, WordingSequence>>;
+  wording: Record<string, WordingSequence>;
   queue: readonly ScheduledEvent[];
   pending: readonly HostRequest[];
   receipts: ReceiptLedger;

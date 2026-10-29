@@ -63,8 +63,7 @@ export function selectEventWording(
   // Every admitted phrasebook has at least four alternatives. Keep the last
   // two choices out of the next draw, leaving at least two candidates. Context changes the preference for concise wording:
   // low mood, distrust and well-practised acts favour shorter alternatives.
-  const window = 2;
-  const excluded = new Set(window ? (prior?.recent ?? []).slice(-window) : []);
+  const excluded = new Set(prior?.recent ?? []);
   const candidates = variants.map((text, index) => ({ text, index })).filter((v) => !excluded.has(v.index));
   const shortest = Math.min(...variants.map((text) => text.length));
   const longest = Math.max(...variants.map((text) => text.length));
@@ -82,8 +81,9 @@ export function selectEventWording(
       break;
     }
   }
-  const recent = window ? [...(prior?.recent ?? []), index].slice(-window) : [];
-  state.wording = { ...state.wording, [identity]: { rng, occurrence, recent } };
+  const recent = [...(prior?.recent ?? []), index].slice(-2);
+  // The dispatcher owns a detached mutable Run state; recovery owns its fresh map.
+  state.wording[identity] = { rng, occurrence, recent };
   event.wording = { key: line.key, occurrence, index, context: { ...context } };
 }
 

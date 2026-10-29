@@ -60,8 +60,7 @@ it('never repeats an alternative within two choices, including built-in fallback
       const event = wait(String(i));
       selectEventWording(event, table, 7, state);
       if (!event.wording) throw new Error('Missing wording');
-      const window = 2;
-      if (window) expect(indices.slice(-window)).not.toContain(event.wording.index);
+      expect(indices.slice(-2)).not.toContain(event.wording.index);
       indices.push(event.wording.index);
       expect(rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text).toBe(
         variants[event.wording.index],
@@ -78,6 +77,22 @@ it('never repeats an alternative within two choices, including built-in fallback
     expect(event.wording).toMatchObject({ key: 'decision.wait', occurrence: 1 });
     expect(Object.values(state.wording)).toHaveLength(1);
     expect(rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text).toBeTruthy();
+  }
+  const own = ['Own A.', 'Own B.', 'Own C.', 'Own D.'];
+  const precedence: Lexicon = { ...lex, names: { ada: 'Ada' }, voices: { ada: { 'decision.wait': own } } };
+  for (const [person, table, expected] of [
+    ['ada', precedence, own],
+    ['bea', precedence, wordings['decision.wait']],
+    ['ada', { ...precedence, wordings: {}, voices: { ada: {} } }, undefined],
+  ] as const) {
+    const event = wait('precedence', person);
+    const state: Pick<RunState, 'wording'> = { wording: {} };
+    const ownedMap = state.wording;
+    selectEventWording(event, table, 7, state);
+    expect(state.wording).toBe(ownedMap);
+    const text = rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text;
+    if (expected) expect(expected).toContain(text);
+    else expect(text).toMatch(/I .*wait/);
   }
   expect(fillTemplate('{action} {why}', { action: 'read {why}', why: '$&' })).toBe('read {why} $&');
 });

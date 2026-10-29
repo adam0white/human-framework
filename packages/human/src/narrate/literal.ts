@@ -44,7 +44,7 @@ export function labelLine(label: string): string {
   if (known !== undefined) return known;
   if (label.startsWith('make-up ')) {
     const name = label.slice(8);
-    if (Object.hasOwn(LABELS, name)) return `${LABELS[name]}, performed later because it was missed`;
+    if (Object.hasOwn(LABELS, name)) return `completing ${LABELS[name]} after missing it`;
   }
   return label;
 }
@@ -125,9 +125,9 @@ export function renderProjection(meaning: ProjectionMeaning): string {
       const m = meaning;
       switch (m.change) {
         case 'unprompted':
-          return `By the end, I was ${labelLine(m.subject)} without being told.`;
+          return `By the end, I ${labelLine(m.subject)} without being told.`;
         case 'still-prompted':
-          return `I was still ${labelLine(m.subject)} after being prompted.`;
+          return `I still ${labelLine(m.subject)} after being prompted.`;
         case 'started':
           return `I began ${labelLine(m.subject)}.`;
         case 'stopped':
@@ -235,26 +235,28 @@ export function describeWording(
       return describe('suggestion.resolved', { verdict: SUGGESTION_VERDICTS[d.resolution.verdict] });
     case 'commitment-changed':
       return describe('commitment.changed', {
-        label: d.after.label ?? d.after.kind,
+        label: labelLine(d.after.label ?? d.after.kind),
         status: d.after.status,
       });
     case 'goal-changed':
       return describe('goal.changed', {
-        label: d.after.label,
+        label: labelLine(d.after.label),
         status: d.after.status,
       });
     case 'day-closed': {
       const r = d.record,
         parts = [`Day ${r.day}.`];
       if (r.kept.length)
-        parts.push(`I kept these commitments: ${list(r.kept.map((n) => n.label ?? n.action ?? n.kind))}.`);
+        parts.push(
+          `I kept ${r.kept.length === 1 ? 'this commitment' : 'these commitments'}: ${list(r.kept.map((n) => n.label ?? n.action ?? n.kind))}.`,
+        );
       if (r.broken.length)
         parts.push(
-          `I did not keep these commitments: ${list(r.broken.map((n) => n.label ?? n.action ?? n.kind))}.`,
+          `I did not keep ${r.broken.length === 1 ? 'this commitment' : 'these commitments'}: ${list(r.broken.map((n) => n.label ?? n.action ?? n.kind))}.`,
         );
       if (r.released.length)
         parts.push(
-          `I understood that I was released from these commitments: ${list(r.released.map((n) => n.label ?? n.action ?? n.kind))}.`,
+          `I understood that I was released from ${r.released.length === 1 ? 'this commitment' : 'these commitments'}: ${list(r.released.map((n) => n.label ?? n.action ?? n.kind))}.`,
         );
       for (const a of r.actions)
         parts.push(
@@ -272,8 +274,10 @@ export function describeWording(
         parts.push(`I trusted ${displayName(t.voiceId, lex)} ${t.delta > 0 ? 'more' : 'less'}.`);
       if (r.illness.onset.length) parts.push(`I became ill with ${list(r.illness.onset)}.`);
       if (r.illness.recovered.length) parts.push(`I recovered from ${list(r.illness.recovered)}.`);
-      if (r.illness.worse.length) parts.push(`${list(r.illness.worse)} became worse.`);
-      if (r.illness.better.length) parts.push(`${list(r.illness.better)} became easier to bear.`);
+      if (r.illness.worse.length)
+        parts.push(`My illness record shows worsening of ${list(r.illness.worse)}.`);
+      if (r.illness.better.length)
+        parts.push(`My illness record shows improvement in ${list(r.illness.better)}.`);
       if (r.breaches.length) parts.push('I acted against rules I hold.');
       if (r.repairs.length) parts.push('I made repairs for past harm.');
       if (r.material !== 0)
@@ -281,14 +285,14 @@ export function describeWording(
           `My recorded material balance ${r.material > 0 ? 'rose' : 'fell'} by ${Math.abs(r.material)}.`,
         );
       parts.push(...r.episodes.map((e) => e.summary));
-      if (!r.alive) parts.push('The person has died.');
+      if (!r.alive) parts.push('My life ended during this day.');
       return describe('day.closed', { summary: parts.join(' ') });
     }
     case 'year-closed':
       return describe('year.closed', {
         days: String(d.record.days),
-        kept: String(d.record.kept),
-        broken: String(d.record.broken),
+        kept: `${d.record.kept} commitment${d.record.kept === 1 ? '' : 's'}`,
+        broken: `${d.record.broken} commitment${d.record.broken === 1 ? '' : 's'}`,
       });
     case 'body-change': {
       const kind = d.change.kind;
@@ -322,7 +326,7 @@ export function describeWording(
   }
 }
 export const rendererOwner: RendererOwner = {
-  render(event, perspective, lexicon, _seed) {
+  render(event, perspective, lexicon) {
     if (!visible(event, perspective)) return [];
     const descriptor = describeWording(event.data, lexicon);
     if (!descriptor) return [];

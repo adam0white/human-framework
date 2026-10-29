@@ -34,7 +34,77 @@ it('renders suggestion verdicts as grammatical first-person outcomes and inflect
   );
   if (!review) throw new Error('Missing review narration');
   expect(fillTemplate(review.templates[0]!, review.slots)).toBe(
-    'Today I kept these commitments: the dawn prayer and call Mum.',
+    'Today I kept the following: the dawn prayer and call Mum.',
+  );
+  const commitment = describeWording(
+    {
+      kind: 'commitment-changed',
+      commitmentId: 'prayer',
+      before: 'pending',
+      after: {
+        id: 'prayer',
+        kind: 'worship',
+        actions: ['pray'],
+        from: 0,
+        until: 1,
+        importance: 1,
+        status: 'kept',
+        label: 'Fajr',
+      },
+    },
+    lex,
+  );
+  expect(commitment?.slots.label).toBe('the dawn prayer');
+  const goal = describeWording(
+    {
+      kind: 'goal-changed',
+      goalId: 'friend',
+      before: null,
+      after: {
+        id: 'friend',
+        label: 'make-friend',
+        serves: [],
+        progress: 0,
+        advancedBy: [],
+        importance: 1,
+        status: 'active',
+        adoptedAt: 0,
+        completionHalfLifeMs: 1,
+        lastAdvancedAt: 0,
+        baseImportance: 1,
+      },
+    },
+    lex,
+  );
+  expect(goal?.slots.label).toBe('making a friend');
+  const year = describeWording(
+    {
+      kind: 'year-closed',
+      record: {
+        year: 1,
+        days: 1,
+        routineDays: 1,
+        mood: 0,
+        moodLow: 0,
+        moodHigh: 0,
+        kept: 1,
+        broken: 1,
+        released: 0,
+        breaches: 0,
+        repairs: 0,
+        material: 0,
+        decisions: 0,
+        actions: [],
+        episodes: [],
+        illness: [],
+        alive: true,
+      },
+    },
+    lex,
+  );
+  if (!year) throw new Error('Missing year narration');
+  expect(fillTemplate(year.templates[0]!, year.slots)).toBe(
+    'Across my 1-day record, I kept 1 commitment and did not keep 1 commitment.',
   );
   expect(actionForms('stop', lex)).toEqual({ base: 'stop', past: 'stopped', gerund: 'stopping' });
   expect(actionForms('plan', lex)).toEqual({ base: 'plan', past: 'planned', gerund: 'planning' });
@@ -45,20 +115,20 @@ it('renders suggestion verdicts as grammatical first-person outcomes and inflect
     renderProjection({
       kind: 'chronicle-change',
       change: 'unprompted',
-      subject: 'working',
+      subject: 'worked',
       before: 0,
       after: 1,
     }),
-  ).toBe('By the end, I was working without being told.');
+  ).toBe('By the end, I worked without being told.');
   expect(
     renderProjection({
       kind: 'chronicle-change',
       change: 'still-prompted',
-      subject: 'praying the dawn prayer',
+      subject: 'prayed the dawn prayer',
       before: 0,
       after: 1,
     }),
-  ).toBe('I was still praying the dawn prayer after being prompted.');
+  ).toBe('I still prayed the dawn prayer after being prompted.');
   for (const key of [
     'review.kept',
     'review.unresolved',

@@ -24,6 +24,7 @@ Engine: 4.9.0.
 ### Always-on narration
 
 - Prepare companion client 0.5.8 (exact HF 4.9.0) and kit 0.5.25 (client 0.5.8 peer) for one current framework graph. Package/artifact publication and game adoption remain separate receipts.
+- Game phrasebooks replace event frames and action forms. Built-in verdict, reason, label and summary/projection fragments remain plain English; extending that vocabulary through the same lexicon has a 2026-11-03 roadmap checkpoint.
 - Select plain-English defaults and game-authored phrases through the same event-time wording owner. Record one seeded stream per person and meaning in Run state; inspect, preview and chronicles use the single renderer without read-time draws.
 - Exclude the last two alternatives for each person and meaning. All default and authored phrasebooks have at least four distinct alternatives; shorter authored tables are refused at admission. Partial person voices still fall through to the run phrasebook and then the English defaults.
 - Shape wording length preference with the person's event-time mood, trust in the advising voice and habit strength for the act. Broad tenth bands avoid narrating numerical integration noise. This is an authored style heuristic, not a psychological finding; it never changes an actor's choices or RNG.

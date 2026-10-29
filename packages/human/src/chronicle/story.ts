@@ -163,9 +163,11 @@ export function diffChronicle(
         c.kind === 'trust'
           ? displayName(c.subject, lexicon)
           : c.subject.startsWith('prayer:')
-            ? `praying ${labelLine(c.subject.slice(7))}`
+            ? `${c.kind === 'unprompted' || c.kind === 'still-prompted' ? 'prayed' : 'praying'} ${labelLine(c.subject.slice(7))}`
             : c.subject.startsWith('action:')
-              ? actionForms(c.subject.slice(7), lexicon).gerund
+              ? actionForms(c.subject.slice(7), lexicon)[
+                  c.kind === 'unprompted' || c.kind === 'still-prompted' ? 'past' : 'gerund'
+                ]
               : c.subject,
       before: c.before,
       after: c.after,
