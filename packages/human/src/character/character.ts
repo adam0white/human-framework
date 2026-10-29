@@ -180,8 +180,17 @@ function matureCharacter(
   bornAt: number,
   at: number,
   K: DeepReadonly<import('../run-schema.ts').Effective_CHARACTER_DEFAULTS>,
+  readoutOnly = false,
 ): State {
-  const out = cloneData(state) as State,
+  // Samplers discard Character metadata. Copy only the fields maturation writes;
+  // base traits, base values and annual accumulators remain read-only here.
+  const out = readoutOnly
+      ? {
+          traits: { ...state.traits },
+          values: { ...state.values },
+          character: { ...state.character, experience: { ...state.character.experience } },
+        }
+      : (cloneData(state) as State),
     c = out.character;
   if (!Number.isFinite(at) || at < c.agedTo) throw new RangeError('Character clock rewound');
   const fromAge = (c.agedTo - bornAt) / YEAR,
@@ -255,7 +264,7 @@ export function readCharacterTrajectory(
 ): Pick<State, 'traits' | 'values'> {
   // A frozen trajectory's reading at one time is shared by every sampler.
   if (!Object.isFrozen(path) || !Object.isFrozen(path.continuation.state)) {
-    const state = matureCharacter(path.continuation.state, path.bornAt, at, path.parameters);
+    const state = matureCharacter(path.continuation.state, path.bornAt, at, path.parameters, true);
     return { traits: state.traits, values: state.values };
   }
   let times = readings.get(path);
@@ -265,7 +274,7 @@ export function readCharacterTrajectory(
   }
   let reading = times.get(at);
   if (!reading) {
-    const state = matureCharacter(path.continuation.state, path.bornAt, at, path.parameters);
+    const state = matureCharacter(path.continuation.state, path.bornAt, at, path.parameters, true);
     reading = Object.freeze({ traits: Object.freeze(state.traits), values: Object.freeze(state.values) });
     if (times.size >= 4096) times.clear();
     times.set(at, reading);

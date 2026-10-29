@@ -17,14 +17,23 @@ export function compareCodePoints(a: string, b: string): number {
 }
 
 type Work =
+  | string
   | { kind: 'value'; value: unknown }
-  | { kind: 'text'; text: string }
   | { kind: 'leave'; value: object; start: number; frozen: boolean; children: readonly unknown[] };
 // Weak identities retain no state. Cache only proven deeply frozen, small JSON
 // fragments. The token cap bounds first-pass copying even for very deep host JSON.
 const immutableJson = new WeakMap<object, string>();
 const deeplyFrozen = new WeakSet<object>();
 const forbiddenKeys = new Set(['__proto__', 'prototype', 'constructor']);
+
+// Primitive bytes need no value-stack wrapper. Keep invalid values on the value
+// path so admission still rejects them without JSON.stringify's silent loss.
+function valueWork(value: unknown): Work {
+  if (value === null || typeof value === 'boolean' || typeof value === 'string') return JSON.stringify(value);
+  if (typeof value === 'number' && Number.isFinite(value) && !Object.is(value, -0))
+    return JSON.stringify(value);
+  return { kind: 'value', value };
+}
 
 /** Validates JSON representation without invoking getters or accepting silent loss.
  * Iterative traversal avoids a JavaScript call-stack bound on inert host JSON.
@@ -33,12 +42,12 @@ const forbiddenKeys = new Set(['__proto__', 'prototype', 'constructor']);
 export function canonicalJson(value: unknown): string {
   const output: string[] = [];
   const ancestors = new Set<object>();
-  const work: Work[] = [{ kind: 'value', value }];
+  const work: Work[] = [valueWork(value)];
   while (work.length) {
     const item = work.pop();
     if (!item) throw new TypeError('invalid canonical work stack');
-    if (item.kind === 'text') {
-      output.push(item.text);
+    if (typeof item === 'string') {
+      output.push(item);
       continue;
     }
     if (item.kind === 'leave') {
@@ -89,25 +98,29 @@ export function canonicalJson(value: unknown): string {
       value: current,
       start: output.length,
       frozen,
-      children: Object.values(descriptors).flatMap((descriptor) =>
-        'value' in descriptor ? [descriptor.value] : [],
-      ),
+      // Only frozen containers can enter the immutable fragment cache. Mutable
+      // archives need ancestor tracking, but no separate child list.
+      children: frozen
+        ? Object.values(descriptors).flatMap((descriptor) =>
+            'value' in descriptor ? [descriptor.value] : [],
+          )
+        : [],
     });
     if (array) {
       if (ownKeys.length !== current.length + 1) throw new TypeError('sparse or decorated JSON array');
-      work.push({ kind: 'text', text: ']' });
+      work.push(']');
       for (let i = current.length - 1; i >= 0; i -= 1) {
         const descriptor = descriptors[String(i)];
         if (!descriptor || !('value' in descriptor) || !descriptor.enumerable) {
           throw new TypeError('sparse or accessor JSON array');
         }
-        if (i < current.length - 1) work.push({ kind: 'text', text: ',' });
-        work.push({ kind: 'value', value: descriptor.value });
+        if (i < current.length - 1) work.push(',');
+        work.push(valueWork(descriptor.value));
       }
-      work.push({ kind: 'text', text: '[' });
+      work.push('[');
     } else {
       const keys = Object.keys(descriptors).sort(compareCodePoints);
-      work.push({ kind: 'text', text: '}' });
+      work.push('}');
       for (let i = keys.length - 1; i >= 0; i -= 1) {
         const key = keys[i];
         if (key === undefined) throw new TypeError('invalid JSON key cursor');
@@ -115,11 +128,11 @@ export function canonicalJson(value: unknown): string {
         if (forbiddenKeys.has(key) || !descriptor || !('value' in descriptor) || !descriptor.enumerable) {
           throw new TypeError('unsafe or accessor JSON key');
         }
-        if (i < keys.length - 1) work.push({ kind: 'text', text: ',' });
-        work.push({ kind: 'value', value: descriptor.value });
-        work.push({ kind: 'text', text: `${JSON.stringify(key)}:` });
+        if (i < keys.length - 1) work.push(',');
+        work.push(valueWork(descriptor.value));
+        work.push(`${JSON.stringify(key)}:`);
       }
-      work.push({ kind: 'text', text: '{' });
+      work.push('{');
     }
   }
   return output.join('');

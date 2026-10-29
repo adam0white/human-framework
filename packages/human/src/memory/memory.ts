@@ -749,6 +749,10 @@ export function expectedEffect(
 
 // biome-ignore lint/suspicious/noControlCharactersInRegex: any ASCII text is already NFC, control characters included.
 const ASCII = /^[\x00-\x7f]*$/;
+// Only immutable data graphs with a successful full JSON walk enter this cache.
+// A frozen outer record with mutable children, accessors or hidden fields does not.
+const frozenNarrativeJson = new WeakSet<object>();
+export const isValidatedFrozenNarrativeJson = (value: object): boolean => frozenNarrativeJson.has(value);
 /** Shared W3 admission primitive. Reject non-JSON values, unsafe keys and cycles; never repair. */
 export function validateNarrativeJson(value: unknown, path = ''): ValidationIssue[] {
   const issues: ValidationIssue[] = [],
@@ -761,25 +765,33 @@ export function validateNarrativeJson(value: unknown, path = ''): ValidationIssu
     return p;
   };
   const fail = (message: string) => issues.push({ path: at(), code: 'invalid-schema', message });
-  const walk = (x: unknown): void => {
-    if (x === null || typeof x === 'boolean') return;
+  const walk = (x: unknown): boolean => {
+    if (x === null || typeof x === 'boolean') return true;
     if (typeof x === 'number') {
-      if (!Number.isFinite(x)) fail('Nonfinite number');
-      return;
+      if (!Number.isFinite(x)) {
+        fail('Nonfinite number');
+        return false;
+      }
+      return true;
     }
     if (typeof x === 'string') {
       // ASCII text is always NFC; only other text pays for normalization.
-      if (!ASCII.test(x) && x.normalize('NFC') !== x) fail('Noncanonical string');
-      return;
+      if (!ASCII.test(x) && x.normalize('NFC') !== x) {
+        fail('Noncanonical string');
+        return false;
+      }
+      return true;
     }
     if (typeof x !== 'object') {
       fail('Expected JSON data');
-      return;
+      return false;
     }
     if (seen.has(x)) {
       fail('Cyclic or aliased data');
-      return;
+      return false;
     }
+    if (frozenNarrativeJson.has(x)) return true;
+    const before = issues.length;
     seen.add(x);
     if (
       !Array.isArray(x) &&
@@ -787,15 +799,29 @@ export function validateNarrativeJson(value: unknown, path = ''): ValidationIssu
       Object.getPrototypeOf(x) !== null
     ) {
       fail('Unexpected object prototype');
-      return;
+      return false;
     }
-    for (const key of Object.keys(x)) {
+    const fields = Object.keys(x);
+    let immutable = Object.isFrozen(x);
+    if (immutable) {
+      const own = Reflect.ownKeys(x);
+      immutable = own.every((key) => {
+        if (typeof key !== 'string' || (!fields.includes(key) && !(Array.isArray(x) && key === 'length')))
+          return false;
+        return Object.hasOwn(Object.getOwnPropertyDescriptor(x, key) ?? {}, 'value');
+      });
+    }
+    for (const key of fields) {
       if (key === '__proto__' || key === 'constructor' || key === 'prototype') fail('Reserved property key');
       keys.push(key);
-      walk((x as Record<string, unknown>)[key]);
+      const childImmutable = walk((x as Record<string, unknown>)[key]);
+      immutable = childImmutable && immutable;
       keys.pop();
     }
     seen.delete(x);
+    immutable = immutable && before === issues.length;
+    if (immutable) frozenNarrativeJson.add(x);
+    return immutable;
   };
   walk(value);
   return issues;

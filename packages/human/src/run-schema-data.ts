@@ -12401,11 +12401,34 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       },
     },
   },
+  HistoryPool: {
+    kind: 'object',
+    fields: {
+      root: { optional: false, shape: { kind: 'number' } },
+      pool: {
+        optional: false,
+        shape: {
+          kind: 'array',
+          element: {
+            kind: 'union',
+            options: [
+              { kind: 'literal', value: null },
+              { kind: 'boolean' },
+              { kind: 'number' },
+              { kind: 'string' },
+              { kind: 'array', element: { kind: 'number' } },
+              { kind: 'object', fields: { json: { optional: false, shape: { kind: 'string' } } } },
+            ],
+          },
+        },
+      },
+    },
+  },
   RunArchive: {
     kind: 'object',
     fields: {
       format: { optional: false, shape: { kind: 'literal', value: 'hf-run' } },
-      version: { optional: false, shape: { kind: 'literal', value: 5 } },
+      version: { optional: false, shape: { kind: 'literal', value: 6 } },
       engine: {
         optional: false,
         shape: {
@@ -12448,7 +12471,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       },
       history: {
         optional: false,
-        shape: { kind: 'array', element: { kind: 'ref', name: 'AcceptedTransaction' } },
+        shape: { kind: 'ref', name: 'HistoryPool' },
       },
       current: { optional: false, shape: { kind: 'ref', name: 'RunState' } },
       hashes: {
@@ -12520,6 +12543,7 @@ export const ROOT_SHAPES = {
   InspectQuery: { kind: 'ref', name: 'InspectQuery' },
   PreviewQuery: { kind: 'ref', name: 'PreviewQuery' },
   RunArchive: { kind: 'ref', name: 'RunArchive' },
+  RunHistory: { kind: 'array', element: { kind: 'ref', name: 'AcceptedTransaction' } },
   PersonaProjection: { kind: 'ref', name: 'PersonaProjection' },
   CalendarProjection: { kind: 'ref', name: 'CalendarProjection' },
   PortablePersonEnvelope: { kind: 'ref', name: 'PortablePersonEnvelope' },

@@ -12,6 +12,8 @@ import {
   archiveSnapshot,
   checkArchiveEnvelope,
   checkReconstructedJournals,
+  type ExpandedRunArchive,
+  expandedArchive,
 } from './run-archive.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';
 import { RUN_ENGINE } from './run-engine.ts';
@@ -54,7 +56,10 @@ function carriesEvidence(input: T.DeepReadonly<T.Input>, person: T.PersonId, id:
 }
 
 /** Current validation is independent of historical reproduction. */
-function validateCurrent(archive: T.DeepReadonly<T.RunArchive>, parametersHash: T.Hash): T.Result<true> {
+function validateCurrent(
+  archive: T.DeepReadonly<ExpandedRunArchive>,
+  parametersHash: T.Hash,
+): T.Result<true> {
   const state = archive.current;
   const spec = archive.initial.spec;
   const wordingError = wordingIssue(spec.definitions.lexicon);
@@ -621,7 +626,7 @@ function admit(
   input: unknown,
   operations: RecoveryOperations,
 ): T.Result<{
-  archive: T.DeepReadonly<T.RunArchive>;
+  archive: T.DeepReadonly<ExpandedRunArchive>;
   opening: T.Run;
   parameters: ReturnType<typeof readKernel>['parameters'];
 }> {
@@ -640,7 +645,7 @@ function admit(
     if (admitted.value !== person.id)
       return reject('$.initial.people', 'constructor returned a different identity');
   }
-  if (archive.history.length === 0 && !same(operations.exportRun(run), archive))
+  if (archive.history.length === 0 && !same(expandedArchive(operations.exportRun(run)), archive))
     return reject('$.current', 'unstarted current differs from admitted initial authoring');
   return { ok: true, value: { archive, opening: run, parameters: parameters.value } };
 }
@@ -691,7 +696,7 @@ function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T
       ...(transaction.stateHash === undefined ? {} : { stateHash: transaction.stateHash }),
     });
   }
-  const reached = operations.exportRun(run);
+  const reached = expandedArchive(operations.exportRun(run));
   const verifiedBody = { ...reached, history: verifiedHistory };
   const verified = { ...verifiedBody, hashes: archiveHashes(verifiedBody) };
   if (!same(verified, archive))
@@ -724,7 +729,7 @@ export function replayCurrentRun(
       run: restored.value,
       verified: true,
       fullHash: archive.hashes.full,
-      transactions: archive.history.length,
+      transactions: readKernel(restored.value).current.counters.nextTransaction - 1,
       hostEdition: archive.host.edition,
     }),
   };

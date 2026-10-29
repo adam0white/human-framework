@@ -80,6 +80,15 @@ export function inspectCurrentRun(
         state.receipts.communications,
       )
     : [];
+  let eventPeople: Map<T.Id, T.PersonId | undefined> | undefined;
+  const personForEvent = (id: T.Id): T.PersonId | undefined => {
+    if (!eventPeople) {
+      eventPeople = new Map();
+      for (const event of state.events)
+        if (!eventPeople.has(event.id)) eventPeople.set(event.id, event.person);
+    }
+    return eventPeople.get(id);
+  };
   const context = (person: T.PersonId): T.FrameContext => ({
     effective: record.parameters.effective,
     effectiveParametersHash: record.parameters.hash,
@@ -255,7 +264,7 @@ export function inspectCurrentRun(
           case 'events':
             parts.push({
               select,
-              value: events.filter((e) => state.events.find((raw) => raw.id === e.id)?.person === id),
+              value: events.filter((e) => personForEvent(e.id) === id),
             });
             break;
         }

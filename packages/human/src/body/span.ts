@@ -166,27 +166,40 @@ export function integrateCell(
     const h = w / 60000;
     const k: number[][] = [];
     for (let j = 0; j < 7; j++) {
-      const yy = y.map((v, i) => v + h * (A[j] ?? []).reduce((s, a, l) => s + a * (k[l]?.[i] ?? 0), 0));
+      const row = A[j] ?? [],
+        yy: number[] = [];
+      for (let i = 0; i < y.length; i++) {
+        let sum = 0;
+        for (let l = 0; l < row.length; l++) sum += (row[l] ?? 0) * (k[l]?.[i] ?? 0);
+        yy.push(required(y[i]) + h * sum);
+      }
       k.push(f(at + (C[j] ?? 0) * w, yy));
       calls++;
     }
-    const err = Math.max(
-      ...y.map((_, i) => Math.abs(h * E.reduce((s, e, j) => s + e * (k[j]?.[i] ?? 0), 0)) / (scales[i] ?? 1)),
-    );
+    let err = -Infinity;
+    for (let i = 0; i < y.length; i++) {
+      let sum = 0;
+      for (let j = 0; j < E.length; j++) sum += (E[j] ?? 0) * (k[j]?.[i] ?? 0);
+      err = Math.max(err, Math.abs(h * sum) / (scales[i] ?? 1));
+    }
     if (!Number.isFinite(err)) throw new RangeError('nonfinite numerical derivative');
     if (err <= tolerance) {
-      const cells = y.map(
-        (v, i): ScalarCell => ({
+      const cells: ScalarCell[] = [];
+      for (let i = 0; i < y.length; i++) {
+        const coefficients: [number, number, number, number, number] = [required(y[i]), 0, 0, 0, 0];
+        for (let l = 0; l < 4; l++) {
+          let sum = 0;
+          for (let j = 0; j < P.length; j++) sum += (P[j]?.[l] ?? 0) * (k[j]?.[i] ?? 0);
+          coefficients[l + 1] = h * sum;
+        }
+        cells.push({
           originMs: at,
           leftOffsetMinutes: 0,
           rightOffsetMinutes: h,
-          coefficients: [
-            v,
-            ...[0, 1, 2, 3].map((l) => h * P.reduce((s, p, j) => s + (p[l] ?? 0) * (k[j]?.[i] ?? 0), 0)),
-          ] as [number, number, number, number, number],
+          coefficients,
           estimatedError: err,
-        }),
-      );
+        });
+      }
       if (monotoneIndices.some((i) => !monotoneCell(required(cells[i])))) {
         if (w === 1) throw new EngineLimitError('limit-exceeded: nonmonotone hazard cell');
         w = Math.max(1, Math.floor(w / 2));
@@ -288,6 +301,34 @@ function halvingsToOneMs(span: number): number {
   for (let width = 1; width < span; width *= 2) halvings++;
   return halvings;
 }
+// The five abscissae never vary. Build their basis once, retaining the same
+// multiply/divide and accumulation order for every fitted coefficient.
+const QUARTIC_NODES = [0, 0.25, 0.5, 0.75, 1] as const;
+const QUARTIC_BASIS = QUARTIC_NODES.map((x, j) => {
+  let poly = [1],
+    denominator = 1;
+  for (let k = 0; k < 5; k++)
+    if (k !== j) {
+      const next = Array<number>(poly.length + 1).fill(0);
+      for (let l = 0; l < poly.length; l++) {
+        next[l] = (next[l] ?? 0) - required(QUARTIC_NODES[k]) * (poly[l] ?? 0);
+        next[l + 1] = (next[l + 1] ?? 0) + (poly[l] ?? 0);
+      }
+      poly = next;
+      denominator *= x - required(QUARTIC_NODES[k]);
+    }
+  return { poly, denominator };
+});
+/** Coefficients for samples at 0, 1/4, 1/2, 3/4 and 1. Internal numerical algebra. */
+export function quarticCoefficients(values: readonly number[]): ScalarCell['coefficients'] {
+  const coefficients: [number, number, number, number, number] = [0, 0, 0, 0, 0];
+  for (let j = 0; j < 5; j++) {
+    const { poly, denominator } = required(QUARTIC_BASIS[j]);
+    for (let l = 0; l < 5; l++)
+      coefficients[l] = (coefficients[l] ?? 0) + ((values[j] ?? 0) * (poly[l] ?? 0)) / denominator;
+  }
+  return coefficients;
+}
 /** Quartic interpolation for closed readout algebra; refine by midpoint residual.
  * A kink (a clip or a max) is isolated by bisection down to the 1 ms floor, so the depth
  * limit scales with the span: 20 levels reach 1 ms only for spans up to 2^20 ms, and a
@@ -304,25 +345,8 @@ export function sampledPath(
 ): ScalarTrajectory['segments'] {
   if (to === from) return [{ kind: 'constant', from, to, value: f(from) }];
   if (++work.fits > 8192) throw new EngineLimitError('limit-exceeded: readout interpolation');
-  const xs = [0, 0.25, 0.5, 0.75, 1],
-    ys = xs.map((x) => f(from + x * (to - from)));
-  const coefficients = [0, 0, 0, 0, 0];
-  for (let j = 0; j < 5; j++) {
-    let poly = [1],
-      den = 1;
-    for (let k = 0; k < 5; k++)
-      if (k !== j) {
-        const next = Array(poly.length + 1).fill(0) as number[];
-        for (let l = 0; l < poly.length; l++) {
-          next[l] = (next[l] ?? 0) - (xs[k] ?? 0) * (poly[l] ?? 0);
-          next[l + 1] = (next[l + 1] ?? 0) + (poly[l] ?? 0);
-        }
-        poly = next;
-        den *= (xs[j] ?? 0) - (xs[k] ?? 0);
-      }
-    for (let l = 0; l < 5; l++)
-      coefficients[l] = (coefficients[l] ?? 0) + ((ys[j] ?? 0) * (poly[l] ?? 0)) / den;
-  }
+  const ys = QUARTIC_NODES.map((x) => f(from + x * (to - from)));
+  const coefficients = quarticCoefficients(ys);
   const cell: ScalarCell = {
     originMs: from,
     leftOffsetMinutes: 0,

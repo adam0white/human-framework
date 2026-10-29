@@ -439,9 +439,15 @@ export type PersonaAdmission = {
   preparation: { id: Id; chapter: ChapterProjection };
 };
 
+export type HistoryPool = {
+  root: number;
+  /** The sole root may contain explicit canonical JSON when interning would exceed the amplification bound. */
+  pool: readonly (null | boolean | number | string | readonly number[] | { json: string })[];
+};
+
 export type RunArchive = {
   format: 'hf-run';
-  version: 5;
+  version: 6;
   engine: { package: string; build: Hash; schema: Hash };
   host: { id: Id; edition: Id; schema: Id };
   initial: {
@@ -450,7 +456,8 @@ export type RunArchive = {
     parameterProvenance: readonly ParameterProvenance[];
     people: readonly PersonAuthoring[];
   };
-  history: readonly AcceptedTransaction[];
+  /** Lossless, canonical backward-reference dictionary of all accepted transactions. */
+  history: HistoryPool;
   /** Complete actor snapshot; duplicated event/receipt journals retain their newest 64 entries.
    * Complete accepted inputs remain in history. Restore reconstructs full private journals by replay. */
   current: RunState;

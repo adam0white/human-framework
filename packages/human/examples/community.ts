@@ -1,7 +1,15 @@
 /** Two independent actors, one host, exact current checkpoint continuation.
  * Uses the same step/receipt path before and after restore. No silent/alternate community driver.
  */
-import { createPerson, createRun, exportRun, replay, restoreRun, step } from '@adam0white/human-framework';
+import {
+  createPerson,
+  createRun,
+  exportRun,
+  readRunHistory,
+  replay,
+  restoreRun,
+  step,
+} from '@adam0white/human-framework';
 import {
   authoredPerson,
   exampleOffers,
@@ -35,7 +43,7 @@ export function main() {
     throw new Error('Expected two actual start requests issued against the same opening revision');
   serve(run, host, offers, START + 30 * MINUTE, [], initial);
   const checkpoint = exportRun(run);
-  const startReceipts = checkpoint.history
+  const startReceipts = readRunHistory(checkpoint)
     .flatMap((transaction) => transaction.inputs)
     .filter(
       (input) =>

@@ -335,3 +335,30 @@ it('reads the extracted Character law across an age boundary and both clipping s
   expect(projectCharacterTrajectory(caller).id).toBe(path.id);
   expect(JSON.stringify(path)).toBe(original);
 });
+
+it('keeps Character sampler inputs detached through maturation and a value baseline crossing', () => {
+  const year = 365.25 * 86400000;
+  const initial = characterOwner.initialize({ traits, values }, frame);
+  const original = JSON.stringify(initial);
+  const context = {
+    ...frame,
+    life: { bornAt: -17 * year, sex: 'female' as const },
+    continuation: { anchor: { at: 0, conditionId: 'authored' }, state: initial },
+  };
+  const path = projectCharacterTrajectory(context);
+  for (const at of [year - 1, year, year + 1, 20 * year]) {
+    const actual = characterOwner.advance(initial, {
+      ...context,
+      from: 0,
+      to: at,
+      phase: 1,
+      priorWorldRevision: 0,
+      days: [],
+    });
+    const reading = readCharacterTrajectory(path, at);
+    expect(reading).toEqual({ traits: actual.state.traits, values: actual.state.values });
+    expect(Object.isFrozen(reading.traits)).toBe(true);
+    expect(Object.isFrozen(reading.values)).toBe(true);
+  }
+  expect(JSON.stringify(initial)).toBe(original);
+});

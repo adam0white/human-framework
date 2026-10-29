@@ -41,6 +41,29 @@ Counts are named consumers, not claims that one change completes their migration
 
 
 
+## G6/G7 performance baseline (2026-10-29)
+
+HF 4.8.1 remains over the existing Child and Valley runtime gates. These measurements do not close either need. The [headless benchmark](../scripts/bench-g7.ts) uses the retained [Child host fixture](../scripts/bench-g7-child-host.ts). Run it with Node 26 after installing the workspace dependencies:
+
+```sh
+node scripts/bench-g7.ts child --mode full
+node scripts/bench-g7.ts valley --mode full --valley-repo /absolute/path/to/valley-hf4-candidate
+node scripts/bench-g7.ts valley --mode full --term --valley-repo /absolute/path/to/valley-hf4-candidate
+```
+
+The Valley checkout must have its candidate dependencies installed; the script resolves the HF package used by that checkout. The day-12 route has a 120,000 ms supervisor. The term route targets the end of day 881 and reports the actual ending. `quick` and `profile` are shorter diagnostic modes, not acceptance runs.
+
+- **Child:** Six cast members, 1,096 days, 36 monthly daily-fidelity calls and 26,304 food/water receipts. Step took 105,043.39 ms, or 5,834.41 ms per simulated year per person using 1,096/365.25 years. Export and JSON serialization took 441.68 ms; the archive was 7,586,678 bytes. Restore took 106,644.00 ms and reproduced the export exactly; replay took 147,110.00 ms and matched the full hash. Existing budgets are 2,000 ms for the three-year step and 2,000 ms for restore. This reduced workload omits lessons, relationships and explicit sleep activities; it is not the complete upbringing or a phone measurement.
+- **Valley:** The actual 53-actor public game, seed 406153184 and recorded owner-input schedule exceeded the existing 120,000 ms whole-host day-12 budget. The supervisor terminated it before minute 17,550. Its last completed checkpoint was minute 1,440 at 58,940.91 ms, with 11,134,499 archive bytes: 6,922,237 history and 3,883,707 current. A separate quick run to minute 450 took 1,956.32 ms whole-host, produced 4,077,388 bytes, and restored exactly in 2,140.26 ms and replayed exactly in 2,222.27 ms. The quick run does not establish day-12 or full-term completion. Whole-host time includes game work and archive checkpoints; it is not an isolated HF step measurement.
+
+The final format-6 HF 4.9.0 candidate repeats the complete Child control: **56,762.48 ms** step (**3,152.75 ms/year/person**), **4,280,965 bytes** native archive, **367.99 ms** export, **60,135.06 ms** restore and **59,883.58 ms** replay. Initial authoring and parameters, complete reached state and every decoded accepted transaction match the 4.8.1 baseline exactly. Restore and replay are exact. The unchanged 2,000 ms step and 2,000 ms restore gates still fail; neither G6 nor G7 is closed. This run excludes this worker's own suites. Earlier measurements and profiling limits are retained in findings. Highly repetitive accepted host JSON uses the reviewed canonical literal fallback, preserving exportability without weakening dictionary limits.
+
+The candidate short Valley control to minute 450 produces 3,380,874 bytes, restores exactly in 2,087.77 ms and replays exactly. At minute 1,440 it takes 23,100.15 ms with 6,680,505 bytes (2,468,243 history; unchanged 3,883,707 current). The unchanged 120-second day-12 gate still fails: last complete minute 2,880 at 105,392.06 ms, with 10,906,571 bytes (5,402,846 history; 5,175,170 current). These Valley measurements precede the literal-fallback correction; its ordinary dictionary path remains the same. No complete day-12 replay or 881-day term is claimed.
+
+These runs used a shared Apple M4 and Node 26.12.0. Load rose from approximately 4.7 to 12.8, with Valley overlapping the later Child replay. The timings do not establish an isolated speed ratio or framework-only cause.
+
+No existing source sets an archive-size budget for these workloads. As implementer-chosen engineering regression targets, propose at most **5 MiB** for the reduced Child three-year archive and **64 MiB** for the Valley day-12 archive. These are not owner-approved budgets or measured acceptance. Measure the complete 881-day term's size without inventing a bound. Preserve complete replay inputs and evidence in archive format 6; G16's semantic household-memory retention is a separate requirement, not satisfied by archive compaction or dropped evidence.
+
 ## Contract disposition for G5, G8, G9 and G15
 
 Engineering decision under AGENTS.md, 2026-10-28. These rows target the next combined minor (candidate 4.6.0), after the reserved 4.5.3 patch. Done for this worker means one merged, reviewed PR and a published train package containing all four rows; hf-g6g7 owns the first train publication. Game adoption and the all-games acceptance remain with the named owners above.

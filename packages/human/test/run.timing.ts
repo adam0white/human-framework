@@ -4,7 +4,7 @@
  * Apple Silicon dev machine (docs/findings.md, "HF 4.0 step cost before release"); CI multiplies by BENCH_SCALE.
  */
 import { expect, test } from 'vitest';
-import { exportRun, step } from '../src/index.ts';
+import { exportRun, readRunHistory, step } from '../src/index.ts';
 import { benchRun } from './run-bench-fixture.ts';
 import { accepted, HOUR } from './run-numerical-fixture.ts';
 
@@ -89,7 +89,7 @@ test('a 50 ms step costs the same after three fed days as at the start (p50)', (
   }
   const after = exportRun(run);
   // The late sample runs on a run that has kept everything since the early one.
-  expect(after.history.length).toBe(before.history.length + 72);
+  expect(readRunHistory(after).length).toBe(readRunHistory(before).length + 72);
   expect(after.current.events.length).toBeGreaterThan(before.current.events.length);
   const late = frameP50(run, at, 300);
   expect(late).toBeLessThan(early * 1.5 + 0.05);

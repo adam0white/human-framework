@@ -4,10 +4,11 @@
 import { cloneData } from './core/clone.ts';
 import { installPortable, preparePortable } from './portable-admission.ts';
 import { checkPersonAuthoring, checkRunSpec, PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
-import { archiveHashes, archiveSnapshot } from './run-archive.ts';
+import { archiveHashes, archiveSnapshot, expandedArchive } from './run-archive.ts';
 import { hashCanonical } from './run-canonical.ts';
 import { Frame } from './run-dispatch.ts';
 import { RUN_ENGINE } from './run-engine.ts';
+import { packHistory } from './run-history.ts';
 import { inspectCurrentRun } from './run-inspect.ts';
 import { validateActor } from './run-integrity.ts';
 import {
@@ -171,11 +172,23 @@ export function createPerson(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring
   return { ok: true, value: person.id };
 }
 
+/** Decode a current archive's complete accepted inputs for tools and host evidence.
+ * This pure reader enforces the closed history schema; restore/replay separately
+ * verify engine identity, hashes and executed outcomes before accepting a run.
+ */
+export function readRunHistory(
+  archive: T.DeepReadonly<T.RunArchive>,
+): T.DeepReadonly<readonly T.AcceptedTransaction[]> {
+  const admitted = validateData('RunArchive', archive);
+  if (!admitted.ok) throw new TypeError(admitted.error.message);
+  return freezeData(expandedArchive(admitted.value).history);
+}
+
 export function exportRun(run: T.Run): T.DeepReadonly<T.RunArchive> {
   const record = readKernel(run);
   const body = {
     format: 'hf-run' as const,
-    version: 5 as const,
+    version: 6 as const,
     engine: RUN_ENGINE,
     host: record.spec.host,
     initial: {
@@ -184,7 +197,7 @@ export function exportRun(run: T.Run): T.DeepReadonly<T.RunArchive> {
       parameterProvenance: record.parameters.provenance,
       people: record.initialPeople,
     },
-    history: historyEntries(run),
+    history: packHistory(historyEntries(run)),
     current: archiveSnapshot(record.current),
   };
   // The caller cannot freeze or mutate private live state through an export.

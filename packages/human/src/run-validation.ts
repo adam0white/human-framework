@@ -6,6 +6,7 @@ import type { PortableRetainedState } from './portable-person.ts';
  */
 import { canonicalJson } from './run-canonical.ts';
 import type {
+  AcceptedTransaction,
   CalendarProjection,
   ContractError,
   DeepReadonly,
@@ -44,6 +45,7 @@ type RootData = {
   InspectQuery: InspectQuery;
   PreviewQuery: PreviewQuery;
   RunArchive: RunArchive;
+  RunHistory: readonly AcceptedTransaction[];
   PersonaProjection: PersonaProjection;
   CalendarProjection: CalendarProjection;
 };

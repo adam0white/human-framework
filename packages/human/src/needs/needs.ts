@@ -19,7 +19,7 @@ import {
   numericalWidth,
 } from '../body/daily-policy.ts';
 
-import { evaluateCell, initialWidth, integrateCell, required } from '../body/span.ts';
+import { evaluateCell, initialWidth, integrateCell, quarticCoefficients, required } from '../body/span.ts';
 import { characterTraitSegments, readCharacterTrajectory } from '../character/character.ts';
 import { cloneData } from '../core/clone.ts';
 import { clamp, clamp01, dexp, dlog, dpow } from '../core/index.ts';
@@ -447,24 +447,7 @@ function buildNeedTrajectory(context: NeedKernelContext): import('../run-schema.
   const fit = (left: number, right: number): void => {
     if (segments.length >= 1024) throw new EngineLimitError('Need trajectory segment limit exceeded');
     const values = [0, 0.25, 0.5, 0.75, 1].map((x) => sample(left + (right - left) * x));
-    const coefficients = [0, 0, 0, 0, 0];
-    for (let i = 0; i < 5; i++) {
-      let basis = [1],
-        divisor = 1;
-      for (let j = 0; j < 5; j++)
-        if (i !== j) {
-          const next = Array<number>(basis.length + 1).fill(0);
-          for (let k = 0; k < basis.length; k++) {
-            next[k] = (next[k] ?? 0) - (j / 4) * (basis[k] ?? 0);
-            next[k + 1] = (next[k + 1] ?? 0) + (basis[k] ?? 0);
-          }
-          basis = next;
-          divisor *= i / 4 - j / 4;
-        }
-      for (let k = 0; k < 5; k++)
-        coefficients[k] = (coefficients[k] ?? 0) + ((values[i] ?? 0) * (basis[k] ?? 0)) / divisor;
-    }
-    const c = coefficients as [number, number, number, number, number];
+    const c = quarticCoefficients(values);
     let error = 0;
     for (const x of [0.125, 0.375, 0.625, 0.875])
       error = Math.max(
