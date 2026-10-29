@@ -33,11 +33,11 @@ const LABELS: Readonly<Record<string, string>> = {
 };
 const SUGGESTION_VERDICTS: Readonly<Record<SuggestionVerdict, string>> = {
   assented: 'accepted the advice',
-  complied: 'complied with the advice',
+  complied: 'decided to follow the advice',
   deferred: 'put off acting on the advice',
   modified: 'adapted the advice',
   refused: 'refused the advice',
-  commanded: 'followed the order',
+  commanded: 'decided to follow the order',
 };
 export function labelLine(label: string): string {
   const known = Object.hasOwn(LABELS, label) ? LABELS[label] : undefined;
@@ -246,11 +246,16 @@ export function describeWording(
     case 'day-closed': {
       const r = d.record,
         parts = [`Day ${r.day}.`];
-      if (r.kept.length) parts.push(`I kept ${list(r.kept.map((n) => n.label ?? n.action ?? n.kind))}.`);
+      if (r.kept.length)
+        parts.push(`I kept these commitments: ${list(r.kept.map((n) => n.label ?? n.action ?? n.kind))}.`);
       if (r.broken.length)
-        parts.push(`I did not keep ${list(r.broken.map((n) => n.label ?? n.action ?? n.kind))}.`);
+        parts.push(
+          `I did not keep these commitments: ${list(r.broken.map((n) => n.label ?? n.action ?? n.kind))}.`,
+        );
       if (r.released.length)
-        parts.push(`I was released from ${list(r.released.map((n) => n.label ?? n.action ?? n.kind))}.`);
+        parts.push(
+          `I understood that I was released from these commitments: ${list(r.released.map((n) => n.label ?? n.action ?? n.kind))}.`,
+        );
       for (const a of r.actions)
         parts.push(
           `I ${actionForms(a.action, lex).past}${a.prompted === 0 ? ' without being told' : a.prompted === a.done ? ' after being prompted' : ''}.`,

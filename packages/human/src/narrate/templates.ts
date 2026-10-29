@@ -1,22 +1,22 @@
 /** Closed fallback templates for event meanings. */
 export const NARRATION_TEMPLATES = {
   'review.kept': [
-    'Today I kept {items}.',
-    'I kept {items} today.',
-    'Today I followed through on {items}.',
-    'I followed through on {items} today.',
+    'Today I kept these commitments: {items}.',
+    'I kept these commitments today: {items}.',
+    'These are the commitments I kept today: {items}.',
+    'I kept each of these commitments today: {items}.',
   ],
   'review.unresolved': [
-    'I keep going back over {items}.',
+    'I keep thinking about {items}.',
     'I am still thinking about {items}.',
-    'I have not settled my thoughts about {items}.',
-    'My thoughts return to {items}.',
+    'I have not finished thinking about {items}.',
+    'I am still considering {items}.',
   ],
   'review.resolved': [
-    'I did not keep {items}. Next time I will be ready.',
-    'I missed {items}. Next time I will be ready.',
-    'I missed {items}. I intend to be ready next time.',
-    'I did not keep {items}. I intend to be ready next time.',
+    'I did not keep these commitments: {items}. Next time I will be ready.',
+    'I missed these commitments: {items}. Next time I will be ready.',
+    'I missed these commitments: {items}. I intend to be ready next time.',
+    'I did not keep these commitments: {items}. I intend to be ready next time.',
   ],
   'prompting.assented': [
     'I had an urge to {action}. I chose to {action}.',

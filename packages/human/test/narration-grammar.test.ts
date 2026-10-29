@@ -9,11 +9,11 @@ const lex: Lexicon = { names: {}, roles: {}, actions: {}, prefer: 'name' };
 it('renders suggestion verdicts as grammatical first-person outcomes and inflects common actions', () => {
   const verdicts: Record<SuggestionVerdict, string> = {
     assented: 'accepted the advice',
-    complied: 'complied with the advice',
+    complied: 'decided to follow the advice',
     deferred: 'put off acting on the advice',
     modified: 'adapted the advice',
     refused: 'refused the advice',
-    commanded: 'followed the order',
+    commanded: 'decided to follow the order',
   };
   for (const [verdict, phrase] of Object.entries(verdicts)) {
     const wording = describeWording(
@@ -28,6 +28,14 @@ it('renders suggestion verdicts as grammatical first-person outcomes and inflect
     expect(wording).toBeDefined();
     expect(fillTemplate(wording!.templates[0]!, wording!.slots)).toBe(`I ${phrase}.`);
   }
+  const review = describeWording(
+    { kind: 'review', record: { day: 1, kept: ['Fajr', 'call Mum'], missed: [], resolved: [] } },
+    lex,
+  );
+  if (!review) throw new Error('Missing review narration');
+  expect(fillTemplate(review.templates[0]!, review.slots)).toBe(
+    'Today I kept these commitments: the dawn prayer and call Mum.',
+  );
   expect(actionForms('stop', lex)).toEqual({ base: 'stop', past: 'stopped', gerund: 'stopping' });
   expect(actionForms('plan', lex)).toEqual({ base: 'plan', past: 'planned', gerund: 'planning' });
   expect(actionForms('get-up', lex)).toEqual({ base: 'get up', past: 'got up', gerund: 'getting up' });

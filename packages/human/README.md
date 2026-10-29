@@ -373,7 +373,7 @@ lexicon.voices = {
 ```
 
 The `{verdict}` slot is a complete grammatical predicate, such as `accepted the
-advice`, `complied with the advice` or `refused the advice`. Do not append `the
+advice`, `decided to follow the advice` or `refused the advice`. Do not append `the
 advice` again. Host phrases should speak in the person's first person and must
 not claim divine acceptance or a religious ruling. Norm reasons describe only
 the person's own understanding.
