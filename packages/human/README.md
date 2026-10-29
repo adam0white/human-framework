@@ -399,10 +399,10 @@ const fragments = {
     'will do as you ask, despite my doubts',
   ],
   'verdict.deferred': [
-    'will consider it after dealing with “{alternative}”',
-    'will first attend to “{alternative}”',
-    'have put “{alternative}” ahead of the request',
-    'will deal with “{alternative}” before considering it again',
+    'will consider it after I {alternative}',
+    'will {alternative} first',
+    'need to {alternative} before considering your request',
+    'will consider your request after I {alternative}',
   ],
   'reason.need:rest': [
     'I need rest.',
@@ -415,8 +415,9 @@ lexicon.voices = { ...lexicon.voices, selim: { ...lexicon.voices?.selim, ...frag
 ```
 
 Verdict keys are `verdict.assented`, `verdict.complied`, `verdict.deferred`,
-`verdict.modified`, `verdict.refused`, `verdict.commanded` and `verdict.cannot`.
-The last describes recorded inability; ordinary refusal uses `verdict.refused`.
+`verdict.modified`, `verdict.refused`, `verdict.commanded`, `verdict.cannot` and
+`verdict.deferred.later`.
+`verdict.cannot` describes recorded inability; ordinary refusal uses `verdict.refused`.
 Deferred and modified fragments require `{alternative}` when a winning action is
 recorded. It contains the action's counter-offer label. Author those labels as
 base verb phrases if using frames such as `after I {alternative}`. A deferral
@@ -436,6 +437,11 @@ const replies = {
 ```
 
 The wrapper and fragments use the same existing phrasebook route, without a switch.
+A wrapper without literal `I {verdict}` must resolve all eight `verdict.*` keys
+to authored fragments through the effective voice/game tables. Admission names
+the first missing key; it never silently mixes complete sentences with built-in
+predicates. The example above is an excerpt: supply the other five verdict keys
+before admitting the run. Keep fragment grammar consistent across inherited tables.
 Other verdicts have no slots. Reason keys use `reason.` followed by a catalogued exact
 reason or family, such as `reason.need:rest`, `reason.distrust`, `reason.norm` or
 `reason.skill`. The exported `NARRATION_FRAGMENTS` catalog lists every admitted key and its slots.

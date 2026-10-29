@@ -42,6 +42,21 @@ export function wordingIssue(
           return issue(`${label} must keep exactly the template's named slots`);
     }
   }
+  // A sentence frame cannot safely fall back to a built-in predicate. Check
+  // effective game/voice inheritance, not just the keys in an individual table.
+  for (const { path, person } of tables) {
+    const frames =
+      authoredWordings(lexicon, person, 'suggestion.resolved') ?? NARRATION_TEMPLATES['suggestion.resolved'];
+    if (frames.every((frame) => /\bI\s+\{verdict\}/u.test(frame))) continue;
+    for (const key of Object.keys(NARRATION_FRAGMENTS).filter((key) => key.startsWith('verdict.'))) {
+      if (!authoredWordings(lexicon, person, key))
+        return {
+          code: 'invalid-schema',
+          path,
+          message: `Wording suggestion.resolved requires authored ${key} when its frame does not supply I before {verdict}`,
+        };
+    }
+  }
   return undefined;
 }
 

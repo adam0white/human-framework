@@ -29,6 +29,16 @@ const wordings = {
   'decision.wait': ['Wait.', 'I will wait.', 'I will give it time.', 'I will wait a little longer.'],
 };
 const lex: Lexicon = { names: {}, roles: {}, actions: {}, prefer: 'name', wordings };
+const sentenceReplies = {
+  'verdict.assented': ["Yes! Let's go."],
+  'verdict.commanded': ['I will follow the order.'],
+  'verdict.complied': ['I will do it, though I disagree.'],
+  'verdict.refused': ["I won't do it."],
+  'verdict.cannot': ["I can't do that."],
+  'verdict.deferred': ['I will {alternative} first.'],
+  'verdict.deferred.later': ['Not yet. Ask me again later.'],
+  'verdict.modified': ['I will {alternative} instead.'],
+};
 function wait(id: string, person = 'ada'): RunEvent {
   return {
     id,
@@ -359,10 +369,8 @@ it('headless control: reads, pagination, restore continuation and replay retain 
     const spec = exampleSpec(7);
     if (withVariants)
       spec.definitions.lexicon.wordings = {
-        'verdict.refused': ['refused it', 'declined it', 'said no to it', 'would not do it'],
+        ...sentenceReplies,
         'suggestion.resolved': ['{verdict}{reason}'],
-        'verdict.cannot': ["I can't do that."],
-        'verdict.deferred.later': ['Not yet. Ask me again later.'],
         'reason.need:food': ['I need a meal.', 'I am hungry.', 'Food comes first.', 'I need food.'],
         'decision.act': [
           'My next step is to {action}.{why}',
@@ -544,8 +552,8 @@ it('headless control: reads, pagination, restore continuation and replay retain 
 it('records a single authored sentence without adding a subject, punctuation or a tentative opening', () => {
   const spec = exampleSpec();
   spec.definitions.lexicon.wordings = {
+    ...sentenceReplies,
     'suggestion.resolved': ['{verdict}{reason}'],
-    'verdict.assented': ["Yes! Let's go."],
   };
   expect(createRun(spec).ok).toBe(true);
   const event = wait('answer');
@@ -563,4 +571,31 @@ it('records a single authored sentence without adding a subject, punctuation or 
       "Yes! Let's go.",
     );
   }
+});
+
+it('refuses sentence wrappers with missing effective reply fragments, including voice inheritance', () => {
+  const spec = exampleSpec();
+  spec.definitions.lexicon.wordings = { ...sentenceReplies, 'suggestion.resolved': ['{verdict}{reason}'] };
+  delete spec.definitions.lexicon.wordings['verdict.deferred.later'];
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: {
+      code: 'invalid-schema',
+      message: expect.stringContaining('verdict.deferred.later'),
+    },
+  });
+  spec.definitions.lexicon.wordings = { ...sentenceReplies };
+  delete spec.definitions.lexicon.wordings['verdict.cannot'];
+  spec.definitions.lexicon.names = { ada: 'Ada' };
+  spec.definitions.lexicon.voices = { ada: { 'suggestion.resolved': ['{verdict}{reason}'] } };
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: {
+      code: 'invalid-schema',
+      path: '$.definitions.lexicon.voices.ada',
+      message: expect.stringContaining('verdict.cannot'),
+    },
+  });
+  spec.definitions.lexicon.voices.ada!['verdict.cannot'] = sentenceReplies['verdict.cannot'];
+  expect(createRun(spec).ok).toBe(true);
 });

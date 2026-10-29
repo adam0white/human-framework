@@ -17,6 +17,7 @@ Engine: 4.13.0.
 
 - Let games author complete reply sentences through the existing phrasebook route: a single `{verdict}{reason}` wrapper needs no invented punctuation variants. Phrasebooks accept one or more distinct nonempty variants; selection excludes up to two recent choices while always leaving a candidate. No switch or alternate narrator is added.
 - Add slot-free `verdict.deferred.later` for deferrals without a winning action and deferrals behind a commitment. Never substitute `do something else` or a promise label into an action phrase for these replies. Normal action deferrals retain their recorded `{alternative}`.
+- Refuse incomplete effective game/voice sentence phrasebooks by the first missing verdict key, so complete-sentence wrappers never silently fall back to subjectless built-in predicates.
 - Keep suggestion decisions, actor RNG, difficulty and the replay-hash test. Event-time wording choices remain recorded; reads never choose again.
 
 Migration: author verdict fragments as complete sentences with `suggestion.resolved: ['{verdict}{reason}']` when a person's voice needs contractions or exclamations. Author `verdict.deferred.later` without slots. A commitment label is evidence for a promise explanation, not an action verb phrase. Current engine archives require a fresh run under the existing 4.x boundary.
