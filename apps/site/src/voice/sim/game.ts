@@ -1,52 +1,4 @@
-/**
- * Headless game state for *The Day You Say Nothing* (voice.md §5, §6, §9). One `VoiceGame` holds the whole
- * town and the player's side: phases (premise → day → between → … → eid → report → free), the day plan (played
- * Ramadan 1, 2, 15, 30 with skips, a muted Eid on day 31, then a 6-day muted epilogue on a clone of the whole run),
- * the standing suggestion, beats, the log, and the clock (pace, fast-forward, carry). The worker only forwards
- * messages to it; tests drive it directly. Deterministic: the same seed, inputs and tick schedule give the same
- * frames. No wall clock and no `Math.random` anywhere in sim/.
- *
- * Contract deviation (reported): two skip whispers are both voice `you`, and the framework hears one suggestion
- * per voice per decision (`voicesIn` dedupes by voice), so the skip alternates them hour by hour, preferring
- * the one whose option is on offer.
- */
-import {
-  type Affordance,
-  answerNow,
-  type Community,
-  chronicleBetween,
-  consolidateDay,
-  createCommunity,
-  type DayRecord,
-  type DecisionRecord,
-  dayOf,
-  decide,
-  interruptPerson,
-  isLossEpisode,
-  MINUTES_PER_DAY,
-  narrateChronicle,
-  nextEventAt,
-  type Person,
-  pressureReachedAt,
-  preview,
-  readBody,
-  resolutionsOf,
-  runSilent,
-  type SimEvent,
-  type StepOptions,
-  type Suggestion,
-  type SuggestionResolution,
-  standingHeard,
-  stepCommunity,
-  voiceOf,
-} from '@adam0white/human-framework';
-import {
-  admitSiteCast,
-  type CastChapter,
-  personChapter,
-  prepareSiteInitial,
-  SITE_CAST,
-} from '../../shared/cast-chapter.ts';
+import { type CastChapter, personChapter, SITE_CAST } from '../../shared/cast-chapter.ts';
 import {
   type BeatKind,
   type BetweenView,
@@ -68,12 +20,61 @@ import {
   type WorkerReply,
 } from '../protocol.ts';
 import { BEAT_COOLDOWN, type BeatState, createBeats, fire, flagOnce, takeCloseCall } from './beats.ts';
+/**
+ * Headless game state for *The Day You Say Nothing* (voice.md §5, §6, §9). One `VoiceGame` holds the whole
+ * town and the player's side: phases (premise → day → between → … → eid → report → free), the day plan (played
+ * Ramadan 1, 2, 15, 30 with skips, a muted Eid on day 31, then a 6-day muted epilogue on a clone of the whole run),
+ * the standing suggestion, beats, the log, and the clock (pace, fast-forward, carry). The worker only forwards
+ * messages to it; tests drive it directly. Deterministic: the same seed, inputs and tick schedule give the same
+ * frames. No wall clock and no `Math.random` anywhere in sim/.
+ *
+ * Contract deviation (reported): two skip whispers are both voice `you`, and the framework hears one suggestion
+ * per voice per decision (`voicesIn` dedupes by voice), so the skip alternates them hour by hour, preferring
+ * the one whose option is on offer.
+ */
+import {
+  type Affordance,
+  chronicleBetween,
+  consolidateDay,
+  type DayRecord,
+  type DecisionRecord,
+  dayOf,
+  isLossEpisode,
+  MINUTES_PER_DAY,
+  narrateChronicle,
+  personAuthoring,
+  readBody,
+  resolutionsOf,
+  type Suggestion,
+  type SuggestionResolution,
+  type VoicePerson,
+  voiceOf,
+} from './hf4-model.ts';
+import { admitVoicePerson } from './hf4-portable.ts';
+import { OLD_VOICE_SAVE } from './hf4-run.ts';
+import { voiceSpec } from './hf4-spec.ts';
+import {
+  type Community,
+  cloneCommunity,
+  createCommunity,
+  decide,
+  interruptPerson,
+  mount,
+  nextEventAt,
+  preview,
+  runSilent,
+  type SimEvent,
+  type StepOptions,
+  standingHeard,
+  stepCommunity,
+} from './hf4-town-run.ts';
 import { type SelinTransfer, selinCheckpoint } from './persona.ts';
 import { closeRival, moneyShort, prefillFor } from './prefill.ts';
-import { buildReport, ledgerKey, type SaidCount } from './report.ts';
+import { buildReport, ledgerKey, type ReportInput, type SaidCount } from './report.ts';
 import { answer, createStanding, type Standing, standingView, toSuggestion, WHY_AWAY } from './standing.ts';
 import {
   createTown,
+  outgoingCallWindow,
   selinEidCallMinute,
   TOWN_DEFAULTS,
   TOWN_EID_DAY,
@@ -108,6 +109,7 @@ import {
   trustHistoryWords,
   voicesView,
   weighsView,
+  when,
   whyView,
 } from './view.ts';
 
@@ -204,7 +206,7 @@ const ASLEEP_RISK_LEAD = 60;
 export interface Run {
   c: Community;
   town: Town;
-  ppl: Record<TownPersonId, Person>;
+  ppl: Record<TownPersonId, VoicePerson>;
   /** The town options the run was built with; a clone passes them on (they are not all in `TownState`). */
   opts: TownOptions;
 }
@@ -212,22 +214,29 @@ export interface Run {
 export function newRun(seed: number, opts: TownOptions = {}, castChapter?: CastChapter): Run {
   opts = { ...opts, ...(castChapter ? { castChapter } : {}) };
   const ppl = townPeople({ ...opts, now: TOWN_GAME_CREATE });
-  if (castChapter) {
-    for (const role of TOWN_IDS) {
-      const single = personChapter(castChapter, SITE_CAST.voice?.[role]);
-      if (single) prepareSiteInitial('voice', ppl[role], single);
-      ppl[role] = admitSiteCast('voice', ppl[role], castChapter);
-    }
-  }
   const people = TOWN_IDS.map((id) => ppl[id]);
   const town = createTown(people, { ...opts, seed, now: TOWN_GAME_CREATE });
-  return { c: createCommunity(people), town, ppl, opts };
+  const c = createCommunity(people);
+  mount(
+    c,
+    town,
+    voiceSpec(seed, TOWN_GAME_CREATE, townCalendar),
+    castChapter
+      ? people.map((p) => {
+          const opening = personAuthoring(p);
+          const single = personChapter(castChapter, SITE_CAST.voice?.[p.id]);
+          return single ? admitVoicePerson(opening, single) : opening;
+        })
+      : undefined,
+  );
+  return { c, town, ppl, opts };
 }
 
 /** A deep copy of the whole run: every person, the community's host fields and the town state (voice.md §5). */
 export function cloneRun(r: Run): Run {
-  const { c, state } = structuredClone({ c: r.c, state: r.town.state });
-  const ppl = Object.fromEntries(c.people.map((p) => [p.id, p])) as Record<TownPersonId, Person>;
+  const c = cloneCommunity(r.c);
+  const state = structuredClone(r.town.state);
+  const ppl = Object.fromEntries(c.people.map((p) => [p.id, p])) as Record<TownPersonId, VoicePerson>;
   const town = createTown(
     TOWN_IDS.map((id) => ppl[id]),
     { ...r.opts, seed: 0, state },
@@ -245,11 +254,9 @@ export interface MutedAudit {
 const DAILY_PRAYERS = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
 
 export class VoiceGame {
+  readonly castChapter?: CastChapter;
   seed: number;
-  /**
-   * The rules this run plays by (protocol `VOICE_RULES`): 1 is the game as released before the 2026-10-19 level-up,
-   * kept so voice-1 playtest files replay exactly; 2 is the level-up. Not hashed when 1 (record.ts).
-   */
+  /** Current native HF4 edition. Older rules are refused before creating a run. */
   rules: VoiceRules;
   run: Run;
   phase: Phase = 'premise';
@@ -292,9 +299,7 @@ export class VoiceGame {
   endRamadanTrust: Record<string, number> = {};
   eidNight: { run: Run; t: number } | undefined;
   /** The town at Eid morning, when the month you spoke in had ended (the report reads his ends here). */
-  eidMorning:
-    | { run: Run; t: number; halilCalledAt?: number; calledUnasked?: boolean; unasked?: UnaskedState }
-    | undefined;
+  eidMorning: (NonNullable<ReportInput['atEid']> & { unasked: ReturnType<typeof unaskedView> }) | undefined;
   /** Rent payments with their minute (the town keeps only the total). */
   payments: { at: number; amount: number }[] = [];
   /** Every call between Halil and Selin that connected, and who made it (family contact, for the balance probe). */
@@ -335,16 +340,14 @@ export class VoiceGame {
         pending: boolean;
         stopping?: boolean;
         transfer?: SelinTransfer;
-        sourceSnapshot?: Person;
+        sourceSnapshot?: VoicePerson;
         error?: string;
       }
     | undefined;
 
-  constructor(
-    seed: number = SHIPPED_SEED,
-    rules: VoiceRules = 2,
-    readonly castChapter?: CastChapter,
-  ) {
+  constructor(seed: number = SHIPPED_SEED, rules: VoiceRules = 4, castChapter?: CastChapter) {
+    this.castChapter = castChapter;
+    if (rules !== 4) throw new Error(OLD_VOICE_SAVE);
     this.seed = seed;
     this.rules = rules;
     // Rules 2: work he does under protest goes worse (HF leaves an act's quality under protest to the host).
@@ -365,7 +368,7 @@ export class VoiceGame {
     this.trustStart = voiceOf(h, 'you')?.trust ?? 0.5;
     this.dayTrustStart = this.trustStart;
     for (const r of h.trace) this.traceIds.add(r.id);
-    for (const e of h.memory.episodes) this.episodesSeen.add(e.id);
+    for (const e of [...h.memory.episodes, ...h.receivedTexts]) this.episodesSeen.add(e.id);
     this.callSeen = this.run.town.state.lastCall?.at;
     for (const x of h.memory.expectations) this.weighsStart[x.key] = x.valence;
     // What reached him in the unseen evening becomes the first lines of the log.
@@ -402,7 +405,7 @@ export class VoiceGame {
     };
   }
 
-  get halil(): Person {
+  get halil(): VoicePerson {
     return this.run.ppl.halil;
   }
 
@@ -467,8 +470,8 @@ export class VoiceGame {
     let who = this.halil;
     if (act && this.waking()) {
       // The town's offers read the person's clock: ask with a copy standing at the waking minute.
-      who = this.ghost();
-      who.now = act.endsAt;
+      who = this.halil;
+      // The public preview remains conditional on the real finish boundary.
     }
     const out = this.run.town.affordancesFor(who);
     st.now = was;
@@ -493,7 +496,14 @@ export class VoiceGame {
   }
 
   predict(draft: Draft): Telegraph {
-    const h = this.waking() ? this.ghost() : this.halil;
+    const h = this.halil;
+    if (h.activity)
+      return {
+        tone: 'notNow',
+        says: 'The outcome is not known yet.',
+        reason: 'conditional host boundary',
+        text: 'His current action has to finish before this forecast can continue. Its outcome is not known yet.',
+      };
     const r = preview(h, this.offers(), toSuggestion(draft), {
       scarcity: this.run.town.scarcityFor?.(h) ?? 0,
     });
@@ -528,7 +538,7 @@ export class VoiceGame {
       reason: r.reason,
     };
     if (counter) out.counter = counter;
-    if (r.likelihood !== undefined) out.likelihood = r.likelihood;
+
     return out;
   }
 
@@ -561,24 +571,8 @@ export class VoiceGame {
     // minutes in); waiting for his next decision instead left the word unanswered for up to 30 minutes, which
     // breaks "he hears you, he decides, and he always says why". The refusal is booked as said (trust, pressure,
     // the counters) and he carries on.
-    if (!this.waking() && !this.refusesNow()) interruptPerson(this.run.c, this.halil, this.t, 'voice');
+    if (!this.waking()) interruptPerson(this.run.c, this.halil, this.t, 'voice');
     this.advanceTo(this.t + 1);
-  }
-
-  /**
-   * When he would refuse the standing word while busy, answer it now (a real resolution, booked by the framework)
-   * and show the answer; the activity runs on. False when he is idle, his activity ends now, or he would not refuse.
-   */
-  private refusesNow(): boolean {
-    const s = this.standing;
-    const act = this.halil.activity;
-    if (!s || !act || this.t >= act.endsAt) return false;
-    const { resolution, booked } = answerNow(this.halil, this.offers(), toSuggestion(s.draft, s.since), {
-      scarcity: this.run.town.scarcityFor?.(this.halil) ?? 0,
-    });
-    if (!booked) return false;
-    this.heard(resolution, this.t);
-    return true;
   }
 
   /** Count what the player said, by option: suggestions on played days, and days under a whisper. */
@@ -765,7 +759,7 @@ export class VoiceGame {
             .size;
           const heardIt = a.yes + a.off + a.no;
           lines.push(
-            `“${def.label}” (${w.strength}${i === 0 && chosen.length > 1 ? ', in turn with the other' : ''}): ${anyway === 0 ? `he ${AGAINST_PAST[against] ?? against} on none of the ${days} days` : `he ${AGAINST_PAST[against] ?? against} on ${anyway} of ${days} days anyway`}.${heardIt === 0 ? ' He never leaned to it while you were saying it.' : ` When he leaned to it and heard you, he let it go ${times(a.yes)}${a.off + a.no > 0 ? ` and went ahead ${times(a.off + a.no)}` : ''}.`}`,
+            `“${def.label}” (${w.strength}${i === 0 && chosen.length > 1 ? ', in turn with the other' : ''}): ${anyway === 0 ? `he ${AGAINST_PAST[against] ?? against} on none of the ${days} days` : `he ${AGAINST_PAST[against] ?? against} on ${anyway} of ${days} days anyway`}.${heardIt === 0 ? ' No answer to this suggestion was recorded during the skip.' : ` When he leaned to it and heard you, he let it go ${times(a.yes)}${a.off + a.no > 0 ? ` and went ahead ${times(a.off + a.no)}` : ''}.`}`,
           );
           continue;
         }
@@ -773,7 +767,7 @@ export class VoiceGame {
         // Round 4 (game design review): his answers, so a whisper reads as a word he weighed, not a switch.
         const said =
           heard === 0
-            ? ' He never had the chance to act on it when he heard it.'
+            ? ' No answer to this suggestion was recorded at a new choice during the skip.'
             : ` When he heard it, he said yes ${times(a.yes)}${a.off > 0 ? `, asked you to wait ${times(a.off)}` : ''}${a.no > 0 ? `, refused ${times(a.no)}` : ''}${a.off + a.no === 0 ? ' and never asked you to wait' : ''}.`;
         // R2 ("1 of 12 days" after Urge read as being ignored): say when it can happen and what the strength does.
         const rule = WHY_AWAY[id];
@@ -795,6 +789,11 @@ export class VoiceGame {
             ? ` By ${dayLabel(dayOf(firstWorn))} he was tired of hearing it: repeated advice he did not want reduced his trust ${times(tally.worn.length)}.`
             : ''),
       );
+    }
+    if (next.skipped > 0) {
+      const span = `${dayLabel(fromDay + 1)} to ${dayLabel(next.day - 1)}`;
+      for (const line of lines)
+        this.push({ kind: 'note', who: 'you', text: `Skipped days (${span}): ${line}` });
     }
     // What is open today (game design review: a played day needs a question, and "Ramadan 2 begins" said none).
     const today = this.dayQuestions(next.day);
@@ -942,9 +941,9 @@ export class VoiceGame {
 
   keepListening(): void {
     if (this.phase !== 'report' || !this.eidNight) return;
-    this.run = cloneRun(this.eidNight.run);
-    if (this.rules === 4) this.installPersonaBoundary();
+    this.run = this.eidNight.run;
     this.t = this.eidNight.t;
+    this.eidNight = undefined;
     this.rentSeen = this.run.town.state.rentPaid;
     this.muted = false;
     this.free = true;
@@ -956,7 +955,7 @@ export class VoiceGame {
       lines: [],
       strip: stripFor(TOWN_EID_DAY, this.cells),
       ends: this.ends(),
-      trust: { from: this.dayTrustStart, to: this.dayTrustStart, events: [] },
+      trust: { change: 'He listens about as closely as he did before.', events: [] },
       next: { label: dayLabel(TOWN_EID_DAY + 1), day: TOWN_EID_DAY + 1, skipped: 0 },
       choices: [],
     };
@@ -990,14 +989,6 @@ export class VoiceGame {
   waking(): boolean {
     const act = this.halil.activity;
     return !!act && this.nightSleep() && this.wakeAnnounced === act.decisionId && act.endsAt - this.t <= 1;
-  }
-
-  /** A throwaway copy of him as he will be at his next choice (awake, nothing under way); no state is written. */
-  private ghost(): Person {
-    const g = structuredClone(this.halil);
-    g.activity = null;
-    g.body.asleep = false;
-    return g;
   }
 
   /** Fast-forward applies while he sleeps or has more than `COMPOSER_LEAD` minutes of an activity left. */
@@ -1042,7 +1033,8 @@ export class VoiceGame {
    */
   advanceTo(target: number): void {
     while (this.t < target && !this.paused && this.live()) {
-      let next = this.t + 1;
+      // HF schedules every intervening faculty and action boundary. The host batches up to fifteen minutes.
+      let next = Math.min(target, this.t + 15);
       if (this.fastForward() && !this.personaDeparture?.pending) {
         const h = this.halil;
         const ev = nextEventAt(this.run.c, h);
@@ -1055,6 +1047,7 @@ export class VoiceGame {
       next = Math.min(next, this.dayEndAt);
       const spentAt = this.spentAt();
       if (spentAt !== undefined && spentAt - 1 > this.t) next = Math.min(next, spentAt - 1);
+      next = Math.ceil(next);
       if (next <= this.t) break;
       this.stepTo(next, this.liveSuggestion(next));
       if (this.t >= this.dayEndAt) {
@@ -1085,14 +1078,14 @@ export class VoiceGame {
 
   private stepTo(until: number, suggestions?: StepOptions['suggestions']): void {
     if (until <= this.t) return;
-    const opts: StepOptions = {};
+    const opts: StepOptions = this.quiet ? { clock: 'daily' } : {};
     if (suggestions && !this.muted) opts.suggestions = suggestions;
     const events = stepCommunity(this.run.c, this.run.town, until, opts);
     this.t = until;
     this.process(events);
     if (this.personaDeparture?.stopping) {
       // HF records the empty choice after affordancesFor returns. Capture only after that normal step settles,
-      // so the exact full checkpoint is the same Person the pinned source prefix reconstructs.
+      // so the exact full checkpoint is the same VoicePerson the pinned source prefix reconstructs.
       const p = this.run.ppl.selin;
       try {
         this.personaDeparture = {
@@ -1315,8 +1308,12 @@ export class VoiceGame {
     }
     if (this.open && this.open.affordanceId === e.affordanceId) {
       this.open.to = e.at;
-      this.open.done = e.status !== 'interrupted';
+      this.open.done = e.status === 'completed';
       this.open = undefined;
+    }
+    if (e.action === 'call' && e.status === 'completed' && e.decisionId) {
+      const entry = this.log.findLast((row) => row.kind === 'act' && row.decisionId === e.decisionId);
+      if (entry) entry.connection = { minute: e.at, clock: clock(e.at) };
     }
     // An act he stopped part-way: its log line says so, so a later line does not read as a reversal.
     if (e.status === 'interrupted' && e.decisionId && !this.quiet) {
@@ -1368,23 +1365,20 @@ export class VoiceGame {
     if (!act || act.endsAt - this.t > COMPOSER_LEAD) return;
     if (h.body.asleep && !this.waking()) return;
     if (this.ahead?.forDecision === act.decisionId) return;
-    const ghost = this.ghost();
+    const subject = this.halil;
     const offers = this.offers();
     const opts: Parameters<typeof decide>[2] = { scarcity: this.run.town.scarcityFor?.(h) ?? 0 };
     if (this.standing) {
       const sug = toSuggestion(this.standing.draft, this.standing.since);
       if (standingHeard(this.run.c, h, sug, offers, this.t)) opts.suggestion = sug;
     }
-    const record = decide(ghost, offers, opts);
+    const record = decide(subject, offers, opts);
+    if (!record) return;
     record.id = `ahead-${act.decisionId}`;
     this.ahead = { forDecision: act.decisionId, record };
     // Seventh pass: with your suggestion standing, weigh the same choice once more with no word, for "he'd now do unasked".
     const offered = new Set(offers.map((o) => o.id));
-    noteUnasked(
-      this.unasked,
-      opts.suggestion ? decide(this.ghost(), offers, { scarcity: opts.scarcity ?? 0 }) : record,
-      offered,
-    );
+    noteUnasked(this.unasked, record, offered);
     // Round 5: he is about to smoke and the doctor's walk is open. Pause once a day, before he lights it, with the
     // walk prefilled (prefill rule 0b), so the player can act on the doctor's "stop smoking".
     if (
@@ -1618,8 +1612,9 @@ export class VoiceGame {
 
   private onAdvice(): void {
     const h = this.halil;
-    const newEpisodes = h.memory.episodes.filter((e) => !this.episodesSeen.has(e.id));
-    this.episodesSeen = new Set(h.memory.episodes.map((e) => e.id));
+    const received = [...h.memory.episodes, ...h.receivedTexts];
+    const newEpisodes = received.filter((e) => !this.episodesSeen.has(e.id));
+    this.episodesSeen = new Set(received.map((e) => e.id));
     const said = new Set<string>();
     for (const a of h.will.advice ?? []) {
       const key = adviceKey(a);
@@ -1729,7 +1724,7 @@ export class VoiceGame {
     for (const c of h.agenda.commitments) {
       if (c.status !== 'pending' || (c.kind !== 'worship' && c.kind !== 'promise')) continue;
       // The framework's closing stretch: commitment pressure saturated (the last part of the window).
-      const closing = pressureReachedAt(c, 1);
+      const closing = c.until - (c.kind === 'promise' ? PROMISE_RISK_LEAD : 30);
       if (closing === undefined || t < closing || t >= c.until) continue;
       if (act && (c.actions.includes(act.action) || act.affordance.fulfills?.includes(c.id))) continue;
       // Not for a sleeping man, and not hours early for a promise (its pressure saturates long before the day):
@@ -1829,7 +1824,6 @@ export class VoiceGame {
       this.push({ kind: 'note', who: 'you', text });
       return;
     }
-    const later = s.lastAnswer?.tone === 'notNow' ? s.lastAnswer.counter : undefined;
     const ended = 'Your suggestion has ended. Say it again if you still want him to hear it.';
     const span = Math.round((s.expires - s.since) / 60);
     const hours =
@@ -1844,11 +1838,9 @@ export class VoiceGame {
       text = `He began ${s.servedAs ?? what}, then moved on to ${detail ?? 'something else'}. ${ended}`;
     else if (s.away) {
       const rule = WHY_AWAY[s.draft.optionId];
-      text = `Halil: “${later ? 'By the time I was done, it' : 'It'} was too late to ${what}.”${rule ? ` (${capital(rule)}.)` : ''} ${ended}`;
+      text = `The option to ${what} was no longer available when the suggestion ended.${rule ? ` ${capital(rule)}.` : ''} ${ended}`;
     } else
-      text = later
-        ? `Halil: “I meant to, ${later}. Then other things came first.” ${hours} ${ended}`
-        : `${hours.replace(/\.$/, '')}, and he chose other things. ${ended}`;
+      text = `${hours} The suggestion reached its time limit without a recorded completed action. ${ended}`;
     this.push({ kind: 'note', who: 'you', text });
   }
 
@@ -1865,7 +1857,7 @@ export class VoiceGame {
   private resetTracking(): void {
     const h = this.halil;
     this.traceIds = new Set(h.trace.map((r) => r.id));
-    this.episodesSeen = new Set(h.memory.episodes.map((e) => e.id));
+    this.episodesSeen = new Set([...h.memory.episodes, ...h.receivedTexts].map((e) => e.id));
     this.adviceSeen = new Set((h.will.advice ?? []).map(adviceKey));
     this.standing = undefined;
     this.open = undefined;
@@ -1928,7 +1920,15 @@ export class VoiceGame {
       strip: stripFor(d, this.cells),
       ends: this.ends(),
       unasked: this.unaskedNow(),
-      trust: { from: round2(this.dayTrustStart), to: round2(you?.trust ?? 0.5), events },
+      trust: {
+        change:
+          Math.abs((you?.trust ?? 0.5) - this.dayTrustStart) < 0.005
+            ? 'He listens about as closely as he did before.'
+            : (you?.trust ?? 0.5) > this.dayTrustStart
+              ? 'He listens more closely than before.'
+              : 'He listens less closely than before.',
+        events,
+      },
       next,
       choices:
         skipped > 0
@@ -2015,13 +2015,25 @@ export class VoiceGame {
     } finally {
       this.quiet = false;
     }
-    const lastCall = [...this.cells].reverse().find((c) => c.affordanceId === 'call:selin');
+    const lastCall = [...this.cells]
+      .reverse()
+      .find((c) => c.affordanceId === 'call:selin' && c.done === true);
     this.eidMorning = {
-      run: cloneRun(this.run),
+      town: structuredClone(this.run.town.state),
+      person: structuredClone(this.halil),
       t: this.t,
-      ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
-      ...(lastCall ? { calledUnasked: lastCall.promptedBy !== 'you' } : {}),
-      unasked: structuredClone(this.unasked),
+      trust: voiceOf(this.halil, 'you')?.trust ?? this.trustStart,
+      ends: endsView({
+        h: this.halil,
+        town: this.run.town,
+        t: this.t,
+        trustStart: this.trustStart,
+        asOfEid: true,
+        payments: this.payments.filter((p) => p.at < target),
+        ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
+        ...(lastCall ? { calledUnasked: lastCall.promptedBy !== 'you' } : {}),
+      }),
+      unasked: this.unaskedNow(this.unasked, this.run.town, this.t - 1),
     };
     this.muted = true;
     this.standing = undefined;
@@ -2042,7 +2054,7 @@ export class VoiceGame {
   }
 
   private finishEid(): void {
-    this.eidNight = { run: cloneRun(this.run), t: this.t };
+    this.eidNight = { run: this.run, t: this.t };
     const done = this.run.town.state.completed;
     const callsAtEid = { his: done.halil?.call ?? 0, hers: done.selin?.call ?? 0 };
     const callTimes = this.run.town.state.halilCallTimes ?? [];
@@ -2114,12 +2126,7 @@ export class VoiceGame {
       ...(this.eidMorning ? { atEid: this.eidMorning } : {}),
       payments: [...this.payments, ...epiPays],
     });
-    if (this.eidMorning?.unasked)
-      this.report.unasked = this.unaskedNow(
-        this.eidMorning.unasked,
-        this.eidMorning.run.town,
-        this.eidMorning.t - 1,
-      );
+    if (this.eidMorning) this.report.unasked = this.eidMorning.unasked;
     this.phase = 'report';
     this.paused = true;
     this.outbox.push({ type: 'report', view: this.report });
@@ -2134,7 +2141,9 @@ export class VoiceGame {
   }
 
   ends() {
-    const lastCall = [...this.cells].reverse().find((c) => c.affordanceId === 'call:selin');
+    const lastCall = [...this.cells]
+      .reverse()
+      .find((c) => c.affordanceId === 'call:selin' && c.done === true);
     return endsView({
       h: this.halil,
       town: this.run.town,
@@ -2172,7 +2181,7 @@ export class VoiceGame {
     // At the wake he is still asleep for a minute: the prefill is judged on the waking ghost, like `predict`.
     const waking = this.waking();
     return prefillFor({
-      h: waking ? this.ghost() : h,
+      h,
       town: this.run.town,
       t,
       offers,
@@ -2281,9 +2290,16 @@ export class VoiceGame {
       muted: this.muted || this.phase === 'eid',
     };
     // Presentation only: copy existing host receipts. No new saved state, inference or RNG.
+    const callWindow = outgoingCallWindow(
+      this.t,
+      this.run.town.state,
+      this.run.town.ramadan.firstDay + this.run.town.ramadan.days,
+    );
+    f.outgoingCall = `Calling Selin opens from ${clock(callWindow.from)} during his waking day, with at least twelve hours between conversations. ${this.t < callWindow.next ? `The next time allowed by those limits is ${when(callWindow.next)}.` : options.some((o) => o.id === 'call:selin') ? 'You can suggest calling her now.' : 'Calling her is not offered in his current situation.'} A call does not guarantee an answer.`;
     const connected = this.calls.at(-1);
     const missed = this.run.town.state.selinMissedAt;
-    if (connected || missed !== undefined) {
+    const unanswered = this.run.town.state.unansweredCall;
+    if (connected || missed !== undefined || unanswered) {
       f.callFacts = {};
       if (connected)
         f.callFacts.connected = {
@@ -2291,6 +2307,14 @@ export class VoiceGame {
           day: dayOf(connected.at),
           clock: clock(connected.at),
           by: connected.by,
+        };
+      if (unanswered)
+        f.callFacts.unanswered = {
+          minute: unanswered.at,
+          day: dayOf(unanswered.at),
+          clock: clock(unanswered.at),
+          by: unanswered.by,
+          to: unanswered.to,
         };
       if (missed !== undefined)
         f.callFacts.missed = { minute: missed, day: dayOf(missed), clock: clock(missed) };
@@ -2394,7 +2418,7 @@ function voiceLine(source: string, target: string, first = false): string {
   return `${who}: ${what}.`;
 }
 
-function trustOf(h: Person): Record<string, number> {
+function trustOf(h: VoicePerson): Record<string, number> {
   const out: Record<string, number> = {};
   for (const v of h.will.voices) out[v.voiceId] = v.trust;
   return out;

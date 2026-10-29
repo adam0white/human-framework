@@ -13,7 +13,6 @@ const SEEDS = (env.VOICE_SEEDS ?? `${SHIPPED_SEED},1,2,3,4`).split(',').map(Numb
 const NUMERIC: (keyof Measured)[] = [
   'smokeDays',
   'eidSmokes',
-  'habit',
   'walks',
   'mornings',
   'shifts',

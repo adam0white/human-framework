@@ -8,8 +8,8 @@
  * summer on 180, autumn on 270; the harvest comes on day 285 and the fair on day 300; the next winter opens at
  * midnight of day 365 and its first dusk is lived to. Fidelity switches only at midnight: the hours between a dawn
  * and the next midnight, and between midnight and the winter's first dusk, are lived minute by minute
- * (`stepPeople`); whole days in between by HF `liveCommunity` with this game's routines, natural death and chronic
- * onsets on. Grain is lost only on played nights; the spring's eating is paid at the thaw and the harvest refills it
+ * (`stepPeople`); whole days in between use HF's public daily clock with this game's ordinary routines. All actor
+ * faculties, natural death and chronic onsets remain active. Grain is lost only on played nights; the spring's eating is paid at the thaw and the harvest refills it
  * (14 + 1.5 sacks per worker, by the weather, up to a granary of 45). An empty granary at the thaw is a hungry
  * spring: the households most ready to go leave until the rest can be fed.
  * The village ends only when nobody aged fifteen or more is left. Village size is held by crowding (fewer births and
@@ -18,11 +18,13 @@
  * Not covered: weather beyond the harvest roll, the spring repairs, trade, resettlement after a fall (a fallen
  * village ends its volume and the chronicle; a new seed starts a new village).
  */
-import { liveCommunity, skillLevel, tend } from '@adam0white/human-framework';
+
+import { actorAt, actorInput, actorPeople, actorRuntime, publicOffer } from './actor.ts';
+import { skillLevel, tend } from './actor-effects.ts';
+import { flushActors, physicalLedger, schedulePrayerDay } from './actor-world.ts';
 import {
   DAY,
   DUSK_START,
-  MORTALITY_MULTIPLIER,
   NIGHTFALL,
   POST_IDS,
   type PostId,
@@ -32,6 +34,7 @@ import {
 } from './config.ts';
 import { planWinter } from './director.ts';
 import { familyComes, openFair, refreshGateKeeper } from './fair.ts';
+import { minuteMs } from './hf4.ts';
 import {
   ageOf,
   chronicle,
@@ -103,14 +106,132 @@ const yearStart = (s: WatchState): number => (s.year - 1) * YEAR_DAYS * DAY;
 /** Lives whole days by routine up to `until` (a midnight), reading deaths into the chronicle. */
 export function liveDays(s: WatchState, until: number): void {
   if (until <= s.minute) return;
-  const res = liveCommunity(s.community, until, {
-    routineFor: routineFor(s),
-    onDay: dayHook(s),
-    lifecourse: { mortality: true, chronicOnsets: true, multiplier: MORTALITY_MULTIPLIER },
-  });
-  s.minute = until;
-  s.keeper.now = until;
-  readDeaths(s, res.events);
+  const routine = routineFor(s);
+  while (s.minute < until) {
+    const day = Math.floor(s.minute / DAY),
+      end = Math.min(until, (day + 1) * DAY),
+      at = actorAt(s),
+      runtime = actorRuntime(s);
+    const early = s.actors.queued.filter((input) => input.at < at),
+      later = s.actors.queued.filter((input) => input.at >= at);
+    if (runtime.time() < at - 1 || early.length) {
+      s.actors.queued = early;
+      s.actorEvents.push(...flushActors(s, at - 1, true));
+      s.actors.queued.push(...later);
+    }
+    const people = actorPeople(s).filter((p) => p.body.alive);
+    const rows = people.map((p) => {
+      const post = s.posts[p.id];
+      const local = p.id !== 'keeper' && s.cast[p.id]?.status === 'here' ? routine(p, day).activities : [];
+      const offers = [
+        publicOffer(p.id, {
+          id: `routine:${day}:sleep`,
+          action: 'sleep',
+          label: 'sleep at home',
+          duration: 480,
+          effort: 0,
+          mode: 'sleep',
+          advertises: { sleep: 0.9, rest: 0.5 },
+        }),
+        publicOffer(p.id, {
+          id: `routine:${day}:eat`,
+          action: 'eat',
+          label: 'eat and drink',
+          duration: 30,
+          effort: 0,
+          advertises: { food: 0.6, water: 0.5 },
+        }),
+        publicOffer(p.id, {
+          id: `routine:${day}:rest`,
+          action: 'rest',
+          label: 'rest at home',
+          duration: 60,
+          effort: 0,
+          advertises: { rest: 0.3, leisure: 0.1 },
+        }),
+        ...local.map((a, i) =>
+          publicOffer(p.id, {
+            id: `routine:${day}:${i}`,
+            action: a.action,
+            label: a.action,
+            duration: a.minutes,
+            effort: a.tags?.includes('work') ? 0.35 : 0.1,
+            mode: a.action === 'sleep' ? 'sleep' : 'awake',
+            advertises:
+              a.action === 'supper'
+                ? { food: 0.6, water: 0.5, belonging: 0.1 }
+                : a.action === 'pray'
+                  ? { meaning: 0.1 }
+                  : a.action === 'play'
+                    ? { leisure: 0.3, belonging: 0.1 }
+                    : { competence: 0.1, meaning: 0.04 },
+            tags: a.tags,
+            with: a.with,
+            skill: a.skill,
+            ...(a.action === 'stand the wall' && post ? { targetId: postSection(post) } : {}),
+          }),
+        ),
+      ];
+      return { person: p.id, offers };
+    });
+    const ledger = physicalLedger(s);
+    ledger.year = s.year;
+    ledger.ration = s.yearGrain.hungry ? 0.35 : 0.6;
+    const offerInputs = runtime.offerInputs(
+      at,
+      rows,
+      ledger as unknown as import('@adam0white/human-framework').Json,
+    );
+    s.actors.queued.push(...offerInputs);
+    for (const row of rows) {
+      const p = people.find((p) => p.id === row.person);
+      if (!p) throw new Error('Missing authored village routine person.');
+      const entries = row.offers.map((offer, i) => ({
+        id: `day:${day}:${i}`,
+        at: Math.max(at, minuteMs(day * DAY + Math.min(23 * 60, 6 * 60 + i * 60))),
+        offer,
+        chance: 1,
+      }));
+      actorInput(
+        s,
+        'routine.authored',
+        { person: row.person, scheduleId: 'village-day', entries },
+        undefined,
+        at,
+      );
+      if (s.cast[row.person]?.prays || row.person === 'keeper') schedulePrayerDay(s, row.person, day, at);
+      if (!p.activity)
+        actorInput(
+          s,
+          'decision.requested',
+          {
+            person: row.person,
+            reason: 'An ordinary village day',
+            treatment: 'ordinary',
+            offerRevision: (() => {
+              const input = offerInputs.find(
+                (i) => i.kind === 'offers.received' && i.payload.person === row.person,
+              );
+              return input?.kind === 'offers.received'
+                ? input.payload.revision
+                : runtime.offerRevision(row.person);
+            })(),
+          },
+          undefined,
+          at,
+        );
+    }
+    // Whole routine days use HF's ordinary daily clock. Partial days retain fine time.
+    const fidelity =
+      s.minute % DAY === 0 && end - s.minute === DAY
+        ? { mode: 'daily' as const, dayMs: 86400000 as const, anchor: 0 }
+        : { mode: 'fine' as const };
+    const events = [...s.actorEvents, ...flushActors(s, end, false, fidelity)];
+    s.actorEvents = [];
+    s.minute = end;
+    readDeaths(s, events);
+    dayHook(s)(undefined, day, end);
+  }
 }
 
 /** Lives minute by minute (in hourly steps) from now to `until`. */
@@ -120,7 +241,6 @@ function liveHours(s: WatchState, until: number): void {
     stepPeople(s, t);
     if (t >= until) break;
   }
-  s.keeper.now = s.minute;
 }
 
 /** One day of an open season. */
@@ -311,7 +431,7 @@ function sow(s: WatchState): void {
 
 /**
  * The routine part of the winter, told at the thaw (G3-4): how many nights went by without the Keeper's lantern,
- * who stood the most of them, and a stretch someone feared that quiet nights on it may have eased.
+ * who stood the most of them, and an actual stretch on which a watcher took quiet turns.
  */
 /** How much surer the pupil's sling must have grown since the blessing for the thaw to say it showed. */
 const LESSON_SHOWED = 0.06;
@@ -367,46 +487,68 @@ function fairLines(s: WatchState): void {
         : `${what} ${wall}. Attackers still climbed over it ${n === 1 ? 'once' : `${n} times`} this winter.`,
     );
   }
+  if (bought.some((l) => l.text === 'A bigger bell was hung over the Gate.') && s.marks.bigBell)
+    chronicle(s, 'winter', 'The bigger bell bought at the fair is still hung over the Gate.');
+  for (const l of s.chronicle.filter((l) => l.year === s.year - 1)) {
+    if (!l.who) continue;
+    const arrival = l.kind === 'arrive' && l.text.includes('were let in at the fair.');
+    const family =
+      l.kind === 'birth' &&
+      (l.text.startsWith('You chose to visit the family after ') ||
+        l.text.startsWith('You sent a sack from the granary for ') ||
+        l.text.startsWith('No sack could be sent for ') ||
+        l.text.startsWith('The birth card for '));
+    if (!arrival && !family) continue;
+    const p = personOf(s, l.who);
+    const status =
+      p?.body.alive && s.cast[l.who]?.status === 'here'
+        ? 'is living in the village at this thaw'
+        : s.cast[l.who]?.status === 'dead' || p?.body.alive === false
+          ? 'has died before this thaw'
+          : 'is no longer living in the village at this thaw';
+    chronicle(s, 'winter', `${l.text} ${nameOf(s, l.who)} ${status}.`, l.who);
+  }
   for (const l of bought) {
     if (!l.who || !l.text.startsWith('You named')) continue;
     const heir = personOf(s, l.who);
     if (!heir?.body.alive) continue;
     const nights = s.yearGrain.stints[`${l.who}@gate`] ?? 0;
     const who = nameOf(s, l.who);
-    chronicle(
-      s,
-      'winter',
-      nights >= 3
-        ? `${who}, named heir at the fair, guarded the Gate for ${nights} quiet nights this winter and is learning it.`
-        : nights > 0
-          ? `${who}, named heir at the fair, guarded the Gate for only ${nights === 1 ? 'one quiet night' : `${nights} quiet nights`} this winter.`
-          : `${who}, named heir at the fair, never guarded the Gate this winter. Learning to guard the Gate takes practice there.`,
-      l.who,
-    );
+    const played = s.yearGrain.playedGate?.some((r) => r.who === l.who);
+    const routine =
+      nights > 0
+        ? `stood the Gate on ${nights === 1 ? 'one quiet routine night' : 'quiet routine nights'} this winter`
+        : 'had no recorded quiet routine nights at the Gate this winter';
+    const kept = played ? ' There is also a completed Gate watch recorded on a night you kept.' : '';
+    chronicle(s, 'winter', `${who}, named heir at the fair, ${routine}.${kept}`, l.who);
   }
 }
 
 function routineLine(s: WatchState): void {
   const nights = SPRING_DAY - s.winter.nights;
   const by = new Map<string, number>();
-  let eased: { who: string; sec: SectionId } | null = null;
+  let quiet: { who: string; sec: SectionId } | null = null;
   for (const [key, n] of Object.entries(s.yearGrain.stints)) {
     const [who, sec] = key.split('@') as [string, SectionId];
     by.set(who, (by.get(who) ?? 0) + n);
     const p = personOf(s, who);
-    if (!eased && p && n >= 3 && fearedSection(p)?.section === sec) eased = { who, sec };
+    if (!quiet && p && n >= 3 && fearedSection(p)?.section === sec) quiet = { who, sec };
   }
   const most = [...by.entries()]
     .filter(([id]) => personOf(s, id)?.body.alive)
     .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))
     .slice(0, 2)
     .map(([id]) => nameOf(s, id));
-  // Said differently each year (G3-4 review: the same sentence every thaw read as a form).
+  // Factual wording varies across eight years without drawing RNG or inventing an event.
   const openers = [
     `During the other ${nights} nights of winter, the watchers took their usual turns guarding the wall.`,
     `For the remaining ${nights} nights of winter, the watchers took their usual turns on the wall in the cold and dark.`,
     `For the next ${nights} nights, the watch changed at midnight and the snow kept falling.`,
     `${nights} more nights went by without the lantern: frost, the stars and the long hours before dawn.`,
+    `The village kept its ordinary watch for the other ${nights} nights of winter.`,
+    `After the nights you kept, the watchers took turns for another ${nights} nights.`,
+    `The played watches ended, and ${nights} nights of ordinary watch followed.`,
+    `There were ${nights} more winter nights to guard through the usual turns.`,
   ];
   const stoodWords = [
     ' guarded the wall on the most nights.',
@@ -417,9 +559,9 @@ function routineLine(s: WatchState): void {
   const sw = stoodWords[(s.year - 1) % stoodWords.length] ?? stoodWords[0] ?? '';
   if (most.length === 2) text += ` ${most[0]} and ${most[1]}${sw}`;
   else if (most.length === 1) text += ` ${most[0]}${sw.replace(' were ', ' was ')}`;
-  if (eased) {
-    const where = eased.sec === 'gate' ? 'the Gate' : `the ${eased.sec} wall`;
-    text += ` Quiet nights on ${where} may have eased ${nameOf(s, eased.who)}’s dread of it.`;
+  if (quiet) {
+    const where = quiet.sec === 'gate' ? 'the Gate' : `the ${quiet.sec} wall`;
+    text += ` ${nameOf(s, quiet.who)} took quiet turns on ${where} this winter.`;
   }
   chronicle(s, 'winter', text);
 }
@@ -446,7 +588,8 @@ function harvest(s: WatchState): void {
     return a >= 15 && a < 66 && !s.cast[p.id]?.limp;
   }).length;
   const weather = 0.7 + 0.5 * nextRandom(worldRng(s, 'weather'));
-  const seed = s.marks.seed ? 1.3 : 1;
+  const boughtSeed = s.marks.seed;
+  const seed = boughtSeed ? 1.3 : 1;
   s.marks.seed = false;
   const sown = s.hardship ? (s.yearGrain.sown ?? 1) : 1;
   const fields = SOWN_FLOOR + (1 - SOWN_FLOOR) * sown;
@@ -470,7 +613,10 @@ function harvest(s: WatchState): void {
       : sown <= 0
         ? ' No seed was left to sow in spring, so only the kitchen gardens were planted.'
         : ' Too little seed was left in spring to sow every field.';
-  chronicle(s, 'harvest', `${words}${but ? ', but' : ':'} ${store}.${unsown}`);
+  const fairSeed = boughtSeed
+    ? ' This harvest used the seed grain bought at the fair. Weather, the fields sown and the people working also shaped it.'
+    : '';
+  chronicle(s, 'harvest', `${words}${but ? ', but' : ':'} ${store}.${unsown}${fairSeed}`);
 }
 
 /** The open posts for a winter: the four stretches' two posts, raised stretches' thirds, a lost stretch closed. */
@@ -548,7 +694,11 @@ function leanWinter(s: WatchState): void {
     const p = personOf(s, id);
     const v = s.cast[id];
     if (!p || !v) continue;
-    p.body.fitness *= LEAN_FITNESS;
+    actorInput(s, 'context.received', {
+      person: id,
+      evidenceId: `watch:scarcity:${s.year}:${id}`,
+      context: { kind: 'scarcity', value: 1 },
+    });
     v.thin = s.year;
   }
 }

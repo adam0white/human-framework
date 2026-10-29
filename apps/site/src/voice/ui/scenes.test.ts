@@ -1,8 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import type { Frame, LogEntry, OptionView } from '../protocol.ts';
-import { VoiceGame } from '../sim/game.ts';
-import { type Driver, play } from '../sim/headless.ts';
-import { voiceHash } from '../sim/record.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
 
 const act = (text: string, minute = 2040, id = 'a'): LogEntry => ({
@@ -14,6 +11,7 @@ const act = (text: string, minute = 2040, id = 'a'): LogEntry => ({
   kind: 'act',
   who: 'halil',
   until: '12:00',
+  ...(/^I call Selin/.test(text) ? { connection: { minute, clock: '10:00' } } : {}),
 });
 function frame(
   log: LogEntry[],
@@ -45,30 +43,6 @@ function freeze<T>(value: T): T {
 const options = (...ids: string[]): OptionView[] =>
   ids.map((id) => ({ id, label: id, rank: 0, leaning: false }));
 
-function minuteDriver(game: VoiceGame): Driver {
-  return {
-    game,
-    step: (minutes) => game.advanceTo(game.t + Math.min(1, minutes)),
-    apply: (input) => {
-      switch (input.type) {
-        case 'begin':
-          return game.begin();
-        case 'advance':
-          return game.advance(input.standing);
-        case 'dismissIntro':
-          return game.dismissIntro();
-        case 'pause':
-          return game.pause();
-        case 'resume':
-          return game.resume();
-        case 'suggest':
-          return game.suggest(input.draft);
-        default:
-          throw new Error(`Unsupported measurement input: ${input.type}`);
-      }
-    },
-  };
-}
 describe('read-only day scenes', () => {
   it('derives a deterministic workshop exchange from frozen state without changing the input', () => {
     const input = freeze(frame([act('I repair in the workshop, to earn.')], 'repair in the workshop'));
@@ -258,56 +232,7 @@ describe('read-only day scenes', () => {
     const scene = deriveScene(frame([act('I pray at the mosque.')], 'pray at the mosque'));
     expect(scene).toBeNull();
   });
-  it('keeps clinic and surfaced-memory scenes current in actual minute-by-minute game frames', () => {
-    const seen = new Set<string>();
-    play(minuteDriver(new VoiceGame(7)), {
-      confirm: true,
-      stop: (game) => {
-        const scene = deriveScene(game.frame());
-        if (scene?.current && scene.kind === 'clinic') seen.add('clinic');
-        if (scene?.current && scene.lines.some((line) => /Nuran/.test(line.words))) seen.add('memory');
-        return game.day > 2;
-      },
-    });
-    expect([...seen].sort()).toEqual(['clinic', 'memory']);
-  });
-  it.each([7, 19, 31])('counts two-person scenes separately by day and policy, seed %s', (seed) => {
-    for (const confirm of [false, true]) {
-      const game = new VoiceGame(seed);
-      // Only the first two days have encounter-count assertions.
-      const playedDays = [1, 2];
-      const days = new Map<number, Set<string>>(playedDays.map((day) => [day, new Set<string>()]));
-      const kinds = new Map<number, Set<string>>(playedDays.map((day) => [day, new Set<string>()]));
-      play(minuteDriver(game), {
-        confirm,
-        onPause: (currentFrame, currentGame) => {
-          const before = voiceHash(currentGame);
-          const scene = deriveScene(freeze(structuredClone(currentFrame)));
-          sceneChoices(scene, currentFrame.options);
-          expect(voiceHash(currentGame)).toBe(before);
-        },
-        stop: (g) => {
-          if (g.day > 2) return true;
-          const scene = deriveScene(g.frame());
-          const speakers = new Set(
-            scene?.lines.map((line) => line.speaker).filter((speaker) => speaker !== 'Scene'),
-          );
-          if (scene?.current && speakers.size >= 2) {
-            days.get(g.day)?.add(scene.id);
-            kinds.get(g.day)?.add(scene.kind);
-          }
-          return false;
-        },
-      });
-      const counts = [...days].map(([day, ids]) => ({
-        day,
-        exchanges: ids.size,
-        kinds: [...(kinds.get(day) ?? [])],
-      }));
-      console.info(JSON.stringify({ seed, policy: confirm ? 'prefills' : 'quiet', counts }));
-      expect(counts.every((count) => count.exchanges >= 2)).toBe(true);
-    }
-  });
+  // The full mounted month/file control also checks actual scene observations.
 });
 
 it('does not replay the workshop visitor exchange on later work occasions', () => {

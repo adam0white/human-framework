@@ -1,52 +1,33 @@
-import { createPerson, restore, snapshot } from '@adam0white/human-framework';
+/** HF4 uses authored names and public readings; legacy per-actor narration switches are not imported. */
 import { expect, it } from 'vitest';
-import { villagerPersonSpec } from '../colony/sim/human-cast.ts';
-import { VILLAGERS } from '../colony/sim/world-types.ts';
-import { townPeople } from '../voice/sim/town.ts';
-import { FOUNDER_KIN, WATCHERS } from '../watch/sim/config.ts';
-import { bear, newcomer } from '../watch/sim/life.ts';
-import { castPerson, createKeeper, kinPerson } from '../watch/sim/people.ts';
-import { WatchRun } from '../watch/sim/run.ts';
+import { ColonyGame } from '../colony/sim/game.ts';
+import { createFrameworkHumanSide, type FrameworkHumanSide } from '../colony/sim/human.ts';
+import { counterIdentity } from '../colony/sim/human-view.ts';
+import { replay, ruleHash, WatchRun } from '../watch/sim/run.ts';
+import { FRAMEWORK_PACKAGE_VERSION } from './playtest.ts';
 import { requireValue } from './require-value.ts';
 
-it('persists plain narration in all fresh site actors, including later Watch arrivals', () => {
+it('keeps named current readings through Watch cold restore and complete replay', () => {
   const run = new WatchRun(7);
-  const people = [
-    ...Object.values(townPeople()),
-    ...VILLAGERS.map((v) => createPerson(villagerPersonSpec(7, v))),
-    ...WATCHERS.map((w) => castPerson(7, w, 1020)),
-    ...FOUNDER_KIN.map((k, i) => kinPerson(7, k, i, 1020)),
-    createKeeper(7, 1020),
-    bear(
-      run.state,
-      requireValue(run.state.community.people[0]),
-      requireValue(run.state.community.people[1]),
-      run.state.minute,
-    ),
-    newcomer(run.state, 'female', 20, run.state.minute),
-  ];
-  for (const person of people) {
-    expect(person.lexicon?.plainEnglish, person.id).toBe(true);
-    expect(restore(snapshot(person)).lexicon).toEqual(person.lexicon);
-  }
+  run.input({ k: 'start' });
+  run.input({ k: 'begin' });
+  run.step();
+  const snapshot = run.snapshotText();
+  const loaded = WatchRun.resume(JSON.parse(snapshot));
+  expect(loaded.snapshotText()).toBe(snapshot);
+  const full = JSON.parse(JSON.stringify(run.export()));
+  expect(full.framework).toBe(FRAMEWORK_PACKAGE_VERSION);
+  expect(ruleHash(replay(full))).toBe(full.end.ruleHash);
+  expect(run.state.community.people.map((person) => person.id)).toContain('tamar');
 });
 
-it('keeps a loaded Watch actor’s saved narration choice', () => {
-  const run = new WatchRun(7);
-  for (const p of run.state.community.people) p.lexicon = { ...p.lexicon, plainEnglish: false };
-  const saved = run.snapshot();
-  expect(WatchRun.resume(saved).state).toEqual(saved.state);
-});
-
-it('pins the adopted runtime in exports and keeps duty counter identity across narration', async () => {
-  const { FRAMEWORK_PACKAGE_VERSION } = await import('./playtest.ts');
-  const { counterIdentity } = await import('../colony/sim/human-view.ts');
-  const p = createPerson(villagerPersonSpec(7, requireValue(VILLAGERS[1])));
-  const duty = requireValue(p.agenda.commitments.find((c) => c.label === 'Maghrib'));
-  expect(FRAMEWORK_PACKAGE_VERSION).toBe('3.2.0');
-  expect(new WatchRun(7).export().framework).toBe('3.2.0');
+it('pins the adopted runtime and keeps a named duty counter from the public Well reading', () => {
+  const game = new ColonyGame(7, createFrameworkHumanSide);
+  const person = (game.human as FrameworkHumanSide).person('samira');
+  const duty = requireValue(person.agenda.commitments.find((commitment) => commitment.label === 'Maghrib'));
+  expect(FRAMEWORK_PACKAGE_VERSION).toBe('4.14.0');
   expect(
-    counterIdentity(p, {
+    counterIdentity(person, {
       voiceId: 'player',
       verdict: 'deferred',
       reason: 'duty',
@@ -57,36 +38,7 @@ it('pins the adopted runtime in exports and keeps duty counter identity across n
   ).toBe('after I pray Maghrib');
 });
 
-it('preserves a pinned canonical actor’s explicit legacy narration during replay', async () => {
-  const { createPersona, initialPersonaLife, preparePersonaLife } = await import('@adam0white/lab-client');
-  const { prepareSiteInitial } = await import('./cast-chapter.ts');
-  const { watcherSpec } = await import('../watch/sim/people.ts');
-  const { endState, replay } = await import('../watch/sim/run.ts');
-  const castId = 'hf.cast.tamar.watch';
-  const parent = await createPersona({
-    format: 'hf-persona/1',
-    castId,
-    castRevision: '1',
-    branchId: 'narration-choice',
-    parentRevision: null,
-    source: { game: 'human', engine: '2.21.0', build: 'control', rules: 'cast-1' },
-    transfer: { castPassport: 'authored-cast/1', life: initialPersonaLife(castId, 'narration-choice', 0) },
-    limitations: [],
-  });
-  const chapter = { version: 'site-cast/1' as const, input: preparePersonaLife(parent, 0) };
-  const opening = createPerson(watcherSpec(7, requireValue(WATCHERS.find((p) => p.id === 'tamar')), 1020));
-  opening.lexicon = { ...opening.lexicon, plainEnglish: false };
-  prepareSiteInitial('watch', opening, chapter);
-  const run = new WatchRun(7, undefined, chapter);
-  expect(run.state.community.people.find((p) => p.id === 'tamar')?.lexicon?.plainEnglish).toBe(false);
-  run.input({ k: 'start' });
-  run.input({ k: 'begin' });
-  for (let i = 0; i < 30; i++) run.step();
-  expect(run.state.community.people.find((p) => p.id === 'tamar')?.lexicon?.plainEnglish).toBe(false);
-  expect(endState(replay(run.export()))).toEqual(run.export().end);
-});
-
-it('refuses older narration files before replay can replace the saved choice', async () => {
+it('refuses older narration files before they can replace the current run', async () => {
   const { makePlaytestFile } = await import('./playtest.ts');
   const { parseVoicePlaytest } = await import('../voice/sim/record.ts');
   const { parseColonyPlaytest } = await import('../colony/sim/playtest.ts');

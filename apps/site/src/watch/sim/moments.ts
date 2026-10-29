@@ -11,15 +11,14 @@
  * truth: "likely", "won't", "you can't tell", with how sure he is. A hidden trait makes a read wrong; the dawn
  * page shows what actually happened.
  */
+
 import {
   type Affordance,
-  interruptPerson,
-  predict,
-  predictAs,
-  previewCommandAs,
+  interruptActor,
+  previewChoice,
   type Suggestion,
   type SuggestionResolution,
-} from '@adam0white/human-framework';
+} from './actor.ts';
 import { type PostId, postSection, type SectionId, type WatcherId } from './config.ts';
 import {
   alert,
@@ -31,8 +30,9 @@ import {
   theSection,
   wordAnswer,
 } from './night.ts';
+import { beginMomentRecord } from './night-records.ts';
 import { familyWords, isPost, KEEPER_ID, nameOf, personOf, them, villager, WatchWorld } from './people.ts';
-import type { Press, WatchState } from './state.ts';
+import { installActorViews, type Press, type WatchState } from './state.ts';
 
 /** Sim minutes a card stays open. */
 export const MOMENT_WINDOW = 3;
@@ -81,7 +81,7 @@ function toRead(res: SuggestionResolution, confidence: number): Read {
   if (res.verdict === 'assented') return { word: 'likely', confidence };
   // Complied: does it, but would rather not (and it costs them some autonomy).
   if (res.verdict === 'complied' || res.verdict === 'commanded') return { word: 'grudging', confidence };
-  const why = res.says || undefined;
+  const why = res.reason || undefined;
   if (res.verdict === 'deferred' || res.verdict === 'modified')
     return { word: 'unsure', confidence, ...(why ? { why } : {}) };
   return { word: "won't", confidence, ...(why ? { why } : {}) };
@@ -115,33 +115,23 @@ export function readPosting(
     for (const [id, pl] of Object.entries(place))
       if (id !== who && pl === post && (id === vacating || (s.phase === 'dusk' && s.posts[id] !== post)))
         place[id] = 'village';
-    view = { ...s, place };
+    view = installActorViews({ ...s, place });
   }
   const offers = offersFor(view, who, s.phase === 'dusk');
   if (!offers.some((a) => a.id === `post:${post}`))
     return { word: 'unsure', confidence: 1, why: 'someone else stands there now' };
-  const { resolution, confidence } = predictAs(s.keeper, p, offers, sug, { now: s.minute });
-  return toRead(resolution, confidence);
+  const { resolution, confidence } = previewChoice(view, p.id, offers, sug);
+  return resolution ? toRead(resolution, confidence) : { word: "can't tell", confidence: 0 };
 }
 
 /** The Keeper's read of calling one watcher by name over the bell: whether it holds and how much they'd resent it. Pure. */
 export function readBell(
-  s: WatchState,
-  who: WatcherId,
+  _s: WatchState,
+  _who: WatcherId,
 ): { holds: boolean; resent: 'little' | 'some' | 'much'; confidence: number } {
-  const p = personOf(s, who);
-  if (!p) return { holds: false, resent: 'little', confidence: 0 };
-  const pl = s.place[who];
-  const post = isPost(pl) ? pl : (s.posts[who] ?? villager(s, who).usual);
-  const { outcome, confidence } = previewCommandAs(
-    s.keeper,
-    p,
-    offersFor(s, who),
-    { voiceId: KEEPER_ID, affordanceId: `post:${post}`, since: s.minute },
-    s.minute,
-  );
-  const resent = outcome.margin > 0.4 ? 'much' : outcome.margin > 0.1 ? 'some' : 'little';
-  return { holds: outcome.holds, resent, confidence };
+  // Another person's reaction to a named command is outside the Keeper's public preview.
+  // A future host outcome must remain unknown until the bell is actually used.
+  return { holds: false, resent: 'little', confidence: 0 };
 }
 
 export function readWords(r: Read): string {
@@ -190,11 +180,14 @@ function wavering(s: WatchState, who: WatcherId): 'fear' | 'tired' | null {
     affordanceId: `post:${pl}`,
     strength: PRESS_STRENGTH[s.press[who] ?? 'ask'],
   };
-  const res = predict(p, offersFor(s, who), sug);
-  const away = res.insteadAffordanceId ?? '';
+  const { record: res } = previewChoice(s, p.id, offersFor(s, who), sug, p.id);
+  if (!res) return null;
+  const away = res.suggestion?.insteadAffordanceId ?? res.chosenAffordanceId ?? '';
   if (away === 'sleep') return 'tired';
   if (fearAt(p, postSection(pl)) < 0.25) return null;
-  return res.verdict === 'refused' || ['flee', 'run-off', 'go-home'].includes(away) ? 'fear' : null;
+  return res.suggestion?.verdict === 'refused' || ['flee', 'run-off', 'go-home'].includes(away)
+    ? 'fear'
+    : null;
 }
 
 function carded(s: WatchState, kind: MomentKind, who: WatcherId): boolean {
@@ -234,17 +227,15 @@ export function checkMoments(s: WatchState): void {
     for (const id of helpers.slice(0, 3)) {
       const q = personOf(s, id);
       if (!q) continue;
-      const { resolution, confidence } = predictAs(
-        s.keeper,
-        q,
-        offersFor(s, id),
-        { voiceId: KEEPER_ID, affordanceId: `carry:${who}`, strength: 0.85 },
-        { now: s.minute },
-      );
+      const { resolution, confidence } = previewChoice(s, q.id, offersFor(s, id), {
+        voiceId: KEEPER_ID,
+        affordanceId: `carry:${who}`,
+        strength: 0.85,
+      });
       options.push({
         id: `carry:${id}`,
         label: `${nameOf(s, id)}, carry ${name}`,
-        read: readWords(toRead(resolution, confidence)),
+        read: readWords(resolution ? toRead(resolution, confidence) : { word: "can't tell", confidence: 0 }),
       });
     }
     options.push({ id: 'leave', label: `Leave ${name} for now` });
@@ -257,7 +248,8 @@ export function checkMoments(s: WatchState): void {
     const name = nameOf(s, who);
     if (!p || family === null || carded(s, 'family', who)) continue;
     const duty = p.agenda.commitments.some(
-      (c) => c.status === 'pending' && c.actions.includes('go-home') && c.until > s.minute,
+      (c) =>
+        c.status === 'pending' && c.actions.includes('go-home') && c.until > Math.round(s.minute * 60_000),
     );
     if (!duty) continue;
     const pl = s.place[who];
@@ -315,7 +307,7 @@ export function checkMoments(s: WatchState): void {
       text:
         why === 'tired'
           ? `${name} can barely keep ${villager(s, who).sex === 'female' ? 'her' : 'his'} eyes open.`
-          : `${name} looks back at the steps.`,
+          : `You think ${name} may leave the post.`,
       options,
     });
     return;
@@ -361,13 +353,19 @@ function sectionGap(a: SectionId, b: SectionId): number {
   return order.indexOf(a) - order.indexOf(b);
 }
 
-export function ask(s: WatchState, who: WatcherId, affordanceId: string): void {
+export function ask(
+  s: WatchState,
+  who: WatcherId,
+  affordanceId: string,
+  context?: Parameters<typeof beginMomentRecord>[3],
+): void {
   s.asks[who] = {
     sug: { voiceId: KEEPER_ID, affordanceId, strength: 0.85, appeal: 'duty', since: s.minute },
     until: s.minute + ASK_MIN,
   };
+  if (context) beginMomentRecord(s, who, affordanceId, context);
   const p = personOf(s, who);
-  if (p) interruptPerson(s.community, p, s.minute, 'keeper');
+  if (p) interruptActor(s, p.id, 'The Keeper makes a new request.');
 }
 
 /** The Keeper answers the open card. Returns false when there is no such card or choice. */
@@ -387,7 +385,11 @@ export function answerMoment(s: WatchState, id: number, choice: string): boolean
     const name = nameOf(s, who);
     if (post) {
       const { word } = readPosting(s, who, post, 'urge');
-      ask(s, who, `post:${post}`);
+      ask(s, who, `post:${post}`, {
+        kind: isPost(pl) ? 'hold' : 'callback',
+        who,
+        section: postSection(post),
+      });
       const at = theSection(postSection(post));
       const said = isPost(pl) ? `You urge ${name} to hold ${at}.` : `You call ${name} back to ${at}.`;
       const text = wordAnswer(s, who, said, word, !isPost(pl));
@@ -420,7 +422,7 @@ export function answerMoment(s: WatchState, id: number, choice: string): boolean
     const post = s.posts[who];
     if (post) s.letGo[who] = post;
     s.posts[who] = null;
-    ask(s, sub, `post:${pl}`);
+    ask(s, sub, `post:${pl}`, { kind: 'cover', who, section: postSection(pl) });
     alert(s, {
       section: postSection(pl),
       kind: 'person',
@@ -429,7 +431,7 @@ export function answerMoment(s: WatchState, id: number, choice: string): boolean
       text: wordAnswer(s, sub, `You send ${nameOf(s, sub)} to ${theSection(postSection(pl))}.`, word, true),
     });
   } else if (choice.startsWith('carry:')) {
-    ask(s, choice.slice(6), `carry:${who}`);
+    ask(s, choice.slice(6), `carry:${who}`, { kind: 'carry', who, section: m.section });
   }
   const log = s.momentLog.at(-1);
   if (log) log.choice = choice;

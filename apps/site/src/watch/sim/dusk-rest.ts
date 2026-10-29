@@ -3,7 +3,7 @@
  * This host records actual events, ends the request by dawn, and observes later post work.
  * It adds no healing, guaranteed sleep/return, remote voice or general promise faculty.
  */
-import { interruptPerson, type SimEvent, type Suggestion } from '@adam0white/human-framework';
+import { interruptActor, type SimEvent, type Suggestion } from './actor.ts';
 import type { PostId, WatcherId } from './config.ts';
 import { postSection } from './config.ts';
 import { inVoice, nightEnd, presentIds, voiceReach } from './night.ts';
@@ -78,7 +78,7 @@ export function applyDuskRest(s: WatchState, input: DuskRestInput): boolean {
     priorPost: s.posts[input.who] ?? null,
     status: 'pending',
   };
-  interruptPerson(s.community, p, s.minute, 'keeper');
+  interruptActor(s, p.id, 'The Keeper offers a night off.');
   return true;
 }
 export function restSuggestion(s: WatchState, who: WatcherId): Suggestion | undefined {
@@ -111,7 +111,7 @@ export function resolveDuskRest(s: WatchState, events: SimEvent[], until: number
       r.begunAt !== undefined &&
       r.endedAt !== undefined &&
       e.at >= r.endedAt &&
-      (e.kind === 'begin' || e.kind === 'continue') &&
+      e.kind === 'begin' &&
       e.affordanceId?.startsWith('post:')
     ) {
       r.status = 'returned';
@@ -126,7 +126,7 @@ export function resolveDuskRest(s: WatchState, events: SimEvent[], until: number
         r.endedAt = e.at;
       } else if (e.verdict === 'deferred' || e.verdict === 'modified') r.status = 'deferred';
     }
-    if ((e.kind === 'begin' || e.kind === 'continue') && e.affordanceId === 'dusk-rest') {
+    if (e.kind === 'begin' && e.affordanceId === 'dusk-rest') {
       r.status = 'resting';
       r.begunAt ??= e.at;
     } else if (

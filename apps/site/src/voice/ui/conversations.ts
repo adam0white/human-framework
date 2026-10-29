@@ -247,7 +247,7 @@ function companion(entry: LogEntry): Companion | undefined {
   if (entry.kind === 'act' && entry.who === 'halil') {
     if (/^I talk with Hacer at the door\b/.test(entry.text)) return 'Hacer';
     if (/^I (?:have )?tea with Rıza\b/.test(entry.text)) return 'Rıza';
-    if (/^I call Selin\b/.test(entry.text)) return 'Selin';
+    if (entry.connection && /^I call Selin\b/.test(entry.text)) return 'Selin';
   }
   // A recorded incoming call, including the first Eid call. Advice alone is not proof of a new call.
   if (entry.kind === 'voice' && entry.who === 'selin' && /^Selin called/.test(entry.text)) return 'Selin';
@@ -319,8 +319,12 @@ export function conversationFor(
   }
   const present = moment?.minute === entry.minute ? moment.halil : undefined;
   const felt = present?.felt
-    .filter((f) => (f.id === 'tired' || f.id === 'hunger') && f.level >= 0.55)
-    .sort((a, b) => b.level - a.level)[0];
+    .filter((f) => (f.id === 'tired' || f.id === 'hunger') && ['high', 'very high'].includes(f.level))
+    .sort(
+      (a, b) =>
+        ['very low', 'low', 'moderate', 'high', 'very high'].indexOf(b.level) -
+        ['very low', 'low', 'moderate', 'high', 'very high'].indexOf(a.level),
+    )[0];
   const lastWorry = nearby.findLast(
     (e) =>
       (e.kind === 'voice' || e.kind === 'note') &&

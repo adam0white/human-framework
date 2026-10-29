@@ -114,11 +114,16 @@ describe('Well first-minute clarity', () => {
     );
     const human = inspector.querySelector('.inspector-human');
     expect(human?.querySelectorAll('.need-track, .trust-track, .need-n')).toHaveLength(0);
-    expect(human?.textContent).not.toMatch(/\d|%/);
+    // Physical stage and stock counts remain exact; person readings stay words.
+    const readings = Array.from(human?.querySelectorAll('.needs, .trust') ?? []);
+    expect(readings).toHaveLength(2);
+    for (const reading of readings) expect(reading.textContent).not.toMatch(/\d|%/);
+    expect(human?.querySelector('.well-building-progress')?.textContent).toContain('2 of 10 stages');
     const injury = frame.human.find((p) => p.id === 'maryam')?.needs.find((n) => n.id === 'injury');
     expect(injury?.value).toBe(1);
     expect(human?.textContent).toContain('Maryam is unhurt.');
-    expect(human?.textContent).not.toContain('They ');
+    for (const reading of readings)
+      expect(reading.textContent?.replace('Their general health seems steady.', '')).not.toContain('They ');
     expect(human?.textContent).not.toContain('Little pain');
     expect(needDescription('injury', 0.9)).toBe('They are slightly hurt.');
     expect(needDescription('sleep', 0.2)).toBe('They are exhausted.');

@@ -48,10 +48,11 @@ function fixture(workspace = '2.20.0', pin = '2.18.0') {
   };
   return { root, app, human, install };
 }
-it('uses source without dist only when the workspace equals the exact pin', () => {
+it('uses the installed published entry even when the workspace equals the exact pin', () => {
   const f = fixture('2.20.0', '2.20.0');
+  const pkg = f.install();
   expect(resolveSiteFramework(f.app)).toMatchObject({
-    entry: join(f.human, 'src/index.ts'),
+    entry: join(pkg, 'dist/index.js'),
     framework: '2.20.0',
     frameworkLibrary: '2.20.0',
   });
@@ -127,7 +128,7 @@ it('Vite stamps the game pin and the separate library version', async () => {
   expect(rootAlias.find.test('@adam0white/human-framework/other')).toBe(false);
 });
 
-it('TypeScript prefers published declarations and allows equal-version source before dist exists', () => {
+it('TypeScript requires published declarations even with equal-version workspace source', () => {
   const paths = JSON.parse(readFileSync('apps/site/tsconfig.json', 'utf8')).compilerOptions.paths;
   const tsc = resolve(import.meta.dirname, '../node_modules/typescript/bin/tsc');
   const compile = (app: string, expected: string) => {
@@ -156,7 +157,11 @@ it('TypeScript prefers published declarations and allows equal-version source be
   };
   const equal = fixture('2.20.0', '2.20.0');
   writeFileSync(join(equal.human, 'src/index.ts'), "export const pin = 'workspace' as const;");
-  compile(equal.app, 'workspace');
+  const equalPkg = equal.install();
+  writeFileSync(join(equalPkg, 'dist/index.d.ts'), "export declare const pin: 'published';");
+  compile(equal.app, 'published');
+  rmSync(join(equalPkg, 'dist/index.d.ts'));
+  expect(() => compile(equal.app, 'workspace')).toThrow();
 
   const different = fixture();
   const pkg = different.install();

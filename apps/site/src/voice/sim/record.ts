@@ -1,6 +1,4 @@
-import { restore, snapshot } from '@adam0white/human-framework';
 import type { PersonaEnvelope } from '@adam0white/lab-client';
-import { applyAdmittedLife } from '../../shared/cast-chapter.ts';
 /**
  * Playtest log for Game 2. `RecordedGame` wraps a `VoiceGame`: the worker sends every state-changing message
  * through it, and `replayVoice` re-applies a log through the same `apply`, so recording and replay cannot drift.
@@ -43,13 +41,8 @@ import {
 } from '../protocol.ts';
 import { sceneBeat, sceneWord } from '../ui/scene-words.ts';
 import { MAX_FF_MINUTES_PER_TICK, type Run, VoiceGame } from './game.ts';
-import {
-  type OneCastRow,
-  returnedSelin,
-  type SelinReturn,
-  selinEnquiryAnswer,
-  selinReturnTown,
-} from './persona.ts';
+import { OLD_VOICE_SAVE, VOICE_HF4_EDITION } from './hf4-run.ts';
+import type { OneCastRow, SelinReturn } from './persona.ts';
 
 /** A logged input: a worker message that changes simulation or recorded scene presentation. */
 export type VoiceInput = Exclude<
@@ -89,8 +82,32 @@ export class RecordedGame {
     this.log.push({ at: this.game.t, ...structuredClone(msg) } as VoiceInput & { at: number });
     if (msg.type === 'sceneWord') {
       const continuation = sceneWord(this.frame(), msg.kind, msg.beat, msg.words);
-      if (continuation) this.sceneWords.push(continuation);
-      else if (msg.words) {
+      if (continuation) {
+        if (msg.kind === 'care') {
+          const runtime = this.game.run.c.runtime;
+          if (!runtime) throw new Error('Missing public Voice runtime.');
+          const at = runtime.ingressAt();
+          const evidenceId = `voice-care:${this.log.length}`;
+          runtime.receive(at, [
+            {
+              ...runtime.input('voice.evidence-received', at, {
+                person: 'halil',
+                evidenceId,
+                voiceId: 'you',
+                evidence: {
+                  kind: 'support',
+                  id: evidenceId,
+                  occurredAt: at,
+                  action: 'listen',
+                  effect: 'acknowledged',
+                },
+              }),
+              id: evidenceId,
+            },
+          ]);
+        }
+        this.sceneWords.push(continuation);
+      } else if (msg.words) {
         const frame = this.frame();
         this.sceneWords.push({
           beat: sceneBeat(frame),
@@ -190,10 +207,7 @@ export interface VoiceReplay {
   driftAt: number;
 }
 
-/**
- * Parse a voice playtest file against its own scenario (voice-1 or voice-2), with the rules it replays under. A file
- * of any other scenario is refused with the shared message.
- */
+/** Current native files replay every recorded input. Older editions are refused before replay. */
 export function parseVoicePlaytest(
   text: string,
   maxBytes?: number,
@@ -204,7 +218,10 @@ export function parseVoicePlaytest(
   rows?: OneCastRow[];
   head?: PersonaEnvelope;
 } {
+  if ((JSON.parse(text) as { voiceEdition?: unknown }).voiceEdition !== VOICE_HF4_EDITION)
+    throw new Error(OLD_VOICE_SAVE);
   const scenario = scenarioIn(text);
+  if (scenario !== 'voice-4') throw new Error(OLD_VOICE_SAVE);
   const file = parsePlaytest(text, 'voice', scenario, validateVoiceLog, maxBytes);
   if (file.framework !== FRAMEWORK_PACKAGE_VERSION)
     throw new Error('This file uses older narration. Start a fresh game; keep the old file as an archive.');
@@ -233,57 +250,15 @@ export function parseVoicePlaytest(
 export function replayVoice(
   seed: number,
   log: readonly VoiceLogEntry[],
-  rules: VoiceRules = 2,
+  rules: VoiceRules = 4,
   chapter?: SelinReturn,
   depth = 0,
   castChapter?: import('../../shared/cast-chapter.ts').CastChapter,
 ): VoiceReplay {
   if (depth > 4) throw new Error('Too many nested Selin chapters.');
   let rec: RecordedGame;
-  if (chapter) {
-    if (rules !== 4) throw new Error('This notebook is from an older version; start fresh.');
-    if (chapter.version !== 1) throw new Error('Unsupported return chapter.');
-    const prefix = parseVoicePlaytest(chapter.prefix);
-    const prior = replayVoice(
-      prefix.file.seed,
-      prefix.file.log,
-      prefix.rules,
-      prefix.chapter,
-      depth + 1,
-      prefix.file.castChapter,
-    );
-    if (prior.driftAt !== -1 || voiceHash(prior.rec.game) !== prefix.file.hash)
-      throw new Error('Source chapter does not replay.');
-    const game = prior.rec.game;
-    if (game.seed !== seed || game.rules !== 4 || !game.personaDeparture?.transfer)
-      throw new Error('Source chapter did not depart.');
-    const initial = restore(JSON.parse(chapter.initial));
-    if (!prefix.head) throw new Error('The original Selin departure is missing; start fresh.');
-    let expected = returnedSelin(chapter.admission, game.run.ppl.selin, prefix.head, game.run.opts);
-    if (chapter.life) {
-      if (chapter.life.parent.revision !== chapter.admission.revision)
-        throw new Error('Life does not match admission.');
-      expected = applyAdmittedLife('voice', expected, chapter.life);
-    }
-    if (stableStringify(snapshot(initial)) !== stableStringify(snapshot(expected)))
-      throw new Error('Returned Selin initial state differs from admission.');
-    game.run.ppl.selin = initial;
-    game.run.c.people = game.run.c.people.map((p) => (p.id === 'selin' ? initial : p));
-    const answer = selinEnquiryAnswer(initial);
-    game.run.opts = {
-      ...game.run.opts,
-      selinEnquiryAnswer: answer,
-      ...(chapter.life ? { castChapter: { version: 'site-cast/1' as const, input: chapter.life } } : {}),
-    };
-    game.run.town = selinReturnTown(game.run.c.people, game.run.opts, game.run.town.state, answer);
-    game.installPersonaBoundary();
-    game.personaDeparture = undefined;
-    game.paused = true;
-    rec = new RecordedGame(game);
-    rec.chapter = structuredClone(chapter);
-    rec.personaHead = chapter.acceptedHead ? structuredClone(chapter.acceptedHead) : undefined;
-    rec.oneCast.push(...structuredClone(chapter.rows));
-  } else rec = new RecordedGame(new VoiceGame(seed, rules, castChapter));
+  if (chapter) throw new Error('This Selin return uses an older calendar mapping. Start a fresh game.');
+  rec = new RecordedGame(new VoiceGame(seed, rules, castChapter));
   let driftAt = -1;
   log.forEach((e, i) => {
     if (Array.isArray(e)) {
@@ -298,25 +273,50 @@ export function replayVoice(
   return { rec, driftAt };
 }
 
-const runState = (r: Run) => ({ c: r.c, town: r.town.state });
+/** Native fullHash commits the complete opaque archive. The log reconstructs it; files do not duplicate it. */
+const runState = (r: Run) => {
+  const saved = r.c.runtime?.save();
+  const publicRun =
+    saved &&
+    (() => {
+      const { archive, events: _admittedEvents, ...hostBoundary } = saved;
+      return {
+        ...hostBoundary,
+        native: { engine: archive.engine, at: archive.current.at, hashes: archive.hashes },
+      };
+    })();
+  return {
+    publicRun,
+    host: {
+      hostAt: r.c.hostAt,
+      scarcity: r.c.scarcity,
+      calendarDay: r.c.calendarDay,
+      interrupted: r.c.interrupted,
+      heard: r.c.heard,
+      offerBooks: r.c.offerBooks,
+      acceptedOffers: r.c.acceptedOffers,
+    },
+    town: r.town.state,
+  };
+};
 
 /**
  * Everything that makes up a run, for the hash: every game field (private ones too) except `carry` and the
- * worker's outbox, with each `Run` reduced to its community (people and host fields) and town state.
+ * worker's outbox. Each native run contributes its exact full archive hash and host boundary metadata.
  */
 export function voiceState(g: VoiceGame): Record<string, unknown> {
   const out: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(g)) {
     if (k === 'carry' || k === 'outbox') continue;
-    // Rules 1 runs hash as they did before the field existed, so voice-1 files keep their recorded hash.
-    if (k === 'rules' && v === 1) continue;
     if (k === 'run') out[k] = runState(v as Run);
-    else if ((k === 'eidNight' || k === 'eidMorning') && v) {
+    else if (k === 'eidNight' && v) {
       const { run, ...rest } = v as { run: Run };
       out[k] = { ...rest, run: runState(run) };
     } else out[k] = v;
   }
-  return out;
+  // The file encoder uses ordinary JSON. Normalize host Sets and Maps before that boundary,
+  // using exactly the representation already committed by voiceHash. The live game keeps them intact.
+  return JSON.parse(stableStringify(out)) as Record<string, unknown>;
 }
 
 export const voiceHash = (g: VoiceGame): string => hashState(voiceState(g));
@@ -328,18 +328,10 @@ export const voiceHash = (g: VoiceGame): string => hashState(voiceState(g));
  */
 export function voiceSnapshot(g: VoiceGame): Record<string, unknown> {
   const s = voiceState(g);
-  const slim = (r: unknown) => {
-    const { c, town } = r as ReturnType<typeof runState>;
-    return {
-      town,
-      people: c.people.map(({ trace: _t, memory: _m, chronicle: _c, chronicleDay: _d, ...p }) => p),
-    };
-  };
   delete s.records;
   delete s.cells;
   delete s.eidNight;
   delete s.eidMorning;
-  s.run = slim(s.run);
   return s;
 }
 

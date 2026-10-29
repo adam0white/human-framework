@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest';
+import { requireValue } from '../../shared/require-value.ts';
 import { ClassicSim } from './classic.ts';
 import { ColonyGame, DEFAULT_SEED, GOAL_JUDGE } from './game.ts';
+import { createColonyRun } from './hf4.ts';
 import { createFrameworkHumanSide } from './human.ts';
-import { HOST } from './human-world.ts';
+import { fw, villagerPersonSpec } from './human-cast.ts';
+import { ColonyHostWorld, createHostState, HOST } from './human-world.ts';
+import { MAP } from './map.ts';
 import { inferAction } from './orders.ts';
 import {
   applyWorldMinute,
-  at,
   createSideWorld,
   DAWN_MEAL,
   END_MINUTE,
@@ -139,68 +142,70 @@ describe('v2 rules', () => {
     expect(world.resources.meals).toBe(0);
   });
 
-  describe('a full run with no orders', () => {
-    const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    const cooked = { classic: 0, human: 0 };
-    let humanSupper = 0;
-    let prev = { classic: 0, human: 0 };
-    let roofAtJudge: ReturnType<ColonyGame['goals']> = [];
-    while (!g.ended) {
-      const eatenBefore = g.humanWorld.eaten;
-      g.advance(1);
-      const m = g.minute - 1;
-      if (m === STORM_SUPPER) humanSupper = g.humanWorld.eaten - eatenBefore;
-      const now = { classic: g.classicWorld.resources.meals, human: g.humanWorld.resources.meals };
-      if (m >= STORM_START && m < STORM_END) {
-        if (now.classic > prev.classic) cooked.classic += 1;
-        if (now.human > prev.human) cooked.human += 1;
-      }
-      prev = now;
-      if (g.minute === GOAL_JUDGE) {
-        roofAtJudge = g.goals();
-        // A roof finished after 19:00 does not change the goal.
-        g.humanWorld.house.stage = 10;
-      }
+  it('the storm removes the real Human cooking offer and provides stored meals', () => {
+    const world = createSideWorld();
+    world.resources.grain = 10;
+    world.resources.water = 10;
+    world.resources.meals = 0;
+    const community = createColonyRun(
+      1,
+      VILLAGERS,
+      VILLAGERS.map((v) => villagerPersonSpec(1, v)),
+    );
+    const host = new ColonyHostWorld(1, MAP, world, createHostState(VILLAGERS), community);
+    const maryam = requireValue(community.people.find((p) => p.id === 'maryam'));
+    // Explicit clock premise: these are independent host availability queries, not a simulated trajectory.
+    expect(
+      host.affordancesFor({ ...maryam, now: fw(STORM_START - 1) }).some((a) => a.action === 'cook'),
+    ).toBe(true);
+    expect(host.affordancesFor({ ...maryam, now: fw(STORM_START) }).some((a) => a.action === 'cook')).toBe(
+      false,
+    );
+    expect(host.affordancesFor({ ...maryam, now: fw(STORM_END) }).some((a) => a.action === 'cook')).toBe(
+      true,
+    );
+    for (const minute of [STORM_SUPPER, DAWN_MEAL]) {
+      world.resources.meals = 10;
+      const before = world.eaten;
+      host.minute(minute, null);
+      expect(world.eaten - before).toBe(6);
+      expect(world.resources.meals).toBe(4);
     }
+  });
 
-    it('nobody cooks during the storm', () => {
-      expect(cooked).toEqual({ classic: 0, human: 0 });
-    });
-
-    it('the Human storm supper feeds all six from the store', () => {
-      expect(humanSupper).toBeGreaterThanOrEqual(6);
-    });
-
-    it('roof and stock lock at 19:00; lives is met at the end', () => {
-      const at19 = Object.fromEntries(roofAtJudge.map((x) => [x.id, x.human]));
-      expect(at19.roof).toEqual({ value: 9, status: 'failed' });
-      expect(at19.stock?.status).toBe('met');
-      expect(at19.lives?.status).toBe('open');
-      const end = Object.fromEntries(g.goals().map((x) => [x.id, x.human]));
-      expect(end.roof).toEqual({ value: 9, status: 'failed' });
-      expect(end.stock).toEqual(at19.stock);
-      expect(end.lives).toEqual({ value: 6, status: 'met' });
-    });
-
-    it('"Another day" opens a store-room where the house is done and logs the continue', () => {
-      expect(g.minute).toBe(END_MINUTE);
-      expect(g.continueDay()).toBe(true);
-      expect(g.continueDay()).toBe(false);
-      expect(g.classicWorld.storeroom).toBe(0);
-      expect(g.frame().classicWorld.project).toEqual({ kind: 'storeroom', stage: 0, stages: 6 });
-      expect(
-        inferAction('site', {
-          minute: g.minute,
-          house: g.classicWorld.house,
-          cedarFelled: true,
-          storeroom: 0,
-        }),
-      ).toBe('build');
-      expect(g.frame().day).toEqual({ current: 3, total: 3 });
-      expect(g.frame().timeline.end).toBe(4320);
-      expect(g.log.at(-1)).toEqual({ minute: END_MINUTE, kind: 'continue' });
-      g.advance(at(3, 19, 30) - g.minute);
-      expect(g.goals()[0]?.classic.status).not.toBe('open');
-    });
+  it('captures roof and stock at the deadline, locks them, and continues the host into day three', () => {
+    const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    // Explicit world and clock premise: step the actual boundary without claiming a two-day trajectory.
+    g.minute = GOAL_JUDGE - 1;
+    for (const world of [g.classicWorld, g.humanWorld]) {
+      world.house.stage = 8;
+      world.resources.meals = 8;
+    }
+    g.advance(1);
+    const captured = g.goals();
+    for (const world of [g.classicWorld, g.humanWorld]) {
+      world.house.stage = 10;
+      world.resources.meals = 0;
+    }
+    g.advance(1);
+    for (const side of ['classic', 'human'] as const) {
+      expect(g.goals()[0]?.[side]).toEqual(captured[0]?.[side]);
+      expect(g.goals()[0]?.[side]).toEqual({ value: 8, status: 'failed' });
+      expect(g.goals()[1]?.[side]).toEqual(captured[1]?.[side]);
+    }
+    g.minute = END_MINUTE;
+    expect(g.continueDay()).toBe(true);
+    expect(g.continueDay()).toBe(false);
+    expect(g.classicWorld.storeroom).toBe(0);
+    expect(g.humanWorld.storeroom).toBe(0);
+    expect(
+      inferAction('site', { minute: g.minute, house: g.classicWorld.house, cedarFelled: true, storeroom: 0 }),
+    ).toBe('build');
+    expect(g.frame().day).toEqual({ current: 3, total: 3 });
+    expect(g.frame().timeline.end).toBe(4320);
+    expect(g.log.at(-1)).toEqual({ minute: END_MINUTE, kind: 'continue' });
+    g.advance(1);
+    expect(g.minute).toBe(END_MINUTE + 1);
+    expect(g.goals(2)[0]?.human).toEqual(captured[0]?.human);
   });
 });

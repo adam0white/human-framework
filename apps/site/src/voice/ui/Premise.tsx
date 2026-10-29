@@ -22,10 +22,14 @@ export function Premise({
         </svg>
         <h1>The Day You Say Nothing</h1>
         <p className="v-lede">
-          Halil is a widower. Help him reach his goals during Ramadan, the fasting month. On Eid, the festival
-          at its end, he will act without your advice.
+          Halil is a widower. Help him reach his goals during Ramadan, the fasting month.
         </p>
         <p>You suggest what Halil could do. He decides whether to do it.</p>
+        <p>You play selected days. Between them, you can leave suggestions for the days you skip.</p>
+        <p>
+          Eid is the festival at the end of Ramadan. On Eid, your new suggestions stop. You watch what he
+          chooses; his habits and memories remain.
+        </p>
         {onOtherWays && (
           <button type="button" className="v-shelf-row" onClick={onOtherWays}>
             Other ways in <span>▸</span>

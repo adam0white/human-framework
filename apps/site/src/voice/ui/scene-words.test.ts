@@ -7,7 +7,18 @@ function occasion(text: string): Frame {
   const frame = structuredClone(sampleFrame);
   Object.assign(frame, { phase: 'day', day: 1, minute: 600, clock: '10:00', muted: false, sceneWords: [] });
   frame.halil = { ...frame.halil, asleep: false, doing: null, felt: [], onMind: [] };
-  frame.log = [{ id: 'a', day: 1, minute: 600, clock: '10:00', kind: 'act', who: 'halil', text }];
+  frame.log = [
+    {
+      id: 'a',
+      day: 1,
+      minute: 600,
+      clock: '10:00',
+      kind: 'act',
+      who: 'halil',
+      text,
+      ...(/^I call Selin/.test(text) ? { connection: { minute: 600, clock: '10:00' } } : {}),
+    },
+  ];
   return frame;
 }
 function entry(frame: Frame, index: number): LogEntry {
@@ -46,7 +57,7 @@ test('a chosen line is never silently replaced when tiredness changes during the
   const beat = sceneBeat(frame);
   const words = sceneWordChoices(frame).find((line) => line.kind === 'care')?.words;
   expect(words).toContain('while you work');
-  frame.halil.felt = [{ id: 'tired', level: 0.9, word: 'tired' }];
+  frame.halil.felt = [{ id: 'tired', level: 'high', word: 'tired' }];
   expect(sceneBeat(frame)).toBe(beat);
   expect(sceneWord(frame, 'care', beat, words)).toBeNull();
 });

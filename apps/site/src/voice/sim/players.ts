@@ -18,10 +18,11 @@
  * The other styles keep faith out of it: they never pick prayer or steer around it, and offer no food, drink or
  * cigarette during the fast.
  */
-import { chronicleBetween, type SuggestionResolution, voiceOf } from '@adam0white/human-framework';
+
 import type { Appeal, Draft, Frame, StandingWhisper } from '../protocol.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
 import { type PlayOpts, play } from './headless.ts';
+import { chronicleBetween, type SuggestionResolution, voiceOf } from './hf4-model.ts';
 import { TOWN_EID_DAY, townCalendar, townDay } from './town.ts';
 
 const MIN_DAY = 1440;
@@ -280,7 +281,6 @@ const DAILY = new Set(['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha']);
 export interface Measured {
   smokeDays: number;
   eidSmokes: number;
-  habit: number;
   walks: number;
   mornings: number;
   shifts: number;
@@ -358,7 +358,7 @@ export function measure(opts: PlayOpts, seed = SHIPPED_SEED): Measured {
   const ram = done.filter((c) => day(c.from) < TOWN_EID_DAY);
   const count = (pred: (c: (typeof done)[number]) => boolean) => ram.filter(pred).length;
   const smokeDays = new Set(ram.filter((c) => c.action === 'smoke').map((c) => day(c.from)));
-  const eid = g.eidMorning?.run.ppl.halil ?? g.halil;
+  const eid = g.eidMorning?.person ?? g.halil;
   const date = 15 * MIN_DAY + 20 * 60;
   const eidAt = TOWN_EID_DAY * MIN_DAY;
   const nights = ram.filter((c) => c.action === 'sleep' && c.to - c.from > 120);
@@ -388,7 +388,6 @@ export function measure(opts: PlayOpts, seed = SHIPPED_SEED): Measured {
   return {
     smokeDays: smokeDays.size,
     eidSmokes: done.filter((c) => c.action === 'smoke' && day(c.from) === TOWN_EID_DAY).length,
-    habit: eid.habits.find((h) => h.action === 'smoke' && h.cue.after === 'eat')?.strength ?? 0,
     walks: count((c) => c.action === 'walk'),
     mornings: count((c) => c.affordanceId === 'work-repair'),
     shifts: count((c) => c.affordanceId === 'work-extra'),

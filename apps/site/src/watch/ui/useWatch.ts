@@ -108,6 +108,7 @@ export function useWatch(): Watch {
         return;
       }
       if (msg.type === 'loaded') {
+        if (!msg.ok && msg.error) setError(msg.error);
         const wait = loads.current.get(msg.id);
         loads.current.delete(msg.id);
         if (!msg.ok && wait && gen.current === msg.gen) gen.current = wait.prev;

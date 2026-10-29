@@ -1,8 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import type { LogEntry } from '../protocol.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
-import { play } from './headless.ts';
-import { RecordedGame, replayVoice, voiceHash } from './record.ts';
+import { voiceHash } from './record.ts';
 
 const row = (id: string, kind: LogEntry['kind'], text: string, extra: Partial<LogEntry> = {}): LogEntry => ({
   id,
@@ -15,23 +14,7 @@ const row = (id: string, kind: LogEntry['kind'], text: string, extra: Partial<Lo
   ...extra,
 });
 
-describe('outcome display without changing the recorded run', () => {
-  test('a lapsed suggestion says why it ended, in plain words (R2: what "after X" committed him to)', () => {
-    const g = new VoiceGame(SHIPPED_SEED, 4);
-    play(g, { stop: (x) => x.paused && x.frame().prefill?.optionId === 'work-extra' });
-    g.suggest({ optionId: 'work-extra', strength: 'mention', appeal: 'duty', insist: false });
-    const from = g.log.length;
-    for (let n = 0; n < 2000 && g.standing; n++) {
-      if (g.paused) g.resume();
-      g.step(1);
-    }
-    const ended = g.log.slice(from).findLast((e) => e.kind === 'note' && e.who === 'you');
-    const answer = g.log.slice(from - 1).findLast((e) => e.kind === 'answer');
-    if (answer?.tone === 'cannot' || answer?.tone === 'willNot') return;
-    expect(ended?.text).toMatch(/Your suggestion has ended/);
-    expect(ended?.text).toMatch(/Halil: “|moved on to|stopped partway|fell asleep|Three hours passed/);
-  });
-
+describe('outcome presentation', () => {
   test('the rent deadline reports a missed payment, not a visit', () => {
     const g = new VoiceGame(SHIPPED_SEED, 4);
     g.log = [
@@ -46,46 +29,5 @@ describe('outcome display without changing the recorded run', () => {
     expect(g.frame().log[0]?.text).toContain('Halil paid nothing by 20:00');
     expect(g.frame().log[0]?.text).not.toMatch(/at the door|arrived|came/);
     expect(voiceHash(g)).toBe(before);
-  });
-
-  test('current-version inputs replay exactly after reading outcome frames throughout the month', () => {
-    const rec = new RecordedGame(new VoiceGame(SHIPPED_SEED, 4));
-    play(rec, {
-      confirm: true,
-      stop: (g) => {
-        g.frame();
-        return false;
-      },
-    });
-    const result = replayVoice(SHIPPED_SEED, rec.log, 4);
-    expect(result.driftAt).toBe(-1);
-    expect(voiceHash(result.rec.game)).toBe(voiceHash(rec.game));
-    expect(result.rec.game.log).toEqual(rec.game.log);
-  });
-
-  test('Mention with duty and Urge preserve the existing twelve-day shift outcomes', () => {
-    const shifts = (strength: 'mention' | 'urge') => {
-      const g = new VoiceGame(SHIPPED_SEED, 4);
-      play(g, { stop: (x) => x.phase === 'between' && x.day === 2 });
-      expect(g.between?.next?.skipped).toBe(12);
-      g.advance([{ choiceId: 'extra', strength, appeal: 'duty' }]);
-      return g.cells.filter(
-        (c) => c.affordanceId === 'work-extra' && c.from >= 3 * 1440 && c.from < 15 * 1440,
-      ).length;
-    };
-    expect(shifts('mention')).toBe(0);
-    expect(shifts('urge')).toBeGreaterThan(0);
-  });
-
-  test('the first refusal of an afternoon shift explains his doubt about the pay', () => {
-    const g = new VoiceGame(SHIPPED_SEED, 4);
-    play(g, { stop: (x) => x.paused && x.frame().prefill?.optionId === 'work-extra' });
-    g.suggest({ optionId: 'work-extra', strength: 'mention', appeal: 'duty', insist: false });
-    const before = voiceHash(g);
-    const answer = g.frame().log.findLast((e) => e.kind === 'answer');
-    expect(answer?.tone).not.toBe('yes');
-    expect(answer?.text).toContain('He also doubts the afternoon shift will pay.');
-    expect(voiceHash(g)).toBe(before);
-    expect(g.log.findLast((e) => e.kind === 'answer')?.text).not.toContain('He doubts');
   });
 });

@@ -135,7 +135,7 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
       parentRevision: session.head?.revision ?? null,
       source: { game: 'voice', build: await fetchBuild(), engine: reply.file.engine, rules: 'voice-4' },
       transfer: { ...reply.transfer, life },
-      limitations: reply.transfer.person.person.limitations,
+      limitations: ['Earlier Selin enquiry mappings are unsupported in HF4.'],
     });
     const accepted = local
       ? envelope

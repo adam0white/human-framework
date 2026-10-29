@@ -87,3 +87,70 @@ test('call activity alone proves neither connection nor a missed call', () => {
     'Selin called, but Halil did not answer. No conversation took place.',
   ]);
 });
+
+test('labels the latest request deadline as a limit, allowing an earlier sleep or withdrawal receipt', () => {
+  const f = frame([
+    row('sent', 'you', 'You: mention · call Selin'),
+    row('reply', 'answer', 'After I rest.', { tone: 'notNow' }),
+  ]);
+  f.standing = {
+    draft: { optionId: 'call:selin', strength: 'mention', insist: false },
+    label: 'call Selin',
+    since: '10:00',
+    expires: '13:00',
+    minutesLeft: 80,
+    offered: false,
+  };
+  const before = JSON.stringify(f);
+  expect(requestAccount(f)?.status).toContain('13:00 at the latest');
+  expect(requestAccount(f)?.status).toContain('may end sooner');
+  expect(JSON.stringify(f)).toBe(before);
+  f.log.push(
+    row('sleep', 'note', 'He fell asleep before he got to call Selin. Your suggestion has ended.', {
+      who: 'you',
+    }),
+  );
+  expect(requestAccount(f)?.status).toBe(f.log.at(-1)?.text);
+});
+
+test('an unanswered outgoing attempt is distinct from a connected conversation', () => {
+  const f = frame([]);
+  f.callFacts = { unanswered: { minute: 600, day: 1, clock: '10:00', by: 'halil', to: 'selin' } };
+  const before = JSON.stringify(f);
+  expect(callAccount(f).map((r) => r.text)).toEqual([
+    'Halil called Selin, but there was no answer. No conversation took place.',
+  ]);
+  expect(JSON.stringify(f)).toBe(before);
+});
+
+test('retains an alternate-completion narrator receipt without upgrading it to exact compliance', () => {
+  const text = 'He did something close to what you suggested: pray at home.';
+  const f = frame([
+    row('sent', 'you', 'You: mention · pray at the mosque'),
+    row('actual-answer', 'answer', '“I will do something a little different.”'),
+    row('finished', 'note', text, { who: 'you' }),
+  ]);
+  const before = JSON.stringify(f);
+  expect(requestAccount(f)?.status).toBe(text);
+  expect(requestAccount(f)?.answer?.id).toBe('actual-answer');
+  expect(JSON.stringify(f)).toBe(before);
+});
+
+test('keeps actual starting limits beside an unbegun request without treating them as an answer', () => {
+  const f = frame([row('sent', 'you', 'You: mention · take an afternoon shift')]);
+  f.standing = {
+    draft: { optionId: 'work-extra', strength: 'mention', insist: false },
+    label: 'take an afternoon shift',
+    since: '10:00',
+    expires: '13:00',
+    minutesLeft: 80,
+    offered: false,
+  };
+  const before = JSON.stringify(f);
+  expect(requestAccount(f)?.availability).toContain('once a day');
+  expect(requestAccount(f)?.availability).toContain('workshop is closed on Eid');
+  expect(requestAccount(f)?.answer).toBeUndefined();
+  expect(JSON.stringify(f)).toBe(before);
+  f.standing.begun = { clock: '11:35', label: 'take an afternoon shift' };
+  expect(requestAccount(f)?.availability).toBeUndefined();
+});

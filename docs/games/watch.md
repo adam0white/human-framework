@@ -747,6 +747,7 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **Q49**: pregnancy through HF `conceive`/`deliver`. This changes every run (gestation 268 days, not 200), so it needs a scenario bump.
 - T3, **Q51**: households leave by a game formula, not through `decide` over leave and stay offers.
 - T3, **P10**: the yearbook grows by one record a person a year and is never shown. Either show it or drop it.
+  - Source qualification, 2026-10-29: published HF 4.11 exposes closed-day records, but a supported public reading of the native yearbook has not been demonstrated. Keep native history intact; do not parse its private archive or substitute host annals for it. This is a CENTRAL-GAPS framework follow-up, target **2026-11-03**, and does not block the independent host repairs. No new owner approval is needed.
 
 ## Consistency fixes (2026-10-19)
 

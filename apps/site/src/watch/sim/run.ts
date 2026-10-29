@@ -8,14 +8,23 @@
  * match it. `fullHash` covers the whole state, words included; it matches only on the build that made the export,
  * so a wording change does not break older exports (watch.md, Export provenance and hash policy).
  */
-import { impressionOf, readCapacities } from '@adam0white/human-framework';
+
 import type { CastChapter } from '../../shared/cast-chapter.ts';
-import { FRAMEWORK_PACKAGE_VERSION } from '../../shared/playtest.ts';
+import { FRAMEWORK_PACKAGE_VERSION, stableStringify } from '../../shared/playtest.ts';
+import { actorRuntime, observerCues, saveActors } from './actor.ts';
+import { readCapacities } from './actor-effects.ts';
 import { ALL_POST_IDS, WINTER_RULES } from './config.ts';
 import { validWatchOptions, type WatchOptions } from './dusk-rest.ts';
+import { WATCH_OLD_SAVE } from './hf4.ts';
 import { ownsWarningCast, validateLocalWarningState, validLocalWarningInput } from './local-warning.ts';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
 import type { WatchState } from './state.ts';
+import { installActorViews } from './state.ts';
+
+const keeperImpression = (s: WatchState, id: string) => ({
+  targetId: id,
+  cues: observerCues(s, 'keeper', id),
+});
 
 /** A person as the export shows them: enough to read a run, not to resume it. */
 export interface PersonSummary {
@@ -37,7 +46,7 @@ export interface PersonSummary {
 export interface EndState extends Omit<WatchState, 'community' | 'keeper' | 'percepts'> {
   people: PersonSummary[];
   /** What the Keeper believes of each watcher (cue, value, confidence). */
-  keeperImpressions: ReturnType<typeof impressionOf>[];
+  keeperImpressions: ReturnType<typeof keeperImpression>[];
   /** FNV-1a of `ruleState`: a replay of the same scenario must reproduce it, on any build. */
   ruleHash: string;
   /** FNV-1a of the full state JSON, words included: equal only on the build that made the export (advisory). */
@@ -56,7 +65,8 @@ export interface EndState extends Omit<WatchState, 'community' | 'keeper' | 'per
  * scout's words, notes, last voices, cards and the fair's offers (their texts), talks, volumes and leaves, and the
  * pacing (`slowUntil`).
  */
-export function ruleState(s: WatchState, people = summarise(s)): unknown {
+export function ruleState(s: WatchState, people = summarise(installActorViews(s))): unknown {
+  installActorViews(s);
   const w = s.winter;
   return {
     minute: s.minute,
@@ -134,7 +144,7 @@ export function ruleState(s: WatchState, people = summarise(s)): unknown {
     history: s.history,
     moments: s.momentLog,
     people,
-    keeperImpressions: s.community.people.map((p) => impressionOf(s.keeper, p.id, s.minute)),
+    keeperImpressions: s.community.people.map((p) => keeperImpression(s, p.id)),
   };
 }
 
@@ -169,8 +179,8 @@ function summarise(s: WatchState): PersonSummary[] {
         ...(e.targetId !== undefined ? { targetId: e.targetId } : {}),
         intensity: r3(e.intensity),
       })),
-    stress: p.affect.crisis ? r3(p.affect.crisis.stress) : null,
-    inBreak: p.affect.crisis?.break?.behaviourId ?? null,
+    stress: null,
+    inBreak: ['freeze', 'run-off'].includes(p.activity?.action ?? '') ? (p.activity?.action ?? null) : null,
     downed: p.body.downed !== undefined,
     trustInKeeper: p.will.voices.find((v) => v.voiceId === 'keeper')?.trust ?? null,
     ties: p.social.relationships.map((r) => ({
@@ -183,17 +193,21 @@ function summarise(s: WatchState): PersonSummary[] {
 
 /** The rule-state hash of a state (see `ruleState`). */
 export function ruleHash(s: WatchState): string {
+  installActorViews(s);
+  saveActors(s);
   return fnv(JSON.stringify(ruleState(s)));
 }
 
 /** The export's view of a state (see the file comment). */
 export function endState(s: WatchState): EndState {
+  installActorViews(s);
+  saveActors(s);
   const { community, keeper, percepts: _p, ...rest } = s;
   const people = summarise(s);
   return {
     ...structuredClone(rest),
     people,
-    keeperImpressions: community.people.map((p) => impressionOf(keeper, p.id, s.minute)),
+    keeperImpressions: community.people.map((p) => keeperImpression(s, p.id)),
     ruleHash: fnv(JSON.stringify(ruleState(s, people))),
     fullHash: fnv(JSON.stringify(s)),
   };
@@ -209,15 +223,16 @@ export function endState(s: WatchState): EndState {
  * 10: each pair waits one year after a proposal; legacy pages without proposalHolds retain the old rules.
  * 20–22: immediate dusk decisions and an explicit silence input. Older pages and exports must start fresh.
  */
-export const WATCH_SCENARIO_VERSION = 20;
-export const WATCH_DUSK_REST_SCENARIO_VERSION = 21;
-export const WATCH_LOCAL_WARNING_SCENARIO_VERSION = 22;
+export const WATCH_SCENARIO_VERSION = 23;
+export const WATCH_DUSK_REST_SCENARIO_VERSION = 24;
+export const WATCH_LOCAL_WARNING_SCENARIO_VERSION = 25;
 export function scenarioForOptions(options?: WatchOptions): number {
   if (!validWatchOptions(options)) throw new Error('Unknown watch option');
   if (options?.localWarning) return WATCH_LOCAL_WARNING_SCENARIO_VERSION;
   return options?.duskRest ? WATCH_DUSK_REST_SCENARIO_VERSION : WATCH_SCENARIO_VERSION;
 }
 export function scenarioForState(s: WatchState): number {
+  if (!s || s.version !== 5 || !s.actors) throw new Error(WATCH_OLD_SAVE);
   if (!s.hardship) throw new Error('This village uses older rules. Start a new game.');
   return editionForState(s);
 }
@@ -260,7 +275,7 @@ function editionForState(s: WatchState): number {
 }
 
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
-export const OLDEST_LOADABLE_SCENARIO = 20;
+export const OLDEST_LOADABLE_SCENARIO = 23;
 
 /**
  * Where a run's log stops replaying from its seed: it was resumed from a page saved under an older scenario at this
@@ -330,6 +345,17 @@ export interface Snapshot {
  */
 export function migrateSnapshot(snap: Snapshot): Snapshot {
   if (
+    !snap ||
+    !snap.state ||
+    snap.state.version !== 5 ||
+    !snap.state.actors ||
+    !Number.isSafeInteger(snap.seed) ||
+    !Array.isArray(snap.log)
+  )
+    throw new Error(WATCH_OLD_SAVE);
+  // Public restoration checks engine/schema/current state before the host log is admitted.
+  actorRuntime(installActorViews(snap.state));
+  if (
     snap.scenario !== scenarioForState(snap.state) ||
     snap.scenario < OLDEST_LOADABLE_SCENARIO ||
     ![
@@ -338,7 +364,7 @@ export function migrateSnapshot(snap: Snapshot): Snapshot {
       WATCH_LOCAL_WARNING_SCENARIO_VERSION,
     ].includes(snap.scenario)
   )
-    throw new Error(`save scenario ${snap.scenario} uses different rules. Start a new game.`);
+    throw new Error(WATCH_OLD_SAVE);
   if (
     snap.log.some(
       (e) =>
@@ -354,6 +380,20 @@ export function migrateSnapshot(snap: Snapshot): Snapshot {
     throw new Error('Local warning input is not admitted in this save');
   if (!snap.state.duskRest && snap.log.some((e) => e.i.k === 'dusk-rest'))
     throw new Error('Night-off input is not admitted in this save');
+  const expected = replay({
+    scenario: snap.scenario,
+    seed: snap.seed,
+    inputs: snap.log,
+    endMinute: snap.state.minute,
+    castChapter: snap.state.castChapter,
+    options: snap.state.localWarning
+      ? { localWarning: 'local-warning@1', ...(snap.state.duskRest ? { duskRest: 'dusk-rest@1' } : {}) }
+      : snap.state.duskRest
+        ? { duskRest: 'dusk-rest@1' }
+        : undefined,
+  });
+  if (stableStringify(expected) !== stableStringify(snap.state))
+    throw new Error('The Watch save differs from its complete input log.');
   return snap;
 }
 
@@ -373,7 +413,7 @@ export class WatchRun {
     if (saved) {
       const from = migrateSnapshot(saved);
       if (from.seed !== seed) throw new Error('save is from another seed');
-      this.state = structuredClone(from.state);
+      this.state = installActorViews(structuredClone(from.state));
       this.log = from.log.map((e) => ({ m: e.m, i: { ...e.i } }));
       this.origin = from.origin;
       this.fileOrigin = from.fileOrigin;
@@ -389,6 +429,7 @@ export class WatchRun {
 
   /** The current page as snapshot JSON, without copying the state first (for saving between minutes). */
   snapshotText(): string {
+    saveActors(this.state);
     return JSON.stringify({
       scenario: scenarioForState(this.state),
       seed: this.seed,
@@ -401,11 +442,12 @@ export class WatchRun {
 
   /** The current page as a snapshot (deep copies: the run goes on unchanged). */
   snapshot(): Snapshot {
+    saveActors(this.state);
     return {
       scenario: scenarioForState(this.state),
       seed: this.seed,
       log: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
-      state: structuredClone(this.state),
+      state: installActorViews(structuredClone(this.state)),
       ...(this.origin ? { origin: { ...this.origin } } : {}),
       ...(this.fileOrigin ? { fileOrigin: true } : {}),
     };
@@ -416,6 +458,7 @@ export class WatchRun {
     const m = this.state.minute;
     // Daylight advances many actors and admits scheduled people. A failed transition
     // must not leave unlogged partial state for the next tick or autosave.
+    if (i.k === 'toDusk') saveActors(this.state);
     const before = i.k === 'toDusk' ? structuredClone(this.state) : undefined;
     try {
       if (!applyInput(this.state, i)) return false;
@@ -425,6 +468,7 @@ export class WatchRun {
       if (before) {
         for (const key of Object.keys(this.state)) Reflect.deleteProperty(this.state, key);
         Object.assign(this.state, before);
+        installActorViews(this.state);
       }
       throw error;
     }
@@ -468,8 +512,7 @@ export function replay(
   >,
 ): WatchState {
   const edition = scenarioForOptions(exp.options);
-  if (exp.scenario !== edition)
-    throw new Error(`export scenario ${exp.scenario} uses different rules. Start a new game.`);
+  if (exp.scenario !== edition) throw new Error(WATCH_OLD_SAVE);
   if (exp.origin)
     throw new Error(
       `export was resumed from a scenario ${exp.origin.scenario} page; it does not replay from its seed`,
@@ -484,7 +527,10 @@ export function replay(
       idx += 1;
     }
     const pending = exp.inputs[idx];
-    if (pending === undefined && s.minute >= exp.endMinute) return s;
+    if (pending === undefined && s.minute >= exp.endMinute) {
+      saveActors(s);
+      return s;
+    }
     if (!clockRuns(s)) {
       throw new Error(`replay stuck at minute ${s.minute} (${s.phase}) waiting for input ${idx}`);
     }

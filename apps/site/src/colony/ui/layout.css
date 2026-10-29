@@ -1009,3 +1009,23 @@ body,
   overflow-wrap: anywhere;
   overscroll-behavior: contain;
 }
+
+.well-building-side + .well-building-side {
+  border-top: 1px solid var(--line);
+}
+.well-stage-costs table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.well-stage-costs th,
+.well-stage-costs td {
+  text-align: left;
+  padding: 3px 5px;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.well-roof-risk {
+  margin: 4px 0;
+  font-size: 13px;
+}

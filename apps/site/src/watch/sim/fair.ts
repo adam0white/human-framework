@@ -6,9 +6,9 @@
  *
  * Not covered: trade prices, bargaining, selling grain, a choice between buyers.
  */
-import { gestureVoiceTrust, marry } from '@adam0white/human-framework';
+import { gestureVoiceTrust } from './actor-life.ts';
 import { type PostId, SECTION_IDS, type SectionId } from './config.ts';
-import { ageOf, chronicle, living, newcomer, RETIRE_AGE, WATCH_CUSTOM } from './life.ts';
+import { ageOf, chronicle, living, newcomer, RETIRE_AGE } from './life.ts';
 import { presentIds } from './night.ts';
 import { isWatcher, KEEPER_ID, nameOf, personOf, villager } from './people.ts';
 import { type FairOffer, nextRandom, type WatchState, worldRng } from './state.ts';
@@ -245,9 +245,22 @@ export function familyComes(s: WatchState, at: number, how: 'fair' | 'refugees')
     how === 'fair'
       ? 'Came with the fair after losing their home to fire'
       : 'Came up the valley to escape a raid';
-  const man = newcomer(s, 'male', 28 + Math.floor(nextRandom(s) * 8), at, { home, note });
-  const wife = newcomer(s, 'female', 25 + Math.floor(nextRandom(s) * 8), at, { home, note });
-  marry(man, wife, at, WATCH_CUSTOM);
+  const manId = `n${s.nextBorn}`,
+    wifeId = `n${s.nextBorn + 1}`,
+    childId = `n${s.nextBorn + 2}`;
+  const man = newcomer(s, 'male', 28 + Math.floor(nextRandom(s) * 8), at, {
+    home,
+    note,
+    spouseId: wifeId,
+    ties: [{ otherId: childId, roles: ['child'] }],
+  });
+  const wife = newcomer(s, 'female', 25 + Math.floor(nextRandom(s) * 8), at, {
+    home,
+    note,
+    spouseId: manId,
+    ties: [{ otherId: childId, roles: ['child'] }],
+  });
+  // The arriving couple were married before this chapter. Both authored openings retain that bond.
   const child = newcomer(s, nextRandom(s) < 0.5 ? 'female' : 'male', 4 + Math.floor(nextRandom(s) * 6), at, {
     home,
     note,
@@ -256,15 +269,6 @@ export function familyComes(s: WatchState, at: number, how: 'fair' | 'refugees')
       { otherId: wife.id, roles: ['parent'] },
     ],
   });
-  for (const parent of [man, wife]) {
-    const r = parent.social.relationships.find((x) => x.otherId === child.id);
-    if (r) {
-      r.roles = [...new Set([...r.roles, 'child'])];
-      r.affection = 0.8;
-      r.trust = 0.75;
-      r.familiarity = 0.9;
-    }
-  }
   villager(s, child.id).gen = villager(s, man.id).gen + 1;
   const where = home === 'gate' ? 'the Gate' : `the ${home} wall`;
   chronicle(

@@ -33,14 +33,9 @@ export function colonyState(g: ColonyGame): Record<string, unknown> {
 
 export const colonyHash = (g: ColonyGame): string => hashState(colonyState(g));
 
-/** For a reader: the engine's state with each person's decision trace, episodic memory and chronicle dropped. */
+/** Reader snapshot. The complete native HF run remains intact for verification and continuation. */
 export function colonySnapshot(g: ColonyGame): Record<string, unknown> {
   const s = colonyState(g);
-  const human = s.human as { people?: Record<string, unknown>[] } & Record<string, unknown>;
-  s.human = {
-    ...human,
-    people: (human.people ?? []).map(({ trace: _t, memory: _m, chronicle: _c, chronicleDay: _d, ...p }) => p),
-  };
   delete s.log;
   return s;
 }
@@ -57,10 +52,7 @@ export function replayColony(
   return ColonyGame.replay(seed, factory, log, minute, rules, castChapter);
 }
 
-/**
- * Parse a playtest file under the rules it names: this build replays every scenario in `RULES` (an @3 save replays
- * under the @3 rules it was played with). Any other version is refused by `parsePlaytest` with both names.
- */
+/** Parse only the current rules and exact framework build. Earlier files receive a start-fresh message. */
 export function parseColonyPlaytest(text: string): { file: PlaytestFile<LogEntry>; rules: ColonyRules } {
   let named: unknown;
   try {
@@ -68,10 +60,11 @@ export function parseColonyPlaytest(text: string): { file: PlaytestFile<LogEntry
   } catch {
     named = undefined;
   }
-  const rules = rulesOf(named) ?? CURRENT_RULES;
+  if (rulesOf(named) === null) throw new Error('This save is from an older version. Start a fresh game.');
+  const rules = CURRENT_RULES;
   const file = parsePlaytest(text, 'colony', scenarioOf(rules), validateColonyLog);
   if (file.framework !== FRAMEWORK_PACKAGE_VERSION)
-    throw new Error('This file uses older narration. Start a fresh game; keep the old file as an archive.');
+    throw new Error('This save is from an older version. Start a fresh game.');
   if (rules < 6 && file.log.some((e) => e.kind === 'village'))
     throw new Error('Village choice requires rules 6');
   return { file, rules };

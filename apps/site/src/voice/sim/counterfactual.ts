@@ -15,10 +15,11 @@
  * a function of the seed alone, so it may be stepped in slices (`advanceSilentMonth`) and still come out the same.
  * Cost: a whole silent run, about 1.1 s on the bench (`npm run bench`).
  */
-import { dayOf, MINUTES_PER_DAY } from '@adam0white/human-framework';
+
 import { SILENT_CAPTION, type SilentMonthView, type VoiceRules } from '../protocol.ts';
 import { VoiceGame } from './game.ts';
 import { play } from './headless.ts';
+import { dayOf, MINUTES_PER_DAY } from './hf4-model.ts';
 import { TOWN_DEFAULTS, TOWN_EID_DAY } from './town.ts';
 import { happened } from './view.ts';
 
@@ -29,7 +30,7 @@ export interface SilentMonth {
 }
 
 /** The silent month under the played game's rules (protocol `VOICE_RULES`; default the current rules). */
-export function startSilentMonth(seed: number, rules: VoiceRules = 2): SilentMonth {
+export function startSilentMonth(seed: number, rules: VoiceRules = 4): SilentMonth {
   return { seed, game: new VoiceGame(seed, rules) };
 }
 
@@ -94,7 +95,7 @@ export function monthFacts(g: VoiceGame): MonthFacts {
   return {
     dateKept,
     ...(first ? { firstPayDay: ramadanDay(first.at), firstPay: Math.round(first.amount) } : {}),
-    paidByEid: Math.round(g.eidMorning?.run.town.state.rentPaid ?? 0),
+    paidByEid: Math.round(g.eidMorning?.town.rentPaid ?? 0),
     hisCalls: calls.filter((c) => c.by === 'halil').length,
     herCalls: calls.filter((c) => c.by !== 'halil').length,
     eidCall: eid ? (eid.by === 'halil' ? 'his' : 'hers') : 'none',

@@ -4,11 +4,15 @@
  * pause, auto-pause, "Another day") lives in `sim/playback.ts` so it can be tested headless. Playtest files are
  * made and replayed here (a loaded file is replayed from its seed and log; its snapshot is never loaded).
  */
-import { ENGINE_VERSION } from '@adam0white/human-framework';
-import { chapterPeople } from '../shared/cast-chapter.ts';
+
 import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
 import { checkGameFile } from '../shared/file-sources.ts';
-import { decodeSnapshot, PlaytestError, stableStringify } from '../shared/playtest.ts';
+import {
+  decodeSnapshot,
+  FRAMEWORK_PACKAGE_VERSION as ENGINE_VERSION,
+  PlaytestError,
+  stableStringify,
+} from '../shared/playtest.ts';
 import { requireValue } from '../shared/require-value.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import type { FileSessionRequest, MainToWorker, WorkerReply } from './protocol.ts';
@@ -16,6 +20,7 @@ import { ColonyGame } from './sim/game.ts';
 import { createFrameworkHumanSide } from './sim/human.ts';
 import { Playback } from './sim/playback.ts';
 import { colonyState } from './sim/playtest.ts';
+import { wellChapterPeople as chapterPeople } from './sim/portable.ts';
 
 let playback = new Playback(createFrameworkHumanSide);
 let fileMode = false;

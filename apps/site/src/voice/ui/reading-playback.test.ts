@@ -180,6 +180,7 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
           kind: 'act' as const,
           who: 'halil' as const,
           text: 'I call Selin.',
+          connection: { minute: 1200, clock: '20:00' },
         },
       ],
       options: [{ id: 'call:selin', label: 'call Selin', rank: 1, leaning: true }],

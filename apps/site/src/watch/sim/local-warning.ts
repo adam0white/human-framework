@@ -4,7 +4,7 @@
  * hearing, never a reply, assent, a new choice or defence. No threat is asserted and no suggestion or
  * interrupt is issued. The bell, requests, combat and sleepers remain outside this action.
  */
-import { perceive, SIM_DEFAULTS } from '@adam0white/human-framework';
+import { actorRuntime, observeActor } from './actor.ts';
 import { postSection, type WatcherId } from './config.ts';
 import { inVoice, presentIds } from './night.ts';
 import { isPost, KEEPER_ID, nameOf, personOf } from './people.ts';
@@ -17,7 +17,14 @@ type WarningReceipt =
   | { saidAt: number; status: 'unavailable'; at: number; reason: string };
 export interface LocalWarningState {
   edition: 'local-warning@1';
-  pending: { who: WatcherId; saidAt: number; post: import('./config.ts').PostId }[];
+  pending: {
+    who: WatcherId;
+    saidAt: number;
+    post: import('./config.ts').PostId;
+    perceptIds?: string[];
+    queuedAtMs?: number;
+    afterEvent?: string;
+  }[];
   receipts: Partial<Record<WatcherId, WarningReceipt>>;
 }
 export function ownsWarningCast(s: WatchState, who: string): boolean {
@@ -41,7 +48,6 @@ export function localWarningUnavailable(s: WatchState, who: WatcherId): string |
     !p?.body.alive ||
     p.body.downed ||
     p.body.asleep ||
-    p.body.doze ||
     ['doze', 'sleep'].includes(p.activity?.action ?? '')
   )
     return 'They cannot hear a spoken caution while asleep, dozing or down.';
@@ -58,20 +64,44 @@ export function applyLocalWarning(s: WatchState, input: LocalWarningInput): bool
   return true;
 }
 
-/**
- * Delivery follows the ordinary driver and its place projection, not an input-time catch-up.
- * HF tick accepts fractional times. Wait for the first normal whole host boundary at or after
- * speech and the actor clock; never round an actor backwards or write any Person field.
- * Public perceive returns the actual attended list. SimEvent.perceive exposes aggregate counts
- * only, so it cannot establish which of several queued world percepts was heard. This separate
- * informational perception does not ask the driver to interrupt, decide, reply or wake anyone.
- */
+/** Queue the actual nearby speech once. Only public attended-observation events establish hearing. */
 export function deliverLocalWarnings(s: WatchState, until: number): void {
   const w = s.localWarning;
   if (!w || !Number.isInteger(until)) return;
   w.pending = w.pending.filter((speech) => {
+    if (speech.perceptIds) {
+      const reading = actorRuntime(s).read({
+        perspective: { kind: 'host' },
+        people: [speech.who],
+        select: ['events'],
+        ...(speech.afterEvent ? { afterEvent: speech.afterEvent } : {}),
+      });
+      if (
+        reading.at < (speech.queuedAtMs ?? Infinity) ||
+        s.actors.queued.some(
+          (input) =>
+            input.at === speech.queuedAtMs &&
+            input.kind === 'observation.received' &&
+            input.payload.person === speech.who,
+        )
+      )
+        return true;
+      const heardEvent = reading.events.find(
+        (event) =>
+          event.data.kind === 'observation-attended' &&
+          speech.perceptIds?.includes(event.data.perceptId) &&
+          event.data.attention > 0,
+      );
+      w.receipts[speech.who] = {
+        saidAt: speech.saidAt,
+        at: (heardEvent?.at ?? speech.queuedAtMs ?? reading.at) / 60_000,
+        status: 'delivered',
+        heard: !!heardEvent,
+      };
+      return false;
+    }
     const p = personOf(s, speech.who);
-    if (speech.saidAt > until || (p && p.now !== until)) return true;
+    if (speech.saidAt > until) return true;
     const reason =
       localWarningUnavailable(s, speech.who) ??
       (s.place[speech.who] !== speech.post ? 'They moved from the post you addressed.' : null);
@@ -84,27 +114,28 @@ export function deliverLocalWarnings(s: WatchState, until: number): void {
       };
       return false;
     }
-    // Named caution uses HF's existing salience, with no threat, claim or fear weight.
-    const attended = perceive(p, [
+    const before = actorRuntime(s).read({
+      perspective: { kind: 'host' },
+      people: [speech.who],
+      select: ['events'],
+    });
+    const previousEvent = before.events.at(-1)?.id;
+    if (previousEvent) speech.afterEvent = previousEvent;
+    speech.perceptIds = observeActor(s, p.id, [
       {
-        at: p.now,
+        at: until,
         channel: 'heard',
         kind: 'local-warning',
         actorId: KEEPER_ID,
         targetId: speech.who,
         placeId: postSection(speech.post),
         near: true,
-        salience: SIM_DEFAULTS.interruptSalience,
+        salience: 0.85,
         summary: `The Keeper says to ${nameOf(s, speech.who)}: “Keep an eye on this stretch.”`,
       },
     ]);
-    w.receipts[speech.who] = {
-      saidAt: speech.saidAt,
-      at: p.now,
-      status: 'delivered',
-      heard: attended.length > 0,
-    };
-    return false;
+    speech.queuedAtMs = s.actors.ingress;
+    return true;
   });
 }
 export function localWarningAccount(s: WatchState, who: WatcherId): string | null {
@@ -126,7 +157,10 @@ export function localWarningAccount(s: WatchState, who: WatcherId): string | nul
 export function validateLocalWarningState(s: WatchState): void {
   const w = s.localWarning;
   if (w === undefined) return;
-  const past = (at: number) => Number.isFinite(at) && at >= 0 && at <= s.minute;
+  const sourceAt =
+    actorRuntime(s).read({ perspective: { kind: 'host' }, people: [KEEPER_ID], select: ['summary'] }).at /
+    60_000;
+  const past = (at: number) => Number.isFinite(at) && at >= 0 && at <= Math.max(s.minute, sourceAt);
   if (
     w?.edition !== 'local-warning@1' ||
     Object.keys(w).some((k) => !['edition', 'receipts', 'pending'].includes(k)) ||
@@ -141,9 +175,16 @@ export function validateLocalWarningState(s: WatchState): void {
       !q ||
       typeof q.who !== 'string' ||
       !ownsWarningCast(s, q.who) ||
-      Object.keys(q).some((k) => !['who', 'saidAt', 'post'].includes(k)) ||
+      Object.keys(q).some(
+        (k) => !['who', 'saidAt', 'post', 'perceptIds', 'queuedAtMs', 'afterEvent'].includes(k),
+      ) ||
       !past(q.saidAt) ||
-      !isPost(q.post)
+      !isPost(q.post) ||
+      (q.perceptIds !== undefined &&
+        (!Array.isArray(q.perceptIds) ||
+          q.perceptIds.some((id) => typeof id !== 'string') ||
+          !Number.isSafeInteger(q.queuedAtMs))) ||
+      (q.afterEvent !== undefined && typeof q.afterEvent !== 'string')
     )
       throw new Error('Invalid pending local warning');
   }
@@ -161,7 +202,6 @@ export function validateLocalWarningState(s: WatchState): void {
         ? !w.pending.some((q) => q.who === who && q.saidAt === r.saidAt)
         : !['delivered', 'unavailable'].includes(r.status) ||
           !past(r.at) ||
-          !Number.isInteger(r.at) ||
           r.at < r.saidAt ||
           (r.status === 'delivered' ? typeof r.heard !== 'boolean' : typeof r.reason !== 'string'))
     )

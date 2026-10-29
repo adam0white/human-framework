@@ -1,15 +1,9 @@
-/**
- * The Keeper's impressions of a watcher, in words (G3-2, spec §5). Everything here reads the Keeper's estimates
- * (HF `impressionOf`), never the watcher's true state, so a phrase can be wrong and every phrase carries how sure
- * he is. The UI shows the phrase and draws the sureness as a soft bar; it prints no numbers.
- *
- * G3-3: what the Keeper learned of someone's nature, ties, trust, aim and fears of a place does not fade through
- * the months he doesn't watch them on the wall. Those cues are read as they stood a few weeks after he last saw
- * them, and the read says how old it is ("from last winter"). Passing states (tired, hurt, frightened) still fade
- * on HF's clock. At night this view holds the fatigue read available at dusk until a newer observation replaces
- * it. This is how the frame shows the impression; the Keeper's HF estimates are unchanged.
- */
-import { estimate, impressionOf, MINUTES_PER_DAY } from '@adam0white/human-framework';
+/** The Keeper's current public observer cues, expressed in words. Old observed timestamps
+ * label stale knowledge; the host never rewinds or recomputes a private impression. */
+import { observerCues } from './actor.ts';
+
+const MINUTES_PER_DAY = 1440;
+
 import { SECTIONS, type SectionId, type WatcherId } from './config.ts';
 import { theSection } from './night.ts';
 import { isHere, KEEPER_ID, villager } from './people.ts';
@@ -35,16 +29,21 @@ const passing = (key: string) => key === 'fatigue' || key === 'pain' || key === 
 
 /** Hold a dusk fatigue impression through this night; a new observation can replace it. */
 export function keeperFatigue(s: WatchState, id: WatcherId) {
-  const cue = estimate(s.keeper, id, 'fatigue', s.minute);
-  const dusk = s.phase === 'night' && cue.seenAt !== undefined && cue.seenAt < s.nightStart;
-  // This is the read the Keeper could see at dusk, even if the underlying glimpse was older.
-  const atDusk = Math.max(s.nightStart - 60, cue.seenAt ?? s.minute);
-  return { ...(dusk ? estimate(s.keeper, id, 'fatigue', atDusk) : cue), dusk };
+  const found = observerCues(s, KEEPER_ID, id).find((c) => c.key === 'fatigue');
+  const cue = found
+    ? { ...found, ...(found.seenAt === undefined ? {} : { seenAt: found.seenAt / 60_000 }) }
+    : { value: 0, confidence: 0, seenAt: undefined };
+  return { ...cue, dusk: s.phase === 'night' && cue.seenAt !== undefined && cue.seenAt < s.nightStart };
 }
 
 /** Up to `max` phrases, the surest first. A stranger gets one: "you don't know them yet". */
 export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impression[] {
-  const read = impressionOf(s.keeper, id, s.minute);
+  const read = {
+    cues: observerCues(s, KEEPER_ID, id).map((c) => ({
+      ...c,
+      ...(c.seenAt === undefined ? {} : { seenAt: c.seenAt / 60_000 }),
+    })),
+  };
   const female = villager(s, id).sex === 'female';
   const subject = female ? 'She' : 'He';
   const possessive = female ? 'her' : 'his';
@@ -52,12 +51,7 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
   let newest = -1;
   for (const raw of read.cues) {
     const at = raw.seenAt;
-    const c =
-      raw.key === 'fatigue'
-        ? { key: raw.key, ...keeperFatigue(s, id) }
-        : passing(raw.key) || at === undefined || s.minute - at <= HOLD
-          ? raw
-          : { key: raw.key, ...estimate(s.keeper, id, raw.key, at + HOLD) };
+    const c = raw.key === 'fatigue' ? { ...raw, ...keeperFatigue(s, id) } : raw;
     if (c.confidence < SAY_MIN) continue;
     const v = c.value;
     const sure = Math.round(c.confidence * 20) / 20;

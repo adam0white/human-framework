@@ -14,7 +14,11 @@
  * as words and drawn values, never numbers.
  */
 
-import { outwardSigns, type Person, selfReport } from '@adam0white/human-framework';
+import {
+  actorSigns as outwardSigns,
+  type WatchPerson as Person,
+  actorReport as selfReport,
+} from './actor.ts';
 import {
   DAY,
   POSTS,
@@ -34,6 +38,7 @@ import { localWarningAccount, localWarningUnavailable } from './local-warning.ts
 import { type Moment, readPosting, readWords } from './moments.ts';
 import { bellCarry, bellSwinging, inVoice, litSection, nightEnd, presentIds, theSection } from './night.ts';
 import { type NightAct, nightActs, nightBodyCondition, nightHandover } from './night-actions.ts';
+import { nightHistory, wakeAccount, wakeQuestion, wakeReading } from './night-records.ts';
 import {
   familyWords,
   isHere,
@@ -291,6 +296,10 @@ export interface FrameWatcher {
   /** Why no night request is offered, using only the Keeper’s current access and observations. */
   actsUnavailable: string | null;
   handover: string | null;
+  nightHistory?: string[];
+  wakeQuestion?: string | null;
+  wakeContext?: string | null;
+  wakeReading?: string | null;
   restRead: string | null;
 }
 
@@ -586,11 +595,15 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
         ? {
             duskRest: {
               unavailable: duskRestUnavailable(s, w.id),
-              account: s.duskRest.requests[w.id] ? duskRestAccount(s.duskRest.requests[w.id]!) : null,
+              account: ((request) => (request ? duskRestAccount(request) : null))(s.duskRest.requests[w.id]),
             },
           }
         : {}),
       handover: s.phase === 'night' ? nightHandover(s, w.id) : null,
+      nightHistory: nightHistory(s, w.id),
+      wakeQuestion: wakeQuestion(s, w.id),
+      wakeContext: wakeAccount(s, w.id),
+      wakeReading: wakeReading(s, w.id),
     });
   }
   const nightLen = nightEnd(s) - s.nightStart;

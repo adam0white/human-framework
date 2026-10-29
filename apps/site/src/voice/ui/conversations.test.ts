@@ -45,7 +45,13 @@ it.each([
   ['I tea with Rıza, to be with someone.', 'Rıza'],
   ['I call Selin, because you asked.', 'Selin'],
 ])('gives the other social action %s its own two-person exchange', (text, name) => {
-  const lines = view([{ ...talk, text }]).querySelectorAll('.v-exchange-line');
+  const lines = view([
+    {
+      ...talk,
+      text,
+      ...(name === 'Selin' ? { connection: { minute: talk.minute, clock: talk.clock } } : {}),
+    },
+  ]).querySelectorAll('.v-exchange-line');
   expect(lines).toHaveLength(4);
   expect([...lines].map((e) => e.textContent).join(' ')).toContain(`${name}:`);
   expect([...lines].map((e) => e.textContent).join(' ')).toContain('Halil:');
@@ -88,7 +94,7 @@ it('does not turn an illness note into an invented request from Selin', () => {
 it('uses the felt body only at the recorded minute, never later fatigue for an old act', () => {
   const moment = {
     minute: talk.minute,
-    halil: { felt: [{ id: 'hunger' as const, level: 0.8, word: 'hungry' }], onMind: [] },
+    halil: { felt: [{ id: 'hunger' as const, level: 'high', word: 'hungry' }], onMind: [] },
   };
   expect(conversationFor(talk, [talk], moment)[0]?.words).toContain('hungry');
   expect(conversationFor(talk, [talk], { ...moment, minute: talk.minute + 1 })[0]?.words).not.toContain(
@@ -97,7 +103,7 @@ it('uses the felt body only at the recorded minute, never later fatigue for an o
   expect(
     conversationFor(talk, [talk], {
       ...moment,
-      halil: { ...moment.halil, felt: [{ id: 'tired', level: 0.8, word: 'tired' }] },
+      halil: { ...moment.halil, felt: [{ id: 'tired', level: 'high', word: 'tired' }] },
     })[0]?.words,
   ).toContain('tired');
 });
@@ -171,7 +177,13 @@ const contexts: {
 ];
 it.each(contexts)('finishes $topic with Halil’s answer and each companion’s offer', (context) => {
   socialActs.forEach(([name, text], index) => {
-    const entry = { ...talk, text, minute: context.late ? 2520 : talk.minute };
+    const minute = context.late ? 2520 : talk.minute;
+    const entry = {
+      ...talk,
+      text,
+      minute,
+      ...(name === 'Selin' ? { connection: { minute, clock: talk.clock } } : {}),
+    };
     const log: LogEntry[] = context.note
       ? [
           {
@@ -188,7 +200,7 @@ it.each(contexts)('finishes $topic with Halil’s answer and each companion’s 
     const moment: ConversationMoment = {
       minute: entry.minute,
       halil: {
-        felt: context.felt ? [{ id: context.felt, word: context.felt, level: 0.8 }] : [],
+        felt: context.felt ? [{ id: context.felt, word: context.felt, level: 'high' }] : [],
         onMind: [],
       },
     };
@@ -226,7 +238,7 @@ it('reads frozen UI context without RNG and ignores later worries for an old sce
   const moment: ConversationMoment = {
     minute: talk.minute,
     halil: {
-      felt: [{ id: 'tired', level: 0.8, word: 'tired' }],
+      felt: [{ id: 'tired', level: 'high', word: 'tired' }],
       onMind: [],
     },
   };
@@ -314,4 +326,20 @@ it('does not restart the same grief exchange when that recall repeats on a later
   expect(conversationFor(again, [memory, talk, repeated, again])[0]?.words).not.toContain('Nuran');
   const fresh = { ...repeated, text: 'He remembers: Nuran’s funeral.' };
   expect(conversationFor(again, [memory, talk, fresh, again])[0]?.words).toContain('funeral');
+});
+
+it('shows no Selin words for dialing, then refreshes an empty exchange when a connection receipt arrives', () => {
+  const entry: LogEntry = { ...talk, id: 'dial', text: 'I call Selin.' };
+  const el = document.createElement('div'),
+    root = createRoot(el),
+    props = { paused: false, onWhy: () => {} };
+  try {
+    flushSync(() => root.render(createElement(DayLog, { ...props, log: [entry] })));
+    expect(el.querySelector('.v-exchange')).toBeNull();
+    const connected = { ...entry, connection: { minute: entry.minute + 20, clock: '10:20' } };
+    flushSync(() => root.render(createElement(DayLog, { ...props, log: [connected] })));
+    expect(el.querySelector('.v-exchange')?.textContent).toContain('Selin:');
+  } finally {
+    root.unmount();
+  }
 });

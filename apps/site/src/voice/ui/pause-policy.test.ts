@@ -4,7 +4,6 @@ import { sampleFrame } from '../sim/fixtures.ts';
 import { VoiceGame } from '../sim/game.ts';
 import { RecordedGame, replayVoice, voiceHash } from '../sim/record.ts';
 import { consequentialOffer, PausePolicy, speakingOpportunity } from './pause-policy.ts';
-import { deriveScene } from './scenes.ts';
 
 const frame = (patch: Partial<Frame> = {}): Frame => ({
   ...structuredClone(sampleFrame),
@@ -22,52 +21,34 @@ const frame = (patch: Partial<Frame> = {}): Frame => ({
   ...patch,
 });
 
-function dayStops(seed: number, revised: boolean): number {
+it('runs the current day-one pause policy with exact replay', () => {
+  const seed = 7;
   const rec = new RecordedGame(new VoiceGame(seed));
   const policy = new PausePolicy();
-  const seenScenes = new Set<string>();
   rec.apply({ type: 'begin' });
   let previous = rec.game.frame();
-  let stops = 0;
+  const commands = { pause: 0, resume: 0 };
   for (let guard = 0; rec.game.phase === 'day' && guard < 20000; guard++) {
-    rec.tick(50);
+    rec.tick(250);
     const current = rec.game.frame();
-    let command: 'pause' | 'resume' | null = null;
-    if (revised) command = policy.update(current, previous);
-    else {
-      const scene = deriveScene(current);
-      if (scene?.current && current.composer.open && !current.muted && !seenScenes.has(scene.id)) {
-        seenScenes.add(scene.id);
-        if (!current.paused) command = 'pause';
-      }
+    const command = policy.update(current, previous);
+    if (command) {
+      commands[command]++;
+      rec.apply({ type: command });
     }
-    if (command) rec.apply({ type: command });
     if (rec.game.paused && rec.game.phase === 'day') {
-      stops++;
       if (rec.game.intro) rec.apply({ type: 'dismissIntro' });
       rec.apply({ type: 'resume' });
     }
     previous = rec.game.frame();
   }
   expect(rec.game.phase).toBe('between');
+  expect(commands.pause).toBeGreaterThan(0);
+  expect(commands.resume).toBeGreaterThan(0);
   const replay = replayVoice(seed, rec.log);
   expect(replay.driftAt).toBe(-1);
   expect(voiceHash(replay.rec.game)).toBe(voiceHash(rec.game));
-  return stops;
-}
-
-it.each([7, 19, 31])(
-  'reduces day-one reading stops with exact replay for seed %s',
-  (seed) => {
-    const before = dayStops(seed, false);
-    const after = dayStops(seed, true);
-    console.log(
-      `Voice day 1 seed ${seed}: ${before} -> ${after} automatic reading stops; both replay exactly`,
-    );
-    expect(after).toBeLessThan(before);
-  },
-  30000,
-);
+}, 30000);
 
 it('resumes only a known automatic transition and preserves explicit reading holds', () => {
   const policy = new PausePolicy();

@@ -440,9 +440,12 @@ function sideScore(w: SideWorld, alive: number): SideScore {
 const status = (met: boolean, failed: boolean): GoalStatus => (met ? 'met' : failed ? 'failed' : 'open');
 
 export class ColonyGame {
+  readonly castChapter?: CastChapter;
   /** Page receipts are rebuilt by replay. Private fields never enter comparable simulation state. */
   #receipts = new Map<string, string>();
+  #answerObservedAt = new Map<string, Minute>();
   #afterHome = new Map<string, string>();
+  #workEvents = new Map<string, NonNullable<import('./orders.ts').SideChip['workEvents']>>();
   #classicReceipts = new Map<string, string>();
   readonly seed: number;
   minute: Minute = 0;
@@ -485,8 +488,9 @@ export class ColonyGame {
     factory: HumanSideFactory,
     rules: ColonyRules = CURRENT_RULES,
     village: Village = 'default',
-    readonly castChapter?: CastChapter,
+    castChapter?: CastChapter,
   ) {
+    this.castChapter = castChapter;
     this.seed = seed;
     this.factory = factory;
     this.rules = rules;
@@ -690,6 +694,7 @@ export class ColonyGame {
     for (const v of [...he.verdicts, ...he.updates]) {
       const card = this.book.card(v.orderId);
       if (!card) continue;
+      this.#answerObservedAt.set(v.orderId, m + 1);
       const state = VERDICT_CHIP[v.kind];
       if (card.human.state !== state)
         step.verdicts.push({
@@ -711,6 +716,16 @@ export class ColonyGame {
           ? { settled: true }
           : {}),
       });
+    }
+    for (const event of he.workEvents ?? []) {
+      const entries = this.#workEvents.get(event.orderId) ?? [];
+      entries.push({
+        minute: event.minute,
+        kind: event.kind,
+        action: event.action,
+        activityId: event.activityId,
+      });
+      this.#workEvents.set(event.orderId, entries);
     }
     for (const c of he.completed) {
       const card = this.book.card(c.orderId);
@@ -1054,6 +1069,10 @@ export class ColonyGame {
       cards: structuredClone(this.book.cards).map((card) => {
         const classicReceipt = this.#classicReceipts.get(card.order.id);
         if (classicReceipt) card.classic.outcome = classicReceipt;
+        const observedAt = this.#answerObservedAt.get(card.order.id);
+        if (observedAt !== undefined) card.human.answerObservedAt = observedAt;
+        const workEvents = this.#workEvents.get(card.order.id);
+        if (workEvents) card.human.workEvents = structuredClone(workEvents);
         const receipt = this.#receipts.get(card.order.id);
         if (receipt) {
           const home = card.order.placeId.startsWith('home-');
@@ -1151,7 +1170,14 @@ export class ColonyGame {
         .filter((c) =>
           this.endMinute > END_MINUTE ? c.order.issuedAt >= END_MINUTE : c.order.issuedAt < END_MINUTE,
         )
-        .map((c) => structuredClone(c)),
+        .map((c) => {
+          const card = structuredClone(c),
+            events = this.#workEvents.get(c.order.id);
+          const observedAt = this.#answerObservedAt.get(c.order.id);
+          if (observedAt !== undefined) card.human.answerObservedAt = observedAt;
+          if (events) card.human.workEvents = structuredClone(events);
+          return card;
+        }),
       deadline: {
         classic: this.deadlineOf('classic'),
         human: this.deadlineOf('human'),

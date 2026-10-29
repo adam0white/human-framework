@@ -28,6 +28,7 @@ test('a live stay offer slows even before speech opens and restores the chosen p
       kind: 'act',
       who: 'halil',
       text: 'I call Selin.',
+      connection: { minute: 1200, clock: '20:00' },
     },
   ];
   frame.options = [{ id: 'call:selin', label: 'call Selin', rank: 1, leaning: true }];

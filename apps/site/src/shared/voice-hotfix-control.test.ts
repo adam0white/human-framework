@@ -1,4 +1,4 @@
-import { ENGINE_VERSION } from '@adam0white/human-framework';
+/** Real shelf refusal keeps old sources while a fresh HF4 Voice run remains playable. */
 import {
   acceptPersona,
   acceptPersonaBatch,
@@ -13,146 +13,106 @@ import {
 } from '@adam0white/lab-client';
 import { expect, test } from 'vitest';
 import daysHacer from '../../test/fixtures/portable-days-hacer.json';
-import { newRun, VoiceGame } from '../voice/sim/game.ts';
-import { play } from '../voice/sim/headless.ts';
+import { VoiceGame } from '../voice/sim/game.ts';
 import { RecordedGame, replayVoice, voiceHash } from '../voice/sim/record.ts';
-import { makeCastChapter, siteCastCheckpoint } from './cast-chapter.ts';
+import { makeCastChapter } from './cast-chapter.ts';
 import { claimSiteCastBatch } from './cast-site-claim.ts';
-
+import { FRAMEWORK_PACKAGE_VERSION } from './playtest.ts';
 import { requireValue } from './require-value.ts';
 
 const ids = ['halil', 'selin', 'riza', 'hacer', 'osman'].map((role) => `hf.cast.${role}.voice`);
-const source = {
-  game: 'voice',
-  engine: ENGINE_VERSION,
-  build: 'control',
-  rules: 'cast-1',
-};
-
-async function authored(id: string) {
-  const branchId = `control-${id}`;
-  return createPersona({
-    format: 'hf-persona/1',
-    castId: id,
-    castRevision: canonicalCast(id).revision,
-    branchId,
-    parentRevision: null,
-    source,
-    transfer: {
-      castPassport: 'authored-cast/1',
-      life: initialPersonaLife(id, branchId, 0),
-    },
-    limitations: [],
-  });
-}
+const source = { game: 'voice', engine: FRAMEWORK_PACKAGE_VERSION, build: 'control', rules: 'hf4-cast-1' };
 
 async function control(dead: boolean) {
   const heads = await Promise.all(
-    ids.map((id) =>
-      id === 'hf.cast.hacer.voice' ? Promise.resolve(daysHacer as PersonaEnvelope) : authored(id),
-    ),
+    ids.map(async (id) => {
+      if (id === 'hf.cast.hacer.voice') return daysHacer as PersonaEnvelope;
+      const branchId = `old-source-${id}`;
+      return createPersona({
+        format: 'hf-persona/1',
+        castId: id,
+        castRevision: canonicalCast(id).revision,
+        branchId,
+        parentRevision: null,
+        source: { game: 'voice', engine: '3.2.0', build: 'old-source-control', rules: 'voice-3' },
+        transfer: {
+          castPassport: 'site-cast/1',
+          sourceRole: id.split('.')[2],
+          life: initialPersonaLife(id, branchId, 0),
+        },
+        limitations: ['Synthetic older source; no claim of retained acquired state.'],
+      });
+    }),
   );
-  const rizaId = requireValue(ids[2]);
-  const native = await siteCastCheckpoint('voice', newRun(7).ppl.riza);
-  heads[2] = await createPersona({
-    format: 'hf-persona/1',
-    castId: rizaId,
-    castRevision: canonicalCast(rizaId).revision,
-    branchId: 'native-riza',
-    parentRevision: null,
-    source,
-    transfer: { ...native, life: initialPersonaLife(rizaId, 'native-riza', 0) },
-    limitations: [],
-  });
   let state: PersonaShelfState = { heads: {}, revisions: [] };
   for (const head of heads) state = acceptPersona(state, head);
-  if (dead) {
-    heads[1] = await closePersonaBranch(requireValue(heads[1]), source, 1);
-    state = acceptPersona(state, requireValue(heads[1]));
-  }
+  if (dead) state = acceptPersona(state, await closePersonaBranch(requireValue(heads[1]), source, 1));
   const before = structuredClone(state);
-  let writes = 0;
+  let batchCalls = 0;
   const shelf = {
     request: async (message: Record<string, unknown>) => {
       if (message.action === 'prepareBatch') {
         const inputs = [],
           blocked = [];
         for (const id of ids) {
-          const head = state.revisions.find((p) => p.revision === state.heads[id]);
-          if (!head) continue;
+          const parent = requireValue(state.revisions.find((p) => p.revision === state.heads[id]));
           try {
-            inputs.push(preparePersonaLife(head, 0));
-          } catch (e) {
-            blocked.push({ castId: id, reason: String(e) });
+            inputs.push(preparePersonaLife(parent, 0));
+          } catch (error) {
+            blocked.push({ castId: id, reason: String(error) });
           }
         }
-        return {
-          inputs,
-          blocked,
-          expectedHeads: Object.fromEntries(ids.map((id) => [id, state.heads[id] ?? null])),
-        };
+        return { inputs, blocked, expectedHeads: { ...state.heads } };
       }
-      expect(message.expectedHeads).toEqual(
-        Object.fromEntries(ids.map((id) => [id, before.heads[id] ?? null])),
-      );
+      expect(message.action).toBe('putBatch');
+      expect(message.expectedHeads).toEqual(before.heads);
+      expect(message.envelopes).toEqual([]);
       state = acceptPersonaBatch(
         state,
         message.envelopes as PersonaEnvelope[],
         message.expectedHeads as Record<string, string | null>,
       );
-      writes++;
-      return {};
+      batchCalls++;
+      return [];
     },
   } as unknown as CastShelf;
-  const result = await claimSiteCastBatch(
-    shelf,
-    ids,
-    source,
-    async (inputs) => {
-      const chapter = makeCastChapter(inputs);
-      new VoiceGame(7, 4, chapter);
-      return chapter;
-    },
-    {
-      admitPerson: async (input) => {
-        new VoiceGame(7, 4, makeCastChapter([input]));
-      },
-    },
+  const result = requireValue(
+    await claimSiteCastBatch(shelf, ids, source, async (inputs) =>
+      inputs.length ? makeCastChapter(inputs) : undefined,
+    ),
   );
-  expect(writes).toBe(1);
-  expect(state.heads['hf.cast.hacer.voice']).toBe(before.heads['hf.cast.hacer.voice']);
-  expect(state.revisions.find((p) => p.revision === state.heads['hf.cast.hacer.voice'])).toEqual(heads[3]);
-  expect(result?.blocked.find((p) => p.castId === ids[3])?.reason).toMatch(/Hacer/);
-  if (dead) {
-    expect(result?.blocked.find((p) => p.castId === ids[1])?.reason).toMatch(/Selin.*death/i);
-    expect(state.heads[requireValue(ids[1])]).toBe(before.heads[requireValue(ids[1])]);
-  }
-
-  const eligible = ids.filter((id) => id !== ids[3] && (!dead || id !== ids[1]));
-  expect(result?.claims.map((p) => p.castId)).toEqual(eligible);
-  for (const id of eligible) expect(state.heads[id]).not.toBe(before.heads[id]);
-  return requireValue(result);
+  expect(result.claims).toEqual([]);
+  expect(result.inputs).toEqual([]);
+  expect(result.blocked.find((item) => item.castId === 'hf.cast.hacer.voice')?.reason).toMatch(/Hacer/);
+  if (dead)
+    expect(result.blocked.find((item) => item.castId === 'hf.cast.selin.voice')?.reason).toMatch(
+      /Selin.*death/i,
+    );
+  expect(batchCalls).toBe(1); // Empty CAS still checks every accepted parent; it replaces none.
+  expect(state).toEqual(before);
+  return result;
 }
 
-test('played Days Hacer is named and skipped while Voice carries the other four and replays a played choice', async () => {
+test('names unsupported Hacer and other sources, preserves every head, and replays the fresh local cast', async () => {
   const result = await control(false);
   const rec = new RecordedGame(new VoiceGame(7, 4, result.initial));
-  play(rec, {
-    tick: [1000],
-    stop: (g) => !g.intro && g.composer().open && g.frame().options.length > 0,
-  });
-  const option = requireValue(rec.frame().options[0]);
-  rec.apply({
-    type: 'suggest',
-    draft: { optionId: option.id, strength: 'mention', insist: false },
-  });
-  for (let i = 0; i < 5; i++) rec.tick(1000);
-  expect(rec.log.some((entry) => 'type' in entry && entry.type === 'suggest')).toBe(true);
-  const replay = replayVoice(7, JSON.parse(JSON.stringify(rec.log)), 4, undefined, 0, result.initial);
-  expect(replay.driftAt).toBe(-1);
-  expect(voiceHash(replay.rec.game)).toBe(voiceHash(rec.game));
+  rec.apply({ type: 'begin' });
+  rec.step(5);
+  expect(rec.game.run.c.people.map((person) => person.id).sort()).toEqual([
+    'hacer',
+    'halil',
+    'osman',
+    'riza',
+    'selin',
+  ]);
+  const again = replayVoice(7, JSON.parse(JSON.stringify(rec.log)), 4);
+  expect(again.driftAt).toBe(-1);
+  expect(voiceHash(again.rec.game)).toBe(voiceHash(rec.game));
+  expect(again.rec.game.run.c.runtime?.save().archive.hashes.full).toBe(
+    rec.game.run.c.runtime?.save().archive.hashes.full,
+  );
 });
 
-test('a death refused in prepareBatch is named and does not prevent other claims', async () => {
+test('names a previously closed Selin branch and preserves it with the other refused parents', async () => {
   await control(true);
 });

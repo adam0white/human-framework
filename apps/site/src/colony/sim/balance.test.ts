@@ -1,82 +1,52 @@
-/**
- * Headless balance targets on the shipped seed (colony.md §6, §11). The locked numbers live in code; nothing here
- * mutates a table. The player patterns live in `policies.ts` (shared with the end screen's hindsight replay).
- */
+/** HF3 policy win margins are not HF4 calibration. Pin policy inputs and Classic isolation;
+ * the full current human control is in hf4-control.test.ts. */
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_SEED, STOCK_GOAL } from './game.ts';
-import { PATTERNS, play, type RunResult } from './policies.ts';
+import { requireValue } from '../../shared/require-value.ts';
+import { ColonyGame, DEFAULT_SEED } from './game.ts';
+import { createFrameworkHumanSide } from './human.ts';
+import { GOOD2, PATTERNS, standing } from './policies.ts';
+import { at } from './world-types.ts';
 
-const statuses = (r: RunResult, k: 'classic' | 'human', day: 2 | 3 = 2): Record<string, string> =>
-  Object.fromEntries((day === 3 ? (r.day3 ?? []) : r.goals).map((goal) => [goal.id, goal[k].status]));
+describe('current player policies', () => {
+  it('keeps the cook at her role until the preparation window and gives builders rushed offers', () => {
+    expect(GOOD2(at(2, 12))).not.toHaveProperty('maryam');
+    expect(GOOD2(at(2, 13))).toHaveProperty('maryam', 'kitchen');
+    expect(GOOD2(at(2, 18))).not.toHaveProperty('maryam');
+    const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    PATTERNS.good2rush()(g, 0);
+    expect(g.book.cards.map((c) => c.order.personId)).toEqual([
+      'yusuf',
+      'tariq',
+      'idris',
+      'samira',
+      'danyal',
+    ]);
+    expect(g.book.cards.every((c) => c.order.rush)).toBe(true);
+    expect(g.log.filter((e) => e.kind === 'order')).toHaveLength(5);
+  });
 
-describe('v2 balance on the shipped seed', () => {
-  const none = play(PATTERNS.none(), DEFAULT_SEED, true);
-  const rush = play(PATTERNS.good2rush(), DEFAULT_SEED, true);
-  const forest = play(PATTERNS.allForest());
-  const insist = play(PATTERNS.good2insist());
-  const sugg = play(PATTERNS.suggestions());
-  if (process.env.BALANCE) {
-    for (const [name, r] of Object.entries({
-      none,
-      good2rush: rush,
-      allForest: forest,
-      good2insist: insist,
-      suggestions: sugg,
-    })) {
-      console.log(name, JSON.stringify({ classic: r.classic, human: r.human }));
-      console.log(name, 'C', statuses(r, 'classic'), 'H', statuses(r, 'human'));
-      if (r.day3) console.log(name, 'Day 3 C', statuses(r, 'classic', 3), 'H', statuses(r, 'human', 3));
+  it('does not flood an open request or reissue before the policy gap', () => {
+    const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    const policy = standing(() => ({ yusuf: 'site' }), 75);
+    policy(g, 0);
+    policy(g, 1);
+    expect(g.book.cards).toHaveLength(1);
+    g.cancel(requireValue(g.book.cards[0]).order.id);
+    policy(g, 74);
+    expect(g.book.cards).toHaveLength(1);
+    policy(g, 75);
+    expect(g.book.cards).toHaveLength(2);
+  });
+
+  it('keeps Classic deterministic while Human uses the current actor engine', () => {
+    const a = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    const b = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    for (const g of [a, b]) {
+      g.issue({ personId: 'yusuf', placeId: 'site', rush: true });
+      g.advance(40);
     }
-  }
-
-  it('Solo (Human, no orders) narrowly fails the roof and nothing else', () => {
-    expect(statuses(none, 'human')).toEqual({ roof: 'failed', stock: 'met', lives: 'met' });
-    expect(none.human.stormHouse).toBeGreaterThanOrEqual(9);
+    expect(a.classicWorld).toEqual(b.classicWorld);
+    expect(a.classic.units).toEqual(b.classic.units);
+    expect(a.minute).toBe(40);
   });
-
-  it('the Human store is tight: Solo meets the stock with at most one spare pot and a bit', () => {
-    expect(none.human.stormMeals).toBeGreaterThanOrEqual(STOCK_GOAL);
-    expect(none.human.stormMeals).toBeLessThanOrEqual(STOCK_GOAL + 6);
-  });
-
-  it('Classic with no orders lays in the storm stock but misses the roof (it roofs on some other seeds)', () => {
-    expect(statuses(none, 'classic')).toEqual({ roof: 'failed', stock: 'met', lives: 'met' });
-  });
-
-  it('good orders (good2rush) win all three goals on both sides', () => {
-    expect(statuses(rush, 'classic')).toEqual({ roof: 'met', stock: 'met', lives: 'met' });
-    expect(statuses(rush, 'human')).toEqual({ roof: 'met', stock: 'met', lives: 'met' });
-  });
-
-  it('hostile orders (all to the forest) lose at least one goal on each side, and cost the Human roof visibly', () => {
-    expect(Object.values(statuses(forest, 'classic'))).toContain('failed');
-    expect(Object.values(statuses(forest, 'human'))).toContain('failed');
-    expect(forest.human.stormHouse).toBeLessThan(none.human.stormHouse - 1);
-  });
-
-  it('insisting on every order (good2insist) costs the Human roof', () => {
-    expect(statuses(insist, 'human').roof).toBe('failed');
-  });
-
-  it('following only the suggestions does not roof the Human house: winning takes your own orders', () => {
-    // The cards set up the five moments and carry their costs (the cedar injures Idris, the squall costs trust).
-    // Measured: the roof ends near 8.9, below Solo, while Classic, which simply obeys, wins all three.
-    expect(statuses(sugg, 'human')).toEqual({ roof: 'failed', stock: 'met', lives: 'met' });
-    expect(statuses(sugg, 'classic')).toEqual({ roof: 'met', stock: 'met', lives: 'met' });
-  });
-
-  it('Day 3: Solo misses the store-room deadline; good orders meet every Day-3 goal', () => {
-    expect(statuses(none, 'human', 3).project).toBe('failed');
-    expect(statuses(rush, 'human', 3)).toEqual({ project: 'met', stock: 'met', lives: 'met' });
-  });
-
-  it('meals are really eaten: each side eats at least 35 over the run', () => {
-    // Not under allForest: a starving Classic village dies before it can eat.
-    for (const r of [none, rush]) {
-      expect(r.classic.eaten).toBeGreaterThanOrEqual(35);
-      expect(r.human.eaten).toBeGreaterThanOrEqual(35);
-    }
-  });
-
-  // The five runs' wall-clock budget (under 5 s) is in colony.timing.ts, run by `npm run bench`.
 });

@@ -776,8 +776,15 @@ export function TaskContext({ job, compact = false }: { job: string | null; comp
     ) : (
       <p className="well-task-context">
         Villagers cook for ordinary meals before storm preparations. “Enough food stored” can mean enough for
-        ordinary meals, below the separate twelve-meal storm reserve. Ingredients, meal duties and weather
-        still affect cooking.
+        ordinary meals, below the separate twelve-meal storm reserve. Grain is gathered in the field, and
+        water is drawn at the well. Ingredients, meal duties and weather still affect cooking.
+      </p>
+    );
+  if (job === 'fell-cedar')
+    return (
+      <p className="well-task-context">
+        Completing the cedar felling adds {JOBS['fell-cedar'].yields?.timber} timber. It is one tree; travel,
+        interruptions and injury risk can affect the task.
       </p>
     );
   return null;

@@ -21,8 +21,10 @@
  * "Download playtest file" gives; `load` replays one. Kept out of the typecheck (apps/site/tsconfig.json does
  * not include scripts/); biome lints it.
  */
+
+import './package-identity.ts';
+
 import { readFileSync, writeFileSync } from 'node:fs';
-import { ENGINE_VERSION } from '@adam0white/human-framework';
 import type { PauseInfo, Speed } from '../src/colony/protocol.ts';
 import { ColonyGame, DEFAULT_SEED, type LogEntry, SCENARIO_VERSION } from '../src/colony/sim/game.ts';
 import { createFrameworkHumanSide } from '../src/colony/sim/human.ts';
@@ -32,6 +34,7 @@ import { type AppealChip, inferAction, type OrderInput } from '../src/colony/sim
 import { Playback } from '../src/colony/sim/playback.ts';
 import { VILLAGERS, type VillagerId } from '../src/colony/sim/world-types.ts';
 import { harnessCommands } from '../src/shared/harness-commands.ts';
+import { FRAMEWORK_PACKAGE_VERSION as ENGINE_VERSION } from '../src/shared/playtest.ts';
 import {
   bubbleLine,
   composerLine,
@@ -102,18 +105,10 @@ interface Saved {
   autoPause: boolean;
   paused: boolean;
   pause: PauseInfo | null;
-  seen: string[];
-  endedSent: boolean;
   /** Bubble ids and moments already printed. */
   shown: string[];
   moments: number;
   onboarded: boolean;
-}
-
-/** Playback's private fields the harness persists between invocations. */
-interface PlaybackInside {
-  seen: Set<string>;
-  endedSent: boolean;
 }
 
 export class Harness {
@@ -135,7 +130,6 @@ export class Harness {
 
   save(): Saved {
     const g = this.game;
-    const inside = this.pb as unknown as PlaybackInside;
     return {
       seed: g.seed,
       scenario: g.scenarioVersion,
@@ -145,8 +139,6 @@ export class Harness {
       autoPause: this.pb.autoPause,
       paused: this.pb.paused,
       pause: this.pb.pause,
-      seen: [...inside.seen],
-      endedSent: inside.endedSent,
       shown: [...this.shown].slice(-200),
       moments: this.moments,
       onboarded: this.onboarded,
@@ -155,15 +147,12 @@ export class Harness {
 
   restore(s: Saved): void {
     const rules = rulesOf(s.scenario);
-    if (!rules) throw new Error(`state file is from ${s.scenario}; this build plays ${SCENARIO_VERSION}`);
+    if (!rules) throw new Error('This save is from an older version. Start a fresh game.');
     this.pb.game = ColonyGame.replay(s.seed, FACTORY, s.log, s.minute, rules);
     this.pb.speed = s.speed;
     this.pb.autoPause = s.autoPause;
     this.pb.paused = s.paused;
     this.pb.pause = s.pause;
-    const inside = this.pb as unknown as PlaybackInside;
-    inside.seen = new Set(s.seen);
-    inside.endedSent = s.endedSent;
     this.shown = new Set(s.shown);
     this.moments = s.moments;
     this.onboarded = s.onboarded;
@@ -316,7 +305,8 @@ export class Harness {
         if (!day || hh === undefined || Number.isNaN(hh))
           throw new Error('until <day> <HH:MM>, e.g. until 2 09:00');
         const target = (day - 1) * 1440 + (((((hh - 5) * 60 + (mm ?? 0)) % 1440) + 1440) % 1440);
-        if (target <= this.game.minute) throw new Error('That time has passed.');
+        if (target <= this.game.minute)
+          throw new Error(`That time has passed. It is ${dayClock(this.game.minute)}.`);
         this.wait(Number.POSITIVE_INFINITY, target);
         return;
       }
@@ -373,7 +363,11 @@ export class Harness {
       case 'cancel': {
         const id = args[0] ?? '';
         const card = this.game.book.card(id);
-        if (card?.status !== 'active') throw new Error(`No open order ${id}.`);
+        if (!card) throw new Error(`No order ${id} exists.`);
+        if (card.status !== 'active')
+          throw new Error(
+            `Cannot cancel ${id}: ${card.status}${card.replacedBy ? ` by ${card.replacedBy}` : ''}. ${orderLine(card).trim()}`,
+          );
         this.pb.handle({ type: 'cancel', orderId: id });
         this.say(`Cancelled ${id}`);
         return;
@@ -494,4 +488,15 @@ async function main(): Promise<void> {
   if (stateFile && h.pb.game) writeFileSync(stateFile, `${JSON.stringify(h.save())}\n`);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) await main();
+if (import.meta.url === `file://${process.argv[1]}`) {
+  try {
+    await main();
+  } catch (error) {
+    console.error(
+      error instanceof Error && error.message.includes('older version')
+        ? 'This save is from an older version. Start a fresh game.'
+        : 'This file could not be opened. Keep the original file.',
+    );
+    process.exitCode = 1;
+  }
+}

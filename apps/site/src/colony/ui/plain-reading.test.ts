@@ -1,10 +1,11 @@
 // @vitest-environment happy-dom
-import { voiceOf } from '@adam0white/human-framework';
+
 import { act, createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, expect, it, vi } from 'vitest';
 import { ColonyGame } from '../sim/game.ts';
+import { voiceOf } from '../sim/hf4.ts';
 import { createFrameworkHumanSide, type FrameworkHumanSide } from '../sim/human.ts';
 import { fw } from '../sim/human-cast.ts';
 import { memoryText, trustOf } from '../sim/human-view.ts';
@@ -39,10 +40,10 @@ it('names the replacing order in words while retaining both order ids', () => {
 
 it('uses one full stop and an infinitive in the displayed trust loss', () => {
   const game = new ColonyGame(7, createFrameworkHumanSide);
-  const person = (game.human as FrameworkHumanSide).person('yusuf');
+  const person = structuredClone((game.human as FrameworkHumanSide).person('yusuf'));
   const voice = voiceOf(person, 'player');
   if (!voice) throw Error('Missing player voice');
-  voice.history = [{ at: fw(120), delta: -0.1, reason: 'went-badly', action: 'gather-grain' }];
+  voice.history = [{ at: fw(120) * 60_000, delta: -0.1, reason: 'went-badly', action: 'gather-grain' }];
   const trust = trustOf(person);
   expect(trust.history[0]?.label).toBe('Your order to gather grain went badly.');
   const host = render(createElement(TrustMeter, { trust, name: 'Yusuf' }));

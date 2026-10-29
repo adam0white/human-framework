@@ -78,7 +78,6 @@ export function App() {
     [save, setSave] = useState(savedRun),
     [newConfirm, setNewConfirm] = useState(false),
     [other, setOther] = useState(false);
-  const [buildingDetails, setBuildingDetails] = useState(false);
   const [menu, setMenu] = useState(false),
     [info, setInfo] = useState(false),
     [feedback, setFeedback] = useState<'menu' | 'end' | null>(null);
@@ -137,12 +136,12 @@ export function App() {
   }, [held, actions]);
   useEffect(() => {
     actions.setContext?.({
-      person: sheet === 'person' ? person : null,
-      buildingDetails,
+      person: inspect ?? (sheet === 'person' ? person : null),
+      buildingDetails: true,
       reading: pending !== null || sheet === 'suggestion',
       info,
     });
-  }, [actions, person, sheet, pending, info, buildingDetails]);
+  }, [actions, person, sheet, pending, info, inspect]);
   useEffect(() => {
     if (!inspect) {
       actions.clearWhy();
@@ -1106,14 +1105,6 @@ export function App() {
               <aside className="game-release">
                 <GameVersion id="well" />
               </aside>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={buildingDetails}
-                  onChange={(e) => setBuildingDetails(e.target.checked)}
-                />{' '}
-                Show building details
-              </label>
               <fieldset className="well-menu-pace">
                 <legend>The village's pace</legend>
                 {(['auto', 0.5, 1, 2] as const).map((s, i) => (

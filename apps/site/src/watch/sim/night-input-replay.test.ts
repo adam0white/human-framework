@@ -3,7 +3,9 @@ import { replay, ruleHash, WatchRun } from './run.ts';
 
 it('refuses pre-cast night exports before replaying their inputs', () => {
   for (const scenario of [9, 10, 11, 13]) {
-    expect(() => replay({ scenario, seed: 7, inputs: [], endMinute: 1020 })).toThrow(/scenario/);
+    expect(() => replay({ scenario, seed: 7, inputs: [], endMinute: 1020 })).toThrow(
+      'This save is from an older version. Start a fresh game.',
+    );
   }
 });
 

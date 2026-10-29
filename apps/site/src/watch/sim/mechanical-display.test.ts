@@ -82,12 +82,12 @@ it('new proposal holds survive current save/restore and replay; older cast pages
   const restored = WatchRun.resume(JSON.parse(run.snapshotText()));
   expect(restored.state.proposalHolds).toEqual({});
   const exp = run.export();
-  expect(exp.scenario).toBe(20);
+  expect(exp.scenario).toBe(23);
   expect(ruleHash(replay(exp))).toBe(exp.end.ruleHash);
   const legacy = run.snapshot();
   legacy.scenario = 9;
   delete legacy.state.proposalHolds;
-  expect(() => WatchRun.resume(legacy)).toThrow(/scenario/);
+  expect(() => WatchRun.resume(legacy)).toThrow('This save is from an older version. Start a fresh game.');
 });
 
 it('later summer losses do not rewrite the preceding winter question', async () => {

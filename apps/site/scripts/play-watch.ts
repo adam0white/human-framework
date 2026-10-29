@@ -50,16 +50,8 @@
  * `letbe` again), and an empty post's one word can fall back from "afraid" to "gone" once its ticker line is old.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
-import { registerHooks } from 'node:module';
 
-// The sim imports HF by package name; point it at the framework's source, so no build is needed.
-const hfSource = new URL('../../../packages/human/src/index.ts', import.meta.url).href;
-registerHooks({
-  resolve(specifier, context, nextResolve) {
-    if (specifier === '@adam0white/human-framework') return { url: hfSource, shortCircuit: true };
-    return nextResolve(specifier, context);
-  },
-});
+import './package-identity.ts';
 
 type Run = import('../src/watch/sim/run.ts').WatchRun;
 type Frame = import('../src/watch/sim/view.ts').Frame;
@@ -170,7 +162,20 @@ export class Harness {
   input(i: import('../src/watch/sim/night.ts').Input): boolean {
     const ok = this.run.input(i);
     if (ok) this.pacer.follow(this.run);
-    else this.say(`(nothing happens: that cannot be done now)`);
+    else if (i.k === 'begin')
+      this.say(
+        this.run.state.phase === 'night'
+          ? 'The watch has already begun.'
+          : `Begin is available at dusk. It is ${this.run.state.phase} now.`,
+      );
+    else if (i.k === 'talk') {
+      const s = this.run.state;
+      if (s.phase !== 'dawn') this.say(`Talks are available at dawn. It is ${s.phase} now.`);
+      else if (s.talks.left <= 0) this.say('There is no daylight left for another talk.');
+      else if (s.talks.said.some((x) => x.who === i.who && x.topic === i.topic))
+        this.say('You have already discussed this topic with this person this dawn.');
+      else this.say('This person or topic is not available for a talk now.');
+    } else this.say(`(nothing happens: that cannot be done now)`);
     return ok;
   }
 
@@ -931,7 +936,15 @@ if (import.meta.url === new URL(process.argv[1] ?? '', 'file://').href) {
   if (file && firstNew !== 0) {
     try {
       h = Harness.fromText(readFileSync(file, 'utf8'));
-    } catch {
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+        console.error(
+          error instanceof Error && error.message.includes('older version')
+            ? 'This save is from an older version. Start a fresh game.'
+            : 'This file could not be opened. Keep the original file.',
+        );
+        process.exit(1);
+      }
       h = null;
     }
   }

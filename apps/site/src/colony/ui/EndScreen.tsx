@@ -19,6 +19,7 @@ import {
 } from './end-report.ts';
 import { wellTally } from './end-tally.ts';
 import { Icon, NoConcept } from './Icon.tsx';
+import { OrderWorkEvents } from './OrderWorkEvents.tsx';
 import { GoalChip, jobPhrase, PLACE_LABEL, shortName } from './parts.tsx';
 
 type HindsightState =
@@ -63,7 +64,7 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
   const misses = nearMisses(summary);
   if (h.kind === 'idle' && misses.length === 0) return null;
   return (
-    <section className="end-hindsight" aria-label="What would have won">
+    <section className="end-hindsight" aria-label="One plan replayed">
       {misses.length > 0 && (
         <ul className="end-misses">
           {misses.map((m) => (
@@ -75,9 +76,13 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
       )}
       {h.kind !== 'idle' && (
         <details className="end-fold">
-          <summary>What would have won</summary>
+          <summary>One plan replayed</summary>
+          <p>
+            We try one plan that repeatedly sends Rush orders, from four possible starting times. This does
+            not compare every plan or score care for prayer and rest.
+          </p>
           <p className="end-won" aria-live="polite">
-            <b>What would have won (Human):</b>{' '}
+            <b>One plan replayed (Human):</b>{' '}
             {settingWords(
               h.kind === 'working'
                 ? 'Trying a simple plan from the same starting conditions…'
@@ -167,6 +172,13 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
         </tbody>
       </table>
       <p className="end-changed">{ordersChanged(summary)}</p>
+      {summary.deadline.human.roofAt === null &&
+        summary.goals.some((g) => g.id === 'roof' && g.human.status === 'failed') && (
+          <p>
+            The Human roof is unfinished. No whole-roof finish-time estimate is available. Future work choices
+            can change the time.
+          </p>
+        )}
       <HindsightBlock summary={summary} />
       {summary.cards.length > 0 && (
         <details className="end-fold">
@@ -180,6 +192,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
                 <span className={`end-says says-${c.human.state}`}>{settingWords(humanOutcome(c))}</span>
                 {settingWords(humanQuotes(c) ? ` (${humanQuotes(c)})` : '')}
                 {settingWords(cardEnd(c) ? ` · ${cardEnd(c)}` : '')}
+                <OrderWorkEvents events={c.human.workEvents} />
               </li>
             ))}
           </ul>

@@ -6,18 +6,10 @@ import { Portrait, shortName } from './parts.tsx';
 import { wellWords as settingWords } from './words.ts';
 
 function Bar({ label, value, urgent }: { label: string; value: number; urgent?: boolean | undefined }) {
-  const v = Math.max(0, Math.min(1, value));
+  const words = value < 0.35 ? 'low' : value < 0.7 ? 'moderate' : 'high';
   return (
-    <span
-      className={`prow-bar ${urgent ? 'is-urgent' : ''}`}
-      title={settingWords(`${label} ${Math.round(v * 100)}%`)}
-    >
-      <span className="visually-hidden">
-        {label} {Math.round(v * 100)}%
-      </span>
-      <span className="prow-bar-track" aria-hidden="true">
-        <span style={{ width: `${v * 100}%` }} />
-      </span>
+    <span className={urgent ? 'need-description is-urgent' : 'need-description'}>
+      {settingWords(`${label}: ${words}`)}
     </span>
   );
 }

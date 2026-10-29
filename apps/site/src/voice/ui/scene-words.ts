@@ -1,6 +1,6 @@
 /**
  * Authored inner-voice continuations over surfaced words and present state. These are not HF
- * perceptions: they change no Person, trust, memory, need, activity or RNG. RecordedGame keeps
+ * perceptions. Accepted care uses an acknowledged-support receipt; it grants no comfort, trust or action. RecordedGame keeps
  * the chosen input and its deterministic reading separately so a run can replay what was shown.
  */
 import type { Frame, SceneWords } from '../protocol.ts';
@@ -66,7 +66,9 @@ function exchange(frame: Frame, kind: Kind): { words: string; answer: string } {
             : 'Nuran herself. I keep coming back to her.',
         };
   }
-  const tired = frame.halil.felt.some((felt) => felt.id === 'tired' && felt.level >= 0.55);
+  const tired = frame.halil.felt.some(
+    (felt) => felt.id === 'tired' && ['high', 'very high'].includes(felt.level),
+  );
   if (tired)
     return kind === 'care'
       ? {

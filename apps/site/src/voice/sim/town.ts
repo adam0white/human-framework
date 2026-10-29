@@ -1,6 +1,6 @@
 /**
  * SCOPE: a small Anatolian town in Ramadan, the headless reference world for Game 2 ("The Day You Say Nothing").
- * Six places (home, mosque, tea house, workshop, market, clinic) and five people, each a full `Person`: Halil, a
+ * Six places (home, mosque, tea house, workshop, market, clinic) and five people, each a full `VoicePerson`: Halil, a
  * widowed repairman of 61 with hypertension, a cigarette habit and a month of rent owed; Selin, his daughter in
  * the city, reachable by phone; Rıza, his friend at the tea house; Hacer, the neighbour who talks about people;
  * Osman, the landlord. Days carry per-day prayer times from a drifting calendar, the Ramadan fast and its meals,
@@ -14,15 +14,19 @@
  * Selin's own day happens off the map (place 'city'); she is in the community so that calls run `converse` both
  * ways and her advice reaches Halil as a standing voice.
  */
+
+import { canonicalCast, lifeAdmission } from '@adam0white/lab-client';
+import { type CastChapter, personChapter, SITE_CAST } from '../../shared/cast-chapter.ts';
+import { VOICE_DISCOVERIES } from '../../shared/cast-discoveries.ts';
 import {
   type Activity,
   type Affordance,
-  applyExemptions,
-  believe,
+  authorBelief,
+  authorEpisode,
+  authorIllness,
   type ConverseContext,
-  calendarRetimer,
   chance,
-  createPerson,
+  createOpening,
   createRng,
   dayOf,
   eidPrayer,
@@ -34,9 +38,7 @@ import {
   type Minute,
   minuteOfDay,
   type Outcome,
-  owedMakeUps,
   type Percept,
-  type Person,
   type PersonId,
   type PersonSpec,
   type PrayerCalendar,
@@ -46,24 +48,11 @@ import {
   ramadanFast,
   ramadanMeals,
   readBody,
-  remember,
-  retimeCommitments,
-  retirePaidMakeUps,
-  scheduleMakeUp,
-  sicken,
-  successChance,
   type Unit,
+  type VoicePerson,
   type World,
-} from '@adam0white/human-framework';
-import { canonicalCast, lifeAdmission } from '@adam0white/lab-client';
-import {
-  applyLifeOffers,
-  type CastChapter,
-  lifeNotice,
-  personChapter,
-  SITE_CAST,
-} from '../../shared/cast-chapter.ts';
-import { VOICE_DISCOVERIES } from '../../shared/cast-discoveries.ts';
+} from './hf4-model.ts';
+import { successChance } from './hf4-town-run.ts';
 
 export const TOWN_DEFAULTS = {
   /** Clock at creation (minute of day 0). */
@@ -223,6 +212,17 @@ export function selinEidCallMinute(state: Pick<TownState, 'halilCallTimes'>): nu
   return Math.min(T.selinEidCallLatest, Math.max(T.selinEidCallFrom, Math.round(usual) + T.selinEidWait));
 }
 
+/** Authored outgoing window and actual last-conversation gap; no forecast of reception. */
+export function outgoingCallWindow(now: Minute, state: Pick<TownState, 'lastCall'>, eidDay = TOWN_EID_DAY) {
+  const opens = (day: number) => (day >= eidDay ? TOWN_DEFAULTS.eidCallFrom : 18 * 60);
+  const ready = Math.max(
+    now,
+    state.lastCall === undefined ? now : state.lastCall.at + TOWN_DEFAULTS.halilCallGap,
+  );
+  const day = dayOf(ready) + (minuteOfDay(ready) >= TOWN_DEFAULTS.dayTo ? 1 : 0);
+  return { from: opens(dayOf(now)), next: Math.max(ready, day * MINUTES_PER_DAY + opens(day)) };
+}
+
 /** Each person's house (Selin lives in the city). */
 export const homeOf = (id: PersonId): string => (id === 'selin' ? 'city' : `${id}-home`);
 
@@ -251,7 +251,7 @@ export interface TownState {
   castDiscoveries?: string[];
   selinEnquirySaidAt?: Minute;
   /** Voice3 source receipts; never sent in the persona projection. */
-  selinPaidMakeUps?: ReturnType<typeof retirePaidMakeUps>;
+  selinPaidMakeUps?: { ofId: string; scheduledAs?: string }[];
   now: Minute;
   rng: RngState;
   money: Record<PersonId, number>;
@@ -275,6 +275,7 @@ export interface TownState {
   lastCollect?: number;
   /** Minute the last call between Halil and Selin ended, and who placed it. */
   lastCall?: { at: Minute; by: PersonId };
+  unansweredCall?: { at: Minute; by: PersonId; to: PersonId };
   /** Minute of day of Halil's last few own calls to Selin (optional; absent in states from before it existed). */
   halilCallTimes?: number[];
   /** What the doctor last told each person, and when (optional; absent in states from before it existed). */
@@ -292,9 +293,12 @@ export interface TownState {
 export interface Town extends World {
   state: TownState;
   calendar: PrayerCalendar;
+  ramadan: { firstDay: number; days: number };
+  fork(): Town;
+  accept(other: Town): void;
   queue(personId: PersonId, percept: Percept): void;
   /** Material shortfall used for scarcity: rent owed beyond cash, as a share of a month's rent. */
-  shortfall(p: Person): Unit;
+  shortfall(p: VoicePerson): Unit;
 }
 
 export interface TownOptions {
@@ -401,7 +405,7 @@ const ties = (pairs: [PersonId, string][]): NonNullable<PersonSpec['relationship
     trust: 0.6,
   }));
 
-/** Person specs for the five townspeople. Ids are fixed; `now` is the creation minute. */
+/** VoicePerson specs for the five townspeople. Ids are fixed; `now` is the creation minute. */
 export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSpec> {
   const T = TOWN_DEFAULTS;
   const now = opts.now ?? T.start;
@@ -413,25 +417,36 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
   const eidDay = first + days;
   const eidWindowAt = eidWindow(eidDay, townCalendar);
   const worship = (practice: number): NonNullable<PersonSpec['commitments']> =>
-    practice >= 0.5
+    practice > 0
       ? [
-          ...prayerWindows(day, townCalendar).map((c, i) =>
-            // A window already closed at creation starts tomorrow: it was not missed, it had not begun for him yet
-            // (game design review 2026-10-03: "ashamed (a prayer missed)" on the first screen).
-            c.until <= now
-              ? { ...c, from: c.from + MINUTES_PER_DAY, until: c.until + MINUTES_PER_DAY, id: `prayer${i}` }
-              : { ...c, id: `prayer${i}` },
-          ),
+          ...prayerWindows(day, townCalendar).filter((c) => c.until > now),
           ...(opts.eidPrayer !== false && eidWindowAt.until > now
             ? [{ ...eidPrayer(eidWindowAt), id: 'eid-prayer' }]
             : []),
         ]
       : [];
   // Tea is drink: the tea house is an evening place in Ramadan.
-  const fast = (violatedBy: string[] = ['eat', 'drink', 'tea']): NonNullable<PersonSpec['commitments']> => [
-    { ...ramadanFast(first, days, townCalendar, { violatedBy }), id: 'fast' },
-    ...ramadanMeals(first, days, townCalendar).map((c, i) => ({ ...c, id: `meal${i}` })),
-  ];
+  const fast = (violatedBy: string[] = ['eat', 'drink', 'tea']): NonNullable<PersonSpec['commitments']> =>
+    day >= first && day < first + days
+      ? [
+          {
+            kind: 'abstain',
+            id: `sawm:${day}:fast`,
+            actions: [],
+            violatedBy,
+            from: day * 1440 + townCalendar(day).fajr,
+            until: day * 1440 + townCalendar(day).maghrib,
+            normId: 'sawm',
+            importance: 0.9,
+            exemptWhen: ['illness', 'travel'],
+            label: 'fast',
+          },
+          ...ramadanMeals(day, 1, townCalendar)
+            .filter((c) => c.until > now)
+            .map((c, i) => ({ ...c, id: `meal:${day}:${c.label}` })),
+        ]
+      : [];
+
   const job = (
     id: string,
     action: string,
@@ -604,15 +619,15 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
   return specs;
 }
 
-/** The five townspeople as `Person`s, with the beliefs, illness and habit the town's stories need. */
-export function townPeople(opts: TownOptions = {}): Record<TownPersonId, Person> {
+/** The five townspeople as `VoicePerson`s, with the beliefs, illness and habit the town's stories need. */
+export function townPeople(opts: TownOptions = {}): Record<TownPersonId, VoicePerson> {
   const T = TOWN_DEFAULTS;
   const specs = townSpecs(opts);
-  const people = {} as Record<TownPersonId, Person>;
-  for (const id of TOWN_IDS) people[id] = createPerson(specs[id]);
+  const people = {} as Record<TownPersonId, VoicePerson>;
+  for (const id of TOWN_IDS) people[id] = createOpening(specs[id]);
   const now = people.halil.now;
   // Halil: hypertension (chronic, aggravated by smoking) and the mid-morning cigarette.
-  sicken(people.halil, {
+  authorIllness(people.halil, {
     kind: 'hypertension',
     severity: T.hypertension,
     trendPerDay: 0,
@@ -639,17 +654,18 @@ export function townPeople(opts: TownOptions = {}): Record<TownPersonId, Person>
     craving: T.mealSmokeHabit.craving,
   });
   seedGrief(people.halil, now);
+  // Opening belief strengths are literal authoring, so browsers do no platform logarithms.
   // What people believe going in. Advice beliefs ('<listener>:should:<action>') become suggestions in calls.
-  believe(people.selin, 'halil:should:see-doctor', true, 0.9, 'selin', now);
-  believe(people.selin, 'halil:should:rest', true, 0.7, 'selin', now);
-  believe(people.riza, 'halil:should:tea', true, 0.8, 'riza', now);
-  believe(people.hacer, 'osman:stingy', true, 0.9, 'hacer', now);
-  believe(people.hacer, 'riza:lazy', true, 0.8, 'hacer', now);
-  believe(people.osman, 'halil:owes:osman', true, 0.95, 'osman', now);
-  believe(people.osman, 'halil:reliable', true, 0.6, 'osman', now);
+  authorBelief(people.selin, 'halil:should:see-doctor', true, 2.1972245773362196, 'selin', now);
+  authorBelief(people.selin, 'halil:should:rest', true, 0.8472978603872034, 'selin', now);
+  authorBelief(people.riza, 'halil:should:tea', true, 1.3862943611198908, 'riza', now);
+  authorBelief(people.hacer, 'osman:stingy', true, 2.1972245773362196, 'hacer', now);
+  authorBelief(people.hacer, 'riza:lazy', true, 1.3862943611198908, 'hacer', now);
+  authorBelief(people.osman, 'halil:owes:osman', true, 2.9444389791664394, 'osman', now);
+  authorBelief(people.osman, 'halil:reliable', true, 0.4054651081081642, 'osman', now);
   if (opts.cold) {
     const sick = people[opts.cold as TownPersonId];
-    if (sick) sicken(sick, { kind: 'cold', severity: 0.6, trendPerDay: -0.08, contagious: true });
+    if (sick) authorIllness(sick, { kind: 'cold', severity: 0.6, trendPerDay: -0.08, contagious: true });
   }
   return people;
 }
@@ -659,14 +675,14 @@ export function townPeople(opts: TownOptions = {}): Record<TownPersonId, Person>
  * episodes are what the story needs to be recallable, and the mosque expectation is the lever that makes praying
  * there heavy for him (recall runs after a choice, so the mosque episode alone would not move it).
  */
-function seedGrief(halil: Person, now: Minute): void {
+function seedGrief(halil: VoicePerson, now: Minute): void {
   const T = TOWN_DEFAULTS;
   const died = now - T.nuranDiedDaysBefore * MINUTES_PER_DAY;
   const dayStart = (m: Minute) => Math.floor(m / MINUTES_PER_DAY) * MINUTES_PER_DAY;
   const lastRamadan = dayStart(now) - 354 * MINUTES_PER_DAY;
   // Not 'outcome' episodes tagged 'completed': those are read as his last action (the habit cue).
   const base = { kind: 'witnessed', actorId: 'halil', targetId: 'nuran' } as const;
-  remember(halil, {
+  authorEpisode(halil, {
     ...base,
     at: dayStart(died) + MINUTES_PER_DAY + 14 * 60,
     action: 'funeral',
@@ -678,7 +694,7 @@ function seedGrief(halil: Person, now: Minute): void {
   });
   // The two home memories carry no place: every activity at home would cue them (place alone crosses the recall
   // threshold), so only eating and the cigarette bring them back.
-  remember(halil, {
+  authorEpisode(halil, {
     ...base,
     at: lastRamadan + 19 * 60,
     action: 'eat',
@@ -687,7 +703,7 @@ function seedGrief(halil: Person, now: Minute): void {
     summary: 'iftar with Nuran at our table, last Ramadan',
     tags: ['food'],
   });
-  remember(halil, {
+  authorEpisode(halil, {
     ...base,
     at: lastRamadan + 20 * 60,
     action: 'smoke',
@@ -697,7 +713,7 @@ function seedGrief(halil: Person, now: Minute): void {
     tags: ['leisure'],
   });
   // Not action 'pray': a prayer at home must not bring the mosque back; being at the mosque does.
-  remember(halil, {
+  authorEpisode(halil, {
     ...base,
     kind: 'social',
     at: dayStart(died) + 2 * MINUTES_PER_DAY + 13 * 60,
@@ -708,7 +724,7 @@ function seedGrief(halil: Person, now: Minute): void {
     summary: 'condolences at the mosque after the funeral',
     tags: ['loss'],
   });
-  remember(halil, {
+  authorEpisode(halil, {
     ...base,
     at: dayStart(died) - 40 * MINUTES_PER_DAY + 11 * 60,
     action: 'see-doctor',
@@ -747,7 +763,7 @@ const isDaytime = (now: Minute): boolean => {
 };
 
 /** Build the town world over `people` (normally `townPeople()`); `seed` drives outcome randomness. */
-export function createTown(people: readonly Person[], opts: TownOptions & { seed: number }): Town {
+export function createTown(people: readonly VoicePerson[], opts: TownOptions & { seed: number }): Town {
   const T = TOWN_DEFAULTS;
   const first = opts.ramadanFirstDay ?? T.ramadanFirstDay;
   const days = opts.ramadanDays ?? T.ramadanDays;
@@ -774,6 +790,14 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
   if (!opts.state) for (const p of people) state.money[p.id] = T.startingMoney[p.id] ?? 100;
   const eidDay = first + days;
   const rentDueDay = opts.rentDueDay ?? T.rentDueDay;
+  /** Host calendar bookkeeping only. HF owns duties, exemptions, illness and make-ups. */
+  const onDay = (personId: string, day: number): void => {
+    const seen = state.days[personId] ?? [];
+    if (seen.includes(day)) return;
+    state.days[personId] = [...seen, day];
+    if (personId === 'halil' && day >= rentDueDay && (day - rentDueDay) % T.rentEvery === 0)
+      state.rentOwed += T.rent;
+  };
   const count = (pid: PersonId, action: string) => {
     const row = state.completed[pid] ?? {};
     state.completed[pid] = row;
@@ -784,71 +808,11 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     state.queued[personId] = list;
     list.push(percept);
   };
-  const shortfall = (p: Person): Unit => {
+  const shortfall = (p: VoicePerson): Unit => {
     if (p.id !== 'halil') return 0;
     const debt = Math.max(0, state.rentOwed - (state.money[p.id] ?? 0));
     return Math.max(0, Math.min(1, debt / T.rent));
   };
-  const retimer = calendarRetimer(townCalendar);
-
-  const onDay = (p: Person, day: number): void => {
-    const list = state.days[p.id] ?? [];
-    state.days[p.id] = list;
-    list.push(day);
-    const now = p.now;
-    // Prayer windows and fast meals follow the calendar; an illness or journey releases today's fast.
-    retimeCommitments(p, now, retimer);
-    applyExemptions(p, now);
-    if (opts.distinctMakeUpDays && p.id === 'selin') {
-      const paid = retirePaidMakeUps(p);
-      if (paid.length) state.selinPaidMakeUps = [...(state.selinPaidMakeUps ?? []), ...paid].slice(-64);
-    }
-    // Make-up fasts are scheduled one per owed day after Ramadan, starting the day AFTER Eid al-Fitr (the day
-    // following the last fast, `first + days`): fasting on the day of Eid is widely held to be prohibited (Bukhari
-    // 1990 / Muslim 1137 as cited by review 2026-10-03; sunnah.com returned 403, so not verified here and not
-    // recorded in research/ yet). Skipping the day is a scheduling choice, not a ruling the framework applies.
-    // With these defaults (30 fasts from day 1) Eid is day 31 (docs/games/voice.md §5).
-    // Missed prayers (qada, research/decisions.md) are offered quietly the same day, between Dhuhr and Asr: a window
-    // with no disliked time in it (agenda/prayer.ts `makruhWindows`), at most `qadaPerDay` a day, at low importance.
-    // A make-up left undone carries no blame and is offered again on a later day (agenda SCOPE, missed duties).
-    let k = 0;
-    let qada = 0;
-    let nextFast = Math.max(day + 1, first + days + 1);
-    const reserved = new Set(
-      p.agenda.commitments
-        .filter((c) => c.makeUpOf && c.kind === 'abstain' && c.status === 'pending')
-        .map((c) => dayOf(c.from)),
-    );
-
-    for (const owed of owedMakeUps(p)) {
-      if (owed.kind === 'worship') {
-        if (qada >= T.qadaPerDay) continue;
-        qada++;
-        const t = townCalendar(day);
-        scheduleMakeUp(
-          p,
-          owed.ofId,
-          { from: day * MINUTES_PER_DAY + t.dhuhr + 15, until: day * MINUTES_PER_DAY + t.asr - 15 },
-          { importance: T.qadaImportance, actions: ['pray-qada'] },
-        );
-        continue;
-      }
-      let d = first + days + 1 + k++;
-      if (opts.distinctMakeUpDays) {
-        while (reserved.has(nextFast)) nextFast++;
-        d = nextFast++;
-        reserved.add(d);
-      }
-      const t = townCalendar(d);
-      scheduleMakeUp(p, owed.ofId, {
-        from: d * MINUTES_PER_DAY + t.fajr,
-        until: d * MINUTES_PER_DAY + t.maghrib,
-      });
-    }
-    if (p.id === 'halil' && day >= rentDueDay && (day - rentDueDay) % T.rentEvery === 0)
-      state.rentOwed += T.rent;
-  };
-
   /** Whether `at` falls in a Ramadan meal window (suhoor or iftar) of the day it belongs to. */
   const mealWindow = (at: Minute): 'suhoor' | 'iftar' | undefined => {
     const day = dayOf(at);
@@ -879,7 +843,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     return undefined;
   };
 
-  const affordancesFor = (p: Person): Affordance[] => {
+  const affordancesFor = (p: VoicePerson): Affordance[] => {
     const now = p.now;
     state.now = Math.max(state.now, now);
     const daytime = isDaytime(now);
@@ -978,17 +942,16 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         norms: [{ normId: 'salah', relation: 'fulfills' }],
         tags: ['worship'],
       });
-    // A make-up prayer scheduled for now (see `onDay`): quiet, at home, no norm term of its own (the make-up
-    // commitment's low importance is its whole pull).
-    if (
-      p.agenda.commitments.some(
-        (c) => c.status === 'pending' && c.actions.includes('pray-qada') && now >= c.from && now < c.until,
-      )
-    )
+    // Actual HF-created make-ups are linked explicitly to the opportunity that can fulfill them.
+    const qada = p.agenda.commitments.filter(
+      (c) => c.makeUpOf && c.kind === 'worship' && c.status === 'pending' && now >= c.from && now < c.until,
+    );
+    if (qada.length)
       out.push({
         id: 'pray-qada',
         action: 'pray-qada',
         label: 'make up a missed prayer',
+        fulfills: qada.map((c) => c.id),
         placeId: home,
         duration: 15,
         effort: 0.1,
@@ -1023,7 +986,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
       for (const peer of lifeAdmission(ownChapter.input, 'voice').life.notices) {
         const role = Object.entries(SITE_CAST.voice ?? {}).find(([, cast]) => cast === peer)?.[0];
         const q = people.find((q) => q.id === role);
-        if (role && role !== p.id && q?.body.alive && !q.body.asleep)
+        if (role && role !== p.id && q?.life.alive && !q.body.asleep)
           talk(
             role,
             ownChapter.input.life.place === 'home' ? homeOf(p.id as TownPersonId) : 'public-garden',
@@ -1076,7 +1039,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         if (!eid || mod >= T.eidMorningFrom) talk('riza', 'teahouse', 'tea', 'tea with Rıza');
         talk('hacer', 'halil-home', 'talk', 'talk with Hacer at the door');
         // One call an evening at most from his side.
-        if (calls && (state.lastCall === undefined || now - state.lastCall.at >= T.halilCallGap)) {
+        if (now >= outgoingCallWindow(now, state, eidDay).next) {
           talk('selin', 'halil-home', 'call', 'call Selin');
           // Keyed to Selin, so his learned expectation of calling her is apart from any other call.
           const call = out.at(-1);
@@ -1085,7 +1048,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         // Nuran's grave: after Asr on any day, and from the morning on Eid.
         // The Eid prayer (on unless `eidPrayer: false`): congregational at the mosque over `eidWindow`, linked to the
         // recommended 'eid-prayer' norm (research/eid-and-mourning-sources.md §1). A quiet option, not a goal.
-        if (opts.eidPrayer !== false && eid) {
+        if (opts.eidPrayer !== false && eid && !state.completed[p.id]?.['pray-eid']) {
           const w = eidWindow(day, townCalendar);
           if (now >= w.from && now < w.until)
             out.push({
@@ -1328,11 +1291,10 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         advertises: { competence: 0.08, belonging: 0.05 },
         tags: ['work'],
       });
-    applyLifeOffers('voice', p, out, opts.castChapter);
     return out;
   };
 
-  const resolve = (p: Person, act: Activity, reason: 'ended' | 'interrupted'): Outcome => {
+  const resolve = (p: VoicePerson, act: Activity, reason: 'ended' | 'interrupted'): Outcome => {
     const now = p.now;
     state.now = Math.max(state.now, now);
     const aff = act.affordance;
@@ -1366,8 +1328,6 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     const done = (o: Outcome) => {
       if (o.status === 'completed') {
         count(p.id, act.action);
-        if (['tea', 'talk', 'call'].includes(act.action) && lifeNotice(p))
-          o.summary = `${o.summary ?? aff.label}. ${lifeNotice(p)}`;
         const witnesses = [p.id, ...(aff.with ?? [])];
         const roles =
           act.action === 'work-repair' && p.id === 'halil'
@@ -1568,7 +1528,13 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           });
         return done({ ...base, needs: { esteem: 0.05 }, summary: 'called on Halil about the rent' });
       }
-      case 'call':
+      case 'call': {
+        const recipient = people.find((other) => other.id === aff.with?.[0]);
+        if (!recipient || !recipient.life.alive || recipient.body.asleep) {
+          if (aff.with?.[0]) state.unansweredCall = { at: now, by: p.id, to: aff.with[0] };
+          if (p.id === 'selin' && aff.with?.includes('halil')) state.selinMissedAt = now;
+          return { ...base, status: 'failed', summary: `${aff.label}: no answer` };
+        }
         if (
           p.id === 'selin' &&
           aff.with?.includes('halil') &&
@@ -1604,6 +1570,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           }
         }
         return done({ ...base, needs: { belonging: 0.3, leisure: 0.15 }, summary: aff.label });
+      }
       case 'tea':
       case 'talk':
         // The exchange itself runs through the driver's conversation convention when this completes.
@@ -1613,7 +1580,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     }
   };
 
-  const perceptsFor = (p: Person, since: Minute, until: Minute): Percept[] => {
+  const perceptsFor = (p: VoicePerson, since: Minute, until: Minute): Percept[] => {
     state.now = Math.max(state.now, until);
     const list = state.queued[p.id];
     if (!list || list.length === 0) return [];
@@ -1623,8 +1590,8 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
   };
 
   const converse = (
-    speaker: Person,
-    listener: Person,
+    speaker: VoicePerson,
+    listener: VoicePerson,
     act: Activity,
   ): Partial<ConverseContext> | false | undefined => {
     // A call he did not answer (see `resolve`) is no conversation.
@@ -1647,7 +1614,13 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
 
   return {
     state,
+    fork: () => createTown(people, { ...opts, seed: 0, state: structuredClone(state) }),
+    accept: (other) => {
+      for (const key of Object.keys(state)) delete (state as unknown as Record<string, unknown>)[key];
+      Object.assign(state, other.state);
+    },
     calendar: townCalendar,
+    ramadan: { firstDay: first, days },
     now: () => state.now,
     queue,
     shortfall,

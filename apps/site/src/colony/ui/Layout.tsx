@@ -2,11 +2,13 @@ import type { ReactNode } from 'react';
 import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
-import { APPEALS, type AppealChip, type OrderCard, type OrderInput } from '../sim/orders.ts';
+import { APPEALS, type AppealChip, isSettled, type OrderCard, type OrderInput } from '../sim/orders.ts';
 import { VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
+import { ConstructionReadout, ConstructionRequirements, RoofRisk } from './Construction.tsx';
 import { dayClock, type Frame, NO_CONCEPT } from './contract.ts';
 import { activityLabel, moodDescription, needDescription, trustDescription } from './descriptions.ts';
 import { RingTimer } from './Icon.tsx';
+import { OrderWorkEvents } from './OrderWorkEvents.tsx';
 import { homeOrderMeaning, latestPersonOrder } from './order-status.ts';
 import {
   CHIP_TEXT,
@@ -103,6 +105,12 @@ export function StateStrip({ frame, pace, onOpen }: { frame: Frame | null; pace:
           </span>
         ))}
       </button>
+      {frame && (
+        <>
+          <RoofRisk world={frame.classicWorld} minute={frame.minute} side="Classic" />
+          <RoofRisk world={frame.humanWorld} minute={frame.minute} side="Human" />
+        </>
+      )}
       <p className="well-pace" role="status">
         {settingWords(pace)}
       </p>
@@ -372,8 +380,11 @@ export function PersonSheet({
                       Waiting for an answer to this order.{' '}
                       {card.human.says && (
                         <>
-                          Recorded words: {settingWords(card.human.says)} Answer time unavailable. This is not
-                          current speech.
+                          Recorded words: {settingWords(card.human.says)}{' '}
+                          {card.human.answerObservedAt === undefined
+                            ? 'Answer time unavailable.'
+                            : `Answer observed at ${dayClock(card.human.answerObservedAt)}; exact speech time unavailable.`}{' '}
+                          This is not current speech.
                         </>
                       )}
                     </>
@@ -381,7 +392,10 @@ export function PersonSheet({
                     <>
                       Answer to this order:{' '}
                       {settingWords(card.human.says ?? card.human.label ?? 'No spoken answer available.')}{' '}
-                      Answer time unavailable. This is not current speech.
+                      {card.human.answerObservedAt === undefined
+                        ? 'Answer time unavailable.'
+                        : `Answer observed at ${dayClock(card.human.answerObservedAt)}; exact speech time unavailable.`}{' '}
+                      This is not current speech.
                     </>
                   )}
                 </p>
@@ -396,6 +410,7 @@ export function PersonSheet({
                 ) : null}
               </div>
               {card.human.outcome && <p>{settingWords(card.human.outcome)}</p>}
+              <OrderWorkEvents events={card.human.workEvents} />
               {card.order.action === 'cook' && card.human.says?.includes('enough food stored') && (
                 <p className="well-food-explanation">
                   Before storm preparations, villagers cook for ordinary meals. The storm reserve is a
@@ -408,68 +423,38 @@ export function PersonSheet({
             <p>Choose a place. Each order goes to both villages.</p>
           )}
         </section>
-        <details className="well-order-goals" aria-label="Current stores and construction">
-          <summary>Current stores and construction</summary>
+        <section className="well-order-goals" aria-label="Current stores and construction">
+          <h3>Current stores and construction</h3>
           {(['classic', 'human'] as const).map((side) => {
             const world = side === 'classic' ? frame.classicWorld : frame.humanWorld;
-            const project = world.project;
-            const open = project.stage < project.stages;
+            const ended = card && (card.status !== 'active' || isSettled(card[side]));
+            const roofWork = card && ['build', 'raise-beam'].includes(card.order.action);
             return (
-              <p key={side}>
-                {side === 'classic' ? 'Classic' : 'Human'} village:{' '}
-                {project.kind === 'house' ? 'roof' : 'store-room'} {project.stage} of {project.stages} stages
-                {open ? `; ${Math.floor(world.houseProgress * 100)}% toward the next stage` : ''};{' '}
-                {world.resources.meals}
-                {stockGoal ? ` of ${stockGoal.targetValue}` : ''} meals currently in store.
-                {open && (
-                  <span>
-                    {' '}
-                    Current activity for {shortName(id)}:{' '}
-                    {side === 'human'
-                      ? settingWords(activityLabel(h?.label ?? 'unknown'))
-                      : settingWords(activityLabel(c?.label ?? 'unknown'))}
-                    . An incomplete stage does not establish why work is delayed.
-                  </span>
-                )}
-                {open && !world.construction && <span> The cause of the remaining delay is unknown.</span>}
-                {world.construction ? (
-                  <span className="well-building-details">
-                    {' '}
-                    Timber in store: {world.construction.stockTimber}.
-                    {world.shuttered
-                      ? ' The shutters are closed; this does not close the building site.'
-                      : ''}
-                    {world.construction.payment === 'on-site'
-                      ? ' Materials for this stage are already on site.'
-                      : ''}
-                    {world.construction.nextStage !== null
-                      ? ` Next ${world.construction.nextWork === 'beam' ? 'beam work' : 'stage'}: ${world.construction.nextTimber} timber${world.construction.payment === 'on-site' ? ' already paid' : ' needed from stores'}.`
-                      : world.construction.active.length
-                        ? ' No further stage can be claimed yet.'
-                        : open
-                          ? ' The cause of the remaining delay is unknown.'
-                          : ' Building is complete.'}
-                    {world.construction.payment === 'unpaid' &&
-                    world.construction.nextTimber !== null &&
-                    world.construction.stockTimber < world.construction.nextTimber
-                      ? ' There is not enough timber in store for that work.'
-                      : ''}
-                    {world.construction.active
-                      .map((a) => ` ${shortName(a.personId)} is working on stage ${a.stage}.`)
-                      .join('')}
-                    {world.construction.selectedOffer
-                      ? world.construction.selectedOffer.beam
-                        ? ' Raising the beam is available to this person; they still choose.'
-                        : world.construction.selectedOffer.build
-                          ? ' Building is available to this person; they still choose.'
-                          : ' Building is not currently offered to this person.'
-                      : ''}
-                  </span>
-                ) : null}
-              </p>
+              <div key={side}>
+                <ConstructionReadout
+                  world={world}
+                  side={side === 'classic' ? 'Classic' : 'Human'}
+                  personId={id}
+                  activity={settingWords(
+                    activityLabel((side === 'human' ? h?.label : c?.label) ?? 'unknown'),
+                  )}
+                  {...(stockGoal ? { stockTarget: stockGoal.targetValue } : {})}
+                />
+                {ended &&
+                  roofWork &&
+                  world.project.kind === 'house' &&
+                  world.project.stage < world.project.stages && (
+                    <p className="well-roof-order-ended">
+                      This {side === 'classic' ? 'Classic' : 'Human'} order has ended. The roof is still
+                      unfinished now. A new order can ask for another work session. Human villagers may also
+                      choose more work on their own; another order does not guarantee the roof.
+                    </p>
+                  )}
+                <ConstructionRequirements world={world} />
+              </div>
             );
           })}
-        </details>
+        </section>
         <p className="well-draft-how">
           Next order: Rush {rush ? 'on' : 'off'} · Insist {insist ? 'on' : 'off'}. Rush means faster work and
           more hunger. Insist may cost trust. The person can still refuse or wait.
@@ -508,6 +493,7 @@ export function PersonSheet({
                 ? forecastWords(forecasts[pending].prediction.text)
                 : 'Checking the answer…'}
             </p>
+            <TaskContext job={inferredJob(frame, pending)} />
             <button type="button" className="well-send-anyway" onClick={onConfirm}>
               Send anyway
             </button>

@@ -210,6 +210,14 @@ export interface HumanSideEvents {
   lapsed?: { orderId: string; personId: VillagerId; says: string }[];
   /** Orders whose job finished (the card settles on this side). */
   completed: { orderId: string; personId: VillagerId; result?: string }[];
+  /** Actual same-action work begun after a request. Chronology only; the public activity has no exact advice identity or counterfactual cause. */
+  workEvents?: {
+    orderId: string;
+    minute: Minute;
+    kind: 'injury' | 'interrupted';
+    activityId: string;
+    action: string;
+  }[];
   /** New bubbles emitted this step (verdict lines and thoughts). */
   bubbles: Bubble[];
   injuries: { personId: VillagerId; kind: 'collapse' | 'injury' | 'weather'; minute: Minute }[];
@@ -233,7 +241,16 @@ export interface ConstructionView {
   nextTimber: number | null;
   payment: 'on-site' | 'unpaid' | 'claimed' | 'not-needed';
   nextWork: 'ordinary' | 'beam' | 'none';
-  active: { personId: VillagerId; stage: number; action: 'build' | 'raise-beam' }[];
+  active: {
+    personId: VillagerId;
+    stage: number;
+    action: 'build' | 'raise-beam';
+    phase?: 'travelling' | 'working';
+  }[];
+  /** Known physical facts only; no explanation of a Person’s preference. */
+  constraints?: string[];
+  normalSession?: { minutes: number; progress: number };
+  selectedPersonId?: VillagerId;
   selectedOffer?: { build: boolean; beam: boolean };
 }
 
@@ -298,9 +315,9 @@ export interface HumanSide {
  * 7: fresh orders gain a small, fading suggestion-strength boost for one hour.
  * 8 (current): Home requests shelter until the next dawn, retaining independent HF decisions.
  */
-export type ColonyRules = 3 | 4 | 5 | 6 | 7 | 8;
-export const CURRENT_RULES: ColonyRules = 8;
-export const RULES: readonly ColonyRules[] = [3, 4, 5, 6, 7, 8];
+export type ColonyRules = 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export const CURRENT_RULES: ColonyRules = 9;
+export const RULES: readonly ColonyRules[] = [9];
 export const scenarioOf = (rules: ColonyRules): string => `colony-scenario@${rules}`;
 /** The rules a scenario string names, if this build still plays them. */
 export function rulesOf(scenario: unknown): ColonyRules | null {

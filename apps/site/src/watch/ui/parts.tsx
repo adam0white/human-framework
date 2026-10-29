@@ -1,5 +1,4 @@
 /** Small drawn pieces shared by the pages: the granary's sacks, the bell rope's strands, the Keeper's impressions. */
-import type { CSSProperties } from 'react';
 import { settingWords } from '../../shared/setting-words.ts';
 import type { Impression } from '../sim/reads.ts';
 import type { Frame } from '../sim/view.ts';
@@ -95,7 +94,13 @@ export function Impressions({ impressions }: { impressions: Impression[] }) {
         <span
           key={im.text}
           className={im.sure <= 0 ? 'w-imp is-unknown' : 'w-imp'}
-          style={{ '--sure': im.sure } as CSSProperties}
+          title={
+            im.sure > 0.6
+              ? 'A clear impression'
+              : im.sure > 0.35
+                ? 'An uncertain impression'
+                : 'Little is known'
+          }
         >
           {im.text}
         </span>

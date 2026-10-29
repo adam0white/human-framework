@@ -370,7 +370,7 @@ it('holds revealed words through body changes in the same scene and answer occas
   const { el, props, update } = mount();
   click(el, '.v-conversation-listen');
   const words = el.querySelector('.v-scene-stage .v-exchange')?.textContent;
-  props.frame.halil.felt = [{ id: 'tired', word: 'tired', level: 0.9 }];
+  props.frame.halil.felt = [{ id: 'tired', word: 'tired', level: 'high' }];
   props.frame.minute += 1;
   update();
   expect(el.querySelector('.v-scene-stage .v-exchange')?.textContent).toBe(words);
@@ -564,7 +564,7 @@ it('binds care words and occasion to the rendered line instead of the current ki
   if (!target) throw Error('No care line');
   const words = target.textContent;
   pointer(target, 'pointerdown');
-  props.frame.halil.felt = [{ id: 'tired', word: 'tired', level: 0.9 }];
+  props.frame.halil.felt = [{ id: 'tired', word: 'tired', level: 'high' }];
   update(false);
   expect(target.textContent).toBe(words);
   pointer(target, 'pointerup');
@@ -762,4 +762,54 @@ it('rejects a frozen planner action that has expired without a new scene beat', 
   click(el, '.v-say .v-btn-primary');
   expect(props.onSuggest).not.toHaveBeenCalled();
   expect(el.textContent).toContain('That moment has passed. Nothing was said.');
+});
+
+it('acknowledges retained updates and personal words together with one Continue', () => {
+  const { el, props, update } = mount(false);
+  props.frame.sceneWords = [
+    {
+      beat: 'care:retained',
+      day: 1,
+      minute: 600,
+      clock: '10:00',
+      kind: 'care',
+      words: 'I am here.',
+      answer: 'I heard you.',
+    },
+  ];
+  update();
+  props.frame.log.push({
+    id: 'ended-combined',
+    day: 1,
+    minute: 601,
+    clock: '10:01',
+    kind: 'note',
+    who: 'you',
+    text: 'Your suggestion has ended: he fell asleep.',
+  });
+  props.frame.minute = 601;
+  update();
+  const continues = [...el.querySelectorAll('button')].filter((b) => b.textContent?.trim() === 'Continue');
+  expect(continues).toHaveLength(1);
+  click(el, '.v-personal-leave');
+  expect(el.querySelector('.v-personal-reply')).toBeNull();
+  expect(el.querySelector('[aria-label="While you waited"]')).toBeNull();
+  expect(props.onSayNothing).not.toHaveBeenCalled();
+  expect(props.onSuggest).not.toHaveBeenCalled();
+});
+
+it('keeps the observed alternate-completion receipt in scene updates', () => {
+  const { el, props, update } = mount(false);
+  const text = 'He did something close to what you suggested: pray at home.';
+  props.frame.log.push({
+    id: 'alternate-finish',
+    day: 1,
+    minute: 600,
+    clock: '10:00',
+    kind: 'note',
+    who: 'you',
+    text,
+  });
+  update();
+  expect(el.textContent).toContain(text);
 });

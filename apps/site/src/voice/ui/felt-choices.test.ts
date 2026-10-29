@@ -38,8 +38,8 @@ describe('Halil’s words and independent choices', () => {
 it('keeps trust and ends in words across player panels', () => {
   const voices = sampleFrame.voices.map((v) => ({
     ...v,
-    trust: 0.52,
-    history: [{ delta: 0.02, text: '+0.02 the meal went well' }],
+    trust: 'moderate',
+    history: [{ direction: 'up' as const, text: '+0.02 the meal went well' }],
   }));
   const voiceHtml = renderToStaticMarkup(createElement(VoicesPane, { voices }));
   expect(voiceHtml).toContain('the meal went well');
@@ -60,13 +60,21 @@ it('keeps trust and ends in words across player panels', () => {
 it.each([
   [0.52, 'more closely'],
   [0.48, 'less closely'],
-  [0.5, 'about as closely as he did this morning'],
+  [0.5, 'about as closely as he did before'],
 ])('states the trust change to %s in words', (to, word) => {
   const html = renderToStaticMarkup(
     createElement(Between, {
       view: {
         ...sampleBetween,
-        trust: { from: 0.5, to, events: ['−0.01 being asked again'] },
+        trust: {
+          change:
+            to > 0.5
+              ? 'He listens more closely than before.'
+              : to < 0.5
+                ? 'He listens less closely than before.'
+                : 'He listens about as closely as he did before.',
+          events: ['−0.01 being asked again'],
+        },
         lines: ['His trust in you went 0.50 → 0.52.'],
       },
       onAdvance: () => {},
@@ -86,9 +94,9 @@ it('keeps a trust end in words while retaining counted monetary details', () => 
           label: 'Does he listen?',
           status: 'some',
           detail: 'Trust 0.50, up 0.02.',
-          progress: 0.5,
+          progress: 'moderate',
         },
-        { id: 'rent', label: 'Pay Osman', status: '40 in hand', detail: '600 owed', progress: 0.1 },
+        { id: 'rent', label: 'Pay Osman', status: '40 in hand', detail: '600 owed', progress: 'moderate' },
       ],
     }),
   );

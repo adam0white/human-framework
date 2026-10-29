@@ -1,8 +1,20 @@
+import {
+  createPerson,
+  createRun,
+  exportRun,
+  inspect,
+  type PersonAuthoring,
+  type Result,
+  type RunSpec,
+} from '@adam0white/human-framework';
 import type { PersonaEnvelope, PersonaShelfState } from '@adam0white/lab-client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import opening from '../../test/fixtures/hf4-checkpoint-opening.json';
+import { FRAMEWORK_PACKAGE_VERSION } from './playtest.ts';
 import { requireValue } from './require-value.ts';
 
 const control = vi.hoisted(() => ({
+  transportAdmission: false,
   state: { heads: {}, revisions: [] } as PersonaShelfState,
   puts: [] as PersonaEnvelope[],
   batches: 0,
@@ -103,6 +115,52 @@ vi.mock('@adam0white/lab-client', async () => {
     },
   };
 });
+// Public peer certification currently refuses these claims before transport races are reachable.
+// This double isolates admission only. Shelf preparation, hashing, dispatch and atomic CAS stay real.
+vi.mock('./cast-site-claim.ts', async () => {
+  const actual = await vi.importActual<typeof import('./cast-site-claim.ts')>('./cast-site-claim.ts');
+  return {
+    claimSiteCastBatch: async (...args: Parameters<typeof actual.claimSiteCastBatch>) => {
+      if (!control.transportAdmission) return actual.claimSiteCastBatch(...args);
+      const [shelf, castIds, source, admit, options = {}] = args;
+      const current = () => {
+        if (options.isCurrent && !options.isCurrent())
+          throw new Error('The run or identity changed. Choose again.');
+      };
+      current();
+      const batch = await shelf.request<import('@adam0white/lab-client').LifeBatchPreparation>({
+        action: 'prepareBatch',
+        castIds,
+      });
+      current();
+      for (const input of batch.inputs) {
+        await options.admitPerson?.(structuredClone(input));
+        current();
+      }
+      const initial =
+        batch.inputs.length || batch.blocked.length ? await admit(structuredClone(batch.inputs)) : undefined;
+      const { createPersona } = await import('@adam0white/lab-client');
+      const claims = await Promise.all(
+        batch.inputs.map(async (input) => {
+          const { revision, ...body } = input.parent;
+          return createPersona({
+            ...body,
+            parentRevision: revision,
+            source: body.source,
+            transfer: { ...body.transfer, life: input.life, portableClaim: { game: source.game } },
+          });
+        }),
+      );
+      current();
+      options.onDispatch?.();
+      await shelf.request({ action: 'putBatch', envelopes: claims, expectedHeads: batch.expectedHeads });
+      current();
+      return batch.inputs.length || batch.blocked.length
+        ? { initial, claims, inputs: batch.inputs, blocked: batch.blocked }
+        : null;
+    },
+  };
+});
 vi.mock('./playtest.ts', async () => ({
   ...(await vi.importActual('./playtest.ts')),
   fetchBuild: async () => 'control',
@@ -167,6 +225,7 @@ let close: (() => void) | undefined;
 beforeEach(() => {
   vi.stubGlobal('window', new EventTarget());
   vi.stubGlobal('document', Object.assign(new EventTarget(), { visibilityState: 'visible' }));
+  control.transportAdmission = false;
   control.state = { heads: {}, revisions: [] };
   control.puts = [];
   control.batches = 0;
@@ -186,26 +245,67 @@ afterEach(() => {
   close = undefined;
   vi.unstubAllGlobals();
 });
+// These small authored runs exercise real HF4 projection, receipt verification and shelf CAS.
+// FakeWorker controls only asynchronous transport; it does not establish any game's readiness.
+function need<T>(result: Result<T>): T {
+  if (!result.ok) throw new Error(result.error.message);
+  return result.value;
+}
+async function capture(id = 'hf.cast.riza.voice', game = 'voice') {
+  const role = requireValue(id.split('.')[2]);
+  const fixture = JSON.parse(
+    JSON.stringify(opening).replaceAll('hf.cast.selin.voice', id).replaceAll('selin', role),
+  );
+  fixture.spec.host.id = game;
+  fixture.spec.definitions.sources.find((source: { type: string }) => source.type === 'host').id = game;
+  const run = need(createRun(fixture.spec as RunSpec));
+  need(createPerson(run, fixture.person as PersonAuthoring));
+  const archive = exportRun(run);
+  const { canonicalCast, canonicalPersona } = await import('@adam0white/lab-client');
+  const reading = need(
+    inspect(run, {
+      perspective: { kind: 'host' },
+      people: [role],
+      select: ['persona'],
+      portable: { person: role, castId: id, castRevision: canonicalCast(id).revision },
+    }),
+  );
+  const portable = reading.people[0]?.parts[0]?.value;
+  const sha256 = Array.from(
+    new Uint8Array(
+      await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(archive))),
+    ),
+    (b) => b.toString(16).padStart(2, '0'),
+  ).join('');
+  return {
+    sourceSnapshot: archive,
+    transfer: {
+      castPassport: 'hf-portable-person/2',
+      sourceRole: role,
+      portable,
+      checkpoint: {
+        kind: 'hf-run/1',
+        engine: archive.engine,
+        sourceAt: archive.current.at,
+        person: role,
+        sha256,
+      },
+    },
+  };
+}
 async function head(id = 'hf.cast.riza.voice') {
+  const game = id.endsWith('.watch') ? 'watch' : id.endsWith('.well') ? 'well' : 'voice';
+  const { transfer } = await capture(id, game);
+  const { canonicalCast } = await import('@adam0white/lab-client');
   const branchId = `control-${id.split('.')[2]}`;
   return createPersona({
     format: 'hf-persona/1',
     castId: id,
-    castRevision: '1',
+    castRevision: canonicalCast(id).revision,
     branchId,
     parentRevision: null,
-    source: {
-      game: id.endsWith('.watch') ? 'watch' : 'voice',
-      engine: '2.17.0',
-      build: 'control',
-      rules: 'cast-1',
-    },
-    transfer: {
-      castPassport: 'site-cast/1',
-      sourceRole: id.split('.')[2],
-      life: initialPersonaLife(id, branchId, 0),
-      acquired: id,
-    },
+    source: { game, engine: FRAMEWORK_PACKAGE_VERSION, build: 'control', rules: 'cast-1' },
+    transfer: { ...transfer, life: initialPersonaLife(id, branchId, 0) },
     limitations: [],
   });
 }
@@ -224,11 +324,14 @@ async function checkpoint(worker: FakeWorker, id = 'hf.cast.riza.voice', game = 
   worker.reply({
     type: 'castReady',
     requestId: request.requestId,
-    transfer: { sourceRole: id.split('.')[2], engine: '2.17.0', acquired: id },
+    ...(await capture(id, game)),
   });
   await promise;
 }
-describe('whole-cast browser continuity', () => {
+describe('browser continuity transport with test admission', () => {
+  beforeEach(() => {
+    control.transportAdmission = true;
+  });
   it('does not cancel pending admission when recording identity acknowledges or changes', async () => {
     const old = await head();
     control.state = acceptPersona(control.state, old);
@@ -253,22 +356,6 @@ describe('whole-cast browser continuity', () => {
     expect(worker.requests('init')).toHaveLength(1);
   });
 
-  it('accepts the actual Watch night frame with no daytime summary', async () => {
-    const { WatchRun } = await import('../watch/sim/run.ts');
-    const { buildFrame } = await import('../watch/sim/view.ts');
-    const run = new WatchRun(4242);
-    run.input({ k: 'start' });
-    run.input({ k: 'begin' });
-    const frame = buildFrame(run.state, 0, false);
-    expect(frame.day).toBeNull();
-    const worker = new FakeWorker();
-    const listeners = vi.spyOn(worker, 'addEventListener');
-    close = bindCastWorker(worker as unknown as Worker, 'watch', lab as never);
-    const receive = listeners.mock.calls.find(([type]) => type === 'message')?.[1] as EventListener;
-    // Invoke the registered handler directly so EventTarget cannot defer a thrown error.
-    expect(() => receive(new MessageEvent('message', { data: { type: 'frame', frame } }))).not.toThrow();
-  });
-
   it('retains object and numeric day extraction for Voice checkpoint boundaries', async () => {
     const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
@@ -283,28 +370,17 @@ describe('whole-cast browser continuity', () => {
     'verifies %s source checksums and exports raw captures outside shelf envelopes',
     async (game) => {
       const id = game === 'watch' ? 'hf.cast.tamar.watch' : 'hf.cast.riza.voice';
-      const role = game === 'watch' ? 'tamar' : 'riza';
       const storage = new Map<string, string>();
       vi.stubGlobal('localStorage', {
         getItem: (key: string) => storage.get(key) ?? null,
         setItem: (key: string, value: string) => storage.set(key, value),
       });
-      const { canonicalPersona } = await import('@adam0white/lab-client');
       const worker = new FakeWorker();
       close = bindCastWorker(worker as unknown as Worker, game, lab as never);
       selectCast(game, id);
-      const raw = {
-        schema: 1,
-        now: 400,
-        rng: { a: 1, b: 2, c: 3, d: 4 },
-        privateSourceDetail: 'retained only at source',
-      };
-      const sha256 = Array.from(
-        new Uint8Array(
-          await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw))),
-        ),
-        (b) => b.toString(16).padStart(2, '0'),
-      ).join('');
+      const captured = await capture(id, game);
+      const raw = captured.sourceSnapshot;
+      const sha256 = captured.transfer.checkpoint.sha256;
       for (const digest of ['0'.repeat(64), sha256]) {
         const saving = checkpointCast(game);
         await vi.waitFor(() =>
@@ -313,18 +389,15 @@ describe('whole-cast browser continuity', () => {
         worker.reply({
           type: 'castReady',
           requestId: requireValue(worker.requests('castCheckpoint').at(-1)).requestId,
-          sourceSnapshot: raw,
-          transfer: {
-            castPassport: 'site-cast/1',
-            sourceRole: role,
-            engine: '2.17.0',
-            checkpoint: { schema: raw.schema, sourceMinute: raw.now, rng: raw.rng, sha256: digest },
-          },
+          ...captured,
+          transfer: { ...captured.transfer, checkpoint: { ...captured.transfer.checkpoint, sha256: digest } },
         });
         await saving;
         expect(control.puts.length).toBe(digest === sha256 ? 1 : 0);
       }
-      expect(JSON.stringify(control.puts)).not.toContain('privateSourceDetail');
+      expect(control.puts[0]?.transfer).not.toHaveProperty('sourceSnapshot');
+      expect(control.puts[0]?.source.engine).toBe(FRAMEWORK_PACKAGE_VERSION);
+      expect(control.puts[0]?.source.rules).toBe('hf4-cast-1');
       expect(JSON.parse(requireValue(localStorage.getItem(`hf-cast-source:${game}`)))).toEqual({ [id]: raw });
       const file: Record<string, unknown> =
         game === 'watch' ? { game: 'the-night-watch' } : { kind: 'human-playtest', game: 'voice' };
@@ -477,86 +550,35 @@ describe('whole-cast browser continuity', () => {
       expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(true);
     },
   );
-  it('queues begin behind actual prepared init and exports a replayable current chapter', async () => {
-    const { VoiceGame } = await import('../voice/sim/game.ts');
-    const { RecordedGame, replayVoice, voiceHash, voiceSnapshot, validateVoiceLog } = await import(
-      '../voice/sim/record.ts'
-    );
-    const { makePlaytestFile, parsePlaytest, decodeSnapshot } = await import('./playtest.ts');
-    const castId = 'hf.cast.riza.voice';
-    const parent = await createPersona({
-      format: 'hf-persona/1',
-      castId,
-      castRevision: '1',
-      branchId: 'queued-opening',
-      parentRevision: null,
-      source: { game: 'human', engine: '2.17.0', build: 'control', rules: 'cast-1' },
-      transfer: { castPassport: 'authored-cast/1', life: initialPersonaLife(castId, 'queued-opening', 0) },
-      limitations: ['Authored opening control; ordinary acquired-state proof is separate.'],
-    });
-    control.state = acceptPersona(control.state, parent);
-    let played: InstanceType<typeof RecordedGame> | undefined;
-    class PlayingWorker extends FakeWorker {
-      override postMessage(m: Record<string, unknown>) {
-        super.postMessage(m);
-        if (m.type === 'castPreflight') {
-          const chapter = m.chapter as import('./cast-chapter.ts').CastChapter;
-          new VoiceGame(1, 4, chapter);
-          queueMicrotask(() =>
-            this.reply({
-              type: 'castReady',
-              requestId: m.requestId,
-              initials: Object.fromEntries(
-                Object.entries(requireValue(chapter.people)).map(([id, p]) => [id, p.initial]),
-              ),
-            }),
-          );
-        }
-        if (m.type === 'init')
-          played = new RecordedGame(
-            new VoiceGame(1, 4, m.castChapter as import('./cast-chapter.ts').CastChapter),
-          );
-        if (m.type === 'begin') requireValue(played).apply({ type: 'begin' });
-      }
-    }
-    const worker = new PlayingWorker();
+  it('queues begin behind prepared init and drops transient controls during admission transport', async () => {
+    control.state = acceptPersona(control.state, await head());
+    const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
     postCastMessage(worker as unknown as Worker, 'voice', {
       type: 'init',
-      gen: 1,
       seed: 1,
+      gen: 1,
       castPreview: true,
     });
-    expect(control.batches).toBe(0);
     postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', castRunGeneration: 1 });
-    for (let n = 0; n < 100; n++)
-      postCastMessage(worker as unknown as Worker, 'voice', { type: 'tick', gen: 1, dtMs: 16 });
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'tick', gen: 1, dtMs: 16 });
     postCastMessage(worker as unknown as Worker, 'voice', { type: 'predict', gen: 1, requestId: 50 });
+    await vi.waitFor(() => expect(worker.requests('castPreflight')).toHaveLength(1));
     expect(worker.requests('begin')).toHaveLength(0);
     expect(worker.requests('tick')).toHaveLength(0);
     expect(worker.requests('predict')).toHaveLength(0);
+    control.autoPreflight = true;
+    worker.reply({
+      type: 'castReady',
+      requestId: worker.requests('castPreflight')[0]?.requestId,
+      initials: { 'hf.cast.riza.voice': '{}' },
+    });
     await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
-    expect(requireValue(played).game.phase).toBe('day');
-    expect(worker.sent.findIndex((m) => m.type === 'init')).toBeLessThan(
+    expect(worker.requests('init')).toHaveLength(2);
+    expect(worker.requests('begin')).toHaveLength(1);
+    expect(worker.sent.findLastIndex((m) => m.type === 'init')).toBeLessThan(
       worker.sent.findIndex((m) => m.type === 'begin'),
     );
-    requireValue(played).step(20);
-    const current = requireValue(played);
-    expect(JSON.stringify(current.log)).not.toContain('castRunGeneration');
-    const file = await makePlaytestFile({
-      game: 'voice',
-      seed: current.game.seed,
-      scenario: 'voice-4',
-      minute: current.game.t,
-      log: current.log,
-      hash: voiceHash(current.game),
-      engine: '2.17.0',
-      snapshot: voiceSnapshot(current.game),
-    });
-    const parsed = parsePlaytest(JSON.stringify(file), 'voice', 'voice-4', validateVoiceLog);
-    const saved = (await decodeSnapshot(parsed)) as { castChapter: import('./cast-chapter.ts').CastChapter };
-    const again = replayVoice(parsed.seed, parsed.log, 4, undefined, 0, saved.castChapter);
-    expect(voiceHash(again.rec.game)).toBe(parsed.hash);
   });
   it('finishes a dispatched explicit claim before loading, without running its queued begin in the replacement', async () => {
     control.state = acceptPersona(control.state, await head());
@@ -837,18 +859,12 @@ describe('whole-cast browser continuity', () => {
     expect(control.state).toEqual(before);
     expect(castState('voice').status).toMatch(/Another chapter owns/);
   });
-  it('an actual Watch actor death closes the owned branch and a stale source cannot reopen it', async () => {
+  it('a worker terminal receipt closes the owned branch and a stale source cannot reopen it', async () => {
     const p = await head('hf.cast.tamar.watch');
     control.state = acceptPersona(control.state, p);
     const worker = new FakeWorker();
     await begin(worker, 'watch');
-    const { WatchRun } = await import('../watch/sim/run.ts');
-    const { die } = await import('@adam0white/human-framework');
-    const { watchTerminalReceipts } = await import('../watch/sim/people.ts');
-    const run = new WatchRun(1);
-    const tamar = requireValue(run.state.community.people.find((p) => p.id === 'tamar'));
-    die(tamar);
-    const terminal = requireValue(watchTerminalReceipts(run.state, { [p.castId]: p })[0]);
+    const terminal = { castId: p.castId, kind: 'dead', at: 1 };
     worker.reply({ type: 'castReady', requestId: 0, gen: 1, terminal });
     await vi.waitFor(() => expect(control.puts.at(-1)?.terminal?.kind).toBe('dead'));
     const closed = requireValue(control.puts.at(-1));
@@ -867,7 +883,7 @@ describe('whole-cast browser continuity', () => {
     worker.reply({
       type: 'castReady',
       requestId: worker.requests('castCheckpoint')[0]?.requestId,
-      transfer: { sourceRole: 'riza', engine: '2.17.0' },
+      ...(await capture()),
     });
     await saving;
     expect(control.puts.map((p) => p.castId)).toEqual(['hf.cast.riza.voice']);
@@ -931,7 +947,21 @@ describe('whole-cast browser continuity', () => {
   });
 });
 
+it('uncertified peer admission preserves the real HF4 source head without preflight', async () => {
+  const parent = await head();
+  control.state = acceptPersona(control.state, parent);
+  const worker = new FakeWorker();
+  await begin(worker);
+  expect(control.puts).toEqual([]);
+  expect(control.state.heads[parent.castId]).toBe(parent.revision);
+  expect(worker.requests('castPreflight')).toHaveLength(0);
+  expect(castState('voice').localNotice).toContain('could not carry over');
+  const { claimPortablePerson } = await import('@adam0white/lab-client');
+  expect(() => claimPortablePerson(parent, 'voice')).toThrow(/read-only.*hearsay/);
+});
+
 it('native phase, hidden and pagehide checkpoints publish real bound source journals and accepted parents', async () => {
+  control.transportAdmission = true;
   const storage = new Map<string, string>();
   vi.stubGlobal('localStorage', {
     getItem: (key: string) => storage.get(key) ?? null,
@@ -940,14 +970,8 @@ it('native phase, hidden and pagehide checkpoints publish real bound source jour
   control.state = acceptPersona(control.state, await head());
   const worker = new FakeWorker();
   await begin(worker);
-  const { snapshot } = await import('@adam0white/human-framework');
-  const { canonicalPersona } = await import('@adam0white/lab-client');
-  const { VoiceGame } = await import('../voice/sim/game.ts');
-  const raw = snapshot(new VoiceGame(1, 4).run.ppl.riza);
-  const sha256 = Array.from(
-    new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw)))),
-    (byte) => byte.toString(16).padStart(2, '0'),
-  ).join('');
+  const captured = await capture();
+  const raw = captured.sourceSnapshot;
   worker.reply({ type: 'frame', gen: 1, frame: { day: 1, phase: 'day', minute: 400 } });
   const id = 'hf.cast.riza.voice';
   const triggers = [
@@ -967,13 +991,7 @@ it('native phase, hidden and pagehide checkpoints publish real bound source jour
       type: 'castReady',
       gen: 1,
       requestId: requireValue(worker.requests('castCheckpoint').at(-1)).requestId,
-      sourceSnapshot: raw,
-      transfer: {
-        castPassport: 'site-cast/1',
-        sourceRole: 'riza',
-        engine: '3.2.0',
-        checkpoint: { schema: raw.schema, sourceMinute: raw.now, rng: raw.rng, sha256 },
-      },
+      ...captured,
     });
     await vi.waitFor(() => expect(control.puts).toHaveLength(puts + 1));
     await vi.waitFor(() => expect(castState('voice').busy).toBe(false));

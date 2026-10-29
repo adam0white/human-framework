@@ -99,7 +99,7 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
   ];
   const noop = () => {};
   const node = document.createElement('div');
-  const renderSheet = () => {
+  const renderSheet = (pending: 'cedar' | null = null) => {
     node.innerHTML = renderToStaticMarkup(
       createElement(PersonSheet, {
         frame,
@@ -108,7 +108,7 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
         insist: false,
         appeal: 'children',
         appealOpen: false,
-        pending: null,
+        pending,
         asked: null,
         forecasts: {},
         outline: null,
@@ -161,7 +161,9 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
   expect(node.querySelector('.well-order-goals')?.textContent).toContain('of 5 meals');
   frame.humanWorld.project.stage = 6;
   renderSheet();
-  const humanGoals = node.querySelector('.well-order-goals p:last-child')?.textContent;
+  const humanGoals = node.querySelector(
+    '.well-order-goals [data-village=human] .well-building-progress',
+  )?.textContent;
   expect(humanGoals).toBeTruthy();
   expect(humanGoals).not.toContain('toward the next stage');
   card.order.action = 'cook';
@@ -170,6 +172,12 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
   expect(node.querySelector('.well-latest')?.textContent).toContain('We have enough food stored.');
   expect(node.querySelector('.well-food-explanation')?.textContent).toContain('ordinary meals');
   expect(node.querySelector('.well-food-explanation')?.textContent).toContain('storm reserve');
+  renderSheet('cedar');
+  expect(node.querySelector('.well-risk .well-task-context')?.textContent).toContain('adds 3 timber');
+  expect(node.querySelector('.well-risk')?.textContent).toContain('can injure whoever fells it');
+  frame.humanWorld.cedarFelled = true;
+  renderSheet('cedar');
+  expect(node.querySelector('.well-risk')?.textContent).not.toContain('Completing the cedar felling');
 });
 
 it('offers Home shelter for the well-house resident without changing old Home meaning', async () => {
@@ -224,9 +232,9 @@ it('keeps initial task context separate from later dated injury history and unkn
   render();
   expect(node.textContent).toContain('not a finished roof');
   expect(node.textContent).toContain('separate twelve-meal storm reserve');
-  const details = node.querySelector('details.well-order-goals');
-  expect(details?.hasAttribute('open')).toBe(false);
-  expect(details?.querySelector('summary')?.textContent).toBe('Current stores and construction');
+  const details = node.querySelector('section.well-order-goals');
+  expect(details?.closest('details')).toBeNull();
+  expect(details?.querySelector('h3')?.textContent).toBe('Current stores and construction');
   expect(details?.textContent).toContain('The cause of the remaining delay is unknown');
   expect(node.querySelector('.well-places button')).not.toBeNull();
   game.issue({ personId: 'yusuf', placeId: 'site' });

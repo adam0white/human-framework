@@ -119,6 +119,16 @@ Published HF3.0.0 implements the deprecated-form/alias/time-argument removals, P
 | Community and world migration | Person migration does not migrate `communityState`; world state belongs to the host. Define community steps before its first shape change and preserve the host world recipe. This depends on the memory/fidelity contract, not a missing present migration. | 2027-01-15: community migration review; world recipe reviewed with first host shape change |
 | Bench evidence                | Longer fine100/fine1000 and coarse10k spans completed with explicitly different workloads. Quiet-machine repeats,50-year sizes on other seeds and growth attribution remain unmeasured; do not infer scaling or starvation from the current harness.         | 2026-11-15: quiet repeats, further seeds and measurement contract                          |
 
+### HF 4.11 review follow-ups — 2026-10-29
+
+The coordinator accepted these low findings for the next source batch on 2026-10-29. They do not reopen the published 4.11 release gate. The retelling/newborn README finding is addressed in the central game-port source.
+
+| Item                                    | What                                                                                                                                                                                                                                        | Target     |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Late-contact age documentation          | State explicitly in the README that value, norm and voice upbringing use the child's age at admission, while attachment integrates historical age over the reported span. Preserve the published equations in this documentation follow-up. | 2026-11-03 |
+| Retelling run-boundary test duplication | Keep one invalid-limit case and the zero case at the run boundary. Leave the remaining limit cases in the owning conversation test, preserving replay and admission coverage.                                                               | 2026-11-03 |
+| Lifecycle heading spacing               | Remove the extra blank line before CENTRAL-GAPS lifecycle context in docs/hf4-game-needs.md in the next documentation edit.                                                                                                                 | 2026-11-03 |
+
 ## 3. Faculties not yet modelled
 
 The full list, with module names and research references, is [faculty-inventory.md](faculty-inventory.md). Counts (2026-10-05, against engine 2.0.0): 142 faculties, 79 Done, 34 Partial, 23 Missing, 6 Excluded. All Missing and Partial rows are **unscheduled** unless named in §1–2 above; none blocks a current game. A row the next goal needs moves into §1 or §2 with a target.
@@ -195,7 +205,7 @@ Each graduated game has a deferred list; ordinary engineering is active and the 
 
 - _Twice at the Well_ (Game 1): [colony.md, Deferred](games/colony.md#deferred).
 - _The Day You Say Nothing_ (Game 2): [voice.md, Deferred](games/voice.md#deferred).
-- _The Night Watch_ (Game 3): [watch.md §12](games/watch.md#12-after-graduation-deferred-features), targets T1 (first pass if resumed), T2 (needs an HF release first: Q50, larger cast), T3 (polish). It carries the H2 game rows P8, P10, S7, Q49, Q50, Q51.
+- _The Night Watch_ (Game 3): [watch.md §12](games/watch.md#12-after-graduation-deferred-features), targets T1 (first pass if resumed), T2 (needs an HF release first: Q50, larger cast), T3 (polish). It carries the H2 game rows P8, P10, S7, Q49, Q50, Q51. P10 source qualification (2026-10-29): public closed-day records are available in HF 4.11; a supported native-yearbook reading is still unproved. CENTRAL-GAPS owns that follow-up by **2026-11-03**. Preserve native history and keep this separate from the available game-host work.
 
 **Next set of games: classics rebuilt with HF (owner, 2026-10-26, [OD](owner-directions-2026-10-18.md#2026-10-26--next-games-are-classics-with-hf-baked-in-adam-verbatim)).** After HF 4.x folds in the planned faculties and most games are migrated to it, the next new games are not new ideas: they are replicas of classic games or known game types, rebuilt with HF people inside. No new concepts are drafted before then. Titles may be bold parodies that nod openly to the original (owner, 2026-10-27); the owner chose the wagon trail as the only classic and dropped the other five as too polished to replicate (2026-10-27). Target: propose a shortlist when 4.x is in place and most games run on it (earliest after the 2026-11-03 owner review).
 

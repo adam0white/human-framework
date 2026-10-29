@@ -13,14 +13,9 @@
  * to the posted report only (the game's own report and hash do not carry it). Once finished only its facts are
  * kept, by seed; the game is dropped.
  */
-import { ENGINE_VERSION, snapshot } from '@adam0white/human-framework';
+
 import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
-import {
-  applyAdmittedLife,
-  captureSiteCastBoundary,
-  castRole,
-  chapterPeople,
-} from '../shared/cast-chapter.ts';
+import { castRole, chapterPeople } from '../shared/cast-chapter.ts';
 import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
 import { checkGameFile } from '../shared/file-sources.ts';
 import {
@@ -52,6 +47,8 @@ import {
   startSilentMonth,
 } from './sim/counterfactual.ts';
 import { VoiceGame } from './sim/game.ts';
+import { captureVoicePerson, voiceTerminal } from './sim/hf4-portable.ts';
+import { VOICE_HF4_EDITION } from './sim/hf4-run.ts';
 import { returnedSelin, type SelinReturn } from './sim/persona.ts';
 import {
   parseVoicePlaytest,
@@ -160,7 +157,7 @@ async function voiceFile(r: RecordedGame, full = false) {
     minute: g.t,
     log: structuredClone(r.log),
     hash: voiceHash(g),
-    engine: ENGINE_VERSION,
+    engine: requireValue(g.run.c.runtime).save().archive.engine.package,
     snapshot: full ? voiceState(g) : voiceSnapshot(g),
     ...(full ? { plainSnapshot: true } : {}),
   });
@@ -168,6 +165,7 @@ async function voiceFile(r: RecordedGame, full = false) {
     r,
     {
       ...file,
+      voiceEdition: VOICE_HF4_EDITION,
       ...(g.castChapter ? { castChapter: structuredClone(g.castChapter) } : {}),
       ...(r.chapter ? { voicePersona: structuredClone(r.chapter) } : {}),
       ...(r.personaHead ? { voicePersonaHead: structuredClone(r.personaHead) } : {}),
@@ -212,41 +210,22 @@ function publishBoundary(): void {
   if (!transfer || !source || checkpointSending) return;
   checkpointSending = true;
   const gen = host.gen;
-  Promise.all([
-    voiceFile(r),
-    crypto.subtle.digest(
-      'SHA-256',
-      new TextEncoder().encode(canonicalPersona(JSON.parse(JSON.stringify(snapshot(source))))),
-    ),
-  ])
-    .then(([file, digest]) =>
-      host.post(
-        {
-          type: 'personaCheckpoint',
-          transfer: {
-            ...transfer,
-            checkpoint: {
-              sourceSchema: source.schema,
-              sourceNow: source.now,
-              sourceRng: source.rng,
-              checkpointDigest: [...new Uint8Array(digest)]
-                .map((n) => n.toString(16).padStart(2, '0'))
-                .join(''),
-            },
-          },
-          file,
-        },
-        gen,
-      ),
-    )
-    .catch((error) => host.post({ type: 'personaCheckpoint', error: String(error) }, gen));
+  checkpointSending = false;
+  host.post(
+    {
+      type: 'personaCheckpoint',
+      error:
+        'Selin’s earlier calendar enquiry mapping is unsupported in HF4. Continue through the shared cast shelf; keep the original file.',
+    },
+    gen,
+  );
 }
 
 /** Validate and replay a file; only then does it replace the current run (a bad file leaves the run as it was). */
 async function loadPlaytest(text: string, nextGen: number): Promise<void> {
   const operation = ++loadOperation;
   const raw = fileMode ? await checkGameFile(text) : undefined;
-  // A file replays under its own scenario's rules (voice-1 files from before the 2026-10-19 level-up included).
+  // Refuse old editions before attempting current native replay.
   const { file: f, rules, chapter, rows, head } = parseVoicePlaytest(text);
   if (chapter) await validatePersona(chapter.admission);
   if (head) await validatePersona(head);
@@ -256,7 +235,13 @@ async function loadPlaytest(text: string, nextGen: number): Promise<void> {
   if (rows) replayed.oneCast.splice(0, replayed.oneCast.length, ...rows);
   const g = replayed.game;
   // Hash first: pausing for the page changes the state.
-  const result = replayResult(f, voiceHash(g), ENGINE_VERSION, g.t, driftAt);
+  const result = replayResult(
+    f,
+    voiceHash(g),
+    requireValue(g.run.c.runtime).save().archive.engine.package,
+    g.t,
+    driftAt,
+  );
   if (
     fileMode &&
     (!result.matches ||
@@ -282,35 +267,9 @@ async function loadPlaytest(text: string, nextGen: number): Promise<void> {
 }
 
 async function prepareSelinReturn(header: SelinReturn): Promise<SelinReturn> {
-  await validatePersona(header.admission);
-  if (header.acceptedHead) {
-    await validatePersona(header.acceptedHead);
-    if (
-      header.acceptedHead.branchId !== header.admission.branchId ||
-      header.acceptedHead.parentRevision !== header.admission.revision
-    )
-      throw new Error('Return claim does not continue this admission.');
-  }
-  const prefix = parseVoicePlaytest(header.prefix);
-  if (prefix.head) await validatePersona(prefix.head);
-  const prior = replayVoice(prefix.file.seed, prefix.file.log, prefix.rules, prefix.chapter);
-  if (prior.driftAt !== -1 || voiceHash(prior.rec.game) !== prefix.file.hash)
-    throw new Error('Source chapter does not replay.');
-  if (!prefix.head) throw new Error('The original Selin departure is missing; start fresh.');
-  let initial = returnedSelin(
-    header.admission,
-    prior.rec.game.run.ppl.selin,
-    prefix.head,
-    prior.rec.game.run.opts,
+  throw new Error(
+    'This Selin return uses an older calendar mapping. Start a fresh game; keep the original file.',
   );
-  if (header.life) {
-    if (header.life.parent.revision !== header.admission.revision)
-      throw new Error('Life does not match the admitted Selin revision.');
-    initial = applyAdmittedLife('voice', initial, header.life);
-  }
-  const pinned = { ...header, initial: JSON.stringify(snapshot(initial)) };
-  replayVoice(prefix.file.seed, [], 4, pinned);
-  return pinned;
 }
 
 const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
@@ -397,13 +356,31 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
         const person = rec?.game.run.ppl[role as keyof typeof rec.game.run.ppl];
         if (!person || !rec) throw new Error('No current person checkpoint.');
         const gen = host.gen;
-        void captureSiteCastBoundary('voice', person, rec.game.run.town)
+        if (voiceTerminal(requireValue(rec.game.run.c.runtime), role)) {
+          host.post(
+            {
+              type: 'castReady',
+              requestId: msg.requestId,
+              terminal: { castId: msg.castId, at: requireValue(rec.game.run.c.runtime).at },
+            },
+            gen,
+          );
+          return;
+        }
+        void captureVoicePerson(
+          requireValue(rec.game.run.c.runtime),
+          msg.castId,
+          rec.game.run.town.state.rentOwed > 0 && role === 'halil' ? ['the unpaid rent'] : [],
+        )
           .then((t) =>
             host.post(
               {
                 type: 'castReady',
                 requestId: msg.requestId,
-                transfer: { ...t, engine: ENGINE_VERSION },
+                transfer: {
+                  ...t,
+                  engine: requireValue(rec?.game.run.c.runtime).save().archive.engine.package,
+                },
                 sourceSnapshot: t.sourceSnapshot,
               },
               gen,

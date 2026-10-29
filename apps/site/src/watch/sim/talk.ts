@@ -15,9 +15,18 @@
  * Not covered: the spec's topics that change behaviour directly (rest tonight, practise with, mend things); talks
  * with children; talks in the open seasons.
  */
-import { addTiredness, gestureVoiceTrust, hear, outwardSigns, selfReport } from '@adam0white/human-framework';
-import { lifeNotice } from '../../shared/cast-chapter.ts';
+
+import { lifeAdmission } from '@adam0white/lab-client';
+import { personChapter, SITE_CAST } from '../../shared/cast-chapter.ts';
 import { WATCH_DISCOVERIES } from '../../shared/cast-discoveries.ts';
+import {
+  actorEvidence,
+  actorInput,
+  actorSigns as outwardSigns,
+  reportActor,
+  actorReport as selfReport,
+} from './actor.ts';
+import { decide } from './actor-life.ts';
 import { SECTION_IDS, type SectionId } from './config.ts';
 import { ageOf, childrenOf } from './life.ts';
 import { theSection } from './night.ts';
@@ -28,12 +37,9 @@ import type { WatchState } from './state.ts';
 export type Topic = 'night' | 'body' | 'home' | 'gate';
 export const TOPICS: readonly Topic[] = ['night', 'body', 'home', 'gate'];
 export const TALKS_PER_DAY = 2;
-/** Sleep a talk costs a watcher after a night on the wall (sleep pressure, 0..1). */
-const TALK_SLEEP = 0.06;
+/** Talk consumes the daylight conversation budget. HF owns the body cost of elapsed time. */
 /** Testimony weighs less than seeing (the dawn voices use 0.5). */
 const TALK_WEIGHT = 0.6;
-/** Trust in the Keeper a talk about home adds (being asked after one's own). */
-const HOME_WARMTH = 0.02;
 
 export function canTalk(s: WatchState, who: string): boolean {
   const p = personOf(s, who);
@@ -117,8 +123,8 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     const fears = Object.entries(said.fearOf ?? {})
       .filter(([k, v]) => SECTION_IDS.includes(k as SectionId) && v > 0.25)
       .sort((a, b) => b[1] - a[1]);
-    for (const [k, v] of fears) hear(s.keeper, who, `fear@${k}`, v, at, TALK_WEIGHT);
-    hear(s.keeper, who, 'fear', said.fear, at, TALK_WEIGHT);
+    for (const [k, v] of fears) reportActor(s, KEEPER_ID, who, `fear@${k}`, v, TALK_WEIGHT);
+    reportActor(s, KEEPER_ID, who, 'fear', said.fear, TALK_WEIGHT);
     const worst = s.notes.filter((n) => n.who === who).at(-1);
     const left = s.notes.find(
       (n) => n.who === who && (n.kind === 'fled' || n.kind === 'ran' || n.kind === 'slept'),
@@ -183,8 +189,8 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
                 '“Long and quiet. I could stand it.”',
               ]);
   } else if (topic === 'body') {
-    hear(s.keeper, who, 'pain', said.pain, at, TALK_WEIGHT);
-    hear(s.keeper, who, 'fatigue', said.fatigue, at, TALK_WEIGHT);
+    reportActor(s, KEEPER_ID, who, 'pain', said.pain, TALK_WEIGHT);
+    reportActor(s, KEEPER_ID, who, 'fatigue', said.fatigue, TALK_WEIGHT);
     if (said.pain > 0.45)
       text = own(s, who, 'pain', [
         '“It’s bad. I won’t lie to you.”',
@@ -229,35 +235,69 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
   } else if (topic === 'home') {
     text = homeWords(s, who);
     const spouse = spouseOf(s, who);
-    if (spouse) hear(s.keeper, who, `tie:${spouse.q.id}`, spouse.affection, at, TALK_WEIGHT);
-    gestureVoiceTrust(p, KEEPER_ID, HOME_WARMTH, {
-      reason: 'The Keeper asked about home.',
-      at,
+    if (spouse) reportActor(s, KEEPER_ID, who, `tie:${spouse.q.id}`, spouse.affection, TALK_WEIGHT);
+    const homeEvidence = actorEvidence(s, who, 'home-talk');
+    actorInput(s, 'voice.evidence-received', {
+      ...homeEvidence,
+      voiceId: KEEPER_ID,
+      evidence: {
+        kind: 'support',
+        effect: 'acknowledged',
+        id: homeEvidence.evidenceId,
+        occurredAt: Math.round(at * 60_000),
+        action: 'talk',
+      },
     });
   } else {
     const c = p.traits.conscientiousness;
-    hear(s.keeper, who, 'trait:conscientiousness', c, at, TALK_WEIGHT);
-    const willing = c > 0.5 || (c > 0.35 && p.traits.extraversion > 0.6);
-    s.gateWilling[who] = willing;
-    text = willing
-      ? c > 0.7
-        ? own(s, who, 'gate-sure', [
-            '“If you asked me, I would do the job well.”',
-            '“Choose me and I will keep it well.”',
-          ])
-        : own(s, who, 'gate-try', [
-            '“I would try if you chose me. Someone has to.”',
-            '“If nobody better comes forward, I will.”',
-          ])
-      : c < 0.3
-        ? '“I am not sure I can manage the Gate.”'
-        : '“Do not choose me. Ask someone steadier.”';
+    reportActor(s, KEEPER_ID, who, 'trait:conscientiousness', c, TALK_WEIGHT);
+    // These are authored alternatives, not a personality threshold or a forecast.
+    // A recorded choice settles willingness; another choice leaves the question open.
+    const answer = decide(p, [
+      {
+        id: `accept-gate-role:${who}`,
+        action: 'accept-gate-role',
+        label: 'offer to keep the Gate one day',
+        duration: 1,
+        effort: 0,
+        advertises: { meaning: 0.2, belonging: 0.1 },
+      },
+      {
+        id: `decline-gate-role:${who}`,
+        action: 'decline-gate-role',
+        label: 'decline the future Gate role',
+        duration: 1,
+        effort: 0,
+        advertises: { autonomy: 0.2 },
+      },
+    ]);
+    const willing = answer.chosenAction === 'accept-gate-role';
+    const declined = answer.chosenAction === 'decline-gate-role';
+    if (willing || declined) s.gateWilling[who] = willing;
+    text =
+      !willing && !declined
+        ? '“I cannot answer that now.”'
+        : willing
+          ? c > 0.7
+            ? own(s, who, 'gate-sure', [
+                '“If you asked me, I would do the job well.”',
+                '“Choose me and I will keep it well.”',
+              ])
+            : own(s, who, 'gate-try', [
+                '“I would try if you chose me. Someone has to.”',
+                '“If nobody better comes forward, I will.”',
+              ])
+          : c < 0.3
+            ? '“I am not sure I can manage the Gate.”'
+            : '“Do not choose me. Ask someone steadier.”';
     // F-1597: say what the answer settled, outside the quotes.
     const name = s.cast[who]?.name ?? who;
     const their = s.cast[who]?.sex === 'female' ? 'her' : 'his';
     text += willing
       ? ` ${name} said yes. When you choose who keeps the Gate next, at an autumn fair, ${their} name comes first.`
-      : ` ${name} said no. When you choose who keeps the Gate next, at an autumn fair, ${their} name comes last.`;
+      : declined
+        ? ` ${name} said no. When you choose who keeps the Gate next, at an autumn fair, ${their} name comes last.`
+        : ` ${name} has not answered. The question is still open.`;
   }
   if (
     topic === 'home' &&
@@ -269,8 +309,9 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     s.talks.discovered ??= [];
     s.talks.discovered.push(who);
   }
-  if (topic === 'night' && !text.includes('don’t want to talk') && lifeNotice(p)) text += ` ${lifeNotice(p)}`;
-  addTiredness(p, { sleepPressure: TALK_SLEEP });
+  const chapter = personChapter(s.castChapter, SITE_CAST.watch?.[who]);
+  if (topic === 'night' && !text.includes('don’t want to talk') && chapter)
+    text += ` ${lifeAdmission(chapter.input, 'watch').line}`;
   s.talks.left -= 1;
   s.talks.said.push({ who, topic, text });
   if (!s.talks.asked.includes(`${who}:${topic}`)) s.talks.asked.push(`${who}:${topic}`);

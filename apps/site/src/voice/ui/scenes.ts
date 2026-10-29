@@ -67,7 +67,8 @@ function setting(entry: LogEntry): Setting | null {
     return { kind: 'door', place: 'At his door', names: ['Halil', 'Hacer'] };
   if (/^I (?:have )?tea with Rıza\b/.test(text))
     return { kind: 'tea', place: 'The tea house', names: ['Halil', 'Rıza'] };
-  if (/^I call Selin\b/.test(text)) return { kind: 'call', place: 'On the phone', names: ['Halil', 'Selin'] };
+  if (entry.connection && /^I call Selin\b/.test(text))
+    return { kind: 'call', place: 'On the phone', names: ['Halil', 'Selin'] };
   if (/^I visit Nuran['’]s grave\b/.test(text))
     return { kind: 'grave', place: 'Nuran’s grave', names: ['Halil'] };
   return null;
@@ -121,7 +122,12 @@ function hash(text: string): number {
 }
 /** The latest grounded scene today, retained with an explicit history flag after he leaves it. */
 export function deriveScene(frame: SceneFrame): DayScene | null {
-  const log = frame.log.filter((entry) => entry.day === frame.day && entry.minute <= frame.minute);
+  const log = frame.log.filter(
+    (entry) =>
+      entry.day === frame.day &&
+      entry.minute <= frame.minute &&
+      (!entry.connection || entry.connection.minute <= frame.minute),
+  );
   let anchor = log.findLast((entry) => setting(entry) !== null);
   if (anchor?.kind === 'recall') {
     const occasion = log.findLast(
@@ -231,7 +237,7 @@ export function deriveScene(frame: SceneFrame): DayScene | null {
   return {
     id: `scene:${anchor.id}`,
     ...place,
-    clock: anchor.clock,
+    clock: anchor.connection?.clock ?? anchor.clock,
     lines,
     current,
     activity: doing?.label ?? '',
@@ -266,10 +272,13 @@ export function nextEncounter(frame: SceneFrame): string | null {
   const lastCall = frame.log.findLast(
     (entry) =>
       entry.minute <= frame.minute &&
-      ((entry.kind === 'act' && /^I call Selin\b/.test(entry.text)) ||
+      ((entry.kind === 'act' && entry.connection && /^I call Selin\b/.test(entry.text)) ||
         (entry.kind === 'voice' && entry.who === 'selin' && /^Selin called/.test(entry.text))),
   );
-  if (lastCall && frame.minute - lastCall.minute < TOWN_DEFAULTS.selinCallGap)
+  if (
+    lastCall &&
+    frame.minute - (lastCall.connection?.minute ?? lastCall.minute) < TOWN_DEFAULTS.selinCallGap
+  )
     return frame.day < TOWN_EID_DAY ? 'Selin usually leaves a day or two between calls.' : null;
   if (frame.minute % 1440 < 22 * 60) return 'Selin usually calls this evening.';
   return frame.day < TOWN_EID_DAY ? 'Selin usually calls tomorrow evening.' : null;

@@ -42,6 +42,7 @@ test('skip stops at meals, prayer, waking, new scenes and day cards', () => {
           kind: 'act',
           who: 'halil',
           text: 'I call Selin.',
+          connection: { minute: 1100, clock: '20:00' },
         },
       ],
     }),
@@ -57,7 +58,7 @@ test('a saved export restores by replay with the same hash, including historical
   const file = await makePlaytestFile({
     game: 'voice',
     seed: 7,
-    scenario: 'voice-2',
+    scenario: 'voice-4',
     minute: rec.game.t,
     log: rec.log,
     hash: voiceHash(rec.game),
@@ -75,7 +76,7 @@ test('a saved export restores by replay with the same hash, including historical
   const saved = savedVoice(storage);
   expect(saved?.label).toMatch(/^Ramadan 1 · /);
   const restored = JSON.parse(saved?.text ?? '{}') as typeof file;
-  expect(voiceHash(replayVoice(restored.seed, restored.log, 2).rec.game)).toBe(file.hash);
+  expect(voiceHash(replayVoice(restored.seed, restored.log, 4).rec.game)).toBe(file.hash);
   expect(savedVoice({ getItem: () => '{broken' })).toBeNull();
   expect(
     saveVoice(

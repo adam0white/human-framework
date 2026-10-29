@@ -19,33 +19,39 @@
  *
  * Not covered. Seasons, ageing, talks, the fair, two-section warnings (G3-3).
  */
+
+import { personChapter } from '../../shared/cast-chapter.ts';
 import {
   type Affordance,
+  actorAt,
+  actorInput,
+  actorRuntime,
   type Command,
-  finish,
+  interruptActor,
+  observeActor,
+  type Percept,
+  type Person,
+  publicOffer,
+  readActor,
+  type SimEvent,
+  type Suggestion,
+} from './actor.ts';
+import {
   glimpsePerson,
   hear,
   injure,
-  interruptPerson,
   knockDown,
-  learnOutcome,
   observeAct,
   outwardSigns,
-  type Percept,
-  type Person,
   promise,
   readCapacities,
   readPerson,
   remember,
-  type SimEvent,
-  type Suggestion,
   selfReport,
   skillLevel,
-  stepCommunity,
-  strain,
   tend,
-} from '@adam0white/human-framework';
-import { personChapter } from '../../shared/cast-chapter.ts';
+} from './actor-effects.ts';
+import { flushActors, physicalLedger, schedulePrayerDay } from './actor-world.ts';
 import { restoreWatchCare } from './care-reentry.ts';
 import {
   AIM_SCALE,
@@ -66,7 +72,6 @@ import {
   DARK_REACH,
   DARK_SIGHT_BONUS,
   DAY,
-  DUSK_START,
   FOOT_AIM,
   LANTERN_STEP_MIN,
   LIT_REACH,
@@ -85,6 +90,7 @@ import {
   sectionDef,
   THREATS,
   type ThreatKind,
+  WATCH_CAST,
   type WatcherId,
   WINTER_RULES,
   type WinterChoice,
@@ -101,15 +107,18 @@ import {
   type WatchOptions,
 } from './dusk-rest.ts';
 import { takeOffer } from './fair.ts';
+import { minuteMs } from './hf4.ts';
 import { fillLeaf, maybeLimp } from './life.ts';
 import { applyLocalWarning, deliverLocalWarnings, type LocalWarningInput } from './local-warning.ts';
 import { answerMoment, catchLeaving, checkMoments, type Read } from './moments.ts';
 import { applyNightAct, type NightInput, resolveNightRequest } from './night-actions.ts';
+import { beginBellRecords, bindBellPercepts, followNightRecords } from './night-records.ts';
 import {
   addVillager,
   arrive,
   familyWords,
   foundingCast,
+  isHere,
   isPost,
   isWatcher,
   KEEPER_ID,
@@ -120,7 +129,7 @@ import {
   villager,
   WatchWorld,
 } from './people.ts';
-import { agreeRefugeVisit, refugeVisitPassport, stayRefugeVisit } from './refuge-visit.ts';
+import { agreeRefugeVisit, completedAdaCare, stayRefugeVisit } from './refuge-visit.ts';
 import { closeCard, endWinter, isSeason, leaveClosed, leaveThaw, stepSeason } from './season.ts';
 import {
   type Alert,
@@ -408,14 +417,6 @@ function reachFor(lit: boolean, sight: number, kind: ThreatKind): number {
 function enterNight(s: WatchState): void {
   s.phase = 'night';
   s.minute = s.nightStart;
-  // A child of the village standing the wall for the first time fills a leaf, and may answer the volume.
-  for (const id of presentIds(s)) {
-    const v = villager(s, id);
-    if (!s.posts[id] || v.stood) continue;
-    v.stood = true;
-    if (v.bornHere) fillLeaf(s, 'born-stands', `${v.name}, born here, guarded the wall for the first time.`);
-    firstStand(s, id);
-  }
   s.tally = emptyTally(s.grain);
   s.bell = { ...emptyBell(), cry: s.bell.cry / 2 };
   s.notes = [];
@@ -441,7 +442,6 @@ const BAD_NIGHT: Partial<Record<NightNote['kind'], number>> = {
  * standing it (HF `learnOutcome` on 'hold-post@<section>'), so tomorrow's choice, and their dawn words, carry it.
  */
 /** How many ordinary stints one fright on a stretch counts as, in what the watcher expects of it. */
-const FRIGHT_WEIGHT = 5;
 
 function rememberTheNight(s: WatchState): void {
   for (const p of s.community.people) {
@@ -464,14 +464,21 @@ function rememberTheNight(s: WatchState): void {
       };
       // Every finished stint on the wall is also an outcome, so one plain sample would be averaged away by the
       // night's ordinary stints. A fright weighs as several: it outlasts a night of standing, then fades.
-      const outcome = {
+      const _outcome = {
         affordanceId: aff.id,
         action: aff.action,
         targetId: sec,
         status: 'completed' as const,
         at: s.minute,
       };
-      for (let i = 0; i < FRIGHT_WEIGHT; i++) learnOutcome(p, aff, outcome, {}, felt);
+      remember(p, {
+        at: s.minute,
+        kind: 'outcome',
+        actorId: id,
+        placeId: sec,
+        valence: felt,
+        summary: `I was frightened while standing at ${theSection(sec)}.`,
+      });
     }
   }
 }
@@ -779,22 +786,14 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   b.heard = {};
   // The earliest pull not yet borne out stands: pulling again does not restart its clock.
   b.pendingCry = knownDanger(s) ? null : (b.pendingCry ?? s.minute);
-  const woke: WatcherId[] = [];
   for (const id of presentIds(s)) {
     const loud = bellLoudness(s, id);
     if (loud <= 0) continue;
     b.heard[id] = loud;
     const p = personOf(s, id);
     if (p?.body.asleep && !p.body.downed) {
-      woke.push(id);
-      const pl = s.place[id];
-      note(s, { who: id, kind: 'woken', ...(isPost(pl) ? { section: postSection(pl) } : {}) });
-      // Woken: the sleep ends here. An HF interrupt alone only brings the review forward, and a sleeper's review
-      // keeps the sleep (the asleep veto), so the game ends the activity as interrupted (docs/findings.md).
-      if (p.activity) {
-        const world = new WatchWorld(s);
-        finish(p, world.resolve(p, p.activity, 'interrupted'), { catalog: world.catalog });
-      }
+      // A bell is an actual heard event. Only HF may report whether the watcher wakes.
+      interruptActor(s, p.id, 'A bell is audible from the Gate');
     }
     tell(
       s,
@@ -813,6 +812,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
       true,
     );
   }
+  beginBellRecords(s);
   if (s.rope.wear >= 1) {
     s.rope = { wear: 1, snapped: true };
     alert(s, {
@@ -824,15 +824,6 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
     return true;
   }
   const lit = litSection(s);
-  // Under the lantern the Keeper sees whom it woke; the rest he can only guess.
-  const seenWoken = woke.filter((id) => {
-    const pl = s.place[id];
-    return lit !== null && isPost(pl) && postSection(pl) === lit;
-  });
-  const wokeWords =
-    seenWoken.length === 0 || lit === null
-      ? ''
-      : ` It wakes ${seenWoken.map((id) => nameOf(s, id)).join(' and ')}, falling asleep at ${theSection(lit)}.`;
   const called = who ? ` You call ${nameOf(s, who)} by name: stay at your post!` : '';
   const hearers = who
     ? [who]
@@ -843,7 +834,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   alert(s, {
     section: at,
     kind: 'bell',
-    text: `${bellCarryWords(s)}${wokeWords}${called} ${answer}`.trim(),
+    text: `${bellCarryWords(s)}${called} ${answer}`.trim(),
     slowed: false,
   });
   return true;
@@ -944,7 +935,7 @@ export function suggestions(s: WatchState): Record<string, Suggestion[]> {
       affordanceId: `post:${post}`,
       strength: Math.max(PRESS_STRENGTH[press], call),
       appeal: 'duty',
-      since: call > PRESS_STRENGTH[press] ? s.bell.rungAt : s.postedAt[id],
+      since: call > PRESS_STRENGTH[press] ? s.bell.rungAt : (s.postedAt[id] ?? s.minute),
     };
     if (press === 'insist') sug.insist = true;
     // One voice, one suggestion: an ask from a card speaks for the Keeper while it lasts.
@@ -973,35 +964,203 @@ export function tell(s: WatchState, id: WatcherId, pc: Percept, interrupt = fals
   q.push(pc);
   s.percepts[id] = q;
   const p = personOf(s, id);
-  if (interrupt && p) interruptPerson(s.community, p, s.minute, pc.kind);
+  if (interrupt && p) interruptActor(s, p.id, pc.kind);
 }
 
 /** Steps the watchers' community up to `until` (inclusive) and applies what they did to the wall. */
 export function stepPeople(s: WatchState, until: number, world = new WatchWorld(s)): SimEvent[] {
-  const events = stepCommunity(s.community, world, until, {
-    suggestions: suggestions(s),
-    controlled: controlled(s),
-    contagion: false,
-  });
+  const runtime = actorRuntime(s);
+  const at = actorAt(s);
+  const early = s.actors.queued.filter((i) => i.at < at),
+    later = s.actors.queued.filter((i) => i.at >= at);
+  if (runtime.time() < at - 1 || early.length) {
+    s.actors.queued = early;
+    s.actorEvents.push(...flushActors(s, at - 1, true));
+    s.actors.queued.push(...later);
+  }
   const before = { ...s.place };
-  for (const p of s.community.people) {
-    const id = p.id as WatcherId;
-    if (!p.body.downed && p.activity) {
-      const pl = placeOfActivity(p.activity);
-      if (pl !== undefined) s.place[id] = pl;
+  const people = s.community.people.filter((p) => isHere(s, p));
+  for (const p of people)
+    if (s.cast[p.id]?.prays || personChapter(s.castChapter, WATCH_CAST[p.id])) {
+      const first = Math.max(s.actors.prayerDay[p.id] ?? -1, Math.floor(s.minute / DAY) - 1);
+      for (let day = first + 1; day <= Math.floor(until / DAY); day++)
+        schedulePrayerDay(s, p.id, day, Math.max(at, minuteMs(day * DAY)));
+    }
+  const rows = people.map((p) => ({
+    person: p.id,
+    offers: world.affordancesFor(p).map((a) => publicOffer(p.id, a)),
+  }));
+  // The Keeper lives in the same run. These ordinary self-care offers prevent a never-stepped observer.
+  const keeper = readActor(s, 'keeper');
+  if (keeper)
+    rows.push({
+      person: 'keeper',
+      offers: [
+        publicOffer('keeper', {
+          id: 'keeper:rest',
+          action: 'rest',
+          label: 'rest while keeping account',
+          duration: 60,
+          effort: 0,
+          advertises: { rest: 0.2 },
+        }),
+        publicOffer('keeper', {
+          id: 'keeper:eat',
+          action: 'eat',
+          label: 'eat and drink',
+          duration: 30,
+          effort: 0,
+          advertises: { food: 0.6, water: 0.5 },
+        }),
+        publicOffer('keeper', {
+          id: 'keeper:sleep',
+          action: 'sleep',
+          label: 'sleep',
+          duration: 240,
+          effort: 0,
+          mode: 'sleep',
+          advertises: { sleep: 0.8 },
+        }),
+      ],
+    });
+  const ledger = structuredClone(physicalLedger(s));
+  ledger.care =
+    s.refugeVisit?.status === 'agreed'
+      ? {
+          ...ledger.care,
+          available:
+            s.refugeVisit.careCompletedAt === undefined &&
+            s.grain >= 0.1 &&
+            (s.homeThreat.west ?? -1e9) <= until - 90,
+        }
+      : null;
+  const offerInputs = runtime.offerInputs(
+    at,
+    rows,
+    ledger as unknown as import('@adam0white/human-framework').Json,
+  );
+  s.actors.queued.push(...offerInputs);
+  s.actors.ingress = Math.max(s.actors.ingress, at);
+  const spoken = suggestions(s),
+    orders = controlled(s);
+  for (const row of rows) {
+    const p = personOf(s, row.person);
+    for (const sug of spoken[row.person] ?? []) {
+      const signature = JSON.stringify(sug);
+      if (s.actors.advice[row.person] === signature) continue;
+      const previous = s.actors.advice[row.person];
+      if (previous)
+        actorInput(
+          s,
+          'advice.withdrawn',
+          { person: row.person, voiceId: KEEPER_ID, adviceId: `watch:standing:${row.person}` },
+          undefined,
+          at,
+        );
+      actorInput(
+        s,
+        'suggestion.received',
+        {
+          person: row.person,
+          received: {
+            kind: 'ordinary',
+            suggestion: {
+              ...sug,
+              adviceId: `watch:standing:${row.person}`,
+              ...(sug.since === undefined ? {} : { since: minuteMs(sug.since) }),
+            },
+          },
+        },
+        undefined,
+        at,
+      );
+      s.actors.advice[row.person] = signature;
+    }
+    if (!spoken[row.person]?.length && s.actors.advice[row.person]) {
+      actorInput(
+        s,
+        'advice.withdrawn',
+        { person: row.person, voiceId: KEEPER_ID, adviceId: `watch:standing:${row.person}` },
+        undefined,
+        at,
+      );
+      delete s.actors.advice[row.person];
+    }
+    const order = orders[row.person];
+    const previousOrder = s.actors.orders[row.person];
+    if (previousOrder && previousOrder !== JSON.stringify(order)) {
+      const old = JSON.parse(previousOrder) as Command;
+      actorInput(
+        s,
+        'coercion.withdrawn',
+        {
+          person: row.person,
+          orderId: `watch:order:${row.person}:${old.since ?? s.minute}`,
+          reason: 'The Keeper’s order ended',
+        },
+        undefined,
+        at,
+      );
+      delete s.actors.orders[row.person];
+    }
+    if (order && s.actors.orders[row.person] !== JSON.stringify(order)) {
+      actorInput(
+        s,
+        'coercion.received',
+        {
+          person: row.person,
+          voiceId: order.voiceId,
+          orderId: `watch:order:${row.person}:${order.since ?? s.minute}`,
+          offerId: order.affordanceId,
+          repeat: false,
+        },
+        undefined,
+        at,
+      );
+      s.actors.orders[row.person] = JSON.stringify(order);
+    }
+    if (!p?.activity)
+      actorInput(
+        s,
+        'decision.requested',
+        {
+          person: row.person,
+          reason: 'The village offers ordinary work and rest',
+          treatment: 'ordinary',
+          offerRevision: (() => {
+            const input = offerInputs.find(
+              (i) => i.kind === 'offers.received' && i.payload.person === row.person,
+            );
+            return input?.kind === 'offers.received'
+              ? input.payload.revision
+              : runtime.offerRevision(row.person);
+          })(),
+        },
+        undefined,
+        at,
+      );
+    const percepts = s.percepts[row.person];
+    if (percepts?.length) {
+      const perceptIds = observeActor(s, row.person, percepts);
+      bindBellPercepts(s, row.person, percepts, perceptIds);
+      delete s.percepts[row.person];
     }
   }
+  const events = [...s.actorEvents, ...flushActors(s, until)];
+  s.actorEvents = [];
+  for (const p of s.community.people)
+    if (!p.body.downed && p.activity) {
+      const pl = placeOfActivity(p.activity);
+      if (pl !== undefined) s.place[p.id] = pl;
+    }
+  const actualCare = physicalLedger(s).care?.completedAt;
+  if (actualCare && s.refugeVisit?.status === 'agreed' && s.refugeVisit.careCompletedAt === undefined)
+    completedAdaCare(s, actualCare / 60_000);
   if (s.duskRest) resolveDuskRest(s, events, until);
   if (s.localWarning) deliverLocalWarnings(s, until);
-  if (s.phase === 'night') readEvents(s, events, before);
-  // Prune percepts each person has already been handed.
-  for (const id of presentIds(s)) {
-    const q = s.percepts[id];
-    if (!q) continue;
-    const upto = s.community.perceivedUntil[id] ?? -Infinity;
-    const keep = q.filter((x) => x.at > upto);
-    if (keep.length === 0) delete s.percepts[id];
-    else s.percepts[id] = keep;
+  if (s.phase === 'night') {
+    readEvents(s, events, before);
+    followNightRecords(s, events, before, until);
   }
   return events;
 }
@@ -1026,6 +1185,35 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
     const name = nameOf(s, id);
     const answeringNightAsk = !!s.nightRequests?.[id];
     resolveNightRequest(s, e, before);
+    // A public accepted guard start proves standing; a posting alone does not.
+    if (
+      e.kind === 'begin' &&
+      e.action === 'hold-post' &&
+      e.affordanceId?.startsWith('post:') &&
+      isPost(s.place[id]) &&
+      `post:${s.place[id]}` === e.affordanceId &&
+      e.actionReceipt
+    ) {
+      const v = villager(s, id);
+      if (!v.stood) {
+        v.stood = true;
+        if (v.bornHere)
+          fillLeaf(s, 'born-stands', `${v.name}, born here, guarded the wall for the first time.`);
+        firstStand(s, id);
+      }
+    }
+    // Keep actual completed work separate from the routine winter tally. This never chooses an act.
+    if (
+      e.kind === 'finish' &&
+      e.status === 'completed' &&
+      e.action === 'hold-post' &&
+      e.affordanceId?.startsWith('post:gate-') &&
+      e.actionReceipt
+    ) {
+      s.yearGrain.playedGate ??= [];
+      if (!s.yearGrain.playedGate.some((r) => r.receipt === e.actionReceipt))
+        s.yearGrain.playedGate.push({ who: id, at: e.at, receipt: e.actionReceipt });
+    }
     if (e.kind === 'decide' && e.verdict && !e.review) {
       const posted = s.posts[id];
       const sec = posted ? postSection(posted) : undefined;
@@ -1318,7 +1506,6 @@ export function stepMinute(s: WatchState): void {
   if (s.phase !== 'night') return;
   const m = s.minute;
   s.throws = [];
-  s.keeper.now = m;
 
   // The Keeper walks.
   if (s.lantern.x !== s.lantern.target) {
@@ -1597,7 +1784,7 @@ function homeDuty(s: WatchState, id: WatcherId, section: SectionId): void {
   if (!p || family === null || villager(s, id).home !== section) return;
   if (
     p.agenda.commitments.some(
-      (c) => c.status === 'pending' && c.actions.includes('go-home') && c.until > s.minute,
+      (c) => c.status === 'pending' && c.actions.includes('go-home') && c.until > minuteMs(s.minute),
     )
   )
     return;
@@ -1667,7 +1854,7 @@ function bite(s: WatchState, id: WatcherId, t: Token): void {
     healRatePerDay: s.hardship ? BITE_HEAL_HARD : 0.12,
     bleeding: 0.25 + 0.3 * nextRandom(s),
   });
-  strain(p, 0.3 * severity);
+
   note(s, { who: id, kind: 'bitten', section: t.section });
   tell(
     s,
@@ -1703,7 +1890,7 @@ function strike(s: WatchState, id: WatcherId, section: SectionId): void {
   if (!p) return;
   injure(p, { part: 'head', severity: 0.4, healRatePerDay: s.hardship ? STRIKE_HEAL_HARD : 0.2 });
   knockDown(p, { reason: 'struck', until: s.minute + 120 });
-  strain(p, 0.15);
+
   downed(s, id, section);
   tell(s, id, {
     at: s.minute,
@@ -1757,32 +1944,10 @@ function prepareRefugeDeparture(s: WatchState): boolean {
   if (s.refugeDeparture || s.refugeVisit?.status !== 'agreed') return false;
   const p = personOf(s, 'kian');
   if (!p) return false;
-  const world = new WatchWorld(s),
-    original = world.affordancesFor;
-  world.affordancesFor = function (actual) {
-    const care = refugeVisitPassport(s);
-    if (
-      actual === p &&
-      !actual.activity &&
-      actual.now % DAY >= 360 &&
-      care &&
-      p.agenda.commitments.find((c) => c.id === care.agreement.commitmentId)?.status === 'kept' &&
-      !s.refugeDeparture
-    )
-      s.refugeDeparture = { person: structuredClone(p), watchCare: care };
-    return original.call(this, actual);
-  };
-  const end = Math.min(Math.floor(s.minute / DAY) * DAY + DUSK_START - 1, s.minute + 600);
-  for (let t = s.minute; t <= end && !s.refugeDeparture; t++) {
-    s.minute = t;
-    stepPeople(s, t, world);
-  }
   s.talks.said.push({
     who: 'kian',
     topic: 'home',
-    text: s.refugeDeparture
-      ? 'Kian and Ada shared food, water and quiet rest. They are ready to go, and Kian still owes Ada the trip back.'
-      : 'Kian and Ada spent the daylight together, but they were not ready to go before dusk. Choose Stay here together to go on with the watch.',
+    text: 'Kian and Ada can stay together here. This destination cannot yet carry Ada and their care and return duties, so they cannot leave together. Choose Stay here together to go on with the watch.',
   });
   return true;
 }

@@ -4,7 +4,7 @@ import { Composer } from './Composer.tsx';
 import { storyDates } from './dates.ts';
 import { planningContext } from './PlanningContext.tsx';
 import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
-import { callAccount, requestAccount } from './request-account.ts';
+import { callAccount, isSuggestionCompletion, requestAccount } from './request-account.ts';
 import { currentReply, sceneResponse } from './scene-response.ts';
 import { sceneBeat, sceneWordChoices } from './scene-words.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
@@ -224,7 +224,8 @@ function SceneDayContent(
       !dismissedOutcomes.has(entry.id) &&
       ((entry.kind === 'note' &&
         ((entry.who === 'you' &&
-          /Your suggestion (?:has (?:now )?ended|fades)|^He did what you suggested/.test(entry.text)) ||
+          (/Your suggestion (?:has (?:now )?ended|fades)/.test(entry.text) ||
+            isSuggestionCompletion(entry.text))) ||
           /Osman’s payment deadline has passed|^He paid Osman/.test(entry.text))) ||
         (entry.kind === 'act' && /^I (?:visit|visited) Nuran['’]s grave/.test(entry.text))),
   );
@@ -259,6 +260,16 @@ function SceneDayContent(
   const jumpLine =
     jump?.day === frame.day &&
     `The clock moved quickly from ${jump.from} to ${jump.to} because ${jump.label.startsWith('he sleeps') ? 'he was asleep' : `he was busy (${jump.label})`}. It slows down shortly before he next chooses, so you can speak then.`;
+  const dismissUpdates = () => {
+    setJump(null);
+    setDismissedOutcomes((previous) => new Set([...previous, ...outcomes.map((entry) => entry.id)]));
+  };
+  // One acknowledgement clears the words currently retained for reading. It never resumes a decision stop.
+  const leaveReading = () => {
+    leaveReply();
+    props.onDismissUnsaid();
+    dismissUpdates();
+  };
   const reading =
     (expanded && canSpeak && !heldPersonal) || editor || answerHold || outcomes.length > 0 || !!jumpLine;
   useEffect(() => {
@@ -381,6 +392,7 @@ function SceneDayContent(
               </p>
             )}
             <p>{explainTerms(account.status)}</p>
+            {account.availability && <p>{explainTerms(account.availability)}</p>}
             {account.window && <p>{settingWords(account.window)}</p>}
           </aside>
         )}
@@ -401,18 +413,11 @@ function SceneDayContent(
                 <small>{entry.clock}</small> · {settingWords(entry.text)}
               </p>
             ))}
-            <button
-              type="button"
-              className="v-btn v-btn-quiet"
-              onClick={() => {
-                setJump(null);
-                setDismissedOutcomes(
-                  (previous) => new Set([...previous, ...outcomes.map((entry) => entry.id)]),
-                );
-              }}
-            >
-              Continue
-            </button>
+            {!hasPersonalReply && (
+              <button type="button" className="v-btn v-btn-quiet" onClick={dismissUpdates}>
+                Continue
+              </button>
+            )}
           </aside>
         )}
         {props.unsaid && (
@@ -421,13 +426,11 @@ function SceneDayContent(
               <strong>Unsaid:</strong> “{settingWords(props.unsaid)}”
             </p>
             <p>That moment has passed. Nothing was said.</p>
-            <button
-              type="button"
-              className="v-personal-leave v-btn v-btn-quiet"
-              onClick={props.onDismissUnsaid}
-            >
-              {leaveLabel}
-            </button>
+            {!heldPersonal && (
+              <button type="button" className="v-personal-leave v-btn v-btn-quiet" onClick={leaveReading}>
+                {leaveLabel}
+              </button>
+            )}
           </div>
         )}
         {heldPersonal ? (
@@ -448,7 +451,7 @@ function SceneDayContent(
             {dayEnd && (
               <p role="status">The day is over. Leave this reply to see the recap and the next-day step.</p>
             )}
-            <button type="button" className="v-personal-leave v-btn v-btn-quiet" onClick={leaveReply}>
+            <button type="button" className="v-personal-leave v-btn v-btn-quiet" onClick={leaveReading}>
               {leaveLabel}
             </button>
           </article>
@@ -495,6 +498,7 @@ function SceneDayContent(
             {encounter && <p className="v-next-encounter">{settingWords(encounter)}</p>}
           </div>
         )}
+        {frame.outgoingCall && <p className="v-next-encounter">{frame.outgoingCall}</p>}
         {!heldPersonal && frame.pauseBeat && !scene && (
           <p className="v-scene-notice">{explainTerms(frame.pauseBeat.text)}</p>
         )}

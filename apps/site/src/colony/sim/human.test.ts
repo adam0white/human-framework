@@ -1,163 +1,55 @@
+/** Focused current host controls. HF3 director timings/verdict guarantees are retired;
+ * hf4-control.test.ts keeps the actual full two-day game and native replay. */
 import { describe, expect, it } from 'vitest';
-import { ordersChanged } from '../ui/end-report.ts';
-import { playDirector } from './director.ts';
+import { requireValue } from '../../shared/require-value.ts';
 import { ColonyGame, DEFAULT_SEED, NUDGES } from './game.ts';
-import { createFrameworkHumanSide, type FrameworkHumanSide } from './human.ts';
-import type { MomentId } from './human-side.ts';
-import { at, END_MINUTE } from './world-types.ts';
+import { createFrameworkHumanSide } from './human.ts';
+import { colonyHash, replayColony } from './playtest.ts';
+import { END_MINUTE } from './world-types.ts';
 
-describe('Twice at the Well — Human side on the framework', () => {
-  const run = playDirector();
-
-  it('fires all five moments on the shipped seed with the director’s orders', () => {
-    // Observed times plus slack; where they are later than spec §7's targets, docs/games/colony.md records why.
-    const due: Record<MomentId, number> = {
-      1: at(1, 11, 30),
-      2: at(1, 19, 45),
-      3: at(1, 11, 0),
-      4: at(1, 17, 0),
-      5: at(2, 7, 30),
-    };
-    const fired = new Map(run.game.moments.map((m) => [m.id, m.minute]));
-    for (const id of [1, 2, 3, 4, 5] as MomentId[]) {
-      const minute = fired.get(id);
-      expect(minute, `moment ${id}`).toBeDefined();
-      expect(minute ?? Infinity, `moment ${id} by its minute`).toBeLessThanOrEqual(due[id]);
-    }
+describe('Twice at the Well — current framework host', () => {
+  it('replays orders, cancellation and dismissed suggestions from the seed', () => {
+    const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    const o = requireValue(g.issue({ personId: 'yusuf', placeId: 'site' }));
+    g.advance(5);
+    g.cancel(o.id);
+    g.dismissNudge('dawn-site');
+    g.issue({ personId: 'maryam', placeId: 'kitchen' });
+    g.advance(35);
+    const again = replayColony(g.seed, createFrameworkHumanSide, g.log, g.minute);
+    expect(again.log).toEqual(g.log);
+    expect(colonyHash(again)).toBe(colonyHash(g));
+    expect(again.human.snapshot()).toEqual(g.human.snapshot());
   });
 
-  it('produces the verdicts each moment is about', () => {
-    const of = (nudge: string) => run.cards.filter((c) => c.nudge === nudge);
-    expect(of('dawn-site')[0]?.state).toBe('assent');
-    // Moment 2: the dusk answer is a deferral whose counter-offer names the prayer.
-    expect(of('dusk-site').some((c) => c.state === 'notNow' && /sunset prayer/i.test(c.label))).toBe(true);
-    // Moment 3: the cook will not leave the meal.
-    expect(of('cook-forest')[0]?.state).toBe('willNot');
-    // Moment 5: insisted on in the squall, then refused the next morning out of distrust.
-    expect(of('squall-tariq').some((c) => c.state === 'complied')).toBe(true);
-    expect(of('tariq-again')[0]?.state).toBe('willNot');
-    const side = run.game.human as FrameworkHumanSide;
-    const tariq = side.view().find((v) => v.id === 'tariq');
-    expect(tariq?.trust.value ?? 1).toBeLessThan(0.45);
-  });
-
-  it('keeps the cedar roll when the player taps the card a few minutes late (cards stamp their own minute)', () => {
-    // v2: with the store fuller on Day 1, moment 1 (carry before eating) needs Yusuf hungry at the injury, which a
-    // late dawn tap no longer guarantees. Auto-pause makes on-time taps the default (see playback.test.ts).
-    const late = playDirector(DEFAULT_SEED, 3);
-    expect(late.game.humanWorld.cedarFelled).toBe(true);
-    expect(late.game.humanWorld.injuries).toBeGreaterThan(0);
-  });
-
-  it('is deterministic: same seed and orders give identical snapshots', () => {
-    const again = playDirector();
-    expect(JSON.stringify(again.game.human.snapshot())).toBe(JSON.stringify(run.game.human.snapshot()));
-    expect(JSON.stringify(again.game.humanWorld)).toBe(JSON.stringify(run.game.humanWorld));
-    expect(again.cards).toEqual(run.cards);
-  });
-
-  it('replays a run from the seed and the player log', () => {
-    const again = ColonyGame.replay(DEFAULT_SEED, createFrameworkHumanSide, run.game.log);
-    expect(again.minute).toBe(run.game.minute);
-    expect(JSON.stringify(again.human.snapshot())).toBe(JSON.stringify(run.game.human.snapshot()));
-    expect(again.book.cards).toEqual(run.game.book.cards);
-  });
-
-  it('replays a run that went on to "Another day" (the continue entry is logged)', () => {
+  it('a late tap keeps the cedar card’s roll and its actual receipt time', () => {
     const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    game.issue({ personId: 'yusuf', placeId: 'site' });
-    game.advance(END_MINUTE);
-    expect(game.canContinue).toBe(true);
-    expect(game.continueDay()).toBe(true);
-    game.issue({ personId: 'idris', placeId: 'site' });
-    game.advance(240);
-    expect(game.log.some((e) => e.kind === 'continue')).toBe(true);
-    const again = ColonyGame.replay(DEFAULT_SEED, createFrameworkHumanSide, game.log, game.minute);
-    expect(again.minute).toBe(game.minute);
-    expect(again.endMinute).toBe(game.endMinute);
-    expect(JSON.stringify(again.human.snapshot())).toBe(JSON.stringify(game.human.snapshot()));
-    expect(JSON.stringify(again.classicWorld)).toBe(JSON.stringify(game.classicWorld));
-    expect(again.book.cards).toEqual(game.book.cards);
-  });
-
-  it('keeps a yes on the card through a drink or a meal, and settles it done instead of lapsing mid-job', () => {
-    for (const nudge of ['dawn-site', 'cedar', 'dusk-site']) {
-      const states = run.cards.filter((c) => c.nudge === nudge);
-      const firstYes = states.findIndex((c) => c.state === 'assent');
-      expect(firstYes, nudge).toBeGreaterThanOrEqual(0);
-      // After a yes, a "not now" may only be a prayer (moment 2), never a bodily need.
-      for (const c of states.slice(firstYes)) {
-        if (c.state === 'notNow') expect(c.label, nudge).toMatch(/pray/i);
-      }
-      const id = run.game.book.cards.find(
-        (c) => c.order.id === `o${NUDGES.findIndex((n) => n.id === nudge) + 1}`,
-      );
-      expect(id?.status, nudge).toBe('done');
-      expect(id?.human.state, nudge).toBe('done');
-    }
-  });
-
-  it('an order given at 05:00 while he is paused in the tutorial is not lapsed mid-job', () => {
-    const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    const o = game.issue({ personId: 'yusuf', placeId: 'site' });
-    game.advance(at(1, 10, 0));
-    const card = game.book.card(o?.id ?? '');
-    expect(card?.status).not.toBe('lapsed');
-  });
-
-  it('a late tap keeps the card’s roll but not a shorter lifetime', () => {
-    const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    const cedar = NUDGES.find((n) => n.id === 'cedar');
-    if (!cedar) throw new Error('no cedar card');
+    const cedar = requireValue(NUDGES.find((n) => n.id === 'cedar'));
     game.advance(cedar.minute + 30);
     const o = game.issue(cedar.order);
     expect(o?.rollKey).toBe(cedar.minute);
     expect(o?.issuedAt).toBe(cedar.minute + 30);
   });
 
-  // Its wall-clock budget (under 1.5 s) is in colony.timing.ts, run by `npm run bench`.
-  it('runs a full two-day game, both sides, to the last minute', () => {
-    expect(run.game.minute).toBe(END_MINUTE);
+  it('inspection and prediction leave the native actor and both worlds unchanged', () => {
+    const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    game.advance(5);
+    const before = colonyHash(game);
+    game.human.view();
+    game.why('idris');
+    game.predict({ personId: 'idris', placeId: 'site' });
+    expect(colonyHash(game)).toBe(before);
   });
 
-  it('records the headless solo control (no orders)', () => {
-    const summary = run.game.summary();
-    const played = summary.scoreboard.human;
-    const solo = summary.solo;
-    // A negative result here is allowed and kept: the solo village may beat the director's script.
-    console.log(
-      `solo control: house ${solo.housePct}% meals ${solo.meals} injuries ${solo.injuries} alive ${solo.alive} ` +
-        `prayers ${solo.prayersKept}/${solo.prayersDue} | director script: house ${played.housePct}% meals ${played.meals} ` +
-        `injuries ${played.injuries} alive ${played.alive} prayers ${played.prayersKept}/${played.prayersDue}`,
-    );
-    expect(solo.alive).toBeGreaterThan(0);
-  });
-
-  it('a Solo control stepped alongside play gives the same reports as one built at the end (perf V15)', () => {
-    const paced = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    const lazy = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    const playTo = (g: ColonyGame, step: number) => {
-      while (!g.ended) {
-        g.advance(step);
-        if (g === paced) g.advanceSolo(step);
-      }
-    };
-    playTo(paced, 37);
-    lazy.advance(END_MINUTE);
-    expect(JSON.stringify(paced.summary())).toBe(JSON.stringify(lazy.summary()));
-    paced.continueDay();
-    lazy.continueDay();
-    playTo(paced, 53);
-    lazy.advance(lazy.endMinute - lazy.minute);
-    expect(JSON.stringify(paced.summary())).toBe(JSON.stringify(lazy.summary()));
-  });
-
-  it('the report lists each order with both answers and says what the orders changed (GD2)', () => {
-    const summary = run.game.summary();
-    expect(summary.cards.length).toBeGreaterThan(0);
-    for (const c of summary.cards) expect(c.order.issuedAt).toBeLessThan(END_MINUTE);
-    const line = ordersChanged(summary);
-    console.log(`orders changed: ${line}`);
-    expect(line).toMatch(/^Your \d+ orders? changed/);
+  it('logs the single Day-3 continuation and changes the host goals at its boundary', () => {
+    const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    // This is the host transition premise, not a claim to have simulated two days.
+    game.minute = END_MINUTE;
+    expect(game.canContinue).toBe(true);
+    expect(game.continueDay()).toBe(true);
+    expect(game.continueDay()).toBe(false);
+    expect(game.endMinute).toBe(4320);
+    expect(game.log.filter((e) => e.kind === 'continue')).toEqual([{ minute: END_MINUTE, kind: 'continue' }]);
+    expect(game.frame().goals.map((g) => g.id)).toEqual(['project', 'stock', 'lives']);
   });
 });

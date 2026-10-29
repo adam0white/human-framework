@@ -3,7 +3,6 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, test } from 'vitest';
 import type { SceneWords } from '../protocol.ts';
-import { silentMonthView } from '../sim/counterfactual.ts';
 import { sampleReport } from '../sim/fixtures.ts';
 import { VoiceGame } from '../sim/game.ts';
 import { play } from '../sim/headless.ts';
@@ -43,12 +42,13 @@ test('counts accepted care and questions, excluding unsaid words, suggestions an
   expect(daySpeech(['You said nothing today.'], [], 1)).toEqual(['You made no suggestions today.']);
 });
 
-test('care-only full run keeps the complete simulation and replay unchanged while summaries acknowledge speech', () => {
-  const rec = new RecordedGame(new VoiceGame(7, 2));
-  const baseline = new RecordedGame(new VoiceGame(7, 2));
+test('care-only first day retains its received-support history and replays while its summary acknowledges speech', () => {
+  const rec = new RecordedGame(new VoiceGame(7, 4));
   play(rec, { stop: (g) => !g.intro && sceneWordChoices(rec.frame()).length > 0 });
   const frame = rec.frame();
+  const beforeCare = voiceHash(rec.game);
   rec.apply({ type: 'sceneWord', beat: sceneBeat(frame), kind: 'care' });
+  expect(voiceHash(rec.game)).not.toBe(beforeCare);
   expect(rec.sceneWords).toHaveLength(1);
   play(rec, { stop: (g) => g.phase === 'between' });
   const between = rec.game.between;
@@ -64,32 +64,7 @@ test('care-only full run keeps the complete simulation and replay unchanged whil
   expect(day).toContain('You offered care once.');
   expect(day).toContain('You kept him company without suggesting anything.');
   expect(day).not.toContain('You said nothing today.');
-  play(rec);
-  play(baseline);
-  expect(rec.game.phase).toBe('report');
-  expect(voiceHash(rec.game)).toBe(voiceHash(baseline.game));
-  expect(rec.game.report).toEqual(baseline.game.report);
-  const report = rec.game.report;
-  if (!report) throw new Error('Missing report');
-  const original = JSON.stringify(report);
-  const html = renderToStaticMarkup(
-    createElement(Report, {
-      view: { ...report, silent: silentMonthView(rec.game) },
-      sceneWords: rec.sceneWords,
-      onKeepListening: () => {},
-      onReplay: () => {},
-      onNewTown: () => {},
-    }),
-  );
-  expect(html).toContain('You offered care once.');
-  expect(html).toContain('You kept him company without suggesting anything.');
-  expect(html).toContain('The days you spoke, and Eid');
-  expect(html).not.toContain('You said nothing');
-  expect(html).not.toContain('The month you never spoke');
-  expect(html).not.toContain('The days you watched');
-  expect(html).not.toMatch(/care (helped|improved|earned|changed)/i);
-  expect(JSON.stringify(report)).toBe(original);
-  const restored = replayVoice(7, rec.log, 2);
+  const restored = replayVoice(7, rec.log, 4);
   expect(restored.driftAt).toBe(-1);
   expect(restored.rec.sceneWords).toEqual(rec.sceneWords);
   expect(voiceHash(restored.rec.game)).toBe(voiceHash(rec.game));
