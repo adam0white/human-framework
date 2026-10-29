@@ -74,7 +74,9 @@ describe('daily reading jobs', () => {
     expect(validateWordings({ wordings: { 'decision.act': valid } }, templates)).toEqual({
       'decision.act': valid,
     });
-    expect(() => validateWordings({ wordings: { 'decision.act': valid.slice(0, 3) } }, templates)).toThrow();
+    expect(validateWordings({ wordings: { 'decision.act': valid.slice(0, 3) } }, templates)).toEqual({
+      'decision.act': valid.slice(0, 3),
+    });
     expect(() =>
       validateWordings(
         { wordings: { 'decision.act': [...valid.slice(0, 3), 'I choose {action}.'] } },

@@ -29,6 +29,16 @@ const wordings = {
   'decision.wait': ['Wait.', 'I will wait.', 'I will give it time.', 'I will wait a little longer.'],
 };
 const lex: Lexicon = { names: {}, roles: {}, actions: {}, prefer: 'name', wordings };
+const sentenceReplies = {
+  'verdict.assented': ["Yes! Let's go."],
+  'verdict.commanded': ['I will follow the order.'],
+  'verdict.complied': ['I will do it, though I disagree.'],
+  'verdict.refused': ["I won't do it."],
+  'verdict.cannot': ["I can't do that."],
+  'verdict.deferred': ['I will {alternative} first.'],
+  'verdict.deferred.later': ['Not yet. Ask me again later.'],
+  'verdict.modified': ['I will {alternative} instead.'],
+};
 function wait(id: string, person = 'ada'): RunEvent {
   return {
     id,
@@ -127,8 +137,6 @@ it('rejects malformed wording data before a run is created', () => {
   for (const invalid of [
     { 'unknown.key': ['A.'] },
     { 'decision.wait': [] },
-    { 'decision.wait': ['Wait.'] },
-    { 'decision.wait': ['Wait.', 'Pause.', 'Stay.'] },
     { 'decision.wait': ['A.', 'A.'] },
     { 'decision.wait': [' '] },
     { 'decision.act': ['I will {action}.'] },
@@ -276,12 +284,9 @@ it('keeps a missing winning alternative neutral and an authored objection out of
   const table: Lexicon = {
     ...lex,
     wordings: {
-      'verdict.deferred': [
-        'will first {alternative}',
-        'will wait until I {alternative}',
-        'will consider it after I {alternative}',
-        'must first {alternative}',
-      ],
+      'verdict.deferred': ['I will {alternative} first.'],
+      'verdict.deferred.later': ['Not yet. Ask me again later.'],
+      'suggestion.resolved': ['{verdict}{reason}'],
       'reason.norm': [
         'This conflicts with my rule.',
         'My rule forbids this.',
@@ -296,7 +301,7 @@ it('keeps a missing winning alternative neutral and an authored objection out of
     decisionId: 'd',
     resolution: { voiceId: 'v', verdict: 'deferred', reason: 'preference', counterOffer: { label: 'later' } },
   };
-  expect(describeWording(deferred, table)?.slots.verdict).toBe('will first do something else');
+  expect(describeWording(deferred, table)?.slots.verdict).toBe('Not yet. Ask me again later.');
   expect(
     describeWording(
       {
@@ -305,7 +310,7 @@ it('keeps a missing winning alternative neutral and an authored objection out of
       },
       table,
     )?.slots.verdict,
-  ).toContain('the dawn prayer');
+  ).toBe('Not yet. Ask me again later.');
   const event = wait('motive');
   event.data = {
     kind: 'decision',
@@ -364,8 +369,8 @@ it('headless control: reads, pagination, restore continuation and replay retain 
     const spec = exampleSpec(7);
     if (withVariants)
       spec.definitions.lexicon.wordings = {
-        'verdict.refused': ['refused it', 'declined it', 'said no to it', 'would not do it'],
-        'verdict.cannot': ['cannot act', 'cannot manage it', 'cannot do it', 'am unable to act'],
+        ...sentenceReplies,
+        'suggestion.resolved': ['{verdict}{reason}'],
         'reason.need:food': ['I need a meal.', 'I am hungry.', 'Food comes first.', 'I need food.'],
         'decision.act': [
           'My next step is to {action}.{why}',
@@ -542,4 +547,55 @@ it('headless control: reads, pagination, restore continuation and replay retain 
   );
   expect(need(replay(exportRun(decisionRun))).verified).toBe(true);
   expect(exportRun(need(restoreRun(exportRun(decisionRun))))).toEqual(exportRun(decisionRun));
+});
+
+it('records a single authored sentence without adding a subject, punctuation or a tentative opening', () => {
+  const spec = exampleSpec();
+  spec.definitions.lexicon.wordings = {
+    ...sentenceReplies,
+    'suggestion.resolved': ['{verdict}{reason}'],
+  };
+  expect(createRun(spec).ok).toBe(true);
+  const event = wait('answer');
+  event.data = {
+    kind: 'suggestion-resolved',
+    adviceId: 'a',
+    decisionId: 'd',
+    resolution: { voiceId: 'v', verdict: 'assented', reason: '' },
+  };
+  const state: Pick<RunState, 'wording'> = { wording: {} };
+  for (let i = 0; i < 4; i++) {
+    selectEventWording(event, spec.definitions.lexicon, 7, state);
+    expect(event.wording?.fragments?.['verdict.assented']).toBe(0);
+    expect(rendererOwner.render(event, { kind: 'host' }, spec.definitions.lexicon, 7)[0]?.text).toBe(
+      "Yes! Let's go.",
+    );
+  }
+});
+
+it('refuses sentence wrappers with missing effective reply fragments, including voice inheritance', () => {
+  const spec = exampleSpec();
+  spec.definitions.lexicon.wordings = { ...sentenceReplies, 'suggestion.resolved': ['{verdict}{reason}'] };
+  delete spec.definitions.lexicon.wordings['verdict.deferred.later'];
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: {
+      code: 'invalid-schema',
+      message: expect.stringContaining('verdict.deferred.later'),
+    },
+  });
+  spec.definitions.lexicon.wordings = { ...sentenceReplies };
+  delete spec.definitions.lexicon.wordings['verdict.cannot'];
+  spec.definitions.lexicon.names = { ada: 'Ada' };
+  spec.definitions.lexicon.voices = { ada: { 'suggestion.resolved': ['{verdict}{reason}'] } };
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: {
+      code: 'invalid-schema',
+      path: '$.definitions.lexicon.voices.ada',
+      message: expect.stringContaining('verdict.cannot'),
+    },
+  });
+  spec.definitions.lexicon.voices.ada!['verdict.cannot'] = sentenceReplies['verdict.cannot'];
+  expect(createRun(spec).ok).toBe(true);
 });

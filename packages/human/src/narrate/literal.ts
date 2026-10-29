@@ -113,6 +113,7 @@ export const NARRATION_FRAGMENTS: Readonly<Record<string, Readonly<{ slots: read
         }),
       ]),
       ['verdict.cannot', Object.freeze({ slots: Object.freeze([]) })],
+      ['verdict.deferred.later', Object.freeze({ slots: Object.freeze([]) })],
       ...[
         ...Object.keys(REASONS),
         ...EXTRA_REASON_KEYS,
@@ -286,7 +287,15 @@ export function describeWording(
       });
     case 'suggestion-resolved': {
       const r = d.resolution;
-      const key = r.verdict === 'refused' && r.kind === 'cannot' ? 'verdict.cannot' : `verdict.${r.verdict}`;
+      // A commitment label is a promise, not an action's base verb phrase.
+      // No winning action means no alternative slot: never invent an action.
+      const hasAlternative = !!r.insteadAffordanceId && !r.commitmentId && !!r.counterOffer?.label;
+      const key =
+        r.verdict === 'refused' && r.kind === 'cannot'
+          ? 'verdict.cannot'
+          : r.verdict === 'deferred' && !hasAlternative
+            ? 'verdict.deferred.later'
+            : `verdict.${r.verdict}`;
       const predicate = fragment(
         key,
         key === 'verdict.cannot' ? 'could not follow the advice' : SUGGESTION_VERDICTS[r.verdict],
@@ -295,9 +304,7 @@ export function describeWording(
       return describe('suggestion.resolved', {
         verdict: fillTemplate(predicate, {
           alternative:
-            (r.insteadAffordanceId || r.commitmentId) && r.counterOffer?.label
-              ? labelLine(r.counterOffer.label)
-              : 'do something else',
+            hasAlternative && r.counterOffer?.label ? labelLine(r.counterOffer.label) : 'do something else',
         }),
         reason: explanation ? ` ${explanation}` : '',
       });
