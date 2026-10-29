@@ -25,7 +25,7 @@
   },
   "watch": {
     "framework": "3.2.0",
-    "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
+    "commit": "04ce17f83d38f241d9a401cfa75ef73f61a9f460",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-29",
     "reason": "Stays on HF 3.2: HF 4.9 cannot expose learned fears of a particular watch posting during active work. Port blocker reviewed October 29; recheck November 3, 2026."
@@ -51,14 +51,14 @@
   },
   "voice": {
     "framework": "3.2.0",
-    "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
+    "commit": "04ce17f83d38f241d9a401cfa75ef73f61a9f460",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-29",
     "reason": "Stays on HF 3.2: HF 4.9 lacks the live feelings and learned expectations used by Halil’s display. Carryover also needs a Voice role in the lab client. Recheck November 3, 2026."
   },
   "well": {
     "framework": "3.2.0",
-    "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
+    "commit": "04ce17f83d38f241d9a401cfa75ef73f61a9f460",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-29",
     "reason": "Stays on HF 3.2: HF 4.9 lacks the named feelings shown while villagers work. Port blocker reviewed October 29; recheck November 3, 2026."
