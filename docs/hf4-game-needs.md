@@ -1,33 +1,33 @@
 # Every game on HF 4.x: needs and delivery targets
 
-Snapshot: 2026-10-27. Owner direction: [every game on 4.x, one game at a time](owner-directions-2026-10-18.md#2026-10-27--every-game-on-4x-one-game-at-a-time-adam-verbatim). Staying on 3.x is a temporary disposition. This inventory covers the fifteen games in the original disposition list, plus Smoke, Child and Left Hand. His Word and Three Days already run on 4.0.0 and are outside these eighteen.
+Live snapshot: 2026-10-30. Owner direction: [every game on 4.x, one game at a time](owner-directions-2026-10-18.md#2026-10-27--every-game-on-4x-one-game-at-a-time-adam-verbatim). Staying on 3.x is a temporary disposition. The live table covers all twenty games. The dated HF needs below preserve earlier requests and do not override that table.
 
 ## Current live status
 
-A 2026-10-29 audit of 20 live release manifests found 14 games reporting HF 4.x and six reporting 3.x. All audited manifests reported `dirty:false`. The next live audit is due 2026-11-03.
+Live release files checked on 2026-10-30 report 17 of 20 games on HF 4.x. Valley and Neighbours report HF 3.0.0; Child reports HF 3.2.0. Every file reports `dirty:false`. Watch, Voice and Well share the central manifest, which reports both framework and library 4.15.0. These are deployment records, not player acceptance. The next status audit is due 2026-11-03.
 
-| Game        | Live HF pin                                              | Status / remaining work                                               |
-| ----------- | -------------------------------------------------------- | --------------------------------------------------------------------- |
-| murmur      | [4.8.0](https://murmur.adamwhite.work/release.json)      | On HF 4.x; player acceptance remains separate.                        |
-| stairwell   | [4.8.1](https://stairwell.adamwhite.work/release.json)   | On HF 4.x; player acceptance remains separate.                        |
-| pass        | [4.8.1](https://pass.adamwhite.work/release.json)        | On HF 4.x; player acceptance remains separate.                        |
-| glance      | [4.8.0](https://glance.adamwhite.work/release.json)      | On HF 4.x; player acceptance remains separate.                        |
-| watch       | [3.2.0](https://human.adamwhite.work/release.json)       | Central 4.x bridge and deployment unverified; audit again 2026-11-03. |
-| hearsay     | [4.8.0](https://hearsay.adamwhite.work/release.json)     | On HF 4.x; player acceptance remains separate.                        |
-| goodhands   | [4.8.1](https://goodhands.adamwhite.work/release.json)   | On HF 4.x; player acceptance remains separate.                        |
-| valley      | [3.0.0](https://valley.adamwhite.work/release.json)      | Stays on 3.x pending HF 4.9/4.10 speed-up.                            |
-| voice       | [3.2.0](https://human.adamwhite.work/release.json)       | Central 4.x bridge and deployment unverified; audit again 2026-11-03. |
-| well        | [3.2.0](https://human.adamwhite.work/release.json)       | Central 4.x bridge and deployment unverified; audit again 2026-11-03. |
-| warren      | [4.8.1](https://warren.adamwhite.work/release.json)      | On HF 4.x; player acceptance remains separate.                        |
-| repair      | [4.8.0](https://repair.adamwhite.work/release.json)      | On HF 4.x; player acceptance remains separate.                        |
-| neighbours  | [3.0.0](https://neighbours.adamwhite.work/release.json)  | 4.x deployment unverified; audit again 2026-11-03.                    |
-| rope        | [4.8.1](https://rope.adamwhite.work/release.json)        | On HF 4.x; player acceptance remains separate.                        |
-| commonstead | [4.8.1](https://commonstead.adamwhite.work/release.json) | On HF 4.x; player acceptance remains separate.                        |
-| smoke       | [4.8.0](https://smoke.adamwhite.work/release.json)       | On HF 4.x; player acceptance remains separate.                        |
-| word        | [4.0.0](https://word.adamwhite.work/release.json)        | On HF 4.x; player acceptance remains separate.                        |
-| child       | [3.2.0](https://child.adamwhite.work/release.json)       | Blocked until 2026-11-24 workload review.                             |
-| days        | [4.8.1](https://days.adamwhite.work/release.json)        | On HF 4.x; player acceptance remains separate.                        |
-| lefthand    | [4.8.0](https://lefthand.adamwhite.work/release.json)    | On HF 4.x; player acceptance remains separate.                        |
+| Game        | Live HF                                                  | Live commit                                | Status                                                                                                                                                                |
+| ----------- | -------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| murmur      | [4.9.0](https://murmur.adamwhite.work/release.json)      | `2f787400e357d81975d485162eef05cdb9d6102e` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| stairwell   | [4.14.0](https://stairwell.adamwhite.work/release.json)  | `a3fffc20faf846e0ee2a4fdd8cd7d6567c81ea1a` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| pass        | [4.12.0](https://pass.adamwhite.work/release.json)       | `8eff0b3fa658eef90318ee5029dc948d2ee9d85b` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| glance      | [4.14.0](https://glance.adamwhite.work/release.json)     | `d496d39fd4f7173bb5674eca4ece07d8db3b5fc0` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| watch       | [4.15.0](https://human.adamwhite.work/release.json)      | `097892eacdcb64a8ca8c127213e604bee0bf7eb7` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| hearsay     | [4.12.0](https://hearsay.adamwhite.work/release.json)    | `f99e153e8ff2a7b78331f4c7cdb73989342b704f` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| goodhands   | [4.8.1](https://goodhands.adamwhite.work/release.json)   | `df5e3f20e02603e022081422f76811eecacc3bad` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| valley      | [3.0.0](https://valley.adamwhite.work/release.json)      | `d014874ff3ec1fb02581c5b2713508555b8a74db` | HF 3.0.0 remains live. HF 4 still exceeds its simulation and saved-history budgets. The next check is scheduled for November 24, 2026, with Child.                    |
+| voice       | [4.15.0](https://human.adamwhite.work/release.json)      | `097892eacdcb64a8ca8c127213e604bee0bf7eb7` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| well        | [4.15.0](https://human.adamwhite.work/release.json)      | `097892eacdcb64a8ca8c127213e604bee0bf7eb7` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| warren      | [4.10.0](https://warren.adamwhite.work/release.json)     | `884f730d457b81260be92322a245fbc65eca8aa6` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| repair      | [4.8.0](https://repair.adamwhite.work/release.json)      | `d48782129bbf015e2b2bf1475d144838c095c93f` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| neighbours  | [3.0.0](https://neighbours.adamwhite.work/release.json)  | `7b0dcd1c494b39975219df5ed6ee05d616ba731b` | HF 3.0.0 remains live. The HF 4 port has failing browser checks and a timed-out stress test. Fix and verify the port before deployment; check again November 3, 2026. |
+| rope        | [4.13.0](https://rope.adamwhite.work/release.json)       | `4291bb183715b5ae444e70ba82ca1a0ec61738d0` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| commonstead | [4.8.1](https://commonstead.adamwhite.work/release.json) | `70f107a324aecb61a89e925ec9652eaeb7f36e70` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| smoke       | [4.8.0](https://smoke.adamwhite.work/release.json)       | `7070afb11b2262ffc5fef8997189f749238ef653` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| word        | [4.0.0](https://word.adamwhite.work/release.json)        | `0fbe19a5a5e4dc8915c4406f31f49f0f43990050` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| child       | [3.2.0](https://child.adamwhite.work/release.json)       | `c6f74826cb1ae4590ee321202da097b344bea131` | HF 3.2.0 remains live because HF 4 exceeds its daily simulation and reload budgets. The next workload check is scheduled for November 24, 2026, with Valley.          |
+| days        | [4.8.1](https://days.adamwhite.work/release.json)        | `2741f06a0e4c96ffdec26e2e5b6b8874765dc126` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
+| lefthand    | [4.10.0](https://lefthand.adamwhite.work/release.json)   | `7aa45980295c193389a8a00e7b7cdee0ba7949f5` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
 
 The [4.9 measurements](findings.md#hf-49-g7-perf-exact-simulation-lossless-history-encoding-2026-10-29) missed the Child and Valley time budgets. A manifest reports a deployment's version; it does not establish player acceptance.
 
