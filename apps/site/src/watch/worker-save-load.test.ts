@@ -18,7 +18,12 @@ it('loads its own saved page and restores cast metadata', async () => {
       if (!receive) throw new Error('No worker message handler');
       receive({ data } as MessageEvent<MainToWorker>);
     };
+    const waitForShelf = (gen: number) =>
+      vi.waitFor(() =>
+        expect(replies.some((reply) => reply.type === 'shelf' && reply.gen === gen)).toBe(true),
+      );
     send({ type: 'init', gen: 1, seed: 7, scenarioVersion: WATCH_SCENARIO_VERSION });
+    await waitForShelf(1);
     send({ type: 'input', input: { k: 'start' } });
     send({ type: 'castOwnership', heads: {}, localOnly: true, skipped: ['kian'] });
     let pageId = '';
@@ -32,7 +37,21 @@ it('loads its own saved page and restores cast metadata', async () => {
       expect(snapshot?.castSkipped).toEqual(['kian']);
       pageId = page.id;
     });
+    await vi.waitFor(() =>
+      expect(
+        replies.some(
+          (reply) =>
+            reply.type === 'saved' &&
+            reply.gen === 1 &&
+            reply.value !== null &&
+            typeof reply.value === 'object' &&
+            'castLocalOnly' in reply.value &&
+            reply.value.castLocalOnly === true,
+        ),
+      ).toBe(true),
+    );
     send({ type: 'init', gen: 2, seed: 8, scenarioVersion: WATCH_SCENARIO_VERSION });
+    await waitForShelf(2);
     replies.length = 0;
     send({ type: 'load', id: pageId, gen: 3 });
     await vi.waitFor(() =>
@@ -46,6 +65,9 @@ it('loads its own saved page and restores cast metadata', async () => {
       skipped: ['kian'],
       gen: 3,
     });
+    // Loading posts its shelf asynchronously after the loaded/castReady replies.
+    // Keep the worker globals until that final IndexedDB read has settled.
+    await waitForShelf(3);
   } finally {
     vi.unstubAllGlobals();
   }
