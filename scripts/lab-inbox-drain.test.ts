@@ -49,10 +49,12 @@ it('drains a bounded concurrent backlog and retries only failed payloads', () =>
       import fs from 'node:fs';
       import { gzipSync } from 'node:zlib';
       import { syncBuiltinESMExports } from 'node:module';
+      import timers from 'node:timers/promises';
       const root = ${JSON.stringify(root)}, day = ${JSON.stringify(day)}, records = ${JSON.stringify(records)};
       let now = Date.now(), active = 0;
       Date.now = () => now;
       const log = value => fs.appendFileSync(root + '/calls', JSON.stringify(value) + '\\n');
+      timers.setTimeout = async ms => { now += ms; log({ type: 'sleep', ms }); };
       const payload = (key, file) => {
         now += 15000;
         const r = records.find(r => r.key === key);
@@ -75,10 +77,16 @@ it('drains a bounded concurrent backlog and retries only failed payloads', () =>
         const key = args[4].replace('hf-lab/', ''), file = args[args.indexOf('--file') + 1];
         active++; log({ type: 'start', key, active, timeout: options.timeout, file });
         setImmediate(() => {
-          let error = null;
-          try { payload(key, file); } catch (e) { error = e; }
+          let error = null, stderr = '';
+          if (key === records[1].key && !fs.existsSync(root + '/rate-limited')) {
+            fs.writeFileSync(root + '/rate-limited', 'yes');
+            fs.writeFileSync(file, 'partial');
+            error = Error('synthetic transport failure'); stderr = '429 rate limit';
+          } else {
+            try { payload(key, file); } catch (e) { error = e; }
+          }
           active--; log({ type: 'end', key, active });
-          callback(error, '', '');
+          callback(error, '', stderr);
         });
         return {};
       };
@@ -99,7 +107,9 @@ it('drains a bounded concurrent backlog and retries only failed payloads', () =>
     const first = run();
     const firstCalls = calls();
     const starts = firstCalls.filter((call) => call.type === 'start');
-    expect(starts).toHaveLength(24);
+    expect(starts).toHaveLength(25);
+    expect(firstCalls.some((call) => call.type === 'sleep' && call.ms >= 300000)).toBe(true);
+    expect(starts.filter((call) => call.key === records[1]?.key)).toHaveLength(2);
     expect(Math.max(...starts.map((call) => call.active))).toBeGreaterThan(1);
     expect(Math.max(...starts.map((call) => call.active))).toBeLessThanOrEqual(8);
     expect(firstCalls.findIndex((call) => call.type === 'start')).toBeGreaterThan(
@@ -120,7 +130,8 @@ it('drains a bounded concurrent backlog and retries only failed payloads', () =>
     expect(run()).toContain('0 pending');
     const allStarts = calls().filter((call) => call.type === 'start');
     expect(allStarts.filter((call) => call.key === records[0]?.key)).toHaveLength(2);
-    for (const record of records.slice(1))
+    expect(allStarts.filter((call) => call.key === records[1]?.key)).toHaveLength(2);
+    for (const record of records.slice(2))
       expect(allStarts.filter((call) => call.key === record.key)).toHaveLength(1);
   } finally {
     rmSync(root, { recursive: true, force: true });

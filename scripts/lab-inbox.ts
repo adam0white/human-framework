@@ -7,6 +7,7 @@
  *   index.html            every run with its note, newest first; open it in a browser
  * Options: --days=N (default 30) limits which runs are downloaded. --suggest opts into Clef suggestions.
  * `npm run lab:inbox -- --drain` reads missing linked payloads with eight readers for up to one hour.
+ * Readers share request pacing and a five-minute pause when the account API throttles.
  * Runs report phase times and keep the entire cache. Only one invocation may write the cache at a time.
  * After interruption, check the PID in `.lab-inbox/.download-lock` before removing that stale lock.
  * With --suggest, only the first word of envelope `who` and notes of at least three words go to
@@ -23,6 +24,7 @@
 import { execFile, execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { setTimeout as sleep } from 'node:timers/promises';
 import { gunzipSync } from 'node:zlib';
 import {
   type LinkedEntry,
@@ -163,17 +165,45 @@ function get(key: string, file: string) {
     rmSync(temporary, { force: true });
   }
 }
+// Keep below the Cloudflare account API request limit, including other readers.
+// A 429 pauses every reader, rather than making the remaining queue fail at once.
+let nextPayloadAt = 0;
+let payloadCooldownUntil = 0;
 async function getPayload(key: string, file: string) {
   if (!drain) return get(key, file);
-  const { temporary, args, options } = download(key, file);
-  try {
-    // Capture and discard CLI output, including stderr, just as in hourly mode.
-    await new Promise<void>((resolve, reject) => {
-      execFile(process.execPath, args, options, (error) => (error ? reject(error) : resolve()));
-    });
-    acceptDownload(key, temporary, file);
-  } finally {
-    rmSync(temporary, { force: true });
+  for (let attempt = 0; attempt < 3; attempt++) {
+    for (;;) {
+      const now = Date.now();
+      const ready = Math.max(nextPayloadAt, payloadCooldownUntil);
+      if (now >= deadline) throw new Error('Inbox download budget exhausted');
+      if (now >= ready) {
+        nextPayloadAt = now + 350;
+        break;
+      }
+      await sleep(Math.min(ready - now, deadline - now));
+    }
+    const { temporary, args, options } = download(key, file);
+    let limited = false;
+    try {
+      // Read only the throttle signal; never print CLI output or credentials.
+      await new Promise<void>((resolve, reject) => {
+        execFile(process.execPath, args, options, (error, stdout, stderr) => {
+          limited = !!error && /\b429\b|rate.?limit/i.test(`${stdout} ${stderr}`);
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      acceptDownload(key, temporary, file);
+      return;
+    } catch (error) {
+      if (!limited) throw error;
+      if (Date.now() >= payloadCooldownUntil)
+        console.warn('Inbox API throttled; pausing payload readers for five minutes.');
+      payloadCooldownUntil = Math.max(payloadCooldownUntil, Date.now() + 300_000);
+      if (attempt === 2) throw new Error('Inbox API remains throttled; record retained for retry');
+    } finally {
+      rmSync(temporary, { force: true });
+    }
   }
 }
 
