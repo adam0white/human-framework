@@ -1720,16 +1720,15 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
           </p>
           <p>
             {frame.refugeReady
-              ? 'They spent today together. Ada ate and rested, and a little grain was used. In this village Kian stays on the watch.'
-              : 'Choose below before the next watch. They can spend today caring for each other, but the journey must wait. If they stay, the visit is off.'}
+              ? 'Kian and Ada shared food, water and rest. They are ready to leave together, with a duty to return by the next dawn.'
+              : 'Let them get ready, or choose to stay. They can leave only after Ada has received care and Kian is free to go.'}
           </p>
         </section>
       ) : canAskVisit ? (
         <section aria-label="A visit together">
           <p>
-            Kian and his little sister Ada could spend a day together. Their journey to the refuge, a safe
-            place down the valley, must wait. Both must agree to the visit. A threat at home or an unfinished
-            task keeps them here.
+            Kian and his little sister Ada could spend one day at the refuge, a safe place down the valley.
+            Both must agree to the visit. A threat at home or an unfinished task keeps them here.
           </p>
           <button
             type="button"
@@ -1819,7 +1818,9 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
               </p>
             )}
             {!fileSession && frame.refugeReady && visitSave === 'saved' && (
-              <p role="status">Their time together is saved. The journey must wait.</p>
+              <p role="status">
+                Their visit is saved. <a href="https://warren.adamwhite.work/">Go to the Warren together</a>
+              </p>
             )}
             <div className="w-choice-pair">
               {frame.refugeReady ? null : (

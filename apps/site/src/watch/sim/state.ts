@@ -3,6 +3,7 @@
  * community, the Keeper's postings and where each one is), the tokens on the lanes, grain, the rope and the
  * seeded RNG. Nothing here knows about real time or the UI.
  */
+import type { DeepReadonly, PortablePerson } from '@adam0white/human-framework';
 import {
   type ActorState,
   actorPeople,
@@ -23,7 +24,7 @@ import {
   type ThreatKind,
   type WatcherId,
 } from './config.ts';
-import { WatchActors } from './hf4.ts';
+import { WatchActors, type WatchArchive } from './hf4.ts';
 import { watchSpec } from './hf4-authoring.ts';
 import type { Moment, MomentKind } from './moments.ts';
 import type { NightRequest } from './night-actions.ts';
@@ -337,6 +338,8 @@ export interface WatchState {
   refugeVisit?: import('./refuge-visit.ts').RefugeVisit;
   refugeDeparture?: {
     person: Person;
+    portable: DeepReadonly<PortablePerson>;
+    archive: WatchArchive['archive'];
     watchCare: NonNullable<ReturnType<typeof import('./refuge-visit.ts').refugeVisitPassport>>;
   };
   castChapter?: import('../../shared/cast-chapter.ts').CastChapter;

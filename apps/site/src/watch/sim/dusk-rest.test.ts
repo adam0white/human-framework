@@ -17,12 +17,13 @@ describe('explicit dusk night off through HF4', () => {
     const run = fresh();
     expect(run.state.duskRest?.edition).toBe('dusk-rest@1');
     expect(run.state.localWarning?.edition).toBe('local-warning@1');
-    expect(run.export().scenario).toBe(25);
+    expect(run.export().scenario).toBe(26);
     const before = run.snapshotText();
     expect(run.input({ k: 'dusk-rest', who: 'not-a-watcher', until: 'dawn' })).toBe(false);
     expect(run.snapshotText()).toBe(before);
     expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 23 })).toThrow(/begin a new winter/);
     expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 24 })).toThrow(/begin a new winter/);
+    expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 25 })).toThrow(/begin a new winter/);
     expect(() => WatchRun.resume({ ...run.snapshot(), origin: null } as never)).toThrow(/begin a new winter/);
     expect(() => WatchRun.resume({ ...run.snapshot(), unknownField: true } as never)).toThrow(
       /begin a new winter/,

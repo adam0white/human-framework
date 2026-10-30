@@ -615,7 +615,8 @@ it('holds On to dusk beside the open visit choice and names every empty wall at 
   expect(stay?.disabled).toBe(true);
   await act(async () => finishCapture(true));
   expect(stay?.disabled).toBe(false);
-  expect(host.textContent).toContain('Their time together is saved. The journey must wait.');
+  expect(host.textContent).toContain('Their visit is saved. Go to the Warren together');
+  expect(host.querySelector('a')?.getAttribute('href')).toBe('https://warren.adamwhite.work/');
   await act(async () => root.unmount());
   host.remove();
   select.mockRestore();
@@ -751,7 +752,7 @@ it('shows each shelf page’s fictional date without version or save timestamps'
   const el = render(
     createElement(Shelf, {
       shelf: [
-        { ...base, id: 'a:auto', chronicle: 'a', savedAt: 1000, scenario: 25 },
+        { ...base, id: 'a:auto', chronicle: 'a', savedAt: 1000, scenario: 26 },
         { ...base, id: 'b:auto', chronicle: 'b', savedAt: 2000, scenario: 12, year: 2 },
         { ...base, id: 'c:auto', chronicle: 'c', savedAt: 3000, when: 'spring' },
       ],

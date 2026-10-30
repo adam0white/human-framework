@@ -42,7 +42,8 @@ export interface PersonSummary {
   ties: { otherId: string; affection: number; trust: number }[];
 }
 
-export interface EndState extends Omit<WatchState, 'community' | 'keeper' | 'percepts'> {
+export interface EndState extends Omit<WatchState, 'community' | 'keeper' | 'percepts' | 'refugeDeparture'> {
+  refugeDeparture?: Omit<NonNullable<WatchState['refugeDeparture']>, 'archive'> & { sourceHash: string };
   people: PersonSummary[];
   /** What the Keeper believes of each watcher (cue, value, confidence). */
   keeperImpressions: ReturnType<typeof keeperImpression>[];
@@ -88,6 +89,15 @@ export function ruleState(s: WatchState, people = summarise(installActorViews(s)
         : null,
     },
     ...(s.refugeVisit ? { refugeVisit: s.refugeVisit } : {}),
+    ...(s.refugeDeparture
+      ? {
+          refugeDeparture: {
+            portable: s.refugeDeparture.portable,
+            watchCare: s.refugeDeparture.watchCare,
+            sourceHash: s.refugeDeparture.archive.hashes.full,
+          },
+        }
+      : {}),
     ...(s.warrenCareReturn ? { warrenCareReturn: s.warrenCareReturn } : {}),
     ...(s.duskRest ? { duskRest: s.duskRest } : {}),
     ...(s.localWarning ? { localWarning: s.localWarning } : {}),
@@ -201,10 +211,22 @@ export function ruleHash(s: WatchState): string {
 export function endState(s: WatchState): EndState {
   installActorViews(s);
   saveActors(s);
-  const { community, keeper, percepts: _p, ...rest } = s;
+  const { community, keeper, percepts: _p, refugeDeparture, ...rest } = s;
   const people = summarise(s);
   return {
     ...structuredClone(rest),
+    // The source journal carries the complete custody archive. The end reading
+    // names that archive without making the public download exceed its file limit.
+    ...(refugeDeparture
+      ? {
+          refugeDeparture: {
+            person: structuredClone(refugeDeparture.person),
+            portable: structuredClone(refugeDeparture.portable),
+            watchCare: structuredClone(refugeDeparture.watchCare),
+            sourceHash: refugeDeparture.archive.hashes.full,
+          },
+        }
+      : {}),
     people,
     keeperImpressions: community.people.map((p) => keeperImpression(s, p.id)),
     ruleHash: fnv(JSON.stringify(ruleState(s, people))),
@@ -222,7 +244,7 @@ export function endState(s: WatchState): EndState {
  * 10: each pair waits one year after a proposal; legacy pages without proposalHolds retain the old rules.
  * 20–22: immediate dusk decisions and an explicit silence input. Older pages and exports must start fresh.
  */
-export const WATCH_SCENARIO_VERSION = 25;
+export const WATCH_SCENARIO_VERSION = 26;
 export function scenarioForState(s: WatchState): number {
   if (!s || s.version !== 5 || !s.actors) throw new Error(WATCH_OLD_SAVE);
   if (!s.hardship || !s.duskRest || !s.localWarning) throw new Error(WATCH_OLD_SAVE);

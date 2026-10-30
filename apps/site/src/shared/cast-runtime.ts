@@ -64,6 +64,9 @@ export const sitePersonaShelf = nativeShelf && {
 };
 // Every entry into native orchestration checks fileSession before using this native-only value.
 const shelf = sitePersonaShelf;
+// A completed seed-42 Watch departure needs 1.83 MB of exact replay evidence.
+// Keep a bounded 2 MiB journal; storage quota errors still refuse before a shelf write.
+const SOURCE_JOURNAL_BYTES = 2 * 1024 * 1024;
 function requireNativeSession(): void {
   if (fileSession) throw new Error('This file stays in this tab. Native continuity is unavailable.');
 }
@@ -294,7 +297,7 @@ async function restoreOwnership(s: State, value: unknown, generation: number) {
   if (s.localSources && typeof s.localSources === 'object')
     archived = { ...archived, ...(s.localSources as Record<string, unknown>) };
   const sources: Record<string, unknown> = {};
-  if (new TextEncoder().encode(JSON.stringify(archived)).length <= 1024 * 1024) {
+  if (new TextEncoder().encode(JSON.stringify(archived)).length <= SOURCE_JOURNAL_BYTES) {
     for (const [id, head] of Object.entries(heads)) {
       const raw = archived[id];
       if (!raw || !head.transfer.checkpoint) continue;
@@ -756,7 +759,7 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
       const journal = JSON.stringify(
         Object.fromEntries(Object.entries({ ...prior, ...s.sources }).filter(([id]) => allocated.has(id))),
       );
-      if (new TextEncoder().encode(journal).length > 1024 * 1024)
+      if (new TextEncoder().encode(journal).length > SOURCE_JOURNAL_BYTES)
         throw new Error('The bounded source receipt archive is full. Export this run first.');
       if (typeof localStorage !== 'undefined') localStorage.setItem(key, journal);
     }

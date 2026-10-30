@@ -1,3 +1,4 @@
+import { captureRefugeDeparture } from './cast.ts';
 /**
  * The Night Watch rules (spec §10; G3-1 lanes, G3-2 people).
  *
@@ -72,6 +73,7 @@ import {
   DARK_REACH,
   DARK_SIGHT_BONUS,
   DAY,
+  DUSK_START,
   FOOT_AIM,
   LANTERN_STEP_MIN,
   LIT_REACH,
@@ -1939,13 +1941,27 @@ function downed(s: WatchState, id: WatcherId, section: SectionId): void {
 /** Deliberate logged daylight play. Normal HF choices/actions finish; a read-only actual-identity
  * observer captures Kian before his next choice. No actor clock jump or activity removal. */
 function prepareRefugeDeparture(s: WatchState): boolean {
-  if (s.refugeDeparture || s.refugeVisit?.status !== 'agreed') return false;
-  const p = personOf(s, 'kian');
-  if (!p) return false;
+  if (s.phase !== 'dawn' || s.refugeDeparture || s.refugeVisit?.status !== 'agreed') return false;
+  if (!personOf(s, 'kian')) return false;
+  const world = new WatchWorld(s),
+    ordinary = world.affordancesFor.bind(world);
+  // Once the agreed care is complete, Kian waits for this departure instead of
+  // taking new optional work. His current action finishes through HF normally.
+  world.affordancesFor = (p) =>
+    p.id === 'kian' && s.refugeVisit?.careCompletedAt !== undefined ? [] : ordinary(p);
+  const end = Math.min(Math.floor(s.minute / DAY) * DAY + DUSK_START - 1, s.minute + 600);
+  for (let t = s.minute; t <= end && !s.refugeDeparture; t++) {
+    if (captureRefugeDeparture(s)) break;
+    s.minute = t;
+    stepPeople(s, t, world);
+    captureRefugeDeparture(s);
+  }
   s.talks.said.push({
     who: 'kian',
     topic: 'home',
-    text: 'Kian and Ada will stay together here. Their journey to the refuge must wait. Choose Stay here together to go on with the watch.',
+    text: s.refugeDeparture
+      ? 'Kian and Ada shared food, water and quiet rest. They are ready to go, and Kian still owes Ada the trip back.'
+      : 'They were not ready to leave before dusk. Choose Stay here together to go on with the watch.',
   });
   return true;
 }

@@ -324,8 +324,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         const state = requireValue(run).state;
         const obligations = [
           ...(state.phase === 'night' || state.phase === 'dusk' ? ['the current watch'] : []),
-          ...(role === 'kian'
-            ? ['Ada’s care and return agreement requires a supported dependent reader']
+          ...(role === 'kian' && !state.refugeDeparture
+            ? ['Kian can leave only through a visit with Ada']
             : []),
         ];
         void captureWatchPerson(state, msg.castId, obligations)

@@ -17,7 +17,7 @@ it('reports actual unavailable storage immediately and stamps the attempted page
       if (!receive) throw new Error('No worker message handler');
       receive({ data } as MessageEvent<MainToWorker>);
     };
-    send({ type: 'init', gen: 1, seed: 7, scenarioVersion: 25 });
+    send({ type: 'init', gen: 1, seed: 7, scenarioVersion: 26 });
     await vi.waitFor(() => expect(replies.some((r) => r.type === 'shelf')).toBe(true));
     replies.length = 0;
     send({ type: 'input', input: { k: 'start' } });
