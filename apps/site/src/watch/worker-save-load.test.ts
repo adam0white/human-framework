@@ -11,21 +11,51 @@ it('loads its own saved page and restores cast metadata', async () => {
   vi.stubGlobal('addEventListener', (_type: string, callback: typeof receive) => {
     receive = callback;
   });
-  vi.stubGlobal('postMessage', (value: WorkerReply & { gen: number }) => replies.push(value));
+  const pending = new Set<{
+    type: 'loaded' | 'shelf';
+    gen: number;
+    id?: string;
+    resolve(message: WorkerReply & { gen: number }): void;
+    reject(error: Error): void;
+  }>();
+  const reply = (type: 'loaded' | 'shelf', gen: number, id?: string) =>
+    new Promise<WorkerReply & { gen: number }>((resolve, reject) => {
+      pending.add({ type, gen, id, resolve, reject });
+    });
+  vi.stubGlobal('postMessage', (value: WorkerReply & { gen: number }) => {
+    replies.push(value);
+    if (value.type === 'error' || (value.type === 'loaded' && !value.ok)) {
+      for (const waiting of pending)
+        waiting.reject(new Error(value.type === 'error' ? value.message : value.error));
+      pending.clear();
+    } else {
+      for (const waiting of pending) {
+        if (
+          value.gen === waiting.gen &&
+          value.type === waiting.type &&
+          (waiting.id === undefined || (value.type === 'loaded' && value.id === waiting.id))
+        ) {
+          pending.delete(waiting);
+          waiting.resolve(value);
+        }
+      }
+    }
+  });
   try {
     await import('./worker.ts');
-    const send = (data: MainToWorker) => {
+    const send = async (data: MainToWorker) => {
+      await new Promise<void>((resolve) => setTimeout(resolve, 0));
       if (!receive) throw new Error('No worker message handler');
-      receive({ data } as MessageEvent<MainToWorker>);
+      receive({ data: structuredClone(data) } as MessageEvent<MainToWorker>);
     };
     const waitForShelf = (gen: number) =>
       vi.waitFor(() =>
         expect(replies.some((reply) => reply.type === 'shelf' && reply.gen === gen)).toBe(true),
       );
-    send({ type: 'init', gen: 1, seed: 7, scenarioVersion: WATCH_SCENARIO_VERSION });
+    await send({ type: 'init', gen: 1, seed: 7, scenarioVersion: WATCH_SCENARIO_VERSION });
     await waitForShelf(1);
-    send({ type: 'input', input: { k: 'start' } });
-    send({
+    await send({ type: 'input', input: { k: 'start' } });
+    await send({
       type: 'castOwnership',
       heads: {},
       localOnly: true,
@@ -57,10 +87,10 @@ it('loads its own saved page and restores cast metadata', async () => {
         ),
       ).toBe(true),
     );
-    send({ type: 'init', gen: 2, seed: 8, scenarioVersion: WATCH_SCENARIO_VERSION });
+    await send({ type: 'init', gen: 2, seed: 8, scenarioVersion: WATCH_SCENARIO_VERSION });
     await waitForShelf(2);
     replies.length = 0;
-    send({ type: 'load', id: pageId, gen: 3 });
+    await send({ type: 'load', id: pageId, gen: 3 });
     await vi.waitFor(() =>
       expect(replies).toContainEqual({ type: 'loaded', ok: true, id: pageId, seed: 7, gen: 3 }),
     );
@@ -83,10 +113,15 @@ it('loads its own saved page and restores cast metadata', async () => {
     const importedId = 'r4-imported:auto';
     await savePage({ ...page, id: importedId }, JSON.stringify({ ...snapshot, fileOrigin: true }));
     replies.length = 0;
-    send({ type: 'load', id: importedId, gen: 4 });
-    await vi.waitFor(() =>
-      expect(replies).toContainEqual({ type: 'loaded', ok: true, id: importedId, seed: 7, gen: 4 }),
-    );
+    // Arm both terminal replies before dispatch: the real native read precedes loaded,
+    // and the final shelf has a separate async read after loaded/castReady.
+    const [loaded, shelf] = await Promise.all([
+      reply('loaded', 4, importedId),
+      reply('shelf', 4),
+      send({ type: 'load', id: importedId, gen: 4 }),
+    ]);
+    expect(loaded).toEqual({ type: 'loaded', ok: true, id: importedId, seed: 7, gen: 4 });
+    expect(shelf).toMatchObject({ type: 'shelf', gen: 4 });
     expect(replies).toContainEqual({
       type: 'castReady',
       requestId: 0,
@@ -98,7 +133,6 @@ it('loads its own saved page and restores cast metadata', async () => {
       gen: 4,
       fileOrigin: true,
     });
-    await waitForShelf(4);
   } finally {
     vi.unstubAllGlobals();
   }
@@ -125,25 +159,67 @@ it('keeps complete text-file imports nonowning and byte-bound through re-downloa
   vi.stubGlobal('addEventListener', (_type: string, callback: typeof receive) => {
     receive = callback;
   });
-  vi.stubGlobal('postMessage', (value: WorkerReply & { gen: number }) => replies.push(value));
+  let pending:
+    | {
+        type: 'fileLoaded' | 'exported';
+        gen: number;
+        requestId?: number;
+        resolve(message: WorkerReply & { gen: number }): void;
+        reject(error: Error): void;
+      }
+    | undefined;
+  const reply = (type: 'fileLoaded' | 'exported', gen: number, requestId?: number) =>
+    new Promise<WorkerReply & { gen: number }>((resolve, reject) => {
+      pending = { type, gen, requestId, resolve, reject };
+    });
+  vi.stubGlobal('postMessage', (value: WorkerReply & { gen: number }) => {
+    replies.push(value);
+    if (value.type === 'error' || (value.type === 'fileLoaded' && !value.ok)) {
+      const waiting = pending;
+      pending = undefined;
+      waiting?.reject(new Error(value.type === 'error' ? value.message : value.error));
+    } else if (
+      pending &&
+      value.gen === pending.gen &&
+      value.type === pending.type &&
+      (pending.requestId === undefined ||
+        (value.type === 'exported' && value.requestId === pending.requestId))
+    ) {
+      const waiting = pending;
+      pending = undefined;
+      waiting.resolve(value);
+    }
+  });
   try {
     await import('./worker.ts');
-    const send = (data: MainToWorker) => receive?.({ data } as MessageEvent<MainToWorker>);
-    send({ type: 'fileSession' });
+    // Worker messages arrive in separate tasks. Keep globals until async validation/SHA
+    // and the matched export complete, rather than polling with a shorter deadline.
+    const send = async (data: MainToWorker) => {
+      await new Promise<void>((resolve) => setTimeout(resolve, 0));
+      if (!receive) throw new Error('No worker message handler');
+      receive({ data: structuredClone(data) } as MessageEvent<MainToWorker>);
+    };
+    await send({ type: 'fileSession' });
     let text = JSON.stringify(original);
     for (const gen of [1, 2]) {
       const bytes = text;
-      send({ type: 'loadFile', text, gen });
-      await vi.waitFor(() => expect(replies).toContainEqual({ type: 'fileLoaded', ok: true, seed: 7, gen }));
-      send({ type: 'export', requestId: gen });
-      const reply = replies.find((r) => r.type === 'exported' && r.requestId === gen);
-      if (!reply || reply.type !== 'exported') throw new Error('No complete file reply');
-      const data = reply.data as typeof reply.data & Record<string, unknown>;
+      const [loaded] = await Promise.all([reply('fileLoaded', gen), send({ type: 'loadFile', text, gen })]);
+      expect(loaded).toEqual({ type: 'fileLoaded', ok: true, seed: 7, gen });
+      const [exported] = await Promise.all([
+        reply('exported', gen, gen),
+        send({ type: 'export', requestId: gen }),
+      ]);
+      if (exported.type !== 'exported') throw new Error('No complete file reply');
+      const data = exported.data as typeof exported.data & Record<string, unknown>;
       expect(data.fileImport).toEqual(await importedFileRecord(JSON.parse(bytes), bytes));
       expect(data.castAuthority).toEqual(localCastAuthority());
       expect(data.castOwnership).toEqual({});
-      expect(reply.data.snapshot).toEqual(original.snapshot);
-      text = JSON.stringify(reply.data);
+      expect(data.castSources).toEqual({});
+      expect(data.castSkipped).toEqual([]);
+      expect(data.castLocalOnly).toBe(true);
+      expect(exported.data.snapshot).toEqual(original.snapshot);
+      expect(exported.data.end).toEqual(original.end);
+      text = JSON.stringify(exported.data);
     }
     expect(replies.filter((r) => ['saved', 'castReady', 'shelf', 'error'].includes(r.type))).toEqual([]);
   } finally {
