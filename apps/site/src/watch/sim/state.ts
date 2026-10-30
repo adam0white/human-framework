@@ -3,7 +3,16 @@
  * community, the Keeper's postings and where each one is), the tokens on the lanes, grain, the rope and the
  * seeded RNG. Nothing here knows about real time or the UI.
  */
-import type { Command, Community, Percept, Person, Suggestion } from '@adam0white/human-framework';
+import {
+  type ActorState,
+  actorPeople,
+  actorState,
+  type Command,
+  type Percept,
+  type Person,
+  readActor,
+  type Suggestion,
+} from './actor.ts';
 import {
   DUSK_START,
   NIGHTFALL,
@@ -14,9 +23,11 @@ import {
   type ThreatKind,
   type WatcherId,
 } from './config.ts';
+import { WatchActors } from './hf4.ts';
+import { watchSpec } from './hf4-authoring.ts';
 import type { Moment, MomentKind } from './moments.ts';
 import type { NightRequest } from './night-actions.ts';
-import { createKeeper, createWatchCommunity, type Place } from './people.ts';
+import { createKeeper, type Place } from './people.ts';
 
 /**
  * The phases of a year. Stopped pages (`goal`, `dawn`, `thaw`, `fair`, `closed`, `fallen`) wait for the Keeper's
@@ -329,7 +340,9 @@ export interface WatchState {
     watchCare: NonNullable<ReturnType<typeof import('./refuge-visit.ts').refugeVisitPassport>>;
   };
   castChapter?: import('../../shared/cast-chapter.ts').CastChapter;
-  version: 4;
+  version: 5;
+  actors: ActorState;
+  actorEvents: import('./actor.ts').WatchEvent[];
   /** Scenario 13: accepted cross-post night help costs a small burst of exertion. Absent keeps legacy rules. */
   nightDepartureEffort?: true;
   /**
@@ -383,7 +396,7 @@ export interface WatchState {
   /** Each watcher's words at the last dawn, so the next dawn says it differently (G3-4 review). */
   lastVoices: Record<WatcherId, string>;
   /** Children on the way: the news is told at once, the birth comes on `due` (G3-4 review). */
-  expecting: { mother: WatcherId; father: WatcherId; due: number }[];
+  expecting: { mother: WatcherId; father: WatcherId; due: number; childId?: string }[];
   /** Births not yet brought to the Keeper as a card (born in winter, or while another card was open). */
   newborns: { mother: WatcherId; child: WatcherId; winter: boolean }[];
   /** The fair's offers this autumn and what was bought (null outside the fair). */
@@ -422,6 +435,8 @@ export interface WatchState {
     sown?: number;
     /** Quiet stints stood in the routine part of the winter, by `${who}@${section}` (G3-4: told at the thaw). */
     stints: Record<string, number>;
+    /** Actual completed Gate work on played nights; host receipts, not inferred learning. */
+    playedGate?: { who: WatcherId; at: number; receipt: string }[];
   };
   /** One line of numbers per finished year, oldest first (for the chronicle shelf and the long-run checks). */
   annals: YearRecord[];
@@ -437,9 +452,9 @@ export interface WatchState {
   /** Where each watcher is now. */
   place: Record<WatcherId, Place>;
   /** The watchers as HF people (plain JSON). */
-  community: Community;
+  readonly community: { readonly people: readonly Person[] };
   /** The Keeper as a Person: holds impressions of the watchers, never stepped. */
-  keeper: Person;
+  readonly keeper: Person;
   /** Bell commands in force, each until a minute. */
   commands: Partial<Record<WatcherId, { cmd: Command; until: number }>>;
   /** Percepts queued for each watcher (pulled by the driver, pruned once perceived). */
@@ -461,6 +476,9 @@ export interface WatchState {
   asks: Partial<Record<WatcherId, { sug: Suggestion; until: number }>>;
   /** Present only after an in-person scenario-11 night ask. */
   nightRequests?: Partial<Record<WatcherId, NightRequest>>;
+  nightRecords?: import('./night-records.ts').NightRecord[];
+  observedWakes?: import('./night-records.ts').ObservedWake[];
+  bellRecords?: import('./night-records.ts').BellRecord[];
   /** Postings set aside tonight by "let go", restored at the next dusk. */
   letGo: Partial<Record<WatcherId, PostId>>;
   /** The Keeper's position along the wall as a section index; lit only when standing at `target`. */
@@ -560,9 +578,33 @@ export function emptyTally(grain: number): NightTally {
   };
 }
 
+export function installActorViews(s: Omit<WatchState, 'community' | 'keeper'>): WatchState {
+  Object.defineProperties(s, {
+    community: {
+      configurable: true,
+      enumerable: false,
+      get: () => ({ people: actorPeople(s).filter((p) => p.id !== 'keeper') }),
+    },
+    keeper: {
+      configurable: true,
+      enumerable: false,
+      get: () => {
+        const keeper = readActor(s, 'keeper');
+        if (!keeper) throw new Error('Missing Watch Keeper.');
+        return keeper;
+      },
+    },
+  });
+  return s as WatchState;
+}
 export function createState(seed: number): WatchState {
-  return {
-    version: 4,
+  const keeper = createKeeper(seed, DUSK_START);
+  const physical = { actions: [], care: null };
+  const runtime = WatchActors.create(watchSpec(seed, physical), [keeper], physical);
+  return installActorViews({
+    version: 5,
+    actors: actorState(runtime, [keeper]),
+    actorEvents: [],
     nightDepartureEffort: true,
     hardship: true,
     seed,
@@ -619,8 +661,6 @@ export function createState(seed: number): WatchState {
     press: {},
     postedAt: {},
     place: {},
-    community: createWatchCommunity(),
-    keeper: createKeeper(seed, DUSK_START),
     commands: {},
     percepts: {},
     homeThreat: { west: -1e9, gate: -1e9, mill: -1e9, east: -1e9 },
@@ -651,5 +691,5 @@ export function createState(seed: number): WatchState {
     tally: emptyTally(START_GRAIN),
     dawn: null,
     history: [],
-  };
+  });
 }

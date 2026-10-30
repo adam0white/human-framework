@@ -13,11 +13,7 @@ import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
 import type { TelemetryReply, TelemetryRequest } from '../shared/worker-telemetry.ts';
 import type { OneCastRow, SelinReturn, SelinTransfer } from './sim/persona.ts';
 
-/**
- * The scenario the worker runs for a new game; `init.scenarioVersion` must equal it. Level-up 2026-10-19 (voice.md):
- * 'voice-2' changes the rules (the waking choice, work under protest, the fast-hour craving, the end of Ramadan's
- * debt line); a playtest file of either scenario still loads and replays under its own rules.
- */
+/** The mounted native HF4 edition. Older saves receive a plain start-fresh message. */
 export const VOICE_SCENARIO_VERSION = 'voice-4';
 /** The rules each scenario a playtest file may carry is replayed under. */
 export const VOICE_RULES = { 'voice-1': 1, 'voice-2': 2, 'voice-3': 3, 'voice-4': 4 } as const;
@@ -189,6 +185,8 @@ export interface LogEntry {
   until?: string;
   decisionId?: string;
   beat?: BeatKind;
+  /** Actual completed call receipt; an action start does not establish reception. */
+  connection?: { minute: number; clock: string };
 }
 export interface OptionView {
   id: string;
@@ -210,7 +208,6 @@ export interface Telegraph {
   says: string;
   counter?: string;
   reason: string;
-  likelihood?: number;
 }
 export interface StandingView {
   /** Derived from existing host records; not saved or used to decide. */
@@ -224,15 +221,15 @@ export interface StandingView {
   expires: string;
 }
 export interface Felt {
+  level: string;
   id: 'hunger' | 'thirst' | 'tired';
-  level: number;
   word: string;
 }
 export interface HalilView {
   doing: { label: string; intention: string; until: string } | null;
   asleep: boolean;
   felt: Felt[];
-  feelings: { name: string; word: string; intensity: number }[];
+  feelings: { name: string; word: string; intensity: string }[];
   onMind: {
     id: string;
     label: string;
@@ -254,10 +251,11 @@ export interface VoiceView {
   name: string;
   relation: string;
   colour: string;
-  trust?: number; // 'you' only
+  trust?: string;
   trustWord: string;
-  history: { delta: number; text: string }[];
-  lastUrged?: { label: string; when: string; standing: boolean; weight: number };
+  pressure?: string;
+  history: { direction: 'up' | 'down'; text: string }[];
+  lastUrged?: { label: string; when: string; standing: boolean; weight: string };
   conflict?: string;
 }
 export interface EndView {
@@ -265,7 +263,7 @@ export interface EndView {
   label: string;
   status: string;
   detail: string;
-  progress?: number;
+  progress?: string;
   /** End report only: what came of this end without you, on Eid and in the six days after (dated apart). */
   after?: string;
 }
@@ -301,7 +299,9 @@ export interface Frame {
   callFacts?: {
     connected?: { minute: number; day: number; clock: string; by: string };
     missed?: { minute: number; day: number; clock: string };
+    unanswered?: { minute: number; day: number; clock: string; by: string; to: string };
   };
+  outgoingCall?: string;
   sceneWords?: SceneWords[];
   phase: Phase;
   day: number;
@@ -337,7 +337,11 @@ export interface WhyView {
   decisionId: string;
   clock: string;
   chosen: string;
-  options: { label: string; total: number; terms: { label: string; value: number }[] }[];
+  options: {
+    label: string;
+    total: string;
+    terms: { label: string; value: string; direction: 'toward' | 'away' | 'none' }[];
+  }[];
   recalled?: string;
   voice?: { says: string; reason: string };
   /** When what he chose was not the top total: why (he kept to what he was doing, or did as told). */
@@ -352,7 +356,7 @@ export interface BetweenView {
   ends: EndView[];
   /** Seventh pass: what he would now do unasked, as the day closes. */
   unasked?: UnaskedItem[];
-  trust: { from: number; to: number; events: string[] };
+  trust: { change: string; events: string[] };
   next: { label: string; day: number; skipped: number } | null; // null → Eid comes next
   /** `hint`: a line shown under the picked whisper (the shift when money is short: what moves him). */
   choices: { id: StandingWhisper['choiceId']; label: string; cost: string; hint?: string }[];

@@ -21,14 +21,14 @@ const ends: EndView[] = [
     label: 'Keep the fast.',
     status: 'he is fasting',
     detail: 'The fast ends at 19:06. He has kept 0 of 1 fasts so far.',
-    progress: 0.4,
+    progress: 'moderate',
   },
   {
     id: 'rent',
     label: 'Pay Osman, my landlord, what I owe.',
     status: '600 owed',
     detail: 'Osman wants 300 by Ramadan 15. He has 40.',
-    progress: 0.07,
+    progress: 'moderate',
   },
   {
     id: 'doctor',
@@ -47,7 +47,7 @@ const ends: EndView[] = [
     label: 'Does he still listen to you?',
     status: 'a little',
     detail: 'Trust 0.50, unchanged.',
-    progress: 0.5,
+    progress: 'moderate',
   },
 ];
 
@@ -57,7 +57,7 @@ const voices: VoiceView[] = [
     name: 'You',
     relation: 'a voice in his head',
     colour: '#c9a227',
-    trust: 0.5,
+    trust: 'moderate',
     trustWord: 'listens to you some',
     history: [],
   },
@@ -68,7 +68,7 @@ const voices: VoiceView[] = [
     colour: '#5b8def',
     trustWord: 'listens closely',
     history: [],
-    lastUrged: { label: 'see the doctor', when: 'Ramadan 1, 19:40', standing: true, weight: 0.62 },
+    lastUrged: { label: 'see the doctor', when: 'Ramadan 1, 19:40', standing: true, weight: 'moderate' },
   },
   {
     id: 'riza',
@@ -223,11 +223,11 @@ export const sampleFrame: Frame = {
     doing: { label: 'repair in the workshop', intention: 'to earn; Osman is owed 600', until: '12:01' },
     asleep: false,
     felt: [
-      { id: 'hunger', level: 0.2, word: 'fine' },
-      { id: 'thirst', level: 0.35, word: 'a bit thirsty' },
-      { id: 'tired', level: 0.5, word: 'tired' },
+      { id: 'hunger', level: 'moderate', word: 'fine' },
+      { id: 'thirst', level: 'moderate', word: 'a bit thirsty' },
+      { id: 'tired', level: 'moderate', word: 'tired' },
     ],
-    feelings: [{ name: 'sadness', word: 'sad', intensity: 0.3 }],
+    feelings: [{ name: 'sadness', word: 'sad', intensity: 'moderate' }],
     weighs: [
       { label: 'going to the clinic', word: 'he dreads it', trend: 'same' },
       { label: 'calling Selin', word: 'it feels hard', trend: 'easier' },
@@ -297,7 +297,10 @@ export const sampleBetween: BetweenView = {
   strip,
   ends,
   unasked,
-  trust: { from: 0.5, to: 0.52, events: ['+0.02 the suhoor you suggested went well'] },
+  trust: {
+    change: 'He listens more closely than before.',
+    events: ['+0.02 the suhoor you suggested went well'],
+  },
   next: { label: 'Ramadan 2', day: 2, skipped: 0 },
   choices: [],
 };

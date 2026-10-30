@@ -7,14 +7,10 @@
  * time is therefore `fw(m) = m + START_CLOCK`, so `DEFAULT_PRAYER_TIMES` line up with the spec's prayer times.
  */
 import {
-  type BodyRates,
-  type Commitment,
-  type HeldNorm,
-  heldNorms,
-  MINUTES_PER_DAY,
-  MINUTES_PER_YEAR,
-  type PersonSpec,
-  prayerWindows,
+  DEFAULT_NORMS,
+  type PersonAuthoring,
+  type RunSpec,
+  type SourcedNorm,
 } from '@adam0white/human-framework';
 import { canonicalCast } from '@adam0white/lab-client';
 import { type Minute, START_CLOCK, type VillagerId, type VillagerSpec } from './world-types.ts';
@@ -28,7 +24,22 @@ export const gm = (t: number): Minute => t - START_CLOCK;
  * Host norms for this game (spec §5 "Norm catalog"). Standings are the host's engineering choices, recorded
  * as such; they are each person's understanding, not rulings.
  */
-export { WELL_CAST_NORMS as HOST_NORMS } from '../../shared/cast-norms.ts';
+export function provenance(id: string): SourcedNorm['provenance'] {
+  return { kind: 'authored-world', author: 'well', ruleId: id, edition: 'well-hf4/1' };
+}
+export const HOST_NORMS: SourcedNorm[] = [
+  ['aid-injured', 'Help the injured', 'obligatory'],
+  ['feed-village', 'Feed the village', 'obligatory'],
+  ['abandon-dependents', 'Leaving the people who depend on you unfed', 'forbidden'],
+  ['daily-prayer', 'Pray at one’s own hours (Christian morning and evening prayer)', 'recommended'],
+].map(([id, label, standing]) => ({
+  id: id!,
+  label: label!,
+  standing: standing as SourcedNorm['standing'],
+  sources: [{ kind: 'assumption', ref: 'Twice at the Well host norm; docs/games/colony.md' }],
+  provenance: provenance(id!),
+  exemptions: [],
+}));
 
 /** Readable labels for the why panel and refusals. */
 export const NORM_LABELS: Record<string, string> = {
@@ -98,11 +109,11 @@ export const ROLE_GOALS: Record<
 
 interface CastEntry {
   sex: 'female' | 'male';
-  traits: NonNullable<PersonSpec['traits']>;
-  values: NonNullable<PersonSpec['values']>;
+  traits: PersonAuthoring['state']['traits'];
+  values: PersonAuthoring['state']['values'];
   practice: number;
-  extraNorms: HeldNorm[];
-  relationships: NonNullable<PersonSpec['relationships']>;
+  extraNorms: Omit<PersonAuthoring['state']['heldNorms'][number], 'provenance'>[];
+  relationships: PersonAuthoring['state']['relationships'];
 }
 
 const rel = (
@@ -110,12 +121,15 @@ const rel = (
   roles: string[],
   affection: number,
   trust = 0.6,
-): NonNullable<PersonSpec['relationships']>[number] => ({
+): PersonAuthoring['state']['relationships'][number] => ({
   otherId,
   roles,
   affection,
   trust,
   familiarity: 0.9,
+  respect: 0.6,
+  ledger: 0,
+  lastInteraction: fw(0) * 60_000,
 });
 
 const CAST: Record<VillagerId, CastEntry> = {
@@ -335,118 +349,222 @@ const CAST: Record<VillagerId, CastEntry> = {
   },
 };
 
-/**
- * Depletion rates the colony was tuned on (framework defaults before engine 1.2.0 halved them for the
- * day-long fasts of the town). Pinned so the shipped seed's five moments and their timing table in
- * docs/games/colony.md stay valid; the two-day drama needs hunger and thirst on a scale of hours.
- */
-export const COLONY_RATES: BodyRates = {
-  satietyPerMinute: 0.0015,
-  satietyEffortPerMinute: 0.0015,
-  hydrationPerMinute: 0.002,
-  hydrationEffortPerMinute: 0.003,
-};
-
-/** Maryam's three daily meals (spec: she cooks at 06:30, 12:00 and 18:00 by habit). Minutes of day. */
-export const MEALS: readonly { label: string; from: number; until: number }[] = [
-  { label: 'cook breakfast', from: 6 * 60, until: 7 * 60 + 30 },
-  { label: 'cook lunch', from: 11 * 60 + 30, until: 13 * 60 },
-  { label: 'cook supper', from: 17 * 60 + 30, until: 19 * 60 },
+/** HF4 owns bodily rates. The HF3 per-person rate override has deliberately been removed. */
+export const MINUTE = 60_000;
+export const DAY = 86_400_000;
+export const MEALS = [
+  { label: 'cook breakfast', from: 360, until: 450 },
+  { label: 'cook lunch', from: 690, until: 780 },
+  { label: 'cook supper', from: 1050, until: 1140 },
 ];
-
-/**
- * Prayer windows: the framework's five windows on the spec's times, with two host corrections to the window
- * ends (Fajr until sunrise at 06:30, Maghrib until the light goes at 19:30; spec §7 M2).
- */
-const PRAYER_END: Record<string, number> = { Fajr: 6 * 60 + 30, Maghrib: 19 * 60 + 30 };
-
-function salahWindows(): Omit<Commitment, 'status'>[] {
-  return prayerWindows(0).map((c) => {
-    const end = c.label ? PRAYER_END[c.label] : undefined;
-    return { ...c, id: `salah-${(c.label ?? 'prayer').toLowerCase()}`, ...(end ? { until: end } : {}) };
-  });
-}
-
-function danyalPrayers(): Omit<Commitment, 'status'>[] {
-  const mk = (id: string, label: string, from: number, until: number): Omit<Commitment, 'status'> => ({
-    id,
-    kind: 'worship',
-    actions: ['pray'],
-    from,
-    until,
-    normId: 'daily-prayer',
-    importance: 0.7,
-    recurEvery: MINUTES_PER_DAY,
-    label,
-  });
-  return [
-    mk('prayer-morning', 'morning prayer', 5 * 60 + 30, 6 * 60 + 30),
-    mk('prayer-evening', 'evening prayer', 19 * 60, 20 * 60),
+export function wellRunSpec(seed: number, villagers: readonly VillagerSpec[]): RunSpec {
+  const actions = [
+    'gather-grain',
+    'gather-timber',
+    'fell-cedar',
+    'draw-water',
+    'cook',
+    'build',
+    'raise-beam',
+    'shutter-house',
+    'eat',
+    'drink',
+    'pray',
+    'shelter',
+    'sleep',
+    'rest',
+    'carry-injured',
+    'tend-injured',
+    'take-grain',
+    'wait',
   ];
+  return {
+    id: 'well',
+    seed,
+    start: fw(0) * MINUTE,
+    host: { id: 'well', edition: 'well-hf4/1', schema: 'well-hf4/1' },
+    definitions: {
+      actions: actions.map((id) => ({
+        id,
+        label: id,
+        demands: { effort: 0, focus: 0, mode: 'awake', requires: {} },
+        tags: [],
+        norms: [],
+      })),
+      norms: [...DEFAULT_NORMS, ...HOST_NORMS],
+      marriageCustoms: [],
+      skills: ['farming', 'forestry', 'cooking', 'building'].map((id) => ({
+        id,
+        label: id,
+        domain: 'motor',
+      })),
+      skillTransfers: [],
+      methods: [],
+      routines: [],
+      sources: [
+        { type: 'host', id: 'well' },
+        { type: 'voice', id: 'player' },
+        ...villagers.map((v) => ({ type: 'person' as const, id: v.id })),
+      ],
+      lexicon: {
+        names: Object.fromEntries(villagers.map((v) => [v.id, v.name])),
+        roles: {},
+        prefer: 'name',
+        actions: {},
+      },
+      calendar: {
+        id: 'well-calendar',
+        epoch: { id: 'well-epoch', simulationAt: 0, dayIndex: 0, msOfDay: 0 },
+        dayMs: 86400000,
+        days: [],
+      },
+    },
+    lifecycle: { kinPremises: [], kinScopes: [] },
+    world: { revision: 0, facts: [], hostState: null },
+  };
 }
-
-function mealDuties(): Omit<Commitment, 'status'>[] {
-  return MEALS.map((m, i) => ({
-    id: `meal-${i}`,
-    kind: 'duty' as const,
-    actions: ['cook'],
-    from: m.from,
-    until: m.until,
-    normId: 'feed-village',
-    importance: 0.9,
-    recurEvery: MINUTES_PER_DAY,
-    label: m.label,
-  }));
-}
-
-/** Deterministic per-person seed from the game seed. */
-function personSeed(seed: number, index: number): number {
-  let h = (seed ^ Math.imul(index + 1, 0x9e3779b1)) >>> 0;
-  h = Math.imul(h ^ (h >>> 15), 0x85ebca6b) >>> 0;
-  return (h ^ (h >>> 13)) >>> 0;
-}
-
-/** The framework spec for one villager. */
-export function villagerPersonSpec(seed: number, v: VillagerSpec): PersonSpec {
+export function villagerPersonSpec(_seed: number, v: VillagerSpec): PersonAuthoring {
   const c = CAST[v.id];
   const canonical = canonicalCast(`hf.cast.${v.id}.well`);
-  const now = fw(0);
-  const commitments: Omit<Commitment, 'status'>[] = [];
-  if (v.prays) commitments.push(...salahWindows());
-  if (v.id === 'danyal') commitments.push(...danyalPrayers());
-  if (v.id === 'maryam') commitments.push(...mealDuties());
+  const now = fw(0) * MINUTE;
+  const commitment = (
+    id: string,
+    label: string,
+    from: number,
+    until: number,
+    normId: string,
+    kind: 'worship' | 'duty',
+    action: string,
+  ) => ({
+    id,
+    label,
+    kind,
+    actions: [action],
+    from: from * MINUTE,
+    until: until * MINUTE,
+    normId,
+    importance: 0.9,
+    recurEveryMs: DAY,
+  });
+  const commitments: PersonAuthoring['state']['agenda']['commitments'][number][] = [];
+  if (v.prays)
+    for (const [id, from, until] of [
+      ['Fajr', 300, 390],
+      ['Dhuhr', 750, 960],
+      ['Asr', 960, 1125],
+      ['Maghrib', 1125, 1170],
+      ['Isha', 1215, 1740],
+    ] as const)
+      commitments.push(commitment(`salah-${id.toLowerCase()}`, id, from, until, 'salah', 'worship', 'pray'));
+  if (v.id === 'danyal')
+    commitments.push(
+      commitment('prayer-morning', 'morning prayer', 330, 390, 'daily-prayer', 'worship', 'pray'),
+      commitment('prayer-evening', 'evening prayer', 1140, 1200, 'daily-prayer', 'worship', 'pray'),
+    );
+  if (v.id === 'maryam')
+    for (const [i, m] of MEALS.entries())
+      commitments.push(commitment(`meal-${i}`, m.label, m.from, m.until, 'feed-village', 'duty', 'cook'));
   const goal = ROLE_GOALS[v.id];
   return {
     id: v.id,
-    lexicon: { plainEnglish: true },
-    name: v.name,
-    seed: personSeed(seed, v.index),
-    now,
-    bornAt: now - canonical.age * MINUTES_PER_YEAR,
-    sex: c.sex,
-    traits: canonical.traits,
-    values: canonical.values,
-    norms: heldNorms({ practice: c.practice, extraNorms: c.extraNorms }),
-    skills: { ...v.skills },
-    body: {
-      satiety: v.satiety,
-      hydration: 0.75,
-      sleepPressure: 0.1,
-      exertion: 0,
-      asleep: false,
-      rates: COLONY_RATES,
+    identity: {
+      name: v.name,
+      birthAt: now - canonical.age * 365 * DAY,
+      sex: c.sex,
+      castId: `hf.cast.${v.id}.well`,
     },
-    relationships: c.relationships,
-    commitments,
-    goals: [
-      {
-        id: 'role',
-        label: goal.label,
-        serves: ['competence'],
-        advancedBy: goal.advancedBy,
-        importance: 0.75,
+    biography: [],
+    origin: {
+      kind: 'authored',
+      basis: { kind: 'evidence', id: `well:${v.id}` },
+      traits: { kind: 'explicit-authoring', evidence: { kind: 'evidence', id: `well:traits:${v.id}` } },
+    },
+    state: {
+      traits: canonical.traits,
+      values: canonical.values,
+      body: {
+        satiety: v.satiety,
+        hydration: 0.75,
+        sleepPressure: 0.1,
+        exertion: 0,
+        fitness: 0.5,
+        health: 1,
+        pain: 0,
+        sleepDebtHours: 0,
+        depletion: 0,
+        circadianPeakMs: 16 * 60 * MINUTE,
+        asleep: false,
+        since: now,
+        doze: {
+          context: { posture: 'upright', stimulation: 0.5 },
+          basis: { kind: 'authored', author: 'well', at: now },
+        },
+        bladder: { fill: 0, pending: 0 },
+        injuries: [],
+        illnesses: [],
+        exposures: [],
       },
-    ],
-    voices: [{ voiceId: 'player', trust: v.trust }],
+      needs: {
+        safety: 0.8,
+        belonging: 0.7,
+        esteem: 0.6,
+        autonomy: 0.7,
+        competence: 0.6,
+        leisure: 0.6,
+        meaning: 0.6,
+      },
+      skills: Object.entries(v.skills).map(([id, level]) => ({
+        id,
+        level,
+        practicedMs: 0,
+        lastPracticed: now,
+      })),
+      heldNorms: [
+        ...DEFAULT_NORMS.filter((n) => c.practice > 0 && n.id === 'salah').map((n) => ({
+          normId: n.id,
+          standing: n.standing,
+          conviction: c.practice,
+          provenance: n.provenance,
+        })),
+        ...c.extraNorms.map((n) => ({ ...n, provenance: provenance(n.normId) })),
+      ],
+      beliefs: [],
+      consequences: [],
+      sourceTrust: [],
+      context: {
+        scarcity: { kind: 'prior', value: 0, basis: 'well:authored' },
+        smoking: { kind: 'unobserved' },
+      },
+      relationships: c.relationships,
+      voices: [{ voiceId: 'player', trust: v.trust }],
+      agenda: {
+        exemptions: { traveling: { kind: 'unobserved' }, illnessSeverity: { kind: 'unobserved' } },
+        commitments,
+        goals: [
+          {
+            id: 'role:0',
+            label: goal.label,
+            serves: ['competence'],
+            advancedBy: goal.advancedBy,
+            importance: 0.75,
+            baseImportance: 0.75,
+            completionHalfLifeMs: DAY,
+            progress: 0,
+          },
+        ],
+        precommitments: [],
+        owed: [],
+      },
+      family: { contactCovered: [], aptitudes: {} },
+      groups: [],
+      reserve: {},
+      retention: { trace: 32, chronicleDays: 120 },
+      habits: [],
+      expectations: [],
+      affect: { mood: { valence: 0, arousal: 0.3 }, regulation: 0.3, emotions: [] },
+      promptings: { reading: 'none', responses: [] },
+      review: { style: 'accounting', atMsOfDay: 21 * 60 * MINUTE },
+      bonds: { courtships: [], marriages: [] },
+    },
   };
 }

@@ -158,7 +158,6 @@ export class Playback {
    * (a bad file throws and leaves the run as it was). Returns the comparison and the replies for the new run.
    */
   load(text: string, engine: string): { result: ReplayResult; replies: WorkerReply[] } {
-    // An older save replays under the rules it was played with (colony.md, "2026-10-19 level-up").
     const { file: f, rules } = parseColonyPlaytest(text);
     const g = replayColony(f.seed, this.factory, f.log, f.minute, rules, f.castChapter);
     const result = replayResult(f, colonyHash(g), engine, g.minute);
@@ -167,12 +166,7 @@ export class Playback {
     this.endedSent = false;
     this.acknowledged = new Set();
     this.resetPacing();
-    this.stop(
-      'manual',
-      g.scenarioVersion === SCENARIO_VERSION
-        ? LOADED_TEXT
-        : `${LOADED_TEXT} It was saved under the older rules (${g.scenarioVersion}) and plays on under them.`,
-    );
+    this.stop('manual', LOADED_TEXT);
     return { result, replies: this.frame() };
   }
 

@@ -1,5 +1,6 @@
 /** Read-only display of retained host events, in plain words. Forecasts and planned end times prove no outcome. */
 import type { Frame } from '../protocol.ts';
+import { WHY_AWAY } from '../sim/standing.ts';
 
 /** The suggestion in plain words: drops the strength word ("mention", "urge") the player already chose. */
 export function suggestionWords(text: string): string {
@@ -15,8 +16,12 @@ export function suggestionWords(text: string): string {
  * next choice weighs it again against what he wants then, and it lapses when the time or its window runs out.
  */
 export function laterMeaning(until: string | undefined): string {
-  return `He means to do it then. That is a plan, not a promise: when he next chooses, he weighs your word again against what he wants then. If time runs out first, it ends, and you will see why.${until ? ` You do not need to repeat it. It stands until ${until}.` : ''}`;
+  return `He means to do it then. That is a plan, not a promise: when he next chooses, he weighs your word again against what he wants then. If time runs out first, it ends, and you will see why.${until ? ` You do not need to repeat it. It stands until ${until} at the latest. It may end sooner if he falls asleep, changes his choice or you withdraw it.` : ''}`;
 }
+
+/** Exact narrator receipts emitted after observed completion, including an alternate act. */
+export const isSuggestionCompletion = (text: string): boolean =>
+  /^He did (?:what you suggested|something close to what you suggested):/.test(text);
 
 export function requestAccount(frame: Frame) {
   const index = frame.log.findLastIndex((entry) => entry.kind === 'you' && entry.minute <= frame.minute);
@@ -29,9 +34,8 @@ export function requestAccount(frame: Frame) {
     (entry) =>
       entry.kind === 'note' &&
       entry.who === 'you' &&
-      /Your suggestion (?:has (?:now )?ended|fades)|You withdraw your suggestion|^He did what you suggested/.test(
-        entry.text,
-      ),
+      (/Your suggestion (?:has (?:now )?ended|fades)|You withdraw your suggestion/.test(entry.text) ||
+        isSuggestionCompletion(entry.text)),
   );
   const standing = frame.standing;
   const status =
@@ -44,7 +48,7 @@ export function requestAccount(frame: Frame) {
           ? answer
             ? answer.tone === 'notNow'
               ? laterMeaning(standing.expires)
-              : `He agreed. Your suggestion stands until ${standing.expires}.`
+              : `He agreed. Your suggestion stands until ${standing.expires} at the latest. It may end sooner if he falls asleep, changes his choice or you withdraw it.`
             : 'Said. Waiting for his answer.'
           : 'Your suggestion has ended.');
   return {
@@ -53,6 +57,10 @@ export function requestAccount(frame: Frame) {
     words: suggestionWords(sent.text),
     answer,
     status,
+    availability:
+      standing && !standing.begun && WHY_AWAY[standing.draft.optionId]
+        ? `Starting limits: ${WHY_AWAY[standing.draft.optionId]}.`
+        : undefined,
     window:
       standing && standing.offered === false && !standing.begun
         ? `He cannot do it just now. If it opens again before ${standing.expires}, he will hear it.`
@@ -74,7 +82,21 @@ export function callAccount(frame: Frame) {
       text: `${call.by === 'halil' ? 'Halil called Selin' : 'Selin called Halil'}, and they talked.`,
     });
   }
-  if (facts.missed && facts.missed.minute <= frame.minute) {
+  if (facts.unanswered && facts.unanswered.minute <= frame.minute) {
+    const call = facts.unanswered;
+    rows.push({
+      id: `unanswered:${call.minute}:${call.by}`,
+      minute: call.minute,
+      day: call.day,
+      clock: call.clock,
+      text: `${call.by === 'halil' ? 'Halil called Selin' : 'Selin called Halil'}, but there was no answer. No conversation took place.`,
+    });
+  }
+  if (
+    facts.missed &&
+    facts.missed.minute <= frame.minute &&
+    !(facts.unanswered?.by === 'selin' && facts.unanswered.minute === facts.missed.minute)
+  ) {
     const call = facts.missed;
     rows.push({
       id: `missed:${call.minute}`,

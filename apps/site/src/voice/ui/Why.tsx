@@ -1,6 +1,6 @@
 /**
  * Why: the recorded influences in Halil’s words, strongest first within each option.
- * Model values stay in a closed secondary disclosure. This reads the view only; it never reweighs a decision.
+ * Influence bands stay in a closed secondary disclosure. This reads the view only; it never reweighs a decision.
  */
 import { useEffect, useRef } from 'react';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
@@ -171,12 +171,14 @@ export function Why({
                 <div className="v-why-opt-head">{settingWords(o.label)}</div>
                 <ul className="v-why-pulls">
                   {[...o.terms]
-                    .sort((a, b) => Math.abs(b.value) - Math.abs(a.value))
-                    .filter((t) => t.value !== 0)
+
+                    .filter((t) => t.direction !== 'none')
                     .map((t) => (
-                      <li key={`${t.label}-${t.value}`}>{settingWords(pullLine(t.label, t.value > 0))}</li>
+                      <li key={`${t.label}-${t.value}`}>
+                        {settingWords(pullLine(t.label, t.direction === 'toward'))}
+                      </li>
                     ))}
-                  {!o.terms.some((t) => t.value !== 0) && (
+                  {!o.terms.some((t) => t.direction !== 'none') && (
                     <li>I have no particular reason to choose this.</li>
                   )}
                 </ul>
@@ -185,25 +187,18 @@ export function Why({
           </ol>
           <DebugMenu key={why.decisionId}>
             <div className="v-model-numbers" key={why.decisionId}>
-              <h3>Model numbers</h3>
-              <p className="v-why-note">
-                Simulation terms for lab readers. These are model values, not measurements of Halil’s feelings
-                or faith.
-              </p>
+              <h3>Recorded influences</h3>
+              <p className="v-why-note">The bands describe the recorded simulation terms.</p>
               <ol className="v-why-options">
                 {why.options.map((o) => (
                   <li key={o.label}>
                     <div className="v-why-opt-head">
-                      {settingWords(o.label)} <span className="v-why-total">{o.total.toFixed(2)}</span>
+                      {settingWords(o.label)} <span className="v-why-total">{o.total}</span>
                     </div>
                     <ul>
                       {o.terms.map((t) => (
                         <li key={`${t.label}-${t.value}`}>
-                          {settingWords(t.label)}{' '}
-                          <span className="v-why-val">
-                            {t.value >= 0 ? '+' : '−'}
-                            {Math.abs(t.value).toFixed(2)}
-                          </span>
+                          {settingWords(t.label)} <span className="v-why-val">{t.value}</span>
                         </li>
                       ))}
                     </ul>

@@ -2,7 +2,14 @@
  * duty is substituted. This agreement does not claim travel or completed care. A host
  * must validate the complete Person plus exact finite agreement before accepting it.
  */
-import { isContinuingCommitment, promise, releaseCommitment, selfReport } from '@adam0white/human-framework';
+
+import { actorEvidence, actorInput } from './actor.ts';
+import { promise, releaseCommitment, selfReport } from './actor-effects.ts';
+import { physicalLedger } from './actor-world.ts';
+import { minuteMs } from './hf4.ts';
+
+const isContinuingCommitment = (_agenda: unknown, c: { status: string }) => c.status === 'pending';
+
 import { requireValue } from '../../shared/require-value.ts';
 import type { WatchState } from './state.ts';
 export interface RefugeVisit {
@@ -37,7 +44,7 @@ function obstacle(s: WatchState): string | undefined {
     (s.homeThreat.west ?? -1e9) > s.minute - 90
   )
     return 'Kian still has a duty at home or on the wall. The visit must wait.';
-  if (kian.agenda.goals.some((g) => g.status === 'active') || kian.projects?.currentGoalId)
+  if (kian.agenda.goals.some((g) => g.status === 'active'))
     return 'Kian is in the middle of a task. The visit must wait until it is done.';
   return undefined;
 }
@@ -104,7 +111,21 @@ export function stayRefugeVisit(s: WatchState): boolean {
   return true;
 }
 /** A bounded referenced dependent snapshot stays in source save/export, not the central shelf. */
-export function refugeVisitPassport(s: WatchState) {
+type CarePassport = {
+  agreement: RefugeVisit;
+  care: { commitment: import('./actor.ts').Person['agenda']['commitments'][number]; completedAt: number };
+  dependent: {
+    id: 'ada';
+    guardian: 'kian';
+    sourceMinute: number;
+    ageMinutes: number;
+    alive: true;
+    satiety: number;
+    hydration: number;
+    sleepPressure: number;
+  };
+};
+export function refugeVisitPassport(s: WatchState): CarePassport | undefined {
   const agreement = s.refugeVisit,
     { kian, ada } = participants(s);
   if (
@@ -123,7 +144,7 @@ export function refugeVisitPassport(s: WatchState) {
     !Number.isSafeInteger(agreement.careCompletedAt) ||
     duty.toId !== 'ada' ||
     duty.targetId !== 'ada' ||
-    duty.until !== agreement.returnBy ||
+    duty.until !== minuteMs(agreement.returnBy) ||
     duty.actions.join(',') !== 'care-ada'
   )
     return undefined;
@@ -143,7 +164,7 @@ export function refugeVisitPassport(s: WatchState) {
     returning?.status !== 'pending' ||
     returning.toId !== 'ada' ||
     returning.targetId !== 'ada' ||
-    returning.until !== agreement.returnBy ||
+    returning.until !== minuteMs(agreement.returnBy) ||
     returning.actions.join(',') !== 'return-with-ada'
   )
     return undefined;
@@ -183,8 +204,22 @@ export function completedAdaCare(s: WatchState, at: number): boolean {
     return false;
   s.grain -= 0.1;
   s.refugeVisit.careCompletedAt = at;
-  ada.body.satiety = Math.min(1, ada.body.satiety + 0.35);
-  ada.body.hydration = Math.min(1, ada.body.hydration + 0.35);
-  ada.body.sleepPressure = Math.max(0, ada.body.sleepPressure - 0.05);
+  const receipt = physicalLedger(s).actions.findLast(
+    (a) => a.person === 'kian' && a.offer.actionId === 'care-ada' && a.status === 'completed',
+  );
+  if (!receipt) throw new Error('Ada care has no actual completed source receipt.');
+  actorInput(s, 'body.received', {
+    ...actorEvidence(s, 'ada', 'care-meal'),
+    receipt: { type: 'consumed', actionReceipt: receipt.id, received: { food: 0.35, water: 0.35 } },
+  });
+  actorInput(s, 'family.contact', {
+    person: 'ada',
+    caregiver: 'kian',
+    evidenceId: `${receipt.id}:together`,
+    from: receipt.at - minuteMs(receipt.duration ?? 30),
+    to: receipt.at,
+    activities: ['care-ada'],
+    observationIds: [receipt.id],
+  });
   return true;
 }

@@ -99,7 +99,7 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
   ];
   const noop = () => {};
   const node = document.createElement('div');
-  const renderSheet = () => {
+  const renderSheet = (pending: 'cedar' | null = null) => {
     node.innerHTML = renderToStaticMarkup(
       createElement(PersonSheet, {
         frame,
@@ -108,7 +108,7 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
         insist: false,
         appeal: 'children',
         appealOpen: false,
-        pending: null,
+        pending,
         asked: null,
         forecasts: {},
         outline: null,
@@ -139,7 +139,7 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
   expect(node.querySelector('.well-order-goals')?.textContent).toContain(
     `${frame.humanWorld.resources.meals} of 12 meals`,
   );
-  expect(node.querySelector('.well-order-goals')?.textContent).toContain('toward the next stage');
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain('the next stage is');
   expect(node.querySelector('.well-trust-changes')?.textContent).toContain(
     'Other events can also affect trust.',
   );
@@ -157,29 +157,37 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
   renderSheet();
   expect(node.querySelector('.well-latest')?.textContent).toContain('No appeal sent.');
   expect(node.querySelector('.well-order-goals')?.textContent).toContain('store-room 2 of 6 stages');
-  expect(node.querySelector('.well-order-goals')?.textContent).toContain('99% toward the next stage');
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain('the next stage is nearly done');
   expect(node.querySelector('.well-order-goals')?.textContent).toContain('of 5 meals');
   frame.humanWorld.project.stage = 6;
   renderSheet();
-  const humanGoals = node.querySelector('.well-order-goals p:last-child')?.textContent;
+  const humanGoals = node.querySelector(
+    '.well-order-goals [data-village=human] .well-building-progress',
+  )?.textContent;
   expect(humanGoals).toBeTruthy();
-  expect(humanGoals).not.toContain('toward the next stage');
+  expect(humanGoals).not.toContain('the next stage is');
   card.order.action = 'cook';
   card.human.says = 'We have enough food stored. I’ll cook when it runs low.';
   renderSheet();
   expect(node.querySelector('.well-latest')?.textContent).toContain('We have enough food stored.');
   expect(node.querySelector('.well-food-explanation')?.textContent).toContain('ordinary meals');
   expect(node.querySelector('.well-food-explanation')?.textContent).toContain('storm reserve');
+  renderSheet('cedar');
+  expect(node.querySelector('.well-risk .well-task-context')?.textContent).toContain('adds 3 timber');
+  expect(node.querySelector('.well-risk')?.textContent).toContain('can injure whoever fells it');
+  frame.humanWorld.cedarFelled = true;
+  renderSheet('cedar');
+  expect(node.querySelector('.well-risk')?.textContent).not.toContain('Completing the cedar felling');
 });
 
 it('offers Home shelter for the well-house resident without changing old Home meaning', async () => {
   const { homeOrderMeaning } = await import('./order-status.ts');
   const { inferredJob } = await import('./parts.tsx');
-  const frame = new ColonyGame(20261003, createFrameworkHumanSide, 8).frame();
+  const frame = new ColonyGame(20261003, createFrameworkHumanSide).frame();
   expect(placesFor('danyal', 8).at(-1)).toBe('home-idris');
   expect(inferredJob(frame, 'home-idris')).toBe('shelter');
   expect(inferredJob({ ...frame, rules: 7 }, 'home-idris')).toBe('eat');
-  const game = new ColonyGame(20261003, createFrameworkHumanSide, 8);
+  const game = new ColonyGame(20261003, createFrameworkHumanSide);
   game.issue({ personId: 'idris', placeId: 'home-idris' });
   const card = game.frame().cards[0];
   if (!card) throw Error('Missing Home order');
@@ -224,9 +232,9 @@ it('keeps initial task context separate from later dated injury history and unkn
   render();
   expect(node.textContent).toContain('not a finished roof');
   expect(node.textContent).toContain('separate twelve-meal storm reserve');
-  const details = node.querySelector('details.well-order-goals');
-  expect(details?.hasAttribute('open')).toBe(false);
-  expect(details?.querySelector('summary')?.textContent).toBe('Current stores and construction');
+  const details = node.querySelector('section.well-order-goals');
+  expect(details?.closest('details')).toBeNull();
+  expect(details?.querySelector('h3')?.textContent).toBe('Current stores and construction');
   expect(details?.textContent).toContain('The cause of the remaining delay is unknown');
   expect(node.querySelector('.well-places button')).not.toBeNull();
   game.issue({ personId: 'yusuf', placeId: 'site' });

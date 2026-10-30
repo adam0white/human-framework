@@ -25,7 +25,6 @@ export type MainToWorker =
       gen: number;
       scenarioVersion: number;
       startAtDusk?: boolean;
-      options?: import('./sim/dusk-rest.ts').WatchOptions;
     }
   | { type: 'tick'; dtMs: number }
   | { type: 'input'; input: Input }
@@ -52,7 +51,7 @@ export type WorkerReply =
   /** The saved pages, newest first ([] without storage), and whether this run's saves are being kept. */
   | { type: 'shelf'; pages: PageInfo[]; saving: boolean; current: string }
   /** A load finished: `ok` false if the page was gone or unreadable (the old run goes on). */
-  | { type: 'loaded'; ok: boolean; id: string; seed?: number }
+  | { type: 'loaded'; ok: boolean; id: string; seed?: number; error?: string }
   | { type: 'error'; message: string };
 
 export type WorkerToMain = WorkerReply & { gen: number };

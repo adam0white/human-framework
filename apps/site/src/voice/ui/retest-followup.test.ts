@@ -92,24 +92,29 @@ const why: WhyView = {
   options: [
     {
       label: 'rest at home',
-      total: 0.02,
+      total: 'slight pull toward',
       terms: [
-        { label: 'effort', value: -0.01 },
-        { label: 'grieving', value: 0.02 },
-        { label: 'his understanding of no-smoking-fast', value: -0.015 },
+        { label: 'grieving', value: 'slight pull toward', direction: 'toward' },
+        { label: 'his understanding of no-smoking-fast', value: 'slight pull away', direction: 'away' },
+        { label: 'effort', value: 'slight pull away', direction: 'away' },
       ],
     },
-    { label: 'talk with Hacer', total: -0.01, terms: [{ label: 'grieving', value: -0.02 }] },
+    {
+      label: 'talk with Hacer',
+      total: 'slight pull away',
+      terms: [{ label: 'grieving', value: 'slight pull away', direction: 'away' }],
+    },
   ],
 };
-it('explains grief and reluctance in his words and keeps model values in Debug', () => {
+it('explains grief and reluctance in his words and bands recorded influences in Debug', () => {
   history.replaceState(null, '', '/voice/');
   const { el } = render(createElement(Why, { why, onClose: () => {} }));
   history.replaceState(null, '', '/voice/');
   const details = el.querySelector('details');
   expect(details?.open).toBe(false);
   expect(details?.querySelector('summary')?.textContent).toBe('Debug');
-  expect(details?.textContent).toContain('0.02');
+  expect(details?.textContent).toContain('slight pull toward');
+  expect(details?.textContent).not.toContain('0.02');
   const ordinary = el.cloneNode(true) as HTMLElement;
   ordinary.querySelector('details')?.remove();
   expect(ordinary.textContent).not.toMatch(/[+−]|\d\.\d|no-smoking-fast|top option|top total/);
@@ -127,7 +132,13 @@ it('keeps unrecognized model terms out of ordinary character speech', () => {
       why: {
         ...why,
         voice: { says: 'No.', reason: 'future:raw-id' },
-        options: [{ label: 'wait', total: 0, terms: [{ label: 'future:raw-id', value: -0.03 }] }],
+        options: [
+          {
+            label: 'wait',
+            total: 'no pull',
+            terms: [{ label: 'future:raw-id', value: 'slight pull away', direction: 'away' }],
+          },
+        ],
       },
       onClose: () => {},
     }),
@@ -147,13 +158,17 @@ it('retains concrete refusal limits and known social, meal and need influences',
         options: [
           {
             label: 'take the shift',
-            total: 0,
+            total: 'no pull',
             terms: [
-              { label: 'hunger', value: -0.1 },
-              { label: 'for Selin', value: 0.08 },
-              { label: 'Pay Osman 300 by day 15 of Ramadan', value: 0.07 },
-              { label: 'the pre-dawn meal', value: 0.06 },
-              { label: 'your suggestions', value: 0.05 },
+              { label: 'hunger', value: 'moderate pull away', direction: 'away' },
+              { label: 'for Selin', value: 'moderate pull toward', direction: 'toward' },
+              {
+                label: 'Pay Osman 300 by day 15 of Ramadan',
+                value: 'moderate pull toward',
+                direction: 'toward',
+              },
+              { label: 'the pre-dawn meal', value: 'moderate pull toward', direction: 'toward' },
+              { label: 'your suggestions', value: 'moderate pull toward', direction: 'toward' },
             ],
           },
         ],
@@ -251,4 +266,24 @@ it('does not attach the previous action Why to a craving line', () => {
   expect(el.querySelector('button.v-log-btn')).toBeNull();
   root.unmount();
   el.remove();
+});
+
+it('Today releases an earlier-day held answer when a new day starts, without a new request', () => {
+  const props = { paused: false, onWhy: () => {} };
+  const { el, update } = render(createElement(DayLog, { ...props, day: 1, log: [answer] }));
+  expect(el.textContent).toContain(answer.text);
+  const today: LogEntry = {
+    ...later,
+    id: 'today',
+    day: 2,
+    minute: 1440 + 360,
+    clock: '06:00',
+    kind: 'act',
+    text: 'I eat at home.',
+  };
+  update(createElement(DayLog, { ...props, day: 2, log: [answer, today] }));
+  expect(el.textContent).toContain(today.text);
+  expect(el.textContent).not.toContain('Nothing yet today.');
+  expect(el.textContent).not.toContain('Earlier answer');
+  expect(el.textContent).not.toContain(answer.text);
 });

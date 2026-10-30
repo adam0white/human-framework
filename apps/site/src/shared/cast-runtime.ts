@@ -1,4 +1,3 @@
-import { ENGINE_VERSION } from '@adam0white/human-framework';
 /** Browser orchestration only. Titles preview authored state without shelf ownership.
  * Explicit starts preflight the whole cast before one atomic claim. Replacements wait for
  * an already-dispatched transaction; pre-dispatch cancellation never writes. No rollback,
@@ -7,7 +6,6 @@ import { ENGINE_VERSION } from '@adam0white/human-framework';
 import {
   anchorPersonaLife,
   canonicalCast,
-  canonicalPersona,
   castForGame,
   closePersonaBranch,
   createPersona,
@@ -16,13 +14,12 @@ import {
   lifeAdmission,
   type PersonaEnvelope,
   personaChannel,
-  portablePassport,
-  projectPortablePerson,
   validatePersona,
 } from '@adam0white/lab-client';
 import { type CastChapter, makeCastChapter } from './cast-chapter.ts';
 import { claimSiteCastBatch } from './cast-site-claim.ts';
-import { fetchBuild } from './playtest.ts';
+import { verifyCastSourceCheckpoint } from './cast-source-checkpoint.ts';
+import { FRAMEWORK_PACKAGE_VERSION, fetchBuild } from './playtest.ts';
 import { requireValue } from './require-value.ts';
 
 const HOST_EXPORT_GAMES: Readonly<Record<string, string>> = {
@@ -300,15 +297,12 @@ async function restoreOwnership(s: State, value: unknown, generation: number) {
   if (new TextEncoder().encode(JSON.stringify(archived)).length <= 1024 * 1024) {
     for (const [id, head] of Object.entries(heads)) {
       const raw = archived[id];
-      const receipt = head.transfer.checkpoint as { sha256?: unknown } | undefined;
-      if (!raw || !receipt) continue;
-      const digest = Array.from(
-        new Uint8Array(
-          await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw))),
-        ),
-        (b) => b.toString(16).padStart(2, '0'),
-      ).join('');
-      if (receipt.sha256 === digest) sources[id] = raw;
+      if (!raw || !head.transfer.checkpoint) continue;
+      try {
+        sources[id] = await verifyCastSourceCheckpoint(s.game, id, head.transfer, raw);
+      } catch {
+        // Preserve accepted ownership, but do not relabel unsupported source data as a verified run.
+      }
     }
   }
   if (generation !== s.generation || !s.localLoad) return;
@@ -328,7 +322,7 @@ async function closeOwned(s: State, terminal: { castId: string; at: number }, ge
   if (!parent || parent.terminal || generation !== s.generation || !requireValue(shelf).enabled) return;
   const receipt = await closePersonaBranch(
     parent,
-    { ...parent.source, game: s.game, build: await fetchBuild() },
+    { game: s.game, build: await fetchBuild(), engine: FRAMEWORK_PACKAGE_VERSION, rules: 'hf4-cast-1' },
     terminal.at,
   );
   if (generation !== s.generation) return;
@@ -610,7 +604,12 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
       return;
     }
     gate(s, `cast-pending-${crypto.randomUUID()}`);
-    const source = { game, build: await fetchBuild(), engine: ENGINE_VERSION, rules: 'cast-1' };
+    const source = {
+      game,
+      build: await fetchBuild(),
+      engine: FRAMEWORK_PACKAGE_VERSION,
+      rules: 'hf4-cast-1',
+    };
     const admitted = await claimSiteCastBatch(
       requireValue(shelf),
       castForGame(game).map((p) => p.castId),
@@ -734,30 +733,14 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
     if (result.error || !result.transfer) throw new Error(result.error ?? 'No supported checkpoint.');
     if (result.transfer.sourceRole !== selectedCastId.split('.')[2])
       throw new Error('Checkpoint identity differs.');
-    if (result.transfer.castPassport === 'site-cast/1' && !result.transfer.checkpoint)
-      throw new Error('Missing full-source checkpoint receipt.');
-    if (result.transfer.checkpoint) {
-      const raw = result.sourceSnapshot as { schema?: unknown; now?: unknown; rng?: unknown } | undefined;
-      const receipt = result.transfer.checkpoint as {
-        schema?: unknown;
-        sourceMinute?: unknown;
-        rng?: unknown;
-        sha256?: unknown;
-      };
-      if (
-        !raw ||
-        receipt.schema !== raw.schema ||
-        receipt.sourceMinute !== raw.now ||
-        canonicalPersona(receipt.rng) !== canonicalPersona(raw.rng)
-      )
-        throw new Error('Full-source checkpoint receipt differs from its captured snapshot.');
-      const digest = Array.from(
-        new Uint8Array(
-          await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw))),
-        ),
-        (b) => b.toString(16).padStart(2, '0'),
-      ).join('');
-      if (digest !== receipt.sha256) throw new Error('Full-source checkpoint checksum differs.');
+    if (!result.transfer.checkpoint) throw new Error('Missing full-source checkpoint receipt.');
+    {
+      const raw = await verifyCastSourceCheckpoint(
+        s.game,
+        selectedCastId,
+        result.transfer,
+        result.sourceSnapshot,
+      );
       if (generation !== s.generation) return;
       s.sources[selectedCastId] = raw;
       const key = `hf-cast-source:${s.game}`;
@@ -789,20 +772,7 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
       !fork && existing?.transfer.life
         ? anchorPersonaLife(existing.transfer.life as never, cast.castId, Date.now())
         : initialPersonaLife(cast.castId, branchId, Date.now());
-    const transfer =
-      result.transfer.castPassport === 'hf-portable-person/1'
-        ? {
-            ...result.transfer,
-            ...projectPortablePerson({
-              castId: cast.castId,
-              game: s.game,
-              engine: String(result.transfer.engine),
-              person: result.sourceSnapshot,
-              history: ['Continued an ordinary chapter in Voice. Exact events remain in its run export.'],
-              ...(!fork && existing && portablePassport(existing) ? { previous: existing } : {}),
-            }),
-          }
-        : result.transfer;
+    const transfer = result.transfer;
     const envelope = await createPersona({
       format: 'hf-persona/1',
       castId: cast.castId,
@@ -812,8 +782,8 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
       source: {
         game: s.game,
         build: await fetchBuild(),
-        engine: String(result.transfer.engine),
-        rules: 'cast-1',
+        engine: FRAMEWORK_PACKAGE_VERSION,
+        rules: 'hf4-cast-1',
       },
       transfer: { ...transfer, life },
       limitations: [

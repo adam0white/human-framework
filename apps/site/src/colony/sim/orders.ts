@@ -2,7 +2,7 @@
  * The shared order queue (spec §3). The player is one voice; each order becomes one card that fans out to
  * both sides at the same sim minute: Classic receives a command, the Human side a Suggestion. Pure TS.
  */
-import type { Suggestion } from '@adam0white/human-framework';
+import type { Suggestion } from './hf4.ts';
 import type { PlaceId } from './map.ts';
 import {
   type ActionId,
@@ -178,8 +178,12 @@ export type ChipState =
   | 'willNot';
 
 export interface SideChip {
+  /** Derived host observation time of the latest matched native answer; not exact speech time or saved state. */
+  answerObservedAt?: Minute;
   /** Presentation receipt, derived from completion events; never stored in the order book. */
   outcome?: string;
+  /** Derived actual work chronology; absent when the event did not identify this request. */
+  workEvents?: { minute: Minute; kind: 'injury' | 'interrupted'; activityId: string; action: string }[];
   state: ChipState;
   label?: string;
   /** Rules 5: the latest spoken answer, separate from the condition label. */

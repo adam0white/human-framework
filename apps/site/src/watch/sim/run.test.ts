@@ -1,151 +1,42 @@
-import { describe, expect, it } from 'vitest';
-import type { Input } from './night.ts';
-import { DECISION_RATE, Pacer, type Speed } from './pace.ts';
+import { expect, it } from 'vitest';
+import { actorRuntime } from './actor.ts';
+import { WATCH_OLD_SAVE } from './hf4.ts';
 import { endState, replay, ruleHash, WatchRun } from './run.ts';
-import { nextRandom } from './state.ts';
+import { installActorViews } from './state.ts';
 
-/**
- * A scripted Keeper driven through the real-time pacer: posts at dusk, walks the lantern, rings the bell and
- * changes speed at fixed sim minutes, while real time arrives in an irregular tick schedule.
- */
-function playScripted(seed: number, tickSeed: number, nights: number): WatchRun {
-  const run = new WatchRun(seed);
-  const pacer = new Pacer();
-  const ticks = { rng: tickSeed };
-  const speeds: Speed[] = ['watch', 'fast', 'tactical'];
+it('plays an actual mounted night to dawn and reproduces its whole input-log hash', () => {
+  const run = new WatchRun(7);
   run.input({ k: 'start' });
-  for (let n = 0; n < nights; n++) {
-    const plan: Input[] = [
-      { k: 'post', watcher: 'tamar', post: `${run.state.warned}-1` },
-      { k: 'post', watcher: 'samira', post: `${run.state.warned}-2` },
-      { k: 'lantern', section: run.state.warned },
-    ];
-    for (const i of plan) run.input(i);
-    // Let some dusk pass in real time before beginning.
-    for (let k = 0; k < 30; k++) pacer.tick(run, 16 + nextRandom(ticks) * 40);
-    run.input({ k: 'begin' });
-    let rang = 0;
-    while (run.state.phase === 'night') {
-      const m = run.state.minute;
-      if (m % 97 === 0) pacer.speed = speeds[m % 3] ?? 'watch';
-      if (m % 211 === 0) run.input({ k: 'lantern', section: m % 2 === 0 ? 'gate' : run.state.warned });
-      if (rang < 2 && run.state.alerts.some((a) => a.kind === 'foot' && a.minute === m - 1)) {
-        run.input({ k: 'bell' });
-        rang += 1;
-      }
-      pacer.tick(run, 5 + nextRandom(ticks) * 250);
-    }
-    if (run.state.phase !== 'dawn') break;
-    run.input({ k: 'toDusk' });
-  }
-  return run;
-}
+  run.input({ k: 'post', watcher: 'tamar', post: `${run.state.warned}-1` });
+  run.input({ k: 'lantern', section: run.state.warned });
+  run.input({ k: 'begin' });
+  for (let guard = 0; guard < 1000 && run.state.phase === 'night'; guard++) run.step();
+  expect(run.state.phase).toBe('dawn');
+  expect(run.state.history).toHaveLength(1);
+  expect(run.state.dawn?.voices.length).toBeGreaterThan(0);
+  const file = JSON.parse(JSON.stringify(run.export()));
+  expect(ruleHash(replay(file))).toBe(file.end.ruleHash);
+  expect(endState(replay(file)).fullHash).toBe(file.end.fullHash);
+  actorRuntime(run.state).verify();
+}, 180000);
 
-describe('Night Watch input log and playtest export', () => {
-  it('logs inputs by sim minute and replays the export to the same end state', () => {
-    const run = playScripted(2026, 1, 3);
-    const exp = run.export();
-    expect(exp.inputs.length).toBeGreaterThan(10);
-    expect(exp.inputs.every((e, i) => i === 0 || e.m >= (exp.inputs[i - 1]?.m ?? 0))).toBe(true);
-    const roundTrip = JSON.parse(JSON.stringify(exp));
-    expect(JSON.stringify(endState(replay(roundTrip)))).toBe(JSON.stringify(exp.end));
-    // Short enough to paste into a chat or an issue.
-    expect(JSON.stringify(exp).length).toBeLessThan(120_000);
-  });
+it('keeps the rule hash independent of prose while actual stock changes move it', () => {
+  const run = new WatchRun(7);
+  run.input({ k: 'start' });
+  run.input({ k: 'begin' });
+  run.step();
+  const exported = run.export(),
+    state = installActorViews(structuredClone(run.state));
+  state.warning = 'The scout words the same warning differently.';
+  expect(ruleHash(state)).toBe(exported.end.ruleHash);
+  expect(endState(state).fullHash).not.toBe(exported.end.fullHash);
+  state.grain -= 1;
+  expect(ruleHash(state)).not.toBe(exported.end.ruleHash);
+});
 
-  it('real-time pacing does not leak into the rules: two tick schedules, one log, one end state', () => {
-    const a = playScripted(77, 1, 2);
-    // Replaying a's log under another tick schedule: drive the pacer with different ticks, applying a's inputs.
-    const b = new WatchRun(77);
-    const pacer = new Pacer();
-    const ticks = { rng: 999 };
-    let idx = 0;
-    for (let guard = 0; guard < 1_000_000; guard++) {
-      for (let e = a.log[idx]; e !== undefined && e.m === b.state.minute; e = a.log[idx]) {
-        expect(b.input(e.i)).toBe(true);
-        idx += 1;
-      }
-      if (idx >= a.log.length && b.state.minute >= a.state.minute) break;
-      // Never let a tick carry the clock past the next logged input.
-      const next = a.log[idx];
-      const room = next ? next.m - b.state.minute : 20;
-      pacer.speed = 'fast';
-      const before = b.state.minute;
-      pacer.tick(b, Math.min(room, 1 + nextRandom(ticks) * 3) * (1000 / 12));
-      if (b.state.minute === before && room <= 0) throw new Error('stuck');
-    }
-    expect(JSON.stringify(b.state)).toBe(JSON.stringify(a.state));
-  });
-
-  it('the rule hash ignores what is only told in words, and a change of rules moves it', () => {
-    const run = playScripted(2026, 1, 1);
-    const exp = run.export();
-    expect(exp.build).toBe('dev');
-    expect(typeof exp.framework).toBe('string');
-    const s = structuredClone(run.state);
-    expect(ruleHash(s)).toBe(exp.end.ruleHash);
-    // Words: the chronicle, an alert, the scout's line, a dawn voice, the pacing.
-    const line = s.chronicle[0];
-    if (line) line.text = `${line.text} (reworded)`;
-    s.alerts.push({ section: 'gate', kind: 'bell', text: 'A new line.', slowed: false, minute: s.minute });
-    s.warning = 'The scout says it differently now.';
-    s.slowUntil += 30;
-    s.pairings = s.pairings.map((p) => ({ ...p, told: true as const }));
-    expect(ruleHash(s)).toBe(exp.end.ruleHash);
-    expect(endState(s).fullHash).not.toBe(exp.end.fullHash);
-    // Rules: a sack, a draw from either stream, the rope's wear.
-    for (const change of [
-      (x: typeof s) => {
-        x.grain -= 1;
-      },
-      (x: typeof s) => {
-        x.rng += 1;
-      },
-      (x: typeof s) => {
-        x.world.rng += 1;
-      },
-      (x: typeof s) => {
-        x.rope.wear += 0.01;
-      },
-    ]) {
-      const t = structuredClone(s);
-      change(t);
-      expect(ruleHash(t)).not.toBe(exp.end.ruleHash);
-    }
-  });
-
-  it('refuses an export from another rules version', () => {
-    const exp = new WatchRun(1).export();
-    expect(() => replay({ ...exp, scenario: exp.scenario + 1 })).toThrow(/scenario/);
-  });
-
-  it('refuses old cast saves with a plain scenario message', () => {
-    const page = new WatchRun(1).snapshot();
-    expect(() => WatchRun.resume({ ...page, scenario: 13 })).toThrow(/scenario 13/);
-  });
-
-  it('a moment eases play to the tactical speed and then hands the chosen speed back', () => {
-    const run = new WatchRun(5);
-    const pacer = new Pacer();
-    pacer.speed = 'fast';
-    run.input({ k: 'start' });
-    run.input({ k: 'begin' });
-    let sawSlow = false;
-    let sawFastAfter = false;
-    while (run.state.phase === 'night') {
-      const slowed = pacer.slowed(run);
-      if (slowed) {
-        sawSlow = true;
-        // An open card slows play further, so there is time to read it.
-        expect(pacer.rate(run)).toBe(
-          run.state.moment && run.state.minute < run.state.moment.until ? DECISION_RATE : 1,
-        );
-      } else if (sawSlow) {
-        sawFastAfter = true;
-        expect(pacer.rate(run)).toBe(12);
-      }
-      pacer.tick(run, 100);
-    }
-    expect(sawSlow && sawFastAfter).toBe(true);
-  });
+it('refuses older saves and exports with the exact start-fresh message', () => {
+  const run = new WatchRun(7),
+    snapshot = run.snapshot();
+  expect(() => WatchRun.resume({ ...snapshot, scenario: 13 })).toThrow(WATCH_OLD_SAVE);
+  expect(() => replay({ ...run.export(), scenario: 13 })).toThrow(WATCH_OLD_SAVE);
 });

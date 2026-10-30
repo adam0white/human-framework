@@ -181,10 +181,10 @@ it('explains initial quick suggestions before sending their unchanged payload, w
   await begin();
   const n = NUDGES[0];
   if (!n || !colony.frame) throw Error('Missing fixture');
-  // Public stepping supplies the real initial offer; useColony/Pane remain presentation mocks.
+  // Presentation fixture: a real idle frame with this authored suggestion shown.
+  // Actual HF4 builders may already be working when its scheduled time arrives.
   const game = new ColonyGame(20261003, createFrameworkHumanSide);
-  game.advance(n.minute + 7); // The observed 05:37 offer; at onset both builders are already working.
-  colony.frame = game.frame();
+  colony.frame = { ...game.frame(), nudges: [n] };
   expect(colony.frame.cards).toHaveLength(0);
   await act(() => root.render(createElement(App)));
   expect(container.querySelector('.well-sheet-head')).toBeNull();

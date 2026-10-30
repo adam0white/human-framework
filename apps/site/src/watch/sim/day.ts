@@ -7,7 +7,7 @@
  * `ROPE_DAWN_MEND` off whatever happens. Wounds are dressed in the village (tended once). Newcomers arrive at dusk.
  * Not covered: the fair, trade, seasons and years (G3-3).
  */
-import { observeAct, skillLevel, tend } from '@adam0white/human-framework';
+import { observeAct, skillLevel, tend } from './actor-effects.ts';
 import { DAY, DUSK_START, NIGHTFALL, ROPE_DAWN_MEND, ROPE_MEND_PER_HOUR, type WatcherId } from './config.ts';
 import { presentIds, stepPeople } from './night.ts';
 import { arrive, isWatcher, nameOf, personOf, villager } from './people.ts';
@@ -39,14 +39,15 @@ export function advanceDay(s: WatchState): void {
     s.minute = t;
     for (const e of stepPeople(s, t)) {
       const id = e.personId as WatcherId;
-      if (e.kind === 'begin' && e.action === 'sleep') slept[id] = (slept[id] ?? 0) + 1;
+      if (e.kind === 'finish' && e.action === 'sleep' && e.status === 'completed')
+        slept[id] = (slept[id] ?? 0) + (e.duration ?? 0) / 60;
       if (e.kind === 'finish' && e.action === 'work' && e.status === 'completed')
-        worked[id] = (worked[id] ?? 0) + 2;
+        worked[id] = (worked[id] ?? 0) + (e.duration ?? 0) / 60;
       if (e.kind === 'finish' && e.action === 'mend' && e.status === 'completed') {
         const p = personOf(s, id);
         const craft = p ? skillLevel(p, 'craft') : 0.3;
-        s.rope.wear = Math.max(0, s.rope.wear - ROPE_MEND_PER_HOUR * 2 * craft);
-        mended[id] = (mended[id] ?? 0) + 2;
+        s.rope.wear = Math.max(0, s.rope.wear - ((ROPE_MEND_PER_HOUR * (e.duration ?? 0)) / 60) * craft);
+        mended[id] = (mended[id] ?? 0) + (e.duration ?? 0) / 60;
       }
     }
     if (t >= dusk) break;
@@ -62,10 +63,10 @@ export function advanceDay(s: WatchState): void {
     const parts: string[] = [];
     if ((mended[id] ?? 0) > 0) parts.push(`spent ${mended[id]} hours mending the bell rope`);
     else if ((worked[id] ?? 0) >= 4) parts.push('worked most of the day');
-    if ((slept[id] ?? 0) === 0) parts.push('never lay down');
+    if ((slept[id] ?? 0) === 0) parts.push('had no completed sleep recorded');
     lines.push({
       who: id,
-      text: parts.length > 0 ? `${name} ${parts.join(' and ')}.` : `${name} slept and ate.`,
+      text: parts.length > 0 ? `${name} ${parts.join(' and ')}.` : 'No work or rest was recorded.',
     });
   }
   s.night += 1;

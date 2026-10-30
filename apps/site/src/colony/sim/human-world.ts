@@ -6,6 +6,10 @@
  * Purity: `affordancesFor` reads state only (no rolls, no writes), so `preview` stays a pure telegraph.
  * All randomness here is `scenarioRoll` keyed by tag, minute and subject, so replays are identical.
  */
+import { inspect } from '@adam0white/human-framework';
+import { lifeAdmission } from '@adam0white/lab-client';
+import type { CastChapter } from '../../shared/cast-chapter.ts';
+import { wellDiscovery } from '../../shared/cast-discoveries.ts';
 import {
   type Activity,
   type Affordance,
@@ -14,22 +18,17 @@ import {
   consume,
   type DecisionRecord,
   interruptPerson,
-  type JointProposal,
-  jointSuccessChance,
-  mirrorAffordance,
   type Outcome,
   type Percept,
   type Person,
   readPerson,
   skillLevel,
-  type World,
-} from '@adam0white/human-framework';
-import { applyLifeOffers, type CastChapter, lifeNotice } from '../../shared/cast-chapter.ts';
-import { wellDiscovery } from '../../shared/cast-discoveries.ts';
+} from './hf4.ts';
 import { fw, gm, STRENGTH } from './human-cast.ts';
 import type { ConstructionView } from './human-side.ts';
 import type { NotOnOffer } from './human-view.ts';
 import { findPath, type GameMap, type PlaceId, spotFor, type Tile } from './map.ts';
+import { WELL_LIFE_TASKS, wellChapterPeople } from './portable.ts';
 import {
   type ActionId,
   BEAM_STAGE,
@@ -168,7 +167,14 @@ export interface QueuedPercept {
 }
 
 export interface HostEvents {
-  injuries: { personId: VillagerId; kind: 'collapse' | 'injury' | 'weather'; minute: Minute }[];
+  injuries: {
+    personId: VillagerId;
+    kind: 'collapse' | 'injury' | 'weather';
+    minute: Minute;
+    action?: string;
+    startedAt?: number;
+    activityId?: string;
+  }[];
   /** carry-injured completions (moment 1 is judged by the side). */
   carried: { carrier: VillagerId; victim: VillagerId; minute: Minute; hunger: number }[];
   beams: { lead: VillagerId; partners: VillagerId[]; ok: boolean; minute: Minute }[];
@@ -178,6 +184,8 @@ export interface HostEvents {
     action: string;
     status: Outcome['status'];
     startedAt: number;
+    activityId: string;
+    minute: Minute;
     summary: string;
   }[];
 }
@@ -197,6 +205,8 @@ export interface HostState {
   /** Whether the timber for the stage under way is already on site. */
   buildPaid: boolean;
   beamAttempts: number;
+  /** Completed assistance receipts keyed by the lead activity. */
+  beamSupport?: Record<string, VillagerId[]>;
   /** Exposure hits during the current activity (folded into its outcome as a weather injury). */
   exposure: Record<string, number>;
   percepts: QueuedPercept[];
@@ -268,13 +278,16 @@ function realizedNeeds(aff: Affordance): Outcome['needs'] {
 // The World adapter
 // ---------------------------------------------------------------------------------------------
 
-export class ColonyHostWorld implements World {
+export class ColonyHostWorld {
   /** Path cache (derived from the static map; never snapshotted). */
   private paths = new Map<string, Tile[] | null>();
   events: HostEvents = { injuries: [], carried: [], beams: [], finished: [] };
   /** Framework clock the side last stepped to. */
   clock = fw(0);
   /** Set by the side: an ordered job just ended, so its standing suggestion stops at once. */
+  onWorkStart:
+    | ((personId: VillagerId, activityId: string, action: string, startedAt: number) => void)
+    | null = null;
   onOrderDone: ((personId: VillagerId, action: string, startedAt: number) => void) | null = null;
 
   readonly seed: number;
@@ -745,7 +758,23 @@ export class ColonyHostWorld implements World {
         advertises: { food: HOST.mealFood },
       });
     }
-    applyLifeOffers('well', p, out, this.s.castChapter);
+
+    const chapter = this.s.castChapter;
+    const single =
+      chapter && wellChapterPeople(chapter).find((entry) => entry.input.parent.castId.split('.')[2] === p.id);
+    if (single) {
+      const life = lifeAdmission(single.input, 'well');
+      const task = WELL_LIFE_TASKS[id]?.[single.input.life.assignment];
+      for (const offer of out)
+        if (offer.action === task) {
+          offer.label = life.assignment;
+          if (life.availableForExtraWork)
+            offer.advertises = {
+              ...offer.advertises,
+              competence: (offer.advertises?.competence ?? 0) + 0.04,
+            };
+        }
+    }
     return out;
   }
 
@@ -777,18 +806,6 @@ export class ColonyHostWorld implements World {
       out.push(id);
     }
     return out;
-  }
-
-  /** The partner's mirror keeps the builder's skill and role pull (`mirrorAffordance` drops goals). */
-  mirror(partner: Person, offer: Affordance, proposal: JointProposal): Affordance {
-    const m = mirrorAffordance(offer, proposal, partner.id);
-    const v = specOf(partner.id);
-    const tile = spotFor('site', v.index);
-    const travel = this.travel(this.posAt(partner.id, partner.now), tile);
-    if (Number.isFinite(travel))
-      m.duration = Math.max(offer.duration, travel + (HOST.work['raise-beam'] ?? 45));
-    m.label = `raise the beam with ${firstName(proposal.proposerId)}`;
-    return m;
   }
 
   // --- begin hook -------------------------------------------------------------------------------
@@ -839,6 +856,8 @@ export class ColonyHostWorld implements World {
       };
     }
     this.s.trip[id] = trip;
+    const accepted = this.community.active[p.id];
+    if (accepted?.affordanceId === offer.id) this.onWorkStart?.(id, accepted.id, offer.action, t);
     return undefined;
   }
 
@@ -896,6 +915,7 @@ export class ColonyHostWorld implements World {
     const m = gm(t);
     const trip = this.s.trip[id];
     const aff = act.affordance;
+    if (reason === 'interrupted' && !aff.jointId && this.s.beamSupport) delete this.s.beamSupport[act.id];
     const w = this.world;
     const arrived = !trip || t - trip.startedAt >= trip.travel;
     // Where they end up.
@@ -916,8 +936,7 @@ export class ColonyHostWorld implements World {
 
     const done = (o: Partial<Outcome>): Outcome => {
       const out: Outcome = { ...base, ...o };
-      if (out.status === 'completed' && act.suggestion?.voiceId === 'player' && lifeNotice(p))
-        out.summary = `${(out.summary ?? aff.label).replace(/[.!?]$/, '')}. ${lifeNotice(p)}`;
+
       if (
         out.status === 'completed' &&
         act.suggestion?.voiceId === 'player' &&
@@ -930,16 +949,18 @@ export class ColonyHostWorld implements World {
           out.summary = `${(out.summary ?? aff.label).replace(/[.!?]$/, '')}. ${clue}`;
         }
       }
-      if (act.suggestion?.voiceId === 'player') {
-        this.events.finished.push({
-          personId: id,
-          action: act.action,
-          status: out.status,
-          summary: out.summary ?? aff.label,
-          startedAt: act.startedAt,
-        });
-        if (out.status !== 'interrupted') this.onOrderDone?.(id, act.action, act.startedAt);
-      }
+      // Report reached work to the host even when the person's later decision did not
+      // credit the player's voice. The host matches it to an open request by action and start time.
+      this.events.finished.push({
+        personId: id,
+        action: act.action,
+        status: out.status,
+        summary: out.summary ?? aff.label,
+        startedAt: act.startedAt,
+        activityId: act.id,
+        minute: m,
+      });
+      if (out.status !== 'interrupted') this.onOrderDone?.(id, act.action, act.startedAt);
       return out;
     };
 
@@ -955,7 +976,14 @@ export class ColonyHostWorld implements World {
     if (squall) {
       // Counted once: exposure rolls during the trip already counted their own hits.
       if (hits === 0) {
-        this.events.injuries.push({ personId: id, kind: 'weather', minute: m });
+        this.events.injuries.push({
+          personId: id,
+          kind: 'weather',
+          minute: m,
+          action: act.action,
+          startedAt: act.startedAt,
+          activityId: act.id,
+        });
         w.injuries += 1;
       }
       return done({
@@ -1029,7 +1057,14 @@ export class ColonyHostWorld implements World {
           const tile = this.s.loc[id] ?? spotFor('cedar', specOf(id).index);
           this.s.down[id] = { kind: 'injury', since: t, tile, carriedBy: null };
           w.injuries += 1;
-          this.events.injuries.push({ personId: id, kind: 'injury', minute: m });
+          this.events.injuries.push({
+            personId: id,
+            kind: 'injury',
+            minute: m,
+            action: act.action,
+            startedAt: act.startedAt,
+            activityId: act.id,
+          });
           this.announceInjury(id, tile, t, 'is pinned under the cedar');
           return done({
             needs,
@@ -1151,6 +1186,24 @@ export class ColonyHostWorld implements World {
       nextTimber: open ? (beam ? HOST.beamTimber : nextStageCost(w).timber) : null,
       payment: !open ? 'not-needed' : paid && !beam ? 'on-site' : 'unpaid',
       nextWork: !open ? 'none' : beam ? 'beam' : 'ordinary',
+      constraints: p
+        ? [
+            ...(!p.body.alive ? ['This person has died and cannot start more work.'] : []),
+            ...(this.s.down[p.id] ? ['This person is down and needs help before working.'] : []),
+            ...((this.s.recovering[p.id] ?? 0) > p.now
+              ? ['This person is recovering at home; work is not available yet.']
+              : []),
+            ...(beam && skillLevel(p, 'building') < 0.5
+              ? ['The beam needs a builder; raising it is not offered to this person.']
+              : []),
+            ...(beam ? ['The beam must be raised before work on the roof stages can start.'] : []),
+          ]
+        : beam
+          ? ['The beam must be raised before work on the roof stages can start.']
+          : [],
+      ...(p && open && !beam && p.body.alive && offers.some((a) => a.action === 'build')
+        ? { normalSession: { minutes: HOST.work.build ?? 60, progress: this.buildRate(p) } }
+        : {}),
       active: this.community.people.flatMap((person) => {
         const a = person.activity;
         return a && (a.action === 'build' || a.action === 'raise-beam')
@@ -1159,15 +1212,17 @@ export class ColonyHostWorld implements World {
                 personId: person.id as VillagerId,
                 stage: (w.storeroom ?? w.house.stage) + 1,
                 action: a.action as 'build' | 'raise-beam',
+                phase: this.walking(person.id, person.now) ? ('travelling' as const) : ('working' as const),
               },
             ]
           : [];
       }),
       ...(p
         ? {
+            selectedPersonId: p.id as VillagerId,
             selectedOffer: {
-              build: offers.some((a) => a.action === 'build'),
-              beam: offers.some((a) => a.action === 'raise-beam'),
+              build: p.body.alive && offers.some((a) => a.action === 'build'),
+              beam: p.body.alive && offers.some((a) => a.action === 'raise-beam'),
             },
           }
         : {}),
@@ -1223,6 +1278,21 @@ export class ColonyHostWorld implements World {
     w.house.progress = w.house.stage >= HOUSE_STAGES ? 0 : this.s.build;
   }
 
+  private beamChance(lead: Person, partners: Person[], difficulty: number): number {
+    // Any one participant can save the lift. HF computes each person's skill/capacity chance.
+    const chances = [lead, ...partners].map((p) => {
+      const r = inspect(this.community.run, {
+        perspective: { kind: 'host' },
+        people: [p.id],
+        select: [],
+        skill: { person: p.id, skill: 'building', difficulty },
+      });
+      if (!r.ok || !r.value.skill) throw new Error('Missing public beam skill reading');
+      return r.value.skill.successChance;
+    });
+    return 1 - chances.reduce((failure, chance) => failure * (1 - chance), 1);
+  }
+
   private resolveBeam(
     p: Person,
     act: Activity,
@@ -1233,23 +1303,29 @@ export class ColonyHostWorld implements World {
     const id = villagerId(p.id);
     const w = this.world;
     const m = gm(t);
-    // The partner's mirror reports through the proposer's roll: only the lead (non-mirror) rolls.
     if (act.affordance.jointId !== undefined) {
-      const lead = act.affordance.with?.[0];
-      const leadBeam = this.events.beams.find((b) => b.lead === lead && b.minute === m);
-      if (leadBeam)
-        return done({
-          needs,
-          status: leadBeam.ok ? 'completed' : 'failed',
-          summary: leadBeam.ok ? 'We raised the beam together.' : 'The beam slipped.',
-        });
-      if (w.house.stage >= BEAM_STAGE) return done({ needs, summary: 'We raised the beam together.' });
+      // This is a real completed helper activity, not a report that the beam succeeded.
+      if (!Object.values(this.community.active).some((a) => a.id === act.affordance.jointId))
+        return done({ status: 'failed', summary: 'The beam work ended before I could help.' });
+      this.s.beamSupport ??= {};
+      const support = this.s.beamSupport[act.affordance.jointId] ?? [];
+      support.push(id);
+      this.s.beamSupport[act.affordance.jointId] = support;
+      return done({ needs, summary: 'I finished helping with the beam.' });
     }
+    const completed = this.s.beamSupport?.[act.id] ?? [];
+    if (this.s.beamSupport) delete this.s.beamSupport[act.id];
     if (w.house.stage !== BEAM_STAGE - 1 || w.resources.timber < HOST.beamTimber)
       return done({ status: 'failed', summary: 'The beam was not ready.' });
-    const partners = (act.affordance.with ?? []).map((x) => this.person(x)).filter((q): q is Person => !!q);
+    const requested = act.affordance.with ?? [];
+    const partners = requested
+      .map((x) => this.person(x))
+      .filter((q): q is Person => !!q && completed.includes(villagerId(q.id)));
+    if (requested.length && partners.length !== requested.length)
+      return done({ status: 'failed', summary: 'The helper did not finish the beam work.' });
     const difficulty = act.affordance.skill?.difficulty ?? 0.8;
-    const chance = jointSuccessChance(p, partners, 'building', difficulty);
+    // Host roll for a physical beam. Individual capability comes from HF's public skill query.
+    const chance = this.beamChance(p, partners, difficulty);
     this.s.beamAttempts += 1;
     const ok = scenarioRoll(this.seed, 'beam-human', this.s.beamAttempts, 0) < chance;
     this.events.beams.push({ lead: id, partners: partners.map((q) => villagerId(q.id)), ok, minute: m });
@@ -1277,7 +1353,14 @@ export class ColonyHostWorld implements World {
     const hurt = scenarioRoll(this.seed, 'beam-human-injury', this.s.beamAttempts, 0) < HOST.beamInjuryChance;
     if (hurt) {
       w.injuries += 1;
-      this.events.injuries.push({ personId: id, kind: 'injury', minute: m });
+      this.events.injuries.push({
+        personId: id,
+        kind: 'injury',
+        minute: m,
+        action: act.action,
+        startedAt: act.startedAt,
+        activityId: act.id,
+      });
     }
     return done({
       status: 'failed',
@@ -1444,7 +1527,7 @@ export class ColonyHostWorld implements World {
       if (!o.body.alive || w.resources.meals <= 0) continue;
       w.resources.meals -= 1;
       w.eaten += 1;
-      consume(o, { food: HOST.mealFood });
+      consume(this.community, o, { food: HOST.mealFood });
       this.queue([villagerId(o.id)], {
         at: t,
         channel: 'felt',

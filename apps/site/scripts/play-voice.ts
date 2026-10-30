@@ -4,7 +4,7 @@
  * what the page shows: the top bar, the paused beat, the day's log, the composer with its live telegraph, your
  * standing words, Halil's pane, his ends, the voices, Why, the between-days card, the intro cards and the report.
  * It prints nothing the page hides (no needs as numbers, no true body outside the doctor's words and the report).
- * Bars the page draws are drawn here as ten-cell bars.
+ * Person readings use the page’s approximate words.
  *
  * Run (Node ≥ 24, after `npm run build -w packages/human` once):
  *
@@ -20,9 +20,11 @@
  * Export: `export FILE` writes the game's own playtest file (seed + input log + state), the same file the page's
  * "Download playtest file" gives; `load FILE` replays one (it must be from this scenario version).
  */
+
+import './package-identity.ts';
+
 import { readFileSync, writeFileSync } from 'node:fs';
-import { ENGINE_VERSION, FRAMEWORK_VERSION } from '@adam0white/human-framework';
-import { makePlaytestFile } from '../src/shared/playtest.ts';
+import { FRAMEWORK_PACKAGE_VERSION as FRAMEWORK_VERSION, makePlaytestFile } from '../src/shared/playtest.ts';
 import {
   type Appeal,
   type BetweenView,
@@ -50,6 +52,7 @@ import {
   startSilentMonth,
 } from '../src/voice/sim/counterfactual.ts';
 import { VoiceGame } from '../src/voice/sim/game.ts';
+import { OLD_VOICE_SAVE, VOICE_HF4_EDITION } from '../src/voice/sim/hf4-run.ts';
 import {
   parseVoicePlaytest,
   RecordedGame,
@@ -107,10 +110,6 @@ const MAX_WHISPERS = 2;
 /** The page's tick is one animation frame; the worker caps a tick at 250 ms. 250 ms keeps the harness quick. */
 const TICK_MS = 250;
 
-const bar = (v: number) => {
-  const n = Math.round(Math.max(0, Math.min(1, v)) * 10);
-  return `[${'#'.repeat(n)}${'.'.repeat(10 - n)}]`;
-};
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -159,7 +158,8 @@ function load(): boolean {
     return false;
   }
   const s = JSON.parse(text) as Saved;
-  rec = replayVoice(s.seed, validateVoiceLog(s.log), s.rules ?? 2).rec;
+  if (s.harness !== 'play-voice' || s.rules !== 4) throw new Error(OLD_VOICE_SAVE);
+  rec = replayVoice(s.seed, validateVoiceLog(s.log), s.rules).rec;
   ui = { ...freshUi(), ...s.ui };
   return true;
 }
@@ -348,7 +348,7 @@ function halilPane(f: Frame): void {
     say(`  ${h.doing.label}${h.doing.intention ? ` — ${h.doing.intention}` : ''}, until ${h.doing.until}`);
   else say(`  ${h.asleep ? 'asleep' : 'deciding'}`);
   say(
-    `  How he feels: ${h.felt.map((x) => `${x.id === 'tired' ? 'tiredness' : x.id} ${bar(x.level)} ${x.word}`).join('; ')}`,
+    `  How he feels: ${h.felt.map((x) => `${x.id === 'tired' ? 'tiredness' : x.id} ${x.word}`).join('; ')}`,
   );
   if (h.feelings.length > 0) say(`  ${h.feelings.map((x) => x.word).join(', ')}`);
   if (h.health && h.health.length > 0) say(`  His health: ${h.health.join(' | ')}`);
@@ -374,7 +374,7 @@ function unaskedLine(
 
 function endsList(ends: EndView[], compact = false): void {
   for (const e of ends) {
-    say(`  “${e.label}” ${e.status}${e.progress !== undefined ? ` ${bar(e.progress)}` : ''}`);
+    say(`  “${e.label}” ${e.status}`);
     if (!compact) say(`      ${e.detail}`);
     if (!compact && e.after) say(`      Without you: ${e.after}`);
   }
@@ -389,14 +389,12 @@ function endsPane(f: Frame): void {
 function voicesPane(f: Frame): void {
   say('-- Voices he hears --');
   for (const v of f.voices) {
-    say(
-      `  ${v.name} (${v.relation}): ${v.trustWord}${v.trust !== undefined ? ` ${bar(v.trust)} ${v.trust.toFixed(2)}` : ''}`,
-    );
-    for (const h of v.history.slice(-3))
-      say(`      ${h.delta >= 0 ? '+' : '−'}${Math.abs(h.delta).toFixed(2)} ${h.text}`);
+    say(`  ${v.name} (${v.relation}): ${v.trustWord}`);
+    if (v.pressure) say(`      ${v.pressure}`);
+    for (const h of v.history.slice(-3)) say(`      ${h.text.replace(/^[+−-]\d+(?:\.\d+)?\s+/, '')}`);
     if (v.lastUrged)
       say(
-        `      urged ${v.lastUrged.label} · ${v.lastUrged.when}${v.lastUrged.standing ? ` · still on his mind ${bar(v.lastUrged.weight)}` : ''}`,
+        `      urged ${v.lastUrged.label} · ${v.lastUrged.when}${v.lastUrged.standing ? ` · still on his mind` : ''}`,
       );
     if (v.conflict) say(`      ${v.conflict}`);
   }
@@ -437,10 +435,7 @@ function between(v: BetweenView): void {
   }
   say(`  ${strip(v.strip)}`);
   say(STRIP_KEY);
-  const delta = v.trust.to - v.trust.from;
-  say(
-    `  His trust in you: ${v.trust.from.toFixed(2)} → ${v.trust.to.toFixed(2)} (${delta >= 0 ? '+' : '−'}${Math.abs(delta).toFixed(2)})`,
-  );
+  say(`  ${v.trust.change}`);
   for (const e of v.trust.events) say(`    ${e}`);
   say('  His ends:');
   unaskedLine(v.unasked);
@@ -789,11 +784,10 @@ async function command(words: string[]): Promise<number> {
       if (w.voice) say(`  To your words he said “${w.voice.says}” (${w.voice.reason})`);
       if (w.recalled) say(`  ${w.recalled}`);
       for (const o of w.options) {
-        say(`  ${o.label}  ${o.total.toFixed(2)}`);
-        for (const t of o.terms)
-          say(`      ${t.value >= 0 ? '+' : '−'}${Math.abs(t.value).toFixed(2)} ${t.label}`);
+        say(`  ${o.label}  ${o.total}`);
+        for (const t of o.terms) say(`      ${t.value} · ${t.label}`);
       }
-      say('  Figures are estimates from his own weighing, not measurements.');
+      say('  These are approximate readings of his own weighing.');
       return 0;
     }
     case 'whisper': {
@@ -839,6 +833,8 @@ async function command(words: string[]): Promise<number> {
       return 0;
     case 'export': {
       if (!a) throw new Error('export FILE');
+      const runtime = g().run.c.runtime;
+      if (!runtime) throw new Error('No mounted current actor run to export.');
       const file = await makePlaytestFile({
         game: 'voice',
         seed: g().seed,
@@ -846,10 +842,13 @@ async function command(words: string[]): Promise<number> {
         minute: g().t,
         log: structuredClone(rec.log),
         hash: voiceHash(g()),
-        engine: ENGINE_VERSION,
+        engine: runtime.save().archive.engine.package,
         snapshot: voiceSnapshot(g()),
       });
-      writeFileSync(a, `${JSON.stringify({ ...file, build: 'harness', framework: FRAMEWORK_VERSION })}\n`);
+      writeFileSync(
+        a,
+        `${JSON.stringify({ ...file, build: 'harness', framework: FRAMEWORK_VERSION, voiceEdition: VOICE_HF4_EDITION })}\n`,
+      );
       say(`Wrote the playtest file to ${a} (seed ${g().seed}, ${rec.log.length} log entries).`);
       return 0;
     }
@@ -905,7 +904,7 @@ async function main(): Promise<void> {
       .map((l) => l.trim().split(/\s+/).filter(Boolean))
       .filter((l) => l.length > 0);
   if (cmds.length === 0) cmds = [['look']];
-  const loaded = load();
+  const loaded = ['new', 'load', 'help', 'notes'].includes(cmds[0]?.[0] ?? '') ? false : load();
   const needsRun = !cmds.some(
     (c) => c[0] === 'new' || c[0] === 'help' || c[0] === 'load' || c[0] === 'notes',
   );
@@ -932,4 +931,13 @@ async function main(): Promise<void> {
   process.exitCode = code;
 }
 
-await main();
+try {
+  await main();
+} catch (error) {
+  console.error(
+    error instanceof Error && error.message === OLD_VOICE_SAVE
+      ? OLD_VOICE_SAVE
+      : 'This file could not be opened. Keep the original file.',
+  );
+  process.exitCode = 1;
+}

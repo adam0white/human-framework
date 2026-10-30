@@ -32,6 +32,8 @@ export interface PageInfo {
   when: string;
   /** Wall-clock time of the save (for ordering only; never part of the run). */
   savedAt: number;
+  /** Rules from the same complete saved page; absent on older shelf metadata. */
+  scenario?: number;
   /** A closed volume's book: its numeral, title and how its question ended. */
   volume?: { numeral: string; title: string; end: string | null };
 }

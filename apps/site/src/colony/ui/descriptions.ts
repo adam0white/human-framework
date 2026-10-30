@@ -84,3 +84,14 @@ export function namedDescription(text: string, name: string): string {
     .replace(/^They could /, `${name} could `)
     .replace(/\btheir mind\b/, `${name}’s mind`);
 }
+
+/** Visible progress words never round an unfinished stage up to completion. */
+export function progressDescription(fraction: number): string {
+  if (fraction <= 0) return 'not started';
+  if (fraction < 0.25) return 'just begun';
+  if (fraction < 0.5) return 'partly done';
+  if (fraction === 0.5) return 'half done';
+  if (fraction < 0.75) return 'over halfway done';
+  if (fraction < 1) return 'nearly done';
+  return 'done';
+}

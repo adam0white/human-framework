@@ -1,3 +1,4 @@
+import { TOWN_DEFAULTS } from './town.ts';
 /**
  * The player's standing suggestion (voice.md §6). One stands at a time; Confirm replaces it. It ends when the
  * activity he began for it ends (it keeps standing while he does it, so he does not turn back half-way), on a `cannot`/`willNot` refusal, after 3 sim hours, when he falls asleep, or
@@ -5,8 +6,9 @@
  * offer set (round 3: the framework holds a standing suggestion back while its target is not offered, so a "later"
  * is heard when the option returns; the log says so once). Plain JSON.
  */
-import type { Suggestion, SuggestionResolution } from '@adam0white/human-framework';
+
 import { type Draft, STRENGTH_VALUE, type StandingView, type Tone } from '../protocol.ts';
+import type { Suggestion, SuggestionResolution } from './hf4-model.ts';
 import { ACTION_LABEL, clock, toneOf } from './view.ts';
 
 export const STANDING_MINUTES = 180;
@@ -30,9 +32,9 @@ export interface Standing {
 /** Why an option is not open to him now, in the town's terms (for the "your word waits" line). */
 export const WHY_AWAY: Record<string, string> = {
   'see-doctor': 'the clinic sees people from 09:00 to 17:00, and not again within a week of a visit',
-  'call:selin': 'he calls her in the evening, and not twice within twelve hours',
+  'call:selin': 'calling has a starting window and at least twelve hours between conversations',
   'work-repair': 'the workshop takes him once a day, from 08:00 to 12:00',
-  'work-extra': 'the afternoon shift runs once a day, between Dhuhr and an hour and a half before Asr',
+  'work-extra': `the afternoon shift can start from ${TOWN_DEFAULTS.extraFrom} minutes after the noon prayer until ${TOWN_DEFAULTS.extraLast} minutes before the afternoon prayer, once a day; the workshop is closed on Eid`,
   'pay-rent': 'he has not got the 300 together, or nothing is owed',
   shop: 'the market sells for Eid from 10:00 to 18:00 from Ramadan 10, once a day, while he has 25 to spend',
   'tea:riza': 'the tea house is open from 06:00 to 23:00',

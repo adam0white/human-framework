@@ -28,6 +28,13 @@ import {
   type VillagerId,
 } from '../src/colony/sim/world-types.ts';
 import {
+  moodDescription,
+  namedDescription,
+  needDescription,
+  progressDescription,
+  trustDescription,
+} from '../src/colony/ui/descriptions.ts';
+import {
   cardEnd,
   classicOutcome,
   goalValue,
@@ -36,8 +43,6 @@ import {
   humanQuotes,
   nearMisses,
   ordersChanged,
-  pct,
-  share,
 } from '../src/colony/ui/end-report.ts';
 
 export const NO_CONCEPT = 'Classic has no such concept';
@@ -189,18 +194,16 @@ export function paneStats(f: Frame, side: 'classic' | 'human'): string {
   const fill = Math.min(1, (p.stage + (p.stage < p.stages ? w.houseProgress : 0)) / p.stages);
   const proj = `${p.kind === 'storeroom' ? 'Store-room' : 'House'} ${p.stage}/${p.stages} ${bar(fill)}`;
   const base = `Meals ${s.meals} · ${proj} · Injuries ${s.injuries} · Alive ${s.alive}`;
-  if (side === 'classic') return `Classic (they obey): ${base} · Prayers · morale · trust: ${NO_CONCEPT}`;
+  if (side === 'classic') return `Classic (they obey): ${base} · Morale · trust: ${NO_CONCEPT}`;
   const h = f.scoreboard.human;
-  const prayers = h.prayersDue > 0 ? `${Math.round((100 * h.prayersKept) / h.prayersDue)}%` : '–';
-  const morale = `${h.morale >= 0 ? '+' : ''}${h.morale.toFixed(2)}`;
-  return `Human (they decide): ${base} · Prayers ${prayers} · Morale ${morale} · Trust ${Math.round(h.trust * 100)}%`;
+  return `Human (they decide): ${base} · Morale: ${moodDescription(h.morale)} Trust: ${trustDescription(h.trust)}`;
 }
 
 export function peopleRows(f: Frame, side: 'classic' | 'human'): string[] {
   if (side === 'classic')
     return f.classic.map(
       (u) =>
-        `  ${shortName(u.id).padEnd(7)} ${u.label.padEnd(34)} Fed ${bar(1 - u.hunger / 100)} HP ${bar(u.hp / 100)}`,
+        `  ${shortName(u.id).padEnd(7)} ${u.label.padEnd(34)} ${needDescription('food', 1 - u.hunger / 100)} · ${needDescription('injury', u.hp / 100)}`,
     );
   return f.human.map((v) => {
     const need = (id: string) => v.needs.find((n) => n.id === id);
@@ -208,7 +211,7 @@ export function peopleRows(f: Frame, side: 'classic' | 'human'): string[] {
     const sleep = need('sleep');
     const label = v.protest ? `${v.label} (under protest)` : v.label;
     const mark = (n: typeof food) => (n?.urgent ? '!' : ' ');
-    return `  ${shortName(v.id).padEnd(7)} ${label.padEnd(34)} Food ${bar(food?.value ?? 1)}${mark(food)}Sleep ${bar(sleep?.value ?? 1)}${mark(sleep)}`;
+    return `  ${shortName(v.id).padEnd(7)} ${label.padEnd(34)} ${needDescription('food', food?.value ?? 1)}${mark(food)} · ${needDescription('sleep', sleep?.value ?? 1)}${mark(sleep)}`;
   });
 }
 
@@ -327,15 +330,17 @@ export function inspector(f: Frame, id: VillagerId, why: WhyBreakdown | null): s
   if (!hv) return out;
   out.push(`Human person: ${hv.label}`);
   out.push(
-    `  ${hv.needs.map((n) => `${n.label} ${Math.round(n.value * 100)}${n.urgent ? '!' : ''}`).join(' · ')}`,
+    `  ${hv.needs.map((n) => `${n.label}: ${namedDescription(needDescription(n.id, n.value), shortName(id))}`).join(' · ')}`,
   );
   out.push(
     `  Feels ${hv.emotion?.label ?? 'calm'}${hv.emotion?.target ? ` about ${hv.emotion.target}` : ''}`,
   );
-  out.push(`  Trust in you ${Math.round(hv.trust.value * 100)}%`);
+  out.push(
+    `  ${shortName(id)}’s trust in you: ${namedDescription(trustDescription(hv.trust.value), shortName(id))}`,
+  );
   if (hv.trust.history.length === 0) out.push('    Nothing has moved it today.');
   for (const e of hv.trust.history.slice(0, 3))
-    out.push(`    ${e.delta >= 0 ? '+' : ''}${Math.round(e.delta * 100)} ${e.label}`);
+    out.push(`    ${e.delta >= 0 ? 'Reassured' : 'Less sure'}: ${e.label}`);
   out.push('  Why:');
   if (!why || why.personId !== id) {
     out.push('    Reading the decision…');
@@ -352,20 +357,20 @@ export function inspector(f: Frame, id: VillagerId, why: WhyBreakdown | null): s
   out.push(`    ${why.narration}`);
   const fams = new Set<string>();
   for (const o of why.options.slice(0, 3)) {
-    out.push(`    ${o.chosen ? '● ' : '  '}${o.label}  ${o.utility.toFixed(2)}`);
+    out.push(`    ${o.chosen ? '● ' : '  '}${o.label}`);
     if (o.vetoed)
       out.push(`        ${o.vetoed.kind === 'willNot' ? 'Will not' : 'Cannot'}: ${o.vetoed.reason}`);
     const terms = o.terms.filter((t) => Math.abs(t.value) >= 0.005);
     for (const t of terms) fams.add(t.family);
     if (terms.length > 0)
       out.push(
-        `        ${terms.map((t) => `${t.label} ${t.value > 0 ? '+' : ''}${t.value.toFixed(2)}`).join(' · ')}`,
+        `        ${terms.map((t) => `${t.label} ${t.value > 0 ? 'draws them toward this' : 'holds them back'}`).join(' · ')}`,
       );
   }
   if (fams.size > 0) out.push(`    legend: ${[...fams].map((x) => FAMILY_LABEL[x] ?? x).join(', ')}`);
   if (why.deltas.length > 0)
     out.push(
-      `    need advertised/believed: ${why.deltas.map((d) => `${d.need} ${d.advertised.toFixed(2)}/${d.believed.toFixed(2)}`).join(' · ')}`,
+      `    need advertised/believed: ${why.deltas.map((d) => `${d.need} ${d.advertised > 0 ? 'May help' : d.advertised < 0 ? 'May strain' : 'No change'}/${d.believed > 0 ? 'Expects relief' : d.believed < 0 ? 'Expects strain' : 'Expects no change'}`).join(' · ')}`,
     );
   out.push('    Memories:');
   if (why.recalled.length === 0) out.push('      Nothing recalled for this decision.');
@@ -387,7 +392,7 @@ export function endScreen(summary: EndSummary, factory: HumanSideFactory, canCon
   const end = summary.day === 3 ? 'Day 4 dawn' : 'Day 3 dawn';
   out.push(`  Meals stored (${end}) | ${sb.classic.meals} | ${sb.human.meals} | ${solo.meals}`);
   out.push(
-    `  House built (${end}, after the storm) | ${sb.classic.housePct}% | ${sb.human.housePct}% | ${solo.housePct}%`,
+    `  House built (${end}, after the storm) | ${progressDescription(sb.classic.housePct / 100)} | ${progressDescription(sb.human.housePct / 100)} | ${progressDescription(solo.housePct / 100)}`,
   );
   out.push(`  Injuries (over the run) | ${sb.classic.injuries} | ${sb.human.injuries} | ${solo.injuries}`);
   for (const m of nearMisses(summary)) out.push(`  ${m.side}: ${m.text}`);
@@ -408,11 +413,8 @@ export function endScreen(summary: EndSummary, factory: HumanSideFactory, canCon
     }
   }
   out.push(`Character outcomes (Classic: ${NO_CONCEPT}) | Human | Solo`);
-  out.push(
-    `  Prayers kept | ${share(ch.prayersKept, ch.prayersDue)} | ${share(solo.prayersKept, solo.prayersDue)}`,
-  );
-  out.push(`  Morale | ${ch.morale.toFixed(2)} | ${solo.morale.toFixed(2)}`);
-  out.push(`  Trust in you | ${pct(ch.trust)} | ${pct(solo.trust)}`);
+  out.push(`  Morale | ${moodDescription(ch.morale)} | ${moodDescription(solo.morale)}`);
+  out.push(`  Trust in you | ${trustDescription(ch.trust)} | ${trustDescription(solo.trust)}`);
   out.push('Moments you saw:');
   if (summary.moments.length === 0)
     out.push('  None of the five moments happened. The suggestions on the clock set them up.');

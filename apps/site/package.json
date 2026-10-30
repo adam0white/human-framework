@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adam0white/human-framework": "3.2.0",
-    "@adam0white/lab-client": "0.5.14",
+    "@adam0white/human-framework": "4.14.0",
+    "@adam0white/lab-client": "https://github.com/adam0white/human-framework/releases/download/lab-client-v0.5.13/adam0white-lab-client-0.5.13.tgz",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "@adam0white/lab-kit": "0.5.31"
+    "@adam0white/lab-kit": "https://github.com/adam0white/human-framework/releases/download/lab-kit-v0.5.30/adam0white-lab-kit-0.5.30.tgz"
   },
   "devDependencies": {
     "@types/react": "19.3.0",

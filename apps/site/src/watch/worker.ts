@@ -1,5 +1,4 @@
-import { ENGINE_VERSION } from '@adam0white/human-framework';
-import { castRole, chapterPeople, siteCastCheckpoint } from '../shared/cast-chapter.ts';
+import { castRole, chapterPeople } from '../shared/cast-chapter.ts';
 import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
 import { checkGameFile } from '../shared/file-sources.ts';
 import { FRAMEWORK_PACKAGE_VERSION, stableStringify } from '../shared/playtest.ts';
@@ -21,13 +20,15 @@ import { requireValue } from '../shared/require-value.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
 import { canRestoreSeason } from './season-recovery.ts';
+import { actorRuntime } from './sim/actor.ts';
+import { captureWatchPerson } from './sim/cast.ts';
 import { DAY } from './sim/config.ts';
-import { validWatchOptions } from './sim/dusk-rest.ts';
+import { WATCH_OLD_SAVE } from './sim/hf4.ts';
 import { dayOfYear, seasonOfDay } from './sim/life.ts';
 import { clockRuns, nightEnd } from './sim/night.ts';
 import { Pacer } from './sim/pace.ts';
-import { prepareWatchCast, WATCH_NORMS, watchTerminalReceipts } from './sim/people.ts';
-import { type PlaytestExport, replay, type Snapshot, scenarioForOptions, WatchRun } from './sim/run.ts';
+import { prepareWatchCast, watchTerminalReceipts } from './sim/people.ts';
+import { type PlaytestExport, replay, type Snapshot, WatchRun } from './sim/run.ts';
 import { isSeason } from './sim/season.ts';
 import type { WatchState } from './sim/state.ts';
 import { buildFrame, ordinal } from './sim/view.ts';
@@ -113,6 +114,7 @@ function save(kind: PageInfo['kind']): void {
       : kind === 'volume'
         ? `${chronicleId}:vol:${s.volume.n}`
         : `${chronicleId}:${s.year}:${seasonOfDay(dayOfYear(s))}`;
+  const snapshot = run.snapshot();
   const info: PageInfo = {
     id,
     chronicle: chronicleId,
@@ -121,6 +123,7 @@ function save(kind: PageInfo['kind']): void {
     year: s.year,
     when: whenWords(s),
     savedAt: Date.now(),
+    scenario: snapshot.scenario,
     ...(kind === 'volume'
       ? { volume: { numeral: roman(s.volume.n), title: s.volume.title, end: s.volume.end ?? null } }
       : {}),
@@ -130,11 +133,13 @@ function save(kind: PageInfo['kind']): void {
     savedInputs = run.log.length;
     sinceSave = 0;
   }
-  const text = JSON.stringify({ ...run.snapshot(), castOwnership, castLocalOnly, castSkipped });
+  const text = JSON.stringify({ ...snapshot, castOwnership, castLocalOnly, castSkipped });
   const gen = host.gen;
   void savePage(info, text).then((ok) => {
-    if (!ok) saving = false;
-    else host.post({ type: 'saved', value: JSON.parse(text) }, gen);
+    if (!ok) {
+      saving = false;
+      postShelf();
+    } else host.post({ type: 'saved', value: JSON.parse(text) }, gen);
   });
 }
 
@@ -316,18 +321,23 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       }
       if (person) {
         const gen = host.gen;
-        void siteCastCheckpoint(
-          'watch',
-          person,
-          WATCH_NORMS,
-          role === 'kian' ? requireValue(run).state.refugeDeparture?.watchCare : undefined,
-        )
+        const state = requireValue(run).state;
+        const obligations = [
+          ...(state.phase === 'night' || state.phase === 'dusk' ? ['the current watch'] : []),
+          ...(role === 'kian'
+            ? ['Ada’s care and return agreement requires a supported dependent reader']
+            : []),
+        ];
+        void captureWatchPerson(state, msg.castId, obligations)
           .then((transfer) =>
             host.post(
               {
                 type: 'castReady',
                 requestId: msg.requestId,
-                transfer: { ...transfer, engine: ENGINE_VERSION },
+                transfer: {
+                  ...transfer,
+                  engine: actorRuntime(state).snapshot().archive.engine.package.split('@').at(-1),
+                },
                 sourceSnapshot: transfer.sourceSnapshot,
               },
               gen,
@@ -344,12 +354,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     case 'init':
       loadOperation++;
       lastKey = '';
-      if (!validWatchOptions(msg.options) || msg.scenarioVersion !== scenarioForOptions(msg.options)) {
+      if (msg.scenarioVersion !== WATCH_SCENARIO_VERSION) {
         host.gen = msg.gen;
         run = null;
         host.post({
           type: 'error',
-          message: `scenario ${msg.scenarioVersion} is not ${WATCH_SCENARIO_VERSION}`,
+          message: WATCH_OLD_SAVE,
         });
         return;
       }
@@ -358,7 +368,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       castLocalOnly = false;
       castSkipped = [];
       host.gen = msg.gen;
-      begin(new WatchRun(msg.seed, undefined, msg.castChapter, msg.options), newChronicleId());
+      begin(new WatchRun(msg.seed, undefined, msg.castChapter), newChronicleId());
       if (msg.startAtDusk) run?.input({ k: 'start' });
       flush(true);
       postShelf();
@@ -460,16 +470,18 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
           }
         }
         let next: WatchRun | null = null;
+        let loadError: string | undefined;
         try {
           next = snap ? WatchRun.resume(snap) : null;
           // A page that parses but has the wrong shape fails here, before it replaces the running game
           // (security review H2, S4), not on the next tick.
           if (next) buildFrame(next.state, 0, false);
-        } catch {
+        } catch (error) {
+          loadError = error instanceof Error ? error.message : String(error);
           next = null;
         }
         if (!next) {
-          host.post({ type: 'loaded', ok: false, id }, gen);
+          host.post({ type: 'loaded', ok: false, id, ...(loadError ? { error: loadError } : {}) }, gen);
           return;
         }
         if (operation !== loadOperation) return;

@@ -2,50 +2,55 @@ import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { ColonyGame, DEFAULT_SEED } from './game.ts';
 import { createFrameworkHumanSide } from './human.ts';
-import { colonyHash, colonyState, parseColonyPlaytest, replayColony } from './playtest.ts';
+import { colonyHash, parseColonyPlaytest, replayColony } from './playtest.ts';
 import { at, STORM_START } from './world-types.ts';
 
-it('default @6 keeps exact @5 state on the same seed and orders', () => {
-  const file = JSON.parse(
-    readFileSync(new URL('../../../test/fixtures/playtest-colony-v5.json', import.meta.url), 'utf8'),
+it('refuses an old playtest with a plain start-fresh message', () => {
+  const text = readFileSync(
+    new URL('../../../test/fixtures/playtest-colony-v5.json', import.meta.url),
+    'utf8',
   );
-  const old = replayColony(file.seed, createFrameworkHumanSide, file.log, file.minute, 5);
-  const current = replayColony(file.seed, createFrameworkHumanSide, file.log, file.minute, 6);
-  expect(colonyState(current)).toEqual(colonyState(old));
+  expect(() => parseColonyPlaytest(text)).toThrow('This save is from an older version. Start a fresh game.');
 });
 
 it('records early warning at dawn and replays it before creating either village', () => {
-  const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide, 6, 'early-warning');
+  const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide, 9, 'early-warning');
   expect(game.classicWorld.preparationAt).toBe(at(2, 12, 0));
   expect(game.humanWorld.preparationAt).toBe(game.classicWorld.preparationAt);
   expect(game.timeline().markers.find((m) => m.kind === 'warning')?.minute).toBe(at(2, 12, 0));
   expect(game.timeline().markers.find((m) => m.kind === 'storm')?.minute).toBe(STORM_START);
-  game.advance(1500);
-  const replay = replayColony(game.seed, createFrameworkHumanSide, game.log, game.minute, 6);
+  game.advance(5);
+  const replay = replayColony(game.seed, createFrameworkHumanSide, game.log, game.minute, 9);
   expect(colonyHash(replay)).toBe(colonyHash(game));
   expect(replay.frame().village).toBe('early-warning');
 });
 
-it('refuses an early warning in a legacy run and invalid configuration logs', () => {
-  expect(() => new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide, 5, 'early-warning')).toThrow(/rules/);
-  const base = JSON.parse(
-    readFileSync(new URL('../../../test/fixtures/playtest-colony-v5.json', import.meta.url), 'utf8'),
-  );
+it('refuses invalid configuration logs in a current envelope', async () => {
+  const { FRAMEWORK_PACKAGE_VERSION, makePlaytestFile } = await import('../../shared/playtest.ts');
+  const { SCENARIO_VERSION } = await import('./game.ts');
+  const base = await makePlaytestFile({
+    game: 'colony',
+    seed: DEFAULT_SEED,
+    scenario: SCENARIO_VERSION,
+    minute: 0,
+    log: [],
+    hash: 'abc',
+    engine: FRAMEWORK_PACKAGE_VERSION,
+    snapshot: null,
+  });
   const config = { minute: 0, kind: 'village', village: 'early-warning', preparationAt: at(2, 12, 0) };
   for (const log of [[{ ...config, minute: 1 }], [config, config], [{ ...config, preparationAt: 1 }]])
-    expect(() =>
-      parseColonyPlaytest(JSON.stringify({ ...base, scenario: 'colony-scenario@6', log })),
-    ).toThrow();
-  expect(() => parseColonyPlaytest(JSON.stringify({ ...base, log: [config] }))).toThrow();
+    expect(() => parseColonyPlaytest(JSON.stringify({ ...base, log }))).toThrow();
+  expect(parseColonyPlaytest(JSON.stringify({ ...base, log: [config] })).file.log).toEqual([config]);
 });
 
 it('pins an early-warning run and its midpoint save continuation', async () => {
-  const { ENGINE_VERSION } = await import('@adam0white/human-framework');
+  const { FRAMEWORK_PACKAGE_VERSION: ENGINE_VERSION } = await import('../../shared/playtest.ts');
   const { makePlaytestFile } = await import('../../shared/playtest.ts');
   const { Playback } = await import('./playback.ts');
   const { colonySnapshot } = await import('./playtest.ts');
-  const mid = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide, 6, 'early-warning');
-  mid.advance(1500);
+  const mid = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide, 9, 'early-warning');
+  mid.advance(35);
   const save = await makePlaytestFile({
     game: 'colony',
     seed: mid.seed,
@@ -65,20 +70,22 @@ it('pins an early-warning run and its midpoint save continuation', async () => {
 });
 
 it('raises both cooking caps at noon without opening shelter or shutters early', async () => {
-  const { createCommunity, createPerson } = await import('@adam0white/human-framework');
+  const { createColonyRun } = await import('./hf4.ts');
   const { fw, villagerPersonSpec } = await import('./human-cast.ts');
   const { ColonyHostWorld, createHostState } = await import('./human-world.ts');
   const { MAP } = await import('./map.ts');
   const { VILLAGERS } = await import('./world-types.ts');
   for (const village of ['default', 'early-warning'] as const) {
-    const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide, 6, village);
+    const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide, 9, village);
     const world = game.humanWorld;
     world.minute = game.classicWorld.minute = at(2, 14, 0);
     world.resources.meals = game.classicWorld.resources.meals = 8;
     world.resources.grain = game.classicWorld.resources.grain = 10;
     world.resources.water = game.classicWorld.resources.water = 10;
-    const community = createCommunity(
-      VILLAGERS.map((spec) => createPerson(villagerPersonSpec(DEFAULT_SEED, spec))),
+    const community = createColonyRun(
+      DEFAULT_SEED,
+      VILLAGERS,
+      VILLAGERS.map((spec) => villagerPersonSpec(DEFAULT_SEED, spec)),
     );
     const host = new ColonyHostWorld(DEFAULT_SEED, MAP, world, createHostState(VILLAGERS), community);
     const maryam = community.people.find((person) => person.id === 'maryam');

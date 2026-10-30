@@ -7,8 +7,9 @@
  * a torn moment with nothing to say to it), and a time-of-day beat (`DECAYS`) that has already paused twice with the
  * same wording, digits aside, is logged from then on unless it comes with something to say (`actionable`).
  */
-import { dayOf } from '@adam0white/human-framework';
+
 import type { BeatKind } from '../protocol.ts';
+import { dayOf } from './hf4-model.ts';
 
 export const BEAT_COOLDOWN = 20;
 export const CLOSE_CALLS_PER_DAY = 2;

@@ -3,21 +3,7 @@
  * the Why sheet. Everything here reads framework state and writes nothing. Words, not numbers, wherever the plan
  * hides a number from the player (other voices' trust, mood, importance).
  */
-import {
-  adviceWeight,
-  type Considered,
-  type DecisionRecord,
-  dayOf,
-  type Episode,
-  EXEMPTION_DEFAULTS,
-  MINUTES_PER_DAY,
-  type Person,
-  readAffect,
-  readBody,
-  standingAdvice,
-  type Term,
-  voiceOf,
-} from '@adam0white/human-framework';
+
 import type {
   EndView,
   Family,
@@ -29,6 +15,21 @@ import type {
   VoiceView,
   WhyView,
 } from '../protocol.ts';
+import {
+  adviceWeight,
+  type Considered,
+  type DecisionRecord,
+  dayOf,
+  type Episode,
+  EXEMPTION_DEFAULTS,
+  MINUTES_PER_DAY,
+  readAffect,
+  readBody,
+  standingAdvice,
+  type Term,
+  type VoicePerson,
+  voiceOf,
+} from './hf4-model.ts';
 import { TOWN_EID_DAY, type Town, townCalendar, townDay } from './town.ts';
 
 export const VOICE_IDS: readonly VoiceId[] = ['you', 'selin', 'riza', 'hacer', 'osman'];
@@ -115,7 +116,7 @@ const weighWord = (v: number) =>
           ? 'it feels all right'
           : 'it feels good';
 
-export function weighsView(h: Person, start: Record<string, number>): NonNullable<HalilView['weighs']> {
+export function weighsView(h: VoicePerson, start: Record<string, number>): NonNullable<HalilView['weighs']> {
   const out: NonNullable<HalilView['weighs']> = [];
   for (const w of WEIGHS) {
     const x = h.memory.expectations.find((e) => e.key === w.key);
@@ -230,12 +231,12 @@ function feelingCause(cause: string, targetId?: string): string | undefined {
   return undefined;
 }
 
-export function halilView(h: Person, town: Town, t: number, start?: Record<string, number>): HalilView {
+export function halilView(h: VoicePerson, town: Town, t: number, start?: Record<string, number>): HalilView {
   const body = readBody(h).perceived;
   const felt: Felt[] = [
-    { id: 'hunger', level: round(body.hunger), word: feltWord(body.hunger, 'hungry') },
-    { id: 'thirst', level: round(body.thirst), word: feltWord(body.thirst, 'thirsty') },
-    { id: 'tired', level: round(body.fatigue), word: feltWord(body.fatigue, 'tired') },
+    { id: 'hunger', level: qualitative(body.hunger), word: feltWord(body.hunger, 'hungry') },
+    { id: 'thirst', level: qualitative(body.thirst), word: feltWord(body.thirst, 'thirsty') },
+    { id: 'tired', level: qualitative(body.fatigue), word: feltWord(body.fatigue, 'tired') },
   ];
   const feelings = readAffect(h)
     .dominant.filter((e) => e.intensity >= 0.2)
@@ -243,7 +244,7 @@ export function halilView(h: Person, town: Town, t: number, start?: Record<strin
     .map((e) => {
       const word = FEELING_WORD[e.id] ?? e.id;
       const why = feelingCause(e.cause, e.targetId);
-      return { name: e.id, word: why ? `${word} (${why})` : word, intensity: round(e.intensity) };
+      return { name: e.id, word: why ? `${word} (${why})` : word, intensity: influenceBand(e.intensity) };
     });
   const act = h.activity;
   const onMind = h.agenda.commitments
@@ -256,13 +257,7 @@ export function halilView(h: Person, town: Town, t: number, start?: Record<strin
         c.kind === 'job'
           ? (ACTION_LABEL[c.label ?? ''] ?? commitmentLabel(c.label, c.actions[0], c.kind))
           : commitmentLabel(c.label, c.actions[0], c.kind);
-      // Game design review (GD8): the engine runs each prayer window to the next prayer (agenda/prayer.ts), so
-      // Fajr shows as open until Dhuhr. That is an engineering simplification, labelled as one; when Fajr's time
-      // ends is not sourced in research/ (HANDOFF deferred question), so the label states no end of its own.
-      const simplified = /Fajr/.test(c.label ?? '')
-        ? ' (the game simplifies this: he can pray the dawn prayer until the noon prayer begins)'
-        : '';
-      const due = (c.kind === 'abstain' ? `until ${clock(c.until)}` : dueText(c.until, t)) + simplified;
+      const due = c.kind === 'abstain' ? `until ${clock(c.until)}` : dueText(c.until, t);
       if (c.exempt !== undefined)
         return {
           id: c.id,
@@ -303,7 +298,7 @@ export function doctorLine(town: Town): string | undefined {
  * Round 3, defect 3: illness that excuses his fast was invisible. When today's fast is excused for illness (or his
  * pressure is at the exemption line), say so plainly, with the doctor's words if he has seen her.
  */
-export function healthLines(h: Person, town: Town, t: number): string[] {
+export function healthLines(h: VoicePerson, town: Town, t: number): string[] {
   const out: string[] = [];
   const sev = h.body.illnesses.find((x) => x.kind === 'hypertension')?.severity ?? 0;
   const excused = h.agenda.commitments.some(
@@ -338,7 +333,7 @@ const round = (x: number) => Math.round(x * 100) / 100;
 // --- Ends ----------------------------------------------------------------------------------------
 
 export interface EndsInput {
-  h: Person;
+  h: VoicePerson;
   town: Town;
   t: number;
   /** Trust in `you` when the game began (for "unchanged"). */
@@ -419,7 +414,7 @@ export function endsView({
   const visits = town.state.completed.halil?.['see-doctor'] ?? 0;
   const seen = visits > 0;
   const lastVisit = town.state.lastClinic.halil;
-  const doctorSaid = (h.memory.episodes ?? [])
+  const doctorSaid = [...h.memory.episodes, ...h.receivedTexts]
     .filter((e) => e.actorId === 'doctor' && e.kind === 'told')
     .at(-1);
   const call = town.state.lastCall;
@@ -447,7 +442,7 @@ export function endsView({
       label: 'Keep the fast.',
       status: asOfEid ? `he kept ${kept} of ${chron.length} days of Ramadan` : fastStatus,
       detail: fastDetail,
-      progress: round(chron.length ? kept / 30 : 0),
+      progress: qualitative(chron.length ? kept / 30 : 0),
     },
     {
       id: 'rent',
@@ -485,7 +480,7 @@ export function endsView({
                   : `He owes ${owed}`
             }. He has ${money}.`
           : `${dateText ? `${dateText} ` : ''}He paid ${paid} and owes nothing. He has ${money}.`,
-      progress: round(Math.min(1, paid / Math.max(1, paid + owed))),
+      progress: qualitative(Math.min(1, paid / Math.max(1, paid + owed))),
     },
     {
       id: 'doctor',
@@ -529,7 +524,7 @@ export function endsView({
       label: 'Does he still listen to you?',
       status: trustWord(you, true).replace('listens to you ', ''),
       detail: `He listens ${Math.abs(delta) < 0.005 ? 'about as closely as' : delta > 0 ? 'more closely than' : 'less closely than'} he did at the start of Ramadan${asOfEid ? ', as of Eid' : ''}.`,
-      progress: round(you),
+      progress: qualitative(you),
     },
   ];
 }
@@ -573,7 +568,7 @@ export function trustHistoryWords(
 }
 
 export function voicesView(
-  h: Person,
+  h: VoicePerson,
   t: number,
   conflict?: string,
   shiftAt: (at: number) => boolean = () => false,
@@ -589,6 +584,7 @@ export function voicesView(
       relation: meta.relation,
       colour: meta.colour,
       trustWord: trustWord(trust, id === 'you'),
+      pressure: `Pressure from this voice: ${rel ? qualitative(rel.pressure) : 'unknown'}.`,
       history:
         id === 'you'
           ? (rel?.history ?? [])
@@ -596,12 +592,12 @@ export function voicesView(
               .filter((e) => Math.abs(e.delta) >= 0.005)
               .slice(-3)
               .map((e) => ({
-                delta: round(e.delta),
+                direction: e.delta >= 0 ? ('up' as const) : ('down' as const),
                 text: trustHistoryWords(e.delta, e.reason, e.action, 1, shiftAt(e.at)),
               }))
           : [],
     };
-    if (id === 'you') v.trust = round(trust);
+    if (id === 'you') v.trust = trustWord(trust, true);
     const last = (h.will.advice ?? [])
       .filter((a) => a.sourceId === id)
       .sort((a, b) => a.at - b.at)
@@ -611,7 +607,7 @@ export function voicesView(
         label: ACTION_LABEL[last.affordanceId ?? last.action] ?? ACTION_LABEL[last.action] ?? last.action,
         when: when(last.at),
         standing: advice.includes(last),
-        weight: round(adviceWeight(last, t)),
+        weight: qualitative(adviceWeight(last, t)),
       };
     if (conflict && id !== 'you') v.conflict = conflict;
     return v;
@@ -629,7 +625,7 @@ export interface Cell {
   promptedBy?: VoiceId;
   /** The decision that began it (for the report's reasons). */
   decisionId?: string;
-  /** Set when it ends: false when he stopped part-way (it took his time but did not happen); unset while running. */
+  /** Set when it ends: false when the outcome was interrupted or failed (it took time without a completed act); unset while running. */
   done?: boolean;
 }
 
@@ -689,7 +685,7 @@ const NEED_WORD: Record<string, string> = {
   fun: 'enjoyment',
 };
 
-export function termLabel(t: Term, h: Person): string {
+export function termLabel(t: Term, h: VoicePerson): string {
   const [head, a, b] = t.source.split(':');
   switch (head) {
     case 'need':
@@ -739,7 +735,7 @@ const VETO_WORD: Record<string, string> = {
 };
 
 /** A suggestion's reason in words (the Why sheet showed raw ids such as "commitment:meal0"). */
-export function reasonLabel(reason: string, h: Person): string {
+export function reasonLabel(reason: string, h: VoicePerson): string {
   const word = VETO_WORD[reason];
   if (word) return word;
   const [head, a] = reason.split(':');
@@ -749,19 +745,23 @@ export function reasonLabel(reason: string, h: Person): string {
 }
 
 export function whyView(
-  h: Person,
+  h: VoicePerson,
   r: DecisionRecord,
   offers: readonly { id: string; label: string }[],
 ): WhyView {
   const top = r.considered.slice(0, 3);
   const opt = (c: Considered) => ({
     label: c.label ?? labelFor(c.affordanceId, offers, c.action),
-    total: round(c.utility),
+    total: influenceBand(c.utility),
     terms: c.terms
       .filter((x) => Math.abs(x.value) >= 0.005)
       .sort((x, y) => Math.abs(y.value) - Math.abs(x.value))
       .slice(0, 6)
-      .map((x) => ({ label: termLabel(x, h), value: round(x.value) })),
+      .map((x) => ({
+        label: termLabel(x, h),
+        value: influenceBand(x.value),
+        direction: x.value > 0 ? ('toward' as const) : x.value < 0 ? ('away' as const) : ('none' as const),
+      })),
   });
   const chosen = r.considered.find((c) => c.affordanceId === r.chosenAffordanceId);
   const best = r.considered.find((c) => !c.vetoed);
@@ -790,4 +790,21 @@ export function whyView(
   const you = (r.suggestions ?? (r.suggestion ? [r.suggestion] : [])).find((s) => s.voiceId === 'you');
   if (you) view.voice = { says: you.says, reason: reasonLabel(you.reason, h) };
   return view;
+}
+
+export function qualitative(value: number): string {
+  return value < 0.2
+    ? 'very low'
+    : value < 0.4
+      ? 'low'
+      : value < 0.6
+        ? 'moderate'
+        : value < 0.8
+          ? 'high'
+          : 'very high';
+}
+export function influenceBand(value: number): string {
+  if (value === 0) return 'no pull';
+  const n = Math.abs(value);
+  return `${n < 0.05 ? 'slight' : n < 0.2 ? 'moderate' : 'strong'} pull ${value > 0 ? 'toward' : 'away'}`;
 }

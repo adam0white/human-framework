@@ -4,6 +4,9 @@
  * stopped; trust per voice as words; his ends; his true body as the doctor would read it; what is still open;
  * the day strips; and the model notes (voice.md §10). No score, no words about worth, faith or acceptance.
  */
+
+import { type EndView, MODEL_NOTES, type ReportView, type StripRow } from '../protocol.ts';
+import type { Run } from './game.ts';
 import {
   type DayRecord,
   type DecisionRecord,
@@ -12,11 +15,10 @@ import {
   dominantTerm,
   MINUTES_PER_DAY,
   owedMakeUps,
+  type VoicePerson,
   voiceOf,
-} from '@adam0white/human-framework';
-import { type EndView, MODEL_NOTES, type ReportView, type StripRow } from '../protocol.ts';
-import type { Run } from './game.ts';
-import { TOWN_DEFAULTS, TOWN_EID_DAY } from './town.ts';
+} from './hf4-model.ts';
+import { TOWN_DEFAULTS, TOWN_EID_DAY, type TownState } from './town.ts';
 import {
   type Cell,
   clock,
@@ -67,7 +69,7 @@ export interface ReportInput {
    * The town at Eid morning, when the month you spoke in had ended: the ends are read here, and the week after
    * (`after`) is told apart (playtest: the rent end showed the week after Eid as the month's result).
    */
-  atEid?: { run: Run; t: number; halilCalledAt?: number; calledUnasked?: boolean };
+  atEid?: { town: TownState; person: VoicePerson; ends: EndView[]; trust: number; t: number };
   /** Every rent payment with its minute (Ramadan and the week after). */
   payments?: readonly { at: number; amount: number }[];
 }
@@ -194,21 +196,29 @@ function summary(i: ReportInput): string[] {
             : `On Eid he did not call Selin; he had not called her himself all month. She called him at ${clock(i.selinEidCallAt)}.`
         : 'On Eid he did not call Selin, and she did not call him.') + (after ? ` ${after}` : ''),
   ];
-  const pays = i.cells.filter((c) => c.affordanceId === 'pay-rent' && c.from < eidStart);
-  const date = i.after.ppl.halil.agenda.commitments.find((c) => c.id === 'rent' && c.kind === 'promise');
-  const firstPay = pays[0] ? dayOf(pays[0].from) - TOWN_DEFAULTS.ramadanFirstDay + 1 : undefined;
+  const pays = (i.payments ?? [])
+    .filter((p) => p.at >= TOWN_DEFAULTS.ramadanFirstDay * MINUTES_PER_DAY && p.at < eidStart && p.amount > 0)
+    .sort((a, b) => a.at - b.at);
+  let paid = 0;
+  const reached = pays.find((p) => {
+    paid += p.amount;
+    return paid >= TOWN_DEFAULTS.rent;
+  });
+  const totalPaid = pays.reduce((sum, p) => sum + p.amount, 0);
+  const fullPayDay = reached ? dayOf(reached.at) - TOWN_DEFAULTS.ramadanFirstDay + 1 : undefined;
+  const deadline = TOWN_DEFAULTS.rentPromiseDay * MINUTES_PER_DAY + 20 * 60;
+  const rent =
+    i.payments === undefined
+      ? 'No dated payment record is available for Ramadan; the payment deadline cannot be established from an activity start.'
+      : reached && reached.at <= deadline
+        ? `He paid Osman 300 lira by the deadline, on Ramadan ${fullPayDay}.`
+        : reached
+          ? `He missed Osman’s payment deadline (300 lira by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}); his payments reached 300 lira on Ramadan ${fullPayDay}.`
+          : `He missed Osman’s payment deadline (300 lira by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}) and ${totalPaid > 0 ? `paid ${Math.round(totalPaid)} lira in Ramadan` : 'paid nothing in Ramadan'}.`;
   const extra = i.cells.filter((c) => c.affordanceId === 'work-extra' && c.from < eidStart);
   const extraYours = extra.filter((c) => c.promptedBy === 'you').length;
   out.push(
-    // The promise may have been pruned from the agenda by Eid, so the pay cells decide when it is gone.
-    (date?.status === 'kept' ||
-    (!date &&
-      pays[0] !== undefined &&
-      pays[0].from <= TOWN_DEFAULTS.rentPromiseDay * MINUTES_PER_DAY + 20 * 60)
-      ? `He paid Osman 300 lira by the deadline, on Ramadan ${firstPay ?? TOWN_DEFAULTS.rentPromiseDay}.`
-      : firstPay !== undefined && firstPay < TOWN_EID_DAY
-        ? `He missed Osman’s payment deadline (300 lira by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}); he first paid 300 lira on Ramadan ${firstPay}.`
-        : `He missed Osman’s payment deadline (300 lira by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}) and paid nothing in Ramadan.`) +
+    rent +
       (extra.length === 0
         ? ' He never took an afternoon shift.'
         : ` He took an afternoon shift ${times(extra.length)}${extraYours === extra.length ? (extra.length === 1 ? ', because you suggested it' : ', each time because you suggested it') : extraYours > 0 ? `, ${times(extraYours)} because you suggested it` : ''}.`),
@@ -328,7 +338,7 @@ export function buildReport(i: ReportInput): ReportView {
   const sev = hyper?.severity ?? 0;
   const body = [
     `Blood pressure: ${pressureWord(sev)}.`,
-    `Sleep: ${h.body.sleepDebt < 60 ? 'enough' : h.body.sleepDebt < 240 ? 'a little short' : 'too little; he still needs to catch up'}.`,
+    `Sleep: ${h.body.sleepDebtHours < 1 ? 'enough' : h.body.sleepDebtHours < 4 ? 'a little short' : 'too little; he still needs to catch up'}.`,
     `He ${h.body.satiety > 0.6 ? 'has eaten well' : h.body.satiety > 0.3 ? 'has eaten enough' : 'has not eaten enough'}.`,
   ];
   // Round 3: the game records the excused days as they happen (the agenda keeps only the last few closed fasts).
@@ -387,19 +397,10 @@ export function reportEnds(i: ReportInput): EndView[] {
       ...(i.halilCalledAt !== undefined ? { halilCalledAt: i.halilCalledAt } : {}),
     });
   }
-  const before = at.run.town.state;
+  const before = at.town;
   const now = town.state;
   const pays = i.payments ?? [];
-  const ends = endsView({
-    h: at.run.ppl.halil,
-    town: at.run.town,
-    t: at.t,
-    trustStart: i.trustStart,
-    asOfEid: true,
-    payments: pays.filter((p) => p.at < eidStart),
-    ...(at.halilCalledAt !== undefined ? { halilCalledAt: at.halilCalledAt } : {}),
-    ...(at.calledUnasked !== undefined ? { calledUnasked: at.calledUnasked } : {}),
-  });
+  const ends = at.ends;
   const week = pays.filter((p) => p.at >= eidStart);
   const owed = Math.round(now.rentOwed);
   const money = Math.round(now.money.halil ?? 0);
@@ -413,7 +414,7 @@ export function reportEnds(i: ReportInput): EndView[] {
   const visits = (now.completed.halil?.['see-doctor'] ?? 0) - (before.completed.halil?.['see-doctor'] ?? 0);
   const makeUps = owedMakeUps(h).length;
   const trustNow = voiceOf(h, 'you')?.trust ?? i.trustEid;
-  const trustEidMorning = voiceOf(at.run.ppl.halil, 'you')?.trust ?? i.trustEid;
+  const trustEidMorning = at.trust;
   const after: Record<EndView['id'], string> = {
     fast: `The fast ended with Ramadan.${makeUps > 0 ? ` A week after Eid ${makeUps} make-up ${makeUps === 1 ? 'fast is' : 'fasts are'} still owed.` : ''}`,
     rent: rentAfter,

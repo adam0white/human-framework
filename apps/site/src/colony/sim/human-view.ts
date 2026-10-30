@@ -11,7 +11,7 @@ import {
   type SuggestionResolution,
   type Term,
   voiceOf,
-} from '@adam0white/human-framework';
+} from './hf4.ts';
 import { gm, NORM_LABELS } from './human-cast.ts';
 import type {
   BubbleKind,
@@ -47,7 +47,12 @@ export type VerdictKind = Exclude<BubbleKind, 'thought'>;
  */
 export function verdictKind(r: SuggestionResolution, rules: ColonyRules = 3): VerdictKind {
   // Rules 5: choosing one's own work is an alternative, not a promise to do the requested job later.
-  if (rules >= 5 && r.verdict === 'modified' && r.reason === 'goal:role') return 'willNot';
+  if (
+    rules >= 5 &&
+    r.verdict === 'modified' &&
+    (r.reason === 'goal:role' || r.reason.startsWith('goal:role:'))
+  )
+    return 'willNot';
   if (r.verdict === 'refused' && r.kind !== 'willNot' && r.reason.startsWith('need:')) return 'notNow';
   switch (r.verdict) {
     case 'assented':
@@ -117,7 +122,8 @@ export function sayLine(r: SuggestionResolution, rules: ColonyRules = 3): string
     if (own) return own;
   }
   if (rules >= 4 && r.verdict === 'modified' && r.counterOffer) {
-    const because = MODIFIED_BECAUSE[r.reason];
+    const reason = r.reason.startsWith('goal:role:') ? 'goal:role' : r.reason;
+    const because = MODIFIED_BECAUSE[reason];
     if (because) return `I will ${r.counterOffer.label} instead, because ${because}.`;
   }
   return memoryText(r.says);
@@ -426,7 +432,7 @@ export function trustOf(p: Person): TrustView {
     .map((h) => {
       const a = ACTION_WORDS[h.action ?? ''] ?? 'do this work';
       const fmt = TRUST_LABELS[h.reason] ?? ((x: string) => x);
-      return { minute: gm(h.at), delta: round2(h.delta), label: fmt(a) };
+      return { minute: gm(h.at / 60_000), delta: round2(h.delta), label: fmt(a) };
     });
   return { value: v.trust, history };
 }

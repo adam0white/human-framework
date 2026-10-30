@@ -214,7 +214,7 @@ export function sceneResponse(frame: Frame, scene: DayScene | null) {
     };
   if (scene.lines.every((line) => line.speaker === 'Scene')) return null;
   const words = scene.lines.map((l) => l.words).join(' ');
-  const tired = frame.halil.felt.some((f) => f.id === 'tired' && f.level >= 0.55);
+  const tired = frame.halil.felt.some((f) => f.id === 'tired' && ['high', 'very high'].includes(f.level));
   const rent = frame.halil.onMind.some(
     (c) => (c.state === 'open' || c.state === 'closing') && /rent|Osman/.test(c.label),
   );

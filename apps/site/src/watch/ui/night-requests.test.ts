@@ -12,6 +12,7 @@ function context() {
   const who = frame.watchers.find((w) => w.id === 'tamar');
   if (!who) throw new Error('Expected Tamar');
   who.post = 'gate-1';
+  who.account = { text: 'I’m here.', spoken: true };
   who.acts = [];
   who.actsUnavailable = null;
   const seen: NightAct[] = ['kian', 'samira'].map((by) => ({

@@ -1,3 +1,4 @@
+import type { Appeal, Prefill } from '../protocol.ts';
 /**
  * The composer's prefill (voice.md §6), deterministic, first rule that applies wins:
  * 1. another voice's standing advice that is offered now and is not his leaning;
@@ -20,11 +21,10 @@ import {
   type Considered,
   dayOf,
   MINUTES_PER_DAY,
-  type Person,
-  preview,
   standingAdvice,
-} from '@adam0white/human-framework';
-import type { Appeal, Prefill } from '../protocol.ts';
+  type VoicePerson,
+} from './hf4-model.ts';
+import { preview } from './hf4-town-run.ts';
 import { selinEidCallMinute, TOWN_DEFAULTS, type Town, townCalendar } from './town.ts';
 import { ACTION_LABEL, isVoiceId, nameOfVoice, relWhen } from './view.ts';
 
@@ -41,7 +41,7 @@ export const CLOSE_CALL_FRACTION = 0.2;
 export const CLOSE_CALL_MIN = 0.1;
 
 export interface PrefillInput {
-  h: Person;
+  h: VoicePerson;
   town: Town;
   t: number;
   offers: readonly Affordance[];

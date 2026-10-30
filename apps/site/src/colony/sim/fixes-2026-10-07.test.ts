@@ -1,15 +1,18 @@
 /**
  * The four bugs from the owner's 2026-10-07 export (docs/games/colony-playtest-2026-10-07.md), each pinned on its
- * own: Classic resting in the roofed house, cook orders while cooking is not on offer, cards lapsing after the
- * Human side finished, and tariq-again's line.
+ * own: Classic resting in the roofed house, honest unavailable-cooking answers, cards lapsing after the
+ * Human side finished, and tariq-again's line. Current HF4 refusal replaces the former host-only promise.
  */
 import { describe, expect, it } from 'vitest';
 import { createPlaceholderHumanSide } from '../../../test/colony/placeholder-human.fixture.ts';
 import { parsePlaytest } from '../../shared/playtest.ts';
 import { ClassicSim } from './classic.ts';
 import { ColonyGame, DEFAULT_SEED, NUDGES, SCENARIO_VERSION, TARIQ_AGAIN_FRESH } from './game.ts';
-import { createFrameworkHumanSide } from './human.ts';
-import { HOST } from './human-world.ts';
+import { createColonyRun } from './hf4.ts';
+import { createFrameworkHumanSide, type FrameworkHumanSide } from './human.ts';
+import { fw, villagerPersonSpec } from './human-cast.ts';
+import { ColonyHostWorld, createHostState, HOST } from './human-world.ts';
+import { MAP } from './map.ts';
 import { OrderBook } from './orders.ts';
 import { validateColonyLog } from './playtest.ts';
 import { applyWorldMinute, at, createSideWorld, STORM_START, VILLAGERS } from './world-types.ts';
@@ -43,39 +46,30 @@ describe('2026-10-07 export fixes', () => {
     expect(hurt).toEqual([]);
   });
 
-  it('a cook order while cooking is not on offer gets a "not now" and stays standing', () => {
+  it('predicts and reports the actual unavailable-cooking refusal without inventing a promise', () => {
     const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    g.advance(at(1, 18, 11));
-    expect(g.humanWorld.resources.meals).toBeGreaterThanOrEqual(HOST.cookBelow);
+    g.humanWorld.resources.meals = HOST.cookBelow + 100;
+    const prediction = g.predict({ personId: 'maryam', placeId: 'kitchen' });
+    expect(prediction).toMatchObject({ kind: 'cannot', text: 'Can’t: enough food stored' });
     const o = g.issue({ personId: 'maryam', placeId: 'kitchen' });
-    const reasons: string[] = [];
-    for (let i = 0; i < 3; i++) {
-      g.advance(1);
-      reasons.push(...g.lastStep.verdicts.map((v) => v.reason));
-    }
-    // The host's answer carries 'unavailable', which the playback does not auto-pause on.
-    expect(reasons).toEqual(['unavailable']);
+    g.advance(1);
     const card = g.book.card(o?.id ?? '');
-    expect(card?.human.state).toBe('notNow');
-    expect(card?.human.label).toBe('when the store runs low');
-    expect(card?.status).toBe('active');
-    expect(g.predict({ personId: 'maryam', placeId: 'kitchen' }).text).toBe('Later: enough food stored');
+    expect(card?.human.state).toBe('cannot');
+    expect(card?.human.settled).toBe(true);
+    expect(g.human.working(o?.id ?? '')).toBe(false);
   });
 
-  it('the not-on-offer answer names the cause: in the storm the fire is out', () => {
+  it('the physical host names why cooking is unavailable in the storm', () => {
     const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    g.advance(STORM_START + 30);
-    expect(g.predict({ personId: 'maryam', placeId: 'kitchen' }).text).toBe('Later: no fire in the storm');
-  });
-
-  it('an order given before cooking comes on offer is heard once it does (the warning, D2 16:00)', () => {
-    const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
-    g.advance(at(2, 15, 41));
-    const o = g.issue({ personId: 'maryam', placeId: 'kitchen' });
-    g.advance(at(2, 17, 0) - g.minute);
-    const card = g.book.card(o?.id ?? '');
-    expect(card?.human.first?.state).toBe('notNow');
-    expect(['assent', 'done']).toContain(card?.human.state);
+    const community = createColonyRun(
+      DEFAULT_SEED,
+      VILLAGERS,
+      VILLAGERS.map((v) => villagerPersonSpec(DEFAULT_SEED, v)),
+    );
+    const host = new ColonyHostWorld(DEFAULT_SEED, MAP, g.humanWorld, createHostState(VILLAGERS), community);
+    const person = { ...(g.human as FrameworkHumanSide).person('maryam'), now: fw(STORM_START + 30) };
+    expect(host.notOffered(person, 'cook').short).toBe('no fire in the storm');
+    expect(host.affordancesFor(person).some((a) => a.action === 'cook')).toBe(false);
   });
 
   it('a card whose Human side finished is done, not lapsed, while Classic is still on it', () => {

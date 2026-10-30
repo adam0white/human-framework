@@ -19,51 +19,14 @@
  *
  * Not covered: walking time between posts, private conversation. Seasons are lived by routine (`year.ts`).
  */
-import {
-  type Activity,
-  type Affordance,
-  acquaintPerson,
-  addPerson,
-  type Community,
-  createCommunity,
-  createPerson,
-  DEFAULT_NORMS,
-  enableBreaks,
-  enableCharacterChange,
-  enableDowned,
-  enableGists,
-  enableSkillRetention,
-  enableYearbook,
-  GENERIC_CUSTOM,
-  heldNorms,
-  inBreak,
-  joinGroups,
-  MINUTES_PER_DAY,
-  MINUTES_PER_YEAR,
-  marry,
-  meet,
-  type Outcome,
-  type Percept,
-  type Person,
-  type PersonSpec,
-  prayerWindows,
-  type Relationship,
-  setReserve,
-  setRetention,
-  skillLevel,
-  spousesOf,
-  type World,
-} from '@adam0white/human-framework';
+import type { PersonAuthoring } from '@adam0white/human-framework';
 import { canonicalCast } from '@adam0white/lab-client';
-import {
-  admitSiteCast,
-  applyLifeOffers,
-  chapterPeople,
-  personChapter,
-  prepareSiteInitial,
-} from '../../shared/cast-chapter.ts';
+import { chapterPeople, personChapter } from '../../shared/cast-chapter.ts';
 import { requireValue } from '../../shared/require-value.ts';
-import { assertWatchCareTarget } from './care-reentry.ts';
+import { type Affordance, actorEvidence, actorInput, type Percept, type Person, readActor } from './actor.ts';
+import { skillLevel } from './actor-effects.ts';
+import { arriveActor, flushActors, schedulePrayerDay } from './actor-world.ts';
+import { admitWatchPerson } from './cast.ts';
 import {
   ALL_POST_IDS,
   BELL_ROUSE_BASE,
@@ -72,7 +35,6 @@ import {
   DAY,
   DUSK_START,
   FOUNDER_KIN,
-  FOUNDER_MARRIAGES,
   HOME_CHILD_AGE,
   type KinDef,
   type PostId,
@@ -87,15 +49,14 @@ import {
   type WatcherId,
   WINTER_RULES,
 } from './config.ts';
-import { completedAdaCare } from './refuge-visit.ts';
+import { minuteMs, WatchActors } from './hf4.ts';
+import { authoredKin, authoredWatcher, watchPerson, watchSpec } from './hf4-authoring.ts';
 import type { Villager, WatchState } from './state.ts';
 
 export const KEEPER_ID = 'keeper';
 
 /** Host norms of the watch. Standings are the game's choices, recorded as such; each person's understanding. */
 export { WATCH_CAST_NORMS as WATCH_NORMS } from '../../shared/cast-norms.ts';
-
-import { WATCH_CAST_NORMS as WATCH_NORMS } from '../../shared/cast-norms.ts';
 
 /** Where a villager is: a post, the hall behind the gate, home, the village (by day) or not yet come. */
 export type Place = PostId | 'hall' | 'home' | 'village' | 'away';
@@ -134,134 +95,21 @@ export function prepareWatchCast(
   for (const single of chapterPeople(chapter)) {
     const def = WATCHERS.find((w) => WATCH_CAST[w.id] === single.input.parent.castId);
     if (!def) throw new Error('No authored Watch role.');
-    const opening = createPerson(watcherSpec(seed, def, DUSK_START));
-    prepareSiteInitial('watch', opening, single);
-    // Validate the same pinned restoration path at its authored scheduled arrival, before CAS.
-    if (def.arrives > 1)
-      admitSiteCast('watch', { ...opening, now: DUSK_START + (def.arrives - 1) * DAY }, single);
-    if (
-      def.id === 'kian' &&
-      (single.input.parent.transfer.watchCare || single.input.parent.transfer.warrenCare)
-    ) {
-      const index = FOUNDER_KIN.findIndex((kin) => kin.id === 'ada');
-      const kin = FOUNDER_KIN[index];
-      assertWatchCareTarget(kin ? kinPerson(seed, kin, index, DUSK_START) : undefined);
-    }
+    const now = DUSK_START + (def.arrives - 1) * DAY;
+    const authored = admitWatchPerson(authoredWatcher(def, minuteMs(now)), single);
+    const physical = { actions: [], care: null };
+    const spec = { ...watchSpec(seed, physical), start: minuteMs(now) };
+    WatchActors.create(spec, [createKeeper(seed, now), authored], physical).snapshot();
   }
 }
-/** The framework spec for one watcher at `now`. */
-export function watcherSpec(seed: number, def: WatcherDef, now: number): PersonSpec {
-  const index = WATCHERS.indexOf(def);
-  const relationships: NonNullable<PersonSpec['relationships']> = def.ties.map((t) => ({
-    otherId: t.otherId,
-    roles: t.roles,
-    affection: t.affection,
-    trust: t.trust ?? 0.55,
-    familiarity: def.newcomer ? 0.2 : 0.8,
-  }));
-  return {
-    id: def.id,
-    lexicon: { plainEnglish: true },
-    name: def.name,
-    seed: personSeed(seed, index),
-    now,
-    bornAt: now - def.age * MINUTES_PER_YEAR,
-    sex: def.sex,
-    traits: def.traits,
-    values: canonicalCast(WATCH_CAST[def.id] ?? '').values,
-    norms: heldNorms(
-      {
-        practice: def.prays ? 0.9 : 0.3,
-        extraNorms: [{ normId: 'keep-watch', standing: 'obligatory', conviction: def.duty }],
-      },
-      undefined,
-    ),
-    skills: { sling: def.sling, sight: def.sight, craft: def.craft },
-    body: {
-      satiety: 0.75,
-      hydration: 0.85,
-      sleepPressure: 0.15,
-      exertion: 0,
-      asleep: false,
-      fitness: def.fitness,
-    },
-    relationships,
-    commitments: def.prays ? prayerWindows(Math.floor(now / MINUTES_PER_DAY)) : [],
-    voices: [{ voiceId: KEEPER_ID, trust: def.keeperTrust }],
-  };
+export function watcherSpec(_seed: number, def: WatcherDef, now: number): PersonAuthoring {
+  return authoredWatcher(def, minuteMs(now));
 }
-
-const BREAKS = [
-  { id: 'freeze', label: 'froze', actions: ['freeze'], weight: 1, minutes: [40, 120] as [number, number] },
-  { id: 'run', label: 'ran', actions: ['run-off'], weight: 1, minutes: [60, 180] as [number, number] },
-];
-
-/**
- * The long-run faculties every villager carries (HF L1, G3-3): lasting gists of memorable nights, a yearbook, slow
- * character change and skills that consolidate with practice. Saves carry no decision trace (the game never shows
- * one) and keep detailed days for about a season (`CHRONICLE_DAYS`), which folds the rest into the yearbook at once
- * (HF 2.0 retention; the H2 performance review found trace and day records were most of a page).
- */
-export function enableLongLife(p: Person): void {
-  enableGists(p);
-  enableYearbook(p);
-  enableCharacterChange(p);
-  enableSkillRetention(p);
-  setRetention(p, { trace: 0, chronicleDays: CHRONICLE_DAYS });
+export function castPerson(_seed: number, def: WatcherDef, now: number): PersonAuthoring {
+  return authoredWatcher(def, minuteMs(now));
 }
-
-/** Days of detailed day records a villager keeps (HF `Retention.chronicleDays`). */
-const CHRONICLE_DAYS = 40;
-
-/** Opt a villager into what the wall asks of them: breaks, downing, reserve, their group, the long run. */
-export function equip(p: Person, opts: { reserve?: WatcherDef['reserve']; newcomer?: boolean } = {}): void {
-  enableBreaks(p, BREAKS);
-  enableDowned(p, { moving: 0.3, health: 0.35 });
-  if (opts.reserve) setReserve(p, opts.reserve);
-  joinGroups(p, [opts.newcomer ? 'incomers' : 'village']);
-  enableLongLife(p);
-}
-
-/** A watcher as a Person, opted into breaks, downing and impressions. */
-export function castPerson(seed: number, def: WatcherDef, now: number): Person {
-  const p = createPerson(watcherSpec(seed, def, now));
-  equip(p, { ...(def.reserve ? { reserve: def.reserve } : {}), newcomer: def.newcomer === true });
-  return p;
-}
-
-/** A founder's child or ward as a Person (G3-3): at home, raised by the household, years from the wall. */
-export function kinPerson(seed: number, kin: KinDef, index: number, now: number): Person {
-  const relationships: NonNullable<PersonSpec['relationships']> = [];
-  for (const parent of kin.parents ?? [])
-    relationships.push({
-      otherId: parent,
-      roles: ['parent'],
-      affection: 0.75,
-      trust: 0.75,
-      familiarity: 0.9,
-    });
-  if (kin.guardian)
-    relationships.push({
-      otherId: kin.guardian,
-      roles: ['guardian', 'sibling'],
-      affection: 0.8,
-      trust: 0.75,
-      familiarity: 0.9,
-    });
-  const p = createPerson({
-    id: kin.id,
-    lexicon: { plainEnglish: true },
-    name: kin.name,
-    seed: personSeed(seed, 20 + index),
-    now,
-    bornAt: now - kin.age * MINUTES_PER_YEAR - index * 9_973,
-    sex: kin.sex,
-    relationships,
-    skills: { sling: 0.1, sight: 0.3, craft: 0.1 },
-    voices: [{ voiceId: KEEPER_ID, trust: 0.6 }],
-  });
-  equip(p);
-  return p;
+export function kinPerson(_seed: number, kin: KinDef, index: number, now: number): PersonAuthoring {
+  return authoredKin(kin, index, minuteMs(now));
 }
 
 /** The founders and their kin as the chronicle's first cast, all still to come. */
@@ -299,6 +147,7 @@ export function foundingCast(): Villager[] {
       status: 'coming',
       gen: 2,
       bornHere: false,
+      ...(kin.parents ? { parents: [...kin.parents] } : {}),
     });
   });
   return out;
@@ -337,7 +186,7 @@ export function isHere(s: WatchState, p: Person): boolean {
 }
 
 export function ageAt(p: Person, now: number): number {
-  return (now - p.life.bornAt) / MINUTES_PER_YEAR;
+  return (now - p.life.bornAt) / (365 * DAY);
 }
 
 /** Of watch age and here: the people who stand the wall, are posted and speak at dawn. */
@@ -381,18 +230,8 @@ export function familyWords(s: WatchState, id: WatcherId): string | null {
 }
 
 /** The Keeper: holds impressions; never stepped. */
-export function createKeeper(seed: number, now: number): Person {
-  const k = createPerson({
-    id: KEEPER_ID,
-    lexicon: { plainEnglish: true },
-    name: 'Keeper',
-    seed: personSeed(seed, 99),
-    now,
-    bornAt: now - 40 * MINUTES_PER_YEAR,
-    sex: 'male',
-  });
-  k.social.impressions = [];
-  return k;
+export function createKeeper(_seed: number, now: number): PersonAuthoring {
+  return watchPerson(KEEPER_ID, 'Keeper', 'male', 40, minuteMs(now));
 }
 
 /**
@@ -407,63 +246,15 @@ export function createKeeper(seed: number, now: number): Person {
  * gained, so `kids` is rebuilt when any person's relationship list is replaced, grows or shrinks, or gets a new last
  * entry (an eviction at the cap is a splice and a push), and `childrenOf` re-tests every candidate on read.
  */
-interface CastIndex {
-  length: number;
-  byId: Map<string, Person>;
-  kids: Map<string, Person[]> | null;
-  /** Per person, in people order: the relationship list, its length and its last entry when `kids` was built. */
-  ties: (readonly [Relationship[], number, Relationship | undefined])[];
-}
-
-const castIndexes = new WeakMap<Person[], CastIndex>();
-
-function castIndex(s: WatchState): CastIndex {
-  const people = s.community.people;
-  let ix = castIndexes.get(people);
-  if (!ix || ix.length !== people.length) {
-    const byId = new Map<string, Person>();
-    for (const p of people) if (!byId.has(p.id)) byId.set(p.id, p);
-    ix = { length: people.length, byId, kids: null, ties: [] };
-    castIndexes.set(people, ix);
-  }
-  return ix;
-}
-
-const isCareTie = (r: Relationship): boolean => r.roles.includes('parent') || r.roles.includes('guardian');
-
-/**
- * Everyone (here or not) whose own tie to `parentId` names them a child or ward, in people order. Candidates only:
- * callers re-test the tie and `isHere` (see `childrenOf` in life.ts).
- */
 export function careCandidates(s: WatchState, parentId: WatcherId): readonly Person[] {
-  const people = s.community.people;
-  const ix = castIndex(s);
-  let fresh = ix.kids !== null;
-  for (let i = 0; fresh && i < people.length; i++) {
-    const rels = people[i]?.social.relationships;
-    const t = ix.ties[i];
-    if (!rels || !t || t[0] !== rels || t[1] !== rels.length || t[2] !== rels[rels.length - 1]) fresh = false;
-  }
-  if (!fresh || !ix.kids) {
-    const kids = new Map<string, Person[]>();
-    ix.ties = [];
-    for (const q of people) {
-      const rels = q.social.relationships;
-      ix.ties.push([rels, rels.length, rels[rels.length - 1]]);
-      for (const r of rels) {
-        if (!isCareTie(r)) continue;
-        const list = kids.get(r.otherId);
-        if (!list) kids.set(r.otherId, [q]);
-        else if (list[list.length - 1] !== q) list.push(q);
-      }
-    }
-    ix.kids = kids;
-  }
-  return ix.kids.get(parentId) ?? [];
+  return s.community.people.filter((p) =>
+    p.social.relationships.some(
+      (r) => r.otherId === parentId && (r.roles.includes('parent') || r.roles.includes('guardian')),
+    ),
+  );
 }
-
 export function personOf(s: WatchState, id: WatcherId): Person | undefined {
-  return castIndex(s).byId.get(id);
+  return readActor(s, id);
 }
 
 /**
@@ -472,86 +263,69 @@ export function personOf(s: WatchState, id: WatcherId): Person | undefined {
  * `known`. Returns the ids who came.
  */
 export function arrive(s: WatchState): WatcherId[] {
-  const now = s.minute;
   const came: WatcherId[] = [];
   for (const id of s.order) {
     const v = s.cast[id];
-    if (v?.status !== 'coming' || v.comes.year !== s.year || v.comes.night !== s.winterNight) continue;
-    if (personOf(s, id)) continue;
-    const def = WATCHERS.find((d) => d.id === id);
-    const ki = FOUNDER_KIN.findIndex((k) => k.id === id);
-    const kin = FOUNDER_KIN[ki];
-    let p: Person;
-    if (def) p = castPerson(s.seed, def, now);
-    else if (kin) p = kinPerson(s.seed, kin, ki, now);
-    else continue;
-    if (personChapter(s.castChapter, WATCH_CAST[id]))
-      p = admitSiteCast('watch', p, requireValue(s.castChapter));
-    addPerson(s.community, p);
+    if (
+      v?.status !== 'coming' ||
+      v.comes.year !== s.year ||
+      v.comes.night !== s.winterNight ||
+      personOf(s, id)
+    )
+      continue;
+    const def = WATCHERS.find((d) => d.id === id),
+      ki = FOUNDER_KIN.findIndex((k) => k.id === id),
+      kin = FOUNDER_KIN[ki];
+    let authored = def
+      ? authoredWatcher(def, minuteMs(s.minute))
+      : kin
+        ? authoredKin(kin, ki, minuteMs(s.minute))
+        : undefined;
+    if (!authored) continue;
+    const single = personChapter(s.castChapter, WATCH_CAST[id]);
+    if (single) authored = admitWatchPerson(authored, single);
+    s.actorEvents.push(...arriveActor(s, authored));
     v.status = 'here';
-    s.place[id] = personChapter(s.castChapter, WATCH_CAST[id])
-      ? requireValue(personChapter(s.castChapter, WATCH_CAST[id])).input.life.place === 'home'
-        ? 'home'
-        : requireValue(personChapter(s.castChapter, WATCH_CAST[id])).input.life.place === 'public-garden'
-          ? 'hall'
-          : 'village'
-      : 'village';
+    s.place[id] = 'village';
     s.posts[id] = null;
     s.press[id] = 'ask';
-    s.postedAt[id] = now;
+    s.postedAt[id] = s.minute;
     came.push(id);
-  }
-  if (came.length === 0) return came;
-  const people = s.community.people;
-  for (const p of people) {
-    const v = s.cast[p.id];
-    if (!v || !isHere(s, p)) continue;
-    for (const q of people) {
-      if (q.id === p.id || !isHere(s, q)) continue;
-      const qv = s.cast[q.id];
-      if (!qv) continue;
-      if (!came.includes(p.id) && !came.includes(q.id)) continue;
-      meet(p, q.id, [qv.newcomer ? 'incomers' : 'village']);
-      // A parent or guardian who comes after the children knows them as their own.
-      const kin = FOUNDER_KIN.find((k) => k.id === q.id);
-      if (kin && (kin.parents?.includes(p.id) || kin.guardian === p.id)) {
-        const r = p.social.relationships.find((x) => x.otherId === q.id);
-        const role = kin.guardian === p.id ? 'ward' : 'child';
-        if (r && !r.roles.includes(role)) {
-          r.roles = [...r.roles, role];
-          r.affection = Math.max(r.affection, 0.8);
-          r.trust = Math.max(r.trust, 0.7);
-          r.familiarity = Math.max(r.familiarity, 0.9);
-        }
-      }
-      const tie = p.social.relationships.find((r) => r.otherId === q.id);
-      const familiarity = v.newcomer || qv.newcomer ? 0.15 : Math.max(0.35, tie?.familiarity ?? 0.35);
-      acquaintPerson(p, q, familiarity, now);
-    }
-  }
-  for (const [a, b] of FOUNDER_MARRIAGES) {
-    const pa = personOf(s, a);
-    const pb = personOf(s, b);
-    if (!pa || !pb || (!came.includes(a) && !came.includes(b)) || spousesOf(pa).includes(b)) continue;
-    marry(pa, pb, now, GENERIC_CUSTOM);
+    if (v.prays || single) schedulePrayerDay(s, id, Math.floor(s.minute / DAY));
   }
   for (const id of came) {
-    const p = personOf(s, id);
     const v = s.cast[id];
-    if (!p || !v || !isWatcher(s, p)) continue;
-    if (v.known > 0) acquaintPerson(s.keeper, p, v.known, now);
-    else s.keeper.social.impressions ??= [];
+    if (!v) continue;
+    for (const q of s.community.people) {
+      if (q.id === id || !isHere(s, q)) continue;
+      for (const [observer, target] of [
+        [id, q.id],
+        [q.id, id],
+      ] as const) {
+        actorInput(s, 'groups.received', {
+          ...actorEvidence(s, observer, 'arrival-groups'),
+          self: [s.cast[observer]?.newcomer ? 'incomers' : 'village'],
+          others: [{ person: target, groups: [s.cast[target]?.newcomer ? 'incomers' : 'village'] }],
+        });
+        actorInput(s, 'acquaintance.received', {
+          ...actorEvidence(s, observer, 'arrival'),
+          target,
+          familiarity: v.newcomer || s.cast[q.id]?.newcomer ? 0.15 : 0.35,
+          known: [],
+        });
+      }
+    }
+    if (v.known > 0)
+      actorInput(s, 'acquaintance.received', {
+        ...actorEvidence(s, KEEPER_ID, 'arrival'),
+        target: id,
+        familiarity: v.known,
+        known: [],
+      });
   }
+  if (came.length) s.actorEvents.push(...flushActors(s, s.minute));
   return came;
 }
-
-export function createWatchCommunity(): Community {
-  return createCommunity([]);
-}
-
-// ---------------------------------------------------------------------------------------------
-// Danger the watchers can know of, per section (pure reads of state)
-// ---------------------------------------------------------------------------------------------
 
 export interface Danger {
   chance: number;
@@ -616,7 +390,7 @@ const LEAVE: { normId: string; relation: 'fulfills' | 'violates' }[] = [
 ];
 
 /** Place an activity puts its person at (undefined: stays where they are). */
-export function placeOfActivity(act: Activity): Place | undefined {
+export function placeOfActivity(act: NonNullable<Person['activity']>): Place | undefined {
   const [kind, arg] = act.affordanceId.split(':');
   if (
     (kind === 'post' ||
@@ -638,8 +412,7 @@ export function placeOfActivity(act: Activity): Place | undefined {
 // The World adapter
 // ---------------------------------------------------------------------------------------------
 
-export class WatchWorld implements World {
-  readonly catalog = [...DEFAULT_NORMS, ...WATCH_NORMS];
+export class WatchWorld {
   private readonly s: WatchState;
   /** Offer the warned section as dangerous already (for the Keeper's dusk reads; never stepped). */
   private readonly expect: boolean;
@@ -701,7 +474,7 @@ export class WatchWorld implements World {
     const v = villager(s, id);
     const here = s.place[id];
     const out: Affordance[] = [];
-    const brk = inBreak(p);
+
     // At dusk every free post is open; once night falls a watcher on the wall weighs only staying where they are
     // against leaving it, unless the Keeper has sent word of another post (the posting or a card's ask).
     const night = s.phase === 'night' && isPost(here);
@@ -782,7 +555,11 @@ export class WatchWorld implements World {
       if (
         (v.prays || Boolean(personChapter(s.castChapter, WATCH_CAST[p.id]))) &&
         p.agenda.commitments.some(
-          (c) => c.status === 'pending' && c.kind === 'worship' && c.from <= p.now && p.now < c.until,
+          (c) =>
+            c.status === 'pending' &&
+            c.kind === 'worship' &&
+            c.from <= minuteMs(p.now) &&
+            minuteMs(p.now) < c.until,
         )
       )
         out.push({
@@ -794,30 +571,27 @@ export class WatchWorld implements World {
           advertises: { meaning: 0.1 },
           tags: ['worship'],
         });
-      if (brk) {
-        out.push({
-          id: `freeze:${here}`,
-          action: 'freeze',
-          label: 'stand frozen',
-          duration: 30,
-          effort: 0,
-          advertises: {},
-          tags: ['break:freeze'],
-        });
-      }
-    }
-    if (brk)
       out.push({
-        id: 'run-off',
-        action: 'run-off',
-        label: 'run from the wall',
-        placeId: 'hall',
-        duration: 60,
-        effort: 0.5,
-        advertises: { safety: 0.3 },
-        tags: ['break:run'],
-        norms: LEAVE,
+        id: `freeze:${here}`,
+        action: 'freeze',
+        label: 'stand frozen',
+        duration: 30,
+        effort: 0,
+        advertises: {},
+        tags: ['break:freeze'],
       });
+    }
+    out.push({
+      id: 'run-off',
+      action: 'run-off',
+      label: 'run from the wall',
+      placeId: 'hall',
+      duration: 60,
+      effort: 0.5,
+      advertises: { safety: 0.3 },
+      tags: ['break:run'],
+      norms: LEAVE,
+    });
     out.push({
       id: 'flee',
       action: 'flee',
@@ -958,7 +732,11 @@ export class WatchWorld implements World {
     if (
       (s.cast[p.id]?.prays || Boolean(personChapter(s.castChapter, WATCH_CAST[p.id]))) &&
       p.agenda.commitments.some(
-        (c) => c.status === 'pending' && c.kind === 'worship' && c.from <= p.now && p.now < c.until,
+        (c) =>
+          c.status === 'pending' &&
+          c.kind === 'worship' &&
+          c.from <= minuteMs(p.now) &&
+          minuteMs(p.now) < c.until,
       )
     )
       out.push({
@@ -973,6 +751,7 @@ export class WatchWorld implements World {
     if (
       p.id === 'kian' &&
       s.refugeVisit?.status === 'agreed' &&
+      s.refugeVisit.careCompletedAt === undefined &&
       s.grain >= 0.1 &&
       (s.homeThreat.west ?? -1e9) <= p.now - 90
     )
@@ -987,31 +766,12 @@ export class WatchWorld implements World {
         advertises: { belonging: 0.2, rest: 0.1 },
         tags: ['care'],
       });
-    applyLifeOffers('watch', p, out, s.castChapter);
+
     return out;
   }
 
   perceptsFor(p: Person, since: number, until: number): Percept[] {
     const q = this.s.percepts[p.id] ?? [];
     return q.filter((x) => x.at > since && x.at <= until);
-  }
-
-  resolve(p: Person, act: Activity, reason: 'ended' | 'interrupted'): Outcome {
-    const at = Math.max(p.now, reason === 'ended' ? act.endsAt : p.now);
-    if (act.action === 'care-ada' && reason === 'ended' && !completedAdaCare(this.s, at))
-      return { affordanceId: act.affordanceId, action: act.action, targetId: 'ada', status: 'failed', at };
-    const span = Math.max(1, act.endsAt - act.startedAt);
-    const share = reason === 'ended' ? 1 : Math.max(0, Math.min(1, (at - act.startedAt) / span));
-    const needs: Outcome['needs'] = {};
-    for (const [k, v] of Object.entries(act.affordance.advertises))
-      needs[k as keyof typeof needs] = (v ?? 0) * share;
-    return {
-      affordanceId: act.affordanceId,
-      action: act.action,
-      ...(act.targetId !== undefined ? { targetId: act.targetId } : {}),
-      status: reason === 'ended' ? 'completed' : 'interrupted',
-      at,
-      needs,
-    };
   }
 }

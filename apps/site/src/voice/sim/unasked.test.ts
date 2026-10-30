@@ -1,5 +1,5 @@
-import type { DecisionRecord } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
+import type { DecisionRecord } from './hf4-model.ts';
 import { noteUnasked, type UnaskedState, unaskedView } from './unasked.ts';
 
 const DAY = 1440;
@@ -10,7 +10,6 @@ const rec = (o: Partial<DecisionRecord> & { at: number; chosen: string; ids: str
   chosenAction: o.chosen,
   considered: o.ids.map((id) => ({ affordanceId: id, action: id, utility: 0.5, terms: [] })),
   intention: '',
-  narration: '',
   ...(o.review ? { review: true } : {}),
   ...(o.suggestions ? { suggestions: o.suggestions } : {}),
 });

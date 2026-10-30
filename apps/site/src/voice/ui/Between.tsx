@@ -63,7 +63,7 @@ export function Between({
       }),
     );
 
-  const change = trustChangeWords(view.trust.from, view.trust.to);
+  const change = view.trust.change;
   const recapWords = (line: string) =>
     line.replace(/His trust in you went (\d+(?:\.\d+)?) → (\d+(?:\.\d+)?)\./, (_, from: string, to: string) =>
       trustChangeWords(Number(from), Number(to)),
@@ -126,7 +126,8 @@ export function Between({
       {skip && (
         <div className="v-whispers">
           <p className="v-whispers-head">
-            Choose up to two suggestions for the days you skip. You can also leave this empty.
+            Choose up to two suggestions for the days you skip. You can also leave this empty. With two, you
+            offer them in turn; he does not hear both at every choice.
             <span>
               {picked.length}/{MAX_WHISPERS}
             </span>

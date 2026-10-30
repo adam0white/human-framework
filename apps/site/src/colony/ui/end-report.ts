@@ -3,7 +3,7 @@ import type { Hindsight } from '../sim/hindsight.ts';
 import type { OrderCard } from '../sim/orders.ts';
 import { HOUSE_STAGES, STOREROOM_STAGES, type VillagerId } from '../sim/world-types.ts';
 import { dayClock, hhmm } from './contract.ts';
-import { moodDescription, trustDescription } from './descriptions.ts';
+import { moodDescription, progressDescription, trustDescription } from './descriptions.ts';
 
 /** A goal's number as the chips show it. */
 export function goalValue(g: Pick<GoalView, 'id' | 'target'>, s: GoalSide): string {
@@ -13,7 +13,6 @@ export function goalValue(g: Pick<GoalView, 'id' | 'target'>, s: GoalSide): stri
   // The Day-3 project is the store-room on both sides (a side still finishing the house shows 0).
   return `${s.value}/${STOREROOM_STAGES}`;
 }
-export const pct = (v: number) => `${Math.round(v * 100)}%`;
 
 /**
  * Game design review (GD2): the report never said what the orders changed. One sentence from the Human-minus-Solo
@@ -39,7 +38,7 @@ export function ordersChanged(summary: EndSummary): string {
     if (h !== s) diffs.push(`${label} ${h} (without you: ${s})`);
   };
   row('meals stored', String(sb.human.meals), String(solo.meals));
-  row('house', `${sb.human.housePct}%`, `${solo.housePct}%`);
+  row('house', progressDescription(sb.human.housePct / 100), progressDescription(solo.housePct / 100));
   row('injuries', String(sb.human.injuries), String(solo.injuries));
   row('morale', moodDescription(ch.morale), moodDescription(solo.morale));
   row('trust in you', trustDescription(ch.trust), trustDescription(solo.trust));
@@ -95,10 +94,10 @@ export function nearMisses(summary: EndSummary): { side: 'Classic' | 'Human'; te
         });
       } else if (d.houseAtStorm !== null && d.houseAtStorm >= HOUSE_STAGES - 2) {
         const short = HOUSE_STAGES - Math.floor(d.houseAtStorm);
-        const done = Math.round((d.houseAtStorm % 1) * 100);
+        const done = d.houseAtStorm % 1;
         out.push({
           side,
-          text: `The roof needed ${NUMBER[short]?.toLowerCase()} more building step${short === 1 ? '' : 's'} at 19:00${done > 0 ? `; the next was ${done}% done` : ''}.`,
+          text: `The roof needed ${NUMBER[short]?.toLowerCase()} more building step${short === 1 ? '' : 's'} at 19:00${done > 0 ? `; the next was ${progressDescription(done)}` : ''}.`,
         });
       }
     }

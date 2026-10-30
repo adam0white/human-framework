@@ -16,14 +16,6 @@ export function resolveSiteFramework(appRoot: string) {
   const workspaceManifest = resolve(appRoot, '../../packages/human/package.json');
   const workspace = read(workspaceManifest);
   const frameworkLibrary: string = workspace.version;
-  if (frameworkLibrary === pin) {
-    return {
-      entry: resolve(dirname(workspaceManifest), 'src/index.ts'),
-      manifest: workspaceManifest,
-      framework: pin,
-      frameworkLibrary,
-    };
-  }
   try {
     // Node's import.meta.resolve parent argument is experimental. An eval module starts in
     // cwd, so this uses stable ESM resolution from the app (including import exports),

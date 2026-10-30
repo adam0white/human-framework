@@ -39,23 +39,27 @@ function details(game: ColonyGame, side: 'Human' | 'Classic'): string {
     }),
   );
   expect(JSON.stringify(colonyState(game))).toBe(before);
-  const row = [...node.querySelectorAll('.well-order-goals > p')].find((p) =>
+  const row = [...node.querySelectorAll('.well-order-goals .well-building-progress')].find((p) =>
     p.textContent?.startsWith(`${side} village:`),
   );
   if (!row?.textContent) throw new Error(`Missing ${side} building details`);
-  return row.textContent;
+  expect(row.closest('details:not([open])')).toBeNull();
+  const body = row.closest('.well-building-side');
+  expect(row.textContent).not.toContain('meals');
+  expect(body?.querySelector('.well-building-meals')).not.toBeNull();
+  return body?.textContent ?? '';
 }
 
-it('does not call materials paid for actual default Human builders before their first resolution', () => {
+it('does not claim Human construction or paid materials before an actual start', () => {
   const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
   game.advance(1);
   const view = game.frame({ buildingDetails: true }).humanWorld.construction;
   expect(view).toMatchObject({ stockTimber: 6, nextStage: 3, nextTimber: 2, payment: 'unpaid' });
-  expect(view?.active.map((a) => a.personId)).toEqual(['tariq', 'yusuf']);
+  expect(view?.active).toEqual([]);
   const snapshot = game.human.snapshot() as { host: { buildPaid: boolean } };
   expect(snapshot.host.buildPaid).toBe(false);
   const text = details(game, 'Human');
-  expect(text).toContain('Yusuf is working on stage 3.');
+  expect(text).not.toContain('Yusuf is working on stage 3.');
   expect(text).toContain('2 timber needed from stores');
   expect(text).not.toContain('materials already on site');
   expect(text).not.toContain('Materials for this stage are already on site');
@@ -90,4 +94,49 @@ it('describes an actual Classic beam dependency wait without claiming the roof s
   expect(text).toContain('No further stage can be claimed yet.');
   expect(text).not.toContain('All remaining stages are claimed');
   expect(text).not.toContain('Building is complete');
+});
+
+it('shows current materials and actual selected-stage work in the first About inspector', async () => {
+  const { Inspector } = await import('./Inspector.tsx');
+  const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+  const frame = game.frame({ buildingDetails: true, personId: 'yusuf' });
+  const before = JSON.stringify(colonyState(game));
+  const node = document.createElement('div');
+  node.innerHTML = renderToStaticMarkup(
+    createElement(Inspector, { personId: 'yusuf', frame, why: null, onClose: () => {} }),
+  );
+  const human = node.querySelector('[aria-label="Human person"]');
+  expect(human?.textContent).toContain('Timber in store: 6');
+  expect(human?.textContent).toContain('2 timber needed from stores');
+  expect(human?.textContent).not.toContain('Yusuf is working on stage');
+  expect(JSON.stringify(colonyState(game))).toBe(before);
+  const other = game.frame({ buildingDetails: true, personId: 'maryam' });
+  node.innerHTML = renderToStaticMarkup(
+    createElement(Inspector, { personId: 'yusuf', frame: other, why: null, onClose: () => {} }),
+  );
+  expect(node.textContent).not.toContain('minutes of Yusuf’s work');
+  expect(node.textContent).not.toContain('Building is not currently offered to this person.');
+});
+
+it('explains remaining stage prices and an unfinished roof without promising another order will finish it', async () => {
+  const { ConstructionRequirements, RoofRisk } = await import('./Construction.tsx');
+  const { WARNING_AT } = await import('../sim/world-types.ts');
+  const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+  const frame = game.frame({ buildingDetails: true, personId: 'yusuf' });
+  const node = document.createElement('div');
+  node.innerHTML = renderToStaticMarkup(createElement(ConstructionRequirements, { world: frame.humanWorld }));
+  const rows = [...node.querySelectorAll('tbody tr')].map((r) => r.textContent);
+  expect(rows).toContain('Stage 7 · beam245');
+  expect(rows).toContain('Stage 85600');
+  expect(node.textContent).toContain('Human builders add progress through work sessions');
+  node.innerHTML = renderToStaticMarkup(
+    createElement(RoofRisk, { world: frame.humanWorld, minute: WARNING_AT, side: 'Human' }),
+  );
+  expect(node.textContent).toContain('Human roof goal at risk');
+  expect(node.textContent).toContain('Due by 19:00 on day 2');
+  expect(
+    renderToStaticMarkup(
+      createElement(RoofRisk, { world: frame.humanWorld, minute: WARNING_AT - 1, side: 'Human' }),
+    ),
+  ).toBe('');
 });

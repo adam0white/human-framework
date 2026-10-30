@@ -9,12 +9,7 @@
     "emitDeclarationOnly": true,
     "declarationDir": ".types",
     "paths": {
-      "@adam0white/human-framework": [
-        "./node_modules/@adam0white/human-framework/dist/index.d.ts",
-        "../../packages/human/src/index.ts"
-      ],
-      "@adam0white/lab-client": ["../../packages/lab-client/src/index.ts"],
-      "@adam0white/lab-kit": ["../../packages/lab-kit/src/index.ts"]
+      "@adam0white/human-framework": ["./node_modules/@adam0white/human-framework/dist/index.d.ts"]
     }
   },
   "include": ["src", "test", "worker", "vite.config.ts", "hf-resolution.ts"],

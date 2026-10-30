@@ -1,10 +1,10 @@
-import { ENGINE_VERSION } from '@adam0white/human-framework';
+/** Playback presentation controls; full-game clock and replay are in hf4-control.test.ts. */
 import { describe, expect, it } from 'vitest';
+import { FRAMEWORK_PACKAGE_VERSION as ENGINE_VERSION } from '../../shared/playtest.ts';
 import type { WorkerReply } from '../protocol.ts';
-import { NUDGES, SCENARIO_VERSION } from './game.ts';
+import { SCENARIO_VERSION } from './game.ts';
 import { createFrameworkHumanSide } from './human.ts';
 import { coalesce, Playback } from './playback.ts';
-import { at, WARNING_AT } from './world-types.ts';
 
 function start(autoPause = true): Playback {
   const pb = new Playback(createFrameworkHumanSide);
@@ -92,34 +92,6 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
     expect(pb.game?.log).toEqual([]);
   });
 
-  it('reads the storm warning for three seconds before restoring Watching', () => {
-    const pb = start();
-    pb.handle({ type: 'resume' });
-    for (const n of NUDGES) pb.handle({ type: 'dismissNudge', id: n.id });
-    pb.game?.advance(WARNING_AT - 1);
-    expect(pb.step(8)).toBe(1);
-    expect(pb.state()).toMatchObject({
-      pace: 'reading',
-      paceLine: 'Time is slowed because the storm is coming.',
-    });
-    for (let i = 0; i < 13; i++) pb.handle({ type: 'tick', dtMs: 250 });
-    expect(pb.state().pace).toBe('watching');
-  });
-
-  it('runs an asleep village at Night and keeps the storm at Watching', () => {
-    const pb = start();
-    pb.handle({ type: 'resume' });
-    for (const n of NUDGES) pb.handle({ type: 'dismissNudge', id: n.id });
-    pb.game?.advance(at(1, 23));
-    expect(pb.game?.human.view().map((person) => person.state)).toEqual(Array(6).fill('asleep'));
-    expect(pb.state().pace).toBe('night');
-    pb.handle({ type: 'setContext', context: { person: 'yusuf' } });
-    expect(pb.state().pace).toBe('looking');
-    pb.handle({ type: 'setContext', context: { person: null } });
-    pb.game?.advance(at(2, 23) - (pb.game?.minute ?? 0));
-    expect(pb.state().pace).toBe('watching');
-  });
-
   it('coalesces reasons of one minute into one pause named by the first', () => {
     const p = coalesce(
       [
@@ -137,45 +109,6 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
       minute: 100,
     });
     expect(coalesce([], 5)).toBeNull();
-  });
-
-  it('still reaches all five moments when every suggestion is followed during continuous play', () => {
-    const pb = start();
-    pb.handle({ type: 'resume' });
-    pb.handle({ type: 'setSpeed', speed: 2 });
-    const g = pb.game;
-    if (!g) throw new Error('no game');
-    while (!g.ended) {
-      pb.handle({ type: 'tick', dtMs: 250 });
-      expect(pb.paused).toBe(false);
-      for (const n of g.visibleNudges()) {
-        pb.handle({ type: 'order', input: { ...n.order, ...(n.prefill ?? {}) }, nudgeId: n.id });
-      }
-    }
-    expect(g.moments.map((m) => m.id).sort()).toEqual([1, 2, 3, 4, 5]);
-  });
-
-  it('offers "Another day" once after Day 2, re-pauses behind the goal card and runs Day 3', () => {
-    const pb = start();
-    const g = pb.game;
-    if (!g) throw new Error('no game');
-    g.advance(2880);
-    const replies = pb.handle({ type: 'resume' });
-    expect(replies.map((r) => r.type)).toEqual(['frame', 'ended']);
-    const f = replies[0];
-    expect(f?.type === 'frame' && f.frame.canContinue).toBe(true);
-    pb.handle({ type: 'continue' });
-    expect(pb.pause?.kind).toBe('start');
-    expect(g.endMinute).toBe(4320);
-    expect(g.frame().goals.map((x) => x.id)).toEqual(['project', 'stock', 'lives']);
-    expect(g.frame().canContinue).toBe(false);
-    pb.handle({ type: 'resume' });
-    g.advance(4320 - g.minute - 1);
-    const end = pb.handle({ type: 'tick', dtMs: 250 });
-    const summary = end.find((r) => r.type === 'ended');
-    expect(summary?.type === 'ended' && summary.summary.day).toBe(3);
-    expect(pb.handle({ type: 'continue' })[0]?.type).toBe('frame');
-    expect(g.endMinute).toBe(4320);
   });
 });
 

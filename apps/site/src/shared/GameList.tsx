@@ -43,6 +43,7 @@ export function GameList({ games }: { games: Game[] }) {
                   )}
                 </span>
                 <span className="game-line">{g.line}</span>
+                {g.publicNote && <span className="game-line">{g.publicNote}</span>}
                 <span className="game-shows">{g.faculties.join(' · ')}</span>
               </span>
             </a>

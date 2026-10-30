@@ -110,6 +110,7 @@ export function App() {
   }, [actions, readingScene, panelOpen]);
 
   const clockHeld = menuOpen || infoOpen || feedbackOpen || titleOpen || otherWays;
+  const clockStopped = Boolean((liveVoice.frame ?? frame)?.paused) || clockHeld;
   useEffect(() => {
     actions.setMenuOpen(clockHeld);
     return () => actions.setMenuOpen(false);
@@ -384,7 +385,8 @@ export function App() {
                 <DayLog
                   log={frame.log}
                   day={frame.day}
-                  paused={frame.paused || readingScene || panelOpen}
+                  paused={clockStopped}
+                  slowed={!clockStopped && (readingScene || panelOpen)}
                   {...(frame.pauseBeat ? { pauseBeat: frame.pauseBeat } : {})}
                   onWhy={openWhy}
                   selected={whyId}
@@ -396,6 +398,11 @@ export function App() {
           {!speaking && (
             <footer className="v-live-actions">
               <p>{settingWords(frame.muted ? 'You are silent today. Watch.' : speakCaption)}</p>
+              {readingScene && !frame.paused && !voice.sceneReading && (
+                <p role="status">
+                  Skip is off while these words are open. Close them above to return to the current moment.
+                </p>
+              )}
               <div>
                 {canSpeak && !frame.muted && (
                   <button
@@ -419,6 +426,7 @@ export function App() {
                       type="button"
                       className="v-btn"
                       aria-label="Skip to the next event"
+                      disabled={readingScene}
                       aria-pressed={voice.skipping}
                       onClick={actions.skip}
                     >

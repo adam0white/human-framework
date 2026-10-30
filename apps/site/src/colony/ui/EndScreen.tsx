@@ -7,7 +7,7 @@ import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';
 import type { Hindsight } from '../sim/hindsight.ts';
 import { formatClock } from '../sim/world-types.ts';
 import { dayClock, type EndSummary, NO_CONCEPT } from './contract.ts';
-import { moodDescription, trustDescription } from './descriptions.ts';
+import { moodDescription, progressDescription, trustDescription } from './descriptions.ts';
 import {
   cardEnd,
   classicOutcome,
@@ -19,6 +19,7 @@ import {
 } from './end-report.ts';
 import { wellTally } from './end-tally.ts';
 import { Icon, NoConcept } from './Icon.tsx';
+import { OrderWorkEvents } from './OrderWorkEvents.tsx';
 import { GoalChip, jobPhrase, PLACE_LABEL, shortName } from './parts.tsx';
 
 type HindsightState =
@@ -63,7 +64,7 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
   const misses = nearMisses(summary);
   if (h.kind === 'idle' && misses.length === 0) return null;
   return (
-    <section className="end-hindsight" aria-label="What would have won">
+    <section className="end-hindsight" aria-label="One plan replayed">
       {misses.length > 0 && (
         <ul className="end-misses">
           {misses.map((m) => (
@@ -75,9 +76,13 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
       )}
       {h.kind !== 'idle' && (
         <details className="end-fold">
-          <summary>What would have won</summary>
+          <summary>One plan replayed</summary>
+          <p>
+            We try one plan that repeatedly sends Rush orders, from four possible starting times. This does
+            not compare every plan or score care for prayer and rest.
+          </p>
           <p className="end-won" aria-live="polite">
-            <b>What would have won (Human):</b>{' '}
+            <b>One plan replayed (Human):</b>{' '}
             {settingWords(
               h.kind === 'working'
                 ? 'Trying a simple plan from the same starting conditions…'
@@ -98,16 +103,16 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
 function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string }) {
   const { scoreboard: sb, solo, character: ch } = summary;
   // These rows are read at the end of the run, after the storm; the goal rows above them are judged at their
-  // deadline (the roof at 19:00, before the storm). A house can read 9/10 at the deadline and 100% at dawn.
+  // deadline (the roof at 19:00, before the storm). A roof can be unfinished at the deadline and finished at dawn.
   const end = summary.day === 3 ? 'Day 4 dawn' : 'Day 3 dawn';
   const village: [string, string, string, string, string][] = [
     ['Meals stored', end, String(sb.classic.meals), String(sb.human.meals), String(solo.meals)],
     [
       'House built',
       `${end}, after the storm`,
-      `${sb.classic.housePct}%`,
-      `${sb.human.housePct}%`,
-      `${solo.housePct}%`,
+      progressDescription(sb.classic.housePct / 100),
+      progressDescription(sb.human.housePct / 100),
+      progressDescription(solo.housePct / 100),
     ],
     [
       'Injuries',
@@ -167,6 +172,13 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
         </tbody>
       </table>
       <p className="end-changed">{ordersChanged(summary)}</p>
+      {summary.deadline.human.roofAt === null &&
+        summary.goals.some((g) => g.id === 'roof' && g.human.status === 'failed') && (
+          <p>
+            The Human roof is unfinished. No whole-roof finish-time estimate is available. Future work choices
+            can change the time.
+          </p>
+        )}
       <HindsightBlock summary={summary} />
       {summary.cards.length > 0 && (
         <details className="end-fold">
@@ -180,6 +192,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
                 <span className={`end-says says-${c.human.state}`}>{settingWords(humanOutcome(c))}</span>
                 {settingWords(humanQuotes(c) ? ` (${humanQuotes(c)})` : '')}
                 {settingWords(cardEnd(c) ? ` · ${cardEnd(c)}` : '')}
+                <OrderWorkEvents events={c.human.workEvents} />
               </li>
             ))}
           </ul>

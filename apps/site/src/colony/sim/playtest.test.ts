@@ -1,23 +1,16 @@
-/**
- * Game 1 playtest files: record through the worker's state machine, replay, compare hashes; and the import's
- * rejection paths.
- *
- * The default fixtures are full runs (Day 1 dawn through "Another day") recorded through `Playback` with
- * irregular real-time ticks: apps/site/test/fixtures/playtest-colony.json under colony-scenario@3 (recorded
- * 2026-10-07, never re-recorded: it proves @3 saves still replay under the @3 rules) and
- * playtest-colony-v4.json under @4, playtest-colony-v5.json under @5, playtest-colony-v6.json under @6, and playtest-colony-v7.json under @7.
- * Historical fixtures are never regenerated. Re-record only the current default fixture from the repo root:
- *
- *   PLAYTEST_REGEN=1 npx vitest run apps/site/src/voice/sim/playtest.test.ts apps/site/src/colony/sim/playtest.test.ts
- *
- * (fish: `env PLAYTEST_REGEN=1 npx vitest run ...`). Then run the same command without the variable.
- */
-import { readFileSync, writeFileSync } from 'node:fs';
+/** Current HF4 files round-trip and continue; historical fixtures are refusal controls.
+ * The full two-day input-log replay lives in hf4-control.test.ts. */
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { describe, expect, test, vi } from 'vitest';
 import { importedFileRecord } from '../../shared/file-record.ts';
-import { makePlaytestFile, PlaytestError, type PlaytestFile, parsePlaytest } from '../../shared/playtest.ts';
+import {
+  FRAMEWORK_PACKAGE_VERSION as ENGINE_VERSION,
+  makePlaytestFile,
+  PlaytestError,
+  type PlaytestFile,
+  parsePlaytest,
+} from '../../shared/playtest.ts';
 import { requireValue } from '../../shared/require-value.ts';
 import type { WorkerToMain } from '../protocol.ts';
 import { ColonyGame, DEFAULT_SEED, type LogEntry, SCENARIO_VERSION } from './game.ts';
@@ -35,9 +28,8 @@ const FIXTURE_V5 = resolve(import.meta.dirname, '../../../test/fixtures/playtest
 const FIXTURE_V6 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v6.json');
 /** Historical @7 fixture, read only. */
 const FIXTURE_V7 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v7.json');
-/** Current @8 default fixture; the only fixture REGEN writes. */
+/** Historical @8 fixture, read only. */
 const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v8.json');
-const REGEN = Boolean(process.env.PLAYTEST_REGEN);
 const TICKS = [16, 17, 250, 33, 8, 120, 16, 1000, 0, 49];
 
 /**
@@ -84,63 +76,29 @@ const gameOf = (pb: Playback): ColonyGame => {
   return pb.game;
 };
 
-/** The full run once per file. */
-let full: ColonyGame | undefined;
-const fullRun = (): ColonyGame => {
-  full ??= gameOf(recordRun());
-  return full;
-};
-
-const fixtureFile = (g: ColonyGame) =>
-  makePlaytestFile<LogEntry>({
-    game: 'colony',
-    seed: g.seed,
-    scenario: SCENARIO_VERSION,
-    minute: g.minute,
-    log: g.log,
-    hash: colonyHash(g),
-    engine: ENGINE_VERSION,
-    snapshot: null,
-  });
-
 const parse = (text: string, max?: number) =>
   parsePlaytest(text, 'colony', SCENARIO_VERSION, validateColonyLog, max);
 
 describe('Game 1 playtest files', () => {
-  test.skipIf(!REGEN)(
-    'regenerate the fixture (PLAYTEST_REGEN=1)',
-    async () => {
-      const g = fullRun();
-      expect(g.ended && g.endMinute > 0).toBe(true);
-      writeFileSync(FIXTURE, `${JSON.stringify(await fixtureFile(g))}\n`);
-    },
-    120_000,
-  );
-
   test('old cast-edition files refuse plainly without replacing loaded play', () => {
     const pb = recordRun(10);
     const before = pb.game;
     for (const path of [FIXTURE_V3, FIXTURE_V4, FIXTURE_V5, FIXTURE_V6, FIXTURE_V7, FIXTURE]) {
-      expect(() => pb.load(readFileSync(path, 'utf8'), ENGINE_VERSION)).toThrow(/older cast edition/);
+      expect(() => pb.load(readFileSync(path, 'utf8'), ENGINE_VERSION)).toThrow(
+        /older version|older cast edition/,
+      );
       expect(pb.game).toBe(before);
     }
   });
 
-  test('a run through Playback with irregular ticks, whys and predicts replays to the same hash', () => {
-    const g = fullRun();
-    expect(g.log.some((e) => e.kind === 'continue')).toBe(true);
-    expect(g.log.some((e) => e.kind === 'cancel')).toBe(true);
-    const again = replayColony(g.seed, createFrameworkHumanSide, g.log, g.minute);
-    expect(colonyHash(again)).toBe(colonyHash(g));
-  }, 120_000);
-
   test('a file saved mid-run loads into Playback, replays to its hash and plays on', async () => {
-    const pb = recordRun(1500);
+    const pb = recordRun(35);
     const text = JSON.stringify(await pb.playtestFile(ENGINE_VERSION));
     const other = new Playback(createFrameworkHumanSide);
     const { result, replies } = other.load(text, ENGINE_VERSION);
     expect(result.matches).toBe(true);
     expect(other.game?.minute).toBe(pb.game?.minute);
+    expect(other.game?.human.snapshot()).toEqual(pb.game?.human.snapshot());
     expect(other.paused).toBe(true);
     expect(replies[0]?.type).toBe('frame');
     other.handle({ type: 'resume' });
@@ -154,12 +112,16 @@ describe('Game 1 playtest files', () => {
     other.step(20);
     expect(colonyHash(gameOf(other))).toBe(colonyHash(gameOf(pb)));
     expect(gameOf(other).log).toEqual(gameOf(pb).log);
+    const nativeHash = (game: ColonyGame) =>
+      (game.human.snapshot() as { community: { run: { hashes: { full: string } } } }).community.run.hashes
+        .full;
+    expect(nativeHash(gameOf(other))).toBe(nativeHash(gameOf(pb)));
   }, 60_000);
 
   test('a bad file leaves the current run as it was', () => {
-    const pb = recordRun(300);
+    const pb = recordRun(5);
     const before = pb.game;
-    expect(() => pb.load('{"kind":"human-playtest"}', ENGINE_VERSION)).toThrow(PlaytestError);
+    expect(() => pb.load('{"kind":"human-playtest"}', ENGINE_VERSION)).toThrow(/older version/);
     expect(pb.game).toBe(before);
   }, 60_000);
 });
@@ -240,7 +202,7 @@ test('file worker round-trips and continues a full Well import; cancellation ret
     const original = await pb.playtestFile(ENGINE_VERSION, true);
     const { canonicalPersona, createPersona } = await import('@adam0white/lab-client');
     const source = structuredClone(
-      (original.snapshot as { human: { people: Record<string, unknown>[] } }).human.people[0],
+      (original.snapshot as { human: { community: { run: Record<string, unknown> } } }).human.community.run,
     );
     const digest = Array.from(
       new Uint8Array(

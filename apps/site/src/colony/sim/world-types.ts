@@ -3,7 +3,8 @@
  * roster, per-side world state and the scenario roll. Both the Classic side and any HumanSide read these,
  * so "same seed, same schedule" holds by construction. Pure TS; no DOM, no wall clock, no Math.random.
  */
-import { DEFAULT_PRAYER_TIMES } from '@adam0white/human-framework';
+const DEFAULT_PRAYER_TIMES = { fajr: 300, dhuhr: 750, asr: 960, maghrib: 1125, isha: 1215 };
+
 import { type PlaceId, placeById, spotFor, type Tile } from './map.ts';
 
 export type Minute = number;
@@ -44,7 +45,7 @@ export function formatClock(m: Minute): string {
 export type PrayerId = 'fajr' | 'dhuhr' | 'asr' | 'maghrib' | 'isha';
 
 /**
- * Fixed prayer times as minute of day (spec §2): the framework's `DEFAULT_PRAYER_TIMES`, so the adhan and the
+ * Fixed prayer times as minute of day (spec §2), so the adhan and the
  * villagers' prayer windows cannot drift apart (quality review 2026-10-04 §4). Only the labels are the game's.
  */
 export const PRAYER_TIMES: readonly { id: PrayerId; label: string; minuteOfDay: number }[] = [

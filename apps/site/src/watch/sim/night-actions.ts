@@ -6,18 +6,19 @@
  * This does not add healing, remote orders, moments or guaranteed obedience.
  */
 import {
-  addTiredness,
-  outwardSigns,
-  predictAs,
+  exertActor,
+  actorSigns as outwardSigns,
+  previewChoice,
   type SimEvent,
-  selfReport,
-} from '@adam0white/human-framework';
+  actorReport as selfReport,
+} from './actor.ts';
 import { type PostId, postSection, type SectionId, type WatcherId } from './config.ts';
 import { ask, readWords } from './moments.ts';
 import { alert, inVoice, ownReason, presentIds, theSection } from './night.ts';
+import { answerNightRecord, beginNightRecord } from './night-records.ts';
 import { isPost, KEEPER_ID, nameOf, personOf, villager, WatchWorld } from './people.ts';
 import { keeperFatigue } from './reads.ts';
-import type { WatchState } from './state.ts';
+import { installActorViews, type WatchState } from './state.ts';
 
 /** Host tuning: a brief hard crossing, on the existing zero-to-one exertion scale. */
 const DEPARTURE_EXERTION = 0.08;
@@ -33,6 +34,7 @@ export interface NightAct {
   available: boolean;
 }
 export interface NightRequest {
+  accountId?: number;
   kind: NightInput['k'];
   who: WatcherId;
   affordance: string;
@@ -97,7 +99,7 @@ function viewFor(s: WatchState, input: NightInput, affordance: string): WatchSta
   if (!affordance.startsWith('post:')) return s;
   // A named helper can join this watcher. Nothing changes for other asks or legacy logs.
   const id = input.k === 'down' ? input.who : input.by;
-  return {
+  return installActorViews({
     ...s,
     place: { ...s.place, [input.who]: 'village' },
     asks: {
@@ -113,7 +115,7 @@ function viewFor(s: WatchState, input: NightInput, affordance: string): WatchSta
         until: s.minute + 60,
       },
     },
-  };
+  });
 }
 
 function reading(s: WatchState, id: WatcherId, input: NightInput, affordance: string): string {
@@ -121,18 +123,13 @@ function reading(s: WatchState, id: WatcherId, input: NightInput, affordance: st
   if (!p) return 'You cannot tell.';
   const view = viewFor(s, input, affordance);
   const offers = new WatchWorld(view).affordancesFor(p);
-  const { resolution, confidence } = predictAs(
-    s.keeper,
-    p,
-    offers,
-    {
-      voiceId: KEEPER_ID,
-      affordanceId: affordance,
-      strength: 0.85,
-      appeal: 'duty',
-    },
-    { now: s.minute },
-  );
+  const { resolution, confidence } = previewChoice(view, p.id, offers, {
+    voiceId: KEEPER_ID,
+    affordanceId: affordance,
+    strength: 0.85,
+    appeal: 'duty',
+  });
+  if (!resolution) return 'You cannot tell.';
   const word =
     confidence < 0.2
       ? "can't tell"
@@ -143,7 +140,7 @@ function reading(s: WatchState, id: WatcherId, input: NightInput, affordance: st
           : resolution.verdict === 'refused'
             ? "won't"
             : 'unsure';
-  return readWords({ word, confidence, ...(resolution.says ? { why: resolution.says } : {}) });
+  return readWords({ word, confidence, ...(resolution.reason ? { why: resolution.reason } : {}) });
 }
 
 /** Shared projection for the phone, text harness and HF playtester. Unreachable acts retain their explanation. */
@@ -268,6 +265,8 @@ export function applyNightAct(s: WatchState, input: NightInput): boolean {
     section: postSection(pl),
     until: s.minute + 60,
   };
+  const request = s.nightRequests[id];
+  if (request) request.accountId = beginNightRecord(s, input, id, request);
   ask(s, id, affordance);
   return true;
 }
@@ -283,10 +282,16 @@ export function resolveNightRequest(s: WatchState, e: SimEvent, before = s.place
   const r = s.nightRequests?.[e.personId];
   if (!r || (r.afterMinute !== undefined && e.at <= r.afterMinute)) return;
   if (s.minute >= r.until) {
+    answerNightRecord(s, r, 'expired', r.until);
     delete s.nightRequests?.[e.personId];
     return;
   }
   if (e.kind === 'decide' && e.affordanceId !== r.affordance) {
+    const answer =
+      e.verdict === 'refused' || e.verdict === 'deferred' || e.verdict === 'modified'
+        ? e.verdict
+        : 'not-started';
+    answerNightRecord(s, r, answer, e.at);
     alert(s, {
       section: r.section,
       kind: 'person',
@@ -298,10 +303,11 @@ export function resolveNightRequest(s: WatchState, e: SimEvent, before = s.place
     delete s.asks[e.personId];
   }
   if ((e.kind !== 'begin' && e.kind !== 'continue') || e.affordanceId !== r.affordance) return;
+  answerNightRecord(s, r, 'begun', e.at);
   const old = before[e.personId];
   if (s.nightDepartureEffort && r.kind !== 'down' && isPost(old) && r.affordance !== `post:${old}`) {
     const p = personOf(s, e.personId);
-    if (p) addTiredness(p, { exertion: DEPARTURE_EXERTION });
+    if (p && e.actionReceipt) exertActor(s, p.id, { exertion: DEPARTURE_EXERTION }, e.actionReceipt);
   }
   delete s.nightRequests?.[e.personId];
   if (r.kind === 'down') release(s, e.personId);
@@ -318,6 +324,8 @@ export function resolveNightRequest(s: WatchState, e: SimEvent, before = s.place
         section: r.section,
         until: s.minute + 60,
       };
+      const outgoing = s.nightRequests[r.who];
+      if (outgoing) outgoing.accountId = beginNightRecord(s, { k: 'down', who: r.who }, r.who, outgoing);
       ask(s, r.who, 'sleep');
     }
   }

@@ -3,9 +3,10 @@
  * flat lines: the cast must change, new generations must appear, skills, fears and ties must differ between people
  * and over time, and the granary and the wall must not give the same outcome every year. Run with `npm run bench`.
  */
-import { skillLevel } from '@adam0white/human-framework';
+
 import { describe, expect, it } from 'vitest';
 import { playYears } from '../../../test/watch/years.ts';
+import { skillLevel } from './actor-effects.ts';
 import { living } from './life.ts';
 import { villager } from './people.ts';
 import { fearedSection } from './voices.ts';

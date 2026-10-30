@@ -50,6 +50,7 @@ export const DayLog = memo(function DayLog({
   log,
   pauseBeat,
   paused,
+  slowed = false,
   onWhy,
   selected,
   onRetainWhy,
@@ -62,11 +63,13 @@ export const DayLog = memo(function DayLog({
   moment?: ConversationMoment;
   pauseBeat?: { kind: BeatKind; text: string };
   paused: boolean;
+  slowed?: boolean;
   onWhy: (decisionId: string) => void;
   selected?: string | null;
   onRetainWhy?: (decisionId: string) => void;
 }) {
-  const [held, setHeld] = useState<LogEntry[] | null>(null);
+  const [retainedAnswer, setHeld] = useState<LogEntry[] | null>(null);
+  const held = day === undefined || retainedAnswer?.at(-1)?.day === day ? retainedAnswer : null;
   const seen = useRef<string | undefined>(undefined);
   const visible = held ?? log;
   // Presentation-only snapshots stay fixed while a row is retained, even when its earlier context is trimmed.
@@ -74,13 +77,15 @@ export const DayLog = memo(function DayLog({
   const retained = new Set([...log, ...(held ?? [])].map((e) => e.id));
   for (const id of scenes.current.keys()) if (!retained.has(id)) scenes.current.delete(id);
   for (const entry of log) {
-    if (!scenes.current.has(entry.id)) scenes.current.set(entry.id, conversationFor(entry, log, moment));
+    if (!scenes.current.has(entry.id) || (entry.connection && scenes.current.get(entry.id)?.length === 0))
+      scenes.current.set(entry.id, conversationFor(entry, log, moment));
   }
   const rows = useMemo(
     () => collapse(day === undefined ? visible : visible.filter((e) => e.day >= day)),
     [visible, day],
   );
   useLayoutEffect(() => {
+    if (retainedAnswer && !held) setHeld(null);
     const previous = seen.current;
     seen.current = log.at(-1)?.id;
     const start = previous ? log.findIndex((e) => e.id === previous) + 1 : 0;
@@ -96,7 +101,7 @@ export const DayLog = memo(function DayLog({
       setHeld(log.slice(0, answerIndex + 1));
       if (answer?.decisionId) onRetainWhy?.(answer.decisionId);
     }
-  }, [log, held, onRetainWhy]);
+  }, [log, held, retainedAnswer, onRetainWhy]);
   const scroller = useRef<HTMLDivElement>(null);
   const [stuck, setStuck] = useState(true);
   const [jump, setJump] = useState(0);
@@ -145,7 +150,7 @@ export const DayLog = memo(function DayLog({
               Latest task at {newerTask.clock}: {explainTerms(newerTask.text)}
             </>
           )}{' '}
-          {paused ? 'Clock paused.' : 'Clock continues.'}
+          {paused ? 'Clock paused.' : slowed ? 'Clock slowed while you read.' : 'Clock continues.'}
         </div>
       )}
       {!held && pauseBeat && paused && (

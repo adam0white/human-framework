@@ -18,20 +18,7 @@ export default defineConfig({
     alias: [
       { find: /^@adam0white\/human-framework$/, replacement: framework.entry },
       { find: /^@adam0white\/human-framework\/package\.json$/, replacement: framework.manifest },
-      // Keep the lab packages on source for fresh installs.
-      {
-        find: '@adam0white/lab-client/package.json',
-        replacement: resolve(root, '../../packages/lab-client/package.json'),
-      },
-      {
-        find: '@adam0white/lab-client',
-        replacement: resolve(root, '../../packages/lab-client/src/index.ts'),
-      },
-      {
-        find: '@adam0white/lab-kit/stage.css',
-        replacement: resolve(root, '../../packages/lab-kit/stage.css'),
-      },
-      { find: '@adam0white/lab-kit', replacement: resolve(root, '../../packages/lab-kit/src/index.ts') },
+      // Lab packages resolve from the app's immutable release tarball dependencies.
     ],
   },
   build: {

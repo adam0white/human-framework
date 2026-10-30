@@ -54,7 +54,6 @@ function telegraphFor(draft: Draft): Telegraph {
       text: 'Likely',
       says: 'Fine.',
       reason: 'he was close to it anyway',
-      likelihood: 0.72,
     };
   const text =
     c.tone === 'willNot' ? 'Won’t' : c.counter?.startsWith('pray') ? 'He’d do something like it' : 'Not now';
@@ -240,30 +239,30 @@ export class MockEngine {
             options: [
               {
                 label: 'repair in the workshop',
-                total: 1.42,
+                total: 'strong pull toward',
                 terms: [
-                  { label: 'money: Osman is owed', value: 0.71 },
-                  { label: 'his job', value: 0.48 },
-                  { label: 'habit', value: 0.31 },
-                  { label: 'effort', value: -0.08 },
+                  { label: 'money: Osman is owed', value: 'strong pull toward', direction: 'toward' },
+                  { label: 'his job', value: 'strong pull toward', direction: 'toward' },
+                  { label: 'habit', value: 'strong pull toward', direction: 'toward' },
+                  { label: 'effort', value: 'moderate pull away', direction: 'away' },
                 ],
               },
               {
                 label: 'rest at home',
-                total: 1.18,
+                total: 'strong pull toward',
                 terms: [
-                  { label: 'tired', value: 0.9 },
-                  { label: 'the chair', value: 0.4 },
-                  { label: 'grief', value: -0.12 },
+                  { label: 'tired', value: 'strong pull toward', direction: 'toward' },
+                  { label: 'the chair', value: 'strong pull toward', direction: 'toward' },
+                  { label: 'grief', value: 'moderate pull away', direction: 'away' },
                 ],
               },
               {
                 label: 'see the doctor',
-                total: 0.6,
+                total: 'strong pull toward',
                 terms: [
-                  { label: 'Selin said', value: 0.5 },
-                  { label: 'cost', value: -0.2 },
-                  { label: 'your suggestion', value: 0.3 },
+                  { label: 'Selin said', value: 'strong pull toward', direction: 'toward' },
+                  { label: 'cost', value: 'moderate pull away', direction: 'away' },
+                  { label: 'your suggestion', value: 'strong pull toward', direction: 'toward' },
                 ],
               },
             ],

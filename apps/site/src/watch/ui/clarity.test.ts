@@ -65,7 +65,7 @@ it('separates starting lantern from the selected person’s post actions', () =>
   expect(selected.querySelectorAll('.w-place')).toHaveLength(4);
   expect(selected.querySelector('.w-press[aria-pressed=true]')?.textContent).toBe('Urge');
   expect(selected.textContent).toContain('Choosing a post does not give a night off.');
-  expect(selected.textContent).toContain('At night, select the watcher. Choose Rest');
+  expect(selected.textContent).toContain('Ask them to take tonight off, until dawn.');
   expect(selected.querySelectorAll('.game-help-button')).toHaveLength(0);
 });
 it('keeps lantern and bell in the night action bar and people in the sheet', () => {
@@ -313,6 +313,7 @@ it('keeps a heard doze in the account and removes stale acts after relief while 
   const who = frame.watchers.find((w) => w.id === 'tamar');
   if (!who) throw new Error('Expected Tamar');
   who.post = 'gate-1';
+  who.account = { text: 'I’m here.', spoken: true };
   who.acts = [
     {
       input: { k: 'down', who: 'tamar' },
@@ -433,7 +434,7 @@ it('requires an explicit season recovery choice and loads that existing local pa
 });
 
 it('offers night off separately from posting only in the admitted village, with literal player wording', () => {
-  const state = newGame(2026, undefined, { duskRest: 'dusk-rest@1' });
+  const state = newGame(2026);
   applyInput(state, { k: 'start' });
   stepMinute(state);
   const frame = buildFrame(state, 0, false);
@@ -741,6 +742,47 @@ it('starts a normal new village with both public requests available', async () =
   );
   expect(begin).toBeDefined();
   await act(() => begin?.click());
-  expect(onNew).toHaveBeenCalledWith({ duskRest: 'dusk-rest@1', localWarning: 'local-warning@1' });
+  expect(onNew).toHaveBeenCalledWith();
   await act(() => root.unmount());
+});
+
+it('distinguishes same-seed shelf pages and shows older or unknown rules before opening', () => {
+  const base = { seed: 11, year: 1, when: 'winter', kind: 'auto' as const };
+  const el = render(
+    createElement(Shelf, {
+      shelf: [
+        { ...base, id: 'a:auto', chronicle: 'a', savedAt: 1000, scenario: 25 },
+        { ...base, id: 'b:auto', chronicle: 'b', savedAt: 2000, scenario: 12 },
+        { ...base, id: 'c:auto', chronicle: 'c', savedAt: 3000 },
+      ],
+      current: 'other',
+      actions,
+      onClose: vi.fn(),
+    }),
+  );
+  expect(el.textContent).toContain('Current game');
+  expect(el.textContent).toContain('Different version; start a fresh game');
+  expect(el.textContent).toContain('Version not recorded');
+  const rows = [...el.querySelectorAll('.w-pagerow')].map((r) => r.textContent);
+  expect(new Set(rows).size).toBe(3);
+});
+
+it('shows a saving failure during play without opening the menu', async () => {
+  const { useWatch } = await import('./useWatch.ts');
+  vi.mocked(useWatch).mockReturnValue({
+    frame: { ...dusk, phase: 'night' },
+    speed: 'watch',
+    error: null,
+    seed: 42,
+    shelf: [],
+    saving: false,
+    current: 'new',
+    actions,
+  });
+  const el = render(createElement(App));
+  const notice = [...el.querySelectorAll('[role=status]')].find((p) =>
+    p.textContent?.includes('not being saved'),
+  );
+  expect(notice?.textContent).toContain('download the run before leaving');
+  expect(el.querySelector('[aria-label="Game menu"]')?.getAttribute('aria-expanded')).toBe('false');
 });

@@ -17,6 +17,8 @@ export type Game = {
   href: string;
   line: string;
   faculties: string[];
+  /** A note shown on the public game list. Lab-only status stays in labNote. */
+  publicNote?: string;
   labNote?: string;
 };
 
@@ -109,6 +111,8 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Valley',
     href: 'https://valley.adamwhite.work',
+    publicNote:
+      'Valley stays on HF 3.0.0: HF 4 still exceeds runtime and archive budgets. Recheck 2026-11-24.',
     line: 'You keep an absent landlord’s seal while managing two hamlets for three years. Their households remember your decisions.',
     faculties: ['Will', 'Memory and belief', 'A whole life'],
   },

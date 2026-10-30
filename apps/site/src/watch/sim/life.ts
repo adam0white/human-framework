@@ -11,43 +11,41 @@
  * conception and pregnancy into one day; engineering simplification). Courtship meets on seeded days between
  * eligible single adults who fancy each other most (HF `attraction`, `court`); a ready courtship becomes a proposal
  * (HF `decide` over `proposeOffer`), answered by HF over `proposalOffers` with family voices and, when the Keeper
- * speaks, his voice. Households leave at a thaw after a hard winter when mood and trust in the Keeper are low and
- * ties are few. Not covered: divorce, illness by name (HF chronic conditions run underneath), inheritance of houses,
+ * speaks, his voice. Households may leave at a thaw when each adult chooses the public offer to leave.
+ * Grain shortage changes the offered prospects, not an adult’s consent. Not covered: divorce, illness by name (HF chronic conditions run underneath), inheritance of houses,
  * trade.
  */
+import { DEFAULT_NORMS } from '@adam0white/human-framework';
+import { type Affordance, actorAt, actorRuntime, type Person, readActor } from './actor.ts';
+import { acquaintance } from './actor-effects.ts';
 import {
-  type Affordance,
-  acquaintPerson,
-  addPerson,
   attraction,
-  birth,
+  bornActor,
   canMarry,
+  conceive,
   conceptionChance,
   court,
   courtshipStage,
-  createPerson,
   decide,
   die,
   familyVoices,
   GENERIC_CUSTOM,
   gestureVoiceTrust,
-  heldNorms,
   instructionFrom,
-  learnOutcome,
   type MarriageCustom,
   MINUTES_PER_YEAR,
   marry,
   meet,
-  type Person,
   proposalOffers,
   proposeOffer,
   type Routine,
   type RoutineActivity,
-  retell,
   skillLevel,
   spousesOf,
+  supportVoice,
   tellDeath,
-} from '@adam0white/human-framework';
+} from './actor-life.ts';
+import { arriveActor, flushActors, physicalLedger } from './actor-world.ts';
 import {
   DAY,
   type PostId,
@@ -55,21 +53,12 @@ import {
   RETIRE_AGE,
   SECTION_IDS,
   type SectionId,
-  START_GRAIN,
   WATCH_AGE,
   type WatcherId,
 } from './config.ts';
-import {
-  careCandidates,
-  equip,
-  isHere,
-  KEEPER_ID,
-  nameOf,
-  personOf,
-  personSeed,
-  them,
-  villager,
-} from './people.ts';
+import { minuteMs } from './hf4.ts';
+import { watchPerson } from './hf4-authoring.ts';
+import { careCandidates, isHere, KEEPER_ID, nameOf, personOf, them, villager } from './people.ts';
 import {
   type ChronicleLine,
   nextRandom,
@@ -92,6 +81,8 @@ const COURT_CHANCE = 0.25;
 const PROPOSE_CHANCE = 0.25;
 
 export { RETIRE_AGE };
+
+const acquaintPerson = (p: Person, q: Person, f: number, _at?: number) => acquaintance(p, q, f);
 
 /** Not asking yet: the alternative to a proposal. */
 const WAIT: Affordance = {
@@ -173,15 +164,8 @@ export const NAMES: Record<'female' | 'male', readonly string[]> = {
 };
 
 /** Sets (or adds) a voice a person heeds, at `trust`, as seeded host data. */
-export function setVoice(p: Person, voiceId: string, trust: number): void {
-  const t = Math.max(0, Math.min(1, trust));
-  const v = p.will.voices.find((x) => x.voiceId === voiceId);
-  if (v) v.trust = t;
-  else
-    p.will.voices = [
-      ...p.will.voices,
-      { voiceId, trust: t, pressure: 0, accepted: 0, refused: 0, history: [], seeded: true },
-    ];
+export function setVoice(p: Person, voiceId: string, _trust: number): void {
+  supportVoice(p, voiceId);
 }
 
 export function ageOf(p: Person, now: number): number {
@@ -379,29 +363,24 @@ export function freePostNear(s: WatchState, section: SectionId): PostId {
 
 /** A child born to `mother` and `father` at `at`. */
 export function bear(s: WatchState, mother: Person, father: Person, at: number): Person {
-  const n = s.nextBorn++;
-  const id = `b${n}`;
+  const reserved = s.expecting.find((e) => e.mother === mother.id)?.childId;
+  const n = reserved ? Number(reserved.slice(1)) : s.nextBorn++;
+  const id = reserved ?? `b${n}`;
   const sex = nextRandom(s) < 0.5 ? 'female' : 'male';
   const name = freshName(s, sex);
-  const child = birth(s.community, mother, father, {
-    id,
-    name,
-    seed: personSeed(s.seed, 1000 + n),
-    bornAt: at,
-    now: at,
-    sex,
-    aptitudes: ['sling', 'sight', 'craft'],
-    valueTransmission: 0.4,
-    normExposure: 0.5,
-  });
-  child.lexicon = { plainEnglish: true };
-  // A newborn's trust in the Keeper starts from the household's (the stories they will hear; upbringing moves it).
-  const trust =
-    ((mother.will.voices.find((x) => x.voiceId === KEEPER_ID)?.trust ?? 0.5) +
-      (father.will.voices.find((x) => x.voiceId === KEEPER_ID)?.trust ?? 0.5)) /
-    2;
-  setVoice(child, KEEPER_ID, trust);
-  equip(child);
+  const baseline = watchPerson(id, name, sex, 0, minuteMs(at));
+  // These two known caregivers are authored social context, independent of biological inheritance.
+  baseline.state.relationships = [mother, father].map((parent) => ({
+    otherId: parent.id,
+    roles: ['parent'],
+    affection: 0.75,
+    trust: 0.75,
+    familiarity: 0.9,
+    respect: 0.5,
+    ledger: 0,
+    lastInteraction: minuteMs(at),
+  }));
+  const child = bornActor(s, mother, father, id, name, sex, at, baseline);
   const mv = villager(s, mother.id);
   const fv = villager(s, father.id);
   const v: Villager = {
@@ -440,47 +419,72 @@ export function newcomer(
   sex: 'female' | 'male',
   age: number,
   at: number,
-  opts: { home?: SectionId; note?: string; ties?: { otherId: string; roles: string[] }[] } = {},
+  opts: {
+    home?: SectionId;
+    note?: string;
+    ties?: { otherId: string; roles: string[] }[];
+    spouseId?: string;
+  } = {},
 ): Person {
   const n = s.nextBorn++;
   const id = `n${n}`;
   const name = freshName(s, sex);
   const r = () => nextRandom(s);
-  const p = createPerson({
-    lexicon: { plainEnglish: true },
-    id,
-    name,
-    seed: personSeed(s.seed, 1000 + n),
-    now: at,
-    bornAt: at - age * MINUTES_PER_YEAR - Math.floor(r() * 300) * DAY,
-    sex,
-    traits: {
-      honesty: 0.25 + 0.5 * r(),
-      emotionality: 0.25 + 0.5 * r(),
-      extraversion: 0.25 + 0.5 * r(),
-      agreeableness: 0.25 + 0.5 * r(),
-      conscientiousness: 0.25 + 0.5 * r(),
-      openness: 0.25 + 0.5 * r(),
-    },
-    norms: heldNorms(
-      {
-        practice: 0.4,
-        extraNorms: [{ normId: 'keep-watch', standing: 'obligatory', conviction: 0.3 + 0.3 * r() }],
-      },
-      undefined,
-    ),
-    skills: { sling: 0.15 + 0.35 * r(), sight: 0.3 + 0.4 * r(), craft: 0.2 + 0.4 * r() },
-    relationships: (opts.ties ?? []).map((t) => ({
-      otherId: t.otherId,
-      roles: t.roles,
-      affection: 0.75,
-      trust: 0.75,
-      familiarity: 0.9,
+  const authored = watchPerson(id, name, sex, age, minuteMs(at));
+  authored.identity.birthAt -= minuteMs(Math.floor(r() * 300) * DAY);
+  authored.state.traits = {
+    honesty: 0.25 + 0.5 * r(),
+    emotionality: 0.25 + 0.5 * r(),
+    extraversion: 0.25 + 0.5 * r(),
+    agreeableness: 0.25 + 0.5 * r(),
+    conscientiousness: 0.25 + 0.5 * r(),
+    openness: 0.25 + 0.5 * r(),
+  };
+  authored.state.heldNorms = [
+    ...DEFAULT_NORMS.map((norm) => ({
+      normId: norm.id,
+      standing: norm.standing,
+      conviction: 0.5,
+      provenance: norm.provenance,
     })),
-    voices: [{ voiceId: KEEPER_ID, trust: 0.35 + 0.2 * r() }],
-  });
-  equip(p, { newcomer: true });
-  addPerson(s.community, p);
+    {
+      normId: 'keep-watch',
+      standing: 'obligatory',
+      conviction: 0.3 + 0.3 * r(),
+      provenance: {
+        kind: 'authored-world',
+        author: 'watch',
+        ruleId: 'newcomer-watch',
+        edition: 'watch-hf4-1',
+      },
+    },
+  ];
+  authored.state.skills = [
+    ['sling', 0.15 + 0.35 * r()],
+    ['sight', 0.3 + 0.4 * r()],
+    ['craft', 0.2 + 0.4 * r()],
+  ].map(([skill, level]) => ({
+    id: skill as string,
+    level: level as number,
+    practicedMs: 0,
+    lastPracticed: minuteMs(at),
+  }));
+  authored.state.relationships = (opts.ties ?? []).map((t) => ({
+    ...t,
+    affection: 0.75,
+    trust: 0.75,
+    familiarity: 0.9,
+    respect: 0.5,
+    ledger: 0,
+    lastInteraction: minuteMs(at),
+  }));
+  authored.state.voices = [{ voiceId: KEEPER_ID, trust: 0.35 + 0.2 * r() }];
+  authored.state.groups = ['incomers'];
+  if (opts.spouseId)
+    authored.state.bonds.marriages = [{ spouseId: opts.spouseId, since: minuteMs(at - 8 * 365 * DAY) }];
+  s.actorEvents.push(...arriveActor(s, authored));
+  const p = readActor(s, id);
+  if (!p) throw new Error('The newcomer was not admitted.');
   const home = opts.home ?? pick(s, SECTION_IDS);
   s.cast[id] = {
     id,
@@ -520,6 +524,14 @@ export function gone(s: WatchState, id: WatcherId, status: 'dead' | 'left'): voi
   if (!v) return;
   v.status = status;
   v.until = s.minute;
+  if (status === 'left') {
+    // Leaving withdraws village opportunities. Keep the complete person and
+    // admitted departure activity; it does not certify a destination arrival.
+    s.actorEvents.push(...flushActors(s, s.minute));
+    const runtime = actorRuntime(s);
+    s.actors.queued.push(...runtime.offerInputs(actorAt(s), [{ person: id, offers: [] }]));
+    s.actorEvents.push(...flushActors(s, s.minute));
+  }
   delete s.posts[id];
   delete s.press[id];
   delete s.postedAt[id];
@@ -532,17 +544,8 @@ export function gone(s: WatchState, id: WatcherId, status: 'dead' | 'left'): voi
 }
 
 /** Removes the dead and the gone from the community (their chronicle record stays). */
-export function prune(s: WatchState): void {
-  const keep = s.community.people.filter((p) => p.body.alive && s.cast[p.id]?.status === 'here');
-  if (keep.length === s.community.people.length) return;
-  const drop = new Set(s.community.people.filter((p) => !keep.includes(p)).map((p) => p.id));
-  s.community.people = keep;
-  for (const id of drop) {
-    delete s.community.idleUntil[id];
-    delete s.community.perceivedUntil[id];
-    if (s.community.dayDone) delete s.community.dayDone[id];
-    delete s.community.interrupts[id];
-  }
+export function prune(_s: WatchState): void {
+  // A single HF run retains its admitted people and lifecycle evidence. Departed villagers stop taking village offers.
 }
 
 function deathLine(s: WatchState, p: Person): string {
@@ -554,7 +557,7 @@ function deathLine(s: WatchState, p: Person): string {
     return `${v.name} died ${when}, a child of ${age}. The village buried ${them(s, p.id)} by the mill.`;
   if (age >= 60)
     return `${v.name} died ${when}, at ${age}. ${v.home === 'gate' ? 'The Gate' : 'The house'} is quiet.`;
-  return `${v.name} died ${when}, at ${age}, of a sickness that would not go away.`;
+  return `${v.name} died ${when}, at ${age}.`;
 }
 
 /**
@@ -716,9 +719,7 @@ function proposalRead(s: WatchState, answerer: Person, asker: Person): string {
     return 'You can’t tell what she will say.'.replace('she', answerer.life.sex === 'female' ? 'she' : 'he');
   const warm = courtshipStage(answerer, asker.id) === 'ready';
   const pron = answerer.life.sex === 'female' ? 'she' : 'he';
-  return warm
-    ? `They have been spending time together for a long while. ${pron === 'she' ? 'She' : 'He'} looks happy about it.`
-    : `You are not sure ${pron} is ready.`;
+  return warm ? `You think ${pron} may be ready to answer.` : `You are not sure ${pron} is ready.`;
 }
 
 /** The answer to a proposal, by HF with the family's voices and the Keeper's word (`word`: +1, −1 or null). */
@@ -811,13 +812,24 @@ function births(s: WatchState, at: number): void {
     const youngest = Math.min(...childrenOf(s, mother).map((c) => ageOf(c, at)), 99);
     if (youngest < 2) continue;
     // Not in the first nine months of a marriage (the birth folds conception and pregnancy into one day).
-    const wed = mother.bonds?.marriages.find((m) => m.spouseId === father.id && m.endedAt === undefined);
-    if (wed && at - wed.since < 270 * DAY) continue;
+    const held = actorRuntime(s).read({
+      perspective: { kind: 'person', observer: mother.id },
+      people: [],
+      select: [],
+      lifecycle: { kind: 'person', query: { kind: 'held-family', person: mother.id } },
+    }).lifecycle;
+    const wed =
+      held && 'marriages' in held
+        ? held.marriages.find((m) => m.spouseId === father.id && m.endedAt === undefined)
+        : undefined;
+    if (wed && minuteMs(at) - wed.since < minuteMs(270 * DAY)) continue;
     // A lean granary (less than a sack a head) halves the chance: families wait for a better year.
     const lean = s.grain < living(s).length ? 0.5 : 1;
     if (nextRandom(s) >= conceptionChance(mother, father, 1) * lean * crowding(s)) continue;
     // The news comes first; the child some months later.
-    s.expecting.push({ mother: mother.id, father: father.id, due: at + CARRYING_DAYS * DAY });
+    const childId = `b${s.nextBorn++}`;
+    const due = conceive(s, mother, father, childId);
+    s.expecting.push({ mother: mother.id, father: father.id, due, childId });
     chronicle(
       s,
       'birth',
@@ -884,7 +896,7 @@ function lessonCard(s: WatchState, at: number): void {
     kind: 'practise',
     who: young.id,
     other: teacher.id,
-    text: `${nameOf(s, young.id)} asks if ${nameOf(s, teacher.id)} could teach ${them(s, young.id)} to use a sling this summer, in the evenings after work in the fields.`,
+    text: `${nameOf(s, young.id)} asks${s.chronicle.some((l) => l.kind === 'courting' && l.who === young.id && l.text.includes('had no sling lessons arranged this summer')) ? ' again' : ''} if ${nameOf(s, teacher.id)} could teach ${them(s, young.id)} to use a sling this summer, in the evenings after work in the fields.`,
     read: `${nameOf(s, teacher.id)} has the best sling aim on the wall. They would both spend an hour less in the fields each day.`,
     options: [
       { id: 'bless', label: 'Let them practise together' },
@@ -911,11 +923,27 @@ export function settleLifeCard(
     ? [mother.id, ...spousesOf(mother).filter((id) => s.cast[id]?.status === 'here')]
     : [];
   if (card.kind === 'birth') {
-    if (choice === 'visit') for (const id of family) lift(id, 0.03, 'The Keeper visited after the birth.');
-    else if (choice === 'grain' && s.grain >= 1) {
+    if (choice === 'visit') {
+      for (const id of family) lift(id, 0.03, 'The Keeper visited after the birth.');
+      chronicle(
+        s,
+        'birth',
+        `You chose to visit the family after ${nameOf(s, card.other)} was born.`,
+        card.other,
+      );
+    } else if (choice === 'grain' && s.grain >= 1) {
       s.grain -= 1;
       for (const id of family) lift(id, 0.06, 'The Keeper sent grain after the birth.');
       chronicle(s, 'birth', `You sent a sack from the granary for ${nameOf(s, card.other)}.`, card.other);
+    } else if (choice === 'grain') {
+      chronicle(
+        s,
+        'birth',
+        `No sack could be sent for ${nameOf(s, card.other)}; the granary had less than a sack.`,
+        card.other,
+      );
+    } else if (choice === null) {
+      chronicle(s, 'birth', `The birth card for ${nameOf(s, card.other)} went unanswered.`, card.other);
     }
   } else if (card.kind === 'practise') {
     if (choice === 'bless') {
@@ -974,29 +1002,10 @@ export function dayHook(s: WatchState) {
  * A quiet stint on the wall eases a fear of that stretch a little (HF `learnOutcome` with a mildly good outcome):
  * fears learned on bad nights fade over quiet winters unless another bad night hardens them.
  */
-function calmStints(s: WatchState, at: number): void {
-  for (const p of living(s)) {
-    const post = s.posts[p.id];
-    if (!post || nextRandom(s) >= 0.3) continue;
-    const sec = postSection(post);
-    const key = `${p.id}@${sec}`;
-    s.yearGrain.stints[key] = (s.yearGrain.stints[key] ?? 0) + 1;
-    const aff = {
-      id: `post:${sec}`,
-      action: 'hold-post',
-      label: 'stand the wall',
-      targetId: sec,
-      duration: 60,
-      effort: 0.15,
-      advertises: {},
-    };
-    learnOutcome(
-      p,
-      aff,
-      { affordanceId: aff.id, action: aff.action, targetId: sec, status: 'completed', at },
-      {},
-      0.15,
-    );
+function calmStints(s: WatchState, _at: number): void {
+  for (const [key, count] of Object.entries(physicalLedger(s).stints ?? {})) {
+    if (!key.startsWith(`${s.year}|`)) continue;
+    s.yearGrain.stints[key.slice(key.indexOf('|') + 1)] = count;
   }
 }
 
@@ -1033,6 +1042,7 @@ function outgrownPass(s: WatchState, rooted: boolean): void {
     if (!spouse || ageOf(spouse, s.minute) >= 35) continue;
     const born = !!s.cast[p.id]?.bornHere || !!s.cast[spouse.id]?.bornHere;
     if (born !== rooted || nextRandom(s) >= 0.5) continue;
+    if (!consentToLeave(s, [p, spouse], 'crowded')) continue;
     const kids = childrenOf(s, p).filter((c) => isHere(s, c) && ageOf(c, s.minute) < 15);
     chronicle(
       s,
@@ -1044,11 +1054,10 @@ function outgrownPass(s: WatchState, rooted: boolean): void {
   }
 }
 
-interface HouseholdPull {
+interface DepartingHousehold {
   head: Person;
   house: Person[];
   adults: Person[];
-  pull: number;
 }
 
 /** How many households live here (each counted by its first adult). */
@@ -1063,35 +1072,55 @@ export function householdCount(s: WatchState): number {
   return n;
 }
 
-/**
- * Each household's pull to leave: low trust in the Keeper, low mood and few ties outside it, plus a hard winter.
- * A household whose adults are all past `RETIRE_AGE` is not counted: the old do not take the valley road alone, they
- * stay and are buried here (2026-10-07; before, the two oldest of seed 1's fifty years left at 69 and 79).
- */
-function householdPulls(s: WatchState): HouseholdPull[] {
-  const hard = s.yearGrain.lostWinter / START_GRAIN;
+/** Physical eligibility only. Retired households do not take the valley road alone. */
+function departureHouseholds(s: WatchState): DepartingHousehold[] {
   const seen = new Set<string>();
-  const out: HouseholdPull[] = [];
+  const out: DepartingHousehold[] = [];
   for (const p of living(s)) {
     if (seen.has(p.id) || ageOf(p, s.minute) < 18) continue;
     const house = householdOf(s, p);
     for (const q of house) seen.add(q.id);
     const adults = house.filter((q) => ageOf(q, s.minute) >= 18);
     if (adults.every((a) => ageOf(a, s.minute) >= RETIRE_AGE)) continue;
-    const ids = new Set(house.map((q) => q.id));
-    let pull = 0;
-    for (const a of adults) {
-      const mood = a.affect.mood.valence;
-      const trust = a.will.voices.find((x) => x.voiceId === KEEPER_ID)?.trust ?? 0.5;
-      const ties = a.social.relationships.filter((r) => r.affection > 0.4 && !ids.has(r.otherId)).length;
-      pull += 0.6 * (0.45 - trust) - 0.5 * mood - 0.06 * ties;
-    }
-    out.push({ head: p, house, adults, pull: pull / Math.max(1, adults.length) + 0.25 * hard });
+    out.push({ head: p, house, adults });
   }
   return out;
 }
 
-function leaveHouse(s: WatchState, h: HouseholdPull, why: string): string[] {
+/**
+ * Host-authored prospects, not motives or a relocation receipt. Every adult gets an ordinary HF decision.
+ * Only unanimous actual leave records authorize the host's subsequent physical departure. Children accompany
+ * their household; their consent is not modelled. A refused move does not split a household.
+ */
+function consentToLeave(s: WatchState, adults: Person[], occasion: 'thaw' | 'hungry' | 'crowded'): boolean {
+  const offers: Affordance[] = [
+    {
+      id: `leave-village:${occasion}:${s.year}:${s.minute}`,
+      action: 'leave-village',
+      label: 'Leave down the valley road',
+      duration: 10,
+      effort: 0.2,
+      advertises: occasion === 'hungry' ? { safety: 0.5, autonomy: 0.2 } : { autonomy: 0.3 },
+      tags: ['family'],
+    },
+    {
+      id: `stay-village:${occasion}:${s.year}:${s.minute}`,
+      action: 'stay-village',
+      label: 'Stay in the village',
+      duration: 10,
+      effort: 0,
+      advertises: { belonging: 0.3, safety: 0.2 },
+      tags: ['family'],
+    },
+  ];
+  const choices = adults.map((p) => decide(p, offers));
+  return (
+    choices.length > 0 &&
+    choices.every((c) => c.chosenAction === 'leave-village' && c.chosenAffordanceId === offers[0]?.id)
+  );
+}
+
+function leaveHouse(s: WatchState, h: DepartingHousehold, why: string): string[] {
   const names = h.adults.map((a) => nameOf(s, a.id));
   const kids = h.house.length - h.adults.length;
   chronicle(
@@ -1109,25 +1138,29 @@ function leaveHouse(s: WatchState, h: HouseholdPull, why: string): string[] {
 export function leaving(s: WatchState): string[] {
   if (s.year < 2) return [];
   const left: string[] = [];
-  for (const h of householdPulls(s)) {
-    if (h.pull < 0.25 || nextRandom(s) >= h.pull) continue;
+  for (const h of departureHouseholds(s)) {
+    if (!consentToLeave(s, h.adults, 'thaw')) continue;
     left.push(...leaveHouse(s, h, 'left with the thaw, down the valley road'));
   }
   return left;
 }
 
 /**
- * A hungry spring (from year 2): the granary cannot feed everyone to the harvest, so the households most ready to
- * go leave, one by one, until those who stay can be fed from what is left or one household has gone (two in a
+ * A hungry spring (from year 2): the granary cannot feed everyone to the harvest. Households in stable village
+ * order may unanimously choose to leave until those who stay can be fed or one household has gone (two in a
  * village of more than fifteen, none in a small one); the rest stay and go short. Returns how many people left.
  */
 export function hungrySpring(s: WatchState, perHead: number): number {
-  const ranked = householdPulls(s)
-    .sort((a, b) => b.pull - a.pull)
-    .slice(0, living(s).length > 15 ? 2 : living(s).length >= SMALL_VILLAGE ? 1 : 0);
+  if (s.year < 2) return 0;
+  const limit = living(s).length > 15 ? 2 : living(s).length >= SMALL_VILLAGE ? 1 : 0;
+  const households = departureHouseholds(s);
+  let moved = 0;
   let left = 0;
-  for (const h of ranked) {
+  for (const h of households) {
+    if (moved >= limit) break;
     if (s.grain >= Math.ceil(living(s).length * perHead)) break;
+    if (!consentToLeave(s, h.adults, 'hungry')) continue;
+    moved++;
     left += leaveHouse(
       s,
       h,
@@ -1179,7 +1212,9 @@ export function maybeLimp(s: WatchState, p: Person): void {
   if (!v || v.limp) return;
   // Hardship rules: wounds heal slowly, so only tonight's wounds are rolled (one roll per wound, as before), and a
   // watcher bitten who went down and was carried by nobody is likelier lamed.
-  const wounds = s.hardship ? p.body.injuries.filter((i) => i.since >= s.nightStart) : p.body.injuries;
+  const wounds = s.hardship
+    ? p.body.injuries.filter((i) => i.since >= minuteMs(s.nightStart))
+    : p.body.injuries;
   const worst = Math.max(0, ...wounds.map((i) => i.severity));
   const left =
     !!s.hardship &&
@@ -1244,7 +1279,33 @@ export function winterStories(s: WatchState): void {
       if (!r.roles.includes('parent') && !r.roles.includes('guardian')) continue;
       const teller = personOf(s, r.otherId);
       if (!teller || !isHere(s, teller)) continue;
-      retell(teller, child, s.minute, { trust: r.trust, placeIds: SECTION_IDS, limit: 2 });
+      retellWallStories(s, teller, child);
     }
   }
+}
+
+/** HF 4.11: the memory owner selects its own salient wall gists. No archive IDs are read. */
+function retellWallStories(s: WatchState, teller: Person, child: Person): void {
+  // The host only stages a story when both people are physically together and awake.
+  const place = s.place[teller.id];
+  if (!place || s.place[child.id] !== place || teller.body.asleep || child.body.asleep || !isHere(s, child))
+    return;
+  const previous = flushActors(s, s.minute);
+  s.actorEvents.push(...previous);
+  const at = actorAt(s),
+    ledger = structuredClone(physicalLedger(s));
+  ledger.gatherings = [
+    { at, people: [teller.id, child.id], basis: `watch:household-story:${s.year}:${teller.id}:${child.id}` },
+  ];
+  s.actors.queued.push(
+    ...actorRuntime(s).offerInputs(at, [], ledger as unknown as import('@adam0white/human-framework').Json),
+  );
+  s.actors.queued.push({
+    id: `watch:retelling:${++s.actors.sequence}`,
+    at: actorAt(s),
+    source: { type: 'host', id: 'watch' },
+    kind: 'retelling.requested',
+    payload: { teller: teller.id, listener: child.id, placeIds: SECTION_IDS, limit: 2 },
+  } as unknown as import('@adam0white/human-framework').Input);
+  s.actorEvents.push(...flushActors(s, s.minute));
 }

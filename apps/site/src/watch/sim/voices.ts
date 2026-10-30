@@ -5,7 +5,7 @@
  * with). Words go through `selfReport`, so a proud watcher says "a scratch" about a bite: the page shows what they
  * say, not what is true. Faith stays out of it.
  */
-import { IMPRESSION_DEFAULTS, type Person, reserveOf, selfReport } from '@adam0white/human-framework';
+import { type WatchPerson as Person, actorReport as selfReport } from './actor.ts';
 import { DAY, postSection, SECTION_IDS, type SectionId, type WatcherId } from './config.ts';
 import { familyWords, isWatcher, nameOf, villager } from './people.ts';
 import type { NightNote, WatchState } from './state.ts';
@@ -157,7 +157,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
         ]);
       tell(`fear@${left.section}`, 0.75);
     } else if (shaken?.section) {
-      const bravado = reserveOf(p, 'fear') * IMPRESSION_DEFAULTS.wordsReserve > 0.5;
+      const bravado = told.fear < 0.2;
       if (!bravado) tell(`fear@${shaken.section}`, 0.55);
       said.push(
         bravado
@@ -214,7 +214,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     } else if (home) {
       const family = familyWords(s, id);
       said.push(`“I went to ${family ? family.replace(/^(his|her) /, 'my ') : 'the house'}. I’d go again.”`);
-    } else if (together.length > 0) {
+    } else if (together.length > 0 && !left && !slept && !refused) {
       const t = together.map((n) => ({ n, tie: p.social.relationships.find((r) => r.otherId === n.other) }));
       t.sort((a, b) => Math.abs(b.tie?.affection ?? 0) - Math.abs(a.tie?.affection ?? 0));
       const best = t[0];
@@ -262,13 +262,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     // Nodding off: told by one watcher a night at most, only when it happened more than once, not by someone who
     // has already spoken of a fear or a bond, and a reserved person keeps it to themselves.
     const sec = dozed[0]?.section;
-    if (
-      !dozeTold &&
-      dozed.length >= 2 &&
-      sec &&
-      said.length === 0 &&
-      reserveOf(p, 'fatigue') * IMPRESSION_DEFAULTS.wordsReserve < 0.5
-    ) {
+    if (!dozeTold && dozed.length >= 2 && sec && said.length === 0 && told.fatigue > 0.35) {
       say('doze', [
         `“I kept falling asleep briefly at ${theSec(sec)}.”`,
         `“My head kept dropping at ${theSec(sec)}. I pinched myself awake.”`,

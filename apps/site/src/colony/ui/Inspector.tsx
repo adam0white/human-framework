@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { TermFamily, TrustView, WhyBreakdown, WhyOption } from '../sim/human-side.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
+import { ConstructionReadout } from './Construction.tsx';
 import { type Frame, NO_CONCEPT } from './contract.ts';
 import { namedDescription, needDescription, trustDescription } from './descriptions.ts';
 import { Icon, NoConcept } from './Icon.tsx';
@@ -98,13 +99,12 @@ export function TrustMeter({ trust, name }: { trust: TrustView; name?: string })
 }
 
 function Meter({ label, value, max = 100 }: { label: string; value: number; max?: number }) {
+  const fraction = value / max;
+  const words = fraction < 0.35 ? 'low' : fraction < 0.7 ? 'moderate' : 'high';
   return (
     <div className="need">
       <span>{settingWords(label)}</span>
-      <span className="need-track">
-        <span style={{ width: `${Math.max(0, Math.min(100, (value / max) * 100))}%` }} />
-      </span>
-      <span className="need-n">{Math.round(value)}</span>
+      <span className="need-description">{words}</span>
     </div>
   );
 }
@@ -179,6 +179,9 @@ export function Inspector(props: {
             {cu?.label ?? '–'}
             {cu?.rush && <span className="flag">rush</span>}
           </p>
+          {props.frame && (
+            <ConstructionReadout world={props.frame.classicWorld} side="Classic" personId={props.personId} />
+          )}
           {cu && (
             <div className="needs">
               <Meter label="Hunger" value={cu.hunger} />
@@ -218,6 +221,9 @@ export function Inspector(props: {
               i
             </button>
           </p>
+          {props.frame && (
+            <ConstructionReadout world={props.frame.humanWorld} side="Human" personId={props.personId} />
+          )}
           {hv && (
             <div className="needs">
               {[...hv.needs]

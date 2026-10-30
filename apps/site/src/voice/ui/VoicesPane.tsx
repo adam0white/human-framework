@@ -34,10 +34,11 @@ export const VoicesPane = memo(function VoicesPane({ voices }: { voices: VoiceVi
               <span className="v-voice-rel">{settingWords(v.relation)}</span>
             </div>
             <p className="v-voice-trust">{settingWords(v.trustWord)}</p>
+            {v.pressure && <p className="v-voice-pressure">{v.pressure}</p>}
             {v.history.length > 0 && (
               <ul className="v-voice-history">
                 {v.history.slice(-3).map((h) => (
-                  <li key={`${h.delta}-${h.text}`} className={h.delta >= 0 ? 'is-up' : 'is-down'}>
+                  <li key={`${h.direction}-${h.text}`} className={h.direction === 'up' ? 'is-up' : 'is-down'}>
                     {settingWords(trustEventWords(h.text))}
                   </li>
                 ))}

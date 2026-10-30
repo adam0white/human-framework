@@ -15,6 +15,7 @@ import { downloadJson } from '../../shared/playtest.ts';
 import { settingWords } from '../../shared/setting-words.ts';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
+import { WATCH_OLD_SAVE } from '../sim/hf4.ts';
 import type { Moment } from '../sim/moments.ts';
 import type { Speed } from '../sim/pace.ts';
 import type { Press } from '../sim/state.ts';
@@ -256,14 +257,31 @@ export function App() {
           Go up to the wall
         </button>
       )}
-      {(fileError || error) && <p role="alert">{gameFileError(fileError || error)}</p>}
+      {(fileError || error) && (
+        <p role="alert">
+          {String(fileError || error).includes(WATCH_OLD_SAVE)
+            ? WATCH_OLD_SAVE
+            : gameFileError(fileError || error)}
+        </p>
+      )}
     </section>
   ) : null;
   if (fileSession && !frame) return <main>{fileControls}</main>;
   if (error && !fileSession) {
     return (
       <div className="watch watch-error">
-        <p>{fileSession ? gameFileError(error) : playerError(error, 'play')}</p>
+        <p>
+          {error.includes(WATCH_OLD_SAVE)
+            ? WATCH_OLD_SAVE
+            : fileSession
+              ? gameFileError(error)
+              : playerError(error, 'play')}
+        </p>
+        {error.includes(WATCH_OLD_SAVE) && (
+          <button type="button" onClick={() => actions.restart(Math.floor(Math.random() * 1e9))}>
+            Start a fresh game
+          </button>
+        )}
         <button type="button" onClick={() => setFeedback(true)}>
           Feedback
         </button>
@@ -371,6 +389,11 @@ export function App() {
           </button>
         </header>
         {!fileSession && <CastLifeNote game="watch" />}
+        {!fileSession && !saving && (
+          <p role="status" className="w-soft-fail">
+            This chronicle is not being saved. Keep this tab open and download the run before leaving.
+          </p>
+        )}
       </div>
 
       <main
@@ -456,15 +479,10 @@ export function App() {
                   shelf={shelf}
                   current={current}
                   onContinue={title ? () => setTitle(false) : undefined}
-                  onNew={(options) => {
+                  onNew={() => {
                     setTitle(false);
-                    if (
-                      frame.phase === 'goal' &&
-                      Boolean(frame.duskRest) === Boolean(options?.duskRest) &&
-                      Boolean(frame.localWarning) === Boolean(options?.localWarning)
-                    )
-                      actions.input({ k: 'start' });
-                    else actions.restart(Math.floor(Math.random() * 1e9), options, true);
+                    if (frame.phase === 'goal') actions.input({ k: 'start' });
+                    else actions.restart(Math.floor(Math.random() * 1e9), true);
                   }}
                 />
               ) : null}
@@ -710,7 +728,7 @@ export function GoalPage({
   shelf: PageInfo[];
   current: string;
   onContinue?: () => void;
-  onNew?: (options?: import('../sim/dusk-rest.ts').WatchOptions) => void;
+  onNew?: () => void;
 }) {
   const saved = shelf.find((p) => p.kind === 'auto' && (onContinue || p.chronicle !== current));
   const [sheet, setSheet] = useState<'hopes' | 'shelf' | null>(null);
@@ -721,10 +739,7 @@ export function GoalPage({
     else if (saved && !(await actions.load(saved.id)))
       setNote('That page could not be read. You can begin a new village.');
   };
-  const begin = () =>
-    onNew
-      ? onNew({ duskRest: 'dusk-rest@1', localWarning: 'local-warning@1' })
-      : actions.input({ k: 'start' });
+  const begin = () => (onNew ? onNew() : actions.input({ k: 'start' }));
   return (
     <div className="w-page w-goal">
       <h2>Keep everyone alive and protect the grain until the snow melts in spring.</h2>
@@ -1423,6 +1438,11 @@ function NightAccount({
         ) : (
           <section className="w-account" aria-label={settingWords(`${settingWords(who.name)} on watch`)}>
             {who.handover ? <p role="status">{who.handover}</p> : null}
+            {who.nightHistory?.map((line) => (
+              <p className="w-note" key={line}>
+                {line}
+              </p>
+            ))}
             {who.localWarning?.account ? <p role="status">{who.localWarning.account}</p> : null}
             {who.duskRest?.account ? <p role="status">{who.duskRest.account}</p> : null}
             <NightMessages frame={frame} />
@@ -1605,6 +1625,16 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
               const w = frame.watchers.find((x) => x.id === id);
               return (
                 <li key={id}>
+                  {w?.wakeContext && (
+                    <aside aria-label="Keeper's observation">
+                      <p>{w.wakeContext}</p>
+                      {w.wakeReading && <p>{w.wakeReading}</p>}
+                      <p className="w-note">
+                        Unanswered question for {settingWords(w.name)}: {w.wakeQuestion}. This is your
+                        observation, separate from what the person tells you. Reading it uses no talk.
+                      </p>
+                    </aside>
+                  )}
                   <span className="w-ask-btns">
                     {(t.topics[id] ?? ['night', 'body']).slice(0, 2).map((topic) => (
                       <button
