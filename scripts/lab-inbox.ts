@@ -18,7 +18,7 @@
  * The page reports a stop.
  */
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import {
@@ -107,11 +107,46 @@ const dir = join(root, '.lab-inbox');
 const BUCKET = 'hf-lab';
 const days = Number(process.argv.find((a) => a.startsWith('--days='))?.slice(7) ?? 30);
 
+// Leave time for local validation/rendering within a 90-second heartbeat. Each R2 read
+// has its own timeout; a stalled CLI cannot consume the entire download budget.
+const started = Date.now();
+const deadline = started + 65_000;
 function get(key: string, file: string) {
-  execFileSync('npx', ['wrangler', 'r2', 'object', 'get', `${BUCKET}/${key}`, '--remote', '--file', file], {
-    cwd: root,
-    stdio: ['ignore', 'ignore', 'inherit'],
-  });
+  const remaining = deadline - Date.now();
+  if (remaining <= 0) throw new Error('Inbox download budget exhausted');
+  const temporary = `${file}.partial`;
+  try {
+    execFileSync(
+      process.execPath,
+      [
+        join(root, 'node_modules/wrangler/wrangler-dist/cli.js'),
+        'r2',
+        'object',
+        'get',
+        `${BUCKET}/${key}`,
+        '--remote',
+        '--file',
+        temporary,
+      ],
+      {
+        cwd: root,
+        stdio: ['ignore', 'ignore', 'pipe'],
+        timeout: Math.min(10_000, remaining),
+        killSignal: 'SIGKILL',
+      },
+    );
+    // Validate before replacing any cached receipt or compressed payload.
+    if (key.startsWith('linked/')) gunzipSync(readFileSync(temporary), { maxOutputLength: 4 * 1024 * 1024 });
+    else if (key.endsWith('.json')) {
+      const value = JSON.parse(readFileSync(temporary, 'utf8'));
+      const field =
+        key === 'private/index.json' ? 'runs' : key === 'private/linked-index.json' ? 'days' : 'records';
+      if (!value || !Array.isArray(value[field])) throw new Error('Invalid inbox receipt');
+    }
+    renameSync(temporary, file);
+  } finally {
+    rmSync(temporary, { force: true });
+  }
 }
 
 type Entry = {
@@ -135,8 +170,16 @@ type Envelope = {
 mkdirSync(join(dir, 'runs'), { recursive: true });
 mkdirSync(join(dir, 'replay'), { recursive: true });
 mkdirSync(join(dir, 'gz'), { recursive: true });
-get('private/index.json', join(dir, 'index.json'));
-const index = JSON.parse(readFileSync(join(dir, 'index.json'), 'utf8')) as {
+try {
+  get('private/index.json', join(dir, 'index.json'));
+} catch {
+  console.warn('Legacy index refresh unavailable; cached receipts are retained.');
+}
+const index = (
+  existsSync(join(dir, 'index.json'))
+    ? JSON.parse(readFileSync(join(dir, 'index.json'), 'utf8'))
+    : { runs: [] }
+) as {
   runs: Entry[];
 };
 const since = new Date(Date.now() - days * 86_400_000).toISOString().slice(0, 10);
@@ -148,11 +191,130 @@ const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`)
 const rows: string[] = [];
 let fetched = 0;
 const legacyRuns: { entry: Entry; env: Envelope; suggestion: string }[] = [];
+// Missing linked indexes are normal before the first linked upload. Other failures stay visible.
+const sections: string[] = [];
+const linkedRecords: LinkedRecord[] = [];
+mkdirSync(join(dir, 'linked'), { recursive: true });
+mkdirSync(join(dir, 'linked-replay'), { recursive: true });
+mkdirSync(join(dir, 'linked-save'), { recursive: true });
+let linkedWarning = '';
+let pending = 0;
+const receiptEntries = new Map<string, LinkedEntry>();
+const rootIndex = join(dir, 'linked-index.json');
+try {
+  get('private/linked-index.json', rootIndex);
+} catch {
+  linkedWarning = 'Linked receipt refresh unavailable; cached files are retained.';
+}
+const manifest = existsSync(rootIndex)
+  ? (JSON.parse(readFileSync(rootIndex, 'utf8')) as { days: string[] })
+  : { days: [] };
+// Refresh newest receipts first, before ANY payload. Cached days remain a durable
+// queue even if a later remote manifest no longer includes them. Never prune locally.
+const receiptDays = [
+  ...new Set([
+    ...manifest.days,
+    ...readdirSync(dir).flatMap(
+      (file) => /^linked-index-(\d{4}-\d{2}-\d{2})\.json$/.exec(file)?.slice(1) ?? [],
+    ),
+  ]),
+]
+  .filter((day) => /^\d{4}-\d{2}-\d{2}$/.test(day) && day >= since)
+  .sort()
+  .reverse();
+for (const day of receiptDays) {
+  const dayFile = join(dir, `linked-index-${day}.json`);
+  const previous = existsSync(dayFile)
+    ? (JSON.parse(readFileSync(dayFile, 'utf8')) as { records: LinkedEntry[] }).records
+    : [];
+  try {
+    get(`private/linked-index/${day}.json`, `${dayFile}.download`);
+  } catch {
+    linkedWarning = 'Some linked receipt days were unavailable; cached files are retained.';
+  }
+  const received = existsSync(`${dayFile}.download`)
+    ? (JSON.parse(readFileSync(`${dayFile}.download`, 'utf8')) as { records: LinkedEntry[] }).records
+    : [];
+  const retained = new Map([...previous, ...received].map((entry) => [entry.key, entry]));
+  if (existsSync(dayFile) || existsSync(`${dayFile}.download`)) {
+    writeFileSync(`${dayFile}.partial`, JSON.stringify({ records: [...retained.values()] }));
+    renameSync(`${dayFile}.partial`, dayFile);
+    rmSync(`${dayFile}.download`, { force: true });
+  }
+  for (const entry of retained.values()) {
+    if (
+      !/^[a-f0-9]{32}$/.test(entry.id) ||
+      !/^[a-f0-9]{32}$/.test(entry.player) ||
+      entry.key !== `linked/${entry.player}/${entry.id}.json.gz`
+    )
+      continue;
+    receiptEntries.set(entry.key, entry);
+  }
+}
+// Notes first so owner feedback does not wait behind replay chunks. Within each
+// class the oldest missing receipt wins; a failed object does not block the rest.
+const queue = [...receiptEntries.values()].sort(
+  (a, b) =>
+    Number(b.kind === 'note') - Number(a.kind === 'note') || a.at - b.at || a.key.localeCompare(b.key),
+);
+for (const entry of queue) {
+  const file = join(dir, 'linked', `${entry.player}-${entry.id}.json`);
+  try {
+    if (existsSync(file)) {
+      try {
+        const record: unknown = JSON.parse(readFileSync(file, 'utf8'));
+        if (!matches(record, entry)) throw new Error('Linked cache mismatch');
+        linkedRecords.push(record);
+        continue;
+      } catch {
+        // Repair atomically below; retain the original until a valid replacement exists.
+      }
+    }
+    const gz = join(dir, 'gz', `${entry.player}-${entry.id}.json.gz`);
+    let received: ReturnType<typeof decodeLinked>;
+    try {
+      // Reuse complete compressed files left by an interrupted invocation.
+      received = decodeLinked(gz, entry);
+    } catch {
+      get(entry.key, gz);
+      received = decodeLinked(gz, entry);
+    }
+    writeFileSync(`${file}.partial`, received.text);
+    renameSync(`${file}.partial`, file);
+    linkedRecords.push(received.record);
+  } catch {
+    pending++;
+  }
+}
+function decodeLinked(file: string, entry: LinkedEntry) {
+  const text = gunzipSync(readFileSync(file), { maxOutputLength: 4 * 1024 * 1024 }).toString('utf8');
+  const record: unknown = JSON.parse(text);
+  if (!matches(record, entry)) throw new Error('Linked index mismatch');
+  return { text, record };
+}
+function matches(record: unknown, entry: LinkedEntry): record is LinkedRecord {
+  return (
+    linkedRecord(record) &&
+    record.id === entry.id &&
+    record.player === entry.player &&
+    record.session === entry.session &&
+    record.runId === entry.runId &&
+    record.game === entry.game &&
+    record.kind === entry.kind
+  );
+}
+if (pending)
+  linkedWarning += ` ${pending} linked records pending; retry lab:inbox to resume. Cached files are retained.`;
 for (const e of entries) {
   const envFile = join(dir, 'runs', `${e.id}.json`);
   if (!existsSync(envFile)) {
     const gz = join(dir, 'gz', `${e.id}.json.gz`);
-    get(e.key, gz);
+    try {
+      get(e.key, gz);
+    } catch {
+      console.warn('Legacy run pending; retry lab:inbox to resume.');
+      continue;
+    }
     const text = gunzipSync(readFileSync(gz)).toString('utf8');
     writeFileSync(envFile, text);
     writeFileSync(join(dir, 'replay', `${e.id}.json`), JSON.stringify((JSON.parse(text) as Envelope).run));
@@ -163,76 +325,6 @@ for (const e of entries) {
   legacyRuns.push({ entry: e, env, suggestion });
 }
 
-// Missing linked indexes are normal before the first linked upload. Other failures stay visible.
-const sections: string[] = [];
-const linkedRecords: LinkedRecord[] = [];
-mkdirSync(join(dir, 'linked'), { recursive: true });
-mkdirSync(join(dir, 'linked-replay'), { recursive: true });
-mkdirSync(join(dir, 'linked-save'), { recursive: true });
-let linkedWarning = '';
-try {
-  const rootIndex = join(dir, 'linked-index.json');
-  get('private/linked-index.json', rootIndex);
-  if (existsSync(rootIndex)) {
-    const manifest = JSON.parse(readFileSync(rootIndex, 'utf8')) as {
-      days: string[];
-    };
-    for (const day of manifest.days.filter((day) => /^\d{4}-\d{2}-\d{2}$/.test(day) && day >= since)) {
-      const dayFile = join(dir, `linked-index-${day}.json`);
-      try {
-        get(`private/linked-index/${day}.json`, dayFile);
-      } catch {
-        linkedWarning = 'Some linked receipt days were unavailable; later days are still shown.';
-        continue;
-      }
-      const dayIndex = JSON.parse(readFileSync(dayFile, 'utf8')) as {
-        records: LinkedEntry[];
-      };
-      for (const entry of dayIndex.records) {
-        if (
-          !/^[a-f0-9]{32}$/.test(entry.id) ||
-          !/^linked\/[a-f0-9]{32}\/[a-f0-9]{32}\.json\.gz$/.test(entry.key)
-        )
-          continue;
-        const file = join(dir, 'linked', `${entry.player}-${entry.id}.json`);
-        if (!existsSync(file)) {
-          const gz = join(dir, 'gz', `${entry.player}-${entry.id}.json.gz`);
-          get(entry.key, gz);
-          const text = gunzipSync(readFileSync(gz), {
-            maxOutputLength: 4 * 1024 * 1024,
-          }).toString('utf8');
-          const record: unknown = JSON.parse(text);
-          if (
-            !linkedRecord(record) ||
-            record.id !== entry.id ||
-            record.player !== entry.player ||
-            record.session !== entry.session ||
-            record.runId !== entry.runId ||
-            record.game !== entry.game ||
-            record.kind !== entry.kind
-          )
-            throw new Error('Linked index mismatch');
-          writeFileSync(file, text);
-        }
-        const record: unknown = JSON.parse(readFileSync(file, 'utf8'));
-        if (
-          linkedRecord(record) &&
-          record.id === entry.id &&
-          record.player === entry.player &&
-          record.session === entry.session &&
-          record.runId === entry.runId &&
-          record.game === entry.game &&
-          record.kind === entry.kind
-        )
-          linkedRecords.push(record);
-        else throw new Error('Linked cache mismatch');
-      }
-    }
-  }
-} catch {
-  linkedWarning =
-    'Linked inbox download incomplete or unavailable. Retry lab:inbox; cached files are retained.';
-}
 const names = playerNames(linkedRecords);
 const playerLabel = (player: string) =>
   names.get(player) ? `${names.get(player)} · player ${player}` : `Player ${player}`;
@@ -338,7 +430,7 @@ console.log(
 );
 if (linkedWarning) console.warn(linkedWarning);
 console.log(
-  `lab inbox: ${entries.length} legacy runs (${fetched} new), ${playerCount} linked players, ${linkedRecords.length} linked records. Open ${join(dir, 'index.html')}`,
+  `lab inbox: ${entries.length} legacy runs (${fetched} new), ${playerCount} linked players, ${linkedRecords.length} linked records (${pending} pending; ${((Date.now() - started) / 1000).toFixed(1)} s). Open ${join(dir, 'index.html')}`,
 );
 
 if (suggest) {
