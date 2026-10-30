@@ -107,8 +107,13 @@ export async function captureWatchPerson(
     throw new Error(
       `This role is read-only until ${blocked.join(', ')} runs a supported reader with per-person skips. Your saved history has not been replaced.`,
     );
-  if (hostObligations.length)
-    throw new Error(`Finish ${hostObligations.join(', ')} in this chapter before continuing elsewhere.`);
+  if (hostObligations.length) {
+    const obligations =
+      hostObligations.length === 1
+        ? hostObligations[0]
+        : `${hostObligations.slice(0, -1).join(', ')} and ${hostObligations.at(-1)}`;
+    throw new Error(`Finish ${obligations} in this chapter before continuing elsewhere.`);
+  }
   const runtime = actorRuntime(s),
     cast = canonicalCast(castId);
   const departure = role === 'kian' ? s.refugeDeparture : undefined;
