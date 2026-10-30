@@ -40,22 +40,55 @@ it.each(['file', 'native'])(
     vi.stubGlobal('addEventListener', (_: string, fn: typeof receive) => {
       receive = fn;
     });
-    vi.stubGlobal('postMessage', (message: Record<string, unknown>) => replies.push(message));
+    let pending:
+      | {
+          type: string;
+          requestId?: number;
+          resolve(message: Record<string, unknown>): void;
+          reject(error: Error): void;
+        }
+      | undefined;
+    const reply = (type: string, requestId?: number) =>
+      new Promise<Record<string, unknown>>((resolve, reject) => {
+        pending = { type, requestId, resolve, reject };
+      });
+    vi.stubGlobal('postMessage', (message: Record<string, unknown>) => {
+      replies.push(message);
+      if (message.type === 'error' || message.type === 'playtestError') {
+        const waiting = pending;
+        pending = undefined;
+        waiting?.reject(new Error(String(message.message)));
+      } else if (
+        pending &&
+        message.gen === 3 &&
+        message.type === pending.type &&
+        (pending.requestId === undefined || message.requestId === pending.requestId)
+      ) {
+        const waiting = pending;
+        pending = undefined;
+        waiting.resolve(message);
+      }
+    });
     try {
       await import('./worker.ts');
-      const send = (data: unknown) => receive?.({ data } as MessageEvent);
-      if (mode === 'file') send({ type: 'fileSession' });
-      send({ type: 'loadPlaytest', gen: 3, text: JSON.stringify(file) });
-      await vi.waitFor(() => expect(replies.some((r) => r.type === 'replayed' && r.gen === 3)).toBe(true));
-      // Real Worker messages are separate tasks; let load's finally release initialization first.
-      await new Promise<void>((resolve) => setTimeout(resolve, 0));
-      send({ type: 'tick', dtMs: 0, wallDtMs: 16 });
-      send({ type: 'exportPlaytest', full: true, requestId: 17 });
-      await vi.waitFor(() =>
-        expect(replies.some((r) => r.type === 'playtest' && r.gen === 3 && r.requestId === 17)).toBe(true),
-      );
-      const exported = replies.find((r) => r.type === 'playtest' && r.requestId === 17);
-      expect(exported?.file).toMatchObject({ hash: file.hash, snapshot: file.snapshot });
+      // A real Worker delivers each message in a separate task. Await protocol completion,
+      // including async file validation/hash, before releasing this case's worker globals.
+      const send = async (data: unknown) => {
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+        receive?.({ data: structuredClone(data) } as MessageEvent);
+      };
+      if (mode === 'file') await send({ type: 'fileSession' });
+      const [replayed] = await Promise.all([
+        reply('replayed'),
+        send({ type: 'loadPlaytest', gen: 3, text: JSON.stringify(file) }),
+      ]);
+      expect(replayed.result).toMatchObject({ matches: true, hash: file.hash, driftAt: -1 });
+      await send({ type: 'tick', dtMs: 0, wallDtMs: 16 });
+      const [exported] = await Promise.all([
+        reply('playtest', 17),
+        send({ type: 'exportPlaytest', full: true, requestId: 17 }),
+      ]);
+      expect(exported.file).toMatchObject({ hash: file.hash, snapshot: file.snapshot });
       expect(advanceSilentMonth).not.toHaveBeenCalled();
       expect(replies.filter((r) => r.type === 'error')).toEqual([]);
     } finally {

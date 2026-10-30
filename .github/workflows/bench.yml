@@ -75,17 +75,31 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Timing budgets (npm run bench, BENCH_SCALE=3)
+        id: timing
+        # Informational only: leave nominal reporting headroom within the unchanged 20-minute job.
+        timeout-minutes: 17
         continue-on-error: true
         env:
           BENCH_SCALE: "3"
         run: |
           set -o pipefail
-          npm run bench 2>&1 | tee "$RUNNER_TEMP/bench.log"
+          status=0
+          npm run bench 2>&1 | tee "$RUNNER_TEMP/bench.log" || status=$?
+          echo "finished=true" >> "$GITHUB_OUTPUT"
+          exit "$status"
       - name: Bench measurements to summary
         if: always()
+        env:
+          TIMING_OUTCOME: ${{ steps.timing.outcome }}
+          TIMING_FINISHED: ${{ steps.timing.outputs.finished }}
         run: |
           {
             echo '### npm run bench (budgets x3)'
+            case "$TIMING_FINISHED:$TIMING_OUTCOME" in
+              true:success) echo 'SUCCESS: timing command completed successfully.' ;;
+              true:*) echo "FAILED measurement (step outcome: $TIMING_OUTCOME). No performance pass." ;;
+              *) echo "INCOMPLETE: no completed measurement (step outcome: $TIMING_OUTCOME); timeout possible, see step logs/annotations. No performance pass." ;;
+            esac
             echo
             echo "Runner: $(nproc) CPUs, Node $(node --version)."
             echo
