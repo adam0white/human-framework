@@ -13,6 +13,8 @@ on:
       - "packages/human/test/**/*.timing.ts"
       - "apps/site/src/**/sim/**"
       - "scripts/bench-run.ts"
+      - "scripts/bench-supervisor.py"
+      - "scripts/bench-supervisor.test.py"
       - "vitest.bench.config.ts"
       - "packages/*/vitest.bench.config.ts"
       - "apps/*/vitest.bench.config.ts"
@@ -29,6 +31,8 @@ on:
       - "packages/human/test/**/*.timing.ts"
       - "apps/site/src/**/sim/**"
       - "scripts/bench-run.ts"
+      - "scripts/bench-supervisor.py"
+      - "scripts/bench-supervisor.test.py"
       - "vitest.bench.config.ts"
       - "packages/*/vitest.bench.config.ts"
       - "apps/*/vitest.bench.config.ts"
@@ -74,32 +78,28 @@ jobs:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Linux benchmark supervisor controls
+        run: python3 scripts/bench-supervisor.test.py
       - name: Timing budgets (npm run bench, BENCH_SCALE=3)
         id: timing
-        # Informational only: leave nominal reporting headroom within the unchanged 20-minute job.
+        # Collect for 16 minutes; bounded exact-PID TERM/reap fits nominally inside this unchanged step cap.
         timeout-minutes: 17
         continue-on-error: true
         env:
           BENCH_SCALE: "3"
         run: |
-          set -o pipefail
-          status=0
-          npm run bench 2>&1 | tee "$RUNNER_TEMP/bench.log" || status=$?
-          echo "finished=true" >> "$GITHUB_OUTPUT"
-          exit "$status"
+          python3 scripts/bench-supervisor.py run --deadline 960 --term-grace 10 --cleanup 10 \
+            --log "$RUNNER_TEMP/bench.log" --record "$RUNNER_TEMP/bench-status.json" -- npm run bench
       - name: Bench measurements to summary
         if: always()
         env:
           TIMING_OUTCOME: ${{ steps.timing.outcome }}
           TIMING_FINISHED: ${{ steps.timing.outputs.finished }}
         run: |
+          set -e
           {
             echo '### npm run bench (budgets x3)'
-            case "$TIMING_FINISHED:$TIMING_OUTCOME" in
-              true:success) echo 'SUCCESS: timing command completed successfully.' ;;
-              true:*) echo "FAILED measurement (step outcome: $TIMING_OUTCOME). No performance pass." ;;
-              *) echo "INCOMPLETE: no completed measurement (step outcome: $TIMING_OUTCOME); timeout possible, see step logs/annotations. No performance pass." ;;
-            esac
+            python3 scripts/bench-supervisor.py summary "$RUNNER_TEMP/bench-status.json"
             echo
             echo "Runner: $(nproc) CPUs, Node $(node --version)."
             echo
