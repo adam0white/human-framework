@@ -82,6 +82,9 @@ describe('Watch HF4 host bridge', () => {
     const { actors, inputs } = opening('hold-post');
     const pending = need(step(actors.run, { until: WATCH_START, inputs }));
     expect(pending.boundary.type).toBe('world-required');
+    expect(actors.read({ perspective: { kind: 'host' }, people: [], select: ['current'] }).current).toEqual(
+      actors.snapshot().archive.current,
+    );
     const archive = JSON.parse(JSON.stringify(actors.snapshot()));
     const restoredPending = WatchActors.restore(archive);
     expect(restoredPending.snapshot().archive.current.pending).toEqual(

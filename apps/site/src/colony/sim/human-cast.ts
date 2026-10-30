@@ -411,6 +411,8 @@ export function wellRunSpec(seed: number, villagers: readonly VillagerSpec[]): R
         roles: {},
         prefer: 'name',
         actions: {},
+        // HF groups unknown norm IDs under reason.norm, including theft and care.
+        voices: { maryam: { 'reason.norm': ['I have duties to the others.'] } },
       },
       calendar: {
         id: 'well-calendar',

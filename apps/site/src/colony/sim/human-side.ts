@@ -13,6 +13,8 @@ import type { GameMap, PlaceId } from './map.ts';
 import type { HumanOrder } from './orders.ts';
 import type { ActionId, Minute, Role, SideWorld, VillagerId, VillagerSpec } from './world-types.ts';
 
+export const WELL_OLD_SAVE = 'This save is from an older version. Start a fresh game.';
+
 // ---------------------------------------------------------------------------------------------
 // View model (what the UI draws)
 // ---------------------------------------------------------------------------------------------

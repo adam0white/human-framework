@@ -29,7 +29,7 @@ const PAST: Record<string, string> = {
   keep: 'kept',
   help: 'helped',
 };
-function pastAction(label: string): string {
+export function pastAction(label: string): string {
   const action = actionPhrase(label);
   const [verb = '', ...rest] = action.split(' ');
   return PAST[verb] ? [PAST[verb], ...rest].join(' ') : `completed “${label}”`;

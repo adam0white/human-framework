@@ -40,6 +40,7 @@ import {
   type Prediction,
   type VillagerState,
   type VillagerView,
+  WELL_OLD_SAVE,
   type WhyBreakdown,
 } from './human-side.ts';
 import {
@@ -47,7 +48,6 @@ import {
   counterIdentity,
   emotionOf,
   needsOf,
-  sayLine,
   thoughtText,
   trustOf,
   type VerdictKind,
@@ -166,7 +166,7 @@ export class FrameworkHumanSide implements HumanSide {
   readonly rules = CURRENT_RULES;
 
   constructor(rules: ColonyRules = CURRENT_RULES) {
-    if (rules !== CURRENT_RULES) throw new Error('This save is from an older version. Start a fresh game.');
+    if (rules !== CURRENT_RULES) throw new Error(WELL_OLD_SAVE);
   }
   private seed = 0;
   private specs: readonly VillagerSpec[] = [];
@@ -505,10 +505,7 @@ export class FrameworkHumanSide implements HumanSide {
           // keeps its verdict (no flip to "not now" and back to "yes"); the pause shows as a thought.
           if (this.s.minute - (this.s.lastThought[id] ?? -THOUGHT_GAP) >= 30) {
             this.s.lastThought[id] = this.s.minute;
-            this.bubble(
-              { personId: id, kind: 'thought', text: sayLine(r, this.rules), decisionId: record.id },
-              ev,
-            );
+            this.bubble({ personId: id, kind: 'thought', text: r.says, decisionId: record.id }, ev);
           }
           if (record.chosenAction) this.s.lastAction[id] = record.chosenAction;
           continue;
@@ -530,7 +527,7 @@ export class FrameworkHumanSide implements HumanSide {
           this.drop(id);
           continue;
         }
-        const says = sayLine(r, this.rules);
+        const says = r.says;
         const verdict: HumanVerdict = {
           orderId: open.order.orderId,
           personId: id,
@@ -985,7 +982,7 @@ export class FrameworkHumanSide implements HumanSide {
 
   restore(snapshot: unknown): void {
     const snap = structuredClone(snapshot) as SideSnapshot;
-    if (!snap.community?.run) throw new Error('This save is from an older version. Start a fresh game.');
+    if (!snap.community?.run) throw new Error(WELL_OLD_SAVE);
     const community = restoreColony(snap.community);
     const old = this.world;
     this.host = new ColonyHostWorld(this.seed, old.map, old.world, snap.host, community);

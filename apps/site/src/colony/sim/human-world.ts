@@ -248,7 +248,7 @@ export function createHostState(villagers: readonly VillagerSpec[]): HostState {
 }
 
 const NAMES: Record<string, string> = Object.fromEntries(VILLAGERS.map((v) => [v.id, v.name]));
-const firstName = (id: string): string => (NAMES[id] ?? id).replace(/^Hajja /, '');
+export const firstName = (id: string): string => (NAMES[id] ?? id).replace(/^Hajja /, '');
 const specOf = (id: string): VillagerSpec => {
   const v = VILLAGERS.find((x) => x.id === id);
   if (!v) throw new Error(`unknown villager ${id}`);

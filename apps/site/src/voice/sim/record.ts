@@ -159,7 +159,7 @@ export class RecordedGame {
 function applyInput(g: VoiceGame, msg: VoiceInput): void {
   switch (msg.type) {
     case 'personaCheckpoint':
-      if (g.rules !== 4) throw new Error('This notebook is from an older version; start fresh.');
+      if (g.rules !== 4) throw new Error(OLD_VOICE_SAVE);
       g.personaDeparture = { pending: true };
       break;
     case 'personaCheckpointCancel':
@@ -223,15 +223,13 @@ export function parseVoicePlaytest(
   const scenario = scenarioIn(text);
   if (scenario !== 'voice-4') throw new Error(OLD_VOICE_SAVE);
   const file = parsePlaytest(text, 'voice', scenario, validateVoiceLog, maxBytes);
-  if (file.framework !== FRAMEWORK_PACKAGE_VERSION)
-    throw new Error('This file uses older narration. Start a fresh game; keep the old file as an archive.');
+  if (file.framework !== FRAMEWORK_PACKAGE_VERSION) throw new Error(OLD_VOICE_SAVE);
   const raw = JSON.parse(text) as {
     voicePersona?: SelinReturn;
     oneCast?: OneCastRow[];
     voicePersonaHead?: PersonaEnvelope;
   };
-  if (raw.voicePersona && scenario !== 'voice-4')
-    throw new Error('This notebook is from an older version; start fresh.');
+  if (raw.voicePersona && scenario !== 'voice-4') throw new Error(OLD_VOICE_SAVE);
   if (
     raw.voicePersona &&
     (typeof raw.voicePersona.prefix !== 'string' || typeof raw.voicePersona.initial !== 'string')

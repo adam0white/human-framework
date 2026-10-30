@@ -21,8 +21,13 @@ describe('explicit dusk night off through HF4', () => {
     const before = run.snapshotText();
     expect(run.input({ k: 'dusk-rest', who: 'not-a-watcher', until: 'dawn' })).toBe(false);
     expect(run.snapshotText()).toBe(before);
-    expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 23 })).toThrow(/Start a fresh game/);
-    expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 24 })).toThrow(/Start a fresh game/);
+    expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 23 })).toThrow(/begin a new winter/);
+    expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 24 })).toThrow(/begin a new winter/);
+    expect(() => WatchRun.resume({ ...run.snapshot(), origin: null } as never)).toThrow(/begin a new winter/);
+    expect(() => WatchRun.resume({ ...run.snapshot(), unknownField: true } as never)).toThrow(
+      /begin a new winter/,
+    );
+    expect(() => replay({ ...run.export(), origin: null } as never)).toThrow(/begin a new winter/);
     expect(run.input({ k: 'dusk-rest', who: 'tamar', until: 'dawn' })).toBe(true);
   });
   it('keeps the actual answer and any observed rest through pending cold restore and complete replay', () => {
@@ -62,7 +67,7 @@ describe('explicit dusk night off through HF4', () => {
     }
     const full = JSON.parse(JSON.stringify(run.export()));
     expect(ruleHash(replay(full))).toBe(full.end.ruleHash);
-    expect(() => replay({ ...full, scenario: 24 })).toThrow(/Start a fresh game/);
+    expect(() => replay({ ...full, scenario: 24 })).toThrow(/begin a new winter/);
   });
   it('expires an unanswered host request without inventing rest or return', () => {
     const run = fresh();

@@ -276,7 +276,11 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     if (willing || declined) s.gateWilling[who] = willing;
     text =
       !willing && !declined
-        ? '“I cannot answer that now.”'
+        ? own(s, who, 'gate-wait', [
+            '“I need time to think.”',
+            '“Ask me another day.”',
+            '“I cannot say yet.”',
+          ])
         : willing
           ? c > 0.7
             ? own(s, who, 'gate-sure', [
@@ -297,7 +301,7 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
       ? ` ${name} said yes. When you choose who keeps the Gate next, at an autumn fair, ${their} name comes first.`
       : declined
         ? ` ${name} said no. When you choose who keeps the Gate next, at an autumn fair, ${their} name comes last.`
-        : ` ${name} has not answered. The question is still open.`;
+        : ` ${name} has not answered yet.`;
   }
   if (
     topic === 'home' &&

@@ -615,7 +615,7 @@ it('holds On to dusk beside the open visit choice and names every empty wall at 
   expect(stay?.disabled).toBe(true);
   await act(async () => finishCapture(true));
   expect(stay?.disabled).toBe(false);
-  expect(host.textContent).toContain('Kian and Ada’s visit is saved for another game.');
+  expect(host.textContent).toContain('Their time together is saved. The journey must wait.');
   await act(async () => root.unmount());
   host.remove();
   select.mockRestore();
@@ -746,23 +746,22 @@ it('starts a normal new village with both public requests available', async () =
   await act(() => root.unmount());
 });
 
-it('distinguishes same-seed shelf pages and shows older or unknown rules before opening', () => {
+it('shows each shelf page’s fictional date without version or save timestamps', () => {
   const base = { seed: 11, year: 1, when: 'winter', kind: 'auto' as const };
   const el = render(
     createElement(Shelf, {
       shelf: [
         { ...base, id: 'a:auto', chronicle: 'a', savedAt: 1000, scenario: 25 },
-        { ...base, id: 'b:auto', chronicle: 'b', savedAt: 2000, scenario: 12 },
-        { ...base, id: 'c:auto', chronicle: 'c', savedAt: 3000 },
+        { ...base, id: 'b:auto', chronicle: 'b', savedAt: 2000, scenario: 12, year: 2 },
+        { ...base, id: 'c:auto', chronicle: 'c', savedAt: 3000, when: 'spring' },
       ],
       current: 'other',
       actions,
       onClose: vi.fn(),
     }),
   );
-  expect(el.textContent).toContain('Current game');
-  expect(el.textContent).toContain('Different version; start a fresh game');
-  expect(el.textContent).toContain('Version not recorded');
+  expect(el.textContent).not.toMatch(/Current game|Different version|Version not recorded|Saved|seed 11/i);
+  expect(el.querySelectorAll('.w-pagerow button')).toHaveLength(3);
   const rows = [...el.querySelectorAll('.w-pagerow')].map((r) => r.textContent);
   expect(new Set(rows).size).toBe(3);
 });

@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { URL as NodeURL } from 'node:url';
 import { requireValue } from '../../shared/require-value.ts';
 
 let usePolicyColony: typeof import('./useColony.ts').useColony;
@@ -12,6 +14,7 @@ import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { expect, it, vi } from 'vitest';
 import type { WorkerToMain } from '../protocol.ts';
+import { parseColonyPlaytest } from '../sim/playtest.ts';
 import { type Colony, useColony } from './useColony.ts';
 
 // Worker orchestration tests must not start the real lab client's metadata fetch.
@@ -145,11 +148,14 @@ it('file-mode Well App renders a chooser before any native save read or authored
   window.history.replaceState(null, '', '/colony/?file=1');
   const { App } = await import('./App.tsx');
   const post = vi.fn();
+  let receive: ((event: { data: WorkerToMain }) => void) | undefined;
   vi.stubGlobal(
     'Worker',
     class {
       postMessage = post;
-      addEventListener() {}
+      addEventListener(type: string, listener: (event: { data: WorkerToMain }) => void) {
+        if (type === 'message') receive = listener;
+      }
       removeEventListener() {}
       terminate() {}
     },
@@ -198,6 +204,31 @@ it('file-mode Well App renders a chooser before any native save read or authored
         .map((message) => message.text),
     ).toEqual([latest]);
     expect(node.querySelector('[role=alert]')).toBeNull();
+    const oldEdition = readFileSync(
+      new NodeURL('../../../test/fixtures/playtest-colony-v5.json', import.meta.url),
+      'utf8',
+    );
+    flushSync(() => select(async () => new TextEncoder().encode(oldEdition).buffer));
+    await vi.waitFor(() =>
+      expect(
+        post.mock.calls.some(([message]) => message.type === 'loadPlaytest' && message.text === oldEdition),
+      ).toBe(true),
+    );
+    const load = post.mock.calls
+      .map(([message]) => message)
+      .find((message) => message.type === 'loadPlaytest' && message.text === oldEdition);
+    if (!load || !receive) throw new Error('Missing file load or worker listener');
+    let failure: unknown;
+    try {
+      parseColonyPlaytest(oldEdition);
+    } catch (error) {
+      failure = error;
+    }
+    if (!(failure instanceof Error)) throw new Error('Old edition was not refused');
+    flushSync(() => receive!({ data: { type: 'playtestError', gen: load.gen, message: failure.message } }));
+    expect(node.querySelector('[role=alert]')?.textContent).toBe(
+      'That village is from before the well was dug again; begin the first morning.',
+    );
     let resolveCancelled: (bytes: ArrayBuffer) => void = () => {};
     const cancelled = new Promise<ArrayBuffer>((resolve) => {
       resolveCancelled = resolve;
@@ -211,7 +242,7 @@ it('file-mode Well App renders a chooser before any native save read or authored
         .map(([message]) => message)
         .filter((message) => message.type === 'loadPlaytest')
         .map((message) => message.text),
-    ).toEqual([latest]);
+    ).toEqual([latest, oldEdition]);
   } finally {
     flushSync(() => root.unmount());
     reads.mockRestore();

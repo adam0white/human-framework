@@ -22,7 +22,7 @@ import {
   type VisibleEvent,
 } from '@adam0white/human-framework';
 import { MINUTE, wellRunSpec } from './human-cast.ts';
-import type { ColonyHostWorld } from './human-world.ts';
+import { type ColonyHostWorld, firstName } from './human-world.ts';
 import type { VillagerSpec } from './world-types.ts';
 
 type HostPart = Extract<PersonView, { kind: 'host' }>['parts'][number];
@@ -220,27 +220,25 @@ export function refresh(c: Community, ids = c.people.map((p) => p.id)): void {
             ...e.data.decision,
             suggestions: e.data.decision.suggestions?.map((r) => ({
               ...r,
-              says: e.narration.map((n) => n.text).join(' '),
+              says: '',
             })),
             at: e.at / MINUTE,
             narration: e.narration.map((n) => n.text).join(' '),
-            suggestion: e.data.decision.suggestion
-              ? { ...e.data.decision.suggestion, says: e.narration.map((n) => n.text).join(' ') }
-              : undefined,
+            suggestion: e.data.decision.suggestion ? { ...e.data.decision.suggestion, says: '' } : undefined,
           } as DecisionRecord);
       }
       if (e.data.kind === 'suggestion-resolved') {
         const data = e.data;
         const index = trace.findIndex((r) => r.id === data.decisionId);
         const record = trace[index];
-        if (record)
+        if (record) {
+          const resolved = { ...data.resolution, says: e.narration.map((n) => n.text).join(' ') };
           trace[index] = {
             ...record,
-            suggestion: {
-              ...e.data.resolution,
-              says: e.narration.map((n) => n.text).join(' '),
-            } as SuggestionResolution,
+            suggestion: record.suggestion?.voiceId === resolved.voiceId ? resolved : record.suggestion,
+            suggestions: record.suggestions?.map((r) => (r.voiceId === resolved.voiceId ? resolved : r)),
           };
+        }
       }
       if (e.data.kind === 'observation-attended' && e.data.episodeId && e.data.summary) {
         const episodeId = e.data.episodeId;
@@ -408,7 +406,7 @@ export function stepColony(
       offers.push({
         ...lead.affordance,
         id: `assist:${lead.id}:${p.id}`,
-        label: `raise the beam with ${leadId}`,
+        label: `raise the beam with ${firstName(leadId)}`,
         duration: lead.endsAt - at / MINUTE - 2,
         with: [leadId],
         jointId: lead.id,

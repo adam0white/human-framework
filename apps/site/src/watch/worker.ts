@@ -247,15 +247,15 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         snapshot: Snapshot;
         fileOrigin?: true;
       };
-      if (raw.game !== 'the-night-watch' || raw.framework !== FRAMEWORK_PACKAGE_VERSION || !raw.snapshot)
+      if (raw.game !== 'the-night-watch' || !raw.snapshot)
         throw new Error('A complete current Watch native file is required.');
+      if (raw.framework !== FRAMEWORK_PACKAGE_VERSION) throw new Error(WATCH_OLD_SAVE);
       const state = replay(raw);
       const expected = {
         scenario: raw.scenario,
         seed: raw.seed,
         log: raw.inputs,
         state,
-        ...(raw.origin ? { origin: raw.origin } : {}),
         ...(raw.fileOrigin ? { fileOrigin: true } : {}),
       };
       if (stableStringify(expected) !== stableStringify(raw.snapshot))
@@ -489,10 +489,9 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         // A closed volume taken up again is a new chronicle; a running page continues its own.
         const fork = id.includes(':vol:');
         begin(next, fork ? newChronicleId() : (id.split(':')[0] ?? id));
-        const metadata = snap as typeof snap & { castLocalOnly?: boolean; castSkipped?: string[] };
         castOwnership = snap?.fileOrigin ? {} : structuredClone(snap?.castOwnership ?? {});
-        castLocalOnly = snap?.fileOrigin ? true : (metadata?.castLocalOnly ?? false);
-        castSkipped = snap?.fileOrigin ? [] : structuredClone(metadata?.castSkipped ?? []);
+        castLocalOnly = snap?.fileOrigin ? true : (snap?.castLocalOnly ?? false);
+        castSkipped = snap?.fileOrigin ? [] : structuredClone(snap?.castSkipped ?? []);
         if (fork) save('auto');
         host.post({ type: 'loaded', ok: true, id, seed: next.seed });
         host.post({

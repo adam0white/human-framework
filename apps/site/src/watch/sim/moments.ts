@@ -124,14 +124,18 @@ export function readPosting(
   return resolution ? toRead(resolution, confidence) : { word: "can't tell", confidence: 0 };
 }
 
-/** The Keeper's read of calling one watcher by name over the bell: whether it holds and how much they'd resent it. Pure. */
+/** A guess from the Keeper's observed past requests, never a forecast from private state. */
 export function readBell(
-  _s: WatchState,
-  _who: WatcherId,
-): { holds: boolean; resent: 'little' | 'some' | 'much'; confidence: number } {
-  // Another person's reaction to a named command is outside the Keeper's public preview.
-  // A future host outcome must remain unknown until the bell is actually used.
-  return { holds: false, resent: 'little', confidence: 0 };
+  s: WatchState,
+  who: WatcherId,
+): { name: string; evidence: 'held' | 'declined' | 'none' } {
+  const last = (s.nightRecords ?? []).findLast(
+    (r) => r.by === who && r.kind === 'hold' && (r.answer === 'begun' || r.answer === 'refused'),
+  );
+  return {
+    name: nameOf(s, who),
+    evidence: last?.answer === 'begun' ? 'held' : last?.answer === 'refused' ? 'declined' : 'none',
+  };
 }
 
 export function readWords(r: Read): string {
@@ -153,15 +157,10 @@ export function readWords(r: Read): string {
 }
 
 export function bellWords(b: ReturnType<typeof readBell>): string {
-  if (!b.holds)
-    return b.confidence < 0.2
-      ? 'You cannot tell whether the watcher will stay.'
-      : 'The watcher may not stay.';
-  return b.resent === 'much'
-    ? 'The watcher will stay, but will resent it.'
-    : b.resent === 'some'
-      ? 'The watcher will stay, with some resentment.'
-      : 'The watcher will stay.';
+  if (b.evidence === 'held') return `${b.name} held the wall when asked before. You think they may stay.`;
+  if (b.evidence === 'declined')
+    return `${b.name} declined when asked to hold before. You are unsure they would stay.`;
+  return `You cannot tell whether ${b.name} would stay.`;
 }
 
 /** Whether a watcher's true choice right now would take them off the wall, and why (the waver trigger). Pure. */

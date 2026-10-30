@@ -16,6 +16,7 @@ import {
   scenarioOf,
   type VillagerState,
   type VillagerView,
+  WELL_OLD_SAVE,
   type WhyBreakdown,
 } from './human-side.ts';
 import { MAP, type PlaceId } from './map.ts';
@@ -493,7 +494,7 @@ export class ColonyGame {
     this.castChapter = castChapter;
     this.seed = seed;
     this.factory = factory;
-    if (rules !== CURRENT_RULES) throw new Error('This save is from an older version. Start a fresh game.');
+    if (rules !== CURRENT_RULES) throw new Error(WELL_OLD_SAVE);
     if (!Object.hasOwn(VILLAGES, village)) throw new Error('Unknown village');
     if (village !== 'default') {
       const preparationAt = VILLAGES[village].preparationAt;

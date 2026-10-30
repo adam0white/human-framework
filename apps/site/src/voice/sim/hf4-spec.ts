@@ -98,6 +98,27 @@ export function voiceSpec(seed: number, start: number, calendar: PrayerCalendar)
         },
         prefer: 'name',
         actions: {},
+        voices: {
+          halil: {
+            'suggestion.resolved': ['{verdict}{reason}'],
+            'verdict.assented': ["I'll do it.", 'All right, I will.', 'Yes, I can do that.'],
+            'verdict.complied': ["I'll do it, though I don't agree.", 'All right, if you insist.'],
+            'verdict.commanded': ["I'll do as you ask.", "All right, I'll follow your order."],
+            'verdict.refused': ["I won't do that.", "No, I don't want to."],
+            'verdict.cannot': [
+              "I can't right now.",
+              "I can't manage that now.",
+              "That isn't possible for me now.",
+            ],
+            'verdict.deferred': ["I'll {alternative} first.", 'First I need to {alternative}.'],
+            'verdict.modified': ["I'll {alternative} instead.", 'I can {alternative} instead.'],
+            'verdict.deferred.later': ['Not now. Maybe later.', "I'll think about it later."],
+            'reason.need:rest': ['I need to rest.', 'I need some rest first.'],
+            'reason.asleep': ['I was asleep.', 'I was sleeping.'],
+            'reason.duty': ['I have a duty to keep.', 'I need to attend to my duty.'],
+            'reason.distrust': ["I don't trust that advice.", "I'm not sure I can trust that advice."],
+          },
+        },
       },
       calendar: {
         id: 'voice-spring',

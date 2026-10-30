@@ -435,7 +435,19 @@ it('keeps a reviewed proposal deliberate through moving frames and its order lif
   await act(() => root.render(createElement(App)));
   expect(container.querySelector('.well-latest')?.textContent).toContain('Human answer: later');
   expect(container.querySelector('.well-latest')?.textContent).toContain('Issued');
-  expect(container.querySelector('.well-latest')?.textContent).toContain('Answer time unavailable');
+  expect(container.querySelector('.well-latest')?.textContent).toContain('Idris: “After I drink.”');
+  expect(container.querySelector('.well-latest')?.textContent).not.toContain('Answer time unavailable');
+  colony.frame = {
+    ...colony.frame,
+    cards: colony.frame.cards.map((c) => ({
+      ...c,
+      human: { ...c.human, answerObservedAt: colony.frame!.minute },
+    })),
+  };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-latest')?.textContent).toContain(
+    'Idris: “After I drink.” (this morning)',
+  );
   colony.frame = {
     ...colony.frame,
     cards: colony.frame.cards.map((c) => ({ ...c, status: 'lapsed' as const })),

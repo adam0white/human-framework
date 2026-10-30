@@ -205,3 +205,17 @@ Read each host's `/release.json` after delivery. Hosts currently name the pin `f
 Update the matching row and its audit date. Every retained 3.x row needs a plain-English
 reason and a dated next check when delivery is unverified. Central game pages read the same table.
 The build uses this checked-in snapshot and does not depend on live game hosts responding.
+
+## Central site 4.15 host reads and branch lifetime
+
+Watch, Voice, Well and the shelf consume published HF 4.15.0 with exact client 0.5.14 and kit 0.5.31 release tarballs. A host that needs only the exact current `RunState` uses `inspect(run, { perspective: { kind: 'host' }, people: [], select: ['current'] }).current` after checking the result. This equals the current slice of a full export, including its newest-64 journal windows. It does not encode accepted history or compute cold hashes. Keep it inside the host; it is not player knowledge. Watch uses it to synchronize a supplied step boundary. Full archives remain necessary for file export, native replay and portable-source custody.
+
+Before 4.16, keep this single documented lifetime rule: use `preview` for a conditional reading that is discarded; use `forkRun` only when retaining a live branch for later `step` calls. Voice's in-memory counterfactual uses the latter and copies its host state. A fork retains the source `spec.id` and journal opening. Diverging branches therefore carry the same native run id. The host must track each branch separately. Give every retained branch its own host autosave slot; never autosave it into the source slot. The current Voice counterfactual is discarded and never enters the device save path. Copy host world state separately. Cursors cannot cross branches. Files still enter through `restoreRun`; all actor changes enter through `step`, and readings leave through `inspect` or `preview`. A separate branch lifetime is a host concern, not a second actor input route.
+
+### Kian and Ada: paired travel remains blocked
+
+The current Watch run preserves Ada as Kian's ward, their shared-care receipt, and his separate return duty. HF 4.15 already supports the required retained v2 passport: supply a calendar when projecting Kian to retain his open return duty. The existing envelope `transfer.watchCare` can carry Ada's finite care record. No HF SDK change is needed.
+
+The missing route belongs to the receiving Warren host and then the site. Warren must first validate arriving Kian's `transfer.watchCare` through `validateWatchCare` and initialize `s.adaVisit` on a current HF pin. After that receiver is qualified, Watch can capture Kian at the dawn boundary with `refugeVisitPassport`, export the retained v2 passport with its calendar, attach `watchCare`, and remove the source refusal. The return leg must validate `warren-watch-ada/1` in Watch's care reentry. Keep exact source-person, care and return replay controls.
+
+SITE-415 keeps them together at source until the receiving route is qualified. It does not claim restored travel. Owners: Warren first, then the site; this is not an SDK release dependency. The work remains in existing GDI400/852/864/GDL0077, with the next engineering checkpoint on 2026-10-30 and the next 4.16 adoption review no later than 2026-11-03.

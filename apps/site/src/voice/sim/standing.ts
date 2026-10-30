@@ -1,4 +1,3 @@
-import { TOWN_DEFAULTS } from './town.ts';
 /**
  * The player's standing suggestion (voice.md §6). One stands at a time; Confirm replaces it. It ends when the
  * activity he began for it ends (it keeps standing while he does it, so he does not turn back half-way), on a `cannot`/`willNot` refusal, after 3 sim hours, when he falls asleep, or
@@ -31,13 +30,15 @@ export interface Standing {
 
 /** Why an option is not open to him now, in the town's terms (for the "your word waits" line). */
 export const WHY_AWAY: Record<string, string> = {
-  'see-doctor': 'the clinic sees people from 09:00 to 17:00, and not again within a week of a visit',
-  'call:selin': 'calling has a starting window and at least twelve hours between conversations',
-  'work-repair': 'the workshop takes him once a day, from 08:00 to 12:00',
-  'work-extra': `the afternoon shift can start from ${TOWN_DEFAULTS.extraFrom} minutes after the noon prayer until ${TOWN_DEFAULTS.extraLast} minutes before the afternoon prayer, once a day; the workshop is closed on Eid`,
-  'pay-rent': 'he has not got the 300 together, or nothing is owed',
-  shop: 'the market sells for Eid from 10:00 to 18:00 from Ramadan 10, once a day, while he has 25 to spend',
-  'tea:riza': 'the tea house is open from 06:00 to 23:00',
+  'see-doctor':
+    'the clinic sees people from nine in the morning until five in the afternoon, and not again within a week of a visit',
+  'call:selin': 'he calls her in the evening, and not twice within twelve hours',
+  'work-repair': 'the workshop takes him once a day, from eight in the morning until noon',
+  'work-extra':
+    'the afternoon shift can start from fifteen minutes after the noon prayer until ninety minutes before the afternoon prayer, once a day; the workshop is closed on Eid',
+  'pay-rent': 'he has not got three hundred lira together, or nothing is owed',
+  shop: 'the market sells for Eid from ten in the morning until six in the evening from the tenth day of Ramadan, once a day, while he has twenty-five lira to spend',
+  'tea:riza': 'the tea house is open from six in the morning until eleven at night',
 };
 
 const APPEAL_WORDS: Record<string, string> = {

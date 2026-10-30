@@ -48,7 +48,9 @@ it('explains rejected native commands without changing the run, and replays the 
     writeFileSync(oldPath, oldText);
     const refusal = spawnSync(process.execPath, [script, '--state', oldPath, 'show'], { encoding: 'utf8' });
     expect(refusal.status).toBe(1);
-    expect(refusal.stderr).toContain('This save is from an older version. Start a fresh game.');
+    expect(refusal.stderr).toContain(
+      'This chronicle was kept under the old ways of the watch; begin a new winter.',
+    );
     expect(refusal.stderr).not.toContain(' at ');
     expect(readFileSync(oldPath, 'utf8')).toBe(oldText);
   } finally {

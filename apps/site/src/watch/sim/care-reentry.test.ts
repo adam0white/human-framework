@@ -8,6 +8,6 @@ it('refuses older finite care evidence before replacing any dependent or duty', 
     transfer: { watchCare: { version: 'watch-warren-ada/1' } },
   } as unknown as PersonaEnvelope;
   const before = structuredClone(source);
-  expect(() => carriedCare(source, {})).toThrow(/no supported HF4 reader/);
+  expect(() => carriedCare(source, {})).toThrow(/must stay together/);
   expect(source).toEqual(before);
 });

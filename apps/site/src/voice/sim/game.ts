@@ -74,7 +74,6 @@ import { buildReport, ledgerKey, type ReportInput, type SaidCount } from './repo
 import { answer, createStanding, type Standing, standingView, toSuggestion, WHY_AWAY } from './standing.ts';
 import {
   createTown,
-  outgoingCallWindow,
   selinEidCallMinute,
   TOWN_DEFAULTS,
   TOWN_EID_DAY,
@@ -1806,9 +1805,6 @@ export class VoiceGame {
       return;
     }
     const ended = 'Your suggestion has ended. Say it again if you still want him to hear it.';
-    const span = Math.round((s.expires - s.since) / 60);
-    const hours =
-      span >= 1 ? `${span === 1 ? 'An hour has' : `${span} hours have`} passed.` : 'Its time has run out.';
     let text: string;
     if (why === 'withdrawn') text = 'You withdraw your suggestion.';
     else if (why === 'asleep')
@@ -1819,9 +1815,8 @@ export class VoiceGame {
       text = `He began ${s.servedAs ?? what}, then moved on to ${detail ?? 'something else'}. ${ended}`;
     else if (s.away) {
       const rule = WHY_AWAY[s.draft.optionId];
-      text = `The option to ${what} was no longer available when the suggestion ended.${rule ? ` ${capital(rule)}.` : ''} ${ended}`;
-    } else
-      text = `${hours} The suggestion reached its time limit without a recorded completed action. ${ended}`;
+      text = `“By the time I was done, it was too late to ${what}.”${rule ? ` ${capital(rule)}.` : ''} ${ended}`;
+    } else text = `“I never got to it.” ${ended}`;
     this.push({ kind: 'note', who: 'you', text });
   }
 
@@ -2269,13 +2264,6 @@ export class VoiceGame {
       voices: voicesView(h, t, undefined, (at) => this.shiftAt(at)),
       muted: this.muted || this.phase === 'eid',
     };
-    // Presentation only: copy existing host receipts. No new saved state, inference or RNG.
-    const callWindow = outgoingCallWindow(
-      this.t,
-      this.run.town.state,
-      this.run.town.ramadan.firstDay + this.run.town.ramadan.days,
-    );
-    f.outgoingCall = `Calling Selin opens from ${clock(callWindow.from)} during his waking day, with at least twelve hours between conversations. ${this.t < callWindow.next ? `The next time allowed by those limits is ${when(callWindow.next)}.` : options.some((o) => o.id === 'call:selin') ? 'You can suggest calling her now.' : 'Calling her is not offered in his current situation.'} A call does not guarantee an answer.`;
     const connected = this.calls.at(-1);
     const missed = this.run.town.state.selinMissedAt;
     const unanswered = this.run.town.state.unansweredCall;

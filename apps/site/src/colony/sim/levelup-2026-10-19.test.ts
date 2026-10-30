@@ -3,29 +3,12 @@
 import { describe, expect, it } from 'vitest';
 import { hindsightLine } from '../ui/end-report.ts';
 import { ColonyGame, DEFAULT_SEED } from './game.ts';
-import type { SuggestionResolution } from './hf4.ts';
 import { createFrameworkHumanSide, type FrameworkHumanSide } from './human.ts';
-import { sayLine, trustOf, whyOf } from './human-view.ts';
+import { trustOf, whyOf } from './human-view.ts';
 import { passesByItself } from './playback.ts';
 import { at } from './world-types.ts';
 
-const modified = {
-  voiceId: 'player',
-  verdict: 'modified',
-  reason: 'goal:role',
-  says: "Not that — I'll draw water.",
-  counterOffer: { affordanceId: 'a1', label: 'draw water' },
-} as unknown as SuggestionResolution;
-
 describe('current Well wording and order controls', () => {
-  it('a different choice names its reason', () => {
-    expect(sayLine(modified, 9)).toBe('I will draw water instead, because that is my work.');
-    expect(sayLine({ ...modified, reason: 'goal:role:1' }, 9)).toBe(
-      'I will draw water instead, because that is my work.',
-    );
-    expect(sayLine({ ...modified, reason: 'habit' } as SuggestionResolution, 9)).toBe(modified.says);
-  });
-
   it('a new order to the same person settles the old card as replaced', () => {
     const game = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
     game.issue({ personId: 'yusuf', placeId: 'site' });

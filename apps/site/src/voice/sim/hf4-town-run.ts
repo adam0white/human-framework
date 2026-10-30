@@ -103,45 +103,42 @@ function minutes<T>(value: T): T {
           : v;
   return visit(value) as T;
 }
-/** Authored UI paraphrases of the public verdict. These are not conversation emissions or receipts. */
+/** Pair each recorded resolution with its own HF narration. */
 function displayDecision(
   d: import('@adam0white/human-framework').DeepReadonly<import('./reading-types.ts').NativeDecision>,
+  events: readonly {
+    data: import('./hf4-readings.ts').VoiceEvent['data'];
+    narration: readonly { text: string }[];
+  }[],
 ): DecisionRecord {
-  const words: Record<SuggestionResolution['verdict'], string> = {
-    assented: "I'll do that.",
-    complied: "I'll do it, though I object.",
-    commanded: "I'll follow the order.",
-    deferred: "I'll leave that for later.",
-    modified: "I'll do something a little different.",
-    refused: "I won't do that.",
+  const matches = events.filter((e) => e.data.kind === 'suggestion-resolved' && e.data.decisionId === d.id);
+  const used = new Set<number>();
+  const display = (r: NonNullable<typeof d.suggestion>): SuggestionResolution => {
+    const i = matches.findIndex(
+      (e, index) =>
+        !used.has(index) && e.data.kind === 'suggestion-resolved' && e.data.resolution.voiceId === r.voiceId,
+    );
+    if (i >= 0) used.add(i);
+    return { ...r, says: matches[i]?.narration[0]?.text ?? 'I cannot answer that yet.' };
   };
-  const display = (r: NonNullable<typeof d.suggestion>): SuggestionResolution => ({
-    ...r,
-    says: words[r.verdict],
-  });
+  const suggestions = d.suggestions?.map(display);
+  const suggestion =
+    d.suggestion && (suggestions?.find((r) => r.voiceId === d.suggestion?.voiceId) ?? display(d.suggestion));
   return {
     ...d,
-    ...(d.suggestion ? { suggestion: display(d.suggestion) } : {}),
-    ...(d.suggestions ? { suggestions: d.suggestions.map(display) } : {}),
+    ...(suggestion ? { suggestion } : {}),
+    ...(suggestions ? { suggestions } : {}),
   } as DecisionRecord;
 }
+const decisionTemplates = new WeakMap<object, DecisionRecord>();
 // Retained history is immutable display data, just like its public native events.
 // Convert and freeze each event once; refresh replaces arrays, never their records.
-const decisionTemplates = new WeakMap<object, DecisionRecord>();
 function freezeHistory<T>(value: T): T {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
     for (const child of Object.values(value)) freezeHistory(child);
     Object.freeze(value);
   }
   return value;
-}
-function retainedDecision(d: Parameters<typeof displayDecision>[0]): DecisionRecord {
-  let template = decisionTemplates.get(d);
-  if (!template) {
-    template = freezeHistory(displayDecision(minutes(d)));
-    decisionTemplates.set(d, template);
-  }
-  return template;
 }
 const dayTemplates = new WeakMap<object, unknown>();
 function retainedDay<T extends object>(day: T): T {
@@ -202,6 +199,13 @@ function refresh(c: Community) {
     const events = recentByPerson.get(event.person) ?? [];
     events.push(event);
     recentByPerson.set(event.person, events);
+  }
+  const resolutionEvents = new Map<string, typeof runtime.events>();
+  for (const event of runtime.events) {
+    if (!event.person || event.data.kind !== 'suggestion-resolved') continue;
+    const events = resolutionEvents.get(event.person) ?? [];
+    events.push(event);
+    resolutionEvents.set(event.person, events);
   }
   for (let i = 0; i < c.people.length; i++) {
     const previous = c.people[i]!;
@@ -268,7 +272,14 @@ function refresh(c: Community) {
         expectations: r.expectations,
         beliefs: r.beliefs,
       },
-      trace: r.trace.map(retainedDecision),
+      trace: r.trace.map((d) => {
+        let cached = decisionTemplates.get(d);
+        if (!cached) {
+          cached = freezeHistory(displayDecision(minutes(d), resolutionEvents.get(r.id) ?? []));
+          decisionTemplates.set(d, cached);
+        }
+        return cached;
+      }),
       chronicle: r.days.map(retainedDay),
       activity: activity(c, r.id),
       lexicon: previous.lexicon,
@@ -733,7 +744,10 @@ export function forecast(
     (e) => 'access' in e && e.access === 'host' && e.data.kind === 'decision',
   );
   return decision && decision.data.kind === 'decision'
-    ? displayDecision(minutes(decision.data.decision))
+    ? displayDecision(
+        minutes(decision.data.decision),
+        result.possibilities.filter((e) => 'access' in e && e.access === 'host'),
+      )
     : undefined;
 }
 export function preview(

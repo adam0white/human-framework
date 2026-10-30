@@ -10,6 +10,7 @@ import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
 import type { PlaytestFile } from '../../shared/playtest.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
+import { WELL_OLD_SAVE } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type OrderInput } from '../sim/orders.ts';
 import type { Village } from '../sim/village.ts';
@@ -68,6 +69,12 @@ function savedRun(): PlaytestFile | null {
   } catch {
     return null;
   }
+}
+function oldVillageError(error: unknown): string | null {
+  const detail = error instanceof Error ? error.message : typeof error === 'string' ? error : '';
+  return detail === WELL_OLD_SAVE
+    ? 'That village is from before the well was dug again; begin the first morning.'
+    : null;
 }
 export function App() {
   const [fileError, setFileError] = useState<string | null>(null);
@@ -219,9 +226,11 @@ export function App() {
   const errorDetail =
     colony.error ?? (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : null);
   const notice = errorDetail
-    ? fileSession
-      ? gameFileError(errorDetail)
-      : playerError(errorDetail, colony.error ? 'play' : 'load')
+    ? oldVillageError(errorDetail)
+      ? oldVillageError(errorDetail)
+      : fileSession
+        ? gameFileError(errorDetail)
+        : playerError(errorDetail, colony.error ? 'play' : 'load')
     : null;
   const loadedNotice = loaded
     ? loaded.matches
@@ -657,7 +666,8 @@ export function App() {
                 setShelf(false);
               })
               .catch((error) => {
-                if (request === fileRead.current) setFileError(gameFileError(error));
+                if (request === fileRead.current)
+                  setFileError(oldVillageError(error) ?? gameFileError(error));
               });
             event.target.value = '';
           }}
@@ -675,7 +685,7 @@ export function App() {
       )}
       {(fileError ||
         (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : colony.error)) && (
-        <p role="alert">{gameFileError(fileError || colony.playtest || colony.error)}</p>
+        <p role="alert">{fileError ?? oldVillageError(errorDetail) ?? gameFileError(errorDetail)}</p>
       )}
     </section>
   ) : null;

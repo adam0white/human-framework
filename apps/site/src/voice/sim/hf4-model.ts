@@ -1,5 +1,7 @@
 /** Voice's authored town vocabulary and detached HF4 readings. No actor is advanced here. */
 import { DEFAULT_NORMS, type PersonAuthoring } from '@adam0white/human-framework';
+import { actionPhrase, pastAction } from '../ui/words.ts';
+import { ACTION_LABEL } from './action-labels.ts';
 import { openingPerson } from './hf4-authoring.ts';
 import type {
   Affordance,
@@ -316,8 +318,8 @@ export function diffChronicle(
     changes.push({ kind, subject: `action:${action}` });
     lines.push(
       n === 0
-        ? `By the end he had stopped: ${action}.`
-        : `He ${action} ${kind === 'unprompted' ? 'without being told' : 'after a suggestion'}.`,
+        ? `By the end he had stopped trying to ${actionPhrase(ACTION_LABEL[action] ?? action.replace(/[-:]/g, ' '))}.`
+        : `He ${pastAction(ACTION_LABEL[action] ?? action.replace(/[-:]/g, ' '))} ${kind === 'unprompted' ? 'without being told' : 'after a suggestion'}.`,
     );
   }
   return { changes, lines };

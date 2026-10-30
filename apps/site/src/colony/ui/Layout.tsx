@@ -3,7 +3,7 @@ import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, isSettled, type OrderCard, type OrderInput } from '../sim/orders.ts';
-import { VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
+import { clockOf, VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
 import { ConstructionReadout, ConstructionRequirements, RoofRisk } from './Construction.tsx';
 import { dayClock, type Frame, NO_CONCEPT } from './contract.ts';
 import { activityLabel, moodDescription, needDescription, trustDescription } from './descriptions.ts';
@@ -375,28 +375,16 @@ export function PersonSheet({
               </p>
               <div className="well-reply-row">
                 <p>
-                  {card.human.state === 'pending' ? (
+                  {card.human.says ? (
                     <>
-                      Waiting for an answer to this order.{' '}
-                      {card.human.says && (
-                        <>
-                          Recorded words: {settingWords(card.human.says)}{' '}
-                          {card.human.answerObservedAt === undefined
-                            ? 'Answer time unavailable.'
-                            : `Answer observed at ${dayClock(card.human.answerObservedAt)}; exact speech time unavailable.`}{' '}
-                          This is not current speech.
-                        </>
-                      )}
+                      {shortName(id)}: “{settingWords(card.human.says)}”
+                      {card.human.answerObservedAt !== undefined &&
+                        ` (${answerTime(card.human.answerObservedAt, frame.minute)})`}
                     </>
+                  ) : card.human.state === 'pending' ? (
+                    'Waiting for an answer to this order.'
                   ) : (
-                    <>
-                      Answer to this order:{' '}
-                      {settingWords(card.human.says ?? card.human.label ?? 'No spoken answer available.')}{' '}
-                      {card.human.answerObservedAt === undefined
-                        ? 'Answer time unavailable.'
-                        : `Answer observed at ${dayClock(card.human.answerObservedAt)}; exact speech time unavailable.`}{' '}
-                      This is not current speech.
-                    </>
+                    (card.human.label ?? 'No spoken answer available.')
                   )}
                 </p>
                 {refused ? (
@@ -592,3 +580,12 @@ export function PersonSheet({
   );
 }
 export { RingTimer };
+
+/** Approximate time of an observed answer; no exact speech time is implied. */
+function answerTime(minute: number, now: number): string {
+  const hour = clockOf(minute).hour;
+  const time =
+    hour < 5 ? 'night' : hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 21 ? 'evening' : 'night';
+  const daysAgo = clockOf(now).day - clockOf(minute).day;
+  return daysAgo <= 0 ? `this ${time}` : daysAgo === 1 ? `yesterday ${time}` : `an earlier ${time}`;
+}

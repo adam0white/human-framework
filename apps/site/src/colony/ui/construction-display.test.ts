@@ -126,9 +126,10 @@ it('explains remaining stage prices and an unfinished roof without promising ano
   const node = document.createElement('div');
   node.innerHTML = renderToStaticMarkup(createElement(ConstructionRequirements, { world: frame.humanWorld }));
   const rows = [...node.querySelectorAll('tbody tr')].map((r) => r.textContent);
-  expect(rows).toContain('Stage 7 · beam245');
-  expect(rows).toContain('Stage 85600');
-  expect(node.textContent).toContain('Human builders add progress through work sessions');
+  expect(rows).toContain('Stage 7 · beam2');
+  expect(rows).toContain('Stage 85');
+  expect([...node.querySelectorAll('thead th')].map((cell) => cell.textContent)).toEqual(['Stage', 'Timber']);
+  expect(node.textContent).not.toContain('minutes');
   node.innerHTML = renderToStaticMarkup(
     createElement(RoofRisk, { world: frame.humanWorld, minute: WARNING_AT, side: 'Human' }),
   );

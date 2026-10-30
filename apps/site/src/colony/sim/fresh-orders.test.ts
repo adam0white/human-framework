@@ -23,6 +23,7 @@ it('ordinary advice still allows HF to refuse work against a held duty', () => {
   game.issue({ personId: 'maryam', placeId: 'forest' });
   game.advance(1);
   expect(game.book.cards[0]?.human.state).toBe('willNot');
+  expect(game.book.cards[0]?.human.says).toContain('I have duties to the others.');
   expect((game.human as FrameworkHumanSide).person('maryam').activity?.action).not.toBe('gather-timber');
 });
 
@@ -50,4 +51,36 @@ it('preserves receipt age and strength through cold restore and exact input-log 
 
 it('names the current HF4 game edition', () => {
   expect(SCENARIO_VERSION).toBe('colony-scenario@9');
+});
+
+it('uses the matching framework resolution narration for the player answer', async () => {
+  const { inspect } = await import('@adam0white/human-framework');
+  const game = dawn();
+  const side = game.human as FrameworkHumanSide;
+  const community = (side as unknown as { community: import('./hf4.ts').Community }).community;
+  const result = inspect(community.run, {
+    perspective: { kind: 'host' },
+    people: ['idris'],
+    select: ['events'],
+  });
+  if (!result.ok) throw new Error(result.error.message);
+  const view = result.value.people[0];
+  if (!view || view.kind !== 'host') throw new Error('Missing host view');
+  const events = view.parts.find((part) => part.select === 'events');
+  if (!events || events.select !== 'events') throw new Error('Missing events');
+  const record = side
+    .person('idris')
+    .trace.findLast((r) => r.suggestions?.some((s) => s.voiceId === 'player'));
+  if (!record) throw new Error('Missing player decision');
+  const event = events.value.find(
+    (e) =>
+      e.data.kind === 'suggestion-resolved' &&
+      e.data.decisionId === record.id &&
+      e.data.resolution.voiceId === 'player',
+  );
+  if (!event) throw new Error('Missing player resolution');
+  expect(record.suggestions?.find((s) => s.voiceId === 'player')?.says).toBe(
+    event.narration.map((n) => n.text).join(' '),
+  );
+  expect(game.book.cards[0]?.human.says).toBe(event.narration.map((n) => n.text).join(' '));
 });

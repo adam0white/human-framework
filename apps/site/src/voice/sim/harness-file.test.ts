@@ -84,7 +84,7 @@ it('keeps an unquoted native seed command and replays its current file before th
     writeFileSync(oldPath, oldText);
     const refusal = spawnSync(process.execPath, [script, '--state', oldPath, 'look'], { encoding: 'utf8' });
     expect(refusal.status).toBe(1);
-    expect(refusal.stderr).toContain('This save is from an older version. Start a fresh game.');
+    expect(refusal.stderr).toContain('That month was lived under older rules; begin Ramadan again.');
     expect(refusal.stderr).not.toContain(' at ');
     expect(readFileSync(oldPath, 'utf8')).toBe(oldText);
   } finally {

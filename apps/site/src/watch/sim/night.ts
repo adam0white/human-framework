@@ -1945,7 +1945,7 @@ function prepareRefugeDeparture(s: WatchState): boolean {
   s.talks.said.push({
     who: 'kian',
     topic: 'home',
-    text: 'Kian and Ada can stay together here. This destination cannot yet carry Ada and their care and return duties, so they cannot leave together. Choose Stay here together to go on with the watch.',
+    text: 'Kian and Ada will stay together here. Their journey to the refuge must wait. Choose Stay here together to go on with the watch.',
   });
   return true;
 }

@@ -68,11 +68,6 @@ export function verdictKind(r: SuggestionResolution, rules: ColonyRules = 3): Ve
   }
 }
 
-/** Lines for refusals on this host's own norms (the framework's verb table does not know them). */
-const HOST_REFUSALS: Record<string, string> = {
-  'norm:abandon-dependents': 'And leave them without a cooked meal at noon? No. They depend on me for food.',
-};
-
 /**
  * The host's answer to an order whose job is not on offer to the person right now (`ColonyHostWorld.notOffered`):
  * the framework does not hear such a standing suggestion at all (colony.md §3, "a deferral is never a silent
@@ -84,49 +79,6 @@ export interface NotOnOffer {
   says: string;
   counterOffer?: string;
   short: string;
-}
-
-/**
- * Rules 4: the reason a "something else instead" answer gives, from the resolution's own `reason` (the term that won
- * the decision), so the line says why in the moment. The framework's "Not that — I'll draw water." names only
- * the alternative; on a map that reads as a whim (audit 2026-10-19: Danyal, Samira and Idris, on every seed).
- */
-const MODIFIED_BECAUSE: Record<string, string> = {
-  'goal:role': 'that is my work',
-  'need:water': 'I am thirsty',
-  'need:food': 'I am hungry',
-  'need:rest': 'I am worn out',
-  'need:sleep': 'I can hardly stand',
-  'need:safety': 'it is not safe out there',
-};
-
-/** Correct remembered first-person prose at the display boundary; episode identities stay untouched. */
-export function memoryText(text: string): string {
-  return text
-    .replace(/\bi\b/g, 'I')
-    .replace(
-      'Last time you sent me: I went to gather timber in a sudden storm.',
-      'Last time you sent me for timber, a storm came.',
-    )
-    .replace(
-      'I remember what happened last time: I went to gather timber in a sudden storm.',
-      'I remember what happened last time. A sudden storm came while I was gathering timber.',
-    )
-    .replace('I came back hurt and without timber.', 'I came back hurt, with no timber.');
-}
-
-/** The person's line, with this host's wording where the framework has none. `rules` 3 keeps the @3 lines. */
-export function sayLine(r: SuggestionResolution, rules: ColonyRules = 3): string {
-  if (r.verdict === 'refused' && r.kind === 'willNot') {
-    const own = HOST_REFUSALS[r.reason];
-    if (own) return own;
-  }
-  if (rules >= 4 && r.verdict === 'modified' && r.counterOffer) {
-    const reason = r.reason.startsWith('goal:role:') ? 'goal:role' : r.reason;
-    const because = MODIFIED_BECAUSE[reason];
-    if (because) return `I will ${r.counterOffer.label} instead, because ${because}.`;
-  }
-  return memoryText(r.says);
 }
 
 const NAMES: Record<string, string> = Object.fromEntries(
@@ -372,7 +324,7 @@ export function whyOf(
   const recalled = p.memory.episodes
     .filter((e) => recalledIds.has(e.id))
     .slice(-3)
-    .map((e) => `“${memoryText(e.summary)}”`);
+    .map((e) => `“${e.summary}”`);
   const out: WhyBreakdown = {
     personId: p.id as VillagerId,
     decisionId: record.id,
@@ -388,7 +340,7 @@ export function whyOf(
   if (r) {
     out.verdict = {
       kind: verdictKind(r, rules),
-      says: sayLine(r, rules),
+      says: r.says,
       reason: r.reason,
       ...(r.counterOffer ? { counterOffer: r.counterOffer.label } : {}),
     };
