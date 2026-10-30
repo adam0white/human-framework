@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-27",
+ "generated": "2026-10-30",
  "ledger": [
   {
    "id": "F-001",
@@ -15302,6 +15302,669 @@
     "fix:watch explain ordinary and raised wall capacities at dusk (done)"
    ],
    "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2161",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Yes, one more evening, to hear Selim finish telling me about Nevin's list, and only if talking to a cook doesn't keep costing me a station. I would not leave it running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass F-2167 absence/conversation consequence and recovery, target2026-11-03 (open)",
+    "fix:pass F-2169 duplicated need wording, target2026-11-03 (open)",
+    "fix:pass F-2172 follow up Nevin invitation, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/maya/report.md"
+  },
+  {
+   "id": "F-2162",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "I would return voluntarily another evening on desktop, but only if I can pick up where I stopped and the slowed waits during an empty station give me something to do. I would not leave it running in a tab.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass F-2170 slowed waits, target2026-11-10 (open)",
+    "fix:pass F-2173 resume inspection (not tested), target2026-11-03 (open)",
+    "fix:pass F-2171 money/table growth explanation, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/emre/report.md"
+  },
+  {
+   "id": "F-2163",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "I'd come back another evening, but only if something new is waiting. The first minute now has orders and cooks who push back. I'd still stop before the second night.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass F-2170 slowed waits, target2026-11-10 (open)",
+    "fix:pass F-2169 repeated need wording, target2026-11-03 (open)",
+    "fix:pass F-2176 inspect visible Insist instructions (hold untested, no defect established), target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/nia/report.md"
+  },
+  {
+   "id": "F-2164",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "I might come back another evening if the grill is not left empty by my own default plan and I can see early that ₺5,200 is reachable. I would not leave it running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass F-2168 specific first-order coverage warning, target2026-11-03 (open)",
+    "fix:pass F-2171 reachable money explanation, target2026-11-10 (open)",
+    "fix:pass F-2174 shorter planning text, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/rosa/report.md"
+  },
+  {
+   "id": "F-2165",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Amal Haddad",
+   "words": "Maybe, but only if I could understand why a cook stops working and what I can do about it. Right now I would not come back on my own.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass F-2166 takeover answer outcome, target2026-11-03 (open)",
+    "fix:pass F-2167 actual absence/need and recovery, target2026-11-03 (open)",
+    "fix:pass F-2170 slowed waits, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/cold-amal/report.md"
+  },
+  {
+   "id": "F-2166",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Amal Haddad",
+   "words": "A 'who takes over' answer should count once. Right now the same question comes back with a new end time each time.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass accepted takeover answer and visible result, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/cold-amal/report.md"
+  },
+  {
+   "id": "F-2167",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Amal Haddad",
+   "words": "When a cook leaves or refuses, show the reason in the main view. Do not make me dig through the log for it. If they 'need the toilet first', they should actually go.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass actual absence/urgent need and available recovery agree, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/cold-amal/report.md"
+  },
+  {
+   "id": "F-2168",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Do not let the starting plan leave the grill empty. Selim's meal break at 18:10 does this to every new player. Either set the default so a cook covers, or say before I open the doors that nobody will be at the grill.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass specific pre-opening uncovered-station warning, preserve difficulty, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/rosa/report.md"
+  },
+  {
+   "id": "F-2169",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Give the cooks more than one line for the same ask. 'I need to use the toilet first' came back for almost every job.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass deduplicate displayed need clauses, keep actual need, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/nia/report.md"
+  },
+  {
+   "id": "F-2170",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Give me something to do during slowed waits. Tuesday 19:43 had both cooks gone, the grill empty and Selim in the bathroom. The phone Monday 18:16 had Selim refusing the grill. I could only wait.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass slowed-wait taste ask, human-speed timing defect NOT established, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/emre/report.md"
+  },
+  {
+   "id": "F-2171",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Show early whether ₺5,200 is reachable.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass explain route to Saturday money and table growth, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/rosa/report.md"
+  },
+  {
+   "id": "F-2172",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Make Selim's 'ask me about Nevin when I have a moment' lead somewhere I can see. I never learned how to ask again, or when he would have a moment.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass follow up later Nevin invitation, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/maya/report.md"
+  },
+  {
+   "id": "F-2173",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Let me carry on from where I stopped, so I do not replay Monday.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass inspect Resume, NOT TESTED, no save defect established, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/emre/report.md"
+  },
+  {
+   "id": "F-2174",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Keep the planning text short. Selim's and Dilek's 'I agree to that…' quotes are long and repeat the line above them.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass shorten repeated plan quotes, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/rosa/report.md"
+  },
+  {
+   "id": "F-2175",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "The order cards at the left are cramped and cut off ('grill ○○ cold s...').",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass readable desktop order-card labels, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/emre/report.md"
+  },
+  {
+   "id": "F-2176",
+   "date": "2026-10-30",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Make 'Insist' do something I can see. A click on desktop changed nothing on screen.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass Insist ordinary-tap desire, hold action NOT TESTED, no game input defect established, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/pass/nia/report.md"
+  },
+  {
+   "id": "F-2177",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Yes, another evening and not now. I would come back once to see whether the trial outcomes punish the ₺9,100 fee or the promised qualities. I would not leave it running. I would stop if the fee never carries a visible consequence, or if waiting through the days is empty.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands F-2186 show fee and pending consequences, target2026-11-03 (open)",
+    "fix:goodhands F-2185 distinct supported answers, target2026-11-03 (open)",
+    "fix:goodhands F-2182 readable phone task deadline, target2026-11-03 (open)",
+    "fix:goodhands F-2190 visible next reference availability where known, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/jonas/report.md"
+  },
+  {
+   "id": "F-2178",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Yes, I would come back another evening, but only if the people's own words changed what the game believed about them. I would not leave it running, because the clock moves while I read.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands F-2183 explain judgement and acknowledge accounts without forced trust, target2026-11-03 (open)",
+    "fix:goodhands F-2187 pacing review within slowdown policy, target2026-11-03 (open)",
+    "calibration:C14",
+    "fix:lab F-2188 inspect late driver timeouts after a visible transition, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/aisha/report.md"
+  },
+  {
+   "id": "F-2179",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "I would not come back on my own; the game would have to give me something to lose or something I haven't found out yet, and after two visits it gave me neither.",
+   "verdict": "quit",
+   "routes": [
+    "fix:goodhands F-2186 make actual placement stakes legible without rebalancing, target2026-11-03 (open)",
+    "fix:goodhands F-2185 distinct supported people and answers, target2026-11-03 (open)",
+    "fix:goodhands F-2187 City time jump not reproduced, pacing review2026-11-03 (open)",
+    "fix:goodhands F-2191 map toggle placement review, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/diego/report.md"
+  },
+  {
+   "id": "F-2180",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "I would come back another evening, on the big screen, to see what happens to Özlem and the Kaya family, but only if the 'Nermin's reading' sentences explain why. I would not leave it running; I would close it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands F-2183 explain Nermin reading, target2026-11-03 (open)",
+    "fix:goodhands F-2184 short fee and deposit explanation with actual values, target2026-11-03 (open)",
+    "fix:goodhands F-2189 avoid identical repeated disabled reasons, target2026-11-10 (open)",
+    "fix:goodhands F-2182 phone task deadline readable, target2026-11-03 (open)",
+    "fix:goodhands F-2192 phone picture and card balance review, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/rosa/report.md"
+  },
+  {
+   "id": "F-2181",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Lena Fischer",
+   "words": "I would come back another evening only if a new month brought different people and different answers. As long as the families and witnesses say the same sentences, one evening was enough.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands F-2185 distinct supported family and witness words, target2026-11-03 (open)",
+    "fix:goodhands F-2186 make actual remaining stakes clear, target2026-11-03 (open)",
+    "fix:goodhands F-2187 pacing explanation within slowdown policy, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/lena/report.md"
+  },
+  {
+   "id": "F-2182",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Fix the clipped task banner on the phone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands phone task/deadline clipping, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/jonas/report.md"
+  },
+  {
+   "id": "F-2183",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Make 'Nermin's reading' say why. The same quote gave 'unsure' for Şebnem and 'believe' for Özlem.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands explain judgement and received accounts without making every claim trusted, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/rosa/report.md"
+  },
+  {
+   "id": "F-2184",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Rewrite the negotiation fee and deposit paragraph in short sentences, with the real numbers.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands literal short fee/deposit text with actual values, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/rosa/report.md"
+  },
+  {
+   "id": "F-2185",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Lena Fischer",
+   "words": "Give every family, reference and neighbour their own words. The Arslans and the Kayas had identical needs and wording. Mr Hüsnü told the same 'glass of water, buses from Bornova' story about two different applicants. Özlem and the landlord ended calls with the same sentence.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands distinct supported family/reference/neighbor wording, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/lena/report.md"
+  },
+  {
+   "id": "F-2186",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Make a placement cost something I can feel. Promising an unchecked trait ('honest') changed nothing, and the rent was covered within two minutes in both sessions.",
+   "verdict": "quit",
+   "routes": [
+    "fix:goodhands show pending consequences and remaining stakes before changing economy, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/diego/report.md"
+  },
+  {
+   "id": "F-2187",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Stop the game clock while I am reading a card or an answer. It went 12:36 → 12:52 and the landlord rang while I read.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands pacing/reading-pressure review, hard pause excluded by owner slowdown direction, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/aisha/report.md"
+  },
+  {
+   "id": "F-2188",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Make the driver timeouts stop, or tell me when a tap has registered. Two taps reported a 30-second timeout even though the game had moved on. I suspect the driver, not the game.",
+   "verdict": "mixed",
+   "routes": [
+    "calibration:C14",
+    "fix:lab inspect late-action timeouts after visible state changes, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/aisha/report.md"
+  },
+  {
+   "id": "F-2189",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Show one short line instead of the same sentence in five disabled boxes.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands consolidate only genuinely identical disabled reasons, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/rosa/report.md"
+  },
+  {
+   "id": "F-2190",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Also show when a candidate can next be called, so I am not guessing why nothing is available.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands next reference availability where known, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/jonas/report.md"
+  },
+  {
+   "id": "F-2191",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "the phone map button sits on top of the map.",
+   "verdict": "quit",
+   "routes": [
+    "fix:goodhands inspect map toggle overlap, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/diego/report.md"
+  },
+  {
+   "id": "F-2192",
+   "date": "2026-10-30",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "the office picture that takes half the screen.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands phone picture/card balance review, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands/rosa/report.md"
+  },
+  {
+   "id": "F-2193",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "I would come back on another evening, on the laptop. I would do that only if the first hours had decisions in them and my saved place were kept. I would not leave it running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance opening, legibility and return conditions F-2198–F-2205, target2026-11-03/11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/mei/report.md"
+  },
+  {
+   "id": "F-2194",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "I might come back another evening, on desktop only, if I could answer Dai (Morgan's question, who the town people are) and each step cost far less than half a minute of waiting. I would not leave it running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance opening, legibility and return conditions F-2198–F-2205, target2026-11-03/11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/samir/report.md"
+  },
+  {
+   "id": "F-2195",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Maybe, on another evening and only on desktop, and only if each night asked me for more than about four choices; I would not leave it running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance opening, legibility and return conditions F-2198–F-2205, target2026-11-03/11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/leila/report.md"
+  },
+  {
+   "id": "F-2196",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "No. I would close it and not come back on my own, on either device, and I would not leave it running. I might come back only if someone first explained, in plain words, what \"dark corners\" and \"arrangements\" are, and showed me one job to do.",
+   "verdict": "quit",
+   "routes": [
+    "fix:glance opening, legibility and return conditions F-2198–F-2205, target2026-11-03/11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/rosa/report.md"
+  },
+  {
+   "id": "F-2197",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Sara Lindholm",
+   "words": "Not by choice for twelve nights of this. I would come back once if I could see the town and the river, and if each night gave me a new kind of clue instead of the same misread at the same hour.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance opening, legibility and return conditions F-2198–F-2205, target2026-11-03/11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/sara/report.md"
+  },
+  {
+   "id": "F-2198",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Cut or shorten the repeated \"optional chapter\" paragraph. It appears twice in the log and once more above the gauges. I read it as paperwork.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance shorten/move repeated optional chapter explanation while preserving authored choices, blocking, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/leila/report.md"
+  },
+  {
+   "id": "F-2199",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "On the phone, show the level and gauges above the italic note. Stop the recording banner covering them.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance phone status/gauge/notice layout, clipping confirmed in retained images, blocking, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/samir/report.md"
+  },
+  {
+   "id": "F-2200",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Explain a job in one plain sentence. For example: \"Pick how many turns to open the gate. More turns lower the water.\" Drop \"How Dai expects to feel\", \"insist\" and the \"caught\" rule from that first view.",
+   "verdict": "quit",
+   "routes": [
+    "fix:glance literal first-job instruction and progressive explanation, preserve insist/doubt/tradeoffs, blocking, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/rosa/report.md"
+  },
+  {
+   "id": "F-2201",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Give me more to decide each night. I made about 3 to 5 choices in 3.5 to 6.5 minutes and spent the rest waiting.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance inspect early-night decisions and existing pace/skip before any change, later nights unseen, blocking candidate for taste review2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/leila/report.md"
+  },
+  {
+   "id": "F-2202",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Let me answer Dai, or ask him about himself and the town.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance inspect supported answer to Dai/story cue with existing facts, no invented unrestricted chat, blocking candidate, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/samir/report.md"
+  },
+  {
+   "id": "F-2203",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "After I set the gate, show what it is doing to the level without making me ask Dai again. I did not see where the 3.6 m reading would lead.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance explain gate effect and ages without true/live water or automatic certainty, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/mei/report.md"
+  },
+  {
+   "id": "F-2204",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Pause the clock while I read an inspection panel. It says \"Time continues slowly while this inspection is open\", and 16 game minutes (22:36 to 22:52) still went by on desktop while I read the gate panel.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance pacing/reading clarity only, hard pause excluded by owner slowdown policy, no timing defect reproduced, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/leila/report.md"
+  },
+  {
+   "id": "F-2205",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "at 00:11 Dai said \"I read four point three. It looks fine.\" The level gauge still read \"4.30 m, read 23:25\". The line below it said \"was 4.3, read 23:25\". I could not tell whether the gauge failed to update or the 00:11 report was not applied. I am guessing.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance reproduce reported timestamp discrepancy before calling it a defect, preserve reported-vs-observed water semantics, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/leila/report.md"
+  },
+  {
+   "id": "F-2206",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Sara Lindholm",
+   "words": "Show the town and the river, or at least a bridge gauge, during play. The title chart has a bridge line, but I never saw one once the game started.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance inspect existing town/river observation and make supported consequences legible without omniscient true level, blocking candidate, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/sara/report.md"
+  },
+  {
+   "id": "F-2207",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Sara Lindholm",
+   "words": "Make nights differ in shape, not only in their numbers. On both devices the lightning came at 22:34 and a wrong high reading arrived soon after.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance variety taste review, two fresh first nights only, later nights unseen, do not randomise authored clue or infer all12nights same, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/sara/report.md"
+  },
+  {
+   "id": "F-2208",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Sara Lindholm",
+   "words": "Watch arrangements has no Save button, and \"Leave this request\" is ambiguous.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance clarify actual request activation without promising keeper compliance, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/sara/report.md"
+  },
+  {
+   "id": "F-2209",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Sara Lindholm",
+   "words": "On the desktop my first level request vanished without an answer (35 s).",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance reproduce request replacement/visible acknowledgement at human speed, no defect established from report alone, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/sara/report.md"
   }
  ],
  "lessons": [
@@ -15926,10 +16589,10 @@
   }
  ],
  "routes": {
-  "fix": 1471,
+  "fix": 1544,
   "lesson": 291,
   "hf": 14,
-  "calibration": 42,
+  "calibration": 44,
   "none": 8
  }
 }

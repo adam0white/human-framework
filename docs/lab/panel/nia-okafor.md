@@ -881,3 +881,37 @@ I stopped Warren at 109.45s, a bit under two minutes in, because I was frustrate
 
 I created no browser, server or worktree and touched no repository, so the cleanup rule has nothing for me to remove. I kept one screenshot of my own.
 ```
+
+
+<!-- selected-continuity-key: light-1030:pass:nia:free -->
+## 2026-10-30 Pass same-tester retest — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/pass/nia/report.md). Build b6e919a8601554aa2aac34045286f1b3cf8f9245, HF4.12.0; free stop, fresh phone360x690 and desktop1280x800. These are sequential device visits, not alternative paired arms. No Feedback note was submitted. Report estimates/premature timed tags remain qualified by actual raw elapsed_s.
+
+I'd come back another evening, but only if something new is waiting. The first minute now has orders and cooks who push back. I'd still stop before the second night.
+
+**phone — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                             |
+| --------- | ------------ | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.546     | input        |        | New wait-time choice at the start; taking default.                                                                                                                |
+| 6.25      | input        |        | Skipping plans, want orders fast.                                                                                                                                 |
+| 8.666     | input        |        | Poke a cook again.                                                                                                                                                |
+| 31.818    | first_minute |        | Money moves and clock runs again with no order cards visible yet; I can poke cooks and see a toilet-first reply. Still waiting but there is an Insist button now. |
+| 33.931    | input        |        | Make him eat during the rush.                                                                                                                                     |
+| 44.422    | input        |        | A real choice appeared: cover the grill with Dilek. I like that something pushes back (toilet).                                                                   |
+| 47.038    | note         |        | Greyed People offers now say why: busy with work or break, ask when free. Better than last time. Will retry later.                                                |
+| 74.738    | input        |        | Dilek refused with a real line. Good.                                                                                                                             |
+| 99.862    | pulse        |        | Real things happen now: toilet need, cover choice, refusal. Orders came fast. Still a lot of watching.                                                            |
+| 164.497   | stop         | BORED  | Slower waiting on a stalled table, nothing for me to do while Selim eats. Better than last time (orders early, reasons for greyed offers). Stopping.              |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind  | reason | words                                                                                                                                                                                      |
+| --------- | ----- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2.356     | input |        | Second device, straight in.                                                                                                                                                                |
+| 4.106     | tool  |        | Trying Insist by keyboard/mouse click.                                                                                                                                                     |
+| 7.443     | input |        | Tell Dilek to go home, see her push back.                                                                                                                                                  |
+| 27.585    | stop  | BORED  | Desktop: Insist is a plain label, no visible effect from a click. Dilek will push back on go home, but I would rather watch a stronger reaction. Orders come sooner than before. Stopping. |
+
+Separate later [viewport/Feedback observation](../reviews/light-2026-10-30/pass/supplements/nia/report.md) is an additional fresh visit and does not replace the preceding report or verdict.

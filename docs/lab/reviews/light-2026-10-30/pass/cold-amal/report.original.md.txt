@@ -1,0 +1,126 @@
+**Would you return?** "Maybe, but only if I could understand why a cook stops working and what I can do about it. Right now I would not come back on my own."
+
+**Ranked asks**
+1. When a cook leaves or refuses, show the reason in the main view. Do not make me dig through the log for it. If they "need the toilet first", they should actually go.
+2. A "who takes over" answer should count once. Right now the same question comes back with a new end time each time.
+3. The slowed clock makes waiting for a cook painful, even on Fast.
+
+# Report: Amal Haddad, The Pass
+
+## 1. Session
+- Persona: Amal Haddad, 29, Tunisian translator in Montreal.
+- Exposure: never-HF cold visit. My own history file was empty. I could not read it because the shell refused `cat`.
+- Round and arm: light-1030 cold comparison, free stop (floor 0).
+- URL: https://pass.adamwhite.work/?labRunSource=agent
+- Session A: 360x690 phone. Real time about 468 s (7.8 min).
+- Session B: 1280x800 desktop. Real time about 281 s (4.7 min).
+
+## 2. First impressions
+- **Phone, 0–30 s:** The title page was clean. I wondered who Selim and Dilek were. I kept Dilek's "normal wait". On the plan screen I spotted that Selim's 18:10 break clashed with the early table at 18:12, so I moved his break to 21:00. I liked that I had to ask the cooks and that they can say no.
+- **Desktop, 0–30 s:** I recognised the same set-up. This time I chose Selim's longer wait and moved both breaks to 21:00. The layout was much more readable: a big kitchen drawing with the talk on the right.
+
+## 3. Verbatim (as logged; elapsed seconds approximate)
+
+**Phone (A)**
+- 5s: "Clean start. Who are Selim and Dilek? I keep the normal wait and start."
+- 9s: "Selim breaks 18:10-18:30 but the early table is 18:12. That clashes. Moving his break, I think."
+- 13s: "18:35 would hit his prayer, 19:45 is the rush. 21:00 seems kind to everyone."
+- 22s: "So I have to ask them. I like that they can say no."
+- 29s: "\"For now, I will do that.\" For now? Something is coming. Opening the doors."
+- 31s: "A little kitchen map. 0 flatbreads - is that a problem already?"
+- 35s first_minute: "I set breaks so nobody clashes with the early table or Selim's prayer. Now I watch a small stick-figure kitchen. Tiny drawing on my phone. Curious what \"for now\" means."
+- 74s: "Her mother isn't answering. Of course she can go. No table is waiting right now."
+- 94s: "Three minutes, no orders. Leave it. Odd that she says she is not at her agreed station when I just said yes."
+- 109s: "Table 9 served twice in the log? Did I get paid twice? Confusing but small."
+- 131s: "Table 6 can wait until 19:23 and Dilek is back at 18:55. I will just wait."
+- 153s: "Time is slowed because a station is empty, so the clock barely moves. I am waiting on purpose and the game is making me wait longer."
+- 188s pulse 3: "I like the people, but the slowed clock makes waiting for Dilek's break feel long."
+- 217s: "Wait, Selim is going out to explain the wait to table 6? I never asked him. Why is he doing that? Maybe he is kind. Grill order is already done so I leave it empty."
+- 246s: "17 minutes until 19:22. I guess this is his prayer, late because of the table. Table 4 can wait till 19:42. Leave it."
+- 276s: "Selim shows as free, not praying. What is he doing? Tapping him."
+- 282s: "Every job I could ask says he needs the toilet first. So he left for the bathroom? The plan said prayer. I want to ask him."
+- 285s: "\"I cannot leave these pans\" but nobody is at the grill. He says bathroom, the plan said prayer. I do not know what he is actually doing."
+- 322s: "Found it in the log: he went to the storeroom to pray. That makes sense; the bathroom line confused me. There is a Kitchen speed. I choose Fast because the slowed waits are too long for me, not because I am behind."
+- 352s: "Even on Fast, only two minutes passed. Now Dilek goes to explain the wait. Nobody is cooking. And table 5 was served twice too?"
+- 420s: "Dilek leaving for 18 minutes now, and I don't know why. Tables wait for the grill anyway, so I will ask Selim for the grill."
+- 435s: "Now Selim is away until 19:42 too. Both cooks free, both away, no reason given. Dilek is free, so ask her to grill."
+- 455s want_quit CONFUSED: "I asked Dilek to take the grill and she is back on cold side, and the same take-over question is still open. Cooks keep leaving to explain waits I never asked about. I do not understand what my taps do."
+- 462s: "Picking a label wrote \"I'm confused\" into the note box for me. I did not type it. I also decide to stop here on the phone."
+- 468s stop CONFUSED, engagement 2: "I stop. I liked Dilek calling her mother and Selim's prayer, but after 19:00 both cooks kept leaving, my take-over choices did not seem to happen, and an hour of game took minutes of waiting. On a phone I don't want to untangle it."
+
+**Desktop (B)**
+- 4s: "Same start as on my phone. Tables waited a lot last time, so I take Selim's longer wait."
+- 15s note: "I recognize Selim (grill, prayer 18:35-19:20) and Dilek (cold side) from my phone tonight; same opening text, sure it is the same set-up."
+- 23s: "Last time Dilek ate during the rush and orders waited. Both eat after the rush this time."
+- 33s first_minute: "Much easier to see on the laptop: big kitchen drawing and the talk on the right. Now Dilek also says \"For now\". More grill portions than on my phone (19 vs 13) - the longer-wait choice changes things?"
+- 87s: "Same call about her mother as on my phone, almost the same minute. I say yes again. I wonder if her mother is ever explained."
+- 129s: "It asks me the same take-over question again, now \"1 minute, until 18:42\". Did my first answer not count?"
+- 158s: "Now Dilek is gone 17 minutes. Five minutes became much more. I want to know why."
+- 179s pulse 2: "The same \"who takes over\" box keeps coming back for Dilek, 17 then 19 minutes, and it sits where her jobs and talk should be. She stands at the pass doing nothing I can see."
+- 203s: "Dilek also \"needs the toilet first\" for every job, just like Selim did on my phone. I don't believe it is the toilet. I invite her to talk in private."
+- 229s: "My private-talk invite got no answer that I can see. Now she is \"between jobs\". I just ask her back to the cold side; table 7 is waiting for it."
+- 240s: "She refuses: toilet first. Then go! She has been free for half an hour. I will wait and see if she actually goes."
+- 276s want_quit FRUSTRATED: "Dilek has said \"toilet first\" for half an hour of game time but never goes; she just stands at the pass. There is no job I can give that she accepts and nothing that sends her to the bathroom. Same wall as on my phone, different cook."
+- 281s stop FRUSTRATED, engagement 2: "I stop. Twice tonight, around 19:00 on Monday, a cook stopped working, said toilet first to every job, and I had no way to fix it. I like these people, but I can't tell what my choices change."
+
+## 4. Moments
+**What held me**
+- Planning the breaks around the early table and Selim's prayer.
+- Dilek's call to her mother.
+- The "For now…" lines.
+- Finding in the log that Selim went to the storeroom to pray.
+
+**What lost me**
+- Cooks walked off to "explain the wait" without my asking.
+- The take-over question kept repeating.
+- Every job answer was "toilet first", but no cook ever went.
+- "Time is slowed" turned short absences into long real waits.
+
+**Quit wishes and pulses**
+- Phone: one quit wish (CONFUSED), not passed; I stopped. Pulse was 3 at 188 s.
+- Desktop: one quit wish (FRUSTRATED), not passed; I stopped. Pulse was 2 at 179 s.
+
+## 5. Confusion and clarity
+**Clear**
+- The pre-opening plan: stations, break times, who takes over.
+- Ticket timers ("leaves after 19:42 · ₺40 at risk").
+
+**Confusing**
+- "Table 9" and "Table 5" each appear as served twice in the phone log. The same pattern happened with table 4 on desktop.
+- A cook says "I'm not at my agreed station" right after I approved their request.
+- Phone: Selim said "I cannot leave these pans" while the grill showed "nobody here".
+- Phone: I asked Dilek to take over the grill, but she went back to the cold side.
+- Desktop: my private-talk invite got no visible reply.
+- The prayer reason appeared only in the full log ("Selim stepped into the storeroom to say the sunset prayer"), not in the main status text.
+
+## 6. Device use
+**Phone**
+- Screenshots viewed: a-001 (title), a-002 (plan screen), a-004 (kitchen at 19:11 with Selim "free" and the grill marked "nobody here"), a-005 (Feedback with "I'm confused" selected). a-003 (kitchen at 17:28) was also viewed.
+- The drawing is small but readable.
+- The talk log pushes the cook buttons into the middle of the screen. I saw no trouble beyond that.
+
+**Desktop**
+- Screenshots viewed: b-001 (title), b-002 (kitchen at 17:25, two columns), b-003 (the take-over box on the right with Dilek drawn at the pass), b-004 (Feedback modal with "I'm stopping" selected over the job cards).
+- Controls I used at both sizes: radio buttons, plan dialog buttons, Done, Open the doors, cook buttons, take-over buttons, Game menu, Kitchen speed Fast (phone only), Feedback.
+
+**Feedback evidence**
+- Phone (a-005): "I'm confused" and "I'm stopping" were both offered. Choosing a label filled the note box with that text by itself; I typed nothing. Nothing was submitted.
+- Desktop (b-004): "I'm stopping" selected; the note box showed "I'm stopping". Nothing was submitted.
+
+## 7. Stop and return
+- Phone stop (CONFUSED): "I stop. I liked Dilek calling her mother and Selim's prayer, but after 19:00 both cooks kept leaving, my take-over choices did not seem to happen, and an hour of game took minutes of waiting. On a phone I don't want to untangle it."
+- Desktop stop (FRUSTRATED): "I stop. Twice tonight, around 19:00 on Monday, a cook stopped working, said toilet first to every job, and I had no way to fix it. I like these people, but I can't tell what my choices change."
+
+**Would you return voluntarily?** Maybe, but only if I could understand why a cook stops working and what I can do about it. Right now I would not come back on my own. The people interest me, and I want to know about Nevin and Dilek's mother. But I never got past Monday 19:30, and I don't trust that my choices do what they say. I would not leave it running. I might come back another evening only if someone told me this stuck state had been fixed.
+
+## 8. Changes I would want
+1. When a cook leaves or refuses, show the reason in the main view, not only in the log. If they "need the toilet first", they should go and come back.
+2. A take-over answer should count once, not come back with a new end time.
+3. "Time is slowed" makes waiting for a cook painful, even on Fast.
+
+## 9. Compared with my last visit
+First visit.
+
+**Notes for the coordinator**
+- The shell refused some commands: `cat` of the cleanup rule and my history file, shell variables, and one python pipe. So I did not read the cleanup rule. I started no processes.
+- Phone screenshots: a-001 to a-005. Desktop screenshots: b-001 to b-004.

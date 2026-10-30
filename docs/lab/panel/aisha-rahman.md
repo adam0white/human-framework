@@ -382,3 +382,55 @@ These are my original log lines, unchanged. The raw JSONL holds every line.
 
 **Cleanup:** I touched no git repo and created no worktrees or servers, so there's no `git worktree list` to show. The only screenshot I created is current-phone.png. The driver's own first-minute.png may also exist; I didn't open it.
 ```
+
+
+<!-- selected-continuity-key: light-1030:goodhands:aisha:free -->
+## 2026-10-30 Good Hands first visit — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/goodhands/aisha/report.md). Build28086c1f64d9a42b369c9f8904b22fd33063e00d, HF4.8.1; free stop, fresh phone360x690 and desktop1280x800. Sequential device visits, not alternative paired arms. Both viewports actually viewed. No Feedback note submitted. Driver timeouts with visible transitions remain tool observations; no complete-month claim.
+
+Yes, I would come back another evening, but only if the people's own words changed what the game believed about them. I would not leave it running, because the clock moves while I read.
+
+**phone — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                       |
+| --------- | ------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 10.798    | input        |        | Same title page on the phone.                                                                                                                                               |
+| 19.339    | input        |        | Did the office open?                                                                                                                                                        |
+| 22.698    | input        |        | On the phone I will follow Şebnem again, the one with a hard reference.                                                                                                     |
+| 28.997    | input        |        | Starting with her work history and her side, since I only know a reference after last time.                                                                                 |
+| 32.143    | input        |        | Family calling again; I will answer on the phone too.                                                                                                                       |
+| 35.741    | input        |        | Same family call as on the laptop; second time it reads as a repeat.                                                                                                        |
+| 40.465    | first_minute |        | Second visit, same evening: I know the loop now, so it is quick. The phone layout is readable, though the news bar is cut off at the top.                                   |
+| 42.609    | want_quit    | BORED  | I just did this same opening on the laptop. The same family call and the same apology, so I would stop on the phone.                                                        |
+| 49.65     | stop         | BORED  | Stopping after under a minute on the phone. I had just played the same opening on the laptop, so there was nothing new to learn. I pressed I am stopping and typed nothing. |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                                |
+| --------- | ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.985     | input        |        | A placement agency; matching nannies to families sounds like my sort of careful promise.                                                                                                                             |
+| 14.353    | input        |        | Three people and one family; I will read one applicant properly before deciding.                                                                                                                                     |
+| 17.803    | input        |        | Interview first; I want to hear her before judging.                                                                                                                                                                  |
+| 24.911    | input        |        | A family call; I want to hear what they need before I place anyone.                                                                                                                                                  |
+| 28.638    | input        |        | I will not promise an answer I cannot yet keep.                                                                                                                                                                      |
+| 35.494    | input        |        | Nice that Nermin apologised to Gülce for the phone; the dialogue respects what happened. I want a patience question.                                                                                                 |
+| 56.448    | input        |        | A reference who is reachable now is worth calling before I commit anyone.                                                                                                                                            |
+| 61.952    | first_minute |        | I understand: three applicants, one family, I interview and call references before placing. Nermin apologising to Gülce after the family call felt considerate. I am following Şebnem now.                           |
+| 66.397    | tool         |        | x                                                                                                                                                                                                                    |
+| 69.18     | input        |        | Melek said Şebnem listened when instructions were repeated, yet my notes still say I am unsure she is patient. That did not respect what I just heard.                                                               |
+| 73.087    | input        |        | She was late without calling. I want the reason before I judge her.                                                                                                                                                  |
+| 77.281    | input        |        | Asked why it ended and got only a worse fact, not a reason. I feel I am collecting verdicts rather than hearing her side.                                                                                            |
+| 118.268   | input        |        | The interview tap took 32 s and reported a timeout, but the interview had opened. Odd, probably the driver.                                                                                                          |
+| 141.085   | input        |        | Özlem sounds patient; I want her reference to confirm it before I recommend her.                                                                                                                                     |
+| 159.112   | input        |        | Missing change, could not explain it. That is not the same as taking it; I want her side before I judge.                                                                                                             |
+| 174.312   | input        |        | A day later than the Arslans, and I have time. A promise to look, not to deliver, feels like one I can keep.                                                                                                         |
+| 183.203   | pulse        |        | I am following three individuals and each reference changes my view; the apology to Gülce and the honest option not to promise felt respectful. Slightly worried Şebnem is judged on one reference without her side. |
+| 185.822   | input        |        | Şebnem has waited three hours; she should be heard in her own words before I decide.                                                                                                                                 |
+| 189.822   | input        |        | Good: I can put what the reference said to her and hear her answer.                                                                                                                                                  |
+| 196.067   | note         |        | She owned it: I did not arrive at the agreed time. I should have called. That is a person, not a verdict; but it did not change the note, which still says I doubt her. I would want it to count.                    |
+| 251.188   | input        |        | The last question tap reported a 30 s timeout again, but the answer had registered. Same as with Özlem. All three now say they must leave and be called back after a set time.                                       |
+| 258.916   | input        |        | The clock moved on by itself while I looked at the screen, and now the landlord is calling. Facing him.                                                                                                              |
+| 263.259   | input        |        | A nice neighbourly touch; Gülce is nearby. The landlord is a person here, not a rent timer.                                                                                                                          |
+| 342.823   | want_quit    | BORED  | Everyone has gone home and the clock keeps running while I read. I have seen the shape of it; I would stop here rather than push on.                                                                                 |
+| 357.366   | stop         | BORED  | Stopping after about six minutes. I liked the people and the apologies, but the clock runs while I read and the landlord call is still ringing; I pressed I am stopping in Feedback and typed nothing.               |

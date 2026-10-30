@@ -1,0 +1,108 @@
+{
+  "tester": "Leila Mansour",
+  "validationTime": "2026-10-30T22:12:49.105349+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T21:44:35.597Z",
+        "elapsed_s": 413.226,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone. Good premise: stale readings from a keeper, a good trade-off explanation. But I make three decisions in six minutes and the rest is waiting. I would not leave it running; I might return on desktop if the nights asked more of me.",
+        "game_clock": "Mon 03:24",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 3,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 381.033,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T21:48:22.678Z",
+        "elapsed_s": 214.576,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on desktop. Good premise and the stale-reading device is smart. I make a handful of choices in 3.5 minutes, everything else is waiting. I would not leave it running; I might return another evening if nights asked more of me.",
+        "game_clock": "Mon 00:41",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 209.811,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [164.975],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T21:47:24.269Z",
+          "elapsed_s": 156.167,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "level 4.30 m Dai \u00b7 read 23:25 (as written) was 3.9, read 22:11 (as written)"
+          },
+          "reaction": "Gate at 5; level reading is 30 min stale. Asking for a fresh read. I like that I must choose whether to trust old numbers.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 10,
+          "error": "level 4.30 m Dai \u00b7 read 23:25 (as written) was 3.9, read 22:11 (as written) is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

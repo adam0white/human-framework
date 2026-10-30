@@ -870,3 +870,40 @@ These are the lines I can still quote exactly, all from the last part of the ses
 2. When I recover a part from the donor lantern, put it in the drawer, or tell me why it is not there.
 3. Vary the faults, so the second fan is not the same battery swap as the first.
 ```
+
+
+<!-- selected-continuity-key: light-1030:pass:emre:free -->
+## 2026-10-30 Pass same-tester retest — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/pass/emre/report.md). Build b6e919a8601554aa2aac34045286f1b3cf8f9245, HF4.12.0; free stop, fresh phone360x690 and desktop1280x800. These are sequential device visits, not alternative paired arms. No Feedback note was submitted. Report estimates/premature timed tags remain qualified by actual raw elapsed_s.
+
+I would return voluntarily another evening on desktop, but only if I can pick up where I stopped and the slowed waits during an empty station give me something to do. I would not leave it running in a tab.
+
+**phone — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                             |
+| --------- | ------------ | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 10.898    | input        |        | Phone, second visit same evening. Changed Dilek break to 21:00 and ask.                                                                                                                                           |
+| 14.349    | first_minute |        | Phone header fits now, nothing cut off. Layout is readable; the order list was empty at 17:25. Ingredient counts differ from the desktop start, 18 grill vs 12, so nights are not identical.                      |
+| 46.663    | input        |        | Selim eats 18:10, grill empty, a table waits. I did not change his break on this device. Asking him back.                                                                                                         |
+| 79.303    | want_quit    | BORED  | Monday 18:16 on the phone. Selim refuses, bathroom first, early table about to leave, nothing I can do but wait in slowed time. This is the same dead wait as before. I already saw this plan on desktop.         |
+| 79.313    | stop         | BORED  | Stopping on phone Monday 18:16, 120 of 5200, after about 80 seconds. Layout is fine, header fits. I do not want to replay Monday. I would come back another evening on desktop only if it carries on from a save. |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                                                                                      |
+| --------- | ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 4.056     | note         |        | New this time: a choice of how long customers wait. Selim longer, Dilek normal (default). I take the default to compare with last time.                                                                                                                                    |
+| 9.552     | input        |        | The plan now warns about an early table at 18:12 and a 40 lira loss. Better than last time. Dilek break 18:35 is in the rush, so I look at changing it.                                                                                                                    |
+| 34.516    | note         |        | Moved both breaks to 21:00 after the rush; Nobody cover stayed Nobody this time, no Rafi auto-pick seen yet. Both breaking at once at 21:00 may be a hole, guessing.                                                                                                       |
+| 70.373    | first_minute |        | Both agreed. Doors open. The plan page now warns about the early table and makes me ask the cooks before opening, which is clearer than last time. Watching service.                                                                                                       |
+| 103.249   | input        |        | New: a cook asks me a real question mid-service. Rush is on, she is the only cold-side cook, so I ask her to wait till closing. Ingredients counters are also new.                                                                                                         |
+| 141.591   | pulse        |        | Mid-service questions give me something to decide, which was my complaint last time. Ingredient counts falling (5 grill portions); I wonder if they run out. 320 lira at 19:06.                                                                                            |
+| 174.616   | input        |        | Grill portions are at 0 and cold nearly 0. I did not expect to restock. Looking at what I can ask Selim.                                                                                                                                                                   |
+| 212.273   | note         |        | Monday 600 again, same as last visit, 15 of 15 tables. The Why line (you earn when a table eats, stations and breaks decide when food is ready) helps. Ingredients hit 0 with no visible loss. Still do not see how to get more than 15 tables. Selim missed prayer again. |
+| 249.74    | input        |        | New shortcut: Same plan as last night. Saves me the busywork I dislike. Rafi now has a plan too, dishes break at 19:00.                                                                                                                                                    |
+| 316.619   | pulse        |        | Orders now show how long they wait and the lira at risk. That is the visible tradeoff I wanted. 960 by 19:30 Tuesday, ahead of Monday.                                                                                                                                     |
+| 356.445   | input        |        | Both covers empty another station; I can price this now. Order cards at left are cramped, text cut off (grill ○○ cold s...). Leaving grill empty.                                                                                                                          |
+| 393.482   | input        |        | Both cooks walked off to explain the wait to tables, three tables at risk, 120 lira. Rafi cover would empty dishes and no plates, no food leaves. I leave empty. Same waiting-with-nothing-to-do as before, but I understand why.                                          |
+| 429.675   | want_quit    | BORED  | Tuesday 19:43, 1000 lira. Grill empty, Selim in the bathroom, time slowed, nothing I can do. This is the same waiting as last visit. Better this time: I can see lira at risk and why each cook left.                                                                      |
+| 429.682   | stop         | BORED  | Stopping Tuesday week 1 19:43 at 1000 of 5200. Mid-service questions, order cards with lira at risk and Same plan as last night are real improvements. The empty-grill waiting is still the part I would skip. I would come back another evening, not leave it running.    |

@@ -618,3 +618,187 @@ My notes counted **22 new concepts** in this visit. Only **one** sentence needed
 
 **Cleanup:** I made no workers, servers, browsers or worktrees, and I touched no repository, so there is no `git worktree list` to show. My screenshots are current-wide.png and current-phone.png, which is within the limit.
 ```
+
+
+<!-- selected-continuity-key: light-1030:pass:rosa:free -->
+## 2026-10-30 Pass same-tester retest — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/pass/rosa/report.md). Build b6e919a8601554aa2aac34045286f1b3cf8f9245, HF4.12.0; free stop, fresh phone360x690 and desktop1280x800. These are sequential device visits, not alternative paired arms. No Feedback note was submitted. Report estimates/premature timed tags remain qualified by actual raw elapsed_s.
+
+**Would you return voluntarily?** I might come back another evening if the grill is not left empty by my own default plan and I can see early that ₺5,200 is reachable. I would not leave it running.
+
+**phone — original reaction words**
+
+| elapsed_s | kind  | reason   | words                                                                                                                                                             |
+| --------- | ----- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 8.174     | input |          | Station and rush are now explained at the top. I open the doors.                                                                                                  |
+| 39.782    | input |          | Waiting to see orders.                                                                                                                                            |
+| 41.728    | input |          | The grill is empty because of Selim break I planned. I ask Dilek.                                                                                                 |
+| 43.727    | tool  |          | Dilek prefers cold side; polite. Selim returns soon. I close.                                                                                                     |
+| 76.053    | input |          | Now I cannot tell the dialog closed. Open menu.                                                                                                                   |
+| 81.325    | input |          | Grill empty, table about to leave, and I do not know what to do. Typed nothing.                                                                                   |
+| 81.337    | stop  | CONFUSED | Rush and station are explained now, but Selim eats, grill is empty and nobody can cover; Dilek refuses politely. I do not see what to do, so I stop on the phone. |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind  | reason | words                                                                                                 |
+| --------- | ----- | ------ | ----------------------------------------------------------------------------------------------------- |
+| 4.527     | input |        | Same start; I open the doors again with the default plan.                                             |
+| 39.66     | stop  | BORED  | Same grill gap at 18:13 as on the phone, the game slows, I have little to decide. I stop for tonight. |
+
+
+<!-- selected-continuity-key: light-1030:goodhands:rosa:free -->
+## 2026-10-30 Good Hands first visit — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/goodhands/rosa/report.md). Build28086c1f64d9a42b369c9f8904b22fd33063e00d, HF4.8.1; free stop, fresh phone360x690 and desktop1280x800. Sequential device visits, not alternative paired arms. Both viewports actually viewed. No Feedback note submitted. Driver timeouts with visible transitions remain tool observations; no complete-month claim.
+
+I would come back another evening, on the big screen, to see what happens to Özlem and the Kaya family, but only if the 'Nermin's reading' sentences explain why. I would not leave it running; I would close it.
+
+**phone — original reaction words**
+
+| elapsed_s | kind         | reason   | words                                                                                                                                                                                                                                                                                                                                   |
+| --------- | ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 5.916     | input        |          | Clear: I run an agency, need a nanny by Tuesday, rent Friday. Understood on first reading.                                                                                                                                                                                                                                              |
+| 12.767    | input        |          | I choose first applicant to read her card.                                                                                                                                                                                                                                                                                              |
+| 15.97     | input        |          | Plain buttons. I interview her to learn about her.                                                                                                                                                                                                                                                                                      |
+| 22.106    | input        |          | A call came; I answer it.                                                                                                                                                                                                                                                                                                               |
+| 26.012    | input        |          | Honest and simple. Family pays 9000, she wants 8000: I keep a margin.                                                                                                                                                                                                                                                                   |
+| 42.607    | input        |          | Gülce left; she told me little about patience. Odd: asked 4 questions, learned wage and hours only.                                                                                                                                                                                                                                     |
+| 44.635    | first_minute |          | I understand: interview applicants, find a patient nanny for the Arslans by Tuesday, earn rent. Choices are plain buttons. Many items on the card (notes, Families, Placed, old case) but no reread yet. Interview took long to learn little.                                                                                           |
+| 51.503    | input        |          | Her old employer is reachable, so I call to learn if she is patient.                                                                                                                                                                                                                                                                    |
+| 59.774    | note         |          | Reread 1: "Nermin’s reading: I am still unsure whether the worker is patient when someone needs time." She listened when instructions were repeated, which sounds patient, yet Nermin is unsure? Unclear why.                                                                                                                           |
+| 65.512    | want_quit    | CONFUSED | Reread 2: "Nermin’s reading: I am still unsure whether the worker is honest about money." After "could not explain the missing change" I would say she may not be honest; why does Nermin say unsure? Second sentence I must reread. I keep going a little.                                                                             |
+| 73.483    | input        |          | Şebnem: unsure patient, unsure honest, doubt arrives on time. I will not choose her. Try Özlem.                                                                                                                                                                                                                                         |
+| 90.485    | input        |          | Same words as Şebnem ("listened when the instructions were repeated") but here Nermin believes patient, there unsure. I cannot see why the reading differs.                                                                                                                                                                             |
+| 93.481    | input        |          | Özlem: patient and honest. She is my choice.                                                                                                                                                                                                                                                                                            |
+| 96.3      | input        |          | Try to place Özlem with the Arslans.                                                                                                                                                                                                                                                                                                    |
+| 100.163   | input        |          | Third reread: "The family pays one week’s wage as a deposit now, capped at the agreed fee. The rest of the fee is paid after the trial if the worker stays." Which fee? Who pays me, how much? I do not see the numbers. I promise only what I checked: patient.                                                                        |
+| 106.978   | input        |          | Wage 9000 and fee 9000: everyone agrees. Numbers are clear now, easier than the earlier paragraph.                                                                                                                                                                                                                                      |
+| 110.5     | input        |          | Cash went to 5250, above rent 5000. I feel good; but rent is due Friday, so maybe more cash needed later.                                                                                                                                                                                                                               |
+| 120.253   | note         |          | Screenshot a-002: office picture takes half the phone. The Next line is cut off, and the same sentence about Ozlem finishing at 18:00 is repeated in five small boxes, which tires me. Text is small but readable.                                                                                                                      |
+| 127.154   | input        |          | Another family, same wage. I promise to look; Sebnem could maybe fit with trial but she has doubts.                                                                                                                                                                                                                                     |
+| 134.186   | input        |          | Nothing else to do: only Sebnem on the bench. I skip time.                                                                                                                                                                                                                                                                              |
+| 184.795   | pulse        |          | I placed a nanny and cash passed the rent. That was satisfying. But now I only wait on a slow clock with one doubtful applicant, and I am not sure what to do next.                                                                                                                                                                     |
+| 192.448   | stop         | BORED    | I placed one nanny and paid the rent. Now I wait on a slow clock with one doubtful applicant. I would close it, not leave it running. I might come back another evening to see what happens to Ozlem and the Kaya family. I stop here. Feedback had I am stopping and I am confused; I pressed I am stopping, typed nothing, no Submit. |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                                                                                                                                                                           |
+| --------- | ------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.838     | input        |        | Second visit, big screen. Same title; I know the aim now.                                                                                                                                                                                                                                                                                                       |
+| 15.648    | input        |        | Big screen is much easier: picture, three people on the bench, text on the right. I start with Ozlem, as I remember her.                                                                                                                                                                                                                                        |
+| 56.567    | tool         |        | This question tells me about patience. Better than wage; I ask it.                                                                                                                                                                                                                                                                                              |
+| 60.996    | input        |        | The tap on the crying question reported a timeout, but the answer is on screen: she waits a moment, patient. Now the family calls.                                                                                                                                                                                                                              |
+| 69.113    | first_minute |        | On the big screen I understand more at once: picture, bench, right-hand card. I interviewed Ozlem and found twelve questions under More questions; the crying question gave a clear patient answer. One tap reported a timeout error although it worked. No reread yet on this device. New concepts: bench, card, interview, reference, trial, qualities, Skip. |
+| 72.409    | input        |        | I promised an answer today. That may be a pressure I made for myself.                                                                                                                                                                                                                                                                                           |
+| 142.349   | input        |        | Wage 8,500 against family 9,000: margin is small but fine.                                                                                                                                                                                                                                                                                                      |
+| 182.218   | pulse        |        | Desktop is easier to read than phone. I know the goal now. But the interview is slow for me and the clock stops while I read.                                                                                                                                                                                                                                   |
+| 205.466   | stop         | BORED  | On the big screen I understood more and had no reread. But the interview is slow and I have placed nobody here. I would close it, not leave it running. I might come back another evening on the big screen. In Feedback I pressed I am stopping, typed nothing, no Submit.                                                                                     |
+
+
+<!-- selected-continuity-key: glance-light-1030:rosa-alvarez:free -->
+## 2026-10-30 Glance LIGHT first visit — selected FREE history
+
+Both devices belong to this same evening, in the order in the original report. The computer restart did not cut this standing player. Actual build e97b91077d9d9f584bf31c8f3fd2ad495d4c5432/HF4.14.0. No continued arm exists. [Original report](../reviews/light-2026-10-30/glance/rosa/report.original.md.txt).
+
+**Would I return voluntarily? No. I would close it and not come back on my own, on either device, and I would not leave it running. I might come back only if someone first explained, in plain words, what "dark corners" and "arrangements" are, and showed me one job to do.**
+
+**Ranked asks**
+1. Remove the long "Nerys / dark corners / access strip / outgoing post" paragraph from the first screen, or put it behind a button. It is optional, but it fills the first screen I have to act on.
+2. Explain a job in one plain sentence. For example: "Pick how many turns to open the gate. More turns lower the water." Drop "How Dai expects to feel", "insist" and the "caught" rule from that first view.
+3. Say whether I must hurry while I read. The clock ran on to 22:54 while I was reading on the desktop, and lightning came with no warning.
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, 62, busy second-language reader.
+- **Exposure:** first visit to The Glance.
+- **My own history:** I read only lines 1–495 of own-history.md (Voice, Warren, start of Valley). Lines 496–1202 are unread, so I am not claiming memory from them.
+- **Round and arm:** light-1030, free stop (floor 0).
+- **URL:** https://glance.adamwhite.work/?labRunSource=agent
+- **Session A:** 360×690 touch, light. About 44 s of driver time before the stop log. The stop log was at 43.5 s.
+- **Session B:** 1280×800, light. The stop log was at 101.3 s.
+- **Not done:** I did not read the cleanup rule's git step, because I created no repository work. I made no worktrees, and I created no processes of my own.
+
+## 2. First impressions
+
+- **A, 0.8 s:** a calm title and one sentence, "You work at a night desk above a valley town." Clear.
+- **A, 4.3 s:** the screenshot showed a chart with a red line and a large red Start game button.
+- **A, 15 s:** the game screen opened with a long paragraph about Nerys. I could not tell what it wanted from me.
+- **B, 48.8 s:** the same paragraph, and the level was 3.8 this time instead of 4.1.
+
+## 3. Verbatim diary
+
+**Session A**
+- 8.8 s tap Start game: "I start." The page looked unchanged until a 3 s wait.
+- 21.4 s note, Mon 22:05: "Long paragraph about Nerys, dark corners, access strip, outgoing post - I do not understand it; too many names. Reread 1: Her three dark corners are the yard, back wall and riverbank beside the inn. What is a dark corner?"
+- 23.6 s: "I ask Dai to read the level; this is what the screen says to do."
+- 26.8 s: "Level 4.10 arrived. Now I try the gate."
+- 29.8 s want_quit CONFUSED, Mon 22:13: "Reread 2: A wrong reading counts as caught when you had it read again within twenty minutes, lightning showed the wall within twenty minutes, or you marked that report as doubted. Also How Dai expects to feel after this job; Hold a button to insist. Too many ideas. I want to stop."
+- 43.5 s stop CONFUSED, Mon 22:15: "I wanted to watch the dam, but every panel gives me many new ideas (turns, insist, doubt, caught). I stop."
+
+**Session B**
+- 29.9 s tap Start game: "Second visit; same evening, I start again."
+- 60.1 s want_quit CONFUSED, Mon 22:19: "Reread 1 and 2: Her three dark corners are the yard, back wall and riverbank beside the inn. / The night desk may close only this optional private-trip access for tonight. Same wall of names as on the phone; I do not know what to do with it. Level was 3.8 this time, not 4.1."
+- 101.3 s stop CONFUSED, Mon 22:54: "Same wall of names as the phone. I did not even play; the clock ran on to 22:54 while I read, and lightning came. I stop."
+
+I logged the Session A "Reread 1" note as a plain note at 21.4 s.
+
+I never logged first_minute or pulse. The timed tags were not due before I stopped. Session A stopped at 43.5 s and Session B at 101.3 s. Session B passed 60 s, but my stop came soon after, and I did not log first_minute there. That checkpoint is untested.
+
+## 4. Moments
+
+- **What held me:** "Ask Dai to read the level" was a clear first job, and it worked. The sentence "Every reading on this board is what Dai saw" explained why I ask Dai.
+- **What lost me:**
+  - The Nerys paragraph, in both sessions.
+  - On the gate panel, the line "How Dai expects to feel after this job" and the line "Hold a button to insist".
+  - The doubt rule about "caught".
+- **Quit wishes:** A at 29.8 s and B at 60.1 s. Neither passed. I stopped.
+- **Pulses:** none; I stopped before 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:** the goal "Keep the water below the top of the dam." The sample morning showed what a good outcome looks like.
+- **Unclear:**
+  - "dark corners"
+  - "optional private-trip access"
+  - "Compare observations"
+  - "Watch arrangements"
+  - "turns" for the gate, and "insist"
+  - "caught"
+- **Surprise:** on the phone Start game looked inactive for a few seconds, and I tapped again after 3 s. I am not sure whether the first tap worked or the game was just loading.
+- **Surprise:** the clock ran while I read the long paragraph (22:05 to 22:12). On the desktop it ran from 22:19 to 22:54 while I waited between my own actions. Part of that may be my own slowness between calls; I cannot tell.
+
+## 6. Device use
+
+- **Phone:** I viewed `phone/a-001.png`. I saw the title, a chart with a red line, and a large red Start game button. A small box at the bottom said "We record and link play across games on this device." It covered part of the page. The intro text was cut off behind the button. I used Start game, the Ask Dai button, the gate gauge, Game menu, Feedback and "I'm confused".
+- **Desktop:** I viewed `desktop/b-001.png`. I saw the same chart in a narrow centre column, with a lot of empty space on both sides. The Start game button sat close to the notice box. I used Start game, Game menu, Feedback and "I'm stopping".
+- I saw no in-game screen on either device in a screenshot. Only the title page was seen.
+- **Feedback on both devices:** both "I'm confused" and "I'm stopping" were offered. I pressed "I'm confused" on the phone and "I'm stopping" on the desktop. Both showed as pressed. I typed nothing and did not press Submit.
+
+## 7. Stop and return
+
+- **A:** "I wanted to watch the dam, but every panel gives me many new ideas (turns, insist, doubt, caught). I stop." Reason: CONFUSED.
+- **B:** "Same wall of names as the phone. I did not even play; the clock ran on to 22:54 while I read, and lightning came. I stop." Reason: CONFUSED.
+- **Would I return voluntarily?** The answer is at the top. I would not leave it running, and I would not come back another evening unless the conditions at the top are met.
+
+## 8. Changes I would want
+
+The three ranked asks are at the top.
+
+## 9. Compared with my last visit
+
+First visit.
+
+## Concept tables
+
+| Screen and purpose                     | New concepts (list every one)                                                                                                                                                                                                                                                                                                     | Concept count | Sentences reread (verbatim)                                                                                                                                                 | Reason                                                                    |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Title, start (A 0.8 s, B 1.3 s)        | All games link; Information; game menu; night desk; valley town; sample morning; water below the dam top; town dry or warned; twelve nights; weekend and second week; watch end; choose a dam (valley or upper); "Life during the watch"; Lab privacy; Debug; recording notice                                                    | 16            | none                                                                                                                                                                        | —                                                                         |
+| Watch screen, first (A 15 s, B 48.8 s) | Night and clock; Dai the keeper; Watch arrangements; Compare observations; Nerys; dark corners; access strip; private-trip access; Wren's survey permission; outgoing post; survey register; level gauge; gate gauge; "read" and "not read"; asking Dai to read; wait time ~10 min; Skip; time slows while I read; weather report | 19            | "Her three dark corners are the yard, back wall and riverbank beside the inn."                                                                                              | I did not know what a dark corner was or why it mattered.                 |
+| Gate inspection (A 26.8 s)             | Gate turns 0–6; Dai agrees or needs a call; "insist" by holding; river rises later; Doubt this reading; dawn comparison; caught rule; lightning shows the wall                                                                                                                                                                    | 8             | "A wrong reading counts as caught when you had it read again within twenty minutes, lightning showed the wall within twenty minutes, or you marked that report as doubted." | Three conditions in one sentence and the word "caught" was never defined. |
+| Game menu (A 32.7 s, B 78.4 s)         | Pace Automatic/Slow/Steady/Fast; title page; Feedback; Full screen; Record play for the lab; New game; Resume; time stops while open                                                                                                                                                                                              | 8             | none                                                                                                                                                                        | I did not change any of these.                                            |
+| Feedback (A 35.4 s, B 83 s)            | Verdicts; "What is happening" confused/stopping; note box; optional name; linking of play history; what is sent; Submit; Back                                                                                                                                                                                                     | 8             | none                                                                                                                                                                        | Settings counted although I ignored them.                                 |
+
+No lab topic appeared on any screen I visited.
+
+**Cleanup:** I created no worktrees, branches, servers or workers, and I touched no repository. Two screenshots exist: `phone/a-001.png` and `desktop/b-001.png`, which is within the limit. The coordinator owns the drivers.

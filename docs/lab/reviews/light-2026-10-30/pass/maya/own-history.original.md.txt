@@ -1,0 +1,160 @@
+<!-- final reply of agent afd13bc7365051848, saved by coordinator (subagent Write was refused by the harness) -->
+# Maya Chen — The Pass, first visit, panel-1027a
+
+The Write tool refused the file, so the full report is here instead of in report.md.
+
+**Would you return:** I would come back one more evening only if I could ask Selim about Nevin's list and ask Dilek about her sound clips, and if the opening conversations showed up when I asked for them. I would not leave it running.
+
+**Ranked asks:**
+1. Let me follow up on what a cook tells me. Selim's list and Dilek's recordings were the best hooks. The only things I could say were "How are you doing?" and "About what you said", and both cooks gave the same stock lines.
+2. Show the answer to a conversation offer where I asked for it. On both devices I tapped an offer in People and the sheet closed with no visible answer. The reply only appeared later in "Earlier conversations", once service started.
+3. Tell me before a request makes things worse. I asked Selim to cover the cold side, he answered "after I pray", then left the grill, and both stations were empty.
+
+## 1. Session
+
+- Persona: Maya Chen. Exposure: first visit to The Pass. I read my diary from other games once.
+- Round panel-1027a, lab-panel round 1, free-stop arm (floor 0).
+- URL: https://pass.adamwhite.work/?labRunSource=agent. The game says "People by the Human Framework 3.0.0".
+- Session A: 360x690 touch phone, light, port 20000. About 167 s by the driver clock.
+- Session B: 1280x800 keyboard and mouse, light, port 20001. About 139 s.
+- Both sessions ended by my choice, well before the 25-minute ceiling.
+- Recording stayed on. I did not touch consent and did not submit Feedback.
+
+## 2. First impressions
+
+- **A, 0 s:** The title was clear. I run a kitchen for four weeks, the cooks can refuse, and the bank wants ₺5,200 by Saturday. There was one button, New game.
+- **A, about 4 s:** Two cooks, Selim and Dilek, already had agreed plans. "Change" and "Open the doors" were clear. The repeated plan sentences made the cards wordy, but no lore blocked me.
+- **A, about 8 s:** People offered two conversations. I liked "Dilek asks for ten quiet seconds to record a rattling sound."
+- **A, about 17 s:** I asked Dilek why. The sheet closed and nothing visible answered. I tried Selim's offer and again saw nothing. I did not know whether anything had happened.
+- **A, about 40 s:** Dilek's Change sheet was very readable. It had station, break times labelled "before the rush" and "during the rush", who takes over, and a plain warning sentence.
+- **A, first-minute note:** I logged it at 27 s on the driver clock, earlier than 60 s, as soon as I had the picture.
+- **B, start:** The desktop opening matched the phone but the right half was empty until service began. Once service began, the layout was clear and calm, with the kitchen drawing on the left and the cooks and log on the right.
+
+## 3. Verbatim diary
+
+Times are my estimates between driver replies. Only the times without "~" came straight from driver replies. The driver's own diary has exact times.
+
+### Session A (phone)
+
+- ~3.9 s: "A restaurant kitchen where cooks can refuse. Fine, starting."
+- ~7.7 s: "Who else is in my kitchen? Checking the People button before opening."
+- ~17.6 s: "A rattling sound is a small mystery. I want to hear it."
+- ~19.6 s: "The sheet closed and I see no answer from Dilek. Did it do anything?"
+- ~22 s: "Dilek did nothing visible. Trying Selim, the notes might be a small discovery."
+- 27.1 s, first_minute (Mon wk1 17:30): "I run a kitchen, two cooks agreed to jobs and breaks. I can Change them or Open the doors. I tapped two conversation offers in People and nothing visible happened afterward; I do not know if they were answered. The bank wants 5,200 by Saturday."
+- ~35 s: "Trying Change on Dilek to see if she will refuse."
+- ~45 s: "Nice, it tells me when the rush is. Moving her break to after it."
+- ~55 s: "So changes are requests, they answer. Asking."
+- ~60 s: "Both agreed. Opening."
+- ~70 s: "Both conversations I tapped earlier were answered, but only now in Earlier conversations. I wish I had seen them when I asked."
+- ~80 s: "Selim has Nevin list nobody has signed. I want to ask about it."
+- ~85 s: "Seeing the likely answers next to jobs is lovely. Asking how he is."
+- ~95 s: "Hoping he will say more about Nevin's list."
+- ~100 s, pulse 3 (Mon 17:40): "The kitchen picture and likely-answer previews are nice, but Selim just says thanks for listening; I wanted the list."
+- ~125 s, note (Mon 18:56): "The money goes up but I never see an order or a plate. I am watching two stick figures. I do not know what I am supposed to do during service besides talk."
+- ~135 s: "Choosing I am confused in Feedback; not sending."
+- ~145 s: "Finally an order: table 5. Now I have something to watch."
+- ~150 s: "Talking to Dilek about her sound clips, the most interesting thing so far."
+- ~155 s, want_quit BORED (Mon 19:10): "Both cooks answer How are you doing with the same line. I have no way to ask about her recordings. The talking is flat and the service runs on without me."
+- ~160 s: "Trying to send Dilek to eat in the rush to see if she refuses."
+- 166.9 s, stop BORED, engagement 2 (Mon 19:56): "I am stopping. The cooks refuse with reasons, which I liked, but the service runs itself, the money rises without me, and talking gives the same canned lines."
+
+### Session B (desktop)
+
+- ~3 s: "Second visit, desktop. Starting new."
+- ~15 s, first_minute: "Same opening as my phone. Big empty right side on desktop. I remember Selim and Dilek and their conversation offers from this evening."
+- ~25 s: "This time I will take Selim, since last time he never got to tell me about the list."
+- ~35 s: "Opening, and this time I will watch for the first order."
+- ~60 s: "Selim said nobody has initials on the list. Is there a way to ask him about it?"
+- ~65 s, note: "There is no way to ask Selim about the list. How are you doing and About what you said are all I get. I wanted a real conversation option like the offer promised."
+- ~85 s: "Something happened: a station needs a cook."
+- ~90 s: "The cold side has no cook. Asking Selim to cover it even though he prefers his job."
+- ~100 s: "He will cover after he prays. I did not expect that, I like that he has his own timing."
+- ~105 s: "Selim went to pray in the storeroom and is asking me who takes over the grill. Nobody is free."
+- ~108 s, note (18:44): "I asked Selim to cover the cold side. He said after I pray, and now he left the grill to pray and both stations are empty. My ask made it worse, but I understood why. Nothing warned me he would leave the grill."
+- ~125 s, pulse 3 (Mon 18:49): "The sunset-prayer moment made the cooks feel like people with their own timing. Still cannot ask about Nevin list or recordings."
+- ~127 s, want_quit TASTE: "I have seen refusals and a prayer, and want to know about the list and the clips, but cannot ask. I could keep going to Saturday but I am not pulled."
+- 138.8 s, stop TASTE, engagement 3 (Mon 18:49): "I am stopping at Monday 18:49 on desktop. I liked the prayer and the refusals, but I cannot reach the stories the cooks mention and the clock slowing stops me from seeing what happens next."
+
+## 4. Moments
+
+- **Held me:**
+  - Dilek's Change sheet with the "before the rush" labels.
+  - Both cooks agreeing, then the reply appearing in the log.
+  - Dilek refusing a break with a reason ("I'd rather keep doing paid work, Chef"), and the sheet saying "Nobody has promised to work there."
+  - Selim answering "after I pray", leaving to say the sunset prayer, the red "nobody here" over the cold side, and the "Selim is leaving the grill" prompt.
+  - The little kitchen drawing made the stations readable.
+- **Lost me:**
+  - Tapping a conversation offer and seeing nothing, in both sessions.
+  - The same stock lines from both cooks.
+  - Service running by itself, with money rising and no visible orders for the first 20 minutes of game time on the phone.
+  - Not being able to ask about what the cooks told me.
+- **Quit wishes:**
+  - A: BORED at Mon 19:10. It did not pass, and I stopped about 10 s later.
+  - B: TASTE at Mon 18:49. It did not pass, and I stopped right after.
+- **Pulses:**
+  - A: engagement 3 at 17:40, then 2 at stop.
+  - B: engagement 3 at 18:49.
+
+## 5. Confusion and clarity (from play)
+
+- **Clear:**
+  - The goal and the cooks' right to refuse.
+  - The likely answer on each job button ("I prefer paid work", "I said I'd stay", "after I pray").
+  - The "nobody here" label.
+  - "Time is slowed" when I spoke.
+- **Confusing, offer replies:** The People offers gave no visible answer at the time. I found the replies in "Earlier conversations" only after the doors opened, so I could not tell whether they had worked.
+- **Confusing, idle service:** Money rose with no orders on screen. Game time jumped 50 minutes in 20 real seconds on the phone (17:40 to 18:30). I did not know what I was meant to do during service.
+- **Confusing, Feedback:** After I chose "I'm confused" or "I'm stopping", the text box filled with those same words. I did not type them and did not submit.
+- **Confusing, insist:** The sheet says "Hold a job button to insist." I could not hold through the driver, so I do not know what it does. The warning about pressure on the cook was clear.
+- **Confusing, empty stations:** Asking Selim to cover the cold side left both stations empty. The game explained it afterward ("I'm not at my agreed station"), not before.
+
+## 6. Device use
+
+- **Phone screenshots viewed:**
+  - a-001: plan cards.
+  - a-002: after the offer, nothing visible.
+  - a-003.
+  - a-004: Dilek's plan sheet.
+  - a-005: kitchen with earlier conversations.
+  - a-006: Selim answered.
+  - a-007: 18:56 idle.
+  - a-009: table 5 order.
+  - a-010: Dilek refusing.
+- **Phone controls used:**
+  - New game, People, the offer buttons.
+  - Change, break options, Done.
+  - Ask them about the changes, Open the doors.
+  - Cook buttons, job buttons, How are you doing?, About what you said, Close.
+  - Game menu, Feedback, Back to the menu, Resume.
+- **Phone slip:** One "Change" tap carried both a name and text and did nothing. That was my mistake.
+- **Phone layout seen:** No clipped text in the plan sheet or cook cards. The header clock was clipped to "Monday, week 1 · Doors op..." before service. The kitchen scene and cook buttons fit, and the log sits below them.
+- **Desktop screenshots viewed:**
+  - b-001: large empty right half before service.
+  - b-002, b-003, b-004, b-005.
+  - b-006: Feedback sheet.
+- **Desktop controls used:** the same controls as the phone, by tap only. I pressed no keyboard keys.
+- **Unseen:** I did not scroll the phone log to the bottom and did not test landscape or dark mode.
+
+## 7. Stop and return
+
+- **Session A stop words (BORED):** "I am stopping. The cooks refuse with reasons, which I liked, but the service runs itself, the money rises without me, and talking gives the same canned lines."
+- **Session B stop words (TASTE):** "I am stopping at Monday 18:49 on desktop. I liked the prayer and the refusals, but I cannot reach the stories the cooks mention and the clock slowing stops me from seeing what happens next."
+- **Would you return voluntarily?** Yes, one more evening, but only if:
+  - I can follow up on Nevin's list and Dilek's clips.
+  - I see the replies to offers when I ask for them.
+  - A request does not leave a station empty without a hint.
+
+  Without those I would not come back. I am not committed to four weeks of play.
+- **Leave it running?** No. On the phone, money went up and I learned nothing from watching.
+- **Another evening?** Yes, for new people to talk to, not to keep the clock going.
+
+## 8. Changes I would want
+
+1. Let me follow up on what a cook says, such as the list and the sound clips.
+2. Show the reply to a conversation offer right after I choose it, not only in "Earlier conversations" after service starts.
+3. Warn me when a request will pull a cook off their current station.
+
+## 9. Compared with my last visit
+
+First visit.

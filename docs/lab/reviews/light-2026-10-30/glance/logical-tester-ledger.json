@@ -1,0 +1,68 @@
+[
+  {
+    "id": "F-2193",
+    "tester": "Mei Tan",
+    "exposure": "standing first TARGET visit; second device same evening",
+    "return": "I would come back on another evening, on the laptop. I would do that only if the first hours had decisions in them and my saved place were kept. I would not leave it running.",
+    "laterReturnSeparate": {
+      "source": "../glance/mei/report.md line 91 (section 7)",
+      "quote": "I would come back on another evening, on the laptop. I would do that only if the first hours had decisions in them and my saved place were kept.",
+      "also_line_92": "No. I want to make the gate calls myself."
+    },
+    "verdict": "mixed",
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance/mei/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance/mei/validation.json"
+  },
+  {
+    "id": "F-2194",
+    "tester": "Samir Haddad",
+    "exposure": "standing first TARGET visit; second device same evening",
+    "return": "I might come back another evening, on desktop only, if I could answer Dai (Morgan's question, who the town people are) and each step cost far less than half a minute of waiting. I would not leave it running.",
+    "laterReturnSeparate": {
+      "source": "../glance/samir/report.md line 84 (section 7)",
+      "quote": "I might come back another evening, on desktop only. The conditions are that I can answer Dai and ask about the people in the town, and that each step costs far less than half a minute of waiting. Without those, I would not return. I would not leave the game running, because it needs me to act at each step. I would not return on the phone, since the layout hides the gauges."
+    },
+    "verdict": "mixed",
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance/samir/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance/samir/validation.json"
+  },
+  {
+    "id": "F-2195",
+    "tester": "Leila Mansour",
+    "exposure": "standing first TARGET visit; second device same evening",
+    "return": "Maybe, on another evening and only on desktop, and only if each night asked me for more than about four choices; I would not leave it running.",
+    "laterReturnSeparate": {
+      "source": "../glance/leila/report.md line 83 (section 7)",
+      "quote": "Maybe, on another evening and only on desktop, and only if each night asked me for more than about four choices; I would not leave it running. I like the idea that the number on the board belongs to a person who may be wrong, and I would want to see a night where that matters. Tonight it mostly did not."
+    },
+    "verdict": "mixed",
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance/leila/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance/leila/validation.json"
+  },
+  {
+    "id": "F-2196",
+    "tester": "Rosa Alvarez",
+    "exposure": "standing first TARGET visit; second device same evening",
+    "return": "No. I would close it and not come back on my own, on either device, and I would not leave it running. I might come back only if someone first explained, in plain words, what \"dark corners\" and \"arrangements\" are, and showed me one job to do.",
+    "laterReturnSeparate": {
+      "source": "../glance/rosa/report.md line 72 (section 7)",
+      "quote": "The answer is at the top. I would not leave it running, and I would not come back another evening unless the conditions at the top are met."
+    },
+    "verdict": "quit",
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance/rosa/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance/rosa/validation.json"
+  },
+  {
+    "id": "F-2197",
+    "tester": "Sara Lindholm",
+    "exposure": "cold first TARGET visit; second device same evening",
+    "return": "Not by choice for twelve nights of this. I would come back once if I could see the town and the river, and if each night gave me a new kind of clue instead of the same misread at the same hour.",
+    "laterReturnSeparate": {
+      "source": "docs/lab/reviews/light-2026-10-30/glance/sara/report.original.md.txt",
+      "note": "See section7 for full separate return paragraph, including the friends/evening qualification. Original remains unedited."
+    },
+    "verdict": "mixed",
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance/sara/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance/sara/validation.json"
+  }
+]

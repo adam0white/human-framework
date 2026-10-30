@@ -1,0 +1,150 @@
+<!-- final reply of agent ae2e91cec5751ac21, saved by coordinator (subagent Write was refused by the harness) -->
+I would return voluntarily another evening to see whether Saturday's 5,200 lira is reachable and what Thursday's football night does, but I would not sit through the slowed-time waits with nothing to do, and I would only leave it running in a tab if it could carry on without me.
+
+Ranked asks:
+1. Give me something to do during slowed waits (a cook refuses, another is on break, time runs slowly and I can only watch for minutes), or let those waits run faster.
+2. Show how my plan choices change the money. Tuesday paid exactly 800 on both devices although I planned the breaks differently, and I could not tell what my decisions bought.
+3. Stop auto-picking Rafi as break cover when I change a break time (he has already said he will not cover), and make the offers in People say why they are greyed out during service.
+
+The Write tool was refused, so the full report follows here. `report.md` was not written.
+
+## 1. Session
+
+- Persona: Emre Kaya, 37, Ankara electrical technician and parent.
+- Exposure: first visit to The Pass. My own-history file covers other games only, and I recognised no one.
+- Round: panel-1027a, lab-panel round 1, arm free stop (floor 0, ceiling 25 min).
+- URL: https://pass.adamwhite.work/?labRunSource=agent. The footer says "People by the Human Framework 3.0.0".
+- Session A: 1280x800 keyboard and mouse, light mode, driver port 20003. About 870 s (14.5 min). Stopped Thursday week 1, 18:50, at 2,400 of 5,200 lira.
+- Session B: 360x690 touch, light mode, driver port 20002, a second visit the same evening. About 300 s (5 min). Stopped Tuesday closing, week 1, at 1,400 of 5,200 lira.
+- Recording stayed ON. I changed no consent setting, typed nothing into Feedback and submitted nothing.
+
+## 2. First impressions
+
+Session A:
+- About 1 s, title page: I understood the job (run a kitchen for four weeks, 5,200 lira due Saturday) and that cooks can refuse.
+- About 17 s: the plan cards for Selim and Dilek were clear. Station, break time and who covers are all readable.
+- About 46 s (first_minute, logged about 15 s early): time runs by itself, 8 kitchen minutes per 20 real seconds, and I could see no orders.
+
+Session B:
+- About 22 s: the phone layout shows money bar, kitchen, cooks and answers without scrolling.
+- About 52 s (first_minute, logged at roughly 50 s, so slightly early): I recognised the empty-cold-side problem from the desktop visit.
+
+## 3. Verbatim
+
+Raw lines are in each session's `wall-clock.jsonl`. These are my diary lines in order. Elapsed seconds are the driver clock when I logged them. I read them from replies, so they are approximate to a few seconds, and I did not record every one.
+
+Session A (desktop):
+- about 5 s, note: "Restaurant kitchen, bank wants 5200 lira by Saturday. Clear deadline. Starting new game."
+- about 15 s, note: "I want to see what I can change before opening doors."
+- about 22 s, note: "Plan editor is clear: station, break time, who covers. Defaults look sensible, break before the rush. I will leave as is and see what a night looks like."
+- about 46 s, first_minute: "Goal is clear: 5200 lira by Saturday, two cooks, plans with breaks. Time runs by itself: 8 minutes of kitchen per 20 real seconds, money already 120. I can see no orders; I am not sure what my lever is during service besides tapping a cook."
+- about 50 s, note: "Each job shows a hint of what she thinks, like I prefer paid work. Useful. Asking how she is."
+- about 78 s, note: "Two orders, nobody at cold side, Dilek on her planned break until 18:55. My own plan caused a gap. I will ask her to come back early and see what she says."
+- about 92 s, note: "She agreed and put out the cigarette; plan changed to work until 22:00, so her meal break is probably gone. I cannot tell what this costs her. Closing and letting service run."
+- about 128 s, note: "Cooks offer things, and I can skip them. A practical person: Nevin notes on grill sounds useful, I take them."
+- about 140 s, note: "The offers in People are greyed out and I do not know why. Perhaps cooks are busy during service. I wanted the notes. No explanation shown."
+- about 165 s, pulse, engagement 3: "600 lira after most of Monday night. If one night is about 800, six nights gives about 4800, short of 5200. I want to know the real rate. Not much to do during service except wait; I like that staff can refuse." (Mon 20:46)
+- about 175 s, note: "Day summary: 600 earned, need 920 a night. All 15 tables served though, so serving everyone is not enough. Where do more tables come from? Not told. Selim missed prayer and will step away before the rush, which is a plan change I may have to cover."
+- about 210 s, note: "Rafi is new and refuses to cover stations; fine, I accept. Selim missed prayer but his break is already before the rush, so I do not know what I would change. Opening doors with the same plan."
+- about 300 s, note: "Selim says after I pray for everything except dishes. So prayer is a real constraint on his time, and last night he missed it. I ask cold side anyway, to see what happens."
+- about 310 s, note: "I asked and he went to pray, leaving the grill empty too; both stations empty now. I did not expect that, but I can explain it: I asked him to move while he said he needed to pray first. It cost me. Leaving empty, the only choice."
+- about 312 s, pulse, engagement 4: "Now I see the tension: breaks and prayer leave stations empty; asking one cook can open another hole. I like that I can explain the setback. Wishing for a rate display for money." (Tue 18:51)
+- about 385 s, note: "Selim leaves the grill again at 19:01. I cannot tell whether this is prayer again or a second trip. Leaving it empty, no orders waiting."
+- about 480 s, pulse, engagement 4: "800 tonight for 20 tables, need 950. Gap closing, I can plan toward it. The notebook line about nobody left hungry is nice. Each night is about 90 real seconds. I would like to know how I raise tables, but I am curious." (Tue closing)
+- about 495 s, note: "Between nights the offers are enabled. I take Selim notes; I also see I can end a cooks time, which is a heavy option I do not want yet."
+- about 520 s, note: "I tapped Selim notes offer twice and saw no visible conversation or confirmation. Unclear whether it did anything."
+- about 530 s, note: "I did not choose Rafi to take over, yet the plan says I will ask him, for Selim and Dilek and Rafi. A stray tap of mine may have done it; I am guessing. Setting Nobody."
+- about 540 s, note: "Dilek agreed to a break after the rush. That fixes last night cold-side hole without me pulling her off her meal. This is the planning I like: tradeoff, then they answer."
+- about 560 s, note: "Grill is empty because Selim eats 18:10 to 18:30, and two tables want grill. I will let his break stand this time and see whether tables are lost; I accept a setback if I can see why." (Wed 18:16)
+- about 575 s, note: "Time is slowed while the grill has no cook, so waiting costs real minutes. I ask Selim back to the grill for the last 10 minutes of his break."
+- about 705 s, pulse, engagement 4: "920 tonight against 960 needed, 2320 total; the football match tomorrow hints at a busy night and I want to prepare. A tip jar decision appeared that I did not expect; Selim missed prayer again even though break was before rush, which I still cannot explain." (Wed closing)
+- about 710 s, note: "Jar light: Rafi cannot keep his rule. Moving it to the pass is the practical option, a visible tradeoff I cannot yet price."
+- about 740 s, note: "Again, changing a break time silently picks Rafi as the cover, and that would leave dishes empty. I set Nobody. Now I understand the default is not my choice; it sets itself."
+- about 790 s, note: "The log explains it: Selim went for sunset prayer, as he said. Good, I can explain this. Table 2 only needs the grill and cold side has no order, so I will move Dilek to grill rather than wait." (Thu 18:42)
+- about 815 s, note: "She refused, exactly as the I-prefer-my-current-job hint said. The hints are honest. Fine, I wait for Selim."
+- about 865 s, want_quit, BORED: "Three minutes of real time with an empty grill and nothing I can fix: Dilek refuses, Selim prays until 18:55 and time runs slowed. A red button says Ask Dilek: Cold side while the grill is the empty station, which looks wrong. I would leave this running in a tab for tonight."
+- 869.6 s, stop, BORED: "I am stopping on Thursday evening of week 1 at 2400 lira of 5200. I liked that cooks answer honestly and that prayer and breaks cost me something I can see. I do not want to sit through slowed-time waits with nothing to do. I would return another evening to see whether Saturday is reachable. I would leave it running in a tab if it could carry on." (Thu 18:50)
+
+Session B (phone):
+- about 5 s, note: "Second visit, my phone. I know the idea: cooks, breaks, prayer, 5200 by Saturday. This time I want to cover the empty-station gaps early."
+- about 52 s, first_minute: "On my phone the layout works: money bar, kitchen, cooks and answers all fit. I recognise the loop from my desktop visit: Dilek breaks at 18:35 and the cold side is empty with two orders waiting. I will ask her back, since she said yes last time. Kitchen scene is small but I can read the text." (Mon 18:47)
+- about 200 s, pulse, engagement 3: "Phone works well. Repeating the same early nights; this time I fixed Dilek break and Selim prayer in the plan. Wondering whether it pays off tonight." (Tue 18:24)
+- about 245 s, note: "Same as on desktop: after I change a break time the cover is set to Rafi for me, even for Selim whose plan I did not touch. Rafi already said he would not cover. Setting Nobody."
+- about 292 s, want_quit, BORED: "Tuesday earned exactly 800 again, same as on desktop, although I planned the breaks differently. So far my planning has not changed the money; I only see it matter when a station is empty. I already saw this on my other device and do not want to replay the same nights." (Tue closing)
+- 300.2 s, stop, BORED: "I am stopping after Tuesday on my phone, 1400 of 5200. The phone version is comfortable. I do not want to replay nights I already saw; my planning has not yet changed the money. I would return another evening only to reach Thursday football night and Saturday. I would leave it running in a tab if it could carry on." (Tue closing)
+
+## 4. Moments
+
+What held me:
+- The daily need line ("I need about 920 a night for the 5 nights left") gave me a practical target to plan against.
+- Cooks answer honestly. The hint under each job (yes, I prefer my current job, after I pray) predicted what they said. Dilek refusing the grill matched "I prefer my current job".
+- Selim's sunset prayer was a cost I could explain. The log said "Selim went for the sunset prayer before the rush, as he said he would."
+- Dilek accepting a break after the rush fixed the gap without pulling her off her meal. That was the planning I like.
+
+What lost me:
+- Slowed time while a station is empty. About three real minutes (Thursday 18:39 to 18:50) passed with nothing for me to do. This is my quit reason.
+- Tuesday paid 800 on both devices whatever I planned, so I could not see my plan buying anything.
+- The money bar showed no per-night rate, and I did not know how table counts grow.
+
+Quit wishes: BORED at about 865 s (A) and about 292 s (B). Neither passed.
+
+Pulses: A 3, 4, 4, 4. B 3.
+
+## 5. Confusion and clarity (actual play only)
+
+Clear:
+- The goal, the deadline, the daily need and what an empty station is.
+- The plan screens: station, break and cover, with a plain sentence saying what will happen ("Nobody will work at the grill during the break").
+- Prayer, once the log explained it.
+
+Confusing:
+- Changing one cook's break time set Rafi as cover, including for Selim, whose plan I did not touch. Rafi had already refused. I did not choose it. I saw it on both devices. At first I guessed a stray tap of mine caused it, but the phone repeat makes me think it is the game.
+- The offers in People (Selim's notes, Dilek's rattling sound) were greyed out during service with no reason shown. Between nights, tapping one showed no visible result. I could not tell whether anything happened.
+- A red button "Ask Dilek: Cold side" appeared while the grill was the empty station and Dilek already worked cold side. It looked wrong.
+- Selim "missed the sunset prayer" on Monday and again on Wednesday, although his break was before the rush. I do not know why.
+- I never saw a lost table. Every night said "served N of N", so I do not know what an empty station costs.
+- I could not see what pulling Dilek off her Monday meal cost her.
+
+## 6. Device use
+
+Screenshots I viewed:
+- Desktop (1280x800): a-001 (plan cards), a-002 (kitchen 18:13), a-003 (empty cold side with orders), a-005 (day summary), a-006 (Selim leaving the grill), a-007 (Tuesday summary), a-008 and a-009 (plan editor), a-010 (empty grill and the red ask button).
+- Phone (360x690): b-002 (plan cards), b-003 (kitchen), b-004 (cook panel), b-006 (day summary), b-007 (Tuesday plans), b-008 (plan editor), b-009 (Feedback).
+- Not viewed: a-004 and the automatic first-minute images on both devices.
+
+Controls I used on desktop: New game, Information, Change (by coordinates when two matched), plan buttons, Done, Open the doors, cook and job buttons, Close, People and its offers, Game menu, Feedback and "I'm stopping".
+
+Controls I used on phone: New game, Open the doors, cook and job buttons, Close, Change (by coordinates), plan buttons, Done, "Ask them about the changes", Game menu, Feedback and "I'm stopping".
+
+Trouble I saw on the phone:
+- The header date is cut off ("Monday, week 1 · Doors op...").
+- The recording notice sits over the bottom of the title and plan pages.
+- The kitchen scene is small, but I could read it and no control was blocked. Otherwise the phone was comfortable.
+
+Layout I did not see: the phone People panel, landscape and dark mode.
+
+Driver: no block. Two taps failed because the label had changed ("Grill yes is not on the page"), and I chose again from the clickable list. One tap on an offer's sentence text did nothing, because the control name was needed.
+
+Feedback: "I'm stopping" and "I'm confused" are both offered on both devices. I pressed "I'm stopping" on both. It filled the box with "I'm stopping". I typed nothing and pressed no Submit.
+
+## 7. Stop and return
+
+Session A stop (BORED, 869.6 s): "I am stopping on Thursday evening of week 1 at 2400 lira of 5200. I liked that cooks answer honestly and that prayer and breaks cost me something I can see. I do not want to sit through slowed-time waits with nothing to do. I would return another evening to see whether Saturday is reachable. I would leave it running in a tab if it could carry on."
+
+Session B stop (BORED, 300.2 s): "I am stopping after Tuesday on my phone, 1400 of 5200. The phone version is comfortable. I do not want to replay nights I already saw; my planning has not yet changed the money. I would return another evening only to reach Thursday football night and Saturday. I would leave it running in a tab if it could carry on."
+
+Would you return voluntarily? Yes, another evening, on these conditions:
+- I can pick up where I stopped and do not have to replay Monday to Wednesday.
+- The slowed waiting gives me something to do, or moves faster.
+
+I would come back to find out whether 5,200 lira by Saturday is reachable and what the football night does. I would not leave it running while I do something else unless it could carry on by itself. It slows down and waits for me whenever a station is empty.
+
+## 8. Changes I would want
+
+1. Something to do during slowed waits, or a faster pace while a station is empty.
+2. Show what my plan changes in money: a per-night rate, and what a served or lost table is worth. Tell me how table counts grow.
+3. Stop pre-selecting Rafi as cover. Say why People offers are greyed out, and show a result when I take one.
+
+## 9. Compared with my last visit
+
+First visit.

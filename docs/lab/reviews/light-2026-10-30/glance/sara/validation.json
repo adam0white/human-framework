@@ -1,0 +1,133 @@
+{
+  "tester": "Sara Lindholm",
+  "validationTime": "2026-10-30T22:12:49.238204+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T22:08:13.118Z",
+        "elapsed_s": 397.612,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Monday 03:30. I liked catching the wrong 4.5, but after that it was ask, wait, skip while the level fell, and I never saw the town.",
+        "game_clock": "Mon 03:30",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-004.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-005.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 392.207,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [57.722],
+      "earlyPulse": [163.106],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T22:04:43.703Z",
+          "elapsed_s": 188.197,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Ask Dai to read it He agrees. \u00b7 ~5 min \u00b7 If you hold: Call and wait for an answer."
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 39,
+          "error": "Ask Dai to read it He agrees. \u00b7 ~5 min \u00b7 If you hold: Call and wait for an answer. is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T22:11:48.208Z",
+        "elapsed_s": 214.67,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping at Monday 00:15 on the phone. I caught the 4.4 misread without touching the gate, which was the best moment of both visits. But it was the same night shape again and I still never saw the town.",
+        "game_clock": "Mon 00:15",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "p-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "p-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "p-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "p-004.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 209.294,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

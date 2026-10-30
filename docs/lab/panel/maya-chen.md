@@ -1609,3 +1609,43 @@ Earlier lines summarised from the JSONL (my own words there, not reproduced here
 
 I created no workers, servers, repositories, branches or worktrees, so there is no `git worktree list` to show. The retained screenshots are `current-wide.png`, `current-phone.png` and the driver's `first-minute.png`.
 ```
+
+
+<!-- selected-continuity-key: light-1030:pass:maya:free -->
+## 2026-10-30 Pass same-tester retest — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/pass/maya/report.md). Build b6e919a8601554aa2aac34045286f1b3cf8f9245, HF4.12.0; free stop, fresh phone360x690 and desktop1280x800. These are sequential device visits, not alternative paired arms. No Feedback note was submitted. Report estimates/premature timed tags remain qualified by actual raw elapsed_s.
+
+**Would you return:** Yes, one more evening, to hear Selim finish telling me about Nevin's list, and only if talking to a cook doesn't keep costing me a station. I would not leave it running.
+
+**phone — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                                                                        |
+| --------- | ------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 4.555     | input        |        | New choice about customer wait. Taking the longer wait, seems kinder to the cooks.                                                                                                                                                                           |
+| 9.935     | input        |        | Trying Dilek rattling sound again; last time nothing visible.                                                                                                                                                                                                |
+| 12.35     | input        |        | Dilek answered right there. Good. Now Selim notes.                                                                                                                                                                                                           |
+| 19.853    | input        |        | Both cooks told me their stories right away, answers show where I asked. Opening.                                                                                                                                                                            |
+| 22.186    | input        |        | Trying to ask Selim about the list during service.                                                                                                                                                                                                           |
+| 25.18     | input        |        | New: I can pick something he said. This is what I wanted last time.                                                                                                                                                                                          |
+| 35.663    | first_minute |        | I can now pick something a cook said and talk about it. Selim answered but the reply starts with a garbled bathroom line, then says ask me about Nevin when I have a moment. Offers now answer on the spot. Better than last time.                           |
+| 69.87     | input        |        | Selim left the grill and the order waits. I tried to talk to him and he went to the bathroom; I think my asking pulled him off.                                                                                                                              |
+| 75.422    | input        |        | A one-minute bathroom break is fair. Leaving the grill empty.                                                                                                                                                                                                |
+| 99.185    | input        |        | The empty-station time went from 1 minute to about 19. I did not expect that.                                                                                                                                                                                |
+| 102.087   | tool         |        | Sending Selim back to the grill.                                                                                                                                                                                                                             |
+| 106.596   | pulse        |        | Follow-ups now exist and replies show where I ask. But the bathroom wording is repeated and garbled, and my talking seemed to cost me the grill while an order waits.                                                                                        |
+| 125.006   | stop         | TASTE  | I am stopping here. Follow-up on what a cook said now works and answers show where I ask, which was my main ask. Selim promised to talk about Nevin later and I would come back for that. Stopping because I have seen the loop and want to try the desktop. |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                             |
+| --------- | ------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.928     | input        |        | Desktop, same evening. Taking the normal wait this time, to compare.                                                                                                              |
+| 6.479     | input        |        | Selim first this time, as I wanted.                                                                                                                                               |
+| 12.828    | first_minute |        | Same opening. Desktop looks calm: kitchen left, cooks and log right. Wait choice now at the title screen is new. I will watch service.                                            |
+| 45.279    | input        |        | Selim is on his planned break and the grill is empty with a table waiting. I will ask Dilek what she can do.                                                                      |
+| 47.77     | input        |        | Trying the private talk, hoping for the clips story.                                                                                                                              |
+| 72.129    | pulse        |        | The private talk delivered Dilek clips story, which I wanted. Cost me a table at the grill, but I chose that and understood why. Reasons like Selim stepped out are clear.        |
+| 72.136    | stop         | TASTE  | I am stopping. I got the stories I wanted and could ask follow-ups. I would return one more evening to see whether Selim tells me about Nevin list. I would not leave it running. |
+
+Separate later [viewport/Feedback observation](../reviews/light-2026-10-30/pass/supplements/maya/report.md) is an additional fresh visit and does not replace the preceding report or verdict.

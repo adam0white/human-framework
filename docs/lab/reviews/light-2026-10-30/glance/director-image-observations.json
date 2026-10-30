@@ -1,0 +1,10 @@
+{
+  "time": "2026-10-30T22:08:50.648193+00:00",
+  "viewed": ["glance/mei/phone/b-002.png", "glance/leila/desktop/b-002.png"],
+  "observations": [
+    "Phone360: Dai status box extends off right edge; ending not visible.",
+    "Phone360: optional chapter paragraph occupies center; recording notice at bottom visibly overlays gauge content.",
+    "Desktop1280x800: much optional chapter copy in log; lower gate/level details extend beyond bottom of screenshot."
+  ],
+  "limits": "Screenshots establish visible clipping/overlap in these frames; no scrolling or later layout verified. No claim controls cannot be reached. No timing/game difficulty inference."
+}

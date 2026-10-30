@@ -1,0 +1,10 @@
+{
+  "status": "report-ready, both viewport images claimed viewed; no tool transcript for initial run",
+  "earlyFirstMinute": {
+    "phone": [35.353],
+    "desktop": [32.693]
+  },
+  "ruling8": "Desktop private-talk invite at203.492s was disabled: do not route its apparent no-answer as an accepted-input failure. Multiple Leave station empty taps and phone Ask Dilek to take over at435.246s were accepted without tool errors; actual simulation cause needs reproduction.",
+  "coordinatorViewed": ["desktop/b-003.png"],
+  "privacy": "No type operation or Submit/Send tap in either driver log."
+}

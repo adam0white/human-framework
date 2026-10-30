@@ -1,0 +1,18 @@
+{
+  "exit": 0,
+  "pins": [
+    {
+      "app": "0.1.0",
+      "framework": "4.8.1",
+      "commit": "28086c1f64d9a42b369c9f8904b22fd33063e00d",
+      "dirty": false
+    },
+    {
+      "app": "0.1.0",
+      "framework": "4.8.1",
+      "commit": "28086c1f64d9a42b369c9f8904b22fd33063e00d",
+      "dirty": false
+    }
+  ],
+  "ended": "2026-10-30T20:23:13.204096+00:00"
+}

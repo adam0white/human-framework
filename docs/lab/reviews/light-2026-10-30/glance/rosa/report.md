@@ -1,0 +1,101 @@
+**Would I return voluntarily? No. I would close it and not come back on my own, on either device, and I would not leave it running. I might come back only if someone first explained, in plain words, what "dark corners" and "arrangements" are, and showed me one job to do.**
+
+**Ranked asks**
+1. Remove the long "Nerys / dark corners / access strip / outgoing post" paragraph from the first screen, or put it behind a button. It is optional, but it fills the first screen I have to act on.
+2. Explain a job in one plain sentence. For example: "Pick how many turns to open the gate. More turns lower the water." Drop "How Dai expects to feel", "insist" and the "caught" rule from that first view.
+3. Say whether I must hurry while I read. The clock ran on to 22:54 while I was reading on the desktop, and lightning came with no warning.
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, 62, busy second-language reader.
+- **Exposure:** first visit to The Glance.
+- **My own history:** I read only lines 1–495 of own-history.md (Voice, Warren, start of Valley). Lines 496–1202 are unread, so I am not claiming memory from them.
+- **Round and arm:** light-1030, free stop (floor 0).
+- **URL:** https://glance.adamwhite.work/?labRunSource=agent
+- **Session A:** 360×690 touch, light. About 44 s of driver time before the stop log. The stop log was at 43.5 s.
+- **Session B:** 1280×800, light. The stop log was at 101.3 s.
+- **Not done:** I did not read the cleanup rule's git step, because I created no repository work. I made no worktrees, and I created no processes of my own.
+
+## 2. First impressions
+
+- **A, 0.8 s:** a calm title and one sentence, "You work at a night desk above a valley town." Clear.
+- **A, 4.3 s:** the screenshot showed a chart with a red line and a large red Start game button.
+- **A, 15 s:** the game screen opened with a long paragraph about Nerys. I could not tell what it wanted from me.
+- **B, 48.8 s:** the same paragraph, and the level was 3.8 this time instead of 4.1.
+
+## 3. Verbatim diary
+
+**Session A**
+- 8.8 s tap Start game: "I start." The page looked unchanged until a 3 s wait.
+- 21.4 s note, Mon 22:05: "Long paragraph about Nerys, dark corners, access strip, outgoing post - I do not understand it; too many names. Reread 1: Her three dark corners are the yard, back wall and riverbank beside the inn. What is a dark corner?"
+- 23.6 s: "I ask Dai to read the level; this is what the screen says to do."
+- 26.8 s: "Level 4.10 arrived. Now I try the gate."
+- 29.8 s want_quit CONFUSED, Mon 22:13: "Reread 2: A wrong reading counts as caught when you had it read again within twenty minutes, lightning showed the wall within twenty minutes, or you marked that report as doubted. Also How Dai expects to feel after this job; Hold a button to insist. Too many ideas. I want to stop."
+- 43.5 s stop CONFUSED, Mon 22:15: "I wanted to watch the dam, but every panel gives me many new ideas (turns, insist, doubt, caught). I stop."
+
+**Session B**
+- 29.9 s tap Start game: "Second visit; same evening, I start again."
+- 60.1 s want_quit CONFUSED, Mon 22:19: "Reread 1 and 2: Her three dark corners are the yard, back wall and riverbank beside the inn. / The night desk may close only this optional private-trip access for tonight. Same wall of names as on the phone; I do not know what to do with it. Level was 3.8 this time, not 4.1."
+- 101.3 s stop CONFUSED, Mon 22:54: "Same wall of names as the phone. I did not even play; the clock ran on to 22:54 while I read, and lightning came. I stop."
+
+I logged the Session A "Reread 1" note as a plain note at 21.4 s.
+
+I never logged first_minute or pulse. The timed tags were not due before I stopped. Session A stopped at 43.5 s and Session B at 101.3 s. Session B passed 60 s, but my stop came soon after, and I did not log first_minute there. That checkpoint is untested.
+
+## 4. Moments
+
+- **What held me:** "Ask Dai to read the level" was a clear first job, and it worked. The sentence "Every reading on this board is what Dai saw" explained why I ask Dai.
+- **What lost me:**
+  - The Nerys paragraph, in both sessions.
+  - On the gate panel, the line "How Dai expects to feel after this job" and the line "Hold a button to insist".
+  - The doubt rule about "caught".
+- **Quit wishes:** A at 29.8 s and B at 60.1 s. Neither passed. I stopped.
+- **Pulses:** none; I stopped before 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:** the goal "Keep the water below the top of the dam." The sample morning showed what a good outcome looks like.
+- **Unclear:**
+  - "dark corners"
+  - "optional private-trip access"
+  - "Compare observations"
+  - "Watch arrangements"
+  - "turns" for the gate, and "insist"
+  - "caught"
+- **Surprise:** on the phone Start game looked inactive for a few seconds, and I tapped again after 3 s. I am not sure whether the first tap worked or the game was just loading.
+- **Surprise:** the clock ran while I read the long paragraph (22:05 to 22:12). On the desktop it ran from 22:19 to 22:54 while I waited between my own actions. Part of that may be my own slowness between calls; I cannot tell.
+
+## 6. Device use
+
+- **Phone:** I viewed `phone/a-001.png`. I saw the title, a chart with a red line, and a large red Start game button. A small box at the bottom said "We record and link play across games on this device." It covered part of the page. The intro text was cut off behind the button. I used Start game, the Ask Dai button, the gate gauge, Game menu, Feedback and "I'm confused".
+- **Desktop:** I viewed `desktop/b-001.png`. I saw the same chart in a narrow centre column, with a lot of empty space on both sides. The Start game button sat close to the notice box. I used Start game, Game menu, Feedback and "I'm stopping".
+- I saw no in-game screen on either device in a screenshot. Only the title page was seen.
+- **Feedback on both devices:** both "I'm confused" and "I'm stopping" were offered. I pressed "I'm confused" on the phone and "I'm stopping" on the desktop. Both showed as pressed. I typed nothing and did not press Submit.
+
+## 7. Stop and return
+
+- **A:** "I wanted to watch the dam, but every panel gives me many new ideas (turns, insist, doubt, caught). I stop." Reason: CONFUSED.
+- **B:** "Same wall of names as the phone. I did not even play; the clock ran on to 22:54 while I read, and lightning came. I stop." Reason: CONFUSED.
+- **Would I return voluntarily?** The answer is at the top. I would not leave it running, and I would not come back another evening unless the conditions at the top are met.
+
+## 8. Changes I would want
+
+The three ranked asks are at the top.
+
+## 9. Compared with my last visit
+
+First visit.
+
+## Concept tables
+
+| Screen and purpose                     | New concepts (list every one)                                                                                                                                                                                                                                                                                                     | Concept count | Sentences reread (verbatim)                                                                                                                                                 | Reason                                                                    |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Title, start (A 0.8 s, B 1.3 s)        | All games link; Information; game menu; night desk; valley town; sample morning; water below the dam top; town dry or warned; twelve nights; weekend and second week; watch end; choose a dam (valley or upper); "Life during the watch"; Lab privacy; Debug; recording notice                                                    | 16            | none                                                                                                                                                                        | —                                                                         |
+| Watch screen, first (A 15 s, B 48.8 s) | Night and clock; Dai the keeper; Watch arrangements; Compare observations; Nerys; dark corners; access strip; private-trip access; Wren's survey permission; outgoing post; survey register; level gauge; gate gauge; "read" and "not read"; asking Dai to read; wait time ~10 min; Skip; time slows while I read; weather report | 19            | "Her three dark corners are the yard, back wall and riverbank beside the inn."                                                                                              | I did not know what a dark corner was or why it mattered.                 |
+| Gate inspection (A 26.8 s)             | Gate turns 0–6; Dai agrees or needs a call; "insist" by holding; river rises later; Doubt this reading; dawn comparison; caught rule; lightning shows the wall                                                                                                                                                                    | 8             | "A wrong reading counts as caught when you had it read again within twenty minutes, lightning showed the wall within twenty minutes, or you marked that report as doubted." | Three conditions in one sentence and the word "caught" was never defined. |
+| Game menu (A 32.7 s, B 78.4 s)         | Pace Automatic/Slow/Steady/Fast; title page; Feedback; Full screen; Record play for the lab; New game; Resume; time stops while open                                                                                                                                                                                              | 8             | none                                                                                                                                                                        | I did not change any of these.                                            |
+| Feedback (A 35.4 s, B 83 s)            | Verdicts; "What is happening" confused/stopping; note box; optional name; linking of play history; what is sent; Submit; Back                                                                                                                                                                                                     | 8             | none                                                                                                                                                                        | Settings counted although I ignored them.                                 |
+
+No lab topic appeared on any screen I visited.
+
+**Cleanup:** I created no worktrees, branches, servers or workers, and I touched no repository. Two screenshots exist: `phone/a-001.png` and `desktop/b-001.png`, which is within the limit. The coordinator owns the drivers.

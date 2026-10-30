@@ -1,0 +1,3 @@
+# Your own diary
+
+Empty. You have never encountered any game made with this framework.

@@ -1,0 +1,219 @@
+[
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "image": "pass/maya/phone/first-minute.png",
+    "sha256": "b750f39d3d3dd1c170e023ff2d20bd5ab2f2f77ec7afd548af047b931ac62523",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "image": "pass/maya/phone/a-002.png",
+    "sha256": "547f4ff44133b8bceb4dce04190e041ca2c532f8a63225589e413f1f7a1a8d76",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "image": "pass/maya/phone/a-001.png",
+    "sha256": "6fa256acca2371542930e7c069746e97cc8faa3d65bcf0c37c63f4ed11f19845",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "image": "pass/maya/desktop/b-001.png",
+    "sha256": "49b65e1b74c7d27ddaa62fc1157da4b241b1967f5f142bfb4488ec1687410a77",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "image": "pass/maya/desktop/first-minute.png",
+    "sha256": "129d5a580186f25b88cffea90601f2690dc228b7bc865c8a7ef53c944d10d74d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "desktop",
+    "image": "pass/emre/desktop/first-minute.png",
+    "sha256": "884fd2c2b29ad363486ce2d9dd72670d7c85a176d0fd4e4b67a912cb7afd08c3",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "desktop",
+    "image": "pass/emre/desktop/a-002.png",
+    "sha256": "3ad60bd62192cee5d444208cc5d369c75f576ad595a32fca483c41a75e7f4e40",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "desktop",
+    "image": "pass/emre/desktop/a-001.png",
+    "sha256": "95263328bd5cfdaab76ac381726f8ff59748b0ad64e00943eb74cd660486392b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "image": "pass/emre/phone/b-001.png",
+    "sha256": "3dc29dccd56695ff86b0a16aaf736a00febc911193471849cf57552f1bb811bb",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "image": "pass/emre/phone/first-minute.png",
+    "sha256": "73c4302f8c4bdc803216196355d560da1f74fdf79adac46f78ae43696dcc1890",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "image": "pass/emre/phone/b-002.png",
+    "sha256": "0605778f3ec1c1a471eda7649d7b7be2930b8bd87449d44987f071e788709615",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "image": "pass/nia/phone/first-minute.png",
+    "sha256": "d17ef57464027e9b77870fb2d0276bcf6ed21d8ecde710260b5a26843cac8e2e",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "image": "pass/nia/phone/a-001.png",
+    "sha256": "19c9ef79f5abb1be7d247c1a1c430042494fd0747885458af0c4b78922b3a5ae",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "desktop",
+    "image": "pass/nia/desktop/b-001.png",
+    "sha256": "e6533dc4c4e89fe9c1e8389e94bf9c62cd31961c9f237352a7faf37a4abb6b37",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "pass/rosa/phone/first-minute.png",
+    "sha256": "adcc79f670ba852159573cee26a4bc55363ab83bede6a3be8903c0ad87ffb6f3",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "pass/rosa/phone/a-002.png",
+    "sha256": "61e68d500eaa02f9c6397d2f6f911516f44c54e2acf64a501936225ccc1cebf0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "pass/rosa/phone/a-001.png",
+    "sha256": "002d03fd7261c2bc077ae10eabcd4e69f5950d706ac4d2058737ecba557cad86",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "pass/rosa/desktop/b-001.png",
+    "sha256": "c267349e70fbcdd4bb9ad646f645c127c9f878d425ed24fa305413c1a8c3a020",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "pass/rosa/desktop/first-minute.png",
+    "sha256": "62e8367f450cb4b7f03e85c50d2ba308dc84dbb987ec7649d0915dfb960d9b77",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "pass/rosa/desktop/b-002.png",
+    "sha256": "394f1bc9b3d53b2996020f324085c41560e14b455f70cf6bb7c6d770e31d8eda",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "phone",
+    "image": "pass/cold-amal/phone/first-minute.png",
+    "sha256": "0f9394d9cba7b7d82bee4244331c30773f8657be04c74bb8be5f582129028602",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "phone",
+    "image": "pass/cold-amal/phone/a-004.png",
+    "sha256": "4244df7d417e535f7a80411c1033be182b7f8f22bc29f918ed9de0d4c3fe2f5e",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "phone",
+    "image": "pass/cold-amal/phone/a-005.png",
+    "sha256": "c1bdc3bf8b36d94b5954282c5a6e1ab0e48e0edb937881c62f2c9f01a95001be",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "phone",
+    "image": "pass/cold-amal/phone/a-002.png",
+    "sha256": "8bb591dd5c2b4be36804f6cc0683c5c9f83345b7578b2f408dcf9fccd925a803",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "phone",
+    "image": "pass/cold-amal/phone/a-003.png",
+    "sha256": "f1d0896b5b0c2457474fbb611c2c5a9427205ae63dd2cac0959174efd2e8bc8d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "phone",
+    "image": "pass/cold-amal/phone/a-001.png",
+    "sha256": "67ad282ead9c8ee8d2066d12d8c47ecd5f6d9fb955876344306b2e5ec857c151",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "desktop",
+    "image": "pass/cold-amal/desktop/b-004.png",
+    "sha256": "3dba88e0c9dd2be546dcc461405513a6d5cee0e78101df32f6f582ee0cd5a84f",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "desktop",
+    "image": "pass/cold-amal/desktop/b-001.png",
+    "sha256": "ff839b51e626bd80cd20d2ff0995e3cc41dbe95879e59ae9f002007890d784a1",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "desktop",
+    "image": "pass/cold-amal/desktop/first-minute.png",
+    "sha256": "48f4214c30cbb8965bfdd6d52cdd19fd7680a320b07146a6472379730dfe39cc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "desktop",
+    "image": "pass/cold-amal/desktop/b-002.png",
+    "sha256": "11772ef71c4b5d254f0fffcf745b6c489a803ea168723b4753543b3723cd0bda",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Amal Haddad",
+    "device": "desktop",
+    "image": "pass/cold-amal/desktop/b-003.png",
+    "sha256": "a05906e9ffdee55b2a22d15931c86a65ad80dfa4dbe6712efddc81ce4c0dd48d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  }
+]

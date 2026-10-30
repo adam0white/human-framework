@@ -1,0 +1,98 @@
+**Would you return voluntarily?** I might come back another evening if the grill is not left empty by my own default plan and I can see early that ₺5,200 is reachable. I would not leave it running.
+
+**Ranked asks:**
+1. Do not let the starting plan leave the grill empty. Selim's meal break at 18:10 does this to every new player. Either set the default so a cook covers, or say before I open the doors that nobody will be at the grill.
+2. Show early whether ₺5,200 is reachable.
+3. Keep the planning text short. Selim's and Dilek's "I agree to that…" quotes are long and repeat the line above them.
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, 62, retired school administrator from Puebla, busy second-language reader.
+- **Exposure:** retest. I read my own-history.md before I started.
+- **Round:** light-1030 Pass same-tester retest, free stop (floor 0), ceiling 25 minutes.
+- **URL:** https://pass.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light, port 21206. About 81 s of driver time at the stop.
+- **Session B:** 1280x800 keyboard and mouse, light, port 21207, new game. About 40 s of driver time at the stop.
+- **Recording and consent:** recording stayed on and I changed no consent setting. I typed no note and pressed no Submit.
+- **Both sessions were very short.** I stopped early, so most screens were never reached.
+- **Logging:** I did not log a `first_minute` note, pulses or a `want_quit` line separately (see Section 3). The stop lines carry my words.
+
+## 2. First impressions
+
+- **A, title (0 s):** I took in the same text as last time. The ₺5,200 goal and "They can refuse" are clear. The wait choice (Selim longer wait / Dilek normal wait) is new to me. I left it at its default.
+- **A, planning (4 s):** the top now says "A station is a work area. The cold side prepares salads and other cold dishes. The rush is the busiest part of service, 18:30–20:30." Last time I did not know "rush", "station" or "cold side". Now I do.
+- **A, evening (~40 s):** time slowed with the message "A station needs a cook." The grill said "nobody here" in red, while table 5 waited. This is the kind of moment I wanted last time.
+- **B, planning:** the same start, and the same grill gap at 18:13 with Selim "eating".
+
+## 3. Verbatim
+
+The driver stamps elapsed seconds. I sent few log lines. I read my diary text from what I sent. Times are the driver's elapsed seconds.
+
+**Session A (phone)**
+- 8 s, on tapping Open the doors: "Station and rush are now explained at the top. I open the doors."
+- 40 s, on waiting: "Waiting to see orders."
+- 41.7 s, on tapping Dilek: "The grill is empty because of Selim break I planned. I ask Dilek."
+- 43.7 s, on tapping the close mark: "Dilek prefers cold side; polite. Selim returns soon. I close."
+- 76 s, on opening the Game menu: "Now I cannot tell the dialog closed. Open menu."
+- 81 s, on choosing I'm confused: "Grill empty, table about to leave, and I do not know what to do. Typed nothing."
+- 81.3 s, `stop` (CONFUSED, engagement 3, Mon 18:16): "Rush and station are explained now, but Selim eats, grill is empty and nobody can cover; Dilek refuses politely. I do not see what to do, so I stop on the phone."
+
+**Session B (desktop)**
+- 4.5 s, on tapping Open the doors: "Same start; I open the doors again with the default plan."
+- 39.7 s, `stop` (BORED, engagement 3, Mon 18:13): "Same grill gap at 18:13 as on the phone, the game slows, I have little to decide. I stop for tonight."
+
+## 4. Moments
+
+- **Held me:** the explanation of "station" and "rush". The slowed time with "A station needs a cook" also held me, because it gave me a reason to act.
+- **Lost me:**
+  - Dilek's polite refusal ("I would rather work the cold side") left me with no other cook to ask.
+  - After I tapped the close mark the cook dialog still seemed to cover the screen, and my menu taps did not work (see Section 5).
+  - The grill was empty and a table was "about to leave" with ₺40 at risk. I could not see what to do.
+- **Quit wishes:**
+  - One CONFUSED on the phone, near 18:16 (the stop line). It did not pass, so I stopped.
+  - Session B ended as BORED, shortly after.
+- **Pulses:** none logged. The engagement figure on each stop line is 3.
+
+## 5. Confusion and clarity (actual play only)
+
+- **Clear:** the goal, the cooks' right to refuse, and "A station needs a cook".
+- **Unclear:**
+  - Why the default plan gives Selim a break that leaves the grill empty at the first rush table.
+  - What I can do when the only other cook refuses.
+  - Whether the cook dialog was closed. My tap on × returned the same screen, and a later tap on Feedback said it was not on the page. Only after I tapped Game menu did Feedback appear in the control list.
+- **Feedback screen:** when I chose "I'm confused" on the phone and "I'm stopping" on desktop, the note box showed that label's text (the desktop screenshot shows "I'm stopping" in it). I did not type it. I pressed no Submit.
+
+| Screen and purpose          | New concepts (list every one)                                                                                                                                                                                                                               | Concept count | Sentences reread (verbatim)                          | Reason                      |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ---------------------------------------------------- | --------------------------- |
+| Title page: start (A, B)    | The Pass; running a kitchen for four weeks; Nevin's restaurant; cooks refuse; ₺5,200 by Saturday; Turkish lira; wait-time choice (Selim longer, Dilek normal); Other ways to begin; New game; All games; Information; Game menu; recording and linking play | 13            | none                                                 | Clear                       |
+| Planning, Mon 17:30 (A, B)  | Station; cold side; rush 18:30–20:30; early table that leaves unpaid (₺40); grill; meal break; prayer time; Change plan; Agreed; Read full answer; People; money bar; Open the doors                                                                        | 13            | not inspected closely (I skipped the long paragraph) | Saw it, did not read it all |
+| Evening, kitchen (A, B)     | Slowed time; "A station needs a cook"; table and order cards; "Waiting for the grill"; ingredients left; cook buttons; "Tap a cook"; Earlier conversations                                                                                                  | 8             | none                                                 | The picture helped          |
+| Talking to a cook (A)       | Job buttons with forecast words; "not now, Selim stepped out"; Insist; How are you doing; private talk; fifteen minutes in the dining room                                                                                                                  | 6             | none                                                 | Clear                       |
+| Game menu / Feedback (A, B) | Feedback; keep-playing choices; I'm stopping; I'm confused; note box; name or tester ID; What is sent; Keep a copy; Submit                                                                                                                                  | 9             | none                                                 | Not used beyond the label   |
+
+## 6. Device use
+
+- **Phone (A):** I viewed a-001 (title: plain text, wait choice, New game button, all legible) and a-002 (the Feedback screen with the two label buttons and an empty note box). Controls used: New game, Open the doors, Dilek cold side, the close mark, Game menu, Feedback, I'm confused.
+- **Desktop (B):** I viewed b-001 (title: large clear text, centered, empty margins) and b-002 (Feedback open over the kitchen). The kitchen view behind it showed the "nobody here" grill. Behind the dialog, the top line shows "Time is slowed. A station needs a cook." Its text is partly covered by the dialog, which I think is just the overlay. Controls used: New game, Open the doors, Game menu, Feedback, I'm stopping.
+- **Unseen:** closing summary, People panel and the help panel as pictures; I did not reach them.
+
+## 7. Stop and return
+
+- **A stop:** "Rush and station are explained now, but Selim eats, grill is empty and nobody can cover; Dilek refuses politely. I do not see what to do, so I stop on the phone." Reason: CONFUSED.
+- **B stop:** "Same grill gap at 18:13 as on the phone, the game slows, I have little to decide. I stop for tonight." Reason: BORED.
+- **Would I return voluntarily?** Maybe, another evening. I am patient and I liked the polite cooks, but this time the game left me stuck sooner. I would return if the first rush table does not arrive with the grill empty. I would also need to know early whether ₺5,200 is reachable. I would not leave it running, because the game moves on by itself and I would not know what I missed.
+
+## 8. Changes I would want
+
+1. Do not let the starting plan leave the grill empty. Cover it, or tell me before I open the doors.
+2. Say early whether ₺5,200 is reachable.
+3. Shorten the planning text and the repeated "I agree to that…" quotes. Make it clear when a cook dialog is closed.
+
+## 9. Compared with my last visit
+
+- **Shorten the repeated "Agreed" quotes (ask 1):** not met. The "I agree to that. I will work at the cold side until 18:35…" quote is still long and repeated. It appears in the planning screen and again in the evening log.
+- **Say early if ₺5,200 is reachable; explain "rush" and "station" (ask 2):** partly met. "Station", "cold side" and "rush" are now explained at the top of planning. I saw nothing about whether the ₺5,200 goal is reachable.
+- **Say why People offers are grey; fix clipped desktop text (ask 3):** not seen. I never opened People. On desktop the only clipping I saw was behind the Feedback dialog, which I think is just the overlay.
+- **New this time that would stop me returning:** the default plan leaves the grill empty at the first order. Selim's meal break at 18:10 starts the evening with "The grill needs a cook" and a table about to leave, and Dilek refuses to move. That is my main reason to hesitate.
+
+No worktrees, servers or processes were created by me.

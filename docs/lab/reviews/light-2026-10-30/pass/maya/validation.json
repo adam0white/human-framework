@@ -1,0 +1,68 @@
+{
+  "tester": "Maya Chen",
+  "status": "report-returned; supplemental phone visual + Feedback observation required",
+  "exit": 0,
+  "sessions": {
+    "phone": {
+      "lines": 26,
+      "stop": {
+        "t": "2026-10-30T19:41:08.640Z",
+        "elapsed_s": 125.006,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping here. Follow-up on what a cook said now works and answers show where I ask, which was my main ask. Selim promised to talk about Nevin later and I would come back for that. Stopping because I have seen the loop and want to try the desktop.",
+        "game_clock": "Mon 17:40",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "refusedTaps": [
+        {
+          "elapsed_s": 39.288,
+          "error": "Close is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "input": {
+            "name": "Close"
+          }
+        },
+        {
+          "elapsed_s": 102.087,
+          "error": "For now, I agree to that. is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "input": {
+            "text": "For now, I agree to that."
+          }
+        }
+      ],
+      "viewedImages": "phone NOT VIEWED per report; desktop b-001 viewed per report",
+      "earlyFirstMinute": [35.663]
+    },
+    "desktop": {
+      "lines": 16,
+      "stop": {
+        "t": "2026-10-30T19:42:21.685Z",
+        "elapsed_s": 72.136,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping. I got the stories I wanted and could ask follow-ups. I would return one more evening to see whether Selim tells me about Nevin list. I would not leave it running.",
+        "game_clock": "Mon 18:19",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "refusedTaps": [],
+      "viewedImages": "phone NOT VIEWED per report; desktop b-001 viewed per report",
+      "earlyFirstMinute": [12.828]
+    }
+  },
+  "triage": "Offer replies and follow-up options observed. Station-cost cause explicitly uncertain. Time notice needs current-browser reproduction; do not route a timing defect yet. No new blocker on its own per tester; conditional return preserved.",
+  "coordinatorScreenshotReadback": {
+    "path": "phone/a-002.png",
+    "observed": "At17:34 the cook reply repeats both bathroom-first and toilet-first requests across several clauses; cover prompt and empty-grill warning are visible. This confirms duplicated displayed wording, not cause of the station departure.",
+    "time": "2026-10-30T19:50:01.810856+00:00"
+  }
+}

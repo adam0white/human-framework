@@ -1,0 +1,92 @@
+I would return voluntarily another evening on desktop, but only if I can pick up where I stopped and the slowed waits during an empty station give me something to do. I would not leave it running in a tab.
+
+**Ranked asks**
+1. Give me something to do during slowed waits. Tuesday 19:43 had both cooks gone, the grill empty and Selim in the bathroom. The phone Monday 18:16 had Selim refusing the grill. I could only wait.
+2. Let me carry on from where I stopped, so I do not replay Monday.
+3. Show a per-night money rate, and say how table counts grow. Monday was ₺600 of 15 tables again. I still can't see how to earn more.
+
+## 1. Session
+- Persona: Emre Kaya, 37, Ankara electrical technician and parent.
+- Exposure: retest. My own history file is the one at the path in the brief.
+- Round: light-1030 same-tester retest, free stop (floor 0, ceiling 25 min).
+- URL: https://pass.adamwhite.work/?labRunSource=agent. The footer now says "People by the Human Framework 4.12.0".
+- Session A: 1280x800 keyboard and mouse, light mode, port 21203. About 430 s (7 min).
+- Session B: 360x690 touch, light mode, port 21202. About 80 s.
+- Recording stayed on. I changed no consent setting, opened no Feedback and typed nothing.
+
+## 2. First impressions
+- A, about 4 s: the title page now asks "How long will customers wait?" Selim suggests longer, Dilek suggests normal. Normal was already selected. I left it.
+- A, about 5 s: the plan page now says an early table arrives at 18:12 and leaves without paying ₺40 if its food is late. It tells me to cover the stations. Last time I found the gap by accident.
+- A, about 36 s: I now have to tap "Ask them about the changes" before opening the doors.
+- A, about 100 s: Dilek asked a question in the middle of service (five minutes to call her mother). That gave me a decision during the rush.
+- B, about 40 s: the phone header fits. Ingredient counts differed from desktop (18 grill portions against 12).
+
+## 3. Verbatim
+Session A, elapsed seconds approximate:
+- about 4 s, note: "New this time: a choice of how long customers wait. Selim longer, Dilek normal (default). I take the default to compare with last time."
+- about 9 s, note: "The plan now warns about an early table at 18:12 and a 40 lira loss. Better than last time. Dilek break 18:35 is in the rush, so I look at changing it."
+- about 30 s, note: "Moved both breaks to 21:00 after the rush; Nobody cover stayed Nobody this time, no Rafi auto-pick seen yet. Both breaking at once at 21:00 may be a hole, guessing."
+- about 70 s, first_minute: "Both agreed. Doors open. The plan page now warns about the early table and makes me ask the cooks before opening, which is clearer than last time. Watching service."
+- about 103 s, note: "New: a cook asks me a real question mid-service. Rush is on, she is the only cold-side cook, so I ask her to wait till closing. Ingredients counters are also new."
+- about 140 s, pulse, 4 (Mon 19:06): "Mid-service questions give me something to decide, which was my complaint last time. Ingredient counts falling (5 grill portions); I wonder if they run out. 320 lira at 19:06."
+- about 172 s, note: "Grill portions are at 0 and cold nearly 0. I did not expect to restock. Looking at what I can ask Selim."
+- about 208 s, note: "Monday 600 again, same as last visit, 15 of 15 tables. The Why line (you earn when a table eats, stations and breaks decide when food is ready) helps. Ingredients hit 0 with no visible loss. Still do not see how to get more than 15 tables. Selim missed prayer again."
+- about 250 s, note: "New shortcut: Same plan as last night. Saves me the busywork I dislike. Rafi now has a plan too, dishes break at 19:00."
+- about 315 s, pulse, 4 (Tue 19:30): "Orders now show how long they wait and the lira at risk. That is the visible tradeoff I wanted. 960 by 19:30 Tuesday, ahead of Monday."
+- about 350 s, note: "Both covers empty another station; I can price this now. Order cards at left are cramped, text cut off (grill ○○ cold s...). Leaving grill empty."
+- about 390 s, note: "Both cooks walked off to explain the wait to tables, three tables at risk, 120 lira. Rafi cover would empty dishes and no plates, no food leaves. I leave empty. Same waiting-with-nothing-to-do as before, but I understand why."
+- about 428 s, want_quit, BORED: "Tuesday 19:43, 1000 lira. Grill empty, Selim in the bathroom, time slowed, nothing I can do. This is the same waiting as last visit. Better this time: I can see lira at risk and why each cook left."
+- 429.7 s, stop, BORED: "Stopping Tuesday week 1 19:43 at 1000 of 5200. Mid-service questions, order cards with lira at risk and Same plan as last night are real improvements. The empty-grill waiting is still the part I would skip. I would come back another evening, not leave it running."
+
+Session B:
+- about 5 s, note: "Phone, second visit same evening. Changed Dilek break to 21:00 and ask."
+- about 40 s, first_minute: "Phone header fits now, nothing cut off. Layout is readable; the order list was empty at 17:25. Ingredient counts differ from the desktop start, 18 grill vs 12, so nights are not identical."
+- about 60 s, note: "Selim eats 18:10, grill empty, a table waits. I did not change his break on this device. Asking him back."
+- about 78 s, want_quit, BORED: "Monday 18:16 on the phone. Selim refuses, bathroom first, early table about to leave, nothing I can do but wait in slowed time. This is the same dead wait as before. I already saw this plan on desktop."
+- 79.3 s, stop, BORED: "Stopping on phone Monday 18:16, 120 of 5200, after about 80 seconds. Layout is fine, header fits. I do not want to replay Monday. I would come back another evening on desktop only if it carries on from a save."
+
+## 4. Moments
+- What held me: the mid-service question, the order cards showing wait time and lira at risk, and the "Same plan as last night" button. Seeing why each cook left also helped.
+- What lost me: slowed time with an empty station and nothing to do (Tuesday 19:43, phone Monday 18:16). Quit wishes: BORED on both devices. Neither passed.
+- Pulses: 4 and 4, both on desktop.
+
+## 5. Confusion and clarity
+Clear:
+- The early-table warning.
+- The Ask-before-opening step.
+- The "Why" line on the day summary.
+- Orders showing wait time and lira at risk.
+- Why a cook left the station.
+
+Confusing:
+- Ingredients fell to 0 grill and 1 cold portion on Monday with no visible loss. I found no restock control, and I don't know what they do.
+- I still do not know how to earn more than 15 tables' worth.
+- Selim "did not keep" his prayer on Monday even with my 21:00 break. He stayed at the grill.
+- Both cooks left at once to explain a wait. I could not have stopped that.
+
+## 6. Device use
+- Desktop screenshots viewed: a-001 (Selim leaving the grill, cover choice) and a-002 (both cooks gone, three tables at risk). The order cards at the left are cramped and cut off ("grill ○○ cold s...").
+- Phone screenshots viewed: b-001 (start of service) and b-002 (talking to Selim). The job buttons overlap the cook buttons slightly. I could still read and use everything.
+- Controls used on desktop: New game, plan Change buttons, Done, Ask them about the changes, Open the doors, Selim and Close, mid-service answers, Same plan as last night.
+- Controls used on phone: New game, Change Dilek's plan, Done, Ask them about the changes, Open the doors, Selim and his job button.
+- One tap of mine on "Open on Tuesday" timed out, but the page had moved on. I chose again from the clickable list.
+- Unseen: the phone People panel, landscape and dark mode.
+
+## 7. Stop and return
+- Session A stop (BORED, 429.7 s): "Stopping Tuesday week 1 19:43 at 1000 of 5200. Mid-service questions, order cards with lira at risk and Same plan as last night are real improvements. The empty-grill waiting is still the part I would skip. I would come back another evening, not leave it running."
+- Session B stop (BORED, 79.3 s): "Stopping on phone Monday 18:16, 120 of 5200, after about 80 seconds. Layout is fine, header fits. I do not want to replay Monday. I would come back another evening on desktop only if it carries on from a save."
+
+Would I return voluntarily? Yes, another evening on desktop, to see whether ₺5,200 by Saturday is reachable. I will return only if I can pick up where I stopped and the empty-station waits give me something to do. I would not leave it running in a tab, because it slows down and waits for me.
+
+## 8. Changes I would want
+1. Something to do during slowed waits, or a faster pace while a station is empty.
+2. Resume from where I stopped.
+3. A per-night money rate, and how table counts grow.
+
+## 9. Compared with my last visit
+- Ask 1 (something to do during slowed waits): partly met. Mid-service questions and order cards give me decisions during busy stretches. The empty-grill wait at Tuesday 19:43 and the phone Monday 18:16 is still dead time.
+- Ask 2 (show how plan choices change money): partly met. Orders now show lira at risk and the day summary has a "Why" line. Monday was ₺600 again. Tuesday reached ₺1,000 by 19:43, ahead of last time's ₺800 for the whole night. I did not finish Tuesday, so I can't compare the totals.
+- Ask 3 (no Rafi auto-pick, say why People offers are greyed out): partly met. Rafi did not auto-cover after I changed Dilek's and Selim's breaks. I did not open People offers this time, so the greyed-out part is not seen.
+- New this time that would stop me returning: nothing new. The only thing that would keep me away is the unchanged dead wait on an empty station, plus having to replay Monday each visit.
+
+No git worktrees or servers are mine, so there is nothing to clean up.

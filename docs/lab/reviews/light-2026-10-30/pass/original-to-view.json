@@ -1,0 +1,37 @@
+[
+  {
+    "view": "maya/report.md",
+    "original": "maya/report.original.md.txt",
+    "originalSha256": "6c298654ee21a3569094c2b1f7ea01eaa6d0ba99c9bddb7640cd96e4a8bb2d29"
+  },
+  {
+    "view": "emre/report.md",
+    "original": "emre/report.original.md.txt",
+    "originalSha256": "58b6c76ca4c5f77f143c2a01406ae1f715964dbc43071e7619c04496aec91e30"
+  },
+  {
+    "view": "nia/report.md",
+    "original": "nia/report.original.md.txt",
+    "originalSha256": "956a0f4f99948c75f6fff02129742ad2ae27fda3e8ed1dc95140346fab183ed3"
+  },
+  {
+    "view": "rosa/report.md",
+    "original": "rosa/report.original.md.txt",
+    "originalSha256": "1bca20632d52b47463c65c2a3978b504136c57ac8a8439ade8061968bb8f7fa0"
+  },
+  {
+    "view": "cold-amal/report.md",
+    "original": "cold-amal/report.original.md.txt",
+    "originalSha256": "3e4d1ac8c9d4fe8ebf4a54a9dcb5c6f7f982b72dce28279a3e38f777341aeb60"
+  },
+  {
+    "view": "supplements/maya/report.md",
+    "original": "supplements/maya/report.original.md.txt",
+    "originalSha256": "3fc258c4996b077801095b282f4dcacd64c573635617631ebd7a1139af0335ad"
+  },
+  {
+    "view": "supplements/nia/report.md",
+    "original": "supplements/nia/report.original.md.txt",
+    "originalSha256": "f74a048ecb52bd3cc0c6106567dd8c21fd60a2c2e37214eaf22a71e6d2904b24"
+  }
+]

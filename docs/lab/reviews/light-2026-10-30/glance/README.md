@@ -1,0 +1,33 @@
+# The Glance LIGHT panel — 2026-10-30
+
+Remaining: fix the blocking opening-copy, first-task and phone-layout asks, then retest the same standing players on the actual delivered fix. Taste candidates need inspection and player review before changing the game. No finished-game or owner-acceptance claim.
+
+Collection closed at live e97b91077d9d9f584bf31c8f3fd2ad495d4c5432 / HF4.14.0 / dirty:false. Four standing Sonnet low players: Mei Tan, Samir Haddad, Leila Mansour, Rosa Alvarez. One never-HF cold Opus low player: Sara Lindholm. Each used fresh isolated real Chromium contexts at360x690 and1280x800 and viewed at least one screenshot at each size. All ten sessions ended with voluntary stop logs. Four conditional return passages and Rosa's refusal remain verbatim in the logical ledger; these fictional observations do not estimate human preferences.
+
+## Blocking handoff — target2026-11-03
+
+- F-2198: shorten or move the repeated optional-chapter explanation. All five encounter a large paragraph about Nerys/Bilal/Wren before those people become meaningful. Preserve the authored choices, access distinctions and disclosure; remove repeated upfront explanation rather than the game content.
+- F-2199: repair the phone status/gauge/recording-notice layout. Director independently viewed Mei phone b-002 and Leila desktop b-002. The phone Dai strip extends off the right edge, and the recording notice visibly covers gauge content in the captured frame. The desktop lower gauge text also extends below its screenshot. Scrolling was not tested, so this is not proof a control is inaccessible. Keep the recording disclosure and all game controls.
+- F-2200: explain one first job in plain words and introduce the gate/insist/doubt rules where they become useful. Rosa stopped confused on both devices. Preserve difficulty, keeper refusal, uncertainty and the actual rules. Her suggested removal of concepts from the first view is not permission to remove mechanics.
+
+## Blocking candidates and taste — inspect before changing
+
+F-2201 (early-night decisions), F-2202 (answering Dai's Morgan question), and F-2206 (seeing town/river consequences) condition several returns. First inspect existing pace/Skip, supported replies and river observations. Keep the premise of readings made by a fallible person. Do not supply omniscient true/live water to obtain agreement. Do not invent unrestricted conversation or new cast facts. All players stopped during the first night; later nights, town access and the full twelve-night arc are untested. These observations do not establish that later nights lack consequences or justify flattening difficulty. Target2026-11-03 for source triage and player review.
+
+F-2207 retains Sara's wish for different clues/timing. She saw two fresh first nights, with different numbers and similar authored timing, not two successive nights. Keep that distinction. Do not randomise an authored clue solely to make fresh starts look different. Review2026-11-03.
+
+F-2203 asks for legible gate effects without another reading. Preserve reported-versus-observed water and uncertainty; inspect existing explanatory feedback. F-2205 is an uncertain gauge timestamp discrepancy, independently noticed by Leila and Sara; reproduce it before calling it a defect. F-2208 concerns the wording that actually activates a standing request; do not promise Dai will comply. F-2209 is Sara's suspicion that a gate order replaced an unanswered reading request; source and human-speed reproduction are due before a defect claim. These retain2026-11-10 targets.
+
+F-2204 retains the wish to stop time while reading. The owner asks for slowdown rather than hard pauses; no new hard pause is routed. Fast/Slow pace settings were not exercised by these players. No human-speed timing defect was reproduced. Sara's failed named tap at188.197s used an out-of-date duration label; the driver explicitly refused it. A later action is not proof that this refused tap registered. Keep calibration:C14 and the raw error separate from any game defect.
+
+## Restart and evidence limits
+
+The computer restart about21:50Z cut Sara's originally dispatched cold attempt. Its transcript is empty and it has no report or player stop. The original attempt is preserved under private glance/sara/cut-by-restart-20261030T2150Z/, with interruption.json copied here. It is an infrastructure interruption, never a voluntary quit. No tester game exposure is evidenced in that attempt. Sara restarted in a new CLI context and fresh test browsers, with the same empty history; her completed report and actual stops above are a separate attempt. The four standing reports returned before the reboot and were preserved.
+
+Raw wall-clock.jsonl files and complete reports are copied byte for byte. report.original.md.txt preserves the producer reply; report.md is the readable view. Primary ledger quotations are checked as exact substrings before table escaping. No tester words were rewritten to repair their estimates, clock labels or causal guesses. validation.json records image Read-tool results, raw stops, refused inputs and form actions. The extractor read reports and validation files; the director independently audited raw logs. Some extractor evidence-limit fields inserted labels, so only validated primary return/ask quotations are canonical verbatim.
+
+Mei desktop pulse172.959s, Samir desktop163.950s, Leila desktop164.975s and Sara desktop163.106s occur before180s. Sara desktop first_minute57.722s occurs before60s. These raw lines remain, flagged as premature rather than valid scheduled checkpoints. Rosa skipped her desktop first-minute tag. Several standing players read only part of their own history; that limit remains in their reports. No target-game source, biography, other tester history or hidden state was supplied.
+
+Both Feedback labels were offered. The ten sessions chose a stopping/confused label without typing a note or using Submit. No fake feedback was submitted. The supported SDK field is runSource:agent via labRunSource=agent; no production recording receipt was independently read. There is no paired arm, matched-seed, A Dark Room control, full-night, full-watch, Resume or export-replay claim.
+
+F-2193–F-2197 are five logical tester rows. F-2198–F-2209 are twelve distinct ask routes. F-2210–F-2220 remain unused within the reserved range; no rows are invented for them. Canonical docs/diary/ledger integration awaits the HF source-window handback. Any fixer waits for written CLEAR at its exact final source SHA before merge, exact green CI and an actual clean live handback before retest.
