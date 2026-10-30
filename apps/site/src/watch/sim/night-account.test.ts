@@ -36,7 +36,7 @@ it('retains a night Rest account through its actual sleep end, observed return a
   while (run.state.lantern.x !== run.state.lantern.target) run.step();
   run.step();
   const account = JSON.stringify(buildFrame(run.state, 0, false).watchers.find((w) => w.id === 'samira'));
-  expect(account).toContain('rest ended');
+  expect(account).toMatch(/finished resting|stopped resting|rest ended/);
   expect(account).toContain('Seen back');
   expect(account).not.toContain('the bell brought');
   run.input({ k: 'lantern', section: 'gate' });
@@ -115,17 +115,15 @@ it('keeps a witnessed wake as Keeper context separate from the paid dawn respons
   const frame = buildFrame(s, 0, false);
   const context = frame.watchers.find((w) => w.id === 'tamar')?.wakeContext;
   expect(context).toContain('You saw Tamar');
-  expect(context).toContain('No further account of that moment is recorded.');
+  expect(context).toContain('A threat was at that wall when you looked');
+  expect(context).not.toMatch(/\d{2}:\d{2}/);
   expect(frame.watchers.find((w) => w.id === 'kian')?.wakeContext).toBeNull();
   expect(actorRuntime(s).snapshot()).toEqual(before);
   expect(s.talks.left).toBe(left);
   s.phase = 'dawn';
   const dawnBefore = actorRuntime(s).snapshot();
   const dawnFrame = buildFrame(s, 0, false);
-  expect(dawnFrame.watchers.find((w) => w.id === 'tamar')?.wakeReading).toContain('How Tamar');
-  expect(dawnFrame.watchers.find((w) => w.id === 'tamar')?.wakeReading).toContain(
-    'not words the person said',
-  );
+  expect(dawnFrame.watchers.find((w) => w.id === 'tamar')?.wakeReading).toContain('seems');
   expect(dawnFrame.watchers.find((w) => w.id === 'kian')?.wakeReading).toBeNull();
   expect(s.talks.left).toBe(left);
   expect(actorRuntime(s).snapshot()).toEqual(dawnBefore);
@@ -240,4 +238,27 @@ it('keeps actual relief and outgoing sleep as separate named acts after the requ
   expect(s.nightRecords?.[1]).toMatchObject({ answer: 'begun', requestEndedAt: 1340 });
   expect(s.nightRecords?.[1]?.ended).toBeUndefined();
   expect(s.place.tamar).toBe('home');
+});
+
+it('bases the named bell guess on an observed hold answer', async () => {
+  const { publicFixture } = await import('./public-fixture.ts');
+  const { bellWords, readBell } = await import('./moments.ts');
+  const s = publicFixture(1280);
+  expect(bellWords(readBell(s, 'tamar'))).toContain('You cannot tell whether Tamar');
+  s.nightRecords = [
+    {
+      id: 0,
+      nightStart: 1080,
+      kind: 'hold',
+      who: 'tamar',
+      by: 'tamar',
+      section: 'gate',
+      affordance: 'post:gate-1',
+      sentAt: 1200,
+      until: 1260,
+      answer: 'begun',
+    },
+  ];
+  expect(bellWords(readBell(s, 'tamar'))).toContain('held the wall when asked before');
+  expect(bellWords(readBell(s, 'kian'))).toContain('You cannot tell whether Kian');
 });

@@ -87,7 +87,9 @@ it('new proposal holds survive current save/restore and replay; older cast pages
   const legacy = run.snapshot();
   legacy.scenario = 9;
   delete legacy.state.proposalHolds;
-  expect(() => WatchRun.resume(legacy)).toThrow('This save is from an older version. Start a fresh game.');
+  expect(() => WatchRun.resume(legacy)).toThrow(
+    'This chronicle was kept under the old ways of the watch; begin a new winter.',
+  );
 });
 
 it('later summer losses do not rewrite the preceding winter question', async () => {

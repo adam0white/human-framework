@@ -18,11 +18,9 @@ const modified = {
 } as unknown as SuggestionResolution;
 
 describe('current Well wording and order controls', () => {
-  it('a different choice names its reason', () => {
-    expect(sayLine(modified, 9)).toBe('I will draw water instead, because that is my work.');
-    expect(sayLine({ ...modified, reason: 'goal:role:1' }, 9)).toBe(
-      'I will draw water instead, because that is my work.',
-    );
+  it('keeps the framework’s answer for a different choice', () => {
+    expect(sayLine(modified, 9)).toBe(modified.says);
+    expect(sayLine({ ...modified, reason: 'goal:role:1' }, 9)).toBe(modified.says);
     expect(sayLine({ ...modified, reason: 'habit' } as SuggestionResolution, 9)).toBe(modified.says);
   });
 

@@ -13,7 +13,7 @@ export interface WarrenCareReturn {
   [key: string]: unknown;
 }
 const refusal =
-  'This saved care arrangement has no supported HF4 reader. Keep Kian and Ada in their source chapter.';
+  'Kian and Ada must stay together in their earlier chapter. Their care and return journey cannot continue here yet.';
 export function watchCareReentry(parent: PersonaEnvelope, _portable: unknown): Care | undefined {
   if (parent.transfer.watchCare !== undefined) throw new Error(refusal);
   return undefined;

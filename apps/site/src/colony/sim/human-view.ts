@@ -86,20 +86,6 @@ export interface NotOnOffer {
   short: string;
 }
 
-/**
- * Rules 4: the reason a "something else instead" answer gives, from the resolution's own `reason` (the term that won
- * the decision), so the line says why in the moment. The framework's "Not that — I'll draw water." names only
- * the alternative; on a map that reads as a whim (audit 2026-10-19: Danyal, Samira and Idris, on every seed).
- */
-const MODIFIED_BECAUSE: Record<string, string> = {
-  'goal:role': 'that is my work',
-  'need:water': 'I am thirsty',
-  'need:food': 'I am hungry',
-  'need:rest': 'I am worn out',
-  'need:sleep': 'I can hardly stand',
-  'need:safety': 'it is not safe out there',
-};
-
 /** Correct remembered first-person prose at the display boundary; episode identities stay untouched. */
 export function memoryText(text: string): string {
   return text
@@ -117,14 +103,10 @@ export function memoryText(text: string): string {
 
 /** The person's line, with this host's wording where the framework has none. `rules` 3 keeps the @3 lines. */
 export function sayLine(r: SuggestionResolution, rules: ColonyRules = 3): string {
+  if (rules >= 4) return r.says;
   if (r.verdict === 'refused' && r.kind === 'willNot') {
     const own = HOST_REFUSALS[r.reason];
     if (own) return own;
-  }
-  if (rules >= 4 && r.verdict === 'modified' && r.counterOffer) {
-    const reason = r.reason.startsWith('goal:role:') ? 'goal:role' : r.reason;
-    const because = MODIFIED_BECAUSE[reason];
-    if (because) return `I will ${r.counterOffer.label} instead, because ${because}.`;
   }
   return memoryText(r.says);
 }

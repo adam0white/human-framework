@@ -48,7 +48,7 @@ import {
 } from './sim/counterfactual.ts';
 import { VoiceGame } from './sim/game.ts';
 import { captureVoicePerson, voiceTerminal } from './sim/hf4-portable.ts';
-import { VOICE_HF4_EDITION } from './sim/hf4-run.ts';
+import { OLD_VOICE_SAVE, VOICE_HF4_EDITION } from './sim/hf4-run.ts';
 import { returnedSelin, type SelinReturn } from './sim/persona.ts';
 import {
   parseVoicePlaytest,
@@ -215,7 +215,7 @@ function publishBoundary(): void {
     {
       type: 'personaCheckpoint',
       error:
-        'Selin’s earlier calendar enquiry mapping is unsupported in HF4. Continue through the shared cast shelf; keep the original file.',
+        'Selin’s earlier enquiry cannot be carried into this month. Continue through the shared cast shelf and keep the original file.',
     },
     gen,
   );
@@ -409,9 +409,11 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
       .catch((err) => {
         if (fileMode && operation !== loadOperation) return;
         const message =
-          err instanceof PlaytestError
-            ? err.message
-            : `The playtest file could not be replayed: ${String(err)}`;
+          err instanceof Error && err.message.includes(OLD_VOICE_SAVE)
+            ? OLD_VOICE_SAVE
+            : err instanceof PlaytestError
+              ? err.message
+              : `The playtest file could not be replayed: ${String(err)}`;
         host.post({ type: 'playtestError', message }, msg.gen);
       })
       .finally(() => {

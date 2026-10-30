@@ -61,12 +61,12 @@ export function advanceDay(s: WatchState): void {
     const id = p.id;
     const name = nameOf(s, id);
     const parts: string[] = [];
-    if ((mended[id] ?? 0) > 0) parts.push(`spent ${mended[id]} hours mending the bell rope`);
+    if ((mended[id] ?? 0) > 0) parts.push('spent time mending the bell rope');
     else if ((worked[id] ?? 0) >= 4) parts.push('worked most of the day');
-    if ((slept[id] ?? 0) === 0) parts.push('had no completed sleep recorded');
+    if ((slept[id] ?? 0) === 0) parts.push('did not finish sleeping');
     lines.push({
       who: id,
-      text: parts.length > 0 ? `${name} ${parts.join(' and ')}.` : 'No work or rest was recorded.',
+      text: parts.length > 0 ? `${name} ${parts.join(' and ')}.` : `${name} slept.`,
     });
   }
   s.night += 1;

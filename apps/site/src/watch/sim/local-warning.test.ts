@@ -40,5 +40,5 @@ it('keeps a caution pending until HF receives it, then restores and replays its 
   const before = run.snapshotText();
   expect(run.input({ k: 'local-warning', who: 'not-a-watcher' })).toBe(false);
   expect(run.snapshotText()).toBe(before);
-  expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 22 })).toThrow(/older version|scenario/i);
+  expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 22 })).toThrow(/old ways|scenario/i);
 });

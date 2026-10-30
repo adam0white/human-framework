@@ -26,7 +26,7 @@ export interface SelinReturn {
 }
 export function selinCheckpoint(_person: VoicePerson, _opts: unknown): SelinTransfer {
   throw new Error(
-    'Selin’s earlier calendar enquiry mapping is unsupported in HF4. Continue through the shared cast shelf; keep the original file.',
+    'Selin’s earlier enquiry cannot be carried into this month. Continue through the shared cast shelf and keep the original file.',
   );
 }
 export function returnedSelin(..._args: unknown[]): never {

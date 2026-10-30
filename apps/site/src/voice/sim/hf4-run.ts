@@ -43,7 +43,7 @@ export const profile = {
   forks: 0,
 };
 export const VOICE_HF4_EDITION = 'voice-hf4/1';
-export const OLD_VOICE_SAVE = 'This save is from an older version. Start a fresh game.';
+export const OLD_VOICE_SAVE = 'That month was lived under older rules; begin Ramadan again.';
 export const MINUTE_MS = 60_000;
 export function milliseconds(minutes: number): number {
   const at = minutes * MINUTE_MS;

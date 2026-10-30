@@ -15,6 +15,7 @@ import type {
   VoiceView,
   WhyView,
 } from '../protocol.ts';
+import { ACTION_LABEL } from './action-labels.ts';
 import {
   adviceWeight,
   type Considered,
@@ -136,27 +137,7 @@ export function labelFor(
 ): string {
   return offers.find((o) => o.id === id)?.label ?? fallback ?? ACTION_LABEL[id] ?? id.replace(/[-:]/g, ' ');
 }
-export const ACTION_LABEL: Record<string, string> = {
-  'see-doctor': 'see the doctor',
-  'pay-rent': 'pay Osman the rent',
-  'work-repair': 'repair in the workshop',
-  'work-extra': 'take an afternoon shift',
-  drink: 'drink water',
-  'call:selin': 'call Selin',
-  'talk:hacer': 'talk with Hacer at the door',
-  call: 'call Selin',
-  pray: 'pray at the mosque',
-  'pray-home': 'pray at home',
-  'pray-qada': 'make up a missed prayer',
-  'pray-eid': 'join the Eid prayer',
-  rest: 'rest at home',
-  walk: 'walk by the river',
-  tea: 'have tea with Rıza',
-  'tea:riza': 'have tea with Rıza',
-  smoke: 'smoke a cigarette',
-  eat: 'eat at home',
-  'visit-grave': 'visit Nuran’s grave',
-};
+export { ACTION_LABEL } from './action-labels.ts';
 
 export function familyOf(action: string, affordanceId = ''): Family {
   if (action === 'pray' || action === 'pray-home' || action === 'pray-eid' || action === 'pray-qada')
@@ -584,7 +565,6 @@ export function voicesView(
       relation: meta.relation,
       colour: meta.colour,
       trustWord: trustWord(trust, id === 'you'),
-      pressure: `Pressure from this voice: ${rel ? qualitative(rel.pressure) : 'unknown'}.`,
       history:
         id === 'you'
           ? (rel?.history ?? [])

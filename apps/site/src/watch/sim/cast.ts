@@ -19,12 +19,12 @@ export function admitWatchPerson(opening: PersonAuthoring, single: WatchPersonCh
   const parent = single.input.parent;
   if (!portablePassport(parent))
     throw new Error(
-      `${parent.castId}: this older source has no supported HF4 portable history. Keep or export its source chapter.`,
+      `${parent.castId}: this older chapter cannot be continued here. Keep a copy of that chapter.`,
     );
   // The old finite Ada passport cannot silently become HF4 care or travel evidence.
   if (parent.transfer.watchCare || parent.transfer.warrenCare)
     throw new Error(
-      `${parent.castId}: this saved care arrangement has no supported HF4 reader. Keep Kian and Ada in their source chapter.`,
+      `${parent.castId}: Kian and Ada must stay together in their earlier chapter. Their care and return journey cannot continue here yet.`,
     );
   const person = admitPortablePerson(parent, 'watch', opening, single.portable?.mapping ?? single.mapping);
   const life = lifeAdmission(single.input, 'watch');

@@ -247,15 +247,15 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         snapshot: Snapshot;
         fileOrigin?: true;
       };
-      if (raw.game !== 'the-night-watch' || raw.framework !== FRAMEWORK_PACKAGE_VERSION || !raw.snapshot)
+      if (raw.game !== 'the-night-watch' || !raw.snapshot)
         throw new Error('A complete current Watch native file is required.');
+      if (raw.framework !== FRAMEWORK_PACKAGE_VERSION) throw new Error(WATCH_OLD_SAVE);
       const state = replay(raw);
       const expected = {
         scenario: raw.scenario,
         seed: raw.seed,
         log: raw.inputs,
         state,
-        ...(raw.origin ? { origin: raw.origin } : {}),
         ...(raw.fileOrigin ? { fileOrigin: true } : {}),
       };
       if (stableStringify(expected) !== stableStringify(raw.snapshot))

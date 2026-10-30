@@ -267,15 +267,6 @@ function editionForState(s: WatchState): number {
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
 export const OLDEST_LOADABLE_SCENARIO = WATCH_SCENARIO_VERSION;
 
-/**
- * Where a run's log stops replaying from its seed: it was resumed from a page saved under an older scenario at this
- * sim minute. The rules before that minute were the old ones, so the export is a record, not a replay.
- */
-export interface Origin {
-  scenario: number;
-  minute: number;
-}
-
 export interface LogEntry {
   /** The sim minute the input applied at (before that minute resolved). */
   m: number;
@@ -295,8 +286,6 @@ export interface PlaytestExport {
   inputs: LogEntry[];
   endMinute: number;
   end: EndState;
-  /** Legacy origin marker. Current runs refuse files that contain it. */
-  origin?: Origin;
   /**
    * The worker's clock diagnostic (WATCH-cold-timing), added to the downloaded file only; replay ignores it. Real
    * milliseconds offered by the page and admitted to the clock (each tick is capped), over the run and over the
@@ -325,7 +314,6 @@ export interface Snapshot {
   seed: number;
   log: LogEntry[];
   state: WatchState;
-  origin?: Origin;
 }
 
 /**
@@ -343,7 +331,9 @@ export function migrateSnapshot(snap: Snapshot): Snapshot {
     throw new Error(WATCH_OLD_SAVE);
   if (
     snap.scenario !== WATCH_SCENARIO_VERSION ||
-    snap.origin ||
+    Object.keys(snap).some(
+      (key) => !['scenario', 'seed', 'log', 'state', 'fileOrigin', 'castOwnership'].includes(key),
+    ) ||
     scenarioForState(snap.state) !== WATCH_SCENARIO_VERSION
   )
     throw new Error(WATCH_OLD_SAVE);
@@ -469,10 +459,10 @@ export class WatchRun {
 
 /** Rebuilds a run's end state from its seed and input log. Throws if the log does not fit the rules. */
 export function replay(
-  exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute' | 'origin' | 'castChapter'>,
+  exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute' | 'castChapter'>,
 ): WatchState {
   if (exp.scenario !== WATCH_SCENARIO_VERSION) throw new Error(WATCH_OLD_SAVE);
-  if (exp.origin) throw new Error(WATCH_OLD_SAVE);
+  if ('origin' in exp) throw new Error(WATCH_OLD_SAVE);
   const run = new WatchRun(exp.seed, undefined, exp.castChapter);
   const s = run.state;
 

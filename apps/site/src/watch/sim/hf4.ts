@@ -32,7 +32,7 @@ import {
 import { stableStringify } from '../../shared/playtest.ts';
 
 export const WATCH_HF4_EDITION = 'watch-hf4-1';
-export const WATCH_OLD_SAVE = 'This save is from an older version. Start a fresh game.';
+export const WATCH_OLD_SAVE = 'This chronicle was kept under the old ways of the watch; begin a new winter.';
 export const minuteMs = (minute: number): number => {
   const value = minute * 60_000;
   if (!Number.isSafeInteger(value)) throw new Error('Watch time must be an integer number of milliseconds.');
@@ -92,8 +92,8 @@ function keys(value: Record<string, unknown>, expected: string): boolean {
   return Object.keys(value).sort().join(',') === expected;
 }
 /** HF validates all offer fields. This decoder validates the host-owned envelope and associations too. */
-function decodeHost(archive: DeepReadonly<RunArchive>): WatchHostState {
-  const data = archive.current.world.hostState;
+function decodeHost(current: DeepReadonly<RunArchive['current']>): WatchHostState {
+  const data = current.world.hostState;
   if (
     !isObject(data) ||
     !keys(data, 'active,game,offers') ||
@@ -101,7 +101,7 @@ function decodeHost(archive: DeepReadonly<RunArchive>): WatchHostState {
     !Array.isArray(data.active)
   )
     throw new Error('Invalid Watch host state.');
-  const people = new Set(Object.keys(archive.current.people));
+  const people = new Set(Object.keys(current.people));
   const revisions = new Set<string>();
   for (const row of data.offers) {
     if (
@@ -137,7 +137,7 @@ function decodeHost(archive: DeepReadonly<RunArchive>): WatchHostState {
       !validId(active.person) ||
       !people.has(active.person) ||
       !integer(active.start) ||
-      active.start > archive.current.at ||
+      active.start > current.at ||
       !isObject(active.offer) ||
       active.offer.person !== active.person ||
       !validId(active.offer.id) ||
@@ -195,7 +195,7 @@ export class WatchActors {
     const run = need(result);
     return new WatchActors(
       run,
-      decodeHost(archive),
+      decodeHost(archive.current),
       archive.current.world.revision,
       archive.current.at,
       archive.host.id,
@@ -249,10 +249,13 @@ export class WatchActors {
     if (!integer(until) || until < this.at) throw new Error('Watch cannot move time backwards.');
     if (initial && inputs.length) throw new Error('An admitted boundary cannot resubmit inputs.');
     if (initial) {
-      const archive = exportRun(this.run);
-      this.host = decodeHost(archive);
-      this.revision = archive.current.world.revision;
-      this.at = archive.current.at;
+      const current = need(
+        inspect(this.run, { perspective: { kind: 'host' }, people: [], select: ['current'] }),
+      ).current;
+      if (!current) throw new Error('Missing Watch host current state.');
+      this.host = decodeHost(current);
+      this.revision = current.world.revision;
+      this.at = current.at;
     }
     let batch = inputs;
     const worldInputs = new Map(

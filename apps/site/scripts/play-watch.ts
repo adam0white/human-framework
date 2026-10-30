@@ -50,6 +50,7 @@
  * `letbe` again), and an empty post's one word can fall back from "afraid" to "gone" once its ticker line is old.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
+import { WATCH_OLD_SAVE } from '../src/watch/sim/hf4.ts';
 
 import './package-identity.ts';
 
@@ -939,8 +940,8 @@ if (import.meta.url === new URL(process.argv[1] ?? '', 'file://').href) {
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
         console.error(
-          error instanceof Error && error.message.includes('older version')
-            ? 'This save is from an older version. Start a fresh game.'
+          error instanceof Error && error.message === WATCH_OLD_SAVE
+            ? WATCH_OLD_SAVE
             : 'This file could not be opened. Keep the original file.',
         );
         process.exit(1);

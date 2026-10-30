@@ -14,6 +14,7 @@ import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
 import type { Draft } from '../protocol.ts';
+import { OLD_VOICE_SAVE } from '../sim/hf4-run.ts';
 import { Between } from './Between.tsx';
 import { DayLog } from './DayLog.tsx';
 import { EndsPane } from './EndsPane.tsx';
@@ -30,6 +31,8 @@ import { useVoice } from './useVoice.ts';
 import { VoicesPane } from './VoicesPane.tsx';
 import { Why } from './Why.tsx';
 import { voiceWords as settingWords } from './words.ts';
+
+const oldSaveError = (error: unknown) => typeof error === 'string' && error.includes(OLD_VOICE_SAVE);
 
 type Tab = 'halil' | 'ends' | 'today';
 const TABS: { id: Tab; label: string }[] = [
@@ -250,7 +253,13 @@ export function App() {
         </button>
       )}
       {(fileError || (voice.playtest && 'error' in voice.playtest ? voice.playtest.error : voice.error)) && (
-        <p role="alert">{gameFileError(fileError || voice.playtest || voice.error)}</p>
+        <p role="alert">
+          {oldSaveError(
+            fileError || (voice.playtest && 'error' in voice.playtest ? voice.playtest.error : voice.error),
+          )
+            ? OLD_VOICE_SAVE
+            : gameFileError(fileError || voice.playtest || voice.error)}
+        </p>
       )}
     </section>
   ) : null;
@@ -549,7 +558,13 @@ export function App() {
       )}
       {voice.error && !feedbackOpen && (
         <div className="v-error" role="alert">
-          {settingWords(fileSession ? gameFileError(voice.error) : playerError(voice.error, 'play'))}{' '}
+          {settingWords(
+            oldSaveError(voice.error)
+              ? OLD_VOICE_SAVE
+              : fileSession
+                ? gameFileError(voice.error)
+                : playerError(voice.error, 'play'),
+          )}{' '}
           {!fileSession && (
             <DebugMenu>
               <p>{voice.error}</p>
@@ -565,7 +580,17 @@ export function App() {
           </button>
         </div>
       )}
-      {!fileSession && <PlaytestNotice status={voice.playtest} onClose={actions.clearPlaytest} />}
+      {!fileSession &&
+        (voice.playtest && 'error' in voice.playtest && oldSaveError(voice.playtest.error) ? (
+          <div className="pt-notice is-bad" role="status">
+            {OLD_VOICE_SAVE}
+            <button type="button" onClick={actions.clearPlaytest} aria-label="Close">
+              ×
+            </button>
+          </div>
+        ) : (
+          <PlaytestNotice status={voice.playtest} onClose={actions.clearPlaytest} />
+        ))}
       {voice.mock && (
         <div className="v-mockflag" title="The page is running on sample data, not the simulation.">
           sample data

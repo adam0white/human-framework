@@ -32,7 +32,7 @@ export interface Standing {
 /** Why an option is not open to him now, in the town's terms (for the "your word waits" line). */
 export const WHY_AWAY: Record<string, string> = {
   'see-doctor': 'the clinic sees people from 09:00 to 17:00, and not again within a week of a visit',
-  'call:selin': 'calling has a starting window and at least twelve hours between conversations',
+  'call:selin': 'he calls her in the evening, and not twice within twelve hours',
   'work-repair': 'the workshop takes him once a day, from 08:00 to 12:00',
   'work-extra': `the afternoon shift can start from ${TOWN_DEFAULTS.extraFrom} minutes after the noon prayer until ${TOWN_DEFAULTS.extraLast} minutes before the afternoon prayer, once a day; the workshop is closed on Eid`,
   'pay-rent': 'he has not got the 300 together, or nothing is owed',

@@ -231,9 +231,14 @@ export function followNightRecords(
       r.returned = { at: until, post };
   }
 }
-const clock = (at: number) => {
-  const m = ((Math.floor(at) % 1440) + 1440) % 1440;
-  return `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+// Use the same parts of night as the watch clock, retaining exact times in the records.
+const nightTime = (at: number): string => {
+  const h = Math.floor((((at % 1440) + 1440) % 1440) / 60);
+  if (h >= 18 && h < 20) return 'at nightfall';
+  if (h >= 20 && h < 23) return 'at night';
+  if (h >= 23 || h < 1) return 'around midnight';
+  if (h < 4) return 'after midnight';
+  return 'before dawn';
 };
 export function nightHistory(s: WatchState, who: WatcherId): string[] {
   const requests = (s.nightRecords ?? [])
@@ -252,42 +257,39 @@ export function nightHistory(s: WatchState, who: WatcherId): string[] {
                 : r.kind === 'carry'
                   ? `carry ${nameOf(s, r.who)} down`
                   : `${r.kind === 'relieve' ? 'relieve' : 'help'} ${nameOf(s, r.who)} at ${theSection(r.section)}`;
-      let line = `Asked ${name} to ${request} at ${clock(r.sentAt)}. `;
+      let line = `Asked ${name} to ${request} ${nightTime(r.sentAt)}. `;
       line +=
         r.answer === 'begun'
-          ? `${name} began ${r.affordance === 'sleep' ? 'rest' : 'the requested act'} at ${clock(r.answeredAt ?? r.sentAt)}.`
+          ? `${name} began ${r.affordance === 'sleep' ? 'to rest' : `to ${request}`} ${nightTime(r.answeredAt ?? r.sentAt)}.`
           : r.answer === 'refused'
-            ? `${name} declined at ${clock(r.answeredAt ?? r.sentAt)}.`
+            ? `${name} declined.`
             : r.answer === 'deferred'
-              ? `${name} put it off at ${clock(r.answeredAt ?? r.sentAt)}; no start is recorded for this request.`
-              : r.answer === 'modified' || r.answer === 'not-started'
-                ? `${name} chose something else at ${clock(r.answeredAt ?? r.sentAt)}; no start is recorded for this request.`
-                : r.answer === 'replaced'
-                  ? `A newer request replaced it at ${clock(r.answeredAt ?? r.sentAt)}.`
-                  : r.answer === 'expired'
-                    ? `The request expired at ${clock(r.until)} without a recorded start.`
-                    : 'Waiting for an answer.';
-      if (r.requestEndedAt !== undefined && r.answer === 'begun')
-        line += ` The request window ended at ${clock(r.requestEndedAt)}; that does not end the act.`;
+              ? `${name} put it off.`
+              : r.answer === 'modified'
+                ? `${name} chose something else.`
+                : r.answer === 'not-started'
+                  ? `${name} did not begin.`
+                  : r.answer === 'replaced'
+                    ? 'A newer request replaced it.'
+                    : r.answer === 'expired'
+                      ? 'There was no answer before the time was up.'
+                      : 'Waiting for an answer.';
       if (r.ended?.observed)
-        line += ` ${r.affordance === 'sleep' ? 'The rest' : 'The act'} ended at ${clock(r.ended.at)}${r.ended.status === 'interrupted' ? ' after an interruption' : ''}.`;
+        line += ` ${name} ${r.affordance === 'sleep' ? (r.ended.status === 'completed' ? 'finished resting' : 'stopped resting') : 'stopped'} ${nightTime(r.ended.at)}${r.ended.status === 'interrupted' ? ' after an interruption' : ''}.`;
       if (r.returned && !r.ended?.observed && r.affordance === 'sleep')
         line += ' The rest ended before this sighting.';
       if (r.returned)
-        line += ` Seen back at ${theSection(postSection(r.returned.post))} at ${clock(r.returned.at)}.`;
+        line += ` Seen back at ${theSection(postSection(r.returned.post))} ${nightTime(r.returned.at)}.`;
       return line;
     });
   const bells = (s.bellRecords ?? [])
     .filter((r) => r.who === who && r.nightStart === s.nightStart && (!r.fromWall || r.wakeAt !== undefined))
     .map((r) => {
-      let line = `The bell rang at ${clock(r.rungAt)}. Its sound carried to ${nameOf(s, who)}'s position. Its call lasts until ${clock(r.until)}.`;
-      line +=
-        r.heardAt !== undefined
-          ? ` ${nameOf(s, who)} heard it at ${clock(r.heardAt)}.`
-          : ' Hearing has not been established.';
-      if (r.wakeAt !== undefined) line += ` Seen waking at ${clock(r.wakeAt)}.`;
+      let line = `The bell rang ${nightTime(r.rungAt)}. Its sound carried to ${nameOf(s, who)}.`;
+      if (r.heardAt !== undefined) line += ` ${nameOf(s, who)} heard it ${nightTime(r.heardAt)}.`;
+      if (r.wakeAt !== undefined) line += ` Seen waking ${nightTime(r.wakeAt)}.`;
       if (r.returned)
-        line += ` Seen back at ${theSection(postSection(r.returned.post))} at ${clock(r.returned.at)}. The cause of the return is unknown.`;
+        line += ` Seen back at ${theSection(postSection(r.returned.post))} ${nightTime(r.returned.at)}.`;
       return line;
     });
   return [...requests, ...bells];
@@ -304,7 +306,7 @@ export function wakeQuestion(s: WatchState, who: WatcherId): string | null {
 export function wakeAccount(s: WatchState, who: WatcherId): string | null {
   const wake = witnessedWake(s, who);
   return wake
-    ? `You saw ${nameOf(s, who)} wake at ${theSection(wake.section)} at ${clock(wake.at)}. A threat was at that wall when you looked at ${clock(wake.threatAt ?? wake.at)}. No further account of that moment is recorded.`
+    ? `You saw ${nameOf(s, who)} wake at ${theSection(wake.section)} ${nightTime(wake.at)}. A threat was at that wall when you looked ${nightTime(wake.threatAt ?? wake.at)}.`
     : null;
 }
 
@@ -314,10 +316,8 @@ export function wakeReading(s: WatchState, who: WatcherId): string | null {
   const person = personOf(s, who);
   if (!person) return null;
   const report = actorReport(person);
-  const fatigue =
-    report.fatigue > 0.55 ? 'very tired' : report.fatigue > 0.35 ? 'tired' : 'little tiredness reported';
-  const fear =
-    report.fear > 0.45 ? 'strong fear' : report.fear > 0.22 ? 'some unease' : 'little fear reported';
-  const pain = report.pain > 0.45 ? 'strong pain' : report.pain > 0.2 ? 'some pain' : 'little pain reported';
-  return `How ${nameOf(s, who)} feels now: ${fatigue}; ${fear}; ${pain}. This is a current reading, not words the person said or an explanation of the earlier wake.`;
+  const fatigue = report.fatigue > 0.55 ? 'very tired' : report.fatigue > 0.35 ? 'tired' : 'not very tired';
+  const fear = report.fear > 0.45 ? 'very afraid' : report.fear > 0.22 ? 'uneasy' : 'steady';
+  const pain = report.pain > 0.45 ? 'in great pain' : report.pain > 0.2 ? 'in some pain' : 'in little pain';
+  return `${nameOf(s, who)} seems ${fatigue}, ${fear}, and ${pain} now.`;
 }

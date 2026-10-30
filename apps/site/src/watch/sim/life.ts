@@ -719,7 +719,9 @@ function proposalRead(s: WatchState, answerer: Person, asker: Person): string {
     return 'You can’t tell what she will say.'.replace('she', answerer.life.sex === 'female' ? 'she' : 'he');
   const warm = courtshipStage(answerer, asker.id) === 'ready';
   const pron = answerer.life.sex === 'female' ? 'she' : 'he';
-  return warm ? `You think ${pron} may be ready to answer.` : `You are not sure ${pron} is ready.`;
+  return warm
+    ? `They have been spending time together for a long while. ${pron === 'she' ? 'She' : 'He'} looks happy about it.`
+    : `You are not sure ${pron} is ready.`;
 }
 
 /** The answer to a proposal, by HF with the family's voices and the Keeper's word (`word`: +1, −1 or null). */

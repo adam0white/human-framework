@@ -498,7 +498,6 @@ function SceneDayContent(
             {encounter && <p className="v-next-encounter">{settingWords(encounter)}</p>}
           </div>
         )}
-        {frame.outgoingCall && <p className="v-next-encounter">{frame.outgoingCall}</p>}
         {!heldPersonal && frame.pauseBeat && !scene && (
           <p className="v-scene-notice">{explainTerms(frame.pauseBeat.text)}</p>
         )}

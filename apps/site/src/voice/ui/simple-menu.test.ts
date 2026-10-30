@@ -5,6 +5,8 @@ import { createRoot } from 'react-dom/client';
 import { afterEach, expect, it, vi } from 'vitest';
 import type { Frame } from '../protocol.ts';
 import { VoiceGame } from '../sim/game.ts';
+import { OLD_VOICE_SAVE } from '../sim/hf4-run.ts';
+import { parseVoicePlaytest } from '../sim/record.ts';
 import { MenuPanel } from './ShellPanels.tsx';
 import type { VoiceActions } from './useVoice.ts';
 
@@ -129,4 +131,12 @@ it('cancels a pending file read through the mounted file input and keeps Feedbac
   expect(loaded.textContent).toContain('This file could not be opened here. Keep the original file.');
   expect(loaded.textContent).not.toMatch(/Error:|invalid gzip/);
   expect(loaded.querySelectorAll('[role="alert"]').length).toBeGreaterThan(0);
+  try {
+    parseVoicePlaytest('{"voiceEdition":"voice-3"}');
+    throw new Error('Old file unexpectedly accepted');
+  } catch (error) {
+    displayedError = `The playtest file could not be replayed: ${String(error)}`;
+  }
+  const oldFile = mount(createElement(App));
+  expect(oldFile.querySelector('[role="alert"]')?.textContent).toBe(OLD_VOICE_SAVE);
 });

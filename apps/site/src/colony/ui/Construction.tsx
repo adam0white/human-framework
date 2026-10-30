@@ -2,7 +2,6 @@
 import type { WorldView } from '../sim/game.ts';
 import {
   BEAM_STAGE,
-  JOBS,
   STAGE_COST,
   STORM_START,
   stageKind,
@@ -53,11 +52,6 @@ export function ConstructionReadout({
     facts = world.construction;
   const open = project.stage < project.stages;
   const selected = personId !== undefined && facts?.selectedPersonId === personId;
-  const normal = selected ? facts?.normalSession : undefined;
-  const stageMinutes =
-    normal && normal.progress > 0
-      ? Math.ceil((Math.max(0, 1 - world.houseProgress) / normal.progress) * normal.minutes)
-      : null;
   return (
     <div className="well-building-side" data-village={side.toLowerCase()}>
       <p className="well-building-progress">
@@ -110,13 +104,6 @@ export function ConstructionReadout({
                   : 'Building is not currently offered to this person.'}
             </p>
           )}
-          {stageMinutes !== null && personId && (
-            <p>
-              At normal quality, the remaining part of this stage takes about {stageMinutes} minutes of{' '}
-              {shortName(personId)}’s work. Travel, breaks, protest and later choices can change the time.
-              This is not an estimate for the whole roof.
-            </p>
-          )}
         </div>
       )}
     </div>
@@ -124,16 +111,14 @@ export function ConstructionReadout({
 }
 
 export function ConstructionRequirements({ world }: { world: WorldView }) {
-  const rows: { label: string; timber: number; work: number }[] = [];
+  const rows: { label: string; timber: number }[] = [];
   const last = world.project.stages;
   for (let stage = world.project.stage + 1; stage <= last; stage++) {
     const kind = world.project.kind === 'storeroom' ? 'wall' : stageKind(stage);
     const timber = STAGE_COST[kind].timber;
-    const work = kind === 'beam' ? JOBS['raise-beam'].work : STAGE_COST[kind].work;
     rows.push({
       label: `Stage ${stage}${stage === BEAM_STAGE && world.project.kind === 'house' ? ' · beam' : ''}`,
       timber,
-      work,
     });
   }
   if (!rows.length) return null;
@@ -145,7 +130,6 @@ export function ConstructionRequirements({ world }: { world: WorldView }) {
           <tr>
             <th>Stage</th>
             <th>Timber</th>
-            <th>Classic work minutes</th>
           </tr>
         </thead>
         <tbody>
@@ -153,16 +137,10 @@ export function ConstructionRequirements({ world }: { world: WorldView }) {
             <tr key={r.label}>
               <th>{r.label}</th>
               <td>{r.timber}</td>
-              <td>{r.work}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <p>
-        These are Classic work amounts at base pace. Skill and Rush can change elapsed time. Human builders
-        add progress through work sessions. Their pace depends on the builder and work quality; raising the
-        beam is a separate job.
-      </p>
     </section>
   );
 }

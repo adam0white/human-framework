@@ -57,7 +57,7 @@ export function actorState(runtime: WatchActors, people: readonly PersonAuthorin
   const state: ActorState = {
     archive: runtime.snapshot(),
     identities: Object.fromEntries(people.map((p) => [p.id, structuredClone(p.identity)])),
-    ingress: runtime.snapshot().archive.current.at - 1,
+    ingress: runtime.time() - 1,
     sequence: 0,
     queued: [],
     prayerDay: {},
@@ -160,7 +160,7 @@ export function readActor(s: ActorHost, id: string): WatchPerson | undefined {
   }
   const cached = cache.people.get(id);
   if (cached) return cached;
-  const query: InspectQuery = {
+  const query = {
     perspective: { kind: 'host' },
     people: [id],
     select: [
@@ -175,7 +175,7 @@ export function readActor(s: ActorHost, id: string): WatchPerson | undefined {
       'relationships',
       'expectations',
     ],
-  };
+  } satisfies InspectQuery;
   const reading = runtime.read(query);
   const p = reading.people[0];
   if (p?.kind !== 'host') throw new Error(`No Watch actor ${id}.`);

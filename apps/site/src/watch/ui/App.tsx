@@ -1629,10 +1629,6 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
                     <aside aria-label="Keeper's observation">
                       <p>{w.wakeContext}</p>
                       {w.wakeReading && <p>{w.wakeReading}</p>}
-                      <p className="w-note">
-                        Unanswered question for {settingWords(w.name)}: {w.wakeQuestion}. This is your
-                        observation, separate from what the person tells you. Reading it uses no talk.
-                      </p>
                     </aside>
                   )}
                   <span className="w-ask-btns">
@@ -1725,14 +1721,15 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
           <p>
             {frame.refugeReady
               ? 'They spent today together. Ada ate and rested, and a little grain was used. In this village Kian stays on the watch.'
-              : 'Choose below before the next watch. If they care for each other today, they get ready to go. If they stay, the visit is off.'}
+              : 'Choose below before the next watch. They can spend today caring for each other, but the journey must wait. If they stay, the visit is off.'}
           </p>
         </section>
       ) : canAskVisit ? (
         <section aria-label="A visit together">
           <p>
-            Kian could take his little sister Ada to the refuge, a safe place down the valley, for one day.
-            Both must agree. A threat at home or an unfinished task keeps them here.
+            Kian and his little sister Ada could spend a day together. Their journey to the refuge, a safe
+            place down the valley, must wait. Both must agree to the visit. A threat at home or an unfinished
+            task keeps them here.
           </p>
           <button
             type="button"
@@ -1822,7 +1819,7 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
               </p>
             )}
             {!fileSession && frame.refugeReady && visitSave === 'saved' && (
-              <p role="status">Kian and Ada’s visit is saved for another game.</p>
+              <p role="status">Their time together is saved. The journey must wait.</p>
             )}
             <div className="w-choice-pair">
               {frame.refugeReady ? null : (

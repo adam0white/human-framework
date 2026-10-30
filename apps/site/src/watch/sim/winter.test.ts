@@ -106,10 +106,12 @@ describe('scenario 12 winter choice', () => {
         inputs: [{ m: 1020, i: { k: 'winter', winter: 'milder' } }],
         endMinute: 1020,
       }),
-    ).toThrow('This save is from an older version. Start a fresh game.');
+    ).toThrow('This chronicle was kept under the old ways of the watch; begin a new winter.');
   });
 
   it('refuses the pre-cast milder-winter fixture', () => {
-    expect(() => replay(fixture(12))).toThrow('This save is from an older version. Start a fresh game.');
+    expect(() => replay(fixture(12))).toThrow(
+      'This chronicle was kept under the old ways of the watch; begin a new winter.',
+    );
   });
 });
