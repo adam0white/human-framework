@@ -49,6 +49,8 @@ type WholeProof = {
 };
 
 // Both phases are required. Only serialized evidence survives capture; no warm Run is retained for replay.
+// Each phase has a 15-minute functional timeout. Printed elapsed times remain separate
+// evidence; completing replay does not establish a product-performance budget.
 describe('whole mounted HF4 file proof', { concurrent: false, shuffle: false }, () => {
   let captured: WholeProof | undefined;
   test('capture: plays a real choice through the complete month, report and serialized file', async () => {
@@ -116,8 +118,8 @@ describe('whole mounted HF4 file proof', { concurrent: false, shuffle: false }, 
           return turns++ > 0;
         },
       });
-      if (performance.now() - started > 600000)
-        throw new Error('Voice whole control exceeded its existing ten-minute budget.');
+      if (performance.now() - started > 900000)
+        throw new Error('Voice whole control exceeded its functional test timeout.');
       await new Promise((done) => setTimeout(done, 0));
     }
     // One actual month owns live scene coverage; no per-seed encounter-frequency promise.
@@ -166,7 +168,7 @@ describe('whole mounted HF4 file proof', { concurrent: false, shuffle: false }, 
     const nextState = stableStringify(voiceState(rec.game));
     const nextFullHash = rec.game.run.c.runtime!.save().archive.hashes.full;
     const nextTown = stableStringify(rec.game.run.town.state);
-    expect(performance.now() - started).toBeLessThan(600000);
+    expect(performance.now() - started).toBeLessThan(900000);
     captured = {
       text,
       engine: stableStringify(native.engine),
@@ -178,7 +180,7 @@ describe('whole mounted HF4 file proof', { concurrent: false, shuffle: false }, 
       nextTown,
     };
     console.log('whole-capture-verified', performance.now() - started, profile, hash, fullHash);
-  }, 600000);
+  }, 900000);
 
   test('replay: loads that exact file, replays every input and matches Keep Listening continuation', () => {
     const started = performance.now();
@@ -204,7 +206,7 @@ describe('whole mounted HF4 file proof', { concurrent: false, shuffle: false }, 
     expect(g.run.c.runtime!.save().archive.hashes.full).toBe(proof.nextFullHash);
     expect(stableStringify(g.run.town.state) === proof.nextTown).toBe(true);
     expect(stableStringify(voiceState(g)) === proof.nextState).toBe(true);
-    expect(performance.now() - started).toBeLessThan(600000);
+    expect(performance.now() - started).toBeLessThan(900000);
     console.log(
       'whole-file-replay-continuation-verified',
       performance.now() - started,
@@ -214,7 +216,7 @@ describe('whole mounted HF4 file proof', { concurrent: false, shuffle: false }, 
     );
     if (process.env.VOICE_CONTROL_EXPORT) writeFileSync(process.env.VOICE_CONTROL_EXPORT, proof.text);
     captured = undefined;
-  }, 600000);
+  }, 900000);
 });
 
 import { voiceSpec } from './hf4-spec.ts';

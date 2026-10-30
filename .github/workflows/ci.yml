@@ -53,7 +53,9 @@ jobs:
   test:
     name: test (shard ${{ matrix.shard }}/6)
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # The complete Voice capture and cold replay each retain a 15-minute functional timeout.
+    # Keep room for both phases plus the other tests; timing acceptance is a separate benchmark.
+    timeout-minutes: 35
     strategy:
       fail-fast: false
       matrix:

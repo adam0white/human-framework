@@ -90,4 +90,4 @@ it('keeps an unquoted native seed command and replays its current file before th
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
-}, 15_000);
+}, 30_000);

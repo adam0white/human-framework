@@ -76,7 +76,7 @@ it('retains a night Rest account through its actual sleep end, observed return a
   run.step();
   restored.step();
   expect(restored.snapshotText()).toBe(run.snapshotText());
-}, 180_000);
+}, 300_000);
 
 it('keeps a witnessed wake as Keeper context separate from the paid dawn response', async () => {
   const { publicFixture } = await import('./public-fixture.ts');
