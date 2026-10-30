@@ -479,15 +479,10 @@ export function App() {
                   shelf={shelf}
                   current={current}
                   onContinue={title ? () => setTitle(false) : undefined}
-                  onNew={(options) => {
+                  onNew={() => {
                     setTitle(false);
-                    if (
-                      frame.phase === 'goal' &&
-                      Boolean(frame.duskRest) === Boolean(options?.duskRest) &&
-                      Boolean(frame.localWarning) === Boolean(options?.localWarning)
-                    )
-                      actions.input({ k: 'start' });
-                    else actions.restart(Math.floor(Math.random() * 1e9), options, true);
+                    if (frame.phase === 'goal') actions.input({ k: 'start' });
+                    else actions.restart(Math.floor(Math.random() * 1e9), true);
                   }}
                 />
               ) : null}
@@ -733,7 +728,7 @@ export function GoalPage({
   shelf: PageInfo[];
   current: string;
   onContinue?: () => void;
-  onNew?: (options?: import('../sim/dusk-rest.ts').WatchOptions) => void;
+  onNew?: () => void;
 }) {
   const saved = shelf.find((p) => p.kind === 'auto' && (onContinue || p.chronicle !== current));
   const [sheet, setSheet] = useState<'hopes' | 'shelf' | null>(null);
@@ -744,10 +739,7 @@ export function GoalPage({
     else if (saved && !(await actions.load(saved.id)))
       setNote('That page could not be read. You can begin a new village.');
   };
-  const begin = () =>
-    onNew
-      ? onNew({ duskRest: 'dusk-rest@1', localWarning: 'local-warning@1' })
-      : actions.input({ k: 'start' });
+  const begin = () => (onNew ? onNew() : actions.input({ k: 'start' }));
   return (
     <div className="w-page w-goal">
       <h2>Keep everyone alive and protect the grain until the snow melts in spring.</h2>

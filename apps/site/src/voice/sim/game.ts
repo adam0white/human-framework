@@ -257,7 +257,7 @@ export class VoiceGame {
   readonly castChapter?: CastChapter;
   seed: number;
   /** Current native HF4 edition. Older rules are refused before creating a run. */
-  rules: VoiceRules;
+  readonly rules = 4 as const;
   run: Run;
   phase: Phase = 'premise';
   paused = true;
@@ -349,20 +349,13 @@ export class VoiceGame {
     this.castChapter = castChapter;
     if (rules !== 4) throw new Error(OLD_VOICE_SAVE);
     this.seed = seed;
-    this.rules = rules;
     // Rules 2: work he does under protest goes worse (HF leaves an act's quality under protest to the host).
     this.run = newRun(
       seed,
-      rules >= 2
-        ? {
-            protestWork: PROTEST_WORK,
-            ...(rules >= 3 ? { distinctMakeUpDays: true } : {}),
-            ...(rules === 4 ? { selinCalendar: true } : {}),
-          }
-        : {},
+      { protestWork: PROTEST_WORK, distinctMakeUpDays: true, selinCalendar: true },
       castChapter,
     );
-    if (rules === 4) this.installPersonaBoundary();
+    this.installPersonaBoundary();
     stepCommunity(this.run.c, this.run.town, TOWN_GAME_START, {});
     const h = this.halil;
     this.trustStart = voiceOf(h, 'you')?.trust ?? 0.5;
@@ -461,7 +454,6 @@ export class VoiceGame {
   offers(): Affordance[] {
     // Rules 2 (level-up 2026-10-19): at the wake the composer offers what he can do at the minute he wakes, not the
     // minute before (playtest: at 07:59 the workshop, which opens at 08:00, was missing and the leaning was stale).
-    if (this.rules < 2) return this.run.town.affordancesFor(this.halil);
     // Rules 2: asking what he can do writes nothing. The town's offers move its bookkeeping clock to the asker's
     // minute, so a view (a frame while he sleeps) could move it ahead of the sim; it is put back.
     const st = this.run.town.state;
@@ -525,9 +517,7 @@ export class VoiceGame {
     // Rules 2: say the cost of work under protest where the player decides on it.
     const work = this.offers().find((o) => o.id === draft.optionId)?.action === 'work-repair';
     const worse =
-      this.rules >= 2 && tone === 'protest' && work
-        ? ' When he works after objecting, he tends to do worse and earn less.'
-        : '';
+      tone === 'protest' && work ? ' When he works after objecting, he tends to do worse and earn less.' : '';
     const out: Telegraph = {
       tone,
       text:
@@ -849,7 +839,7 @@ export class VoiceGame {
     // Rules 2: she asks about the clinic only while he has not been (the line was stale after a visit on day 1).
     if (day === 2)
       out.push(
-        this.rules >= 2 && (st.completed.halil?.['see-doctor'] ?? 0) > 0
+        (st.completed.halil?.['see-doctor'] ?? 0) > 0
           ? 'Selin often calls after the sunset meal.'
           : 'Selin often calls after the sunset meal, and she asks about the clinic.',
       );
@@ -1255,11 +1245,7 @@ export class VoiceGame {
     const call = this.run.town.state.lastCall;
     if (!call || call.at === this.callSeen) return;
     this.callSeen = call.at;
-    if (
-      this.rules === 4 &&
-      this.run.town.state.selinEnquirySaidAt === call.at &&
-      this.run.opts.selinEnquiryAnswer
-    )
+    if (this.run.town.state.selinEnquirySaidAt === call.at && this.run.opts.selinEnquiryAnswer)
       this.push({ kind: 'voice', who: 'selin', text: `Selin: ${this.run.opts.selinEnquiryAnswer}` }, call.at);
     this.calls.push({ at: call.at, by: call.by });
     if (call.by === 'halil') this.halilCalledAt = call.at;
@@ -1590,12 +1576,7 @@ export class VoiceGame {
         this.push({ kind: 'feel', who: 'halil', text, decisionId: r.id, beat: 'craving' }, r.at);
         // Rules 2: a craving he has already turned down stops the clock only when there is a word to say to it
         // (voice.md Deferred: the 10:00 craving beat paused after his decision with nothing to act on).
-        this.beat(
-          'craving',
-          text,
-          r.at,
-          this.rules >= 2 ? { canPause: this.prefillNow() !== undefined } : {},
-        );
+        this.beat('craving', text, r.at, { canPause: this.prefillNow() !== undefined });
       }
     }
     const chosen = r.considered.find((c) => c.affordanceId === r.chosenAffordanceId);
@@ -1909,7 +1890,7 @@ export class VoiceGame {
     // Rules 2: the end of Ramadan was Osman's second date ("the rest by tonight"); when it passes short, say so on
     // the day it passes, with what follows (he keeps calling about it), instead of letting it lapse unseen.
     const owedNow = Math.round(this.run.town.state.rentOwed);
-    if (this.rules >= 2 && d === TOWN_EID_DAY - 1 && owedNow > 0)
+    if (d === TOWN_EID_DAY - 1 && owedNow > 0)
       lines.unshift(
         `Ramadan ended, and he still owed Osman ${owedNow}. The remaining rent was due tonight. Osman will keep visiting him to ask for it.`,
       );
@@ -2096,7 +2077,6 @@ export class VoiceGame {
     }
     const chronicle = h.chronicle ?? [];
     this.report = buildReport({
-      legacyLedgerWords: this.rules === 1,
       withYou: chronicleBetween(this.halil.chronicle ?? [], 1, TOWN_EID_DAY - 1),
       withoutYou: chronicleBetween(chronicle, TOWN_EID_DAY, TOWN_EID_DAY + EPILOGUE_DAYS),
       after: epi,

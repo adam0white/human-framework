@@ -23,12 +23,12 @@ import { canRestoreSeason } from './season-recovery.ts';
 import { actorRuntime } from './sim/actor.ts';
 import { captureWatchPerson } from './sim/cast.ts';
 import { DAY } from './sim/config.ts';
-import { validWatchOptions } from './sim/dusk-rest.ts';
+import { WATCH_OLD_SAVE } from './sim/hf4.ts';
 import { dayOfYear, seasonOfDay } from './sim/life.ts';
 import { clockRuns, nightEnd } from './sim/night.ts';
 import { Pacer } from './sim/pace.ts';
 import { prepareWatchCast, watchTerminalReceipts } from './sim/people.ts';
-import { type PlaytestExport, replay, type Snapshot, scenarioForOptions, WatchRun } from './sim/run.ts';
+import { type PlaytestExport, replay, type Snapshot, WatchRun } from './sim/run.ts';
 import { isSeason } from './sim/season.ts';
 import type { WatchState } from './sim/state.ts';
 import { buildFrame, ordinal } from './sim/view.ts';
@@ -354,12 +354,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     case 'init':
       loadOperation++;
       lastKey = '';
-      if (!validWatchOptions(msg.options) || msg.scenarioVersion !== scenarioForOptions(msg.options)) {
+      if (msg.scenarioVersion !== WATCH_SCENARIO_VERSION) {
         host.gen = msg.gen;
         run = null;
         host.post({
           type: 'error',
-          message: `scenario ${msg.scenarioVersion} is not ${WATCH_SCENARIO_VERSION}`,
+          message: WATCH_OLD_SAVE,
         });
         return;
       }
@@ -368,7 +368,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       castLocalOnly = false;
       castSkipped = [];
       host.gen = msg.gen;
-      begin(new WatchRun(msg.seed, undefined, msg.castChapter, msg.options), newChronicleId());
+      begin(new WatchRun(msg.seed, undefined, msg.castChapter), newChronicleId());
       if (msg.startAtDusk) run?.input({ k: 'start' });
       flush(true);
       postShelf();

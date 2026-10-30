@@ -9,10 +9,9 @@ import { fetchBuild } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
 import { trackWorkerRun } from '../../shared/worker-telemetry.ts';
 import { type MainToWorker, type PageInfo, WATCH_SCENARIO_VERSION, type WorkerToMain } from '../protocol.ts';
-import type { WatchOptions } from '../sim/dusk-rest.ts';
 import type { Input } from '../sim/night.ts';
 import { DECISION_RATE, RAMP_MS, type Speed } from '../sim/pace.ts';
-import { type PlaytestExport, scenarioForOptions } from '../sim/run.ts';
+import type { PlaytestExport } from '../sim/run.ts';
 import type { Frame } from '../sim/view.ts';
 import WatchWorker from '../worker.ts?worker';
 
@@ -25,7 +24,7 @@ export interface WatchActions {
   /** A helper sheet uses the same reading pace as a pending night decision. */
   readingSlow?(on: boolean): void;
   exportRun(): Promise<PlaytestExport>;
-  restart(seed: number, options?: WatchOptions, startAtDusk?: boolean): void;
+  restart(seed: number, startAtDusk?: boolean): void;
   /** Ask the worker for the saved pages again (the shelf refreshes itself on start). */
   refreshShelf(): void;
   /** Open a chronicle's running page or take up a closed volume; resolves false if it could not be read (the current run goes on). */
@@ -230,7 +229,7 @@ export function useWatch(): Watch {
         ]);
         return fileSession ? data : { ...data, build };
       },
-      restart: (next, options, startAtDusk) => {
+      restart: (next, startAtDusk) => {
         if (fileSession) throw new Error('A file session cannot start a native chronicle.');
         gen.current += 1;
         seedRef.current = next;
@@ -241,9 +240,8 @@ export function useWatch(): Watch {
           type: 'init',
           seed: next,
           gen: gen.current,
-          scenarioVersion: scenarioForOptions(options),
+          scenarioVersion: WATCH_SCENARIO_VERSION,
           ...(startAtDusk ? { startAtDusk: true } : {}),
-          ...(options ? { options } : {}),
         });
       },
       refreshShelf: () => {

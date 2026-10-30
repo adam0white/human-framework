@@ -59,7 +59,7 @@ import {
   weatherAt,
 } from './world-types.ts';
 
-/** The scenario new runs are saved under (`scenarioOf(CURRENT_RULES)`); older files load by `rulesOf`. */
+/** The scenario new runs are saved under (`scenarioOf(CURRENT_RULES)`); other scenarios are refused. */
 export const SCENARIO_VERSION = scenarioOf(CURRENT_RULES);
 export const DEFAULT_SEED = 20261003;
 
@@ -472,7 +472,7 @@ export class ColonyGame {
   private soloGame: ColonyGame | null = null;
 
   /** Rules version (human-side.ts `ColonyRules`). Not hashed: the file's scenario string records it. */
-  readonly rules: ColonyRules;
+  readonly rules = CURRENT_RULES;
   get scenarioVersion(): string {
     return scenarioOf(this.rules);
   }
@@ -493,10 +493,9 @@ export class ColonyGame {
     this.castChapter = castChapter;
     this.seed = seed;
     this.factory = factory;
-    this.rules = rules;
+    if (rules !== CURRENT_RULES) throw new Error('This save is from an older version. Start a fresh game.');
     if (!Object.hasOwn(VILLAGES, village)) throw new Error('Unknown village');
     if (village !== 'default') {
-      if (rules < 6) throw new Error('Early warning requires rules 6');
       const preparationAt = VILLAGES[village].preparationAt;
       this.classicWorld.preparationAt = preparationAt;
       this.humanWorld.preparationAt = preparationAt;
@@ -658,7 +657,7 @@ export class ColonyGame {
     const humanOrders = [];
     for (const o of due) {
       // Rules 4: a new order to the same person replaces the old one on both sides, and the old card says so.
-      if (this.rules >= 4) this.book.replaceOlder(o);
+      this.book.replaceOlder(o);
       const { classic, human } = fanOut(o);
       const noop = this.classic.noopReason(o.personId);
       this.classic.apply(classic);
@@ -708,13 +707,11 @@ export class ColonyGame {
       this.book.setChip(v.orderId, 'human', {
         state,
         label,
-        ...(this.rules >= 5 ? { says: v.says } : {}),
+        says: v.says,
         // The first answer is kept: a later update (another "not now") replaces `label`, and the log and the
         // report would otherwise quote different lines for the same order.
         first: card.human.first ?? { state, label },
-        ...(card.human.settled || (this.rules >= 5 && (v.kind === 'willNot' || v.kind === 'cannot'))
-          ? { settled: true }
-          : {}),
+        ...(card.human.settled || v.kind === 'willNot' || v.kind === 'cannot' ? { settled: true } : {}),
       });
     }
     for (const event of he.workEvents ?? []) {

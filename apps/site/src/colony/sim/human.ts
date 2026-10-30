@@ -162,11 +162,11 @@ const DOING: Record<string, string> = {
 
 export class FrameworkHumanSide implements HumanSide {
   readonly kind = 'framework';
-  /** Rules version (human-side.ts `ColonyRules`): 3 replays @3 saves exactly. */
-  readonly rules: ColonyRules;
+  /** The single current game rule set. */
+  readonly rules = CURRENT_RULES;
 
   constructor(rules: ColonyRules = CURRENT_RULES) {
-    this.rules = rules;
+    if (rules !== CURRENT_RULES) throw new Error('This save is from an older version. Start a fresh game.');
   }
   private seed = 0;
   private specs: readonly VillagerSpec[] = [];
@@ -368,38 +368,31 @@ export class FrameworkHumanSide implements HumanSide {
         since: t,
         lastKind: null,
       };
-      if (this.rules >= 8) {
-        world.s.shelterUntil ??= {};
-        delete world.s.shelterUntil[o.personId];
-        if (o.action === 'shelter' && o.placeId.startsWith('home-'))
-          world.s.shelterUntil[o.personId] = fw((Math.floor(m / 1440) + 1) * 1440);
-      }
+      world.s.shelterUntil ??= {};
+      delete world.s.shelterUntil[o.personId];
+      if (o.action === 'shelter' && o.placeId.startsWith('home-'))
+        world.s.shelterUntil[o.personId] = fw((Math.floor(m / 1440) + 1) * 1440);
       world.s.orderKey[o.personId] = o.rollKey;
       interruptPerson(this.community, p, t, `order:${o.orderId}`);
     }
-
-    if (this.rules >= 8) {
-      for (const [id, until] of Object.entries(world.s.shelterUntil ?? {})) {
-        if (t < until) continue;
-        const open = this.s.orders[id];
-        if (open)
-          ev.completed.push({
-            orderId: open.order.orderId,
-            personId: id as VillagerId,
-            result: 'The request to stay sheltered at home ended at dawn.',
-          });
-        this.drop(id);
-        interruptPerson(this.community, this.person(id), t, 'shelter-ended');
-      }
+    for (const [id, until] of Object.entries(world.s.shelterUntil ?? {})) {
+      if (t < until) continue;
+      const open = this.s.orders[id];
+      if (open)
+        ev.completed.push({
+          orderId: open.order.orderId,
+          personId: id as VillagerId,
+          result: 'The request to stay sheltered at home ended at dawn.',
+        });
+      this.drop(id);
+      interruptPerson(this.community, this.person(id), t, 'shelter-ended');
     }
-    if (this.rules >= 5) {
-      for (const [id, open] of Object.entries(this.s.orders)) {
-        if (!open?.waitForOffer) continue;
-        const p = this.person(id);
-        if (!world.affordancesFor({ ...p, now: t }).some((a) => a.action === open.order.action)) continue;
-        delete open.waitForOffer;
-        interruptPerson(this.community, p, t, `promise:${open.order.orderId}`);
-      }
+    for (const [id, open] of Object.entries(this.s.orders)) {
+      if (!open?.waitForOffer) continue;
+      const p = this.person(id);
+      if (!world.affordancesFor({ ...p, now: t }).some((a) => a.action === open.order.action)) continue;
+      delete open.waitForOffer;
+      interruptPerson(this.community, p, t, `promise:${open.order.orderId}`);
     }
     const live = this.suggestions();
     // An order is done by a job begun after it was given, not by finishing what he was already doing.
@@ -436,7 +429,6 @@ export class FrameworkHumanSide implements HumanSide {
     }
 
     if (
-      this.rules >= 5 &&
       isNight(m) &&
       Object.entries(this.s.orders).some(
         ([id, open]) => open?.conditional && !open.begun && world.s.shelterUntil?.[id] === undefined,
@@ -521,12 +513,7 @@ export class FrameworkHumanSide implements HumanSide {
           if (record.chosenAction) this.s.lastAction[id] = record.chosenAction;
           continue;
         }
-        if (
-          kind === 'cannot' &&
-          r.reason === 'unavailable' &&
-          open.lastKind !== null &&
-          (this.rules < 5 || open.agreed)
-        ) {
+        if (kind === 'cannot' && r.reason === 'unavailable' && open.lastKind !== null && open.agreed) {
           // The job went away after a yes (someone else shuttered, the beam is up): the card settles.
           const w = this.world.world;
           const construction = ['build', 'raise-beam', 'shutter-house'].includes(open.order.action);
@@ -555,17 +542,15 @@ export class FrameworkHumanSide implements HumanSide {
         };
         (open.lastKind === null ? ev.verdicts : ev.updates).push(verdict);
         open.lastKind = kind;
-        if (this.rules >= 5) {
-          delete open.waitForOffer;
-          if (
-            kind === 'notNow' &&
-            r.verdict === 'deferred' &&
-            r.counterOffer &&
-            r.counterOffer.label !== 'later' &&
-            r.insteadAffordanceId
-          ) {
-            open.conditional = true;
-          }
+        delete open.waitForOffer;
+        if (
+          kind === 'notNow' &&
+          r.verdict === 'deferred' &&
+          r.counterOffer &&
+          r.counterOffer.label !== 'later' &&
+          r.insteadAffordanceId
+        ) {
+          open.conditional = true;
         }
         if (kind === 'assent' || kind === 'complied') open.agreed = true;
         if (counterKey) open.lastCounter = counterKey;
@@ -587,9 +572,8 @@ export class FrameworkHumanSide implements HumanSide {
         if (record.chosenAction) this.s.lastAction[id] = record.chosenAction;
         continue;
       }
-      if (open && !r && (open.lastKind === null || this.rules >= 5) && record.at >= open.since) {
-        if (this.rules >= 5 && this.world.affordancesFor(p).some((a) => a.action === open.order.action))
-          continue;
+      if (open && !r && record.at >= open.since) {
+        if (this.world.affordancesFor(p).some((a) => a.action === open.order.action)) continue;
         // The job is not on offer to them now, so the framework does not hear the order: answer it here (Classic's
         // "could not (reason)") instead of leaving the card silent until it lapses. A "not now" keeps the order
         // standing, so it is heard and weighed once the job is on offer again.
@@ -603,9 +587,9 @@ export class FrameworkHumanSide implements HumanSide {
           decisionId: record.id,
           ...(no.counterOffer ? { counterOffer: no.counterOffer } : {}),
         };
-        if (this.rules >= 5 && no.kind === open.lastKind && no.counterOffer === open.lastCounter) continue;
+        if (no.kind === open.lastKind && no.counterOffer === open.lastCounter) continue;
         (open.lastKind === null ? ev.verdicts : ev.updates).push(verdict);
-        if (this.rules >= 5 && no.kind === 'notNow' && no.counterOffer) {
+        if (no.kind === 'notNow' && no.counterOffer) {
           open.conditional = true;
           open.waitForOffer = true;
         }
@@ -719,7 +703,7 @@ export class FrameworkHumanSide implements HumanSide {
         );
       }
     }
-    if (this.rules >= 4) this.gradeSafetyPromises(ev);
+    this.gradeSafetyPromises(ev);
     for (const f of he.finished) {
       if (f.status === 'interrupted') {
         const known = this.s.workRequests?.[f.activityId];
@@ -822,8 +806,8 @@ export class FrameworkHumanSide implements HumanSide {
   working(orderId: string): boolean {
     for (const [id, o] of Object.entries(this.s.orders)) {
       if (o?.order.orderId !== orderId) continue;
-      if (this.rules >= 8 && this.world.s.shelterUntil?.[id] !== undefined) return true;
-      if (this.rules >= 5 && o.conditional && !o.begun) return true;
+      if (this.world.s.shelterUntil?.[id] !== undefined) return true;
+      if (o.conditional && !o.begun) return true;
       if (!o.begun) continue;
       const act = this.person(id).activity;
       // At the job now: no limit. Paused for a drink, a meal or a prayer: up to twice the order lifetime.
@@ -928,7 +912,7 @@ export class FrameworkHumanSide implements HumanSide {
       : ([...p.trace].reverse().find((r) => !r.review || r.suggestion) ?? p.trace[p.trace.length - 1]);
     if (!record) return null;
     const why = whyOf(p, record, trustOf(p), this.rules);
-    if (this.rules >= 7 && record.suggestion?.voiceId === PLAYER_VOICE) {
+    if (record.suggestion?.voiceId === PLAYER_VOICE) {
       why.narration += ' Standing advice can lose weight over time; needs and duties can still come first.';
     }
     return why;
@@ -938,7 +922,7 @@ export class FrameworkHumanSide implements HumanSide {
     const p = this.person(order.personId);
     const base = { personId: order.personId, action: order.action };
     if (!p.body.alive) return { ...base, kind: 'cannot', text: 'They cannot work because they are dead.' };
-    const home = this.rules >= 8 && order.action === 'shelter' && order.placeId.startsWith('home-');
+    const home = order.action === 'shelter' && order.placeId.startsWith('home-');
     const affs = this.world.affordancesFor(
       p,
       home ? fw((Math.floor(this.s.minute / 1440) + 1) * 1440) : undefined,

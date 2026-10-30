@@ -5,7 +5,7 @@ import { localWarningAccount, localWarningUnavailable } from './local-warning.ts
 import { replay, ruleHash, WatchRun } from './run.ts';
 
 it('keeps a caution pending until HF receives it, then restores and replays its actual hearing account', () => {
-  const run = new WatchRun(2026, undefined, undefined, { localWarning: 'local-warning@1' });
+  const run = new WatchRun(2026);
   run.input({ k: 'start' });
   run.input({ k: 'lantern', section: 'east' });
   run.input({ k: 'begin' });

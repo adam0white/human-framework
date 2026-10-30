@@ -31,6 +31,7 @@ import {
   moodDescription,
   namedDescription,
   needDescription,
+  progressDescription,
   trustDescription,
 } from '../src/colony/ui/descriptions.ts';
 import {
@@ -42,7 +43,6 @@ import {
   humanQuotes,
   nearMisses,
   ordersChanged,
-  pct,
 } from '../src/colony/ui/end-report.ts';
 
 export const NO_CONCEPT = 'Classic has no such concept';
@@ -392,7 +392,7 @@ export function endScreen(summary: EndSummary, factory: HumanSideFactory, canCon
   const end = summary.day === 3 ? 'Day 4 dawn' : 'Day 3 dawn';
   out.push(`  Meals stored (${end}) | ${sb.classic.meals} | ${sb.human.meals} | ${solo.meals}`);
   out.push(
-    `  House built (${end}, after the storm) | ${sb.classic.housePct}% | ${sb.human.housePct}% | ${solo.housePct}%`,
+    `  House built (${end}, after the storm) | ${progressDescription(sb.classic.housePct / 100)} | ${progressDescription(sb.human.housePct / 100)} | ${progressDescription(solo.housePct / 100)}`,
   );
   out.push(`  Injuries (over the run) | ${sb.classic.injuries} | ${sb.human.injuries} | ${solo.injuries}`);
   for (const m of nearMisses(summary)) out.push(`  ${m.side}: ${m.text}`);

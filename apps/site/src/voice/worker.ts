@@ -430,14 +430,6 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
       void exportPlaytest(rec).catch((error) => host.post({ type: 'playtestError', message: String(error) }));
       return;
     case 'personaCheckpoint':
-      if (game.rules !== 4) {
-        host.post({
-          type: 'personaCheckpoint',
-          error:
-            'Start a new chapter to let Selin travel. Existing saved chapters keep their original rules.',
-        });
-        return;
-      }
       checkpointSending = false;
       rec.apply(msg);
       if (game.personaDeparture?.error)

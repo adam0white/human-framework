@@ -1,5 +1,5 @@
 /**
- * One voluntary night-off request, admitted only for a fresh run. HF owns choice and sleep.
+ * One voluntary night-off request in the current rules. HF owns choice and sleep.
  * This host records actual events, ends the request by dawn, and observes later post work.
  * It adds no healing, guaranteed sleep/return, remote voice or general promise faculty.
  */
@@ -10,10 +10,6 @@ import { inVoice, nightEnd, presentIds, voiceReach } from './night.ts';
 import { KEEPER_ID, personOf } from './people.ts';
 import type { WatchState } from './state.ts';
 
-export interface WatchOptions {
-  duskRest?: 'dusk-rest@1';
-  localWarning?: 'local-warning@1';
-}
 export interface DuskRestRequest {
   askedAt: number;
   until: number;
@@ -30,23 +26,11 @@ export interface DuskRestState {
   requests: Partial<Record<WatcherId, DuskRestRequest>>;
 }
 export type DuskRestInput = { k: 'dusk-rest'; who: WatcherId; until: 'dawn' };
-export function validWatchOptions(options: WatchOptions | undefined): boolean {
-  return (
-    options === undefined ||
-    (!!options &&
-      typeof options === 'object' &&
-      !Array.isArray(options) &&
-      Object.keys(options).every((k) => k === 'duskRest' || k === 'localWarning') &&
-      (options.duskRest === undefined || options.duskRest === 'dusk-rest@1') &&
-      (options.localWarning === undefined || options.localWarning === 'local-warning@1'))
-  );
-}
 export function activeRest(r: DuskRestRequest | undefined, at: number): boolean {
   return !!r && at < r.until && ['pending', 'deferred', 'resting'].includes(r.status);
 }
 export function duskRestUnavailable(s: WatchState, who: WatcherId): string | null {
-  if (!s.duskRest || s.phase !== 'dusk')
-    return 'Night-off requests are available at dusk in a new village with that choice.';
+  if (!s.duskRest || s.phase !== 'dusk') return 'Night-off requests are available at dusk.';
   if (!presentIds(s).includes(who)) return 'This watcher is not here for tonight’s watch.';
   const p = personOf(s, who);
   if (!p || p.body.downed || p.body.asleep) return 'They cannot answer a spoken request now.';

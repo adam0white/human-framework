@@ -139,7 +139,7 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
   expect(node.querySelector('.well-order-goals')?.textContent).toContain(
     `${frame.humanWorld.resources.meals} of 12 meals`,
   );
-  expect(node.querySelector('.well-order-goals')?.textContent).toContain('toward the next stage');
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain('the next stage is');
   expect(node.querySelector('.well-trust-changes')?.textContent).toContain(
     'Other events can also affect trust.',
   );
@@ -157,7 +157,7 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
   renderSheet();
   expect(node.querySelector('.well-latest')?.textContent).toContain('No appeal sent.');
   expect(node.querySelector('.well-order-goals')?.textContent).toContain('store-room 2 of 6 stages');
-  expect(node.querySelector('.well-order-goals')?.textContent).toContain('99% toward the next stage');
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain('the next stage is nearly done');
   expect(node.querySelector('.well-order-goals')?.textContent).toContain('of 5 meals');
   frame.humanWorld.project.stage = 6;
   renderSheet();
@@ -165,7 +165,7 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
     '.well-order-goals [data-village=human] .well-building-progress',
   )?.textContent;
   expect(humanGoals).toBeTruthy();
-  expect(humanGoals).not.toContain('toward the next stage');
+  expect(humanGoals).not.toContain('the next stage is');
   card.order.action = 'cook';
   card.human.says = 'We have enough food stored. I’ll cook when it runs low.';
   renderSheet();
@@ -183,11 +183,11 @@ it('links the sent appeal to its answer and keeps current goal numbers beside th
 it('offers Home shelter for the well-house resident without changing old Home meaning', async () => {
   const { homeOrderMeaning } = await import('./order-status.ts');
   const { inferredJob } = await import('./parts.tsx');
-  const frame = new ColonyGame(20261003, createFrameworkHumanSide, 8).frame();
+  const frame = new ColonyGame(20261003, createFrameworkHumanSide).frame();
   expect(placesFor('danyal', 8).at(-1)).toBe('home-idris');
   expect(inferredJob(frame, 'home-idris')).toBe('shelter');
   expect(inferredJob({ ...frame, rules: 7 }, 'home-idris')).toBe('eat');
-  const game = new ColonyGame(20261003, createFrameworkHumanSide, 8);
+  const game = new ColonyGame(20261003, createFrameworkHumanSide);
   game.issue({ personId: 'idris', placeId: 'home-idris' });
   const card = game.frame().cards[0];
   if (!card) throw Error('Missing Home order');

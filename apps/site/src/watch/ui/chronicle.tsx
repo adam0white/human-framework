@@ -81,10 +81,10 @@ export function HopesSheet({
 function pageRecord(p: PageInfo): string {
   const rules =
     p.scenario === undefined
-      ? 'Rules not recorded; this page may need a fresh game'
-      : p.scenario < OLDEST_LOADABLE_SCENARIO
-        ? 'Older rules; start a fresh game'
-        : `Rules ${p.scenario}`;
+      ? 'Version not recorded; this page may need a fresh game'
+      : p.scenario !== OLDEST_LOADABLE_SCENARIO
+        ? 'Different version; start a fresh game'
+        : 'Current game';
   return `${rules} · Saved ${new Date(p.savedAt).toLocaleString()}`;
 }
 

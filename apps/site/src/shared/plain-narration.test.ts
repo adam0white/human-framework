@@ -44,6 +44,10 @@ it('refuses older narration files before they can replace the current run', asyn
   const { parseColonyPlaytest } = await import('../colony/sim/playtest.ts');
   const { VOICE_SCENARIO_VERSION } = await import('../voice/protocol.ts');
   const { CURRENT_RULES, scenarioOf } = await import('../colony/sim/human-side.ts');
+  const { ColonyGame } = await import('../colony/sim/game.ts');
+  const { createFrameworkHumanSide } = await import('../colony/sim/human.ts');
+  expect(() => new ColonyGame(7, createFrameworkHumanSide, 3)).toThrow(/Start a fresh game/);
+  expect(() => createFrameworkHumanSide(3)).toThrow(/Start a fresh game/);
   for (const [game, scenario, parse] of [
     ['voice', VOICE_SCENARIO_VERSION, parseVoicePlaytest],
     ['colony', scenarioOf(CURRENT_RULES), parseColonyPlaytest],

@@ -65,8 +65,6 @@ export function parseColonyPlaytest(text: string): { file: PlaytestFile<LogEntry
   const file = parsePlaytest(text, 'colony', scenarioOf(rules), validateColonyLog);
   if (file.framework !== FRAMEWORK_PACKAGE_VERSION)
     throw new Error('This save is from an older version. Start a fresh game.');
-  if (rules < 6 && file.log.some((e) => e.kind === 'village'))
-    throw new Error('Village choice requires rules 6');
   return { file, rules };
 }
 

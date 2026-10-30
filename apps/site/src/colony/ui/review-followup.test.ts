@@ -88,7 +88,9 @@ describe('Well review follow-up', () => {
     expect(rows.find((r) => r.querySelector('th')?.textContent === 'Trust in you')?.textContent).toContain(
       'They are wary of you.They trust you deeply.',
     );
+    expect(el.textContent).not.toContain('%');
     const changed = ordersChanged(report);
+    expect(changed).not.toContain('%');
     expect(changed).toContain('morale They feel disheartened. (without you: They feel encouraged.)');
     expect(changed).toContain('trust in you They are wary of you. (without you: They trust you deeply.)');
     expect(changed).not.toContain('-0.40');

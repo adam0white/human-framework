@@ -6,23 +6,24 @@ import { type DuskRestRequest, duskRestAccount, endDuskRest } from './dusk-rest.
 import { replay, ruleHash, WatchRun } from './run.ts';
 
 const fresh = () => {
-  const run = new WatchRun(2026, undefined, undefined, { duskRest: 'dusk-rest@1' });
+  const run = new WatchRun(2026);
   run.input({ k: 'start' });
   run.input({ k: 'post', watcher: 'tamar', post: 'east-1' });
   run.input({ k: 'lantern', section: 'east' });
   return run;
 };
 describe('explicit dusk night off through HF4', () => {
-  it('admits only fresh opted-in villages and preserves rejected input exactly', () => {
-    const run = new WatchRun(2026);
-    run.input({ k: 'start' });
+  it('uses one current rule set and rejects older scenarios without changing the run', () => {
+    const run = fresh();
+    expect(run.state.duskRest?.edition).toBe('dusk-rest@1');
+    expect(run.state.localWarning?.edition).toBe('local-warning@1');
+    expect(run.export().scenario).toBe(25);
     const before = run.snapshotText();
-    expect(run.input({ k: 'dusk-rest', who: 'tamar', until: 'dawn' })).toBe(false);
+    expect(run.input({ k: 'dusk-rest', who: 'not-a-watcher', until: 'dawn' })).toBe(false);
     expect(run.snapshotText()).toBe(before);
-    expect(run.export().scenario).toBe(23);
-    expect(fresh().export().scenario).toBe(24);
-    expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 20 })).toThrow(/older|different|new game/i);
-    expect(() => new WatchRun(1, undefined, undefined, { duskRest: 'unknown' } as never)).toThrow();
+    expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 23 })).toThrow(/Start a fresh game/);
+    expect(() => WatchRun.resume({ ...run.snapshot(), scenario: 24 })).toThrow(/Start a fresh game/);
+    expect(run.input({ k: 'dusk-rest', who: 'tamar', until: 'dawn' })).toBe(true);
   });
   it('keeps the actual answer and any observed rest through pending cold restore and complete replay', () => {
     const run = fresh();
@@ -61,7 +62,7 @@ describe('explicit dusk night off through HF4', () => {
     }
     const full = JSON.parse(JSON.stringify(run.export()));
     expect(ruleHash(replay(full))).toBe(full.end.ruleHash);
-    expect(() => replay({ ...full, options: undefined })).toThrow();
+    expect(() => replay({ ...full, scenario: 24 })).toThrow(/Start a fresh game/);
   });
   it('expires an unanswered host request without inventing rest or return', () => {
     const run = fresh();

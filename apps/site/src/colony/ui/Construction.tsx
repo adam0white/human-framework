@@ -9,6 +9,7 @@ import {
   type VillagerId,
   WARNING_AT,
 } from '../sim/world-types.ts';
+import { progressDescription } from './descriptions.ts';
 import { shortName } from './parts.tsx';
 
 export function RoofRisk({
@@ -61,7 +62,7 @@ export function ConstructionReadout({
     <div className="well-building-side" data-village={side.toLowerCase()}>
       <p className="well-building-progress">
         {side} village: {project.kind === 'house' ? 'roof' : 'store-room'} {project.stage} of {project.stages}{' '}
-        stages{open ? `; ${Math.floor(world.houseProgress * 100)}% toward the next stage` : ''}.
+        stages{open ? `; the next stage is ${progressDescription(world.houseProgress)}` : ''}.
       </p>
       <p className="well-building-meals">
         {world.resources.meals}

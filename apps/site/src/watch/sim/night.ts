@@ -103,8 +103,6 @@ import {
   endDuskRest,
   resolveDuskRest,
   restSuggestion,
-  validWatchOptions,
-  type WatchOptions,
 } from './dusk-rest.ts';
 import { takeOffer } from './fair.ts';
 import { minuteMs } from './hf4.ts';
@@ -192,12 +190,10 @@ const NOTE_GAP = 90;
 export function newGame(
   seed: number,
   castChapter?: import('../../shared/cast-chapter.ts').CastChapter,
-  options?: WatchOptions,
 ): WatchState {
-  if (!validWatchOptions(options)) throw new Error('Unknown watch option');
   const s = createState(seed);
-  if (options?.localWarning) s.localWarning = { edition: 'local-warning@1', pending: [], receipts: {} };
-  if (options?.duskRest) s.duskRest = { edition: 'dusk-rest@1', requests: {} };
+  s.localWarning = { edition: 'local-warning@1', pending: [], receipts: {} };
+  s.duskRest = { edition: 'dusk-rest@1', requests: {} };
   if (castChapter) {
     s.castChapter = structuredClone(castChapter);
     prepareWatchCast(seed, s.castChapter);

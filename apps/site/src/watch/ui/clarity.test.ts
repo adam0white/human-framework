@@ -65,7 +65,7 @@ it('separates starting lantern from the selected person’s post actions', () =>
   expect(selected.querySelectorAll('.w-place')).toHaveLength(4);
   expect(selected.querySelector('.w-press[aria-pressed=true]')?.textContent).toBe('Urge');
   expect(selected.textContent).toContain('Choosing a post does not give a night off.');
-  expect(selected.textContent).toContain('At night, select the watcher. Choose Rest');
+  expect(selected.textContent).toContain('Ask them to take tonight off, until dawn.');
   expect(selected.querySelectorAll('.game-help-button')).toHaveLength(0);
 });
 it('keeps lantern and bell in the night action bar and people in the sheet', () => {
@@ -434,7 +434,7 @@ it('requires an explicit season recovery choice and loads that existing local pa
 });
 
 it('offers night off separately from posting only in the admitted village, with literal player wording', () => {
-  const state = newGame(2026, undefined, { duskRest: 'dusk-rest@1' });
+  const state = newGame(2026);
   applyInput(state, { k: 'start' });
   stepMinute(state);
   const frame = buildFrame(state, 0, false);
@@ -742,7 +742,7 @@ it('starts a normal new village with both public requests available', async () =
   );
   expect(begin).toBeDefined();
   await act(() => begin?.click());
-  expect(onNew).toHaveBeenCalledWith({ duskRest: 'dusk-rest@1', localWarning: 'local-warning@1' });
+  expect(onNew).toHaveBeenCalledWith();
   await act(() => root.unmount());
 });
 
@@ -751,7 +751,7 @@ it('distinguishes same-seed shelf pages and shows older or unknown rules before 
   const el = render(
     createElement(Shelf, {
       shelf: [
-        { ...base, id: 'a:auto', chronicle: 'a', savedAt: 1000, scenario: 23 },
+        { ...base, id: 'a:auto', chronicle: 'a', savedAt: 1000, scenario: 25 },
         { ...base, id: 'b:auto', chronicle: 'b', savedAt: 2000, scenario: 12 },
         { ...base, id: 'c:auto', chronicle: 'c', savedAt: 3000 },
       ],
@@ -760,9 +760,9 @@ it('distinguishes same-seed shelf pages and shows older or unknown rules before 
       onClose: vi.fn(),
     }),
   );
-  expect(el.textContent).toContain('Rules 23');
-  expect(el.textContent).toContain('Older rules; start a fresh game');
-  expect(el.textContent).toContain('Rules not recorded');
+  expect(el.textContent).toContain('Current game');
+  expect(el.textContent).toContain('Different version; start a fresh game');
+  expect(el.textContent).toContain('Version not recorded');
   const rows = [...el.querySelectorAll('.w-pagerow')].map((r) => r.textContent);
   expect(new Set(rows).size).toBe(3);
 });

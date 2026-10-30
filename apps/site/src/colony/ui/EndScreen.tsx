@@ -7,7 +7,7 @@ import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';
 import type { Hindsight } from '../sim/hindsight.ts';
 import { formatClock } from '../sim/world-types.ts';
 import { dayClock, type EndSummary, NO_CONCEPT } from './contract.ts';
-import { moodDescription, trustDescription } from './descriptions.ts';
+import { moodDescription, progressDescription, trustDescription } from './descriptions.ts';
 import {
   cardEnd,
   classicOutcome,
@@ -103,16 +103,16 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
 function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string }) {
   const { scoreboard: sb, solo, character: ch } = summary;
   // These rows are read at the end of the run, after the storm; the goal rows above them are judged at their
-  // deadline (the roof at 19:00, before the storm). A house can read 9/10 at the deadline and 100% at dawn.
+  // deadline (the roof at 19:00, before the storm). A roof can be unfinished at the deadline and finished at dawn.
   const end = summary.day === 3 ? 'Day 4 dawn' : 'Day 3 dawn';
   const village: [string, string, string, string, string][] = [
     ['Meals stored', end, String(sb.classic.meals), String(sb.human.meals), String(solo.meals)],
     [
       'House built',
       `${end}, after the storm`,
-      `${sb.classic.housePct}%`,
-      `${sb.human.housePct}%`,
-      `${solo.housePct}%`,
+      progressDescription(sb.classic.housePct / 100),
+      progressDescription(sb.human.housePct / 100),
+      progressDescription(solo.housePct / 100),
     ],
     [
       'Injuries',

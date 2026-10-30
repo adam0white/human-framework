@@ -39,8 +39,7 @@ export function validLocalWarningInput(input: LocalWarningInput): boolean {
   );
 }
 export function localWarningUnavailable(s: WatchState, who: WatcherId): string | null {
-  if (!s.localWarning || s.phase !== 'night')
-    return 'Spoken cautions need a night in a new village with that choice.';
+  if (!s.localWarning || s.phase !== 'night') return 'Spoken cautions are available at night.';
   if (!ownsWarningCast(s, who) || !presentIds(s).includes(who) || !isPost(s.place[who]))
     return 'This watcher is not at a post.';
   const p = personOf(s, who);
