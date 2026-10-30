@@ -1,6 +1,6 @@
 {
   "name": "@adam0white/lab-client",
-  "version": "0.5.14",
+  "version": "0.5.15",
   "description": "The Human Framework game lab client: default-on pseudonymous linked play recording",
   "keywords": [
     "playtest",

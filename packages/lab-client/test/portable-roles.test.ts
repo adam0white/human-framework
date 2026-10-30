@@ -6,6 +6,7 @@ import { createPersona } from '../src/persona.ts';
 import {
   admitPortablePerson,
   claimPortablePerson,
+  portablePersonRole,
   portableWriteBlockers,
   projectPortablePerson,
 } from '../src/persona-portable.ts';
@@ -49,6 +50,59 @@ it.each([
   expect(admitPortablePerson(parent, target, opening).body.satiety).toBe(0.41);
   expect(opening.body.satiety).toBe(0.8);
   expect(parent).toEqual(before);
+});
+
+it('binds the six Neighbours runtime actors and refuses forged source identities', async () => {
+  const roles = [
+    ['hf.cast.nora.smallworks', 'repair', 'nora', 'ada'],
+    ['hf.cast.derya.stairwell', 'stairwell', 'derya', 'elin'],
+    ['hf.cast.sam.smallworks', 'repair', 'sam', 'sam'],
+    ['hf.cast.bilal.rope', 'rope', 'bilal', 'jo'],
+    ['hf.cast.rafi.pass', 'pass', 'rafi', 'ravi'],
+    ['hf.cast.ece.murmur', 'murmur', 'ece', 'noor'],
+  ] as const;
+  for (const [castId, source, sourceId, neighbourId] of roles) {
+    const parent = await departure(source, castId, sourceId);
+    expect(portablePersonRole(parent, 'neighbours')).toBe(neighbourId);
+    const projected = await departure('neighbours', castId, neighbourId);
+    expect(portablePersonRole(projected, source)).toBe(sourceId);
+    expect(() =>
+      projectPortablePerson({
+        castId,
+        game: 'neighbours',
+        engine: '2.23.0',
+        person: actor(castId, 'unknown'),
+        history: [],
+      }),
+    ).toThrow(/no authored chapter/);
+    const forged = structuredClone(projected);
+    (forged.transfer.portable as { source: { personId: string } }).source.personId = 'unknown';
+    expect(() => portablePersonRole(forged, source)).toThrow(/incompatible identity or source/);
+    const unknownSource = structuredClone(projected);
+    unknownSource.source.game = 'unknown';
+    expect(() => portablePersonRole(unknownSource, source)).toThrow(/incompatible identity or source/);
+  }
+});
+
+// Synthetic identity bodies test role provenance, not biography or host admission.
+it('validates the eight Commonstead native roles and refuses forged source identities', async () => {
+  const castIds = [
+    'hf.cast.nora.smallworks',
+    'hf.cast.sam.smallworks',
+    'hf.cast.dai.glance',
+    'hf.cast.nerys.glance',
+    'hf.cast.dilek.pass',
+    'hf.cast.burak.stairwell',
+    'hf.cast.sevim.stairwell',
+    'hf.cast.oskar.rope',
+  ];
+  for (const castId of castIds) {
+    const parent = await departure('commonstead', castId, castId);
+    expect(portablePersonRole(parent, 'commonstead')).toBe(castId);
+    const forged = structuredClone(parent);
+    (forged.transfer.portable as { source: { personId: string } }).source.personId = 'unknown';
+    expect(() => portablePersonRole(forged, 'commonstead')).toThrow(/incompatible identity or source/);
+  }
 });
 
 it('refuses to swap Master Yusuf and builder Yusuf in Valley', async () => {

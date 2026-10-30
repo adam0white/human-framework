@@ -14,6 +14,14 @@ import { PORTABLE_READERS } from './portable-readers.ts';
 
 // SCOPE: roles bind identity only; clinical, departure and ownership checks still apply.
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
+  neighbours: {
+    'hf.cast.nora.smallworks': 'ada',
+    'hf.cast.derya.stairwell': 'elin',
+    'hf.cast.sam.smallworks': 'sam',
+    'hf.cast.bilal.rope': 'jo',
+    'hf.cast.rafi.pass': 'ravi',
+    'hf.cast.ece.murmur': 'noor',
+  },
   voice: {
     'hf.cast.halil.voice': 'halil',
     'hf.cast.selin.voice': 'selin',
@@ -121,7 +129,16 @@ const SOURCE_ROLES: Record<string, Record<string, string>> = {
     'hf.cast.derya.stairwell': 'derya',
     'hf.cast.tarik.stairwell': 'tarik',
   },
-  commonstead: { 'hf.cast.burak.stairwell': 'hf.cast.burak.stairwell' },
+  commonstead: {
+    'hf.cast.nora.smallworks': 'hf.cast.nora.smallworks',
+    'hf.cast.sam.smallworks': 'hf.cast.sam.smallworks',
+    'hf.cast.dai.glance': 'hf.cast.dai.glance',
+    'hf.cast.nerys.glance': 'hf.cast.nerys.glance',
+    'hf.cast.dilek.pass': 'hf.cast.dilek.pass',
+    'hf.cast.burak.stairwell': 'hf.cast.burak.stairwell',
+    'hf.cast.sevim.stairwell': 'hf.cast.sevim.stairwell',
+    'hf.cast.oskar.rope': 'hf.cast.oskar.rope',
+  },
   days: {
     'hf.cast.hacer.voice': 'hf.cast.hacer.voice',
     'hf.cast.selin.voice': 'hf.cast.selin.voice',
