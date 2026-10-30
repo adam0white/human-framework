@@ -15,6 +15,9 @@ absolute links in sections, since they are copied into the release page.
 
 - Client 0.5.15 binds the six Neighbours cast identities to their authored actor roles: Nora/ada, Derya/elin, Sam/sam, Bilal/jo, Rafi/ravi and Ece/noor. The existing source, ownership and reader checks remain in force; these bindings do not certify Neighbours admission or custody.
 - Client 0.5.15 also binds Commonstead’s eight canonical cast identities to their same-ID native actors. These are identity bindings; receiving history, retirement, custody and deployed adoption remain separate.
+- Watch is certified as a per-person reader on deployed client 0.5.14; this does not establish admission or a journey.
+- Neighbours must rename its displayed actors to their canonical cast names before adopting client 0.5.15; for example, Nora is shown as Ada.
+- Migration: none; hosts bump the pin, and kit's peer range accepts 0.5.15.
 - Kit 0.5.32 adds client 0.5.15 to its optional peer list. Both candidates retain HF 4.15.0. The site continues to use published client 0.5.14 and kit 0.5.31 until the companion artifacts are released and adopted. These versions are candidates, not published releases.
 
 ## [4.15.0] — 2026-10-29
