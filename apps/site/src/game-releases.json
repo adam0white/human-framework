@@ -1,128 +1,125 @@
 {
   "murmur": {
-    "framework": "4.8.0",
-    "commit": "be833fb0f42745030d546655947ae9c1e12f6b88",
+    "framework": "4.9.0",
+    "commit": "2f787400e357d81975d485162eef05cdb9d6102e",
     "release": "https://murmur.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "stairwell": {
-    "framework": "4.8.1",
-    "commit": "3163e8e522117d658d1c6678f9d906d12eaeb886",
+    "framework": "4.14.0",
+    "commit": "a3fffc20faf846e0ee2a4fdd8cd7d6567c81ea1a",
     "release": "https://stairwell.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "pass": {
-    "framework": "4.8.1",
-    "commit": "3aed109da7033faa6db14704a7c29c0ada272a87",
+    "framework": "4.12.0",
+    "commit": "8eff0b3fa658eef90318ee5029dc948d2ee9d85b",
     "release": "https://pass.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "glance": {
-    "framework": "4.8.0",
-    "commit": "a1d4d4294c7a91b1b1d34eee8dcd2673c5699070",
+    "framework": "4.14.0",
+    "commit": "d496d39fd4f7173bb5674eca4ece07d8db3b5fc0",
     "release": "https://glance.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "watch": {
-    "framework": "3.2.0",
-    "commit": "04ce17f83d38f241d9a401cfa75ef73f61a9f460",
+    "framework": "4.15.0",
+    "commit": "097892eacdcb64a8ca8c127213e604bee0bf7eb7",
     "release": "https://human.adamwhite.work/release.json",
-    "checked": "2026-10-29",
-    "reason": "Stays on HF 3.2: HF 4.9 cannot expose learned fears of a particular watch posting during active work. Port blocker reviewed October 29; recheck November 3, 2026."
+    "checked": "2026-10-30"
   },
   "hearsay": {
-    "framework": "4.8.0",
-    "commit": "82f5c254d33ee4360a5283ea226f7ff818c51fc4",
+    "framework": "4.12.0",
+    "commit": "f99e153e8ff2a7b78331f4c7cdb73989342b704f",
     "release": "https://hearsay.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "goodhands": {
     "framework": "4.8.1",
-    "commit": "dccf97d65d8e144ae125758b6e56630db0f348a3",
+    "commit": "df5e3f20e02603e022081422f76811eecacc3bad",
     "release": "https://goodhands.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "valley": {
     "framework": "3.0.0",
-    "commit": "4c6a57bac99b1ac2f60fac08f811fd9593a8811a",
+    "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
     "release": "https://valley.adamwhite.work/release.json",
-    "checked": "2026-10-29",
-    "reason": "Stays on HF 3.0.0. HF 4 still exceeds its simulation and saved-history budgets. Recheck November 24, 2026."
+    "checked": "2026-10-30",
+    "reason": "HF 3.0.0 remains live because HF 4 exceeds its simulation and saved-history budgets. The next check is scheduled for November 24, 2026, with Child."
   },
   "voice": {
-    "framework": "3.2.0",
-    "commit": "04ce17f83d38f241d9a401cfa75ef73f61a9f460",
+    "framework": "4.15.0",
+    "commit": "097892eacdcb64a8ca8c127213e604bee0bf7eb7",
     "release": "https://human.adamwhite.work/release.json",
-    "checked": "2026-10-29",
-    "reason": "Stays on HF 3.2: HF 4.9 lacks the live feelings and learned expectations used by Halil’s display. Carryover also needs a Voice role in the lab client. Recheck November 3, 2026."
+    "checked": "2026-10-30"
   },
   "well": {
-    "framework": "3.2.0",
-    "commit": "04ce17f83d38f241d9a401cfa75ef73f61a9f460",
+    "framework": "4.15.0",
+    "commit": "097892eacdcb64a8ca8c127213e604bee0bf7eb7",
     "release": "https://human.adamwhite.work/release.json",
-    "checked": "2026-10-29",
-    "reason": "Stays on HF 3.2: HF 4.9 lacks the named feelings shown while villagers work. Port blocker reviewed October 29; recheck November 3, 2026."
+    "checked": "2026-10-30"
   },
   "warren": {
-    "framework": "4.8.1",
-    "commit": "2990a7cb24360dcd48a358a50e6cbd16015daea0",
+    "framework": "4.10.0",
+    "commit": "884f730d457b81260be92322a245fbc65eca8aa6",
     "release": "https://warren.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "repair": {
     "framework": "4.8.0",
     "commit": "d48782129bbf015e2b2bf1475d144838c095c93f",
     "release": "https://repair.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "neighbours": {
     "framework": "3.0.0",
     "commit": "7b0dcd1c494b39975219df5ed6ee05d616ba731b",
     "release": "https://neighbours.adamwhite.work/release.json",
-    "checked": "2026-10-29",
-    "reason": "The live release still reports HF 3.x. A 4.x deployment has not been verified; check again November 3, 2026."
+    "checked": "2026-10-30",
+    "reason": "HF 3.0.0 remains live. The HF 4 port has failing browser checks and a timed-out stress test. Fix and verify the port before deployment; check again November 3, 2026."
   },
   "rope": {
-    "framework": "4.8.1",
-    "commit": "9f17680d89ab0eb3d99082f16b228d8262ebd70c",
+    "framework": "4.13.0",
+    "commit": "4291bb183715b5ae444e70ba82ca1a0ec61738d0",
     "release": "https://rope.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "commonstead": {
     "framework": "4.8.1",
     "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
     "release": "https://commonstead.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "smoke": {
     "framework": "4.8.0",
     "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
     "release": "https://smoke.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "word": {
     "framework": "4.0.0",
     "commit": "0fbe19a5a5e4dc8915c4406f31f49f0f43990050",
     "release": "https://word.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "child": {
     "framework": "3.2.0",
     "commit": "c6f74826cb1ae4590ee321202da097b344bea131",
     "release": "https://child.adamwhite.work/release.json",
-    "checked": "2026-10-29",
-    "reason": "Stays on HF 3.x. Its next workload gate is November 24, 2026."
+    "checked": "2026-10-30",
+    "reason": "HF 3.2.0 remains live because HF 4 exceeds its daily simulation and reload budgets. The next workload check is scheduled for November 24, 2026, with Valley."
   },
   "days": {
     "framework": "4.8.1",
     "commit": "2741f06a0e4c96ffdec26e2e5b6b8874765dc126",
     "release": "https://days.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   },
   "lefthand": {
-    "framework": "4.8.0",
-    "commit": "a71b4486dfc6c639865fdb64eace7e61986177c9",
+    "framework": "4.10.0",
+    "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
     "release": "https://lefthand.adamwhite.work/release.json",
-    "checked": "2026-10-29"
+    "checked": "2026-10-30"
   }
 }
