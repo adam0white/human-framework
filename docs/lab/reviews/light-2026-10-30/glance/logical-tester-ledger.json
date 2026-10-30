@@ -50,7 +50,19 @@
     },
     "verdict": "quit",
     "returnSource": "docs/lab/reviews/light-2026-10-30/glance/rosa/report.original.md.txt",
-    "validation": "docs/lab/reviews/light-2026-10-30/glance/rosa/validation.json"
+    "validation": "docs/lab/reviews/light-2026-10-30/glance/rosa/validation.json",
+    "historyQualification": {
+      "tester": "Rosa Alvarez",
+      "game": "glance",
+      "providedHistory": "glance/rosa/own-history.original.md.txt",
+      "providedHistorySha256": "1f61dfdb1c471a44850120e7181206fc162e69cee1fd800443eeaf6650208645",
+      "excludedAlternativeBodyStartLine": 222,
+      "excludedAlternativeBodyEndLine": 402,
+      "breach": "The supplied history included an old Warren continued-alternative report body. It was not selected FREE autobiographical history.",
+      "readEvidence": "Rosa declared a partial Read range that includes this body. Supplied content is verified; comprehension and causal effect on this target session are unknown.",
+      "disposition": "Preserve current-target observations and all original reports/inputs. Do not use this exposure as clean longitudinal recognition/continuity evidence. Future briefs omit this alternative body and retain actual later own reports.",
+      "sameTesterRetest": "Rosa remains a known target-game returner. A clean future context receives filtered selected history plus her actual target report; never relabel her as a first visitor."
+    }
   },
   {
     "id": "F-2197",

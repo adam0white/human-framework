@@ -1,5 +1,12 @@
 # Good Hands — LIGHT round 1, 2026-10-30
 
+## Supplied-history qualification — corrected 2026-10-30
+
+Rosa's supplied own-history file includes an old Warren **continued alternative body** that should not have been supplied as autobiographical memory. This is a director filtering failure. Her declared partial Read range includes that body; its effect on her response is unknown. Her current-game observations, raw report and frozen input remain unchanged. This exposure is **not clean evidence of cross-game recognition or continuity**. Other testers and the cold slot have no such body in the scanned inputs. The round retains Rosa as a history-qualified standing observation, not an unqualified protocol-compliant one.
+
+See [the exact qualification](history-qualification.json). Future briefs filter the alternative and preserve her actual later reports. A future target visit remains a return; this correction does not erase known exposure. Raw originals stay available for audit.
+
+
 Remaining: fix/reproduce the blocking mobile deadline, judgement clarity and repeated-wording/stakes asks, then retest with the same five testers. This first round is not game readiness or a finished game.
 
 Build:28086c1f64d9a42b369c9f8904b22fd33063e00d, HF4.8.1, dirty:false. All before-session release receipts and the after-round receipt agree. Collection ended2026-10-30T20:41:52Z. Four first-visit standing testers: Jonas, Aisha, Diego, Rosa (Sonnet low), plus genuinely cold Lena Fischer (Opus low). Both360x690 touch and1280x800 desktop in separate fresh Chromium contexts. Tool logs confirm actual image results at both sizes for all5testers; no viewport supplement was required. At most2testers/4browsers. All ten stops were voluntary and below the ceiling. Second-device repetition remains a method limit.

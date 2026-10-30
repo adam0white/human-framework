@@ -2,10 +2,10 @@
   {
     "id": "F-2177",
     "tester": "Jonas Berg",
-    "openingReturnPassage": "Yes, another evening and not now. I would come back once to see whether the trial outcomes punish the ₺9,100 fee or the promised qualities. I would not leave it running. I would stop if the fee never carries a visible consequence, or if waiting through the days is empty.",
+    "openingReturnPassage": "Yes, another evening and not now. I would come back once to see whether the trial outcomes punish the \u20ba9,100 fee or the promised qualities. I would not leave it running. I would stop if the fee never carries a visible consequence, or if waiting through the days is empty.",
     "rankedAsks": [
-      "Show what the fee and wage do. At negotiation, ₺9,000, ₺9,100 and ₺8,500 all got \"I can agree to that\". The fee never met resistance, and no number showed its effect on the family or on me.",
-      "Make the interview patience question tell candidates apart. Gülce and Şebnem gave the same line word for word. If the answers are templated, say so.",
+      "Show what the fee and wage do. At negotiation, \u20ba9,000, \u20ba9,100 and \u20ba8,500 all got \"I can agree to that\". The fee never met resistance, and no number showed its effect on the family or on me.",
+      "Make the interview patience question tell candidates apart. G\u00fclce and \u015eebnem gave the same line word for word. If the answers are templated, say so.",
       "Fix the clipped task banner on the phone. Also show when a candidate can next be called, so I am not guessing why nothing is available."
     ],
     "routes": [
@@ -22,8 +22,8 @@
     "tester": "Aisha Rahman",
     "openingReturnPassage": "Yes, I would come back another evening, but only if the people's own words changed what the game believed about them. I would not leave it running, because the clock moves while I read.",
     "rankedAsks": [
-      "When a candidate or a reference gives an account (Şebnem: \"I should have called\"), let Nermin's note change to reflect it. Mine stayed at \"I doubt…\".",
-      "Stop the game clock while I am reading a card or an answer. It went 12:36 → 12:52 and the landlord rang while I read.",
+      "When a candidate or a reference gives an account (\u015eebnem: \"I should have called\"), let Nermin's note change to reflect it. Mine stayed at \"I doubt\u2026\".",
+      "Stop the game clock while I am reading a card or an answer. It went 12:36 \u2192 12:52 and the landlord rang while I read.",
       "Make the driver timeouts stop, or tell me when a tap has registered. Two taps reported a 30-second timeout even though the game had moved on. I suspect the driver, not the game."
     ],
     "routes": [
@@ -56,9 +56,9 @@
   {
     "id": "F-2180",
     "tester": "Rosa Alvarez",
-    "openingReturnPassage": "I would come back another evening, on the big screen, to see what happens to Özlem and the Kaya family, but only if the 'Nermin's reading' sentences explain why. I would not leave it running; I would close it.",
+    "openingReturnPassage": "I would come back another evening, on the big screen, to see what happens to \u00d6zlem and the Kaya family, but only if the 'Nermin's reading' sentences explain why. I would not leave it running; I would close it.",
     "rankedAsks": [
-      "Make \"Nermin's reading\" say why. The same quote gave \"unsure\" for Şebnem and \"believe\" for Özlem.",
+      "Make \"Nermin's reading\" say why. The same quote gave \"unsure\" for \u015eebnem and \"believe\" for \u00d6zlem.",
       "Rewrite the negotiation fee and deposit paragraph in short sentences, with the real numbers.",
       "Show one short line instead of the same sentence in five disabled boxes. On the phone, fix the cut-off \"Next\" line and the office picture that takes half the screen."
     ],
@@ -70,15 +70,27 @@
       "fix:goodhands F-2192 phone picture and card balance review, target2026-11-10 (open)"
     ],
     "verdict": "mixed",
-    "source": "rosa/report.md"
+    "source": "rosa/report.md",
+    "historyQualification": {
+      "tester": "Rosa Alvarez",
+      "game": "goodhands",
+      "providedHistory": "goodhands/rosa/own-history.original.md.txt",
+      "providedHistorySha256": "77df467dc562239bd3fd2a502647f1747545b43ea3a5b3a14c36c582dbde8993",
+      "excludedAlternativeBodyStartLine": 222,
+      "excludedAlternativeBodyEndLine": 402,
+      "breach": "The supplied history included an old Warren continued-alternative report body. It was not selected FREE autobiographical history.",
+      "readEvidence": "Rosa declared a partial Read range that includes this body. Supplied content is verified; comprehension and causal effect on this target session are unknown.",
+      "disposition": "Preserve current-target observations and all original reports/inputs. Do not use this exposure as clean longitudinal recognition/continuity evidence. Future briefs omit this alternative body and retain actual later own reports.",
+      "sameTesterRetest": "Rosa remains a known target-game returner. A clean future context receives filtered selected history plus her actual target report; never relabel her as a first visitor."
+    }
   },
   {
     "id": "F-2181",
     "tester": "Lena Fischer",
     "openingReturnPassage": "I would come back another evening only if a new month brought different people and different answers. As long as the families and witnesses say the same sentences, one evening was enough.",
     "rankedAsks": [
-      "Give every family, reference and neighbour their own words. The Arslans and the Kayas had identical needs and wording. Mr Hüsnü told the same \"glass of water, buses from Bornova\" story about two different applicants. Özlem and the landlord ended calls with the same sentence.",
-      "Make the rent and the money matter for longer. By Monday 16:29 I had ₺7,500 against ₺5,000 rent due Friday, and the tension was gone on day one.",
+      "Give every family, reference and neighbour their own words. The Arslans and the Kayas had identical needs and wording. Mr H\u00fcsn\u00fc told the same \"glass of water, buses from Bornova\" story about two different applicants. \u00d6zlem and the landlord ended calls with the same sentence.",
+      "Make the rent and the money matter for longer. By Monday 16:29 I had \u20ba7,500 against \u20ba5,000 rent due Friday, and the tension was gone on day one.",
       "Do not run the clock while I am only reading a card or switching tabs. Or tell me plainly how fast it runs. A clock that moves while I read made me hurry, and I could not tell where twenty minutes went."
     ],
     "routes": [

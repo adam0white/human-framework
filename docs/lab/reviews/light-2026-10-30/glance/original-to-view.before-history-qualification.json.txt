@@ -1,0 +1,455 @@
+{
+  "purpose": "Readable Markdown differs in blank lines, trailing newline and table alignment separators; JSON indentation is formatted. Producer report.original.md.txt and raw wall-clock.jsonl bytes are exact. Removing whitespace and Markdown table separator rows makes each report view equal to original. Private producer manifest remains separate.",
+  "files": [
+    {
+      "file": "ask-ledger.md",
+      "canonicalSha256": "56ded5eeafa3eb5f78fdf104677f8c0878f5a5027e222f6a58696cc5d001a0a9",
+      "privateSha256": "acea074fe3c0f89b3fca67dd7339834f98cdbf502b183693822075fc54360e05",
+      "sameBytes": false
+    },
+    {
+      "file": "screenshots-manifest.json",
+      "canonicalSha256": "92d1f215ff06a87dd38074c873c0eb903b66fdfa5bb343e6b051c0ddae5881cb",
+      "privateSha256": "92d1f215ff06a87dd38074c873c0eb903b66fdfa5bb343e6b051c0ddae5881cb",
+      "sameBytes": true
+    },
+    {
+      "file": "ledger-additions.md",
+      "canonicalSha256": "d1834f2f1006880516ff7b8ab004830594dbaaecc56f75e0a5b39a0853b98e14",
+      "privateSha256": "0003522e3e70692d7255afc555000bbadf629d201e1b7f0fcc308fca19387b0d",
+      "sameBytes": false
+    },
+    {
+      "file": "primary-quote-validation.json",
+      "canonicalSha256": "f03ee058e3fb6b555fcbccdd4eff635bff0fd9807b151699ce1e921406bbf2cc",
+      "privateSha256": "f03ee058e3fb6b555fcbccdd4eff635bff0fd9807b151699ce1e921406bbf2cc",
+      "sameBytes": true
+    },
+    {
+      "file": "source-packet-sha256.original.json.txt",
+      "canonicalSha256": "f90ed7b408a47056f5eebac73e941d19e8f7fe398dc4e76164c972cab70e2149",
+      "privateSha256": null,
+      "sameBytes": null
+    },
+    {
+      "file": "README.md",
+      "canonicalSha256": "3bfe870ffd5a095d92d2683df7d7a0e42a331757a37e11b43798c1c5f970419e",
+      "privateSha256": "3bfe870ffd5a095d92d2683df7d7a0e42a331757a37e11b43798c1c5f970419e",
+      "sameBytes": true
+    },
+    {
+      "file": "logical-tester-ledger.md",
+      "canonicalSha256": "35ed2a3625aa7fc75b6d68e8bfb30479abcd4b4eae772d17e56d4d217b4e10e1",
+      "privateSha256": "cde067ea179e369904b476c009016b138ed526ddf3da89cc0583f151be2a4f30",
+      "sameBytes": false
+    },
+    {
+      "file": "logical-tester-ledger.json",
+      "canonicalSha256": "3bba57ce30c3bd9550c04fd08a9e79d4a2c8dffa7f482e7fde7829c78ddd57fb",
+      "privateSha256": "3bba57ce30c3bd9550c04fd08a9e79d4a2c8dffa7f482e7fde7829c78ddd57fb",
+      "sameBytes": true
+    },
+    {
+      "file": "restart-interruption.json",
+      "canonicalSha256": "b51db787d41b48b97d6df6b44098e0145a4e54e36645d598cb9d6f875a2c8d6b",
+      "privateSha256": "b51db787d41b48b97d6df6b44098e0145a4e54e36645d598cb9d6f875a2c8d6b",
+      "sameBytes": true
+    },
+    {
+      "file": "director-image-observations.json",
+      "canonicalSha256": "3f39b55c9fb70016548d0f54eba4f92f49ac06020285d0dd5754d42ddd820400",
+      "privateSha256": "24a7117f7f38164e660397acf0bbe6a63d11cf23b0405abab6bb76f97807269e",
+      "sameBytes": false
+    },
+    {
+      "file": "sara/report.md",
+      "canonicalSha256": "f86f088311bb9f9a55ca1094cce8b66c22659cc0c29059018bd219a3654daa9e",
+      "privateSha256": "47e4aff953113b26d53a104e5341a72b75f2d18751b5ab4d7f9f8d508eec8e1b",
+      "sameBytes": false
+    },
+    {
+      "file": "sara/dispatch.json",
+      "canonicalSha256": "e5c68585b3538c8451843fcfb158a867bc532d6ab974c76e48e4c02520bd7606",
+      "privateSha256": "e5c68585b3538c8451843fcfb158a867bc532d6ab974c76e48e4c02520bd7606",
+      "sameBytes": true
+    },
+    {
+      "file": "sara/report.original.md.txt",
+      "canonicalSha256": "47e4aff953113b26d53a104e5341a72b75f2d18751b5ab4d7f9f8d508eec8e1b",
+      "privateSha256": "47e4aff953113b26d53a104e5341a72b75f2d18751b5ab4d7f9f8d508eec8e1b",
+      "sameBytes": true
+    },
+    {
+      "file": "sara/validation.json",
+      "canonicalSha256": "eb2f65723de238a119b612272f71587834b79d0c81f989d408b39709e985d2f9",
+      "privateSha256": "e5639f96031801b949d0523a03b8c79e7d19512109cb3b1fec62d1a1a5d4a458",
+      "sameBytes": false
+    },
+    {
+      "file": "sara/brief.original.md.txt",
+      "canonicalSha256": "f8dc4d50698faeb5fe35b17ed1b295eb5acb1f4a4f9e68b97c5e8733a0a32ae3",
+      "privateSha256": "f8dc4d50698faeb5fe35b17ed1b295eb5acb1f4a4f9e68b97c5e8733a0a32ae3",
+      "sameBytes": true
+    },
+    {
+      "file": "sara/own-history.original.md.txt",
+      "canonicalSha256": "158cda670ef3c164caacb765e2bb346563edb2090f7b0ef6f3d7ebad8b370583",
+      "privateSha256": "158cda670ef3c164caacb765e2bb346563edb2090f7b0ef6f3d7ebad8b370583",
+      "sameBytes": true
+    },
+    {
+      "file": "sara/completion.json",
+      "canonicalSha256": "ed67694b54ee7317f177481b8ee439d5a444864bcd43f647005684bfb1ec31a7",
+      "privateSha256": "b87cd4f4b8dc072b273ae0e5b298c0a3d8d6650ce3c04cf880917377717abe75",
+      "sameBytes": false
+    },
+    {
+      "file": "leila/report.md",
+      "canonicalSha256": "bb7e25ca169e192f558e59490b518dfaa263d50a04a84ec73f35a0cfc55e735e",
+      "privateSha256": "16ed17c16868be51a5f4e2e29bb1bb1dcb93f668a3ed12ea80329edb02ed346c",
+      "sameBytes": false
+    },
+    {
+      "file": "leila/dispatch.json",
+      "canonicalSha256": "f8cf5ebbec8ed54c101a23bcd646b9bf33f8fd7468fd3d790002de217c8b4b94",
+      "privateSha256": "f8cf5ebbec8ed54c101a23bcd646b9bf33f8fd7468fd3d790002de217c8b4b94",
+      "sameBytes": true
+    },
+    {
+      "file": "leila/report.original.md.txt",
+      "canonicalSha256": "16ed17c16868be51a5f4e2e29bb1bb1dcb93f668a3ed12ea80329edb02ed346c",
+      "privateSha256": "16ed17c16868be51a5f4e2e29bb1bb1dcb93f668a3ed12ea80329edb02ed346c",
+      "sameBytes": true
+    },
+    {
+      "file": "leila/validation.json",
+      "canonicalSha256": "270f9a57b70fad552822e2512e76249750d0bf392d66c8879e1a2e3f4b72be2a",
+      "privateSha256": "30c11d58d4808076cc2158e02a6e632923993a17dd246cc9abfeb1413dc20828",
+      "sameBytes": false
+    },
+    {
+      "file": "leila/brief.original.md.txt",
+      "canonicalSha256": "6d9699f1f6fd6868363c9639a253de3dfcbc3802b28cb4e76f3bf7bc34ec840a",
+      "privateSha256": "6d9699f1f6fd6868363c9639a253de3dfcbc3802b28cb4e76f3bf7bc34ec840a",
+      "sameBytes": true
+    },
+    {
+      "file": "leila/own-history.original.md.txt",
+      "canonicalSha256": "5e2bcc8f51c118a9f950d336cf66f537743d48517e827d6d97219b6ad3349611",
+      "privateSha256": "5e2bcc8f51c118a9f950d336cf66f537743d48517e827d6d97219b6ad3349611",
+      "sameBytes": true
+    },
+    {
+      "file": "leila/completion.json",
+      "canonicalSha256": "1090cb375fc7bf55b5f3697b334ad922fa64dd4a51287809eb488dfa55780cf0",
+      "privateSha256": "9ca0b5727cb4908ec5f91e0adc233073249c5b5af95fa8edcc7060a06daff807",
+      "sameBytes": false
+    },
+    {
+      "file": "mei/report.md",
+      "canonicalSha256": "41963e5d35ec6aaf3917f338283bd7a286811a85b88b8bac1541a3fbb4de2a6f",
+      "privateSha256": "5c58486c3761a4df3ca62f93171ee6a8105011d3e37d1d40cede64f094014763",
+      "sameBytes": false
+    },
+    {
+      "file": "mei/dispatch.json",
+      "canonicalSha256": "5c438276d3f25cbbe1901aea6e704e3e6a39b0ad1a69925840eb9be1eb37fb60",
+      "privateSha256": "5c438276d3f25cbbe1901aea6e704e3e6a39b0ad1a69925840eb9be1eb37fb60",
+      "sameBytes": true
+    },
+    {
+      "file": "mei/report.original.md.txt",
+      "canonicalSha256": "5c58486c3761a4df3ca62f93171ee6a8105011d3e37d1d40cede64f094014763",
+      "privateSha256": "5c58486c3761a4df3ca62f93171ee6a8105011d3e37d1d40cede64f094014763",
+      "sameBytes": true
+    },
+    {
+      "file": "mei/validation.json",
+      "canonicalSha256": "19f27360208ab9c5aad276de65718094367cb9cee73a31a9c63d8e4362569f6c",
+      "privateSha256": "7feffc3b5a8bbbf916e1b47df2441dd8f020a2587af32032edec559d33931f4a",
+      "sameBytes": false
+    },
+    {
+      "file": "mei/brief.original.md.txt",
+      "canonicalSha256": "a2191014103e4bdcdb41ddd268f5d970dfa598f3131b6ff5607c6091afa084fc",
+      "privateSha256": "a2191014103e4bdcdb41ddd268f5d970dfa598f3131b6ff5607c6091afa084fc",
+      "sameBytes": true
+    },
+    {
+      "file": "mei/own-history.original.md.txt",
+      "canonicalSha256": "8fcc5c76387a33d6c41849e1c905b2bcc0fbe501caaa0fcdc32ecf0c8ae9b693",
+      "privateSha256": "8fcc5c76387a33d6c41849e1c905b2bcc0fbe501caaa0fcdc32ecf0c8ae9b693",
+      "sameBytes": true
+    },
+    {
+      "file": "mei/completion.json",
+      "canonicalSha256": "91f7f5c2151631cf3c338696904fda944af22285a78f0fd22e3795eab45e75a5",
+      "privateSha256": "9b9469d0a76a9a69908a1e90f82ca719519fa2635fd272cb9296c015a444581a",
+      "sameBytes": false
+    },
+    {
+      "file": "samir/report.md",
+      "canonicalSha256": "15e1906deb0eb1bd9aef1849f7243ebcf057e4bce119265a7036663c55e089c7",
+      "privateSha256": "2bfc7a882a9d7fe6651b1e6ea91f8c09a0d96da70a5149562eef585f000266a9",
+      "sameBytes": false
+    },
+    {
+      "file": "samir/dispatch.json",
+      "canonicalSha256": "12768e7f64a27cc145f2a051d935dcf51bef15820deed6ae7f6c118d775dce63",
+      "privateSha256": "12768e7f64a27cc145f2a051d935dcf51bef15820deed6ae7f6c118d775dce63",
+      "sameBytes": true
+    },
+    {
+      "file": "samir/report.original.md.txt",
+      "canonicalSha256": "2bfc7a882a9d7fe6651b1e6ea91f8c09a0d96da70a5149562eef585f000266a9",
+      "privateSha256": "2bfc7a882a9d7fe6651b1e6ea91f8c09a0d96da70a5149562eef585f000266a9",
+      "sameBytes": true
+    },
+    {
+      "file": "samir/validation.json",
+      "canonicalSha256": "a388609586d03d0bae60b6e638d9feda3f3d31bfc41de5c78e9507aff00fecab",
+      "privateSha256": "4ae513be054d75e0ca1c0b03c8488507699a833409a14f857e70ee0266da4539",
+      "sameBytes": false
+    },
+    {
+      "file": "samir/brief.original.md.txt",
+      "canonicalSha256": "4391a0d47cf7bf88e3d94b4ee5228b17711c04d2889ac17f5ab79df646e9f123",
+      "privateSha256": "4391a0d47cf7bf88e3d94b4ee5228b17711c04d2889ac17f5ab79df646e9f123",
+      "sameBytes": true
+    },
+    {
+      "file": "samir/own-history.original.md.txt",
+      "canonicalSha256": "f8f96d68761bf6ab26602877c34444dbab520bfb94cdcc986a3701abe5691dae",
+      "privateSha256": "f8f96d68761bf6ab26602877c34444dbab520bfb94cdcc986a3701abe5691dae",
+      "sameBytes": true
+    },
+    {
+      "file": "samir/completion.json",
+      "canonicalSha256": "3761c5fd6a42c54a1c0f2990bedf611117c3cb26e2b9d8ede2e53da85a75b200",
+      "privateSha256": "c6b76d6cbdd3a047c9b142520c434eb641a98e614e1351138dae89440dcac8d8",
+      "sameBytes": false
+    },
+    {
+      "file": "rosa/report.md",
+      "canonicalSha256": "34771c4a5a9c8386d1f1fcbdb0024a67b8e1f8264c6d8c652fa131f65564a604",
+      "privateSha256": "0fc1b48b45829e050e957e3fdb1bbdebe6d1f67bec3b762afd54575504748688",
+      "sameBytes": false
+    },
+    {
+      "file": "rosa/dispatch.json",
+      "canonicalSha256": "1946aa481d9a44999b91c1f3d58dde8b523514701d0ec80d90dc372b6b53a9d8",
+      "privateSha256": "1946aa481d9a44999b91c1f3d58dde8b523514701d0ec80d90dc372b6b53a9d8",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/report.original.md.txt",
+      "canonicalSha256": "0fc1b48b45829e050e957e3fdb1bbdebe6d1f67bec3b762afd54575504748688",
+      "privateSha256": "0fc1b48b45829e050e957e3fdb1bbdebe6d1f67bec3b762afd54575504748688",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/validation.json",
+      "canonicalSha256": "f95fa0a45a48f8569e1edbff85bf5834c6d02270d43154d73aa8d17cc36f0927",
+      "privateSha256": "f95fa0a45a48f8569e1edbff85bf5834c6d02270d43154d73aa8d17cc36f0927",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/brief.original.md.txt",
+      "canonicalSha256": "363d2855c2667c8d63d7a79cfd8ba8b9c9ff37780ac9c85bea5fbd22e567f1ea",
+      "privateSha256": "363d2855c2667c8d63d7a79cfd8ba8b9c9ff37780ac9c85bea5fbd22e567f1ea",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/own-history.original.md.txt",
+      "canonicalSha256": "1f61dfdb1c471a44850120e7181206fc162e69cee1fd800443eeaf6650208645",
+      "privateSha256": "1f61dfdb1c471a44850120e7181206fc162e69cee1fd800443eeaf6650208645",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/completion.json",
+      "canonicalSha256": "4eebee27e2c33d511426909a83f162c55d79e12aaa8a666152b0d71f597b5325",
+      "privateSha256": "46730a5e6c17d3bb4fc08491e0851fcec2f5c269711e863e11e36ffcc35c23c2",
+      "sameBytes": false
+    },
+    {
+      "file": "rosa/desktop/wall-clock.jsonl",
+      "canonicalSha256": "2cf8589fd81e58aec6e7f3a5e83012af05a5d72fda46520e47aa94cea443337d",
+      "privateSha256": "2cf8589fd81e58aec6e7f3a5e83012af05a5d72fda46520e47aa94cea443337d",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/desktop/driver.out",
+      "canonicalSha256": "217675b969c4e20246fc67eaaa2c7d825858ffa1449f1645ec200cab0b3e72d1",
+      "privateSha256": "217675b969c4e20246fc67eaaa2c7d825858ffa1449f1645ec200cab0b3e72d1",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/desktop/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "rosa/phone/wall-clock.jsonl",
+      "canonicalSha256": "a6f3807e3bdd0e07745bb260e2af3ed4f3649046b2d35a0b6ddb4aacdada7a04",
+      "privateSha256": "a6f3807e3bdd0e07745bb260e2af3ed4f3649046b2d35a0b6ddb4aacdada7a04",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/phone/driver.out",
+      "canonicalSha256": "3b2caa1834cf47a110fbaf728d9ada164498c0a0af3fd3bf65a230f96bb10a4d",
+      "privateSha256": "3b2caa1834cf47a110fbaf728d9ada164498c0a0af3fd3bf65a230f96bb10a4d",
+      "sameBytes": true
+    },
+    {
+      "file": "rosa/phone/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "samir/desktop/wall-clock.jsonl",
+      "canonicalSha256": "d7fe0ced85c1ce0ecf595632af480ae76c1320c03480ce347363c4fa0a940f89",
+      "privateSha256": "d7fe0ced85c1ce0ecf595632af480ae76c1320c03480ce347363c4fa0a940f89",
+      "sameBytes": true
+    },
+    {
+      "file": "samir/desktop/driver.out",
+      "canonicalSha256": "a48ffe59a12aa63c813b036fa8686456bd09f204b2f6d7274679943f791c802a",
+      "privateSha256": "a48ffe59a12aa63c813b036fa8686456bd09f204b2f6d7274679943f791c802a",
+      "sameBytes": true
+    },
+    {
+      "file": "samir/desktop/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "samir/phone/wall-clock.jsonl",
+      "canonicalSha256": "ae32b4ad90335c1c8892aa5aedaf207ad926c9e035ba5eea11526178c70abc05",
+      "privateSha256": "ae32b4ad90335c1c8892aa5aedaf207ad926c9e035ba5eea11526178c70abc05",
+      "sameBytes": true
+    },
+    {
+      "file": "samir/phone/driver.out",
+      "canonicalSha256": "5c5f7c692e86be673b21ac9f11d516aa3ec501674fa58dd3ecd5b1ac3e7b66bf",
+      "privateSha256": "5c5f7c692e86be673b21ac9f11d516aa3ec501674fa58dd3ecd5b1ac3e7b66bf",
+      "sameBytes": true
+    },
+    {
+      "file": "samir/phone/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "mei/desktop/wall-clock.jsonl",
+      "canonicalSha256": "2ed3dc6ac334f1f5c93a3db46106b478cda0c3865b7adcd3307ae6a42aaceba9",
+      "privateSha256": "2ed3dc6ac334f1f5c93a3db46106b478cda0c3865b7adcd3307ae6a42aaceba9",
+      "sameBytes": true
+    },
+    {
+      "file": "mei/desktop/driver.out",
+      "canonicalSha256": "f34024168aa19ce90eaabe78135227ebeaf788ad8dc9f165597c07a12beba576",
+      "privateSha256": "f34024168aa19ce90eaabe78135227ebeaf788ad8dc9f165597c07a12beba576",
+      "sameBytes": true
+    },
+    {
+      "file": "mei/desktop/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "mei/phone/wall-clock.jsonl",
+      "canonicalSha256": "b7a734fafa5a547682c6c6ebd9a6e5ce9be60aa0e9ba49a804466daca2265517",
+      "privateSha256": "b7a734fafa5a547682c6c6ebd9a6e5ce9be60aa0e9ba49a804466daca2265517",
+      "sameBytes": true
+    },
+    {
+      "file": "mei/phone/driver.out",
+      "canonicalSha256": "82f72aa0f7828518e73f5144a504d8f6e2bd3403126783cb972f31b7a3d748a2",
+      "privateSha256": "82f72aa0f7828518e73f5144a504d8f6e2bd3403126783cb972f31b7a3d748a2",
+      "sameBytes": true
+    },
+    {
+      "file": "mei/phone/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "leila/desktop/wall-clock.jsonl",
+      "canonicalSha256": "d668176aceab27aadd23a6fe2a18c9255a43000b99e4831cf50b0a0f386c8e44",
+      "privateSha256": "d668176aceab27aadd23a6fe2a18c9255a43000b99e4831cf50b0a0f386c8e44",
+      "sameBytes": true
+    },
+    {
+      "file": "leila/desktop/driver.out",
+      "canonicalSha256": "4ce68f08ba64874b79f7e27a2f27c82a3c4e1c0ec064c27018d3a6c9674b8682",
+      "privateSha256": "4ce68f08ba64874b79f7e27a2f27c82a3c4e1c0ec064c27018d3a6c9674b8682",
+      "sameBytes": true
+    },
+    {
+      "file": "leila/desktop/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "leila/phone/wall-clock.jsonl",
+      "canonicalSha256": "3cba90ab28767dd60ead9c51a7aa20b2be52b476a592e624e7cb3951ed32c7c9",
+      "privateSha256": "3cba90ab28767dd60ead9c51a7aa20b2be52b476a592e624e7cb3951ed32c7c9",
+      "sameBytes": true
+    },
+    {
+      "file": "leila/phone/driver.out",
+      "canonicalSha256": "1a46516cb6e89b7332a63c17130e1c89873e25a86c413e9b31978ceeae3946d4",
+      "privateSha256": "1a46516cb6e89b7332a63c17130e1c89873e25a86c413e9b31978ceeae3946d4",
+      "sameBytes": true
+    },
+    {
+      "file": "leila/phone/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "sara/desktop/wall-clock.jsonl",
+      "canonicalSha256": "b07a89aa69d36790d8864c11f7e7ff977fffaa9677cd17a7f87ab66c67833f1a",
+      "privateSha256": "b07a89aa69d36790d8864c11f7e7ff977fffaa9677cd17a7f87ab66c67833f1a",
+      "sameBytes": true
+    },
+    {
+      "file": "sara/desktop/driver.out",
+      "canonicalSha256": "83006c1b87b29f6b056d56ae304306381995e582c4381cbf3688f8f200c5895c",
+      "privateSha256": "83006c1b87b29f6b056d56ae304306381995e582c4381cbf3688f8f200c5895c",
+      "sameBytes": true
+    },
+    {
+      "file": "sara/desktop/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    },
+    {
+      "file": "sara/phone/wall-clock.jsonl",
+      "canonicalSha256": "949366c6f76816bedd43df589d8b612e3143e268f93f000f15f6ea1478050d72",
+      "privateSha256": "949366c6f76816bedd43df589d8b612e3143e268f93f000f15f6ea1478050d72",
+      "sameBytes": true
+    },
+    {
+      "file": "sara/phone/driver.out",
+      "canonicalSha256": "a82c2a2f0b1045d85bc81433522a63450510a404ff676fcf4b09eedca3cc642d",
+      "privateSha256": "a82c2a2f0b1045d85bc81433522a63450510a404ff676fcf4b09eedca3cc642d",
+      "sameBytes": true
+    },
+    {
+      "file": "sara/phone/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "sameBytes": false
+    }
+  ]
+}

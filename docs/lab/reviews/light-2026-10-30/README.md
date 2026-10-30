@@ -1,6 +1,11 @@
 # LIGHT panels — 2026-10-30
 
-Remaining: Pass new blockers need a second fix/retest; Good Hands needs its first fix/retest, Glance is next. This batch does not declare overall completion or owner readiness.
+## History protocol correction
+
+Rosa's Good Hands and Glance inputs included an old Warren continued-alternative body. Those original inputs and reports are preserved, and both packets now mark her current observations as history-qualified. They cannot establish clean cross-game recognition or continuity. The effect of the extra memory is unknown. No other standing/cold input in this batch had such a body in the expanded scan. Earlier claims that every supplied history was selected-FREE-only are withdrawn. See [history-qualification.json](history-qualification.json) and the per-game logical ledgers. The source correction changes documentation only; it does not change tester words, ledger quotations, generated data or game behavior.
+
+
+Remaining: Pass new blockers need a second fix/retest; Good Hands and Glance need their first fixed-build retests. This batch does not declare overall completion or owner readiness.
 
 Owner2026-10-30: "Panels can resume lightly. Claude has more usage than Codex until Tuesday." The current authorization uses4standing+1new cold, mostly Claude until2026-11-03, at most2games per round, at most4browser sessions and about6tester processes. Retests only follow blocking asks. Each game finishes after a retest with no new blocking ask or after2fix/retest iterations; remaining asks retain dates. Friends/ShowHN remain paused.
 

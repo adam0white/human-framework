@@ -1,5 +1,12 @@
 # The Glance LIGHT panel — 2026-10-30
 
+## Supplied-history qualification — corrected 2026-10-30
+
+Rosa's supplied own-history file includes an old Warren **continued alternative body** that should not have been supplied as autobiographical memory. This is a director filtering failure. Her declared partial Read range includes that body; its effect on her response is unknown. Her current-game observations, raw report and frozen input remain unchanged. This exposure is **not clean evidence of cross-game recognition or continuity**. Other testers and the cold slot have no such body in the scanned inputs. The round retains Rosa as a history-qualified standing observation, not an unqualified protocol-compliant one.
+
+See [the exact qualification](history-qualification.json). Future briefs filter the alternative and preserve her actual later reports. A future target visit remains a return; this correction does not erase known exposure. Raw originals stay available for audit.
+
+
 Remaining: fix the blocking opening-copy, first-task and phone-layout asks, then retest the same standing players on the actual delivered fix. Taste candidates need inspection and player review before changing the game. No finished-game or owner-acceptance claim.
 
 Collection closed at live e97b91077d9d9f584bf31c8f3fd2ad495d4c5432 / HF4.14.0 / dirty:false. Four standing Sonnet low players: Mei Tan, Samir Haddad, Leila Mansour, Rosa Alvarez. One never-HF cold Opus low player: Sara Lindholm. Each used fresh isolated real Chromium contexts at360x690 and1280x800 and viewed at least one screenshot at each size. All ten sessions ended with voluntary stop logs. Four conditional return passages and Rosa's refusal remain verbatim in the logical ledger; these fictional observations do not estimate human preferences.

@@ -1,0 +1,27 @@
+[
+  {
+    "view": "diego/report.md",
+    "original": "diego/report.original.md.txt",
+    "originalSha256": "f796bca40c67ecf534e3ad10c4d01c5c2e096b43fbdeda71fcdcd035c4606cd3"
+  },
+  {
+    "view": "jonas/report.md",
+    "original": "jonas/report.original.md.txt",
+    "originalSha256": "8232cb48a1d22b16b6c9d549f45bd43b2bd443591a72a71cd83ef73e862cb07d"
+  },
+  {
+    "view": "lena/report.md",
+    "original": "lena/report.original.md.txt",
+    "originalSha256": "1aba71e42f0f1dabf6812b8d4303177966ed83d10d1ec0aa70134d3554b041cb"
+  },
+  {
+    "view": "aisha/report.md",
+    "original": "aisha/report.original.md.txt",
+    "originalSha256": "4aec594d8e1ea1bc503d2082519ae8654dc445cf288950c2fe9ea38502c3c4da"
+  },
+  {
+    "view": "rosa/report.md",
+    "original": "rosa/report.original.md.txt",
+    "originalSha256": "5ee42181ab3a60c07c3e1e66d673cfda147fde992a974bffe8354a20598590c9"
+  }
+]
