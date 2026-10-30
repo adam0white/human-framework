@@ -316,12 +316,15 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
                 });
               return;
             }
-            case 'playtestError':
+            case 'playtestError': {
+              const exporting = exportPending.current;
               exportPending.current = false;
               for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error(msg.message));
-              if (!exportRequest.current.finish(msg.gen)) return;
+              // An accepted Continue whose people could not be restored arrives with no export open.
+              if (!exportRequest.current.finish(msg.gen) && exporting) return;
               setPlaytest({ error: msg.message });
               return;
+            }
             case 'replayed':
               return;
             case 'frame': {

@@ -1328,3 +1328,127 @@ it('keeps native public imports nonowning through export, reimport and local rel
   expect(control.puts).toEqual([]);
   expect(control.allowed.size).toBe(0);
 });
+
+// C86 controls: a genuine accepted Voice Continue, with only the receipt-hashing crypto delayed or failed.
+let voiceWorkerReceive: ((event: MessageEvent) => void) | undefined;
+async function acceptedVoice(heads: Record<string, PersonaEnvelope>) {
+  const { VoiceGame } = await import('../voice/sim/game.ts');
+  const { RecordedGame, voiceHash, voiceState } = await import('../voice/sim/record.ts');
+  const { makePlaytestFile } = await import('./playtest.ts');
+  const rec = new RecordedGame(new VoiceGame(11, 4));
+  rec.apply({ type: 'begin' });
+  rec.apply({ type: 'pause' });
+  const file = {
+    ...(await makePlaytestFile({
+      game: 'voice',
+      seed: 11,
+      scenario: 'voice-4',
+      minute: rec.game.t,
+      log: rec.log,
+      hash: voiceHash(rec.game),
+      engine: requireValue(rec.game.run.c.runtime).save().archive.engine.package,
+      snapshot: voiceState(rec.game),
+      plainSnapshot: true,
+    })),
+    voiceEdition: 'voice-hf4/1',
+    ...nativeRecord('voice', heads),
+  };
+  const replies: Record<string, unknown>[] = [];
+  vi.stubGlobal('addEventListener', (_: string, callback: typeof voiceWorkerReceive) => {
+    voiceWorkerReceive = callback;
+  });
+  vi.stubGlobal('postMessage', (message: Record<string, unknown>) => replies.push(message));
+  await import('../voice/worker.ts');
+  requireValue(voiceWorkerReceive)({
+    data: { type: 'loadPlaytest', gen: 2, local: true, text: JSON.stringify(file) },
+  } as MessageEvent);
+  await vi.waitFor(() => expect(replies.some((r) => r.type === 'replayed')).toBe(true));
+  const accepted = requireValue(replies.find((r) => r.type === 'replayed'));
+  expect(accepted.result).toMatchObject({ matches: true, hash: file.hash, expected: file.hash, driftAt: -1 });
+  return { text: JSON.stringify(file), accepted };
+}
+async function continueVoice(rejectLoad?: (failure: { gen: number; message: string }) => void) {
+  const id = 'hf.cast.riza.voice';
+  const { text, accepted } = await acceptedVoice({ [id]: await head(id) });
+  const worker = new FakeWorker();
+  close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never, rejectLoad);
+  postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1, castPreview: true });
+  postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, local: true, text });
+  await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
+  return { worker, accepted };
+}
+
+it('C86-1: an accepted Continue holds the autosave export and resume until ownership settles, then sends them', async () => {
+  const { worker, accepted } = await continueVoice();
+  const digest = crypto.subtle.digest.bind(crypto.subtle);
+  let release!: () => void;
+  const held = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const spy = vi.spyOn(crypto.subtle, 'digest').mockImplementation(async (...args) => {
+    await held;
+    return digest(...args);
+  });
+  try {
+    worker.reply(accepted);
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    // useVoice has accepted generation 2 here; its first loaded frame asks for an autosave.
+    expect(castState('voice').busy).toBe(true);
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'exportPlaytest' });
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'resume', castRunGeneration: 2 });
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'resume', castRunGeneration: 1 });
+    expect(worker.requests('exportPlaytest')).toHaveLength(0);
+    release();
+    await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
+    expect(worker.requests('exportPlaytest')).toHaveLength(1);
+    expect(worker.requests('resume')).toHaveLength(1);
+  } finally {
+    release();
+    spy.mockRestore();
+  }
+});
+
+it('C86-2: a receipt failure after an accepted Continue clears busy, refuses the save plainly and blocks shelf writes', async () => {
+  const rejectLoad = vi.fn();
+  const { worker, accepted } = await continueVoice(rejectLoad);
+  const spy = vi.spyOn(crypto.subtle, 'digest').mockRejectedValue(new Error('receipt digest failed'));
+  try {
+    worker.reply(accepted);
+    await vi.waitFor(() => expect(rejectLoad).toHaveBeenCalledTimes(1));
+    const failure = rejectLoad.mock.calls[0]?.[0] as { gen: number; message: string };
+    expect(failure.gen).toBe(2);
+    expect(failure.message).toMatch(/could not be restored.*Start a fresh game/);
+    expect(castState('voice')).toMatchObject({ busy: false, status: failure.message });
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'resume', castRunGeneration: 2 });
+    expect(worker.requests('resume')).toHaveLength(0);
+  } finally {
+    spy.mockRestore();
+  }
+});
+
+it('C86-2: a receipt failure from a replaced Continue does not touch the new chapter', async () => {
+  const rejectLoad = vi.fn();
+  const { worker, accepted } = await continueVoice(rejectLoad);
+  let fail!: () => void;
+  const failing = new Promise<never>((_, reject) => {
+    fail = () => reject(new Error('receipt digest failed'));
+  });
+  const spy = vi.spyOn(crypto.subtle, 'digest').mockReturnValue(failing);
+  try {
+    worker.reply(accepted);
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'init',
+      seed: 3,
+      gen: 3,
+      castPreview: true,
+    });
+    const status = castState('voice').status;
+    fail();
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    expect(rejectLoad).not.toHaveBeenCalled();
+    expect(castState('voice')).toMatchObject({ busy: false, status });
+  } finally {
+    spy.mockRestore();
+  }
+});

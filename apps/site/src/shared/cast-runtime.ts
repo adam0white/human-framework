@@ -136,6 +136,8 @@ type State = {
   fileImport?: FileImport;
   pendingInit?: Record<string, unknown>;
   startupQueue?: Record<string, unknown>[];
+  /** Controls sent after a local load is accepted but before its ownership receipts settle. */
+  restoreQueue?: Record<string, unknown>[];
   previewInit?: Record<string, unknown>;
   claiming?: number;
   afterClaim?: Record<string, unknown>[];
@@ -265,6 +267,7 @@ function reset(s: State, gen?: number) {
   s.played = false;
   s.localRestore = undefined;
   s.startupQueue = undefined;
+  s.restoreQueue = undefined;
   s.localLoad = false;
   s.blocked = false;
   s.skipped = [];
@@ -352,7 +355,29 @@ async function restoreOwnership(s: State, value: unknown, generation: number) {
     s.status = 'Local save restored its exact accepted heads. A changed shelf still conflicts.';
   }
   s.busy = false;
+  flushRestoreQueue(s);
   changed();
+}
+/** Delivers controls held while ownership restored, in order, through the ordinary gate. */
+function flushRestoreQueue(s: State) {
+  const queued = s.restoreQueue ?? [];
+  s.restoreQueue = undefined;
+  for (const control of queued) dispatchCastMessage(s.worker, s.game, control);
+}
+const RESTORE_FAILED = "This save's people could not be restored, so it cannot continue. Start a fresh game.";
+/**
+ * A local load whose replay was accepted but whose ownership receipts failed is refused:
+ * HF 4 never continues an old or damaged save without its exact owners. The gate opens
+ * (busy clears) but stays blocked until a fresh start resets it. Obsolete generations are ignored.
+ */
+function failRestore(s: State, generation: number) {
+  if (generation !== s.generation) return;
+  s.busy = false;
+  s.blocked = true;
+  s.restoreQueue = undefined;
+  s.status = RESTORE_FAILED;
+  changed();
+  if (s.runGen !== undefined) s.rejectLoad?.({ gen: s.runGen, message: RESTORE_FAILED });
 }
 async function closeOwned(s: State, terminal: { castId: string; at: number }, generation: number) {
   const parent = s.heads[terminal.castId];
@@ -458,6 +483,7 @@ export function bindCastWorker(
         });
       if (r.ownership && s.localLoad && m.gen === s.runGen) {
         const generation = s.generation;
+        s.restoreQueue ??= [];
         void validateCastRecord(game, {
           castAuthority: r.authority,
           castOwnership: r.ownership,
@@ -474,12 +500,7 @@ export function bindCastWorker(
             s.localSources = record.sources;
             await restoreOwnership(s, record.heads, generation);
           })
-          .catch((e) => {
-            s.status = String(e);
-            s.blocked = true;
-            s.busy = false;
-            changed();
-          });
+          .catch(() => failRestore(s, generation));
       }
       const pending = s.pending.get(r.requestId);
       s.pending.delete(r.requestId);
@@ -493,6 +514,7 @@ export function bindCastWorker(
       const prior = s.loadPrior;
       s.loadPrior = undefined;
       s.busy = false;
+      s.restoreQueue = undefined;
       s.startPrior = undefined;
       Object.assign(s, prior);
       gate(s, prior.gate);
@@ -520,11 +542,11 @@ export function bindCastWorker(
         file.castLocalOnly = s.localOnly ?? false;
         file.castSkipped = [...(s.skipped ?? [])];
       }
-    if (m.type === 'replayed' && m.result?.matches && s.localRestore)
-      void restoreOwnership(s, s.localRestore, s.generation).catch((e) => {
-        s.status = String(e);
-        changed();
-      });
+    if (m.type === 'replayed' && m.result?.matches && s.localRestore) {
+      const generation = s.generation;
+      s.restoreQueue ??= [];
+      void restoreOwnership(s, s.localRestore, generation).catch(() => failRestore(s, generation));
+    }
     if (m.type === 'frame' && m.frame) {
       const f = m.frame;
       if (f.phase !== undefined) s.phase = f.phase;
@@ -704,7 +726,19 @@ function dispatchCastMessage(
     return;
   }
   if (message.type !== 'init') {
-    if (s.blocked || (s.busy && s.localLoad)) return;
+    if (s.blocked) return;
+    if (s.busy && s.localLoad) {
+      // Before replay acceptance nothing passes. After it, ownership is still restoring: hold real
+      // controls and exports for this run. Elapsed frames and reads are not inputs. Stale
+      // generations were already dropped above, and a replacement clears the queue.
+      if (['tick', 'predict', 'why'].includes(String(message.type)) || !s.restoreQueue) return;
+      if (s.restoreQueue.length < 32) s.restoreQueue.push(structuredClone(message));
+      else {
+        s.status = 'Too many controls arrived while this save was restoring. The extra control was refused.';
+        changed();
+      }
+      return;
+    }
     if (s.startupQueue) {
       // No simulation exists yet. Elapsed frames and reads of the previous view are not inputs to the new run.
       if (['tick', 'predict', 'why'].includes(String(message.type))) return;
