@@ -9,7 +9,7 @@
  * `npm run lab:inbox -- --drain` reads missing linked payloads with eight readers for up to one hour.
  * Readers share request pacing and a five-minute pause when the account API throttles.
  * Runs report phase times and keep the entire cache. Only one invocation may write the cache at a time.
- * After interruption, check the PID in `.lab-inbox/.download-lock` before removing that stale lock.
+ * `.lab-inbox/.download-lock` holds the writer's PID; a lock whose process is gone is removed with a notice.
  * With --suggest, only the first word of envelope `who` and notes of at least three words go to
  * Cloudflare Workers AI @cf/cloudflare/clef (never the run, build, game or full identity). Answers stay in
  * suggest/<id>.json; invalid caches are moved aside and re-asked once per invocation.
@@ -167,6 +167,14 @@ function get(key: string, file: string) {
 }
 // Keep below the Cloudflare account API request limit, including other readers.
 // A 429 pauses every reader, rather than making the remaining queue fail at once.
+// Match the HTTP status when Wrangler exposes one, then a few known message forms. An unmatched throttle is
+// an ordinary failure: the record stays pending and is retried on the next run.
+function throttled(error: unknown, text: string) {
+  const status =
+    (error as { status?: unknown; statusCode?: unknown }).status ??
+    (error as { statusCode?: unknown }).statusCode;
+  return status === 429 || /\b429\b|rate.?limit|too many requests|\[code: 971\]/i.test(text);
+}
 let nextPayloadAt = 0;
 let payloadCooldownUntil = 0;
 async function getPayload(key: string, file: string) {
@@ -188,7 +196,7 @@ async function getPayload(key: string, file: string) {
       // Read only the throttle signal; never print CLI output or credentials.
       await new Promise<void>((resolve, reject) => {
         execFile(process.execPath, args, options, (error, stdout, stderr) => {
-          limited = !!error && /\b429\b|rate.?limit/i.test(`${stdout} ${stderr}`);
+          limited = !!error && throttled(error, `${stdout} ${stderr}`);
           if (error) reject(error);
           else resolve();
         });
@@ -227,12 +235,28 @@ type Envelope = {
 
 mkdirSync(dir, { recursive: true });
 // A drain can overlap the hourly caller. One writer owns the cache until exit.
-// After an interrupted process, retain this lock for explicit stale-lock recovery.
+// A process killed by a signal skips its exit handler; a lock whose PID is dead is reclaimed.
 const lock = join(dir, '.download-lock');
-try {
-  writeFileSync(lock, String(process.pid), { flag: 'wx' });
-} catch {
-  throw new Error(`Inbox cache is locked. Check the PID in ${lock} before removing a stale lock.`);
+function holderAlive() {
+  const pid = Number.parseInt(readFileSync(lock, 'utf8'), 10);
+  if (!Number.isInteger(pid) || pid <= 0) return true; // unreadable: assume a writer is mid-create
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return (error as NodeJS.ErrnoException).code !== 'ESRCH';
+  }
+}
+for (let tries = 0; ; tries++) {
+  try {
+    writeFileSync(lock, String(process.pid), { flag: 'wx' });
+    break;
+  } catch {
+    if (tries > 0 || holderAlive())
+      throw new Error(`Inbox cache is locked by a running process. Remove ${lock} only if it is stale.`);
+    console.warn(`Removed stale inbox lock left by a dead process (${lock}).`);
+    rmSync(lock, { force: true });
+  }
 }
 process.once('exit', () => rmSync(lock, { force: true }));
 mkdirSync(join(dir, 'runs'), { recursive: true });
