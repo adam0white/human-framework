@@ -46,7 +46,7 @@
     "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
     "release": "https://valley.adamwhite.work/release.json",
     "checked": "2026-10-30",
-    "reason": "HF 3.0.0 remains live because HF 4 exceeds its simulation and saved-history budgets. The next check is scheduled for November 24, 2026, with Child."
+    "reason": "HF 3.0.0 remains live. HF 4 still exceeds its simulation and saved-history budgets. The next check is scheduled for November 24, 2026, with Child."
   },
   "voice": {
     "framework": "4.15.0",
