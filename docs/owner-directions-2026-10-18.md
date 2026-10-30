@@ -412,3 +412,14 @@ Coordinator reading: the question was whether Workers AI should vary persona rep
 > "Just a reminder that we have 25% of weekly limits left in Codex. The reset is coming around midnight PST. I'd appreciate it if you can actually exhaust the limits by then, then still keep going with your regular good pace afterwards. I think having less code reviews and combining PRs and addressing work together in one coding sessions and whatever else are good ways to speed up and parallelize work here."
 
 Coordinator reading: before a Codex reset, launch enough parallel workers to use the remaining allowance. Each worker combines related work into one session and one PR per repo. Game work takes one hosted Codex review per PR; behaviour-changing HF releases keep their two reviews.
+
+## 2026-10-30 — Billing waits for reset; panels resume lightly; Claude-first until Tuesday; scratch is disposable (Adam, verbatim)
+
+> "No need for actions until they reset. Panels can resume lightly. Claude has more usage than Codex until Tuesday. I don't care about the lab scratch, we can evaluate and fully clean up the entire folder. Cool progress, keep going. I'll try to play and give more feedback soon."
+
+Coordinator reading:
+
+- **Billing:** no change to GitHub Actions billing, and the private repos stay private. Small Works and Commonstead wait for the Actions allowance to reset, then their CI reruns. The recheck is 2026-11-01.
+- **Panels:** lab panels resume at a light pace, with a small round per game and retests only where a round raised a blocking ask.
+- **Allowance:** until Tuesday 2026-11-03, Claude subagents take more of the build work and Codex takes less. Sonnet handles bounded work, and Opus handles hard work and reviews.
+- **Scratch:** `~/code/.lab-scratch` is disposable. It is evaluated and cleaned up, keeping only what running workers and the heartbeat need.
