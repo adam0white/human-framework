@@ -51,3 +51,20 @@ it('captures Kian and Ada after ordinary dawn preparation and replays the comple
   expect(endState(replay(file)).fullHash).toBe(file.end.fullHash);
   actorRuntime(run.state).verify();
 }, 180000);
+
+it('joins travel obligations with a final and and no Oxford comma', async () => {
+  const run = new WatchRun(42);
+  const watch = 'the current watch';
+  const preparation = 'preparations for a visit with Ada';
+  await expect(captureWatchPerson(run.state, 'hf.cast.kian.watch', [watch])).rejects.toThrow(
+    'Finish the current watch in this chapter before continuing elsewhere.',
+  );
+  await expect(captureWatchPerson(run.state, 'hf.cast.kian.watch', [watch, preparation])).rejects.toThrow(
+    'Finish the current watch and preparations for a visit with Ada in this chapter before continuing elsewhere.',
+  );
+  await expect(
+    captureWatchPerson(run.state, 'hf.cast.kian.watch', [watch, preparation, 'the return journey']),
+  ).rejects.toThrow(
+    'Finish the current watch, preparations for a visit with Ada and the return journey in this chapter before continuing elsewhere.',
+  );
+});
