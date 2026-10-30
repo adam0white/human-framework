@@ -6,6 +6,10 @@
  *   replay/<id>.json      the game's own export, to load with the game's "Replay a run file"
  *   index.html            every run with its note, newest first; open it in a browser
  * Options: --days=N (default 30) limits which runs are downloaded. --suggest opts into Clef suggestions.
+ * `npm run lab:inbox -- --drain` reads missing linked payloads with eight readers for up to one hour.
+ * Readers share request pacing and a five-minute pause when the account API throttles.
+ * Runs report phase times and keep the entire cache. Only one invocation may write the cache at a time.
+ * After interruption, check the PID in `.lab-inbox/.download-lock` before removing that stale lock.
  * With --suggest, only the first word of envelope `who` and notes of at least three words go to
  * Cloudflare Workers AI @cf/cloudflare/clef (never the run, build, game or full identity). Answers stay in
  * suggest/<id>.json; invalid caches are moved aside and re-asked once per invocation.
@@ -17,9 +21,10 @@
  * response usage reaches 0.05 USD per invocation or usage cannot be read. Shared daily/lifetime reservations also apply. Cached answers cost nothing.
  * The page reports a stop.
  */
-import { execFileSync } from 'node:child_process';
+import { execFile, execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { setTimeout as sleep } from 'node:timers/promises';
 import { gunzipSync } from 'node:zlib';
 import {
   type LinkedEntry,
@@ -107,45 +112,98 @@ const dir = join(root, '.lab-inbox');
 const BUCKET = 'hf-lab';
 const days = Number(process.argv.find((a) => a.startsWith('--days='))?.slice(7) ?? 30);
 
-// Leave time for local validation/rendering within a 90-second heartbeat. Each R2 read
-// has its own timeout; a stalled CLI cannot consume the entire download budget.
+// Hourly runs leave time to render within a 90-second heartbeat. An explicit
+// drain gets one hour and eight payload readers; receipts still refresh first.
+const drain = process.argv.includes('--drain');
 const started = Date.now();
-const deadline = started + 65_000;
-function get(key: string, file: string) {
+const deadline = started + (drain ? 3_600_000 : 65_000);
+let phaseStarted = started;
+function phase(name: string) {
+  const now = Date.now();
+  console.log(`Inbox phase ${name}: ${((now - phaseStarted) / 1000).toFixed(1)} s`);
+  phaseStarted = now;
+}
+function download(key: string, file: string) {
   const remaining = deadline - Date.now();
   if (remaining <= 0) throw new Error('Inbox download budget exhausted');
-  const temporary = `${file}.partial`;
+  return {
+    temporary: `${file}.partial`,
+    args: [
+      join(root, 'node_modules/wrangler/wrangler-dist/cli.js'),
+      'r2',
+      'object',
+      'get',
+      `${BUCKET}/${key}`,
+      '--remote',
+      '--file',
+      `${file}.partial`,
+    ],
+    options: {
+      cwd: root,
+      timeout: Math.min(10_000, remaining),
+      killSignal: 'SIGKILL' as const,
+    },
+  };
+}
+function acceptDownload(key: string, temporary: string, file: string) {
+  // Validate before replacing any cached receipt or compressed payload.
+  if (key.startsWith('linked/')) gunzipSync(readFileSync(temporary), { maxOutputLength: 4 * 1024 * 1024 });
+  else if (key.endsWith('.json')) {
+    const value = JSON.parse(readFileSync(temporary, 'utf8'));
+    const field =
+      key === 'private/index.json' ? 'runs' : key === 'private/linked-index.json' ? 'days' : 'records';
+    if (!value || !Array.isArray(value[field])) throw new Error('Invalid inbox receipt');
+  }
+  renameSync(temporary, file);
+}
+function get(key: string, file: string) {
+  const { temporary, args, options } = download(key, file);
   try {
-    execFileSync(
-      process.execPath,
-      [
-        join(root, 'node_modules/wrangler/wrangler-dist/cli.js'),
-        'r2',
-        'object',
-        'get',
-        `${BUCKET}/${key}`,
-        '--remote',
-        '--file',
-        temporary,
-      ],
-      {
-        cwd: root,
-        stdio: ['ignore', 'ignore', 'pipe'],
-        timeout: Math.min(10_000, remaining),
-        killSignal: 'SIGKILL',
-      },
-    );
-    // Validate before replacing any cached receipt or compressed payload.
-    if (key.startsWith('linked/')) gunzipSync(readFileSync(temporary), { maxOutputLength: 4 * 1024 * 1024 });
-    else if (key.endsWith('.json')) {
-      const value = JSON.parse(readFileSync(temporary, 'utf8'));
-      const field =
-        key === 'private/index.json' ? 'runs' : key === 'private/linked-index.json' ? 'days' : 'records';
-      if (!value || !Array.isArray(value[field])) throw new Error('Invalid inbox receipt');
-    }
-    renameSync(temporary, file);
+    execFileSync(process.execPath, args, { ...options, stdio: ['ignore', 'ignore', 'pipe'] });
+    acceptDownload(key, temporary, file);
   } finally {
     rmSync(temporary, { force: true });
+  }
+}
+// Keep below the Cloudflare account API request limit, including other readers.
+// A 429 pauses every reader, rather than making the remaining queue fail at once.
+let nextPayloadAt = 0;
+let payloadCooldownUntil = 0;
+async function getPayload(key: string, file: string) {
+  if (!drain) return get(key, file);
+  for (let attempt = 0; attempt < 3; attempt++) {
+    for (;;) {
+      const now = Date.now();
+      const ready = Math.max(nextPayloadAt, payloadCooldownUntil);
+      if (now >= deadline) throw new Error('Inbox download budget exhausted');
+      if (now >= ready) {
+        nextPayloadAt = now + 350;
+        break;
+      }
+      await sleep(Math.min(ready - now, deadline - now));
+    }
+    const { temporary, args, options } = download(key, file);
+    let limited = false;
+    try {
+      // Read only the throttle signal; never print CLI output or credentials.
+      await new Promise<void>((resolve, reject) => {
+        execFile(process.execPath, args, options, (error, stdout, stderr) => {
+          limited = !!error && /\b429\b|rate.?limit/i.test(`${stdout} ${stderr}`);
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      acceptDownload(key, temporary, file);
+      return;
+    } catch (error) {
+      if (!limited) throw error;
+      if (Date.now() >= payloadCooldownUntil)
+        console.warn('Inbox API throttled; pausing payload readers for five minutes.');
+      payloadCooldownUntil = Math.max(payloadCooldownUntil, Date.now() + 300_000);
+      if (attempt === 2) throw new Error('Inbox API remains throttled; record retained for retry');
+    } finally {
+      rmSync(temporary, { force: true });
+    }
   }
 }
 
@@ -167,6 +225,16 @@ type Envelope = {
   run: unknown;
 };
 
+mkdirSync(dir, { recursive: true });
+// A drain can overlap the hourly caller. One writer owns the cache until exit.
+// After an interrupted process, retain this lock for explicit stale-lock recovery.
+const lock = join(dir, '.download-lock');
+try {
+  writeFileSync(lock, String(process.pid), { flag: 'wx' });
+} catch {
+  throw new Error(`Inbox cache is locked. Check the PID in ${lock} before removing a stale lock.`);
+}
+process.once('exit', () => rmSync(lock, { force: true }));
 mkdirSync(join(dir, 'runs'), { recursive: true });
 mkdirSync(join(dir, 'replay'), { recursive: true });
 mkdirSync(join(dir, 'gz'), { recursive: true });
@@ -200,12 +268,14 @@ mkdirSync(join(dir, 'linked-save'), { recursive: true });
 let linkedWarning = '';
 let pending = 0;
 const receiptEntries = new Map<string, LinkedEntry>();
+phase('legacy index and cache setup');
 const rootIndex = join(dir, 'linked-index.json');
 try {
   get('private/linked-index.json', rootIndex);
 } catch {
   linkedWarning = 'Linked receipt refresh unavailable; cached files are retained.';
 }
+phase('linked manifest');
 const manifest = existsSync(rootIndex)
   ? (JSON.parse(readFileSync(rootIndex, 'utf8')) as { days: string[] })
   : { days: [] };
@@ -251,21 +321,21 @@ for (const day of receiptDays) {
     receiptEntries.set(entry.key, entry);
   }
 }
+phase('linked receipt days');
 // Notes first so owner feedback does not wait behind replay chunks. Within each
 // class the oldest missing receipt wins; a failed object does not block the rest.
 const queue = [...receiptEntries.values()].sort(
   (a, b) =>
     Number(b.kind === 'note') - Number(a.kind === 'note') || a.at - b.at || a.key.localeCompare(b.key),
 );
-for (const entry of queue) {
+async function receive(entry: LinkedEntry): Promise<LinkedRecord | undefined> {
   const file = join(dir, 'linked', `${entry.player}-${entry.id}.json`);
   try {
     if (existsSync(file)) {
       try {
         const record: unknown = JSON.parse(readFileSync(file, 'utf8'));
         if (!matches(record, entry)) throw new Error('Linked cache mismatch');
-        linkedRecords.push(record);
-        continue;
+        return record;
       } catch {
         // Repair atomically below; retain the original until a valid replacement exists.
       }
@@ -276,16 +346,39 @@ for (const entry of queue) {
       // Reuse complete compressed files left by an interrupted invocation.
       received = decodeLinked(gz, entry);
     } catch {
-      get(entry.key, gz);
+      await getPayload(entry.key, gz);
       received = decodeLinked(gz, entry);
     }
     writeFileSync(`${file}.partial`, received.text);
     renameSync(`${file}.partial`, file);
-    linkedRecords.push(received.record);
+    return received.record;
   } catch {
     pending++;
+    return undefined;
   }
 }
+// Each worker claims one distinct key. Preserve queue order in the rendered data.
+const received = new Array<LinkedRecord | undefined>(queue.length);
+let next = 0;
+let completed = 0;
+let progressAt = Date.now();
+await Promise.all(
+  Array.from({ length: drain ? 8 : 1 }, async () => {
+    while (next < queue.length) {
+      const index = next++;
+      const entry = queue[index];
+      if (!entry) continue;
+      received[index] = await receive(entry);
+      completed++;
+      if (drain && Date.now() - progressAt >= 30_000) {
+        console.log(`Inbox drain: ${completed}/${queue.length} checked; ${pending} pending so far.`);
+        progressAt = Date.now();
+      }
+    }
+  }),
+);
+for (const record of received) if (record) linkedRecords.push(record);
+phase('linked payloads and cache validation');
 function decodeLinked(file: string, entry: LinkedEntry) {
   const text = gunzipSync(readFileSync(file), { maxOutputLength: 4 * 1024 * 1024 }).toString('utf8');
   const record: unknown = JSON.parse(text);
@@ -325,6 +418,7 @@ for (const e of entries) {
   legacyRuns.push({ entry: e, env, suggestion });
 }
 
+phase('legacy payloads');
 const names = playerNames(linkedRecords);
 const playerLabel = (player: string) =>
   names.get(player) ? `${names.get(player)} · player ${player}` : `Player ${player}`;
@@ -425,6 +519,7 @@ ${linkedWarning ? `<p>${esc(linkedWarning)}</p>` : ''}${sections.join('\n')}
 </html>
 `,
 );
+phase('render and exports');
 console.log(
   `One cast: ${personas.milestones} received milestones, ${personas.joins} shared-only linked branches, ${personas.fileJoins} file-origin linked branches, ${personas.incomplete} incomplete uploads excluded.`,
 );
