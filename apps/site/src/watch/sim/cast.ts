@@ -1,5 +1,12 @@
 /** Watch-only portable authoring and exact complete source checkpoints. */
-import { exportRun, type PersonAuthoring, type PortableAdmission } from '@adam0white/human-framework';
+import {
+  type DeepReadonly,
+  exportRun,
+  inspect,
+  type PersonAuthoring,
+  type PortableAdmission,
+  type PortablePerson,
+} from '@adam0white/human-framework';
 import {
   admitPortablePerson,
   canonicalCast,
@@ -9,8 +16,10 @@ import {
   portableWriteBlockers,
 } from '@adam0white/lab-client';
 import type { CastPersonChapter, SourceCheckpoint } from '../../shared/cast-chapter.ts';
-import { type ActorHost, actorRuntime } from './actor.ts';
+import { type ActorHost, actorRuntime, readActor } from './actor.ts';
 import { WATCH_CAST } from './config.ts';
+import { refugeVisitPassport } from './refuge-visit.ts';
+import type { WatchState } from './state.ts';
 export type WatchPersonChapter = CastPersonChapter & {
   mapping?: PortableAdmission['mapping'];
   portable?: PortableAdmission;
@@ -56,8 +65,38 @@ export function admitWatchPerson(opening: PersonAuthoring, single: WatchPersonCh
   single.initial = canonicalPersona(person);
   return person;
 }
+/** Freeze one actual quiet HF boundary after the agreed care settles. The retained
+ * projection carries its calendar and pending return duty; Ada rides beside it. */
+export function captureRefugeDeparture(s: WatchState): boolean {
+  if (s.refugeDeparture || s.actors.queued.length) return false;
+  const watchCare = refugeVisitPassport(s);
+  const person = readActor(s, 'kian');
+  if (!watchCare || !person) return false;
+  const runtime = actorRuntime(s);
+  const castId = WATCH_CAST.kian!;
+  const result = inspect(runtime.run, {
+    perspective: { kind: 'host' },
+    people: ['kian'],
+    select: ['persona'],
+    portable: { person: 'kian', castId, castRevision: canonicalCast(castId).revision },
+  });
+  if (!result.ok) {
+    if (result.error.code === 'invalid-admission') return false;
+    throw new Error(result.error.message);
+  }
+  const p = result.value.people[0];
+  const part = p?.kind === 'host' ? p.parts.find((part) => part.select === 'persona') : undefined;
+  if (part?.select !== 'persona' || part.value.version !== 2) return false;
+  s.refugeDeparture = {
+    person: structuredClone(person),
+    watchCare,
+    portable: part.value,
+    archive: exportRun(runtime.run),
+  };
+  return true;
+}
 export async function captureWatchPerson(
-  s: ActorHost,
+  s: ActorHost & { refugeDeparture?: WatchState['refugeDeparture'] },
   castId: string,
   hostObligations: readonly string[],
 ): Promise<SourceCheckpoint> {
@@ -72,17 +111,22 @@ export async function captureWatchPerson(
     throw new Error(`Finish ${hostObligations.join(', ')} in this chapter before continuing elsewhere.`);
   const runtime = actorRuntime(s),
     cast = canonicalCast(castId);
-  const result = runtime.read({
-    perspective: { kind: 'host' },
-    people: [role],
-    select: ['persona'],
-    portable: { person: role, castId, castRevision: cast.revision },
-  });
-  const p = result.people[0],
-    part = p?.kind === 'host' ? p.parts.find((part) => part.select === 'persona') : undefined;
-  if (part?.select !== 'persona')
-    throw new Error('The current person has no supported departure checkpoint.');
-  const sourceSnapshot = exportRun(runtime.run);
+  const departure = role === 'kian' ? s.refugeDeparture : undefined;
+  let portable: DeepReadonly<PortablePerson> | undefined = departure?.portable;
+  if (!portable) {
+    const result = runtime.read({
+      perspective: { kind: 'host' },
+      people: [role],
+      select: ['persona'],
+      portable: { person: role, castId, castRevision: cast.revision },
+    });
+    const p = result.people[0],
+      part = p?.kind === 'host' ? p.parts.find((part) => part.select === 'persona') : undefined;
+    if (part?.select !== 'persona')
+      throw new Error('The current person has no supported departure checkpoint.');
+    portable = part.value;
+  }
+  const sourceSnapshot = departure?.archive ?? exportRun(runtime.run);
   const sha256 = Array.from(
     new Uint8Array(
       await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(sourceSnapshot))),
@@ -91,8 +135,9 @@ export async function captureWatchPerson(
   ).join('');
   return Object.defineProperty(
     {
-      castPassport: `hf-portable-person/${part.value.version}`,
-      portable: part.value,
+      castPassport: `hf-portable-person/${portable.version}`,
+      portable,
+      ...(departure ? { watchCare: departure.watchCare } : {}),
       sourceRole: castId.split('.')[2],
       checkpoint: {
         kind: 'hf-run/1',

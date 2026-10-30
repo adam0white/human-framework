@@ -428,6 +428,9 @@ export class WatchWorld {
 
   affordancesFor(p: Person): Affordance[] {
     if (!isWatcher(this.s, p, p.now)) return this.homeOffers(p);
+    // Dawn closes the watch before the last actor minute is advanced. Publishing
+    // another night offer here could mark legitimate daytime sleep as desertion.
+    if (this.s.phase === 'dawn') return this.dayOffers(p);
     return isWatchTime(p.now) ? this.watchOffers(p) : this.dayOffers(p);
   }
 
@@ -626,7 +629,8 @@ export class WatchWorld {
         effort: 0,
         mode: 'sleep',
         advertises: { sleep: 0.8, rest: 0.4 },
-        norms: LEAVE,
+        // The Keeper offers this night off; accepting it does not abandon an assigned watch.
+        norms: [],
       });
     const family = familyWords(s, id);
     const homeThreat = family !== null && (s.homeThreat[v.home] ?? -1e9) > p.now - 60;

@@ -110,7 +110,7 @@ export function stayRefugeVisit(s: WatchState): boolean {
   visit.status = 'staying';
   return true;
 }
-/** A bounded referenced dependent snapshot stays in source save/export, not the central shelf. */
+/** Bounded dependent care accompanies Kian’s retained passport; the complete source stays in the chapter. */
 type CarePassport = {
   agreement: RefugeVisit;
   care: { commitment: import('./actor.ts').Person['agenda']['commitments'][number]; completedAt: number };
@@ -141,7 +141,7 @@ export function refugeVisitPassport(s: WatchState): CarePassport | undefined {
   const duty = kian.agenda.commitments.find((c) => c.id === agreement.commitmentId);
   if (
     duty?.status !== 'kept' ||
-    !Number.isSafeInteger(agreement.careCompletedAt) ||
+    !Number.isFinite(agreement.careCompletedAt) ||
     duty.toId !== 'ada' ||
     duty.targetId !== 'ada' ||
     duty.until !== minuteMs(agreement.returnBy) ||

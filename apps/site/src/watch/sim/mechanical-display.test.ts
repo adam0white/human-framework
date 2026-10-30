@@ -82,7 +82,7 @@ it('new proposal holds survive current save/restore and replay; older cast pages
   const restored = WatchRun.resume(JSON.parse(run.snapshotText()));
   expect(restored.state.proposalHolds).toEqual({});
   const exp = run.export();
-  expect(exp.scenario).toBe(25);
+  expect(exp.scenario).toBe(26);
   expect(ruleHash(replay(exp))).toBe(exp.end.ruleHash);
   const legacy = run.snapshot();
   legacy.scenario = 9;

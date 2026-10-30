@@ -19,7 +19,7 @@ it('explains rejected native commands without changing the run, and replays the 
   try {
     run('new', '11', 'start', 'begin');
     const before = JSON.parse(readFileSync(state, 'utf8'));
-    expect(before.snap.scenario).toBe(25);
+    expect(before.snap.scenario).toBe(26);
     expect(before.snap.state.duskRest?.edition).toBe('dusk-rest@1');
     expect(before.snap.state.localWarning?.edition).toBe('local-warning@1');
     const reference = new WatchRun(11);
