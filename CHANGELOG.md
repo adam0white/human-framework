@@ -11,6 +11,14 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## SDK companion candidates — client 0.5.16 / kit 0.5.33
+
+- Client defers the initial shelf consent exchange until synchronous bundle initialization completes. This fixes the fresh central bridge failure without changing consent, origin or MessagePort checks.
+- Reader certificates may declare a readonly `castIds` allowlist. Omission retains existing unscoped coverage; an empty list covers nobody. Unlisted people remain blocked. The client 0.5.5 floor, per-person skips, source validation, clinical refusals and atomic expected-head checks remain.
+- Candidate reader coverage adds Glance, optional Good Hands roles, Rope, Stairwell, Hearsay and Pass with retained source/live receipts. Good Hands' required Nermin remains excluded. Stairwell's rendered UI remains unverified; its safety proof uses headless/native/file replay and exact live HTTP assets. Pending Murmur and Voice entries block publication until their exact live reader qualification. The [rollout record](docs/lab/reader-rollout-2026-10-30.md) defines the release gate.
+- Central apps validate complete cast authority before native/file activation or source writes. Voice keeps its refusal notice below the toolbar, correlates full exports by request ID, and keeps indivisible eager comparisons out of the file request loop. Current app runtime remains published client15/kit32; fresh initialization proof requires the later immutable16/33 adoption.
+- Migration: candidates only. Client retains exact embedded HF 4.15.0 and its explicit legacy alias; no HF actor change. Older HF hosts may retain their current certified SDK rather than add another current HF instance. Kit adds exactly client 0.5.16 to its peer list. App pins remain on their existing immutable artifacts until publication and separate adoption. No journey is established.
+
 ## SDK companion candidates — client 0.5.15 / kit 0.5.32
 
 - Client 0.5.15 binds the six Neighbours cast identities to their authored actor roles: Nora/ada, Derya/elin, Sam/sam, Bilal/jo, Rafi/ravi and Ece/noor. The existing source, ownership and reader checks remain in force; these bindings do not certify Neighbours admission or custody.

@@ -1,3 +1,4 @@
+import { type CastAuthority, localCastAuthority, validateCastRecord } from '../shared/cast-authority.ts';
 import { castRole, chapterPeople } from '../shared/cast-chapter.ts';
 import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
 import { checkGameFile } from '../shared/file-sources.ts';
@@ -42,6 +43,8 @@ let fileImport: FileImport | undefined;
 /** Only the latest explicit init/load may install a run after storage awaits. */
 let loadOperation = 0;
 let castOwnership: import('../shared/cast-runtime.ts').CastHeads = {};
+let castAuthority: CastAuthority | undefined;
+let castSources: Record<string, unknown> = {};
 let castLocalOnly = false;
 let castSkipped: string[] = [];
 const pacer = new Pacer();
@@ -133,7 +136,14 @@ function save(kind: PageInfo['kind']): void {
     savedInputs = run.log.length;
     sinceSave = 0;
   }
-  const text = JSON.stringify({ ...snapshot, castOwnership, castLocalOnly, castSkipped });
+  const text = JSON.stringify({
+    ...snapshot,
+    castOwnership,
+    castLocalOnly,
+    castSkipped,
+    castAuthority,
+    castSources,
+  });
   const gen = host.gen;
   void savePage(info, text).then((ok) => {
     if (!ok) {
@@ -214,6 +224,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
   };
   if (msg.type === 'castOwnership') {
     castOwnership = structuredClone(msg.heads);
+    castAuthority = structuredClone(msg.authority);
+    castSources = structuredClone(msg.sources ?? {});
     castLocalOnly = msg.localOnly ?? false;
     castSkipped = structuredClone(msg.skipped ?? []);
     deaths();
@@ -271,6 +283,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       if (operation !== loadOperation) return;
       fileImport = source;
       imported = structuredClone(raw) as unknown as Record<string, unknown>;
+      castAuthority = localCastAuthority();
+      castSources = {};
       castOwnership = {};
       castLocalOnly = true;
       castSkipped = [];
@@ -362,6 +376,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         return;
       }
       if (run && behind()) save('auto');
+      castAuthority = undefined;
+      castSources = {};
       castOwnership = {};
       castLocalOnly = false;
       castSkipped = [];
@@ -470,6 +486,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         let next: WatchRun | null = null;
         let loadError: string | undefined;
         try {
+          if (snap)
+            await validateCastRecord(
+              'watch',
+              snap as unknown as Record<string, unknown>,
+              snap.fileOrigin ? { provenanceOnly: true } : {},
+            );
           next = snap ? WatchRun.resume(snap) : null;
           // A page that parses but has the wrong shape fails here, before it replaces the running game
           // (security review H2, S4), not on the next tick.
@@ -487,6 +509,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         // A closed volume taken up again is a new chronicle; a running page continues its own.
         const fork = id.includes(':vol:');
         begin(next, fork ? newChronicleId() : (id.split(':')[0] ?? id));
+        castAuthority = snap?.fileOrigin ? localCastAuthority() : structuredClone(snap?.castAuthority);
+        castSources = snap?.fileOrigin ? {} : structuredClone(snap?.castSources ?? {});
         castOwnership = snap?.fileOrigin ? {} : structuredClone(snap?.castOwnership ?? {});
         castLocalOnly = snap?.fileOrigin ? true : (snap?.castLocalOnly ?? false);
         castSkipped = snap?.fileOrigin ? [] : structuredClone(snap?.castSkipped ?? []);
@@ -495,7 +519,10 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         host.post({
           type: 'castReady',
           requestId: 0,
+          ...(snap?.fileOrigin ? { fileOrigin: true as const } : {}),
           ownership: castOwnership,
+          authority: castAuthority,
+          sources: castSources,
           localOnly: castLocalOnly,
           skipped: castSkipped,
         });

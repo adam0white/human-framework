@@ -7,37 +7,37 @@
   },
   "stairwell": {
     "framework": "4.14.0",
-    "commit": "a3fffc20faf846e0ee2a4fdd8cd7d6567c81ea1a",
+    "commit": "ecf6da82b7a6e267f4f8165eab0990cb271a614d",
     "release": "https://stairwell.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
   "pass": {
     "framework": "4.12.0",
-    "commit": "8eff0b3fa658eef90318ee5029dc948d2ee9d85b",
+    "commit": "b6e919a8601554aa2aac34045286f1b3cf8f9245",
     "release": "https://pass.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
   "glance": {
     "framework": "4.14.0",
-    "commit": "d496d39fd4f7173bb5674eca4ece07d8db3b5fc0",
+    "commit": "e97b91077d9d9f584bf31c8f3fd2ad495d4c5432",
     "release": "https://glance.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
   "watch": {
     "framework": "4.15.0",
-    "commit": "097892eacdcb64a8ca8c127213e604bee0bf7eb7",
+    "commit": "19974c5329b6e164346bc5367d2c50ae0f225c3c",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
   "hearsay": {
     "framework": "4.12.0",
-    "commit": "f99e153e8ff2a7b78331f4c7cdb73989342b704f",
+    "commit": "76ebfb8f73956e1bbdc5cc6318d9f15e453d105b",
     "release": "https://hearsay.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
   "goodhands": {
     "framework": "4.8.1",
-    "commit": "df5e3f20e02603e022081422f76811eecacc3bad",
+    "commit": "25d428213bd451eab2fa374be3c9ad499fa04ec2",
     "release": "https://goodhands.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
@@ -50,19 +50,19 @@
   },
   "voice": {
     "framework": "4.15.0",
-    "commit": "097892eacdcb64a8ca8c127213e604bee0bf7eb7",
+    "commit": "19974c5329b6e164346bc5367d2c50ae0f225c3c",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
   "well": {
     "framework": "4.15.0",
-    "commit": "097892eacdcb64a8ca8c127213e604bee0bf7eb7",
+    "commit": "19974c5329b6e164346bc5367d2c50ae0f225c3c",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
   "warren": {
     "framework": "4.10.0",
-    "commit": "884f730d457b81260be92322a245fbc65eca8aa6",
+    "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
     "release": "https://warren.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },
@@ -80,8 +80,8 @@
     "reason": "HF 3.0.0 remains live. The HF 4 port has failing browser checks and a timed-out stress test. Fix and verify the port before deployment; check again November 3, 2026."
   },
   "rope": {
-    "framework": "4.13.0",
-    "commit": "4291bb183715b5ae444e70ba82ca1a0ec61738d0",
+    "framework": "4.15.0",
+    "commit": "3fd8b6e53ff9c1f289d87ea0998f3518db627ae9",
     "release": "https://rope.adamwhite.work/release.json",
     "checked": "2026-10-30"
   },

@@ -1,4 +1,5 @@
 import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
+import { validateCastRecord } from './cast-authority.ts';
 import { MAX_PLAYTEST_BYTES } from './playtest.ts';
 
 /** Imported receipt archives are kept as history only; validate their binding without any Shelf access. */
@@ -53,6 +54,13 @@ export async function checkGameFile(text: string): Promise<Record<string, unknow
   const raw: unknown = JSON.parse(text);
   if (!raw || typeof raw !== 'object' || Array.isArray(raw))
     throw new Error('This file does not contain a game. Keep the original file and choose another export.');
+  if ('castAuthority' in raw) {
+    const game = (raw as Record<string, unknown>).game;
+    const host = game === 'colony' ? 'well' : game === 'the-night-watch' ? 'watch' : game;
+    if (host !== 'well' && host !== 'watch' && host !== 'voice')
+      throw new Error('Unknown character authority host.');
+    await validateCastRecord(host, raw as Record<string, unknown>, { provenanceOnly: true });
+  }
   await validateFileSources(raw as Record<string, unknown>);
   return raw as Record<string, unknown>;
 }

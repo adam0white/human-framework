@@ -297,7 +297,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
                 exportAgain.current = false;
                 requestSave();
               }
-              const ticket = exportRequest.current.ticket(msg.gen);
+              const ticket = exportRequest.current.replyTicket(msg.gen, msg.requestId);
               if (ticket === null) return;
               const file = msg.file;
               const toLab = exportRequest.current.destination(msg.gen);
@@ -748,12 +748,20 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       sendPlaytest: () => {
         if (!exportRequest.current.begin(gen.current, true)) return;
         setPlaytest({ busy: 'export' });
-        send({ type: 'exportPlaytest', ...(fileSession ? { full: true } : {}) });
+        send({
+          type: 'exportPlaytest',
+          full: true,
+          requestId: exportRequest.current.ticket(gen.current) ?? undefined,
+        });
       },
       exportPlaytest: () => {
         if (!exportRequest.current.begin(gen.current, false)) return;
         setPlaytest({ busy: 'export' });
-        send({ type: 'exportPlaytest', ...(fileSession ? { full: true } : {}) });
+        send({
+          type: 'exportPlaytest',
+          full: true,
+          requestId: exportRequest.current.ticket(gen.current) ?? undefined,
+        });
       },
       loadPlaytest: (text) => {
         if (automaticReturnPending.current) {

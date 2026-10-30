@@ -99,7 +99,7 @@ it('identifies purchased seed when the actual next harvest uses it', () => {
   expect(line?.text).toContain('Weather, the fields sown and the people working also shaped it.');
   actorRuntime(s).verify();
   // One real daily native step plus full archive verification; this is a correctness allowance, not a game latency budget.
-}, 60_000);
+});
 
 it('keeps unanswered and unaffordable family choices distinct from a completed gift', () => {
   const s = publicFixture();

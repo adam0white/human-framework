@@ -3990,3 +3990,22 @@ button.v-log-btn {
     font-size: max(1rem, 16px);
   }
 }
+
+/* A normal-flow disclosure row keeps the ordinary Game menu pointer target clear. */
+.voice .v-cast-disclosure {
+  flex: none;
+  max-height: 25vh;
+  overflow: auto;
+}
+.voice .v-cast-disclosure:empty {
+  display: none;
+}
+.voice .cast-life-note {
+  position: static;
+  max-inline-size: none;
+  margin: 0.25rem 0.5rem;
+}
+.voice .v-cast-disclosure > [role="status"] {
+  margin: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}

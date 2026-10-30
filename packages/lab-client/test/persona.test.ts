@@ -244,3 +244,48 @@ it('accepts asynchronous shelf replies on the transferred request port without w
   await expect(shelf.request({ action: 'list' })).resolves.toEqual([]);
   expect(post).toHaveBeenCalledTimes(2);
 });
+
+it('starts the first shelf exchange after synchronous module initialization', async () => {
+  const values = new Map<string, string>();
+  let loaded: (() => void) | undefined;
+  const post = vi.fn((message: Record<string, unknown>, origin: string, ports?: MessagePort[]) => {
+    expect(origin).toBe('https://human.adamwhite.work');
+    const port = ports?.[0];
+    expect(port).toBeDefined();
+    queueMicrotask(() => {
+      port?.postMessage({
+        type: message.type === 'hf-persona-consent' ? 'hf-persona-consent-reply' : 'hf-persona-reply',
+        id: message.id,
+        value: message.type === 'hf-persona-consent' ? true : [],
+      });
+      port?.close();
+    });
+  });
+  const frame = {
+    contentWindow: { postMessage: post },
+    addEventListener: (_type: string, fn: () => void) => {
+      loaded = fn;
+    },
+  };
+  let initializing = true;
+  vi.stubGlobal('location', {
+    get origin() {
+      if (initializing) throw new Error('Module initialization is still running.');
+      return 'https://pass.adamwhite.work';
+    },
+  });
+  vi.stubGlobal('localStorage', {
+    getItem: (key: string) => values.get(key) ?? null,
+    setItem: (key: string, value: string) => values.set(key, value),
+  });
+  vi.stubGlobal('document', {
+    body: { append: () => queueMicrotask(() => loaded?.()) },
+    createElement: () => frame,
+  });
+  vi.stubGlobal('window', { addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  const shelf = personaChannel();
+  initializing = false;
+  expect(await shelf.ready).toBe(true);
+  await expect(shelf.request({ action: 'list' })).resolves.toEqual([]);
+  expect(post).toHaveBeenCalledTimes(2);
+});

@@ -155,9 +155,13 @@ vi.mock('./cast-site-claim.ts', async () => {
       options.onDispatch?.();
       await shelf.request({ action: 'putBatch', envelopes: claims, expectedHeads: batch.expectedHeads });
       current();
-      return batch.inputs.length || batch.blocked.length
-        ? { initial, claims, inputs: batch.inputs, blocked: batch.blocked }
-        : null;
+      return {
+        initial,
+        claims,
+        inputs: batch.inputs,
+        blocked: batch.blocked,
+        expectedHeads: batch.expectedHeads,
+      };
     },
   };
 });
@@ -179,6 +183,7 @@ vi.mock('./lab.tsx', () => ({ gameLabs: { voice: lab, well: lab, watch: lab } })
 import {
   acceptPersona,
   acceptPersonaBatch,
+  castForGame,
   createPersona,
   initialPersonaLife,
   preparePersonaLife,
@@ -193,6 +198,33 @@ import {
   startCastFresh,
 } from './cast-runtime.ts';
 
+const fixtureSources = new Map<string, unknown>();
+// TEST ONLY native receipt fixture. Browser qualification uses real fresh admission instead.
+function nativeRecord(game: string, heads: Record<string, PersonaEnvelope> = {}) {
+  return {
+    castOwnership: heads,
+    castSources: Object.fromEntries(
+      Object.entries(heads).flatMap(([id, head]) => {
+        const sha = (head.transfer.checkpoint as { sha256?: string } | undefined)?.sha256;
+        return sha && fixtureSources.has(sha) ? [[id, fixtureSources.get(sha)]] : [];
+      }),
+    ),
+    castLocalOnly: false,
+    castSkipped: [],
+    castAuthority: {
+      format: 'site-cast-authority/1',
+      mode: 'shared',
+      denied: [],
+      expectedHeads: Object.fromEntries(
+        castForGame(game).map((p) => [p.castId, heads[p.castId]?.parentRevision ?? null]),
+      ),
+    },
+  };
+}
+async function emptyAdmission(worker: FakeWorker, game = 'voice') {
+  postCastMessage(worker as unknown as Worker, game, { type: 'init', seed: 1, gen: 1 });
+  await vi.waitFor(() => expect(castState(game).busy).toBe(false));
+}
 class FakeWorker extends EventTarget {
   sent: Record<string, unknown>[] = [];
   postMessage(m: Record<string, unknown>) {
@@ -277,6 +309,7 @@ async function capture(id = 'hf.cast.riza.voice', game = 'voice') {
     ),
     (b) => b.toString(16).padStart(2, '0'),
   ).join('');
+  fixtureSources.set(sha256, archive);
   return {
     sourceSnapshot: archive,
     transfer: {
@@ -359,6 +392,7 @@ describe('browser continuity transport with test admission', () => {
   it('retains object and numeric day extraction for Voice checkpoint boundaries', async () => {
     const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    await emptyAdmission(worker);
     worker.reply({ type: 'frame', frame: { phase: 'day', day: { current: 2 } } });
     worker.reply({ type: 'frame', frame: { phase: 'day', day: 2 } });
     expect(worker.requests('castCheckpoint')).toHaveLength(0);
@@ -377,6 +411,7 @@ describe('browser continuity transport with test admission', () => {
       });
       const worker = new FakeWorker();
       close = bindCastWorker(worker as unknown as Worker, game, lab as never);
+      await emptyAdmission(worker, game);
       selectCast(game, id);
       const captured = await capture(id, game);
       const raw = captured.sourceSnapshot;
@@ -414,12 +449,23 @@ describe('browser continuity transport with test admission', () => {
           ? { type: 'load', gen: 2, id: 'native:auto' }
           : { type: 'loadPlaytest', gen: 2, text: saved, local: true },
       );
+      if (game === 'voice') await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
       worker.reply(
         game === 'watch'
-          ? { type: 'castReady', requestId: 0, gen: 2, ownership: heads }
+          ? {
+              type: 'castReady',
+              requestId: 0,
+              gen: 2,
+              ownership: heads,
+              authority: file.castAuthority,
+              sources: file.castSources,
+              localOnly: false,
+              skipped: [],
+            }
           : { type: 'replayed', gen: 2, result: { matches: true } },
       );
       await vi.waitFor(() => expect(worker.requests('castOwnership').length).toBeGreaterThan(restores));
+      await vi.waitFor(() => expect(castState(game).busy).toBe(false));
       expect(worker.requests('castOwnership').at(-1)?.heads).toEqual(heads);
       const restored: Record<string, unknown> =
         game === 'watch' ? { game: 'the-night-watch' } : { kind: 'human-playtest', game: 'voice' };
@@ -448,8 +494,9 @@ describe('browser continuity transport with test admission', () => {
       type: 'loadPlaytest',
       gen: 2,
       local: true,
-      text: JSON.stringify({ castOwnership: { [old.castId]: old } }),
+      text: JSON.stringify(nativeRecord('voice', { [old.castId]: old })),
     });
+    await vi.waitFor(() => expect(worker.requests('loadPlaytest').length).toBeGreaterThan(0));
     worker.reply({ type: 'replayed', gen: 2, result: { matches: true } });
     await vi.waitFor(() =>
       expect(worker.requests('castOwnership').at(-1)?.heads).toEqual({ [old.castId]: old }),
@@ -458,8 +505,9 @@ describe('browser continuity transport with test admission', () => {
     postCastMessage(worker as unknown as Worker, 'voice', {
       type: 'loadPlaytest',
       gen: 3,
-      text: JSON.stringify({ castOwnership: { [old.castId]: old } }),
+      text: JSON.stringify(nativeRecord('voice', { [old.castId]: old })),
     });
+    await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(2));
     worker.reply({ type: 'replayed', gen: 3, result: { matches: true } });
     expect(castState('voice').status).toContain('does not own');
     expect(control.batches).toBe(0);
@@ -515,10 +563,12 @@ describe('browser continuity transport with test admission', () => {
         type: 'loadPlaytest',
         gen: 2,
         local: true,
-        text: JSON.stringify({ castOwnership: { [id]: old } }),
+        text: JSON.stringify(nativeRecord(game, { [id]: old })),
       });
+      await vi.waitFor(() => expect(worker.requests('loadPlaytest').length).toBeGreaterThan(0));
       worker.reply({ type: 'replayed', gen: 2, result: { matches: true } });
       await vi.waitFor(() => expect(worker.requests('castOwnership').at(-1)?.heads).toEqual({ [id]: old }));
+      await vi.waitFor(() => expect(castState(game).busy).toBe(false));
       if (game === 'voice') {
         await chooseCastRecording(game, true);
         expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(true);
@@ -533,6 +583,7 @@ describe('browser continuity transport with test admission', () => {
         control.allowed.clear(); // Old per-person permission state cannot block the recording switch.
         window.dispatchEvent(new Event('hf-lab-preference'));
       }
+      if (game !== 'watch') await vi.waitFor(() => expect(castState(game).busy).toBe(false));
       worker.reply(
         game === 'watch'
           ? { type: 'loaded', gen: 3, ok: false, id: 'missing' }
@@ -598,7 +649,11 @@ describe('browser continuity transport with test admission', () => {
     });
     postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', gen: 1 });
     await vi.waitFor(() => expect(control.batches).toBe(1));
-    postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, text: '{}' });
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'loadPlaytest',
+      gen: 2,
+      text: JSON.stringify(nativeRecord('voice')),
+    });
     expect(worker.requests('loadPlaytest')).toHaveLength(0);
     postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', castRunGeneration: 1 });
     release();
@@ -631,7 +686,11 @@ describe('browser continuity transport with test admission', () => {
     await vi.waitFor(() => expect(control.batches).toBe(1));
     releaseOld();
     await new Promise((resolve) => setTimeout(resolve, 10));
-    postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', text: '{}', gen: 3 });
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'loadPlaytest',
+      text: JSON.stringify(nativeRecord('voice')),
+      gen: 3,
+    });
     expect(worker.requests('loadPlaytest')).toHaveLength(0);
     releaseCommit();
     await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
@@ -651,7 +710,11 @@ describe('browser continuity transport with test admission', () => {
       const request = requireValue(worker.requests('castPreflight').at(-1));
       const beforeWrites = control.puts.length;
       if (cancellation === 'load')
-        postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, text: '{}' });
+        postCastMessage(worker as unknown as Worker, 'voice', {
+          type: 'loadPlaytest',
+          gen: 2,
+          text: JSON.stringify(nativeRecord('voice')),
+        });
       if (cancellation === 'conflict')
         control.beforeBatch = async () => {
           const old = requireValue(control.state.revisions.at(-1));
@@ -749,6 +812,7 @@ describe('browser continuity transport with test admission', () => {
       gen: 2,
       text: JSON.stringify({ castSkipped: [dead.castId] }),
     });
+    await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
     await checkpointCast('voice');
     expect(worker.requests('castCheckpoint')).toHaveLength(0);
   });
@@ -762,7 +826,9 @@ describe('browser continuity transport with test admission', () => {
       gen: 4,
       ownership: {},
       localOnly: true,
-      skipped: ['hf.cast.kian.watch'],
+      skipped: [],
+      sources: {},
+      authority: { format: 'site-cast-authority/1', mode: 'local', expectedHeads: {}, denied: [] },
     });
     await vi.waitFor(() => expect(castState('watch').localNotice).toContain('This game uses local people'));
     selectCast('watch', 'hf.cast.kian.watch');
@@ -837,10 +903,12 @@ describe('browser continuity transport with test admission', () => {
       text: saved,
       local: true,
     });
+    await vi.waitFor(() => expect(worker.requests('loadPlaytest').length).toBeGreaterThan(0));
     worker.reply({ type: 'replayed', gen: 2, result: { matches: true } });
     await vi.waitFor(() =>
       expect(worker.requests('castOwnership').at(-1)?.heads).toEqual(file.castOwnership),
     );
+    await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
     await checkpoint(worker);
     expect(control.puts.at(-1)?.parentRevision).toBe(accepted.revision);
     expect(file.hash).toBe('unchanged-simulation-hash');
@@ -876,6 +944,7 @@ describe('browser continuity transport with test admission', () => {
   it('pins manual source selection across worker/hash awaits', async () => {
     const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    await emptyAdmission(worker);
     selectCast('voice', 'hf.cast.riza.voice');
     const saving = checkpointCast('voice');
     await vi.waitFor(() => expect(worker.requests('castCheckpoint')).toHaveLength(1));
@@ -891,6 +960,7 @@ describe('browser continuity transport with test admission', () => {
   it('cancels prior pending source capture and keeps a dedicated return prefix out of automatic authoring', async () => {
     const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    await emptyAdmission(worker);
     const saving = checkpointCast('voice');
     await vi.waitFor(() => expect(worker.requests('castCheckpoint')).toHaveLength(1));
     const old = requireValue(worker.requests('castCheckpoint')[0]);
@@ -911,7 +981,12 @@ describe('browser continuity transport with test admission', () => {
   it('generic imported-file recording gate survives dedicated Selin file completion', async () => {
     const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
-    postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', text: '{}', gen: 2 });
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'loadPlaytest',
+      text: JSON.stringify(nativeRecord('voice')),
+      gen: 2,
+    });
+    await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
     const key = control.key;
     const voice = await import('../voice/ui/persona.tsx');
     await voice.gateVoiceFile('{}');
@@ -922,6 +997,7 @@ describe('browser continuity transport with test admission', () => {
   it('requests actual eligible-source checkpoints at chapter and hidden boundaries, not partial frames', async () => {
     const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    await emptyAdmission(worker);
     control.refuse = true;
     worker.reply({ type: 'frame', frame: { day: 1, phase: 'day', minute: 300 } });
     worker.reply({ type: 'frame', frame: { minute: 301 } });
@@ -939,8 +1015,12 @@ describe('browser continuity transport with test admission', () => {
     close = bindCastWorker(worker as unknown as Worker, 'well', lab as never);
     postCastMessage(worker as unknown as Worker, 'well', { type: 'init', seed: 1, gen: 1 });
     expect(castState('well').busy).toBe(true);
-    postCastMessage(worker as unknown as Worker, 'well', { type: 'loadPlaytest', gen: 2, text: '{}' });
-    expect(castState('well').busy).toBe(false);
+    postCastMessage(worker as unknown as Worker, 'well', {
+      type: 'loadPlaytest',
+      gen: 2,
+      text: JSON.stringify(nativeRecord('well')),
+    });
+    await vi.waitFor(() => expect(castState('well').busy).toBe(false));
     postCastMessage(worker as unknown as Worker, 'well', { type: 'init', seed: 1, gen: 3 });
     window.dispatchEvent(new Event('hf-lab-preference'));
     expect(castState('well').busy).toBe(true);
@@ -1023,4 +1103,228 @@ it('file entry has no Shelf construction and rejects native actions before acces
   const invalid = new Uint8Array([0xff, 0xfe]);
   await expect(runtime.readGameFile({ arrayBuffer: async () => invalid.buffer } as File)).rejects.toThrow();
   stop();
+});
+
+it('refuses missing or malformed native authority before worker activation, capture, fork or recording (unit transport)', async () => {
+  const worker = new FakeWorker();
+  close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+  control.refuse = true;
+  lab.allowPersonaRecording.mockClear();
+  for (const record of [
+    { castOwnership: {} },
+    { castOwnership: {}, castSources: {}, castLocalOnly: false, castSkipped: ['unknown'] },
+    { castOwnership: {}, castSources: {}, castLocalOnly: false, castSkipped: [], castAuthority: {} },
+  ]) {
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'loadPlaytest',
+      gen: 71,
+      local: true,
+      text: JSON.stringify(record),
+    });
+    await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
+    expect(worker.requests('loadPlaytest')).toHaveLength(0);
+    expect(await checkpointCast('voice')).toBe(false);
+    expect(await checkpointCast('voice', true)).toBe(false);
+    worker.reply({
+      type: 'castReady',
+      gen: 71,
+      requestId: 0,
+      terminal: { castId: 'hf.cast.hacer.voice', at: 1 },
+    });
+    expect(worker.requests('castCheckpoint')).toHaveLength(0);
+    expect(control.requests).toEqual([]);
+    expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
+  }
+});
+
+it('reports a malformed native load without replacing authority or touching the worker, then accepts a valid load and fresh start (unit transport)', async () => {
+  control.transportAdmission = true;
+  const worker = new FakeWorker();
+  const refused = vi.fn();
+  close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never, refused);
+  await emptyAdmission(worker);
+  const before: Record<string, unknown> = {
+    kind: 'human-playtest',
+    game: 'voice',
+    hash: 'unchanged-local-state',
+  };
+  worker.reply({ type: 'playtest', gen: 1, file: before });
+  const bytes = JSON.stringify(before),
+    key = control.key;
+  const messages = worker.sent.length,
+    requests = control.requests.length;
+  lab.allowPersonaRecording.mockClear();
+  postCastMessage(worker as unknown as Worker, 'voice', {
+    type: 'loadPlaytest',
+    gen: 2,
+    local: true,
+    text: JSON.stringify({ ...before, castAuthority: undefined }),
+  });
+  await vi.waitFor(() => expect(refused).toHaveBeenCalledOnce());
+  expect(worker.sent).toHaveLength(messages);
+  expect(control.requests).toHaveLength(requests);
+  expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
+  expect(control.key).toBe(key);
+  const after: Record<string, unknown> = {
+    kind: 'human-playtest',
+    game: 'voice',
+    hash: 'unchanged-local-state',
+  };
+  worker.reply({ type: 'playtest', gen: 1, file: after });
+  expect(JSON.stringify(after)).toBe(bytes);
+  postCastMessage(worker as unknown as Worker, 'voice', {
+    type: 'loadPlaytest',
+    gen: 3,
+    local: true,
+    text: bytes,
+  });
+  await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
+  worker.reply({ type: 'replayed', gen: 3, result: { matches: true } });
+  await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
+  postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', gen: 4, seed: 1 });
+  await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
+  expect(castState('voice').blocked).toBe(false);
+  expect(worker.requests('init').at(-1)?.gen).toBe(4);
+});
+
+it('rejects checksum-valid unsupported and foreign native heads before activation but retains supported current ownership (unit transport)', async () => {
+  const { claimPortablePerson, closePersonaBranch, validatePersona } = await import('@adam0white/lab-client');
+  const { validateCastRecord, canCheckpoint } = await import('./cast-authority.ts');
+  const id = 'hf.cast.kian.watch';
+  const captured = await capture(id, 'watch');
+  const authored = await createPersona({
+    format: 'hf-persona/1',
+    castId: id,
+    castRevision: '1',
+    branchId: 'r3-owner',
+    parentRevision: null,
+    source: { game: 'watch', engine: FRAMEWORK_PACKAGE_VERSION, build: 'control', rules: 'hf4-cast-1' },
+    transfer: captured.transfer,
+    limitations: [],
+  });
+  const { revision, ...body } = authored;
+  const own = await createPersona({
+    ...body,
+    parentRevision: revision,
+    transfer: claimPortablePerson(authored, 'watch'),
+  });
+  const foreign = await createPersona({
+    ...body,
+    parentRevision: revision,
+    transfer: claimPortablePerson(authored, 'warren'),
+  });
+  const unsupported = await createPersona({
+    ...body,
+    source: { ...body.source, game: 'repair' },
+    transfer: { portableClaim: { game: 'repair' } },
+  });
+  const worker = new FakeWorker(),
+    refused = vi.fn();
+  close = bindCastWorker(worker as unknown as Worker, 'watch', lab as never, refused);
+  lab.allowPersonaRecording.mockClear();
+  for (const head of [unsupported, foreign]) {
+    expect(await validatePersona(head)).toEqual(head);
+    const raw = nativeRecord('watch', { [id]: head });
+    postCastMessage(worker as unknown as Worker, 'watch', {
+      type: 'loadPlaytest',
+      gen: 2,
+      local: true,
+      text: JSON.stringify(raw),
+    });
+    await vi.waitFor(() => expect(castState('watch').busy).toBe(false));
+    expect(worker.sent).toEqual([]);
+    expect(control.requests).toEqual([]);
+    expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
+    expect(control.key).toBeNull();
+  }
+  expect(refused).toHaveBeenCalledTimes(2);
+  // A file can retain the original foreign receipt without acquiring native authority.
+  const { checkGameFile } = await import('./file-sources.ts');
+  const foreignFile = { game: 'the-night-watch', ...nativeRecord('watch', { [id]: foreign }) };
+  const originalFile = JSON.stringify(foreignFile);
+  await checkGameFile(originalFile);
+  expect(JSON.stringify(foreignFile)).toBe(originalFile);
+  await expect(validateCastRecord('watch', foreignFile)).rejects.toThrow();
+  for (const head of [authored, own]) {
+    const record = await validateCastRecord('watch', nativeRecord('watch', { [id]: head }));
+    expect(canCheckpoint(record.authority, id, record.heads)).toBe(true);
+  }
+  // Public constructors also preserve an arrival whose supported source is another host.
+  const otherCapture = await capture(id, 'warren');
+  const otherSource = await createPersona({
+    ...body,
+    source: { ...body.source, game: 'warren' },
+    transfer: otherCapture.transfer,
+  });
+  const { revision: otherRevision, ...otherBody } = otherSource;
+  const arrival = await createPersona({
+    ...otherBody,
+    parentRevision: otherRevision,
+    transfer: claimPortablePerson(otherSource, 'watch'),
+  });
+  const arrived = await validateCastRecord('watch', nativeRecord('watch', { [id]: arrival }));
+  expect(canCheckpoint(arrived.authority, id, arrived.heads)).toBe(true);
+  const closedArrival = await closePersonaBranch(arrival, authored.source, 1);
+  const retained = await validateCastRecord('watch', nativeRecord('watch', { [id]: closedArrival }));
+  expect(retained.heads[id]).toEqual(closedArrival);
+  expect(canCheckpoint(retained.authority, id, retained.heads)).toBe(false);
+  const withoutArchive = nativeRecord('watch', { [id]: authored });
+  withoutArchive.castSources = {};
+  await expect(validateCastRecord('watch', withoutArchive)).rejects.toThrow();
+  const terminal = await closePersonaBranch(authored, authored.source, 1);
+  const closed = await validateCastRecord('watch', nativeRecord('watch', { [id]: terminal }));
+  expect(closed.heads[id]).toEqual(terminal);
+  expect(canCheckpoint(closed.authority, id, closed.heads)).toBe(false);
+});
+
+it('keeps native public imports nonowning through export, reimport and local reload', async () => {
+  const { localCastAuthority, validateCastRecord } = await import('./cast-authority.ts');
+  for (const game of ['voice', 'well']) {
+    const worker = new FakeWorker();
+    close = bindCastWorker(worker as unknown as Worker, game, lab as never);
+    let file: Record<string, unknown> = {
+      game: game === 'well' ? 'colony' : 'voice',
+      kind: 'human-playtest',
+      ...nativeRecord(game),
+    };
+    for (const [index, local] of [false, false, true].entries()) {
+      postCastMessage(worker as unknown as Worker, game, {
+        type: 'loadPlaytest',
+        text: JSON.stringify(file),
+        gen: index + 2,
+        local,
+      });
+      await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(index + 1));
+      worker.reply({ type: 'replayed', gen: index + 2, result: { matches: true } });
+      await vi.waitFor(() => expect(castState(game).busy).toBe(false));
+      postCastMessage(worker as unknown as Worker, game, {
+        type: 'input',
+        input: { k: 'test-only-bridge-input' },
+      });
+      const next = { game: file.game, kind: 'human-playtest' };
+      worker.reply({ type: 'playtest', gen: index + 2, file: next });
+      file = JSON.parse(JSON.stringify(next));
+      expect(file.castAuthority).toEqual(localCastAuthority());
+      expect(file.castOwnership).toEqual({});
+      expect(file.castSources).toEqual({});
+      expect(file.fileImport).toMatchObject({
+        imported: true,
+        sourceHash: expect.stringMatching(/^[a-f0-9]{64}$/),
+      });
+      await expect(validateCastRecord(game, file)).resolves.toMatchObject({
+        authority: localCastAuthority(),
+        heads: {},
+        sources: {},
+      });
+      expect(castState(game).localNotice).toContain('Imported play stays pinned');
+      expect(await checkpointCast(game)).toBe(false);
+      expect(await checkpointCast(game, true)).toBe(false);
+    }
+    expect(worker.requests('castPreflight')).toHaveLength(0);
+    expect(worker.requests('castCheckpoint')).toHaveLength(0);
+    close();
+    close = undefined;
+  }
+  expect(control.puts).toEqual([]);
+  expect(control.allowed.size).toBe(0);
 });

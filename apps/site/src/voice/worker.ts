@@ -7,11 +7,9 @@
  * Every state-changing message goes through `RecordedGame` (sim/record.ts), which keeps the playtest log; a
  * loaded playtest file is replayed here from its seed and log (its snapshot is never loaded as state).
  *
- * The month you never spoke (sim/counterfactual.ts) is a second game from the same seed with no input. It is held
- * here, outside the played game, stepped a few milliseconds per tick only while the player is reading (paused, a
- * card or an intro up), finished at once when the report is posted if the slices have not got there, and attached
- * to the posted report only (the game's own report and hash do not carry it). Once finished only its facts are
- * kept, by seed; the game is dropped.
+ * The month you never spoke is calculated on demand when its report is requested. Its facts are cached
+ * by seed and rules outside the played game. No comparison work runs in the tick/request loop: one
+ * headless turn can span days, so a wall-time slice cannot bound it.
  */
 
 import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
@@ -38,11 +36,9 @@ import {
   type WorkerReply,
 } from './protocol.ts';
 import {
-  advanceSilentMonth,
   finishSilentMonth,
   type MonthFacts,
   monthFacts,
-  type SilentMonth,
   silentMonthView,
   startSilentMonth,
 } from './sim/counterfactual.ts';
@@ -66,43 +62,16 @@ let fileImport: FileImport | undefined;
 let loadOperation = 0;
 let initializing = false;
 let checkpointError = '';
-/** The silent game being stepped for the current run's seed (dropped once its facts are read, or on a new seed). */
-let shadow: SilentMonth | null = null;
-/** The finished silent month's facts, by seed (a Replay of the same seed reuses them). */
+/** Finished comparison facts only; this cache never changes the played run. */
 let silentFacts: { seed: number; rules: VoiceRules; facts: MonthFacts } | null = null;
-/** Wall time asked of the silent game per tick; one headless turn (a whole skip) can run past it (voice.md §7.5). */
-const SILENT_SLICE_MS = 6;
-
-/** Drop a silent game that belongs to another seed or other rules (a replayed voice-1 file). */
-function dropStale(seed: number, rules: VoiceRules): void {
-  if (shadow && (shadow.seed !== seed || shadow.game.rules !== rules)) shadow = null;
-}
 const factsHeld = (seed: number, rules: VoiceRules) =>
   silentFacts?.seed === seed && silentFacts.rules === rules;
 
-/**
- * Step the silent game a little while the player is reading (the clock is stopped: a pause, a card, an intro), so a
- * slice that runs long never holds up a running clock. Called after the tick's own work.
- */
-function stepSilent(game: VoiceGame): void {
-  if (game.phase === 'premise' || game.phase === 'report' || game.phase === 'free') return;
-  if (factsHeld(game.seed, game.rules)) return;
-  if (!(game.paused || game.intro || game.phase === 'between')) return;
-  dropStale(game.seed, game.rules);
-  shadow ??= startSilentMonth(game.seed, game.rules);
-  if (advanceSilentMonth(shadow, SILENT_SLICE_MS)) {
-    silentFacts = { seed: game.seed, rules: game.rules, facts: monthFacts(shadow.game) };
-    shadow = null;
-  }
-}
-
-/** The silent month's facts for `seed`, running whatever the slices left synchronously (about 1.1 s whole). */
+/** The silent month's facts, calculated through the existing report path and cached by seed/rules. */
 function factsFor(seed: number, rules: VoiceRules): MonthFacts {
   if (silentFacts && factsHeld(seed, rules)) return silentFacts.facts;
-  dropStale(seed, rules);
-  const facts = monthFacts(finishSilentMonth(shadow ?? startSilentMonth(seed, rules)));
+  const facts = monthFacts(finishSilentMonth(startSilentMonth(seed, rules)));
   silentFacts = { seed, rules, facts };
-  shadow = null;
   return facts;
 }
 
@@ -174,13 +143,14 @@ async function voiceFile(r: RecordedGame, full = false) {
     source,
   );
 }
-async function exportPlaytest(r: RecordedGame, full = false): Promise<void> {
+async function exportPlaytest(r: RecordedGame, full = false, requestId?: number): Promise<void> {
   const gen = host.gen;
   const provenance = imported;
   const file = await voiceFile(r, full || fileMode);
   host.post(
     {
       type: 'playtest',
+      ...(requestId === undefined ? {} : { requestId }),
       file: fileMode
         ? {
             ...provenance,
@@ -229,7 +199,6 @@ async function loadPlaytest(text: string, nextGen: number): Promise<void> {
   const { file: f, rules, chapter, rows, head } = parseVoicePlaytest(text);
   if (chapter) await validatePersona(chapter.admission);
   if (head) await validatePersona(head);
-  dropStale(f.seed, rules);
   const { rec: replayed, driftAt } = replayVoice(f.seed, f.log, rules, chapter, 0, f.castChapter);
   replayed.personaHead = head ?? chapter?.acceptedHead;
   if (rows) replayed.oneCast.splice(0, replayed.oneCast.length, ...rows);
@@ -260,8 +229,7 @@ async function loadPlaytest(text: string, nextGen: number): Promise<void> {
   host.post({ type: 'replayed', result });
   // The replay cleared its outbox: show the card the run stands at.
   if (g.phase === 'between' && g.between) host.post({ type: 'between', view: g.between });
-  // A file that ends at the report has had no reading time for the silent month: it runs here, synchronously
-  // (about 1.1 s on the bench; more on a phone), before the report is posted.
+  // The report requests the same complete comparison facts through the on-demand cache.
   if (g.phase === 'report' && g.report) host.post({ type: 'report', view: withSilent(g, g.report) });
   flush(true);
 }
@@ -301,7 +269,6 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   if (msg.type === 'init') {
     host.gen = msg.gen;
     lastFields = new Map();
-    dropStale(msg.seed, 4);
     if (msg.scenarioVersion !== VOICE_SCENARIO_VERSION) {
       rec = null;
       host.post({
@@ -448,7 +415,6 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
         Math.abs(msg.dtMs * (game.fastForward() ? 240 : PACE_MINUTES_PER_SECOND[game.pace]) - 1000) < 0.001;
       sinceFrame += Math.max(0, msg.wallDtMs ?? msg.dtMs);
       const moved = rec.tick(msg.dtMs);
-      stepSilent(game);
       // A pause (a beat, the day's end) goes out at once; a running clock at most every FRAME_MS.
       if (!moved || (!game.paused && game.outbox.length === 0 && sinceFrame < FRAME_MS && !minuteTick))
         return;
@@ -471,7 +437,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
       return;
     }
     case 'exportPlaytest':
-      exportPlaytest(rec, msg.full).catch((err: unknown) =>
+      exportPlaytest(rec, msg.full, msg.requestId).catch((err: unknown) =>
         host.post({ type: 'playtestError', message: `The playtest file could not be made: ${String(err)}` }),
       );
       return;

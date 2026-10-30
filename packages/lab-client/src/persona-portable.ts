@@ -161,6 +161,7 @@ export function portableWriteBlockers(castId: string, game: string): string[] {
     const deployment = PORTABLE_READERS[peer];
     const version = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.exec(deployment?.client ?? '');
     if (!deployment?.perPersonSkips || !version) return true;
+    if (deployment.castIds !== undefined && !deployment.castIds.includes(castId)) return true;
     const [major, minor, patch] = version.slice(1).map(Number);
     return !((major ?? 0) > 0 || (minor ?? 0) > 5 || (minor === 5 && (patch ?? 0) >= 5));
   });

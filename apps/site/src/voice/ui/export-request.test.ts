@@ -23,3 +23,15 @@ it('rejects a stale build completion without clearing a newer export', () => {
   expect(request.finish(1)).toBe(true);
   expect(request.current(1)).toBe(false);
 });
+
+it('does not let an autosave or earlier export reply satisfy the current public full download', () => {
+  const request = new ExportRequest();
+  request.begin(3, false);
+  const first = request.ticket(3);
+  expect(request.replyTicket(3, undefined)).toBeNull();
+  expect(request.replyTicket(3, first)).toBe(first);
+  request.reset();
+  request.begin(3, false);
+  expect(request.replyTicket(3, first)).toBeNull();
+  expect(request.replyTicket(2, request.ticket(3))).toBeNull();
+});

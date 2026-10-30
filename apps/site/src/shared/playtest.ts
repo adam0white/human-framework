@@ -19,6 +19,7 @@ export type GameId = 'colony' | 'voice';
 export interface PlaytestFile<L = unknown> {
   castEdition?: 'one-cast-1';
   castOwnership?: import('./cast-runtime.ts').CastHeads;
+  castAuthority?: import('./cast-authority.ts').CastAuthority;
   castChapter?: import('./cast-chapter.ts').CastChapter;
   /** Export identity, independent of the lab client's private recording identity. Older files may lack it. */
   runId?: string;
@@ -302,6 +303,9 @@ export function parsePlaytest<L>(
     hash: p.hash,
     snapshotEncoding: p.snapshotEncoding,
     snapshot: p.snapshot,
+    ...(p.castAuthority
+      ? { castAuthority: p.castAuthority as import('./cast-authority.ts').CastAuthority }
+      : {}),
     ...(p.castOwnership ? { castOwnership: p.castOwnership as import('./cast-runtime.ts').CastHeads } : {}),
     ...(p.castChapter ? { castChapter: p.castChapter as import('./cast-chapter.ts').CastChapter } : {}),
   };

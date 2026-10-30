@@ -194,7 +194,9 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   useEffect(() => {
     const w = new Worker(new URL('../worker.ts', import.meta.url), { type: 'module' });
     worker.current = w;
-    const stopCast = bindCastWorker(w, 'well', gameLabs.well);
+    const stopCast = bindCastWorker(w, 'well', gameLabs.well, (failure) => {
+      if (failure.gen === pendingLoad.current) setPlaytest({ error: failure.message });
+    });
     w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
       const msg = e.data;
       if (msg.gen === pendingLoad.current && msg.gen !== gen.current) {
