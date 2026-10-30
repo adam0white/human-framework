@@ -1,11 +1,13 @@
 # Handoff — HF (Human Framework)
 
-Updated 2026-10-29. Read [AGENTS.md](AGENTS.md) for owner directions and done criteria, [architecture](docs/framework.md) for the host contract and [roadmap](docs/roadmap.md) for the work queue. Historical delivery and stopped-worker records are preserved in [history](docs/history.md#handoff-snapshot-before-docs-reconciliation-2026-10-25); publication receipts are in [releases](docs/releases.md).
+Updated 2026-10-30. Read [AGENTS.md](AGENTS.md) for owner directions and done criteria, [architecture](docs/framework.md) for the host contract and [roadmap](docs/roadmap.md) for the work queue. Historical delivery and stopped-worker records are preserved in [history](docs/history.md#handoff-snapshot-before-docs-reconciliation-2026-10-25); publication receipts are in [releases](docs/releases.md).
 
 ## What remains
 
-- Finish the HF 4.9 narration release and verify its publication, companion artifacts and deployment separately. The changelog describes the merged source; consult [release receipts](docs/releases.md) for published artifacts.
-- A 2026-10-29 audit of 20 live release manifests found 14 games reporting HF 4.x and six reporting 3.x. All audited manifests reported `dirty:false`. The next live audit is due 2026-11-03. Central Watch, Voice and Well remain on 3.2.0; their HF 4 bridge migration and deployment are unverified. Neighbours reports 3.0.0; its HF 4 deployment is unverified. Valley reports 3.0.0 pending the HF 4.9/4.10 speedup. Child reports 3.2.0 and is blocked until the 2026-11-24 workload review. The [4.9 measurements](docs/findings.md#hf-49-g7-perf-exact-simulation-lossless-history-encoding-2026-10-29) miss both Valley and Child time budgets.
+- The live version audit is current through 2026-10-30. HF 4.11–4.15 are released; their exact source, green CI and successful npm publish workflows are recorded in [release receipts](docs/releases.md). All five GitHub release bodies exactly match their CHANGELOG sections. This audit did not repeat package integrity or provenance verification.
+- Seventeen of twenty games report HF 4.x. Watch, Voice and Well report HF 4.15.0, with central library 4.15.0. Every checked live manifest reports `dirty:false`. The [per-game table](docs/hf4-game-needs.md#current-live-status) records each live version and commit. The next status audit is due 2026-11-03. Deployment does not establish player acceptance or cross-game carryover.
+- Valley remains live on HF 3.0.0 because HF 4 exceeds its simulation and saved-history budgets. Child remains on HF 3.2.0 because HF 4 exceeds its daily simulation and reload budgets. Their workload recheck is scheduled for 2026-11-24; it has not happened. See the [recorded measurements](docs/findings.md#hf-49-g7-perf-exact-simulation-lossless-history-encoding-2026-10-29).
+- Neighbours remains live on HF 3.0.0. Its HF 4 port has failing browser checks and a stress-test timeout. Fix and verify the port before deployment; checkpoint 2026-11-03. This is unfinished port work, not owner acceptance of a permanent stay on 3.x.
 
 The following dated entries preserve earlier evidence and work queues. Their version and deployment claims describe their recorded dates, not current status.
 
