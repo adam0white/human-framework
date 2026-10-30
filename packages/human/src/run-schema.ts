@@ -363,6 +363,7 @@ export type InspectQuery = {
   perspective: Perspective;
   people: readonly PersonId[];
   select: readonly (
+    | 'current'
     | 'summary'
     | 'skills'
     | 'body'
@@ -399,6 +400,8 @@ export type SkillSuccess = {
   successChance: Unit;
 };
 export type Inspection = {
+  /** Host control data only: exact exported current, with the same duplicate journal windows. */
+  current?: RunState;
   lifecycle?: LifecycleInspection;
   at: Time;
   perspective: Perspective;

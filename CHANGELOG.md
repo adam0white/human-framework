@@ -11,6 +11,20 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.15.0] — 2026-10-29
+
+Engine: 4.15.0.
+
+### Added
+
+- Host-only `inspect` selection `current` returns optional `Inspection.current`, the exact exported `RunState` with the existing newest-64 duplicate journal windows. Reuses the archive projector and detached frozen boundary without packing accepted history or calculating cold hashes. Person perspectives refuse the selector, including self. Mixed selections stay coherent; unselected reads and preview keep their behavior.
+
+### Migration
+
+- Start fresh when an older build/schema archive is refused. Complete accepted history, native exports, journals, cold restore and replay retain their contracts. No actor input, scientific parameter or faculty changes. This is host control data, not player knowledge; game adoption and performance are separately unverified.
+- Companion candidates: client 0.5.14 pins HF 4.15.0; kit 0.5.31 admits that client. The old central app graph changes only those two SDK manifest pins and keeps its game engine 3.2.0. CENTRAL's independent published 4.14 port graph is not upgraded by this train.
+- Give a live branch its own autosave slot. `forkRun` retains an admitted opaque Run for later steps; preview discards its conditional branch after returning readings. Actor writes still use `step`, and actor reads use `inspect` or `preview`.
+
 ## [4.14.0] — 2026-10-29
 
 Engine: 4.14.0.

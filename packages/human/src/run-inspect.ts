@@ -1,5 +1,7 @@
 /** SCOPE: detached current reads. Subjective views use only the observer's own
- * stores. Unknown other-person facts stay unknown. No RNG or normal-read hash. */
+ * stores. Unknown other-person facts stay unknown. Host-only current reuses the
+ * exported duplicate-journal window, without accepted-history packing or hashes.
+ * No new player knowledge, actor mutation or RNG draw. */
 
 import { readCapacities } from './body/injury.ts';
 import { cloneData } from './core/clone.ts';
@@ -9,6 +11,7 @@ import { projectPortablePerson } from './portable-person.ts';
 import { practiceAt } from './promptings/promptings.ts';
 import { exportRun } from './run.ts';
 import { PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
+import { archiveSnapshot } from './run-archive.ts';
 import { RUN_ENGINE } from './run-engine.ts';
 import { conditionImpression } from './run-imagination.ts';
 import { freezeData, readKernel } from './run-kernel.ts';
@@ -34,6 +37,8 @@ export function inspectCurrentRun(
   const admitted = validateData('InspectQuery', input);
   if (!admitted.ok) return admitted;
   const q = admitted.value;
+  if (q.select.includes('current') && q.perspective.kind !== 'host')
+    return fail('$.select', 'current requires privileged host perspective');
   const record = readKernel(run),
     state = record.current;
   if (new Set(q.people).size !== q.people.length || new Set(q.select).size !== q.select.length)
@@ -469,6 +474,7 @@ export function inspectCurrentRun(
     perspective: q.perspective,
     people,
     events,
+    ...(q.select.includes('current') ? { current: archiveSnapshot(state) } : {}),
     ...(skill ? { skill } : {}),
     ...(method ? { method } : {}),
     ...(q.diagnostic ? { fullHash: exportRun(run).hashes.full } : {}),

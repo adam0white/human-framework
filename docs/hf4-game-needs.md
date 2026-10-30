@@ -37,7 +37,7 @@ The inventory below preserves the 2026-10-27 source snapshots, work items and pr
 
 - Every faculty remains on. Removed `enable*` switches are migration hazards, never requests to restore a switch. Differences belong in authored state and ordinary inputs.
 - No game code belongs in `packages/human`. World rules, authored plots, rendering, transport and game difficulty stay in each host. Generic actor inputs, readings, clocks and replay belong to HF.
-- A missing 3.x export alone proves a bridge must change; it does not prove a faculty is missing. Use the eight-call run API. New outputs go through `inspect` or `preview`; new inputs go through `step`.
+- A missing 3.x export alone proves a bridge must change; it does not prove a faculty is missing. Use the run calls. New outputs go through `inspect` or `preview`; new inputs go through `step`.
 - Old saves may be refused with a start-fresh message. No 3.x continuation guarantee is requested. Every port must keep its exact package pin, seed, ordered input log, host state and `exportRun` archive; current-version exports must replay exactly. Preview must leave the live run unchanged. No game may silently turn an old export into a new run.
 - The [published dispositions](releases.md#hf-40-game-dispositions-2026-10-27) supply the recorded reason for staying and the dated live pins. Source pins and bridge files below were read on 2026-10-27; they are not a new deployment audit. Source revisions are identified per game.
 - Framework comparison uses published [4.0.0](../CHANGELOG.md#400---2026-10-27), `run-schema.ts`, `run-inspect.ts` and the existing [4.1 queue](roadmap.md#hf-41-deferred-from-40-ruling-25-owner-approved-2026-10-27). Work items reuse that queue rather than create duplicate faculties.
