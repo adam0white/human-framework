@@ -2,6 +2,7 @@
 import 'fake-indexeddb/auto';
 import { expect, it, vi } from 'vitest';
 import type { MainToWorker, WorkerReply } from './protocol.ts';
+import { WATCH_OLD_SAVE } from './sim/hf4.ts';
 import { WATCH_SCENARIO_VERSION } from './sim/run.ts';
 import { listPages, loadPage, savePage } from './store.ts';
 
@@ -133,6 +134,22 @@ it('loads its own saved page and restores cast metadata', async () => {
       gen: 4,
       fileOrigin: true,
     });
+    // A page saved before characters carried authority is refused as an older save, so the player gets
+    // the start-fresh message rather than a generic stop.
+    const { castAuthority: _dropped, ...legacy } = snapshot as unknown as Record<string, unknown>;
+    const legacyId = 'legacy-page:auto';
+    await savePage({ ...page, id: legacyId }, JSON.stringify(legacy));
+    replies.length = 0;
+    await send({ type: 'load', id: legacyId, gen: 5 });
+    await vi.waitFor(() =>
+      expect(replies).toContainEqual({
+        type: 'loaded',
+        ok: false,
+        id: legacyId,
+        error: WATCH_OLD_SAVE,
+        gen: 5,
+      }),
+    );
   } finally {
     vi.unstubAllGlobals();
   }

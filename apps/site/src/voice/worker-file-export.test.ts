@@ -3,6 +3,7 @@ import { expect, it, vi } from 'vitest';
 import { makePlaytestFile } from '../shared/playtest.ts';
 import { scenarioOf } from './protocol.ts';
 import { VoiceGame } from './sim/game.ts';
+import { OLD_VOICE_SAVE } from './sim/hf4-run.ts';
 import { RecordedGame, voiceHash, voiceState } from './sim/record.ts';
 
 vi.mock('./sim/counterfactual.ts', async (original) => ({
@@ -96,3 +97,43 @@ it.each(['file', 'native'])(
     }
   },
 );
+
+it('refuses a continued save that no longer replays, instead of showing a run that ignores input', async () => {
+  vi.resetModules();
+  const rec = new RecordedGame(new VoiceGame(11, 4));
+  rec.apply({ type: 'begin' });
+  rec.apply({ type: 'pause' });
+  const file = {
+    ...(await makePlaytestFile({
+      game: 'voice',
+      seed: 11,
+      scenario: scenarioOf(4),
+      minute: rec.game.t,
+      log: rec.log,
+      hash: voiceHash(rec.game).replace(/^./, (c) => (c === '0' ? '1' : '0')),
+      engine: rec.game.run.c.runtime!.save().archive.engine.package,
+      snapshot: voiceState(rec.game),
+      plainSnapshot: true,
+    })),
+    voiceEdition: 'voice-hf4/1',
+  };
+  let receive: ((e: MessageEvent) => void) | undefined;
+  const replies: Record<string, unknown>[] = [];
+  vi.stubGlobal('addEventListener', (_: string, fn: typeof receive) => {
+    receive = fn;
+  });
+  vi.stubGlobal('postMessage', (message: Record<string, unknown>) => replies.push(message));
+  try {
+    await import('./worker.ts');
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    receive?.({
+      data: { type: 'loadPlaytest', gen: 3, text: JSON.stringify(file), local: true },
+    } as MessageEvent);
+    await vi.waitFor(() =>
+      expect(replies).toContainEqual({ type: 'playtestError', message: OLD_VOICE_SAVE, gen: 3 }),
+    );
+    expect(replies.some((r) => r.type === 'replayed')).toBe(false);
+  } finally {
+    vi.unstubAllGlobals();
+  }
+});

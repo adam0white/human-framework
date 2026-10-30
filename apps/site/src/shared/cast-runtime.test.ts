@@ -509,7 +509,7 @@ describe('browser continuity transport with test admission', () => {
     });
     await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(2));
     worker.reply({ type: 'replayed', gen: 3, result: { matches: true } });
-    expect(castState('voice').status).toContain('does not own');
+    expect(castState('voice').status).toContain('stay in this game');
     expect(control.batches).toBe(0);
     expect(control.state.heads[old.castId]).toBe(old.revision);
   });
@@ -1316,7 +1316,7 @@ it('keeps native public imports nonowning through export, reimport and local rel
         heads: {},
         sources: {},
       });
-      expect(castState(game).localNotice).toContain('Imported play stays pinned');
+      expect(castState(game).localNotice).toContain('opened from a file');
       expect(await checkpointCast(game)).toBe(false);
       expect(await checkpointCast(game, true)).toBe(false);
     }

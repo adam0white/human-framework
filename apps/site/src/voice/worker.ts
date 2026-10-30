@@ -192,7 +192,7 @@ function publishBoundary(): void {
 }
 
 /** Validate and replay a file; only then does it replace the current run (a bad file leaves the run as it was). */
-async function loadPlaytest(text: string, nextGen: number): Promise<void> {
+async function loadPlaytest(text: string, nextGen: number, local = false): Promise<void> {
   const operation = ++loadOperation;
   const raw = fileMode ? await checkGameFile(text) : undefined;
   // Refuse old editions before attempting current native replay.
@@ -218,6 +218,8 @@ async function loadPlaytest(text: string, nextGen: number): Promise<void> {
       stableStringify(await decodeSnapshot(raw as never)) !== stableStringify(voiceState(g)))
   )
     throw new Error('The complete Voice state does not replay. Keep the original file.');
+  // A continued save that no longer replays is refused here, so the game never shows a run it cannot own.
+  if (local && !result.matches) throw new Error(OLD_VOICE_SAVE);
   const source = raw ? await importedFileRecord(raw, text) : undefined;
   if (fileMode && operation !== loadOperation) return;
   if (raw) imported = structuredClone(raw);
@@ -372,7 +374,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   if (msg.type === 'loadPlaytest') {
     const operation = loadOperation + 1;
     initializing = true;
-    void loadPlaytest(msg.text, msg.gen)
+    void loadPlaytest(msg.text, msg.gen, msg.local === true)
       .catch((err) => {
         if (fileMode && operation !== loadOperation) return;
         const message =
