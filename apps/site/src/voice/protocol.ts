@@ -301,7 +301,6 @@ export interface Frame {
     missed?: { minute: number; day: number; clock: string };
     unanswered?: { minute: number; day: number; clock: string; by: string; to: string };
   };
-  outgoingCall?: string;
   sceneWords?: SceneWords[];
   phase: Phase;
   day: number;

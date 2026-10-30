@@ -8,7 +8,7 @@ import { ColonyGame } from '../sim/game.ts';
 import { voiceOf } from '../sim/hf4.ts';
 import { createFrameworkHumanSide, type FrameworkHumanSide } from '../sim/human.ts';
 import { fw } from '../sim/human-cast.ts';
-import { memoryText, trustOf } from '../sim/human-view.ts';
+import { trustOf } from '../sim/human-view.ts';
 import { activityLabel } from './descriptions.ts';
 import { cardEnd } from './end-report.ts';
 import { Inspector, TrustMeter } from './Inspector.tsx';
@@ -49,15 +49,6 @@ it('uses one full stop and an infinitive in the displayed trust loss', () => {
   const host = render(createElement(TrustMeter, { trust, name: 'Yusuf' }));
   expect(host.textContent).toContain('Your order to gather grain went badly.');
   expect(host.textContent).not.toContain('..');
-});
-
-it('repairs first-person memory prose without changing its source', () => {
-  const source =
-    'Last time you sent me: i went to gather timber in a sudden storm. I came back hurt and without timber. Not again.';
-  expect(memoryText(source)).toBe(
-    'Last time you sent me for timber, a storm came. I came back hurt, with no timber. Not again.',
-  );
-  expect(memoryText('I remember: i ate a meal.')).toBe('I remember: I ate a meal.');
 });
 
 it('opens the decision explanation from the inline i control', () => {

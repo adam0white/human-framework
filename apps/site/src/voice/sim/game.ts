@@ -1805,9 +1805,6 @@ export class VoiceGame {
       return;
     }
     const ended = 'Your suggestion has ended. Say it again if you still want him to hear it.';
-    const span = Math.round((s.expires - s.since) / 60);
-    const hours =
-      span >= 1 ? `${span === 1 ? 'An hour has' : `${span} hours have`} passed.` : 'Its time has run out.';
     let text: string;
     if (why === 'withdrawn') text = 'You withdraw your suggestion.';
     else if (why === 'asleep')
@@ -1819,8 +1816,7 @@ export class VoiceGame {
     else if (s.away) {
       const rule = WHY_AWAY[s.draft.optionId];
       text = `“By the time I was done, it was too late to ${what}.”${rule ? ` ${capital(rule)}.` : ''} ${ended}`;
-    } else
-      text = `${hours} The suggestion reached its time limit without a recorded completed action. ${ended}`;
+    } else text = `“I never got to it.” ${ended}`;
     this.push({ kind: 'note', who: 'you', text });
   }
 

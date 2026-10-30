@@ -760,7 +760,7 @@ it('shows each shelf page’s fictional date without version or save timestamps'
       onClose: vi.fn(),
     }),
   );
-  expect(el.textContent).not.toMatch(/Current game|Different version|Version not recorded|Saved/);
+  expect(el.textContent).not.toMatch(/Current game|Different version|Version not recorded|Saved|seed 11/i);
   expect(el.querySelectorAll('.w-pagerow button')).toHaveLength(3);
   const rows = [...el.querySelectorAll('.w-pagerow')].map((r) => r.textContent);
   expect(new Set(rows).size).toBe(3);

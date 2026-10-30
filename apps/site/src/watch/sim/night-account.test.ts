@@ -262,3 +262,35 @@ it('bases the named bell guess on an observed hold answer', async () => {
   expect(bellWords(readBell(s, 'tamar'))).toContain('held the wall when asked before');
   expect(bellWords(readBell(s, 'kian'))).toContain('You cannot tell whether Kian');
 });
+
+it('uses the time of day for accounts outside the night', async () => {
+  const { publicFixture } = await import('./public-fixture.ts');
+  const { nightHistory } = await import('./night-records.ts');
+  const s = publicFixture(1080);
+  s.nightStart = 1080;
+  s.nightRecords = [1020, 1260, 1680, 1740, 1800, 1860, 2160].map((sentAt, id) => ({
+    id,
+    nightStart: s.nightStart,
+    kind: 'hold',
+    who: 'tamar',
+    by: 'tamar',
+    section: 'gate',
+    affordance: 'post:gate-1',
+    sentAt,
+    until: sentAt + 30,
+  }));
+  const accounts = nightHistory(s, 'tamar');
+  expect(
+    accounts.map(
+      (line) => line.match(/at dusk|at night|before dawn|at dawn|in the morning|in the afternoon/)?.[0],
+    ),
+  ).toEqual([
+    'at dusk',
+    'at night',
+    'before dawn',
+    'at dawn',
+    'at dawn',
+    'in the morning',
+    'in the afternoon',
+  ]);
+});

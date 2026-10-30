@@ -10,6 +10,7 @@ import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
 import type { PlaytestFile } from '../../shared/playtest.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
+import { WELL_OLD_SAVE } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type OrderInput } from '../sim/orders.ts';
 import type { Village } from '../sim/village.ts';
@@ -71,7 +72,7 @@ function savedRun(): PlaytestFile | null {
 }
 function oldVillageError(error: unknown): string | null {
   const detail = error instanceof Error ? error.message : typeof error === 'string' ? error : '';
-  return detail.includes('This save is from an older version. Start a fresh game.')
+  return detail === WELL_OLD_SAVE
     ? 'That village is from before the well was dug again; begin the first morning.'
     : null;
 }

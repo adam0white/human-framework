@@ -68,11 +68,6 @@ export function verdictKind(r: SuggestionResolution, rules: ColonyRules = 3): Ve
   }
 }
 
-/** Lines for refusals on this host's own norms (the framework's verb table does not know them). */
-const HOST_REFUSALS: Record<string, string> = {
-  'norm:abandon-dependents': 'And leave them without a cooked meal at noon? No. They depend on me for food.',
-};
-
 /**
  * The host's answer to an order whose job is not on offer to the person right now (`ColonyHostWorld.notOffered`):
  * the framework does not hear such a standing suggestion at all (colony.md §3, "a deferral is never a silent
@@ -84,31 +79,6 @@ export interface NotOnOffer {
   says: string;
   counterOffer?: string;
   short: string;
-}
-
-/** Correct remembered first-person prose at the display boundary; episode identities stay untouched. */
-export function memoryText(text: string): string {
-  return text
-    .replace(/\bi\b/g, 'I')
-    .replace(
-      'Last time you sent me: I went to gather timber in a sudden storm.',
-      'Last time you sent me for timber, a storm came.',
-    )
-    .replace(
-      'I remember what happened last time: I went to gather timber in a sudden storm.',
-      'I remember what happened last time. A sudden storm came while I was gathering timber.',
-    )
-    .replace('I came back hurt and without timber.', 'I came back hurt, with no timber.');
-}
-
-/** The person's line, with this host's wording where the framework has none. `rules` 3 keeps the @3 lines. */
-export function sayLine(r: SuggestionResolution, rules: ColonyRules = 3): string {
-  if (rules >= 4) return r.says;
-  if (r.verdict === 'refused' && r.kind === 'willNot') {
-    const own = HOST_REFUSALS[r.reason];
-    if (own) return own;
-  }
-  return memoryText(r.says);
 }
 
 const NAMES: Record<string, string> = Object.fromEntries(
@@ -354,7 +324,7 @@ export function whyOf(
   const recalled = p.memory.episodes
     .filter((e) => recalledIds.has(e.id))
     .slice(-3)
-    .map((e) => `“${memoryText(e.summary)}”`);
+    .map((e) => `“${e.summary}”`);
   const out: WhyBreakdown = {
     personId: p.id as VillagerId,
     decisionId: record.id,
@@ -370,7 +340,7 @@ export function whyOf(
   if (r) {
     out.verdict = {
       kind: verdictKind(r, rules),
-      says: sayLine(r, rules),
+      says: r.says,
       reason: r.reason,
       ...(r.counterOffer ? { counterOffer: r.counterOffer.label } : {}),
     };

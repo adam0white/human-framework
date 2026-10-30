@@ -15,7 +15,14 @@ import {
   parsePlaytest,
 } from '../../shared/playtest.ts';
 import { ColonyGame, type LogEntry } from './game.ts';
-import { type ColonyRules, CURRENT_RULES, type HumanSideFactory, rulesOf, scenarioOf } from './human-side.ts';
+import {
+  type ColonyRules,
+  CURRENT_RULES,
+  type HumanSideFactory,
+  rulesOf,
+  scenarioOf,
+  WELL_OLD_SAVE,
+} from './human-side.ts';
 import { PLACES, type PlaceId } from './map.ts';
 import { APPEALS, type AppealChip, type OrderInput } from './orders.ts';
 import { VILLAGES } from './village.ts';
@@ -60,11 +67,10 @@ export function parseColonyPlaytest(text: string): { file: PlaytestFile<LogEntry
   } catch {
     named = undefined;
   }
-  if (rulesOf(named) === null) throw new Error('This save is from an older version. Start a fresh game.');
+  if (rulesOf(named) === null) throw new Error(WELL_OLD_SAVE);
   const rules = CURRENT_RULES;
   const file = parsePlaytest(text, 'colony', scenarioOf(rules), validateColonyLog);
-  if (file.framework !== FRAMEWORK_PACKAGE_VERSION)
-    throw new Error('This save is from an older version. Start a fresh game.');
+  if (file.framework !== FRAMEWORK_PACKAGE_VERSION) throw new Error(WELL_OLD_SAVE);
   return { file, rules };
 }
 

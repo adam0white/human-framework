@@ -310,6 +310,9 @@ export interface Snapshot {
   /** File bytes never confer local ownership, including through a season backup. */
   fileOrigin?: true;
   castOwnership?: import('../../shared/cast-runtime.ts').CastHeads;
+  /** Shelf transport metadata, retained across native saves. */
+  castLocalOnly?: boolean;
+  castSkipped?: string[];
   scenario: number;
   seed: number;
   log: LogEntry[];
@@ -332,8 +335,21 @@ export function migrateSnapshot(snap: Snapshot): Snapshot {
   if (
     snap.scenario !== WATCH_SCENARIO_VERSION ||
     Object.keys(snap).some(
-      (key) => !['scenario', 'seed', 'log', 'state', 'fileOrigin', 'castOwnership'].includes(key),
+      (key) =>
+        ![
+          'scenario',
+          'seed',
+          'log',
+          'state',
+          'fileOrigin',
+          'castOwnership',
+          'castLocalOnly',
+          'castSkipped',
+        ].includes(key),
     ) ||
+    (snap.castLocalOnly !== undefined && typeof snap.castLocalOnly !== 'boolean') ||
+    (snap.castSkipped !== undefined &&
+      (!Array.isArray(snap.castSkipped) || snap.castSkipped.some((id) => typeof id !== 'string'))) ||
     scenarioForState(snap.state) !== WATCH_SCENARIO_VERSION
   )
     throw new Error(WATCH_OLD_SAVE);

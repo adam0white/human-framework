@@ -23,6 +23,7 @@ it('ordinary advice still allows HF to refuse work against a held duty', () => {
   game.issue({ personId: 'maryam', placeId: 'forest' });
   game.advance(1);
   expect(game.book.cards[0]?.human.state).toBe('willNot');
+  expect(game.book.cards[0]?.human.says).toContain('I have duties to the others.');
   expect((game.human as FrameworkHumanSide).person('maryam').activity?.action).not.toBe('gather-timber');
 });
 

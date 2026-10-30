@@ -234,11 +234,15 @@ export function followNightRecords(
 // Use the same parts of night as the watch clock, retaining exact times in the records.
 const nightTime = (at: number): string => {
   const h = Math.floor((((at % 1440) + 1440) % 1440) / 60);
+  if (h === 17) return 'at dusk';
   if (h >= 18 && h < 20) return 'at nightfall';
   if (h >= 20 && h < 23) return 'at night';
   if (h >= 23 || h < 1) return 'around midnight';
   if (h < 4) return 'after midnight';
-  return 'before dawn';
+  if (h < 5) return 'before dawn';
+  if (h < 7) return 'at dawn';
+  if (h < 12) return 'in the morning';
+  return 'in the afternoon';
 };
 export function nightHistory(s: WatchState, who: WatcherId): string[] {
   const requests = (s.nightRecords ?? [])

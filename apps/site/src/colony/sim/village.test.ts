@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { ColonyGame, DEFAULT_SEED } from './game.ts';
 import { createFrameworkHumanSide } from './human.ts';
+import { WELL_OLD_SAVE } from './human-side.ts';
 import { colonyHash, parseColonyPlaytest, replayColony } from './playtest.ts';
 import { at, STORM_START } from './world-types.ts';
 
@@ -10,7 +11,7 @@ it('refuses an old playtest with a plain start-fresh message', () => {
     new URL('../../../test/fixtures/playtest-colony-v5.json', import.meta.url),
     'utf8',
   );
-  expect(() => parseColonyPlaytest(text)).toThrow('This save is from an older version. Start a fresh game.');
+  expect(() => parseColonyPlaytest(text)).toThrow(WELL_OLD_SAVE);
 });
 
 it('records early warning at dawn and replays it before creating either village', () => {

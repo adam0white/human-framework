@@ -125,7 +125,7 @@ export function Shelf({
               {g.auto && g.chronicle !== current ? (
                 <li className="w-pagerow">
                   <span>
-                    The village of seed {g.auto.seed}
+                    A village
                     <span className="w-note">
                       {' '}
                       · {yearWords(g.auto.year)}, {pageWhen(g.auto.when)}
@@ -144,7 +144,7 @@ export function Shelf({
               {g.backups.map((p) => (
                 <li key={p.id} className="w-pagerow">
                   <span>
-                    Seed {p.seed} · {yearWords(p.year)}, {pageWhen(p.when)}
+                    Earlier page · {yearWords(p.year)}, {pageWhen(p.when)}
                     <span className="w-note">
                       Earlier local progress. Restores this page’s exact accepted cast heads.
                     </span>
