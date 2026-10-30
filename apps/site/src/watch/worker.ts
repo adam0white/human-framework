@@ -486,6 +486,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         let next: WatchRun | null = null;
         let loadError: string | undefined;
         try {
+          // A page written before characters carried authority is an older save: refuse it plainly.
+          if (snap && !snap.fileOrigin && snap.castAuthority === undefined) throw new Error(WATCH_OLD_SAVE);
           if (snap)
             await validateCastRecord(
               'watch',

@@ -191,7 +191,7 @@ export function castState(game: string) {
     line: s?.line,
     localNotice: s?.localOnly
       ? s.pinnedImport
-        ? 'Imported play stays pinned. It does not own browser branches.'
+        ? 'This game was opened from a file. Its people stay in this game.'
         : 'This game uses local people. Carryover remains available in other games.'
       : s?.skipped
           ?.map((id) => `${canonicalCast(id).name} could not carry over. Local people take their place.`)
@@ -682,7 +682,7 @@ function dispatchCastMessage(
     if (!s.localLoad) {
       s.authority = localCastAuthority();
       s.localOnly = true;
-      s.status = 'Imported play stays pinned. It does not own browser branches.';
+      s.status = 'This game was opened from a file. Its people stay in this game.';
     }
     if (prepared && s.localLoad) {
       s.localRestore = prepared.heads;
