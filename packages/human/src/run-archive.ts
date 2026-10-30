@@ -274,7 +274,7 @@ export function checkReconstructedJournals(
   return { ok: true, value: true };
 }
 
-/** SCOPE: export-only retention. Live journals and private deduplication indexes
+/** SCOPE: exported-current retention (cold export and explicit host inspection). Live journals and private deduplication indexes
  * remain complete; accepted input history is never trimmed. This bounds duplicate
  * diagnostics, not actor memory or the input log, and never changes a reached step.
  */
