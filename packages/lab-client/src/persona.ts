@@ -326,7 +326,10 @@ export function personaChannel(options: { preservation?: 'preserve' } = {}): {
     return value;
   };
   // A failed bridge retains local/file play but cannot establish shared consent.
-  let pending = exchange<unknown>({ type: 'hf-persona-consent', action: 'get' }, 'hf-persona-consent-reply')
+  // Hosts can construct this channel while shared bundle chunks are still initializing.
+  // Start after that synchronous evaluation so imported constants are available.
+  let pending = Promise.resolve()
+    .then(() => exchange<unknown>({ type: 'hf-persona-consent', action: 'get' }, 'hf-persona-consent-reply'))
     .then(remember)
     .catch(() => enabled);
   return {

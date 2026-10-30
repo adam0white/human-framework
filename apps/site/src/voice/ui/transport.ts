@@ -38,17 +38,26 @@ async function mockTransport(): Promise<Transport> {
 
 function workerTransport(): Transport {
   const w = new VoiceWorker();
-  const stopCast = bindCastWorker(w, 'voice', gameLabs.voice);
+  const listeners = new Set<(message: WorkerToMain) => void>();
+  const stopCast = bindCastWorker(w, 'voice', gameLabs.voice, (failure) => {
+    for (const listener of listeners) listener({ type: 'playtestError', ...failure });
+  });
+  w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
+    for (const listener of listeners) listener(e.data);
+  });
   return {
     kind: 'worker',
     post: (msg) => postCastMessage(w, 'voice', msg),
-    onMessage: (fn) => w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => fn(e.data)),
+    onMessage: (fn) => {
+      listeners.add(fn);
+    },
     onError: (fn) => {
       w.addEventListener('error', (e) => fn(`The simulation failed to load: ${e.message || 'worker error'}`));
       w.addEventListener('messageerror', () => fn('The simulation sent a message the page could not read.'));
     },
     close: () => {
       stopCast();
+      listeners.clear();
       w.terminate();
     },
   };

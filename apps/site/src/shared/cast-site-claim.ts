@@ -61,7 +61,7 @@ export async function claimSiteCastBatch<T>(
     options.onDispatch?.();
     await shelf.request({ action: 'putBatch', envelopes: [], expectedHeads: batch.expectedHeads });
     current();
-    return null;
+    return { initial: undefined, claims: [], inputs, blocked, expectedHeads: batch.expectedHeads };
   }
   const initial = await admit(structuredClone(inputs));
   const claims = await Promise.all(
@@ -91,5 +91,5 @@ export async function claimSiteCastBatch<T>(
   options.onDispatch?.();
   await shelf.request({ action: 'putBatch', envelopes: claims, expectedHeads: batch.expectedHeads });
   current();
-  return { initial, claims, inputs, blocked };
+  return { initial, claims, inputs, blocked, expectedHeads: batch.expectedHeads };
 }

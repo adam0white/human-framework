@@ -333,6 +333,8 @@ export interface Snapshot {
   fileOrigin?: true;
   castOwnership?: import('../../shared/cast-runtime.ts').CastHeads;
   /** Shelf transport metadata, retained across native saves. */
+  castAuthority?: import('../../shared/cast-authority.ts').CastAuthority;
+  castSources?: Record<string, unknown>;
   castLocalOnly?: boolean;
   castSkipped?: string[];
   scenario: number;
@@ -366,6 +368,8 @@ export function migrateSnapshot(snap: Snapshot): Snapshot {
           'fileOrigin',
           'castOwnership',
           'castLocalOnly',
+          'castAuthority',
+          'castSources',
           'castSkipped',
         ].includes(key),
     ) ||

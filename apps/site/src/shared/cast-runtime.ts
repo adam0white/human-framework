@@ -16,9 +16,16 @@ import {
   personaChannel,
   validatePersona,
 } from '@adam0white/lab-client';
+import {
+  type CastAuthority,
+  canCheckpoint,
+  localCastAuthority,
+  validateCastRecord,
+} from './cast-authority.ts';
 import { type CastChapter, makeCastChapter } from './cast-chapter.ts';
 import { claimSiteCastBatch } from './cast-site-claim.ts';
 import { verifyCastSourceCheckpoint } from './cast-source-checkpoint.ts';
+import { type FileImport, importedFileRecord } from './file-record.ts';
 import { FRAMEWORK_PACKAGE_VERSION, fetchBuild } from './playtest.ts';
 import { requireValue } from './require-value.ts';
 
@@ -31,7 +38,14 @@ export type CastHeads = Record<string, PersonaEnvelope>;
 export type CastRequest =
   | { type: 'castPreflight'; requestId: number; seed: number; chapter: CastChapter }
   | { type: 'castCheckpoint'; requestId: number; castId: string }
-  | { type: 'castOwnership'; heads: CastHeads; localOnly?: boolean; skipped?: string[] };
+  | {
+      type: 'castOwnership';
+      heads: CastHeads;
+      localOnly?: boolean;
+      skipped?: string[];
+      authority?: CastAuthority;
+      sources?: Record<string, unknown>;
+    };
 export type CastReply = {
   type: 'castReady';
   requestId: number;
@@ -39,10 +53,13 @@ export type CastReply = {
   transfer?: Record<string, unknown>;
   terminal?: { castId: string; at: number };
   ownership?: CastHeads;
+  authority?: CastAuthority;
+  sources?: Record<string, unknown>;
   localOnly?: boolean;
   skipped?: string[];
   initials?: Record<string, string>;
   sourceSnapshot?: unknown;
+  fileOrigin?: true;
 };
 /** Immutable host policy, decided before the real browser Shelf is constructed. */
 export const fileSession =
@@ -85,10 +102,13 @@ export async function readGameFile(file: File): Promise<string> {
 }
 type State = {
   game: string;
+  rejectLoad?: (failure: { gen: number; message: string }) => void;
+  validatingLoad?: boolean;
   lab: Lab;
   worker: Worker;
   generation: number;
   heads: CastHeads;
+  authority?: CastAuthority;
   sources: Record<string, unknown>;
   localSources?: unknown;
   histories: CastHeads;
@@ -112,6 +132,8 @@ type State = {
   blocked?: boolean;
   skipped?: string[];
   localOnly?: boolean;
+  pinnedImport?: boolean;
+  fileImport?: FileImport;
   pendingInit?: Record<string, unknown>;
   startupQueue?: Record<string, unknown>[];
   previewInit?: Record<string, unknown>;
@@ -122,6 +144,7 @@ type State = {
 };
 const RUN_FIELDS = [
   'heads',
+  'authority',
   'sources',
   'histories',
   'gate',
@@ -141,6 +164,8 @@ const RUN_FIELDS = [
   'status',
   'skipped',
   'localOnly',
+  'pinnedImport',
+  'fileImport',
 ] as const;
 type RunState = Pick<State, (typeof RUN_FIELDS)[number]>;
 function savedRun(s: State): RunState {
@@ -165,7 +190,9 @@ export function castState(game: string) {
     ready: fileSession ? Promise.resolve(false) : requireValue(shelf).ready,
     line: s?.line,
     localNotice: s?.localOnly
-      ? 'This game uses local people. Carryover remains available in other games.'
+      ? s.pinnedImport
+        ? 'Imported play stays pinned. It does not own browser branches.'
+        : 'This game uses local people. Carryover remains available in other games.'
       : s?.skipped
           ?.map((id) => `${canonicalCast(id).name} could not carry over. Local people take their place.`)
           .join(' '),
@@ -220,8 +247,12 @@ function ask(
 }
 function reset(s: State, gen?: number) {
   s.generation++;
+  s.validatingLoad = false;
   s.busy = false;
   s.heads = {};
+  s.authority = undefined;
+  s.pinnedImport = false;
+  s.fileImport = undefined;
   s.sources = {};
   s.localSources = undefined;
   s.histories = {};
@@ -257,6 +288,8 @@ function pinOwnership(s: State) {
   s.worker.postMessage({
     type: 'castOwnership',
     heads: structuredClone(s.heads),
+    authority: structuredClone(s.authority),
+    sources: structuredClone(s.sources),
     localOnly: s.localOnly ?? false,
     skipped: [...(s.skipped ?? [])],
   } satisfies CastRequest);
@@ -318,11 +351,20 @@ async function restoreOwnership(s: State, value: unknown, generation: number) {
     await recording(s, generation);
     s.status = 'Local save restored its exact accepted heads. A changed shelf still conflicts.';
   }
+  s.busy = false;
   changed();
 }
 async function closeOwned(s: State, terminal: { castId: string; at: number }, generation: number) {
   const parent = s.heads[terminal.castId];
-  if (!parent || parent.terminal || generation !== s.generation || !requireValue(shelf).enabled) return;
+  if (
+    s.validatingLoad ||
+    !canCheckpoint(s.authority, terminal.castId, s.heads) ||
+    !parent ||
+    parent.terminal ||
+    generation !== s.generation ||
+    !requireValue(shelf).enabled
+  )
+    return;
   const receipt = await closePersonaBranch(
     parent,
     { game: s.game, build: await fetchBuild(), engine: FRAMEWORK_PACKAGE_VERSION, rules: 'hf4-cast-1' },
@@ -337,12 +379,18 @@ async function closeOwned(s: State, terminal: { castId: string; at: number }, ge
   s.status = `${canonicalCast(terminal.castId).name}'s branch is closed by their death. History remains inspectable.`;
   changed();
 }
-export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => void {
+export function bindCastWorker(
+  worker: Worker,
+  game: string,
+  lab: Lab,
+  rejectLoad?: State['rejectLoad'],
+): () => void {
   if (fileSession) return () => {};
   const s: State = {
     worker,
     game,
     lab,
+    rejectLoad,
     generation: 0,
     heads: {},
     sources: {},
@@ -361,6 +409,9 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
   states.set(game, s);
   const automatic = () => {
     if (
+      s.validatingLoad ||
+      !s.authority ||
+      s.blocked ||
       !requireValue(shelf).enabled ||
       !s.played ||
       s.busy ||
@@ -385,6 +436,10 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
     if (document.visibilityState === 'hidden') automatic();
   };
   const receive = (event: MessageEvent) => {
+    if (s.validatingLoad) {
+      event.stopImmediatePropagation();
+      return;
+    }
     const r = event.data as CastReply;
     const m = event.data as {
       type: string;
@@ -402,12 +457,29 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
           changed();
         });
       if (r.ownership && s.localLoad && m.gen === s.runGen) {
-        if (typeof r.localOnly === 'boolean') s.localOnly = r.localOnly;
-        if (r.skipped) s.skipped = r.skipped.filter((id) => castForGame(game).some((p) => p.castId === id));
-        void restoreOwnership(s, r.ownership, s.generation).catch((e) => {
-          s.status = String(e);
-          changed();
-        });
+        const generation = s.generation;
+        void validateCastRecord(game, {
+          castAuthority: r.authority,
+          castOwnership: r.ownership,
+          castSources: r.sources,
+          castLocalOnly: r.localOnly,
+          castSkipped: r.skipped,
+        })
+          .then(async (record) => {
+            if (generation !== s.generation) return;
+            s.pinnedImport = r.fileOrigin === true;
+            s.authority = record.authority;
+            s.localOnly = record.authority.mode === 'local';
+            s.skipped = record.authority.denied;
+            s.localSources = record.sources;
+            await restoreOwnership(s, record.heads, generation);
+          })
+          .catch((e) => {
+            s.status = String(e);
+            s.blocked = true;
+            s.busy = false;
+            changed();
+          });
       }
       const pending = s.pending.get(r.requestId);
       s.pending.delete(r.requestId);
@@ -420,6 +492,7 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
     ) {
       const prior = s.loadPrior;
       s.loadPrior = undefined;
+      s.busy = false;
       s.startPrior = undefined;
       Object.assign(s, prior);
       gate(s, prior.gate);
@@ -440,6 +513,8 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
         file.game === exportGame &&
         (game === 'watch' || file.kind === 'human-playtest')
       ) {
+        if (s.fileImport) file.fileImport = structuredClone(s.fileImport);
+        file.castAuthority = structuredClone(s.authority);
         file.castOwnership = structuredClone(s.heads);
         file.castSources = structuredClone(s.sources);
         file.castLocalOnly = s.localOnly ?? false;
@@ -478,6 +553,14 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
 }
 /** Loaded simulation never reads current shelf state. Only explicit local reload restores its pinned receipts. */
 export function postCastMessage(worker: Worker, game: string, message: Record<string, unknown>): void {
+  dispatchCastMessage(worker, game, message);
+}
+function dispatchCastMessage(
+  worker: Worker,
+  game: string,
+  message: Record<string, unknown>,
+  prepared?: Awaited<ReturnType<typeof validateCastRecord>> & { fileImport?: FileImport },
+): void {
   if (fileSession) {
     if (
       ['init', 'load', 'castOwnership', 'castPreflight', 'castCheckpoint'].includes(String(message.type)) ||
@@ -490,11 +573,14 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
   }
   const s = states.get(game);
   if (!s || s.worker !== worker) {
+    if (['castOwnership', 'castCheckpoint', 'load', 'loadPlaytest'].includes(String(message.type)))
+      throw new Error('Bind character authority before using native continuity.');
     worker.postMessage(message);
     return;
   }
   const replacement = ['init', 'loadPlaytest', 'load'].includes(String(message.type));
   const controlGeneration = message.castRunGeneration ?? message.gen;
+  if (s.validatingLoad && !replacement) return;
   const postControl = () => {
     const { castRunGeneration: _generation, ...input } = message;
     worker.postMessage(input);
@@ -533,6 +619,43 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     postCastMessage(worker, game, message);
     return;
   }
+  if (
+    (message.type === 'loadPlaytest' || message.type === 'load') &&
+    typeof message.text === 'string' &&
+    !(game === 'watch' && typeof message.id === 'string') &&
+    !prepared
+  ) {
+    const generation = ++s.generation;
+    s.validatingLoad = true;
+    s.busy = true;
+    void Promise.resolve()
+      .then(async () => {
+        const raw = JSON.parse(String(message.text));
+        const record = await validateCastRecord(
+          game,
+          raw,
+          message.local === true || message.type === 'load' ? {} : { provenanceOnly: true },
+        );
+        const fileImport =
+          message.local === true ? raw.fileImport : await importedFileRecord(raw, String(message.text));
+        return { ...record, fileImport };
+      })
+      .then((record) => {
+        if (generation !== s.generation) return;
+        s.validatingLoad = false;
+        s.busy = false;
+        dispatchCastMessage(worker, game, message, record);
+      })
+      .catch((error) => {
+        if (generation !== s.generation) return;
+        s.validatingLoad = false;
+        s.busy = false;
+        s.status = String(error);
+        s.rejectLoad?.({ gen: Number(message.gen), message: String(error) });
+        changed();
+      });
+    return;
+  }
   if (replacement) {
     const prior = s.loadPrior ?? (s.startupQueue ? s.startPrior : savedRun(s));
     reset(s, typeof message.gen === 'number' ? message.gen : undefined);
@@ -551,23 +674,24 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     return;
   }
   if (message.type === 'loadPlaytest' || message.type === 'load') {
+    s.pinnedImport =
+      (message.local !== true && message.type !== 'load') || prepared?.fileImport?.imported === true;
+    s.fileImport = prepared?.fileImport;
     s.localLoad = message.type === 'load' || message.local === true;
-    if (!s.localLoad) s.status = 'Imported play stays pinned. It does not own browser branches.';
-    if (s.localLoad && typeof message.text === 'string') {
-      try {
-        const saved = JSON.parse(message.text);
-        s.localRestore = saved.castOwnership;
-        s.localSources = saved.castSources;
-        s.localOnly = saved.castLocalOnly === true;
-        s.skipped = Array.isArray(saved.castSkipped)
-          ? saved.castSkipped.filter(
-              (id: unknown) => typeof id === 'string' && castForGame(game).some((p) => p.castId === id),
-            )
-          : [];
-      } catch {
-        /* Worker rejects malformed file. */
-      }
+    if (s.localLoad) s.busy = true;
+    if (!s.localLoad) {
+      s.authority = localCastAuthority();
+      s.localOnly = true;
+      s.status = 'Imported play stays pinned. It does not own browser branches.';
     }
+    if (prepared && s.localLoad) {
+      s.localRestore = prepared.heads;
+      s.localSources = prepared.sources;
+      s.authority = prepared.authority;
+      s.localOnly = prepared.authority.mode === 'local';
+      s.skipped = prepared.authority.denied;
+    }
+
     gate(s, `cast-file-${crypto.randomUUID()}`);
     worker.postMessage(message);
     return;
@@ -580,6 +704,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     return;
   }
   if (message.type !== 'init') {
+    if (s.blocked || (s.busy && s.localLoad)) return;
     if (s.startupQueue) {
       // No simulation exists yet. Elapsed frames and reads of the previous view are not inputs to the new run.
       if (['tick', 'predict', 'why'].includes(String(message.type))) return;
@@ -602,6 +727,8 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     await requireValue(shelf).ready;
     if (generation !== s.generation) return;
     if (!requireValue(shelf).enabled) {
+      s.authority = localCastAuthority();
+      s.localOnly = true;
       gate(s, null);
       startWorker(s, message);
       return;
@@ -650,11 +777,27 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     if (!admitted) {
       gate(s, null);
       s.line = undefined;
+      s.authority = localCastAuthority();
+      s.localOnly = true;
       s.status = 'Fresh local chapter. No allocated person has an active shelf history.';
       startWorker(s, message);
       return;
     }
-    s.heads = Object.fromEntries(admitted.claims.map((p) => [p.castId, p]));
+    const record = await validateCastRecord(game, {
+      castAuthority: {
+        format: 'site-cast-authority/1',
+        mode: 'shared',
+        expectedHeads: admitted.expectedHeads,
+        denied: admitted.blocked.map((p) => p.castId),
+      },
+      castOwnership: Object.fromEntries(admitted.claims.map((p) => [p.castId, p])),
+      castSources: {},
+      castLocalOnly: false,
+      castSkipped: admitted.blocked.map((p) => p.castId),
+    });
+    if (generation !== s.generation || s.afterClaim) return;
+    s.authority = record.authority;
+    s.heads = record.heads;
     s.histories = { ...s.heads };
     s.skipped = admitted.blocked.map((p) => p.castId);
     const skipped = admitted.blocked
@@ -705,6 +848,7 @@ export function startCastFresh(game: string) {
     const message = s.pendingInit;
     reset(s, typeof message.gen === 'number' ? message.gen : undefined);
     s.localOnly = true;
+    s.authority = localCastAuthority();
     s.line = 'This game uses local people. Carryover remains available in other games.';
     s.status = s.line;
     gate(s, null);
@@ -714,9 +858,9 @@ export function startCastFresh(game: string) {
 }
 
 async function checkpointPerson(s: State, selectedCastId: string, fork: boolean): Promise<void> {
-  if (s.busy) return;
-  if (s.localOnly || s.skipped?.includes(selectedCastId)) {
-    s.status = `${canonicalCast(selectedCastId).name} is local in this game. Their saved history stays unchanged.`;
+  if (s.busy || s.validatingLoad) return;
+  if (!canCheckpoint(s.authority, selectedCastId, s.heads)) {
+    s.status = `${castForGame(s.game).find((p) => p.castId === selectedCastId)?.name ?? 'This person'} is local in this game. Their saved history stays unchanged.`;
     changed();
     return;
   }

@@ -273,7 +273,6 @@ export function App() {
       onKeyDownCapture={stable.onKeyDownCapture}
     >
       {!fileSession && <CastStartGate game="voice" />}
-      {!fileSession && <CastLifeNote game="voice" />}
       {fileControls}
       {fileSession && menuOpen && (
         <button type="button" onClick={closeFileMenu}>
@@ -297,6 +296,11 @@ export function App() {
           setInfoOpen(false);
         }}
       />
+      {!fileSession && (
+        <aside className="v-cast-disclosure">
+          <CastLifeNote game="voice" />
+        </aside>
+      )}
       <LabNotice />
       {frame && !overlay && (
         <main className="v-play-layout">

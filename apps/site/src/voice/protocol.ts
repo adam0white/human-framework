@@ -167,7 +167,7 @@ export type MainToWorker =
   | { type: 'dismissIntro' }
   | { type: 'keepListening' }
   /** Playtest file (additive): the worker answers `playtest` with the file (its `build` is filled in by the page). */
-  | { type: 'exportPlaytest'; full?: boolean }
+  | { type: 'exportPlaytest'; full?: boolean; requestId?: number }
   /** Replay a playtest file's text as a new run numbered `gen`; answers `replayed`, or `playtestError`. */
   | { type: 'loadPlaytest'; gen: number; text: string; local?: boolean };
 
@@ -422,7 +422,7 @@ export type WorkerReply =
   | { type: 'why'; decisionId: string; why: WhyView | null }
   | { type: 'between'; view: BetweenView }
   | { type: 'report'; view: ReportView }
-  | { type: 'playtest'; file: PlaytestFile }
+  | { type: 'playtest'; requestId?: number; file: PlaytestFile }
   | { type: 'replayed'; result: ReplayResult }
   | { type: 'playtestError'; message: string }
   | { type: 'error'; message: string };
