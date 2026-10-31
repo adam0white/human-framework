@@ -9,7 +9,8 @@
  * `npm run lab:inbox -- --drain` reads missing linked payloads with eight readers for up to one hour.
  * Readers share request pacing and a five-minute pause when the account API throttles.
  * Runs report phase times and keep the entire cache. Only one invocation may write the cache at a time.
- * `.lab-inbox/.download-lock` holds the writer's PID; a lock whose process is gone is removed with a notice.
+ * `.lab-inbox/.download-lock` holds the writer's PID and a nonce. Any existing lock stops the run and is kept;
+ * after a killed writer, delete the file by hand once the owner has stopped. A run removes only its own lock.
  * With --suggest, only the first word of envelope `who` and notes of at least three words go to
  * Cloudflare Workers AI @cf/cloudflare/clef (never the run, build, game or full identity). Answers stay in
  * suggest/<id>.json; invalid caches are moved aside and re-asked once per invocation.
@@ -22,7 +23,22 @@
  * The page reports a stop.
  */
 import { execFile, execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import { randomBytes } from 'node:crypto';
+import {
+  closeSync,
+  existsSync,
+  fstatSync,
+  mkdirSync,
+  openSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  statSync,
+  unlinkSync,
+  writeFileSync,
+  writeSync,
+} from 'node:fs';
 import { join } from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { gunzipSync } from 'node:zlib';
@@ -235,30 +251,44 @@ type Envelope = {
 
 mkdirSync(dir, { recursive: true });
 // A drain can overlap the hourly caller. One writer owns the cache until exit.
-// A process killed by a signal skips its exit handler; a lock whose PID is dead is reclaimed.
+// Any existing lock stops the run and is left alone, whether its writer is live, dead or unknown.
+// Only the operator removes a lock, and only after the owner has stopped.
 const lock = join(dir, '.download-lock');
-function holderAlive() {
-  const pid = Number.parseInt(readFileSync(lock, 'utf8'), 10);
-  if (!Number.isInteger(pid) || pid <= 0) return true; // unreadable: assume a writer is mid-create
-  try {
-    process.kill(pid, 0);
-    return true;
-  } catch (error) {
-    return (error as NodeJS.ErrnoException).code !== 'ESRCH';
-  }
+const lockBody = JSON.stringify({ pid: process.pid, nonce: randomBytes(16).toString('hex') });
+let lockFd: number;
+try {
+  lockFd = openSync(lock, 'wx');
+} catch (error) {
+  if ((error as NodeJS.ErrnoException).code === 'EEXIST')
+    throw new Error(
+      `Inbox cache is locked (${lock}); the lock was left in place. If its writer has stopped, delete the file by hand and run again.`,
+    );
+  throw error;
 }
-for (let tries = 0; ; tries++) {
+const lockFile = fstatSync(lockFd);
+// The exit handler removes only the file this process created, found by its body and identity.
+function releaseLock() {
   try {
-    writeFileSync(lock, String(process.pid), { flag: 'wx' });
-    break;
+    const now = statSync(lock);
+    if (now.dev === lockFile.dev && now.ino === lockFile.ino && readFileSync(lock, 'utf8') === lockBody)
+      unlinkSync(lock);
   } catch {
-    if (tries > 0 || holderAlive())
-      throw new Error(`Inbox cache is locked by a running process. Remove ${lock} only if it is stale.`);
-    console.warn(`Removed stale inbox lock left by a dead process (${lock}).`);
-    rmSync(lock, { force: true });
+    // The lock is already gone or replaced; it is not ours to touch.
   }
 }
-process.once('exit', () => rmSync(lock, { force: true }));
+try {
+  writeSync(lockFd, lockBody);
+} catch (error) {
+  // Keep the original write error. Any lock stays for explicit operator recovery.
+  try {
+    closeSync(lockFd);
+  } catch {
+    // A close failure must not mask the write error.
+  }
+  throw error;
+}
+closeSync(lockFd);
+process.once('exit', releaseLock);
 mkdirSync(join(dir, 'runs'), { recursive: true });
 mkdirSync(join(dir, 'replay'), { recursive: true });
 mkdirSync(join(dir, 'gz'), { recursive: true });
