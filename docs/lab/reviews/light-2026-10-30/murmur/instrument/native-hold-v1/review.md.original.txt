@@ -1,0 +1,27 @@
+**Verdict: CLEAR** for all three fork script hashes, within the limits listed below:
+- `lab-play.ts` 995a9d53…e97e2
+- `lab-play-helpers.ts` 9855ce89…7a4acc
+- `lab-play-text.ts` 5d3c368a…6125b (same as the original)
+
+`hold-control.mjs` (dc80bc27…f78a9d) is the test harness, not part of the instrument. I found no blockers.
+
+| Area | Finding | Evidence |
+|---|---|---|
+| Real held input | Correct. Desktop does a real mouse move, down, wait, then up. Phone does a real touch start and touch end through a Chrome DevTools session (CDP). The page saw only trusted events, about 1203–1207 ms apart for a 1200 ms hold. | lab-play.diff 69–101; green-output 11–12, 34–35 |
+| Release | The release sits in `finally`, and only runs if the press happened (`down` / `touching` flags). The DevTools session is closed in a nested `finally`, so a failed release still closes it. | diff 77–85, 95–100 |
+| Validation | Only an integer from 100 to 5000 is accepted. Other ops still reject the field because of the per-op field list. Bad values never reach the browser. | helpers.diff 22, 30–34; green 3–9, 26–32 |
+| Safety regression | None. Taps without a hold run the original code unchanged (diff 70–74, 59–60). Held taps by name still pass through the existing checks for duplicates, disabled controls and covered controls. They use the existing `uncoveredPoint` check instead of Playwright's click, and refuse with the same text. | diff 48–58, 119–123; green 17–19, 40–42 |
+| Instrument identity | Honest. The driver labels itself `native-hold-fork` / `fork-unverified`, and the stale-driver refusal still applies. | diff 29–36 |
+| Player use | Usable. A hold works by name, text or point on both devices, and `duration_ms` and the actual `op_ms` are recorded in the log. | green 14–16, 22, 38–39, 45 |
+
+**Test limits (none of these is a blocker):**
+1. **Stale-driver setting.** The control runs the driver with `LAB_PLAY_ALLOW_STALE=1` (hold-control.mjs line 38). Because the fork lives in a folder with no git, players will probably need that same setting, or the driver will refuse to start. The director should set it when launching players.
+2. **Release after the target disappears.** When the target is removed mid-hold, the page never sees the release on phone (vanish test: 4 downs, 3 ups). Release is shown indirectly: the next hold gets a fresh press and release.
+3. **Killed process.** If the driver process is killed during a hold, the release code does not run. This was not tested.
+4. **Not tested:**
+   - Taps without a hold on phone still go through Playwright's mouse-style click, as in the original.
+   - Holds on phone may trigger the browser's own long-press behaviour, such as a context menu.
+   - The repo's existing driver tests and the TypeScript type check were not run.
+   - Only Chromium, one viewport per device, and no scrolling during a hold were exercised.
+
+The scope is a scratch instrument for diagnostic play only. This is not approval to merge upstream and not the PR87 review. I created no files, worktrees or processes, so there is nothing to clean up.

@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-31T01:27:09.367819+00:00",
+  "command": "/opt/homebrew/bin/node /Users/abdul/code/human-framework/node_modules/vitest/vitest.mjs run --config focused.config.mjs",
+  "cwd": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-hold",
+  "exit": 0,
+  "testFilesPassed": 2,
+  "testsPassed": 34,
+  "durationMs": 376,
+  "temporaryNodeModulesLinkRemoved": true,
+  "scope": "existing helper and public-text tests against copied fork; not full repo lane"
+}

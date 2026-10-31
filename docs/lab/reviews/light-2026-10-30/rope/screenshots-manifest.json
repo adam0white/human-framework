@@ -1,0 +1,289 @@
+[
+  {
+    "tester": "Pavel Novak",
+    "device": "desktop",
+    "image": "rope/pavel/desktop/first-minute.png",
+    "sha256": "e9a90172fbf3b10942c003c6adc233d01850877b62a0e87d022cf855d95f49f8",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "desktop",
+    "image": "rope/pavel/desktop/a-004.png",
+    "sha256": "9a7f67402a47a640ed87286796aba758b61420e5ebc7af033c993eae96fc024b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "desktop",
+    "image": "rope/pavel/desktop/a-002.png",
+    "sha256": "9372d39450ff8b503d8ed40e1fd35f2a3d4463d6e9452b50445086a40e0a04eb",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "desktop",
+    "image": "rope/pavel/desktop/a-003.png",
+    "sha256": "0056b2bb0525901b035e6db72d718219d1439d50015d6795b7b3ebf2bf33d476",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "desktop",
+    "image": "rope/pavel/desktop/a-001.png",
+    "sha256": "d47fd3ec0e94fc86c53f6b13368332e96590dd00c7cf4327a27780e56848bd9c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "phone",
+    "image": "rope/pavel/phone/b-001.png",
+    "sha256": "5aca10cfb0dcda5e93d900c5effe047fa96406d4660eba5e0fecb8042b35add0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "phone",
+    "image": "rope/pavel/phone/first-minute.png",
+    "sha256": "fda532691d554d1c39c253b5ec4d45605342e3c277359c9aeaed40e289d83a2b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "phone",
+    "image": "rope/pavel/phone/b-002.png",
+    "sha256": "1cdd2d52331e37010d2510bbc9cafc5b5307e214dfb5a169d18ed053d0d81f85",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "phone",
+    "image": "rope/pavel/phone/b-003.png",
+    "sha256": "643d436bf2d33f34c8a08680127b30b327d187f440c29c913f786a8bad527874",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "phone",
+    "image": "rope/tessa/phone/first-minute.png",
+    "sha256": "4c9e1f23dc14d8eb0c73a51f03a818c8a2241b6f77a709903c0b5032381b09c2",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "phone",
+    "image": "rope/tessa/phone/a-002.png",
+    "sha256": "6c8452dfacbd6ffccc34e012ecdcab14e6fc0bc1148158eb4812ba17827bc59e",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "phone",
+    "image": "rope/tessa/phone/a-003.png",
+    "sha256": "2eaea9c3a11a9aa527caffbc76911cd6a78731d1f7fa2a209e308942bf1b9f90",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "phone",
+    "image": "rope/tessa/phone/a-001.png",
+    "sha256": "5aca10cfb0dcda5e93d900c5effe047fa96406d4660eba5e0fecb8042b35add0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "desktop",
+    "image": "rope/tessa/desktop/b-001.png",
+    "sha256": "d47fd3ec0e94fc86c53f6b13368332e96590dd00c7cf4327a27780e56848bd9c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "desktop",
+    "image": "rope/tessa/desktop/first-minute.png",
+    "sha256": "b65e2efece331581e613c6487044c8a523eddfb10c80a305bd5d88879b98ac61",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "desktop",
+    "image": "rope/tessa/desktop/b-002.png",
+    "sha256": "7d79bfbdc9752fffeef3257f0a7159b9e1fce557407266bff48805605d624fb6",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "image": "rope/nia/phone/first-minute.png",
+    "sha256": "f450770e1fe489a1f1f67592ad221e91219cdf81bd4f5b424e5965a86c155abc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "image": "rope/nia/phone/a-002.png",
+    "sha256": "a47fce2de7a4f5f369c02d980fb8dcad248134f4691a4a28de178d73d2f90b3b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "image": "rope/nia/phone/a-001.png",
+    "sha256": "5aca10cfb0dcda5e93d900c5effe047fa96406d4660eba5e0fecb8042b35add0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "desktop",
+    "image": "rope/nia/desktop/b-001.png",
+    "sha256": "d47fd3ec0e94fc86c53f6b13368332e96590dd00c7cf4327a27780e56848bd9c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "desktop",
+    "image": "rope/nia/desktop/first-minute.png",
+    "sha256": "f554f698df6d338875a77c1738a48b66893064dac17ce29e8aa5dbf3dc3a3dcf",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "desktop",
+    "image": "rope/nia/desktop/b-002.png",
+    "sha256": "72b3704a8bf994a49c812043be26b868379ce00c32c3be67e8a2135b0ea8a337",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "rope/rosa/phone/first-minute.png",
+    "sha256": "caf86dc4fdb01a090134b3daec3a2e016e72107961f9125c2f2319e66f4f0cf3",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "rope/rosa/phone/a-002.png",
+    "sha256": "9a2460c553b53315e232c8138c953c516709c18c5b849b2eb12cda58b82a622f",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "rope/rosa/phone/a-003.png",
+    "sha256": "1b26bdc36a1d940741993a4e1dd803851162806f8f4d26f50e7d7b661bba255a",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "rope/rosa/phone/a-001.png",
+    "sha256": "5aca10cfb0dcda5e93d900c5effe047fa96406d4660eba5e0fecb8042b35add0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "rope/rosa/desktop/b-001.png",
+    "sha256": "b0ac3cfaea01d5d944493833028ca58158e62b245ee33807c35a25af2ed090c7",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "rope/rosa/desktop/first-minute.png",
+    "sha256": "f62be4cee39670b30985764e914e831756ebbd9d4e7a0fb81c76c31a7d340787",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "rope/rosa/desktop/b-002.png",
+    "sha256": "fa5f07c1cbdfdf002c9a0de21771a120abbb524a9fd5e34f4bd29b3218445b6b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "desktop",
+    "image": "rope/emilie/desktop/a-004.png",
+    "sha256": "c544924b02e0d22d3b4cd8236d875e98b32b86dfa70fe747874ddceb81d546a5",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "desktop",
+    "image": "rope/emilie/desktop/a-007.png",
+    "sha256": "cfe0410b00ccdb781d0011ffd8c774c8463e90dd2fc6ff11d26eb4ebe17c894f",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "desktop",
+    "image": "rope/emilie/desktop/a-006.png",
+    "sha256": "0f24cf85c75c3aa066562c2370b38de03b2e4de0bbcd059b965fa43666897d50",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "desktop",
+    "image": "rope/emilie/desktop/a-002.png",
+    "sha256": "32b61aad80ed89fb77d8efe1cf112c7717ac5408b1597581aba95ad2d24f3fa0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "desktop",
+    "image": "rope/emilie/desktop/a-001.png",
+    "sha256": "d47fd3ec0e94fc86c53f6b13368332e96590dd00c7cf4327a27780e56848bd9c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "desktop",
+    "image": "rope/emilie/desktop/a-008.png",
+    "sha256": "7f7c366e7a92edd0059685fc4d00faf521a5c20d38949d4294a6ba36393da682",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "phone",
+    "image": "rope/emilie/phone/b-006.png",
+    "sha256": "48d6ebd2cec084cfe2908b78f0452e7cae87f5a15033df0e0051861f6ba8fae8",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "phone",
+    "image": "rope/emilie/phone/b-004.png",
+    "sha256": "33b1ca53a946ce35399edb56600cb66224c871a649d449b974faac07a2958537",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "phone",
+    "image": "rope/emilie/phone/b-005.png",
+    "sha256": "5d50903dccc9ecc32c01c9789b8bd79aa6f1fb878bf6bf20cd9c2e1d9d21237f",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "phone",
+    "image": "rope/emilie/phone/b-001.png",
+    "sha256": "5aca10cfb0dcda5e93d900c5effe047fa96406d4660eba5e0fecb8042b35add0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "phone",
+    "image": "rope/emilie/phone/b-002.png",
+    "sha256": "841c033ab4d7447e1fa8742edc53cee49f0e6b3043c149804ad0b8147fa9a2b1",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emilie Laurent",
+    "device": "phone",
+    "image": "rope/emilie/phone/b-003.png",
+    "sha256": "22dd1f3fb59ede68aa8e4dea150bf07f2bdc78ccb202876779bef13e57f29d99",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  }
+]

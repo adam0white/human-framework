@@ -1,0 +1,195 @@
+**Would you return voluntarily?** "I would come back another evening only if a new month brought different people and different answers. As long as the families and witnesses say the same sentences, one evening was enough."
+
+**Ranked asks:**
+1. Give every family, reference and neighbour their own words. The Arslans and the Kayas had identical needs and wording. Mr Hüsnü told the same "glass of water, buses from Bornova" story about two different applicants. Özlem and the landlord ended calls with the same sentence.
+2. Make the rent and the money matter for longer. By Monday 16:29 I had ₺7,500 against ₺5,000 rent due Friday, and the tension was gone on day one.
+3. Do not run the clock while I am only reading a card or switching tabs. Or tell me plainly how fast it runs. A clock that moves while I read made me hurry, and I could not tell where twenty minutes went.
+
+---
+
+# Report: Lena Fischer, Good Hands, light-1030
+
+## 1. Session
+
+- **Persona:** Lena Fischer, 41, Leipzig, job-centre social worker. She likes desk and narrative games.
+- **Exposure:** NEVER-HF COLD, first visit. This is not a retest.
+- **Round and arm:** light-1030, free stop (floor 0).
+- **Own history supplied:** empty ("Empty. You have never encountered any game made with this framework.").
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent
+
+| Session | Device | Driver | Real time (driver elapsed_s at stop log) |
+|---|---|---|---|
+| A | Desktop 1280x800, keyboard and mouse, light mode | :21229 | 512.96 s (about 8.5 min) |
+| B | Phone 360x690, touch, light mode | :21228 | 93.34 s (about 1.5 min) |
+
+Both sessions ended on a free stop, well under the 25-minute ceiling.
+
+## 2. First impressions
+
+**Session A (desktop):**
+- 2 s: the premise appealed to me straight away: a placement agency, a nanny case, rent due.
+- 7–11 s: "Open the office" seemed to do nothing, then the office opened late.
+- 15 s: "Gülce is waiting while you read" while the clock jumped 7 minutes. I felt watched.
+- 27–70 s: the family's need (patience, because someone repeats instructions) gave me something concrete to check. A reference said Şebnem "argued when the instructions were repeated". That catch was satisfying.
+
+**Session B (phone):**
+- 0 s: same title page, same delay on "Open the office".
+- 12 s onward: the same three applicants and the same Arslan call, word for word. I knew the answers already.
+
+## 3. Verbatim diary lines (elapsed_s, unedited)
+
+### Session A (desktop)
+
+- 2.36 note: A placement agency, a nanny case, rent due. This is my kind of desk game premise.
+- 6.94: I clicked Open the office and the page looked the same. Clicking again.
+- 10.98: The office opened after a delay. The clock is ticking on its own, 08:32. I read the first applicant.
+- 15.56: "Gülce is waiting while you read" and the clock jumped 7 minutes while I read. A timer while reading, I feel watched. Interviewing her.
+- 23.32: Phone rings mid-interview. I answer the family; Gülce can wait a moment.
+- 27.78: Good: a concrete need, patience, because someone repeats instructions. Now I know what to check. I will not promise what I cannot keep.
+- 38.81: Eleven questions but only 3 left. I pick the one closest to patience.
+- 42.83: I like that Nermin is honest she is unsure. Hedged answer. Now the wage, against ₺9,000.
+- 50.42: She left after four questions. I had wanted to stop earlier and keep her waiting. Fine, I have her number. Next: Şebnem.
+- 57.42: Her former employer is reachable now. I check the reference before I interview, like I would at work.
+- 63.45 first_minute (engagement 4, Mon 2 Nov 09:43): First minute: I am drawn in. A family with a real need, applicants who hedge, references I can phone. The running clock while I read makes me a bit tense.
+- 70.37: "Argued when the instructions were repeated" - that is exactly the Arslan household. Satisfying catch. Şebnem is not for them.
+- 117.95: Özlem listened when instructions were repeated. She is my candidate. One more check: reliability.
+- 132.39: Oh, I can put what the reference said to her face. Very Papers, Please. But I want her wage first.
+- 140.67: ₺8,500 fits under ₺9,000, though it leaves little margin for an agency fee - I am guessing that is how I earn. I keep her here and try to place her.
+- 151.10: "The family remembers the qualities you promise." I will promise only patient and reliable, the two I actually checked. Consequences later - I like that.
+- 162.40: Both agree. She even gets ₺9,000, more than she asked. Fee is separate, ₺9,000. Clear enough. I accept.
+- 166.56: Placed! ₺5,250 now, rent is covered on Monday morning. That felt almost too quick, but I earned it by checking.
+- 170.70: Small oddity: Özlem card says she is waiting with an application form AND works at the Arslans. Now the old case on Nermin mind.
+- 174.96: The old case hits home - a worker warned about unpaid nights and was brushed off. As a social worker I correct the record and write to the worker first. Then the Kaya call.
+- 183.87: The Kaya family says word for word what the Arslans said - frustrated, repeats instructions, ₺9,000. That breaks the spell a little; it feels like a form, not a family. Şebnem argues, Gülce is unsure. I promise to look anyway.
+- 186.05 pulse (engagement 4, Mon 2 Nov 11:03): Checking references against the family need is satisfying; the copy-paste second family dented it.
+- 197.78: A quiet line drawing of the office, one stick figure on the bench. Calm. Şebnem has been waiting nearly three hours; it is unfair to keep her. I will send her home with her number.
+- 204.17: Bench is empty. I skip ahead to the news.
+- 208.27: Hülya, an oven cook from the pharmacy downstairs? A baking job? I did not know there was a baking job. Curious, I ask.
+- 212.78: I asked about a baking job and she answered about tomato seedlings. I am a bit lost about who Hülya is or what job she means, but the request is kind and cheap. I give her the ledge.
+- 217.07: "This does not promise a harvest or a closer relationship with her stepdaughter." That line tells me what not to feel - a little lecturing. Is Hülya an applicant? She is on my bench.
+- 221.20: She is a cook. Which family wants a cook? Checking the Families list.
+- 237.09: Keeping the number said 2 minutes, but the clock went from 12:19 to 12:39. Twenty minutes gone - maybe while I was reading? Not sure.
+- 245.62: The landlord calls with gossip about Şebnem and buses from Bornova. Pleasant texture, but I am not sure what it means for me. Is Bornova far? Possibly a hint about travel time.
+- 256.45: Özlem is calling from her placement on the first day. My stomach drops a bit - a consequence already?
+- 294.86: Özlem says exactly the landlord line: "Thank you. I will let you know when there is more to tell." Same sentence from two people. The voices are thinning out.
+- 303.11: A driver who must be discreet. Different need, good. I have no drivers, but I promise to look.
+- 316.51: I only switched tabs and twenty game minutes passed, 14:25 to 14:45. And another call from the landlord before I can phone Gülce reference. The interruptions keep me from my own plan.
+- 324.78: A new applicant, Cihan. Maybe a driver.
+- 328.80: A driver, just when the Demirs need one. I check discretion with his old employer first.
+- 341.40: There is no question about keeping private matters private - the one quality the Demirs need. I settle for honesty, the closest.
+- 358.17: There it is - the question about private conversations. Questions fit the trade, a driver gets driver questions. Good.
+- 448.05 pulse (engagement 4, Mon 2 Nov 15:55): Cihan wants ₺9,000 but the Demirs offer ₺8,500. A real gap, not an obvious answer. I like that. (The tap reply timed out again but the answer came.)
+- 466.03: I promise honest (a reference said it) and discreet (only his own word). I hesitate on discreet but it is the one thing they asked for.
+- 476.75: Stalemate: he needs 9,000, Berrin will pay 8,500. A real negotiation. Let me see my options.
+- 480.73: I ask the family to raise the wage first, before I cut my own fee.
+- 485.35: Berrin agreed to 9,000 without a fight. Too easy - I expected pushback after she named 8,500 as her budget.
+- 491.57: ₺7,500 on Monday afternoon, rent ₺5,000 on Friday. The pressure is already gone on day one. Odd: a 9,000 driver deposit was 2,250, same as the nanny.
+- 497.40: The landlord a third time today.
+- 500.76 want_quit BORED (engagement 3, Mon 2 Nov 16:59): The landlord tells me the exact Şebnem story again, now with Cihan: glass of water, buses from Bornova. Rent is already covered on Monday. The people are starting to feel like a form with names swapped, and nothing is at stake tonight. I think I will stop here.
+- 512.96 stop BORED (Mon 2 Nov 16:59): I stop here. Two good placements made by checking references, rent covered by Monday afternoon, and the townspeople now repeat each other. I chose I am stopping in Feedback and went back without sending.
+
+### Session B (phone)
+
+- 3.77: Same evening, on my phone. Same title page. I want to see if the same three people are on the bench, and do Gülce reference properly this time.
+- 12.65: Same three on the bench, same names. On desktop I never phoned Gülce reference. This time I start there.
+- 22.55: On the phone the card shows only one quality at a time above the buttons, and the task line is cut off at the bottom. Her reference is at work until 14:00. I never tried a trial on desktop; a morning with the family is a real check, so I try it.
+- 27.62: Wait - the trial is next morning, and the family needs her by Tuesday 08:00. The trial would eat the deadline. I back out.
+- 34.98: Hale Erol is free at 09:00. I interview Özlem while I wait for that.
+- 43.02: "I have worked as a nanny." Eleven game minutes for one flat sentence. The Arslans call, same moment as on the laptop.
+- 57.51: Travel - the landlord talked about buses from Bornova on the laptop. Now I can ask.
+- 61.61: Karşıyaka, across the bay, with a little gloss. Nice that place names explain themselves. I keep my last question and bench her, then phone Hale.
+- 64.02 first_minute (engagement 3, Mon 2 Nov 09:30): First minute on the phone: everything is the same as on the laptop, same three people, same Arslan words, same wage. It works fine on the small screen, but I already know the answer, so it feels like replaying a solved case.
+- 82.36 want_quit BORED (Mon 2 Nov 09:53): Hale Erol says the exact sentence again: listened when the instructions were repeated. The month is the same people with the same answers. I know how this ends, so on the phone there is nothing left for me to find out tonight.
+- 93.34 stop BORED (Mon 2 Nov 09:53): I stop. The phone version works, but it is the same month with the same sentences, and I already solved it on the laptop. I chose I am stopping in Feedback and went back without sending.
+
+## 4. Moments
+
+**What held me:**
+- Matching a reference detail to the family's stated need. Şebnem "argued when the instructions were repeated"; Özlem "listened when the instructions were repeated".
+- Choosing which qualities to promise, with the warning "The family remembers the qualities you promise."
+- The old case about unpaid nights.
+- Driver-specific interview questions.
+- The ₺8,500 against ₺9,000 wage gap with Cihan.
+
+**What lost me:**
+- Repeated wording. The Kaya family copied the Arslans. The landlord told the same story twice. Özlem and the landlord used the same closing line.
+- Money pressure vanished by Monday afternoon.
+- Berrin gave in at once on the wage.
+- Hülya's thread was unclear.
+
+**Pulses (Session A):**
+
+| elapsed_s | Engagement | Note |
+|---|---|---|
+| 186 | 4 | First pulse |
+| 448 | 4 | Second pulse |
+| 500.76 | 3 | Logged with the want_quit |
+
+Session B: the first_minute was 3. No pulse, because I stopped before 180 s, so that checkpoint is untested.
+
+**Quit wishes:**
+- A: want_quit BORED at 500.76. It did not pass; I stopped 12 s later.
+- B: want_quit BORED at 82.36. It did not pass; I stopped at 93.34.
+
+## 5. Confusion and clarity
+
+**Clear:**
+- The action tiles and the time each one costs.
+- The evidence quoted under each quality on the card.
+- The negotiation options.
+- Deposit = one week's wage, with the rest after the trial.
+- Place-name glosses, for example Karşıyaka "(the district across the bay)".
+
+**Confusing:**
+- Who Hülya was, and what "baking job" meant.
+- Why game time jumped 20 minutes while I only read or switched tabs. I am unsure; it may be my slow reading speed in real time.
+- An applicant card said "waiting with an application form" while the same person was already placed.
+- The trial sends the applicant "the next morning", which falls on the family's deadline. I noticed this and backed out.
+- The first click on "Open the office" seemed to do nothing on both devices.
+
+I never pressed "I'm confused". I was not confused enough to stop.
+
+## 6. Device use
+
+**Desktop.** Screenshots viewed:
+- a-001.png: the title page.
+- a-002.png: the office at 11:04, with a line drawing, the bench and the tabs.
+- a-003.png: the Feedback panel. I saw five choices: I'd keep playing / Not sure / I'd stop here / I'm stopping / I'm confused. I had pressed "I'm stopping". Below them were an empty note box and a red Submit.
+
+Controls I used: the bench names, Interview, question buttons, the call Answer button, Call a reference, Negotiate placement, quality toggles, More choices, Skip, Game menu, Feedback, Back.
+
+Tool hiccups: three taps returned driver timeouts but took effect in the game. They were "Call Hale Erol Reachable now", "End the conversation" and "What wage do you need?". None was a block.
+
+**Phone.** Screenshots viewed:
+- p-001.png: the title page, which fits well.
+- p-002.png: the office. The drawing is on top. The task banner is cut off ("Tuesday 3 November, 08:00" clipped). The card shows only "patient" before the five action buttons, which fill the bottom. It is cramped but usable.
+- p-003.png: the Feedback panel, full width, with "I'm stopping" pressed and Submit at the bottom.
+
+Controls I used: bench names, Interview, questions, call Answer, Call a reference, Send for a trial and Back, Game menu, Feedback.
+
+I saw no touch trouble. I did not scroll the long card on the phone, so its lower layout is unseen.
+
+## 7. Stop and return
+
+**Exact stop words:**
+- A (512.96 s, BORED): "I stop here. Two good placements made by checking references, rent covered by Monday afternoon, and the townspeople now repeat each other. I chose I am stopping in Feedback and went back without sending."
+- B (93.34 s, BORED): "I stop. The phone version works, but it is the same month with the same sentences, and I already solved it on the laptop. I chose I am stopping in Feedback and went back without sending."
+
+**Would you return voluntarily?** I would come back another evening only if a new month brought different people and different answers. As long as the families and witnesses say the same sentences, one evening was enough.
+
+The core, checking a reference against a family's real need, is exactly what I enjoy, and the first half hour of the game day was good. Conditions for my return:
+- New people, or at least new answers.
+- Money that stays tight past Monday.
+- A clock that does not run while I read.
+
+I would not leave it running. If I come back, it would be on another evening, on the laptop.
+
+## 8. Changes I would want
+
+1. Each family, reference and neighbour gets distinct wording. The repeats break the feeling that these are people and not forms.
+2. Keep money and stakes tight for longer than the first afternoon. Make negotiations push back.
+3. Pause the clock, or explain it, while I read cards and switch tabs.
+
+## 9. Compared with my last visit
+
+First visit. Nothing new from a return visit applies. The things that would stop me returning are those above: repeated lines, rent solved on day one, and the clock running while I read.

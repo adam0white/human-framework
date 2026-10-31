@@ -1,0 +1,133 @@
+{
+  "tester": "Jonas Berg",
+  "validationTime": "2026-10-30T21:03:17.364023+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T20:21:04.590Z",
+        "elapsed_s": 246.623,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping at about 4 minutes, Mon 12:55. I understood the loop: interview claims, references verify, negotiate wage, fee and promised qualities. The wish to quit was mild and partly passed when Ozlem called, but I have nothing to act on until trials resolve. I would not leave it running. I would come back another evening to see trial results. Selected I am stopping in Feedback locally; typed nothing, submitted nothing.",
+        "game_clock": "Mon 12:55",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 233.549,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T20:17:40.387Z",
+          "elapsed_s": 42.42,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "What if you break something?"
+          },
+          "reaction": "Wage 8000 vs family 9000: my margin looks like 1000. Probing honesty.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 292,
+          "error": "What if you break something? is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T20:18:03.074Z",
+          "elapsed_s": 65.107,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "What if a child keeps crying?"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 289,
+          "error": "What if a child keeps crying? is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T20:20:28.380Z",
+          "elapsed_s": 210.413,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to 12:10 \u00b7 Someone will bring news from outside Good Hands"
+          },
+          "reaction": "Nothing left to act on right now: G\u00fclce and \u015eebnem are away until 11:13/11:52. Skipping to see what the news is.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 289,
+          "error": "Skip to 12:10 \u00b7 Someone will bring news from outside Good Hands is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T20:22:43.922Z",
+        "elapsed_s": 102.374,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping at about 100 seconds, Mon 09:13. Phone plays fine, but I already know the loop from the desktop and would not repeat it tonight. Pressed I am stopping in Feedback, typed nothing, submitted nothing.",
+        "game_clock": "Mon 09:13",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 96.577,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

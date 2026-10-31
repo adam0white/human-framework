@@ -1,0 +1,171 @@
+{
+  "tester": "Luz Herrera",
+  "validationTime": "2026-10-30T23:54:41.895710+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T23:46:50.674Z",
+        "elapsed_s": 104.057,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping here because I cannot choose a name in the Who? list, which is the next thing I wanted to do. I opened Feedback, picked I am stopping, and closed it with Not now. I was actually getting interested in the crate count.",
+        "game_clock": "Day 1 07:50",
+        "engagement": null,
+        "reason": "TOOL",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 95.823,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:46:27.739Z",
+          "elapsed_s": 81.122,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3012,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T23:46:33.460Z",
+          "elapsed_s": 86.843,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3010,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T23:47:46.437Z",
+        "elapsed_s": 55.079,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on the phone too, for the same reason: I cannot pick a person in the Who? list. Feedback opened fine, I picked I am stopping, but the button did not look any different after I tapped it, then I closed it with Not now.",
+        "game_clock": "Day 1 06:50",
+        "engagement": null,
+        "reason": "TOOL",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 48.49,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:47:16.589Z",
+          "elapsed_s": 25.231,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3011,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T23:47:32.324Z",
+          "elapsed_s": 40.966,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3010,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

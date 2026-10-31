@@ -1,0 +1,103 @@
+{
+  "tester": "Maya Chen",
+  "validationTime": "2026-10-30T23:54:41.868939+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T23:25:22.293Z",
+        "elapsed_s": 75.234,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone after about 70 seconds. People gave me small private stories right away and betrayal had a visible cost, which I liked. But the game chose who I told and what I said, Ece would not talk with no reason, and the record is a long wall of text. I have seen the loop and want to try desktop.",
+        "game_clock": "Day 1 07:47",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 71.523,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T23:26:39.110Z",
+        "elapsed_s": 75.542,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on desktop after about 75 seconds. Private stories arrive fast and refusals have reasons in the record, which I liked. But R\u0131za and Osman gave the same stories as on the phone, refusals only show in the long record, and I have seen the loop. I would come back another evening to see Day 2, not leave it running.",
+        "game_clock": "Day 1 07:20",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 72.645,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:26:25.673Z",
+          "elapsed_s": 62.105,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Let the conversation finish"
+          },
+          "reaction": "Nermin agreed to a quiet talk. Letting it run.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Let the conversation finish is not on the page now; it was listed 42 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

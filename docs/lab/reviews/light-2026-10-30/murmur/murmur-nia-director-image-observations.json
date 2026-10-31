@@ -1,0 +1,18 @@
+{
+  "time": "2026-10-31T01:37:59.914945+00:00",
+  "images": [
+    {
+      "file": "murmur/nia/phone/a-001.png",
+      "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+      "viewedByDirector": true,
+      "observation": "Phone title image shows full visible notice at the boundary below Other ways to begin and above the checkboxes. No visible control text is covered in this image. Start lies below this viewport. This is bounded image evidence, not a hit-test/scroll/functional failure proof."
+    },
+    {
+      "file": "murmur/nia/desktop/b-002.png",
+      "sha256": "5f360e91e1934102c7eb19ebdd4b8795b36348a8ae08453dcb22f7a248cc4915",
+      "viewedByDirector": true,
+      "observation": "Desktop image shows visible consequences including You insisted on Say you overslept and a kind response; options and willingness labels are readable. The top historical log line is partly clipped at its scroll-pane/header boundary. Whether scrolling recovers it was not tested in this image. No whole-game loss or chronology defect proved."
+    }
+  ],
+  "sessionQualification": "Native hold operations succeeded on both devices. One phone roughly31.5s timeout remains tool/timer qualified. Desktop pulse174.241 premature. Raw report contains differently conditioned top and section7 return statements; retain BOTH verbatim, do not choose a shortened combined verdict."
+}

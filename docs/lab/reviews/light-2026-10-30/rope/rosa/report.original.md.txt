@@ -1,0 +1,128 @@
+**Would you return? "I would come back another evening on the large screen to see the first mountain through, but only if the rope words are explained; I would not leave it running, and I would not keep playing it on the phone as it is."**
+
+Ranked asks:
+1. Explain the rope words (rope up, close up, "something I need for that is missing") in plain sentences. Do it at the moment they first matter.
+2. On the phone, keep the buttons in one place. Give the two "more ▾" buttons different names. Stop the warning heading from pushing the buttons down.
+3. Say what "A call needs attention" refers to. Say what Skip does and how far it jumps the clock.
+
+## 1. Session
+- Persona: Rosa Alvarez, 62, retired school administrator from Puebla. Second-language English reader.
+- Exposure: first visit to The Rope. Round light-1030, first panel round, free stop (floor 0).
+- Own history: read once, lines 1–502 of 1299 only. It holds my earlier Voice, Warren and Valley diaries. I did not read the rest, so I invent no memories from it.
+- URL: https://rope.adamwhite.work/?labRunSource=agent
+- Session A: 360×690 touch phone, light mode. Driver on port 21306. About 213 s.
+- Session B: 1280×800 keyboard and mouse, light mode. Driver on port 21307. About 78 s.
+- I recognised no one from earlier games.
+
+## 2. First impressions
+- **A, 2.5 s:** the title page was clear. I read "Five people will climb three mountains… They can say no." and the three mountain drawings. "New game" was one big red button. I knew what to do.
+- **A, 5.4 s:** the game asked "When do you turn back?" with four choices. I understood it and picked 13:00. All five people answered at once, each in their own voice. That was warm and easy to read.
+- **A, about 30 s:** I was confused. There were two controls, "lead on" and "climb on". The hint said "Ask them to join you. Tap Climb on, then ask." I could not tell which one actually moves them.
+- **B, 0.9 s:** the first screenshot was nearly empty. It showed a frame, an empty bar and two blank panels, while the text list said the title page. I saw no title text in the picture.
+- **B, 6 s:** the real game screen was much clearer than on the phone. It had speech bubbles with names and big buttons. I recognised the same game.
+
+## 3. Verbatim diary, with elapsed seconds
+
+**Session A (phone)**
+- 5.4 s: "Clear: five people, three mountains, they can say no. I start."
+- 6.8 s: "A turn-back time is a sensible question; I pick the middle one."
+- 8.0 s: "They all agreed. I lead on."
+- 29.6 s: "Walking now; I watch what happens."
+- 31.5 s: "Two things named climb on and lead on. Unsure which asks them. I try climb on."
+- 33.2 s: "Gentle feels right; they can say no."
+- 34.7 s, note: "Everyone agreed. I now see two layers: ask the group, and my own lead on. A little confusing but the answers are warm and clear."
+- 66.9 s, first_minute: "I understand: lead five people up, they may refuse, keep my promise to turn back. I have asked, they agreed, the clock moves. Calm and clear; the hints appear one at a time which I like."
+- 99.0 s: "Slow; I use Skip."
+- 116.6 s: "It says a call needs attention but I do not see what. Looking."
+- 119.4 s: "I see the picture: I am ahead, they are below. I will stay with them so nobody is left."
+- 186.0 s, pulse, engagement 3: "Pleasant and clear, people are named and kind. But I wait a lot, and Rope up and Skip are terms I do not fully know. Still curious about the steep part."
+- 188.1 s: "I follow the hint: pick someone then Rope up."
+- 191.3 s: "Two buttons called more; I tap the one by the people actions."
+- 197.0 s: "The warning heading pushed the buttons down; I tap more by the speak row."
+- 198.6 s: "Rope up is enabled; I try it."
+- 199.9 s: "Nell is nearest to Tamar in the picture; I choose her."
+- 204.7 s: "Reread 1: Something I need for that is missing. Nell is too far away. The first part is vague, the second explains. A Close up button is offered; I try it."
+- 207.0 s, want_quit, CONFUSED: "Second sentence needing reread: Rope up, A partner may stop a fall if you slip, and Something I need for that is missing. Fixed by the Close up button, so it passed; I stop because I have seen the main loop and the rope idea is a lot of new words."
+- 212.6 s, stop, CONFUSED: "I stop here. I liked the named people and that they may say no, but the rope part has many new words and two buttons called more." Game clock: Hollin Crag 09:07.
+
+**Session B (desktop)**
+- 3.0 s: "Same title as on my phone; I recognise it."
+- 5.8 s: "The first desktop picture was an empty frame, odd. Now I choose the earlier turn time to be safe."
+- 9.2 s: "Desktop is much easier to read: bubbles with names, big buttons. Leading on."
+- 13.3 s: "I am curious what pressure does; I would normally ask gently, but it warns it can cost trust."
+- 46.3 s: "Skip to move on."
+- 68.3 s, first_minute: "Same game as my phone. I know the loop now: promise a time, ask, wait, skip. Desktop is far easier to read. Still unsure what A call needs attention refers to."
+- 69.0 s: "I want to see what the Journal is."
+- 71.3 s, note: "I like the journal. Nell promised her mother a call, Wren came because Oskar said she would not. Ordinary people. Crampons explained as spikes for ice. This is the best part for me."
+- 77.9 s, stop, BORED: "I stop for the evening. Same game, easier to read on the large screen, and I like the journal. But I mostly waited and pressed Skip, and I do not yet know what the call needing attention is." Game clock: Hollin Crag 06:50.
+
+## 4. Moments
+- **What held me:**
+  - Each person answers in their own words.
+  - Refusal is possible.
+  - The journal has ordinary details, such as Nell's promise to call her mother and Wren coming because Oskar said she wouldn't.
+  - The phone picture of the climbers on the slope was lovely.
+- **What lost me:**
+  - Long waits that ended in pressing Skip.
+  - The rope terms.
+  - The phone buttons moving when the warning appeared.
+- **Quit wishes:**
+  - A, 207.0 s, CONFUSED. It passed once "Close up" worked, but I stopped anyway.
+  - B ended BORED at 77.9 s. I never logged a separate want_quit there.
+- **Pulses:** one, at 186.0 s on the phone, engagement 3. The desktop session ended before 180 s, so no pulse there.
+- **First-minute notes:** logged at 66.9 s (A) and 68.3 s (B), after 60 s each time.
+- **Pace:** I could not tell what Skip does or how far it jumps. In A it moved the clock from 05:37 to 06:49, then from 07:05 to 08:58. That was a jump of an hour or two. I did not know that would happen.
+
+## 5. Confusion and clarity, from actual play
+- Unclear: "lead on" versus "climb on". The hint "Tap Lead on to start walking… Ask them to join you" mixes the two.
+- Unclear: "A call needs attention". I looked at the screen and could not find what it pointed to.
+- Unclear: "Something I need for that is missing." This was Tamar's refusal when I asked her to rope up with Nell. The next sentence, "Nell is too far away to attach to the same rope", did explain it.
+- Clear: the hints named the next thing to do, one at a time.
+- Clear: "Close up: Tamar Vale + Nell" fixed the refusal at once.
+- Clear: the weather warning gave an estimate, "not a deadline".
+- Clear: "Insisting… can damage their trust in you".
+- Clear: the journal explained crampons as "spikes for walking on ice".
+
+Concept table, per screen I saw (counts are my own, not invented for unseen screens):
+
+| Screen | New ideas I met | Count |
+|---|---|---|
+| Title | five people, three mountains, they can say no, Journal, info, menu | 6 |
+| Turn-back question | turn-back time, a promise they remember, Saving/Time paused | 3 |
+| Hill screen | speak to everyone, named people, climb on, rest, eat, wait, more, answers list, lead on, go down, stop, stay with them, time slows for reading, time bar | 14 |
+| Steep ground hint | rope up, partner, pick someone, more actions, take pack, share food, weather warning | 7 |
+| Refusal text | refusal, delay, insist, trust damage, close up | 5 |
+| Menu | feedback, full screen, recording, pace auto/slow/normal/fast, download run, open run file, title page, privacy, debug | 10 |
+| Feedback | stopping, confused, keep playing, not sure, stop here, note, name, submit | 8 |
+| Journal (desktop) | timed diary entries, Ezra's map, crampons | 3 |
+
+## 6. Device use
+- **Screenshots viewed (3 phone, 2 desktop):**
+  - `phone/a-001.png`: title page. The title, three mountain drawings and the red "New game" button were readable. A small bordered "We record and link play" notice sat over the bottom edge.
+  - `phone/a-002.png`: the climb. A slope with stick figures, a time bar, and labelled buttons. It was readable but dense.
+  - `phone/a-003.png`: the weather-warning heading overlapped the buttons and pushed them down, and a line of text was cut off beneath them.
+  - `desktop/b-001.png`: taken right after open, almost empty. It showed an empty bar and blank panels, and no title text. I did not see whether it filled in later. I tapped "New game" from the text list.
+  - `desktop/b-002.png`: a two-column layout with speech bubbles on the left and big buttons on the right. Easy to read. Unavailable buttons carried a dashed outline and a reason ("You are at the hut. Climb first.").
+- **Phone controls used:** New game, turn-back choice, lead on, climb on, ask gently, Skip, Tamar Vale, rope up, Nell, Close up, Game menu, Feedback, I'm confused, Back. One tap by coordinates (320,494 and 320,553) for the "more" button, because two controls had the same name. The first coordinate tap hit the weather warning instead.
+- **Desktop controls used:** New game, turn-back choice, lead on, climb on, urge, Skip, Journal, Back, Game menu, Feedback, I'm stopping. I used no keyboard keys.
+- **Seen versus unseen:** the layout problems above are from screenshots. I did not see the rest of the second and third mountains.
+
+## 7. Stop and return
+- **Session A:** stop at 212.6 s, CONFUSED. My words: "I stop here. I liked the named people and that they may say no, but the rope part has many new words and two buttons called more."
+- **Session B:** stop at 77.9 s, BORED. My words: "I stop for the evening. Same game, easier to read on the large screen, and I like the journal. But I mostly waited and pressed Skip, and I do not yet know what the call needing attention is."
+- **Feedback:**
+  - Both devices offered "I'm stopping" and "I'm confused" labels.
+  - In A, I opened Game menu → Feedback and tapped "I'm confused".
+  - In B, I tapped "I'm stopping".
+  - Each choice filled the note box with its own label. I typed nothing, changed no consent or recording setting, and pressed no Submit. I closed Feedback with Back each time.
+- **Would I return voluntarily?** I would come back another evening on the large screen to see the first mountain through, but only if the rope words are explained. I would not leave it running, because it needs me to answer the calls. I would not keep playing it on the phone as it is.
+
+## 8. Changes I would want
+1. Explain the rope words (rope up, close up, "something I need for that is missing") in plain sentences, at the moment they first matter.
+2. On the phone, keep the buttons in one place. Give the two "more ▾" buttons different names. Stop the warning heading from pushing the buttons down.
+3. Say what "A call needs attention" refers to. Say what Skip does and how far it jumps the clock.
+
+## 9. Compared with my last visit
+First visit. Nothing in my own history mentions this game.
+
+Cleanup: I created no worktrees, branches, servers or helper processes, and touched no repository, so there is no `git worktree list` to show. I took 3 phone screenshots and 2 desktop screenshots, within the limit of six per device. The coordinator owns the two drivers.

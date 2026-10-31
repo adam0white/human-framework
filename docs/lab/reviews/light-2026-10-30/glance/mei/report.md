@@ -1,0 +1,111 @@
+**Would I return voluntarily?** I would come back on another evening, on the laptop. I would do that only if the first hours had decisions in them and my saved place were kept. I would not leave it running.
+
+**Ranked asks**
+1. Give me something to decide in the first hour, or tell me up front that nothing needs deciding. The first two hours were only waiting.
+2. After I set the gate, show what it is doing to the level without making me ask Dai again. I did not see where the 3.6 m reading would lead.
+3. Shorten the opening text blocks. The phone's Dai status strip is cut off at the right edge.
+
+## 1. Session
+
+- **Persona:** Mei Tan. **Exposure:** first visit.
+- **Round and arm:** light-1030, free stop (floor 0).
+- **History:** my own-history.md, which covers other games only.
+- **URL:** https://glance.adamwhite.work/?labRunSource=agent
+- **Session A:** 1280x800, keyboard and mouse, light mode, driver port 21241. Real time 253.3 s.
+- **Session B:** 360x690 touch phone, light mode, driver port 21240. Real time 78.9 s.
+
+## 2. First impressions
+
+**A**
+- At 13 s I started a game with a title page I could follow. Dai's first reading was 4.5 m with the gate shut.
+- At 54 s I viewed a screenshot. The picture was clear: dam, hut, level line, crest and lip marks.
+- My first-minute note went in at 64.0 s.
+
+**B**
+- At 4 s I started on my phone.
+- The opening level was 3.8 m here, not 4.5 m as on the laptop, so the start differs between games.
+- My first-minute note went in at 67.3 s.
+
+## 3. Verbatim
+
+Only logged lines are listed. The reaction text sent with ordinary taps is also in the driver diary, but I only reproduce the log ops here.
+
+**Session A**
+- **13.1 s:** "A dam night desk with deadlines I can read. Starting the Valley dam."
+- **20.2 s:** "Game started. Level reads 4.5 and gate shut at 22:00; I ask Dai for a fresh reading. The long optional-chapter text is dense."
+- **51.9 s:** "Dai is resting till 22:20; I wait for his answer."
+- **58.2 s:** "I want to know whether to open the gate; I pick the gate gauge to see my job choices."
+- **64.0 s, first_minute (game 22:37):** "Clear goal and deadline: second Friday first light. Level 4.3 against crest 6.0 and a readable picture. Readings are only what Dai saw, which I like. Opening text blocks are long. Gate options show how Dai feels about each size. No danger yet; I will not open the gate."
+- **101.8 s:** "Level is falling by itself to 4.0 with the gate shut. Nothing for me to decide; I skip."
+- **167.0 s:** "Level jumped from 4.0 to 5.1 in about 80 minutes, past the lip at 5.0 and heading to crest 6.0. I should open the gate."
+- **170.6 s:** "Three turns: a moderate opening he agrees to, so I do not insist."
+- **172.96 s, pulse, engagement 3 (game 00:54):** "First two hours were waiting with nothing to decide; now level rose to 5.1 and I have a real choice. I like that readings are what Dai saw and the gate options show his willingness. I do not know how much lowering each turn gives."
+- **207.2 s:** "Gate open at three; my level reading is now 30 minutes old. I ask for a fresh one."
+- **244.2 s:** "The gate worked: level fell from 5.1 to 3.6. I understand the loop; it is mostly long waits with one decision an hour. I would stop here for the evening. Opening the menu for Feedback."
+- **251.8 s, want_quit, BORED (game 02:02):** "I understand the loop: long waits, one real decision an hour. I see the first night worked and I would stop here for this evening."
+- **253.3 s, stop, BORED (game 02:02):** "Stopping on Monday night at 02:02 with the gate at 3 of 6 and the level back to 3.6. Dates and readings were clear and Dai readings as his own words suit me. Long waiting between decisions lost me. I picked I am stopping in Feedback and typed nothing, submitted nothing."
+
+**Session B**
+- **4.2 s:** "Second visit on my phone the same evening; starting a new game."
+- **11.3 s:** "Phone game started; this time Dai said level 3.8 at the start, not 4.5 as on the laptop."
+- **16.0 s:** "Phone fits, though the Dai status strip is cut off at the right edge and the dam picture is small. I ask Dai for the level."
+- **67.3 s, first_minute (game 22:58):** "Phone works: controls are large and the goal line is readable. The Dai strip is cut at the right and the dam picture is small. Same quiet opening as on the laptop, and the starting level is different this time. Nothing to decide yet; I am waiting."
+- **69.9 s:** "I have already seen this quiet opening on the laptop; I would stop on the phone too. Checking Feedback."
+- **77.8 s, want_quit, BORED (game 23:05):** "On the phone I have only waited; I already know the loop from the laptop and would stop here."
+- **78.9 s, stop, BORED (game 23:05):** "Stopping on the phone at Monday 23:05 after a quiet opening with no decision. The phone layout is readable. I picked I am stopping in Feedback and typed nothing, submitted nothing."
+
+## 4. Moments
+
+- **What held me:**
+  - Every reading is labelled as what Dai saw, with its time.
+  - The level jumping to 5.1 gave me a real decision.
+  - The gate job lists how willing Dai is for each size of opening.
+- **What lost me:**
+  - The first two game hours had nothing to decide.
+  - The long optional-chapter paragraph shows up in the log twice.
+- **Pulse (A):** one, at 172.96 s, engagement 3. Session B ended before 180 s.
+- **Quit wishes:** one per session, both BORED. Neither passed, and I stopped.
+- **Pacing on laptop:** one real wait of 30 s covered roughly 40 to 70 game minutes, so waiting was quick enough. The Skip button flips to "Stop" while it runs.
+
+## 5. Confusion and clarity
+
+- **Clear:** the goal, the deadline, the crest and lip marks, and the readings with their ages.
+- **Clear:** "Time slows while you read the radio report", and the menu saying "Time stops while this menu is open."
+- **Unclear:** how far the gate moves the level per turn. I chose 3 turns and saw the level fall from 5.1 to 3.6 m, but I can't separate the gate's effect from the rain easing.
+- **Unclear:** the level reading showed 5.10 m for 35 minutes after I had opened the gate. I had to ask again to see the change.
+- **Guess:** I assumed the 3.6 m reading meant the gate worked. I did not verify it.
+- **Mistake on my side:** my first pulse log failed on a shell quote and I resent it. The 172.96 s line is the one recorded.
+- **Did not use:** "Doubt this reading", Compare observations, Watch arrangements, Information, pace settings.
+
+## 6. Device use
+
+- **Screenshots viewed:**
+  - desktop/a-001.png (title page): the title, a red level line over crest and lip, a gate line, the Start game button, and the recording note at the bottom.
+  - desktop/a-002.png (22:35 Monday): the top strip with Watch arrangements and the Dai status, the dam picture with the 4.3 m label and the lightning mark, the log on the right, and the level and gate gauges at the bottom. The Skip button was at the bottom right.
+  - phone/b-001.png (title page, 360 wide): the title, a small chart, the sample morning and rules text, and the Start game button above the recording note.
+  - phone/b-002.png (22:02): the Dai strip clipped at the right edge, a long italic block of text, a small dam picture, and the level and gate gauges partly hidden under the recording note.
+- **Controls used at 1280x800:** Start game, Ask Dai to read the level, wait, Skip, gate gauge, Close inspection, 3 turns, level gauge, Ask Dai to read it, Game menu, Feedback, I'm stopping, Close.
+- **Controls used at 360x690:** Start game, Ask Dai to read the level, wait, Game menu, Feedback, I'm stopping, Close.
+- **Trouble I saw:** the phone's Dai strip is cut off, and the recording note covers the lower gauges at the start.
+- **Unseen:** I did not scroll the phone, tap its gauges, or play a night on it.
+- **Driver:** no failures and no block.
+
+## 7. Stop and return
+
+- **Stop words (A, BORED, 253.3 s):** "Stopping on Monday night at 02:02 with the gate at 3 of 6 and the level back to 3.6. Dates and readings were clear and Dai readings as his own words suit me. Long waiting between decisions lost me. I picked I am stopping in Feedback and typed nothing, submitted nothing."
+- **Stop words (B, BORED, 78.9 s):** "Stopping on the phone at Monday 23:05 after a quiet opening with no decision. The phone layout is readable. I picked I am stopping in Feedback and typed nothing, submitted nothing."
+- **Feedback:** in both sessions it offered "I'd keep playing", "Not sure", "I'd stop here", "I'm stopping" and "I'm confused". I pressed "I'm stopping" and closed it. I typed nothing, did not change consent or recording, and pressed no Submit.
+- **Would I return voluntarily?** I would come back on another evening, on the laptop. I would do that only if the first hours had decisions in them and my saved place were kept.
+- **Leave it running?** No. I want to make the gate calls myself.
+
+## 8. Changes I would want
+
+1. Give me a decision, or a plain statement that none is needed, in the first hour.
+2. Show what the gate is doing to the level after I set it, without a second request to Dai.
+3. Cut the opening text blocks down, and fix the clipped Dai strip on the phone.
+
+## 9. Compared with my last visit
+
+First visit.
+
+I made no files, workers, branches or worktrees, and used only the two drivers. No repository was touched, so there is no `git worktree list` output.

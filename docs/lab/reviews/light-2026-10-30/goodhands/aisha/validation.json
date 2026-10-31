@@ -1,0 +1,168 @@
+{
+  "tester": "Aisha Rahman",
+  "validationTime": "2026-10-30T21:03:17.373011+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T20:23:01.405Z",
+        "elapsed_s": 357.366,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping after about six minutes. I liked the people and the apologies, but the clock runs while I read and the landlord call is still ringing; I pressed I am stopping in Feedback and typed nothing.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 350.809,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T20:18:10.436Z",
+          "elapsed_s": 66.397,
+          "kind": "tool",
+          "op": "note",
+          "input": {},
+          "reaction": "x",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 273,
+          "error": "Unsupported op (invalid request, not a driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T20:18:57.999Z",
+          "elapsed_s": 113.96,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Interview This takes about 30 minutes."
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 32335,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Interview This takes about 30 minutes.', exact: true }).or(getByRole('link', { name: 'Interview This takes about 30 minutes.', exact: true })).or(getByRole('tab', { name: 'Interview This takes about 30 minutes.', exact: true })).or(getByRole('menuitem', { name: 'Interview This takes about 30 minutes.', exact: true })).or(getByRole('checkbox', { name: 'Interview This takes about 30 minutes.', exact: true })).or(getByRole('radio', { name: 'Interview This takes about 30 minutes.', exact: true })).or(getByRole('option', { name: 'Interview This takes about 30 minutes.', exact: true })).or(getByRole('switch', { name: 'Interview This takes about 30 minutes.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-30T20:19:14.203Z",
+          "elapsed_s": 130.164,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Has that job ended?"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 352,
+          "error": "Has that job ended? is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T20:21:09.840Z",
+          "elapsed_s": 245.801,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "What if a child keeps crying?"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 32407,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'What if a child keeps crying?', exact: true }).or(getByRole('link', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('tab', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('menuitem', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('checkbox', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('radio', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('option', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('switch', { name: 'What if a child keeps crying?', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-30T20:22:01.217Z",
+          "elapsed_s": 297.178,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "End the conversation"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 32556,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'End the conversation', exact: true }).or(getByRole('link', { name: 'End the conversation', exact: true })).or(getByRole('tab', { name: 'End the conversation', exact: true })).or(getByRole('menuitem', { name: 'End the conversation', exact: true })).or(getByRole('checkbox', { name: 'End the conversation', exact: true })).or(getByRole('radio', { name: 'End the conversation', exact: true })).or(getByRole('option', { name: 'End the conversation', exact: true })).or(getByRole('switch', { name: 'End the conversation', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T20:23:51.102Z",
+        "elapsed_s": 49.65,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping after under a minute on the phone. I had just played the same opening on the laptop, so there was nothing new to learn. I pressed I am stopping and typed nothing.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 46.754,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [40.465],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

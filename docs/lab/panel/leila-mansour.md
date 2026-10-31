@@ -249,3 +249,469 @@ The browser is no longer needed. The coordinator owns the supplied driver and cl
 3. Let me acknowledge a postponement without insisting, so I know I have answered it.
 
 I touched no repository, created no worktree and started no browser or server. No worktree cleanup applies. The coordinator should save this response as the report.
+
+
+<!-- selected-continuity-key: glance-light-1030:leila-mansour:free -->
+## 2026-10-30 Glance LIGHT first visit — selected FREE history
+
+Both devices belong to this same evening, in the order in the original report. The computer restart did not cut this standing player. Actual build e97b91077d9d9f584bf31c8f3fd2ad495d4c5432/HF4.14.0. No continued arm exists. [Original report](../reviews/light-2026-10-30/glance/leila/report.original.md.txt).
+
+**Would you return voluntarily?** Maybe, on another evening and only on desktop, and only if each night asked me for more than about four choices; I would not leave it running.
+
+**Ranked asks**
+1. Give me more to decide each night. I made about 3 to 5 choices in 3.5 to 6.5 minutes and spent the rest waiting.
+2. Pause the clock while I read an inspection panel. It says "Time continues slowly while this inspection is open", and 16 game minutes (22:36 to 22:52) still went by on desktop while I read the gate panel.
+3. Cut or shorten the repeated "optional chapter" paragraph. It appears twice in the log and once more above the gauges. I read it as paperwork.
+
+## 1. Session
+
+- Persona: Leila Mansour, 26, Alexandria translator.
+- Exposure: first visit to The Glance. My supplied own-history.md has no Glance entry. Its first 444 of 551 lines were readable; the rest I did not read.
+- Round and arm: light-1030, first panel round, free stop (floor 0).
+- URL: https://glance.adamwhite.work/?labRunSource=agent
+- Session A: 360x690 touch phone, light mode. Driver 21244. Real time 413 s.
+- Session B: 1280x800 keyboard and mouse, light mode. Driver 21245. Real time 215 s.
+- Valley dam on defaults, recording left on, no consent changes.
+- Both sessions were new games.
+- I took the phone session first and the desktop session second, so desktop was not a separate evening here.
+
+## 2. First impressions
+
+- **A, 9 s:** the title was clear. The chart showed crest, lip and gate. The one-line job was "keep the water below the top of the dam." I tapped Start.
+- **A, 16–21 s:** the game started at 22:02. I had a desk, a keeper called Dai, and a level gauge. The long optional-chapter text read as paperwork. I asked Dai for the level.
+- **A, 54 s:** the gate panel was clear. It explained that more turns lower the dam water, and that the river through town rises later.
+- **B, 6 s:** the title page looked the same on desktop, with the chart. I viewed b-001.png.
+- **B, 55 s:** the playing screen showed the dam drawing and the log side by side. The gauges were cut off at the bottom of the 800 px height.
+
+## 3. Verbatim diary
+
+These are my diary lines as sent through the driver. The first is the `first_minute` entry from session A.
+
+Session A (phone):
+- 20.8 s (reaction on tap): "I have a desk, a keeper Dai, a level gauge. Long optional-chapter text is paperwork. Asking Dai for the level."
+- 54.4 s: "Level rose 3.6 to 4.1 in 18 min. I want the gate open some. Tapping the gate gauge, guessing."
+- 81.4 s: "Clear: more turns lowers dam water but river through town rises later. Trade-off is explained well. Opening 2 turns, cautious."
+- 86.9 s, first_minute: "Reason to act: keep the dam below crest. Tappable: gauges, Ask Dai, Skip, Watch arrangements. Level rose; I asked for a 2-turn gate opening, waiting on Dai. The pasted optional-chapter paragraph repeated twice is paperwork I skipped. The explained trade-off per gate turn is good." (game clock Mon 22:55)
+- 141.7 s: "Gate is at 2/6. Dai is auto-reading the level; I did not ask. Waiting."
+- 150 s: "Level fell to 3.8 with the gate at 2. Looking for the town side / bridge gauges; I only see level and gate."
+- 171.7 s: "The dam drawing is nice, with a water line and a lip. Dai is chatty and warm. Rain heavier now; level is a reading 1 hour old."
+- 193 s, pulse 3: "The stale-readings idea is good and Dai has voice, but I act rarely: ask, wait, read. Rising again 4.2, so I will open the gate wider." (Mon 00:50)
+- 198 s: "3 turns, he agrees easily."
+- 286.9 s: "Dai asked where Morgan went - a small story hook I like. Level back to 3.6. Waiting the night through."
+- 307.9 s, want_quit BORED: "Nothing to decide; level is steady, I am only waiting for the night to pass and I have no town gauges to act on. I have seen the loop in 5 minutes." (Mon 02:35)
+- 413.2 s, stop BORED: "I am stopping on the phone. Good premise: stale readings from a keeper, a good trade-off explanation. But I make three decisions in six minutes and the rest is waiting. I would not leave it running; I might return on desktop if the nights asked more of me." (Mon 03:24)
+
+Session B (desktop):
+- 12 s: "Second visit, desktop. This time I know the loop: ask Dai, set gate, wait. I will try Fast pace if offered." I did not try Fast.
+- 51.7 s: "Note: starting level is 3.8 here versus 3.6 on phone, so the scenario varies between games."
+- 63.5 s, first_minute: "Desktop shows the dam drawing and the log side by side, which reads better than the phone. Gauges are cut off at the bottom of the 800px screen. The pasted arrangements paragraph takes the top of the log. Level 3.9, rising slowly; I will open the gate." (Mon 22:37)
+- 78.4 s: "Even with the inspection open the clock moved 22:36 to 22:52 while I read. Not paused. Choosing 3 turns."
+- 117.5 s: "4.3 and rising with gate at 3. Going wider."
+- 156.2 s: "Gate at 5; level reading is 30 min stale. Asking for a fresh read. I like that I must choose whether to trust old numbers." This tap failed with an error on the first try, because the name has spaced letters. I retried with the exact name and it worked.
+- 159 s: no reaction text.
+- 162 s: "The saved lightning image vs the latest reading is a clever device: it tells me what I do not know. Asking for a fresh read."
+- 165 s, pulse 3: "Desktop is better than phone for reading. The stale-reading device is the best idea here. But I still act four times in three minutes and wait the rest." (Tue 00:06; the game clock said Monday night)
+- 205.2 s, want_quit BORED: "Dai reported 4.3 at 00:11 but the level gauge still says read 23:25. Stale display or I misread. Gate is at 5, nothing else to do, the loop is clear; I would stop for tonight." (Mon 00:41) My first attempt at this log failed from my own shell quoting; this is the retry.
+- 214.6 s, stop BORED: "Stopping on desktop. Good premise and the stale-reading device is smart. I make a handful of choices in 3.5 minutes, everything else is waiting. I would not leave it running; I might return another evening if nights asked more of me." (Mon 00:41)
+
+## 4. Moments
+
+- **What held me:** Dai's reports are always old, and the game says so. The level gauge shows "read 23:25" or "read 22:11". The saved lightning image sits beside the latest reading, and the panel says "This image does not show the water now." The gate panel gave me a clear trade-off with a plain cost per turn.
+- **A small hook:** Dai asked "Where has Morgan gone? He worked at that desk for twelve years."
+- **What lost me:** I had too few decisions. The loop was ask, set the gate, wait, read. On the phone the level steadied at about 3.6 and there was nothing else to do. I looked for town gauges and found only level and gate.
+- **Quit wishes:** A: BORED at 308 s (Mon 02:35), did not pass. B: BORED at 205 s (Mon 00:41), did not pass.
+- **Pulses:** phone 3 at 193 s. Desktop 3 at 165 s.
+- **Pace choices:** I did not try Fast, Steady or Slow. Automatic was selected throughout.
+
+## 5. Confusion and clarity, from actual play
+
+- **Clear:** what each gate turn does. What "read 22:18" means. That the level number belongs to Dai, not to me.
+- **Unclear:** the "optional chapter" paragraph. It sits in the log and under Watch arrangements. I do not know whether I was meant to act on it, and nobody pointed at it.
+- **Possible stale display (desktop, B):** at 00:11 Dai said "I read four point three. It looks fine." The level gauge still read "4.30 m, read 23:25". The line below it said "was 4.3, read 23:25". I could not tell whether the gauge failed to update or the 00:11 report was not applied. I am guessing.
+- **Clock while reading:** both sessions' clocks ran during my "slow" inspections. On the phone, between my commands the game ran from 22:08 to 22:35 and from 23:15 to 23:57. I suspect my slow command rate caused part of this; the panel does say time continues slowly.
+- **Level hint in text:** in the Level panel, "The spillway lip... is at 5.0 m" helped. Crest 6.0 and lip 5.0 are also on the dam drawing.
+- **Control name:** the level gauge's accessible name has spaced letters ("D a i · r e a d"). I could not use my first guess.
+- **Unseen:** I never saw the town side, the weekend, or a second night. I do not know whether decisions get richer later.
+
+## 6. Device use
+
+- **Phone, 360x690:** I viewed a-001.png (the title with chart and Start button) and a-002.png (the playing screen at 00:22). In a-002 the header, "Watch arrangements" and the Dai strip fit. The Dai strip is cut off at the right edge ("finish abo..."). The dam drawing, two gauges and the Skip button were visible. The gauges and log are compressed into a short band. I used Start game, Ask Dai, Skip, gauge taps, the gate options (2 and 3 turns), Game menu, Feedback, I'm stopping and Close. Not seen on the phone: the Level inspection panel layout.
+- **Desktop, 1280x800:** I viewed b-001.png (title page with chart, Start and a recording banner at the bottom) and b-002.png (playing screen at 22:36). b-002 shows the drawing and the gauges on the left, the log on the right, and Skip at the bottom. The gauges' lower text was cut off at the bottom. I used Start game, Ask Dai, gauge taps, gate options (3 and 5 turns), the level inspection, Game menu, Feedback and Close. I used no keyboard keys.
+- **Screenshots viewed, 4 in all:** a-001.png, a-002.png, b-001.png, b-002.png.
+- **Unseen layout versus trouble I saw:** the cut-off gauge text and the cut-off Dai strip are what I saw in the pictures. I did not scroll to check whether the page scrolls.
+
+## 7. Stop and return
+
+- **Feedback:** on both devices the menu offered Feedback with a verdict group (I'd keep playing, Not sure, I'd stop here) and a "What is happening?" group (I'm stopping, I'm confused). I chose "I'm stopping", typed nothing, changed no consent, and did not press Submit. I closed it with Close, then logged the stop.
+- **Session A stop:** at 413.2 s, Mon 03:24, reason BORED. Words: "I am stopping on the phone. Good premise: stale readings from a keeper, a good trade-off explanation. But I make three decisions in six minutes and the rest is waiting. I would not leave it running; I might return on desktop if the nights asked more of me."
+- **Session B stop:** at 214.6 s, Mon 00:41, reason BORED. Words: "Stopping on desktop. Good premise and the stale-reading device is smart. I make a handful of choices in 3.5 minutes, everything else is waiting. I would not leave it running; I might return another evening if nights asked more of me."
+- **Would I return voluntarily?** Maybe, on another evening and only on desktop, and only if each night asked me for more than about four choices; I would not leave it running. I like the idea that the number on the board belongs to a person who may be wrong, and I would want to see a night where that matters. Tonight it mostly did not.
+- **Leave it running?** No. **Another evening?** Only on those conditions.
+
+## 8. Changes I would want
+
+1. More decisions per night. The town side and other gauges are not on the screen I saw.
+2. Pause the clock while I read a panel, so I can think without the night moving.
+3. Shorten or remove the repeated optional-chapter paragraph.
+
+## 9. Compared with my last visit
+
+First visit.
+
+I did not write report.md or any file. Screenshots left: a-001.png and a-002.png in the phone folder, b-001.png and b-002.png in the desktop folder, within the six-per-device limit. I started no worktree, so `git worktree list` does not apply.
+
+<!-- selected-continuity-key: light-1030:stairwell:leila:free -->
+## 2026-10-31 Stairwell LIGHT — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/stairwell/leila/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/stairwell/leila/report.original.md.txt), original SHA256 `8c0b8d24628a27b3a007b77fb7bca59ca1564e36fb5ca79e1053365237cfc634`. Build c2bfaae81f1b250a8c250075e00e71c421d8481b/HF4.14.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- First target visit. Premature pulse: phone 171.726 s; her first-minute tag at 59.804 s was also premature. Neither is a valid checkpoint.
+- Her raw logs hold an ambiguous-target refusal ("for certain" matched 2 controls, desktop 38.423 s) and stale Skip/Go-to-flat-3 refusals on the phone (204.989, 284.82 and 289.153 s). They are tool refusals, not accepted game actions.
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+# Report: The Stairwell, Leila Mansour
+
+**Would you return voluntarily?** Maybe one more evening on my laptop, only if I knew that what I say to people changes something I can see, and I would not leave it running.
+
+**Ranked asks**
+1. Make a resident's answer show what my words did. A lie and a truth got the same flat reply, and "I'm listening" and "Thank you" ended in the same line.
+2. Fill the notebook as I learn. It still said "You don't know how Tarık feels about you" after a day of talking to him.
+3. Explain the unexplained terms and loaded buttons: "kapici", the "(₺5)" amounts, the two title checkboxes, and "Leave the courtyard gate open".
+
+## 1. Session
+
+- **Persona:** Leila Mansour, impatient.
+- **Exposure:** first visit.
+- **Round and arm:** light-1030, first panel round, free stop (floor 0).
+- **Own history:** read in full before play. It has nothing about this game.
+- **URL:** https://stairwell.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, port 21504. It lasted about 357 s, roughly 6 minutes, from game open to the stop log.
+- **Session B:** 1280x800 keyboard and mouse, light mode, port 21505, a fresh game as a second visit. It lasted about 82 s.
+- **Ceiling:** I stopped well before 25 minutes in both sessions.
+- **Release commit:** the coordinator adds it.
+
+## 2. First impressions
+
+**Session A (phone)**
+- At 5 s: the job was clear. Deliver to five flats, with a Sunday vote on tea money. The two checkboxes were unexplained, so I left the defaults.
+- At 10 s: the first order, bread and a paper for Hacer, was clear.
+- At 21 s: time pauses while I read Orders. I liked that.
+- At 32 s: I got a ₺5 note and did not know whether it was a tip or a price.
+- At 75 s: the log calls me "kapici". I know the Turkish word, but nothing explains it.
+- At 99 s: the notebook said "1 of 16" learned with blank stamps. That gave me an aim.
+
+**Session B (desktop)**
+- At 5 s: same title page, in a narrow centred column.
+- At 25 s: I tried the newspaper swap I had skipped on the phone.
+- At 40 s: the building diagram sits on the left and the panel on the right. The status line is clipped to "Time is paus…".
+
+## 3. Verbatim
+
+These are my raw diary lines, in order, with driver elapsed seconds. Some lines have no `kind` because they were reactions carried on other ops.
+
+**Session A**
+- 5.298: "Clear job: deliver to five flats, Sunday vote on tea money. Two unexplained checkboxes; leaving defaults."
+- 10.393: "Clear: first order Hacer bread and paper, due 07:57. Going."
+- 19.473: "A swap-newspapers offer appeared with no explanation of why. Checking Orders first."
+- 21.358: "Time pauses while I read orders; that is good. Five orders with deadlines, clear."
+- 32.176: "Delivered, got a note about a cat and 5 lira. I do not know what the 5 is, tip or price. Asking what is new."
+- 33.71: "One line of gossip: Tarık is kind. Let me see what Tell offers."
+- 35.891: "I like that I choose how sure to sound; I do not know that the water news is true, so I say it as I heard it."
+- 37.71: "Her answer was That is interesting. I cannot tell whether she believed me. Vague. Moving on to the next order."
+- 45.457: "Sevim noticed I was on time. Good, consequence visible."
+- 47.344: "Both neighbours said the same line, Tarık is kind. Shallow so far."
+- 57.256: "Tarık finds the stairs hard. Trying Sit together; I guess it costs time but builds feeling."
+- 59.804, first_minute (Mon 07:27): "Reason to act: deliver five orders by deadlines, earn trust before the Sunday vote. Tappable: Go to, Anything new, Tell with a sureness choice, Sit together, Orders, Notebook. Three deliveries done on time; Tarık told me a ferry story. Reading Orders pauses time, which I like. Neighbours gave the same line, Tarık is kind, and Hacer answered That is interesting: vague."
+- 70.476: "Nobody believes him, so I choose the line that does not claim to know. Replies cost two minutes and he may leave the subject: clear."
+- 75.674: "The log labels me kapici. Turkish for caretaker, I know it, but nothing in the game has explained it. That is the kind of local term I dislike unexplained."
+- 81.793: "He declined the subject: I would rather leave it there. That is a real, if blunt, reaction. Burak and Derya remain."
+- 89.243: "Burak tipped 5. Last order is Derya, then the day opens up."
+- 97.243: "All five orders done by 07:43. Let me read the notebook Rıza left."
+- 99.86 (shot a-002): "The notebook shows 1 of 16 things learned and blank stamps. That gives me an aim: find out how each resident feels. Good hook, though the blank rows are a little like a checklist."
+- 102.957: "The hand-drawn building with my figure at flat 5 is charming and readable on the phone."
+- 107.376: "Orders done; I have free time. Residents list shows walking minutes. Visiting Burak to learn about him."
+- 116.671: "Third resident, same line: Tarık is kind. Anything new? gives one stock sentence per day. Trying Sit together with Burak."
+- 119.195, note: "Burak now says the water will be off Wednesday, the line I told Hacer. So what I say spreads. That is the best thing so far. Also his line about accounts and conversations hit me as a translator."
+- 138.109: "Burak also answered I would rather leave it there: same stock refusal as Tarık. The people are starting to blur together."
+- 139.519: "Nothing else to do on Monday; skipping."
+- 161.319: "Tarık was out so I left his bag on the door. New chore: sweep the entrance."
+- 171.727, pulse, engagement 4 (Mon 09:47): "I overheard Hacer repeat the water-off line to Sevim, so my words visibly travel; that holds me. But every resident still says Tarık is kind and I would rather leave it there, which wears thin."
+- 214.8: "This button has sat there since 07:02 with no explanation of what it does or costs. I am tapping it to find out; guessing it helps someone."
+- 217.201: "Gate left open and Tarık saw me. So deeds have witnesses. I did not know that was a loaded choice; the button gave no warning."
+- 225.663, pulse, engagement 3 (Mon 16:00): "The gossip chain and witnessed gate are interesting, but between orders I just wait, and I do not know how to learn what anyone feels. The notebook still says I know nothing about them."
+- 241.179 (wait, no diary text). I did not tap "Go to flat 3" here. A reaction was attached to the tap at 284.82: "Burak is still out. Waiting is the only move; I will wait for him to come home."
+- 287.318: "Burak thanked me for the sweep without my asking. Everything with him is used up today, so I close and move to Tuesday."
+- 289.153: "Got 10 lira and a thank-you for the sweep. Skipping toward Tuesday."
+- 291.612: "New evening chore: bins. A warning that I may feel very hungry, with no word on what hunger does. Doing it to find out."
+- 315.081: "Bins collected apparently; next the step."
+- 329.5: "Tarık stopped me on the step. I want to see the Make something up option and what it costs."
+- 331.298: "Now I know the water fact is marked sure and the Hacer line is marked heard. Trying to invent something."
+- 333.164: "I choose Derya, the one nobody talks to, to see what lies are on offer."
+- 335.564: "This is a real choice with a cost: a rumour that could embarrass two people. Choosing it because I want to see consequences, and I will say I am sure to see how that is framed."
+- 339.179, note (Mon 19:50): "I invented that Derya has romantic feelings for Burak. Tarık said That is good. I am happy to hear it. Warm but flat; I cannot tell if he believed it, or what it will do. The lie menu is a fixed list of eight traits, which is clear, but the reaction tells me almost nothing."
+- 346.496: "Both labels exist. I pick confused: I cannot tell what my words did, and the notebook still says I do not know how anyone feels. I will type nothing and send nothing."
+- 353.932, want_quit, CONFUSED (Mon 19:50): "I cannot tell what my words did. Tarık answered a lie about romance the same flat way as the truth. The notebook still says I know nothing about anyone. Everything is used up for Monday and the next hooks are days away."
+- 356.662, stop, CONFUSED (Mon 19:50): "I would stop here for tonight. Good: spreading rumours and witnessed deeds. Not good: I cannot see what my words changed. I will try the desktop later."
+
+**Session B**
+- 5.081: "Same title as on my phone. Narrow centred column on the big screen, fine. Beginning again; this time I know the job and the Tell and rumour mechanics."
+- 10.495: "Second visit, other device. This time I skip the gate button and go straight to the first order."
+- 25.343: "On the phone I ignored this. Here I try it: swapping neighbours' papers looks like a small dishonest deed with witnesses. Curious what it costs."
+- 26.907, note (Mon 07:18): "Swapped the crosswords; Hacer saw me. A harmless prank with a witness, nicely worded (each has the other crossword). I will watch whether Hacer says anything."
+- 38.423: "Second visit: the water news is marked sure for me, so I tell it as certain this time, the other way from the phone."
+- 42.691: "Desktop shows building left, panel right. The status line is cut off: Time is paus… Telling the water news for certain."
+- 44.81: "Same That is interesting as Hacer gave on the phone, even though I said certain here. The reply does not vary with how sure I sound, as far as I can see."
+- 64.299, first_minute (Mon 07:41): "I know the loop now, so I am testing the edges instead of delivering. I swapped two neighbours newspapers and told Tarık the water news as certain. He said That is interesting, the same words Hacer used on the phone. Same ferry story, same reply menu. On a second visit the content is identical, so only my choices differ."
+- 65.891: "Trying the other reply this time: I am listening. On the phone I used Thank you for telling me."
+- 75.436, want_quit, BORED (Mon 07:43): "Either reply, listening or thank you, ends in the identical line: I would rather leave it there. My choice made no visible difference. I have now seen the same choices on both devices and I would stop."
+- 78.679: "Choosing I am stopping. Typing nothing, no Submit."
+- 81.968, stop, BORED (Mon 07:43): "I am stopping the desktop visit after under two minutes. I have seen the same replies and the same stock lines as on my phone, and my reply choice changed nothing. The swapped newspapers and the spreading rumours were the only things I would come back to see play out."
+
+**Timing note.** In Session A the first_minute log went out at 59.804 s and the first pulse at 171.727 s. Both were slightly early, before the 60 s and 180 s checkpoints. The coordinator should flag them. Session B's first_minute at 64.3 s was on time. Session B was too short for a pulse.
+
+## 4. Moments
+
+**What held me**
+- My words spread. I told Hacer the water news, Burak repeated it, and I overheard Hacer say it on the step.
+- Deeds have witnesses. "Tarık saw you do it" and "Hacer saw you do it" gave my small acts weight.
+- Burak's line, "You can tell when an account is complete. In a conversation, you rarely know when you have said enough", landed with me as a translator.
+- Sevim's "You arrived on time. I noticed." showed a consequence for punctuality.
+- Choosing how sure to sound ("as I heard it" or "for certain") is a good idea.
+
+**What lost me**
+- Stock lines repeated across people and days: "Tarık is kind" from every resident, "I would rather leave it there" from Tarık and Burak, and "That is interesting" from Hacer and Tarık.
+- My choices did not show a difference. The two reply buttons ended the same way, and the sureness choice got the same answer.
+- The notebook still said I knew nothing about anyone.
+- After the orders I had little to do.
+
+**Quit wishes**
+- Session A: the BORED/CONFUSED feeling grew after about 140 s and settled at the 354 s want_quit. It did not pass; I stopped.
+- Session B: it arrived at 75 s because I had already seen the same choices. I stopped.
+
+**Pulses:** 4 at 171.7 s (rumours travel), then 3 at 225.7 s (waiting between orders, notebook blank).
+
+## 5. Confusion and clarity
+
+**Clear**
+- The job, the deadlines, and that Orders pauses time.
+- Walking times in the Residents list.
+- The "reply takes two minutes and they can choose to leave the subject" note.
+- "Ask from Thursday at 07:00, face to face" for the raise question.
+
+**Confusing**
+- "kapici" is unexplained.
+- "(₺5)" could be a tip or a price.
+- The two title checkboxes and "Other ways to begin" are not explained.
+- "Leave the courtyard gate open" looked like free house-keeping, but a witness saw it and the button gave no warning of a cost.
+- "If you do this work, you may feel very hungry/tired" does not say what hunger or tiredness does.
+- I could not tell what "That is interesting" meant, whether belief or disbelief.
+- I did not know how to learn what residents feel. The notebook says "1 of 16" and I never saw it move.
+- Some driver replies said a control "is not on the page now". That was game state changing between my commands, not a driver block. The in-game clock also moved between my slow commands, which was probably my latency.
+
+## 6. Device use
+
+**Phone, 360x690 touch**
+- Screenshots viewed: `phone/a-001.png` and `phone/a-002.png`.
+- `a-001.png` (title page): the title, the intro paragraphs, two unchecked checkboxes, an "Other ways to begin ▸" box, a red "Begin on Monday" button, and a bottom recording notice. It fit at 360 px.
+- `a-002.png` (Monday 07:54, notebook open): the hand-drawn building (roof to G, flats with "in" labels, stick figure at flat 5), a strip of squares, the tab bar (Here, Orders, Residents, Notebook), and the notebook panel under it. It was clean and readable.
+- I tapped by control name only. I took no taps by coordinate and saw no layout trouble on the phone.
+
+**Desktop, 1280x800**
+- Screenshots viewed: `desktop/b-001.png` and `desktop/b-002.png`.
+- `b-001.png` (title page): a narrow centred text column with large serif type, the same two checkboxes, "Other ways to begin ▸", the red "Begin on Monday" button, and the recording notice along the bottom edge.
+- `b-002.png` (Mon 07:31, flat 7, Tell panel open): the building diagram on the left with the stick figure at flat 7 and the resident panel on the right. It showed "Tell Tarık…", "Hacer asks about everyone's private life. _heard_", and "The water will be off on Wednesday… _sure_", each with "as I heard it" and "for certain" buttons.
+- Trouble seen: the status line is clipped to "You are reading. Time is paus…". Both "for certain" buttons share one name, so a name tap was ambiguous and I had to tap at point (1121, 552) from the screenshot.
+- Three of five manual shots were used on the phone as 2 and on the desktop as 2. I did not use keyboard keys.
+- Feedback: on both devices I opened Game menu, then Feedback. Both "I'm stopping" and "I'm confused" were present. I chose "I'm confused" on the phone and "I'm stopping" on the desktop. I typed nothing, changed no consent, pressed no Submit, then closed Feedback and tapped Resume.
+
+## 7. Stop and return
+
+**Session A stop words:** "I would stop here for tonight. Good: spreading rumours and witnessed deeds. Not good: I cannot see what my words changed. I will try the desktop later." Reason: CONFUSED.
+
+**Session B stop words:** "I am stopping the desktop visit after under two minutes. I have seen the same replies and the same stock lines as on my phone, and my reply choice changed nothing. The swapped newspapers and the spreading rumours were the only things I would come back to see play out." Reason: BORED.
+
+**Would you return voluntarily?** I would come back one more evening on my laptop, and only if I knew that what I say to people changes something I can see, such as a resident reacting differently to a lie than to the truth, or the notebook filling in. If the next visit gives me the same stock lines and the same blank notebook, I will not come back a third time.
+
+**Leave it running?** No. Most of a day is dead time between orders, and I would rather it paused. An idle clock that advances on its own does not tempt me.
+
+**Another evening?** Yes, on the conditions above. The rumour chain and the witnessed deeds are the two things I want to see play out through Thursday and the Sunday vote.
+
+## 8. Changes I would want
+
+1. Make each resident's answer depend on what I said and how, so a lie, a true fact and a different reply choice get visibly different lines.
+2. Fill the notebook with what I have learned, so "1 of 16" moves and the "how Tarık feels about you" line changes.
+3. Explain "kapici", the "(₺5)" amounts, the title checkboxes, and the gate button's cost.
+
+## 9. Compared with my last visit
+
+First visit.
+
+<!-- selected-continuity-key: light-1030:glance-retest1:leila:free -->
+## 2026-10-31 Glance LIGHT first fixed-build retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/glance-retest1/leila/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/glance-retest1/leila/report.original.md.txt), original SHA256 `027abb82eb2167f78074eb2b92f7b1237ac19cb8e2f5fddb173ef5fa44b5fb1f`. Build 2e3fd995fb3ed855b4fe75eaa8e449fe2914cc7f/HF4.14.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- Device order desktop then phone; driver native-tap-v2 (differs from the initial round). Her desktop pulse at 172.387 s is premature (before 180 s); her report says so and the raw line stays. In her own words she saw no mark after Doubt.
+- Her desktop 1-turn request produced no visible outcome: observed pending/refusal unknown, not a simulation defect and not a guaranteed lost action.
+- Method: she executed one ls of her own assigned run directory outside the curl-only protocol (filenames only, effect unknown); one malformed shell quotation failed before any request ([glance-retest-command-scope-audit.json](../reviews/light-2026-10-30/glance-retest1/inputs/glance-retest-command-scope-audit.json)).
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+**Would you return voluntarily?** Maybe: another evening, on desktop only, and only if each night asked me for more than about four choices. I would not leave it running.
+
+**Ranked asks**
+1. Give me more to decide each night.
+2. Show a visible result when I act. "Doubt this reading" left no mark, and my desktop "1 turn" request never happened.
+3. Stop the clock while I read an inspection panel.
+
+---
+
+## 1. Session
+
+- **Persona:** Leila Mansour, returning player (same-standing retest), round light-1030-retest1, arm free stop (floor 0).
+- **History supplied:** my own-history.md, with my earlier Glance report and selected cross-game records. I read it before play. I did not re-read it after the context break; from that point on I used my own notes of it.
+- **URL:** https://glance.adamwhite.work/?labRunSource=agent
+- **Session A:** desktop 1280x800, keyboard and mouse, light mode. About 210 s. Game clock Mon 22:01 to Tue 01:17.
+- **Session B:** phone 360x690, touch, light mode. About 237 s. Game clock Mon 22:00 to Tue 01:18.
+- **Not tested:** the 20-minute ceiling. I stopped early in both sessions.
+- **Fresh games:** both started fresh. The starting level was 4.3 m on desktop and 4.5 m on phone.
+
+## 2. First impressions
+
+- **Desktop, 4.6 s:** same title page as before, now with a sample morning button and a "Life during the watch" group.
+- **Desktop, 10 s:** rain at 4.3 m with the gate shut. The level is a job now, not just the gate.
+- **Desktop, 15 s:** the panel says "Hold a button to insist", and there is a "Doubt this reading" button.
+- **Phone, 7.8 s:** the title page fits at 360 wide. The chart now shows a bridge line.
+- **Phone, 11 s:** the start level was higher. The buttons say "He agrees." before I press them, and "Call and wait for his answer." for 6 turns.
+
+## 3. Verbatim diary lines
+
+Sent unedited, in order, with driver elapsed seconds.
+
+**Session A, desktop**
+- 4.633: "Same title as before; now a sample morning button and a Life during the watch group. Starting."
+- 10.172: "Rain at 4.3 with gate shut. Level, not just gate, is a job now. Asking."
+- 15.571: "New: Hold a button to insist, and a Doubt this reading button. Holding 2 turns to see what insisting does."
+- 35.691: "Held press gave I will follow the order, that is an order. Insist now shows in words. My level request seems dropped though; level still read 22:00."
+- 39.317: "The button says He cannot do it; hold to call. Holding."
+- first_minute, 66.205, Mon 22:45: "Reason to act: keep dam below crest. Tappable: gauges, Ask Dai, Skip, arrangements. New: tap versus hold, hold is insist and Dai says that is an order; Doubt this reading button. Plain tap on level said He cannot do it, which I did not expect. Optional chapter is now one folded line, not pasted twice. Level 4.3 to 4.1 with gate at 2."
+- 102.886: "Plain tap asks politely now; earlier same button said He cannot do it, so the label tells me whether he will. Useful."
+- 126.372: "Dai says that is an order even after a plain tap, so I cannot tell tap from hold in his words."
+- 129.121: "Level fell to 3.5 and rain may come heavier. Reducing the gate to save water for later."
+- 164.309: "Every request, even a plain tap, gets Dai saying that is an order. So what does hold add? The panel said hold to insist but I cannot see the difference."
+- 166.869: "Gate still shows 2, read 22:18; I asked for 1 and cannot tell whether he did it. Level 4.0 and rain heavier, so I go to 4 turns instead."
+- pulse, 172.387, Tue 00:38: "Insist and not answering now show in words, which I asked for last time. But I still ask, wait, read; about six choices in three minutes, and one request (1 turn) silently never happened."
+- want_quit BORED, 202.75, Tue 01:13: "Dai asks where Morgan has gone, same line as last visit; I recognise it. Gate is at 4, level steady, and I am back to waiting. I have seen the loop again."
+- stop BORED, 209.957, Tue 01:17: "Stopping desktop. I now see insist and refusal in words, and a clearer saved-image panel. But I still make a handful of choices in 3.5 minutes and wait the rest, and one request vanished silently. I would not leave it running."
+
+**Session B, phone**
+- 7.765: "Phone title fits; chart now shows a bridge line too."
+- 11.237: "Level 4.5 this game, higher start. Labels say He agrees; 6 turns says call and wait. Short plain tap on 3 turns."
+- first_minute, 63.074, Mon 23:09: "Reason to act: keep the dam below crest. Tappable: gauges, Ask Dai, Skip, arrangements. Gate 3 done and level fell 4.5 to 3.4. New: the button now says He agrees or He cannot do it before I press, which explains why tap or hold. Optional chapter is one folded line. Still few choices."
+- 67.907: "Phone layout holds: dam picture, two gauge cards, log. Watch arrangements and Dai strip are clipped with dots."
+- 103.035: "Trying the new Doubt button: the 61-minute old reading is the one I trust least."
+- 130.29: "Doubt this reading: the panel just closed and I see no mark anywhere. Did it record? Not visible. I never asked for a fresh level either; I am watching."
+- pulse, 184.379, Tue 01:12: "Same loop on the phone: gate, wait, read. Dai asks about Morgan again at 01:10; I remember it. Doubt this reading gave me no visible mark. Fewer choices than I want."
+- want_quit BORED, 186.121, Tue 01:12: "Nothing to decide; level steady, only waiting through the night. I have seen this loop twice tonight."
+- stop BORED, 236.858, Mon 01:18: "Stopping phone. Same loop as desktop: gate, wait, read. Doubt this reading left no visible mark. I would not leave it running here."
+
+Two timing notes:
+- The desktop pulse was logged at 172 s, before the 180 s mark. The coordinator should flag it as premature.
+- The phone clock read "Mon 01:18" at the end; the 01:12 and 01:18 lines are as the game showed them.
+
+## 4. Moments
+
+- **Held me:**
+  - The pre-press labels ("He agrees.", "He cannot do it.") told me what Dai would do before I committed.
+  - The saved lightning image panel ("This image does not show the water now.") was clear.
+  - The refusal and "not answering" lines now show in words.
+- **Lost me:**
+  - I made about six choices in 3.5 minutes on desktop and about four in 3 to 4 minutes on phone, then waited.
+  - "Where has Morgan gone?" at 01:10 was the same line as last visit. Recognising it told me the loop was the same.
+  - **Quit wishes:** BORED on both devices. They did not pass, and I stopped each session.
+- **Pulses:** desktop, a loop with one request vanished; phone, the same loop with no mark from Doubt.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The pre-press labels explain why tap and hold exist.
+- Insist and refusal now appear in Dai's words.
+- The optional chapter is one folded line.
+- The saved image panel.
+
+**Confusing**
+- **Tap versus hold:**
+  - A plain tap on "He cannot do it" still got "That is an order." I could not tell tap from hold in Dai's words.
+  - A plain tap on a level-read request was labelled "He cannot do it" right after Dai finished a job. I held it and it worked.
+- **A request that vanished:**
+  - On desktop at 23:57 I asked for 1 turn.
+  - The gate stayed at 2/6, read 22:18, with no visible refusal.
+  - Dai later said "He is not answering." at 00:37, when I tapped the gate while he was resting.
+  - I do not know why the 1-turn request disappeared.
+- **Doubt this reading:** the panel closed and I saw no mark anywhere, on either device. I do not know whether it recorded anything.
+- **Clock:**
+  - It ran faster than I read.
+  - Desktop 22:50 to 23:31 in a 30 s wait; phone 22:46 to 23:09 in 15 s.
+  - Inspections say "Time continues slowly while this inspection is open", and the clock still advanced about 2 to 4 minutes.
+- **Dai reading the level unasked** happened several times. I did not see why.
+
+## 6. Device use
+
+- **Screenshots viewed:** desktop a-001.png; phone b-001.png and b-002.png. I viewed no manual shot beyond these.
+- **Desktop a-001.png:**
+  - The title page showed the chart (crest, lip, 4.0 line, gate, square, Mill Lane), a red Start game button and a recording notice box at the bottom.
+  - Controls used: Start game, level and gate gauges, Ask Dai (tap and held), Skip, Game menu, Feedback, "I'm stopping", Back.
+- **Phone b-001.png:** the title page fit at 360 wide, with the chart showing crest, lip, gate and bridge lines, intro text and a Start button.
+- **Phone b-002.png (Mon 23:14):**
+  - "Watch a…" and "Dai · He is resting by the stove…" were clipped with ellipses.
+  - The dam drawing showed Dai on the hut and the water line.
+  - Two gauge cards (level 3.40 m, gate 3/6) sat above the log, with a Skip button below.
+  - It was readable. The log sits in a compressed band.
+- **Phone controls used:** Start, gate options by plain tap, the level job, Doubt this reading, Skip, Game menu, Feedback, "I'm stopping", Back.
+- **Feedback:**
+  - The choice was offered on both devices: "I'd keep playing" / "Not sure" / "I'd stop here" under Your verdict, and "I'm stopping" / "I'm confused" under "What is happening?".
+  - I tapped only "I'm stopping" and then "← Back". I typed and submitted nothing.
+  - Recording stayed checked.
+- **Unseen layout:** I did not check desktop layout below the first screen or phone landscape.
+- **Trouble seen:**
+  - The phone strips are clipped with ellipses.
+  - The level gauge's accessible name has spaced-out letters ("D a i · r e a d …"), so I had to copy it exactly to tap it. This was on both devices.
+
+## 7. Stop and return
+
+- **Desktop stop:** BORED at 210 s, game clock Tue 01:17. Words: "Stopping desktop. … I would not leave it running."
+- **Phone stop:** BORED at 237 s, game clock Mon 01:18. Words: "Stopping phone. Same loop as desktop… I would not leave it running here."
+- **Would you return voluntarily?** Maybe: another evening, and on desktop. I would only come back if a night asked me to decide more than about four things. I would not leave it running while I do something else.
+- **Leave it running or come back another evening:**
+  - Leave it running: no.
+  - Come back another evening: possibly, on the conditions above.
+
+## 8. Changes I would want
+
+1. **More to decide each night.** This is the same ask as last time.
+2. **A visible result when I act.** Doubt should leave a mark, and a request Dai did not do should say so.
+3. **Stop the clock while I read an inspection.** Or slow it a lot more.
+
+## 9. Compared with my last visit
+
+I am working from my own notes of my earlier report. I did not re-read the file after the context break.
+
+- **Ask 1, more decisions per night:** not met. About six choices in 3.5 minutes on desktop and about four on phone, then waiting.
+- **Ask 2, pause the clock during inspections:** did not meet, or only partly. The panel says "Time continues slowly", and the game clock still moved 2 to 4 minutes during inspections.
+- **Ask 3, cut the repeated optional-chapter paragraph:** met. It is now one folded line.
+
+**New this visit**
+- Tap versus hold, and the pre-press labels. This is an improvement, though Dai's reply to a plain tap on "He cannot do it" still says "that is an order".
+- Doubt this reading, which gave no visible result.
+- The vanished 1-turn request.
+- Dai reading the level unasked.
+- A recognised line (the Morgan line, at about 01:10), which I remembered from my earlier visit with high confidence.
+
+**New blocking asks:** none beyond the three ranked asks above.
+
+**Not seen:** the town side, the Bridge Inn river reports (the game says they begin Tuesday), the weekend, a second night, "What counts as caught?", and the Slow, Steady and Fast pace buttons. I used Automatic throughout.
+
+**Cleanup:** I started no worktree, server or browser of mine. `git worktree list`: none of mine.

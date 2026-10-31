@@ -1,0 +1,59 @@
+# Native hold: tap `duration_ms` (scratch fork)
+
+Dir: /Users/abdul/code/.lab-scratch/playtest/light-1030/native-hold. Node /opt/homebrew/bin/node v26.12.0, Playwright 1.64.1 (npx cache), Chromium headless. No originals, git, game or network touched.
+
+## Exact change (diffs: lab-play.diff, lab-play-helpers.diff; lab-play-text.ts unchanged)
+
+- helpers `validatePlayOp`: `tap` accepts optional `duration_ms`, must be an integer 100..5000, else `duration_ms must be an integer 100–5000`. Other ops still reject it as an unsupported field. Absent field = unchanged behaviour. `duration_ms` appears automatically in the log `input`; `op_ms` records actual wall time.
+- driver: `tapPoint(x,y,holdMs?)`. Desktop: `mouse.move`, `mouse.down`, sleep, `mouse.up` in `finally`. Phone: `context.newCDPSession`, `Input.dispatchTouchEvent` touchStart, sleep, touchEnd in `finally`, then `cdp.detach()` in a nested `finally`. No dispatchEvent, no eval op added.
+- Named held taps reuse the existing name resolution (exact roles, visible, enabled count, duplicate refusal, `runPlayOperation` ambiguity checks). The held click uses the existing `uncoveredPoint` check (disabled/covered/offscreen => same refusal text) instead of Playwright's click. text and x/y targets also accept the hold.
+- Provenance: driver prints/logs `driver: native-hold-fork`, `driver_check: fork-unverified` instead of git HEAD (the git stale check is ignored for identity but its refuse flag is kept).
+
+## Hashes
+
+Originals (human-framework/scripts, read only; orig-sha256.txt):
+- lab-play.ts 4e936c0b88730784f8bbb89ba456cc88b9dfc2c458422329ae5c58b585ec0b6d
+- lab-play-helpers.ts bc4e43bf2a9749dc1bec971d070661846d5f489de6b3292840f3cc0744a5a810
+- lab-play-text.ts 5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b
+
+Fork (fork-sha256.txt):
+- lab-play.ts 995a9d53d68a77dc75822551341d4eff374df0ff1780d8a1dd22867dd06e97e2
+- lab-play-helpers.ts 9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc
+- lab-play-text.ts 5d3c368a... (identical to original)
+- hold-control.mjs dc80bc274847e915c1f24d15910d1c8dac439921a90790de68e01e2112f78a9d
+
+Other files: orig/ (unmodified copies), lab-play.diff, lab-play-helpers.diff, red-output.txt, red-exit.txt, green-output.txt, green-exit.txt, red-out/ and green-out/ (driver wall-clock.jsonl logs), orig-sha256.txt, fork-sha256.txt, report.md. Pre-existing: brief.md, pid, result-envelope.json, stderr. No screenshots.
+
+## Control (hold-control.mjs)
+
+Local HTTP page (127.0.0.1, ephemeral port) logs capture-phase events as visible text (`EV n type trusted= ptype= t= on=`). The control spawns the real copied `lab-play.ts` over HTTP for desktop then phone, one driver and browser at a time.
+Run: `node hold-control.mjs <driver-dir> <outdir>`
+
+### RED (unmodified copy)
+
+`/opt/homebrew/bin/node hold-control.mjs orig red-out` -> exit=1, 22/43 pass.
+Hold replies: `status=500 error="Unsupported field: duration_ms (invalid request, not a driver failure)"` on both devices. The 22 passes are baseline tap and rejections that pass because the field is unknown. Hold, text, point, covered, vanish, and log checks fail.
+
+### GREEN (fork)
+
+`/opt/homebrew/bin/node hold-control.mjs . green-out` -> exit=0, 43/43 pass. Verified, per device:
+- Ordinary tap unchanged (click, trusted).
+- Rejections with no new input events: 99, 5001, 250.5, "500", null, extra field, and duration_ms on `key`.
+- Trusted mouse down/up (desktop) and touchstart/touchend (phone), by name, text and point.
+- Page-observed down->up within 1150..1500 ms for a 1200 ms hold; HTTP wall >= 1200; log `op_ms` >= 1200 with `duration_ms` in input.
+- Ambiguous (Twin x2), disabled, covered target refused with no input.
+- Target removed 300 ms into the hold: press delivered, then a fresh hold works with a new down and up (no stuck button/touch).
+
+## Limits
+
+- Phone named taps without a hold still go through Playwright `locator.click` (mouse-emulated) as upstream does. Only held phone taps use real touch (CDP).
+- When the target is removed mid-hold the document never sees touchend/mouseup (removed node does not bubble), so release is shown by the clean follow-up press, not by a release event. Interruption by process kill is not tested; the `finally` handles errors, not SIGKILL.
+- Upstream `lab-play*.test.ts` were not copied or run; helper typings were not checked with tsc (Node strips types only). Playwright 1.64.1 only. Chromium only.
+- Held duration is bounded by 5000 ms plus the existing 100 ms post-op sleep. Fork identity is `fork-unverified`; the director must pair it with fork-sha256.txt.
+- Only the control's own hold was exercised in one viewport size per device; no scroll interaction during hold.
+
+## Process cleanup
+
+Each driver was SIGTERMed by exact PID (desktop/phone pairs 13861,13881 green; 14050,14061 final red), site server closed in `finally`. `ps` afterwards shows none of mine (PIDs checked with kill -0). No screenshots kept. Disk 49 GB free. No worktrees or git used.
+
+READY: controls ran and passed as above; not READY for upstream merge until reviewed and the existing repo tests are run against the fork.

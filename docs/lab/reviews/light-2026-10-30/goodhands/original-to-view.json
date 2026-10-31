@@ -1,0 +1,371 @@
+{
+  "purpose": "History qualification added to README/logical ledger without changing producer inputs, reports, raw logs or quotations. Earlier mapping snapshot retained. Readable report views use formatting only.",
+  "historyQualification": "history-qualification.json",
+  "files": [
+    {
+      "file": "ask-ledger.md",
+      "canonicalSha256": "dfb92cc8d0eab83f7f0c945e6226ffea7e19f1ce2dadae9401b3b3b468d8a41d",
+      "privateSha256": "03486019574302c394b60845c57a9503bdc03226ec149b02f5848d4e5ca73a6a"
+    },
+    {
+      "file": "history-qualification.json",
+      "canonicalSha256": "d4a7d08ae7a8be51e98c0f963103a0781e7de5db03f9f1dfc6185b5d4868f25a",
+      "privateSha256": "d4a7d08ae7a8be51e98c0f963103a0781e7de5db03f9f1dfc6185b5d4868f25a"
+    },
+    {
+      "file": "screenshots-manifest.json",
+      "canonicalSha256": "2159d29eb6cc5ae0620d0efcb05fcf3edc1836bc3bf8312a8244f6185b2039d0",
+      "privateSha256": "2159d29eb6cc5ae0620d0efcb05fcf3edc1836bc3bf8312a8244f6185b2039d0"
+    },
+    {
+      "file": "original-to-view.before-history-qualification.json.txt",
+      "canonicalSha256": "8a8149a064f686dfdc6595462e31fcedd0a861520e0abe731923b6c070a44dfe",
+      "privateSha256": null
+    },
+    {
+      "file": "ledger-additions.md",
+      "canonicalSha256": "6ff33042a1f29f57958fcf14e24075c76fd45389f96bfcc7bcf14d617ffb9f4c",
+      "privateSha256": "6ff33042a1f29f57958fcf14e24075c76fd45389f96bfcc7bcf14d617ffb9f4c"
+    },
+    {
+      "file": "README.md",
+      "canonicalSha256": "8bdc63c4ba452a74c379551c4c07930b96331ba2f14f5de9692b86d842a897b1",
+      "privateSha256": "e1e8dd183d06b8cc09f001a5c07cd7021624c39a47dd55040bcc5f83a42d6d3a"
+    },
+    {
+      "file": "logical-tester-ledger.md",
+      "canonicalSha256": "3411b9edd8f611b7543e14e47f41f46a41ad6e731456a78a4711211f9402d8cd",
+      "privateSha256": "5c2e9918fb397a3efe43f8eee8badd26ae5c3e5b1e71a26bb02760cbc5b4ab50"
+    },
+    {
+      "file": "logical-tester-ledger.json",
+      "canonicalSha256": "b8f5f4c3310353b7ae377721c154e9dc1edfac6cd6d4c5d3a9220bcf7fe5d9ff",
+      "privateSha256": "b8f5f4c3310353b7ae377721c154e9dc1edfac6cd6d4c5d3a9220bcf7fe5d9ff"
+    },
+    {
+      "file": "diego/report.md",
+      "canonicalSha256": "60da3f8db93ef28a5ba47b95e69344f3b589e6046cd720639261d610b3fdb73b",
+      "privateSha256": "f796bca40c67ecf534e3ad10c4d01c5c2e096b43fbdeda71fcdcd035c4606cd3"
+    },
+    {
+      "file": "diego/report.original.md.txt",
+      "canonicalSha256": "f796bca40c67ecf534e3ad10c4d01c5c2e096b43fbdeda71fcdcd035c4606cd3",
+      "privateSha256": null
+    },
+    {
+      "file": "diego/validation.json",
+      "canonicalSha256": "11975637aca85f92defa6b84da0bc73df8fe14008c16fadaf9bfc96681575140",
+      "privateSha256": "bc916e506477b19a3020033ab20a215ccd7fe80d08345a1688d74be2612cae46"
+    },
+    {
+      "file": "diego/brief.original.md.txt",
+      "canonicalSha256": "ed7acdf11fdfb10e4fa5fc9eaeb661be59451ae23315881e8645312d2c839a77",
+      "privateSha256": "ed7acdf11fdfb10e4fa5fc9eaeb661be59451ae23315881e8645312d2c839a77"
+    },
+    {
+      "file": "diego/own-history.original.md.txt",
+      "canonicalSha256": "5c360dcd3443fb771cc47688ba4bebaf77ac71fb706428db33a2139ba9c29922",
+      "privateSha256": "5c360dcd3443fb771cc47688ba4bebaf77ac71fb706428db33a2139ba9c29922"
+    },
+    {
+      "file": "diego/completion.json",
+      "canonicalSha256": "12734412ffdaec608cfec9532b84a9f501740e343d5e59adf1cba1abf1a47a5e",
+      "privateSha256": "7939a1a712ec0431a26e5991297eaffcb07bdf2a0c237e1cfa9be86d2664b8da"
+    },
+    {
+      "file": "human-speed-control/wall-clock.jsonl",
+      "canonicalSha256": "a65ed9ba21e8461f1d55e2a921238f5fad2751b44778eaa671380cb33be417ec",
+      "privateSha256": "a65ed9ba21e8461f1d55e2a921238f5fad2751b44778eaa671380cb33be417ec"
+    },
+    {
+      "file": "human-speed-control/first-minute.png",
+      "canonicalSha256": "6d1b7ec0c657470362a79ed7caf005f9d524f5714741d112fd2ef7db04d38e0f",
+      "privateSha256": "6d1b7ec0c657470362a79ed7caf005f9d524f5714741d112fd2ef7db04d38e0f"
+    },
+    {
+      "file": "human-speed-control/before-city.png",
+      "canonicalSha256": "1a1d3e8acae15d425fb3c42b3284e5b952c324c28f0640b019ccfd3c03248e13",
+      "privateSha256": "1a1d3e8acae15d425fb3c42b3284e5b952c324c28f0640b019ccfd3c03248e13"
+    },
+    {
+      "file": "human-speed-control/after-city.png",
+      "canonicalSha256": "0491e551a2939e158b1f97d31fe062bffaa900d277c15311199be86719b97470",
+      "privateSha256": "0491e551a2939e158b1f97d31fe062bffaa900d277c15311199be86719b97470"
+    },
+    {
+      "file": "human-speed-control/control.json",
+      "canonicalSha256": "84b43e399f517a4f10a20acf6c2eb5f7a1ce132f2c23298eca5c6b12ff117d53",
+      "privateSha256": "f9cc3c2a64fa802778df1a6e806c164cb370dd05a252b89b76b32a624413efb1"
+    },
+    {
+      "file": "jonas/report.md",
+      "canonicalSha256": "f8042f15ac803c276b6cc4c04b34dd5cdcfb010694489ee13bec11d29f562afc",
+      "privateSha256": "8232cb48a1d22b16b6c9d549f45bd43b2bd443591a72a71cd83ef73e862cb07d"
+    },
+    {
+      "file": "jonas/report.original.md.txt",
+      "canonicalSha256": "8232cb48a1d22b16b6c9d549f45bd43b2bd443591a72a71cd83ef73e862cb07d",
+      "privateSha256": null
+    },
+    {
+      "file": "jonas/validation.json",
+      "canonicalSha256": "9cb37eeb922c0a83a5f800eaf048bceb10bd8bd144ba1b6c4a1c00235b49581c",
+      "privateSha256": "9cb37eeb922c0a83a5f800eaf048bceb10bd8bd144ba1b6c4a1c00235b49581c"
+    },
+    {
+      "file": "jonas/brief.original.md.txt",
+      "canonicalSha256": "8584647333f1524a67458dba4bf7535364231b7adebccc91c16d6c735cc1f606",
+      "privateSha256": "8584647333f1524a67458dba4bf7535364231b7adebccc91c16d6c735cc1f606"
+    },
+    {
+      "file": "jonas/own-history.original.md.txt",
+      "canonicalSha256": "6ed2778971a4a2ab6ddea18fd6264939b4cac7d584a40bfb609a282cd11765fb",
+      "privateSha256": "6ed2778971a4a2ab6ddea18fd6264939b4cac7d584a40bfb609a282cd11765fb"
+    },
+    {
+      "file": "jonas/completion.json",
+      "canonicalSha256": "337882ade6270dca9dde59af3e6d2ac26ea0a22b8e9ab0ec7c83caf3eb2d24ac",
+      "privateSha256": "da2db070292a429f926a081b96134e4608066a5e79ad4e87ce885629ece54e04"
+    },
+    {
+      "file": "lena/report.md",
+      "canonicalSha256": "97bdd7312d68814fdecd18f4471aa5b8561e727c136eec5a1a91a1676fa9928e",
+      "privateSha256": "1aba71e42f0f1dabf6812b8d4303177966ed83d10d1ec0aa70134d3554b041cb"
+    },
+    {
+      "file": "lena/report.original.md.txt",
+      "canonicalSha256": "1aba71e42f0f1dabf6812b8d4303177966ed83d10d1ec0aa70134d3554b041cb",
+      "privateSha256": null
+    },
+    {
+      "file": "lena/validation.json",
+      "canonicalSha256": "49478da1314114cecdbfe3ab4d521ffc9cad2750b0912e4db97a510a97574389",
+      "privateSha256": "49478da1314114cecdbfe3ab4d521ffc9cad2750b0912e4db97a510a97574389"
+    },
+    {
+      "file": "lena/brief.original.md.txt",
+      "canonicalSha256": "05207e23ad22a3e9191a4290a4b58ae69b7af49353334421764467e73c19e8a4",
+      "privateSha256": "05207e23ad22a3e9191a4290a4b58ae69b7af49353334421764467e73c19e8a4"
+    },
+    {
+      "file": "lena/own-history.original.md.txt",
+      "canonicalSha256": "158cda670ef3c164caacb765e2bb346563edb2090f7b0ef6f3d7ebad8b370583",
+      "privateSha256": "158cda670ef3c164caacb765e2bb346563edb2090f7b0ef6f3d7ebad8b370583"
+    },
+    {
+      "file": "lena/completion.json",
+      "canonicalSha256": "6f76d9e61903b7e4fe71a26fb013902297f06171ab04f1f3b310d968c9097b0f",
+      "privateSha256": "bcb61091cdc99029ced72bec059036e656a0d1a9504a2ef1ff02dee24bc6b544"
+    },
+    {
+      "file": "aisha/report.md",
+      "canonicalSha256": "3b22287f1e67b7894dd3568b5395f2171b7ba4f62d44169ff889f6c9bc24bd8f",
+      "privateSha256": "4aec594d8e1ea1bc503d2082519ae8654dc445cf288950c2fe9ea38502c3c4da"
+    },
+    {
+      "file": "aisha/report.original.md.txt",
+      "canonicalSha256": "4aec594d8e1ea1bc503d2082519ae8654dc445cf288950c2fe9ea38502c3c4da",
+      "privateSha256": null
+    },
+    {
+      "file": "aisha/validation.json",
+      "canonicalSha256": "8461d66f4931938e5d421d366750ab161571163ebc2348e1a4635605f260d163",
+      "privateSha256": "857398e6e237ab8c0f61da58fb03e4ac488eeae5fe421af34c40d52d5b6bd6cf"
+    },
+    {
+      "file": "aisha/brief.original.md.txt",
+      "canonicalSha256": "00b72a634eee44399e59ebc1c6110390203e0d1cfe5a8aafd2abe4e2bab401b4",
+      "privateSha256": "00b72a634eee44399e59ebc1c6110390203e0d1cfe5a8aafd2abe4e2bab401b4"
+    },
+    {
+      "file": "aisha/own-history.original.md.txt",
+      "canonicalSha256": "374001b989bcba60aebba947df9194739c6f7b084985e11b237ffa5bc273c4bf",
+      "privateSha256": "374001b989bcba60aebba947df9194739c6f7b084985e11b237ffa5bc273c4bf"
+    },
+    {
+      "file": "aisha/completion.json",
+      "canonicalSha256": "b12efa230cbe046c3ff1f54edde6b4a5eba0d67356d33f3c76f5e7706d22942a",
+      "privateSha256": "2d70162ce15e4ca50248db58c8ad312e913d544a0cc5e61a1da0f328e2ad4ead"
+    },
+    {
+      "file": "rosa/report.md",
+      "canonicalSha256": "d2911c38ab8f0a3c3c7a30c56d06ba7edc3539847302dd37ebd54913acd5920b",
+      "privateSha256": "5ee42181ab3a60c07c3e1e66d673cfda147fde992a974bffe8354a20598590c9"
+    },
+    {
+      "file": "rosa/report.original.md.txt",
+      "canonicalSha256": "5ee42181ab3a60c07c3e1e66d673cfda147fde992a974bffe8354a20598590c9",
+      "privateSha256": null
+    },
+    {
+      "file": "rosa/validation.json",
+      "canonicalSha256": "874a38e76f8ada3db70e12ada6b42301377fddb8a78a22981a8a6da810b79dc0",
+      "privateSha256": "8f0b5527fbfad0a73bd05f8aed6232dd82d13d54618a8ee2a25824c6133c4984"
+    },
+    {
+      "file": "rosa/brief.original.md.txt",
+      "canonicalSha256": "2de7fbe08884588e52c09661618b812340641522bc23187fc0d23ee57aaab2da",
+      "privateSha256": "2de7fbe08884588e52c09661618b812340641522bc23187fc0d23ee57aaab2da"
+    },
+    {
+      "file": "rosa/own-history.original.md.txt",
+      "canonicalSha256": "77df467dc562239bd3fd2a502647f1747545b43ea3a5b3a14c36c582dbde8993",
+      "privateSha256": "77df467dc562239bd3fd2a502647f1747545b43ea3a5b3a14c36c582dbde8993"
+    },
+    {
+      "file": "rosa/completion.json",
+      "canonicalSha256": "951ac52fda6844057bc7d8271a18e97f7e3e547d407e840ca505ca7ec7dac7da",
+      "privateSha256": "35451c81a5d58bb1b60f8b593e9ac9f9a73bb11fc039d8bb2e0185fd53424ceb"
+    },
+    {
+      "file": "rosa/desktop/wall-clock.jsonl",
+      "canonicalSha256": "4f333f452e5ef935921a5694c61fd9b80fd904767314ff5114e2bd5005215ba3",
+      "privateSha256": "4f333f452e5ef935921a5694c61fd9b80fd904767314ff5114e2bd5005215ba3"
+    },
+    {
+      "file": "rosa/desktop/driver.out",
+      "canonicalSha256": "efe53ddefc35ee2a259e5777f7c6d8148ae6a574e810ff1b970b1eed97ddaf52",
+      "privateSha256": "efe53ddefc35ee2a259e5777f7c6d8148ae6a574e810ff1b970b1eed97ddaf52"
+    },
+    {
+      "file": "rosa/desktop/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "rosa/phone/wall-clock.jsonl",
+      "canonicalSha256": "46a5b5a1744d40f2b0e3092de8dce5b773c6df394999b1ec0bd29b3bbe2348fe",
+      "privateSha256": "46a5b5a1744d40f2b0e3092de8dce5b773c6df394999b1ec0bd29b3bbe2348fe"
+    },
+    {
+      "file": "rosa/phone/driver.out",
+      "canonicalSha256": "67d525d617f4d59484cdaaee904789491578520c079da7389711f0e52b8f9327",
+      "privateSha256": "67d525d617f4d59484cdaaee904789491578520c079da7389711f0e52b8f9327"
+    },
+    {
+      "file": "rosa/phone/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "aisha/desktop/wall-clock.jsonl",
+      "canonicalSha256": "2d3eb310955e46db056c4045388dd41403134bc8f89e5dea454eb1786c0f5fdf",
+      "privateSha256": "2d3eb310955e46db056c4045388dd41403134bc8f89e5dea454eb1786c0f5fdf"
+    },
+    {
+      "file": "aisha/desktop/driver.out",
+      "canonicalSha256": "68e47a1c782071ae4f469d09dbc4b92765f060f2567ba518cdd977bea392f24f",
+      "privateSha256": "68e47a1c782071ae4f469d09dbc4b92765f060f2567ba518cdd977bea392f24f"
+    },
+    {
+      "file": "aisha/desktop/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "aisha/phone/wall-clock.jsonl",
+      "canonicalSha256": "9f5ee7308c24f3ec56880c31d872521758d7c4ccf9a080f1c9569ee680cef0be",
+      "privateSha256": "9f5ee7308c24f3ec56880c31d872521758d7c4ccf9a080f1c9569ee680cef0be"
+    },
+    {
+      "file": "aisha/phone/driver.out",
+      "canonicalSha256": "2f797b3ac75129074c613dd2358355fcd4748f16f1ab538f100d377930431b72",
+      "privateSha256": "2f797b3ac75129074c613dd2358355fcd4748f16f1ab538f100d377930431b72"
+    },
+    {
+      "file": "aisha/phone/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "lena/desktop/wall-clock.jsonl",
+      "canonicalSha256": "45777083050a3a6fb541ceac87108a7015853835d5ff04a2fbc85eeb761f1acf",
+      "privateSha256": "45777083050a3a6fb541ceac87108a7015853835d5ff04a2fbc85eeb761f1acf"
+    },
+    {
+      "file": "lena/desktop/driver.out",
+      "canonicalSha256": "046ce9c9bea9b79a869c7ce4e1f0bc7450958332d36a7247ec3579455136e2be",
+      "privateSha256": "046ce9c9bea9b79a869c7ce4e1f0bc7450958332d36a7247ec3579455136e2be"
+    },
+    {
+      "file": "lena/desktop/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "lena/phone/wall-clock.jsonl",
+      "canonicalSha256": "ab7e3b79e69f63eedbc385684f0e1a14081e609ff891a557c484c4c7848f1ebb",
+      "privateSha256": "ab7e3b79e69f63eedbc385684f0e1a14081e609ff891a557c484c4c7848f1ebb"
+    },
+    {
+      "file": "lena/phone/driver.out",
+      "canonicalSha256": "4b27b98191e460fbc254702c428650bfbde366a758bce8ecb602b455b09edcbb",
+      "privateSha256": "4b27b98191e460fbc254702c428650bfbde366a758bce8ecb602b455b09edcbb"
+    },
+    {
+      "file": "lena/phone/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "jonas/desktop/wall-clock.jsonl",
+      "canonicalSha256": "c6d8567a893955383bb1d74669de8cc54ae1d6cba1f5f91092c5362bb417ad90",
+      "privateSha256": "c6d8567a893955383bb1d74669de8cc54ae1d6cba1f5f91092c5362bb417ad90"
+    },
+    {
+      "file": "jonas/desktop/driver.out",
+      "canonicalSha256": "6dfb72cff2608df0dad09cdd15a5ab0f45b7a555b1cd1dcdf11ead3d9a0edaa8",
+      "privateSha256": "6dfb72cff2608df0dad09cdd15a5ab0f45b7a555b1cd1dcdf11ead3d9a0edaa8"
+    },
+    {
+      "file": "jonas/desktop/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "jonas/phone/wall-clock.jsonl",
+      "canonicalSha256": "9cad48eac66b6f56dd04be4d0906f222773ea593c1d794a9eac7652c71fef2f4",
+      "privateSha256": "9cad48eac66b6f56dd04be4d0906f222773ea593c1d794a9eac7652c71fef2f4"
+    },
+    {
+      "file": "jonas/phone/driver.out",
+      "canonicalSha256": "bb5be8fbe802c4265a786d41df8f8bbe668b960923f3a7e95d4f2b77e4e61c44",
+      "privateSha256": "bb5be8fbe802c4265a786d41df8f8bbe668b960923f3a7e95d4f2b77e4e61c44"
+    },
+    {
+      "file": "jonas/phone/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "diego/desktop/wall-clock.jsonl",
+      "canonicalSha256": "c30448c3de5f84aa81641cc55853154cbd723bf6b8a4a43f3b740154bae5de28",
+      "privateSha256": "c30448c3de5f84aa81641cc55853154cbd723bf6b8a4a43f3b740154bae5de28"
+    },
+    {
+      "file": "diego/desktop/driver.out",
+      "canonicalSha256": "2f9e346a86c90cebfd654daa0997cb7c4088ee4d0898fae503cde717499c3b34",
+      "privateSha256": "2f9e346a86c90cebfd654daa0997cb7c4088ee4d0898fae503cde717499c3b34"
+    },
+    {
+      "file": "diego/desktop/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    },
+    {
+      "file": "diego/phone/wall-clock.jsonl",
+      "canonicalSha256": "76aa4751e8290373bb684eebd0365b5ccb3c9490d0ca263b2c33b38773cfaec7",
+      "privateSha256": "76aa4751e8290373bb684eebd0365b5ccb3c9490d0ca263b2c33b38773cfaec7"
+    },
+    {
+      "file": "diego/phone/driver.out",
+      "canonicalSha256": "c0186c6b2b0283a33c50cb44c76a9ddae64879ebb26b15ee9cc7ec1dc48da5e4",
+      "privateSha256": "c0186c6b2b0283a33c50cb44c76a9ddae64879ebb26b15ee9cc7ec1dc48da5e4"
+    },
+    {
+      "file": "diego/phone/release-start.json",
+      "canonicalSha256": "9690d870c4a78fc134fcc074c9252d2eeb25d4421f678a9bdf4bb1887a3fefc9",
+      "privateSha256": "8bd9cd0a9369fb474082216a437540686f70d856c6aed9f3948a801b0124c25e"
+    }
+  ]
+}

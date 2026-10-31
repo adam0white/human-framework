@@ -1,0 +1,161 @@
+**Would I return voluntarily?** I would not come back on my own; the game would have to give me something to lose or something I haven't found out yet, and after two visits it gave me neither.
+
+**Ranked asks:**
+1. Make a placement cost something I can feel. Promising an unchecked trait ("honest") changed nothing, and the rent was covered within two minutes in both sessions.
+2. Make the applicants and families differ from each other. The interviews returned near-identical answers, and the Arslan and Kaya families read as the same template.
+3. Don't let looking cost time I didn't ask to spend. Opening the City map moved the clock 23 minutes on desktop, and the phone map button sits on top of the map.
+
+---
+
+## 1. Session
+
+- **Persona:** Diego Silva, 28, Recife sound editor. Impatient, likes responsive controls and learnable risk.
+- **Exposure:** first visit. My supplied own-history.md has no Good Hands content.
+- **Round:** light-1030, first panel round, free-stop arm (floor 0).
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent
+- **Session A:** desktop 1280x800, light mode, driver port 21225. Real time about 255 s (4m15s).
+- **Session B:** phone 360x690 touch, light mode, driver port 21224. Real time about 142 s. A new game on the same evening.
+- **Release commit:** for the coordinator to add.
+
+## 2. First impressions
+
+- **A, 7.6 s:** "Placement agency, a rent deadline, applicants on a bench." The title page is clear.
+- **A, about 17 s:** the obvious verb (interview) was right there and worked.
+- **A, 42 s:** I liked that Nermin writes down her own doubt ("still unsure on patient").
+- **A, 74–81 s:** the first two applicants answered almost identically, which blunted the choosing.
+- **A, 99 s:** the reference call gave a real, separating answer.
+- **B, 4.8 s:** title page on the phone is readable, with the "Open the office" button at the bottom.
+- **B, 80 s:** the phone desk layout fits, with the verbs in a bottom bar. The red task banner was clipped ("08:00" cut off).
+
+## 3. Verbatim diary
+
+### Session A (desktop)
+
+- 7.588 note: "Placement agency, a rent deadline, applicants on a bench. Opening."
+- 13.21 note: "Office opened on first tap, the second tap was mine. Clock 08:31 already running. Clicking the first applicant on the bench."
+- 16.73 note: "Obvious verb: interview. Notes are all unknown, so ask."
+- 23.987 note: "Phone rings early, before the 11:00 the skip button promised. Answering."
+- 27.701 note: "Family wants patient, pays 9000; Gülce wants 8000. Learnable risk so far. Stalling honestly."
+- 34.288 note: "Family said patient matters. Looking for a question about that."
+- 42.228 note: "Her answer is hedged, and Nermin writes down a reading of it: still unsure on patient. I like that the game keeps my doubt visible."
+- 46.539 note: "Last question before I must decide. Hours matter for the family."
+- 53.254 note: "Next applicant. Interviews cost me game minutes but the real minute passes fast too."
+- 59.66 first_minute (logged before 60 s, premature): "I run a placement agency: find a nanny by Tuesday 08:00 and make 5000 rent by Friday. The verbs are plain: pick someone, interview, ask questions. Each question costs game minutes and a limited count, which is a real budget. Gülce hedged on patient and Nermin wrote a doubt note, I like that. No fighting-game reflex here, but the clock and a phone call that interrupted my interview gave it some pressure. Fine so far."
+- 74.062 note: "Şebnem said almost the same words as Gülce: I manage, unless it goes on all morning. The two feel like copies. That blunts the choosing."
+- 81.565 note: "Both candidates gave identical answers on wage, work, hours. I have learned nothing that separates them. Hoping the third differs."
+- 88.347 note (reference tap): "Trying the reference call, different verb. Maybe that separates people."
+- 99.103 note: "There it is: a reference gave a real answer about patience, in the exact words the family used (instructions repeated). That separates Özlem from the two copies. Interviews felt like noise, the reference like signal."
+- 109.763 note: "Three green traits from a reference. I am going for the placement now, wage still unknown, which is a risk I am choosing."
+- 113.532 note: "Promising only what I have evidence for. Learnable risk: the family remembers what I promise."
+- 120.894 note: "Both sides agreed in seconds, wage 9000, fee 9000. No haggling happened; felt easy. Accepting."
+- 125.239 note: "Cash 5250, already over the 5000 rent, at 11:00 Monday. That was quick. Rent threat is gone this early? Curious what is left to play."
+- 132.995 note: "Kaya family has the same script as Arslan: same sentence about frustrated repeating, same 9000. It reads like a template."
+- 140.072 note: "Bench is empty. Two candidates left and said call after 11:11 / 11:51. Checking the City button, the only other thing to touch."
+- 144.338 note: "Opening the City view jumped the clock 11:22 to 11:45 and the landlord rang. I did not ask for time to pass; looking at a map cost me 23 game minutes."
+- 160.474 note: "Hand-drawn Izmir map with little stick people walking; that is the mood I like. Hülya arrived from the pharmacy via Mr Hüsnü, so his news did produce a person. Back to the office."
+- 164.396 note: "A new person with her own side story: oven cook, a baking job, something she may or may not discuss. That is more interesting than the nanny copies."
+- 172.648 note: "Seeds from hotel windowsills, a garden she carries with her. That is the distinctive mood. Giving her the ledge; it costs me nothing visible but feels like a human decision."
+- 179.34 pulse (logged before 180 s, premature), engagement 3, clock Mon 2 Nov 12:41: "Interviews were samey, the reference call and Hülya with her seedling ledge were what held me. Rent was nearly covered in two minutes, so the pressure is already light. I am curious but not gripped; nothing here is physical or fast."
+- 189.389 note: "Hülya is a cook, the Kaya family wants a carer. Not a fit. Sending her home and keeping the number."
+- 228.104 note: "My End the conversation tap timed out 32 seconds; the game had already moved to 13:35 by itself and the landlord is calling again. Clock keeps moving while I am slow."
+- 233.43 pulse (valid), engagement 3, clock Mon 2 Nov 13:35: "Re-logging my pulse properly, my first was a second early. The reference call and the Hulya ledge were good. But I am mostly pressing buttons through text, and Mr Husnu keeps phoning with news that changes nothing I can touch. Rent is already covered."
+- 244.155 want_quit TASTE, clock Mon 2 Nov 14:00: "Third family now calling, and every call is a menu of Answer, Promise to look, End the conversation. I am answering phones, not choosing. Rent is already covered and I have no sense of what a mistake would cost. The reference call was the one moment that felt like finding something out."
+- 249.474 note: "The menu has a Pace setting I had not seen: Automatic, Slow, Steady, Fast. Opening Feedback first."
+- 255.136 stop TASTE, clock Mon 2 Nov 14:00: "I am stopping the desktop session here. The reference call and the seedling ledge were good, but I spent four minutes answering phones and picking from short menus, with rent covered in two minutes and no cost I could feel. In Feedback I picked I am stopping, typed nothing, no Submit."
+
+### Session B (phone)
+
+- 4.764 note (on the Open the office tap): "Second visit, same evening on the phone. I remember the nanny office. This time I will do a reference call first and use the Pace setting."
+- 62.402 first_minute, clock Mon 2 Nov 10:18: "Phone, same office, I know the script. Cash 3000 this time, clock 10:18. Bench has the same three names. I will skip interviews and go straight to references, since that was the only thing that gave a real answer last time."
+- 67.751 note (on Call a reference): "Straight to the reference call, a different applicant this time."
+- 76.246 note: "Same reference answer pattern as the desktop: instructions repeated means patient. Quick and clear on the phone, buttons are big enough. Ending the call and going to the family."
+- 84.35 note: "Phone layout works: the desk, bench and verb buttons all fit, and the verbs sit in a pinned bar at the bottom. The red task banner is clipped (08:00 cut off). Trying Skip this time, since I skipped nothing on desktop."
+- 98.269 note (on Promise to look): "Kaya family again, same template. Promising to look is free."
+- 108.952 note (on the patient chip): "Last time I promised only checked traits and nothing bit back. Now I will also promise honest, which I have not checked, to see if risk has a price."
+- 117.83 note (on the agreement tap): "Same instant agreement as desktop. I even promised honest without checking and nothing pushed back. Accepting."
+- 123.743 note (on Skip): "Cash 5250 over rent at 11:29 again, in two minutes of play. Skipping to see what the game has after the rent is safe."
+- 128.461 note (on City): "Looking at the map on the phone, the one place with mood."
+- 134.426 want_quit BORED: "Second time through the same opening: reference call, agreement in seconds, rent covered before noon. Map on phone is cramped, Office button sits on the map. I would leave now; the second visit gave me nothing new to find out."
+- 142.124 stop BORED, clock Mon 2 Nov 11:37: "I am stopping the phone session at 140 seconds. Same opening as desktop: reference call, instant agreement, rent covered by 11:29. Phone layout was fine and the map was nice but cramped. In Feedback I picked I am stopping, typed nothing, no Submit, then Back."
+
+Timing flags:
+- **A first_minute** landed at 59.66 s and **A pulse #1** at 179.34 s. Both were before the allowed time.
+- **B first_minute** landed at 62.4 s because my previous action was slow. That is valid.
+- **B had no pulse.** I stopped at 142 s, before 180 s.
+
+## 4. Moments
+
+**What held me**
+- The reference call. It was the only moment that felt like finding something out (A, 99 s).
+- Nermin's written doubt notes (A, 42 s).
+- Hülya and the seedling ledge, a person with her own story (A, 164–172 s).
+- The hand-drawn Izmir map with walking stick figures.
+
+**What lost me**
+- Near-identical interview answers.
+- Instant agreements with no haggling.
+- The Kaya and Arslan families reading as templates.
+- Rent covered at about 11:00 in A and 11:29 in B, so no pressure.
+- Landlord calls that change nothing I can touch.
+
+**Quit wishes**
+- **A:** want_quit TASTE at 244 s. It did not pass, and I stopped at 255 s.
+- **B:** want_quit BORED at 134 s. I stopped at 142 s.
+
+**Pulses**
+- A: engagement 3 at 233 s (valid). The first, also 3, was premature.
+- B: none.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The goal is clear: a nanny by Tuesday 08:00 and rent by Friday.
+- The verbs (Interview, Call a reference, Negotiate placement) are plain.
+- Notes show how sure Nermin is, and references cite quoted evidence.
+- Calls pause the clock ("Paused for the phone call").
+
+**Unclear or odd**
+- The City button moved the clock 11:22→11:45 on desktop. On the phone it moved it 11:30→11:33 or so. I never asked for that.
+- Controls vanish when the game moves on its own. A tap on "End the conversation" timed out for 32 s on desktop. I suspect my slowness plus the game's own clock, not only the game.
+- I found the Pace setting (Automatic, Slow, Steady, Fast) only at the end. I never used it.
+- Phone: the task banner is clipped. The map is cramped, and the Office button covers part of it (the label "Bu…" is cut off).
+- No consequence appeared for promising an unchecked trait (B).
+- In B the cash started at ₺3,000, with a ₺2,250 deposit taking it to ₺5,250. In A it already read ₺5,250 at 11:00.
+- I never saw what happens after the trial.
+
+## 6. Device use
+
+**Session A (desktop 1280x800)**
+- Screenshots viewed: `desktop/a-001.png` (title page: the Good Hands title, the Izmir November 2026 line, the premise text and the Open the office button). `desktop/a-002.png` (the hand-drawn Izmir map with walking figures).
+- Controls used: mouse taps on named buttons for everything listed under "Controls" in my summary.
+- I never used Skip, the Families/Placed tabs, The day's notes, Pace or Send for a trial.
+
+**Session B (phone 360x690)**
+- Screenshots viewed:
+  - `phone/b-001.png`, immediately after open: a cream title page with a "GH placement agency" arch logo, a Good Hands heading, two paragraphs, a red "Open the office" button at the bottom, and a footer line "We record and link play across games on this device." "All games", "i" and "≡" sit in the top bar.
+  - `phone/b-002.png`: the office with a stick-figure bench, a red task banner (text clipped), a Skip button, Bench/Families/Placed tabs, applicant chips, Özlem's notes and a pinned verb bar at the bottom.
+  - `phone/b-003.png`: the city map, cramped, with an Office button over its corner, and a stacked list of people and families below.
+- Controls used: named taps only (applicants, Call a reference, Call Hale Erol, Ask about patience, End the call, Skip, Answer, Promise to look, Negotiate placement, quality chips, Propose, agreement, City, Game menu, Feedback, "I'm stopping", Back).
+- No driver trouble on the phone. No coordinate taps were needed.
+- Seen trouble: clipped task banner and the cramped map. I saw no other layout trouble.
+- Unseen layout: the mid-conversation call screens on the phone (I read them as text, not screenshots), and Families/Placed on both devices.
+
+## 7. Stop and return
+
+- **Session A stop:** "I am stopping the desktop session here. The reference call and the seedling ledge were good, but I spent four minutes answering phones and picking from short menus, with rent covered in two minutes and no cost I could feel. In Feedback I picked I am stopping, typed nothing, no Submit." Reason: TASTE.
+- **Session B stop:** "I am stopping the phone session at 140 seconds. Same opening as desktop: reference call, instant agreement, rent covered by 11:29. Phone layout was fine and the map was nice but cramped. In Feedback I picked I am stopping, typed nothing, no Submit, then Back." Reason: BORED.
+- **Feedback:** the "I'm stopping" option was offered in both sessions and I selected it. I typed nothing, pressed no Submit, and closed it (Back on phone; desktop closed the same way).
+
+**Would I return voluntarily?** I would not come back on my own; the game would have to give me something to lose or something I haven't found out yet, and after two visits it gave me neither. I would not leave it running either, because nothing in it needs me to be watching. I might come back another evening only if I heard the second week or a placement going wrong was worth seeing, and only if the rent stopped being covered in the first two minutes.
+
+## 8. Changes I would want
+
+1. Make a placement cost something I can feel (a failed trial, a lost deposit, a family that remembers a false promise), and don't let rent clear in two minutes.
+2. Make applicants and families differ from each other in how they talk and what they want. Keep what the reference call does and fix what the interview doesn't.
+3. Stop the City map from spending game minutes without warning, and give the phone map and task banner room.
+
+## 9. Compared with my last visit
+
+First visit.
+
+**Cleanup:** I own no worktrees, servers or browsers. The coordinator stops the drivers. `git worktree list`: none of mine (I touched no repo).

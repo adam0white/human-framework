@@ -1,0 +1,32 @@
+{
+  "corrected": "2026-10-30T23:02:15.744597+00:00",
+  "cause": "Whole or previously frozen panel diary was reused without filtering the explicit Continued alternative body. Archived links alone were not the problem.",
+  "affectedInThisSourceBatch": [
+    {
+      "tester": "Rosa Alvarez",
+      "game": "goodhands",
+      "providedHistory": "goodhands/rosa/own-history.original.md.txt",
+      "providedHistorySha256": "77df467dc562239bd3fd2a502647f1747545b43ea3a5b3a14c36c582dbde8993",
+      "excludedAlternativeBodyStartLine": 222,
+      "excludedAlternativeBodyEndLine": 402,
+      "breach": "The supplied history included an old Warren continued-alternative report body. It was not selected FREE autobiographical history.",
+      "readEvidence": "Rosa declared a partial Read range that includes this body. Supplied content is verified; comprehension and causal effect on this target session are unknown.",
+      "disposition": "Preserve current-target observations and all original reports/inputs. Do not use this exposure as clean longitudinal recognition/continuity evidence. Future briefs omit this alternative body and retain actual later own reports.",
+      "sameTesterRetest": "Rosa remains a known target-game returner. A clean future context receives filtered selected history plus her actual target report; never relabel her as a first visitor."
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "game": "glance",
+      "providedHistory": "glance/rosa/own-history.original.md.txt",
+      "providedHistorySha256": "1f61dfdb1c471a44850120e7181206fc162e69cee1fd800443eeaf6650208645",
+      "excludedAlternativeBodyStartLine": 222,
+      "excludedAlternativeBodyEndLine": 402,
+      "breach": "The supplied history included an old Warren continued-alternative report body. It was not selected FREE autobiographical history.",
+      "readEvidence": "Rosa declared a partial Read range that includes this body. Supplied content is verified; comprehension and causal effect on this target session are unknown.",
+      "disposition": "Preserve current-target observations and all original reports/inputs. Do not use this exposure as clean longitudinal recognition/continuity evidence. Future briefs omit this alternative body and retain actual later own reports.",
+      "sameTesterRetest": "Rosa remains a known target-game returner. A clean future context receives filtered selected history plus her actual target report; never relabel her as a first visitor."
+    }
+  ],
+  "scan": "Expanded marker scan of all private Pass/GoodHands/Glance/Rope supplied histories found these2source-batch cases; Rope has2additional current cases qualified in its own pending packet.",
+  "rawPolicy": "Original reports, frozen histories and raw logs remain byte-exact. No experiment is silently relabelled or repaired after the fact."
+}

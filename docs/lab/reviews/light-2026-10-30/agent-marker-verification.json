@@ -1,0 +1,23 @@
+{
+  "verified": "2026-10-30T20:43:11.449290+00:00",
+  "requestedByHarness": "?labRunSource=agent on every fresh destination",
+  "supportedLinkedEnvelopeField": {
+    "runSource": "agent"
+  },
+  "literalWhoField": "The current linked SDK/receiver schema uses runSource, not a who identity claim. Ledger who remains the fictional persona label.",
+  "scope": "Verified SDK source at both pinned client release tags and Good Hands initialize-once host. No production receipt independently read and no fake note submitted.",
+  "clients": {
+    "0.5.7": {
+      "tag": "lab-client-v0.5.7",
+      "commit": "51e88805b93fb2df76e59731ed710fec914d0f5b",
+      "source": "packages/lab-client/src/run-source.ts",
+      "sender": "packages/lab-client/src/linked.ts"
+    },
+    "0.5.12": {
+      "tag": "lab-client-v0.5.12",
+      "commit": "4e4dc14e53879bdc70a976230ed99cfb330875e2",
+      "source": "packages/lab-client/src/run-source.ts",
+      "sender": "packages/lab-client/src/linked.ts"
+    }
+  }
+}

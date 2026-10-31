@@ -1,0 +1,6 @@
+{
+  "app": "0.2.0",
+  "framework": "4.15.0",
+  "commit": "30fc93b1e00e360abffa9d759d8d335a96360434",
+  "dirty": false
+}

@@ -1,0 +1,370 @@
+[
+  {
+    "first": "aisha",
+    "tester": "Aisha Rahman",
+    "returns": [
+      {
+        "section": "top",
+        "quote": "Yes, I would come back another evening, but only if I could really insist on the kind choice (press and hold) and Tuesday did not just replay Monday's morning. I would not leave it running."
+      },
+      {
+        "section": "7",
+        "quote": "Yes, another evening, if I could really insist and Tuesday differed from Monday. I would not leave it running."
+      }
+    ],
+    "rankedAsks": [
+      {
+        "section": "top",
+        "rank": 1,
+        "quote": "Let me insist on a choice. My taps were declined every time, the \"Press and hold\" hint appeared only on Tuesday, and my driver could only tap, so I may have missed the main mechanic. Say how to insist on the first screen."
+      },
+      {
+        "section": "top",
+        "rank": 2,
+        "quote": "Make Tuesday's opening differ from Monday's: same alarm, same oversleep, same \"ring road?\" Keep the memory of the coffee, but change the scene."
+      },
+      {
+        "section": "top",
+        "rank": 3,
+        "quote": "Give me a reason in the choice card for why she is \"willing\" or \"only if you insist\", and say what insisting costs before I try it."
+      }
+    ],
+    "positiveMoments": [
+      {
+        "section": "4",
+        "quote": "Dilan's own sentences after each choice, such as \"Speaking up for Ece means facing the whole table. I'm going to laugh along.\""
+      },
+      {
+        "section": "4",
+        "quote": "The coffee returning at midnight on Tuesday."
+      },
+      {
+        "section": "3",
+        "quote": "The third coffee came back to bite her at midnight. The game remembers what happened."
+      }
+    ],
+    "limitations": [
+      {
+        "section": "5",
+        "quote": "Driver: three taps (about 123.9 s, 157.6 s and 208.98 s) reported 30-second timeouts but the game had moved on."
+      },
+      {
+        "section": "5",
+        "quote": "I do not know whether this is a driver limit or a game problem."
+      },
+      {
+        "section": "6",
+        "quote": "Unseen: gameplay screens on the phone during a countdown (I took shots only at title and night card) and any desktop gameplay layout."
+      }
+    ],
+    "producerMetadata": {
+      "first": true,
+      "tester": "aisha"
+    }
+  },
+  {
+    "first": "mei",
+    "tester": "Mei Tan",
+    "returns": [
+      {
+        "section": "top",
+        "quote": "I would come back another evening on the laptop, but only if I could tell what \"Hold to insist\" buys me and whether a held choice gets through. I would not leave it running."
+      },
+      {
+        "section": "7",
+        "quote": "I would come back another evening on the laptop, but only if I could tell what \"Hold to insist\" buys me and whether a held choice gets through. I want the Mum call to matter as the week goes on. I would not leave it running, because the timers need my answers."
+      }
+    ],
+    "rankedAsks": [
+      {
+        "section": "top",
+        "rank": 1,
+        "quote": "Show what insisting does before I commit. Say whether it always works and what trust it costs."
+      },
+      {
+        "section": "top",
+        "rank": 2,
+        "quote": "Give a first choice where the kind option is not the unwilling one. Three times the kinder option needed insisting."
+      },
+      {
+        "section": "top",
+        "rank": 3,
+        "quote": "Say plainly that an unanswered timer lets her pick for me, and make the Slow pace easier to find. I let one run out and she scrolled past her stop."
+      },
+      {
+        "section": "8",
+        "rank": 1,
+        "quote": "Show what insisting does before I commit: always works or not, and what trust it costs."
+      },
+      {
+        "section": "8",
+        "rank": 2,
+        "quote": "Give me a choice where the kind option is not the unwilling one, or say that insisting is the only way to the kind outcome."
+      },
+      {
+        "section": "8",
+        "rank": 3,
+        "quote": "Say plainly that an unanswered timer lets her pick for me, and make the Slow pace easier to find."
+      }
+    ],
+    "positiveMoments": [
+      {
+        "section": "4",
+        "quote": "The lie worked, and that felt almost worse."
+      },
+      {
+        "section": "4",
+        "quote": "each choice shows how willing she is, so I could compare options."
+      },
+      {
+        "section": "4",
+        "quote": "Ece crying and the lunch impression read like real people."
+      }
+    ],
+    "limitations": [
+      {
+        "section": "6",
+        "quote": "I could not press and hold a choice with this driver, so \"Hold to insist\" is untested on both sizes."
+      },
+      {
+        "section": "5",
+        "quote": "I suspect my driver speed contributed. I have not verified that the timer reads differently in the menu."
+      },
+      {
+        "section": "6",
+        "quote": "I did not scroll the phone or see a night on it."
+      }
+    ],
+    "producerMetadata": {
+      "first": true,
+      "tester": "mei"
+    }
+  },
+  {
+    "first": "nia",
+    "tester": "Nia Okafor",
+    "returns": [
+      {
+        "section": "top",
+        "quote": "I would come back another evening on my phone, but only to try different suggestions and see what Dilan does back. I wouldn't come back tonight, I wouldn't leave it running, and I'd stop again once a day starts repeating the same alarm choice."
+      },
+      {
+        "section": "7",
+        "quote": "Not tonight. I would come back another evening on my phone, but only if the days stopped repeating and the waiting got shorter, because I want to see what Dilan does back when I push her. I would not leave it running. Another evening is plausible; I'd try suggestions I haven't tried yet."
+      }
+    ],
+    "rankedAsks": [
+      {
+        "section": "top",
+        "rank": 1,
+        "quote": "Make the days differ, or let me skip the scenes I've already seen. Tuesday opened on the same alarm choice as Monday. I met the Ece call and the lunch scene on both devices in the same order."
+      },
+      {
+        "section": "top",
+        "rank": 2,
+        "quote": "Shorten the dead time between choices, or give me something to do in it. Each event took 20–30 real seconds of waiting, plus Skip steps."
+      },
+      {
+        "section": "top",
+        "rank": 3,
+        "quote": "Show less repeated text. The whole day gets re-printed above every new choice, and the phone page keeps getting longer."
+      },
+      {
+        "section": "8",
+        "rank": 1,
+        "quote": "Make later days open with new scenes, and let me skip the ones I've seen."
+      },
+      {
+        "section": "8",
+        "rank": 2,
+        "quote": "Shorten the dead time between choices or give me something to do in it."
+      },
+      {
+        "section": "8",
+        "rank": 3,
+        "quote": "Cut the repeated day-so-far text above each new choice."
+      }
+    ],
+    "positiveMoments": [
+      {
+        "section": "3",
+        "quote": "Everyone went quiet, then Murat laughed at himself. That is the surprising reaction I like."
+      },
+      {
+        "section": "3",
+        "quote": "She answered me back with her own line about needing the coffee. That is a person, not a menu."
+      },
+      {
+        "section": "3",
+        "quote": "Last night coffee carried into Tuesday. It remembers."
+      }
+    ],
+    "limitations": [
+      {
+        "section": "5",
+        "quote": "I suspect I was too slow, not the game, but I only learned the day can end itself after the fact."
+      },
+      {
+        "section": "6",
+        "quote": "the Information panel, the Feedback and menu screens as pictures, and the \"Other ways to begin\" options."
+      },
+      {
+        "section": "5",
+        "quote": "I didn't open the \"Play a third week\" options on the title page."
+      }
+    ],
+    "producerMetadata": {
+      "first": true,
+      "tester": "nia"
+    }
+  },
+  {
+    "first": "rosa",
+    "tester": "Rosa Alvarez",
+    "returns": [
+      {
+        "section": "top",
+        "quote": "Yes, another evening, on the big screen or the phone, to see what Dilan's Tuesday and her Saturday look back bring. I would return only if the game tells me in plain words what \"trust\" does and what \"She wants to do it later\" means. I would not leave it running, because Dilan waits for my taps and the 64-second timer keeps going."
+      },
+      {
+        "section": "7",
+        "quote": "Yes, another evening, on the big screen or the phone, to see what Dilan's Tuesday and her Saturday look back bring. I would return only if the game tells me in plain words what \"trust\" does and what \"She wants to do it later\" means. I would not leave it running, because Dilan waits for my taps and the 64-second timer keeps going."
+      }
+    ],
+    "rankedAsks": [
+      {
+        "section": "top",
+        "rank": 1,
+        "quote": "Explain \"Hold to insist. This costs trust.\" in one plain sentence: what trust is, where I can see it, and what I lose at zero."
+      },
+      {
+        "section": "top",
+        "rank": 2,
+        "quote": "Explain the three labels under each choice (\"She is willing\", \"She would agree only if you insist\", \"She wants to do it later\") in one place, before the first choice. The third label appeared only on the phone."
+      },
+      {
+        "section": "top",
+        "rank": 3,
+        "quote": "Say what \"Skip ahead\" does and how far it jumps. It moved the clock by 7 to 40 minutes."
+      }
+    ],
+    "positiveMoments": [
+      {
+        "section": "4",
+        "quote": "The sentence \"He said that before the rain, too.\" The neighbour's roof made me smile."
+      },
+      {
+        "section": "3",
+        "quote": "Dilan called her Mum for twenty minutes and laughed."
+      },
+      {
+        "section": "4",
+        "quote": "Insisting visibly changed the day. On the desktop, a held \"Get up\" removed the whole late scene."
+      }
+    ],
+    "limitations": [
+      {
+        "section": "6",
+        "quote": "Unseen: the game screen layout. I took only one manual shot on the phone, so I did not see where the choice buttons sit."
+      },
+      {
+        "section": "6",
+        "quote": "Trouble seen: one Skip tap returned a driver timeout error (at 100 s) although the new choice had appeared."
+      },
+      {
+        "section": "1",
+        "quote": "Lines 866 to 1203 are unread, so I claim no memory from them."
+      }
+    ],
+    "producerMetadata": {
+      "first": true,
+      "tester": "rosa"
+    }
+  },
+  {
+    "first": "lucia",
+    "tester": "Lucia Moretti",
+    "returns": [
+      {
+        "section": "top",
+        "quote": "Maybe, on another free evening, but only if I could see how much she still trusts me. Without that I feel like a voice nobody listens to, and I do not want to replay the same Tuesday a third time."
+      },
+      {
+        "section": "7",
+        "quote": "Maybe, on another free evening, but only if I could see how much she still trusts me. Without that I feel like a voice nobody listens to, and I do not want to replay the same Tuesday a third time. I liked the people and the bedtime page enough to try once more if the game told me where I stand."
+      },
+      {
+        "section": "7",
+        "quote": "No. The answer clock would run, and I don't want to come back to missed choices."
+      },
+      {
+        "section": "7",
+        "quote": "Possibly, under the condition above."
+      }
+    ],
+    "rankedAsks": [
+      {
+        "section": "top",
+        "rank": 1,
+        "quote": "Show her trust as a number or a bar that I can see before I push."
+      },
+      {
+        "section": "top",
+        "rank": 2,
+        "quote": "Say why some choices cannot be insisted. Use plain words for refusals: \"She wants to do it later\" read to me as \"no\"."
+      },
+      {
+        "section": "top",
+        "rank": 3,
+        "quote": "Remove the lines that appear twice on screen."
+      },
+      {
+        "section": "8",
+        "rank": 1,
+        "quote": "A visible trust meter."
+      },
+      {
+        "section": "8",
+        "rank": 2,
+        "quote": "An explanation of when insisting is possible, and plain wording on refusals."
+      },
+      {
+        "section": "8",
+        "rank": 3,
+        "quote": "No duplicated lines."
+      }
+    ],
+    "positiveMoments": [
+      {
+        "section": "4",
+        "quote": "Missing the bus stop was a clear consequence, and it made me smile."
+      },
+      {
+        "section": "4",
+        "quote": "The phone call about the neighbour's roof made me laugh. It felt earned."
+      },
+      {
+        "section": "4",
+        "quote": "The bedtime summary works like a shift report, and I liked it."
+      }
+    ],
+    "limitations": [
+      {
+        "section": "6",
+        "quote": "I suspect this is a driver issue, not something a player would see."
+      },
+      {
+        "section": "6",
+        "quote": "Each time the tap still registered in the game, so I did not retry."
+      },
+      {
+        "section": "6",
+        "quote": "phone landscape, dark mode, and the Slow/Steady/Fast pace settings."
+      }
+    ],
+    "producerMetadata": {
+      "first": true,
+      "tester": "lucia"
+    }
+  }
+]

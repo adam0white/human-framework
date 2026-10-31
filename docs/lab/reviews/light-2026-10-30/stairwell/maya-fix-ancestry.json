@@ -1,0 +1,8 @@
+{
+  "time": "2026-10-30T22:07:59.300148+00:00",
+  "liveCommit": "c2bfaae81f1b250a8c250075e00e71c421d8481b",
+  "claimedMayaFix": "3163e8e522117d658d1c6678f9d906d12eaeb886",
+  "gitIsAncestorExit": 0,
+  "stderr": "",
+  "scope": "Source ancestry only; current live release was fetched independently. No tester retest/feel/round completion inferred."
+}

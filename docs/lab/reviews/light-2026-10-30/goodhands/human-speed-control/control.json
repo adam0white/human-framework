@@ -1,0 +1,51 @@
+{
+  "time": "2026-10-30T20:47:08.941442+00:00",
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.8.1",
+    "commit": "28086c1f64d9a42b369c9f8904b22fd33063e00d",
+    "dirty": false
+  },
+  "purpose": "Preselected ordinary City tap at2secondspacing; distinguish action cost from agent delay. Not a panel tester or taste verdict.",
+  "before": {
+    "elapsed_s": 51.518,
+    "op_ms": 807,
+    "visible": "Mon 2 Nov \u00b7 09:57\ni\n\u2261\n\u20ba3,000\nRent \u20ba5,000 \u00b7 Fri 17:00\nCity\nThe Arslan family needs a nanny by Tuesday 3 November, 08:00. Candidates are waiting on your bench.\nSkip \u23e9\n11:00 \u00b7 A family is due to call\nBench\nFamilies\nPlaced\n\u25cf G\u00fclce Aksoy\n\u25cf \u015eebnem Eren\n\u25cf \u00d6zlem Ko\u00e7\nNermin\u2019s desk\n\nChoose an applicant on the bench to open the application card.\n\nNermin \u00b7 45 \u00b7 placement agency operator; formerly alterations tailor.\n\nAn old case from before this month is still on your mind.\n\nLook again at one of your earlier agency decisions\nThe day\u2019s notes",
+    "controls": "- main:\n  - text: Mon 2 Nov \u00b7\n  - strong: 09:57\n  - button \"Information\": i\n  - button \"Game menu\": \u2261\n  - text: \u20ba3,000\n  - progressbar \"Cash towards rent\"\n  - text: Rent \u20ba5,000 \u00b7 Fri 17:00\n  - region \"The office\":\n    - img \"Nermin\u2019s desk, telephone, window and the waiting bench\"\n    - button \"City\"\n  - button \"Task\": The Arslan family needs a nanny by Tuesday 3 November, 08:00. Candidates are waiting on your bench.\n  - button \"Skip to 11:00 \u00b7 A family is due to call\": Skip \u23e9 11:00 \u00b7 A family is due to call\n  - region \"Nermin\u2019s desk\":\n    - navigation \"Agency records\":\n      - button \"Bench\" [pressed]\n      - button \"Families\"\n      - button \"Placed\"\n    - navigation \"Waiting bench\":\n      - button \"G\u00fclce Aksoy\": \u25cf G\u00fclce Aksoy\n      - button \"\u015eebnem Eren\": \u25cf \u015eebnem Eren\n      - button \"\u00d6zlem Ko\u00e7\": \u25cf \u00d6zlem Ko\u00e7\n    - heading \"Nermin\u2019s desk\" [level=1]\n    - paragraph: Choose an applicant on the bench to open the application card.\n    - article:\n      - heading \"Nermin \u00b7 45 \u00b7 placement agency operator; formerly alterations tailor.\" [level=3]\n      - paragraph: An old case from before this month is still on your mind.\n      - button \"Look again at one of your earlier agency decisions\"\n    - button \"The day\u2019s notes\"\n- contentinfo",
+    "snapshot_ms": 1,
+    "requested_control_present_before": null,
+    "screenshot": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-human-speed/before-city.png"
+  },
+  "city": {
+    "elapsed_s": 55.296,
+    "op_ms": 1769,
+    "visible": "Mon 2 Nov \u00b7 10:04\ni\n\u2261\n\u20ba3,000\nRent \u20ba5,000 \u00b7 Fri 17:00\nOffice\nThe Arslan family needs a nanny by Tuesday 3 November, 08:00. Candidates are waiting on your bench.\nSkip \u23e9\n11:00 \u00b7 A family is due to call\nBench\nFamilies\nPlaced\nIn the city\nthe Arslan family \u00b7 at the Arslan familyG\u00fclce Aksoy \u00b7 at Good Hands\u015eebnem Eren \u00b7 at Good Hands\u00d6zlem Ko\u00e7 \u00b7 at Good HandsThe day\u2019s notes",
+    "controls": "- main:\n  - text: Mon 2 Nov \u00b7\n  - strong: 10:05\n  - button \"Information\": i\n  - button \"Game menu\": \u2261\n  - text: \u20ba3,000\n  - progressbar \"Cash towards rent\"\n  - text: Rent \u20ba5,000 \u00b7 Fri 17:00\n  - region \"The office\":\n    - img \"Izmir across the bay\"\n    - button \"the Arslan family \u00b7 at the Arslan family\"\n    - 'button \"People here: \u00d6zlem Ko\u00e7, \u015eebnem Eren, G\u00fclce Aksoy\"'\n    - button \"Office\"\n  - button \"Task\": The Arslan family needs a nanny by Tuesday 3 November, 08:00. Candidates are waiting on your bench.\n  - button \"Skip to 11:00 \u00b7 A family is due to call\": Skip \u23e9 11:00 \u00b7 A family is due to call\n  - region \"Nermin\u2019s desk\":\n    - navigation \"Agency records\":\n      - button \"Bench\" [pressed]\n      - button \"Families\"\n      - button \"Placed\"\n    - heading \"In the city\" [level=2]\n    - button \"the Arslan family \u00b7 at the Arslan family\"\n    - button \"G\u00fclce Aksoy \u00b7 at Good Hands\"\n    - button \"\u015eebnem Eren \u00b7 at Good Hands\"\n    - button \"\u00d6zlem Ko\u00e7 \u00b7 at Good Hands\"\n    - button \"The day\u2019s notes\"\n- contentinfo",
+    "snapshot_ms": 0,
+    "requested_control_present_before": true
+  },
+  "after": {
+    "elapsed_s": 58.081,
+    "op_ms": 777,
+    "visible": "Mon 2 Nov \u00b7 10:10\ni\n\u2261\n\u20ba3,000\nRent \u20ba5,000 \u00b7 Fri 17:00\nOffice\nThe Arslan family needs a nanny by Tuesday 3 November, 08:00. Candidates are waiting on your bench.\nSkip \u23e9\n11:00 \u00b7 A family is due to call\nBench\nFamilies\nPlaced\nIn the city\nthe Arslan family \u00b7 at the Arslan familyG\u00fclce Aksoy \u00b7 at Good Hands\u015eebnem Eren \u00b7 at Good Hands\u00d6zlem Ko\u00e7 \u00b7 at Good HandsThe day\u2019s notes",
+    "controls": "- main:\n  - text: Mon 2 Nov \u00b7\n  - strong: 10:11\n  - button \"Information\": i\n  - button \"Game menu\": \u2261\n  - text: \u20ba3,000\n  - progressbar \"Cash towards rent\"\n  - text: Rent \u20ba5,000 \u00b7 Fri 17:00\n  - region \"The office\":\n    - img \"Izmir across the bay\"\n    - button \"the Arslan family \u00b7 at the Arslan family\"\n    - 'button \"People here: \u00d6zlem Ko\u00e7, \u015eebnem Eren, G\u00fclce Aksoy\"'\n    - button \"Office\"\n  - button \"Task\": The Arslan family needs a nanny by Tuesday 3 November, 08:00. Candidates are waiting on your bench.\n  - button \"Skip to 11:00 \u00b7 A family is due to call\": Skip \u23e9 11:00 \u00b7 A family is due to call\n  - region \"Nermin\u2019s desk\":\n    - navigation \"Agency records\":\n      - button \"Bench\" [pressed]\n      - button \"Families\"\n      - button \"Placed\"\n    - heading \"In the city\" [level=2]\n    - button \"the Arslan family \u00b7 at the Arslan family\"\n    - button \"G\u00fclce Aksoy \u00b7 at Good Hands\"\n    - button \"\u015eebnem Eren \u00b7 at Good Hands\"\n    - button \"\u00d6zlem Ko\u00e7 \u00b7 at Good Hands\"\n    - button \"The day\u2019s notes\"\n- contentinfo",
+    "snapshot_ms": 0,
+    "requested_control_present_before": null,
+    "screenshot": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-human-speed/after-city.png"
+  },
+  "tapToAfterWallSeconds": 4.554493000003276,
+  "coordinatorViewedImages": ["before-city.png", "after-city.png"],
+  "result": {
+    "beforeClock": "09:57",
+    "afterClock": "10:10",
+    "gameMinutes": 13,
+    "wallSeconds": 6.563000000000002,
+    "interpretation": "No discrete23-minute City action cost reproduced. Roughly2game-minutes/real-second background advancement explains this control interval. Retain pacing/reading pressure as taste; do not route a demonstrated City time-jump defect.",
+    "layout": "Confirmed the task/deadline banner is vertically clipped at360x690 in both images. The City/Office toggle covers a small part of the map at lower right; its necessity/impact is not established."
+  },
+  "screenshotsSha256": {
+    "first-minute.png": "6d1b7ec0c657470362a79ed7caf005f9d524f5714741d112fd2ef7db04d38e0f",
+    "before-city.png": "1a1d3e8acae15d425fb3c42b3284e5b952c324c28f0640b019ccfd3c03248e13",
+    "after-city.png": "0491e551a2939e158b1f97d31fe062bffaa900d277c15311199be86719b97470"
+  }
+}

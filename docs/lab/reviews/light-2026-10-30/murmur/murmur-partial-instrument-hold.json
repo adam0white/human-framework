@@ -1,0 +1,26 @@
+{
+  "time": "2026-10-31T01:23:50.420355+00:00",
+  "controller": {
+    "pid": 92055,
+    "execSession": 1712,
+    "exit": 0,
+    "qualification": "generic controller stamp is not five reports"
+  },
+  "completedOriginals": ["aisha", "mei"],
+  "heldBeforeDispatch": ["nia", "rosa", "lucia"],
+  "counts": {
+    "reports": 2,
+    "rawStops": 4,
+    "unplayed": 3
+  },
+  "reason": "director instrument hold; no tester stop, no restart",
+  "unchangedOriginalHashes": {
+    "murmur/aisha/brief.md": "8272095fbdc24d457e8dc04eb382bd8669a753e6230680bfcbbe1936d0ceb646",
+    "murmur/aisha/own-history.md": "be6de971853f851c56300eed08cc2aacae9b4e021a520c0644d62dc3e04bf421",
+    "murmur/aisha/report.md": "b7d222edb240eaaea83c35039c2616bfaa9bb7292c7bd968411228c912cafae3",
+    "murmur/mei/brief.md": "b82b421f9521e6cac10c272500b56e4aec725b6d19c09c75eaecb877d16a29b6",
+    "murmur/mei/own-history.md": "15a4c845bfe7188f9a10238f0ee3c488203a86ea7f2ee1101b5758bebc55b199",
+    "murmur/mei/report.md": "c037d5a7a58d38d39a33ef00e5c0d78033906344f90a6bf8388f5de221a9ef08"
+  },
+  "pidCheck": ""
+}

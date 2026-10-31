@@ -1,0 +1,139 @@
+{
+  "tester": "Pavel Novak",
+  "validationTime": "2026-10-30T23:11:13.551597+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T22:41:17.097Z",
+        "elapsed_s": 297.523,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at 08:52. A climber is hurt, go to him does nothing I can see, and the text points to a walk-to-Bilal button that does not exist. I chose Im confused in Feedback, typed nothing, sent nothing.",
+        "game_clock": "08:52",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-004.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 293.57,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [
+        59.037
+      ],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T22:38:31.389Z",
+          "elapsed_s": 131.815,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T22:46:01.310Z",
+        "elapsed_s": 283.827,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at 11:26 on the phone. Chose Im stopping in Feedback, typed nothing, sent nothing. Too much waiting, and the group drifted apart and could not hear me.",
+        "game_clock": "11:26",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 280.08,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [
+        47.429
+      ],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T22:44:22.601Z",
+          "elapsed_s": 185.118,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Route and weather warning"
+          },
+          "reaction": "What is this warning? I open it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 11,
+          "error": "Route and weather warning is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

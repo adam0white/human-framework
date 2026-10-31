@@ -1,0 +1,62 @@
+[
+  {
+    "id": "F-2161",
+    "date": "2026-10-30",
+    "game": "pass",
+    "kind": "playtester",
+    "who": "Fictional LIGHT panel: Maya Chen",
+    "words": "Yes, one more evening, to hear Selim finish telling me about Nevin's list, and only if talking to a cook doesn't keep costing me a station. I would not leave it running.",
+    "verdict": "mixed",
+    "routes": "fix:pass F-2167 absence/conversation consequence and recovery, target2026-11-03 (open); fix:pass F-2169 duplicated need wording, target2026-11-03 (open); fix:pass F-2172 follow up Nevin invitation, target2026-11-10 (open)",
+    "source": "docs/lab/reviews/light-2026-10-30/pass/maya/report.md",
+    "sourceParagraph": "**Would you return:** Yes, one more evening, to hear Selim finish telling me about Nevin's list, and only if talking to a cook doesn't keep costing me a station. I would not leave it running."
+  },
+  {
+    "id": "F-2162",
+    "date": "2026-10-30",
+    "game": "pass",
+    "kind": "playtester",
+    "who": "Fictional LIGHT panel: Emre Kaya",
+    "words": "I would return voluntarily another evening on desktop, but only if I can pick up where I stopped and the slowed waits during an empty station give me something to do. I would not leave it running in a tab.",
+    "verdict": "mixed",
+    "routes": "fix:pass F-2170 slowed waits, target2026-11-10 (open); fix:pass F-2173 resume inspection (not tested), target2026-11-03 (open); fix:pass F-2171 money/table growth explanation, target2026-11-10 (open)",
+    "source": "docs/lab/reviews/light-2026-10-30/pass/emre/report.md",
+    "sourceParagraph": "I would return voluntarily another evening on desktop, but only if I can pick up where I stopped and the slowed waits during an empty station give me something to do. I would not leave it running in a tab."
+  },
+  {
+    "id": "F-2163",
+    "date": "2026-10-30",
+    "game": "pass",
+    "kind": "playtester",
+    "who": "Fictional LIGHT panel: Nia Okafor",
+    "words": "I'd come back another evening, but only if something new is waiting. The first minute now has orders and cooks who push back. I'd still stop before the second night.",
+    "verdict": "mixed",
+    "routes": "fix:pass F-2170 slowed waits, target2026-11-10 (open); fix:pass F-2169 repeated need wording, target2026-11-03 (open); fix:pass F-2176 inspect visible Insist instructions (hold untested, no defect established), target2026-11-10 (open)",
+    "source": "docs/lab/reviews/light-2026-10-30/pass/nia/report.md",
+    "sourceParagraph": "I'd come back another evening, but only if something new is waiting. The first minute now has orders and cooks who push back. I'd still stop before the second night."
+  },
+  {
+    "id": "F-2164",
+    "date": "2026-10-30",
+    "game": "pass",
+    "kind": "playtester",
+    "who": "Fictional LIGHT panel: Rosa Alvarez",
+    "words": "I might come back another evening if the grill is not left empty by my own default plan and I can see early that ₺5,200 is reachable. I would not leave it running.",
+    "verdict": "mixed",
+    "routes": "fix:pass F-2168 specific first-order coverage warning, target2026-11-03 (open); fix:pass F-2171 reachable money explanation, target2026-11-10 (open); fix:pass F-2174 shorter planning text, target2026-11-10 (open)",
+    "source": "docs/lab/reviews/light-2026-10-30/pass/rosa/report.md",
+    "sourceParagraph": "**Would you return voluntarily?** I might come back another evening if the grill is not left empty by my own default plan and I can see early that ₺5,200 is reachable. I would not leave it running."
+  },
+  {
+    "id": "F-2165",
+    "date": "2026-10-30",
+    "game": "pass",
+    "kind": "playtester",
+    "who": "Fictional LIGHT panel: Amal Haddad",
+    "words": "Maybe, but only if I could understand why a cook stops working and what I can do about it. Right now I would not come back on my own.",
+    "verdict": "quit",
+    "routes": "fix:pass F-2166 takeover answer outcome, target2026-11-03 (open); fix:pass F-2167 actual absence/need and recovery, target2026-11-03 (open); fix:pass F-2170 slowed waits, target2026-11-10 (open)",
+    "source": "docs/lab/reviews/light-2026-10-30/pass/cold-amal/report.md",
+    "sourceParagraph": "**Would you return?** \"Maybe, but only if I could understand why a cook stops working and what I can do about it. Right now I would not come back on my own.\""
+  }
+]

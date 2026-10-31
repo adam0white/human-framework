@@ -1,0 +1,38 @@
+{
+  "scope": "Bash tool commands only; allowed Read separately in driveraudit; failed shell parse commands retained, no inferred request",
+  "sourcePrivateSha256": "5461c543598459907403c5f17de5f2854f544e863b2a7adc5fd9ecdc6b877c1c",
+  "time": "2026-10-31T03:41:52.123827+00:00",
+  "players": {
+    "mei": {
+      "BashCalls": 55,
+      "validAssignedCurl": 53,
+      "exceptionCount": 2
+    },
+    "samir": {
+      "BashCalls": 46,
+      "validAssignedCurl": 44,
+      "exceptionCount": 2
+    },
+    "leila": {
+      "BashCalls": 67,
+      "validAssignedCurl": 65,
+      "exceptionCount": 2
+    },
+    "rosa": {
+      "BashCalls": 28,
+      "validAssignedCurl": 26,
+      "exceptionCount": 2
+    },
+    "ida": {
+      "BashCalls": 130,
+      "validAssignedCurl": 130,
+      "exceptionCount": 0
+    }
+  },
+  "findings": [
+    "Each of four standing testers executed one ls of only their own assigned run directory; filenames only, no file contents. This breached curl-only protocol; effect unknown.",
+    "Four malformed shell-quoted curl commands failed before request; retries are separate surviving observations.",
+    "Ida had no Bash command-scope exception.",
+    "Provider tool identifiers, command envelopes and result blocks remain private. No producer report, input or gameplay reaction was rewritten."
+  ]
+}

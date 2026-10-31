@@ -1,0 +1,30 @@
+{
+  "time": "2026-10-31T00:49:58.111521+00:00",
+  "closed": true,
+  "release": {
+    "time": "2026-10-31T00:49:14.810315+00:00",
+    "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c2bfaae81f1b250a8c250075e00e71c421d8481b",
+      "dirty": false
+    }
+  },
+  "lastReturn": "2026-10-31T00:47:56.885908+00:00",
+  "nextRoundNotBefore": "2026-10-31T01:02:56.885908+00:00",
+  "reports": 5,
+  "stopLogs": 10,
+  "voluntaryStops": 10,
+  "explicitTOOL": 0,
+  "qualification": "Duplicate accessible names recovered by point; invalid requests and stale targets are not game action outcomes. Four early pulses and one early minute retained. No unresolved enabled-control driver block found.",
+  "earlyPulses": {
+    "mayaPhone": 163.43,
+    "jonasDesktop": 175.492,
+    "leilaPhone": 171.726,
+    "nouraPhone": 167.004
+  },
+  "earlyFirstMinute": {
+    "leilaPhone": 59.804
+  },
+  "drivers": "Exact final PIDs73955/73957 absent; controller finally closed all test drivers."
+}

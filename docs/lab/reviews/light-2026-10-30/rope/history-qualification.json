@@ -1,0 +1,23 @@
+{
+  "affected": [
+    {
+      "game": "rope",
+      "tester": "nia",
+      "file": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope/nia/own-history.md",
+      "continuedBodyStartLine": 333,
+      "continuedBodyEndLine": 564,
+      "status": "Frozen original contains an excluded Warren continued alternative. Do not rewrite the supplied history or producer report. Qualify continuity/recognition evidence. Current target observations remain original, effect of extra memory unknown."
+    },
+    {
+      "game": "rope",
+      "tester": "rosa",
+      "file": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope/rosa/own-history.md",
+      "continuedBodyStartLine": 225,
+      "continuedBodyEndLine": 405,
+      "status": "Frozen original contains an excluded Warren continued alternative. Do not rewrite the supplied history or producer report. Qualify continuity/recognition evidence. Current target observations remain original, effect of extra memory unknown."
+    }
+  ],
+  "cause": "Whole or previously frozen panel diary was reused without filtering the explicit Continued alternative body. Archived links alone were not the problem.",
+  "policy": "Preserve original input and all raw runs. Add explicit source/PR qualification. Future histories use only selected FREE extracts and actual subsequent own reports; omit the continued alternative. No new never-first claim for known target exposure.",
+  "futureInputs": "Hearsay selects standalone FREE partials plus latest own target reports, no whole panel diary or old alternative body. Prior target exposure is retained."
+}

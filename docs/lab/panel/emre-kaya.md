@@ -870,3 +870,195 @@ These are the lines I can still quote exactly, all from the last part of the ses
 2. When I recover a part from the donor lantern, put it in the drawer, or tell me why it is not there.
 3. Vary the faults, so the second fan is not the same battery swap as the first.
 ```
+
+
+<!-- selected-continuity-key: light-1030:pass:emre:free -->
+## 2026-10-30 Pass same-tester retest — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/pass/emre/report.md). Build b6e919a8601554aa2aac34045286f1b3cf8f9245, HF4.12.0; free stop, fresh phone360x690 and desktop1280x800. These are sequential device visits, not alternative paired arms. No Feedback note was submitted. Report estimates/premature timed tags remain qualified by actual raw elapsed_s.
+
+I would return voluntarily another evening on desktop, but only if I can pick up where I stopped and the slowed waits during an empty station give me something to do. I would not leave it running in a tab.
+
+**phone — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                             |
+| --------- | ------------ | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 10.898    | input        |        | Phone, second visit same evening. Changed Dilek break to 21:00 and ask.                                                                                                                                           |
+| 14.349    | first_minute |        | Phone header fits now, nothing cut off. Layout is readable; the order list was empty at 17:25. Ingredient counts differ from the desktop start, 18 grill vs 12, so nights are not identical.                      |
+| 46.663    | input        |        | Selim eats 18:10, grill empty, a table waits. I did not change his break on this device. Asking him back.                                                                                                         |
+| 79.303    | want_quit    | BORED  | Monday 18:16 on the phone. Selim refuses, bathroom first, early table about to leave, nothing I can do but wait in slowed time. This is the same dead wait as before. I already saw this plan on desktop.         |
+| 79.313    | stop         | BORED  | Stopping on phone Monday 18:16, 120 of 5200, after about 80 seconds. Layout is fine, header fits. I do not want to replay Monday. I would come back another evening on desktop only if it carries on from a save. |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                                                                                      |
+| --------- | ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 4.056     | note         |        | New this time: a choice of how long customers wait. Selim longer, Dilek normal (default). I take the default to compare with last time.                                                                                                                                    |
+| 9.552     | input        |        | The plan now warns about an early table at 18:12 and a 40 lira loss. Better than last time. Dilek break 18:35 is in the rush, so I look at changing it.                                                                                                                    |
+| 34.516    | note         |        | Moved both breaks to 21:00 after the rush; Nobody cover stayed Nobody this time, no Rafi auto-pick seen yet. Both breaking at once at 21:00 may be a hole, guessing.                                                                                                       |
+| 70.373    | first_minute |        | Both agreed. Doors open. The plan page now warns about the early table and makes me ask the cooks before opening, which is clearer than last time. Watching service.                                                                                                       |
+| 103.249   | input        |        | New: a cook asks me a real question mid-service. Rush is on, she is the only cold-side cook, so I ask her to wait till closing. Ingredients counters are also new.                                                                                                         |
+| 141.591   | pulse        |        | Mid-service questions give me something to decide, which was my complaint last time. Ingredient counts falling (5 grill portions); I wonder if they run out. 320 lira at 19:06.                                                                                            |
+| 174.616   | input        |        | Grill portions are at 0 and cold nearly 0. I did not expect to restock. Looking at what I can ask Selim.                                                                                                                                                                   |
+| 212.273   | note         |        | Monday 600 again, same as last visit, 15 of 15 tables. The Why line (you earn when a table eats, stations and breaks decide when food is ready) helps. Ingredients hit 0 with no visible loss. Still do not see how to get more than 15 tables. Selim missed prayer again. |
+| 249.74    | input        |        | New shortcut: Same plan as last night. Saves me the busywork I dislike. Rafi now has a plan too, dishes break at 19:00.                                                                                                                                                    |
+| 316.619   | pulse        |        | Orders now show how long they wait and the lira at risk. That is the visible tradeoff I wanted. 960 by 19:30 Tuesday, ahead of Monday.                                                                                                                                     |
+| 356.445   | input        |        | Both covers empty another station; I can price this now. Order cards at left are cramped, text cut off (grill ○○ cold s...). Leaving grill empty.                                                                                                                          |
+| 393.482   | input        |        | Both cooks walked off to explain the wait to tables, three tables at risk, 120 lira. Rafi cover would empty dishes and no plates, no food leaves. I leave empty. Same waiting-with-nothing-to-do as before, but I understand why.                                          |
+| 429.675   | want_quit    | BORED  | Tuesday 19:43, 1000 lira. Grill empty, Selim in the bathroom, time slowed, nothing I can do. This is the same waiting as last visit. Better this time: I can see lira at risk and why each cook left.                                                                      |
+| 429.682   | stop         | BORED  | Stopping Tuesday week 1 19:43 at 1000 of 5200. Mid-service questions, order cards with lira at risk and Same plan as last night are real improvements. The empty-grill waiting is still the part I would skip. I would come back another evening, not leave it running.    |
+
+<!-- selected-continuity-key: light-1030:hearsay:emre:free -->
+## 2026-10-30 Hearsay LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/hearsay/emre/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/hearsay/emre/report.original.md.txt), original SHA256 `bb231761cdea04ab281073fa3df58f878dd3f23246f2d59a5859a36c5fd2a2cc`. Build 76ebfb8f73956e1bbdc5cc6318d9f15e453d105b/HF4.12.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- Instrument: no unresolved driver selector failure is recorded for him. His desktop pulse at 175.468 s was premature and is not a valid 180-second checkpoint.
+- His producer limits stand: cooldown theory, return times and Day 4 supply ordering are unverified, and he never reached Day 4.
+- His supplied history used explicit own FREE/latest reports with no continued-alternative body.
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+**Would you return voluntarily?** I would come back another evening on desktop, but only if the game tells me why a talk is refused and when people come back, and gives me something to decide while the garden is empty. I would not leave it running.
+
+**Ranked asks**
+1. Say why a talk is refused, and show when each person returns. "This person cannot do this now" gave me no reason, and it came up for Nermin, Ece and Dilan on desktop and for Ece on the phone.
+2. Give me a decision or an action while the garden is empty from about 8:00, or a pace that skips that stretch. Fast was about one game minute per real second on desktop.
+3. Show where and when bread and produce get ordered, and what a private-keeping or gossip choice earns or costs. I never found an order control in about 3 minutes on each device.
+
+## 1. Session
+
+- **Persona:** Emre Kaya, 37, Ankara electrical technician and parent. He likes visible tradeoffs and dislikes unexplained losses.
+- **Exposure:** first target visit to Hearsay.
+- **Round and arm:** light-1030, first panel round, free stop (floor 0, ceiling 25 minutes). No paired or control claim.
+- **Own history:** I read the supplied own-history.md in full before starting. It holds no Hearsay history.
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent
+- **Session A:** desktop 1280x800, light mode, driver 21403. It lasted 224 s, with the stop logged at 224.0 s.
+- **Session B:** phone 360x690 touch, light mode, driver 21402, a new game. It lasted 192.6 s.
+
+## 2. First impressions
+
+- **Desktop, 2.6 s:** the title page is clean, with a clear goal: open a paid workers' lunch on Day 13. I took the shot at 2.6 s and viewed it.
+- **Desktop, 8 s:** I understood the goal (supplies on Day 4, paid cooking on Day 8, four reservations) and pressed Begin.
+- **Desktop, 22 s:** Osman wrote 10 crates on the invoice against his own count of 8. That made me want to deal with him.
+- **Desktop, 33–42 s:** three refusals in a row with the same generic message.
+- **Phone, 0.6 s:** the same title page, stacked on a narrow screen, with a readable serif title and big buttons. I took the shot at 0.6 s and viewed it.
+- **Phone, 12 s:** repeating Osman's secret cost me his trust, and the game said so in plain words. That was a tradeoff I could read.
+
+## 3. Verbatim diary lines
+
+Elapsed seconds are first. Wording is unedited, including my typo.
+
+**Session A (desktop)**
+- 8.2 (reaction on Begin): "Goal is clear: supplies Day 4, cooking Day 8, four reservations. Beginning."
+- 9.8: "Rıza is the bread helper, so I ask him about bread first."
+- 13.2: "Private, with help offered. Trust matters for reservations."
+- 22.3: "Osman padded an invoice 8 vs 10 crates. A practical problem: he is my produce supplier probably. I want to talk to him."
+- 26.7: "Tea money rose 400 to 540 at 7:00. Osman has a secret; I keep it private since I need his produce."
+- 32.9: "Nermin refused a quiet talk with a generic message: cannot do this now. I do not know why or when. Moving on to Ece."
+- 37.6: "Ece also refused. Two refusals in a row, no reason given. Is there a cooldown or trust gate? Unclear."
+- 41.7: "Third refusal. I guess there is a cooldown after a talk. I will let time pass at Normal and retry."
+- 72.8 (first_minute, game clock Day 1 07:44): "Goal is clear. Tea money rose 400 to 540. Three people refused a quiet talk with a generic message, then Dilan agreed after about 40 game minutes, so I guess a cooldown exists. I do not see where I order bread or produce."
+- 77.3: "Everyone left at 8:00 and Dilan talk was cut off, nothing learned. Garden empty. People keep schedules I cannot see. Using Fast to pass time."
+- 108.7 (wait op): "Fast pace passes only about 30 game minutes per 30 real seconds. Fourteen years would take hours." I meant "days", not "years".
+- 175.5 (pulse, engagement 2, Day 1 09:39): "Early talks gave me private stories and kept trust, but now the garden is empty and I am just waiting at about 1 game minute per real second, with no way to order bread or plan. I cannot see a lever."
+- 180.4 (want_quit, BORED, Day 1 09:43): "Everyone is away until some hour I cannot see, the cook is unreachable, and I cannot order supplies from here. I have no decision to make and the clock crawls. Same dead wait I dislike."
+- 224.0 (stop, BORED, Day 1 09:47): "I am stopping on desktop at Day 1 09:47 after about 3.7 minutes. Private-keeping choices were clear, but talks were refused with no reason, then everyone left and the clock crawls with nothing to decide. I could not find where to order supplies."
+
+**Session B (phone)**
+- 2.9: "Same goal as on desktop. Beginning on the phone."
+- 4.4: "This time I go to Osman first, the produce supplier."
+- 5.7: "Trying pressing this time to see what it costs."
+- 7.2: "Pressing gave no visible message. Checking the record."
+- 8.9: "Pressing got a refusal, Osman keeps it private for now. Trying the gentle invite."
+- 12.3: "On desktop I kept it private. Now I spread it, to see the cost."
+- 14.3 (Day 1 06:23): "Spreading it cost me Osman trust, and the game says so plainly. That is a tradeoff I can read."
+- 47.1: "Letting time pass at automatic pace to see if the garden stays full."
+- 63.8: "The same 6:30 invoice event as on desktop, so the story seems fixed."
+- 65.9 (first_minute, Day 1 07:15): "Phone is clear, same goal. Spreading Osman private story gave a plain cost: he stopped trusting me, and tea money went 400 to 520 anyway. Automatic pace is faster than desktop Fast felt. Osman left for another tea stop, so my supplier is gone and I still see no way to order."
+- 67.5: "Ece saw the invoice. Asking her."
+- 101.0 (Day 1 07:19): "Ece refused with the same generic message. But my gossip about Osman is now moving on its own: Ece told Riza he is not honest. That is a real consequence, and I like seeing it."
+- 132.4: "Ece repeated the same line to Riza at 7:51. The rumor keeps going without me and I cannot stop it."
+- 164.3: "Everyone left again, as on desktop. Same empty garden, so this is a fixed daily pattern."
+- 185.1 (pulse, engagement 2, Day 1 09:14): "The gossip cost was readable and I liked that, but the garden is empty again and I just wait. No order screen, no lever for bread or produce."
+- 186.4 (want_quit, BORED, Day 1 09:14): "Same dead wait as desktop: garden empty from 8:00, nothing to decide, no order screen found."
+- 192.6 (stop, BORED, Day 1 09:18): "I am stopping on the phone at Day 1 09:18 after about 3 minutes. Gossip cost was clear, but the garden is empty from 8:00 and I have nothing to decide and no order screen."
+
+## 4. Moments
+
+**What held me**
+- The goal and deadlines are stated up front.
+- The cost of spreading gossip was explicit: Osman "stops trusting you with private matters", and the rumor then spread on its own (Ece told Rıza, twice). I like seeing a bad choice play out.
+- The Garden record gives a readable log.
+- The 8-versus-10 crates invoice was a concrete practical problem.
+
+**What lost me**
+- Generic refusals with no reason or timing.
+- From about 8:00 everyone leaves and the benches are empty.
+- Nothing I could do to order bread or produce, or to arrange the Day 4 and Day 8 items.
+- The clock was slow on desktop at Fast: about 1 game minute per real second.
+
+**Quit wishes**
+- Both want_quits were BORED, at 180.4 s (desktop) and 186.4 s (phone). Neither passed, and I stopped in both sessions.
+
+**Pulses**
+- Desktop at 175.5 s: engagement 2.
+- Phone at 185.1 s: engagement 2.
+- The desktop pulse was logged at 175.5 s, which is under the 180 s threshold, so the coordinator should flag it as premature.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The goal and the three deadlines.
+- Private-keeping versus repeating, and what repeating costs.
+- That people have schedules ("out delivering parcels").
+
+**Confusing**
+- The refusal message "This person cannot do this now. Try again later, or keep the matter private." My guess is a cooldown or trust gate (Dilan agreed after about 40 game minutes). That is a guess, not confirmed.
+- On desktop, Dilan's talk was cut off at 8:00 with "You learned nothing private" and no warning beforehand.
+- The Garden record shows "Day 1 7:19 Ece tells Rıza..." without saying whether I can stop it.
+- I never found where to order bread, produce or cooking, and never reached Day 4.
+- I could not see when people come back.
+
+**Not verified:** the cooldown theory, return times, and whether supplies can be arranged on Day 4.
+
+## 6. Device use
+
+**Desktop**
+- **Screenshots viewed:** a-001.png, taken at 2.6 s. It shows the cream title page: large "Hearsay" serif title, goal text, a "How to play" disclosure, and Begin, Feedback, Fullscreen, All games and People across games. The Recording checkbox was checked.
+- **Controls used:** Begin, the people buttons, the conversation and follow-up buttons, Pause/Slow/Normal/Fast, Game menu, Feedback, "I'm stopping", "Not now".
+- **Trouble seen:** tapping by name on "How to play" failed ("not on the page"), and tapping by text worked. Two log calls failed with a shell quoting error, then worked when retried singly.
+
+**Phone**
+- **Screenshots viewed:** b-001.png at 0.6 s and b-002.png at 14.3 s.
+- **b-001.png** shows the title page stacked on a narrow screen with big tap targets and a readable layout.
+- **b-002.png** shows the page scrolled so the Pause/Slow/Normal/Fast row is cut off at the top, then Osman's panel. It shows the repeat consequence text, the "Sit and talk again" button, and "Pour tea without sharing news" partly cut off at the bottom. The text was readable.
+- **Controls used:** Begin, the people buttons, the conversation buttons, wait, Game menu, Feedback, "I'm stopping", "Not now".
+- **Unseen layout:** the people row at the top of the garden on phone, the Feedback dialog layout, and the in-menu view. I took no screenshots of those because I used my allowance on the title page and the Osman panel. I saw no trouble in the text output.
+- **Screenshot count:** 1 on desktop and 2 on phone, so I stayed within five manual shots per device.
+
+**Feedback**
+- On both devices I opened Game menu, then Feedback, selected "I'm stopping", and tapped "Not now". I typed no note and pressed no Submit. The Feedback dialog offered "I'd keep playing / Not sure / I'd stop here", then "I'm stopping / I'm confused".
+
+## 7. Stop and return
+
+**Stop words**
+- **Desktop:** "I am stopping on desktop at Day 1 09:47 after about 3.7 minutes. Private-keeping choices were clear, but talks were refused with no reason, then everyone left and the clock crawls with nothing to decide. I could not find where to order supplies." Reason: BORED.
+- **Phone:** "I am stopping on the phone at Day 1 09:18 after about 3 minutes. Gossip cost was clear, but the garden is empty from 8:00 and I have nothing to decide and no order screen." Reason: BORED.
+
+**Would you return voluntarily?** I would come back another evening on desktop, but only if the game tells me why a talk is refused and when people come back, and gives me something to decide while the garden is empty.
+- **Leave it running?** No. I would not leave it running. Nothing happens that I can steer while the garden is empty, so there is no reason to wait.
+- **Come back another evening?** Yes, with the condition above. The gossip cost and the Day 13 goal are what would bring me back. I would not return if I still could not find where to order supplies.
+
+## 8. Changes I would want
+
+1. Say why a talk is refused, and show when each person returns.
+2. Give me a decision or an action while the garden is empty from about 8:00, or a pace that skips that stretch.
+3. Show where and when bread and produce get ordered, and what a private-keeping or gossip choice earns or costs.
+
+## 9. Compared with my last visit
+
+First visit.
+
+**Worktrees:** I own none, and I touched no repo. No worktrees of mine exist. I read only own-history.md, the cleanup rule and my own screenshots.

@@ -1,0 +1,776 @@
+{
+  "purpose": "Readable JSON/Markdown/CJS views and exact source epochs. The rawOriginal link or unchanged byte copy preserves the private source. Producer originals and JSONL inputs stay verbatim. This map excludes itself and sha256.json, preventing a cycle.",
+  "privatePacket": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/hearsay",
+  "addedByPreparation": ["ledger-route-normalization.json"],
+  "files": [
+    {
+      "file": "README.md",
+      "privateFile": "README.md",
+      "canonicalSha256": "694c99d4df547a1854fc47ee7570aabaa3299dc4ea4b8faf32933f81994295d2",
+      "privateSha256": "1677af78365a22679d967a2a34e36987a02355cbb5109b159ffa242ee90ff931",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "README.original.md.txt"
+    },
+    {
+      "file": "README.original.md.txt",
+      "canonicalSha256": "1677af78365a22679d967a2a34e36987a02355cbb5109b159ffa242ee90ff931",
+      "privateFile": "README.md",
+      "privateSha256": "1677af78365a22679d967a2a34e36987a02355cbb5109b159ffa242ee90ff931",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "ask-ledger.md",
+      "privateFile": "ask-ledger.md",
+      "canonicalSha256": "4345d3f33a305b943b7903bb0b5e0f74af1ffa557dcfcdfc3fbb2cb5bd502fa6",
+      "privateSha256": "2650e8685064581a7ca091f93f361cca26548953238db1a99e732ccae3880c31",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "ask-ledger.md.original.txt"
+    },
+    {
+      "file": "ask-ledger.md.original.txt",
+      "canonicalSha256": "2650e8685064581a7ca091f93f361cca26548953238db1a99e732ccae3880c31",
+      "privateFile": "ask-ledger.md",
+      "privateSha256": "2650e8685064581a7ca091f93f361cca26548953238db1a99e732ccae3880c31",
+      "relation": "exact private source snapshot"
+    },
+    {
+      "file": "diego/brief.original.md.txt",
+      "privateFile": "diego/brief.original.md.txt",
+      "canonicalSha256": "b48ca0c586b4a67759ff501228ae9f0299bcb0d6c54a9a6d0b51fb2f1bbc8e6c",
+      "privateSha256": "b48ca0c586b4a67759ff501228ae9f0299bcb0d6c54a9a6d0b51fb2f1bbc8e6c",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "diego/completion.json",
+      "privateFile": "diego/completion.json",
+      "canonicalSha256": "355d1c398dba091a94774a1ac648deeebc345442e67cc4e6859e9dd8067afa99",
+      "privateSha256": "06e6bcd34c38c94315427b8b74da2181b7f83e38f4d307fdf593f88070e475f8",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "diego/completion.json.original.txt"
+    },
+    {
+      "file": "diego/completion.json.original.txt",
+      "canonicalSha256": "06e6bcd34c38c94315427b8b74da2181b7f83e38f4d307fdf593f88070e475f8",
+      "privateFile": "diego/completion.json",
+      "privateSha256": "06e6bcd34c38c94315427b8b74da2181b7f83e38f4d307fdf593f88070e475f8",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "diego/desktop/driver.out",
+      "privateFile": "diego/desktop/driver.out",
+      "canonicalSha256": "81731ea14152e3dac970bbe7b180a9616a2d0e3fa741fabfe1a469fb5d25886f",
+      "privateSha256": "81731ea14152e3dac970bbe7b180a9616a2d0e3fa741fabfe1a469fb5d25886f",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "diego/desktop/release-start.json",
+      "privateFile": "diego/desktop/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "diego/desktop/release-start.json.original.txt"
+    },
+    {
+      "file": "diego/desktop/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "diego/desktop/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "diego/desktop/wall-clock.jsonl",
+      "privateFile": "diego/desktop/wall-clock.jsonl",
+      "canonicalSha256": "2c4269af11219e2ee6431754e678f856df220d4d34484c92fd60c59b0948062a",
+      "privateSha256": "2c4269af11219e2ee6431754e678f856df220d4d34484c92fd60c59b0948062a",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "diego/dispatch.json",
+      "privateFile": "diego/dispatch.json",
+      "canonicalSha256": "1af9b2434a92ca10c94f30208fe357722fdd815d00e22e7a7f7ecc156f5db3a7",
+      "privateSha256": "1af9b2434a92ca10c94f30208fe357722fdd815d00e22e7a7f7ecc156f5db3a7",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "diego/own-history.original.md.txt",
+      "privateFile": "diego/own-history.original.md.txt",
+      "canonicalSha256": "c6a37f3ce01f4d21c5724cc8a70735273f5f7b0b2b73811d19d6d75a4256aaf6",
+      "privateSha256": "c6a37f3ce01f4d21c5724cc8a70735273f5f7b0b2b73811d19d6d75a4256aaf6",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "diego/phone/driver.out",
+      "privateFile": "diego/phone/driver.out",
+      "canonicalSha256": "566d096af5d0c6eced0362534f24a2ed6db3b20953799b8e9041e92f08fcf735",
+      "privateSha256": "566d096af5d0c6eced0362534f24a2ed6db3b20953799b8e9041e92f08fcf735",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "diego/phone/release-start.json",
+      "privateFile": "diego/phone/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "diego/phone/release-start.json.original.txt"
+    },
+    {
+      "file": "diego/phone/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "diego/phone/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "diego/phone/wall-clock.jsonl",
+      "privateFile": "diego/phone/wall-clock.jsonl",
+      "canonicalSha256": "5f80321e8b0c598b5cbc273144a51cf5df8011add3f668c628f82cf24c7d5696",
+      "privateSha256": "5f80321e8b0c598b5cbc273144a51cf5df8011add3f668c628f82cf24c7d5696",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "diego/report.md",
+      "privateFile": "diego/report.md",
+      "canonicalSha256": "78b29b8bfa93e9b81cd552ea9851532fe3579d4f4aee55c411103814ab5d7e9f",
+      "privateSha256": "2f7ac069c39a704b9907e8af45e8391af467d1c815e6186cae15e233c23140fd",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "diego/report.original.md.txt"
+    },
+    {
+      "file": "diego/report.original.md.txt",
+      "privateFile": "diego/report.original.md.txt",
+      "canonicalSha256": "2f7ac069c39a704b9907e8af45e8391af467d1c815e6186cae15e233c23140fd",
+      "privateSha256": "2f7ac069c39a704b9907e8af45e8391af467d1c815e6186cae15e233c23140fd",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "diego/validation.json",
+      "privateFile": "diego/validation.json",
+      "canonicalSha256": "c97e59fe92f22ea876a775570674ecef2d32aadfceaf301a0cb8c8900ee03454",
+      "privateSha256": "c97e59fe92f22ea876a775570674ecef2d32aadfceaf301a0cb8c8900ee03454",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/brief.original.md.txt",
+      "privateFile": "emre/brief.original.md.txt",
+      "canonicalSha256": "61f7411b6240b5eba342cc5368562d319baa95281491bccfda47f612f68ef3d6",
+      "privateSha256": "61f7411b6240b5eba342cc5368562d319baa95281491bccfda47f612f68ef3d6",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/completion.json",
+      "privateFile": "emre/completion.json",
+      "canonicalSha256": "114b8435b4970c26c2a9a244875b35145811f33f1d2382cc7dc09ba41c0ff124",
+      "privateSha256": "47fa288904ca91ed41b5ae16b3bd94f45a3b62ead6ef13e332e763279cb9c664",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "emre/completion.json.original.txt"
+    },
+    {
+      "file": "emre/completion.json.original.txt",
+      "canonicalSha256": "47fa288904ca91ed41b5ae16b3bd94f45a3b62ead6ef13e332e763279cb9c664",
+      "privateFile": "emre/completion.json",
+      "privateSha256": "47fa288904ca91ed41b5ae16b3bd94f45a3b62ead6ef13e332e763279cb9c664",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "emre/desktop/driver.out",
+      "privateFile": "emre/desktop/driver.out",
+      "canonicalSha256": "b46916a81b8652ef31471056f1d825a78bcb8063a47c2b660cd35d5690524923",
+      "privateSha256": "b46916a81b8652ef31471056f1d825a78bcb8063a47c2b660cd35d5690524923",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/desktop/release-start.json",
+      "privateFile": "emre/desktop/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "emre/desktop/release-start.json.original.txt"
+    },
+    {
+      "file": "emre/desktop/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "emre/desktop/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "emre/desktop/wall-clock.jsonl",
+      "privateFile": "emre/desktop/wall-clock.jsonl",
+      "canonicalSha256": "40659b73fe179648adcceb635352d09d96b37d7e6f66c6550cd77de938d937dc",
+      "privateSha256": "40659b73fe179648adcceb635352d09d96b37d7e6f66c6550cd77de938d937dc",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/dispatch.json",
+      "privateFile": "emre/dispatch.json",
+      "canonicalSha256": "2af55eedf303854d84fa98f0073a9401c3ef1bb99c92c01757fdd322753f641e",
+      "privateSha256": "2af55eedf303854d84fa98f0073a9401c3ef1bb99c92c01757fdd322753f641e",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/own-history.original.md.txt",
+      "privateFile": "emre/own-history.original.md.txt",
+      "canonicalSha256": "2463b029d41f091f867b6daacdf2beb5b43c9361b48e568feeb1047ecc3c3f60",
+      "privateSha256": "2463b029d41f091f867b6daacdf2beb5b43c9361b48e568feeb1047ecc3c3f60",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/phone/driver.out",
+      "privateFile": "emre/phone/driver.out",
+      "canonicalSha256": "bccc4a1639554420e4387de901938ba62a6b674e3b00a1cd7f5adc791a69ce9e",
+      "privateSha256": "bccc4a1639554420e4387de901938ba62a6b674e3b00a1cd7f5adc791a69ce9e",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/phone/release-start.json",
+      "privateFile": "emre/phone/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "emre/phone/release-start.json.original.txt"
+    },
+    {
+      "file": "emre/phone/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "emre/phone/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "emre/phone/wall-clock.jsonl",
+      "privateFile": "emre/phone/wall-clock.jsonl",
+      "canonicalSha256": "bd04a438aa7594e3a1be39418036b566c2b08d7edae7d404ee9e91dcb6f1a157",
+      "privateSha256": "bd04a438aa7594e3a1be39418036b566c2b08d7edae7d404ee9e91dcb6f1a157",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/report.md",
+      "privateFile": "emre/report.md",
+      "canonicalSha256": "adbe84f223925ed7141773a4c14cadfb13b4ca06547b7bcb2a83ce4e35dba96e",
+      "privateSha256": "bb231761cdea04ab281073fa3df58f878dd3f23246f2d59a5859a36c5fd2a2cc",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "emre/report.original.md.txt"
+    },
+    {
+      "file": "emre/report.original.md.txt",
+      "privateFile": "emre/report.original.md.txt",
+      "canonicalSha256": "bb231761cdea04ab281073fa3df58f878dd3f23246f2d59a5859a36c5fd2a2cc",
+      "privateSha256": "bb231761cdea04ab281073fa3df58f878dd3f23246f2d59a5859a36c5fd2a2cc",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "emre/validation.json",
+      "privateFile": "emre/validation.json",
+      "canonicalSha256": "848c46a5b3249bba3ec5e136dfe2c5480bf8260ad38d599391a3db166faa62bd",
+      "privateSha256": "362c3537bb3d1e25003e05519288b60e235c3ec0bbb17cd4e2722f1e17e6566d",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "emre/validation.json.original.txt"
+    },
+    {
+      "file": "emre/validation.json.original.txt",
+      "canonicalSha256": "362c3537bb3d1e25003e05519288b60e235c3ec0bbb17cd4e2722f1e17e6566d",
+      "privateFile": "emre/validation.json",
+      "privateSha256": "362c3537bb3d1e25003e05519288b60e235c3ec0bbb17cd4e2722f1e17e6566d",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "instrument-qualification.json",
+      "privateFile": "instrument-qualification.json",
+      "canonicalSha256": "bed183dd45e9eec6c65aeba82dbdc9ce81772c9c0f5d21faac6970fd9e431823",
+      "privateSha256": "bed183dd45e9eec6c65aeba82dbdc9ce81772c9c0f5d21faac6970fd9e431823",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "ledger-additions.md",
+      "privateFile": "ledger-additions.md",
+      "canonicalSha256": "461b2c50b0d1422121310732aa4f314a090aa6c1fef7e5e420faad89188a4a96",
+      "privateSha256": "921ab87e1909c4d0975be76f44c7bac57a3d6dbd9e1b6650d9395b5fd4663bfe",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "ledger-additions.md.original.txt"
+    },
+    {
+      "file": "ledger-additions.md.original.txt",
+      "canonicalSha256": "921ab87e1909c4d0975be76f44c7bac57a3d6dbd9e1b6650d9395b5fd4663bfe",
+      "privateFile": "ledger-additions.md",
+      "privateSha256": "921ab87e1909c4d0975be76f44c7bac57a3d6dbd9e1b6650d9395b5fd4663bfe",
+      "relation": "exact private source snapshot"
+    },
+    {
+      "file": "ledger-route-normalization.json",
+      "canonicalSha256": "249ea876c78c58adadebb0fb69ac92ac33b8a16593b51f2b101db3a5c21e7732",
+      "privateFile": null,
+      "privateSha256": null,
+      "relation": "director-authored or preparation-authored metadata"
+    },
+    {
+      "file": "logical-tester-ledger.json",
+      "privateFile": "logical-tester-ledger.json",
+      "canonicalSha256": "092d44cbe0c3b87a7f10cce75c74b0697b4738cd7908a04e149c6031777e16bb",
+      "privateSha256": "14167d034cf60ddbdf3cf9fb40693e51fa6f80fef910ae07f57ab2c0cd9d2ffc",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "logical-tester-ledger.json.original.txt"
+    },
+    {
+      "file": "logical-tester-ledger.json.original.txt",
+      "canonicalSha256": "14167d034cf60ddbdf3cf9fb40693e51fa6f80fef910ae07f57ab2c0cd9d2ffc",
+      "privateFile": "logical-tester-ledger.json",
+      "privateSha256": "14167d034cf60ddbdf3cf9fb40693e51fa6f80fef910ae07f57ab2c0cd9d2ffc",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "logical-tester-ledger.md",
+      "privateFile": "logical-tester-ledger.md",
+      "canonicalSha256": "1fe1482a476a077a52d287b8d51995efc533f3b891dc6d4c49aa0b7ec7d54eb2",
+      "privateSha256": "274b3239cefaf5a51a448a2d8596d44d8ef306971205fcc9eb09d68d94692f8d",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "logical-tester-ledger.md.original.txt"
+    },
+    {
+      "file": "logical-tester-ledger.md.original.txt",
+      "canonicalSha256": "274b3239cefaf5a51a448a2d8596d44d8ef306971205fcc9eb09d68d94692f8d",
+      "privateFile": "logical-tester-ledger.md",
+      "privateSha256": "274b3239cefaf5a51a448a2d8596d44d8ef306971205fcc9eb09d68d94692f8d",
+      "relation": "exact private source snapshot"
+    },
+    {
+      "file": "luz/brief.original.md.txt",
+      "privateFile": "luz/brief.original.md.txt",
+      "canonicalSha256": "28e5852ac54bc1529250e4bf694989aba62026f2fdc2bb0e887cb9e4d721b203",
+      "privateSha256": "28e5852ac54bc1529250e4bf694989aba62026f2fdc2bb0e887cb9e4d721b203",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "luz/completion.json",
+      "privateFile": "luz/completion.json",
+      "canonicalSha256": "1833e5723a939ed79308f90ad8f7d2ad2fb9f6ab5116750db9a4e33bfba4d475",
+      "privateSha256": "a3893699869a749ef0d364806bc757d9464876e46bf083c6e6d8820e62974aa7",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "luz/completion.json.original.txt"
+    },
+    {
+      "file": "luz/completion.json.original.txt",
+      "canonicalSha256": "a3893699869a749ef0d364806bc757d9464876e46bf083c6e6d8820e62974aa7",
+      "privateFile": "luz/completion.json",
+      "privateSha256": "a3893699869a749ef0d364806bc757d9464876e46bf083c6e6d8820e62974aa7",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "luz/desktop/driver.out",
+      "privateFile": "luz/desktop/driver.out",
+      "canonicalSha256": "070d6717a5630dc7ee7bc580cdf2d7855e7b1da424a92ac351fba3231ae0fdcd",
+      "privateSha256": "070d6717a5630dc7ee7bc580cdf2d7855e7b1da424a92ac351fba3231ae0fdcd",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "luz/desktop/release-start.json",
+      "privateFile": "luz/desktop/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "luz/desktop/release-start.json.original.txt"
+    },
+    {
+      "file": "luz/desktop/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "luz/desktop/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "luz/desktop/wall-clock.jsonl",
+      "privateFile": "luz/desktop/wall-clock.jsonl",
+      "canonicalSha256": "f293c675b052affce103491712a0e8c25b35b305393afc7e0a3f75abfb9f8f60",
+      "privateSha256": "f293c675b052affce103491712a0e8c25b35b305393afc7e0a3f75abfb9f8f60",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "luz/dispatch.json",
+      "privateFile": "luz/dispatch.json",
+      "canonicalSha256": "65324e6be42bb5be190998405e4857efd805c4ddf1197a2e825acf9d4599b23a",
+      "privateSha256": "65324e6be42bb5be190998405e4857efd805c4ddf1197a2e825acf9d4599b23a",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "luz/own-history.original.md.txt",
+      "privateFile": "luz/own-history.original.md.txt",
+      "canonicalSha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "privateSha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "luz/phone/driver.out",
+      "privateFile": "luz/phone/driver.out",
+      "canonicalSha256": "3c92a4d96494cae46ecd1e58368ed625239eb98fc464e698c42ce06a77f97fb5",
+      "privateSha256": "3c92a4d96494cae46ecd1e58368ed625239eb98fc464e698c42ce06a77f97fb5",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "luz/phone/release-start.json",
+      "privateFile": "luz/phone/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "luz/phone/release-start.json.original.txt"
+    },
+    {
+      "file": "luz/phone/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "luz/phone/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "luz/phone/wall-clock.jsonl",
+      "privateFile": "luz/phone/wall-clock.jsonl",
+      "canonicalSha256": "d5f7fea7b592eac8b82380e521b7987b4d81a1c2287e678c767b8c76ed75e3f0",
+      "privateSha256": "d5f7fea7b592eac8b82380e521b7987b4d81a1c2287e678c767b8c76ed75e3f0",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "luz/report.md",
+      "privateFile": "luz/report.md",
+      "canonicalSha256": "b734fd140da7ae3f3a37b07eadc9c148b730211cf0bca16c695c8002d5cb326e",
+      "privateSha256": "dcc263757ffb828b759366fdb1e9259164d6a24d65e53640b6ca96955c9b5c6b",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "luz/report.original.md.txt"
+    },
+    {
+      "file": "luz/report.original.md.txt",
+      "privateFile": "luz/report.original.md.txt",
+      "canonicalSha256": "dcc263757ffb828b759366fdb1e9259164d6a24d65e53640b6ca96955c9b5c6b",
+      "privateSha256": "dcc263757ffb828b759366fdb1e9259164d6a24d65e53640b6ca96955c9b5c6b",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "luz/validation.json",
+      "privateFile": "luz/validation.json",
+      "canonicalSha256": "51802354dd2712f9f84cba6b7935e7fbd6b9f4d973a181459ed163c0f0b38f81",
+      "privateSha256": "51802354dd2712f9f84cba6b7935e7fbd6b9f4d973a181459ed163c0f0b38f81",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/brief.original.md.txt",
+      "privateFile": "maya/brief.original.md.txt",
+      "canonicalSha256": "57bbf963546978fe6a4c1d63fbc18fba7348410d9a453814dde0c05182395373",
+      "privateSha256": "57bbf963546978fe6a4c1d63fbc18fba7348410d9a453814dde0c05182395373",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/completion.json",
+      "privateFile": "maya/completion.json",
+      "canonicalSha256": "a9c1019e429d7d79c0d319b929a4838b874165fb14d30a07c71582ba664886e1",
+      "privateSha256": "50b2f018f2fb5b2283f6b3ee5e4ffb9a81a0978c7702b5491c5ae4715d2678e3",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "maya/completion.json.original.txt"
+    },
+    {
+      "file": "maya/completion.json.original.txt",
+      "canonicalSha256": "50b2f018f2fb5b2283f6b3ee5e4ffb9a81a0978c7702b5491c5ae4715d2678e3",
+      "privateFile": "maya/completion.json",
+      "privateSha256": "50b2f018f2fb5b2283f6b3ee5e4ffb9a81a0978c7702b5491c5ae4715d2678e3",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "maya/desktop/driver.out",
+      "privateFile": "maya/desktop/driver.out",
+      "canonicalSha256": "15546ab6f8255b9bd5171e85b986346678d5cd9d9c3a53d1a659c200d5910f66",
+      "privateSha256": "15546ab6f8255b9bd5171e85b986346678d5cd9d9c3a53d1a659c200d5910f66",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/desktop/release-start.json",
+      "privateFile": "maya/desktop/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "maya/desktop/release-start.json.original.txt"
+    },
+    {
+      "file": "maya/desktop/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "maya/desktop/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "maya/desktop/wall-clock.jsonl",
+      "privateFile": "maya/desktop/wall-clock.jsonl",
+      "canonicalSha256": "3f54b5186f3530e6b7379f9f01c6cb3e8cbbabb282cfe32492c000565bab5f02",
+      "privateSha256": "3f54b5186f3530e6b7379f9f01c6cb3e8cbbabb282cfe32492c000565bab5f02",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/dispatch.json",
+      "privateFile": "maya/dispatch.json",
+      "canonicalSha256": "3b9f4aca719843713ba98e21a6911f29b90958ea438611736ad475fd2704454d",
+      "privateSha256": "3b9f4aca719843713ba98e21a6911f29b90958ea438611736ad475fd2704454d",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/own-history.original.md.txt",
+      "privateFile": "maya/own-history.original.md.txt",
+      "canonicalSha256": "9a653a43fd04fe567421c19bd5ba71f949ceec8c1d5b0517968a64cbb74699d8",
+      "privateSha256": "9a653a43fd04fe567421c19bd5ba71f949ceec8c1d5b0517968a64cbb74699d8",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/phone/driver.out",
+      "privateFile": "maya/phone/driver.out",
+      "canonicalSha256": "5bc3bf16c7db8f3f97c247d3796cd1af66dbd974bbfa51c56cbdb2b4e6eaecb7",
+      "privateSha256": "5bc3bf16c7db8f3f97c247d3796cd1af66dbd974bbfa51c56cbdb2b4e6eaecb7",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/phone/release-start.json",
+      "privateFile": "maya/phone/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "maya/phone/release-start.json.original.txt"
+    },
+    {
+      "file": "maya/phone/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "maya/phone/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "maya/phone/wall-clock.jsonl",
+      "privateFile": "maya/phone/wall-clock.jsonl",
+      "canonicalSha256": "852d16b842197dd7925f750158693add604ffa2bcd273193eae24a91c93bdf66",
+      "privateSha256": "852d16b842197dd7925f750158693add604ffa2bcd273193eae24a91c93bdf66",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/report.md",
+      "privateFile": "maya/report.md",
+      "canonicalSha256": "64d97d9a6b6f3bb0cd3091a9dead3b38cb2ab1a8347c554657b34114f8f5fe9f",
+      "privateSha256": "a24d76137a510fff41e95ffb8d22794ebcc80e658c4ce0c4756c464e26734073",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "maya/report.original.md.txt"
+    },
+    {
+      "file": "maya/report.original.md.txt",
+      "privateFile": "maya/report.original.md.txt",
+      "canonicalSha256": "a24d76137a510fff41e95ffb8d22794ebcc80e658c4ce0c4756c464e26734073",
+      "privateSha256": "a24d76137a510fff41e95ffb8d22794ebcc80e658c4ce0c4756c464e26734073",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "maya/validation.json",
+      "privateFile": "maya/validation.json",
+      "canonicalSha256": "6a2150ea51815ad36d3ee5ed7a5e48de4db35ea78285bcfccdb5a85e3f8ae745",
+      "privateSha256": "6a2150ea51815ad36d3ee5ed7a5e48de4db35ea78285bcfccdb5a85e3f8ae745",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "primary-quote-validation.json",
+      "privateFile": "primary-quote-validation.json",
+      "canonicalSha256": "26a41c30ef1a95b2f26c1bc289a6b421be6b7e82a1ed3bc767c3880a21f01010",
+      "privateSha256": "26a41c30ef1a95b2f26c1bc289a6b421be6b7e82a1ed3bc767c3880a21f01010",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "producer-extraction.json",
+      "privateFile": "producer-extraction.json",
+      "canonicalSha256": "c201c85b3d1356d8572798c184130b936ea0a1a116c867fb493517f5017f9956",
+      "privateSha256": "b70e78cb47d555fd3e5bfff0bdf63cb028db56029430a1e209624ff26164ceac",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "producer-extraction.json.original.txt"
+    },
+    {
+      "file": "producer-extraction.json.original.txt",
+      "canonicalSha256": "b70e78cb47d555fd3e5bfff0bdf63cb028db56029430a1e209624ff26164ceac",
+      "privateFile": "producer-extraction.json",
+      "privateSha256": "b70e78cb47d555fd3e5bfff0bdf63cb028db56029430a1e209624ff26164ceac",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "rosa/brief.original.md.txt",
+      "privateFile": "rosa/brief.original.md.txt",
+      "canonicalSha256": "5fd383343fae8cfb6ab47fa8da7495f82db643b4b8598f063c7c99d6212144e9",
+      "privateSha256": "5fd383343fae8cfb6ab47fa8da7495f82db643b4b8598f063c7c99d6212144e9",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "rosa/completion.json",
+      "privateFile": "rosa/completion.json",
+      "canonicalSha256": "f49bd0e4b62a45144689b56ec247f2a3274bc5602d67ef82d640954e70921ddb",
+      "privateSha256": "c909689252b91a2a68b7b7fe2c508d15ed5fdb0e7f671978a3fb0b50d3bb69ac",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "rosa/completion.json.original.txt"
+    },
+    {
+      "file": "rosa/completion.json.original.txt",
+      "canonicalSha256": "c909689252b91a2a68b7b7fe2c508d15ed5fdb0e7f671978a3fb0b50d3bb69ac",
+      "privateFile": "rosa/completion.json",
+      "privateSha256": "c909689252b91a2a68b7b7fe2c508d15ed5fdb0e7f671978a3fb0b50d3bb69ac",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "rosa/desktop/driver.out",
+      "privateFile": "rosa/desktop/driver.out",
+      "canonicalSha256": "a4dd42fa5e484a77bb1d95995b706b481dfb4ad8ed9d64451cd617e45dd59598",
+      "privateSha256": "a4dd42fa5e484a77bb1d95995b706b481dfb4ad8ed9d64451cd617e45dd59598",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "rosa/desktop/release-start.json",
+      "privateFile": "rosa/desktop/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "rosa/desktop/release-start.json.original.txt"
+    },
+    {
+      "file": "rosa/desktop/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "rosa/desktop/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "rosa/desktop/wall-clock.jsonl",
+      "privateFile": "rosa/desktop/wall-clock.jsonl",
+      "canonicalSha256": "beae396200d51c4e96c3591213b502d4a7ef726f3aad13b1086882118b6006f7",
+      "privateSha256": "beae396200d51c4e96c3591213b502d4a7ef726f3aad13b1086882118b6006f7",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "rosa/dispatch.json",
+      "privateFile": "rosa/dispatch.json",
+      "canonicalSha256": "13279006a65430c3511f2e0ce695536c9a861386c35eb4f873a76e052da9fb89",
+      "privateSha256": "13279006a65430c3511f2e0ce695536c9a861386c35eb4f873a76e052da9fb89",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "rosa/own-history.original.md.txt",
+      "privateFile": "rosa/own-history.original.md.txt",
+      "canonicalSha256": "ce85d82b70f676b3000c7494a3443161b1c88e0314bd533fd97140b5f830bff5",
+      "privateSha256": "ce85d82b70f676b3000c7494a3443161b1c88e0314bd533fd97140b5f830bff5",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "rosa/phone/driver.out",
+      "privateFile": "rosa/phone/driver.out",
+      "canonicalSha256": "471e7a05a8c1b6df270d324cc8122cac5a822694d01462f88656d6143ad8eacc",
+      "privateSha256": "471e7a05a8c1b6df270d324cc8122cac5a822694d01462f88656d6143ad8eacc",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "rosa/phone/release-start.json",
+      "privateFile": "rosa/phone/release-start.json",
+      "canonicalSha256": "12a3a3d21b7f0173fe67519b3a0b058c79a1b9a7ba0aeb784f20fe6855c30b78",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "rosa/phone/release-start.json.original.txt"
+    },
+    {
+      "file": "rosa/phone/release-start.json.original.txt",
+      "canonicalSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "privateFile": "rosa/phone/release-start.json",
+      "privateSha256": "9cb6958287950e84a6b4b99113864e45bfd90d507439890ed6e7a757be76715f",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "rosa/phone/wall-clock.jsonl",
+      "privateFile": "rosa/phone/wall-clock.jsonl",
+      "canonicalSha256": "18bd1c075bb38070a3da7953319ca79d7c101cd708d3a57d2663c13b255ba287",
+      "privateSha256": "18bd1c075bb38070a3da7953319ca79d7c101cd708d3a57d2663c13b255ba287",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "rosa/report.md",
+      "privateFile": "rosa/report.md",
+      "canonicalSha256": "e0372488385687131dd485a2cb3addb0ab6d799e97ec961d0433a08f5b6be46a",
+      "privateSha256": "042e3f47b8ab00d84583c4f49eb1fa458b5faa3bcc14cb6c33d83e9cdab22db9",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "rosa/report.original.md.txt"
+    },
+    {
+      "file": "rosa/report.original.md.txt",
+      "privateFile": "rosa/report.original.md.txt",
+      "canonicalSha256": "042e3f47b8ab00d84583c4f49eb1fa458b5faa3bcc14cb6c33d83e9cdab22db9",
+      "privateSha256": "042e3f47b8ab00d84583c4f49eb1fa458b5faa3bcc14cb6c33d83e9cdab22db9",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "rosa/validation.json",
+      "privateFile": "rosa/validation.json",
+      "canonicalSha256": "422b33e1748cc0c850dd78c94aed1713cdde83c91fa09e61e6046eaa1d15373e",
+      "privateSha256": "422b33e1748cc0c850dd78c94aed1713cdde83c91fa09e61e6046eaa1d15373e",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "screenshots-manifest.json",
+      "privateFile": "screenshots-manifest.json",
+      "canonicalSha256": "56ecce144f30f64ef174e18181b185a1dd5296dc36c7bfa835a77dbf3f1cc3d5",
+      "privateSha256": "56ecce144f30f64ef174e18181b185a1dd5296dc36c7bfa835a77dbf3f1cc3d5",
+      "relation": "byte-copy"
+    },
+    {
+      "file": "select-control/control.cjs.original.txt",
+      "canonicalSha256": "1202490e03d2c2da8868dceff1a4eaa2ecc89285d63da4cae89dd8a2dc527bf4",
+      "privateFile": "select-control/control.cjs",
+      "privateSha256": "1202490e03d2c2da8868dceff1a4eaa2ecc89285d63da4cae89dd8a2dc527bf4",
+      "relation": "exact private source snapshot"
+    },
+    {
+      "file": "select-control/result-closed-fold.json",
+      "privateFile": "select-control/result-closed-fold.json",
+      "canonicalSha256": "1a39f82222175190748a95a7459f82a41c2969fb5da17bb58f5dac551a774717",
+      "privateSha256": "332ea43764dd3800c92ce6f5eb98166e11510534b1185d9300f5c6f9c0a86d54",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "select-control/result-closed-fold.json.original.txt"
+    },
+    {
+      "file": "select-control/result-closed-fold.json.original.txt",
+      "canonicalSha256": "332ea43764dd3800c92ce6f5eb98166e11510534b1185d9300f5c6f9c0a86d54",
+      "privateFile": "select-control/result-closed-fold.json",
+      "privateSha256": "332ea43764dd3800c92ce6f5eb98166e11510534b1185d9300f5c6f9c0a86d54",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "select-control/result.json",
+      "privateFile": "select-control/result.json",
+      "canonicalSha256": "2127892965f800b935cab5cd9ba8d3cc6e4674f583bbfa25dfd2e67e956b3ce7",
+      "privateSha256": "185d5c6525a5ecd96a779d6750c11f3b6bf01206d8892da4a291990dfe7729e9",
+      "relation": "readable formatting view, exact source linked separately",
+      "rawOriginal": "select-control/result.json.original.txt"
+    },
+    {
+      "file": "select-control/result.json.original.txt",
+      "canonicalSha256": "185d5c6525a5ecd96a779d6750c11f3b6bf01206d8892da4a291990dfe7729e9",
+      "privateFile": "select-control/result.json",
+      "privateSha256": "185d5c6525a5ecd96a779d6750c11f3b6bf01206d8892da4a291990dfe7729e9",
+      "relation": "exact source serialization snapshot"
+    },
+    {
+      "file": "source-packet-sha256.original.json.txt",
+      "privateFile": "sha256.json",
+      "canonicalSha256": "93b03567f1c610ba4f3bb9de1b1d4de6d932377467d36aa8f80aa25843ed66f3",
+      "privateSha256": "93b03567f1c610ba4f3bb9de1b1d4de6d932377467d36aa8f80aa25843ed66f3",
+      "relation": "byte-copy renamed as inert source-epoch snapshot"
+    }
+  ],
+  "excluded": [
+    {
+      "file": "select-control/after-select.png",
+      "privateSha256": "8461df78b14009fe9263163b4255981396ec2f3a05c6e3bfb09b4497b4dd4a91",
+      "reason": "PNG pixels are not imported; hash and view receipts stay in screenshots-manifest.json / README"
+    },
+    {
+      "file": "select-control/before-select.png",
+      "privateSha256": "603c643c1cdfb08989c5f263c0a754af35675515c3d61749435c38b2337e1b66",
+      "reason": "PNG pixels are not imported; hash and view receipts stay in screenshots-manifest.json / README"
+    },
+    {
+      "file": "select-control/control.cjs",
+      "reason": "Historical program kept byte-exact as select-control/control.cjs.original.txt; no runnable duplicate view",
+      "privateSha256": "1202490e03d2c2da8868dceff1a4eaa2ecc89285d63da4cae89dd8a2dc527bf4"
+    }
+  ],
+  "directorFinalized": "2026-10-31T04:20:25.321248+00:00",
+  "directorFormatPass2": "2026-10-31T04:30:16.058115+00:00"
+}

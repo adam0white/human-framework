@@ -1,0 +1,157 @@
+{
+  "tester": "Leila Mansour",
+  "validationTime": "2026-10-31T00:49:14.644762+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T00:26:54.030Z",
+        "elapsed_s": 356.662,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I would stop here for tonight. Good: spreading rumours and witnessed deeds. Not good: I cannot see what my words changed. I will try the desktop later.",
+        "game_clock": "Mon 19:50",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 346.496,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [59.804],
+      "earlyPulse": [171.726],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T00:24:22.357Z",
+          "elapsed_s": 204.989,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T00:25:42.188Z",
+          "elapsed_s": 284.82,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Go to flat 3"
+          },
+          "reaction": "Burak is still out. Waiting is the only move; I will wait for him to come home.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Go to flat 3 is not on the page now; it was listed 44 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T00:25:46.521Z",
+          "elapsed_s": 289.153,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Got 10 lira and a thank-you for the sweep. Skipping toward Tuesday.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T00:28:16.176Z",
+        "elapsed_s": 81.967,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the desktop visit after under two minutes. I have seen the same replies and the same stock lines as on my phone, and my reply choice changed nothing. The swapped newspapers and the spreading rumours were the only things I would come back to see play out.",
+        "game_clock": "Mon 07:43",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 78.678,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T00:27:32.632Z",
+          "elapsed_s": 38.423,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "for certain"
+          },
+          "reaction": "Second visit: the water news is marked sure for me, so I tell it as certain this time, the other way from the phone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 10,
+          "error": "for certain matches 2 controls; tap by point from a screenshot (ambiguous target, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

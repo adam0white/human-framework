@@ -430,3 +430,208 @@ The browser is no longer needed. Coordinator owns driver/browser cleanup. I crea
 1. Let me hear a response to “I came to listen” that I can connect to saying it.
 2. Let the empty walking and waiting pass faster.
 ```
+
+
+<!-- selected-continuity-key: light-1030:goodhands:diego:free -->
+## 2026-10-30 Good Hands first visit — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/goodhands/diego/report.md). Build28086c1f64d9a42b369c9f8904b22fd33063e00d, HF4.8.1; free stop, fresh phone360x690 and desktop1280x800. Sequential device visits, not alternative paired arms. Both viewports actually viewed. No Feedback note submitted. Driver timeouts with visible transitions remain tool observations; no complete-month claim.
+
+I would not come back on my own; the game would have to give me something to lose or something I haven't found out yet, and after two visits it gave me neither.
+
+**phone — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                                                                               |
+| --------- | ------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 4.764     | input        |        | Second visit, same evening on the phone. I remember the nanny office. This time I will do a reference call first and use the Pace setting.                                                                                                                          |
+| 62.401    | first_minute |        | Phone, same office, I know the script. Cash 3000 this time, clock 10:18. Bench has the same three names. I will skip interviews and go straight to references, since that was the only thing that gave a real answer last time.                                     |
+| 67.75     | input        |        | Straight to the reference call, a different applicant this time.                                                                                                                                                                                                    |
+| 76.245    | note         |        | Same reference answer pattern as the desktop: instructions repeated means patient. Quick and clear on the phone, buttons are big enough. Ending the call and going to the family.                                                                                   |
+| 84.348    | note         |        | Phone layout works: the desk, bench and verb buttons all fit, and the verbs sit in a pinned bar at the bottom. The red task banner is clipped (08:00 cut off). Trying Skip this time, since I skipped nothing on desktop.                                           |
+| 98.269    | input        |        | Kaya family again, same template. Promising to look is free.                                                                                                                                                                                                        |
+| 104.955   | input        |        | Negotiating Ozlem for Arslan, already knowing how it goes.                                                                                                                                                                                                          |
+| 108.951   | input        |        | Last time I promised only checked traits and nothing bit back. Now I will also promise honest, which I have not checked, to see if risk has a price.                                                                                                                |
+| 117.83    | input        |        | Same instant agreement as desktop. I even promised honest without checking and nothing pushed back. Accepting.                                                                                                                                                      |
+| 123.738   | tool         |        | Cash 5250 over rent at 11:29 again, in two minutes of play. Skipping to see what the game has after the rent is safe.                                                                                                                                               |
+| 128.461   | input        |        | Looking at the map on the phone, the one place with mood.                                                                                                                                                                                                           |
+| 134.426   | want_quit    | BORED  | Second time through the same opening: reference call, agreement in seconds, rent covered before noon. Map on phone is cramped, Office button sits on the map. I would leave now; the second visit gave me nothing new to find out.                                  |
+| 142.124   | stop         | BORED  | I am stopping the phone session at 140 seconds. Same opening as desktop: reference call, instant agreement, rent covered by 11:29. Phone layout was fine and the map was nice but cramped. In Feedback I picked I am stopping, typed nothing, no Submit, then Back. |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------- | ------------ | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 7.587     | input        |        | Placement agency, a rent deadline, applicants on a bench. Opening.                                                                                                                                                                                                                                                                                                                                                                  |
+| 13.21     | input        |        | Office opened on first tap, the second tap was mine. Clock 08:31 already running. Clicking the first applicant on the bench.                                                                                                                                                                                                                                                                                                        |
+| 16.73     | input        |        | Obvious verb: interview. Notes are all unknown, so ask.                                                                                                                                                                                                                                                                                                                                                                             |
+| 23.986    | input        |        | Phone rings early, before the 11:00 the skip button promised. Answering.                                                                                                                                                                                                                                                                                                                                                            |
+| 27.701    | input        |        | Family wants patient, pays 9000; Gülce wants 8000. Learnable risk so far. Stalling honestly.                                                                                                                                                                                                                                                                                                                                        |
+| 34.287    | input        |        | Family said patient matters. Looking for a question about that.                                                                                                                                                                                                                                                                                                                                                                     |
+| 42.228    | input        |        | Her answer is hedged, and Nermin writes down a reading of it: still unsure on patient. I like that the game keeps my doubt visible.                                                                                                                                                                                                                                                                                                 |
+| 46.539    | input        |        | Last question before I must decide. Hours matter for the family.                                                                                                                                                                                                                                                                                                                                                                    |
+| 53.254    | input        |        | Next applicant. Interviews cost me game minutes but the real minute passes fast too.                                                                                                                                                                                                                                                                                                                                                |
+| 59.66     | first_minute |        | I run a placement agency: find a nanny by Tuesday 08:00 and make 5000 rent by Friday. The verbs are plain: pick someone, interview, ask questions. Each question costs game minutes and a limited count, which is a real budget. Gülce hedged on patient and Nermin wrote a doubt note, I like that. No fighting-game reflex here, but the clock and a phone call that interrupted my interview gave it some pressure. Fine so far. |
+| 74.062    | input        |        | Şebnem said almost the same words as Gülce: I manage, unless it goes on all morning. The two feel like copies. That blunts the choosing.                                                                                                                                                                                                                                                                                            |
+| 81.565    | input        |        | Both candidates gave identical answers on wage, work, hours. I have learned nothing that separates them. Hoping the third differs.                                                                                                                                                                                                                                                                                                  |
+| 88.347    | input        |        | Trying the reference call, different verb. Maybe that separates people.                                                                                                                                                                                                                                                                                                                                                             |
+| 99.103    | input        |        | There it is: a reference gave a real answer about patience, in the exact words the family used (instructions repeated). That separates Özlem from the two copies. Interviews felt like noise, the reference like signal.                                                                                                                                                                                                            |
+| 109.763   | input        |        | Three green traits from a reference. I am going for the placement now, wage still unknown, which is a risk I am choosing.                                                                                                                                                                                                                                                                                                           |
+| 113.532   | input        |        | Promising only what I have evidence for. Learnable risk: the family remembers what I promise.                                                                                                                                                                                                                                                                                                                                       |
+| 120.893   | input        |        | Both sides agreed in seconds, wage 9000, fee 9000. No haggling happened; felt easy. Accepting.                                                                                                                                                                                                                                                                                                                                      |
+| 125.239   | input        |        | Cash 5250, already over the 5000 rent, at 11:00 Monday. That was quick. Rent threat is gone this early? Curious what is left to play.                                                                                                                                                                                                                                                                                               |
+| 132.995   | input        |        | Kaya family has the same script as Arslan: same sentence about frustrated repeating, same 9000. It reads like a template.                                                                                                                                                                                                                                                                                                           |
+| 140.072   | input        |        | Bench is empty. Two candidates left and said call after 11:11 / 11:51. Checking the City button, the only other thing to touch.                                                                                                                                                                                                                                                                                                     |
+| 144.338   | input        |        | Opening the City view jumped the clock 11:22 to 11:45 and the landlord rang. I did not ask for time to pass; looking at a map cost me 23 game minutes.                                                                                                                                                                                                                                                                              |
+| 160.473   | input        |        | Hand-drawn Izmir map with little stick people walking; that is the mood I like. Hülya arrived from the pharmacy via Mr Hüsnü, so his news did produce a person. Back to the office.                                                                                                                                                                                                                                                 |
+| 164.396   | input        |        | A new person with her own side story: oven cook, a baking job, something she may or may not discuss. That is more interesting than the nanny copies.                                                                                                                                                                                                                                                                                |
+| 172.648   | input        |        | Seeds from hotel windowsills, a garden she carries with her. That is the distinctive mood. Giving her the ledge; it costs me nothing visible but feels like a human decision.                                                                                                                                                                                                                                                       |
+| 179.34    | pulse        |        | Interviews were samey, the reference call and Hülya with her seedling ledge were what held me. Rent was nearly covered in two minutes, so the pressure is already light. I am curious but not gripped; nothing here is physical or fast.                                                                                                                                                                                            |
+| 189.389   | input        |        | Hülya is a cook, the Kaya family wants a carer. Not a fit. Sending her home and keeping the number.                                                                                                                                                                                                                                                                                                                                 |
+| 228.103   | input        |        | My End the conversation tap timed out 32 seconds; the game had already moved to 13:35 by itself and the landlord is calling again. Clock keeps moving while I am slow.                                                                                                                                                                                                                                                              |
+| 233.43    | pulse        |        | Re-logging my pulse properly, my first was a second early. The reference call and the Hulya ledge were good. But I am mostly pressing buttons through text, and Mr Husnu keeps phoning with news that changes nothing I can touch. Rent is already covered.                                                                                                                                                                         |
+| 244.154   | want_quit    | TASTE  | Third family now calling, and every call is a menu of Answer, Promise to look, End the conversation. I am answering phones, not choosing. Rent is already covered and I have no sense of what a mistake would cost. The reference call was the one moment that felt like finding something out.                                                                                                                                     |
+| 249.473   | input        |        | The menu has a Pace setting I had not seen: Automatic, Slow, Steady, Fast. Opening Feedback first.                                                                                                                                                                                                                                                                                                                                  |
+| 255.136   | stop         | TASTE  | I am stopping the desktop session here. The reference call and the seedling ledge were good, but I spent four minutes answering phones and picking from short menus, with rent covered in two minutes and no cost I could feel. In Feedback I picked I am stopping, typed nothing, no Submit.                                                                                                                                       |
+
+<!-- selected-continuity-key: light-1030:hearsay:diego:free -->
+## 2026-10-30 Hearsay LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/hearsay/diego/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/hearsay/diego/report.original.md.txt), original SHA256 `2f7ac069c39a704b9907e8af45e8391af467d1c815e6186cae15e233c23140fd`. Build 76ebfb8f73956e1bbdc5cc6318d9f15e453d105b/HF4.12.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- Tool limitation: his Who?/What? exact-label selects timed out repeatedly on both devices. Both sessions are instrument-impaired: desktop he continued and wrote BORED, phone he wrote CONFUSED. His words are retained; they are not unqualified game taste, and no functional game-selector claim follows ([instrument-qualification.json](../reviews/light-2026-10-30/hearsay/instrument-qualification.json)).
+- The director's separate phone control found the native selects persist selections when reached by public role locators and that the exact getByLabel names match zero elements ([select-control/result.json](../reviews/light-2026-10-30/hearsay/select-control/result.json)). The control is a diagnostic return, not another player.
+- His supplied history used explicit own FREE/latest reports with no continued-alternative body.
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+# Hearsay: Diego Silva's report
+
+**Would I return?** Not tonight and not to this opening. I would come back on another evening only if my claims showed a visible result and the bench were not empty for two real minutes.
+
+**Ranked asks**
+1. Fill or skip the empty-bench time. At 08:00 on desktop everyone left and nothing could be touched for about two real minutes.
+2. Make the Who? and What? choices work, and show what a claim did. Selecting a person failed on both devices, and claims produced no visible reply.
+3. Show the cost of "Press for private details" on Osman. The clock moved two minutes and nothing visibly changed.
+
+## 1. Session
+
+- Persona: Diego Silva, first visit to Hearsay.
+- Round and arm: light-1030, free stop (floor 0, ceiling 25 minutes). This is not a paired comparison.
+- Own history: read in full. It has no Hearsay content. It supplied my voice and my dislikes: waiting, forms and no consequences.
+- URL: https://hearsay.adamwhite.work/?labRunSource=agent
+- Session A: desktop 1280x800, light mode, port 21405. 234 s elapsed on the driver.
+- Session B: phone 360x690 touch, light mode, port 21404. 69 s elapsed on the driver.
+
+## 2. First impressions
+
+- **A, about 4 s:** the title page is cream with a large serif "Hearsay". I pressed Begin.
+- **A, about 6–11 s:** I talked to Rıza, then repeated his secret at another table. Rıza stopped trusting me immediately. I liked that cost.
+- **A, about 19–21 s:** a damaging claim about Dilan gave no visible reply. I only found it in the record.
+- **A, about 88 s:** everyone had left and the bench was empty. I was waiting.
+- **B, about 4–22 s:** same opening. I kept Rıza's and Osman's secrets and helped both privately.
+- **B, about 28–32 s:** the Who? select failed again. A praise claim on Derya showed nothing.
+
+## 3. Verbatim diary lines
+
+Each line gives elapsed seconds, then the kind and the text. Session A text is as it appears in my notes; the quoted lines are my own words.
+
+**Session A (desktop)**
+- 4.331 tap Begin: "Tea garden, paid lunch on day 13. Pressing Begin."
+- 5.889 tap Invite a quiet conversation: "Obvious verb: talk to Rıza."
+- 7.72 tap Let the conversation finish: "Letting it run; a fifteen minute talk at game speed."
+- 9.491 tap Repeat this at another table: "I want to see the cost of gossip. Repeating it."
+- 11.098 note: "Repeating his secret made Rıza stop trusting me at once. That is a visible price, I like it. Now trying Derya."
+- 16.007 tap Offer practical help and keep this private: "Derya has a real story. Helping, privately."
+- 19.284 tap Make a damaging claim about this trait: "Slander Dilan on keeping promises, unchecked, to see what bites."
+- 21.22 tap Garden record: "The claim gave no visible reply. Checking the record."
+- 26.16 select Who? Osman: "I saw Osman pad an invoice, two crates. That is evidence I own. Selecting Osman, honesty." (driver timeout)
+- 28.001 tap option Osman: "Select failed first try; tapping the option instead." (error: Osman left the page)
+- 35.49 note: "The Who? dropdown will not take my select twice (driver timeout), while the clock keeps running. Not sure if tool or game. Going around it: open Osman directly."
+- 42.042 tap Offer practical help and keep this private: "He owns up to me alone. That is leverage for the supply deal. Helping quietly."
+- 46.875 tap Talk about someone else: "Screenshot shows Talk about someone else is a collapsed fold; that is why my select timed out. Opening it first."
+- 54.236 tap Ask what they have heard: "Selects will not work for me, so I use the defaults: ask Osman what he has heard about Derya."
+- 61.532 first_minute: "I run a tea garden and must open a paid lunch on Day 13; people talk, I choose what to do with what they tell me. Repeating a secret cost me Riza at once. Osman told me his own wrong, I kept it private, and he then said written orders matter to him. The Who/What dropdowns will not take my select (folded panel), so I use defaults. Clock runs while I read. Interested, not yet hooked."
+- 63.769 tap Fast: "Day 1 at 07:30 and I am slow. Trying Fast pace."
+- 88.133 note: "Everyone has left the garden at 08:00; bench empty, nothing to do. On Fast, 20 real seconds is about 20 game minutes, so a 14-day game is hours at this rate. I am waiting for people to come back."
+- 184.241 pulse, engagement 3, game clock Day 1 09:39: "The first 40 seconds had real consequences (a repeated secret cost me Riza, a private confession from Osman, a hint about written orders). Since 08:00 I have only waited with an empty bench for about two real minutes. Interested in the people, tired of waiting."
+- 185.96 want_quit, BORED: "Bench empty since 08:00, nothing to touch for two real minutes, and Day 13 is far away. I would leave now."
+- 228.49 tap Feedback: "Opening Feedback before I stop."
+- 230.505 tap I'm stopping: "Choosing I am stopping; not typing or submitting."
+- 232.099 tap Not now: "Closing Feedback without sending."
+- 234.415 stop, BORED: "Stopping. Opened Feedback, chose I am stopping, closed with Not now, nothing typed or sent. First 40 seconds had real consequences, then two empty-bench minutes. I would not sit through 13 days like this."
+
+**Session B (phone)**
+- 4.347 tap Begin: "Phone, second visit. Begin."
+- 6.14 tap Invite a quiet conversation: "Same obvious verb on the phone: talk to Rıza."
+- 7.466 tap Let the conversation finish: "Letting it run."
+- 9.257 tap Offer practical help and keep this private: "This time I keep his secret and help, to compare with the desktop gossip run."
+- 10.624 shot b-002.png: "Checking how the phone layout looks."
+- 12.204 tap Osman at the garden: "Osman next, the supplier."
+- 14.169 tap Press for private details: "Trying the pushy verb on Osman, the one I skipped on desktop."
+- 15.86 note attempt: rejected as "Unsupported op", so the first attempt was not recorded.
+- 17.422 note: "I pressed Press for private details on Osman: the clock moved 06:22 to 06:24 and nothing visible changed. Unsure whether it was refused or silently worked."
+- 18.632 tap Invite a quiet conversation: "Osman, a real talk now."
+- 21.574 tap Offer practical help and keep this private: "Osman told me the same story as on desktop, so the secrets are fixed. Helping privately again."
+- 23.614 tap Talk about someone else: "Opening the fold on the phone first this time."
+- 27.915 select Who? Dilan: "Fold is open now, trying the select once on the phone." (driver timeout)
+- 29.923 tap option Dilan: "Select fails again with the fold open, so I try tapping the option by name." (error: Dilan left the page)
+- 32.337 tap Make a positive claim about this trait: "Defaults only: praise Derya on keeping promises. I want to see if praise shows anything."
+- 61.461 first_minute: "Phone: same opening. I kept both secrets and helped, no gossip; money rose 400 to 540 by 07:24 with nobody angry. Talk about someone else still shows no visible reply to claims, and Who?/What? selects time out here too. Reading is fine on the small screen. Interested, a bit less than on desktop because I already know the people."
+- 63.401 want_quit, CONFUSED: "Second evening on the phone, same walls: claims give no visible reply and I cannot choose Who or What. I would leave."
+- 66.613 tap I'm confused: "Choosing I am confused; nothing typed or sent."
+- 69.214 stop, CONFUSED: "Stopping on the phone. Opened Feedback, chose I am confused, closed with Not now, nothing typed or sent. Claims show no result and I cannot pick Who or What."
+
+I logged no pulse on the phone because I stopped before 180 s.
+
+## 4. Moments
+
+- **What held me:** the first 40 seconds on desktop. Repeating a secret cost me Rıza at once. Osman admitted a wrong and then wrote a repayment letter. Helping privately was accepted, and the money rose from 400 to 520.
+- **What lost me:** the empty bench from 08:00 onward on desktop. On Fast, the clock moved about 1 game minute per real second, and nothing was available to do.
+- **Quit wishes:** on desktop, a BORED want_quit at 185.96 s. I stopped at 234 s. On the phone, a CONFUSED want_quit at 63.4 s. I stopped at 69 s. Neither passed.
+- **Pulse:** engagement 3 at 184.241 s on desktop. I was interested in the people and tired of waiting.
+
+## 5. Confusion and clarity
+
+- **Clear:** the goal and the Day 4 and Day 8 deadlines. The conversation verbs are clear, and "Let the conversation finish" and "Leave the conversation" are obvious. Private versus repeated is explained in plain words.
+- **Clear:** repeating a secret has a visible price. Money moves when trust moves.
+- **Confusing:**
+  - Claims about someone else gave me no visible reply. A damaging claim on desktop and a praise claim on the phone both only advanced the clock.
+  - "Press for private details" on Osman also showed no visible change.
+  - I could not choose Who? or What?. The select timed out in 4 attempts across both devices, even with the fold open on the phone. I cannot tell whether that is the driver or the game, so I used the defaults.
+  - On desktop, people leave and their buttons disable. I only learned this from "left the page just before the tap".
+
+## 6. Device use
+
+- **Desktop screenshots viewed:** `desktop/a-001.png` is the cream title page with the "Hearsay" heading, Begin, Feedback, Fullscreen and a Recording checkbox. `desktop/a-002.png` is Day 1 07:21 with the person tiles on the left and Osman's card on the right. It was readable and tidy. That is 2 of 5 manual shots.
+- **Phone screenshots viewed:** `phone/b-001.png` is the title page at 360 wide. It is readable, with large buttons and no overflow. `phone/b-002.png` is Day 1 06:21, scrolled down with Rıza's card, "Sit and talk again" and the folded "Talk about someone else". The person tiles sit below the card, so I had to scroll to switch people. That is 2 of 5 manual shots.
+- **Controls used:**
+  - Desktop: tap by name, tap by text, tap with role option, select (failed), Fast, Game menu, Feedback, I'm stopping, Not now.
+  - Phone: the same, except Fast.
+- **Unseen layout:** I did not screenshot the Who?/What? fold open on the phone, or the Feedback dialog on either device. I read them only in the text list.
+- **Seen trouble:** the select failures on both devices.
+
+## 7. Stop and return
+
+- **Desktop stop:** "Stopping. Opened Feedback, chose I am stopping, closed with Not now, nothing typed or sent. First 40 seconds had real consequences, then two empty-bench minutes. I would not sit through 13 days like this." Reason: BORED.
+- **Phone stop:** "Stopping on the phone. Opened Feedback, chose I am confused, closed with Not now, nothing typed or sent. Claims show no result and I cannot pick Who or What." Reason: CONFUSED.
+- **Feedback availability:** present on both devices. I chose one label and pressed Not now. I typed nothing and pressed no Submit.
+- **Would I return voluntarily?** Not tonight and not to this opening. I would come back on another evening only if my claims showed a visible result and the bench were not empty for two real minutes.
+  - **Leave it running?** No. Leaving it running would not hold me, because the clock only passes empty bench time.
+  - **Another evening?** Possibly. The secrets and their cost interested me, and I would try one more run with the Who?/What? choices working.
+
+## 8. Changes wanted
+
+1. Fill or skip the empty-bench time.
+2. Make the Who?/What? choices work, and show what a claim did.
+3. Show the cost of "Press for private details" on Osman.
+
+## 9. Compared with my last visit
+
+First visit.
+
+## Cleanup
+
+I touched no repository, worktree, server or browser of my own.
+
+`git worktree list`: none of mine exist.

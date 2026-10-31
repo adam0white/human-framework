@@ -1,0 +1,179 @@
+{
+  "time": "2026-10-31T01:24:55.802453+00:00",
+  "scope": "partial2/5 only, original tap-only instrument",
+  "limits": [
+    "Both lack native hold, so insist efficacy untested.",
+    "Aisha phone had four31515\u201331524ms tool timeouts; Mei desktop one31515ms. Public controls may have changed during the operation. No game functional defect proved.",
+    "Later hold-enabled returns must remain separate originals.",
+    "No full round or cold observation yet.",
+    "Aisha executed two sleep 0 Bash calls outside the single-curl instruction. Results completed with no output; no file/network operation was requested. Preserve this protocol breach and real elapsed times; no counterfactual timing claim. Three malformed-quotation curls across first3 failed before curl execution; original errors/retries remain in transcripts."
+  ],
+  "sessions": {
+    "aisha": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T01:07:26.443Z",
+          "elapsed_s": 222.728,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone at Tuesday 08:28, about 3.7 minutes. I liked her own words after each choice and the night card, but I could not hold to insist and Tuesday repeated Monday. Pressed I am stopping in Feedback, typed nothing, no Submit.",
+          "game_clock": "Tue 08:28",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "earlyPulse": [
+          164.242
+        ],
+        "earlyFirstMinute": [],
+        "longDriverErrors": [
+          {
+            "t": "2026-10-31T01:04:45.124Z",
+            "elapsed_s": 61.409,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Skip to the next event"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 31515,
+            "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Skip to the next event', exact: true }).or(getByRole('link', { name: 'Skip to the next event', exact: true })).or(getByRole('tab', { name: 'Skip to the next event', exact: true })).or(getByRole('menuitem', { name: 'Skip to the next event', exact: true })).or(getByRole('checkbox', { name: 'Skip to the next event', exact: true })).or(getByRole('radio', { name: 'Skip to the next event', exact: true })).or(getByRole('option', { name: 'Skip to the next event', exact: true })).or(getByRole('switch', { name: 'Skip to the next event', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+            "requested_control_present_before": true
+          },
+          {
+            "t": "2026-10-31T01:05:47.613Z",
+            "elapsed_s": 123.898,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Text Mum and promise to call tomorrow. She would agree only if you insist."
+            },
+            "reaction": "A small, keepable promise: text and promise tomorrow. That is the one I would pick.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 31516,
+            "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+            "requested_control_present_before": true
+          },
+          {
+            "t": "2026-10-31T01:06:21.334Z",
+            "elapsed_s": 157.619,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Put the phone on the floor and go to sleep. She would agree only if you insist."
+            },
+            "reaction": "The tap reported a timeout though the game moved on, probably the driver. She scrolled past her stop; poor woman. Suggesting sleep.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 31516,
+            "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+            "requested_control_present_before": true
+          },
+          {
+            "t": "2026-10-31T01:07:12.689Z",
+            "elapsed_s": 208.974,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Get up and put your feet on the floor. She would agree only if you insist."
+            },
+            "reaction": "Now it tells me: press and hold to insist. My driver can only tap, so I cannot insist. Noted, may be a driver limit.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 31524,
+            "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+            "requested_control_present_before": true
+          }
+        ]
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T01:08:40.708Z",
+          "elapsed_s": 72.8,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the desktop at Monday 10:43, about 71 seconds. It was word for word the Monday I had just played on my phone, and I could not insist. Pressed I am stopping in Feedback, typed nothing, no Submit.",
+          "game_clock": "Mon 10:43",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "earlyPulse": [],
+        "earlyFirstMinute": [],
+        "longDriverErrors": []
+      }
+    },
+    "mei": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T01:13:23.964Z",
+          "elapsed_s": 253.091,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Monday 21:33 after one day. Scenes were human and readable, but I could not tell what insisting buys and the kinder options always needed it. I chose I am stopping in Feedback and typed nothing.",
+          "game_clock": "Monday 21:33",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "earlyPulse": [
+          176.06
+        ],
+        "earlyFirstMinute": [],
+        "longDriverErrors": [
+          {
+            "t": "2026-10-31T01:13:10.224Z",
+            "elapsed_s": 239.351,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Text Mum and promise to call tomorrow. She would agree only if you insist."
+            },
+            "reaction": "A promise with a date is what I like, so I try it.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 31515,
+            "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+            "requested_control_present_before": true
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T01:14:37.419Z",
+          "elapsed_s": 73.07,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on the phone at Monday 08:27 after about 70 s. Readable at 360 wide, nothing broke. I chose I am stopping in Feedback and typed nothing.",
+          "game_clock": "Mon 08:27",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "earlyPulse": [],
+        "earlyFirstMinute": [],
+        "longDriverErrors": []
+      }
+    }
+  }
+}

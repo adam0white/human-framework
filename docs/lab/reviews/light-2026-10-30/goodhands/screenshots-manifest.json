@@ -1,0 +1,226 @@
+[
+  {
+    "tester": "Jonas Berg",
+    "device": "desktop",
+    "image": "goodhands/jonas/desktop/first-minute.png",
+    "sha256": "d9361f1d55ff28d3b94c6cdecfa47e8e34e801b30d1bffaeae82a929fe076c5d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "desktop",
+    "image": "goodhands/jonas/desktop/a-001.png",
+    "sha256": "75d8aec354e42c4f0b8fff65173d6cd09b4f14d6ebe869f4e91510cf68a9db23",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "phone",
+    "image": "goodhands/jonas/phone/b-001.png",
+    "sha256": "55ae2a7632c997f2843ce41f80d5224b27feeeaee20ee81488236534f876bbdc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "phone",
+    "image": "goodhands/jonas/phone/first-minute.png",
+    "sha256": "b91757e666273d78877f65b7d09a169f47335e2615ce80d075782635e3214b3c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "phone",
+    "image": "goodhands/jonas/phone/b-002.png",
+    "sha256": "0ca8239d4c6465e91a400775cb3babf6a17ca75fe9f971a117f5175a011ef3e4",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "desktop",
+    "image": "goodhands/aisha/desktop/first-minute.png",
+    "sha256": "78279293864350ecb13b246a4685be393ceede7306adbf44e38de6a12b031890",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "desktop",
+    "image": "goodhands/aisha/desktop/a-002.png",
+    "sha256": "1bbf0a9f4a9d8a8c2766fe8ff69e3e93802baacfa4bd2d86594a94582da43e2d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "desktop",
+    "image": "goodhands/aisha/desktop/a-001.png",
+    "sha256": "75d8aec354e42c4f0b8fff65173d6cd09b4f14d6ebe869f4e91510cf68a9db23",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "phone",
+    "image": "goodhands/aisha/phone/b-001.png",
+    "sha256": "55ae2a7632c997f2843ce41f80d5224b27feeeaee20ee81488236534f876bbdc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "phone",
+    "image": "goodhands/aisha/phone/first-minute.png",
+    "sha256": "ed0c8c5adf7692b4a8ea3fe06dafa1f770a09714fcccee8f7a8f56cfa8078fb9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "phone",
+    "image": "goodhands/aisha/phone/b-002.png",
+    "sha256": "403d2851ce7774a6546578b682f4cb1aa52dd5e23da5d2216e7c4ebb96616481",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "desktop",
+    "image": "goodhands/diego/desktop/first-minute.png",
+    "sha256": "e44c489b1bddca9f8eebb8f64c3825c6c672b2dd98f69ed259f906d1d00145d9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "desktop",
+    "image": "goodhands/diego/desktop/a-002.png",
+    "sha256": "f7b7745b0ff0fbc88a61c9f9a4c39970a0b8f9def85bf8d0072c1b6598ff9145",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "desktop",
+    "image": "goodhands/diego/desktop/a-001.png",
+    "sha256": "75d8aec354e42c4f0b8fff65173d6cd09b4f14d6ebe869f4e91510cf68a9db23",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "image": "goodhands/diego/phone/b-001.png",
+    "sha256": "55ae2a7632c997f2843ce41f80d5224b27feeeaee20ee81488236534f876bbdc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "image": "goodhands/diego/phone/first-minute.png",
+    "sha256": "f9ca628b4527350551a795374a4ad40d20ea02e6873038d0806869bed7071895",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "image": "goodhands/diego/phone/b-002.png",
+    "sha256": "af24419d1306938a53f111021a5227a98a0100955436236abe157db1abdbb1ad",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "image": "goodhands/diego/phone/b-003.png",
+    "sha256": "20b1f9cbe5cf8633c8bc44b7a223d146d371978ec441df55e046ac80f9e7e3bc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "goodhands/rosa/phone/first-minute.png",
+    "sha256": "85dcaa604161848b8d2c6296d48f0918e386500ae6858623f63ef3fdc0b8f9aa",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "goodhands/rosa/phone/a-002.png",
+    "sha256": "653b2266aa5aad5fea4c273755bc47927454a35c393c70f7497e197811cab254",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "goodhands/rosa/phone/a-001.png",
+    "sha256": "55ae2a7632c997f2843ce41f80d5224b27feeeaee20ee81488236534f876bbdc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "goodhands/rosa/desktop/b-001.png",
+    "sha256": "75d8aec354e42c4f0b8fff65173d6cd09b4f14d6ebe869f4e91510cf68a9db23",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "goodhands/rosa/desktop/first-minute.png",
+    "sha256": "ceebd2f70aa07a8fb1d9b6134b160466ec3c1df3a03de5d61a9a123b64fdc4e4",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "goodhands/rosa/desktop/b-002.png",
+    "sha256": "1ad48541186c09d1b4ad53b46dacd783811ff836673e6734957dc5859798bab6",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lena Fischer",
+    "device": "desktop",
+    "image": "goodhands/lena/desktop/first-minute.png",
+    "sha256": "bed5a25f8c2534cfe482fc76c774e72d33a6e290e49fe59701f2979c18732343",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lena Fischer",
+    "device": "desktop",
+    "image": "goodhands/lena/desktop/a-002.png",
+    "sha256": "293b134f90d26fb6ede783ebb0a1658fe8b4643bc83923738376c0a6637b1a5b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lena Fischer",
+    "device": "desktop",
+    "image": "goodhands/lena/desktop/a-003.png",
+    "sha256": "a4dd271de124ac6c164f484cff49e802fc6a1d425516d3705fec41b2bbc23325",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lena Fischer",
+    "device": "desktop",
+    "image": "goodhands/lena/desktop/a-001.png",
+    "sha256": "75d8aec354e42c4f0b8fff65173d6cd09b4f14d6ebe869f4e91510cf68a9db23",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lena Fischer",
+    "device": "phone",
+    "image": "goodhands/lena/phone/first-minute.png",
+    "sha256": "f83636210940b5844fdcb6b3d3f9fd36cff774ff2908ab08ea7f5814f2df04fd",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lena Fischer",
+    "device": "phone",
+    "image": "goodhands/lena/phone/p-003.png",
+    "sha256": "bd18ab25ba1b6026d0d511f33729fb05582f3b1b6906d8faec9cd1cf1501c785",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lena Fischer",
+    "device": "phone",
+    "image": "goodhands/lena/phone/p-002.png",
+    "sha256": "fddeddb8ebecb56830a84307f5ffc7dc367a7e257e34c421a3c2071550139c29",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lena Fischer",
+    "device": "phone",
+    "image": "goodhands/lena/phone/p-001.png",
+    "sha256": "55ae2a7632c997f2843ce41f80d5224b27feeeaee20ee81488236534f876bbdc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  }
+]

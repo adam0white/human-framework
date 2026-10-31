@@ -1,0 +1,128 @@
+# Hearsay: Rosa Alvarez report
+
+**Would you return voluntarily?** "I would come back another evening on the big screen, but only if the game told me plainly what to do while the garden is empty and how to order the bread. I would not leave it running, and I would not come back on the phone if all I do there is wait."
+
+**Ranked asks**
+1. When everyone has left the garden, say what I can do now and when they will return. On the phone I waited about two minutes with nothing to do.
+2. Say in one plain sentence how to get the bread and produce arranged by Day 4. Put it on the first screen, not only in the Garden record.
+3. Make the "Talk about someone else" lists work, and show that it is a folded heading, not a button. On the desktop my choice in the "Who?" list timed out.
+
+## 1. Session
+- **Persona:** Rosa Alvarez, 62, retired school administrator from Puebla. Second-language English reader.
+- **Exposure:** first target visit to Hearsay. I read all of own-history.md (lines 1–718) and the cleanup rule. The history holds my diaries from The Rope, The Glance, Good Hands, Voice, Watch, Pass, Valley, Commonstead and Left Hand. None mention Hearsay.
+- **Round and arm:** light-1030, first panel round, free stop (floor 0, ceiling 25 minutes).
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, port 21406. About 196 s.
+- **Session B:** 1280x800 keyboard and mouse, light mode, port 21407. About 31 s.
+- I recognised no one from earlier games.
+
+## 2. First impressions
+- **A, 0.5 s:** the title was clear: I run a tea garden in Istanbul and want a paid workers' lunch on Day 13.
+- **A, 2.7 s:** the screenshot showed a calm page with Begin, Feedback and Fullscreen buttons in a row.
+- **A, 5.3 s:** after Begin there were eight named people and a long Day 13 line. The line said the bread, produce and cooking were not arranged. I understood it.
+- **A, 11 s:** I liked that Rıza's secret was ordinary and kind: doorway photographs and a daughter.
+- **B, 1.9 s:** the title page looked good on the big screen.
+- **B, 7.6 s:** "Talk about someone else" looked like a button but was a folded heading.
+
+## 3. Verbatim diary
+These are the lines the driver recorded as reactions or logs, in order. Elapsed seconds are the driver's.
+
+**Session A (phone)**
+- 2.7 s: "Title is clear: I run a tea garden, goal is a paid lunch on Day 13."
+- 7.4 s: "Eight people, Riza asks about a lane. I try the gentle option."
+- 9.5 s: "A fifteen-minute talk; clear. I let it finish."
+- 11.4 s: "A private secret about Riza. I keep it private and offer help. I like this."
+- 13.2 s: "Nice, ordinary. Now I turn to Derya."
+- 18.4 s: "Derya was hurt for reporting an error. Sad, ordinary. I help privately."
+- 52.6 s: "Everyone left; benches empty. I wonder how I order bread. I open the record."
+- 68.8 s: "Waiting is slow; I try Fast."
+- 130.5 s: "Still empty benches. Fast is only about one game hour per half minute. I wait."
+- 71.5 s, first_minute, engagement 3, Day 1 08:30: "I understand the goal: I run a tea garden, people tell me private things, I keep them private or repeat them, and I need lunch supplies agreed by Day 4. The record explains the goal. Text is long but plain. Now everyone has left and I only wait. I do not know how I order bread."
+- 187.2 s, pulse, engagement 2, Day 1 10:26: "The two talks were warm and clear, but for two minutes I only wait on an empty garden. Nothing tells me what to do next or when people return."
+- 189.2 s, want_quit, BORED, Day 1 10:26: "Empty garden for three minutes and no task I can do. I want to leave. I will check the menu and feedback first."
+- 196.5 s, stop, BORED, Day 1 10:30, engagement 2: "I stop here. I liked the two quiet talks and the private choices. But the garden emptied and I only waited, and I do not know how to order the bread."
+
+Disclosure: my first attempt at the first_minute log failed on shell quoting at about 66 s and sent nothing. I resent it plainly at 71.5 s, which is after 60 s. I also sent one invalid wait op ("kind") at 54 s by mistake. The driver said it was my invalid request, not a driver failure.
+
+**Session B (desktop)**
+- 3.9 s: "Second visit, big screen. Same title; I know the aim now."
+- 5.8 s: "This time I want to see what Talk about someone else does." (The tap failed; it was a folded heading.)
+- 7.6 s: "It is a folded heading, not a button; I did not know that from its look."
+- 12.8 s: "I choose Osman and Honesty. I only ask what Riza has heard. I will not accuse anyone." (The select timed out.)
+- 20.5 s: "The select control timed out twice. I try tapping the option instead." (The reply said Osman had left the page.)
+- 23.7 s: "I cannot choose the person in the Talk about someone else list. I open the menu to stop."
+- 30.7 s, stop, TOOL, Day 1 06:19, engagement 3: "I stop. The Who? list in Talk about someone else would not take my choice; it timed out twice and tapping the option also failed. I did not get to play on the big screen beyond this."
+
+I logged no first_minute, pulse or want_quit on the desktop. The session lasted 31 s, so those checkpoints are untested there.
+
+## 4. Moments
+- **What held me:** Rıza and Derya's private stories. "Offer practical help and keep this private" gave a gentle, clear result: a walking route on public streets, and a request letter that "Hatice helps check". Money also rose from 400 to 540 lira by itself.
+- **What lost me:** at 06:42 to 10:30 game time, everyone left and the benches were empty. The text said "There are no customers to serve." Nothing told me what to do or when they would return. On Fast the clock moved about one game hour per 30 real seconds. I never reached the part about supplies.
+- **Quit wish:** A, 189 s, BORED. It did not pass. I stopped at 196 s.
+- **Pulse:** one, at 187 s on the phone, engagement 2.
+- **Desktop:** the select problem was probably a tool limit, not a game fault. I cannot tell which. The same "Who?" list showed as plain clickable options in the driver's list.
+
+## 5. Confusion and clarity, from actual play
+**Clear**
+- The goal and the Day 13 line, once I opened the Garden record: "Agree on supplies on Day 4 and paid cooking on Day 8. You need at least four reservations."
+- The conversation choices: the buttons said what they did, and there was a "Let the conversation finish" button.
+- "Making a claim does not prove it. Something told to you in private stays private unless you repeat it." I understood this on first reading.
+
+**Unclear**
+- "Hatice has not noticed enough to describe Rıza's condition." I did not know what a "condition" was or how to notice more. I did not reread it, but I could not use it.
+- "Garden record: what you heard" is folded, and the goal sentence about Day 4 and Day 8 sits only inside it. I found it by chance.
+- What I should do when the garden is empty. The game did not say.
+- On the desktop, "Talk about someone else" looks like a button but is a folded heading. Inside it are two lists and four buttons ("Make a damaging claim", "Withdraw your accusation") that I did not understand.
+- "Pace: Automatic. The garden slows while you read." changed to "Automatic pace is available in the game menu" after I tapped Fast. I did not know what Automatic does.
+
+Rereads: none required a second reading, so I did not reach my quit rule for rereading.
+
+### Per-screen concept table
+Counts are my own, from what I saw.
+
+| Screen (what it showed, elapsed_s) | Exact sentence(s) I had to reread | Concepts the screen asked me to learn | Count |
+|---|---|---|---|
+| A: Title (0.5 s) | none | tea garden, workers' lunch, Day 13, How to play (folded), Begin, Feedback, Fullscreen, Recording checkbox, Other ways to begin, All games, People across games, Lab privacy, Debug | 13 |
+| A: Garden at 06:00 (5.3 s) | none | clock and day, Game menu, Day 13 lunch line (bread, produce, cooking, meals reserved), lira cash and debt, Pace Automatic, Pause/Slow/Normal/Fast, eight named people, the garden picture, "condition", Invite a quiet conversation, Press for private details, Talk about someone else, Pour tea without sharing news, Garden record | 16 |
+| A: Conversation in progress (7.4 s) | none | fifteen-minute conversation, Let it finish, Leave it | 3 |
+| A: After the talk (9.5 s) | none | About Rıza (folded), Offer practical help and keep this private, Keep this private, Repeat this at another table | 4 |
+| A: Empty garden (50.7 s) | none | people out and away, benches empty, Sit and talk again disabled | 3 |
+| A: Garden record open (52.6 s) | none (long, but plain) | the day's list with the goal, deadlines Day 4 and Day 8, a hidden-looking invoice story with Osman, "the account from the wedding reception" | 4 |
+| A: Game menu (189.7 s) | none | clock paused, Resume, Use automatic pace, Feedback, Fullscreen, New game, Download this run, Other ways to begin | 8 |
+| A: Feedback (191.5 s) QUIT | none | verdict group, "What is happening?" group, note, name, queued with play history, what is sent, Not now, Submit | 8 |
+| B: Title (1.9 s) | none | same as phone | 13 |
+| B: Garden at 06:00 (3.9 s) | none | same as phone, no new items | 16 |
+| B: Talk about someone else open (7.6 s) | none | Who? list, What? list (promises, honesty, kindness, generosity), Ask what they have heard, positive claim, damaging claim, withdraw accusation, a rule note | 8 |
+
+I quit on the phone at the Feedback screen after the empty garden. The two sentences nearest my quit were "The benches are empty. There are no customers to serve." and "Hatice has not noticed enough to describe Rıza's condition." I did not need to reread either, but neither told me what to do.
+
+## 6. Device use
+**Phone (360x690, touch)**
+- **Screenshots viewed:**
+  - `phone/a-001.png`: the title page. I saw the "Hearsay" heading, three short paragraphs, "How to play" folded, and the three buttons Begin, Feedback and Fullscreen. I also saw the Recording checkbox and a bordered recording notice at the bottom. Text was readable.
+  - `phone/a-002.png`: the game at 10:05. I saw the top bar with "Hearsay Day 1 · 10:05" and a "Game menu" button, the Day 13 lunch line, the lira line, and Pause, Slow, Normal and Fast buttons with Fast highlighted. Below them was Derya's card, which was cut off at "Derya writes a specific request for an…". The garden picture and the people buttons were not on that first screen. I did not scroll to see them, so I never saw the picture.
+- **Controls used:** Begin, Invite a quiet conversation, Let the conversation finish, Offer practical help and keep this private, a name button (Derya), Garden record, Fast, Game menu, Feedback, I'm stopping, Not now.
+- **Trouble seen:** the phone page pushed the garden people below the first screen, so on a phone I never saw them in a picture. I also tried to tap "Dilan at the garden" at 50 s, but everyone had moved. The driver reported "the page has changed" and that was game state, not a tool failure.
+
+**Desktop (1280x800)**
+- **Screenshot viewed:** `desktop/b-001.png`: the title page. A centred column of text, large heading "Hearsay", the Begin, Feedback and Fullscreen buttons, the Recording checkbox, and a wide bordered notice at the bottom. It was easy to read. I took no screenshot of the game screen on the desktop, so I did not see its layout. I took two manual screenshots in total on phone and one on desktop.
+- **Controls used:** Begin, Talk about someone else (tap by text), the "Who?" select (failed twice), a tap on the "Osman" option (failed), Game menu, Feedback, I'm confused, Not now.
+- **Block:** the "Who?" select timed out twice ("locator.selectOption: Timeout 1500ms exceeded", marked "driver failure"). The one tap on the option also failed because Osman "left the page just before the tap". I treat this as a possible driver block and stopped as TOOL. I cannot say whether the game or the tool caused the timeout.
+- **Unseen:** the desktop game layout, and anything after the first conversation.
+
+## 7. Stop and return
+- **Session A:** `stop`, BORED, at 196.5 s. My words: "I stop here. I liked the two quiet talks and the private choices. But the garden emptied and I only waited, and I do not know how to order the bread."
+- **Session B:** `stop`, TOOL, at 30.7 s. My words: "I stop. The Who? list in Talk about someone else would not take my choice; it timed out twice and tapping the option also failed. I did not get to play on the big screen beyond this."
+- **Feedback:** both devices offered "I'd keep playing", "Not sure", "I'd stop here", "I'm stopping" and "I'm confused". On the phone I chose "I'm stopping". On the desktop I chose "I'm confused". I typed nothing, changed no consent or recording setting, and pressed no Submit. I closed each with "Not now".
+- **Would I return voluntarily?** Yes, but only on one condition: the game must tell me plainly what to do when everyone leaves the garden, and how to order the bread. I would come back another evening, on the big screen, to find out what happens to Rıza and Derya. I would not leave it running, because the garden empties and I just watch. I would not return on the phone to wait.
+
+## 8. Changes I would want
+1. When everyone has left, say what I can do and when they return. Example: "The garden is empty until 12:00. You can read the record or skip ahead."
+2. Put the goal on the first screen in one sentence: "Agree on bread and vegetables by Day 4, and on cooking by Day 8." Now it appears only inside the folded Garden record.
+3. Make "Talk about someone else" clearly a folded heading, and check that the "Who?" and "What?" lists accept a choice on the desktop.
+
+## 9. Compared with my last visit
+First visit.
+
+---
+Cleanup: I created no worktrees, branches, servers or helper processes, and touched no repository. The coordinator owns the two drivers. I took two phone screenshots and one desktop screenshot, within the limit. There is no `git worktree list` to show because I touched no repository.

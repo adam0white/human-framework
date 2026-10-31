@@ -1,0 +1,121 @@
+{
+  "tester": "Mei Tan",
+  "validationTime": "2026-10-31T01:56:59.445082+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T01:13:23.964Z",
+        "elapsed_s": 253.091,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Monday 21:33 after one day. Scenes were human and readable, but I could not tell what insisting buys and the kinder options always needed it. I chose I am stopping in Feedback and typed nothing.",
+        "game_clock": "Monday 21:33",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 249.15,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [
+        176.06
+      ],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T01:12:10.223Z",
+          "elapsed_s": 179.35,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Note: my previous pulse went in at 176 s, just short of 180; I will repeat it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1016,
+          "error": "Skip to the next event is not on the page now; it was listed 6 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T01:13:10.224Z",
+          "elapsed_s": 239.351,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Text Mum and promise to call tomorrow. She would agree only if you insist."
+          },
+          "reaction": "A promise with a date is what I like, so I try it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31515,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T01:14:37.419Z",
+        "elapsed_s": 73.07,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on the phone at Monday 08:27 after about 70 s. Readable at 360 wide, nothing broke. I chose I am stopping in Feedback and typed nothing.",
+        "game_clock": "Mon 08:27",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "p-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 68.891,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

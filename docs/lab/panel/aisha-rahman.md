@@ -382,3 +382,282 @@ These are my original log lines, unchanged. The raw JSONL holds every line.
 
 **Cleanup:** I touched no git repo and created no worktrees or servers, so there's no `git worktree list` to show. The only screenshot I created is current-phone.png. The driver's own first-minute.png may also exist; I didn't open it.
 ```
+
+
+<!-- selected-continuity-key: light-1030:goodhands:aisha:free -->
+## 2026-10-30 Good Hands first visit — selected free visit
+
+Source: [complete own report](../reviews/light-2026-10-30/goodhands/aisha/report.md). Build28086c1f64d9a42b369c9f8904b22fd33063e00d, HF4.8.1; free stop, fresh phone360x690 and desktop1280x800. Sequential device visits, not alternative paired arms. Both viewports actually viewed. No Feedback note submitted. Driver timeouts with visible transitions remain tool observations; no complete-month claim.
+
+Yes, I would come back another evening, but only if the people's own words changed what the game believed about them. I would not leave it running, because the clock moves while I read.
+
+**phone — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                       |
+| --------- | ------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 10.798    | input        |        | Same title page on the phone.                                                                                                                                               |
+| 19.339    | input        |        | Did the office open?                                                                                                                                                        |
+| 22.698    | input        |        | On the phone I will follow Şebnem again, the one with a hard reference.                                                                                                     |
+| 28.997    | input        |        | Starting with her work history and her side, since I only know a reference after last time.                                                                                 |
+| 32.143    | input        |        | Family calling again; I will answer on the phone too.                                                                                                                       |
+| 35.741    | input        |        | Same family call as on the laptop; second time it reads as a repeat.                                                                                                        |
+| 40.465    | first_minute |        | Second visit, same evening: I know the loop now, so it is quick. The phone layout is readable, though the news bar is cut off at the top.                                   |
+| 42.609    | want_quit    | BORED  | I just did this same opening on the laptop. The same family call and the same apology, so I would stop on the phone.                                                        |
+| 49.65     | stop         | BORED  | Stopping after under a minute on the phone. I had just played the same opening on the laptop, so there was nothing new to learn. I pressed I am stopping and typed nothing. |
+
+**desktop — original reaction words**
+
+| elapsed_s | kind         | reason | words                                                                                                                                                                                                                |
+| --------- | ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.985     | input        |        | A placement agency; matching nannies to families sounds like my sort of careful promise.                                                                                                                             |
+| 14.353    | input        |        | Three people and one family; I will read one applicant properly before deciding.                                                                                                                                     |
+| 17.803    | input        |        | Interview first; I want to hear her before judging.                                                                                                                                                                  |
+| 24.911    | input        |        | A family call; I want to hear what they need before I place anyone.                                                                                                                                                  |
+| 28.638    | input        |        | I will not promise an answer I cannot yet keep.                                                                                                                                                                      |
+| 35.494    | input        |        | Nice that Nermin apologised to Gülce for the phone; the dialogue respects what happened. I want a patience question.                                                                                                 |
+| 56.448    | input        |        | A reference who is reachable now is worth calling before I commit anyone.                                                                                                                                            |
+| 61.952    | first_minute |        | I understand: three applicants, one family, I interview and call references before placing. Nermin apologising to Gülce after the family call felt considerate. I am following Şebnem now.                           |
+| 66.397    | tool         |        | x                                                                                                                                                                                                                    |
+| 69.18     | input        |        | Melek said Şebnem listened when instructions were repeated, yet my notes still say I am unsure she is patient. That did not respect what I just heard.                                                               |
+| 73.087    | input        |        | She was late without calling. I want the reason before I judge her.                                                                                                                                                  |
+| 77.281    | input        |        | Asked why it ended and got only a worse fact, not a reason. I feel I am collecting verdicts rather than hearing her side.                                                                                            |
+| 118.268   | input        |        | The interview tap took 32 s and reported a timeout, but the interview had opened. Odd, probably the driver.                                                                                                          |
+| 141.085   | input        |        | Özlem sounds patient; I want her reference to confirm it before I recommend her.                                                                                                                                     |
+| 159.112   | input        |        | Missing change, could not explain it. That is not the same as taking it; I want her side before I judge.                                                                                                             |
+| 174.312   | input        |        | A day later than the Arslans, and I have time. A promise to look, not to deliver, feels like one I can keep.                                                                                                         |
+| 183.203   | pulse        |        | I am following three individuals and each reference changes my view; the apology to Gülce and the honest option not to promise felt respectful. Slightly worried Şebnem is judged on one reference without her side. |
+| 185.822   | input        |        | Şebnem has waited three hours; she should be heard in her own words before I decide.                                                                                                                                 |
+| 189.822   | input        |        | Good: I can put what the reference said to her and hear her answer.                                                                                                                                                  |
+| 196.067   | note         |        | She owned it: I did not arrive at the agreed time. I should have called. That is a person, not a verdict; but it did not change the note, which still says I doubt her. I would want it to count.                    |
+| 251.188   | input        |        | The last question tap reported a 30 s timeout again, but the answer had registered. Same as with Özlem. All three now say they must leave and be called back after a set time.                                       |
+| 258.916   | input        |        | The clock moved on by itself while I looked at the screen, and now the landlord is calling. Facing him.                                                                                                              |
+| 263.259   | input        |        | A nice neighbourly touch; Gülce is nearby. The landlord is a person here, not a rent timer.                                                                                                                          |
+| 342.823   | want_quit    | BORED  | Everyone has gone home and the clock keeps running while I read. I have seen the shape of it; I would stop here rather than push on.                                                                                 |
+| 357.366   | stop         | BORED  | Stopping after about six minutes. I liked the people and the apologies, but the clock runs while I read and the landlord call is still ringing; I pressed I am stopping in Feedback and typed nothing.               |
+
+<!-- selected-continuity-key: light-1030:murmur:aisha:free -->
+## 2026-10-31 Murmur (Two Voices) LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/murmur/aisha/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/murmur/aisha/report.original.md.txt), original SHA256 `b7d222edb240eaaea83c35039c2616bfaa9bb7292c7bd968411228c912cafae3`. Build 6a5ce8fd83fd34d6a24493e92f32f4ec0a16f197/HF4.9.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- Original collection used the tap-only instrument: hold efficacy is untested, not a proved broken game input ([murmur-original-director-qualification.json](../reviews/light-2026-10-30/murmur/murmur-original-director-qualification.json)). Her phone log has four tool timeouts of about 31.5 s and a premature pulse at 164.242 s.
+- Protocol breach: she executed two sleep 0 Bash calls outside the curl-only instruction. They completed with no output and no file or network request; actual elapsed times and raw words are unchanged.
+- The packet README qualifies the original first-two kind-choice complaints as instrument-qualified. This is one of five people / seven reports in the Murmur round. Her separately labelled diagnostic return follows below.
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+**Would you return voluntarily?** Yes, I would come back another evening, but only if I could really insist on the kind choice (press and hold) and Tuesday did not just replay Monday's morning. I would not leave it running.
+
+**Ranked asks**
+1. Let me insist on a choice. My taps were declined every time, the "Press and hold" hint appeared only on Tuesday, and my driver could only tap, so I may have missed the main mechanic. Say how to insist on the first screen.
+2. Make Tuesday's opening differ from Monday's: same alarm, same oversleep, same "ring road?" Keep the memory of the coffee, but change the scene.
+3. Give me a reason in the choice card for why she is "willing" or "only if you insist", and say what insisting costs before I try it.
+
+## 1. Session
+
+- Persona: Aisha Rahman, first visit. Release commit to be added by the coordinator.
+- Round: light-1030, free stop (floor 0). Game shown: "Two Voices" (Dilan, Istanbul); you called it Murmur.
+- Own history: I read all of own-history.md (lines 1–443 and 444–578, nothing unread). It is from other games.
+- URL: https://murmur.adamwhite.work/?labRunSource=agent
+- Session 1: phone 360x690, 222.7 s (about 3.7 min). Session 2: desktop 1280x800, 72.8 s (about 1.2 min).
+
+## 2. First impressions
+
+- Phone, 4 s: "Two Voices", a gentle premise.
+- Phone, 14 s: a 58-second countdown. It is clear. "She is willing" or "only if you insist" sits under each choice.
+- Phone, 20 s: Dilan declined my promise to Aylin and said so in her own words. I liked that she can refuse.
+- Desktop, 6–25 s: same opening, word for word as the phone.
+
+## 3. Verbatim
+
+Phone:
+- 0 s open (no log).
+- 7.2 "A title page, Two Voices. I am a voice in Dilan head; sounds gentle. Starting."
+- 15.6 "Countdown timer but clear. She is willing, so I go with her."
+- 20.7 "Oh, my five minutes became thirty. I own that. I want her to call Mum; a careful promise."
+- 22.5 "She declined and said so in her own words; I like that she can refuse."
+- 26.7 "I would rather she told the truth to Murat; I know she may not."
+- 28.8 "She lied, and I could not stop her. Honest about it, at least."
+- 64.4 "Ece is near tears; a map pin feels cold. I want a human voice for her, even if Dilan refuses."
+- 68.6 first_minute, Mon 10:43: "I understand: I whisper suggestions, Dilan decides, and she often declines the kinder one unless I insist. Her own words after each choice are honest and human. I cannot hold to insist with this driver. Mild frustration that kindness loses by default."
+- 74.6 "Murat mocking Ece, the girl I just failed to help. I want Dilan to defend her, gently."
+- 77.9 "She laughed at Ece and gave a reason. It hurt, in the way a true thing does. I cannot insist; my taps only suggest."
+- 83.3 (log on the drink-water tap; there were two logs at 83.3 and 86.7)
+- 86.7 note, Mon 15:21: "Four kind suggestions in a row declined, each with her own reason. Honest and not scolding, but my taps feel like they do nothing unless I can hold to insist, which I cannot do here. I am a voice with no weight."
+- 123.9 "A small, keepable promise: text and promise tomorrow. That is the one I would pick." (the tap timed out in the driver; the game moved on)
+- 157.6 "The tap reported a timeout though the game moved on, probably the driver. She scrolled past her stop; poor woman. Suggesting sleep."
+- 160.2 "End of Monday: a night card. It names what she did not do, and says what she thinks of me: I had something to say about everything. Fair, a little stinging."
+- 164.2 pulse 4, Mon in bed: "The night card is lovely: struck-through promises, her intentions carried to tomorrow, and a verdict on me. I want to repair Mum on Tuesday. Still, I mostly watched her ignore me." This was logged before 180 s, so it is premature; please flag it.
+- 175.1 "The third coffee came back to bite her at midnight. The game remembers what happened."
+- 209.0 "Now it tells me: press and hold to insist. My driver can only tap, so I cannot insist. Noted, may be a driver limit."
+- 212.0 pulse 3, Tue 08:27: "Tuesday opens the same as Monday: alarm, oversleep, the ring road. The memory of the coffee is nice, but I cannot insist, so I watch the same morning. Interest falling."
+- 214.1 want_quit, FRUSTRATED: "I cannot insist with a tap, so my kindest suggestions lose every time and Tuesday repeats Monday. I would stop here on the phone."
+- 222.7 stop, FRUSTRATED: "Stopping the phone at Tuesday 08:28, about 3.7 minutes. I liked her own words after each choice and the night card, but I could not hold to insist and Tuesday repeated Monday. Pressed I am stopping in Feedback, typed nothing, no Submit."
+
+Desktop:
+- 6.0 "Same title page, wider. Second visit same evening; I know Dilan now and want to try getting her up on time."
+- 13.7 "This time I say nothing to see what she does on her own."
+- 19.9 "Same Monday as on my phone, identical text. I try the same promise to Aylin."
+- 25.8 "Exactly the same Murat scene as on the phone. Say nothing here to see if she chooses honestly alone."
+- 62.5 first_minute, Mon 10:43: "Second visit, same evening, and Monday is word for word the phone one. I know the loop, so Ece and the lunchtime mockery are no surprise. On the laptop I hoped hold-to-insist would be possible, but the driver gives me only taps. I would stop soon."
+- 64.6 want_quit, BORED: "I just did this exact Monday on my phone; the same lines and the same refusals. Nothing new to learn on the laptop. I would stop."
+- 72.8 stop, BORED: "Stopping the desktop at Monday 10:43, about 71 seconds. It was word for word the Monday I had just played on my phone, and I could not insist. Pressed I am stopping in Feedback, typed nothing, no Submit."
+
+## 4. Moments
+
+- Held me: Dilan's own sentences after each choice, such as "Speaking up for Ece means facing the whole table. I'm going to laugh along." The Monday night card (struck-through promises, her intentions, "What she thinks of you"). The coffee returning at midnight on Tuesday.
+- Lost me: every kind suggestion was declined. I could not use insist, and the hold hint showed only on Tuesday. Tuesday's morning repeated Monday's. The desktop repeated the phone exactly.
+- Quit wishes: phone at 214 s (FRUSTRATED), desktop at 64.6 s (BORED). Neither passed.
+- Pulses: 164 s (premature), 3 at 212 s.
+
+## 5. Confusion and clarity
+
+- Clear: the countdown, "She is willing / only if you insist", and her stated reasons.
+- Unclear: how to insist. On Monday the "Hold to insist. This costs trust" text appeared only on the first choice, and I never worked out whether tapping could insist. Tuesday said "Press and hold an option to insist." I do not know whether this is a driver limit or a game problem.
+- Driver: three taps (about 123.9 s, 157.6 s and 208.98 s) reported 30-second timeouts but the game had moved on. I suspect the driver, not the game. One "Skip ahead" at 61.4 s also timed out.
+
+## 6. Device use
+
+- Phone shots viewed: p-001.png (title page, text readable, button below the fold at first) and p-002.png (Monday night card, clear, red "Continue to Tuesday" button). Desktop shot viewed: d-001.png (centred column, red Start button).
+- I used taps on named controls, wait, the menu, Feedback, "I'm stopping" and ← Back. I saw no layout trouble on either size.
+- Unseen: gameplay screens on the phone during a countdown (I took shots only at title and night card) and any desktop gameplay layout.
+
+## 7. Stop and return
+
+- Phone stop (222.7 s, FRUSTRATED): "Stopping the phone at Tuesday 08:28, about 3.7 minutes. I liked her own words after each choice and the night card, but I could not hold to insist and Tuesday repeated Monday."
+- Desktop stop (72.8 s, BORED): "Stopping the desktop at Monday 10:43, about 71 seconds. It was word for word the Monday I had just played on my phone."
+- Feedback: the menu and Feedback were reachable on both devices. I pressed "I'm stopping" on both, typed nothing, did not Submit, did not touch Recording, and closed with ← Back.
+- Would you return voluntarily? Yes, another evening, if I could really insist and Tuesday differed from Monday. I would not leave it running.
+
+## 8. Changes I would want
+
+See the three ranked asks at the top.
+
+## 9. Compared with my last visit
+
+First visit.
+
+I touched no git repo and created no worktrees. `git worktree list`: none of mine. Screenshots kept: p-001, p-002 (phone), d-001 (desktop).
+
+<!-- selected-continuity-key: light-1030:murmur-diagnostic:aisha:free -->
+## 2026-10-31 Murmur (Two Voices) LIGHT diagnostic return — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/murmur/diagnostic-returns/aisha/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/murmur/diagnostic-returns/aisha/report.original.md.txt), original SHA256 `2d5dd5c93b8f75bdc01f635c1ba3f5ca78b53faaee4f916c83a09ecdaf595bd5`. Build 6a5ce8fd83fd34d6a24493e92f32f4ec0a16f197/HF4.9.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- Separately labelled diagnostic return at the SAME game commit as her original visit, with the reviewed native-hold input. It is a return by a known person, not a new tester and not a game-fix iteration. Her diagnostic had no tool timeouts.
+- Her original tap-only report stays a separate section above.
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+**Would you return voluntarily?** Yes, I would come back another evening, but only if "I'm not listening to that today" came in different words each time and I could see how much trust I had left before I pushed. I would not leave it running.
+
+**Ranked asks**
+1. Show how much trust I have left, or say when she has had enough, before I spend it. I held on a whole day's choices and was refused several times, and on Tuesday my one real insist (telling Murat the truth) failed.
+2. Give each refusal its own words. "You keep pushing me. I'm not listening to that today" came back word for word five times on the phone and twice on the laptop.
+3. Make Tuesday's opening differ more from Monday, and make the laptop run differ from the phone run. Monday was the same text on both devices.
+
+## 1. Session
+
+- Persona: Aisha Rahman. Exposure: RETURN to Murmur ("Two Voices").
+- Round: light-1030, diagnostic return, free stop (floor 0).
+- Own history: I read all 670 lines in two chunks. Nothing is unread.
+- URL: https://murmur.adamwhite.work/?labRunSource=agent
+- Phone, 360x690 touch, light, port 21800: 236.0 s (3.9 min).
+- Desktop, 1280x800, light, port 21801: 196.0 s (3.3 min).
+- The coordinator adds the release commit.
+
+## 2. First impressions
+
+- Phone, 2.6 s (p-001.png): the same cream title page as last time, with the new "Play a third week" and "outcomes week" tick boxes.
+- Phone, 11.7 s: "Hold to insist. This costs trust." appears on the very first choice. Last time I only saw it on Tuesday.
+- Phone, 15.4 s: I held "Get up…" for 1.5 s and it said "You insisted… ✓". That is the mechanic I missed last visit.
+- Desktop, 11 s: the Monday text was word for word the phone's. I tapped a plain tap at 50 s on an insist-only choice and she declined in her own words. The hold is what makes her act.
+
+## 3. Verbatim diary lines (elapsed_s)
+
+**Phone**
+- 15.4: "The hold hint is on the very first screen now. I hold to get her up."
+- 24.9: "Insisting worked, first time. That is the mechanic I missed last visit."
+- 28.2: "The careful promise to call Mum. I insist."
+- 47.8: "A human voice for Ece, as I wanted last time. Holding."
+- 66.4 (first_minute, Mon 12:41): "Hold to insist works with real held input; she got up, promised Aylin, and guided Ece. Different from last time. Now Murat mocks Ece and I want her to defend her gently."
+- 69.5: "Gentle defence of Ece. Holding."
+- 86.0: "She said it for Ece. That is what I wanted and could not get last time."
+- 89.6: "She is against it; no insist hint here. I hold anyway to see if she can be pushed."
+- 91.5 (note, Mon 15:21): "She is against it, I insisted anyway, and she said You keep pushing me, I am not listening today. Fair and not scolding. Insisting is not a magic override; it has a limit and she says so. I like that."
+- 116.2: "I promised Aylin tonight. Holding to call Mum."
+- 141.1 (note, Mon 21:32): "Insisted on calling Mum and got the identical line, You keep pushing me, I am not listening to that today. Second time in minutes, word for word. The first was fair; repeated it feels canned. She then scrolled past her stop."
+- 172.2: "Third time the same line, You keep pushing me. I see now: insisting spends trust, and I spent it on small things. But the line is word for word each time."
+- 173.9: "Night card: She says You pushed me a lot today. I did it. I did not like it. That stung, fairly."
+- 185.9 (pulse 4, Mon in bed): "Insisting works but costs: she says You pushed me a lot today, I did not like it. I want to try fewer, better-chosen insists on Tuesday. Repeated pushback line is the only dull part."
+- 199.4: "Tuesday opens differently: she lay awake from the coffee. I will not push this morning; I saved my insists for things that matter."
+- 225.1: "Saved my insist for the truth to Murat. This is the choice I would spend trust on."
+- 227.7 (want_quit, FRUSTRATED, Tue 08:27): "I saved my insist for the honest answer and she refused with the exact same line a fourth time. I cannot tell how much trust I have left or when insisting will work. I would stop on the phone."
+- 236.0 (stop, FRUSTRATED, Tue 09:54): "Stopping the phone on Tuesday 08:29, about 3.9 minutes. Holding to insist works now and I loved Ece defended and the night card. But pushing costs trust, she answers refusals with the same line each time, and I could not tell when insisting would land. Pressed I am stopping, typed nothing, no Submit."
+
+**Desktop**
+- 3.9: "Second visit, laptop. This time I will insist sparingly, and with the mouse hold."
+- 15.3: "Same opening word for word as the phone. I insist on getting up; on this device I will spend insists only on Aylin and Ece."
+- 50.5: "Trying a plain tap here, no hold, to see what an ordinary tap does on an insist-only choice."
+- 64.8: "A plain tap only suggests and she declines in her own words; the hold is what makes her do it. Clear now, though I only learned it because the hint is on the first screen."
+- 68.4 (first_minute, Mon 12:41): "Second visit, laptop, same Monday as the phone word for word. A plain tap only suggests and she declined kindly; the hold made her do it. I understand the mechanic now and it is a real choice about trust. Murat mocks Ece next."
+- 91.7: "On the phone the water was She is against it after I had pushed; here it is only if you insist, since I pushed less. The game does notice how much I have pushed."
+- 117.2: "Her walk made her fall asleep at the board and Murat saw; a different consequence from the phone. Now I hold to call Mum."
+- 120.5: "Refused again on calling Mum, same line, even though I pushed less than on the phone. Looking at the laptop layout during play."
+- 186.1 (pulse 3, Mon in bed): "The night card is the same as the phone: You pushed me a lot today. Hold works, but I pushed five times and she refused the last two with an identical line. I cannot tell how much pushing is too much, and Monday is the same on both devices."
+- 187.9 (want_quit, BORED): "I did this same Monday on my phone minutes ago, same night card, same pushback line. Nothing new to learn on the laptop. I would stop."
+- 196.0 (stop, BORED): "Stopping the laptop at Monday night, about 3.3 minutes. It was the same Monday I had just played on my phone, with the same night card. Hold to insist works, and a plain tap only suggests. Pressed I am stopping, typed nothing, no Submit."
+
+**Timing and tag caveats.** My phone first_minute was logged at 66.4 s, after 60 s, and the pulse at 185.9 s, after 180 s. Both are valid. My desktop first_minute (68.4 s) and pulse (186.1 s) were also valid. Two log calls failed on a shell apostrophe, before the game recorded them. I re-sent the first at 141.1 s (the "same line" note), and the failed first_minute attempt came before the successful one at 68.4 s. The text of each re-sent line is slightly shortened.
+
+## 4. Moments
+
+- **Held me:**
+  - Holding got Dilan up, made her promise Aylin, guide Ece, and stand up for Ece. That was the point I missed last time.
+  - "She said it for Ece. Everyone went quiet. Then Murat laughed at himself."
+  - The night card: "You pushed me a lot today. I did it. I didn't like it."
+  - On Tuesday, the opening changed: "She lay awake past midnight because of the third coffee."
+- **Lost me:**
+  - Her pushback line repeats word for word. It was fair once and canned by the fourth time.
+  - My insists on Mum and on the truth to Murat failed, and I could not tell why or when they would land.
+  - The laptop's Monday matched the phone's, so the second device had nothing to learn.
+- **Quit wishes:** phone at 227.7 s (FRUSTRATED), desktop at 187.9 s (BORED). Neither passed.
+- **Pulses:** phone 4 at 185.9 s; desktop 3 at 186.1 s.
+
+## 5. Confusion and clarity
+
+- **Clear:** hold to insist works, a plain tap only suggests, and insisting costs trust (she says so). The hint is on the first screen. "She is willing / only if you insist / against it" shows her stance. The stance changed when I pushed less, on the laptop.
+- **Unclear:**
+  - How much trust I have left. I could not see a meter.
+  - Why my insists on Mum and the truth were refused when Ece and Aylin worked.
+  - I never learned whether "against it" can ever be pushed through.
+  - After being refused, I could not repair it. I saw no apology or recovery route.
+- **Driver:** there were no timeouts this visit. The hold worked first time every time.
+
+## 6. Device use
+
+- **Phone (360x690):** I viewed p-001.png (the title page: the big title, two tick boxes, the "We record and link play" tooltip over the page). I viewed p-002.png (the Monday night card, readable, with the red "Continue to Tuesday" button). I used hold-taps on choice buttons, plain taps, wait, Game menu, Feedback, "I'm stopping" and Back. Two of six shots used. The gameplay screen during a countdown was unseen (layout unknown).
+- **Desktop (1280x800):** I viewed d-001.png (the same title page, centred, with a red "Start" bar at the bottom). I viewed d-002.png (a two-pane layout: the timeline on the left, "Her day continues. Her next choice will appear here." on the right, and a "Skip ahead" bar). No layout trouble seen. Two of six shots used.
+- I did not touch consent. The Recording box stayed checked.
+- **Feedback:** Game menu → Feedback offered "I'd keep playing", "Not sure", "I'd stop here", "I'm stopping" and "I'm confused". I pressed "I'm stopping" on both, typed nothing, pressed no Submit, and closed with Back.
+
+## 7. Stop and return
+
+- **Phone stop (236.0 s, FRUSTRATED):** "Stopping the phone on Tuesday 08:29, about 3.9 minutes. Holding to insist works now and I loved Ece defended and the night card. But pushing costs trust, she answers refusals with the same line each time, and I could not tell when insisting would land."
+- **Desktop stop (196.0 s, BORED):** "Stopping the laptop at Monday night, about 3.3 minutes. It was the same Monday I had just played on my phone, with the same night card."
+- **Would you return voluntarily?** Yes, I would come back another evening, but only if "I'm not listening to that today" came in different words each time and I could see how much trust I had left before I pushed. I would not leave it running. I would stay away if the next visit repeated Monday and the same refusal line.
+- **Leave it running, or come back another evening?** Another evening. It is a game I want to try again with fewer insists, so leaving it running does not suit it.
+
+## 8. Changes I would want
+
+1. A trust gauge or a plain warning before I push too far.
+2. Different words for each refusal.
+3. Make Tuesday differ more from Monday, and the second device from the first.
+
+## 9. Compared with my last visit
+
+This is a return to the game. Last time my taps only suggested and my insists were declined; this time the hold worked on the first screen. The hint now appears on Monday's first choice, where before I saw it only on Tuesday. I could finally defend Ece and get Dilan to promise Aylin. Not seen this time: a repair route after a refusal, and Tuesday's later choices on the laptop.
+
+`git worktree list`: none of mine (no repo touched). Screenshots viewed: p-001, p-002 (phone); d-001, d-002 (desktop).

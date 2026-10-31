@@ -1,0 +1,21 @@
+{
+  "time": "2026-10-31T01:27:58.972556+00:00",
+  "approved": true,
+  "scope": "scratch diagnostic input for LIGHT collection; no upstream merge approval",
+  "hashes": {
+    "lab-play.ts": "995a9d53d68a77dc75822551341d4eff374df0ff1780d8a1dd22867dd06e97e2",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "review": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-hold/review.md",
+  "reviewSha256": "a29534b05d2fb9feef439921d9074a6cab8596e69424a3e5c6940d8c8ce95b6c",
+  "controls": "43/43 real-input controls, 34 existing focused tests and strict TS passed",
+  "staleOverride": "deliberate only for this reviewed copied instrument; driver labels fork-unverified and dispatch retains exact hashes",
+  "limits": [
+    "Chromium only",
+    "ordinary named phone taps remain upstream mouse-style",
+    "release after removed target shown indirectly by next fresh touch",
+    "SIGKILL release untested",
+    "no production recording receipt"
+  ]
+}

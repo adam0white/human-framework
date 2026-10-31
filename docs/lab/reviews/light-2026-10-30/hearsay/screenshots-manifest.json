@@ -1,0 +1,205 @@
+[
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "image": "hearsay/maya/phone/first-minute.png",
+    "sha256": "ec77be674471e375cd249810d5549a8a29605f0c48d42e96a52acf99a66c9ed0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "image": "hearsay/maya/phone/a-001.png",
+    "sha256": "a20c1fb49a9bd8c8030ca9ffb321db4bccb8b2b98ec8650c95bc7c429fe0e3e4",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "image": "hearsay/maya/desktop/b-001.png",
+    "sha256": "bdbf417d3b2d163d81fd79a3d2c66fcd0c32bdd00d065c60a278b67634550fe9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "image": "hearsay/maya/desktop/first-minute.png",
+    "sha256": "31b632968e60e43451a5bad05d9e245e30f6bb23aa6590ad13f8a59bb7769942",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "image": "hearsay/maya/desktop/b-002.png",
+    "sha256": "e9f3fcdad734dcb0190d3515df41d1cc291efd3e386d92b955484537c4a56c8c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "desktop",
+    "image": "hearsay/emre/desktop/first-minute.png",
+    "sha256": "fe47192461d98fb4130a12d45b670d352f402a1efcb8388de959188a2df3128d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "desktop",
+    "image": "hearsay/emre/desktop/a-001.png",
+    "sha256": "bdbf417d3b2d163d81fd79a3d2c66fcd0c32bdd00d065c60a278b67634550fe9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "image": "hearsay/emre/phone/b-001.png",
+    "sha256": "a20c1fb49a9bd8c8030ca9ffb321db4bccb8b2b98ec8650c95bc7c429fe0e3e4",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "image": "hearsay/emre/phone/first-minute.png",
+    "sha256": "257a547ba68b22d32116c908bd54746c6da85c5b4889a6729ac15e724e9e63db",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "image": "hearsay/emre/phone/b-002.png",
+    "sha256": "758d3db731bc2b402b09dd48a735964204cde32e7eefbed82ac873afb9fe352c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "desktop",
+    "image": "hearsay/diego/desktop/first-minute.png",
+    "sha256": "20341f1e0b944515041b9357a774ad227c6abc78478a44fa26f800ee63cff084",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "desktop",
+    "image": "hearsay/diego/desktop/a-002.png",
+    "sha256": "fdbc759c604002088e932acaa78d4fb31bf120ad05b9126c53e8e98030aec7a7",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "desktop",
+    "image": "hearsay/diego/desktop/a-001.png",
+    "sha256": "bdbf417d3b2d163d81fd79a3d2c66fcd0c32bdd00d065c60a278b67634550fe9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "image": "hearsay/diego/phone/b-001.png",
+    "sha256": "a20c1fb49a9bd8c8030ca9ffb321db4bccb8b2b98ec8650c95bc7c429fe0e3e4",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "image": "hearsay/diego/phone/first-minute.png",
+    "sha256": "4db55a4f8b925d11dac951e7a076b53d4b7a260d9226e4df3e6f1fe437b5cb94",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "image": "hearsay/diego/phone/b-002.png",
+    "sha256": "c4a52551bb828f6c7a755c44a7721933c18f6754a572a5521228ac732c9ad031",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "hearsay/rosa/phone/first-minute.png",
+    "sha256": "c38d8db83ef6a903c377b3bddbea368c1b51924471a3b13938f758caa1ce7114",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "hearsay/rosa/phone/a-002.png",
+    "sha256": "2256f5afc9deb2043e1739e2859807bdcfea75e6c71575e9f7469947a3eae2c2",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "hearsay/rosa/phone/a-001.png",
+    "sha256": "a20c1fb49a9bd8c8030ca9ffb321db4bccb8b2b98ec8650c95bc7c429fe0e3e4",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "hearsay/rosa/desktop/b-001.png",
+    "sha256": "bdbf417d3b2d163d81fd79a3d2c66fcd0c32bdd00d065c60a278b67634550fe9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "hearsay/rosa/desktop/first-minute.png",
+    "sha256": "389ba841191ed8f68819b038661ff2d5534dc6b4196b75d2ff9c0393301d9c48",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Luz Herrera",
+    "device": "desktop",
+    "image": "hearsay/luz/desktop/first-minute.png",
+    "sha256": "d063ca9f2584517be033abfff20405ce09f786928ee284900b9cd965187d3539",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Luz Herrera",
+    "device": "desktop",
+    "image": "hearsay/luz/desktop/a-002.png",
+    "sha256": "0b6a78a20a493e182702849a24c167d189dc0555b1a4f2ccceb5a6c066ba60b9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Luz Herrera",
+    "device": "desktop",
+    "image": "hearsay/luz/desktop/a-003.png",
+    "sha256": "9638c3a7bb651c5d39de5ee5653287245273eb0c2b8eb5d2b3b64e2253a4d8ba",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Luz Herrera",
+    "device": "desktop",
+    "image": "hearsay/luz/desktop/a-001.png",
+    "sha256": "bdbf417d3b2d163d81fd79a3d2c66fcd0c32bdd00d065c60a278b67634550fe9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Luz Herrera",
+    "device": "phone",
+    "image": "hearsay/luz/phone/b-001.png",
+    "sha256": "a20c1fb49a9bd8c8030ca9ffb321db4bccb8b2b98ec8650c95bc7c429fe0e3e4",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Luz Herrera",
+    "device": "phone",
+    "image": "hearsay/luz/phone/first-minute.png",
+    "sha256": "6abfc9cd07939bfa93e85c8a0fd7f60deb7a1d5c1e244c2c59f6c6045a652a36",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Luz Herrera",
+    "device": "phone",
+    "image": "hearsay/luz/phone/b-002.png",
+    "sha256": "a0b074162b25b1d89f0351d6d860a0a4088b65e7152c33dadb9fce365e0643f0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Luz Herrera",
+    "device": "phone",
+    "image": "hearsay/luz/phone/b-003.png",
+    "sha256": "42c10076e7ee0c2e44e7390be322cb576a0273dd275d0283155a501b2be5032a",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  }
+]

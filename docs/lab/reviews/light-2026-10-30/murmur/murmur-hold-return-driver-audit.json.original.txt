@@ -1,0 +1,194 @@
+{
+  "aisha": {
+    "tester": "Aisha Rahman",
+    "validationTime": "2026-10-31T02:18:46.659701+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T02:01:07.311Z",
+          "elapsed_s": 236.003,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone on Tuesday 08:29, about 3.9 minutes. Holding to insist works now and I loved Ece defended and the night card. But pushing costs trust, she answers refusals with the same line each time, and I could not tell when insisting would land. Pressed I am stopping, typed nothing, no Submit.",
+          "game_clock": "Tue 09:54",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "p-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "p-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 231.786,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T02:04:24.681Z",
+          "elapsed_s": 195.958,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the laptop at Monday night, about 3.3 minutes. It was the same Monday I had just played on my phone, with the same night card. Hold to insist works, and a plain tap only suggests. Pressed I am stopping, typed nothing, no Submit.",
+          "game_clock": "Mon 21:33",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "d-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "d-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 192.746,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "mei": {
+    "tester": "Mei Tan",
+    "validationTime": "2026-10-31T02:18:46.667137+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T02:08:18.932Z",
+          "elapsed_s": 193.728,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Monday 20:29 after one day on the laptop. Holding works and I saw what insisting buys and costs: four ticks, then she refused and I lost the Mum call. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back to play the week more carefully.",
+          "game_clock": "Monday 20:29",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 190.103,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T02:11:45.492Z",
+          "elapsed_s": 205.275,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on the phone at Monday 19:50 after the Mum call went through. Touch hold works and saving trust paid off. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back another evening for Tuesday.",
+          "game_clock": "Mon 19:50",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "p-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "p-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 91.846,
+            "op": "tap",
+            "input": {
+              "name": "Send her the map location. She is willing."
+            },
+            "error": null
+          },
+          {
+            "elapsed_s": 201.774,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [
+          57.905
+        ],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  }
+}

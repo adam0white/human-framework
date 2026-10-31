@@ -1,0 +1,383 @@
+[
+  {
+    "tester": "Aisha Rahman",
+    "device": "phone",
+    "image": "murmur/aisha/phone/first-minute.png",
+    "sha256": "506183d7a379f7abbc96aa4404268e434b0149d831e3068ce91dad3ab1dca22d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "phone",
+    "image": "murmur/aisha/phone/p-002.png",
+    "sha256": "ebd92b1d433e1d0cca08ebcdf71c53137ae549595d705f00d4936e5db1d28e23",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "phone",
+    "image": "murmur/aisha/phone/p-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "desktop",
+    "image": "murmur/aisha/desktop/first-minute.png",
+    "sha256": "15ff6eecd2cb3b813da86e9771b3c7d752710d51b7b7082f3dd3fd13cd6221f0",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "device": "desktop",
+    "image": "murmur/aisha/desktop/d-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "desktop",
+    "image": "murmur/mei/desktop/first-minute.png",
+    "sha256": "abcca0e3a4e8d0e86c8e640e46c3fce6c72788e591aa0893e31d313dc1000300",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "desktop",
+    "image": "murmur/mei/desktop/a-002.png",
+    "sha256": "0b9c6eae81a9811ee31babe2d8fd5c4022449bbc8f8610631c54acda447d33e2",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "desktop",
+    "image": "murmur/mei/desktop/a-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "phone",
+    "image": "murmur/mei/phone/first-minute.png",
+    "sha256": "151adfa9d5b921435e31e5803be4345b48c2911d191bf68a02de7b3a50ea0be2",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "phone",
+    "image": "murmur/mei/phone/p-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "image": "murmur/nia/phone/first-minute.png",
+    "sha256": "23a6827e82e963399bd073d845e4ddb44e39b8260b46ed833e6ba97c58fd96cc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "image": "murmur/nia/phone/a-002.png",
+    "sha256": "be785c2f84fcece9464c302d8fa44418e5e40f61461b636a7e3bb3ac04a10e9a",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "image": "murmur/nia/phone/a-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "desktop",
+    "image": "murmur/nia/desktop/b-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "desktop",
+    "image": "murmur/nia/desktop/first-minute.png",
+    "sha256": "cf499f31216cd1a1bb9616aca834e3c9f9f5e20341d771466893f8bb84bfbafa",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "desktop",
+    "image": "murmur/nia/desktop/b-002.png",
+    "sha256": "5f360e91e1934102c7eb19ebdd4b8795b36348a8ae08453dcb22f7a248cc4915",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "murmur/rosa/phone/first-minute.png",
+    "sha256": "a6293d12ab03ea5f19ae1af165f559f9190d7f66fcbdbe65b8c03342e0d3c04b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "murmur/rosa/phone/a-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "murmur/rosa/desktop/b-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "murmur/rosa/desktop/first-minute.png",
+    "sha256": "c7ba6967cb6982c5396a1bb0e6be2740bc1d712879fb70e22bb88a6ba5e94dd2",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lucia Moretti",
+    "device": "desktop",
+    "image": "murmur/lucia/desktop/first-minute.png",
+    "sha256": "144052c44c5eb090ebf6a20ecc3ebfe83e9f729835b916b854a31382d5ad8826",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lucia Moretti",
+    "device": "desktop",
+    "image": "murmur/lucia/desktop/d-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lucia Moretti",
+    "device": "desktop",
+    "image": "murmur/lucia/desktop/d-002.png",
+    "sha256": "5de2942e35f8113317cf1b46acebdc1cd41dc8e241aa88094dbab02144478a8c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lucia Moretti",
+    "device": "phone",
+    "image": "murmur/lucia/phone/first-minute.png",
+    "sha256": "bbbc2c9204847848f3edb11e2f894a6700a18a4575d608c0b82a76e9dcf47b32",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lucia Moretti",
+    "device": "phone",
+    "image": "murmur/lucia/phone/p-003.png",
+    "sha256": "052256e65da92ffb3a9fc0c63e820bcdf8e74f43359bb80bf5c646fc942edf82",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lucia Moretti",
+    "device": "phone",
+    "image": "murmur/lucia/phone/p-002.png",
+    "sha256": "489648ca5714c063e196edb8a04649335736542d85037a3aeb04143c7d5cc3cb",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Lucia Moretti",
+    "device": "phone",
+    "image": "murmur/lucia/phone/p-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/aisha/phone/first-minute.png",
+    "sha256": "073df881073ed0f0d73b1b206d8bb7ebafa6931541eb1df2d6a64c6716759856",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/aisha/phone/p-002.png",
+    "sha256": "9b33e3bd00c3c3aaa6fccd8ad5e71c6721ad802137b7444e325fef7393a8b123",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/aisha/phone/p-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/aisha/desktop/first-minute.png",
+    "sha256": "2fe71759ea6f3b34a4b97d2a7ea8fedaf97466edeffbf748d3d010dc1b276bfc",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/aisha/desktop/d-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/aisha/desktop/d-002.png",
+    "sha256": "28d76966a15c1bb2fadec9d98616f31b0e7862f34c292db2ca2cbba62d70495c",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/mei/desktop/first-minute.png",
+    "sha256": "d8ad92f791d16a907a737712dabc989bb9224b01f6ee65236fad217d28823b7c",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/mei/desktop/a-002.png",
+    "sha256": "f61c5288a359fa4082c34fe60bf4a07d501bfc1d200bbddfdd4fa7a0c594bfd5",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/mei/desktop/a-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/mei/phone/first-minute.png",
+    "sha256": "4102665db559e2d68dd0c05a6d00845bb9d195c9772927862cc85309f03635f9",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/mei/phone/p-002.png",
+    "sha256": "5a998bfdedb6cae58a43b86f6535b1175dacab790556809738466d37967faa48",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/mei/phone/p-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/aisha/phone/first-minute.png",
+    "sha256": "073df881073ed0f0d73b1b206d8bb7ebafa6931541eb1df2d6a64c6716759856",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/aisha/phone/p-002.png",
+    "sha256": "9b33e3bd00c3c3aaa6fccd8ad5e71c6721ad802137b7444e325fef7393a8b123",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/aisha/phone/p-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/aisha/desktop/first-minute.png",
+    "sha256": "2fe71759ea6f3b34a4b97d2a7ea8fedaf97466edeffbf748d3d010dc1b276bfc",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/aisha/desktop/d-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/aisha/desktop/d-002.png",
+    "sha256": "28d76966a15c1bb2fadec9d98616f31b0e7862f34c292db2ca2cbba62d70495c",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/mei/desktop/first-minute.png",
+    "sha256": "d8ad92f791d16a907a737712dabc989bb9224b01f6ee65236fad217d28823b7c",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/mei/desktop/a-002.png",
+    "sha256": "f61c5288a359fa4082c34fe60bf4a07d501bfc1d200bbddfdd4fa7a0c594bfd5",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "desktop",
+    "image": "murmur-hold-return/mei/desktop/a-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/mei/phone/first-minute.png",
+    "sha256": "4102665db559e2d68dd0c05a6d00845bb9d195c9772927862cc85309f03635f9",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/mei/phone/p-002.png",
+    "sha256": "5a998bfdedb6cae58a43b86f6535b1175dacab790556809738466d37967faa48",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  },
+  {
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "device": "phone",
+    "image": "murmur-hold-return/mei/phone/p-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "retained": "private scratch; not a published image or proof of viewing alone"
+  }
+]

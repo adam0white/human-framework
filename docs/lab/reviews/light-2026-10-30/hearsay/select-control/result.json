@@ -1,0 +1,127 @@
+{
+  "time": "2026-10-30T23:50:27.481Z",
+  "who": "agent",
+  "purpose": "Automated UI control, not a persona vote or account browsing",
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.12.0",
+    "commit": "76ebfb8f73956e1bbdc5cc6318d9f15e453d105b",
+    "dirty": false
+  },
+  "steps": [
+    {
+      "publicFoldOpened": "Talk about someone else"
+    },
+    {
+      "label": "Who?",
+      "exactVisibleLabelCount": 0
+    },
+    {
+      "label": "What?",
+      "exactVisibleLabelCount": 0
+    },
+    {
+      "control": 0,
+      "target": {
+        "label": "Osman",
+        "value": "osman",
+        "disabled": false
+      },
+      "actual": "osman",
+      "persisted": true
+    },
+    {
+      "control": 1,
+      "target": {
+        "label": "Honesty",
+        "value": "honest",
+        "disabled": false
+      },
+      "actual": "honest",
+      "persisted": true
+    }
+  ],
+  "visibleButtons": [
+    "Game menu",
+    "Pause",
+    "Slow",
+    "Normal",
+    "Fast",
+    "☕Haticeat the garden",
+    "◯Deryaat the garden",
+    "◯Dilanat the garden",
+    "◯Nerminat the garden",
+    "◯Aylinat the garden",
+    "◯Eceat the garden",
+    "◯Rızaat the garden",
+    "◯Osmanat the garden",
+    "Invite a quiet conversation",
+    "Press for private details",
+    "Ask what they have heard",
+    "Make a positive claim about this trait",
+    "Make a damaging claim about this trait",
+    "Withdraw your accusation",
+    "Pour tea without sharing news"
+  ],
+  "selects": [
+    {
+      "id": "cg-about",
+      "ariaLabel": null,
+      "labels": ["Who?DeryaDilanNerminAylinEceOsman"],
+      "options": [
+        {
+          "label": "Derya",
+          "value": "derya"
+        },
+        {
+          "label": "Dilan",
+          "value": "dilan"
+        },
+        {
+          "label": "Nermin",
+          "value": "nermin"
+        },
+        {
+          "label": "Aylin",
+          "value": "aylin"
+        },
+        {
+          "label": "Ece",
+          "value": "ece"
+        },
+        {
+          "label": "Osman",
+          "value": "osman"
+        }
+      ],
+      "value": "derya"
+    },
+    {
+      "id": "cg-trait",
+      "ariaLabel": null,
+      "labels": ["What?Keeping promisesHonestyKindnessGenerosity"],
+      "options": [
+        {
+          "label": "Keeping promises",
+          "value": "reliable"
+        },
+        {
+          "label": "Honesty",
+          "value": "honest"
+        },
+        {
+          "label": "Kindness",
+          "value": "kind"
+        },
+        {
+          "label": "Generosity",
+          "value": "generous"
+        }
+      ],
+      "value": "reliable"
+    }
+  ],
+  "roleComboboxCount": 2,
+  "noSubmitControlUsed": true,
+  "browserClosed": true
+}

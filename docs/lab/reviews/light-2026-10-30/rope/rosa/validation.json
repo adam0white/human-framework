@@ -1,0 +1,130 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-30T23:11:13.564547+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T22:50:13.526Z",
+        "elapsed_s": 212.609,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here. I liked the named people and that they may say no, but the rope part has many new words and two buttons called more.",
+        "game_clock": "Hollin Crag 09:07",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 210.407,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T22:49:47.360Z",
+          "elapsed_s": 186.443,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Skip to the next event is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T22:49:50.049Z",
+          "elapsed_s": 189.132,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "more \u25be",
+            "text": "more"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 7,
+          "error": "tap needs exactly one target (invalid request, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T22:51:32.496Z",
+        "elapsed_s": 77.856,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop for the evening. Same game, easier to read on the large screen, and I like the journal. But I mostly waited and pressed Skip, and I do not yet know what the call needing attention is.",
+        "game_clock": "Hollin Crag 06:50",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 75.619,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

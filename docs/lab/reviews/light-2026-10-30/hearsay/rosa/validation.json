@@ -1,0 +1,187 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-30T23:54:41.889360+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T23:43:48.282Z",
+        "elapsed_s": 196.461,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here. I liked the two quiet talks and the private choices. But the garden emptied and I only waited, and I do not know how to order the bread.",
+        "game_clock": "Day 1 10:30",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 193.038,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:41:22.516Z",
+          "elapsed_s": 50.695,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Dilan at the garden"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Dilan at the garden is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T23:41:25.878Z",
+          "elapsed_s": 54.057,
+          "kind": "tool",
+          "op": "wait",
+          "input": {
+            "s": 12
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Invalid kind (invalid request, not a driver failure)",
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T23:44:20.325Z",
+        "elapsed_s": 30.747,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop. The Who? list in Talk about someone else would not take my choice; it timed out twice and tapping the option also failed. I did not get to play on the big screen beyond this.",
+        "game_clock": "Day 1 06:19",
+        "engagement": 3,
+        "reason": "TOOL",
+        "op_ms": 1,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 26.966,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:43:55.403Z",
+          "elapsed_s": 5.825,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Talk about someone else"
+          },
+          "reaction": "This time I want to see what Talk about someone else does.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Talk about someone else is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T23:44:02.365Z",
+          "elapsed_s": 12.787,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": "I choose Osman and Honesty. I only ask what Riza has heard. I will not accuse anyone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3011,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T23:44:07.100Z",
+          "elapsed_s": 17.522,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3010,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T23:44:10.115Z",
+          "elapsed_s": 20.537,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Osman",
+            "role": "option"
+          },
+          "reaction": "The select control timed out twice. I try tapping the option instead.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8,
+          "error": "Osman left the page just before the tap (game state, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

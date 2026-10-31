@@ -1,0 +1,96 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-30T22:12:49.109565+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T21:38:25.997Z",
+        "elapsed_s": 43.541,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I wanted to watch the dam, but every panel gives me many new ideas (turns, insist, doubt, caught). I stop.",
+        "game_clock": "Mon 22:15",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 1,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 38.857,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T21:38:00.480Z",
+          "elapsed_s": 18.024,
+          "kind": "tool",
+          "op": "note",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8,
+          "error": "Unsupported op (invalid request, not a driver failure)",
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T21:40:20.402Z",
+        "elapsed_s": 101.331,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Same wall of names as the phone. I did not even play; the clock ran on to 22:54 while I read, and lightning came. I stop.",
+        "game_clock": "Mon 22:54",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 88.848,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

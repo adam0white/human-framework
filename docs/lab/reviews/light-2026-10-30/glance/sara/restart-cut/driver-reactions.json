@@ -1,0 +1,534 @@
+{
+  "purpose": "Surviving driver-written reaction rows from the restart-cut FIRST attempt (Sara Lindholm, 2026-10-30), extracted mechanically from the preserved raw wall-clock.jsonl files. Each reaction string is the decoded raw value, unedited.",
+  "notAProducerDiary": true,
+  "limits": [
+    "This is not a reconstructed producer diary, final report or return answer. None survived: transcript.jsonl was 0 bytes and tester.stderr was 0 bytes.",
+    "Image Read receipts did not survive. An empty transcript does not mean no exposure or no play.",
+    "Rows without a reaction are counted but not reproduced; their absence says nothing about what the tester thought.",
+    "Rows with an error field are driver/tool failures, kept as raw; the phone failures at 21:52:23-21:52:25Z are the browser closing during the restart."
+  ],
+  "devices": {
+    "desktop": {
+      "source": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/desktop/wall-clock.jsonl",
+      "sourceSha256": "5c390aa126942623385aece6deff93e662ff12f2b75a6f3901b136dece113761",
+      "rows": 89,
+      "rowsWithReaction": 33,
+      "reactions": [
+        {
+          "row": 3,
+          "t": "2026-10-30T21:41:03.612Z",
+          "elapsed_s": 3.09,
+          "kind": "note",
+          "op": "shot",
+          "input": {
+            "file": "a-001.png"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Short intro, a dam and a town. I like that I can start quickly."
+        },
+        {
+          "row": 6,
+          "t": "2026-10-30T21:41:14.487Z",
+          "elapsed_s": 13.965,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Start took a couple of seconds, I thought my click missed. Now a wall of text about Nerys, inn corners, Wren, Bilal - who are these people? I just want the dam. Dai said level 4.6, gate shut. Board says level not read though, odd."
+        },
+        {
+          "row": 8,
+          "t": "2026-10-30T21:41:18.635Z",
+          "elapsed_s": 18.113,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Plausible first move: get a real reading."
+        },
+        {
+          "row": 11,
+          "t": "2026-10-30T21:41:35.005Z",
+          "elapsed_s": 34.483,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Compare observations"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Wait - 4.6 at 22:00, now 3.5 with the gate shut and rain falling? That cannot both be right. A clue! Compare observations seems made for this."
+        },
+        {
+          "row": 12,
+          "t": "2026-10-30T21:41:38.229Z",
+          "elapsed_s": 37.707,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Doubt this reading"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Good, I can mark doubt. Feels like an escape-room clue."
+        },
+        {
+          "row": 15,
+          "t": "2026-10-30T21:41:45.890Z",
+          "elapsed_s": 45.368,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-003.png"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Lightning! A saved image. I want to see the line."
+        },
+        {
+          "row": 16,
+          "t": "2026-10-30T21:41:49.733Z",
+          "elapsed_s": 49.211,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ask Dai to read it He agrees. · ~5 min · If you hold: Call and wait for an answer."
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "The lightning line sits above his 3.5. I was right to doubt. Asking him again."
+        },
+        {
+          "row": 20,
+          "t": "2026-10-30T21:42:07.212Z",
+          "elapsed_s": 66.69,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "game_clock": "Mon 22:52",
+          "reason": null,
+          "error": null,
+          "reaction": "Satisfying: I noticed 3.5 did not fit, doubted it, lightning confirmed, and the reread is 4.6. That is exactly my kind of clue. The inn/Nerys paragraph still means nothing to me and sits in the middle of the screen."
+        },
+        {
+          "row": 21,
+          "t": "2026-10-30T21:42:10.639Z",
+          "elapsed_s": 70.117,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "gate 0 / 6 Dai · read 22:00 (as written)"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Sample morning said open the gate early. Level 4.6, lip 5.0. Let me see gate options."
+        },
+        {
+          "row": 22,
+          "t": "2026-10-30T21:42:12.851Z",
+          "elapsed_s": 72.329,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "2 turns He agrees. · ~15m"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Modest plan: 2 turns, he agrees. Test and see the effect."
+        },
+        {
+          "row": 29,
+          "t": "2026-10-30T21:42:53.214Z",
+          "elapsed_s": 112.692,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "level 3.40 m D a i · r e a d 2 3 : 3 9 (as written) was 4.6, read 22:41 (as written)"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "3.4 and he is \"sure of it\". A 1.2 m drop in twenty minutes from two turns? I doubt him again. Is he the low-reading kind?"
+        },
+        {
+          "row": 31,
+          "t": "2026-10-30T21:42:57.725Z",
+          "elapsed_s": 117.203,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Hm, the level card does not say Marked for another check this time, unlike the first doubt. Did my doubt register? Not sure."
+        },
+        {
+          "row": 37,
+          "t": "2026-10-30T21:43:46.572Z",
+          "elapsed_s": 166.05,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ask Dai to read it He agrees. · ~10 min · If you hold: Call and wait for an answer."
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "The button text changed from ~5 to ~10 min while I was reading, so my tap missed. Small thing, but controls that change under me annoy me."
+        },
+        {
+          "row": 40,
+          "t": "2026-10-30T21:44:10.338Z",
+          "elapsed_s": 189.816,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "game_clock": "Mon 01:00",
+          "reason": null,
+          "error": null,
+          "reaction": "Engaged: the doubting-the-keeper puzzle is my thing, but I cannot tell if 3.9 is real or another slip - 4.6, 3.5, 4.6, 3.4, 3.9 is a mess and I have no ground truth except one old lightning flash."
+        },
+        {
+          "row": 44,
+          "t": "2026-10-30T21:44:44.656Z",
+          "elapsed_s": 224.134,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Morgan - a little story hook. I want to get to dawn and see my verdict on those doubts."
+        },
+        {
+          "row": 46,
+          "t": "2026-10-30T21:45:13.601Z",
+          "elapsed_s": 253.079,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "gate 2 / 6 Dai · read 23:18 (as written)"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Heavy rain until dawn. I will open the gate further before it gets bad."
+        },
+        {
+          "row": 48,
+          "t": "2026-10-30T21:45:18.872Z",
+          "elapsed_s": 258.35,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "4 turns He agrees. · ~15m"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Again the button labels changed under my pointer. Second time now."
+        },
+        {
+          "row": 53,
+          "t": "2026-10-30T21:46:22.701Z",
+          "elapsed_s": 322.179,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Long quiet stretches. Skip only jumps a few minutes when nothing is pending. I am mostly watching a log grow."
+        },
+        {
+          "row": 55,
+          "t": "2026-10-30T21:46:56.057Z",
+          "elapsed_s": 355.535,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "level 3.90 m D a i · r e a d 0 0 : 4 4 (as written) was 3.4, read 23:39 (as written)"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Dai is not answering and Skip is greyed out. Uh oh. Heavy rain, gate at 4, no reading since 00:44. Can I still ask?"
+        },
+        {
+          "row": 57,
+          "t": "2026-10-30T21:47:01.640Z",
+          "elapsed_s": 361.118,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ask Dai to read it Call and wait for his answer. · If you hold: Call and wait for his answer."
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Lightning at 04:01 matches 3.9, so the water is fine. Dai has a little z on his hut - asleep! I will call him anyway."
+        },
+        {
+          "row": 60,
+          "t": "2026-10-30T21:47:37.842Z",
+          "elapsed_s": 397.32,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "game_clock": "Mon 04:52",
+          "reason": null,
+          "error": null,
+          "reaction": "4.8 now, near the 5.0 lip, but lightning at 04:01 looked like 3.9. Real jump or another slip? I genuinely cannot tell and that is starting to feel more like guessing than deducing. Opening the gate fully to be safe."
+        },
+        {
+          "row": 63,
+          "t": "2026-10-30T21:47:42.489Z",
+          "elapsed_s": 401.967,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "6 turns He agrees. · ~15m"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Third time a button changed text just as I reached for it. This is the thing I dislike: controls moving while I read."
+        },
+        {
+          "row": 66,
+          "t": "2026-10-30T21:48:49.359Z",
+          "elapsed_s": 468.837,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "game_clock": "Mon 05:30",
+          "reason": null,
+          "error": null,
+          "reaction": "Gate fully open now. Nothing to do but wait for dawn and hope. I have no way to check if 4.8 was real."
+        },
+        {
+          "row": 70,
+          "t": "2026-10-30T21:49:26.113Z",
+          "elapsed_s": 505.591,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "game_clock": "Mon first light",
+          "reason": null,
+          "error": null,
+          "reaction": "Dawn came suddenly, much earlier than I expected. This is the best part: a chart with the true line against his dots. My two doubts were right. And 4.8 was really 3.9, so I opened the gate fully on a false alarm. That is exactly the why-did-it-fail explanation I like. But 4.6 at 22:41 was also wrong, and I trusted it because it matched the old reading. Ouch, fair."
+        },
+        {
+          "row": 71,
+          "t": "2026-10-30T21:49:26.986Z",
+          "elapsed_s": 506.464,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tuesday night"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "One more night to see if I can do better."
+        },
+        {
+          "row": 73,
+          "t": "2026-10-30T21:49:34.658Z",
+          "elapsed_s": 514.136,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "game_clock": "Tue 22:01",
+          "reason": null,
+          "error": null,
+          "reaction": "Ooh, a margin note: Dai reads too low after three in the morning, signed M. Morgan! That is a real clue. Also a new weir gauge and Nerys at the inn. The night got richer. Again the tap felt dead for a few seconds."
+        },
+        {
+          "row": 75,
+          "t": "2026-10-30T21:49:37.590Z",
+          "elapsed_s": 517.068,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Send Dai to the weir He agrees. · ~15 min · If you hold: Call and wait for an answer."
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Read the incoming water first. That is how I would plan the gate."
+        },
+        {
+          "row": 78,
+          "t": "2026-10-30T21:50:01.109Z",
+          "elapsed_s": 540.587,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "game_clock": "Tue 22:20",
+          "reason": null,
+          "error": null,
+          "reaction": "Up again after the dawn chart. Seeing exactly which readings were wrong made me want a second try, and the M margin note gives me a rule to test tonight."
+        },
+        {
+          "row": 80,
+          "t": "2026-10-30T21:50:20.388Z",
+          "elapsed_s": 559.866,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "game_clock": "Tue 22:40",
+          "reason": null,
+          "error": null,
+          "reaction": "Weir 0.53. I have no idea whether that is high or low. No scale or normal value shown. I will just hold the gate and watch for 3 am."
+        },
+        {
+          "row": 82,
+          "t": "2026-10-30T21:51:23.834Z",
+          "elapsed_s": 623.312,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Dai volunteered 2.9 without being asked. Quiet. Waiting for three in the morning."
+        },
+        {
+          "row": 84,
+          "t": "2026-10-30T21:51:57.326Z",
+          "elapsed_s": 656.804,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "game_clock": "Tue 00:37",
+          "reason": "BORED",
+          "error": null,
+          "reaction": "Tuesday is a calm night: 2.9, 2.9, low water. I am just pressing wait to reach 3 am. The clue is nice, but this much idle time on a laptop loses me. I think I will stop here and try the phone later."
+        },
+        {
+          "row": 86,
+          "t": "2026-10-30T21:51:59.954Z",
+          "elapsed_s": 659.432,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Feedback"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Oh, there is a Fast pace option I never saw. That might have fixed my waiting."
+        },
+        {
+          "row": 89,
+          "t": "2026-10-30T21:52:04.463Z",
+          "elapsed_s": 663.941,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "game_clock": "Tue 00:42",
+          "reason": "BORED",
+          "error": null,
+          "reaction": "Stopping on Tuesday 00:42. Monday was a real little puzzle, and the dawn chart showing exactly where Dai lied was the best moment. Tuesday so far is quiet waiting. Feedback had I am stopping, which I pressed, then closed without sending."
+        }
+      ]
+    },
+    "phone": {
+      "source": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/phone/wall-clock.jsonl",
+      "sourceSha256": "720b99923ed2ff42559cd439f3bd2ecdb740acd0bb24f23af1d027008890afe3",
+      "rows": 13,
+      "rowsWithReaction": 5,
+      "reactions": [
+        {
+          "row": 4,
+          "t": "2026-10-30T21:52:10.135Z",
+          "elapsed_s": 3.998,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Same title on my phone. The chart now makes sense to me after last session. Start button fills the bottom, easy to hit with a thumb."
+        },
+        {
+          "row": 7,
+          "t": "2026-10-30T21:52:16.516Z",
+          "elapsed_s": 10.379,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "b-002.png"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Same delay after Start. Different numbers this time: Dai says 3.7. Same Nerys paragraph again."
+        },
+        {
+          "row": 8,
+          "t": "2026-10-30T21:52:19.603Z",
+          "elapsed_s": 13.466,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "On the phone the Nerys paragraph eats half the screen, the Dai status chip is cut off at the right edge, and a recording banner sits over the level and gate cards. I have to scroll to reach the actual gauges."
+        },
+        {
+          "row": 9,
+          "t": "2026-10-30T21:52:20.687Z",
+          "elapsed_s": 14.55,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": null,
+          "reaction": "Ask for a fresh reading first, like last time."
+        },
+        {
+          "row": 11,
+          "t": "2026-10-30T21:52:23.265Z",
+          "elapsed_s": 17.128,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Fast"
+          },
+          "game_clock": null,
+          "reason": null,
+          "error": "locator.innerText: Target page, context or browser has been closed (driver failure)",
+          "reaction": "Last time I found Fast only at the very end. Trying it from the start."
+        }
+      ]
+    }
+  }
+}

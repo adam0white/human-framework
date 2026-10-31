@@ -1,0 +1,28 @@
+{
+  "time": "2026-10-30T22:52:45.564400+00:00",
+  "viewedImage": "rope/pavel/desktop/a-004.png",
+  "imageObservations": [
+    "Injury call says Bilal fell and is hurt; visible buttons are go to him and turn him back.",
+    "Lower map text says player can hear Bilal but is too far to help and names Tap walk to Bilal. That named control is not visible in this captured frame.",
+    "Map shows red player above Bilal; drawing alone does not establish actual simulation distance.",
+    "A more control remains visible on the you row. Screenshot is not proof all possible menus/selection paths lack walk."
+  ],
+  "rawAcceptedGoTimes": [
+    237.273,
+    243.491,
+    265.767
+  ],
+  "followingWaitSeconds": [
+    10,
+    20
+  ],
+  "otherActions": [
+    "More opened257.470s; Back to requests259.317s.",
+    "Stop263.339s precedes thirdgo265.767s."
+  ],
+  "limits": [
+    "No human-speed/source reproduction yet. Do not call injury unreachable or movement broken solely from this picture/short waits.",
+    "Recovery instruction and action naming are a candidate blocker; retain exact player words and ask fixer to reproduce supported recovery and feedback without removing distance, injury or refusal.",
+    "Pavel saw an injury; Nia saw refusal/dissent. Early agreement and short quits do not establish an absence of risk, independent choice or later promise consequences."
+  ]
+}

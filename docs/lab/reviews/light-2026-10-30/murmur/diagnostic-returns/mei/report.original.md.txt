@@ -1,0 +1,139 @@
+**Would I return voluntarily?** I would come back on another evening, on the laptop or the phone, to play the rest of the week. I would do that only if I can see how much trust Dilan has left before I spend it. I would not leave it running.
+
+**Ranked asks**
+1. Show how much trust is left before I hold to insist. I could only infer it from the labels ("is willing", "would agree only if you insist", "is against it") and from her handwriting.
+2. Tell me when I start a game that insisting works only while she trusts me, and that it spends trust. It is on the Information page. I found it only after I had held three choices.
+3. Show a held choice failing before the next scene, not only afterwards in her words ("You keep pushing me"). I spent trust on a defence of Ece and lost the Mum call.
+
+## 1. Session
+- **Persona:** Mei Tan. First Murmur visit in this return; my original tap-only report is in own-history.md.
+- **Round and arm:** light-1030 diagnostic return, free stop (floor 0).
+- **History read:** own-history.md, all 627 lines, in chunks. Nothing unread.
+- **URL:** https://murmur.adamwhite.work/?labRunSource=agent
+- **Desktop:** 1280x800, keyboard and mouse, light mode, port 21803. Real time 193.7 s.
+- **Phone:** 360x690 touch, light mode, port 21802. Real time 205.3 s.
+- **Not tested:** the 25-minute ceiling, a second day, Tuesday onward, and the Slow pace.
+
+## 2. First impressions
+**Desktop**
+- 2.7 s: the title page was the same as last time. The recording note floats over the start area.
+- 7.1 s: I tapped Start.
+- 16.9 s: the first choice showed a 55-second timer and "She would agree only if you insist. Hold to insist."
+- 20.2 s: I held for 1.5 s. A tick appeared on "You insisted on…" That was the first time I could insist.
+
+**Phone**
+- 2 s: the title page at 360 wide was readable. The Start button was out of view, but a tap by name worked.
+- 20.7 s: touch-hold worked, with the same tick.
+
+## 3. Verbatim
+**Desktop (elapsed s)**
+- 7.1, tap Start: "Back to Dilan. This time I can hold. I want to see what insisting buys."
+- 20.2, tap get-up: "Holding get-up for 1.5 s to see what insisting buys."
+- 22.0, tap Skip: "Insisting worked with a tick. I still do not see the trust cost."
+- 51.5, tap Mum call: "Holding the Mum call promise."
+- 71.0, tap Ece: "Holding talk-her-through it for Ece."
+- 72.6, first_minute, Monday 10:41: "Holding works: three insists, three ticks, each with a plain line. I still cannot see what trust it cost. Calm and readable."
+- 74.3, tap Information: "Looking for what trust means and what insisting cost."
+- 76.3, note: "Information now says insisting works only while she trusts me and costs trust; handwriting darkness shows trust. That answers my old ask, but only after I went looking."
+- 106.0, tap lunch: "Defending Ece by holding. Fourth insist; will trust run out?"
+- 143.7, tap water: "New wording: against it. Holding anyway to see if insisting still works."
+- 147.8, note, Monday 15:23: "Fourth hold failed: she said You keep pushing me. So trust ran out and the game says so in her words. That answers my old question. But nothing warned me trust was low before I spent it."
+- 182.6, tap Call Mum: "This is the call I promised in the morning. Holding."
+- 185.9, pulse 4, Monday 18:13: "Holding gives me influence and a cost I can feel: I spent trust on a joke defence and lost the Mum call I cared about. It stings, which holds me, but nothing showed trust running low beforehand."
+- 193.7, stop, FINISHED, Monday 20:29: "Stopping on Monday 20:29 after one day on the laptop. Holding works and I saw what insisting buys and costs: four ticks, then she refused and I lost the Mum call. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back to play the week more carefully."
+
+**Phone (elapsed s)**
+- 4.0, tap Start: "Second visit on my phone the same evening. New game; I will hold by touch this time."
+- 20.7, tap get-up: "Touch hold on the phone."
+- 53.4, tap Mum promise: "Holding the Mum promise again on the phone."
+- 57.9, first_minute, Mon 07:20: "Phone fits well. Touch hold worked twice with ticks. The text is large and readable and the layout is clean. I know the loop from the laptop."
+- 91.8, tap Ece: "Saving trust this time: willing option, no hold, so I can keep it for the Mum call tonight."
+- 125.6, tap Say nothing: "I will not spend trust on this one. Keeping it for tonight."
+- 160.6, tap coffee: "The water option now reads would agree if you insist, where on the laptop it read against it after I spent trust. So the labels track trust. I take the coffee to save it."
+- 195.4, tap Mum call: "Trust saved; now spending it on the Mum call."
+- 197.5, pulse 4, Mon 18:13: "Saving trust earlier let me insist on the Mum call here, where on the laptop I had spent it and lost. That is a real strategy I worked out myself. I am keen to see the call itself."
+- 205.3, stop, FINISHED, Mon 19:50: "Stopping on the phone at Monday 19:50 after the Mum call went through. Touch hold works and saving trust paid off. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back another evening for Tuesday."
+
+I also sent reaction text on several other taps. It is in the driver diary and not reproduced here.
+
+## 4. Moments
+**What held me**
+- The laptop run: holding gave me real influence, and then I spent it badly. I defended Ece with a joke retort and lost the Mum call. That stung because I cared about the call.
+- The phone run: I worked out for myself that saving trust let the Mum call through. Then Mum's call appeared: "They talked for twenty minutes. Mum told her about the neighbour's roof."
+- Her refusal line, "You keep pushing me. I'm not listening to that today," reads like a person.
+
+**What lost me**
+- Nothing in these runs. Both sessions were short, and I stopped by choice.
+
+**Quit wishes**
+- None logged. I stopped at a natural point in each.
+
+**Pulses**
+- Desktop: one, engagement 4, at 185.9 s.
+- Phone: one, engagement 4, at 197.5 s.
+
+## 5. Confusion and clarity
+**Clear**
+- Holding works with `duration_ms`. A tick appears and a plain line says "You insisted on …".
+- Her answer to a failed insist is in her own words.
+- The labels ("is willing", "would agree only if you insist", "is against it") change after I spend trust.
+
+**Unclear**
+- How much trust I have left. I could not see it before I spent it.
+- The Information page explains trust, but I only opened it at 74 s, after I had held three times.
+- The desktop and phone Mondays used different timings, and the second visit gave the Ece defence in a different place. I cannot say whether the game changed or it was my choices.
+- The log still repeats each scene once as faded text and once as plain text, as in my first visit.
+
+**Guesses**
+- Spending trust on the Ece defence is why the Mum call failed on the laptop. I did not verify that.
+- Saving trust on the phone is why the Mum call worked there. The two runs also differed in how I played the lunch and coffee choices.
+
+## 6. Device use
+**Screenshots viewed**
+- desktop/a-001.png: the title page, with the title, intro text, the "Other ways to begin" bar, the recording note floating over the start area, two unchecked boxes and a red Start.
+- desktop/a-002.png (Monday 12:44): the log on the left with large ticked "You insisted on…" lines and pencil handwriting, and a Skip ahead bar at bottom right.
+- phone/p-001.png: the title page at 360 wide; the Start button was out of view.
+- phone/p-002.png (Mon 07:20): the same log, in one column. Text is readable and Skip ahead fits at the bottom.
+
+**Controls used**
+- Both sizes: Start, choice buttons with hold, Say nothing, Skip ahead, Game menu, Feedback, I'm stopping, ← Back.
+- Desktop only: Information, Close information.
+
+**Trouble seen**
+- The recording note overlaps the start area at both sizes.
+
+**Unseen**
+- Full phone scroll, a second day on either device, Tuesday onward.
+
+## 7. Stop and return
+**Stop words**
+- Desktop, FINISHED, 193.7 s: "Stopping on Monday 20:29 after one day on the laptop. Holding works and I saw what insisting buys and costs: four ticks, then she refused and I lost the Mum call. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back to play the week more carefully."
+- Phone, FINISHED, 205.3 s: "Stopping on the phone at Monday 19:50 after the Mum call went through. Touch hold works and saving trust paid off. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back another evening for Tuesday."
+
+**Feedback**
+- Both sessions offered "I'd keep playing", "Not sure", "I'd stop here", "I'm stopping" and "I'm confused".
+- I pressed "I'm stopping" (it became pressed), then "← Back".
+- I typed nothing, changed no consent or recording setting, and pressed no Submit.
+
+**Would I return voluntarily?** Yes, on another evening, to play Tuesday onward. My condition is the first ask: that I can see how much trust Dilan has left before I spend it. I would not leave it running, because each choice has a timer and I want to make the calls myself.
+
+## 8. Changes I would want
+1. Show how much trust is left before I hold to insist.
+2. Say at the start of the game that insisting spends trust and works only while she trusts me.
+3. Show a held choice failing before the next scene, not only afterwards in her words.
+
+## 9. Compared with my last visit
+This is my second Murmur visit; the section header in the brief says "first visit". My original report and its stop words stay as I wrote them.
+
+Things I saw this time:
+- The hold gesture worked, so my main complaint from last time is answered by what I saw: insisting got through while she trusted me, and then did not.
+- The Information page now says what insisting costs.
+
+Things I did not see:
+- A trust gauge.
+- A warning when trust is low.
+- Anything about the choice where the kinder option is not the unwilling one: the kind options still needed insisting on both devices.
+
+I cannot say why any of this changed. The driver and the held gesture differ from last time, and so does my play.
+
+I created no files, workers, browsers, branches or worktrees, and used only the two drivers. No repository was touched, so there is no `git worktree list` output.

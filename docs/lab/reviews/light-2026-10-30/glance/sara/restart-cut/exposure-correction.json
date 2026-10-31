@@ -1,0 +1,362 @@
+{
+  "cause": "computer restart reported about2026-10-30T21:50Z; actual phone lastclosed-target record21:52:25.621Z",
+  "classification": "overall tester cut during phone by restart, not voluntary tester stop; desktop voluntary BORED stop already recorded21:52:04.463Z",
+  "coldQualification": "Initial attempt had genuine first exposure (desktop663.941s plus partialphone). Later22:01 fresh-context completed attempt reused the already-exposed identity with empty supplied history; it is exposure-qualified, not a genuinely cold completion. Effect on later responses unknown. No final report/Read receipts survived for interrupted attempt.",
+  "supersededMistakenReceipt": {
+    "cause": "computer restart about2026-10-30T21:50Z",
+    "classification": "cut by restart; not tester stop",
+    "transcriptBytes": 0,
+    "report": false,
+    "coldQualification": "No tester transcript or observed game exposure; infrastructure opened browser only. Same cold profile restarts in fresh contexts; no invented quit or diary."
+  },
+  "correctedAt": "2026-10-31T02:58:51.637719+00:00",
+  "rawDeviceEvidence": {
+    "desktop": {
+      "sourceSha256": "5c390aa126942623385aece6deff93e662ff12f2b75a6f3901b136dece113761",
+      "rows": 89,
+      "first": {
+        "t": "2026-10-30T21:40:49.865Z",
+        "elapsed_s": null,
+        "kind": "input",
+        "op": "start",
+        "input": {
+          "driver": "a043343",
+          "driver_check": "current"
+        },
+        "reaction": null,
+        "game_clock": null,
+        "engagement": null,
+        "reason": null,
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "last": {
+        "t": "2026-10-30T21:52:04.463Z",
+        "elapsed_s": 663.941,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Tuesday 00:42. Monday was a real little puzzle, and the dawn chart showing exactly where Dai lied was the best moment. Tuesday so far is quiet waiting. Feedback had I am stopping, which I pressed, then closed without sending.",
+        "game_clock": "Tue 00:42",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "stopLogs": [
+        {
+          "t": "2026-10-30T21:52:04.463Z",
+          "elapsed_s": 663.941,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Tuesday 00:42. Monday was a real little puzzle, and the dawn chart showing exactly where Dai lied was the best moment. Tuesday so far is quiet waiting. Feedback had I am stopping, which I pressed, then closed without sending.",
+          "game_clock": "Tue 00:42",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "shotAttempts": [
+        {
+          "t": "2026-10-30T21:41:03.612Z",
+          "elapsed_s": 3.09,
+          "kind": "note",
+          "op": "shot",
+          "input": {
+            "file": "a-001.png"
+          },
+          "reaction": "Short intro, a dam and a town. I like that I can start quickly.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 176,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T21:41:15.237Z",
+          "elapsed_s": 14.715,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-002.png"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 219,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T21:41:45.890Z",
+          "elapsed_s": 45.368,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-003.png"
+          },
+          "reaction": "Lightning! A saved image. I want to see the line.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 235,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T21:42:00.640Z",
+          "elapsed_s": 60.118,
+          "kind": "first_minute",
+          "op": "shot",
+          "input": {
+            "file": "first-minute.png"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 114,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T21:44:11.223Z",
+          "elapsed_s": 190.701,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-004.png"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 263,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T21:46:57.625Z",
+          "elapsed_s": 357.103,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-005.png"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 180,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T21:49:22.824Z",
+          "elapsed_s": 502.302,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-006.png"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 169,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "imageReadReceipts": "unavailable: empty final transcript is NOT no exposure",
+      "retainedPNGsAtDiscovery": [
+        {
+          "file": "first-minute.png",
+          "sha256": "aa855c155c37e0c2b3243a5aa8d938221b11074929b3d0fad63206a69c631d48"
+        },
+        {
+          "file": "a-004.png",
+          "sha256": "bcd13b7e324323e147c4f78c7b8017771d49690ff914bc033e5860c4400a5cd7"
+        },
+        {
+          "file": "a-005.png",
+          "sha256": "77cf33dfa3773bdc31b738a9aec7a40ffa52cc471867bc920e101011c3f05829"
+        },
+        {
+          "file": "a-006.png",
+          "sha256": "4db6395ab0fac7944e4fd67f48b44b0a8175847cba70b85c6d7b297369f3477b"
+        },
+        {
+          "file": "a-002.png",
+          "sha256": "e293320377f3163f7c43503b22f0070832edf9d51b96d0a9aedfc93070fb8ff7"
+        },
+        {
+          "file": "a-003.png",
+          "sha256": "494b234ed571b8901cc2e2269b57cdf2801551aa71c7ed730f9e0422b0f34aba"
+        },
+        {
+          "file": "a-001.png",
+          "sha256": "56bcac89fa2e994067d5cf85619c03b6bbfd1920b4d191d8cfdfa777b4f9f498"
+        }
+      ],
+      "retainedPNGsNow": [
+        {
+          "file": "first-minute.png",
+          "sha256": "aa855c155c37e0c2b3243a5aa8d938221b11074929b3d0fad63206a69c631d48"
+        },
+        {
+          "file": "a-004.png",
+          "sha256": "bcd13b7e324323e147c4f78c7b8017771d49690ff914bc033e5860c4400a5cd7"
+        },
+        {
+          "file": "a-005.png",
+          "sha256": "77cf33dfa3773bdc31b738a9aec7a40ffa52cc471867bc920e101011c3f05829"
+        },
+        {
+          "file": "a-002.png",
+          "sha256": "e293320377f3163f7c43503b22f0070832edf9d51b96d0a9aedfc93070fb8ff7"
+        },
+        {
+          "file": "a-003.png",
+          "sha256": "494b234ed571b8901cc2e2269b57cdf2801551aa71c7ed730f9e0422b0f34aba"
+        },
+        {
+          "file": "a-001.png",
+          "sha256": "56bcac89fa2e994067d5cf85619c03b6bbfd1920b4d191d8cfdfa777b4f9f498"
+        }
+      ]
+    },
+    "phone": {
+      "sourceSha256": "720b99923ed2ff42559cd439f3bd2ecdb740acd0bb24f23af1d027008890afe3",
+      "rows": 13,
+      "first": {
+        "t": "2026-10-30T21:40:49.916Z",
+        "elapsed_s": null,
+        "kind": "input",
+        "op": "start",
+        "input": {
+          "driver": "a043343",
+          "driver_check": "current"
+        },
+        "reaction": null,
+        "game_clock": null,
+        "engagement": null,
+        "reason": null,
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "last": {
+        "t": "2026-10-30T21:52:25.621Z",
+        "elapsed_s": 19.484,
+        "kind": "tool",
+        "op": "shot",
+        "input": {
+          "file": "b-003.png"
+        },
+        "reaction": null,
+        "game_clock": null,
+        "engagement": null,
+        "reason": null,
+        "op_ms": 0,
+        "error": "page.screenshot: Target page, context or browser has been closed (driver failure)",
+        "requested_control_present_before": null
+      },
+      "stopLogs": [],
+      "shotAttempts": [
+        {
+          "t": "2026-10-30T21:52:06.936Z",
+          "elapsed_s": 0.799,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "b-001.png"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 119,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T21:52:16.516Z",
+          "elapsed_s": 10.379,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "b-002.png"
+          },
+          "reaction": "Same delay after Start. Different numbers this time: Dai says 3.7. Same Nerys paragraph again.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 125,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T21:52:25.621Z",
+          "elapsed_s": 19.484,
+          "kind": "tool",
+          "op": "shot",
+          "input": {
+            "file": "b-003.png"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": "page.screenshot: Target page, context or browser has been closed (driver failure)",
+          "requested_control_present_before": null
+        }
+      ],
+      "imageReadReceipts": "unavailable: empty final transcript is NOT no exposure",
+      "retainedPNGsAtDiscovery": [
+        {
+          "file": "b-001.png",
+          "sha256": "4edf347daa2703f2a7d1d7059d1e60306a906a1e1866007d86499fc63ebe58b6"
+        },
+        {
+          "file": "b-002.png",
+          "sha256": "4c23793e41ac911f8397e5dbc9ad356bb719747d59997372ffc979f6731a3c4c"
+        }
+      ],
+      "retainedPNGsNow": [
+        {
+          "file": "b-001.png",
+          "sha256": "4edf347daa2703f2a7d1d7059d1e60306a906a1e1866007d86499fc63ebe58b6"
+        },
+        {
+          "file": "b-002.png",
+          "sha256": "4c23793e41ac911f8397e5dbc9ad356bb719747d59997372ffc979f6731a3c4c"
+        }
+      ]
+    }
+  },
+  "screenshotRetentionCorrection": {
+    "time": "2026-10-31T03:12:04.799249+00:00",
+    "scope": "only owned interrupted-attempt images",
+    "capturedDesktop": 7,
+    "allowedPerDevice": 6,
+    "keptDesktop": 6,
+    "removed": [
+      {
+        "file": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance/sara/cut-by-restart-20261030T2150Z/desktop/a-006.png",
+        "sha256": "4db6395ab0fac7944e4fd67f48b44b0a8175847cba70b85c6d7b297369f3477b",
+        "reason": "sixth manual plus automatic exceeded six total; preserve capture breach, no original Read receipt available"
+      }
+    ],
+    "phoneCapturedSuccessful": 2,
+    "phoneThirdAttemptFailedOnClosedPage": true
+  }
+}

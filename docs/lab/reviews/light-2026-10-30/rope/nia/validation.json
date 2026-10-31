@@ -1,0 +1,158 @@
+{
+  "tester": "Nia Okafor",
+  "validationTime": "2026-10-30T23:11:13.560498+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T22:47:12.507Z",
+        "elapsed_s": 215.306,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping. I liked the refusal and the Wren disagree line, but the climb is slow and mostly yes-answers. Might come back another evening if early answers varied more.",
+        "game_clock": "06:20",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 211.57,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T22:44:43.148Z",
+          "elapsed_s": 65.947,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Skip, I am impatient.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 7,
+          "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T22:44:46.582Z",
+          "elapsed_s": 69.381,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "more \u25be"
+          },
+          "reaction": "Seeing what else I can say to Nell.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 42,
+          "error": "2 enabled controls are named more \u25be; tap one by point: (325,494), (319,631) (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-30T22:45:29.426Z",
+          "elapsed_s": 112.225,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Skip is back. 30 real seconds bought 17 game minutes; slow.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 86,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T22:48:39.580Z",
+        "elapsed_s": 86.65,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping after 85 seconds. Robotic refusal and generic answers to my questions. Desktop layout was nice. Would not return unless people answered what I actually asked.",
+        "game_clock": "05:21",
+        "engagement": null,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 83.279,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T22:48:20.799Z",
+          "elapsed_s": 67.869,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "more \u25be",
+            "role": "button"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6,
+          "error": "tap needs exactly one target (invalid request, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

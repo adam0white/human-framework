@@ -1,0 +1,3282 @@
+{
+  "scope": "Exact parsed actual reaction rows, not a reconstructed producer report. Mei diagnostic section3 omits some rows; source logs and these rows retain them.",
+  "sessions": [
+    {
+      "tester": "Aisha Rahman",
+      "phase": "original",
+      "device": "phone",
+      "source": "aisha/phone/wall-clock.jsonl",
+      "sourceSha256": "19bcda8c4255c902ad76cdc8325b5ceb8eba7b8991e6ee94e666854a973e75c4",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:03:50.888Z",
+          "elapsed_s": 7.173,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "A title page, Two Voices. I am a voice in Dilan head; sounds gentle. Starting.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 197,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:03:59.330Z",
+          "elapsed_s": 15.615,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Sleep for five more minutes. She is willing."
+          },
+          "reaction": "Countdown timer but clear. She is willing, so I go with her.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 275,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:04:04.456Z",
+          "elapsed_s": 20.741,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell Aylin you will call Mum tonight on the bus. She would agree only if you insist."
+          },
+          "reaction": "Oh, my five minutes became thirty. I own that. I want her to call Mum; a careful promise.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 281,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:04:06.220Z",
+          "elapsed_s": 22.505,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "She declined and said so in her own words; I like that she can refuse.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 147,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:04:10.460Z",
+          "elapsed_s": 26.745,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say you overslept. She would agree only if you insist."
+          },
+          "reaction": "I would rather she told the truth to Murat; I know she may not.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 396,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:04:12.485Z",
+          "elapsed_s": 28.77,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "She lied, and I could not stop her. Honest about it, at least.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 325,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:04:48.128Z",
+          "elapsed_s": 64.413,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Talk her through it. She would agree only if you insist."
+          },
+          "reaction": "Ece is near tears; a map pin feels cold. I want a human voice for her, even if Dilan refuses.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 693,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:04:52.266Z",
+          "elapsed_s": 68.551,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "I understand: I whisper suggestions, Dilan decides, and she often declines the kinder one unless I insist. Her own words after each choice are honest and human. I cannot hold to insist with this driver. Mild frustration that kindness loses by default.",
+          "game_clock": "Mon 10:43",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:04:58.323Z",
+          "elapsed_s": 74.608,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“She found it, didn’t she?” She would agree only if you insist."
+          },
+          "reaction": "Murat mocking Ece, the girl I just failed to help. I want Dilan to defend her, gently.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 946,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:05:01.650Z",
+          "elapsed_s": 77.935,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "She laughed at Ece and gave a reason. It hurt, in the way a true thing does. I cannot insist; my taps only suggest.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 696,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:05:10.453Z",
+          "elapsed_s": 86.738,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Four kind suggestions in a row declined, each with her own reason. Honest and not scolding, but my taps feel like they do nothing unless I can hold to insist, which I cannot do here. I am a voice with no weight.",
+          "game_clock": "Mon 15:21",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:05:47.613Z",
+          "elapsed_s": 123.898,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Text Mum and promise to call tomorrow. She would agree only if you insist."
+          },
+          "reaction": "A small, keepable promise: text and promise tomorrow. That is the one I would pick.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31516,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:06:21.334Z",
+          "elapsed_s": 157.619,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Put the phone on the floor and go to sleep. She would agree only if you insist."
+          },
+          "reaction": "The tap reported a timeout though the game moved on, probably the driver. She scrolled past her stop; poor woman. Suggesting sleep.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31516,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:06:23.951Z",
+          "elapsed_s": 160.236,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "p-002.png"
+          },
+          "reaction": "End of Monday: a night card. It names what she did not do, and says what she thinks of me: I had something to say about everything. Fair, a little stinging.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 120,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:06:27.957Z",
+          "elapsed_s": 164.242,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "The night card is lovely: struck-through promises, her intentions carried to tomorrow, and a verdict on me. I want to repair Mum on Tuesday. Still, I mostly watched her ignore me.",
+          "game_clock": "Mon in bed",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:06:38.801Z",
+          "elapsed_s": 175.086,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 6
+          },
+          "reaction": "The third coffee came back to bite her at midnight. The game remembers what happened.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:07:12.689Z",
+          "elapsed_s": 208.974,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist."
+          },
+          "reaction": "Now it tells me: press and hold to insist. My driver can only tap, so I cannot insist. Noted, may be a driver limit.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31524,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:07:15.664Z",
+          "elapsed_s": 211.949,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Tuesday opens the same as Monday: alarm, oversleep, the ring road. The memory of the coffee is nice, but I cannot insist, so I watch the same morning. Interest falling.",
+          "game_clock": "Tue 08:27",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:07:17.828Z",
+          "elapsed_s": 214.113,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I cannot insist with a tap, so my kindest suggestions lose every time and Tuesday repeats Monday. I would stop here on the phone.",
+          "game_clock": "Tue 08:27",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:07:26.443Z",
+          "elapsed_s": 222.728,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone at Tuesday 08:28, about 3.7 minutes. I liked her own words after each choice and the night card, but I could not hold to insist and Tuesday repeated Monday. Pressed I am stopping in Feedback, typed nothing, no Submit.",
+          "game_clock": "Tue 08:28",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Aisha Rahman",
+      "phase": "original",
+      "device": "desktop",
+      "source": "aisha/desktop/wall-clock.jsonl",
+      "sourceSha256": "c8fd60c894a29f516ca47eb2751992f378de405fc53edfc4b7feba3859693c77",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:07:33.931Z",
+          "elapsed_s": 6.023,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Same title page, wider. Second visit same evening; I know Dilan now and want to try getting her up on time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 138,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:07:41.571Z",
+          "elapsed_s": 13.663,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say nothing"
+          },
+          "reaction": "This time I say nothing to see what she does on her own.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 237,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:07:47.827Z",
+          "elapsed_s": 19.919,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell Aylin you will call Mum tonight on the bus. She would agree only if you insist."
+          },
+          "reaction": "Same Monday as on my phone, identical text. I try the same promise to Aylin.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 287,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:07:53.737Z",
+          "elapsed_s": 25.829,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say nothing"
+          },
+          "reaction": "Exactly the same Murat scene as on the phone. Say nothing here to see if she chooses honestly alone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 310,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:08:30.418Z",
+          "elapsed_s": 62.51,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Second visit, same evening, and Monday is word for word the phone one. I know the loop, so Ece and the lunchtime mockery are no surprise. On the laptop I hoped hold-to-insist would be possible, but the driver gives me only taps. I would stop soon.",
+          "game_clock": "Mon 10:43",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:08:32.497Z",
+          "elapsed_s": 64.589,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I just did this exact Monday on my phone; the same lines and the same refusals. Nothing new to learn on the laptop. I would stop.",
+          "game_clock": "Mon 10:43",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:08:40.708Z",
+          "elapsed_s": 72.8,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the desktop at Monday 10:43, about 71 seconds. It was word for word the Monday I had just played on my phone, and I could not insist. Pressed I am stopping in Feedback, typed nothing, no Submit.",
+          "game_clock": "Mon 10:43",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Mei Tan",
+      "phase": "original",
+      "device": "desktop",
+      "source": "mei/desktop/wall-clock.jsonl",
+      "sourceSha256": "551ce82edd36fe1b9fec3678a013f91d64c95a11208fe2350c3bc55025cad3fd",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:09:14.784Z",
+          "elapsed_s": 3.911,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-001.png"
+          },
+          "reaction": "A week of suggestions for Dilan. Title is clear. I will start without the optional boxes.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 131,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:09:26.956Z",
+          "elapsed_s": 16.083,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 8
+          },
+          "reaction": "Nothing to tap yet. Waiting for the alarm.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8106,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:09:28.850Z",
+          "elapsed_s": 17.977,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Sleep for five more minutes. She is willing."
+          },
+          "reaction": "Clear: a timer, and how she feels about each. I pick the willing one.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 243,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:09:30.467Z",
+          "elapsed_s": 19.594,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Skip to see what happens next.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 139,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:09:49.836Z",
+          "elapsed_s": 38.963,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Read the message without replying. She is willing."
+          },
+          "reaction": "I would like her to promise Mum a call, but that costs trust. I take the willing option and note my sleeping-in suggestion cost her 30 minutes.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 242,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:10:15.214Z",
+          "elapsed_s": 64.341,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "I voice a week for Dilan. Each choice has a timer and shows how willing she is; insisting costs trust. My sleep-in made her late. Clear so far, but I dislike that a lie is the easy option.",
+          "game_clock": "Monday 08:27",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:10:17.065Z",
+          "elapsed_s": 66.192,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say nothing"
+          },
+          "reaction": "I will not push the truth or the lie; say nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 303,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:10:19.432Z",
+          "elapsed_s": 68.559,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Saying nothing lets her choose; she lied. Noted.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 148,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:10:47.251Z",
+          "elapsed_s": 96.378,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Talk her through it. She would agree only if you insist."
+          },
+          "reaction": "Ece is crying; talking her through is kinder, but costs trust if I hold to insist. I will tap once without holding and see what happens.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 598,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:10:49.625Z",
+          "elapsed_s": 98.752,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "A single tap on an unwilling option does not work; she did the other thing. So the label means what it says. I like the rule, and I see the cost of my choices only in the log.",
+          "game_clock": "Monday 10:43",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:11:25.553Z",
+          "elapsed_s": 134.68,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“She found it, didn’t she?” She would agree only if you insist."
+          },
+          "reaction": "I want to defend Ece, but the driver cannot hold, so I expect she will laugh along. Testing it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 945,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:12:01.244Z",
+          "elapsed_s": 170.371,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Drink some water and walk around the yard. She would agree only if you insist."
+          },
+          "reaction": "The better choice again needs insisting. The pattern: the good option is always the unwilling one.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1327,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:12:06.933Z",
+          "elapsed_s": 176.06,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "The scenes are human and I can read what she feels about each option. But every time I tap the better choice she does the other thing, and I cannot hold to insist through this driver, so I feel I have no influence. Unsure what insisting really buys.",
+          "game_clock": "Monday 16:06",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:12:10.223Z",
+          "elapsed_s": 179.35,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Note: my previous pulse went in at 176 s, just short of 180; I will repeat it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1016,
+          "error": "Skip to the next event is not on the page now; it was listed 6 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T01:13:10.224Z",
+          "elapsed_s": 239.351,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Text Mum and promise to call tomorrow. She would agree only if you insist."
+          },
+          "reaction": "A promise with a date is what I like, so I try it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31515,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:13:13.524Z",
+          "elapsed_s": 242.651,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Scenes are human and the willingness labels are legible. But kinder options keep being the unwilling ones and a single tap gets overridden, so I feel little influence. My timer ran out while I was slow and the game chose for me: she scrolled and missed her stop. The Mum call matters to me as a caregiver.",
+          "game_clock": "Monday 21:32",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:13:16.084Z",
+          "elapsed_s": 245.211,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I understand the loop: she mostly does the willing thing, and I do not see what insisting buys, nor can I hold with this driver. I would stop here this evening.",
+          "game_clock": "Monday 21:32",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:13:23.964Z",
+          "elapsed_s": 253.091,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Monday 21:33 after one day. Scenes were human and readable, but I could not tell what insisting buys and the kinder options always needed it. I chose I am stopping in Feedback and typed nothing.",
+          "game_clock": "Monday 21:33",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Mei Tan",
+      "phase": "original",
+      "device": "phone",
+      "source": "mei/phone/wall-clock.jsonl",
+      "sourceSha256": "0d8c45cf0ddfe6b0d13cbd76d2650eed636536753c3fdb49b53ffa41bac9b37d",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:13:28.582Z",
+          "elapsed_s": 4.233,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Second visit on my phone the same evening. New game.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 134,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:13:40.903Z",
+          "elapsed_s": 16.554,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust."
+          },
+          "reaction": "On the phone I try the get-up option this time, to see whether a tap alone does anything.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 257,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:14:28.801Z",
+          "elapsed_s": 64.452,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Phone works: the text is readable at 360 wide and the choices are big. Same opening as the laptop, but the get-up suggestion did nothing alone, as before. Nothing broke. I know the loop already.",
+          "game_clock": "Mon 08:26",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:14:36.542Z",
+          "elapsed_s": 72.193,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I already know the loop from the laptop and have seen nothing new on the phone. I would stop here.",
+          "game_clock": "Mon 08:27",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 1,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:14:37.419Z",
+          "elapsed_s": 73.07,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on the phone at Monday 08:27 after about 70 s. Readable at 360 wide, nothing broke. I chose I am stopping in Feedback and typed nothing.",
+          "game_clock": "Mon 08:27",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Nia Okafor",
+      "phase": "original",
+      "device": "phone",
+      "source": "nia/phone/wall-clock.jsonl",
+      "sourceSha256": "446adc0ee0be2bb1d59e8be546fbbcb2c8078d10470219dddfa8b2957c64fede",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:28:26.775Z",
+          "elapsed_s": 6.263,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Short intro, a woman with a head full of voices. I am a voice. Starting.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 140,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:28:38.997Z",
+          "elapsed_s": 18.485,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust.",
+            "duration_ms": 1500
+          },
+          "reaction": "Hold to insist costs trust, but I want to see her push back.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1709,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:28:40.654Z",
+          "elapsed_s": 20.142,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Insisting worked. Skipping ahead.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 143,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:29:00.285Z",
+          "elapsed_s": 39.773,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell Aylin you will call Mum tonight on the bus. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Insist again, curious what trust costs.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1678,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:29:25.720Z",
+          "elapsed_s": 65.208,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Intro short, I got a choice at 12s. Holding to insist worked and she answered in her own words (thumbs-up and tonight). Ece lost and crying now. Fairly interesting; the waits between events are a bit long.",
+          "game_clock": "Mon 10:42",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:29:29.069Z",
+          "elapsed_s": 68.557,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Talk her through it. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Talk Ece through it, she is crying. Insist.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1676,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:29:57.330Z",
+          "elapsed_s": 96.818,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 25
+          },
+          "reaction": "Insisting changed what she did: she guided Ece for fifteen minutes. That is a consequence I can see.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 25108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:30:00.684Z",
+          "elapsed_s": 100.172,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“She found it, didn’t she?” She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Murat mocking Ece after I helped her. I want Dilan to defend her.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1684,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:30:04.381Z",
+          "elapsed_s": 103.869,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Everyone went quiet, then Murat laughed at himself. That is the surprising reaction I like. The story text is piling up though; the page gets long.",
+          "game_clock": "Mon 14:10",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:30:33.657Z",
+          "elapsed_s": 133.145,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Drink some water and walk around the yard. She is against it."
+          },
+          "reaction": "Quick tap on the one she is against, to see what a plain refusal looks like.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 863,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:30:36.157Z",
+          "elapsed_s": 135.645,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "She answered me back with her own line about needing the coffee. That is a person, not a menu.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 686,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:31:12.299Z",
+          "elapsed_s": 171.787,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She wants to do it later.",
+            "duration_ms": 1500
+          },
+          "reaction": "She promised tonight on the bus. Holding her to it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 2034,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:31:24.473Z",
+          "elapsed_s": 183.961,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 10
+          },
+          "reaction": "She pushed back: you keep pushing me, I am not listening today. Insisting has a limit. I like that.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 10108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:31:28.747Z",
+          "elapsed_s": 188.235,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Her refusal and the missed bus stop were real consequences of insisting. Still a lot of text piling up and short waits between choices.",
+          "game_clock": "Mon 21:31",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:32:01.036Z",
+          "elapsed_s": 220.524,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Put the phone on the floor and go to sleep. She wants to do it later."
+          },
+          "reaction": "Plain tap on sleep, no hold, to see a gentle try.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31514,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true }).or(getByRole('link', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('tab', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('menuitem', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('checkbox', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('radio', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('option', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('switch', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:32:05.442Z",
+          "elapsed_s": 224.93,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Continue to Tuesday"
+          },
+          "reaction": "The day closed itself while I was slow, and she told me: you pushed me a lot today, I did it, I did not like it. That stings in a good way.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1290,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:32:15.443Z",
+          "elapsed_s": 234.931,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 8
+          },
+          "reaction": "Last night coffee carried into Tuesday. It remembers.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8109,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:32:20.084Z",
+          "elapsed_s": 239.572,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Day two starts like day one: same alarm choice. I got the good bits (insisting costs, she remembers the coffee) and now it is the same shape again. I would stop.",
+          "game_clock": "Tue 06:41",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:32:29.776Z",
+          "elapsed_s": 249.264,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Tuesday morning. I loved that insisting has a cost and she remembers coffee, but day two begins with the same alarm choice. Would close it, not leave it running. Pressed I am stopping in Feedback, typed nothing, no submit.",
+          "game_clock": "Tue 06:42",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Nia Okafor",
+      "phase": "original",
+      "device": "desktop",
+      "source": "nia/desktop/wall-clock.jsonl",
+      "sourceSha256": "da821c8bb19fd4c234bfa6ba6e76b391584d7945729aad7ad2dc6c02a7fbaa8c",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:32:36.442Z",
+          "elapsed_s": 4.39,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Second device, same game. This time I will try the sleep-in and see what she does.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 145,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:33:12.010Z",
+          "elapsed_s": 39.958,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Read the message without replying. She is willing."
+          },
+          "reaction": "Sleeping in made her sleep through two alarms. Same story, different result than the phone. Now just read Aylin message.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 226,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:33:41.550Z",
+          "elapsed_s": 69.498,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Wide layout is calm. A choice within 12s. My sleep-in changed her day: slept through alarms, watched videos about kitchens, now late and Murat is asking. That is a surprising chain. Waits between events a bit long.",
+          "game_clock": "Mon 08:27",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:33:44.940Z",
+          "elapsed_s": 72.888,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say you overslept. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Make her tell the truth to Murat.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1649,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:34:13.668Z",
+          "elapsed_s": 101.616,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 25
+          },
+          "reaction": "The honest answer worked out fine. Murat was kind. Same Murat who mocks Ece at lunch in the other run, so I wonder.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 25107,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:34:15.964Z",
+          "elapsed_s": 103.912,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Send her the map location. She is willing."
+          },
+          "reaction": "Same Ece call as the phone. This time the quick option, to compare.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 392,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:34:50.352Z",
+          "elapsed_s": 138.3,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Laugh along. She is willing."
+          },
+          "reaction": "Same lunch scene as the phone. Laughing along this time, to see the other side.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 476,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:35:24.042Z",
+          "elapsed_s": 171.99,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "That felt bad, which I think is the point. Laughing along cost me something, and I felt it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30106,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:35:26.293Z",
+          "elapsed_s": 174.241,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Same day beats as the phone, but my different choices changed what she did. Still the same scenes and a lot of waiting; I have now seen this day twice.",
+          "game_clock": "Mon 15:23",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 1,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:35:31.584Z",
+          "elapsed_s": 179.532,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Have the coffee. She is willing."
+          },
+          "reaction": "Coffee, to see if Tuesday remembers it like on the phone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 553,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:35:33.861Z",
+          "elapsed_s": 181.809,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I have now seen this same Monday twice with different results; the desktop run is the same scenes. I would stop.",
+          "game_clock": "Mon 15:23",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:35:42.382Z",
+          "elapsed_s": 190.33,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Monday afternoon, desktop. Same Monday as the phone with different results from my choices; I have seen the shape. Layout is calm and readable. Would close it. Pressed I am stopping in Feedback, typed nothing, no submit.",
+          "game_clock": "Mon 15:58",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "phase": "original",
+      "device": "phone",
+      "source": "rosa/phone/wall-clock.jsonl",
+      "sourceSha256": "39320a381857a287d8e9f6a0963420bbef575584b2d297ab013f54ffc06f5f1f",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:36:26.961Z",
+          "elapsed_s": 3.002,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-001.png"
+          },
+          "reaction": "Title: I am a voice in Dilan head, suggest what she does Mon to Sat. Four people named. Two checkboxes about third week and outcomes week I do not understand; I ignore them.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 123,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:36:28.941Z",
+          "elapsed_s": 4.982,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "I start. The game says Two Voices, not Murmur; I just play.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 135,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:36:36.766Z",
+          "elapsed_s": 12.807,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Sleep for five more minutes. She is willing."
+          },
+          "reaction": "A timer of 58 seconds. Plain choices. She is willing to sleep; I suggest that, gently.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 241,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:36:49.205Z",
+          "elapsed_s": 25.246,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Read the message without replying. She is willing."
+          },
+          "reaction": "She slept through two alarms because I suggested sleep. I did not expect that to cost her so much. I see: my words matter.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 221,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:37:10.335Z",
+          "elapsed_s": 46.376,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say you overslept. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "I want her to be honest, so I hold to insist, as the game said. It costs trust, but telling the truth seems right.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1693,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:37:28.323Z",
+          "elapsed_s": 64.364,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "I understand: I am a voice, I suggest what Dilan does, she answers in a short time. Insisting costs trust. Plain, kind small stories. Not clear: what trust does for me, and why the timer counts down. Waiting between events is slow.",
+          "game_clock": "Mon 10:41",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:37:30.750Z",
+          "elapsed_s": 66.791,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Talk her through it. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Ece is nearly crying. A map alone seems cold; I insist on talking her through it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1678,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:38:07.746Z",
+          "elapsed_s": 103.787,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“She found it, didn’t she?” She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Murat mocks Ece, who was crying. I do not like it. I insist on defending her.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1678,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:38:42.172Z",
+          "elapsed_s": 138.213,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Drink some water and walk around the yard. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Third coffee for a tired woman is not good. Water and a walk.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1694,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:39:16.206Z",
+          "elapsed_s": 172.247,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Text Mum and promise to call tomorrow. She wants to do it later."
+          },
+          "reaction": "A third wording now: She wants to do it later. I guess it means she prefers not now. I pick the text, a small kind step.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1105,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:39:30.068Z",
+          "elapsed_s": 186.109,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "I care about Dilan: tired, late, avoiding her mother. Sentences are plain and short, no reread yet. Odd: she ignored my text suggestion and chose to scroll. I cannot see what trust I have.",
+          "game_clock": "Mon 21:31",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:39:35.376Z",
+          "elapsed_s": 191.417,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop the phone here for the evening, not from trouble. I liked Dilan and her small ordinary troubles. No sentence needed a second reading. I saw the loop and want to see the big screen.",
+          "game_clock": "Mon 21:31",
+          "engagement": 4,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "phase": "original",
+      "device": "desktop",
+      "source": "rosa/desktop/wall-clock.jsonl",
+      "sourceSha256": "8bb0e4ace15610681e6c8ad94b5e5b94de1e43c276f8fe73fc3aba1176d47275",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:39:37.642Z",
+          "elapsed_s": 1.877,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "b-001.png"
+          },
+          "reaction": "Second visit, big screen. Same title; I know the aim.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 133,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:39:51.501Z",
+          "elapsed_s": 15.736,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust.",
+            "duration_ms": 1500
+          },
+          "reaction": "On the phone she slept late. This time I insist she gets up, to see the difference.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1649,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:40:12.332Z",
+          "elapsed_s": 36.567,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell Aylin you will call Mum tonight on the bus. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "She got up on time because I insisted. Now I insist she promises Aylin to call Mum tonight.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1625,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:40:41.963Z",
+          "elapsed_s": 66.198,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Same game as the phone, easier to read. My insist made her get up on time, so the Murat late scene did not appear. So my words change the day. That is clear and I like it. Still unclear: what trust is for.",
+          "game_clock": "Monday 10:42",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:40:43.640Z",
+          "elapsed_s": 67.875,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Send her the map location. She is willing."
+          },
+          "reaction": "This time I choose the easy map. Watching what differs from the phone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 359,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:41:17.169Z",
+          "elapsed_s": 101.404,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Laugh along. She is willing."
+          },
+          "reaction": "I do not like laughing at Ece, but I want to see what happens when I just take the easy willing choice.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 444,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:41:51.696Z",
+          "elapsed_s": 135.931,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Drink some water and walk around the yard. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "I feel bad that I let her laugh at Ece. Now I try to help her tiredness.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1631,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:42:26.411Z",
+          "elapsed_s": 170.646,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "I promised Aylin tonight. I insist she calls Mum. Here the label says only if you insist; on the phone it said she wants to do it later. The wording changed between runs.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1636,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:42:41.380Z",
+          "elapsed_s": 185.615,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "I like this. Dilan called her Mum for twenty minutes and laughed. The neighbour roof joke made me smile. My insist choices changed the day compared with the phone. No sentence reread.",
+          "game_clock": "Monday 21:31",
+          "engagement": 5,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:42:47.522Z",
+          "elapsed_s": 191.757,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop the big screen here for the evening, not from trouble. I saw that insisting changed her day compared with the phone, and the Mum call was warm. No reread. I stop because I have seen a full Monday.",
+          "game_clock": "Monday 21:31",
+          "engagement": 5,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Lucia Moretti",
+      "phase": "original",
+      "device": "desktop",
+      "source": "lucia/desktop/wall-clock.jsonl",
+      "sourceSha256": "7bcf384c99219a6f82d0ad2b694b789113cbaa356440bdc96ff51417ca95eada",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:43:31.434Z",
+          "elapsed_s": 6.035,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Called Murmur but page says Two Voices. Third week? I have not played a first. I leave boxes empty and press Start.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 136,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:43:44.620Z",
+          "elapsed_s": 19.221,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust.",
+            "duration_ms": 1500
+          },
+          "reaction": "A 55 second clock. I am a dispatcher, people get up at the alarm. I hold to insist.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1648,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:43:57.986Z",
+          "elapsed_s": 32.587,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell Aylin you will call Mum tonight on the bus. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Lines repeat twice on the screen, a little messy. Insist again, a promise to the sister is sensible. I worry about spending trust I cannot see.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1631,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:44:17.552Z",
+          "elapsed_s": 52.153,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Talk her through it. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "This is my job, a lost driver on the radio. You talk them through. Insisting a third time, I hope trust lasts.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1642,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:44:33.551Z",
+          "elapsed_s": 68.152,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "I understand it: little scenes, I push her one way, the other voice in pencil pushes the other. Clear enough. The countdown bothers me a bit, but skip ahead is welcome. Screen keeps growing and lines appear twice.",
+          "game_clock": "Monday 12:41",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:44:36.331Z",
+          "elapsed_s": 70.932,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“She found it, didn’t she?” She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "A supervisor mocking a new driver. Not in my control room. She should say it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1638,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:44:55.361Z",
+          "elapsed_s": 89.962,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Have the coffee. She is willing."
+          },
+          "reaction": "I have insisted four times; I do not know how much trust is left, there is no number. I let her have the coffee. Shift workers know.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 507,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:45:14.459Z",
+          "elapsed_s": 109.06,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She wants to do it later."
+          },
+          "reaction": "She promised Aylin. I want her to keep it. No hold hint here, so I just click. Guessing what wants to do it later means.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1046,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:45:17.577Z",
+          "elapsed_s": 112.178,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "She refused me and scrolled. Fair, I could not insist on that one, there was no hold offered. But the promise to Aylin is broken and nobody tells me why I could not push. I would like to see the trust I have left.",
+          "game_clock": "Monday 18:12",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:45:33.013Z",
+          "elapsed_s": 127.614,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 12
+          },
+          "reaction": "Missed her stop by two. As a transit person I smile. Consequence is clear, I like that.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 12116,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:45:38.149Z",
+          "elapsed_s": 132.75,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Put the phone on the floor and go to sleep. She wants to do it later.",
+            "duration_ms": 2500
+          },
+          "reaction": "I try holding even without the hint, maybe it works like insist.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 2640,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:45:40.722Z",
+          "elapsed_s": 135.323,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "\"You keep pushing me.\" So trust ran out. Now I understand: insisting is a budget, and I spent it in the morning. That is a clear cause, I accept it, but I wish I had seen a counter.",
+          "game_clock": "Monday 21:32",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:45:47.773Z",
+          "elapsed_s": 142.374,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Continue to Tuesday"
+          },
+          "reaction": "This end-of-day page is what I wanted: a tick, a crossed-out call, her opinion of me. Like a shift report. Good. Tuesday, I will push less.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1186,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:45:59.684Z",
+          "elapsed_s": 154.285,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 10
+          },
+          "reaction": "The third coffee comes back. Cause and effect, I like it, a bit guilty.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 10107,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:46:03.112Z",
+          "elapsed_s": 157.713,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say nothing"
+          },
+          "reaction": "I stay quiet to give her trust back. I hope silence is the way to repair it; I am guessing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1042,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:46:54.832Z",
+          "elapsed_s": 209.433,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Say you overslept. She wants to do it later."
+          },
+          "reaction": "\"She wants to do it later\" for telling the truth? The wording does not fit; it means no, I think. I click honesty anyway. Oh, I silenced her and she slept through three alarms. Lesson.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31521,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Say you overslept. She wants to do it later.', exact: true }).or(getByRole('link', { name: 'Say you overslept. She wants to do it later.', exact: true })).or(getByRole('tab', { name: 'Say you overslept. She wants to do it later.', exact: true })).or(getByRole('menuitem', { name: 'Say you overslept. She wants to do it later.', exact: true })).or(getByRole('checkbox', { name: 'Say you overslept. She wants to do it later.', exact: true })).or(getByRole('radio', { name: 'Say you overslept. She wants to do it later.', exact: true })).or(getByRole('option', { name: 'Say you overslept. She wants to do it later.', exact: true })).or(getByRole('switch', { name: 'Say you overslept. She wants to do it later.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:47:01.395Z",
+          "elapsed_s": 215.996,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“That was me.” She wants to do it later.",
+            "duration_ms": 2000
+          },
+          "reaction": "A routing mistake. In my job you own it. I hold to insist; I said nothing this morning so maybe trust is back.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3544,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:47:03.985Z",
+          "elapsed_s": 218.586,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "The people and the work feel real to me, a depot, a routing error. But now she refuses everything I want and I cannot see why trust did not come back overnight. I am losing my grip on the rule.",
+          "game_clock": "Tuesday 11:12",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:47:08.083Z",
+          "elapsed_s": 222.684,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Close information"
+          },
+          "reaction": "The i page explains it: trust shows in how dark my handwriting is. I would never have read that from the letters. A number would be kinder. And blaming the system pointed at Ece, poor girl. That stings.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 140,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:47:58.951Z",
+          "elapsed_s": 273.552,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Ask Ece where she takes a break away from the depot. She wants to do it later."
+          },
+          "reaction": "I only suggest, no pushing. A small kindness toward Ece after the scanner.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31522,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true }).or(getByRole('link', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('tab', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('menuitem', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('checkbox', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('radio', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('option', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('switch', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:48:03.328Z",
+          "elapsed_s": 277.929,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Three refusals in a row on Tuesday. She does the opposite of every suggestion. I do not know how to earn trust back; nothing on screen tells me. I feel like a voice nobody listens to. I will give it to the end of Tuesday.",
+          "game_clock": "Tuesday 15:22",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:48:56.078Z",
+          "elapsed_s": 330.679,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She wants to do it later."
+          },
+          "reaction": "Now she says my words herself: ten minutes. Maybe this time. I suggest only.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31518,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Call Mum. She wants to do it later.', exact: true }).or(getByRole('link', { name: 'Call Mum. She wants to do it later.', exact: true })).or(getByRole('tab', { name: 'Call Mum. She wants to do it later.', exact: true })).or(getByRole('menuitem', { name: 'Call Mum. She wants to do it later.', exact: true })).or(getByRole('checkbox', { name: 'Call Mum. She wants to do it later.', exact: true })).or(getByRole('radio', { name: 'Call Mum. She wants to do it later.', exact: true })).or(getByRole('option', { name: 'Call Mum. She wants to do it later.', exact: true })).or(getByRole('switch', { name: 'Call Mum. She wants to do it later.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:49:30.745Z",
+          "elapsed_s": 365.346,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Write the day down. She wants to do it later."
+          },
+          "reaction": "Missed her stop again, same bus, same scroll. Tuesday is Monday again but worse. I try writing the day down, the one thing I would do myself.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31520,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Write the day down. She wants to do it later.', exact: true }).or(getByRole('link', { name: 'Write the day down. She wants to do it later.', exact: true })).or(getByRole('tab', { name: 'Write the day down. She wants to do it later.', exact: true })).or(getByRole('menuitem', { name: 'Write the day down. She wants to do it later.', exact: true })).or(getByRole('checkbox', { name: 'Write the day down. She wants to do it later.', exact: true })).or(getByRole('radio', { name: 'Write the day down. She wants to do it later.', exact: true })).or(getByRole('option', { name: 'Write the day down. She wants to do it later.', exact: true })).or(getByRole('switch', { name: 'Write the day down. She wants to do it later.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:49:33.981Z",
+          "elapsed_s": 368.582,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "\"They think it was Ece.\" That is the line that hurts, and it is my doing too. The summary is good. But Tuesday was the same shape as Monday and she refused me four times. I do not want four more days of this tonight.",
+          "game_clock": "Tuesday in bed",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:49:43.149Z",
+          "elapsed_s": 377.75,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop at Tuesday night. I liked the depot and Ece, and the bedtime summary. But I spent her trust on Monday morning without knowing it was a budget, and since then she refuses me. Two days the same shape. Enough for tonight.",
+          "game_clock": "Tuesday 21:32",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Lucia Moretti",
+      "phase": "original",
+      "device": "phone",
+      "source": "lucia/phone/wall-clock.jsonl",
+      "sourceSha256": "fef6533ed600d3794ac764e188409d5e5801efe2a5437727159428bd9926cf71",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:49:49.328Z",
+          "elapsed_s": 4.397,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Same page on the phone; Start is below the bottom, I must scroll. This time I will save my pushing for what matters.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 140,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:50:06.046Z",
+          "elapsed_s": 21.115,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust."
+          },
+          "reaction": "On the phone it is tidy, cards with the pencil voice in grey script. A plain tap this time, to see if she refuses without pushing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 241,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:50:22.306Z",
+          "elapsed_s": 37.375,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say nothing"
+          },
+          "reaction": "I keep my pushes for the bus call itself, not for the promise.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 250,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:50:44.915Z",
+          "elapsed_s": 59.984,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say you overslept. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Here on the phone the order of scenes is different: the late question came on Monday. I spend my first push on honesty.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1695,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:50:49.111Z",
+          "elapsed_s": 64.18,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "On the phone the cards are clear. Honesty worked and Murat shrugged; that small result pleased me more than anything on the laptop. Now I know the trust is a budget, I spend it carefully.",
+          "game_clock": "Mon 08:59",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:51:05.077Z",
+          "elapsed_s": 80.146,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Send her the map location. She is willing."
+          },
+          "reaction": "A map pin is not wrong either. I agree with her this time, maybe agreeing earns trust. Guessing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 374,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:51:24.847Z",
+          "elapsed_s": 99.916,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“She found it, didn’t she?” She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Same scene as on the laptop. I know it worked there; I push again. I feel a bit like I am cheating with my laptop memory.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1679,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:51:45.457Z",
+          "elapsed_s": 120.526,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Drink some water and walk around the yard. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "On the laptop that coffee kept her awake till midnight and ruined Tuesday. Water this time, I push. Third push; I am counting myself since the game does not.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1680,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:52:01.696Z",
+          "elapsed_s": 136.765,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 12
+          },
+          "reaction": "Ha. Water, and she fell asleep at the board with Murat watching. Every good choice has a price. Dry, but fair.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 12116,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:52:06.012Z",
+          "elapsed_s": 141.081,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "This time it says she would agree if I insist. On the laptop it never did. Fourth push, for Mum.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1695,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:52:10.905Z",
+          "elapsed_s": 145.974,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "The call happened. The neighbour and his roof, he said that before the rain too. I laughed. This is the scene I wanted on the laptop and never got. It feels earned.",
+          "game_clock": "Mon 20:02",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:52:26.790Z",
+          "elapsed_s": 161.859,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say nothing"
+          },
+          "reaction": "Trust is spent for today, I know that now. I let her have her video.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 842,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:53:19.028Z",
+          "elapsed_s": 214.097,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "The summary fits the phone perfectly. Same verdict as the laptop though: you pushed me a lot, I did not like it. Four pushes and it is the same sentence. I got Mum this time, which pleases me. Tuesday on the laptop was the bad day; I will see one more morning.",
+          "game_clock": "Mon in bed",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:53:30.100Z",
+          "elapsed_s": 225.169,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She is willing."
+          },
+          "reaction": "Now it tells me in words: she resists pressure, holding works worse. On the laptop I had to find that out by failing. Here it is written. Good. And she is willing to get up. I just tap.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1000,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:54:10.939Z",
+          "elapsed_s": 266.008,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "“That was me.” She wants to do it later."
+          },
+          "reaction": "The routing mistake again. On the laptop blaming the system put it on Ece. A plain tap for honesty, no hold, since it says holding works worse now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31519,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '“That was me.” She wants to do it later.', exact: true }).or(getByRole('link', { name: '“That was me.” She wants to do it later.', exact: true })).or(getByRole('tab', { name: '“That was me.” She wants to do it later.', exact: true })).or(getByRole('menuitem', { name: '“That was me.” She wants to do it later.', exact: true })).or(getByRole('checkbox', { name: '“That was me.” She wants to do it later.', exact: true })).or(getByRole('radio', { name: '“That was me.” She wants to do it later.', exact: true })).or(getByRole('option', { name: '“That was me.” She wants to do it later.', exact: true })).or(getByRole('switch', { name: '“That was me.” She wants to do it later.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:54:45.925Z",
+          "elapsed_s": 300.994,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Ask Ece where she takes a break away from the depot. She wants to do it later."
+          },
+          "reaction": "Again she blamed the system and Murat looks at Ece. On both devices, whatever I do, Ece takes it. I did not even push today. Now I try to be kind to Ece at least.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31519,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true }).or(getByRole('link', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('tab', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('menuitem', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('checkbox', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('radio', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('option', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).or(getByRole('switch', { name: 'Ask Ece where she takes a break away from the depot. She wants to do it later.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:54:48.535Z",
+          "elapsed_s": 303.604,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Two refusals again on Tuesday, and I did not push at all today. On both devices Tuesday ends with Ece under suspicion and her at her desk. I have seen this day twice now. I stop here.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:54:57.713Z",
+          "elapsed_s": 312.782,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop at Tuesday afternoon. The phone was kinder: I got the call with Mum, and the game finally told me in words that pushing works worse now. But Tuesday went the same way twice, the system blamed and Ece looked at, even when I did not push. I have seen enough for one evening.",
+          "game_clock": "Tue 15:22",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Aisha Rahman",
+      "phase": "instrument diagnostic return",
+      "device": "phone",
+      "source": "diagnostic-returns/aisha/phone/wall-clock.jsonl",
+      "sourceSha256": "39e1c09570ca9ff1a559180b34935b452a878026cec6c657235b71a65de20f3e",
+      "reactions": [
+        {
+          "t": "2026-10-31T01:57:16.493Z",
+          "elapsed_s": 5.185,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Same title page. This time I can hold to insist.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 138,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:57:26.695Z",
+          "elapsed_s": 15.387,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust.",
+            "duration_ms": 1500
+          },
+          "reaction": "The hold hint is on the very first screen now. I hold to get her up.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1699,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:57:36.162Z",
+          "elapsed_s": 24.854,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 8
+          },
+          "reaction": "Insisting worked, first time. That is the mechanic I missed last visit.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8113,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:57:39.494Z",
+          "elapsed_s": 28.186,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell Aylin you will call Mum tonight on the bus. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "The careful promise to call Mum. I insist.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1694,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:57:59.153Z",
+          "elapsed_s": 47.845,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Talk her through it. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "A human voice for Ece, as I wanted last time. Holding.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1680,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:58:17.719Z",
+          "elapsed_s": 66.411,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Hold to insist works with real held input; she got up, promised Aylin, and guided Ece. Different from last time. Now Murat mocks Ece and I want her to defend her gently.",
+          "game_clock": "Mon 12:41",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:58:20.774Z",
+          "elapsed_s": 69.466,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“She found it, didn’t she?” She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Gentle defence of Ece. Holding.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1693,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:58:37.286Z",
+          "elapsed_s": 85.978,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 15
+          },
+          "reaction": "She said it for Ece. That is what I wanted and could not get last time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 15116,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:58:40.866Z",
+          "elapsed_s": 89.558,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Drink some water and walk around the yard. She is against it.",
+            "duration_ms": 1500
+          },
+          "reaction": "She is against it; no insist hint here. I hold anyway to see if she can be pushed.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1669,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:58:42.813Z",
+          "elapsed_s": 91.505,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "She is against it, I insisted anyway, and she said You keep pushing me, I am not listening today. Fair and not scolding. Insisting is not a magic override; it has a limit and she says so. I like that.",
+          "game_clock": "Mon 15:21",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T01:59:07.533Z",
+          "elapsed_s": 116.225,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She wants to do it later.",
+            "duration_ms": 1500
+          },
+          "reaction": "I promised Aylin tonight. Holding to call Mum.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1943,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:59:32.358Z",
+          "elapsed_s": 141.05,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Insisted on calling Mum and got the identical line, You keep pushing me, I am not listening to that today. Second time in minutes, word for word. The first was fair; repeated it feels canned. She then scrolled past her stop.",
+          "game_clock": "Mon 21:32",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:00:03.543Z",
+          "elapsed_s": 172.235,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 25
+          },
+          "reaction": "Third time the same line, You keep pushing me. I see now: insisting spends trust, and I spent it on small things. But the line is word for word each time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 25114,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:00:05.191Z",
+          "elapsed_s": 173.883,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "p-002.png"
+          },
+          "reaction": "Night card: She says You pushed me a lot today. I did it. I did not like it. That stung, fairly.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 115,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:00:17.234Z",
+          "elapsed_s": 185.926,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Insisting works but costs: she says You pushed me a lot today, I did not like it. I want to try fewer, better-chosen insists on Tuesday. Repeated pushback line is the only dull part.",
+          "game_clock": "Mon in bed",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:00:30.720Z",
+          "elapsed_s": 199.412,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Sleep for five more minutes. She is willing."
+          },
+          "reaction": "Tuesday opens differently: she lay awake from the coffee. I will not push this morning; I saved my insists for things that matter.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1052,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:00:56.415Z",
+          "elapsed_s": 225.107,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say you overslept. She wants to do it later.",
+            "duration_ms": 1500
+          },
+          "reaction": "Saved my insist for the truth to Murat. This is the choice I would spend trust on.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 2536,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:00:59.010Z",
+          "elapsed_s": 227.702,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I saved my insist for the honest answer and she refused with the exact same line a fourth time. I cannot tell how much trust I have left or when insisting will work. I would stop on the phone.",
+          "game_clock": "Tue 08:27",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:01:07.311Z",
+          "elapsed_s": 236.003,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone on Tuesday 08:29, about 3.9 minutes. Holding to insist works now and I loved Ece defended and the night card. But pushing costs trust, she answers refusals with the same line each time, and I could not tell when insisting would land. Pressed I am stopping, typed nothing, no Submit.",
+          "game_clock": "Tue 09:54",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Aisha Rahman",
+      "phase": "instrument diagnostic return",
+      "device": "desktop",
+      "source": "diagnostic-returns/aisha/desktop/wall-clock.jsonl",
+      "sourceSha256": "8a034714f9bfda2fda978fc97c9b06dfa3505c986b6bb4877949e6f14f6ea730",
+      "reactions": [
+        {
+          "t": "2026-10-31T02:01:12.614Z",
+          "elapsed_s": 3.891,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Second visit, laptop. This time I will insist sparingly, and with the mouse hold.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 135,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:01:24.069Z",
+          "elapsed_s": 15.346,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust.",
+            "duration_ms": 1500
+          },
+          "reaction": "Same opening word for word as the phone. I insist on getting up; on this device I will spend insists only on Aylin and Ece.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1646,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:01:59.227Z",
+          "elapsed_s": 50.504,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Talk her through it. She would agree only if you insist."
+          },
+          "reaction": "Trying a plain tap here, no hold, to see what an ordinary tap does on an insist-only choice.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 513,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:02:13.477Z",
+          "elapsed_s": 64.754,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 12
+          },
+          "reaction": "A plain tap only suggests and she declines in her own words; the hold is what makes her do it. Clear now, though I only learned it because the hint is on the first screen.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 12112,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:02:17.144Z",
+          "elapsed_s": 68.421,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Second visit, laptop, same Monday as the phone word for word. A plain tap only suggests and she declined kindly; the hold made her do it. I understand the mechanic now and it is a real choice about trust. Murat mocks Ece next.",
+          "game_clock": "Mon 12:41",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:02:40.451Z",
+          "elapsed_s": 91.728,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Drink some water and walk around the yard. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "On the phone the water was She is against it after I had pushed; here it is only if you insist, since I pushed less. The game does notice how much I have pushed.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1640,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:03:05.923Z",
+          "elapsed_s": 117.2,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She wants to do it later.",
+            "duration_ms": 1500
+          },
+          "reaction": "Her walk made her fall asleep at the board and Murat saw; a different consequence from the phone. Now I hold to call Mum.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1775,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:03:09.249Z",
+          "elapsed_s": 120.526,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "d-002.png"
+          },
+          "reaction": "Refused again on calling Mum, same line, even though I pushed less than on the phone. Looking at the laptop layout during play.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 680,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:04:14.870Z",
+          "elapsed_s": 186.147,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "The night card is the same as the phone: You pushed me a lot today. Hold works, but I pushed five times and she refused the last two with an identical line. I cannot tell how much pushing is too much, and Monday is the same on both devices.",
+          "game_clock": "Mon in bed",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:04:16.666Z",
+          "elapsed_s": 187.943,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I did this same Monday on my phone minutes ago, same night card, same pushback line. Nothing new to learn on the laptop. I would stop.",
+          "game_clock": "Mon in bed",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:04:24.681Z",
+          "elapsed_s": 195.958,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the laptop at Monday night, about 3.3 minutes. It was the same Monday I had just played on my phone, with the same night card. Hold to insist works, and a plain tap only suggests. Pressed I am stopping, typed nothing, no Submit.",
+          "game_clock": "Mon 21:33",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Mei Tan",
+      "phase": "instrument diagnostic return",
+      "device": "desktop",
+      "source": "diagnostic-returns/mei/desktop/wall-clock.jsonl",
+      "sourceSha256": "9153f1d8e9abfd52861ea7f60489b44b43796d8a3a527adfbb8fe4ebcd04d82e",
+      "reactions": [
+        {
+          "t": "2026-10-31T02:05:12.303Z",
+          "elapsed_s": 7.099,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Back to Dilan. This time I can hold. I want to see what insisting buys.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 128,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:05:25.420Z",
+          "elapsed_s": 20.216,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust.",
+            "duration_ms": 1500
+          },
+          "reaction": "Holding get-up for 1.5 s to see what insisting buys.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1643,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:05:27.179Z",
+          "elapsed_s": 21.975,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Insisting worked with a tick. I still do not see the trust cost.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 137,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:05:56.689Z",
+          "elapsed_s": 51.485,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell Aylin you will call Mum tonight on the bus. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Holding the Mum call promise.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1633,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:06:16.189Z",
+          "elapsed_s": 70.985,
+          "kind": "first_minute",
+          "op": "tap",
+          "input": {
+            "name": "Talk her through it. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Holding talk-her-through for Ece.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1630,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:06:17.845Z",
+          "elapsed_s": 72.641,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Holding works: three insists, three ticks, each with a plain line. I still cannot see what trust it cost. Calm and readable.",
+          "game_clock": "Monday 10:41",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:06:19.461Z",
+          "elapsed_s": 74.257,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Information"
+          },
+          "reaction": "Looking for what trust means and what insisting cost.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 140,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:06:21.526Z",
+          "elapsed_s": 76.322,
+          "kind": "note",
+          "op": "tap",
+          "input": {
+            "name": "Close information"
+          },
+          "reaction": "Information now says insisting works only while she trusts me and costs trust; handwriting darkness shows trust. That answers my old ask, but only after I went looking.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 143,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:06:51.187Z",
+          "elapsed_s": 105.983,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "“She found it, didn’t she?” She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Defending Ece by holding. Fourth insist; will trust run out?",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1643,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:06:52.677Z",
+          "elapsed_s": 107.473,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-002.png"
+          },
+          "reaction": "Look at how trust shows in handwriting.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:07:25.158Z",
+          "elapsed_s": 139.954,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "Waiting for next scene.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30117,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:07:28.935Z",
+          "elapsed_s": 143.731,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Drink some water and walk around the yard. She is against it.",
+            "duration_ms": 1500
+          },
+          "reaction": "New wording: against it. Holding anyway to see if insisting still works.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1629,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:07:32.958Z",
+          "elapsed_s": 147.754,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Fourth hold failed: she said You keep pushing me. So trust ran out and the game says so in her words. That answers my old question. But nothing warned me trust was low before I spent it.",
+          "game_clock": "Monday 15:23",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:08:07.809Z",
+          "elapsed_s": 182.605,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She wants to do it later.",
+            "duration_ms": 1500
+          },
+          "reaction": "This is the call I promised in the morning. Holding.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1894,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:08:11.139Z",
+          "elapsed_s": 185.935,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Holding gives me influence and a cost I can feel: I spent trust on a joke defence and lost the Mum call I cared about. It stings, which holds me, but nothing showed trust running low beforehand.",
+          "game_clock": "Monday 18:13",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:08:18.932Z",
+          "elapsed_s": 193.728,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Monday 20:29 after one day on the laptop. Holding works and I saw what insisting buys and costs: four ticks, then she refused and I lost the Mum call. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back to play the week more carefully.",
+          "game_clock": "Monday 20:29",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Mei Tan",
+      "phase": "instrument diagnostic return",
+      "device": "phone",
+      "source": "diagnostic-returns/mei/phone/wall-clock.jsonl",
+      "sourceSha256": "07fe491e4be8f125622afab5a38103585aa89c6087ce38e007a6d638079b92c0",
+      "reactions": [
+        {
+          "t": "2026-10-31T02:08:24.188Z",
+          "elapsed_s": 3.971,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Start"
+          },
+          "reaction": "Second visit on my phone the same evening. New game; I will hold by touch this time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 139,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:08:40.960Z",
+          "elapsed_s": 20.743,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist. Hold to insist. This costs trust.",
+            "duration_ms": 1500
+          },
+          "reaction": "Touch hold on the phone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1689,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:09:13.655Z",
+          "elapsed_s": 53.438,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell Aylin you will call Mum tonight on the bus. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Holding the Mum promise again on the phone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1676,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:09:18.122Z",
+          "elapsed_s": 57.905,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Phone fits well. Touch hold worked twice with ticks. The text is large and readable and the layout is clean. I know the loop from the laptop.",
+          "game_clock": "Mon 07:20",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:09:52.063Z",
+          "elapsed_s": 91.846,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Send her the map location. She is willing."
+          },
+          "reaction": "Saving trust this time: willing option, no hold, so I can keep it for the Mum call tonight.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 351,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:10:25.771Z",
+          "elapsed_s": 125.554,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Say nothing"
+          },
+          "reaction": "I will not spend trust on this one. Keeping it for tonight.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 484,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:11:00.865Z",
+          "elapsed_s": 160.648,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Have the coffee. She is willing."
+          },
+          "reaction": "The water option now reads would agree if you insist, where on the laptop it read against it after I spent trust. So the labels track trust. I take the coffee to save it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 516,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:11:35.615Z",
+          "elapsed_s": 195.398,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Call Mum. She would agree only if you insist.",
+            "duration_ms": 1500
+          },
+          "reaction": "Trust saved; now spending it on the Mum call.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1684,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T02:11:37.672Z",
+          "elapsed_s": 197.455,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Saving trust earlier let me insist on the Mum call here, where on the laptop I had spent it and lost. That is a real strategy I worked out myself. I am keen to see the call itself.",
+          "game_clock": "Mon 18:13",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T02:11:45.492Z",
+          "elapsed_s": 205.275,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on the phone at Monday 19:50 after the Mum call went through. Touch hold works and saving trust paid off. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back another evening for Tuesday.",
+          "game_clock": "Mon 19:50",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    }
+  ]
+}

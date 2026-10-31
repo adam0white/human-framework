@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-31T02:13:29.857798+00:00",
+  "meiDesktopRawStop": {
+    "t": "2026-10-31T02:08:18.932Z",
+    "elapsed_s": 193.728,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Stopping on Monday 20:29 after one day on the laptop. Holding works and I saw what insisting buys and costs: four ticks, then she refused and I lost the Mum call. I chose I am stopping in Feedback and typed nothing, submitted nothing. I would come back to play the week more carefully.",
+    "game_clock": "Monday 20:29",
+    "engagement": null,
+    "reason": "FINISHED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "interpretation": "FINISHED is the producer tag. Its words stop at Monday20:29 and say she would return to play the week. It does not establish that the Monday-to-Saturday game ended. Preserve tag/words; do not count whole-week completion.",
+  "aishaSameBuildQualification": "Her newly noticed first-Monday hint and title options are observations at unchanged6a5, not new source/deployment. Held gesture repaired in instrument only. No gamefix iteration claimed."
+}

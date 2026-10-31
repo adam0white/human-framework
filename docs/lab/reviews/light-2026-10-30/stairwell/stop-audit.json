@@ -1,0 +1,179 @@
+{
+  "maya": {
+    "phone": {
+      "reason": "BORED",
+      "elapsed_s": 206.091,
+      "earlyMinute": [],
+      "earlyPulse": [163.43],
+      "errors": []
+    },
+    "desktop": {
+      "reason": "BORED",
+      "elapsed_s": 210.001,
+      "earlyMinute": [],
+      "earlyPulse": [],
+      "errors": [
+        {
+          "elapsed_s": 162.2,
+          "error": "2 enabled controls are named as I heard it; tap one by point: (824,410), (824,551) (game state, not a driver failure)",
+          "input": {
+            "name": "as I heard it"
+          }
+        }
+      ]
+    }
+  },
+  "jonas": {
+    "desktop": {
+      "reason": "CONFUSED",
+      "elapsed_s": 245.057,
+      "earlyMinute": [],
+      "earlyPulse": [175.492],
+      "errors": [
+        {
+          "elapsed_s": 129.799,
+          "error": "Unsupported field: nth (invalid request, not a driver failure)",
+          "input": {
+            "text": "as I heard it",
+            "nth": 1
+          }
+        }
+      ]
+    },
+    "phone": {
+      "reason": "BORED",
+      "elapsed_s": 21.743,
+      "earlyMinute": [],
+      "earlyPulse": [],
+      "errors": []
+    }
+  },
+  "leila": {
+    "phone": {
+      "reason": "CONFUSED",
+      "elapsed_s": 356.662,
+      "earlyMinute": [59.804],
+      "earlyPulse": [171.726],
+      "errors": [
+        {
+          "elapsed_s": 204.989,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "input": {
+            "name": "Skip to the next event"
+          }
+        },
+        {
+          "elapsed_s": 284.82,
+          "error": "Go to flat 3 is not on the page now; it was listed 44 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "input": {
+            "name": "Go to flat 3"
+          }
+        },
+        {
+          "elapsed_s": 289.153,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "input": {
+            "name": "Skip to the next event"
+          }
+        }
+      ]
+    },
+    "desktop": {
+      "reason": "BORED",
+      "elapsed_s": 81.967,
+      "earlyMinute": [],
+      "earlyPulse": [],
+      "errors": [
+        {
+          "elapsed_s": 38.423,
+          "error": "for certain matches 2 controls; tap by point from a screenshot (ambiguous target, not a driver failure)",
+          "input": {
+            "text": "for certain"
+          }
+        }
+      ]
+    }
+  },
+  "rosa": {
+    "phone": {
+      "reason": "TASTE",
+      "elapsed_s": 196.236,
+      "earlyMinute": [],
+      "earlyPulse": [],
+      "errors": [
+        {
+          "elapsed_s": 42.951,
+          "error": "2 enabled controls are named as I heard it; tap one by point: (95,451), (95,573) (game state, not a driver failure)",
+          "input": {
+            "name": "as I heard it"
+          }
+        },
+        {
+          "elapsed_s": 192.227,
+          "error": "Invalid reason (invalid request, not a driver failure)",
+          "input": null
+        }
+      ]
+    },
+    "desktop": {
+      "reason": "TASTE",
+      "elapsed_s": 192.778,
+      "earlyMinute": [],
+      "earlyPulse": [],
+      "errors": []
+    }
+  },
+  "noura": {
+    "phone": {
+      "reason": "CONFUSED",
+      "elapsed_s": 345.805,
+      "earlyMinute": [],
+      "earlyPulse": [167.004],
+      "errors": [
+        {
+          "elapsed_s": 58.359,
+          "error": "Here is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "input": {
+            "name": "Here"
+          }
+        },
+        {
+          "elapsed_s": 111.083,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "input": {
+            "name": "Skip to the next event"
+          }
+        },
+        {
+          "elapsed_s": 127.627,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "input": {
+            "name": "Skip to the next event"
+          }
+        }
+      ]
+    },
+    "desktop": {
+      "reason": "BORED",
+      "elapsed_s": 308.234,
+      "earlyMinute": [],
+      "earlyPulse": [],
+      "errors": [
+        {
+          "elapsed_s": 103.588,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "input": {
+            "name": "Skip to the next event"
+          }
+        },
+        {
+          "elapsed_s": 127.092,
+          "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "input": {
+            "name": "Skip to the next event"
+          }
+        }
+      ]
+    }
+  }
+}

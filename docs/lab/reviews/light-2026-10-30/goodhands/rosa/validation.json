@@ -1,0 +1,123 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-30T21:03:17.390053+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T20:27:43.587Z",
+        "elapsed_s": 192.448,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I placed one nanny and paid the rent. Now I wait on a slow clock with one doubtful applicant. I would close it, not leave it running. I might come back another evening to see what happens to Ozlem and the Kaya family. I stop here. Feedback had I am stopping and I am confused; I pressed I am stopping, typed nothing, no Submit.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 190.584,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [44.635],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T20:26:28.118Z",
+          "elapsed_s": 116.979,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to 11:00 \u00b7 A family is due to call"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 282,
+          "error": "Skip to 11:00 \u00b7 A family is due to call is not on the page now; it was listed 4 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T20:31:10.187Z",
+        "elapsed_s": 205.466,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "On the big screen I understood more and had no reread. But the interview is slow and I have placed nobody here. I would close it, not leave it running. I might come back another evening on the big screen. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+        "game_clock": "Mon 2 Nov 09:25",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 201.036,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T20:28:41.288Z",
+          "elapsed_s": 56.567,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "What if a child keeps crying?"
+          },
+          "reaction": "This question tells me about patience. Better than wage; I ask it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 32426,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'What if a child keeps crying?', exact: true }).or(getByRole('link', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('tab', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('menuitem', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('checkbox', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('radio', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('option', { name: 'What if a child keeps crying?', exact: true })).or(getByRole('switch', { name: 'What if a child keeps crying?', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

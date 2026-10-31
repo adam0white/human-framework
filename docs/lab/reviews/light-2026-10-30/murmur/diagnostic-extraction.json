@@ -1,0 +1,66 @@
+{
+  "aisha": {
+    "first": "aisha",
+    "tester": "Aisha Rahman",
+    "returns": [
+      {
+        "section": "return answer",
+        "quote": "Yes, I would come back another evening, but only if \"I'm not listening to that today\" came in different words each time and I could see how much trust I had left before I pushed. I would not leave it running."
+      },
+      {
+        "section": "return answer",
+        "quote": "Yes, I would come back another evening, but only if \"I'm not listening to that today\" came in different words each time and I could see how much trust I had left before I pushed. I would not leave it running. I would stay away if the next visit repeated Monday and the same refusal line."
+      }
+    ],
+    "rankedAsks": [
+      {
+        "section": "top",
+        "rank": 1,
+        "quote": "Show how much trust I have left, or say when she has had enough, before I spend it. I held on a whole day's choices and was refused several times, and on Tuesday my one real insist (telling Murat the truth) failed."
+      },
+      {
+        "section": "top",
+        "rank": 2,
+        "quote": "Give each refusal its own words. \"You keep pushing me. I'm not listening to that today\" came back word for word five times on the phone and twice on the laptop."
+      },
+      {
+        "section": "top",
+        "rank": 3,
+        "quote": "Make Tuesday's opening differ more from Monday, and make the laptop run differ from the phone run. Monday was the same text on both devices."
+      }
+    ],
+    "comparison": "## 9. Compared with my last visit\nThis is a return to the game. Last time my taps only suggested and my insists were declined; this time the hold worked on the first screen. The hint now appears on Monday's first choice, where before I saw it only on Tuesday. I could finally defend Ece and get Dilan to promise Aylin. Not seen this time: a repair route after a refusal, and Tuesday's later choices on the laptop.\n\n`git worktree list`: none of mine (no repo touched). Screenshots viewed: p-001, p-002 (phone); d-001, d-002 (desktop)."
+  },
+  "mei": {
+    "first": "mei",
+    "tester": "Mei Tan",
+    "returns": [
+      {
+        "section": "return answer",
+        "quote": "I would come back on another evening, on the laptop or the phone, to play the rest of the week. I would do that only if I can see how much trust Dilan has left before I spend it. I would not leave it running."
+      },
+      {
+        "section": "return answer",
+        "quote": "Yes, on another evening, to play Tuesday onward. My condition is the first ask: that I can see how much trust Dilan has left before I spend it. I would not leave it running, because each choice has a timer and I want to make the calls myself."
+      }
+    ],
+    "rankedAsks": [
+      {
+        "section": "top",
+        "rank": 1,
+        "quote": "Show how much trust is left before I hold to insist. I could only infer it from the labels (\"is willing\", \"would agree only if you insist\", \"is against it\") and from her handwriting."
+      },
+      {
+        "section": "top",
+        "rank": 2,
+        "quote": "Tell me when I start a game that insisting works only while she trusts me, and that it spends trust. It is on the Information page. I found it only after I had held three choices."
+      },
+      {
+        "section": "top",
+        "rank": 3,
+        "quote": "Show a held choice failing before the next scene, not only afterwards in her words (\"You keep pushing me\"). I spent trust on a defence of Ece and lost the Mum call."
+      }
+    ],
+    "comparison": "## 9. Compared with my last visit\nThis is my second Murmur visit; the section header in the brief says \"first visit\". My original report and its stop words stay as I wrote them.\n\nThings I saw this time:\n- The hold gesture worked, so my main complaint from last time is answered by what I saw: insisting got through while she trusted me, and then did not.\n- The Information page now says what insisting costs.\n\nThings I did not see:\n- A trust gauge.\n- A warning when trust is low.\n- Anything about the choice where the kinder option is not the unwilling one: the kind options still needed insisting on both devices.\n\nI cannot say why any of this changed. The driver and the held gesture differ from last time, and so does my play.\n\nI created no files, workers, browsers, branches or worktrees, and used only the two drivers. No repository was touched, so there is no `git worktree list` output."
+  }
+}

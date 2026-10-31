@@ -1,0 +1,136 @@
+<!-- final reply of agent a76ae5d782b189e82, saved by coordinator (subagent Write was refused by the harness) -->
+I would not come back tonight, and I would only open The Pass again on another evening if the cooks pushed back on me more than once a night.
+
+Ranked asks:
+1. Show orders and something to do from the start. About 2.5 minutes of Monday on the phone had "No orders are waiting" while the clock jumped and money rose on its own.
+2. Say why the People offers (Selim's notes, Dilek's rattling sound) are greyed out, or let me act on them. They were the only mystery hooks and I could never touch them.
+3. Make cooks answer my pokes with more than a canned line ("Thank you for listening, Chef"). Give me a way to insist that works on a keyboard.
+
+The Write tool refused report.md, so the full report follows.
+
+## 1. Session
+- Persona: Nia Okafor, 19, Lagos design student.
+- Exposure: first visit to The Pass. I read my own history file once. It has no sessions for this game.
+- Round and arm: panel-1027a, lab-panel round 1, free stop (floor 0, ceiling 25 min).
+- URL: https://pass.adamwhite.work/?labRunSource=agent
+- Session A: 360x690 touch phone, light, driver port 20004, about 3.5 real minutes. It ended CONFUSED.
+- Session B: 1280x800 keyboard and mouse, light, driver port 20005, about 2.7 real minutes. It ended BORED.
+- Recording stayed on. I typed no note, changed no consent and pressed no Submit.
+
+## 2. First impressions
+Session A (phone):
+- About 6s: "Run a restaurant kitchen for four weeks." Cooks "can refuse". I wanted to see how rude they would be.
+- About 12s: both cooks had already agreed to everything. I tapped Change at once.
+- About 33s: tapping a cook shows each job with the cook's likely answer under it. I liked that.
+- About 54s: first_minute note. I could poke cooks, but money rose and the clock moved with no orders.
+- About 160s: the first orders appeared.
+
+Session B (desktop):
+- It was a second visit the same evening, so I skipped the plan sheets and opened the doors.
+- The screen reads cleanly. The kitchen drawing is on the left and the cooks and log are on the right.
+- About 18s: a flat reply to "About what you said".
+- About 121s: a real refusal with a reason.
+
+## 3. Verbatim diary lines
+Elapsed times are the nearest driver reply, rounded. Some `log` replies did not carry their own time, so those are marked "about".
+
+Session A:
+- about 6s (reaction on tap New game): "A restaurant where cooks can refuse me. Okay, I want to see how rude they are."
+- about 9s (reaction on tap Change): "Two cooks already agreed to everything. Boring. I want to poke Selim. There are two Change buttons?"
+- about 16s (reaction on tap 19:45): "Ok, a plan sheet. I will make him eat in the middle of the rush to see if he complains."
+- about 26s (reaction on tap Ask them about the changes): "Ok, I changed the break and now I have to ask them. Fine."
+- about 29s note: "He agreed to eat mid-rush without a word. No pushback, no personality yet. Open the doors."
+- about 33s (reaction on tap Selim grill): "Poke the cook."
+- about 36s (reaction on tap Go home): "The buttons show his likely answer. Nice. I will tell him to go home, just to see."
+- about 54s first_minute (game clock Mon wk1 17:3x): "I can poke cooks and see what they will say before I ask, which I like. I told Selim go home and he said no, short and in character. But ₺40 appeared and I do not know why. Nothing is happening yet at 17:3x, no orders. I am waiting for the kitchen to do something."
+- about 57s (reaction on tap People): "What does People do?"
+- about 60s (reaction on tap Ask her why): "A rattling sound in the kitchen. Mystery. I want that."
+- about 66s (reaction on tap the greyed Dilek offer): "The mystery button is greyed out. Why? Nothing tells me."
+- about 77s (reaction on tap Talk with Dilek another time): "Both offers are greyed and the only live button says talk another time. I do not get it, it is a menu of things I cannot do."
+- about 111s (reaction on wait): "Still no orders, time is flying and money rises by itself. I do not know what I am supposed to do. I am a boss with nothing to boss."
+- about 114s (reaction on tap Information): "Maybe the info explains where the customers are."
+- about 117s pulse, engagement 2 (game clock Mon wk1 19:28): "The info helped a bit but I never see any orders or customers, only money rising and the clock jumping. I can talk to cooks, which I like, but there is little to do."
+- about 160s (reaction on wait): "Giving it one more try. If no orders come I am leaving."
+- about 163s (reaction on tap Selim eating): "Orders at last. The grill has nobody because I let Selim eat now. My fault, ha."
+- about 172s note: "Selim said he would leave his food and take the grill. That was a real reaction, I liked that. The first 2.5 minutes before any order was the dull bit."
+- about 200s want_quit, CONFUSED (game clock Mon wk1 21:05): "The offers to find out about the rattling and Nevin notes are the only mystery hooks and both are greyed out with no reason. Dinner service ended with no orders for long stretches. I would leave now."
+- about 207s stop, CONFUSED (game clock Mon wk1 21:06): "Stopping. I picked I am confused in Feedback, no note, no submit. I liked that Selim left his food when I asked. I would not return on my own tonight. Maybe if I heard that the cooks argue back."
+
+Session B:
+- about 1s (reaction on tap New game): "Second visit, on my laptop. I know the cooks say yes to everything. This time I want to push, not poke."
+- about 5s (reaction on tap Open the doors): "Skip the plan sheets, I did that already. Straight in."
+- about 11s (reaction on tap About what you said): "Let me argue with her about her own promise."
+- about 18s note: "I asked Dilek about her own promise and she said thank you for listening. That is a canned reply, it ignored the fact that I was poking at her. Not great."
+- about 22s (reaction on tap the Selim notes offer): "Try the notes offer on this device."
+- about 27s (reaction on tap Resume): "Greyed again, same as on my phone. I will leave the menu and give it time."
+- about 62s first_minute (game clock Mon wk1 ~18:40): "Second time, so I knew the shape. Cooks say yes to everything and the first real thing happens only when orders show up. The offers in People are still greyed with no reason given. The desktop screen is clean and I can read all of it, but still nothing to push against."
+- about 113s (reaction on tap Grill I prefer my current job, a stale name): "She says she prefers her current job. Let me ask anyway and see if she refuses."
+- about 116s (reaction on tap Grill I prefer the lighter job): "Now she says she likes the lighter job. Sure, I will ask her to swap to the grill."
+- about 125s note: "She refused, with a reason: she likes the lighter job and will not promise. That is what I came for. I wish I could push harder but I do not see how to hold a button from the keyboard."
+- about 154s pulse, engagement 3 (game clock Mon wk1 after closing): "The night summary is the best bit: Selim missed prayer, Dilek smoked in the rush. That is gossip, I like it. But most of the night I watched a clock. I need ₺920 a night and I did not know I was behind."
+- about 158s want_quit, BORED (game clock Tue wk1 17:30): "Tuesday is the same planning sheet again with one extra cook. I know the loop now: plan, watch the clock, read gossip. I would leave."
+- about 161s stop, BORED (game clock Tue wk1 17:25): "Stopping on Tuesday morning. I chose I am stopping in Feedback, no note, no submit. I would not leave it running. I might open it another evening only if the cooks pushed back more than once per night."
+
+My "I know the cooks say yes to everything" in session B was a carry-over from session A, played the same evening on the other device.
+
+## 4. Moments
+What held me:
+- Tapping a cook and seeing each job with their likely answer.
+- Selim leaving his food to take the grill when I asked (session A).
+- Dilek refusing a swap and giving a reason (session B).
+- The after-closing gossip: Selim missed the sunset prayer, Dilek smoked in the rush.
+
+What lost me:
+- The long stretch of "No orders are waiting". It was about 2.5 minutes on the phone and about 1.5 minutes on desktop. Money rose and the clock jumped without my doing anything.
+- The greyed People offers with no stated reason.
+- The canned "Thank you for listening, Chef."
+- Tuesday opening on the same planning sheet.
+
+Quit wishes:
+- Session A: CONFUSED at about 200s. It did not pass. I stopped at about 207s.
+- Session B: BORED at about 158s. It did not pass. I stopped at about 161s.
+
+Pulses: A was engagement 2 (no orders, little to do). B was engagement 3 (gossip good, mostly watching a clock).
+
+## 5. Confusion and clarity (from actual play)
+Confusing:
+- Why money rose in ₺40 steps with no orders. The Information text says the bar shows money taken tonight, but I saw no orders, so I did not connect them. I am guessing the game serves tables in the background.
+- Why the two People offers were disabled. I tried them four times across both sessions, with waits of several seconds, and never saw a reason or a change. I am guessing they unlock under a condition I did not find.
+- Two buttons both named "Change" on the first plan screen. The driver stopped me and I picked by position.
+- "Time is slowed" appears sometimes. The clock still jumped about 50 minutes during a 10-second wait.
+- On Tuesday a "Same plan as last night" button appeared. I only noticed it after deciding to leave.
+
+Clear:
+- Tap a cook, then a job. The words under each job are the cook's likely answer.
+- The kitchen drawing, the money bar with a red mark, and the order cards (table, station, "new").
+- The Information panel text once I opened it.
+
+## 6. Device use
+Phone (360x690):
+- Screenshots viewed: a-001 (kitchen, opening notes), a-002 (People sheet), a-003 (kitchen mid-evening), a-004 (kitchen with order cards). I saw nothing clipped or overlapping in those four.
+- a-005 was taken after choosing "I'm confused" in Feedback. I did not open it, so I make no claim about that screen.
+- The cook buttons are large and easy to hit. The kitchen drawing is small.
+- Controls used: New game, Change (by point), the station and break buttons in the plan sheet, Done, Ask them about the changes, Open the doors, the cook buttons, the job buttons (one disabled), How are you doing, People, Information, Close, Game menu, Feedback, I'm confused.
+
+Desktop (1280x800):
+- Screenshots viewed: b-001 (kitchen and log) and b-002 (People sheet). I saw no layout trouble.
+- b-003 was taken after choosing "I'm stopping". I did not open it.
+- Controls used: New game, Open the doors, the cook buttons, About what you said, People, a disabled People offer, Resume, a job button, Close, Open on Tuesday, Game menu, Feedback, I'm stopping.
+
+I could not hold a job button to insist. The driver has no hold op. I do not know whether insisting works, and this is a limit of how I played.
+
+Feedback on both sizes offered the exact choices "I'm stopping" and "I'm confused". I typed no note and pressed no Submit.
+
+## 7. Stop and return
+- Session A stop words: "Stopping. I picked I am confused in Feedback, no note, no submit. I liked that Selim left his food when I asked. I would not return on my own tonight. Maybe if I heard that the cooks argue back." Reason: CONFUSED.
+- Session B stop words: "Stopping on Tuesday morning. I chose I am stopping in Feedback, no note, no submit. I would not leave it running. I might open it another evening only if the cooks pushed back more than once per night." Reason: BORED.
+
+Would I return voluntarily? No, not tonight. I would come back on another evening only if a friend told me the cooks argue back and that orders start quickly. For that to hold, the first minute would need something to do, such as orders within about 30 seconds of opening the doors. The greyed offers would also need to explain themselves. I would not leave it running, because in both sessions I spent most of the time waiting on the clock rather than deciding.
+
+## 8. Changes I would want (ranked)
+1. Put something to do in the first minute after opening the doors: orders, or a stated reason the kitchen is empty.
+2. Say why the People offers (notes, rattling sound) are greyed out, or let me act on them.
+3. Give cooks more varied replies when I poke or argue. Give me a way to insist that works on a keyboard.
+
+## 9. Compared with my last visit
+First visit.

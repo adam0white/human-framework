@@ -1,0 +1,17 @@
+{
+  "time": "2026-10-31T00:19:52.512651+00:00",
+  "observations": [
+    {
+      "image": "stairwell/maya/phone/a-002.png",
+      "sha256": "026de66bf6d9fbe35b4a8f1a1f90163b2631f4384739fb8e8d6a917d6298b37e",
+      "directorViewed": true,
+      "observation": "360x690. Burak panel and stair map visible, labels/figures distinct in this frame; paused status fully reads Burak is talking. Time is paused. This supports this frame only, not all phone states."
+    },
+    {
+      "image": "stairwell/maya/desktop/b-002.png",
+      "sha256": "2522947a1ee0e8117dd36c494492c363fe55e5f42a77517acd11ac1e17f6830b",
+      "directorViewed": true,
+      "observation": "1280x800. Top status visibly ends You are reading. Time is paus\u2026 while notebook open; confirms text truncation in this captured state. No absence of actual pause inferred. No pointer/functional failure proved."
+    }
+  ]
+}

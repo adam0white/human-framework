@@ -1,0 +1,437 @@
+{
+  "scope_note": "Read-only extraction from the cleanup rule, five report.md files and five validation.json files, all read in full. Nothing else was read, and no commands, writes, browsers or agents were used. No verdicts, votes, fixes or taste-vs-defect classifications are made. Quotes are exact substrings. Producer text sometimes has outer quote marks or a bold prefix; these are omitted where the remainder is unchanged. Exposure: Maya is a RETURN from selected FREE. Jonas, Leila and Rosa are first target visits; Noura is a first, cold visit with no prior HF exposure. Maya's comparisons with her earlier asks are her own words, not independent proof. Maya saw 1/16 in her notebook and Jonas saw 0/16; neither is a universal statement about progress. Nothing here infers later effects, Day1 visits or votes. Driver elapsed_s values are authority; producer 'about' times are approximate. No source fix or commit is assigned. Any future fixer waits for a written CLEAR on the exact SHA. The cleanup rule needs no action because no tester owns a worktree, process, server or browser (producers report none).",
+  "testers": {
+    "maya": {
+      "opening_return": {
+        "source": "maya/report.md line 1 (top)",
+        "quote": "Would I return voluntarily? Yes, one more evening, to see Tuesday and find out whether anyone ever mentions what I did (the gate, the swapped newspapers, ringing Derya's bell). Not tonight, and only if people stop answering every reply with the same stock line. I would not leave it running. I would come back on another evening."
+      },
+      "later_return": {
+        "source": "maya/report.md section 7, 'Would you return voluntarily?'",
+        "quotes": [
+          "Yes, but only one more evening, to see Tuesday and whether anyone ever mentions the gate, the swap or the bell. Not tonight. Only if I expect different answers to my replies, not the same stock line, and some new lines from the five neighbours. I would not leave it running. I would come back on another evening."
+        ]
+      },
+      "ranked_asks": {
+        "source": "maya/report.md top 'Ranked asks' (3 items) and section 8 (3 items, worded differently). Both sets are given.",
+        "quotes": [
+          "Let neighbours answer what I did. Hacer \"saw\" the gate and the swap and only tipped me. Sevim said \"exactly right\" after I swapped her crossword.",
+          "Make replies vary. Every \"Thank you for telling me\" and \"I am listening\" got \"I would rather leave it there.\" \"Tarık is kind\" came from three different people. Explain the \"kapici\" label on my own lines.",
+          "Give the first \"Anything new?\" something. Tarık said \"no news\" and only told the ferry story when I sat with him.",
+          "Let neighbours answer what I did. Hacer saw both the gate and the swap, yet only praised me and tipped. Sevim said \"exactly right\" after her crossword was swapped. A short reaction, even a grumble, would prove they remember.",
+          "Make replies vary. Every \"Thank you for telling me\" and \"I am listening\" got \"I would rather leave it there.\" Stop \"Tarık is kind\" being said by three people. Explain the \"kapici\" label on my own lines.",
+          "Give the first \"Anything new?\" something. Tarık said \"no news\" and only told the ferry story after I sat with him."
+        ]
+      },
+      "devices": {
+        "phone": {
+          "rawStop": {
+            "reason": "BORED",
+            "elapsed_s": 206.091
+          },
+          "toolErrors": [],
+          "earlyMinute": [],
+          "earlyPulse": [
+            163.43
+          ],
+          "imageLimits": "Viewed a-001.png and a-002.png, both read successfully (1 image block each). Report: 2 of 5 kept. No automatic checkpoint file was reported."
+        },
+        "desktop": {
+          "rawStop": {
+            "reason": "BORED",
+            "elapsed_s": 210.001
+          },
+          "toolErrors": [
+            {
+              "elapsed_s": 162.2,
+              "input": {
+                "name": "as I heard it"
+              },
+              "error": "2 enabled controls are named as I heard it; tap one by point: (824,410), (824,551) (game state, not a driver failure)"
+            }
+          ],
+          "earlyMinute": [],
+          "earlyPulse": [],
+          "imageLimits": "Viewed b-001.png and b-002.png, both read successfully (1 image block each). Report: 2 of 5 kept. She saw the clipped 'Time is paus…' status line directly in b-002."
+        }
+      },
+      "producer_limits": [
+        "Validation limits: 'Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read.'",
+        "Feedback: she tapped the 'I'm stopping' label on phone (202.208 s) and desktop (206.597 s), typed nothing, pressed no Submit and did not touch consent or recording. Labels clicked with no note submission are not a production receipt.",
+        "The report states 'Times marked ~ come from my earlier notes rather than a re-read.' Session B ~4.0 to ~16.7 s are approximate.",
+        "Apostrophes are dropped in 'Tarik' in diary lines because of a shell quoting problem; the line was resent without the apostrophe.",
+        "The phone pulse at 163.4 s was premature (before 180 s), engagement 3. The valid phone pulse was at 188.7 s. The desktop pulse was at 185.0 s.",
+        "No separate want_quit was logged on either device; each stop carries reason BORED.",
+        "The raw 'as I heard it' desktop error is a tool/ambiguous-name error, kept separate from game outcomes.",
+        "She did not try keyboard keys on desktop and does not know whether keyboard play works.",
+        "The 'You are already here' bug from her last visit was not seen; she did not recreate its exact conditions.",
+        "She did not get past Monday morning/Monday 08:59–08:00, so she cannot speak for later days. She did not see the Hacer table errand.",
+        "She does not know whether Hacer and Sevim failed to notice the swap or were being ironic.",
+        "Her notebook showed 1 of 16 at 199.89 s on desktop. Another tester's notebook showed 0 of 16, so no universal absence of progress follows from either.",
+        "Own history was read in full (696 lines per the report); she new-started both sessions and claims no carried-over save. validation unexpectedReads is empty.",
+        "Report cleanup: no repo touched, no processes started, no worktree owned."
+      ],
+      "prior_asks_comparison_if_any": [
+        {
+          "own_prior_ask": "Ask 1: react to work done while out.",
+          "producer_current_comparison_exact_quote": "Partly met, mostly not. New lines like \"Hacer saw you do it\" and \"You arrived on time. I noticed.\" show witnesses exist. But no one acknowledged the gate or the swap. I did not see the Hacer table errand this time."
+        },
+        {
+          "own_prior_ask": "Ask 2: keep the evening alive past the one line each.",
+          "producer_current_comparison_exact_quote": "Not met in what I saw. Each person still gave the same single lines (ferry, children, counter, \"know when you have said enough\"). Sevim's \"on time\" and Tarık's reaction to gossip were new, but I did not get past Monday morning, so I cannot speak for later days."
+        },
+        {
+          "own_prior_ask": "Ask 3: fix \"You are already here\".",
+          "producer_current_comparison_exact_quote": "Not seen. My flat-2 trips on both devices worked."
+        },
+        {
+          "own_prior_ask": "Other earlier item: Gate button did nothing visible.",
+          "producer_current_comparison_exact_quote": "met. It now prints a line."
+        },
+        {
+          "own_prior_ask": "Other earlier item: Phone label and figure overlap.",
+          "producer_current_comparison_exact_quote": "met. a-002 is clean."
+        },
+        {
+          "own_prior_ask": "Other earlier item: \"Ask about work boundaries and training\" never tried.",
+          "producer_current_comparison_exact_quote": "done. Derya answered in character."
+        }
+      ]
+    },
+    "jonas": {
+      "opening_return": {
+        "source": "jonas/report.md line 3 (top)",
+        "quote": "Yes, one more evening, but only to see whether the notebook's \"0 of 16\" or the Sunday vote ever shows a visible effect of sitting, replying or gossiping. I would not leave it running. I would stop for good if replies stay identical and nothing in the notebook moves."
+      },
+      "later_return": {
+        "source": "jonas/report.md section 7, 'Would you return voluntarily?'",
+        "quotes": [
+          "Yes, another evening, but only to check whether the notebook's \"0 of 16\" and the Sunday vote ever show a visible consequence of sitting, replying and gossiping. I would not leave it running. I would stop for good if replies stay identical and nothing in the notebook moves."
+        ]
+      },
+      "ranked_asks": {
+        "source": "jonas/report.md top 'Ranked asks' (3 items) and section 8 (3 items, worded differently). Both sets are given.",
+        "quotes": [
+          "Show a visible measure of feeling or trust, or say what each sit and reply does.",
+          "Make replies produce different answers. Every reply ended with \"I would rather leave it there.\"",
+          "Explain the \"Swap Hacer's and Sevim's newspapers\" offer. Make day one tighter so batching is not a free routine. Fix the clipped \"Time is paus…\" banner on desktop.",
+          "A visible measure of feeling or trust, or at least a line saying what each sit and reply did.",
+          "Replies that differ, or a plain statement that they are templated.",
+          "An explanation of the swap offer, tighter day-one deadlines so batching is not a free routine, and a fix for the clipped banner."
+        ]
+      },
+      "devices": {
+        "phone": {
+          "rawStop": {
+            "reason": "BORED",
+            "elapsed_s": 21.743
+          },
+          "toolErrors": [],
+          "earlyMinute": [],
+          "earlyPulse": [],
+          "imageLimits": "Viewed b-001.png and b-002.png, both read successfully. Unseen: the conversation panel, the Tell list and the notebook at phone size."
+        },
+        "desktop": {
+          "rawStop": {
+            "reason": "CONFUSED",
+            "elapsed_s": 245.057
+          },
+          "toolErrors": [
+            {
+              "elapsed_s": 129.799,
+              "input": {
+                "text": "as I heard it",
+                "nth": 1
+              },
+              "error": "Unsupported field: nth (invalid request, not a driver failure)"
+            }
+          ],
+          "earlyMinute": [],
+          "earlyPulse": [
+            175.492
+          ],
+          "imageLimits": "Viewed a-001.png and a-002.png, both read successfully. The clipped 'Time is paus…' banner was seen in a-002."
+        }
+      },
+      "producer_limits": [
+        "Validation limits: 'Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read.'",
+        "Feedback: desktop 'I'm confused' tap at 201.087 s and phone 'I'm stopping' tap at 17.651 s. Report says nothing was typed or submitted and the dialog was closed. Labels clicked with no note submission are not a production receipt.",
+        "Desktop pulse at 175.492 s (engagement 3) was premature (under 180 s); the report calls it his breach.",
+        "The phone session ended at about 22 s, so no phone first_minute or pulse was logged. Those checkpoints are untested.",
+        "The phone stop says 'Game menu still open.'",
+        "The 'nth' tap error is an invalid-request tool error. It is separate from game outcomes. He tapped the identically named buttons by coordinates instead.",
+        "The report says 'about 245 s' for session A and 'about 22 s' for session B.",
+        "The report says the clock label lagged a few seconds behind the state at times.",
+        "His own history has nothing about this game. This was a first visit, and the phone session was a second visit the same evening that he described as already knowing the loop.",
+        "Report cleanup: no worktrees or branches created."
+      ],
+      "prior_asks_comparison_if_any": []
+    },
+    "leila": {
+      "opening_return": {
+        "source": "leila/report.md line 3 (top)",
+        "quote": "Maybe one more evening on my laptop, only if I knew that what I say to people changes something I can see, and I would not leave it running."
+      },
+      "later_return": {
+        "source": "leila/report.md section 7",
+        "quotes": [
+          "I would come back one more evening on my laptop, and only if I knew that what I say to people changes something I can see, such as a resident reacting differently to a lie than to the truth, or the notebook filling in. If the next visit gives me the same stock lines and the same blank notebook, I will not come back a third time.",
+          "**Leave it running?** No. Most of a day is dead time between orders, and I would rather it paused. An idle clock that advances on its own does not tempt me.",
+          "**Another evening?** Yes, on the conditions above. The rumour chain and the witnessed deeds are the two things I want to see play out through Thursday and the Sunday vote."
+        ]
+      },
+      "ranked_asks": {
+        "source": "leila/report.md top 'Ranked asks' (3 items) and section 8 (3 items, worded differently). Both sets are given.",
+        "quotes": [
+          "Make a resident's answer show what my words did. A lie and a truth got the same flat reply, and \"I'm listening\" and \"Thank you\" ended in the same line.",
+          "Fill the notebook as I learn. It still said \"You don't know how Tarık feels about you\" after a day of talking to him.",
+          "Explain the unexplained terms and loaded buttons: \"kapici\", the \"(₺5)\" amounts, the two title checkboxes, and \"Leave the courtyard gate open\".",
+          "Make each resident's answer depend on what I said and how, so a lie, a true fact and a different reply choice get visibly different lines.",
+          "Fill the notebook with what I have learned, so \"1 of 16\" moves and the \"how Tarık feels about you\" line changes.",
+          "Explain \"kapici\", the \"(₺5)\" amounts, the title checkboxes, and the gate button's cost."
+        ]
+      },
+      "devices": {
+        "phone": {
+          "rawStop": {
+            "reason": "CONFUSED",
+            "elapsed_s": 356.662
+          },
+          "toolErrors": [
+            {
+              "elapsed_s": 204.989,
+              "input": {
+                "name": "Skip to the next event"
+              },
+              "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            },
+            {
+              "elapsed_s": 284.82,
+              "input": {
+                "name": "Go to flat 3"
+              },
+              "error": "Go to flat 3 is not on the page now; it was listed 44 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            },
+            {
+              "elapsed_s": 289.153,
+              "input": {
+                "name": "Skip to the next event"
+              },
+              "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            }
+          ],
+          "earlyMinute": [
+            59.804
+          ],
+          "earlyPulse": [
+            171.726
+          ],
+          "imageLimits": "Viewed a-001.png and a-002.png, both read successfully. She used name taps only and took no coordinate taps."
+        },
+        "desktop": {
+          "rawStop": {
+            "reason": "BORED",
+            "elapsed_s": 81.967
+          },
+          "toolErrors": [
+            {
+              "elapsed_s": 38.423,
+              "input": {
+                "text": "for certain"
+              },
+              "error": "for certain matches 2 controls; tap by point from a screenshot (ambiguous target, not a driver failure)"
+            }
+          ],
+          "earlyMinute": [],
+          "earlyPulse": [],
+          "imageLimits": "Viewed b-001.png and b-002.png, both read successfully. The clipped status line 'Time is paus…' was seen. She used no keyboard keys."
+        }
+      },
+      "producer_limits": [
+        "Validation limits: 'Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read.'",
+        "Feedback: phone 'I'm confused' tap at 346.496 s and desktop 'I'm stopping' tap at 78.678 s. Report says nothing typed, no consent changes, no Submit, then Close feedback and Resume. Labels clicked with no note submission are not a production receipt.",
+        "Phone first_minute at 59.804 s and pulse at 171.726 s (report 171.727) were early. The report says the coordinator should flag them.",
+        "The desktop session was too short for a pulse. The desktop first_minute at 64.3 s was on time.",
+        "Raw 'not on the page now' errors and the ambiguous 'for certain' error are tool errors/game-state changes, kept separate from game outcomes. She attributes some to her own latency.",
+        "The report says 'Release commit: the coordinator adds it', so no commit/SHA is recorded in her report.",
+        "Her own history was read in full and has nothing about this game.",
+        "She did not tap 'Go to flat 3' at 241.179; the reaction was attached to the 284.82 tap, which errored.",
+        "Her notebook showed '1 of 16' and she reports never seeing it move.",
+        "Report says 'Three of five manual shots were used on the phone as 2 and on the desktop as 2.' This wording is unclear. Counts: 2 viewed per device in validation.",
+        "The sessions were about 357 s (phone) and about 82 s (desktop). Both were under the 25-minute ceiling.",
+        "No layout trouble seen on phone."
+      ],
+      "prior_asks_comparison_if_any": []
+    },
+    "rosa": {
+      "opening_return": {
+        "source": "rosa/report.md line 1 (top)",
+        "quote": "I would come back another evening, on the big screen or the phone, to find out what the neighbours think of me and what the Sunday vote brings. I would come back only if the game tells me in plain words what \"as I heard it\" and \"for certain\" mean, and warns me before the unkind newspaper swap. I would not leave it running while I do something else, because the jobs wait for my taps."
+      },
+      "later_return": {
+        "source": "rosa/report.md section 7",
+        "quotes": [
+          "Yes, another evening, on the big screen or the phone. I want to see what Hacer and Sevim think of the swap, whether Tarık's trust grows, and what happens on Sunday. I would come back only if Tell… is explained in plain words and the mischief button warns me first. Without that, I would still return to deliver orders, but I would be guessing at the part that decides the vote.",
+          "No. Time moves only while I walk or skip, and jobs wait for my taps. Another evening, yes."
+        ]
+      },
+      "ranked_asks": {
+        "source": "rosa/report.md top 'Ranked asks'. Section 8 only says 'See the ranked asks at the top.'",
+        "quotes": [
+          "Explain **Tell…** in one plain sentence (\"as I heard it\" vs \"for certain\", and \"Make something up…\"). Give the two same-named buttons different names, for example \"Hacer's news: as I heard it\". On the phone, two buttons had the same name and I had to tap by point.",
+          "Say at the start, in one sentence each, how the Sunday vote works, what \"trust\" and \"feelings\" mean, and what the ₺ amounts are. Also say how far **Skip** jumps.",
+          "Mark mischief choices, such as **Swap newspapers**, with \"may upset someone\" before I tap. I did not know the swap was unkind until Hacer saw me."
+        ]
+      },
+      "devices": {
+        "phone": {
+          "rawStop": {
+            "reason": "TASTE",
+            "elapsed_s": 196.236
+          },
+          "toolErrors": [
+            {
+              "elapsed_s": 42.951,
+              "input": {
+                "name": "as I heard it"
+              },
+              "error": "2 enabled controls are named as I heard it; tap one by point: (95,451), (95,573) (game state, not a driver failure)"
+            },
+            {
+              "elapsed_s": 192.227,
+              "op": "log",
+              "reason": null,
+              "error": "Invalid reason (invalid request, not a driver failure)",
+              "note": "Rejected first stop attempt, not her accepted stop. The accepted stop is 196.236 s, reason TASTE."
+            }
+          ],
+          "earlyMinute": [],
+          "earlyPulse": [],
+          "imageLimits": "Viewed a-001.png and a-002.png, both read successfully. a-002 shows Monday 07:03 only."
+        },
+        "desktop": {
+          "rawStop": {
+            "reason": "TASTE",
+            "elapsed_s": 192.778
+          },
+          "toolErrors": [],
+          "earlyMinute": [],
+          "earlyPulse": [],
+          "imageLimits": "Viewed b-001.png and b-002.png, both read successfully. b-002 shows Monday 07:03. Not tested on desktop: the notebook, the raise question and Tell…. Text size on the big screen was not checked beyond the screenshots."
+        }
+      },
+      "producer_limits": [
+        "Validation limits: 'Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read.'",
+        "Feedback: 'I'm stopping' was tapped at 188.278 s (phone) and 190.19 s (desktop). She typed nothing and pressed no Submit. After closing, the desktop game menu was still showing when she logged the stop. Labels clicked with no note submission are not a production receipt.",
+        "The first phone stop log (192.227 s) was rejected for an invalid reason word. It is not her accepted stop.",
+        "The 'as I heard it' duplicate-name error is a tool/ambiguous-name error, separate from game outcomes; she tapped by point (95,573).",
+        "No want_quit was logged. She reached one reread (desktop), not the two-reread gate.",
+        "Concept counts are her estimate.",
+        "Her own history (850 lines) was read fully in two reads. It has nothing about this game.",
+        "Phone first_minute and pulse and desktop first_minute and pulse were all logged after their minimum times. The desktop pulse was at 184.8 s because of a long gap between her taps. validation earlyFirstMinute and earlyPulse are empty.",
+        "Recording was left at its default (on); consent was not changed.",
+        "'Hacer first' on desktop versus 'Sevim first' on phone is a difference between two runs, not between visits."
+      ],
+      "prior_asks_comparison_if_any": []
+    },
+    "noura": {
+      "opening_return": {
+        "source": "noura/report.md line 1 (top)",
+        "quote": "Maybe, on one condition: if the game picked up where I stopped instead of giving me the same Monday again, I would come back another evening to reach Thursday and ask for my raise. I would not leave it running."
+      },
+      "later_return": {
+        "source": "noura/report.md section 7",
+        "quotes": [
+          "Maybe, on one condition: if the game picked up where I stopped instead of giving me the same Monday again, I would come back another evening to reach Thursday and ask for my raise. If I had to replay Monday, I would not. I do not know whether the game saves progress; I did not see it say so. I would only come back if I knew the goal from the start and could see parcels change hands.",
+          "I would not leave it running; it pauses when I read, but it walks on without me. Another evening, yes, under the condition above."
+        ]
+      },
+      "ranked_asks": {
+        "source": "noura/report.md top 'Ranked asks:' (3 items) and section 8 (3 items, worded differently). Both sets are given.",
+        "quotes": [
+          "Show clearly when a parcel has been delivered, and by whom. On the phone, Derya said she would see to Burak's parcel, then it was back in my room, then it was suddenly done without my seeing it.",
+          "Tell me the goal on the first morning. I only learned about the Sunday raise at the end of my second session.",
+          "After \"Sit together\", the clock sometimes stays stopped. A newcomer would not know to tap Orders or the door picture to start it again.",
+          "Show clearly when a parcel has been delivered, and by whom.",
+          "State the goal (the Sunday raise) on the first morning.",
+          "Make the clock start again by itself after \"Sit together\"."
+        ]
+      },
+      "devices": {
+        "phone": {
+          "rawStop": {
+            "reason": "CONFUSED",
+            "elapsed_s": 345.805
+          },
+          "toolErrors": [
+            {
+              "elapsed_s": 58.359,
+              "input": {
+                "name": "Here"
+              },
+              "error": "Here is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "elapsed_s": 111.083,
+              "input": {
+                "name": "Skip to the next event"
+              },
+              "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            },
+            {
+              "elapsed_s": 127.627,
+              "input": {
+                "name": "Skip to the next event"
+              },
+              "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            }
+          ],
+          "earlyMinute": [],
+          "earlyPulse": [
+            167.004
+          ],
+          "imageLimits": "Viewed a-001, a-002, a-003 and a-004, all read successfully. Not seen: anything off-screen below the journal. The text was small and the journal grew too long to scan. a-004 shows Feedback with 'I'm confused' selected and a red Submit button."
+        },
+        "desktop": {
+          "rawStop": {
+            "reason": "BORED",
+            "elapsed_s": 308.234
+          },
+          "toolErrors": [
+            {
+              "elapsed_s": 103.588,
+              "input": {
+                "name": "Skip to the next event"
+              },
+              "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            },
+            {
+              "elapsed_s": 127.092,
+              "input": {
+                "name": "Skip to the next event"
+              },
+              "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "earlyMinute": [],
+          "earlyPulse": [],
+          "imageLimits": "Viewed d-001, d-002 and d-003, all read successfully. No layout trouble was seen. d-003 shows Feedback with 'I'm stopping' pressed and a button visible behind the dialog."
+        }
+      },
+      "producer_limits": [
+        "Validation limits: 'Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read.'",
+        "Context loss: 'A context loss on my side means my own copy of the phone lines before 266.0 is gone. The driver log has every line. I am not rewriting them from memory.' The report's phone diary therefore lacks her lines before 266.0 s.",
+        "Her own history file says only: 'No prior HF exposure. Empty initial diary. No observed sessions or memories.' She is cold, a first visit with no prior HF exposure.",
+        "Feedback: 'I'm confused' tapped at 337.67 s (phone) and 'I'm stopping' at 299.411 s (desktop). Both stops say she closed it without writing. a-004 shows a Submit button, but the report does not claim a submission. Labels clicked with no note submission are not a production receipt.",
+        "The phone pulse at 167.0 s was too early (before 180 s). The valid phone pulse was at 315.5 s. Both were engagement 3.",
+        "Raw 'not on the page now' errors are tool/game-state errors, kept separate from game outcomes.",
+        "She made one malformed curl (a bad host) that reached no driver.",
+        "She miscounted squares at 142.5 s ('8 of 10'; the bar showed 7 filled).",
+        "'Session B was my second session of the same evening.' She recognised characters by name and same lines. She does not know whether the game saves progress.",
+        "Day 1 only: Monday game clock reached 18:23 (phone) and 16:35 (laptop). The raise question only appeared from the Monday 16:35 desktop note onward, and she did not reach Thursday.",
+        "Report cleanup: 4 manual shots on phone and 3 on laptop, within the allowance. She deleted nothing and owns no worktrees or servers."
+      ],
+      "prior_asks_comparison_if_any": []
+    }
+  }
+}

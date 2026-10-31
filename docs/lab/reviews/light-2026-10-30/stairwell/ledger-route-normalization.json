@@ -1,0 +1,95 @@
+{
+  "purpose": "The packet ledger-additions.md is a byte copy of the private source. Its routes cell on these rows separates qualifiers from routes with semicolons, which apps/site/src/lab/ledger.ts parseLedger rejects (each semicolon piece must be a route). The canonical feedback-ledger.md rows therefore join each non-route qualifier to the preceding route with a comma in the routes cell ONLY. Words, ids, dates, who, verdict and source cells are byte-identical to ledger-additions.md.",
+  "changes": [
+    {
+      "id": "F-2281",
+      "sourceRoutes": "fix:stairwell own asks F-2286/2287/2290/2297; qualified current observations, target2026-11-03/11-10 (open)",
+      "canonicalRoutes": "fix:stairwell own asks F-2286/2287/2290/2297, qualified current observations, target2026-11-03/11-10 (open)"
+    },
+    {
+      "id": "F-2282",
+      "sourceRoutes": "fix:stairwell own asks F-2286/2294/2295/2296/2299; qualified current observations, target2026-11-03/11-10 (open)",
+      "canonicalRoutes": "fix:stairwell own asks F-2286/2294/2295/2296/2299, qualified current observations, target2026-11-03/11-10 (open)"
+    },
+    {
+      "id": "F-2283",
+      "sourceRoutes": "fix:stairwell own asks F-2286/2288/2290; qualified current observations, target2026-11-03/11-10 (open)",
+      "canonicalRoutes": "fix:stairwell own asks F-2286/2288/2290, qualified current observations, target2026-11-03/11-10 (open)"
+    },
+    {
+      "id": "F-2284",
+      "sourceRoutes": "fix:stairwell own asks F-2289/2295/2300; qualified current observations, target2026-11-03/11-10 (open)",
+      "canonicalRoutes": "fix:stairwell own asks F-2289/2295/2300, qualified current observations, target2026-11-03/11-10 (open)"
+    },
+    {
+      "id": "F-2285",
+      "sourceRoutes": "fix:stairwell own asks F-2291/2292/2293/2298; qualified current observations, target2026-11-03/11-10 (open)",
+      "canonicalRoutes": "fix:stairwell own asks F-2291/2292/2293/2298, qualified current observations, target2026-11-03/11-10 (open)"
+    },
+    {
+      "id": "F-2286",
+      "sourceRoutes": "fix:stairwell reproduce reply-specific supported outcomes; preserve actual refusal, gossip cost and authored cast facts; blocking return condition, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell reproduce reply-specific supported outcomes, preserve actual refusal, gossip cost and authored cast facts, blocking return condition, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2287",
+      "sourceRoutes": "fix:stairwell observed deed/witness acknowledgement and actual known follow-through; blocking return condition; do not force unseen later reaction or invented memory, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell observed deed/witness acknowledgement and actual known follow-through, blocking return condition, do not force unseen later reaction or invented memory, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2288",
+      "sourceRoutes": "fix:stairwell known notebook learning and visible effect legibility; current1of16 exists, no hidden feeling/trust exposure; candidate, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell known notebook learning and visible effect legibility, current1of16 exists, no hidden feeling/trust exposure, candidate, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2289",
+      "sourceRoutes": "fix:stairwell plain Tell certainty/source meaning and distinct accessible claim labels; blocking clarity candidate, coordinate recovery worked, no functionally broken-button claim, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell plain Tell certainty/source meaning and distinct accessible claim labels, blocking clarity candidate, coordinate recovery worked, no functionally broken-button claim, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2290",
+      "sourceRoutes": "fix:stairwell literal role/cash/edition-checkbox/action-cost meaning at use; preserve actual choice/privacy boundaries and consequences, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell literal role/cash/edition-checkbox/action-cost meaning at use, preserve actual choice/privacy boundaries and consequences, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2291",
+      "sourceRoutes": "fix:stairwell reproduce actual parcel holder/accepted handoff/pending versus completed delivery and visible known provenance; return condition; earlier deliveries clearly recognized, memory-qualified phone, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell reproduce actual parcel holder/accepted handoff/pending versus completed delivery and visible known provenance, return condition, earlier deliveries clearly recognized, memory-qualified phone, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2292",
+      "sourceRoutes": "fix:stairwell first-morning goal reminder/discoverability preference only; title already visibly states Sunday pay goal at both sizes; no missing-opening-goal defect, target2026-11-10 (open)",
+      "canonicalRoutes": "fix:stairwell first-morning goal reminder/discoverability preference only, title already visibly states Sunday pay goal at both sizes, no missing-opening-goal defect, target2026-11-10 (open)"
+    },
+    {
+      "id": "F-2293",
+      "sourceRoutes": "fix:stairwell truthful paused cause/resume or leave-panel action; reading pause learned in surviving early log, preserve reading pause rather than automatic time advance; no simulation-freeze proof, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell truthful paused cause/resume or leave-panel action, reading pause learned in surviving early log, preserve reading pause rather than automatic time advance, no simulation-freeze proof, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2295",
+      "sourceRoutes": "fix:stairwell swap meaning/risk-warning taste review; cold Noura already recognized prank and declined; preserve surprise, uncertainty and mischief, target2026-11-10 (open)",
+      "canonicalRoutes": "fix:stairwell swap meaning/risk-warning taste review, cold Noura already recognized prank and declined, preserve surprise, uncertainty and mischief, target2026-11-10 (open)"
+    },
+    {
+      "id": "F-2297",
+      "sourceRoutes": "fix:stairwell clarify actual news versus sit/story availability; no invented story/forced disclosure or universal new-news guarantee, target2026-11-10 (open)",
+      "canonicalRoutes": "fix:stairwell clarify actual news versus sit/story availability, no invented story/forced disclosure or universal new-news guarantee, target2026-11-10 (open)"
+    },
+    {
+      "id": "F-2298",
+      "sourceRoutes": "fix:stairwell truthful existing save/resume discoverability question only; mandatory fresh-device new game did not test Continue or persistence, no absent-autosave claim, target2026-11-10 (open)",
+      "canonicalRoutes": "fix:stairwell truthful existing save/resume discoverability question only, mandatory fresh-device new game did not test Continue or persistence, no absent-autosave claim, target2026-11-10 (open)"
+    },
+    {
+      "id": "F-2299",
+      "sourceRoutes": "fix:stairwell observable sit/reply consequences or known feedback; do not expose hidden numeric feeling/trust or promise vote outcome, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell observable sit/reply consequences or known feedback, do not expose hidden numeric feeling/trust or promise vote outcome, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2300",
+      "sourceRoutes": "fix:stairwell explain actual Sunday vote/pay/known relationship readings and Skip endpoint at first relevant use; no hidden certainty or general speed change, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:stairwell explain actual Sunday vote/pay/known relationship readings and Skip endpoint at first relevant use, no hidden certainty or general speed change, target2026-11-03 (open)"
+    }
+  ]
+}

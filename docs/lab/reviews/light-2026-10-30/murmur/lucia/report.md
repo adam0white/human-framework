@@ -1,0 +1,170 @@
+Both sessions are done. Here is the full report.
+
+# Murmur playtest report: Lucia Moretti, light-1030
+
+**Would I return voluntarily?** "Maybe, on another free evening, but only if I could see how much she still trusts me. Without that I feel like a voice nobody listens to, and I do not want to replay the same Tuesday a third time."
+
+**Ranked asks:**
+1. Show her trust as a number or a bar that I can see before I push.
+2. Say why some choices cannot be insisted. Use plain words for refusals: "She wants to do it later" read to me as "no".
+3. Remove the lines that appear twice on screen.
+
+## 1. Session
+
+|                           |                                                                 |
+| ------------------------- | --------------------------------------------------------------- |
+| Persona                   | Lucia Moretti, 51, Bologna transit dispatcher. New cold player. |
+| Exposure                  | First visit. No prior history and no diary.                     |
+| Round and arm             | light-1030, free stop (floor 0)                                 |
+| URL                       | https://murmur.adamwhite.work/?labRunSource=agent               |
+| Desktop (1280x800, mouse) | About 377 s (6.3 min). Stopped at Tuesday night.                |
+| Phone (360x690, touch)    | About 313 s (5.2 min). Stopped at Tue 15:22.                    |
+
+## 2. First impressions
+
+- **Desktop:**
+  - At about 6 s: the URL says Murmur but the page says "Two Voices". It also mentions a "third week", which confused me. I left the boxes empty and pressed Start.
+  - At about 19 s: a countdown appeared, and I felt a little rushed.
+  - At 68 s: I understood the basic loop. I suggest; the pencil voice pushes the other way.
+- **Phone:**
+  - At about 4 s: the Start button was below the fold, so I had to scroll.
+  - At about 21 s: the choice cards looked tidy and clear.
+  - At 64 s: telling the truth worked, and Murat only shrugged. That pleased me more than anything on the laptop.
+
+## 3. Verbatim diary
+
+### Desktop (elapsed s)
+
+- ~6: "Called Murmur but page says Two Voices. Third week? I have not played a first. I leave boxes empty and press Start."
+- ~19: "A 55 second clock. I am a dispatcher, people get up at the alarm. I hold to insist."
+- ~32: "Lines repeat twice on the screen, a little messy. Insist again, a promise to the sister is sensible. I worry about spending trust I cannot see."
+- ~52: "This is my job, a lost driver on the radio. You talk them through. Insisting a third time, I hope trust lasts."
+- 68 first_minute: "I understand it: little scenes, I push her one way, the other voice in pencil pushes the other. Clear enough. The countdown bothers me a bit, but skip ahead is welcome. Screen keeps growing and lines appear twice."
+- ~71: "A supervisor mocking a new driver. Not in my control room. She should say it."
+- ~90: "I have insisted four times; I do not know how much trust is left, there is no number. I let her have the coffee. Shift workers know."
+- ~109: "She promised Aylin. I want her to keep it. No hold hint here, so I just click. Guessing what wants to do it later means."
+- 112 note: "She refused me and scrolled. Fair, I could not insist on that one, there was no hold offered. But the promise to Aylin is broken and nobody tells me why I could not push. I would like to see the trust I have left."
+- ~127: "Missed her stop by two. As a transit person I smile. Consequence is clear, I like that."
+- ~132: "I try holding even without the hint, maybe it works like insist."
+- 135 note: "\"You keep pushing me.\" So trust ran out. Now I understand: insisting is a budget, and I spent it in the morning. That is a clear cause, I accept it, but I wish I had seen a counter."
+- ~142: "This end-of-day page is what I wanted: a tick, a crossed-out call, her opinion of me. Like a shift report. Good. Tuesday, I will push less."
+- ~154: "The third coffee comes back. Cause and effect, I like it, a bit guilty."
+- ~157: "I stay quiet to give her trust back. I hope silence is the way to repair it; I am guessing."
+- ~209: "\"She wants to do it later\" for telling the truth? The wording does not fit; it means no, I think. I click honesty anyway. Oh, I silenced her and she slept through three alarms. Lesson."
+- ~216: "A routing mistake. In my job you own it. I hold to insist; I said nothing this morning so maybe trust is back."
+- 218 pulse (3): "The people and the work feel real to me, a depot, a routing error. But now she refuses everything I want and I cannot see why trust did not come back overnight. I am losing my grip on the rule."
+- ~222: "The i page explains it: trust shows in how dark my handwriting is. I would never have read that from the letters. A number would be kinder. And blaming the system pointed at Ece, poor girl. That stings."
+- ~273: "I only suggest, no pushing. A small kindness toward Ece after the scanner."
+- 277 want_quit FRUSTRATED: "Three refusals in a row on Tuesday. She does the opposite of every suggestion. I do not know how to earn trust back; nothing on screen tells me. I feel like a voice nobody listens to. I will give it to the end of Tuesday."
+- ~330: "Now she says my words herself: ten minutes. Maybe this time. I suggest only."
+- ~365: "Missed her stop again, same bus, same scroll. Tuesday is Monday again but worse. I try writing the day down, the one thing I would do myself."
+- 368 note: "\"They think it was Ece.\" That is the line that hurts, and it is my doing too. The summary is good. But Tuesday was the same shape as Monday and she refused me four times. I do not want four more days of this tonight."
+- 377 stop FRUSTRATED: "I stop at Tuesday night. I liked the depot and Ece, and the bedtime summary. But I spent her trust on Monday morning without knowing it was a budget, and since then she refuses me. Two days the same shape. Enough for tonight."
+
+### Phone (elapsed s)
+
+- ~4: "Same page on the phone; Start is below the bottom, I must scroll. This time I will save my pushing for what matters."
+- ~21: "On the phone it is tidy, cards with the pencil voice in grey script. A plain tap this time, to see if she refuses without pushing."
+- ~37: "I keep my pushes for the bus call itself, not for the promise."
+- ~60: "Here on the phone the order of scenes is different: the late question came on Monday. I spend my first push on honesty."
+- 64 first_minute: "On the phone the cards are clear. Honesty worked and Murat shrugged; that small result pleased me more than anything on the laptop. Now I know the trust is a budget, I spend it carefully."
+- ~80: "A map pin is not wrong either. I agree with her this time, maybe agreeing earns trust. Guessing."
+- ~100: "Same scene as on the laptop. I know it worked there; I push again. I feel a bit like I am cheating with my laptop memory."
+- ~120: "On the laptop that coffee kept her awake till midnight and ruined Tuesday. Water this time, I push. Third push; I am counting myself since the game does not."
+- ~136: "Ha. Water, and she fell asleep at the board with Murat watching. Every good choice has a price. Dry, but fair."
+- ~141: "This time it says she would agree if I insist. On the laptop it never did. Fourth push, for Mum."
+- 146 note: "The call happened. The neighbour and his roof, he said that before the rain too. I laughed. This is the scene I wanted on the laptop and never got. It feels earned."
+- ~162: "Trust is spent for today, I know that now. I let her have her video."
+- 214 pulse (3), Mon in bed: "The summary fits the phone perfectly. Same verdict as the laptop though: you pushed me a lot, I did not like it. Four pushes and it is the same sentence. I got Mum this time, which pleases me. Tuesday on the laptop was the bad day; I will see one more morning."
+- ~225: "Now it tells me in words: she resists pressure, holding works worse. On the laptop I had to find that out by failing. Here it is written. Good. And she is willing to get up. I just tap."
+- ~266: "The routing mistake again. On the laptop blaming the system put it on Ece. A plain tap for honesty, no hold, since it says holding works worse now."
+- ~301: "Again she blamed the system and Murat looks at Ece. On both devices, whatever I do, Ece takes it. I did not even push today. Now I try to be kind to Ece at least."
+- 304 want_quit FRUSTRATED: "Two refusals again on Tuesday, and I did not push at all today. On both devices Tuesday ends with Ece under suspicion and her at her desk. I have seen this day twice now. I stop here."
+- 313 stop FRUSTRATED (Tue 15:22): "I stop at Tuesday afternoon. The phone was kinder: I got the call with Mum, and the game finally told me in words that pushing works worse now. But Tuesday went the same way twice, the system blamed and Ece looked at, even when I did not push. I have seen enough for one evening."
+
+## 4. Moments
+
+**What held me:**
+- The depot work, the lost driver on the radio and Murat felt like real people with real jobs.
+- Missing the bus stop was a clear consequence, and it made me smile.
+- Water led to her dozing at the board, with Murat watching. That was dry but fair.
+- The phone call about the neighbour's roof made me laugh. It felt earned.
+- The bedtime summary works like a shift report, and I liked it.
+
+**What lost me:**
+- On the desktop I spent all her trust on Monday morning without knowing it was a budget.
+- After that she refused me again and again.
+- On both devices Tuesday ended the same way: she blamed the system and Ece was suspected. On the phone this happened even though I had not pushed that day.
+
+**Quit wishes:**
+- Desktop: want_quit at 277 s. It passed briefly, and I stopped at 377 s.
+- Phone: want_quit at 304 s, and I stopped at 313 s.
+
+**Pulses:** 3 on desktop (218 s) and 3 on phone (214 s).
+
+## 5. Confusion and clarity
+
+**Clear:**
+- Suggest or say nothing, and see what she does.
+- A hold insists, which costs her trust.
+- The willingness label on each choice.
+- The bedtime summary.
+- On the phone, Tuesday said it in words: "She resists pressure now. Holding a choice works worse than tapping it." That was the most helpful sentence in the game.
+
+**Confusing:**
+- The name changes from Murmur to "Two Voices", and the title page mentions a "third week".
+- Trust shows only as how dark my handwriting is. I learned that only from the i page.
+- I could not tell why some choices offered no insist.
+- "She wants to do it later" appeared on refusals such as owning a mistake.
+- I did not know whether staying silent restores trust; I was guessing.
+- On Tuesday I did not push at all, but she still refused me.
+
+## 6. Device use
+
+**Screenshots I viewed:**
+
+| File              | What I saw                                                                                                                                                     |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| desktop/d-001.png | Title page                                                                                                                                                     |
+| desktop/d-002.png | "Monday, in bed" summary with the tick, the crossed-out item, her opinion of me, and the "Words she is starting to use" list                                   |
+| phone/p-001.png   | Title page. Start is below the fold.                                                                                                                           |
+| phone/p-002.png   | Monday 06:41 choice cards. They fit the screen well.                                                                                                           |
+| phone/p-003.png   | "Monday, in bed" summary. It fits the screen: "✓ my call to Mum", "my alarm" struck out, "You pushed me a lot today…", and a red "Continue to Tuesday" button. |
+
+**Controls I used:**
+- Choice buttons, by tap and by hold (about 1500 ms)
+- Skip ahead ⏩, Continue to <day>, Information (i)
+- Game menu → Feedback → "I'm stopping" → ← Back. I typed nothing and submitted nothing. The "I'm stopping" and "I'm confused" labels were both present on both devices.
+
+**Trouble I saw:**
+- Lines are duplicated in the event log on both devices.
+- On the phone, Start is below the fold.
+
+**Driver note:** a plain tap on a choice she refuses returned "locator.evaluate: Timeout 30000ms exceeded (driver failure)" after about 31.5 s.
+- This happened 4 times on desktop and 2 times on phone (Tuesday).
+- Each time the tap still registered in the game, so I did not retry.
+- The game's answer countdown was running during the 30 s wait. I suspect this is a driver issue, not something a player would see.
+
+**Layout I did not see:** phone landscape, dark mode, and the Slow/Steady/Fast pace settings.
+
+## 7. Stop and return
+
+- **Desktop stop:** FRUSTRATED at 377 s. "I stop at Tuesday night… Two days the same shape. Enough for tonight."
+- **Phone stop:** FRUSTRATED at 313 s. "I stop at Tuesday afternoon… Tuesday went the same way twice… I have seen enough for one evening."
+
+**Would I return voluntarily?** Maybe, on another free evening, but only if I could see how much she still trusts me. Without that I feel like a voice nobody listens to, and I do not want to replay the same Tuesday a third time. I liked the people and the bedtime page enough to try once more if the game told me where I stand.
+
+- **Leave it running?** No. The answer clock would run, and I don't want to come back to missed choices.
+- **Come back another evening?** Possibly, under the condition above.
+
+## 8. Changes I would want
+
+1. A visible trust meter.
+2. An explanation of when insisting is possible, and plain wording on refusals.
+3. No duplicated lines.
+
+## 9. Compared with my last visit
+
+This was my first visit; there is no earlier visit to compare.
+
+**Cleanup:** I owned no worktree, server or process and touched no git repository, so `git worktree list` shows none of mine. I used 2 manual shots on desktop and 3 on phone, all within budget.

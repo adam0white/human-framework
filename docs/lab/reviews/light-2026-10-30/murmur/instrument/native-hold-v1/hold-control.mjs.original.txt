@@ -1,0 +1,122 @@
+// Real-browser control for tap duration_ms. Usage: node hold-control.mjs <driver-dir> <outdir>
+import { spawn } from 'node:child_process';
+import { once } from 'node:events';
+import { createServer } from 'node:http';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+const [driverDir, out] = process.argv.slice(2).map((p) => resolve(p));
+mkdirSync(out, { recursive: true });
+const html = `<!doctype html><html lang="en"><body style="margin:0;font:16px sans-serif">
+<div style="display:flex;gap:10px;flex-wrap:wrap;padding:6px">
+<button id="hold" style="width:140px;height:60px">Hold me</button>
+<button style="width:90px;height:50px">Twin</button><button style="width:90px;height:50px">Twin</button>
+<button disabled style="width:90px;height:50px">Off</button>
+<button id="cov" style="width:120px;height:50px">Covered</button>
+<button id="vanish" style="width:120px;height:50px">Vanish</button>
+</div>
+<div style="position:fixed;left:0;top:0;width:0;height:0" id="shield"></div>
+<pre id="log" style="font-size:11px;white-space:pre-wrap;margin:6px"></pre>
+<script>
+const log=document.getElementById('log');
+const cov=document.getElementById('cov').getBoundingClientRect();
+const s=document.getElementById('shield');
+Object.assign(s.style,{left:cov.left+'px',top:cov.top+'px',width:cov.width+'px',height:cov.height+'px',background:'#f99'});
+let n=0;
+for (const t of ['pointerdown','pointerup','pointercancel','mousedown','mouseup','touchstart','touchend','touchcancel','click'])
+  addEventListener(t,(e)=>{const id=e.target.id||e.target.textContent.slice(0,10).trim()||e.target.tagName;
+    log.textContent+='EV '+(++n)+' '+t+' trusted='+e.isTrusted+' ptype='+(e.pointerType||'-')+' t='+e.timeStamp.toFixed(1)+' on='+id+'\\n';
+    if(t==='pointerdown'&&e.target.id==='vanish') setTimeout(()=>e.target.remove(),300);},true);
+</script></body></html>`;
+const site = createServer((_, r) => { r.setHeader('Content-Type', 'text/html'); r.end(html); });
+site.listen(0, '127.0.0.1'); await once(site, 'listening');
+const sitePort = site.address().port;
+const results = []; const pids = [];
+const check = (name, ok, detail = '') => { results.push({ name, ok, detail }); console.log(`${ok ? 'PASS' : 'FAIL'} ${name} ${detail}`); };
+async function freePort() { const s = createServer(); s.listen(0, '127.0.0.1'); await once(s, 'listening'); const p = s.address().port; await new Promise((d) => s.close(d)); return p; }
+async function session(device) {
+  const port = await freePort(); const dir = resolve(out, device);
+  const child = spawn('/opt/homebrew/bin/node', [resolve(driverDir, 'lab-play.ts'), `url=http://127.0.0.1:${sitePort}`, `out=${dir}`, `port=${port}`, `device=${device}`, 'floor=0', 'ceiling=3'], { env: { ...process.env, LAB_PLAY_ALLOW_STALE: '1' }, stdio: ['ignore', 'pipe', 'pipe'] });
+  pids.push(child.pid);
+  let err = ''; child.stderr.on('data', (d) => (err += d));
+  await new Promise((res, rej) => { child.stdout.once('data', res); child.once('exit', () => rej(new Error('driver exited: ' + err))); setTimeout(() => rej(new Error('driver start timeout')), 20000); });
+  const send = async (op) => { const t0 = Date.now(); const r = await fetch(`http://127.0.0.1:${port}/`, { method: 'POST', body: JSON.stringify(op) }); const j = await r.json(); return { status: r.status, j, ms: Date.now() - t0 }; };
+  return { child, send, dir };
+}
+const events = (j) => (j.visible ?? '').split('\n').filter((l) => l.startsWith('EV '));
+const evs = (j, type) => events(j).filter((l) => l.includes(` ${type} `));
+const tOf = (l) => Number(/ t=([\d.]+)/.exec(l)[1]);
+const text = (r) => JSON.stringify(r.j);
+let cur;
+try {
+  for (const device of ['desktop', 'phone']) {
+    cur = await session(device);
+    const { send } = cur; const D = device;
+    await send({ op: 'open' });
+    // Baseline: ordinary tap unchanged.
+    let r = await send({ op: 'tap', name: 'Hold me' });
+    let e = r.j;
+    check(`${D} ordinary tap works`, r.status === 200 && evs(e, 'click').length === 1, `status=${r.status}`);
+    check(`${D} ordinary tap trusted`, events(e).every((l) => l.includes('trusted=true')));
+    const base = events(e).length;
+    // Validation rejections: no new input events.
+    const bad = [{ duration_ms: 99 }, { duration_ms: 5001 }, { duration_ms: 250.5 }, { duration_ms: '500' }, { duration_ms: null }, { duration_ms: 500, extra: 1 }];
+    for (const b of bad) {
+      r = await send({ op: 'tap', name: 'Hold me', ...b });
+      const after = (await send({ op: 'log', kind: 'note', reaction: 'probe' })).j;
+      check(`${D} rejects ${JSON.stringify(b)}`, r.status >= 400 && events(after).length === base, `status=${r.status}`);
+    }
+    r = await send({ op: 'key', key: 'Shift', duration_ms: 500 });
+    check(`${D} rejects duration_ms on key`, r.status >= 400);
+    // Hold by name.
+    const t0 = Date.now();
+    r = await send({ op: 'tap', name: 'Hold me', duration_ms: 1200 });
+    const wall = r.ms; e = r.j;
+    console.log(`INFO ${D} hold reply status=${r.status} error=${JSON.stringify(r.j.error ?? null).slice(0, 200)}`);
+    const off = D === 'desktop' ? 1 : 0; // desktop ordinary tap used mouse; phone named click is also mouse-emulated
+    const downType = D === 'desktop' ? 'mousedown' : 'touchstart', upType = D === 'desktop' ? 'mouseup' : 'touchend';
+    const downs = evs(e, downType), ups = evs(e, upType);
+    const dtime = downs.length && ups.length ? tOf(ups.at(-1)) - tOf(downs.at(-1)) : -1;
+    check(`${D} hold native ${downType}/${upType} trusted`, r.status === 200 && downs.length === off + 1 && downs.at(-1).includes('trusted=true') && ups.at(-1).includes('trusted=true'), `downs=${downs.length} ups=${ups.length}`);
+    check(`${D} hold page-observed down->up in 1150..1500ms`, dtime >= 1150 && dtime <= 1500, `page_ms=${dtime.toFixed(0)} http_wall_ms=${wall}`);
+    check(`${D} hold HTTP wall >= 1200`, wall >= 1200);
+    check(`${D} hold click fired once more`, evs(e, 'click').length === 2);
+    // Hold by text and by point.
+    r = await send({ op: 'tap', text: 'Hold me', duration_ms: 300 });
+    check(`${D} hold by text`, r.status === 200 && evs(r.j, upType).length === off + 2, `status=${r.status}`);
+    r = await send({ op: 'tap', x: 40, y: 30, duration_ms: 300 });
+    check(`${D} hold by point`, r.status === 200 && evs(r.j, upType).length === off + 3, `status=${r.status}`);
+    const n1 = events(r.j).length;
+    // Refusals: no input.
+    for (const [label, op, re] of [['ambiguous', { op: 'tap', name: 'Twin', duration_ms: 300 }, /Twin/], ['disabled', { op: 'tap', name: 'Off', duration_ms: 300 }, /disabled/], ['covered', { op: 'tap', name: 'Covered', duration_ms: 300 }, /covered|off screen/]]) {
+      r = await send(op);
+      const after = (await send({ op: 'log', kind: 'note', reaction: 'probe' })).j;
+      check(`${D} ${label} refused with no input`, r.status >= 400 && re.test(text(r)) && events(after).length === n1, `status=${r.status}`);
+    }
+    // Target disappears mid-hold: release still arrives.
+    r = await send({ op: 'tap', name: 'Vanish', duration_ms: 1000 });
+    const e2 = r.j;
+    // A removed target no longer bubbles touchend/mouseup to document, so prove release by a clean follow-up press.
+    check(`${D} vanish hold ran (press delivered, target gone)`, r.status === 200 && evs(e2, downType).length === off + 4 && !(e2.visible ?? '').split('\n').filter((l) => !l.startsWith('EV')).some((l) => l.trim() === 'Vanish'), `down=${evs(e2, downType).length} up=${evs(e2, upType).length}`);
+    r = await send({ op: 'tap', name: 'Hold me', duration_ms: 100 });
+    check(`${D} not stuck: next hold gets fresh down+up`, r.status === 200 && evs(r.j, downType).length === off + 5 && evs(r.j, upType).length >= evs(e2, upType).length + 1, `down=${evs(r.j, downType).length} up=${evs(r.j, upType).length}`);
+    // Logging keeps duration_ms and op_ms.
+    const lines = readFileSync(resolve(cur.dir, 'wall-clock.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
+    const hl = lines.find((l) => l.input?.duration_ms === 1200);
+    check(`${D} log records duration_ms and op_ms>=1200`, !!hl && hl.op_ms >= 1200, hl ? `op_ms=${hl.op_ms}` : 'missing');
+    if (D === 'desktop') {
+      // Re-hold still works after the vanish (no stuck button).
+      r = await send({ op: 'tap', name: 'Hold me', duration_ms: 100 });
+      check('desktop no stuck mouse button after vanish', r.status === 200 && evs(r.j, 'mouseup').length === evs(r.j, 'mousedown').length);
+    }
+    cur.child.kill('SIGTERM'); await once(cur.child, 'exit'); cur = null;
+  }
+} catch (error) {
+  check('control ran to completion', false, String(error).slice(0, 300));
+} finally {
+  if (cur) { cur.child.kill('SIGTERM'); await Promise.race([once(cur.child, 'exit'), new Promise((r) => setTimeout(r, 5000))]); }
+  site.close(); site.closeAllConnections?.();
+  writeFileSync(resolve(out, 'results.json'), JSON.stringify({ pids, results }, null, 1));
+}
+const failed = results.filter((r) => !r.ok).length;
+console.log(`SUMMARY ${results.length - failed}/${results.length} pass; driver pids used: ${pids.join(',')}`);
+process.exit(failed ? 1 : 0);

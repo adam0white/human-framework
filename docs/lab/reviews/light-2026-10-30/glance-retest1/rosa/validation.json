@@ -1,0 +1,91 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-31T03:38:52.587519+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T03:15:30.885Z",
+        "elapsed_s": 26.074,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "The long Nerys paragraph is gone, which helps, and The gate opens from 0 to 6 turns is plain. But the same two sentences about a call interrupting Dai repeat on six buttons, and insist is still there. I stop.",
+        "game_clock": "Mon 22:05",
+        "engagement": 2,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 23.158,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T03:15:51.003Z",
+        "elapsed_s": 19.767,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Same as the phone. The picture of the dam helped me a lot on the big screen, but the same two sentences about a call interrupting Dai are in every turns box, in narrow columns. I stop.",
+        "game_clock": "Mon 22:03",
+        "engagement": 2,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 17.174,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,305 @@
+{
+  "scope_note": "Read-only extraction from the five producer report.md files, five validation.json files, instrument-qualification.json and cleanup-rule.md. The cleanup rule only concerns worktrees, servers and screenshots and has no bearing on content. Quotes are exact contiguous producer substrings with Markdown labels and list numbers removed. Nothing is classified, ranked as a verdict or turned into advice. Per the controller control in instrument-qualification.json, exact-short-label getByLabel('Who?') and getByLabel('What?') lookups failed, while native-role locators persisted selections after the public fold was opened. That is an instrument/markup interoperability finding and does not show that selection is broken. Maya and Emre have no entries in instrument-qualification.json. Day 4 supplies, Day 8 cooking and Day 13 lunch lines are goal information. Day 1 visits do not show whether later consequences exist. Current-game observations are left as the producers wrote them. validation.json 'limits' for all five: \"Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read.\"",
+  "testers": {
+    "maya": {
+      "opening_would_return": {
+        "source": "maya/report.md, top line",
+        "quote": "I would come back voluntarily one more evening to see what Day 2 does with the secrets I kept, but only if the game tells me who I am talking to and what I said. I would not leave it running."
+      },
+      "later_return_if_different": {
+        "source": "maya/report.md, section 7",
+        "quotes": [
+          "I would come back to see whether Day 2 shows what the people I betrayed or protected say, because \"people who remember a choice\" is what I like.",
+          "It must tell me who I am talking to and what I said.",
+          "Refusals must show a reason in place.",
+          "I would not leave it running.",
+          "I would not return if I expect the same Day 1 stories again."
+        ]
+      },
+      "ranked_asks": {
+        "source": "maya/report.md, Ranked asks",
+        "quotes": [
+          "Let me choose who I repeat a secret to and what I say. On the phone I tapped \"Repeat this at another table\", and the game picked Dilan and the claim \"Derya is not kind\" for me.",
+          "Show refusals and \"not now\" answers next to the button, with a reason. Ece said \"This person cannot do this now. Try again later.\" with no reason. On desktop, Rıza's refusal of \"Press for private details\" appeared only in the Garden record.",
+          "Shorten the Garden record, which is a long wall of text. Remove off-topic lines such as Derya's Day 4 supply text."
+        ]
+      },
+      "devices": {
+        "phone": {
+          "rawstop": {
+            "reason": "TASTE",
+            "elapsed_s": 75.234,
+            "game_clock": "Day 1 07:47",
+            "engagement": 3
+          },
+          "instrument_qualification": "no entry in instrument-qualification.json",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "none logged; producer: \"Both sessions ended before elapsed_s reached 180, so I logged no pulse. The pulse checkpoint is untested.\"",
+          "tool_errors": "none in refusedInputs"
+        },
+        "desktop": {
+          "rawstop": {
+            "reason": "TASTE",
+            "elapsed_s": 75.542,
+            "game_clock": "Day 1 07:20",
+            "engagement": 3
+          },
+          "instrument_qualification": "no entry in instrument-qualification.json",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "none logged",
+          "tool_errors": "One refused tap at 62.105 s on \"Let the conversation finish\", error marked \"game state, not a driver failure\"."
+        }
+      },
+      "producer_evidence_limits": [
+        "Own history: \"I read lines 1-617 of 857 of own-history.md. Lines 618-857 are unread.\"",
+        "\"Some early desktop reactions went out as `reaction` fields on ops. I no longer have their exact wording, so I do not reproduce them.\"",
+        "\"I took no in-play phone screenshot, so I did not check the phone in-game layout.\"",
+        "\"I did not log a separate `want_quit` line in either session; each `stop` line carries the reason TASTE.\"",
+        "Sessions lasted about 75 s each. Round: \"free-stop arm (floor 0, ceiling 25 real minutes). No paired or control claim.\""
+      ]
+    },
+    "emre": {
+      "opening_would_return": {
+        "source": "emre/report.md, top line",
+        "quote": "I would come back another evening on desktop, but only if the game tells me why a talk is refused and when people come back, and gives me something to decide while the garden is empty. I would not leave it running."
+      },
+      "later_return_if_different": {
+        "source": "emre/report.md, section 7",
+        "quotes": [
+          "I would come back another evening on desktop, but only if the game tells me why a talk is refused and when people come back, and gives me something to decide while the garden is empty.",
+          "Nothing happens that I can steer while the garden is empty, so there is no reason to wait.",
+          "Yes, with the condition above.",
+          "I would not return if I still could not find where to order supplies."
+        ]
+      },
+      "ranked_asks": {
+        "source": "emre/report.md, Ranked asks",
+        "quotes": [
+          "Say why a talk is refused, and show when each person returns. \"This person cannot do this now\" gave me no reason, and it came up for Nermin, Ece and Dilan on desktop and for Ece on the phone.",
+          "Give me a decision or an action while the garden is empty from about 8:00, or a pace that skips that stretch. Fast was about one game minute per real second on desktop.",
+          "Show where and when bread and produce get ordered, and what a private-keeping or gossip choice earns or costs. I never found an order control in about 3 minutes on each device."
+        ]
+      },
+      "devices": {
+        "desktop": {
+          "rawstop": {
+            "reason": "BORED",
+            "elapsed_s": 224.004,
+            "game_clock": "Day 1 09:47",
+            "engagement": null
+          },
+          "want_quit": "BORED at 180.4 s, Day 1 09:43 (from report; did not pass)",
+          "instrument_qualification": "no entry in instrument-qualification.json",
+          "premature_first_minute": [],
+          "premature_pulse": [
+            175.468
+          ],
+          "pulse": "engagement 2 at 175.5 s, Day 1 09:39. Producer: \"The desktop pulse was logged at 175.5 s, which is under the 180 s threshold, so the coordinator should flag it as premature.\"",
+          "tool_errors": "Three refused taps, all marked \"not a driver failure\": \"How to play\" at 4.913 s, \"Let the conversation finish\" at 30.728 s and 35.16 s."
+        },
+        "phone": {
+          "rawstop": {
+            "reason": "BORED",
+            "elapsed_s": 192.559,
+            "game_clock": "Day 1 09:18",
+            "engagement": null
+          },
+          "want_quit": "BORED at 186.4 s, Day 1 09:14 (from report; did not pass)",
+          "instrument_qualification": "no entry in instrument-qualification.json",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "engagement 2 at 185.1 s, Day 1 09:14",
+          "tool_errors": "none in refusedInputs"
+        }
+      },
+      "producer_evidence_limits": [
+        "\"Not verified:** the cooldown theory, return times, and whether supplies can be arranged on Day 4.\"",
+        "\"I never found where to order bread, produce or cooking, and never reached Day 4.\"",
+        "\"My guess is a cooldown or trust gate (Dilan agreed after about 40 game minutes). That is a guess, not confirmed.\"",
+        "\"Unseen layout:** the people row at the top of the garden on phone, the Feedback dialog layout, and the in-menu view.\"",
+        "Diary 108.7 s: \"Fourteen years would take hours.\" followed by the correction \"I meant \\\"days\\\", not \\\"years\\\".\"",
+        "Round: \"free stop (floor 0, ceiling 25 minutes). No paired or control claim.\""
+      ]
+    },
+    "diego": {
+      "opening_would_return": {
+        "source": "diego/report.md, top line",
+        "quote": "Not tonight and not to this opening. I would come back on another evening only if my claims showed a visible result and the bench were not empty for two real minutes."
+      },
+      "later_return_if_different": {
+        "source": "diego/report.md, section 7",
+        "quotes": [
+          "Possibly. The secrets and their cost interested me, and I would try one more run with the Who?/What? choices working.",
+          "No. Leaving it running would not hold me, because the clock only passes empty bench time."
+        ]
+      },
+      "ranked_asks": {
+        "source": "diego/report.md, Ranked asks",
+        "quotes": [
+          "Fill or skip the empty-bench time. At 08:00 on desktop everyone left and nothing could be touched for about two real minutes.",
+          "Make the Who? and What? choices work, and show what a claim did. Selecting a person failed on both devices, and claims produced no visible reply.",
+          "Show the cost of \"Press for private details\" on Osman. The clock moved two minutes and nothing visibly changed."
+        ]
+      },
+      "devices": {
+        "desktop": {
+          "rawstop": {
+            "reason": "BORED",
+            "elapsed_s": 234.415,
+            "game_clock": null,
+            "engagement": null
+          },
+          "want_quit": "BORED at 185.96 s (did not pass)",
+          "instrument_qualification": "Instrument-impaired: Who/What exact-label locator failed repeatedly. Producer continued and labelled BORED; retain words, exclude as unqualified game taste.",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "engagement 3 at 184.241 s, game clock Day 1 09:39",
+          "tool_errors": "Select timeouts, marked \"driver failure\": Who? at 26.16 s and 32.619 s, What? at 51.664 s. One tap on option Osman at 28 s refused: \"Osman left the page just before the tap (game state, not a driver failure)\"."
+        },
+        "phone": {
+          "rawstop": {
+            "reason": "CONFUSED",
+            "elapsed_s": 69.213,
+            "game_clock": null,
+            "engagement": null
+          },
+          "want_quit": "CONFUSED at 63.4 s (did not pass)",
+          "instrument_qualification": "Instrument-impaired: Who locator failed. Producer labelled CONFUSED; retain words, no functional game-selector claim.",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "none; producer: \"I logged no pulse on the phone because I stopped before 180 s.\"",
+          "tool_errors": "A note op at 15.859 s was rejected as \"Unsupported op (invalid request, not a driver failure)\". Who? select timeout at 27.915 s (\"driver failure\"). Tap on option Dilan at 29.923 s refused: \"Dilan left the page just before the tap (game state, not a driver failure)\"."
+        }
+      },
+      "producer_evidence_limits": [
+        "\"I cannot tell whether that is the driver or the game, so I used the defaults.\"",
+        "\"The select timed out in 4 attempts across both devices, even with the fold open on the phone.\"",
+        "\"Unseen layout:** I did not screenshot the Who?/What? fold open on the phone, or the Feedback dialog on either device.\"",
+        "\"This is not a paired comparison.\"",
+        "Diary 35.49 s: \"Not sure if tool or game.\""
+      ]
+    },
+    "rosa": {
+      "opening_would_return": {
+        "source": "rosa/report.md, top line",
+        "quote": "I would come back another evening on the big screen, but only if the game told me plainly what to do while the garden is empty and how to order the bread. I would not leave it running, and I would not come back on the phone if all I do there is wait."
+      },
+      "later_return_if_different": {
+        "source": "rosa/report.md, section 7",
+        "quotes": [
+          "Yes, but only on one condition: the game must tell me plainly what to do when everyone leaves the garden, and how to order the bread.",
+          "I would come back another evening, on the big screen, to find out what happens to Rıza and Derya.",
+          "I would not leave it running, because the garden empties and I just watch.",
+          "I would not return on the phone to wait."
+        ]
+      },
+      "ranked_asks": {
+        "source": "rosa/report.md, Ranked asks",
+        "quotes": [
+          "When everyone has left the garden, say what I can do now and when they will return. On the phone I waited about two minutes with nothing to do.",
+          "Say in one plain sentence how to get the bread and produce arranged by Day 4. Put it on the first screen, not only in the Garden record.",
+          "Make the \"Talk about someone else\" lists work, and show that it is a folded heading, not a button. On the desktop my choice in the \"Who?\" list timed out."
+        ]
+      },
+      "devices": {
+        "phone": {
+          "rawstop": {
+            "reason": "BORED",
+            "elapsed_s": 196.461,
+            "game_clock": "Day 1 10:30",
+            "engagement": 2
+          },
+          "want_quit": "BORED at 189.2 s (did not pass)",
+          "instrument_qualification": "Unblocked current-target observation, BORED stop.",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "engagement 2 at 187.2 s, Day 1 10:26",
+          "late_first_minute": "Logged at 71.5 s after a failed attempt at about 66 s. Producer: \"which is after 60 s.\"",
+          "tool_errors": "Tap \"Dilan at the garden\" at 50.695 s refused (\"game state, not a driver failure\"). Wait op at 54.057 s: \"Invalid kind (invalid request, not a driver failure)\"."
+        },
+        "desktop": {
+          "rawstop": {
+            "reason": "TOOL",
+            "elapsed_s": 30.747,
+            "game_clock": "Day 1 06:19",
+            "engagement": 3
+          },
+          "instrument_qualification": "Explicit TOOL stop after repeated Who exact-label timeout.",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "none; producer: \"I logged no first_minute, pulse or want_quit on the desktop. The session lasted 31 s, so those checkpoints are untested there.\"",
+          "tool_errors": "Tap \"Talk about someone else\" at 5.825 s refused (\"not a driver failure\"). Who? select timeouts at 12.787 s and 17.522 s (\"driver failure\"). Tap on option Osman at 20.537 s: \"Osman left the page just before the tap (game state, not a driver failure)\"."
+        }
+      },
+      "producer_evidence_limits": [
+        "\"I cannot say whether the game or the tool caused the timeout.\"",
+        "\"the select problem was probably a tool limit, not a game fault. I cannot tell which.\"",
+        "\"Unseen:** the desktop game layout, and anything after the first conversation.\"",
+        "\"I never reached the part about supplies.\"",
+        "\"I did not scroll to see them, so I never saw the picture.\"",
+        "Disclosure: failed first_minute log at about 66 s due to shell quoting, resent at 71.5 s. One invalid wait op at 54 s was her own invalid request."
+      ]
+    },
+    "luz": {
+      "opening_would_return": {
+        "source": "luz/report.md, top line",
+        "quote": "Yes, another evening, but only if I can actually ask one person about another and see on screen why someone refuses or keeps something private. The eight-versus-ten crates are the kind of thing I like to check, and I never got to check them."
+      },
+      "later_return_if_different": {
+        "source": "luz/report.md, section 7",
+        "quotes": [
+          "If the dead clicks stay silent and only the record explains them, I would lose patience within a session.",
+          "I would not leave it running in the background, because the clock moves and I want to read carefully.",
+          "I would come back another evening on the laptop, and I would open How to play first."
+        ]
+      },
+      "ranked_asks": {
+        "source": "luz/report.md, Ranked asks",
+        "quotes": [
+          "Show the result of every action on the main screen, not only in the Garden record. That includes \"Osman keeps this private for now\" and the reason someone \"cannot do this now\".",
+          "Put How to play in the Game menu. Either open the Garden record by default or bring its key lines (Day 4 supplies, Day 8 cooking, the crate count) to the front.",
+          "On the phone, keep the selected person's panel and the Who?/What choices next to the people grid."
+        ]
+      },
+      "devices": {
+        "desktop": {
+          "rawstop": {
+            "reason": "TOOL",
+            "elapsed_s": 104.057,
+            "game_clock": "Day 1 07:50",
+            "engagement": null
+          },
+          "want_quit": "TOOL at 91.2 s, Day 1 07:45 (did not pass)",
+          "instrument_qualification": "Explicit TOOL stop after Who exact-label timeout+retry. Not a game taste quit.",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "none; sessions ended before 180 s",
+          "tool_errors": "Who? select timeouts at 81.122 s and 86.843 s (\"driver failure\")."
+        },
+        "phone": {
+          "rawstop": {
+            "reason": "TOOL",
+            "elapsed_s": 55.079,
+            "game_clock": "Day 1 06:50",
+            "engagement": null
+          },
+          "want_quit": "TOOL at 44.9 s, Day 1 06:46 (did not pass)",
+          "instrument_qualification": "Explicit TOOL stop after Who exact-label timeout+retry. Not a game taste quit.",
+          "premature_first_minute": [],
+          "premature_pulse": [],
+          "pulse": "none",
+          "tool_errors": "Who? select timeouts at 25.231 s and 40.966 s (\"driver failure\")."
+        }
+      },
+      "producer_evidence_limits": [
+        "\"Unproven:** the Who? select failure could be a driver problem rather than a game problem.\"",
+        "Correction to the phone stop words: \"I did not take a phone screenshot after tapping \"I'm stopping\". The claim that the button \"did not look any different\" comes from the desktop screenshot a-003, not from the phone.\"",
+        "\"Unseen layout: I never confirmed where the selected person's panel sits on the phone, probably above the grid.\"",
+        "\"Neither session reached 180 s, so no pulse was logged and later checkpoints are untested.\"",
+        "Money 400 to 540: \"I do not know why\"; the record said customers paid for their tea."
+      ]
+    }
+  }
+}

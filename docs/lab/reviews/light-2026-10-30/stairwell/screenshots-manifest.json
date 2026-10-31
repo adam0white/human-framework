@@ -1,0 +1,226 @@
+[
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "image": "stairwell/maya/phone/first-minute.png",
+    "sha256": "97489946540216273aa9c678c966a841e98c0c53eac87e742ca7992b772548cf",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "image": "stairwell/maya/phone/a-002.png",
+    "sha256": "026de66bf6d9fbe35b4a8f1a1f90163b2631f4384739fb8e8d6a917d6298b37e",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "image": "stairwell/maya/phone/a-001.png",
+    "sha256": "91b7fba4496f47d0a971943ea7288c876b29b0a3f65e6509c68edc943c6c13e1",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "image": "stairwell/maya/desktop/b-001.png",
+    "sha256": "cd6757c3d5f375c3c7eca58bcf994eb21648fff9517193494aec2de08edeef5d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "image": "stairwell/maya/desktop/first-minute.png",
+    "sha256": "c344039b83d3d64c5ab4d20efaa62269bdfa31019553b0a331a909d93eb89821",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "image": "stairwell/maya/desktop/b-002.png",
+    "sha256": "2522947a1ee0e8117dd36c494492c363fe55e5f42a77517acd11ac1e17f6830b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "desktop",
+    "image": "stairwell/jonas/desktop/first-minute.png",
+    "sha256": "293d6ff967ca8ed59f6f4ddf1191f28fbed139afc79e457634d2330b4a5777dc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "desktop",
+    "image": "stairwell/jonas/desktop/a-002.png",
+    "sha256": "47d909db619be4aa2e0b87f31be1769dea25d351ed74f312e3a013ebe7a2fecd",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "desktop",
+    "image": "stairwell/jonas/desktop/a-001.png",
+    "sha256": "cd6757c3d5f375c3c7eca58bcf994eb21648fff9517193494aec2de08edeef5d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "phone",
+    "image": "stairwell/jonas/phone/b-001.png",
+    "sha256": "91b7fba4496f47d0a971943ea7288c876b29b0a3f65e6509c68edc943c6c13e1",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Jonas Berg",
+    "device": "phone",
+    "image": "stairwell/jonas/phone/b-002.png",
+    "sha256": "c6ae2f0a78b67aa69af507321dd9bbe8166935ea8c57a28cded2d6dae62ca522",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "phone",
+    "image": "stairwell/leila/phone/first-minute.png",
+    "sha256": "c64b1465cac2d0e861b14ef520891e8af6c7d680076b75e278666b89b029a7bb",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "phone",
+    "image": "stairwell/leila/phone/a-002.png",
+    "sha256": "78463c47335f0818423f397ee2b3309c39faca19bad00a036c96bf0bcd372f4d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "phone",
+    "image": "stairwell/leila/phone/a-001.png",
+    "sha256": "91b7fba4496f47d0a971943ea7288c876b29b0a3f65e6509c68edc943c6c13e1",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "desktop",
+    "image": "stairwell/leila/desktop/b-001.png",
+    "sha256": "cd6757c3d5f375c3c7eca58bcf994eb21648fff9517193494aec2de08edeef5d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "desktop",
+    "image": "stairwell/leila/desktop/first-minute.png",
+    "sha256": "b6b9c74a76ae2f27bb37bfe9098709a27231c907d0c278369e800b5ff1f8464f",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "desktop",
+    "image": "stairwell/leila/desktop/b-002.png",
+    "sha256": "aea61a80134ce1d9800f4c283d36c0e120369f31652f53c6b712d344d35eccb7",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "stairwell/rosa/phone/first-minute.png",
+    "sha256": "b8a2aef48733c34d77d844a5486d860e602c8071bfa8bb1f8650faa6dc75cda9",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "stairwell/rosa/phone/a-002.png",
+    "sha256": "a77b6104ea9e6f0db5bd35455f9ee094b3c32b08858d464892a8944686efc30c",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "image": "stairwell/rosa/phone/a-001.png",
+    "sha256": "91b7fba4496f47d0a971943ea7288c876b29b0a3f65e6509c68edc943c6c13e1",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "stairwell/rosa/desktop/b-001.png",
+    "sha256": "cd6757c3d5f375c3c7eca58bcf994eb21648fff9517193494aec2de08edeef5d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "stairwell/rosa/desktop/first-minute.png",
+    "sha256": "27bd07de3fba4b1dca838323010ed272ba535b7168f55512fc59ec1c008410bf",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "image": "stairwell/rosa/desktop/b-002.png",
+    "sha256": "70c1b447a94d98ab61cc7030c0ce9f86689fdc46801a5dfa1ce627cc7bbc7263",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "phone",
+    "image": "stairwell/noura/phone/first-minute.png",
+    "sha256": "6a18515e57868de6a221011ba35d9c37cb7c8b713372fc40c2b638b75636a9ba",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "phone",
+    "image": "stairwell/noura/phone/a-004.png",
+    "sha256": "4cd3d3eb0490ad73ebafff89351b583adab7136c9695b25dac5f1fe0677fce23",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "phone",
+    "image": "stairwell/noura/phone/a-002.png",
+    "sha256": "ad4ae682056d6dc3b4305ead71777072e55f93bb45c7af372b79da1a5c57130b",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "phone",
+    "image": "stairwell/noura/phone/a-003.png",
+    "sha256": "eb4aca943b82e8abef55b7927e6972d534542a0775a9a869c7df4cc4091c97cc",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "phone",
+    "image": "stairwell/noura/phone/a-001.png",
+    "sha256": "91b7fba4496f47d0a971943ea7288c876b29b0a3f65e6509c68edc943c6c13e1",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "desktop",
+    "image": "stairwell/noura/desktop/first-minute.png",
+    "sha256": "d6f676cd7d17139fdfa311c20163838923e428d60b28bb2bcfc9fa20dfd3a141",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "desktop",
+    "image": "stairwell/noura/desktop/d-001.png",
+    "sha256": "cd6757c3d5f375c3c7eca58bcf994eb21648fff9517193494aec2de08edeef5d",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "desktop",
+    "image": "stairwell/noura/desktop/d-003.png",
+    "sha256": "bb2ef4ffe27a5e91c16ed924bb7f5b11e51ec0f9eb262bc86449fc45e6fec3eb",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  },
+  {
+    "tester": "Noura Farhat",
+    "device": "desktop",
+    "image": "stairwell/noura/desktop/d-002.png",
+    "sha256": "2d1a66c0b2839e6481c8c74c58440bb082d2ee70edd603ecf6d488437d7685cb",
+    "retained": "private scratch; image capture does not alone prove viewing"
+  }
+]
