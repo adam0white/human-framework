@@ -1,0 +1,16 @@
+{
+  "time": "2026-10-31T03:12:04.799249+00:00",
+  "scope": "only owned interrupted-attempt images",
+  "capturedDesktop": 7,
+  "allowedPerDevice": 6,
+  "keptDesktop": 6,
+  "removed": [
+    {
+      "file": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance/sara/cut-by-restart-20261030T2150Z/desktop/a-006.png",
+      "sha256": "4db6395ab0fac7944e4fd67f48b44b0a8175847cba70b85c6d7b297369f3477b",
+      "reason": "sixth manual plus automatic exceeded six total; preserve capture breach, no original Read receipt available"
+    }
+  ],
+  "phoneCapturedSuccessful": 2,
+  "phoneThirdAttemptFailedOnClosedPage": true
+}

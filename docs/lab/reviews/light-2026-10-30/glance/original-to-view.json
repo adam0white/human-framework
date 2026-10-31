@@ -1,11 +1,12 @@
 {
-  "purpose": "History qualification added to README/logical ledger without changing producer inputs, reports, raw logs or quotations. Earlier mapping snapshot retained. Readable report views use formatting only.",
+  "purpose": "Producer originals stay unchanged. Sara readable report has a separate director correction header plus formatting. Source/table metadata and the linked partial first attempt are exposure-qualified. Canonical hashes describe this prospective view; private hashes retain their documented historical epoch.",
   "historyQualification": "history-qualification.json",
   "files": [
     {
       "file": "ask-ledger.md",
-      "canonicalSha256": "56ded5eeafa3eb5f78fdf104677f8c0878f5a5027e222f6a58696cc5d001a0a9",
-      "privateSha256": "acea074fe3c0f89b3fca67dd7339834f98cdbf502b183693822075fc54360e05"
+      "canonicalSha256": "b098225824442044f2587014e685b33a5f54d915d36998d13c006bbde489f35b",
+      "privateSha256": "acea074fe3c0f89b3fca67dd7339834f98cdbf502b183693822075fc54360e05",
+      "epoch": "sara-restart-correction (canonicalSha256 refreshed; privateSha256 retained as the historical private mapping)"
     },
     {
       "file": "history-qualification.json",
@@ -24,8 +25,9 @@
     },
     {
       "file": "ledger-additions.md",
-      "canonicalSha256": "d1834f2f1006880516ff7b8ab004830594dbaaecc56f75e0a5b39a0853b98e14",
-      "privateSha256": "0003522e3e70692d7255afc555000bbadf629d201e1b7f0fcc308fca19387b0d"
+      "canonicalSha256": "d0cc20255609a97cdb77c0cd7729ba19520ebce0919a98da43089205ee6da678",
+      "privateSha256": "0003522e3e70692d7255afc555000bbadf629d201e1b7f0fcc308fca19387b0d",
+      "epoch": "sara-restart-correction (canonicalSha256 refreshed; privateSha256 retained as the historical private mapping)"
     },
     {
       "file": "primary-quote-validation.json",
@@ -39,23 +41,27 @@
     },
     {
       "file": "README.md",
-      "canonicalSha256": "4be5ea2cb1973cb452f78bf5e2e0f2d5179dcdb03e9dfa9ba43a6ccfddd543d9",
-      "privateSha256": "4be5ea2cb1973cb452f78bf5e2e0f2d5179dcdb03e9dfa9ba43a6ccfddd543d9"
+      "canonicalSha256": "e21685477b7decfd65c3ff5c1a4f3e5f341b5f1fa8bbf488e0e755a893677f83",
+      "privateSha256": "4be5ea2cb1973cb452f78bf5e2e0f2d5179dcdb03e9dfa9ba43a6ccfddd543d9",
+      "epoch": "sara-restart-correction (canonicalSha256 refreshed; privateSha256 retained as the historical private mapping)"
     },
     {
       "file": "logical-tester-ledger.md",
-      "canonicalSha256": "7bb00bbd02f1a49b6874d7b6dcc6e766dc25a8e7334d023403d406889f5a9648",
-      "privateSha256": "99505a911b8ca86d7cf5f140768f316d077dade46015b09cbfd9a9af57af3905"
+      "canonicalSha256": "4e7de69df44dab59b4e25c179bc7ae095e946a9309f31d64dba0d6f02ada2f4f",
+      "privateSha256": "99505a911b8ca86d7cf5f140768f316d077dade46015b09cbfd9a9af57af3905",
+      "epoch": "sara-restart-correction (canonicalSha256 refreshed; privateSha256 retained as the historical private mapping)"
     },
     {
       "file": "logical-tester-ledger.json",
-      "canonicalSha256": "bc677d1a6b3351e4eaa1f556270baedec3266a3341b90b4ab5b526cf1ef3cb3b",
-      "privateSha256": "bc677d1a6b3351e4eaa1f556270baedec3266a3341b90b4ab5b526cf1ef3cb3b"
+      "canonicalSha256": "87b6e74ea275538c1be543ecca20ef10d5e1b7fcbfba2a40b799068571736566",
+      "privateSha256": "bc677d1a6b3351e4eaa1f556270baedec3266a3341b90b4ab5b526cf1ef3cb3b",
+      "epoch": "sara-restart-correction (canonicalSha256 refreshed; privateSha256 retained as the historical private mapping)"
     },
     {
       "file": "restart-interruption.json",
-      "canonicalSha256": "b51db787d41b48b97d6df6b44098e0145a4e54e36645d598cb9d6f875a2c8d6b",
-      "privateSha256": "b51db787d41b48b97d6df6b44098e0145a4e54e36645d598cb9d6f875a2c8d6b"
+      "canonicalSha256": "0e667661a1ab5f8ee1760265909d25450734d8ca67657506a4dd15afcc3727c1",
+      "privateSha256": "b51db787d41b48b97d6df6b44098e0145a4e54e36645d598cb9d6f875a2c8d6b",
+      "epoch": "sara-restart-correction (canonicalSha256 refreshed; privateSha256 retained as the historical private mapping)"
     },
     {
       "file": "director-image-observations.json",
@@ -64,8 +70,9 @@
     },
     {
       "file": "sara/report.md",
-      "canonicalSha256": "f86f088311bb9f9a55ca1094cce8b66c22659cc0c29059018bd219a3654daa9e",
-      "privateSha256": "47e4aff953113b26d53a104e5341a72b75f2d18751b5ab4d7f9f8d508eec8e1b"
+      "canonicalSha256": "84786baad19760c43db14ad17eb720a7644e8ce8ba7f7518912c251abe594002",
+      "privateSha256": "47e4aff953113b26d53a104e5341a72b75f2d18751b5ab4d7f9f8d508eec8e1b",
+      "epoch": "sara-restart-correction (canonicalSha256 refreshed; privateSha256 retained as the historical private mapping)"
     },
     {
       "file": "sara/dispatch.json",
@@ -386,6 +393,136 @@
       "file": "sara/phone/release-start.json",
       "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
       "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c"
+    },
+    {
+      "file": "sara/restart-cut/desktop/wall-clock.jsonl",
+      "canonicalSha256": "5c390aa126942623385aece6deff93e662ff12f2b75a6f3901b136dece113761",
+      "privateSha256": "5c390aa126942623385aece6deff93e662ff12f2b75a6f3901b136dece113761",
+      "epoch": "sara-restart-correction"
+    },
+    {
+      "file": "sara/restart-cut/desktop/release-start.json.original.txt",
+      "canonicalSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "epoch": "exact source serialization"
+    },
+    {
+      "file": "sara/restart-cut/desktop/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "rawOriginal": "sara/restart-cut/desktop/release-start.json.original.txt",
+      "epoch": "readable JSON view; exact source retained separately"
+    },
+    {
+      "file": "sara/restart-cut/desktop/driver.out",
+      "canonicalSha256": "274adcc204b97f5f2aa3b8a3aa31cf3836cc3eb1dcd45cbe04ee8691d8bc9339",
+      "privateSha256": "274adcc204b97f5f2aa3b8a3aa31cf3836cc3eb1dcd45cbe04ee8691d8bc9339",
+      "epoch": "sara-restart-correction"
+    },
+    {
+      "file": "sara/restart-cut/phone/wall-clock.jsonl",
+      "canonicalSha256": "720b99923ed2ff42559cd439f3bd2ecdb740acd0bb24f23af1d027008890afe3",
+      "privateSha256": "720b99923ed2ff42559cd439f3bd2ecdb740acd0bb24f23af1d027008890afe3",
+      "epoch": "sara-restart-correction"
+    },
+    {
+      "file": "sara/restart-cut/phone/release-start.json.original.txt",
+      "canonicalSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "epoch": "exact source serialization"
+    },
+    {
+      "file": "sara/restart-cut/phone/release-start.json",
+      "canonicalSha256": "d6b7ff87039741641ced98da17ee0f357a0fc14e4f0459556fb133f3537817be",
+      "privateSha256": "e6fbf3141304cea107a44ac4d3cf734e8f509ae69415a662ee985771394a6f4c",
+      "rawOriginal": "sara/restart-cut/phone/release-start.json.original.txt",
+      "epoch": "readable JSON view; exact source retained separately"
+    },
+    {
+      "file": "sara/restart-cut/phone/driver.out",
+      "canonicalSha256": "db5a49ad63ef0b785bcc716d29de0a646067779c9c644b79c8855fc446b6175d",
+      "privateSha256": "db5a49ad63ef0b785bcc716d29de0a646067779c9c644b79c8855fc446b6175d",
+      "epoch": "sara-restart-correction"
+    },
+    {
+      "file": "sara/restart-cut/dispatch.json.original.txt",
+      "canonicalSha256": "0d23599bdae876558d5151108c1a98ed80d10db706067136c995920f11e264cf",
+      "privateSha256": "0d23599bdae876558d5151108c1a98ed80d10db706067136c995920f11e264cf",
+      "epoch": "exact source serialization"
+    },
+    {
+      "file": "sara/restart-cut/dispatch.json",
+      "canonicalSha256": "0d23599bdae876558d5151108c1a98ed80d10db706067136c995920f11e264cf",
+      "privateSha256": "0d23599bdae876558d5151108c1a98ed80d10db706067136c995920f11e264cf",
+      "rawOriginal": "sara/restart-cut/dispatch.json.original.txt",
+      "epoch": "readable JSON view; exact source retained separately"
+    },
+    {
+      "file": "sara/restart-cut/exposure-correction.json.original.txt",
+      "canonicalSha256": "bdc4ed82e1250a6c2ca0e823f261b05f56941d3d6cc4ac99e9ab5008177af40e",
+      "privateSha256": "bdc4ed82e1250a6c2ca0e823f261b05f56941d3d6cc4ac99e9ab5008177af40e",
+      "epoch": "exact source serialization"
+    },
+    {
+      "file": "sara/restart-cut/exposure-correction.json",
+      "canonicalSha256": "bdc4ed82e1250a6c2ca0e823f261b05f56941d3d6cc4ac99e9ab5008177af40e",
+      "privateSha256": "bdc4ed82e1250a6c2ca0e823f261b05f56941d3d6cc4ac99e9ab5008177af40e",
+      "rawOriginal": "sara/restart-cut/exposure-correction.json.original.txt",
+      "epoch": "readable JSON view; exact source retained separately"
+    },
+    {
+      "file": "sara/restart-cut/screenshot-retention.json.original.txt",
+      "canonicalSha256": "26a6707b456f5b6b1fc6f532bac5f1ff937108652aec25b5f28e1d57e381cfc3",
+      "privateSha256": "26a6707b456f5b6b1fc6f532bac5f1ff937108652aec25b5f28e1d57e381cfc3",
+      "epoch": "exact source serialization"
+    },
+    {
+      "file": "sara/restart-cut/screenshot-retention.json",
+      "canonicalSha256": "26a6707b456f5b6b1fc6f532bac5f1ff937108652aec25b5f28e1d57e381cfc3",
+      "privateSha256": "26a6707b456f5b6b1fc6f532bac5f1ff937108652aec25b5f28e1d57e381cfc3",
+      "rawOriginal": "sara/restart-cut/screenshot-retention.json.original.txt",
+      "epoch": "readable JSON view; exact source retained separately"
+    },
+    {
+      "file": "sara/restart-cut/driver-reactions.json",
+      "canonicalSha256": "747fe99d389ff4344a44698bcb637a3b6e0d11cf1c153d1e08b1f9d0953849cb",
+      "privateSha256": null,
+      "epoch": "sara-restart-correction"
+    },
+    {
+      "file": "sara/restart-cut/f-2210-quote-validation.json",
+      "canonicalSha256": "afd9f2960d9d3d6a2c3304bdfc4205f4121c337bd7ecc4129bf2964031c57d15",
+      "privateSha256": null,
+      "epoch": "sara-restart-correction"
+    },
+    {
+      "file": "sara/restart-cut/README.md",
+      "canonicalSha256": "2e428b32713cebe23f86ec966090c246909a4fc4b7f390f331c7e6eb6425434d",
+      "privateSha256": null,
+      "epoch": "sara-restart-correction"
+    },
+    {
+      "file": "restart-interruption.original-false-claim.json.txt",
+      "canonicalSha256": "b51db787d41b48b97d6df6b44098e0145a4e54e36645d598cb9d6f875a2c8d6b",
+      "privateSha256": "b51db787d41b48b97d6df6b44098e0145a4e54e36645d598cb9d6f875a2c8d6b",
+      "epoch": "sara-restart-correction"
+    },
+    {
+      "file": "original-to-view.before-sara-restart-correction.json.txt",
+      "canonicalSha256": "8f7975c2a2aca59d5dc993139c6f506477ee2c261b090c55f8cbc74d05c061f9",
+      "privateSha256": null,
+      "epoch": "sara-restart-correction"
+    }
+  ],
+  "epochs": [
+    {
+      "name": "history-qualification",
+      "snapshot": "original-to-view.before-history-qualification.json.txt"
+    },
+    {
+      "name": "sara-restart-correction",
+      "snapshot": "original-to-view.before-sara-restart-correction.json.txt",
+      "note": "Prospective merged view with Sara restart-exposure qualification and F-2210. canonicalSha256 values describe the files in this tree; privateSha256 values are retained unchanged as historical mappings to the private producer originals (null for files authored here). sha256.json lists this file; this file never lists itself or sha256.json, so there is no hash cycle. Producer originals (report.original.md.txt, raw wall-clock.jsonl, inputs) are unchanged. sara/report.md now has a director correction block prepended; everything after its end marker equals the previous report.md."
     }
   ]
 }

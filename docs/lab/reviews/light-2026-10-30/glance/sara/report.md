@@ -1,3 +1,15 @@
+> **Director correction — not the tester's words.** Added 2026-10-31 after this report was filed; the producer reply is preserved unedited in `report.original.md.txt`.
+>
+> **This is not a genuinely cold first visit.** Where the report below says "never-HF, cold first visit" or "empty" history, read it as exposure-qualified. Sara's genuine first cold exposure was an earlier attempt that the computer restart (reported about 21:50Z) cut:
+>
+> - Desktop: 89 raw rows, 663.941 s, reached Tuesday 00:42 (the second night), then a voluntary BORED stop at 21:52:04.463Z.
+> - Phone: 13 raw rows, 19.484 s, no stop and no report; the last record is a closed-browser screenshot failure at 21:52:25.621Z. The restart cut the tester during the phone session. It was not a voluntary overall quit.
+> - No final report, transcript or image Read receipt survived. An empty transcript does not mean no play. Seven desktop screenshots were captured against a maximum of six (one removed after hashing, six remain); the capture breach and unverified image viewing are retained.
+>
+> The report below is from a later attempt in a fresh context at about 22:01Z. It reused the already-exposed Sara identity with empty supplied history, so its cold and first-visit claims are qualified and the effect of the earlier exposure on its answers is unknown. Its observations, raw logs and inputs are unchanged. Her desktop stop words from the first attempt are the partial record F-2210 (same Sara, not a new tester, no return verdict). Evidence: [restart-cut/](restart-cut/), [restart-interruption.json](../restart-interruption.json).
+
+<!-- END DIRECTOR CORRECTION. Everything below this line is the unchanged readable view of the producer reply (report.original.md.txt). -->
+
 **Would you return?** "Not by choice for twelve nights of this. I would come back once if I could see the town and the river, and if each night gave me a new kind of clue instead of the same misread at the same hour."
 
 **Ranked asks**

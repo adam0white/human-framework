@@ -1,7 +1,61 @@
 {
-  "cause": "computer restart about2026-10-30T21:50Z",
-  "classification": "cut by restart; not tester stop",
-  "transcriptBytes": 0,
-  "report": false,
-  "coldQualification": "No tester transcript or observed game exposure; infrastructure opened browser only. Same cold profile restarts in fresh contexts; no invented quit or diary."
+  "correctedAt": "2026-10-31T02:58:51.637719+00:00",
+  "cause": "computer restart reported about2026-10-30T21:50Z; actual phone lastclosed-target record21:52:25.621Z",
+  "classification": "overall tester cut during phone by restart, not voluntary tester stop; desktop voluntary BORED stop already recorded21:52:04.463Z",
+  "coldQualification": "Initial attempt had genuine first exposure (desktop663.941s plus partialphone). Later22:01 fresh-context completed attempt reused the already-exposed identity with empty supplied history; it is exposure-qualified, not a genuinely cold completion. Effect on later responses unknown. No final report/Read receipts survived for interrupted attempt.",
+  "firstAttempt": {
+    "desktop": {
+      "rows": 89,
+      "elapsed_s": 663.941,
+      "voluntaryStop": {
+        "t": "2026-10-30T21:52:04.463Z",
+        "reason": "BORED",
+        "gameClock": "Tue 00:42",
+        "reachedNight": "second night (Tuesday)"
+      }
+    },
+    "phone": {
+      "rows": 13,
+      "elapsed_s": 19.484,
+      "voluntaryStop": null,
+      "lastRecord": {
+        "t": "2026-10-30T21:52:25.621Z",
+        "event": "screenshot failed: target page, context or browser has been closed"
+      }
+    },
+    "finalReport": false,
+    "imageReadReceipts": "unavailable; empty transcript is not evidence of no exposure",
+    "partialLedgerRow": "F-2210"
+  },
+  "laterCompletedAttempt": {
+    "qualification": "exposure-qualified, not cold: reused the already-exposed identity in a fresh context with empty supplied history; effect on its responses unknown. Its reports, raw logs and inputs are unchanged."
+  },
+  "screenshotRetention": {
+    "capturedDesktop": 7,
+    "allowedPerDevice": 6,
+    "keptDesktop": 6,
+    "phoneCapturedSuccessful": 2,
+    "phoneThirdAttemptFailedOnClosedPage": true,
+    "removed": [
+      {
+        "file": "desktop/a-006.png",
+        "sha256": "4db6395ab0fac7944e4fd67f48b44b0a8175847cba70b85c6d7b297369f3477b"
+      }
+    ],
+    "note": "Seven desktop shots were captured despite the maximum of six; the manual a-006 was removed after hashing; six remain in private scratch. The capture breach and the unverified image viewing are retained, not erased. No PNG is published."
+  },
+  "evidence": {
+    "rawFiles": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/",
+    "reactions": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/driver-reactions.json",
+    "exposureCorrection": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/exposure-correction.json",
+    "screenshotRetention": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/screenshot-retention.json"
+  },
+  "supersededMistakenReceipt": {
+    "cause": "computer restart about2026-10-30T21:50Z",
+    "classification": "cut by restart; not tester stop",
+    "transcriptBytes": 0,
+    "report": false,
+    "coldQualification": "No tester transcript or observed game exposure; infrastructure opened browser only. Same cold profile restarts in fresh contexts; no invented quit or diary.",
+    "status": "superseded; false on exposure: the transcript was empty but the raw driver logs show 89 desktop rows and a voluntary stop. Original bytes kept in restart-interruption.original-false-claim.json.txt."
+  }
 }

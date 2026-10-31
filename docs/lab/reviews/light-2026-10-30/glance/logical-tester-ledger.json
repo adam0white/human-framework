@@ -67,7 +67,7 @@
   {
     "id": "F-2197",
     "tester": "Sara Lindholm",
-    "exposure": "cold first TARGET visit; second device same evening",
+    "exposure": "exposure-qualified: later completed attempt (both devices, same evening) after an earlier restart-cut partial cold attempt; empty supplied history; effect unknown",
     "return": "Not by choice for twelve nights of this. I would come back once if I could see the town and the river, and if each night gave me a new kind of clue instead of the same misread at the same hour.",
     "laterReturnSeparate": {
       "source": "docs/lab/reviews/light-2026-10-30/glance/sara/report.original.md.txt",
@@ -75,6 +75,24 @@
     },
     "verdict": "mixed",
     "returnSource": "docs/lab/reviews/light-2026-10-30/glance/sara/report.original.md.txt",
-    "validation": "docs/lab/reviews/light-2026-10-30/glance/sara/validation.json"
+    "validation": "docs/lab/reviews/light-2026-10-30/glance/sara/validation.json",
+    "originalExposureLabel": "cold first TARGET visit; second device same evening",
+    "exposureQualification": {
+      "summary": "Genuine first cold exposure was the earlier restart-cut attempt (desktop 663.941 s with a voluntary BORED stop, then a phone session cut at 19.484 s). The completed attempt reused the same exposed identity with empty supplied history, so it is exposure-qualified, not a genuinely cold completion.",
+      "source": "docs/lab/reviews/light-2026-10-30/glance/restart-interruption.json",
+      "rawEvidence": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/exposure-correction.json"
+    },
+    "linkedPartialRecords": [
+      {
+        "id": "F-2210",
+        "kind": "partial first-cold evidence (voluntary desktop stop of the restart-cut first attempt)",
+        "independentTester": false,
+        "verdict": "-",
+        "finalReport": false,
+        "overallQuit": false,
+        "source": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/desktop/wall-clock.jsonl",
+        "validation": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/f-2210-quote-validation.json"
+      }
+    ]
   }
 ]

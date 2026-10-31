@@ -15965,6 +15965,19 @@
     "fix:glance reproduce request replacement/visible acknowledgement at human speed, no defect established from report alone, target2026-11-10 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/glance/sara/report.md"
+  },
+  {
+   "id": "F-2210",
+   "date": "2026-10-30",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Sara Lindholm (partial first attempt; phone cut by restart)",
+   "words": "Stopping on Tuesday 00:42. Monday was a real little puzzle, and the dawn chart showing exactly where Dai lied was the best moment. Tuesday so far is quiet waiting. Feedback had I am stopping, which I pressed, then closed without sending.",
+   "verdict": "-",
+   "routes": [
+    "none"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/desktop/wall-clock.jsonl"
   }
  ],
  "lessons": [
@@ -16593,6 +16606,6 @@
   "lesson": 291,
   "hf": 14,
   "calibration": 44,
-  "none": 8
+  "none": 9
  }
 }

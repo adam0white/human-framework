@@ -1,0 +1,7 @@
+{
+  "cause": "computer restart about2026-10-30T21:50Z",
+  "classification": "cut by restart; not tester stop",
+  "transcriptBytes": 0,
+  "report": false,
+  "coldQualification": "No tester transcript or observed game exposure; infrastructure opened browser only. Same cold profile restarts in fresh contexts; no invented quit or diary."
+}

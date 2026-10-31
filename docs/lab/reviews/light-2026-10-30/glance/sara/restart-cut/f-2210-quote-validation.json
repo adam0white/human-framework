@@ -1,0 +1,41 @@
+{
+  "id": "F-2210",
+  "source": "docs/lab/reviews/light-2026-10-30/glance/sara/restart-cut/desktop/wall-clock.jsonl",
+  "sourceSha256": "5c390aa126942623385aece6deff93e662ff12f2b75a6f3901b136dece113761",
+  "line": 89,
+  "rawLineSha256": "c135053f6238e025c4268c6a302ba2b6e05bc5489771aa65482a1bd8cb8d9ae5",
+  "decodedReaction": "Stopping on Tuesday 00:42. Monday was a real little puzzle, and the dawn chart showing exactly where Dai lied was the best moment. Tuesday so far is quiet waiting. Feedback had I am stopping, which I pressed, then closed without sending.",
+  "checks": [
+    {
+      "file": "docs/lab/feedback-ledger.md",
+      "wordsCell": "\"Stopping on Tuesday 00:42. Monday was a real little puzzle, and the dawn chart showing exactly where Dai lied was the best moment. Tuesday so far is quiet waiting. Feedback had I am stopping, which I pressed, then closed without sending.\"",
+      "equalsQuotedDecodedRaw": true,
+      "literalSubstringOfRawLine": true,
+      "containsPipe": false
+    },
+    {
+      "file": "docs/lab/reviews/light-2026-10-30/glance/ledger-additions.md",
+      "wordsCell": "\"Stopping on Tuesday 00:42. Monday was a real little puzzle, and the dawn chart showing exactly where Dai lied was the best moment. Tuesday so far is quiet waiting. Feedback had I am stopping, which I pressed, then closed without sending.\"",
+      "equalsQuotedDecodedRaw": true,
+      "literalSubstringOfRawLine": true,
+      "containsPipe": false
+    },
+    {
+      "file": "docs/lab/reviews/light-2026-10-30/glance/logical-tester-ledger.md",
+      "wordsCell": "\"Stopping on Tuesday 00:42. Monday was a real little puzzle, and the dawn chart showing exactly where Dai lied was the best moment. Tuesday so far is quiet waiting. Feedback had I am stopping, which I pressed, then closed without sending.\"",
+      "equalsQuotedDecodedRaw": true,
+      "literalSubstringOfRawLine": true,
+      "containsPipe": false
+    }
+  ],
+  "wordCount": 41,
+  "stopRow": {
+    "t": "2026-10-30T21:52:04.463Z",
+    "elapsed_s": 663.941,
+    "kind": "stop",
+    "op": "log",
+    "game_clock": "Tue 00:42",
+    "reason": "BORED"
+  },
+  "note": "Partial first-cold evidence only. Not a final report, not an overall quit, no return verdict; no tester words were invented."
+}
