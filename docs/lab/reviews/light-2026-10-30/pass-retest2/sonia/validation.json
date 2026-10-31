@@ -1,0 +1,120 @@
+{
+  "tester": "Sonia Ionescu",
+  "validationTime": "2026-10-31T07:37:36.809238+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T07:31:12.062Z",
+        "elapsed_s": 455,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here. The cooks say yes and then do something else, and I keep answering the same leave-it-empty question. \u20ba520 of \u20ba5,200 on Monday and I do not see what I could do to change that.",
+        "game_clock": "Mon wk1 21:06",
+        "engagement": null,
+        "reason": "FRUSTRATED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 128.507,
+          "op": "tap",
+          "input": {
+            "text": "m confused"
+          },
+          "error": null
+        },
+        {
+          "elapsed_s": 451.192,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [166.809],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T07:25:34.508Z",
+          "elapsed_s": 117.446,
+          "kind": "tool",
+          "op": "invalid",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "SyntaxError: Unterminated string in JSON at position 159 (line 1 column 160) (invalid request, not a driver failure)",
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T07:36:07.955Z",
+        "elapsed_s": 294.064,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here. Same Monday twice, the grill is out of food, and I mostly read afterwards what the cooks already decided. \u20ba560 of \u20ba5,200 and still no idea how Saturday could ever work.",
+        "game_clock": "Mon wk1 20:33",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 289.465,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [59.589],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

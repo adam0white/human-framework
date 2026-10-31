@@ -1,0 +1,104 @@
+{
+  "tester": "Diego Silva",
+  "validationTime": "2026-10-31T08:16:20.251119+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T08:00:22.035Z",
+        "elapsed_s": 98.728,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+        "game_clock": "Mon 2 Nov 11:00",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 94.699,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T08:01:50.655Z",
+        "elapsed_s": 87.446,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+        "game_clock": "Mon 2 Nov 09:58",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 83.679,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T08:00:28.724Z",
+          "elapsed_s": 5.515,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Select \u00d6zlem Ko\u00e7 on the bench"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 280,
+          "error": "Select \u00d6zlem Ko\u00e7 on the bench is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,116 @@
+{
+  "at": "2026-10-31T07:51:10.914368+00:00",
+  "notBefore": "2026-10-31T07:51:57.910821+00:00",
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.8.1",
+    "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+    "dirty": false
+  },
+  "mainCI": {
+    "conclusion": "success",
+    "headSha": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+    "status": "completed"
+  },
+  "all12FreshServedHashes": [
+    {
+      "path": "assets/dist-vsC4utru.js",
+      "sha256": "4339f04acede95c20281aa633960d71f82373b67dc75ecece506ac44ce0c2285",
+      "bytes": 79
+    },
+    {
+      "path": "assets/archive-worker-C5sCTmMH.js",
+      "sha256": "8fc0b86092ca8e3e01db486a16b7f237d2b22492adb6571bf9514650c75ee75f",
+      "bytes": 1298343
+    },
+    {
+      "path": "assets/app-DyezL6gq.css",
+      "sha256": "757e4693db6229f5e4b7b0df22780dc1cdae14c9f72cb11fe633ebc6d14bd778",
+      "bytes": 3417
+    },
+    {
+      "path": "assets/preload-helper-CXdW9A8s.js",
+      "sha256": "6f2513fc1a128604a1a04d2e931ef6e93601ae851bb3067bda48cbcec00ec559",
+      "bytes": 1762
+    },
+    {
+      "path": "assets/cast-chapter-CNvrr7vh.js",
+      "sha256": "33eb40f037dcfb853f69977f9185cc6ef26e95feeae825c96b6fafb2b05b070c",
+      "bytes": 60
+    },
+    {
+      "path": "assets/main--sFUqYBW.js",
+      "sha256": "4d8f3474a981c42751a8848c1c994adfb7d4d4f153697d6a141490bc48abd359",
+      "bytes": 1116
+    },
+    {
+      "path": "assets/cast-chapter-B4tlGSDK.js",
+      "sha256": "0e14fb372fc0d9c0c06fe1e622b0b4682a0729eb5f98239305b46efbb04a30c0",
+      "bytes": 1925
+    },
+    {
+      "path": "assets/dist-DRiTUITc.js",
+      "sha256": "d7f7b2bb7ef1b58595225c6f771fce140c84a61cc382467af1ee06db287ddb97",
+      "bytes": 39556
+    },
+    {
+      "path": "assets/cast-COEU1F0x.js",
+      "sha256": "b8820b3b4d9757d5a7dade6ce8635a6fa7a9023ed922a83555d974b66ba0689a",
+      "bytes": 45
+    },
+    {
+      "path": "assets/app-B7lMPWNJ.js",
+      "sha256": "64ec244e1a41a3126bd821c7015f44a2f5c404b219a8d9345baaeff48daa0f43",
+      "bytes": 512304
+    },
+    {
+      "path": "assets/cast-DhlkDrGq.js",
+      "sha256": "47ccdb2e7da10e489a00e517f282591b64f45fc9857334801aa9d0407cda692e",
+      "bytes": 910185
+    },
+    {
+      "path": "assets/main-2-wMlRA0.css",
+      "sha256": "3efa7b34f1aa0eeff6f3ee368135e56af02af3b110cbb3c24d8447cfca79a96b",
+      "bytes": 31147
+    }
+  ],
+  "inputHashes": [
+    {
+      "tester": "Jonas Berg",
+      "briefSha256": "56c4fd7dbb70e81a4007802eaa89ac3b741e4639718f34655f59df24b82e7f6e",
+      "historySha256": "2ddbf3f2c9bb05f93efa9bb6563a9be4f455d9d19fd3ee8622c141074a1e1ba1"
+    },
+    {
+      "tester": "Aisha Rahman",
+      "briefSha256": "2c7069659ffa62115f90cdcab46e5fc4e6b85761658794db9ebb71f3bd4780d6",
+      "historySha256": "54e9fe10b7fad394e14493d68eb7dae6854d60b3168da299202939627ac9180b"
+    },
+    {
+      "tester": "Diego Silva",
+      "briefSha256": "0af65809431b7e63669d2c3aab67cfcdba6d8f6fb3f80235042bd5b45ac75c7d",
+      "historySha256": "c9cd6d9c87eccc597de3bc5b4b0cfc2650db1ce20e313df7f8f524c288b08ab4"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "briefSha256": "34e88c76d5e5d84fef0bc2e4b1d10a2ba3478e37a1a5815f94dc3598580b061c",
+      "historySha256": "ee21e4187beb9a75ba2eb95ef2b31200dd8f8105dcc4d8d958366ed57149f687"
+    },
+    {
+      "tester": "Nadia Petrovi\u0107",
+      "briefSha256": "78cf35d3b04a50bf3396365d96a97459193a2596ec6a517e7936c5ea2d85997c",
+      "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9"
+    }
+  ],
+  "freeBytes": 55169982464,
+  "admissionScope": "Ordinary fresh-entry first fixed-build retest; explicit GD07:47 no pending product. Coordinator07:24 timeout-only test correction remains OPEN verifiedactual2e180000tail. No wider font/native-file/geometry/owner acceptance.",
+  "browserBudget": "serial one tester/two contexts; no GD context; Days delivery no browsers. Global2<=4.",
+  "WorkersAI": "Account usage command exit1 unavailable; zero own inference, none will be launched.",
+  "admittedAt": "2026-10-31T07:52:14.503730+00:00",
+  "cooldownElapsedSeconds": 916.592909,
+  "finalRelease": {
+    "app": "0.1.0",
+    "framework": "4.8.1",
+    "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+    "dirty": false
+  }
+}

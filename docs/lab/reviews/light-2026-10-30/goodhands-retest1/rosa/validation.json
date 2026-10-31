@@ -1,0 +1,92 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-31T08:16:20.256893+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T08:03:44.746Z",
+        "elapsed_s": 70.146,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I placed Ozlem and the rent is covered at 09:35. Reasons are explained now and the fee has numbers. Now I only wait for the next family call, so I stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+        "game_clock": null,
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 63.853,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T08:04:29.108Z",
+        "elapsed_s": 43.144,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "On the big screen I understood everything without a reread. The card now says why Sebnem stays unsure. I have placed nobody here and I would rather stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+        "game_clock": null,
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 40.966,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

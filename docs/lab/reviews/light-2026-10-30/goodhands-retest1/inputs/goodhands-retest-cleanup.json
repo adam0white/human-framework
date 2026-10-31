@@ -1,0 +1,9 @@
+{
+  "time": "2026-10-31T08:16:20.467125+00:00",
+  "recordedPids": [
+    92544, 92512, 92514, 95079, 95056, 95058, 96977, 96954, 96956, 98350, 98325, 98329, 99358, 99334, 99336
+  ],
+  "allAbsent": true,
+  "signalsSent": [],
+  "scope": "All15 recorded model/driver PIDs absent; per-driver browser.close cleanup, no separate complete browser-descendant journal."
+}

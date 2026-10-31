@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T06:09:03.863406+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Hearsayccd normaldeliveryverified, freshordinaryentryadmissionpending; no dispatch, freshlive/disk/pause/slots remain.",
+  "players": [
+    {
+      "tester": "Maya Chen",
+      "characters": 151505,
+      "historySha256": "a0c77b558f5521543bd5c33bb03c609be9931deb2389f574e49cc5420db6aaae",
+      "briefSha256": "864d696666027c191b48c4cec83c19231ea6bc5c18bcf8583f86d61eebe8c6ba",
+      "ownSourceCount": 12
+    },
+    {
+      "tester": "Emre Kaya",
+      "characters": 114801,
+      "historySha256": "2d8c73d2ee880c32ac90131f5ffddfce020ef196e2e6379e51aacdb7d10d2900",
+      "briefSha256": "46971e8255cb59e970462d3dac0b7660a569d9a618c5de6ea1ef4ba8aa59b134",
+      "ownSourceCount": 11
+    },
+    {
+      "tester": "Diego Silva",
+      "characters": 117616,
+      "historySha256": "de99758b035571555a8cb24c6c848034c71b229a1c244ec7c6bbec9f615d30f6",
+      "briefSha256": "84d53f7fb218d0b25051cd4392096dadceae41866751cfdf218080822a7c7fb2",
+      "ownSourceCount": 12
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "characters": 177542,
+      "historySha256": "935b75e5ec1364b4ff51f59233c8b285996a4f3e7376b1a85c8bc6243e419173",
+      "briefSha256": "aab9c76076d95ea3a1b2f43274ed079004df986b236df19e802a8ac480e5e546",
+      "ownSourceCount": 15
+    },
+    {
+      "tester": "Irena Novotn\u00e1",
+      "characters": 77,
+      "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "briefSha256": "b0bbfa97a1da44f2408a5fd4c38c187f36694140e8e9cc5ab20b7a6d316a88c7",
+      "ownSourceCount": 0
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "tester": "Maya Chen",
+  "validationTime": "2026-10-31T06:40:04.217681+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T06:10:38.420Z",
+        "elapsed_s": 71.863,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop.",
+        "game_clock": "Day 1 09:01",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 68.673,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T06:11:01.547Z",
+        "elapsed_s": 22.66,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now.",
+        "game_clock": "Day 1 06:26",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 18.886,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

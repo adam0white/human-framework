@@ -1,0 +1,804 @@
+{
+ "note": "covers every packet file except manifest.json and sha256.json",
+ "files": [
+  {
+   "path": "README.md",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 9534,
+   "sourceEpoch": null
+  },
+  {
+   "path": "aisha/brief.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 13146,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.278753Z"
+  },
+  {
+   "path": "aisha/completion.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 366,
+   "sourceEpoch": "2026-10-31T07:58:32.712927+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:58:32.713021Z"
+  },
+  {
+   "path": "aisha/desktop/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:55:36.755754Z"
+  },
+  {
+   "path": "aisha/desktop/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:55:36.314877Z"
+  },
+  {
+   "path": "aisha/desktop/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 9917,
+   "sourceEpoch": {
+    "first": "2026-10-31T07:55:36.755Z",
+    "last": "2026-10-31T07:57:32.212Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T07:57:32.212823Z"
+  },
+  {
+   "path": "aisha/director-method-qualification.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 1433,
+   "sourceEpoch": "2026-10-31T07:59:17.937987+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:59:17.938738Z"
+  },
+  {
+   "path": "aisha/dispatch.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 2086,
+   "sourceEpoch": "2026-10-31T07:55:37.403484+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:55:37.405205Z"
+  },
+  {
+   "path": "aisha/history-source-map.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 3969,
+   "sourceEpoch": "2026-10-31T07:49:55.278080+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:49:55.278280Z"
+  },
+  {
+   "path": "aisha/own-history.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 137068,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.277486Z"
+  },
+  {
+   "path": "aisha/phone/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:55:36.773329Z"
+  },
+  {
+   "path": "aisha/phone/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:55:36.388742Z"
+  },
+  {
+   "path": "aisha/phone/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 4187,
+   "sourceEpoch": {
+    "first": "2026-10-31T07:55:36.772Z",
+    "last": "2026-10-31T07:58:06.316Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T07:58:06.316790Z"
+  },
+  {
+   "path": "aisha/report.md",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 9684,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:58:32.712134Z"
+  },
+  {
+   "path": "aisha/report.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 9684,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:58:32.712134Z"
+  },
+  {
+   "path": "aisha/validation.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 3131,
+   "sourceEpoch": "2026-10-31T08:16:20.244761+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:16:20.244959Z"
+  },
+  {
+   "path": "all-driver-reactions.json",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 72224,
+   "sourceEpoch": null
+  },
+  {
+   "path": "ask-ledger.json",
+   "role": "director-generated packet record",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "bytes": 15268
+  },
+  {
+   "path": "ask-ledger.md",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 13682,
+   "sourceEpoch": null
+  },
+  {
+   "path": "checkpoint-facts.json",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 18631,
+   "sourceEpoch": null
+  },
+  {
+   "path": "diego/brief.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 13128,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.332127Z"
+  },
+  {
+   "path": "diego/completion.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 366,
+   "sourceEpoch": "2026-10-31T08:02:19.347524+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:02:19.347602Z"
+  },
+  {
+   "path": "diego/desktop/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:58:33.230102Z"
+  },
+  {
+   "path": "diego/desktop/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:58:32.847996Z"
+  },
+  {
+   "path": "diego/desktop/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 9541,
+   "sourceEpoch": {
+    "first": "2026-10-31T07:58:33.229Z",
+    "last": "2026-10-31T08:00:22.035Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T08:00:22.035717Z"
+  },
+  {
+   "path": "diego/director-method-qualification.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 1386,
+   "sourceEpoch": "2026-10-31T08:02:56.761922+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:02:56.762614Z"
+  },
+  {
+   "path": "diego/dispatch.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 2086,
+   "sourceEpoch": "2026-10-31T07:58:33.933164+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:58:33.934402Z"
+  },
+  {
+   "path": "diego/history-source-map.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 4260,
+   "sourceEpoch": "2026-10-31T07:49:55.331390+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:49:55.331861Z"
+  },
+  {
+   "path": "diego/own-history.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 129841,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.331356Z"
+  },
+  {
+   "path": "diego/phone/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:58:33.289916Z"
+  },
+  {
+   "path": "diego/phone/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:58:32.919772Z"
+  },
+  {
+   "path": "diego/phone/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 10220,
+   "sourceEpoch": {
+    "first": "2026-10-31T07:58:33.289Z",
+    "last": "2026-10-31T08:01:50.655Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T08:01:50.656128Z"
+  },
+  {
+   "path": "diego/report.md",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 11105,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:02:19.346754Z"
+  },
+  {
+   "path": "diego/report.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 11105,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:02:19.346754Z"
+  },
+  {
+   "path": "diego/validation.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 3322,
+   "sourceEpoch": "2026-10-31T08:16:20.251119+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:16:20.251353Z"
+  },
+  {
+   "path": "director-finalization.json",
+   "role": "director-generated packet record",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "bytes": 635
+  },
+  {
+   "path": "exact-quote-extraction.json",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 13431,
+   "sourceEpoch": null
+  },
+  {
+   "path": "identity-index.json",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 7449,
+   "sourceEpoch": null
+  },
+  {
+   "path": "inputs/goodhands-retest-cleanup.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 418,
+   "sourceEpoch": "2026-10-31T08:16:20.467125+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:16:20.467469Z"
+  },
+  {
+   "path": "inputs/goodhands-retest-director-method-notes.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 896,
+   "sourceEpoch": "2026-10-31T08:18:42.618248+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:18:42.618492Z"
+  },
+  {
+   "path": "inputs/goodhands-retest-final-driver-audit.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 17000,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:16:20.357743Z"
+  },
+  {
+   "path": "inputs/goodhands-retest-final-release-after-round.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 192,
+   "sourceEpoch": "2026-10-31T08:16:20.357383+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:16:20.357550Z"
+  },
+  {
+   "path": "inputs/goodhands-retest-input-freeze.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 1670,
+   "sourceEpoch": "2026-10-31T07:49:55.383193+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:49:55.383252Z"
+  },
+  {
+   "path": "inputs/goodhands-retest-plan.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 6887,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.383167Z"
+  },
+  {
+   "path": "inputs/goodhands-retest-predispatch.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 4215,
+   "sourceEpoch": "2026-10-31T07:51:10.914368+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:52:14.574095Z"
+  },
+  {
+   "path": "inputs/goodhands-retest-stop-and-capture-audit.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 7945,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:18:42.618201Z"
+  },
+  {
+   "path": "jonas/brief.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 13126,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.224539Z"
+  },
+  {
+   "path": "jonas/completion.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 366,
+   "sourceEpoch": "2026-10-31T07:55:36.167062+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:55:36.167145Z"
+  },
+  {
+   "path": "jonas/desktop/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:52:15.316151Z"
+  },
+  {
+   "path": "jonas/desktop/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:52:14.718190Z"
+  },
+  {
+   "path": "jonas/desktop/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 12017,
+   "sourceEpoch": {
+    "first": "2026-10-31T07:52:15.315Z",
+    "last": "2026-10-31T07:54:36.051Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T07:54:36.051888Z"
+  },
+  {
+   "path": "jonas/director-method-qualification.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 1531,
+   "sourceEpoch": "2026-10-31T07:56:13.090465+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:56:46.786917Z"
+  },
+  {
+   "path": "jonas/dispatch.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 2086,
+   "sourceEpoch": "2026-10-31T07:52:15.830244+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:52:15.831970Z"
+  },
+  {
+   "path": "jonas/history-source-map.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 3664,
+   "sourceEpoch": "2026-10-31T07:49:55.223424+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:49:55.223862Z"
+  },
+  {
+   "path": "jonas/own-history.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 158676,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.223379Z"
+  },
+  {
+   "path": "jonas/phone/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:52:15.316155Z"
+  },
+  {
+   "path": "jonas/phone/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:52:14.817617Z"
+  },
+  {
+   "path": "jonas/phone/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 4204,
+   "sourceEpoch": {
+    "first": "2026-10-31T07:52:15.315Z",
+    "last": "2026-10-31T07:55:07.674Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T07:55:07.674950Z"
+  },
+  {
+   "path": "jonas/report.md",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 10902,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:55:36.166292Z"
+  },
+  {
+   "path": "jonas/report.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 10902,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:55:36.166292Z"
+  },
+  {
+   "path": "jonas/validation.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 2696,
+   "sourceEpoch": "2026-10-31T08:16:20.239707+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:16:20.239932Z"
+  },
+  {
+   "path": "ledger-additions.md",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 22614,
+   "sourceEpoch": null
+  },
+  {
+   "path": "logical-tester-ledger.json",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 11285,
+   "sourceEpoch": null
+  },
+  {
+   "path": "logical-tester-ledger.md",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 1265,
+   "sourceEpoch": null
+  },
+  {
+   "path": "nadia/brief.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 12955,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.383054Z"
+  },
+  {
+   "path": "nadia/completion.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 366,
+   "sourceEpoch": "2026-10-31T08:14:43.043376+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:14:43.043456Z"
+  },
+  {
+   "path": "nadia/desktop/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:04:56.396255Z"
+  },
+  {
+   "path": "nadia/desktop/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:04:56.020101Z"
+  },
+  {
+   "path": "nadia/desktop/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 23714,
+   "sourceEpoch": {
+    "first": "2026-10-31T08:04:56.395Z",
+    "last": "2026-10-31T08:10:01.102Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T08:10:01.102202Z"
+  },
+  {
+   "path": "nadia/director-method-qualification.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 1820,
+   "sourceEpoch": "2026-10-31T08:16:20.467941+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:16:20.468034Z"
+  },
+  {
+   "path": "nadia/dispatch.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 2084,
+   "sourceEpoch": "2026-10-31T08:04:57.114804+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:04:57.115716Z"
+  },
+  {
+   "path": "nadia/history-source-map.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 281,
+   "sourceEpoch": "2026-10-31T07:49:55.382735+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:49:55.382789Z"
+  },
+  {
+   "path": "nadia/own-history.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 77,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.382720Z"
+  },
+  {
+   "path": "nadia/phone/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:04:56.471785Z"
+  },
+  {
+   "path": "nadia/phone/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:04:56.101139Z"
+  },
+  {
+   "path": "nadia/phone/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 16292,
+   "sourceEpoch": {
+    "first": "2026-10-31T08:04:56.471Z",
+    "last": "2026-10-31T08:13:57.362Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T08:13:57.362153Z"
+  },
+  {
+   "path": "nadia/report.md",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 14911,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:14:43.042013Z"
+  },
+  {
+   "path": "nadia/report.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 14911,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:14:43.042013Z"
+  },
+  {
+   "path": "nadia/validation.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 4147,
+   "sourceEpoch": "2026-10-31T08:16:20.265277+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:16:20.265420Z"
+  },
+  {
+   "path": "primary-quote-validation.json",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 156,
+   "sourceEpoch": null
+  },
+  {
+   "path": "rosa/brief.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 13910,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.382434Z"
+  },
+  {
+   "path": "rosa/completion.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 366,
+   "sourceEpoch": "2026-10-31T08:04:55.888170+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:04:55.888253Z"
+  },
+  {
+   "path": "rosa/desktop/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:02:19.972587Z"
+  },
+  {
+   "path": "rosa/desktop/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:02:19.602201Z"
+  },
+  {
+   "path": "rosa/desktop/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 5114,
+   "sourceEpoch": {
+    "first": "2026-10-31T08:02:19.972Z",
+    "last": "2026-10-31T08:04:46.310Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T08:04:46.310660Z"
+  },
+  {
+   "path": "rosa/director-method-qualification.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 1793,
+   "sourceEpoch": "2026-10-31T08:05:31.108468+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:05:31.108733Z"
+  },
+  {
+   "path": "rosa/dispatch.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 2086,
+   "sourceEpoch": "2026-10-31T08:02:20.615846+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:02:20.617308Z"
+  },
+  {
+   "path": "rosa/history-source-map.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 5475,
+   "sourceEpoch": "2026-10-31T07:49:55.381880+00:00",
+   "sourceMtimeUtc": "2026-10-31T07:49:55.382131Z"
+  },
+  {
+   "path": "rosa/own-history.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 209326,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T07:49:55.381836Z"
+  },
+  {
+   "path": "rosa/phone/driver.out",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 85,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:02:19.895695Z"
+  },
+  {
+   "path": "rosa/phone/release-start.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 118,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:02:19.514742Z"
+  },
+  {
+   "path": "rosa/phone/wall-clock.jsonl",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 8045,
+   "sourceEpoch": {
+    "first": "2026-10-31T08:02:19.895Z",
+    "last": "2026-10-31T08:03:44.746Z"
+   },
+   "sourceMtimeUtc": "2026-10-31T08:03:44.746586Z"
+  },
+  {
+   "path": "rosa/report.md",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 10107,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:04:55.887412Z"
+  },
+  {
+   "path": "rosa/report.original.md.txt",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 10107,
+   "sourceEpoch": null,
+   "sourceMtimeUtc": "2026-10-31T08:04:55.887412Z"
+  },
+  {
+   "path": "rosa/validation.json",
+   "role": "source copy",
+   "kind": "byte copy",
+   "bytes": 2634,
+   "sourceEpoch": "2026-10-31T08:16:20.256893+00:00",
+   "sourceMtimeUtc": "2026-10-31T08:16:20.256987Z"
+  },
+  {
+   "path": "screenshots-manifest.json",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 14108,
+   "sourceEpoch": null
+  },
+  {
+   "path": "source-map.json",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 23880,
+   "sourceEpoch": null
+  },
+  {
+   "path": "validate-quotes.py",
+   "role": "generated",
+   "kind": "generated",
+   "bytes": 23852,
+   "sourceEpoch": null
+  }
+ ]
+}

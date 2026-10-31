@@ -1,0 +1,95 @@
+{
+  "tester": "Aisha Rahman",
+  "validationTime": "2026-10-31T08:16:20.244761+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T07:57:32.212Z",
+        "elapsed_s": 101.683,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping after under two minutes on the laptop. I liked the old-case card where Nermin corrects her own record, but I could not see how to send the letter, and the reference still gave a bad fact instead of a reason. I pressed I would stop here in Feedback, typed nothing, no Submit.",
+        "game_clock": "Mon 2 Nov 10:21",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 93.542,
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T07:57:24.071Z",
+          "elapsed_s": 93.542,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T07:58:06.316Z",
+        "elapsed_s": 32.985,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone after about half a minute. I had just played the same opening on the laptop, and Ozlem gave the same thin answer. The phone layout now fits. I pressed I would stop here, typed nothing, no Submit.",
+        "game_clock": "Mon 2 Nov 09:03",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

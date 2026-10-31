@@ -1,0 +1,87 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-31T06:40:04.233777+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T06:30:42.487Z",
+        "elapsed_s": 108.238,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone.",
+        "game_clock": "Day 1 15:00",
+        "engagement": 3,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 105.922,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T06:31:57.104Z",
+        "elapsed_s": 73.576,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen.",
+        "game_clock": "Day 1 07:06",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 71.285,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

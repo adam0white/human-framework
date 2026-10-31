@@ -1,0 +1,34 @@
+{
+ "time": "2026-10-31T07:49:25.866518+00:00",
+ "mappedCopiesByteExact": 79,
+ "MayaHistoryReadRanges": [
+  [
+   1,
+   200
+  ],
+  [
+   200,
+   399
+  ],
+  [
+   400,
+   699
+  ],
+  [
+   700,
+   999
+  ],
+  [
+   1000,
+   1094
+  ]
+ ],
+ "parentCorrections": [
+  "Sonia first-minute phone attribution",
+  "Maya full Read receipts",
+  "six fake orTrue validator checks replaced by actual dependencies"
+ ],
+ "routesAccepted": true,
+ "producerWordsUnchanged": true,
+ "gameDeferredPending": true
+}

@@ -1,0 +1,117 @@
+{
+  "tester": "Emre Kaya",
+  "validationTime": "2026-10-31T07:37:36.786760+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T07:09:19.177Z",
+        "elapsed_s": 301.426,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping desktop Tuesday 18:42, 840 of 5200, about 5 minutes. Per-night target, ingredients refilling, predicted replies and Kitchen speed in the menu are real improvements. But Fast did not help while a station was empty: time stays slowed and I cannot ask anyone useful. I would come back another evening, not leave it running.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 294.464,
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 298.246,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [50.664],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T07:09:12.215Z",
+          "elapsed_s": 294.464,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T07:10:33.815Z",
+        "elapsed_s": 73.602,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on phone Monday 18:15, 120 of 5200, about 72 seconds. Layout fits. The plan page now says plainly when a cover said no, which I liked. But the empty grill with slowed time is the same dead wait. I would come back another evening on desktop, not leave it running.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 70.875,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,2205 @@
+{
+  "time": "built 2026-10-31T06:50:10Z by build-hearsay-retest-packet.py",
+  "note": "Exact surviving reactions from all five testers and ten sessions, not a reconstructed producer diary. Report memories and estimates stay separate. Rows with no reaction text (opens, automatic shots, some waits) are counted in rows but not listed. Failed driver taps keep their error text and their reaction.",
+  "sessions": [
+    {
+      "tester": "Maya Chen",
+      "device": "desktop",
+      "source": "maya/desktop/wall-clock.jsonl",
+      "rawSha256": "10fd6ecfd6cf2b869e391c8ebc8898eceac1a1b35de414379a22d58d5f2335cf",
+      "rows": 15,
+      "reactionRows": 4,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:10:42.716Z",
+          "elapsed_s": 3.829,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Desktop, same evening. This time I will try someone other than Riza first: Osman.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 179,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:10:49.149Z",
+          "elapsed_s": 10.262,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Keep this private"
+          },
+          "reaction": "A different Osman secret from last time, a kept repair deposit, not the invoice. Keeping it private and watching who reacts.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 147,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:10:53.047Z",
+          "elapsed_s": 14.16,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "b-002.png"
+          },
+          "reaction": "Record is short this early, though the goal sentence shows twice in a row.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 141,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:11:01.547Z",
+          "elapsed_s": 22.66,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now.",
+          "game_clock": "Day 1 06:26",
+          "engagement": 3,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Maya Chen",
+      "device": "phone",
+      "source": "maya/phone/wall-clock.jsonl",
+      "rawSha256": "83e5ed3aa40876b7b9cc9b81b94306d1ab7fe1f01170185e11d55ebd167ebd4d",
+      "rows": 23,
+      "reactionRows": 9,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:09:31.518Z",
+          "elapsed_s": 4.961,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Same clean title as before. Beginning.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 175,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:09:33.010Z",
+          "elapsed_s": 6.453,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "Same opening as before. Quiet talk with Riza.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 156,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:09:36.511Z",
+          "elapsed_s": 9.954,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Repeat this at another table"
+          },
+          "reaction": "New: it now says I would tell Derya Riza is not kind, before I tap. That was my first ask. Trying it anyway to see who reacts.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 145,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:09:38.507Z",
+          "elapsed_s": 11.95,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ece at the garden"
+          },
+          "reaction": "The result showed right at the top, who heard and what was said, and Riza lost trust. Clear. Checking Ece, whose refusal had no reason last time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 137,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:09:42.086Z",
+          "elapsed_s": 15.529,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Derya at the garden"
+          },
+          "reaction": "Ece refusal now appears at once: keeps this private for now. A reason-ish line, in place. Better. Going to Derya.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 131,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:09:47.074Z",
+          "elapsed_s": 20.517,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "Derya story is a real one, a letter about training and a reported error. I will keep this one and help.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 138,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:10:30.324Z",
+          "elapsed_s": 63.767,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Talking within seconds again. The game now says who I would tell and what I would say before I tap Repeat, and Ece refusal showed in place. Then everyone left and the garden is empty at 08:46, nothing for me to do but pour tea.",
+          "game_clock": "Day 1 08:46",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:10:32.370Z",
+          "elapsed_s": 65.813,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Game menu"
+          },
+          "reaction": "Seen the loop again and the garden is empty. I would stop and try desktop.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 126,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:10:38.420Z",
+          "elapsed_s": 71.863,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop.",
+          "game_clock": "Day 1 09:01",
+          "engagement": 3,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "desktop",
+      "source": "emre/desktop/wall-clock.jsonl",
+      "rawSha256": "40b9cbf65dc8f127916afb6f87c31dcbbccb97d097a9828b744a9fed1c336d89",
+      "rows": 52,
+      "reactionRows": 16,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:11:45.540Z",
+          "elapsed_s": 5.29,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Same title as last time. Goal is the same: Day 13 lunch.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 173,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:11:47.933Z",
+          "elapsed_s": 7.683,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "New: top says Next Day 4 at 12:00 bread and produce order offered, nothing can be ordered before. That was my ask 3 last time. Good.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:11:56.608Z",
+          "elapsed_s": 16.358,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "Different story from last time: tenant repair money, not crates. I need Osman for produce so I keep it private.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:12:05.560Z",
+          "elapsed_s": 25.31,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Let the conversation finish"
+          },
+          "reaction": "Three talks in a row accepted, no refusals so far. Last time three refused.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 230,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:12:11.158Z",
+          "elapsed_s": 30.908,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Dilan refused: now says busy right now, try again later, this choice was not made. Better than cannot do this now, still no time for when.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:12:46.050Z",
+          "elapsed_s": 65.8,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Goal clear, and now the top says orders open Day 4 12:00. Three talks went through, one refused as busy. Fast passed four hours in 30 s, much quicker than last time. Each name now shows where the person is, and the empty garden tells me what I can do. Still nothing to decide until Day 4.",
+          "game_clock": "Day 1 11:26",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:13:18.751Z",
+          "elapsed_s": 98.501,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "People are back at 18:10. Retrying Dilan.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:13:50.667Z",
+          "elapsed_s": 130.417,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "Dilan busy again at 18:29, same wording, still no reason or time. I stop trying him.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30109,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:14:23.513Z",
+          "elapsed_s": 163.263,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "A message appeared I did not cause: A person chapter could not be saved. Finish outstanding responsibilities and try again. I have no idea what chapter or what responsibilities. Confusing, and it looks like a system error.",
+          "game_clock": "Day 2 04:19",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:14:56.658Z",
+          "elapsed_s": 196.408,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Money climbs, time moves, and I know when the first decision comes. But I only wait again, and the strange chapter message is still sitting there.",
+          "game_clock": "Day 2 10:54",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:16:01.319Z",
+          "elapsed_s": 261.069,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "Dilan busy for the third time, even though he is sitting at the garden. I give up on him.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30107,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:17:37.237Z",
+          "elapsed_s": 356.987,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "I am waiting for Day 4 because the game told me when it comes. That is why I stay. Without that line I would have left. Money keeps rising: 1080.",
+          "game_clock": "Day 3 16:20",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:19:18.189Z",
+          "elapsed_s": 457.939,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Pay 120 lira for the sample now"
+          },
+          "reaction": "There it is, the order screen, at 456 s. Costs in numbers: 380 now or 410 on credit, four meals vs five. I have 1220, so I pay now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 143,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:19:22.837Z",
+          "elapsed_s": 462.587,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Feedback"
+          },
+          "reaction": "Menu says my garden saves automatically, which I like.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 761,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:19:27.143Z",
+          "elapsed_s": 466.893,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I got what I came for: the order screen with real numbers. The next decision is Day 8, four game days of waiting away, and I know what the waiting looks like.",
+          "game_clock": "Day 4 12:02",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:19:29.083Z",
+          "elapsed_s": 468.833,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on desktop at Day 4 12:02, about 7.8 minutes. The order screen with costs, the Next line, faster Fast pace and where-people-are were real improvements. The odd chapter message and the Dilan busy loop stayed. I would come back another evening for Day 8, not leave it running.",
+          "game_clock": "Day 4 12:02",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "phone",
+      "source": "emre/phone/wall-clock.jsonl",
+      "rawSha256": "caecf37e9cd21a3af8c23cac3f7b3f3f5d2750d15bd26a63cb90f880d3a2dd48",
+      "rows": 24,
+      "reactionRows": 8,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:20:13.655Z",
+          "elapsed_s": 43.589,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Phone, same title page. Starting a new game.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 154,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:20:18.041Z",
+          "elapsed_s": 47.975,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "Repeating costs trust and the text now says so up front. Keeping it private.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 138,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:20:36.907Z",
+          "elapsed_s": 66.841,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Phone, Day 1 06:58. Same goal, same Next line about Day 4 12:00. One talk done and kept private; the trade-off text before repeating is clear. Fast moves about 40 game minutes in 15 s. Nothing to decide until Day 4 again.",
+          "game_clock": "Day 1 06:58",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:21:10.728Z",
+          "elapsed_s": 100.662,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "Phone view scrolled down to the person panel; the pace row and Next line are above the fold now, same as last time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30128,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:22:14.648Z",
+          "elapsed_s": 164.582,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Same message as on desktop: A person chapter could not be saved. Finish outstanding responsibilities and try again. At Day 2 02:32 everyone at the lodging. I still do not know what it means or what I should finish.",
+          "game_clock": "Day 2 02:32",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:22:46.652Z",
+          "elapsed_s": 196.586,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "On the phone I only did one talk and have been waiting since. Money rises (780) and I know Day 4 is the next thing, but I am watching a clock, and the chapter message stays.",
+          "game_clock": "Day 2 09:00",
+          "engagement": 2,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:22:53.437Z",
+          "elapsed_s": 203.371,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "On the phone I did one talk, then only waited. The Day 4 order is four game days of waiting away and I saw it on desktop. The unexplained chapter message is still there.",
+          "game_clock": "Day 2 09:37",
+          "engagement": 2,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:22:54.946Z",
+          "elapsed_s": 204.88,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on phone at Day 2 09:37, about 3.4 minutes. Same title, same Next line, same chapter message. Only one talk done and then waiting. I would come back another evening on desktop, not leave it running.",
+          "game_clock": "Day 2 09:37",
+          "engagement": 2,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Diego Silva",
+      "device": "desktop",
+      "source": "diego/desktop/wall-clock.jsonl",
+      "rawSha256": "76543cbac155fcce89d47b4ea723db5235cc3405386863a953da1debce68de0e",
+      "rows": 42,
+      "reactionRows": 25,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:23:44.380Z",
+          "elapsed_s": 5.33,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Same tea garden title. Begin.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 169,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:23:47.160Z",
+          "elapsed_s": 8.11,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "Obvious verb. The new Next line tells me nothing can be ordered until Day 4, so I should not be stuck waiting blind.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 169,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:23:48.599Z",
+          "elapsed_s": 9.549,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Let the conversation finish"
+          },
+          "reaction": "Letting it run.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 231,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:23:50.617Z",
+          "elapsed_s": 11.567,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "New: the repeat option now spells out exactly what Derya would hear and the price. I keep it private and help.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 154,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:23:52.345Z",
+          "elapsed_s": 13.295,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "text": "Talk about someone else"
+          },
+          "reaction": "Opening the fold first this time, since selects timed out before.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 118,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:23:53.700Z",
+          "elapsed_s": 14.65,
+          "kind": "input",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": "Trying the Who select with the fold already open.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 114,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:23:55.278Z",
+          "elapsed_s": 16.228,
+          "kind": "input",
+          "op": "select",
+          "input": {
+            "label": "What?",
+            "option": "Honesty"
+          },
+          "reaction": "Select works with the fold open. Honesty.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 112,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:23:57.161Z",
+          "elapsed_s": 18.111,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Make a damaging claim about this trait"
+          },
+          "reaction": "Slander Osman on honesty to Riza, unchecked. Last time claims showed nothing. Watching for a reply.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 172,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:23:59.412Z",
+          "elapsed_s": 20.362,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Osman at the garden"
+          },
+          "reaction": "Claim now echoes what I said and that it is unproved. Better, though Riza does not answer. On to Osman.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 147,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:24:00.956Z",
+          "elapsed_s": 21.906,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Press for private details"
+          },
+          "reaction": "Trying the pushy verb on Osman again; last time nothing visible changed.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 153,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:24:03.091Z",
+          "elapsed_s": 24.041,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "Pressing now answers me: Osman keeps it private for now. That answers my old complaint. Trying the quiet talk.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 166,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:24:06.913Z",
+          "elapsed_s": 27.863,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "Osman admits he kept a tenant money. Helping privately again.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 142,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:24:09.907Z",
+          "elapsed_s": 30.857,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "Derya next.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 167,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:24:13.114Z",
+          "elapsed_s": 34.064,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "Helping Derya privately too. Money is 540.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:24:18.845Z",
+          "elapsed_s": 39.795,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-002.png"
+          },
+          "reaction": "Dilan busy, choice not made, stated plainly. Checking the layout.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 131,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:24:20.793Z",
+          "elapsed_s": 41.743,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Fast"
+          },
+          "reaction": "Trying Fast to see whether the empty bench still bites.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 154,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:24:40.751Z",
+          "elapsed_s": 61.701,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 18
+          },
+          "reaction": "Fast pace on. Waiting to see if people leave and the bench empties.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 18108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:24:43.314Z",
+          "elapsed_s": 64.264,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Selects work now, claims echo back what I said, and pressing Osman says he keeps it private. Money went 400 to 540. At 09:21 the benches are empty again, but now it says so and tells me where everyone is. Still nothing to do until Day 4, which is the same wall as before, only explained.",
+          "game_clock": "Day 1 09:21",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:25:09.713Z",
+          "elapsed_s": 90.663,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 25
+          },
+          "reaction": "Waiting for someone to come back.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 25107,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:25:47.070Z",
+          "elapsed_s": 128.02,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "Nothing more to do with Derya. Waiting toward Day 4.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30110,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:25:49.674Z",
+          "elapsed_s": 130.624,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Pour tea without sharing news"
+          },
+          "reaction": "Benches empty. The only thing offered is pouring tea. Trying it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 178,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:26:45.916Z",
+          "elapsed_s": 186.866,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "First 40 seconds were good: selects work, claims echo back, Osman answers a press. Since about 09:00 the garden has been empty and now everyone is asleep at the lodging. A message just appeared saying a person chapter could not be saved, finish outstanding responsibilities. I have no idea what that means.",
+          "game_clock": "Day 2 04:02",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:26:47.661Z",
+          "elapsed_s": 188.611,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Empty garden again for most of three real minutes, nobody to touch, Day 4 is far. Better explained than last time, but I still wait. I would stop here.",
+          "game_clock": "Day 2 04:02",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:26:52.738Z",
+          "elapsed_s": 193.688,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "reaction": "Choosing I am stopping. Typing nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 516,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:26:55.351Z",
+          "elapsed_s": 196.301,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the desktop session. The first half minute is better than last time: selects work, claims echo, pressing Osman answers. But the garden emptied around 09:00 and stayed empty for two real minutes, everyone asleep by midnight, with Day 4 still far away. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+          "game_clock": "Day 2 05:12",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Diego Silva",
+      "device": "phone",
+      "source": "diego/phone/wall-clock.jsonl",
+      "rawSha256": "4089e72d3b24849998e17d171cf984d2948b1c17de5d0f0c2d8fd42d35896d74",
+      "rows": 18,
+      "reactionRows": 10,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:27:00.435Z",
+          "elapsed_s": 3.843,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Phone, same evening, new game. Begin.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 154,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:27:02.170Z",
+          "elapsed_s": 5.578,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "Same opening on the phone. Rıza.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:27:05.355Z",
+          "elapsed_s": 8.763,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Repeat this at another table"
+          },
+          "reaction": "On the phone I take the gossip route to see the price. Same secret, so same text.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 149,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:27:07.479Z",
+          "elapsed_s": 10.887,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "b-002.png"
+          },
+          "reaction": "Repeating the secret cost me Riza at once and the text says so in full. Checking the phone layout.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 127,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:27:50.398Z",
+          "elapsed_s": 53.806,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "text": "Talk about someone else"
+          },
+          "reaction": "Trying the claim fold on the phone, where selects timed out last time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 118,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:28:00.648Z",
+          "elapsed_s": 64.056,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 8
+          },
+          "reaction": "Fold opens and the selects are real on the phone now, but every claim button is disabled because Riza left.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:28:02.525Z",
+          "elapsed_s": 65.933,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Phone works and reads fine. Gossip told me its price up front and charged it. By 08:45 the bench is empty again, everyone out, claim buttons disabled. Same wall as desktop.",
+          "game_clock": "Day 1 08:45",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:28:04.442Z",
+          "elapsed_s": 67.85,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Everyone is out and the buttons I wanted are greyed. Day 4 is far. Same wall as the desktop, so I would stop.",
+          "game_clock": "Day 1 08:45",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:28:07.725Z",
+          "elapsed_s": 71.133,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "reaction": "Choosing I am stopping. Typing nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 192,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:28:10.735Z",
+          "elapsed_s": 74.143,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the phone session. It reads fine and the gossip price is honest, but by 08:45 the garden is empty again, the claim buttons are greyed because Riza left, and Day 4 is far. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+          "game_clock": "Day 1 08:49",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 1,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "desktop",
+      "source": "rosa/desktop/wall-clock.jsonl",
+      "rawSha256": "5d5f480168721c0cf970b40df97c6b859dcb2f77afd70c850667b962f3010f79",
+      "rows": 19,
+      "reactionRows": 8,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:30:45.847Z",
+          "elapsed_s": 2.319,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Second visit, big screen. Same title. This time I try Talk about someone else properly.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 174,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:30:47.160Z",
+          "elapsed_s": 3.632,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "text": "Talk about someone else"
+          },
+          "reaction": "Last time this looked like a button but was a folded heading. I try it again.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 126,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:30:48.740Z",
+          "elapsed_s": 5.212,
+          "kind": "input",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": "The folded heading opened. I choose Osman in the Who? list, which failed last time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 114,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:30:52.012Z",
+          "elapsed_s": 8.484,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ask what they have heard"
+          },
+          "reaction": "Both lists now take my choice. I only ask what Riza has heard about Osman honesty; I accuse no one.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 149,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:30:57.247Z",
+          "elapsed_s": 13.719,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Make a positive claim about this trait"
+          },
+          "reaction": "I have no real reason to praise Osman yet, but I want to see what the game says. A kind claim seems harmless.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 165,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:31:31.063Z",
+          "elapsed_s": 47.535,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "That answer was short and clear. I wait to see the empty garden on the big screen.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30116,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:31:50.204Z",
+          "elapsed_s": 66.676,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Big screen is easy. The goal and Day 4 bread offer are at the top in bold. The Who? and What? lists now work and Riza answered plainly. I understand: talk, ask what people heard, be careful with claims. No reread yet.",
+          "game_clock": "Day 1 07:02",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:31:57.104Z",
+          "elapsed_s": 73.576,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen.",
+          "game_clock": "Day 1 07:06",
+          "engagement": 3,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "phone",
+      "source": "rosa/phone/wall-clock.jsonl",
+      "rawSha256": "6b5c87349ddbab8a4fb3c047886c84439f8640a79ccd61f9270b5a2c55bae84d",
+      "rows": 25,
+      "reactionRows": 13,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:28:58.724Z",
+          "elapsed_s": 4.475,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "I know this title from last time. Same goal, Day 13 lunch.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:29:00.924Z",
+          "elapsed_s": 6.675,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "New: a Next line says Day 4 at 12:00 bread offer, nothing can be ordered before. That answers my old question about the bread. I talk to Riza.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 156,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:29:02.220Z",
+          "elapsed_s": 7.971,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Let the conversation finish"
+          },
+          "reaction": "Fifteen minutes, clear. I let it finish.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 227,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:29:03.491Z",
+          "elapsed_s": 9.242,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "Same kind secret as before. I keep it private and offer help.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 136,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:29:29.999Z",
+          "elapsed_s": 35.75,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 25
+          },
+          "reaction": "Waiting to see if the garden empties again and what the game tells me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 25110,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:29:31.422Z",
+          "elapsed_s": 37.173,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Derya at the garden"
+          },
+          "reaction": "Everyone is still here this time. I try Derya.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 129,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:29:34.225Z",
+          "elapsed_s": 39.976,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Dilan at the garden"
+          },
+          "reaction": "Derya is busy, and it says so plainly. Good. I try Dilan.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 126,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:29:56.724Z",
+          "elapsed_s": 62.475,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 20
+          },
+          "reaction": "Two people busy now. I wait a bit.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 20108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:29:58.747Z",
+          "elapsed_s": 64.498,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "I understand: tea garden, talk to people, keep private things private, bread offer on Day 4. Now the garden is empty, but the game says what I can do: pour tea, read record, tap a name, change pace. That is new and helps. I still do not know when they come back.",
+          "game_clock": "Day 1 08:11",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:30:00.208Z",
+          "elapsed_s": 65.959,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Fast"
+          },
+          "reaction": "I try Fast to see when people come back.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 140,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:30:32.894Z",
+          "elapsed_s": 98.645,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Derya at the garden"
+          },
+          "reaction": "Derya is back. Better than last time: someone returned within a minute.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 146,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:30:36.474Z",
+          "elapsed_s": 102.225,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Derya is at the garden but busy again, and it does not say why or for how long. Three refusals now (Derya, Dilan, Derya). I do not know what makes someone busy. I read no sentence twice, but I cannot act. I will check the menu and stop.",
+          "game_clock": "Day 1 14:57",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:30:42.487Z",
+          "elapsed_s": 108.238,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone.",
+          "game_clock": "Day 1 15:00",
+          "engagement": 3,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Irena Novotná",
+      "device": "desktop",
+      "source": "irena/desktop/wall-clock.jsonl",
+      "rawSha256": "25e295d1f004a1cdb413b6c4aa6d52c9d528f366abb3fcbb909f8db422cafb65",
+      "rows": 54,
+      "reactionRows": 28,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:32:37.393Z",
+          "elapsed_s": 5.457,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "text": "How to play"
+          },
+          "reaction": "Clean title. A tea garden, a goal on Day 13. I want the rules before I begin.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 153,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:32:39.635Z",
+          "elapsed_s": 7.699,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Four reservations, repeat or keep claims private. That is about sources. Good, I will begin.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 171,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:32:42.454Z",
+          "elapsed_s": 10.518,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "Rıza asks about a blue tiled doorway but I have no button to answer him. I will invite a quiet conversation instead.",
+          "game_clock": "Day 1 06:00",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:32:44.358Z",
+          "elapsed_s": 12.422,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Let the conversation finish"
+          },
+          "reaction": "No words appear, just a timer. I will let it finish and see what he says.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 229,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:32:47.874Z",
+          "elapsed_s": 15.938,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "Odd. He collects doorway sketches, but repeating it would become \"Rıza is not kind\" to Derya. Where does unkind come from? That twist bothers me. I keep it private and offer help.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:32:50.404Z",
+          "elapsed_s": 18.468,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Osman at the garden"
+          },
+          "reaction": "A walking route along public streets, private courtyards left out. That I liked. Now Osman, the other supplier.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 147,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:32:57.972Z",
+          "elapsed_s": 26.036,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Offer practical help and keep this private"
+          },
+          "reaction": "Osman kept a tenant's money. That one is at least close to \"not honest\". I would rather help him correct it than tell Derya. Help and keep private.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 145,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:33:00.852Z",
+          "elapsed_s": 28.916,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "text": "Garden record: what you heard"
+          },
+          "reaction": "He writes the exact correction. I like a person who corrects the book. But who is Halil? He is not at the tables.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 120,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:33:04.573Z",
+          "elapsed_s": 32.637,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ece at the garden"
+          },
+          "reaction": "A dated record of who said what. That is exactly what I want. But Osman wrote ten crates for eight and did not fix it; Ece saw. He corrects one account and not mine. I want to ask Ece.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 147,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:33:13.772Z",
+          "elapsed_s": 41.836,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ask what they have heard"
+          },
+          "reaction": "I ask Ece what she has heard about Osman's honesty, before I say anything myself. She stood by the crates.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:33:17.836Z",
+          "elapsed_s": 45.9,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Derya at the garden"
+          },
+          "reaction": "Ece says \"what I have heard\" and \"I saw it myself\" in one breath. Which is it? Then she talks about the bench and the Day 4 supplies, like three answers stuck together. Money went 400 to 540 and I do not know why.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 142,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:33:23.955Z",
+          "elapsed_s": 52.019,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "Derya has heard nothing, which I believe. But both women end with the same sentence about Day 4 supplies. It sounds like a sign, not a person.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 150,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:33:37.947Z",
+          "elapsed_s": 66.011,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "The game told me to choose Invite a quiet conversation with Derya, I did, and it said she is busy and the choice was not made. That annoys me a little. Still, the dated record of who said what is the thing I like most so far.",
+          "game_clock": "Day 1 07:23",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:33:46.191Z",
+          "elapsed_s": 74.255,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-002.png"
+          },
+          "reaction": "Nermin is busy too, same sentence. Nobody tells me when \"later\" is. I am guessing everyone is busy after my last chat.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 149,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:33:51.619Z",
+          "elapsed_s": 79.683,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Aylin at the garden"
+          },
+          "reaction": "The cards are tidy. Hatice has a tea cup, the others an empty circle. I do not know what the circle means.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 158,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:33:54.600Z",
+          "elapsed_s": 82.664,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Invite a quiet conversation"
+          },
+          "reaction": "Aylin is a school cook who just turned down evening cooking with a too-cheerful smile. She matters for the Day 8 cooking. I want to hear her.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 168,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:33:59.962Z",
+          "elapsed_s": 88.026,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Keep this private"
+          },
+          "reaction": "Third time: a harmless private hobby, and repeating it would turn into \"Aylin is not kind\" to Derya. Always Derya, always \"not kind\". The label does not match the story. I keep it private, and this time no help, she does not need any.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 11,
+          "error": "Keep this private is shown but disabled right now (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:34:03.893Z",
+          "elapsed_s": 91.957,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "At 8:00 everyone left at once, right as I pressed Keep this private. The button went grey; the text says it stays private anyway. So my choice was not needed. The garden is empty now. I will wait and see who comes back.",
+          "game_clock": "Day 1 08:01",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:34:34.049Z",
+          "elapsed_s": 122.113,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Fast"
+          },
+          "reaction": "The pace line says it is slow because a private matter waits for my answer, but all three answer buttons are grey. I cannot answer. Half an hour of game in 25 seconds, nobody here. I press Fast.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:34:37.079Z",
+          "elapsed_s": 125.143,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "text": "Garden record: what you heard"
+          },
+          "reaction": "Fast still says 1 minute a second. I close the record and hope.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 117,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:34:44.449Z",
+          "elapsed_s": 132.513,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Reflect on your past for fifteen minutes"
+          },
+          "reaction": "That cleared the slow clock. Hatice \"expects eating to go well\", \"drinking to go well\"... five lines that tell me nothing. The wedding account in the drawer is the only real thing. I reflect on it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 154,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:34:48.029Z",
+          "elapsed_s": 136.093,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "\"Hatice is busy right now. You can try again later.\" I am Hatice. Busy with what? Nobody is here. This is the third \"busy\" and none says why or until when. I am now guessing at the rules.",
+          "game_clock": "Day 1 08:45",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:35:21.801Z",
+          "elapsed_s": 169.865,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Dilan at the garden"
+          },
+          "reaction": "Lunchtime, people are back. Money did not change while they were out. Dilan I have not met.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Dilan at the garden is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T06:35:25.031Z",
+          "elapsed_s": 173.095,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Normal"
+          },
+          "reaction": "Dilan left before I reached her. That is my fault, I left it on Fast. Back to Normal.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 186,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:36:16.481Z",
+          "elapsed_s": 224.545,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Keep this private"
+          },
+          "reaction": "Derya reported a scheduling error and the training stopped. A real worry, not gossip. Nobody else is here anyway. I keep it private.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 146,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:36:18.478Z",
+          "elapsed_s": 226.542,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "The dated record and the honest small stories hold me, but I have nothing to do until Day 4 and the busy refusals wore on me.",
+          "game_clock": "Day 1 15:19",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:36:22.269Z",
+          "elapsed_s": 230.333,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Three game days until anything can be ordered, the garden is empty, and I have heard everyone who is here. I would close it now.",
+          "game_clock": "Day 1 15:19",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:36:42.189Z",
+          "elapsed_s": 250.253,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I have heard everyone who is here and nothing can be ordered until Day 4. I like the record, but I am stopping. Feedback: I chose I am stopping, then Not now; the dialog closed with no error.",
+          "game_clock": "Day 1 15:26",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Irena Novotná",
+      "device": "phone",
+      "source": "irena/phone/wall-clock.jsonl",
+      "rawSha256": "a91ec294cd428281c1b12b8daabc20d2968bbdf96ee74bac3e76bd027dec9fc9",
+      "rows": 29,
+      "reactionRows": 14,
+      "reactionsNotLiterallyInReport": 0,
+      "reactions": [
+        {
+          "t": "2026-10-31T06:36:49.701Z",
+          "elapsed_s": 6,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Begin"
+          },
+          "reaction": "Same title on my phone. It fits well. This time I want to ask before I listen, and see if the record still holds.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 145,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:36:52.772Z",
+          "elapsed_s": 9.071,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Pour tea without sharing news"
+          },
+          "reaction": "Same Rıza, same blue doorway, still no way to answer him. On the phone the pace says Automatic already. This time I just pour tea and see what that does.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 136,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:36:55.836Z",
+          "elapsed_s": 12.135,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Osman at the garden"
+          },
+          "reaction": "Pouring tea: three minutes passed, one line, nothing else. Fine. Osman is the one with the crates, I go to him directly this time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 140,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:37:02.489Z",
+          "elapsed_s": 18.788,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Repeat this at another table"
+          },
+          "reaction": "The very same Osman story as at the library. Here the label at least fits: he kept money he knew was not his. I want to see what repeating does, once, with the one case where it is fair.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 149,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:37:06.539Z",
+          "elapsed_s": 22.838,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "p-002.png"
+          },
+          "reaction": "It tells me plainly what I did: not proof, private, judged unkindly. Fair enough, it names the source. But it scolds me in three sentences for the one case that was true. Osman heard and stops trusting me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 123,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:37:10.667Z",
+          "elapsed_s": 26.966,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Derya at the garden"
+          },
+          "reaction": "On the phone the page jumped down to the story; the people cards are above, out of sight. Let me see what Derya does with what I told her.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 130,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:37:14.481Z",
+          "elapsed_s": 30.78,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ece at the garden"
+          },
+          "reaction": "Derya just heard me call Osman dishonest and her card says nothing about it, only a letter about training. I cannot tell if she took it in.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 131,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:37:22.903Z",
+          "elapsed_s": 39.202,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Ask what they have heard"
+          },
+          "reaction": "Ask Ece what she has heard about Osman honesty. I want to know if my words already travelled.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 136,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:37:26.417Z",
+          "elapsed_s": 42.716,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Derya at the garden"
+          },
+          "reaction": "Word for word the same Ece answer as on the desktop: heard and saw in one breath, then the bench, then Day 4. Now I want to take back what I told Derya. Withdrawing is the thing I would do.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 141,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:37:31.600Z",
+          "elapsed_s": 47.899,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "text": "Garden record: what you heard"
+          },
+          "reaction": "I could take it back, and the game says honestly that others may already have passed it on. That I respect. Derya herself shows nothing, no nod. Let me see if the record keeps my correction.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 126,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:37:44.455Z",
+          "elapsed_s": 60.754,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 10
+          },
+          "reaction": "The record kept everything in order, my repeat and my withdrawal both. Same crate scene at 6:30 as before. I read it through.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 10116,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:37:47.397Z",
+          "elapsed_s": 63.696,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Same morning, same people, same words as on the library computer. Here I tried repeating and then withdrawing, and the record kept both with times. That is the part I like. Osman left for another tea stop. Money 400 to 520, and the 7:00 line explains it: customers who still trust me paid.",
+          "game_clock": "Day 1 07:08",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:37:51.131Z",
+          "elapsed_s": 67.43,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "I have now seen the same morning twice, word for word. The one new thing, taking back an accusation, I have tried. Nothing to decide until Day 4. I would put the phone down.",
+          "game_clock": "Day 1 07:08",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T06:38:04.009Z",
+          "elapsed_s": 80.308,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Same morning a second time, and three days before any real choice. I liked that I could take back what I said. I am stopping. Feedback: I am stopping chosen by tapping its spot, then Not now; dialog closed, no error.",
+          "game_clock": "Day 1 07:17",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    }
+  ]
+}

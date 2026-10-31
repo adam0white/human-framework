@@ -1,0 +1,1174 @@
+{
+  "schema": "original-to-view/v2",
+  "time": "2026-10-31T09:01:03.254289+00:00",
+  "packet": "pass-retest2",
+  "baselineCommit": "828cd4b2a8345a60ac0ea42018b400d7833bfc56",
+  "privatePacket": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/pass-retest2",
+  "purpose": "Current canonical map. privateFile/privateSha256 name the exact private source-epoch file and bytes. canonicalSha256 is the file in this directory. rawOriginal names exact source bytes here when a view was formatted or edited. Briefs, histories, wall-clock logs, driver output, validator code and *.original.* files are exact copies. This map excludes itself and sha256.json, so there is no hash cycle; sha256.json indexes every other file including this map. The private sha256.json and manifest.json are inert snapshots under source-packet-sha256.original.json.txt and manifest.original.json.txt.",
+  "files": [
+    {
+      "file": "README.md",
+      "privateFile": "README.md",
+      "privateSha256": "5fa2d390358a11ea999620bf0621eed9ae4d8572d6ed74ab398114b6a9a1aac9",
+      "canonicalSha256": "5cd7140db1c3f1cfd4b9baf9a87dfb46c177ed64ac9eac819604617d5e2f4e28",
+      "rawOriginal": "README.original.md.txt",
+      "rawOriginalSha256": "5fa2d390358a11ea999620bf0621eed9ae4d8572d6ed74ab398114b6a9a1aac9",
+      "relation": "Readable source-epoch README with canonical-view note and later director checkpoint. Exact private README is rawOriginal.",
+      "overlayInputSha256": "5fa2d390358a11ea999620bf0621eed9ae4d8572d6ed74ab398114b6a9a1aac9",
+      "legacyOverlayMapSha256": "5fa2d390358a11ea999620bf0621eed9ae4d8572d6ed74ab398114b6a9a1aac9"
+    },
+    {
+      "file": "README.original.md.txt",
+      "privateFile": "README.md",
+      "privateSha256": "5fa2d390358a11ea999620bf0621eed9ae4d8572d6ed74ab398114b6a9a1aac9",
+      "canonicalSha256": "5fa2d390358a11ea999620bf0621eed9ae4d8572d6ed74ab398114b6a9a1aac9",
+      "relation": "exact private README bytes (source epoch)"
+    },
+    {
+      "file": "all-driver-reactions.json",
+      "privateFile": "all-driver-reactions.json",
+      "privateSha256": "3707ccce3a05133db93fb0e91675a5f7bb88357497021b09258a4b1698a9e608",
+      "canonicalSha256": "678e341bf0f3f6f37b938b772b049525cf658d9138c0677010a72bbcc1519a71",
+      "rawOriginal": "all-driver-reactions.json.original.txt",
+      "rawOriginalSha256": "3707ccce3a05133db93fb0e91675a5f7bb88357497021b09258a4b1698a9e608",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "3707ccce3a05133db93fb0e91675a5f7bb88357497021b09258a4b1698a9e608",
+      "legacyOverlayMapSha256": "3707ccce3a05133db93fb0e91675a5f7bb88357497021b09258a4b1698a9e608"
+    },
+    {
+      "file": "all-driver-reactions.json.original.txt",
+      "privateFile": "all-driver-reactions.json",
+      "privateSha256": "3707ccce3a05133db93fb0e91675a5f7bb88357497021b09258a4b1698a9e608",
+      "canonicalSha256": "3707ccce3a05133db93fb0e91675a5f7bb88357497021b09258a4b1698a9e608",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "ask-ledger.md",
+      "privateFile": "ask-ledger.md",
+      "privateSha256": "dd7d55d7e8ce67a6fb77717769439b6556c9f8b9199231b92a6311caa10eea7d",
+      "canonicalSha256": "50da0f16cbd84853fdbcd61fd9b4ba45213f1639ffc64e98fe50eb46d4994979",
+      "rawOriginal": "ask-ledger.md.original.txt",
+      "rawOriginalSha256": "dd7d55d7e8ce67a6fb77717769439b6556c9f8b9199231b92a6311caa10eea7d",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "dd7d55d7e8ce67a6fb77717769439b6556c9f8b9199231b92a6311caa10eea7d",
+      "legacyOverlayMapSha256": "dd7d55d7e8ce67a6fb77717769439b6556c9f8b9199231b92a6311caa10eea7d"
+    },
+    {
+      "file": "ask-ledger.md.original.txt",
+      "privateFile": "ask-ledger.md",
+      "privateSha256": "dd7d55d7e8ce67a6fb77717769439b6556c9f8b9199231b92a6311caa10eea7d",
+      "canonicalSha256": "dd7d55d7e8ce67a6fb77717769439b6556c9f8b9199231b92a6311caa10eea7d",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "checkpoint-facts.json",
+      "privateFile": "checkpoint-facts.json",
+      "privateSha256": "6fd2946eb9bb9902dbc1f7309bf2045fcef121a1827482f886c3a751540e44e2",
+      "canonicalSha256": "5bad019421f406754545406519d68f9cbb9addd0ad5448eab1fc92569242740d",
+      "rawOriginal": "checkpoint-facts.json.original.txt",
+      "rawOriginalSha256": "6fd2946eb9bb9902dbc1f7309bf2045fcef121a1827482f886c3a751540e44e2",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "6fd2946eb9bb9902dbc1f7309bf2045fcef121a1827482f886c3a751540e44e2",
+      "legacyOverlayMapSha256": "6fd2946eb9bb9902dbc1f7309bf2045fcef121a1827482f886c3a751540e44e2"
+    },
+    {
+      "file": "checkpoint-facts.json.original.txt",
+      "privateFile": "checkpoint-facts.json",
+      "privateSha256": "6fd2946eb9bb9902dbc1f7309bf2045fcef121a1827482f886c3a751540e44e2",
+      "canonicalSha256": "6fd2946eb9bb9902dbc1f7309bf2045fcef121a1827482f886c3a751540e44e2",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "director-finalization.json",
+      "privateFile": "director-finalization.json",
+      "privateSha256": "8aa701171d02c4b75ee18e70eeb6e9f21e37527872b398b0a859f895c90a690f",
+      "canonicalSha256": "e47c749cd24372b2e9ee1a45014105d80d5c5986819aff3eb08d9eac0c3feb52",
+      "rawOriginal": "director-finalization.json.original.txt",
+      "rawOriginalSha256": "8aa701171d02c4b75ee18e70eeb6e9f21e37527872b398b0a859f895c90a690f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "8aa701171d02c4b75ee18e70eeb6e9f21e37527872b398b0a859f895c90a690f",
+      "legacyOverlayMapSha256": "8aa701171d02c4b75ee18e70eeb6e9f21e37527872b398b0a859f895c90a690f"
+    },
+    {
+      "file": "director-finalization.json.original.txt",
+      "privateFile": "director-finalization.json",
+      "privateSha256": "8aa701171d02c4b75ee18e70eeb6e9f21e37527872b398b0a859f895c90a690f",
+      "canonicalSha256": "8aa701171d02c4b75ee18e70eeb6e9f21e37527872b398b0a859f895c90a690f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "emre/brief.original.md.txt",
+      "privateFile": "emre/brief.original.md.txt",
+      "privateSha256": "aa5c586444e6fd026c24ff35ff0d7d94dc793673cd0ecce838daca7572dfd78f",
+      "canonicalSha256": "aa5c586444e6fd026c24ff35ff0d7d94dc793673cd0ecce838daca7572dfd78f",
+      "relation": "exact copy",
+      "overlayInputSha256": "aa5c586444e6fd026c24ff35ff0d7d94dc793673cd0ecce838daca7572dfd78f",
+      "legacyOverlayMapSha256": "aa5c586444e6fd026c24ff35ff0d7d94dc793673cd0ecce838daca7572dfd78f"
+    },
+    {
+      "file": "emre/completion.json",
+      "privateFile": "emre/completion.json",
+      "privateSha256": "e6979c39e81a5ec7f36674da17029ba06f9fa97a35f0dd122af8944fa1300dbe",
+      "canonicalSha256": "41fe6d8cacd0c1af23b917e6d8975ce763e469c8ac0947b3e1ef0bd21e56adec",
+      "rawOriginal": "emre/completion.json.original.txt",
+      "rawOriginalSha256": "e6979c39e81a5ec7f36674da17029ba06f9fa97a35f0dd122af8944fa1300dbe",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "e6979c39e81a5ec7f36674da17029ba06f9fa97a35f0dd122af8944fa1300dbe",
+      "legacyOverlayMapSha256": "e6979c39e81a5ec7f36674da17029ba06f9fa97a35f0dd122af8944fa1300dbe"
+    },
+    {
+      "file": "emre/completion.json.original.txt",
+      "privateFile": "emre/completion.json",
+      "privateSha256": "e6979c39e81a5ec7f36674da17029ba06f9fa97a35f0dd122af8944fa1300dbe",
+      "canonicalSha256": "e6979c39e81a5ec7f36674da17029ba06f9fa97a35f0dd122af8944fa1300dbe",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "emre/desktop/driver.out",
+      "privateFile": "emre/desktop/driver.out",
+      "privateSha256": "f08b2351fc9b70274caf696b6a656bf83d439d35c2c3520536d087a96380fca1",
+      "canonicalSha256": "f08b2351fc9b70274caf696b6a656bf83d439d35c2c3520536d087a96380fca1",
+      "relation": "exact copy",
+      "overlayInputSha256": "f08b2351fc9b70274caf696b6a656bf83d439d35c2c3520536d087a96380fca1",
+      "legacyOverlayMapSha256": "f08b2351fc9b70274caf696b6a656bf83d439d35c2c3520536d087a96380fca1"
+    },
+    {
+      "file": "emre/desktop/release-start.json",
+      "privateFile": "emre/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "emre/desktop/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "emre/desktop/release-start.json.original.txt",
+      "privateFile": "emre/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "emre/desktop/wall-clock.jsonl",
+      "privateFile": "emre/desktop/wall-clock.jsonl",
+      "privateSha256": "441294e6826bb3bab966c996e270127d2c296435febddf714095bbbf0c548ade",
+      "canonicalSha256": "441294e6826bb3bab966c996e270127d2c296435febddf714095bbbf0c548ade",
+      "relation": "exact copy",
+      "overlayInputSha256": "441294e6826bb3bab966c996e270127d2c296435febddf714095bbbf0c548ade",
+      "legacyOverlayMapSha256": "441294e6826bb3bab966c996e270127d2c296435febddf714095bbbf0c548ade"
+    },
+    {
+      "file": "emre/director-method-qualification.json",
+      "privateFile": "emre/director-method-qualification.json",
+      "privateSha256": "395b94562449cc122088fab2ef258a28d3ebbd54e1e176f22c19cf494f8c0325",
+      "canonicalSha256": "395b94562449cc122088fab2ef258a28d3ebbd54e1e176f22c19cf494f8c0325",
+      "relation": "exact copy",
+      "overlayInputSha256": "395b94562449cc122088fab2ef258a28d3ebbd54e1e176f22c19cf494f8c0325",
+      "legacyOverlayMapSha256": "395b94562449cc122088fab2ef258a28d3ebbd54e1e176f22c19cf494f8c0325"
+    },
+    {
+      "file": "emre/dispatch.json",
+      "privateFile": "emre/dispatch.json",
+      "privateSha256": "7184f00f522ddbd99e98cee60102301e4e28fdc3c9cf2ea56b7c78495a24a677",
+      "canonicalSha256": "7184f00f522ddbd99e98cee60102301e4e28fdc3c9cf2ea56b7c78495a24a677",
+      "relation": "exact copy",
+      "overlayInputSha256": "7184f00f522ddbd99e98cee60102301e4e28fdc3c9cf2ea56b7c78495a24a677",
+      "legacyOverlayMapSha256": "7184f00f522ddbd99e98cee60102301e4e28fdc3c9cf2ea56b7c78495a24a677"
+    },
+    {
+      "file": "emre/history-source-map.json",
+      "privateFile": "emre/history-source-map.json",
+      "privateSha256": "43097521ccc5e12a94a8de4b104cea4a66cb87428723389e8657f9d2635a3f24",
+      "canonicalSha256": "43097521ccc5e12a94a8de4b104cea4a66cb87428723389e8657f9d2635a3f24",
+      "relation": "exact copy",
+      "overlayInputSha256": "43097521ccc5e12a94a8de4b104cea4a66cb87428723389e8657f9d2635a3f24",
+      "legacyOverlayMapSha256": "43097521ccc5e12a94a8de4b104cea4a66cb87428723389e8657f9d2635a3f24"
+    },
+    {
+      "file": "emre/own-history.original.md.txt",
+      "privateFile": "emre/own-history.original.md.txt",
+      "privateSha256": "e9cde6923f920d658d4c2233ae55fb0bee4e4da0d52183a256cc4218e5bf0751",
+      "canonicalSha256": "e9cde6923f920d658d4c2233ae55fb0bee4e4da0d52183a256cc4218e5bf0751",
+      "relation": "exact copy",
+      "overlayInputSha256": "e9cde6923f920d658d4c2233ae55fb0bee4e4da0d52183a256cc4218e5bf0751",
+      "legacyOverlayMapSha256": "e9cde6923f920d658d4c2233ae55fb0bee4e4da0d52183a256cc4218e5bf0751"
+    },
+    {
+      "file": "emre/phone/driver.out",
+      "privateFile": "emre/phone/driver.out",
+      "privateSha256": "703a9b4eb4f71535d3d91390a392ba4348b4c18fedc2c2e2511fe1413e2d1615",
+      "canonicalSha256": "703a9b4eb4f71535d3d91390a392ba4348b4c18fedc2c2e2511fe1413e2d1615",
+      "relation": "exact copy",
+      "overlayInputSha256": "703a9b4eb4f71535d3d91390a392ba4348b4c18fedc2c2e2511fe1413e2d1615",
+      "legacyOverlayMapSha256": "703a9b4eb4f71535d3d91390a392ba4348b4c18fedc2c2e2511fe1413e2d1615"
+    },
+    {
+      "file": "emre/phone/release-start.json",
+      "privateFile": "emre/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "emre/phone/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "emre/phone/release-start.json.original.txt",
+      "privateFile": "emre/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "emre/phone/wall-clock.jsonl",
+      "privateFile": "emre/phone/wall-clock.jsonl",
+      "privateSha256": "c33a52f4a4d69a6f1fc05b28568d45eada69a4389058fb13526f9847f45e349c",
+      "canonicalSha256": "c33a52f4a4d69a6f1fc05b28568d45eada69a4389058fb13526f9847f45e349c",
+      "relation": "exact copy",
+      "overlayInputSha256": "c33a52f4a4d69a6f1fc05b28568d45eada69a4389058fb13526f9847f45e349c",
+      "legacyOverlayMapSha256": "c33a52f4a4d69a6f1fc05b28568d45eada69a4389058fb13526f9847f45e349c"
+    },
+    {
+      "file": "emre/report.md",
+      "privateFile": "emre/report.md",
+      "privateSha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39",
+      "canonicalSha256": "ffadd8f88546d33576bd08034c49de550dce33b8ced8bd7a1cdc1876c0aa8d28",
+      "rawOriginal": "emre/report.original.md.txt",
+      "rawOriginalSha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39",
+      "legacyOverlayMapSha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39"
+    },
+    {
+      "file": "emre/report.original.md.txt",
+      "privateFile": "emre/report.original.md.txt",
+      "privateSha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39",
+      "canonicalSha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39",
+      "relation": "exact copy",
+      "overlayInputSha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39",
+      "legacyOverlayMapSha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39"
+    },
+    {
+      "file": "emre/validation.json",
+      "privateFile": "emre/validation.json",
+      "privateSha256": "b8566e9f9f17a600dac57e6017641b5ca0e3e5f683f32ca2930fa28e820c3bcc",
+      "canonicalSha256": "da089fa52274a42854c60a0b578a27e816cdcbe8e880ab0558219642bd4ae34e",
+      "rawOriginal": "emre/validation.json.original.txt",
+      "rawOriginalSha256": "b8566e9f9f17a600dac57e6017641b5ca0e3e5f683f32ca2930fa28e820c3bcc",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b8566e9f9f17a600dac57e6017641b5ca0e3e5f683f32ca2930fa28e820c3bcc",
+      "legacyOverlayMapSha256": "b8566e9f9f17a600dac57e6017641b5ca0e3e5f683f32ca2930fa28e820c3bcc"
+    },
+    {
+      "file": "emre/validation.json.original.txt",
+      "privateFile": "emre/validation.json",
+      "privateSha256": "b8566e9f9f17a600dac57e6017641b5ca0e3e5f683f32ca2930fa28e820c3bcc",
+      "canonicalSha256": "b8566e9f9f17a600dac57e6017641b5ca0e3e5f683f32ca2930fa28e820c3bcc",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "exact-quote-extraction.json",
+      "privateFile": "exact-quote-extraction.json",
+      "privateSha256": "2a3d5c9e8896eecd5b51f67a4c801450d515597f619ddcbbdcd4a0de111f1972",
+      "canonicalSha256": "aaa682bf1fd12a186d92f47af05c0d0154917e8cf1376ca0f1b57e94783fa9ec",
+      "rawOriginal": "exact-quote-extraction.json.original.txt",
+      "rawOriginalSha256": "2a3d5c9e8896eecd5b51f67a4c801450d515597f619ddcbbdcd4a0de111f1972",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "2a3d5c9e8896eecd5b51f67a4c801450d515597f619ddcbbdcd4a0de111f1972",
+      "legacyOverlayMapSha256": "2a3d5c9e8896eecd5b51f67a4c801450d515597f619ddcbbdcd4a0de111f1972"
+    },
+    {
+      "file": "exact-quote-extraction.json.original.txt",
+      "privateFile": "exact-quote-extraction.json",
+      "privateSha256": "2a3d5c9e8896eecd5b51f67a4c801450d515597f619ddcbbdcd4a0de111f1972",
+      "canonicalSha256": "2a3d5c9e8896eecd5b51f67a4c801450d515597f619ddcbbdcd4a0de111f1972",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "identity-index.json",
+      "privateFile": "identity-index.json",
+      "privateSha256": "f961301ce641d0a09fc812a77ef99f686e03121f835f2dcd7627fa1dd119df23",
+      "canonicalSha256": "620c284a484036e33e24b697b6c94b11452f785b1e5efe6364cff02dfbb14809",
+      "rawOriginal": "identity-index.json.original.txt",
+      "rawOriginalSha256": "f961301ce641d0a09fc812a77ef99f686e03121f835f2dcd7627fa1dd119df23",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "f961301ce641d0a09fc812a77ef99f686e03121f835f2dcd7627fa1dd119df23",
+      "legacyOverlayMapSha256": "f961301ce641d0a09fc812a77ef99f686e03121f835f2dcd7627fa1dd119df23"
+    },
+    {
+      "file": "identity-index.json.original.txt",
+      "privateFile": "identity-index.json",
+      "privateSha256": "f961301ce641d0a09fc812a77ef99f686e03121f835f2dcd7627fa1dd119df23",
+      "canonicalSha256": "f961301ce641d0a09fc812a77ef99f686e03121f835f2dcd7627fa1dd119df23",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "inputs/pass-retest2-final-driver-audit.json",
+      "privateFile": "inputs/pass-retest2-final-driver-audit.json",
+      "privateSha256": "3db3d70fbfc41300feaefb914e0cf5ba5c0574f2c9c354c2c1971d7d0d640bf4",
+      "canonicalSha256": "c8a9bb99ab27d6fa7ef6f579ec6ad6db5b591085d51ebbc494cbe538fecd5b8f",
+      "rawOriginal": "inputs/pass-retest2-final-driver-audit.json.original.txt",
+      "rawOriginalSha256": "3db3d70fbfc41300feaefb914e0cf5ba5c0574f2c9c354c2c1971d7d0d640bf4",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "3db3d70fbfc41300feaefb914e0cf5ba5c0574f2c9c354c2c1971d7d0d640bf4",
+      "legacyOverlayMapSha256": "3db3d70fbfc41300feaefb914e0cf5ba5c0574f2c9c354c2c1971d7d0d640bf4"
+    },
+    {
+      "file": "inputs/pass-retest2-final-driver-audit.json.original.txt",
+      "privateFile": "inputs/pass-retest2-final-driver-audit.json",
+      "privateSha256": "3db3d70fbfc41300feaefb914e0cf5ba5c0574f2c9c354c2c1971d7d0d640bf4",
+      "canonicalSha256": "3db3d70fbfc41300feaefb914e0cf5ba5c0574f2c9c354c2c1971d7d0d640bf4",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "inputs/pass-retest2-final-release-after-round.json",
+      "privateFile": "inputs/pass-retest2-final-release-after-round.json",
+      "privateSha256": "e52aee5bd3267506dbb66862d49b4e9235a6ae20030ee81837ebbaddbaa93da8",
+      "canonicalSha256": "e52aee5bd3267506dbb66862d49b4e9235a6ae20030ee81837ebbaddbaa93da8",
+      "relation": "exact copy",
+      "overlayInputSha256": "e52aee5bd3267506dbb66862d49b4e9235a6ae20030ee81837ebbaddbaa93da8",
+      "legacyOverlayMapSha256": "e52aee5bd3267506dbb66862d49b4e9235a6ae20030ee81837ebbaddbaa93da8"
+    },
+    {
+      "file": "inputs/pass-retest2-input-freeze.json",
+      "privateFile": "inputs/pass-retest2-input-freeze.json",
+      "privateSha256": "ea5687fd591d3cbdd35354a7030e309c11b97503d0d05b96d182f9f1a403526d",
+      "canonicalSha256": "ea5687fd591d3cbdd35354a7030e309c11b97503d0d05b96d182f9f1a403526d",
+      "relation": "exact copy",
+      "overlayInputSha256": "ea5687fd591d3cbdd35354a7030e309c11b97503d0d05b96d182f9f1a403526d",
+      "legacyOverlayMapSha256": "ea5687fd591d3cbdd35354a7030e309c11b97503d0d05b96d182f9f1a403526d"
+    },
+    {
+      "file": "inputs/pass-retest2-plan.json",
+      "privateFile": "inputs/pass-retest2-plan.json",
+      "privateSha256": "b4a7633909aca09e74d06a8c36fe06938346973ac1f61e9d0fd871eaaaa21546",
+      "canonicalSha256": "c608ae7b2442183d3b04df0747f54d5667c725253c30c648ee42e053899363f6",
+      "rawOriginal": "inputs/pass-retest2-plan.json.original.txt",
+      "rawOriginalSha256": "b4a7633909aca09e74d06a8c36fe06938346973ac1f61e9d0fd871eaaaa21546",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b4a7633909aca09e74d06a8c36fe06938346973ac1f61e9d0fd871eaaaa21546",
+      "legacyOverlayMapSha256": "b4a7633909aca09e74d06a8c36fe06938346973ac1f61e9d0fd871eaaaa21546"
+    },
+    {
+      "file": "inputs/pass-retest2-plan.json.original.txt",
+      "privateFile": "inputs/pass-retest2-plan.json",
+      "privateSha256": "b4a7633909aca09e74d06a8c36fe06938346973ac1f61e9d0fd871eaaaa21546",
+      "canonicalSha256": "b4a7633909aca09e74d06a8c36fe06938346973ac1f61e9d0fd871eaaaa21546",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "inputs/pass-retest2-predispatch.json",
+      "privateFile": "inputs/pass-retest2-predispatch.json",
+      "privateSha256": "64803c77987a1f9e9e83da2757b5e964f9e8849c0317c2901ad86229c17c8d87",
+      "canonicalSha256": "64803c77987a1f9e9e83da2757b5e964f9e8849c0317c2901ad86229c17c8d87",
+      "relation": "exact copy",
+      "overlayInputSha256": "64803c77987a1f9e9e83da2757b5e964f9e8849c0317c2901ad86229c17c8d87",
+      "legacyOverlayMapSha256": "64803c77987a1f9e9e83da2757b5e964f9e8849c0317c2901ad86229c17c8d87"
+    },
+    {
+      "file": "inputs/pass-retest2-process-cleanup.json",
+      "privateFile": "inputs/pass-retest2-process-cleanup.json",
+      "privateSha256": "ca3d422bc951ec13b0b8705c9da3a78f5aacc9fe71ae35b09fdebbc246067741",
+      "canonicalSha256": "5f7522091a47493816f774afa3e0b4d1a0991ca907858f77c67d7911b662d583",
+      "rawOriginal": "inputs/pass-retest2-process-cleanup.json.original.txt",
+      "rawOriginalSha256": "ca3d422bc951ec13b0b8705c9da3a78f5aacc9fe71ae35b09fdebbc246067741",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "ca3d422bc951ec13b0b8705c9da3a78f5aacc9fe71ae35b09fdebbc246067741",
+      "legacyOverlayMapSha256": "ca3d422bc951ec13b0b8705c9da3a78f5aacc9fe71ae35b09fdebbc246067741"
+    },
+    {
+      "file": "inputs/pass-retest2-process-cleanup.json.original.txt",
+      "privateFile": "inputs/pass-retest2-process-cleanup.json",
+      "privateSha256": "ca3d422bc951ec13b0b8705c9da3a78f5aacc9fe71ae35b09fdebbc246067741",
+      "canonicalSha256": "ca3d422bc951ec13b0b8705c9da3a78f5aacc9fe71ae35b09fdebbc246067741",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "ledger-additions.md",
+      "privateFile": "ledger-additions.md",
+      "privateSha256": "6983fdd5ed6dedd465590706c02243ff071bf589e14b4d33c2c75d8cfb47d731",
+      "canonicalSha256": "bc712d3f5df5fbe6af81b04443804482fca24e23f9323459a338af4e7c5d500e",
+      "rawOriginal": "ledger-additions.md.original.txt",
+      "rawOriginalSha256": "6983fdd5ed6dedd465590706c02243ff071bf589e14b4d33c2c75d8cfb47d731",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "6983fdd5ed6dedd465590706c02243ff071bf589e14b4d33c2c75d8cfb47d731",
+      "legacyOverlayMapSha256": "6983fdd5ed6dedd465590706c02243ff071bf589e14b4d33c2c75d8cfb47d731"
+    },
+    {
+      "file": "ledger-additions.md.original.txt",
+      "privateFile": "ledger-additions.md",
+      "privateSha256": "6983fdd5ed6dedd465590706c02243ff071bf589e14b4d33c2c75d8cfb47d731",
+      "canonicalSha256": "6983fdd5ed6dedd465590706c02243ff071bf589e14b4d33c2c75d8cfb47d731",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "logical-tester-ledger.json",
+      "privateFile": "logical-tester-ledger.json",
+      "privateSha256": "68fc2d8e6c6f1b6c633a3591381bdb42ca84c527310cc13611be7f20383d48a3",
+      "canonicalSha256": "ae9691894460df0af8c6ce479be996caed321860bd6fd649b2574c24ec225e9d",
+      "rawOriginal": "logical-tester-ledger.json.original.txt",
+      "rawOriginalSha256": "68fc2d8e6c6f1b6c633a3591381bdb42ca84c527310cc13611be7f20383d48a3",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "68fc2d8e6c6f1b6c633a3591381bdb42ca84c527310cc13611be7f20383d48a3",
+      "legacyOverlayMapSha256": "68fc2d8e6c6f1b6c633a3591381bdb42ca84c527310cc13611be7f20383d48a3"
+    },
+    {
+      "file": "logical-tester-ledger.json.original.txt",
+      "privateFile": "logical-tester-ledger.json",
+      "privateSha256": "68fc2d8e6c6f1b6c633a3591381bdb42ca84c527310cc13611be7f20383d48a3",
+      "canonicalSha256": "68fc2d8e6c6f1b6c633a3591381bdb42ca84c527310cc13611be7f20383d48a3",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "logical-tester-ledger.md",
+      "privateFile": "logical-tester-ledger.md",
+      "privateSha256": "79f85308ac000683858ab5bf66c00e5ba9744ea92a18ccbf0c1a2f3d78269b41",
+      "canonicalSha256": "2fc36cbf85f8dab610df468679eeada17e2e4b507369ddb88f36866ffee08a5c",
+      "rawOriginal": "logical-tester-ledger.md.original.txt",
+      "rawOriginalSha256": "79f85308ac000683858ab5bf66c00e5ba9744ea92a18ccbf0c1a2f3d78269b41",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "79f85308ac000683858ab5bf66c00e5ba9744ea92a18ccbf0c1a2f3d78269b41",
+      "legacyOverlayMapSha256": "79f85308ac000683858ab5bf66c00e5ba9744ea92a18ccbf0c1a2f3d78269b41"
+    },
+    {
+      "file": "logical-tester-ledger.md.original.txt",
+      "privateFile": "logical-tester-ledger.md",
+      "privateSha256": "79f85308ac000683858ab5bf66c00e5ba9744ea92a18ccbf0c1a2f3d78269b41",
+      "canonicalSha256": "79f85308ac000683858ab5bf66c00e5ba9744ea92a18ccbf0c1a2f3d78269b41",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "manifest.original.json.txt",
+      "privateFile": "manifest.json",
+      "privateSha256": "f1a440ff375d3b717da46ceca9c9c1272a77cc12b62578b1e3c08ef19452ecf1",
+      "canonicalSha256": "f1a440ff375d3b717da46ceca9c9c1272a77cc12b62578b1e3c08ef19452ecf1",
+      "relation": "exact copy under renamed source-epoch snapshot name",
+      "overlayInputSha256": "f1a440ff375d3b717da46ceca9c9c1272a77cc12b62578b1e3c08ef19452ecf1",
+      "legacyOverlayMapSha256": "f1a440ff375d3b717da46ceca9c9c1272a77cc12b62578b1e3c08ef19452ecf1"
+    },
+    {
+      "file": "maya/brief.original.md.txt",
+      "privateFile": "maya/brief.original.md.txt",
+      "privateSha256": "2912a74eedafd26d6ecfda468ce6d696e0398c5cfa54219d3f024149fc01c5ff",
+      "canonicalSha256": "2912a74eedafd26d6ecfda468ce6d696e0398c5cfa54219d3f024149fc01c5ff",
+      "relation": "exact copy",
+      "overlayInputSha256": "2912a74eedafd26d6ecfda468ce6d696e0398c5cfa54219d3f024149fc01c5ff",
+      "legacyOverlayMapSha256": "2912a74eedafd26d6ecfda468ce6d696e0398c5cfa54219d3f024149fc01c5ff"
+    },
+    {
+      "file": "maya/completion.json",
+      "privateFile": "maya/completion.json",
+      "privateSha256": "14dd91395042b9ff43d77158c7aed2debd7b7716c88d601e3ef4b41799a53dec",
+      "canonicalSha256": "49e3d2cec9dce3a3008ac99a04cf552794eafdd462eacad54301835558fe8a57",
+      "rawOriginal": "maya/completion.json.original.txt",
+      "rawOriginalSha256": "14dd91395042b9ff43d77158c7aed2debd7b7716c88d601e3ef4b41799a53dec",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "14dd91395042b9ff43d77158c7aed2debd7b7716c88d601e3ef4b41799a53dec",
+      "legacyOverlayMapSha256": "14dd91395042b9ff43d77158c7aed2debd7b7716c88d601e3ef4b41799a53dec"
+    },
+    {
+      "file": "maya/completion.json.original.txt",
+      "privateFile": "maya/completion.json",
+      "privateSha256": "14dd91395042b9ff43d77158c7aed2debd7b7716c88d601e3ef4b41799a53dec",
+      "canonicalSha256": "14dd91395042b9ff43d77158c7aed2debd7b7716c88d601e3ef4b41799a53dec",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "maya/desktop/driver.out",
+      "privateFile": "maya/desktop/driver.out",
+      "privateSha256": "096331d45fa5f9cac798b92d3278cc181bb5cfe52a5c7d48879aeca238dc443c",
+      "canonicalSha256": "096331d45fa5f9cac798b92d3278cc181bb5cfe52a5c7d48879aeca238dc443c",
+      "relation": "exact copy",
+      "overlayInputSha256": "096331d45fa5f9cac798b92d3278cc181bb5cfe52a5c7d48879aeca238dc443c",
+      "legacyOverlayMapSha256": "096331d45fa5f9cac798b92d3278cc181bb5cfe52a5c7d48879aeca238dc443c"
+    },
+    {
+      "file": "maya/desktop/release-start.json",
+      "privateFile": "maya/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "maya/desktop/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "maya/desktop/release-start.json.original.txt",
+      "privateFile": "maya/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "maya/desktop/wall-clock.jsonl",
+      "privateFile": "maya/desktop/wall-clock.jsonl",
+      "privateSha256": "68541592864c467cb52ec59964f2a719a39b726507fb0907803ff60c575f0db4",
+      "canonicalSha256": "68541592864c467cb52ec59964f2a719a39b726507fb0907803ff60c575f0db4",
+      "relation": "exact copy",
+      "overlayInputSha256": "68541592864c467cb52ec59964f2a719a39b726507fb0907803ff60c575f0db4",
+      "legacyOverlayMapSha256": "68541592864c467cb52ec59964f2a719a39b726507fb0907803ff60c575f0db4"
+    },
+    {
+      "file": "maya/dispatch.json",
+      "privateFile": "maya/dispatch.json",
+      "privateSha256": "1b1f765d8729ac321e1e810e59846cc841c9c84c89d0a44f6eae753e119cf4c9",
+      "canonicalSha256": "1b1f765d8729ac321e1e810e59846cc841c9c84c89d0a44f6eae753e119cf4c9",
+      "relation": "exact copy",
+      "overlayInputSha256": "1b1f765d8729ac321e1e810e59846cc841c9c84c89d0a44f6eae753e119cf4c9",
+      "legacyOverlayMapSha256": "1b1f765d8729ac321e1e810e59846cc841c9c84c89d0a44f6eae753e119cf4c9"
+    },
+    {
+      "file": "maya/history-source-map.json",
+      "privateFile": "maya/history-source-map.json",
+      "privateSha256": "ce609c597d2ae887c1cbfbc5c3ec2d10c020da2c073a244bd00ee66716314397",
+      "canonicalSha256": "ce609c597d2ae887c1cbfbc5c3ec2d10c020da2c073a244bd00ee66716314397",
+      "relation": "exact copy",
+      "overlayInputSha256": "ce609c597d2ae887c1cbfbc5c3ec2d10c020da2c073a244bd00ee66716314397",
+      "legacyOverlayMapSha256": "ce609c597d2ae887c1cbfbc5c3ec2d10c020da2c073a244bd00ee66716314397"
+    },
+    {
+      "file": "maya/own-history.original.md.txt",
+      "privateFile": "maya/own-history.original.md.txt",
+      "privateSha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045",
+      "canonicalSha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045",
+      "relation": "exact copy",
+      "overlayInputSha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045",
+      "legacyOverlayMapSha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045"
+    },
+    {
+      "file": "maya/phone/driver.out",
+      "privateFile": "maya/phone/driver.out",
+      "privateSha256": "b14ebe611f1a8f881ddb79f2fe3e87944c39d3eacaadb22ec422c87898ac304e",
+      "canonicalSha256": "b14ebe611f1a8f881ddb79f2fe3e87944c39d3eacaadb22ec422c87898ac304e",
+      "relation": "exact copy",
+      "overlayInputSha256": "b14ebe611f1a8f881ddb79f2fe3e87944c39d3eacaadb22ec422c87898ac304e",
+      "legacyOverlayMapSha256": "b14ebe611f1a8f881ddb79f2fe3e87944c39d3eacaadb22ec422c87898ac304e"
+    },
+    {
+      "file": "maya/phone/release-start.json",
+      "privateFile": "maya/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "maya/phone/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "maya/phone/release-start.json.original.txt",
+      "privateFile": "maya/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "maya/phone/wall-clock.jsonl",
+      "privateFile": "maya/phone/wall-clock.jsonl",
+      "privateSha256": "b9a0e2e63d2caf51f0367c49ea1e5f72acea81e53f45161d48e6829c8c0ca91e",
+      "canonicalSha256": "b9a0e2e63d2caf51f0367c49ea1e5f72acea81e53f45161d48e6829c8c0ca91e",
+      "relation": "exact copy",
+      "overlayInputSha256": "b9a0e2e63d2caf51f0367c49ea1e5f72acea81e53f45161d48e6829c8c0ca91e",
+      "legacyOverlayMapSha256": "b9a0e2e63d2caf51f0367c49ea1e5f72acea81e53f45161d48e6829c8c0ca91e"
+    },
+    {
+      "file": "maya/report.md",
+      "privateFile": "maya/report.md",
+      "privateSha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c",
+      "canonicalSha256": "e0714c4872a0f789d4e21d0729d871a41afabe214c2a1f554c45d2f5350c7674",
+      "rawOriginal": "maya/report.original.md.txt",
+      "rawOriginalSha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c",
+      "legacyOverlayMapSha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c"
+    },
+    {
+      "file": "maya/report.original.md.txt",
+      "privateFile": "maya/report.original.md.txt",
+      "privateSha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c",
+      "canonicalSha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c",
+      "relation": "exact copy",
+      "overlayInputSha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c",
+      "legacyOverlayMapSha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c"
+    },
+    {
+      "file": "maya/validation.json",
+      "privateFile": "maya/validation.json",
+      "privateSha256": "7d5e36af8792f71dc9c7f83a36642565c3eb000a7391485dd4ce1a47f477713f",
+      "canonicalSha256": "7d5e36af8792f71dc9c7f83a36642565c3eb000a7391485dd4ce1a47f477713f",
+      "relation": "exact copy",
+      "overlayInputSha256": "7d5e36af8792f71dc9c7f83a36642565c3eb000a7391485dd4ce1a47f477713f",
+      "legacyOverlayMapSha256": "7d5e36af8792f71dc9c7f83a36642565c3eb000a7391485dd4ce1a47f477713f"
+    },
+    {
+      "file": "nia/brief.original.md.txt",
+      "privateFile": "nia/brief.original.md.txt",
+      "privateSha256": "e30f8c38f278818d13c5864d60fe342423678b97ccaf0c7653071e61a9b69022",
+      "canonicalSha256": "e30f8c38f278818d13c5864d60fe342423678b97ccaf0c7653071e61a9b69022",
+      "relation": "exact copy",
+      "overlayInputSha256": "e30f8c38f278818d13c5864d60fe342423678b97ccaf0c7653071e61a9b69022",
+      "legacyOverlayMapSha256": "e30f8c38f278818d13c5864d60fe342423678b97ccaf0c7653071e61a9b69022"
+    },
+    {
+      "file": "nia/completion.json",
+      "privateFile": "nia/completion.json",
+      "privateSha256": "2dac23148693029b7ad41b86a479cd0ed4603e2baab1257161190b6d817ab407",
+      "canonicalSha256": "c4f7e4b815c21ea4f173f7916445f7b30ad58049c9f6eb927c0bc6497ceee2c0",
+      "rawOriginal": "nia/completion.json.original.txt",
+      "rawOriginalSha256": "2dac23148693029b7ad41b86a479cd0ed4603e2baab1257161190b6d817ab407",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "2dac23148693029b7ad41b86a479cd0ed4603e2baab1257161190b6d817ab407",
+      "legacyOverlayMapSha256": "2dac23148693029b7ad41b86a479cd0ed4603e2baab1257161190b6d817ab407"
+    },
+    {
+      "file": "nia/completion.json.original.txt",
+      "privateFile": "nia/completion.json",
+      "privateSha256": "2dac23148693029b7ad41b86a479cd0ed4603e2baab1257161190b6d817ab407",
+      "canonicalSha256": "2dac23148693029b7ad41b86a479cd0ed4603e2baab1257161190b6d817ab407",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "nia/desktop/driver.out",
+      "privateFile": "nia/desktop/driver.out",
+      "privateSha256": "38b9a8195e1d493c0292b8b04c431a087779b4cf7cdbb9b79e91a019956142ba",
+      "canonicalSha256": "38b9a8195e1d493c0292b8b04c431a087779b4cf7cdbb9b79e91a019956142ba",
+      "relation": "exact copy",
+      "overlayInputSha256": "38b9a8195e1d493c0292b8b04c431a087779b4cf7cdbb9b79e91a019956142ba",
+      "legacyOverlayMapSha256": "38b9a8195e1d493c0292b8b04c431a087779b4cf7cdbb9b79e91a019956142ba"
+    },
+    {
+      "file": "nia/desktop/release-start.json",
+      "privateFile": "nia/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "nia/desktop/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "nia/desktop/release-start.json.original.txt",
+      "privateFile": "nia/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "nia/desktop/wall-clock.jsonl",
+      "privateFile": "nia/desktop/wall-clock.jsonl",
+      "privateSha256": "c04a6fa408873a6598bcb1210b6b1a5a5e6b9808e4357e1337bf24a43c517697",
+      "canonicalSha256": "c04a6fa408873a6598bcb1210b6b1a5a5e6b9808e4357e1337bf24a43c517697",
+      "relation": "exact copy",
+      "overlayInputSha256": "c04a6fa408873a6598bcb1210b6b1a5a5e6b9808e4357e1337bf24a43c517697",
+      "legacyOverlayMapSha256": "c04a6fa408873a6598bcb1210b6b1a5a5e6b9808e4357e1337bf24a43c517697"
+    },
+    {
+      "file": "nia/director-method-qualification.json",
+      "privateFile": "nia/director-method-qualification.json",
+      "privateSha256": "c26c6b246dd5450672a9af1a4c1595ed6e05a5eca77a7d7dbf493fe918aa3b1b",
+      "canonicalSha256": "c26c6b246dd5450672a9af1a4c1595ed6e05a5eca77a7d7dbf493fe918aa3b1b",
+      "relation": "exact copy",
+      "overlayInputSha256": "c26c6b246dd5450672a9af1a4c1595ed6e05a5eca77a7d7dbf493fe918aa3b1b",
+      "legacyOverlayMapSha256": "c26c6b246dd5450672a9af1a4c1595ed6e05a5eca77a7d7dbf493fe918aa3b1b"
+    },
+    {
+      "file": "nia/dispatch.json",
+      "privateFile": "nia/dispatch.json",
+      "privateSha256": "89303ec69ceabe985d88380909c5aa2e75d07247de14f07021a28849034ebb70",
+      "canonicalSha256": "89303ec69ceabe985d88380909c5aa2e75d07247de14f07021a28849034ebb70",
+      "relation": "exact copy",
+      "overlayInputSha256": "89303ec69ceabe985d88380909c5aa2e75d07247de14f07021a28849034ebb70",
+      "legacyOverlayMapSha256": "89303ec69ceabe985d88380909c5aa2e75d07247de14f07021a28849034ebb70"
+    },
+    {
+      "file": "nia/history-source-map.json",
+      "privateFile": "nia/history-source-map.json",
+      "privateSha256": "71fc6f74c2eeac51dde6970cd739873f06f022f98fafd3b3e3edac1df3dc4090",
+      "canonicalSha256": "71fc6f74c2eeac51dde6970cd739873f06f022f98fafd3b3e3edac1df3dc4090",
+      "relation": "exact copy",
+      "overlayInputSha256": "71fc6f74c2eeac51dde6970cd739873f06f022f98fafd3b3e3edac1df3dc4090",
+      "legacyOverlayMapSha256": "71fc6f74c2eeac51dde6970cd739873f06f022f98fafd3b3e3edac1df3dc4090"
+    },
+    {
+      "file": "nia/own-history.original.md.txt",
+      "privateFile": "nia/own-history.original.md.txt",
+      "privateSha256": "3b5c92c0d9cf785de796499d00c36274ef8eb8c40b956f62d74a49ecf074426a",
+      "canonicalSha256": "3b5c92c0d9cf785de796499d00c36274ef8eb8c40b956f62d74a49ecf074426a",
+      "relation": "exact copy",
+      "overlayInputSha256": "3b5c92c0d9cf785de796499d00c36274ef8eb8c40b956f62d74a49ecf074426a",
+      "legacyOverlayMapSha256": "3b5c92c0d9cf785de796499d00c36274ef8eb8c40b956f62d74a49ecf074426a"
+    },
+    {
+      "file": "nia/phone/driver.out",
+      "privateFile": "nia/phone/driver.out",
+      "privateSha256": "7d586c4be9ab4bae57b1c2f1753ec4b87189e6a9ac534f0dd0f232a775777e4f",
+      "canonicalSha256": "7d586c4be9ab4bae57b1c2f1753ec4b87189e6a9ac534f0dd0f232a775777e4f",
+      "relation": "exact copy",
+      "overlayInputSha256": "7d586c4be9ab4bae57b1c2f1753ec4b87189e6a9ac534f0dd0f232a775777e4f",
+      "legacyOverlayMapSha256": "7d586c4be9ab4bae57b1c2f1753ec4b87189e6a9ac534f0dd0f232a775777e4f"
+    },
+    {
+      "file": "nia/phone/release-start.json",
+      "privateFile": "nia/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "nia/phone/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "nia/phone/release-start.json.original.txt",
+      "privateFile": "nia/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "nia/phone/wall-clock.jsonl",
+      "privateFile": "nia/phone/wall-clock.jsonl",
+      "privateSha256": "f14d02792e410f30e5177dbf9ae6834a4dd4a7a7975ca933816bab26041afbff",
+      "canonicalSha256": "f14d02792e410f30e5177dbf9ae6834a4dd4a7a7975ca933816bab26041afbff",
+      "relation": "exact copy",
+      "overlayInputSha256": "f14d02792e410f30e5177dbf9ae6834a4dd4a7a7975ca933816bab26041afbff",
+      "legacyOverlayMapSha256": "f14d02792e410f30e5177dbf9ae6834a4dd4a7a7975ca933816bab26041afbff"
+    },
+    {
+      "file": "nia/report.md",
+      "privateFile": "nia/report.md",
+      "privateSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d",
+      "canonicalSha256": "88f804e52ce7abe33028c79cf5541f05dc60732246ede389913be25c7c41e896",
+      "rawOriginal": "nia/report.original.md.txt",
+      "rawOriginalSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d",
+      "legacyOverlayMapSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d"
+    },
+    {
+      "file": "nia/report.original.md.txt",
+      "privateFile": "nia/report.original.md.txt",
+      "privateSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d",
+      "canonicalSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d",
+      "relation": "exact copy",
+      "overlayInputSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d",
+      "legacyOverlayMapSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d"
+    },
+    {
+      "file": "nia/validation.json",
+      "privateFile": "nia/validation.json",
+      "privateSha256": "fa832ef585ad1c05242fddfa504c91806616b07c8d5232bc6c8db09e87328048",
+      "canonicalSha256": "fa832ef585ad1c05242fddfa504c91806616b07c8d5232bc6c8db09e87328048",
+      "relation": "exact copy",
+      "overlayInputSha256": "fa832ef585ad1c05242fddfa504c91806616b07c8d5232bc6c8db09e87328048",
+      "legacyOverlayMapSha256": "fa832ef585ad1c05242fddfa504c91806616b07c8d5232bc6c8db09e87328048"
+    },
+    {
+      "file": "primary-quote-validation.json",
+      "privateFile": "primary-quote-validation.json",
+      "privateSha256": "163fdf53c4326700854313c67b3a115cd6e17cb8f63e2c4311502d1383dfb7e2",
+      "canonicalSha256": "01402734be4637cd7dba774ae3d860815ad32137302156670975a1225b0b2e39",
+      "rawOriginal": "primary-quote-validation.json.original.txt",
+      "rawOriginalSha256": "163fdf53c4326700854313c67b3a115cd6e17cb8f63e2c4311502d1383dfb7e2",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "163fdf53c4326700854313c67b3a115cd6e17cb8f63e2c4311502d1383dfb7e2",
+      "legacyOverlayMapSha256": "163fdf53c4326700854313c67b3a115cd6e17cb8f63e2c4311502d1383dfb7e2"
+    },
+    {
+      "file": "primary-quote-validation.json.original.txt",
+      "privateFile": "primary-quote-validation.json",
+      "privateSha256": "163fdf53c4326700854313c67b3a115cd6e17cb8f63e2c4311502d1383dfb7e2",
+      "canonicalSha256": "163fdf53c4326700854313c67b3a115cd6e17cb8f63e2c4311502d1383dfb7e2",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "rosa/brief.original.md.txt",
+      "privateFile": "rosa/brief.original.md.txt",
+      "privateSha256": "c6a661bcae8c9a586c54d7856446a4937219904c179d8371a19e2adf61f95ca9",
+      "canonicalSha256": "c6a661bcae8c9a586c54d7856446a4937219904c179d8371a19e2adf61f95ca9",
+      "relation": "exact copy",
+      "overlayInputSha256": "c6a661bcae8c9a586c54d7856446a4937219904c179d8371a19e2adf61f95ca9",
+      "legacyOverlayMapSha256": "c6a661bcae8c9a586c54d7856446a4937219904c179d8371a19e2adf61f95ca9"
+    },
+    {
+      "file": "rosa/completion.json",
+      "privateFile": "rosa/completion.json",
+      "privateSha256": "b0cc1d12332fbe69921d05ff2c236d74c198375970e7f2097fd07ef263444606",
+      "canonicalSha256": "170fe80fe35374bb15f588318460760f7dc8831ae70707e784ea0afaaf6d58cf",
+      "rawOriginal": "rosa/completion.json.original.txt",
+      "rawOriginalSha256": "b0cc1d12332fbe69921d05ff2c236d74c198375970e7f2097fd07ef263444606",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b0cc1d12332fbe69921d05ff2c236d74c198375970e7f2097fd07ef263444606",
+      "legacyOverlayMapSha256": "b0cc1d12332fbe69921d05ff2c236d74c198375970e7f2097fd07ef263444606"
+    },
+    {
+      "file": "rosa/completion.json.original.txt",
+      "privateFile": "rosa/completion.json",
+      "privateSha256": "b0cc1d12332fbe69921d05ff2c236d74c198375970e7f2097fd07ef263444606",
+      "canonicalSha256": "b0cc1d12332fbe69921d05ff2c236d74c198375970e7f2097fd07ef263444606",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "rosa/desktop/driver.out",
+      "privateFile": "rosa/desktop/driver.out",
+      "privateSha256": "0833727a1c121f5ed017e7a6af1e594c3cec05f7e280edc57de889552db7711d",
+      "canonicalSha256": "0833727a1c121f5ed017e7a6af1e594c3cec05f7e280edc57de889552db7711d",
+      "relation": "exact copy",
+      "overlayInputSha256": "0833727a1c121f5ed017e7a6af1e594c3cec05f7e280edc57de889552db7711d",
+      "legacyOverlayMapSha256": "0833727a1c121f5ed017e7a6af1e594c3cec05f7e280edc57de889552db7711d"
+    },
+    {
+      "file": "rosa/desktop/release-start.json",
+      "privateFile": "rosa/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "rosa/desktop/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "rosa/desktop/release-start.json.original.txt",
+      "privateFile": "rosa/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "rosa/desktop/wall-clock.jsonl",
+      "privateFile": "rosa/desktop/wall-clock.jsonl",
+      "privateSha256": "394542f6b561f77c3b1658f740634262ab3c08f20f4416ff431e0f5de99a7239",
+      "canonicalSha256": "394542f6b561f77c3b1658f740634262ab3c08f20f4416ff431e0f5de99a7239",
+      "relation": "exact copy",
+      "overlayInputSha256": "394542f6b561f77c3b1658f740634262ab3c08f20f4416ff431e0f5de99a7239",
+      "legacyOverlayMapSha256": "394542f6b561f77c3b1658f740634262ab3c08f20f4416ff431e0f5de99a7239"
+    },
+    {
+      "file": "rosa/director-method-qualification.json",
+      "privateFile": "rosa/director-method-qualification.json",
+      "privateSha256": "08993f6085ac972542179e57ed0ffa7b6657b86046b7c05799c9e349bbfd7dbc",
+      "canonicalSha256": "08993f6085ac972542179e57ed0ffa7b6657b86046b7c05799c9e349bbfd7dbc",
+      "relation": "exact copy",
+      "overlayInputSha256": "08993f6085ac972542179e57ed0ffa7b6657b86046b7c05799c9e349bbfd7dbc",
+      "legacyOverlayMapSha256": "08993f6085ac972542179e57ed0ffa7b6657b86046b7c05799c9e349bbfd7dbc"
+    },
+    {
+      "file": "rosa/dispatch.json",
+      "privateFile": "rosa/dispatch.json",
+      "privateSha256": "53be482d7fce2bfa612953b4b4e6169a5a15b3a6ff227656b0cbbcbfa3388dac",
+      "canonicalSha256": "53be482d7fce2bfa612953b4b4e6169a5a15b3a6ff227656b0cbbcbfa3388dac",
+      "relation": "exact copy",
+      "overlayInputSha256": "53be482d7fce2bfa612953b4b4e6169a5a15b3a6ff227656b0cbbcbfa3388dac",
+      "legacyOverlayMapSha256": "53be482d7fce2bfa612953b4b4e6169a5a15b3a6ff227656b0cbbcbfa3388dac"
+    },
+    {
+      "file": "rosa/history-source-map.json",
+      "privateFile": "rosa/history-source-map.json",
+      "privateSha256": "18997bf6e175d94f26548299156f2c3d14c7349f84068576ede4ec1d7d7a3a7d",
+      "canonicalSha256": "18997bf6e175d94f26548299156f2c3d14c7349f84068576ede4ec1d7d7a3a7d",
+      "relation": "exact copy",
+      "overlayInputSha256": "18997bf6e175d94f26548299156f2c3d14c7349f84068576ede4ec1d7d7a3a7d",
+      "legacyOverlayMapSha256": "18997bf6e175d94f26548299156f2c3d14c7349f84068576ede4ec1d7d7a3a7d"
+    },
+    {
+      "file": "rosa/own-history.original.md.txt",
+      "privateFile": "rosa/own-history.original.md.txt",
+      "privateSha256": "3b79aa6dba4160965f913991936c99e8a05c2896bfcb0dda4f1b5242981cceff",
+      "canonicalSha256": "3b79aa6dba4160965f913991936c99e8a05c2896bfcb0dda4f1b5242981cceff",
+      "relation": "exact copy",
+      "overlayInputSha256": "3b79aa6dba4160965f913991936c99e8a05c2896bfcb0dda4f1b5242981cceff",
+      "legacyOverlayMapSha256": "3b79aa6dba4160965f913991936c99e8a05c2896bfcb0dda4f1b5242981cceff"
+    },
+    {
+      "file": "rosa/phone/driver.out",
+      "privateFile": "rosa/phone/driver.out",
+      "privateSha256": "5c9d2e96b50ddfb07fbd05629317936c015cab964c87373ec483d5595420e371",
+      "canonicalSha256": "5c9d2e96b50ddfb07fbd05629317936c015cab964c87373ec483d5595420e371",
+      "relation": "exact copy",
+      "overlayInputSha256": "5c9d2e96b50ddfb07fbd05629317936c015cab964c87373ec483d5595420e371",
+      "legacyOverlayMapSha256": "5c9d2e96b50ddfb07fbd05629317936c015cab964c87373ec483d5595420e371"
+    },
+    {
+      "file": "rosa/phone/release-start.json",
+      "privateFile": "rosa/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "rosa/phone/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "rosa/phone/release-start.json.original.txt",
+      "privateFile": "rosa/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "rosa/phone/wall-clock.jsonl",
+      "privateFile": "rosa/phone/wall-clock.jsonl",
+      "privateSha256": "975b3896674452ec9671a5fa1a876a1596f63c6c369be5f96ef2ce54be62f0be",
+      "canonicalSha256": "975b3896674452ec9671a5fa1a876a1596f63c6c369be5f96ef2ce54be62f0be",
+      "relation": "exact copy",
+      "overlayInputSha256": "975b3896674452ec9671a5fa1a876a1596f63c6c369be5f96ef2ce54be62f0be",
+      "legacyOverlayMapSha256": "975b3896674452ec9671a5fa1a876a1596f63c6c369be5f96ef2ce54be62f0be"
+    },
+    {
+      "file": "rosa/report.md",
+      "privateFile": "rosa/report.md",
+      "privateSha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0",
+      "canonicalSha256": "978e37007040c4b25d1cd11ba91c6a369458935ea6384225768dc2531eebeee5",
+      "rawOriginal": "rosa/report.original.md.txt",
+      "rawOriginalSha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0",
+      "legacyOverlayMapSha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0"
+    },
+    {
+      "file": "rosa/report.original.md.txt",
+      "privateFile": "rosa/report.original.md.txt",
+      "privateSha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0",
+      "canonicalSha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0",
+      "relation": "exact copy",
+      "overlayInputSha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0",
+      "legacyOverlayMapSha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0"
+    },
+    {
+      "file": "rosa/validation.json",
+      "privateFile": "rosa/validation.json",
+      "privateSha256": "8e296407b6dd3290193268a2827215d4ce5d65748279096392c68ef54dce7dc8",
+      "canonicalSha256": "8e296407b6dd3290193268a2827215d4ce5d65748279096392c68ef54dce7dc8",
+      "relation": "exact copy",
+      "overlayInputSha256": "8e296407b6dd3290193268a2827215d4ce5d65748279096392c68ef54dce7dc8",
+      "legacyOverlayMapSha256": "8e296407b6dd3290193268a2827215d4ce5d65748279096392c68ef54dce7dc8"
+    },
+    {
+      "file": "screenshots-manifest.json",
+      "privateFile": "screenshots-manifest.json",
+      "privateSha256": "249e747f8e51c8584e34f8853af830d888656abdffed1f21847991985c517b4b",
+      "canonicalSha256": "709ddfe708dd5b9595b20e4934e75a4f0b69f2ca2e7eb1937872618082f56b0c",
+      "rawOriginal": "screenshots-manifest.json.original.txt",
+      "rawOriginalSha256": "249e747f8e51c8584e34f8853af830d888656abdffed1f21847991985c517b4b",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "249e747f8e51c8584e34f8853af830d888656abdffed1f21847991985c517b4b",
+      "legacyOverlayMapSha256": "249e747f8e51c8584e34f8853af830d888656abdffed1f21847991985c517b4b"
+    },
+    {
+      "file": "screenshots-manifest.json.original.txt",
+      "privateFile": "screenshots-manifest.json",
+      "privateSha256": "249e747f8e51c8584e34f8853af830d888656abdffed1f21847991985c517b4b",
+      "canonicalSha256": "249e747f8e51c8584e34f8853af830d888656abdffed1f21847991985c517b4b",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "sonia/brief.original.md.txt",
+      "privateFile": "sonia/brief.original.md.txt",
+      "privateSha256": "9047104c6dafee8911cbfcfd65d25db84941068c149db4406ad898ebfb5ed04f",
+      "canonicalSha256": "9047104c6dafee8911cbfcfd65d25db84941068c149db4406ad898ebfb5ed04f",
+      "relation": "exact copy",
+      "overlayInputSha256": "9047104c6dafee8911cbfcfd65d25db84941068c149db4406ad898ebfb5ed04f",
+      "legacyOverlayMapSha256": "9047104c6dafee8911cbfcfd65d25db84941068c149db4406ad898ebfb5ed04f"
+    },
+    {
+      "file": "sonia/completion.json",
+      "privateFile": "sonia/completion.json",
+      "privateSha256": "a029b8e6bbc91194a02dfc62813658df46ba4c82dceeb9b1275dfd4e5afd91c8",
+      "canonicalSha256": "28c1ca895480be174688ac33d8f48f4dcfb8bec0e88ee2eb3d2f5540914b5580",
+      "rawOriginal": "sonia/completion.json.original.txt",
+      "rawOriginalSha256": "a029b8e6bbc91194a02dfc62813658df46ba4c82dceeb9b1275dfd4e5afd91c8",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "a029b8e6bbc91194a02dfc62813658df46ba4c82dceeb9b1275dfd4e5afd91c8",
+      "legacyOverlayMapSha256": "a029b8e6bbc91194a02dfc62813658df46ba4c82dceeb9b1275dfd4e5afd91c8"
+    },
+    {
+      "file": "sonia/completion.json.original.txt",
+      "privateFile": "sonia/completion.json",
+      "privateSha256": "a029b8e6bbc91194a02dfc62813658df46ba4c82dceeb9b1275dfd4e5afd91c8",
+      "canonicalSha256": "a029b8e6bbc91194a02dfc62813658df46ba4c82dceeb9b1275dfd4e5afd91c8",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "sonia/desktop/driver.out",
+      "privateFile": "sonia/desktop/driver.out",
+      "privateSha256": "a3af8ebe17a3cfc89d73dc9c85daea5a2bdf89f3ca885ce9d0f249c43e17191c",
+      "canonicalSha256": "a3af8ebe17a3cfc89d73dc9c85daea5a2bdf89f3ca885ce9d0f249c43e17191c",
+      "relation": "exact copy",
+      "overlayInputSha256": "a3af8ebe17a3cfc89d73dc9c85daea5a2bdf89f3ca885ce9d0f249c43e17191c",
+      "legacyOverlayMapSha256": "a3af8ebe17a3cfc89d73dc9c85daea5a2bdf89f3ca885ce9d0f249c43e17191c"
+    },
+    {
+      "file": "sonia/desktop/release-start.json",
+      "privateFile": "sonia/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "sonia/desktop/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "sonia/desktop/release-start.json.original.txt",
+      "privateFile": "sonia/desktop/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "sonia/desktop/wall-clock.jsonl",
+      "privateFile": "sonia/desktop/wall-clock.jsonl",
+      "privateSha256": "d778e8a3b3f13459a282331148030644f88663672967a452dc567ba5f59138b5",
+      "canonicalSha256": "d778e8a3b3f13459a282331148030644f88663672967a452dc567ba5f59138b5",
+      "relation": "exact copy",
+      "overlayInputSha256": "d778e8a3b3f13459a282331148030644f88663672967a452dc567ba5f59138b5",
+      "legacyOverlayMapSha256": "d778e8a3b3f13459a282331148030644f88663672967a452dc567ba5f59138b5"
+    },
+    {
+      "file": "sonia/dispatch.json",
+      "privateFile": "sonia/dispatch.json",
+      "privateSha256": "1a1a98b484d397fd4d537194f976eb19ea3b57ce401fef3b7df56a39ff035f78",
+      "canonicalSha256": "1a1a98b484d397fd4d537194f976eb19ea3b57ce401fef3b7df56a39ff035f78",
+      "relation": "exact copy",
+      "overlayInputSha256": "1a1a98b484d397fd4d537194f976eb19ea3b57ce401fef3b7df56a39ff035f78",
+      "legacyOverlayMapSha256": "1a1a98b484d397fd4d537194f976eb19ea3b57ce401fef3b7df56a39ff035f78"
+    },
+    {
+      "file": "sonia/history-source-map.json",
+      "privateFile": "sonia/history-source-map.json",
+      "privateSha256": "348aca527a61b0614e026b14107e630f9f3e533a3f88cbf3cf670df2a7b7d634",
+      "canonicalSha256": "348aca527a61b0614e026b14107e630f9f3e533a3f88cbf3cf670df2a7b7d634",
+      "relation": "exact copy",
+      "overlayInputSha256": "348aca527a61b0614e026b14107e630f9f3e533a3f88cbf3cf670df2a7b7d634",
+      "legacyOverlayMapSha256": "348aca527a61b0614e026b14107e630f9f3e533a3f88cbf3cf670df2a7b7d634"
+    },
+    {
+      "file": "sonia/own-history.original.md.txt",
+      "privateFile": "sonia/own-history.original.md.txt",
+      "privateSha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "canonicalSha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "relation": "exact copy",
+      "overlayInputSha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "legacyOverlayMapSha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9"
+    },
+    {
+      "file": "sonia/phone/driver.out",
+      "privateFile": "sonia/phone/driver.out",
+      "privateSha256": "6aafe6e23fa88a26acc590504f82f654d0b5ee875fcc60654c99643440e68632",
+      "canonicalSha256": "6aafe6e23fa88a26acc590504f82f654d0b5ee875fcc60654c99643440e68632",
+      "relation": "exact copy",
+      "overlayInputSha256": "6aafe6e23fa88a26acc590504f82f654d0b5ee875fcc60654c99643440e68632",
+      "legacyOverlayMapSha256": "6aafe6e23fa88a26acc590504f82f654d0b5ee875fcc60654c99643440e68632"
+    },
+    {
+      "file": "sonia/phone/release-start.json",
+      "privateFile": "sonia/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "6c37537e65e0c90b63474131d84ad287db333207cbf4c52176eb75c4ccee807b",
+      "rawOriginal": "sonia/phone/release-start.json.original.txt",
+      "rawOriginalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "legacyOverlayMapSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "file": "sonia/phone/release-start.json.original.txt",
+      "privateFile": "sonia/phone/release-start.json",
+      "privateSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "canonicalSha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "sonia/phone/wall-clock.jsonl",
+      "privateFile": "sonia/phone/wall-clock.jsonl",
+      "privateSha256": "c303e2a3b2e492ffb8c930e176d6e1b8723618aa61089fe22440131b0a0c111c",
+      "canonicalSha256": "c303e2a3b2e492ffb8c930e176d6e1b8723618aa61089fe22440131b0a0c111c",
+      "relation": "exact copy",
+      "overlayInputSha256": "c303e2a3b2e492ffb8c930e176d6e1b8723618aa61089fe22440131b0a0c111c",
+      "legacyOverlayMapSha256": "c303e2a3b2e492ffb8c930e176d6e1b8723618aa61089fe22440131b0a0c111c"
+    },
+    {
+      "file": "sonia/report.md",
+      "privateFile": "sonia/report.md",
+      "privateSha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3",
+      "canonicalSha256": "9c739ca700e6b9f0d824863e7e866dc5cbb6ca0a218ad61e7b08aeb9f2df04b4",
+      "rawOriginal": "sonia/report.original.md.txt",
+      "rawOriginalSha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3",
+      "legacyOverlayMapSha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3"
+    },
+    {
+      "file": "sonia/report.original.md.txt",
+      "privateFile": "sonia/report.original.md.txt",
+      "privateSha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3",
+      "canonicalSha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3",
+      "relation": "exact copy",
+      "overlayInputSha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3",
+      "legacyOverlayMapSha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3"
+    },
+    {
+      "file": "sonia/validation.json",
+      "privateFile": "sonia/validation.json",
+      "privateSha256": "ffd4e9ca44e1c59cfb9c4e2ef8b51a5cb37cbe71b21d7a65f01123a79ef94fbd",
+      "canonicalSha256": "5eb92be12ce799c8ebc662dec29e0e6d2a08601c4602485df42c460e42665b45",
+      "rawOriginal": "sonia/validation.json.original.txt",
+      "rawOriginalSha256": "ffd4e9ca44e1c59cfb9c4e2ef8b51a5cb37cbe71b21d7a65f01123a79ef94fbd",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "ffd4e9ca44e1c59cfb9c4e2ef8b51a5cb37cbe71b21d7a65f01123a79ef94fbd",
+      "legacyOverlayMapSha256": "ffd4e9ca44e1c59cfb9c4e2ef8b51a5cb37cbe71b21d7a65f01123a79ef94fbd"
+    },
+    {
+      "file": "sonia/validation.json.original.txt",
+      "privateFile": "sonia/validation.json",
+      "privateSha256": "ffd4e9ca44e1c59cfb9c4e2ef8b51a5cb37cbe71b21d7a65f01123a79ef94fbd",
+      "canonicalSha256": "ffd4e9ca44e1c59cfb9c4e2ef8b51a5cb37cbe71b21d7a65f01123a79ef94fbd",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "source-map.json",
+      "privateFile": "source-map.json",
+      "privateSha256": "b38085d4f4c530171efefe5c3cb5be0b44a1f54c01ec104b390899d9205b14fc",
+      "canonicalSha256": "f2eb8a9ddc060fe9780c62a7dbc450b2777a9156196ff808662a5b64e1ba93b1",
+      "rawOriginal": "source-map.json.original.txt",
+      "rawOriginalSha256": "b38085d4f4c530171efefe5c3cb5be0b44a1f54c01ec104b390899d9205b14fc",
+      "relation": "readable formatting view; exact source in rawOriginal",
+      "overlayInputSha256": "b38085d4f4c530171efefe5c3cb5be0b44a1f54c01ec104b390899d9205b14fc",
+      "legacyOverlayMapSha256": "b38085d4f4c530171efefe5c3cb5be0b44a1f54c01ec104b390899d9205b14fc"
+    },
+    {
+      "file": "source-map.json.original.txt",
+      "privateFile": "source-map.json",
+      "privateSha256": "b38085d4f4c530171efefe5c3cb5be0b44a1f54c01ec104b390899d9205b14fc",
+      "canonicalSha256": "b38085d4f4c530171efefe5c3cb5be0b44a1f54c01ec104b390899d9205b14fc",
+      "relation": "exact pre-view source snapshot"
+    },
+    {
+      "file": "source-packet-sha256.original.json.txt",
+      "privateFile": "sha256.json",
+      "privateSha256": "ab6f32c0b9fda450e1302173d5e9155f6c5761f531982c9bdf18f20655f5c759",
+      "canonicalSha256": "ab6f32c0b9fda450e1302173d5e9155f6c5761f531982c9bdf18f20655f5c759",
+      "relation": "exact copy under renamed source-epoch snapshot name",
+      "overlayInputSha256": "ab6f32c0b9fda450e1302173d5e9155f6c5761f531982c9bdf18f20655f5c759",
+      "legacyOverlayMapSha256": "ab6f32c0b9fda450e1302173d5e9155f6c5761f531982c9bdf18f20655f5c759"
+    },
+    {
+      "file": "validate-quotes.py",
+      "privateFile": "validate-quotes.py",
+      "privateSha256": "938d566dacd0e2e0ceadfc8455278e4c540f9b1d754b0b8072892ef32106ef12",
+      "canonicalSha256": "938d566dacd0e2e0ceadfc8455278e4c540f9b1d754b0b8072892ef32106ef12",
+      "relation": "exact copy",
+      "overlayInputSha256": "938d566dacd0e2e0ceadfc8455278e4c540f9b1d754b0b8072892ef32106ef12",
+      "legacyOverlayMapSha256": "938d566dacd0e2e0ceadfc8455278e4c540f9b1d754b0b8072892ef32106ef12"
+    }
+  ],
+  "excluded": [],
+  "directorCheckpoint": "2026-10-31T09:06:04.589439+00:00"
+}

@@ -1,0 +1,32 @@
+{
+  "time": "2026-10-31T08:16:20.467941+00:00",
+  "emptyHistory": true,
+  "ownDeviceGapSeconds": 2.006,
+  "driverErrors": [
+    {
+      "device": "desktop",
+      "elapsed_s": 166.745,
+      "op": "tap",
+      "error": "Skip to 11:52 \u00b7 Someone will bring news from outside Good Hands is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+      "op_ms": 286
+    },
+    {
+      "device": "desktop",
+      "elapsed_s": 214.429,
+      "op": "tap",
+      "error": "Skip to 14:00 \u00b7 A family is due to call is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+      "op_ms": 355
+    }
+  ],
+  "limits": [
+    "Two early pulses179.1/177.8 retained; firstminute111.7 is late valid, not proof uninterruptedgameplay duration.",
+    "An hour ago language is inaccurate against raw devicegap; own seconddevice only, not independent revisit a later evening.",
+    "Kept numbers absent in desktop search, found on phone when card closed; preserve discovery and still wants list alongside card.",
+    "Different bad references concern different people/traits/knowledge state; do not force equal belief or certainty. New blockinglead is explanation, actual cause source inspection.",
+    "Cold likes rent covered early; Diego dislikes it. Keep disagreement, no automatic economy or clock retune.",
+    "PaceSlow found late is visibility ask, not changing default speed.",
+    "No trial outcome, laterweek/day or global replayvariety established.",
+    "Task-line tap/timejump cause unknown and model/tool latency qualified.",
+    "Actual endmarker absent in currentcoldhistory but emptyone line fullread verified."
+  ]
+}

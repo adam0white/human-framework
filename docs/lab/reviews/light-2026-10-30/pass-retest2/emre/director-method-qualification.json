@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-31T07:12:59.150229+00:00",
+  "person": "Emre Kaya",
+  "actualHistoryLines": 907,
+  "reportedReadThrough": 598,
+  "qualification": "Producer says read in chunks to end598 and did not read beyond598. If actual file is longer, retain actual unread tail; do not claim whole-file read. Earlier own Pass retest is near front; published R1 and later sections may be later. Desktop first_minute50.7s is premature, not a valid60s checkpoint. Phone deliberately retained a cover already refused; preserve known cause and difficulty. Persistent-run Resume not tested; in-game Resume used after menu is not evidence of saved-run absence.",
+  "producerReportUnchanged": true
+}

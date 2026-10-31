@@ -1,0 +1,116 @@
+Both sessions are finished, so here is the full report.
+
+# Hearsay retest: Rosa Alvarez
+
+**Would you return voluntarily?** "I would come back another evening on the big screen, now that the lists work and the bread goal is on the first screen, but only if the game says why someone is 'busy' when they are sitting right there. I would not leave it running, and on the phone I would not return only to wait."
+
+**Ranked asks**
+1. Say why a person is "busy" when they are at the garden, and when they will be free.
+2. Say when people come back after the garden empties, not only what I can do meanwhile.
+3. Keep the long "Pace: Automatic…" sentence short. It repeats on every screen and I skip it.
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, 62, busy second-language reader.
+- **Exposure:** retest. Round light-1031-hearsay-retest1, free stop (floor 0).
+- **History read:** lines 1–826 of 1419 in own-history.md. That covers my Well return, Warren, Pass, Good Hands, Glance, Rope, my earlier Hearsay report and the start of Stairwell. **Lines 827–1419 are unread.** I claim no memory from them.
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 phone, port 22506, about 108 s at the stop.
+- **Session B:** 1280x800 desktop, port 22507, about 74 s at the stop.
+- I changed no consent or recording setting, typed no note and pressed no Submit.
+- **Recognition:** I knew the title, the goal and Rıza's doorway-photograph secret from my last visit. Cue: same first screen and same line, "Rıza keeps doorway sketches and photographs".
+
+## 2. First impressions
+
+- **A, 0.5 s:** the same clear title.
+- **A, 4.5 s:** a new line on the first screen: "Next: Day 4 at 12:00. Rıza and Osman offer the bread and produce order… Nothing can be ordered before then." This answers my old bread question.
+- **A, 62 s:** the garden emptied. The screen now says "Nobody else is at the garden now. You can pour tea, read the Garden record, tap a name to see where that person is, or change the pace."
+- **B, 3.6 s:** the "Talk about someone else" heading opened when I tapped it. The Who? and What? lists took my choices.
+
+## 3. Verbatim diary lines (elapsed seconds)
+
+**Session A (phone)**
+- 4.475: "I know this title from last time. Same goal, Day 13 lunch."
+- 6.675: "New: a Next line says Day 4 at 12:00 bread offer, nothing can be ordered before. That answers my old question about the bread. I talk to Riza."
+- 7.972: "Fifteen minutes, clear. I let it finish."
+- 9.243: "Same kind secret as before. I keep it private and offer help."
+- 35.751: "Waiting to see if the garden empties again and what the game tells me."
+- 37.174: "Everyone is still here this time. I try Derya."
+- 39.976: "Derya is busy, and it says so plainly. Good. I try Dilan."
+- 62.476: "Two people busy now. I wait a bit."
+- 64.498 first_minute (engagement 3, Day 1 08:11): "I understand: tea garden, talk to people, keep private things private, bread offer on Day 4. Now the garden is empty, but the game says what I can do: pour tea, read record, tap a name, change pace. That is new and helps. I still do not know when they come back."
+- 65.959: "I try Fast to see when people come back."
+- 98.645: "Derya is back. Better than last time: someone returned within a minute."
+- 102.225 want_quit CONFUSED (Day 1 14:57): "Derya is at the garden but busy again, and it does not say why or for how long. Three refusals now (Derya, Dilan, Derya). I do not know what makes someone busy. I read no sentence twice, but I cannot act. I will check the menu and stop."
+- 108.238 stop CONFUSED (engagement 3, Day 1 15:00): "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone."
+
+**Session B (desktop)**
+- 2.319: "Second visit, big screen. Same title. This time I try Talk about someone else properly."
+- 3.633: "Last time this looked like a button but was a folded heading. I try it again."
+- 5.212: "The folded heading opened. I choose Osman in the Who? list, which failed last time."
+- 8.485: "Both lists now take my choice. I only ask what Riza has heard about Osman honesty; I accuse no one."
+- 13.719: "I have no real reason to praise Osman yet, but I want to see what the game says. A kind claim seems harmless."
+- 47.537: "That answer was short and clear. I wait to see the empty garden on the big screen."
+- 66.676 first_minute (engagement 3, Day 1 07:02): "Big screen is easy. The goal and Day 4 bread offer are at the top in bold. The Who? and What? lists now work and Riza answered plainly. I understand: talk, ask what people heard, be careful with claims. No reread yet."
+- 73.576 stop BORED (engagement 3, Day 1 07:06): "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen."
+
+Every `reaction` string was sent with its tap, wait or log op. The elapsed seconds above are the driver's. The `[sic]` timing note: the two `first_minute` logs were sent after 60 s (64.5 s and 66.7 s).
+
+## 4. Moments
+
+- **Held me:** the "Next: Day 4 at 12:00…" line, Rıza's gentle secret again, and the plain "Derya is busy right now. You can try again later." message. On the desktop, "You tell Rıza: 'Osman is honest.' You have not proved this." was short and honest.
+- **Lost me:** Derya at the garden but "busy" twice, and Dilan "busy", with no reason. The invitation button looked normal each time, so I tapped and was refused.
+- **Quit wishes:** A, 102 s, CONFUSED. It did not pass. B ended BORED at 73.6 s, with no want_quit.
+- **Pulses:** none. Neither session reached 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:** the Day 4 line, the "busy… try again later" message, the empty-garden hint, the folded heading opening and the lists working.
+- **Unclear:**
+  - What makes a person "busy" while sitting at the garden.
+  - "Hatice has not noticed enough to describe Rıza's condition" (still unexplained, as before).
+  - The long "Pace: Automatic… The clock is slowed to 1 game minute a second because…" paragraph. It changes wording on every tap and I did not read it fully. I did not reread it, so it did not count against my quit rule.
+- **Rereads:** none required.
+
+| Screen and purpose          | New concepts (list every one)                                                                                                                                                                                                                                    | Concept count | Sentences reread (verbatim) | Reason                     |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------- | -------------------------- |
+| Title (A, B)                | Hearsay; tea garden; paid workers' lunch Day 13; How to play; Begin; Feedback; Fullscreen; All games; People across games; Recording checkbox; Other ways to begin; Lab privacy; Debug                                                                           | 13            | none                        | Known from last visit      |
+| Garden at 06:00 (A, B)      | Day and clock; Game menu; lunch line (bread, produce, cooking, 0/4 meals); Next: Day 4 12:00; lira; Pace Automatic with Pause/Slow/Normal/Fast; eight people; Condition; quiet conversation; press for details; talk about someone else; pour tea; Garden record | 14            | none                        | Next line is new and clear |
+| Conversation (A)            | fifteen-minute talk; let finish; leave                                                                                                                                                                                                                           | 3             | none                        | Clear                      |
+| After the talk (A)          | About Rıza; keep private; repeat at another table                                                                                                                                                                                                                | 3             | none                        | Clear                      |
+| Busy refusal (A)            | "busy right now"; "This choice was not made"                                                                                                                                                                                                                     | 2             | none                        | Reason for busy is missing |
+| Empty garden (A)            | benches empty; tap a name for location; people away or sleeping                                                                                                                                                                                                  | 3             | none                        | Hint is helpful            |
+| Talk about someone else (B) | Who? list; What? list (promises, honesty, kindness, generosity); Ask what they have heard; positive claim; damaging claim; withdraw accusation; claim is not proof                                                                                               | 7             | none                        | Clear once open            |
+| Game menu (A, B)            | clock paused; Resume; Use automatic pace; New game; Download this run                                                                                                                                                                                            | 5             | none                        | Ignored                    |
+| Feedback (A, B)             | keep playing / not sure / stop here; stopping / confused; note; name; what is sent; Not now; Submit                                                                                                                                                              | 8             | none                        | Same as before             |
+
+## 6. Device use
+
+- **Phone screenshot viewed:** `phone/a-001.png`, the title page. I saw the heading, the goal sentence, Begin, Feedback and Fullscreen in a row, the Recording checkbox and the record notice. Text was readable.
+- **Desktop screenshots viewed:** `desktop/b-001.png` shows the title in a wide left-aligned column with the notice across the bottom. `desktop/b-002.png` shows the game page scrolled so the top bar was cut off. I saw the bold "Next" line, the Pace paragraph, the 4x2 people grid and Rıza's card with Osman's honesty answer. It was easy to read.
+- **Phone controls used:** Begin, Invite a quiet conversation, Let the conversation finish, Offer practical help, name buttons (Derya, Dilan), Fast, Game menu, Feedback, I'm confused, Not now.
+- **Desktop controls used:** Begin, Talk about someone else (tap by text), Who? select, What? select, Ask what they have heard, Make a positive claim, Game menu, Feedback, I'm stopping, Not now.
+- **Unseen:** the phone game layout in a picture. I viewed only the title there.
+- **Driver trouble:** none. The selects that timed out last time worked on the first try.
+
+## 7. Stop and return
+
+- **A stop (108.2 s, CONFUSED):** "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone."
+- **B stop (73.6 s, BORED):** "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen."
+- **Feedback:** I opened Game menu then Feedback on both devices. Both "I'm confused" and "I'm stopping" were offered. I pressed "I'm confused" on the phone and "I'm stopping" on the desktop; each showed as pressed. I pressed Not now, typed nothing and pressed no Submit.
+- **Would you return voluntarily?** Yes, another evening, on the big screen only, to see the bread offer on Day 4 and what happens to Rıza and Derya. I would want a reason when someone is "busy" while sitting at the garden. On the phone I would not return only to wait. I would not leave it running, because I would not know what I missed while the clock moves.
+
+## 8. Changes I would want
+
+1. Say why a person is busy, and when they will be free.
+2. Say when people return after the garden empties.
+3. Shorten the "Pace" sentence.
+
+## 9. Compared with my last Hearsay visit
+
+- **Ask 1, say what I can do when everyone has left:** partly met. The screen now says "You can pour tea, read the Garden record, tap a name to see where that person is, or change the pace." It still does not say when people return. On Fast, Derya came back within about a minute of real time.
+- **Ask 2, put the bread and produce goal on the first screen:** met. "Next: Day 4 at 12:00. Rıza and Osman offer the bread and produce order… Nothing can be ordered before then." is on the first screen in both sessions. I did not reach Day 4, so I cannot say how the order itself works.
+- **Ask 3, make "Talk about someone else" clearly a folded heading and make the lists work:** partly met. On the desktop the lists took my choice on the first try, and tapping the heading by text opened it. I still think the heading does not look like a button or a heading. I did not check the phone.
+- **New blocker, from what I reached:** "Derya is busy right now… This choice was not made" three times in about a minute. Derya was sitting at the garden, and nothing said why or for how long.
+
+No repo touched; no worktree of mine remains.

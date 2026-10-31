@@ -1,0 +1,95 @@
+**Would you return:** Yes, one more evening, to see what Day 2 does with the secrets I kept and the one I told. It would have to stay as clear as this visit about who hears what. I would not leave it running.
+
+**Ranked asks:**
+1. Give the garden something for me to do when everyone has left. On the phone at 08:46 it was empty, and my only options were pouring tea or waiting.
+2. Stop repeating the goal paragraph in the Garden record. On desktop it showed twice in a row, once in the "Goal" heading block and again as the first "Everything you heard" entry.
+3. Let me pick the listener myself on "Repeat this at another table". The game now names the listener and the claim before I tap, but it still chooses them.
+
+## 1. Session
+- Persona: Maya Chen. Exposure: retest. Round light-1031-hearsay-retest1, free stop (floor 0).
+- History read: own-history.md lines 1–349 of the file. Anything after line 349 was not read. This covers my earlier Hearsay report (visible as lines 234–348), my Pass report and the Well and Warren records.
+- URL: https://hearsay.adamwhite.work/?labRunSource=agent (build 4.12.0).
+- Phone: 360x690 touch, light, port 22500. About 72 s by the driver clock.
+- Desktop: 1280x800 keyboard and mouse, light, port 22501. About 23 s.
+- Recording stayed on. I touched no consent setting. Both sessions ended well under the 20-minute ceiling.
+
+## 2. First impressions
+- **Phone, 2.6 s:** The title was the same clean page as before. There is no lore wall.
+- **Phone, 7.8 s:** I was in Rıza's quiet talk and got the same doorway-sketches secret.
+- **Phone, 9.5 s:** On "Repeat this at another table" I could read the plan before tapping. It said I would tell Derya "Rıza is not kind."
+- **Phone, ~13 s:** Ece's refusal appeared right by the button as "Ece chooses to keep this private for now."
+- **Desktop, 8 s:** Osman's secret was a kept repair deposit. Last time his secret was an invoice (8 crates counted, 10 written). I noticed the difference.
+
+## 3. Verbatim diary
+These are my raw lines in order. Elapsed seconds come from the driver. Lines marked "reaction" went out as a reaction field on a tap. The driver logged them with the op's next stamp, so those times are approximate.
+
+**Phone**
+- ~4.9 s: "Same clean title as before. Beginning."
+- ~6.5 s: "Same opening as before. Quiet talk with Riza."
+- ~9.9 s: "New: it now says I would tell Derya Riza is not kind, before I tap. That was my first ask. Trying it anyway to see who reacts."
+- ~11.9 s: "The result showed right at the top, who heard and what was said, and Riza lost trust. Clear. Checking Ece, whose refusal had no reason last time."
+- ~15.5 s: "Ece refusal now appears at once: keeps this private for now. A reason-ish line, in place. Better. Going to Derya."
+- ~20.5 s: "Derya story is a real one, a letter about training and a reported error. I will keep this one and help."
+- 63.8 s, first_minute (Day 1 08:46): "Talking within seconds again. The game now says who I would tell and what I would say before I tap Repeat, and Ece refusal showed in place. Then everyone left and the garden is empty at 08:46, nothing for me to do but pour tea."
+- ~65.8 s: "Seen the loop again and the garden is empty. I would stop and try desktop."
+- 71.9 s, stop, TASTE, engagement 3 (Day 1 09:01): "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop."
+
+**Desktop**
+- ~3.8 s: "Desktop, same evening. This time I will try someone other than Riza first: Osman."
+- ~10.3 s: "A different Osman secret from last time, a kept repair deposit, not the invoice. Keeping it private and watching who reacts."
+- ~14.2 s: "Record is short this early, though the goal sentence shows twice in a row."
+- 22.7 s, stop, TASTE, engagement 3 (Day 1 06:26): "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now."
+
+## 4. Moments
+- **Held me:**
+  - The line "If you repeat this, you tell Derya: 'Rıza is not kind.'" before I tapped.
+  - The result at the top of the panel. It named who heard it and said Rıza stopped trusting me.
+  - Ece's refusal in place.
+  - A different Osman secret on desktop.
+- **Lost me:**
+  - Between 52 s and 63 s on the phone the garden emptied. All seven people left and the clock ran on. I had nothing to act on except pouring tea.
+  - The goal paragraph repeated in the record.
+  - I recognised the loop quickly.
+- **Quit wishes:** I logged no separate want_quit. Both stops carry TASTE. Neither passed.
+- **Pulses:** None. The phone session ended at 72 s and the desktop session at 23 s, both before elapsed_s 180. The pulse checkpoint is untested.
+- **First minute:** Logged on the phone at 63.8 s. The desktop session ended before 60 s, so I logged none there.
+
+## 5. Confusion and clarity
+- **Clear:**
+  - Who would hear a repeated secret and what I would say.
+  - The cost of repeating one.
+  - Refusals appearing in place.
+  - The line "The clock is slowed… because you tapped in the last 15 seconds".
+- **Unclear:**
+  - After I helped Derya the clock ran on by itself. It jumped from 06:45 to 08:05 during one 30-second wait. People left for deliveries and appointments, and I had no warning.
+  - "Sit and talk again" turned disabled once Derya left. The label did not say why.
+  - Whether Derya's move to "sleeping at the temporary lodging" was my doing or just her schedule. I am guessing the schedule.
+
+## 6. Device use
+- **Screenshots viewed (all with Read):**
+  - Phone a-001.png (title): single cream column with a "Hearsay" heading and the premise. "Begin / Feedback / Fullscreen" sit in a row, with the Recording checkbox checked and a boxed banner below. I saw no clipped text.
+  - Phone a-002.png (in play): the Derya panel with "Sit and talk again" greyed out and "Pour tea without sharing news" below. The text was readable and uncovered.
+  - Desktop b-001.png (title): the same content in a left-aligned column with a large heading. It looked clean.
+  - Desktop b-002.png (in play): a 4x2 grid of person cards on the left with the Osman panel on the right, and the Garden record opened below. Readable.
+- **Manual screenshots:** two on the phone and two on the desktop.
+- **Controls used:**
+  - Phone: Begin, person cards, "Invite a quiet conversation", "Let the conversation finish", "Repeat this at another table", "Press for private details", "Offer practical help and keep this private", wait, Game menu, Feedback, "I'm stopping", "Not now".
+  - Desktop: Begin, Osman card, "Invite a quiet conversation", "Let the conversation finish", "Keep this private", Garden record, Game menu, Feedback, "I'm stopping", "Not now".
+- **Unseen:**
+  - I did not look at the phone with the Garden record open.
+  - I did not use keyboard keys on desktop.
+  - I did not look at the phone layout while a speech panel was showing a reply.
+- **Feedback on both devices:** I pressed "I'm stopping" (it became pressed), then "Not now". I typed nothing, pressed no Submit and left consent alone. No error appeared.
+
+## 7. Stop and return
+- **Phone (TASTE, 71.9 s):** "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop."
+- **Desktop (TASTE, 22.7 s):** "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now."
+- **Would you return voluntarily?** Yes, one more evening. I would come to see what Day 2 does with the secrets I kept and the one I told. I would also come because the game now says who hears what before I tap. I would stop coming back if Day 1 turns out to be the same stories every time, or if the garden keeps emptying while I have nothing to do. I would not leave it running. Another evening is the way back, because I learn nothing from watching the clock.
+
+## 9. Compared with my last visit
+- **Ask 1, choose who I repeat a secret to and what I say:** Partly met. The game now shows the listener and the claim before I tap ("you tell Derya: 'Rıza is not kind.'"). But it still picks both. I cannot change either.
+- **Ask 2, show refusals and "not now" answers beside the button, with a reason:** Met for what I saw. Ece's refusal appeared at once as "Ece chooses to keep this private for now." Last time it said "This person cannot do this now. Try again later." with no reason. I did not see a refusal appear only in the record this time.
+- **Ask 3, shorten the Garden record and remove off-topic lines:** Partly met. Early on the record is short and I saw nothing off-topic. The goal paragraph still shows twice at the top. I did not reach Day 4, so I cannot say whether it grows long again.
+- **New blocker from what I reached:** None that stopped me. The empty garden on the phone at 08:46 left me with nothing to do, and that is why I stopped there.
+
+No repo touched; no worktree of mine remains.

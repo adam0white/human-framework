@@ -1,0 +1,1633 @@
+{
+ "validator": "validate-quotes.py",
+ "checks": 406,
+ "failed": 0,
+ "failures": [],
+ "results": [
+  {
+   "check": "maya report.md equals report.original.md.txt bytes",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.md maya primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.original.md.txt maya primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.md maya laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.original.md.txt maya laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.md maya ask1",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.original.md.txt maya ask1",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.md maya ask2",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.original.md.txt maya ask2",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.md maya ask3",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.original.md.txt maya ask3",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.md maya ask1 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.original.md.txt maya ask1 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.md maya ask2 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.original.md.txt maya ask2 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.md maya ask3 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in maya/report.original.md.txt maya ask3 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "maya has three ranked asks",
+   "ok": true
+  },
+  {
+   "check": "maya primaryReturn is in the opening block",
+   "ok": true
+  },
+  {
+   "check": "maya asks are in the opening block",
+   "ok": true
+  },
+  {
+   "check": "emre report.md equals report.original.md.txt bytes",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre ask1",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre ask1",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre ask2",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre ask2",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre ask3",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre ask3",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre ask1 Later wording (section 5)",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre ask1 Later wording (section 5)",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre ask1 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre ask1 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre ask2 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre ask2 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.md emre ask3 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in emre/report.original.md.txt emre ask3 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "emre has three ranked asks",
+   "ok": true
+  },
+  {
+   "check": "emre primaryReturn is in the opening block",
+   "ok": true
+  },
+  {
+   "check": "emre asks are in the opening block",
+   "ok": true
+  },
+  {
+   "check": "diego report.md equals report.original.md.txt bytes",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask1",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask1",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask2",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask2",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask3",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask3",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask1 Later wording (section 8)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask1 Later wording (section 8)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask1 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask1 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask2 Later wording (section 8)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask2 Later wording (section 8)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask2 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask2 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask3 Later wording (section 8)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask3 Later wording (section 8)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.md diego ask3 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in diego/report.original.md.txt diego ask3 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "diego has three ranked asks",
+   "ok": true
+  },
+  {
+   "check": "diego primaryReturn is in the opening block",
+   "ok": true
+  },
+  {
+   "check": "diego asks are in the opening block",
+   "ok": true
+  },
+  {
+   "check": "rosa report.md equals report.original.md.txt bytes",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md rosa primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.original.md.txt rosa primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md rosa laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.original.md.txt rosa laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md rosa ask1",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.original.md.txt rosa ask1",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md rosa ask2",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.original.md.txt rosa ask2",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md rosa ask3",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.original.md.txt rosa ask3",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md rosa ask1 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.original.md.txt rosa ask1 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md rosa ask2 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.original.md.txt rosa ask2 Later wording (section 9)",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md rosa ask3 Later wording (section 5)",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.original.md.txt rosa ask3 Later wording (section 5)",
+   "ok": true
+  },
+  {
+   "check": "rosa has three ranked asks",
+   "ok": true
+  },
+  {
+   "check": "rosa primaryReturn is in the opening block",
+   "ok": true
+  },
+  {
+   "check": "rosa asks are in the opening block",
+   "ok": true
+  },
+  {
+   "check": "irena report.md equals report.original.md.txt bytes",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena primaryReturn",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena laterFullReturn",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena Section 7 bullet, leave it running",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena Section 7 bullet, leave it running",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena Section 7 bullet, come back another evening",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena Section 7 bullet, come back another evening",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena ask1",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena ask1",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena ask2",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena ask2",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena ask3",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena ask3",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena ask2 Later wording (section 5)",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena ask2 Later wording (section 5)",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md irena ask3 Later wording (section 8)",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.original.md.txt irena ask3 Later wording (section 8)",
+   "ok": true
+  },
+  {
+   "check": "irena has three ranked asks",
+   "ok": true
+  },
+  {
+   "check": "irena primaryReturn is in the opening block",
+   "ok": true
+  },
+  {
+   "check": "irena asks are in the opening block",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Emre desktop raw chapter message",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Emre phone raw chapter message",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Diego desktop raw chapter message",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Emre desktop Dilan busy third time",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Emre desktop Next line kept him waiting",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Emre desktop order screen costs",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Rosa phone busy without reason",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Rosa phone busy said plainly",
+   "ok": true
+  },
+  {
+   "check": "span in rosa/report.md Rosa report opening line, session stops not game endings",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Irena desktop Hatice busy on reflection",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Irena desktop Ece heard and saw",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md Irena report Ece heard and saw",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Irena desktop private hobby is not kind objection",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Irena desktop repeated Day 4 sentence",
+   "ok": true
+  },
+  {
+   "check": "span in irena/report.md Irena report shell quoting is her tooling",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Maya phone Ece refusal in place",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Diego desktop Osman press answered",
+   "ok": true
+  },
+  {
+   "check": "span in reaction field Diego desktop claim echo",
+   "ok": true
+  },
+  {
+   "check": "20 ledger rows",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2461 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2461 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2461 who",
+   "ok": true
+  },
+  {
+   "check": "F-2461 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2461 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2461 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2461 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2461 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2461 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2462 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2462 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2462 who",
+   "ok": true
+  },
+  {
+   "check": "F-2462 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2462 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2462 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2462 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2462 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2462 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2463 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2463 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2463 who",
+   "ok": true
+  },
+  {
+   "check": "F-2463 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2463 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2463 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2463 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2463 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2463 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2464 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2464 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2464 who",
+   "ok": true
+  },
+  {
+   "check": "F-2464 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2464 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2464 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2464 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2464 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2464 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2465 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2465 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2465 who",
+   "ok": true
+  },
+  {
+   "check": "F-2465 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2465 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2465 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2465 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2465 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2465 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2466 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2466 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2466 who",
+   "ok": true
+  },
+  {
+   "check": "F-2466 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2466 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2466 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2466 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2466 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2466 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2467 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2467 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2467 who",
+   "ok": true
+  },
+  {
+   "check": "F-2467 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2467 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2467 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2467 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2467 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2467 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2468 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2468 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2468 who",
+   "ok": true
+  },
+  {
+   "check": "F-2468 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2468 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2468 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2468 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2468 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2468 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2469 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2469 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2469 who",
+   "ok": true
+  },
+  {
+   "check": "F-2469 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2469 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2469 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2469 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2469 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2469 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2470 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2470 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2470 who",
+   "ok": true
+  },
+  {
+   "check": "F-2470 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2470 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2470 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2470 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2470 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2470 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2471 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2471 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2471 who",
+   "ok": true
+  },
+  {
+   "check": "F-2471 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2471 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2471 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2471 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2471 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2471 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2472 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2472 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2472 who",
+   "ok": true
+  },
+  {
+   "check": "F-2472 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2472 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2472 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2472 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2472 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2472 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2473 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2473 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2473 who",
+   "ok": true
+  },
+  {
+   "check": "F-2473 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2473 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2473 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2473 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2473 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2473 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2474 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2474 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2474 who",
+   "ok": true
+  },
+  {
+   "check": "F-2474 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2474 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2474 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2474 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2474 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2474 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2475 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2475 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2475 who",
+   "ok": true
+  },
+  {
+   "check": "F-2475 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2475 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2475 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2475 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2475 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2475 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2476 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2476 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2476 who",
+   "ok": true
+  },
+  {
+   "check": "F-2476 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2476 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2476 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2476 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2476 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2476 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2477 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2477 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2477 who",
+   "ok": true
+  },
+  {
+   "check": "F-2477 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2477 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2477 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2477 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2477 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2477 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2478 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2478 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2478 who",
+   "ok": true
+  },
+  {
+   "check": "F-2478 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2478 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2478 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2478 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2478 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2478 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2479 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2479 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2479 who",
+   "ok": true
+  },
+  {
+   "check": "F-2479 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2479 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2479 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2479 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2479 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2479 source",
+   "ok": true
+  },
+  {
+   "check": "row has 10 pipes",
+   "ok": true
+  },
+  {
+   "check": "row has 9 cells",
+   "ok": true
+  },
+  {
+   "check": "F-2480 in range",
+   "ok": true
+  },
+  {
+   "check": "F-2480 date game kind",
+   "ok": true
+  },
+  {
+   "check": "F-2480 who",
+   "ok": true
+  },
+  {
+   "check": "F-2480 words equal extraction",
+   "ok": true
+  },
+  {
+   "check": "F-2480 verdict",
+   "ok": true
+  },
+  {
+   "check": "F-2480 route grammar",
+   "ok": true
+  },
+  {
+   "check": "F-2480 calibration last and once",
+   "ok": true
+  },
+  {
+   "check": "F-2480 has a fix route",
+   "ok": true
+  },
+  {
+   "check": "F-2480 source",
+   "ok": true
+  },
+  {
+   "check": "ids are 2461-2480 once",
+   "ok": true
+  },
+  {
+   "check": "ask rows equal ledger rows 2466-2480",
+   "ok": true
+  },
+  {
+   "check": "F-2481 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2482 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2483 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2484 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2485 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2486 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2487 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2488 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2489 unused",
+   "ok": true
+  },
+  {
+   "check": "F-2490 unused",
+   "ok": true
+  },
+  {
+   "check": "maya history sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "maya brief sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "maya dispatch commit",
+   "ok": true
+  },
+  {
+   "check": "maya completion pins clean",
+   "ok": true
+  },
+  {
+   "check": "maya driver hashes same as Maya",
+   "ok": true
+  },
+  {
+   "check": "maya lab-play.ts hash",
+   "ok": true
+  },
+  {
+   "check": "maya desktop release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "maya phone release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "emre history sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "emre brief sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "emre dispatch commit",
+   "ok": true
+  },
+  {
+   "check": "emre completion pins clean",
+   "ok": true
+  },
+  {
+   "check": "emre driver hashes same as Maya",
+   "ok": true
+  },
+  {
+   "check": "emre lab-play.ts hash",
+   "ok": true
+  },
+  {
+   "check": "emre desktop release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "emre phone release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "diego history sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "diego brief sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "diego dispatch commit",
+   "ok": true
+  },
+  {
+   "check": "diego completion pins clean",
+   "ok": true
+  },
+  {
+   "check": "diego driver hashes same as Maya",
+   "ok": true
+  },
+  {
+   "check": "diego lab-play.ts hash",
+   "ok": true
+  },
+  {
+   "check": "diego desktop release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "diego phone release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "rosa history sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "rosa brief sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "rosa dispatch commit",
+   "ok": true
+  },
+  {
+   "check": "rosa completion pins clean",
+   "ok": true
+  },
+  {
+   "check": "rosa driver hashes same as Maya",
+   "ok": true
+  },
+  {
+   "check": "rosa lab-play.ts hash",
+   "ok": true
+  },
+  {
+   "check": "rosa desktop release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "rosa phone release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "irena history sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "irena brief sha equals freeze and dispatch",
+   "ok": true
+  },
+  {
+   "check": "irena dispatch commit",
+   "ok": true
+  },
+  {
+   "check": "irena completion pins clean",
+   "ok": true
+  },
+  {
+   "check": "irena driver hashes same as Maya",
+   "ok": true
+  },
+  {
+   "check": "irena lab-play.ts hash",
+   "ok": true
+  },
+  {
+   "check": "irena desktop release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "irena phone release-start clean pin",
+   "ok": true
+  },
+  {
+   "check": "post-round release clean at pin",
+   "ok": true
+  },
+  {
+   "check": "15 pids absent, no kills",
+   "ok": true
+  },
+  {
+   "check": "no png",
+   "ok": true
+  },
+  {
+   "check": "no transcript, stderr, envelope or command-scope file",
+   "ok": true
+  },
+  {
+   "check": "no stored file leaks provider transcript key",
+   "ok": true
+  }
+ ],
+ "note": "Deterministic. Hash index and manifest checks are reported on the console only."
+}

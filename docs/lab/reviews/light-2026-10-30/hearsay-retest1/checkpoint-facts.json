@@ -1,0 +1,855 @@
+{
+  "note": "Computed from the copied wall-clock.jsonl, completion.json, dispatch.json, release-start.json, validation.json and the stop-and-capture audit by work/build-hearsay-retest-packet.py. Session length is measured from the open row. A first_minute log is a tester line. The first-minute.png file is the automatic driver capture. note log rows are driver log lines, not feedback notes.",
+  "build": {
+    "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+    "dirty": false,
+    "framework": "4.12.0",
+    "app": "0.1.0",
+    "checkedIn": "every completion.json pin (10), every release-start.json (10) and the post-round release file (inputs/hearsay-retest-final-release-after-round.json)",
+    "postRoundReleaseTime": "2026-10-31T06:40:04.324498+00:00"
+  },
+  "driver": {
+    "name": "native-tap-v2",
+    "dispatchHashAllFive": {
+      "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+      "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+      "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+    },
+    "approvedInstrumentTime": "2026-10-31T02:50:55.021190+00:00",
+    "identicalInAllFiveDispatches": true,
+    "driver_check": "fork-unverified",
+    "limits": [
+      "Input status200 acknowledges native input, not intended game outcome; inspect visible result.",
+      "A moving/replaced target can be missed or compat-clicked on phone; no post-press confirmation.",
+      "Chromium only. No v2 live-game run yet; local real-input controls passed.",
+      "select/type and ambiguous boundingBox retain existing timeout limitations.",
+      "driver_check remains fork-unverified; deliberate scratch staleoverride paired with exact hash checks."
+    ]
+  },
+  "round": {
+    "id": "light-1031-hearsay-retest1",
+    "endedParentStated": "2026-10-31T06:38:52.471506Z",
+    "nextPanelNoEarlierThanParentStated": "2026-10-31T06:53:52.471506Z",
+    "lastRawStopRow": "2026-10-31T06:38:04.009Z",
+    "freeStop": true,
+    "floor": 0,
+    "ceilingMin": 20,
+    "urlRunSource": "labRunSource=agent via dispatch.json linkedEnvelopeSource",
+    "productionReceipt": "not independently read, unverified",
+    "deploymentHold": "released after all five returns (parent-stated)"
+  },
+  "method": {
+    "agentCalls": 284,
+    "validAssignedCurl": 282,
+    "failedBeforeRequest": 2,
+    "executedOutOfProtocol": 0,
+    "directorQualification": "Two Irena malformed shell quotes were both on desktop port22509 and failed before curl. Her report says both sessions: retain words, qualify exact audit. One text stopping target absent, later point taps acknowledged; not a game failure. Maya own-history only1–349 and Rosa1–826/1419, earlier Hearsay included but later cross-game unread. Title-only phone screenshot for Rosa is not a gameplay layout pass. Model-paced empty-garden/timing preferences need C14 human-speed comparison before clock changes. No live note/Submit/consent change; agent receipt unverified."
+  },
+  "cleanup": {
+    "recordedProcessIds": 15,
+    "allAbsent": true,
+    "kills": [],
+    "scope": "All15 recorded tester/driver PIDs absent. Driver finally cleanup owns browser contexts; absence is not a separate all-system process inventory.",
+    "driverPidsFoundInLogsAreAmongRecorded": true
+  },
+  "images": {
+    "imageReadReceiptsTotal": 20,
+    "retainedPngTotal": 29,
+    "largestPngCountOnOneDevice": 4,
+    "note": "Receipts come from validation.json. Automatic first-minute.png captures have no receipt. No extra-play claim follows from a first-minute capture."
+  },
+  "irenaCrossDevice": {
+    "desktopStopT": "2026-10-31T06:36:42.189Z",
+    "phoneOpenRowT": "2026-10-31T06:36:44.205Z",
+    "gapSeconds": 2.016,
+    "note": "Her phone open row is a few seconds after her desktop stop row. Her phone words about the same morning refer to her own second device, not an independent replay on another evening."
+  },
+  "irenaMalformedShell": {
+    "count": 2,
+    "device": "desktop port 22509",
+    "both": "failed before curl, no request made",
+    "absentTextTarget": "one tap with text \"stopping\" answered not on the page",
+    "pointFallback": "later point taps acknowledged",
+    "verdict": "tool limits, not game bugs"
+  },
+  "identityChecksPassed": 85,
+  "testers": {
+    "maya": {
+      "tester": "Maya Chen",
+      "dispatchTime": "2026-10-31T06:09:19.551399+00:00",
+      "completionEnded": "2026-10-31T06:11:29.783849+00:00",
+      "validationTime": "2026-10-31T06:40:04.217681+00:00",
+      "sessions": {
+        "desktop": {
+          "startRowT": "2026-10-31T06:09:19.202Z",
+          "openRowT": "2026-10-31T06:10:39.380Z",
+          "lastRowT": "2026-10-31T06:11:01.547Z",
+          "driverPid": 70807,
+          "port": 22501,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:11:01.547Z",
+            "elapsed_s": 22.66,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now.",
+            "game_clock": "Day 1 06:26",
+            "engagement": 3,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "stop",
+              "elapsed_s": 22.66,
+              "game_clock": "Day 1 06:26",
+              "engagement": 3,
+              "reason": "TASTE"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png"],
+          "firstMinutePngPresent": false,
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 18.886,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "phone": {
+          "startRowT": "2026-10-31T06:09:19.202Z",
+          "openRowT": "2026-10-31T06:09:27.210Z",
+          "lastRowT": "2026-10-31T06:10:38.420Z",
+          "driverPid": 70805,
+          "port": 22500,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:10:38.420Z",
+            "elapsed_s": 71.863,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop.",
+            "game_clock": "Day 1 09:01",
+            "engagement": 3,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 63.767,
+              "game_clock": "Day 1 08:46",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 71.863,
+              "game_clock": "Day 1 09:01",
+              "engagement": 3,
+              "reason": "TASTE"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["a-001.png", "a-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png", "a-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 68.673,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        }
+      }
+    },
+    "emre": {
+      "tester": "Emre Kaya",
+      "dispatchTime": "2026-10-31T06:11:31.049212+00:00",
+      "completionEnded": "2026-10-31T06:23:27.264101+00:00",
+      "validationTime": "2026-10-31T06:40:04.223973+00:00",
+      "sessions": {
+        "desktop": {
+          "startRowT": "2026-10-31T06:11:30.338Z",
+          "openRowT": "2026-10-31T06:11:40.717Z",
+          "lastRowT": "2026-10-31T06:19:29.083Z",
+          "driverPid": 74548,
+          "port": 22503,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:19:29.083Z",
+            "elapsed_s": 468.833,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on desktop at Day 4 12:02, about 7.8 minutes. The order screen with costs, the Next line, faster Fast pace and where-people-are were real improvements. The odd chapter message and the Dilan busy loop stayed. I would come back another evening for Day 8, not leave it running.",
+            "game_clock": "Day 4 12:02",
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Stopping on desktop at Day 4 12:02, about 7.8 minutes. The order screen with costs, the Next line, faster Fast pace and where-people-are were real improvements. The odd chapter message and the Dilan busy loop stayed. I would come back another evening for Day 8, not leave it running.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 65.8,
+              "game_clock": "Day 1 11:26",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 196.408,
+              "game_clock": "Day 2 10:54",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 356.987,
+              "game_clock": "Day 3 16:20",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 466.893,
+              "game_clock": "Day 4 12:02",
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 468.833,
+              "game_clock": "Day 4 12:02",
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 3,
+          "toolErrors": [],
+          "pngFiles": ["a-001.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 464.326,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "phone": {
+          "startRowT": "2026-10-31T06:11:30.416Z",
+          "openRowT": "2026-10-31T06:19:30.572Z",
+          "lastRowT": "2026-10-31T06:22:54.946Z",
+          "driverPid": 74554,
+          "port": 22502,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:22:54.946Z",
+            "elapsed_s": 204.88,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on phone at Day 2 09:37, about 3.4 minutes. Same title, same Next line, same chapter message. Only one talk done and then waiting. I would come back another evening on desktop, not leave it running.",
+            "game_clock": "Day 2 09:37",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Stopping on phone at Day 2 09:37, about 3.4 minutes. Same title, same Next line, same chapter message. Only one talk done and then waiting. I would come back another evening on desktop, not leave it running.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 66.841,
+              "game_clock": "Day 1 06:58",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 196.586,
+              "game_clock": "Day 2 09:00",
+              "engagement": 2,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 203.371,
+              "game_clock": "Day 2 09:37",
+              "engagement": 2,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 204.88,
+              "game_clock": "Day 2 09:37",
+              "engagement": 2,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 1,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 200.643,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        }
+      }
+    },
+    "diego": {
+      "tester": "Diego Silva",
+      "dispatchTime": "2026-10-31T06:23:28.536151+00:00",
+      "completionEnded": "2026-10-31T06:28:44.070134+00:00",
+      "validationTime": "2026-10-31T06:40:04.230082+00:00",
+      "sessions": {
+        "desktop": {
+          "startRowT": "2026-10-31T06:23:27.813Z",
+          "openRowT": "2026-10-31T06:23:39.515Z",
+          "lastRowT": "2026-10-31T06:26:55.351Z",
+          "driverPid": 93441,
+          "port": 22505,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:26:55.351Z",
+            "elapsed_s": 196.301,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping the desktop session. The first half minute is better than last time: selects work, claims echo, pressing Osman answers. But the garden emptied around 09:00 and stayed empty for two real minutes, everyone asleep by midnight, with Day 4 still far away. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+            "game_clock": "Day 2 05:12",
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "I am stopping the desktop session. The first half minute is better than last time: selects work, claims echo, pressing Osman answers. But the garden emptied around 09:00 and stayed empty for two real minutes, everyone asleep by midnight, with Day 4 still far away. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 64.264,
+              "game_clock": "Day 1 09:21",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 186.866,
+              "game_clock": "Day 2 04:02",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 188.611,
+              "game_clock": "Day 2 04:02",
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 196.301,
+              "game_clock": "Day 2 05:12",
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["a-001.png", "a-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png", "a-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 193.688,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "phone": {
+          "startRowT": "2026-10-31T06:23:27.889Z",
+          "openRowT": "2026-10-31T06:26:57.199Z",
+          "lastRowT": "2026-10-31T06:28:10.735Z",
+          "driverPid": 93443,
+          "port": 22504,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:28:10.735Z",
+            "elapsed_s": 74.143,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping the phone session. It reads fine and the gossip price is honest, but by 08:45 the garden is empty again, the claim buttons are greyed because Riza left, and Day 4 is far. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+            "game_clock": "Day 1 08:49",
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 1,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "I am stopping the phone session. It reads fine and the gossip price is honest, but by 08:45 the garden is empty again, the claim buttons are greyed because Riza left, and Day 4 is far. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 65.933,
+              "game_clock": "Day 1 08:45",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 67.85,
+              "game_clock": "Day 1 08:45",
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 74.143,
+              "game_clock": "Day 1 08:49",
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 71.133,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        }
+      }
+    },
+    "rosa": {
+      "tester": "Rosa Alvarez",
+      "dispatchTime": "2026-10-31T06:28:45.323443+00:00",
+      "completionEnded": "2026-10-31T06:32:25.680299+00:00",
+      "validationTime": "2026-10-31T06:40:04.233777+00:00",
+      "sessions": {
+        "desktop": {
+          "startRowT": "2026-10-31T06:28:44.710Z",
+          "openRowT": "2026-10-31T06:30:43.972Z",
+          "lastRowT": "2026-10-31T06:31:57.104Z",
+          "driverPid": 96861,
+          "port": 22507,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:31:57.104Z",
+            "elapsed_s": 73.576,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen.",
+            "game_clock": "Day 1 07:06",
+            "engagement": 3,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 66.676,
+              "game_clock": "Day 1 07:02",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 73.576,
+              "game_clock": "Day 1 07:06",
+              "engagement": 3,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 71.285,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "phone": {
+          "startRowT": "2026-10-31T06:28:44.645Z",
+          "openRowT": "2026-10-31T06:28:54.777Z",
+          "lastRowT": "2026-10-31T06:30:42.487Z",
+          "driverPid": 96859,
+          "port": 22506,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:30:42.487Z",
+            "elapsed_s": 108.238,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone.",
+            "game_clock": "Day 1 15:00",
+            "engagement": 3,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 64.498,
+              "game_clock": "Day 1 08:11",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 102.225,
+              "game_clock": "Day 1 14:57",
+              "engagement": null,
+              "reason": "CONFUSED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 108.238,
+              "game_clock": "Day 1 15:00",
+              "engagement": 3,
+              "reason": "CONFUSED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["a-001.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 105.922,
+              "op": "tap",
+              "input": {
+                "name": "I'm confused"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        }
+      }
+    },
+    "irena": {
+      "tester": "Irena Novotná",
+      "dispatchTime": "2026-10-31T06:32:26.874777+00:00",
+      "completionEnded": "2026-10-31T06:38:52.471506+00:00",
+      "validationTime": "2026-10-31T06:40:04.240534+00:00",
+      "sessions": {
+        "desktop": {
+          "startRowT": "2026-10-31T06:32:26.207Z",
+          "openRowT": "2026-10-31T06:32:32.398Z",
+          "lastRowT": "2026-10-31T06:36:42.189Z",
+          "driverPid": 4828,
+          "port": 22509,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:36:42.189Z",
+            "elapsed_s": 250.253,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I have heard everyone who is here and nothing can be ordered until Day 4. I like the record, but I am stopping. Feedback: I chose I am stopping, then Not now; the dialog closed with no error.",
+            "game_clock": "Day 1 15:26",
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "I have heard everyone who is here and nothing can be ordered until Day 4. I like the record, but I am stopping. Feedback: I chose I am stopping, then Not now; the dialog closed with no error.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 66.011,
+              "game_clock": "Day 1 07:23",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 226.542,
+              "game_clock": "Day 1 15:19",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 230.333,
+              "game_clock": "Day 1 15:19",
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 250.253,
+              "game_clock": "Day 1 15:26",
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 2,
+          "toolErrors": [
+            {
+              "t": "2026-10-31T06:33:59.962Z",
+              "elapsed_s": 88.026,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "name": "Keep this private"
+              },
+              "reaction": "Third time: a harmless private hobby, and repeating it would turn into \"Aylin is not kind\" to Derya. Always Derya, always \"not kind\". The label does not match the story. I keep it private, and this time no help, she does not need any.",
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 11,
+              "error": "Keep this private is shown but disabled right now (game state, not a driver failure)",
+              "requested_control_present_before": true
+            },
+            {
+              "t": "2026-10-31T06:35:21.801Z",
+              "elapsed_s": 169.865,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "name": "Dilan at the garden"
+              },
+              "reaction": "Lunchtime, people are back. Money did not change while they were out. Dilan I have not met.",
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 4,
+              "error": "Dilan at the garden is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+              "requested_control_present_before": false
+            },
+            {
+              "t": "2026-10-31T06:36:29.534Z",
+              "elapsed_s": 237.598,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 12,
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+              "requested_control_present_before": false
+            }
+          ],
+          "pngFiles": ["a-001.png", "a-002.png", "a-003.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png", "a-002.png", "a-003.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 237.598,
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "phone": {
+          "startRowT": "2026-10-31T06:32:26.235Z",
+          "openRowT": "2026-10-31T06:36:44.205Z",
+          "lastRowT": "2026-10-31T06:38:04.009Z",
+          "driverPid": 4830,
+          "port": 22508,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "ccd8592e90c06a689102ddae20f5376f8fc78cc7",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:38:04.009Z",
+            "elapsed_s": 80.308,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Same morning a second time, and three days before any real choice. I liked that I could take back what I said. I am stopping. Feedback: I am stopping chosen by tapping its spot, then Not now; dialog closed, no error.",
+            "game_clock": "Day 1 07:17",
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Same morning a second time, and three days before any real choice. I liked that I could take back what I said. I am stopping. Feedback: I am stopping chosen by tapping its spot, then Not now; dialog closed, no error.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 63.696,
+              "game_clock": "Day 1 07:08",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 67.43,
+              "game_clock": "Day 1 07:08",
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 80.308,
+              "game_clock": "Day 1 07:17",
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["first-minute.png", "p-001.png", "p-002.png", "p-003.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["p-001.png", "p-002.png", "p-003.png"],
+          "formAndSendInputs": [],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        }
+      }
+    }
+  }
+}

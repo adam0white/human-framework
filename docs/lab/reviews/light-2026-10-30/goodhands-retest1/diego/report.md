@@ -1,0 +1,125 @@
+**Would I return voluntarily?** I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running.
+
+**Ranked asks**
+1. Make an unchecked promise cost something. I promised "warm", which I had not checked, and the family agreed in seconds. Nothing bit back.
+2. Don't let the deposit clear rent by Monday morning. Cash was ₺5,250 at 10:04 on desktop, over the ₺5,000 rent.
+3. Give the incoming calls more than Promise, Decline or Finish. The Kaya call is better written now, but the menu is the same.
+
+## 1. Session
+
+- **Persona:** Diego Silva, 28, Recife sound editor. Impatient.
+- **Exposure:** RETEST. Round light-1031-goodhands-retest1, free stop (floor 0).
+- **Own history:** I read all 1117 lines in two chunks. I read the cleanup rule too. No part is unread. The history holds an earlier Good Hands report, but none of it is about this build.
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent. Build 2e67317e / 4.8.1.
+- **Session A:** desktop 1280x800, light mode, port 22705. About 99 s on the driver clock.
+- **Session B:** phone 360x690 touch, light mode, port 22704. About 87 s. This was a fresh game with no continuity.
+
+## 2. First impressions
+
+- **A, 2 s:** the title page looks the same, with an "Open the office" button.
+- **A, 10 s:** the desk has a new card, "An old case from before this month is still on your mind."
+- **A, 52 s:** the negotiate screen now says the family pays a quarter of the fee at agreement and the rest after the trial. That is new.
+- **B, 16 s:** Gülce's reference is "At work until 14:00". Last time the references were all reachable.
+- **B, 53 s:** applicants now have stated needs and can leave with a call-back time.
+
+## 3. Verbatim
+
+Raw lines as logged. A few lines went in on an action's reaction field.
+
+### Session A (desktop)
+
+- 6.289 (reaction on Open the office): "Same nanny office as before. Opening it; I remember rent covered too fast and samey interviews."
+- 17.717 (reaction): "New to me: an old case on her mind. Tapping it."
+- 21.57 (reaction): "A real moral fork about the past. Taking the honest route to see what it costs."
+- 24.975 (reaction): "Going to Özlem, the one the reference call separated last time."
+- 28.133 (reaction): "Reference first, since that was the real signal last time."
+- 35.075 (reaction): "Last time I never checked honesty. Asking it now."
+- 41.956 (reaction): "Asking why the job ended, a question I did not try before."
+- 52.533 (reaction): "Going for the placement. Curious whether rent is again covered in two minutes."
+- 56.353 (reaction): "New: the family pays a quarter now and the rest only after the trial. I will promise warm, which I did not check, to see if it bites."
+- 62.104 first_minute, clock Mon 2 Nov 09:49: "New since last visit: an old-case choice on Nermin, and the fee is split, a quarter now and the rest after the trial, so rent is not instantly covered. Reference gave honest and reliable evidence. I promised warm unchecked and the family agreed in seconds anyway, same instant agreement as before. Still no haggling."
+- 70.809 (reaction): "Cash 5250 at 10:04, over rent again. The deposit trick still clears rent before lunch Monday. Ending, then I want to see the trial."
+- 75.017 (reaction): "Nothing left to touch for her. Skipping to the next call."
+- 86.764 want_quit BORED, clock Mon 2 Nov 11:00: "The Kaya call now says the person throws a plate, so patient matters. That is better than the template. But rent is over 5000 again by Monday 10:04 and the call menu is the same Promise, Decline, Finish. I would stop here."
+- 98.728 stop BORED, clock Mon 2 Nov 11:00: "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back."
+
+### Session B (phone)
+
+- 4.016 (reaction): "Phone, same evening. I know the opening now. Going straight to a reference."
+- 9.216 (reaction): "On the phone I try the other branch of the old case: leave it closed."
+- 16.004 (reaction): "Trying Gülce this time, the first applicant."
+- 19.51 (reaction): "Her reference is at work until 14:00, so no shortcut this time. Interviewing."
+- 26.467 (reaction): "A bland answer, "I have worked as a nanny". The Arslans ring early again, same as before."
+- 29.781 (reaction): "Promising an answer today, a commitment. Curious if it holds me to it."
+- 39.098 (reaction): "Asking the crying question to get at patience."
+- 53.284 (reaction): "She ran out of questions and left; I have one patience reading from one sentence. Moving to the next."
+- 56.682 (reaction): "Applicants now leave and have stated needs. Next, Şebnem."
+- 62.1 first_minute, clock Mon 2 Nov 09:35: "Phone fits fine: big buttons, no clipped banner. New to me: an old-case choice, and applicants who leave with stated needs and a call-back time. Gülce answered patience with one line and the notes already say I believe she is patient; that feels too easy. Interviews still cost minutes and the Arslans phone early. Mildly interested."
+- 68.646 (reaction): "Same 8,000 as Gülce. I want a question that might separate them."
+- 74.759 note, clock Mon 2 Nov 09:58: "This separates them. Gülce took a breath and got a believed patient; Şebnem said patient through quite a lot and Nermin is still unsure. Last time the first two applicants gave near-identical answers. That part is better."
+- 77.761 want_quit BORED, clock Mon 2 Nov 09:58: "I would stop here. The interviews are less samey and applicants leave on their own clock, but I have already seen where this goes: a placement, a deposit, rent covered. I have seen no cost for a wrong promise on this visit."
+- 87.447 stop BORED, clock Mon 2 Nov 09:58: "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back."
+
+## 4. Moments
+
+**What held me**
+- The old-case card. I chose to correct the record on desktop and leave it closed on the phone. Both gave a short, plain answer. I did not see the choice change anything later.
+- The reference call, again the clearest signal. Hale Erol's answers were specific: "returned the change with the receipts".
+- On the phone, Gülce and Şebnem finally answered patience differently. One was believed, one left Nermin "still unsure".
+- The Kaya call now names the plate-throwing and the need for patience.
+
+**What lost me**
+- The family still agreed in seconds with an unchecked trait promised.
+- Cash read ₺5,250 at 10:04 on desktop, over the ₺5,000 rent.
+- The call menu is still Promise to look, Decline, Finish.
+
+**Quit wishes and pulses**
+- A: want_quit BORED at 86.8 s. B: want_quit BORED at 77.8 s. Neither passed and I stopped.
+- No pulse, because both sessions ended before 180 s. Later checkpoints are untested.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The split payment is explained in plain words on the negotiate screen.
+- Gülce's note says only she says so and nobody has confirmed it.
+- "Call back after 11:23, and allow time for the journey" is clear.
+
+**Unclear or odd**
+- On the phone, the "Call a reference" button for Gülce and Şebnem showed no "takes about 15 minutes" line. I did not tap it, so I do not know why.
+- Nermin's note says "I believe the worker is patient" from one sentence by the applicant.
+- Rent covered early: the bar passed ₺5,000 on the deposit. I never saw the second payment or the trial result.
+
+## 6. Device use
+
+**Desktop 1280x800**
+- Viewed `desktop/a-001.png`, right after open: cream title page, "Izmir · November 2026", the GH arch logo, the Good Hands heading, a red "Open the office" button, and the recording footer line. Nothing clipped.
+- Controls: named taps, a text tap for "I'm stopping", Skip, Game menu, Feedback, Back. No driver trouble.
+- I did not view the desk on desktop in a screenshot.
+
+**Phone 360x690**
+- Viewed `phone/b-001.png`, right after open: the same title page at 360 wide with the red "Open the office" button at the bottom. Readable, nothing clipped.
+- Viewed `phone/b-002.png`: the interview. The header shows the date, cash bar and rent. A thin office strip with a City button sits under it. The question buttons are large and sit at the bottom. The task banner was not clipped this time.
+- Controls: named taps and the "More questions" fold. No coordinate taps.
+- Unseen: the phone map, Families and Placed, and the Feedback dialog on both devices (text only).
+
+## 7. Stop and return
+
+- **A stop:** BORED, about 99 s. "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back."
+- **B stop:** BORED, about 87 s. "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back."
+- **Feedback:** both "I'm stopping" and "I'm confused" were offered. I chose "I'm stopping" on both and it showed pressed. I typed no note, changed no consent and pressed no Submit. Back worked with no error.
+- **Return:** I would not return voluntarily tonight. I might come back another evening, but only if a wrong promise cost me something and the rent were not covered before noon Monday. I would not leave it running, because nothing in it needs me to be watching.
+
+## 8. Changes I would want
+
+1. Make an unchecked promise cost something I can feel.
+2. Don't let the deposit cover the rent on Monday morning.
+3. Give calls and the old-case choice a visible effect later on.
+
+## 9. Compared with my last visit
+
+- **Ask 1, make a placement cost something I can feel, and don't let rent clear in two minutes: partly met.** The family now pays only a quarter at agreement and the rest after the trial, and the screen says so. But I still promised an unchecked trait and the family agreed at once. Cash still passed ₺5,000 at 10:04 Monday on desktop, a few minutes after I agreed.
+- **Ask 2, make applicants and families differ: partly met.** On the phone, Gülce and Şebnem separated on patience. Gülce left on a call-back time. The Kaya call now names the plate-throwing. I did not see another Arslan versus Kaya comparison.
+- **Ask 3, don't let looking cost game time I didn't ask for: not seen.** I did not open the City map on either device.
+- **New blocking ask:** none from what I reached. The nearest is that an unchecked promise still costs nothing.
+
+No repo touched; no worktree of mine remains.

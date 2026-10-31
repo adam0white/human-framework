@@ -1,0 +1,294 @@
+{
+  "note": "Every string is an exact substring of the named copied raw file (report text or a wall-clock.jsonl reaction field). Nothing paraphrased, no quote substitution, no pipes, no newlines. primaryReturn is the opening return answer at the top of report.md. laterFullReturn is the separate section 7 answer. laterExtraReturnSpans are further literal section 7 answers that carry conditions. rankedAsks are the top three asks of report.md. laterAskSpans are later wording from section 5, 8 or 9, kept only where it adds or changes content and labelled separately. Sonia wrapped her opening answer in producer quote marks, which are not part of that primaryReturn span. Internal quotes are original. No stop quote is abbreviated here. Full raw stop words are in logical-tester-ledger.json and all-driver-reactions.json.",
+  "testers": {
+    "maya": {
+      "tester": "Maya Chen",
+      "primaryReturn": "Yes, one more evening, to hear whether Selim tells me more about Nevin and whether Dilek's recordings go anywhere, but only if talking to a cook stops pulling them off their station without warning. I would not leave it running. I would come back on another evening.",
+      "laterFullReturn": "Yes, one more evening, to hear whether Selim tells me more about Nevin and whether Dilek's recordings go anywhere, but only if talking to a cook stops pulling them off their station without warning. I would not leave it running. I would come back another evening.",
+      "laterExtraReturnSpans": {},
+      "rankedAsks": [
+        "Warn me before I tap a talk or a follow-up that the cook will leave the grill or cold side, and for how long. Do the same for a table complaint at the kitchen door, which pulled Dilek and Selim away on their own.",
+        "Make \"ask me about Nevin\" lead to a longer reply. Selim's line was one short sentence, and the follow-up pulled him off the grill.",
+        "Fix the doubled bathroom wording in Selim's \"How are you doing?\" reply."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Tell me before I tap that a talk, a follow-up or a table complaint will take a cook off a station, and for how long."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "I still got no warning about the Nevin follow-up, or about a table complaint pulling a cook away."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Make \"ask me about Nevin\" lead to more than one short line. The follow-up should not cost me the grill."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "It gave one short line after a long wait. On the phone it never appeared, because the choice was disabled or offered only the wait line."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Fix the doubled bathroom wording in Selim's reply."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "wording not met. Selim's bathroom line still repeats."
+          }
+        ]
+      }
+    },
+    "emre": {
+      "tester": "Emre Kaya",
+      "primaryReturn": "I would come back another evening on desktop, but only if an empty station doesn't leave me stuck in slowed time with no one to ask. I would not leave it running in a tab.",
+      "laterFullReturn": "Yes, another evening on desktop, to see if ₺5,200 by Saturday can be reached. The conditions are that I can pick up where I stopped and that an empty station doesn't leave me stuck in slowed time with no one to ask.",
+      "laterExtraReturnSpans": {
+        "Section 7 bullet, leave it running": "**Leave it running?** No. It slows down and waits for me.",
+        "Section 7 bullet, another evening": "**Another evening?** Yes, with those conditions."
+      },
+      "rankedAsks": [
+        "Don't leave me watching when a station is empty. \"Time is slowed. A station needs a cook\" came up on both devices. I still found nobody on desktop Tuesday 18:42 whose predicted reply was anything but \"bathroom\", and Fast barely sped it up.",
+        "Let me carry on from where I stopped, so I don't replay Monday. This is a repeat ask. I did not see whether that exists, because I never opened Resume.",
+        "Show how table counts grow. The \"I need about ₺920 a night\" line is a real answer to my earlier ask. Monday was ₺600 again (15 of 15 tables), and I still can't see how to earn more than that."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Give me something to do when a station is empty. Let me ask someone useful, or skip the slowed stretch."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "But Tuesday 18:42 on desktop and Monday 18:15 on phone were still dead waits, and Fast did not shorten the slowed stretch."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Resume from where I stopped. I did not check whether Resume exists."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "not seen. I never opened Resume."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Show how the 15-table count grows through the week, next to the ₺920 a night target."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "Table growth is still not explained. Monday was 15 of 15 tables and ₺600 again."
+          }
+        ]
+      }
+    },
+    "nia": {
+      "tester": "Nia Okafor",
+      "primaryReturn": "I would come back another evening, but only to play it on my phone and push a cook to see what happens. I would not come back tonight and I would not leave it running. I would stop again the first time a single click ruins my night with nothing I can do about it.",
+      "laterFullReturn": "I would come back another evening, but only to play it on my phone and push a cook to see what happens. I would not come back tonight and I would not leave it running. I would stop again the first time a single click ruins my night with nothing I can do about it.",
+      "laterExtraReturnSpans": {
+        "Section 7 bullet, leave it running": "**Leave it running?** No. There is too much I can only watch while tables leave.",
+        "Section 7 bullet, come back another evening": "**Come back another evening?** Yes, for the cooks pushing back and for the personal moments. Not if that one-click spiral is still there."
+      },
+      "rankedAsks": [
+        "Let me recover when I insist and it goes badly. On desktop, one click on \"Insist: Dilek, go home\" sent her home until 22:00. I got ₺0 and no tables served, and I could not fix it.",
+        "Answer what I actually asked. \"How are you doing?\" got a toilet or prayer line on the phone. It got a real reply about Nevin on desktop.",
+        "Cut the waiting stretches, or give me something to do in them."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Let me recover when I insist and it goes badly. A \"go home\" click should not remove a cook for the whole night with nothing to do about it."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "On desktop the effect was big enough to wreck my night."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Answer what I actually asked. \"How are you doing?\" should get a reply about the person, not the toilet or prayer line plus a refusal."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "\"How are you doing?\" got a canned refusal on the phone and a real reply on desktop."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Shorten the stretches where I can only watch, or give me something to do in them."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "I still waited 12–28 s several times while tables left."
+          }
+        ]
+      }
+    },
+    "rosa": {
+      "tester": "Rosa Alvarez",
+      "primaryReturn": "I would come back another evening if the game told me early whether ₺5,200 is reachable and if the cooks' strange sentences (\"I will explain the wait…\", \"Insist\", \"Hold it to insist\") were written in plain words. I would not leave it running; I would close it.",
+      "laterFullReturn": "I would come back another evening, on the big screen, if the game told me early whether ₺5,200 is reachable and if the strange cook sentences (\"I will explain the wait…\", \"Insist\", \"Hold it to insist\") were written plainly. I would close it, not leave it running, because the game moves on by itself while I read and I would not know what I missed. I would not choose the phone again unless the cook menu got shorter.",
+      "laterExtraReturnSpans": {},
+      "rankedAsks": [
+        "Rewrite the cook sentences I could not follow. This covers \"I will explain the wait. I am leaving the other tables for three minutes…\", the \"Insist / Hold it to insist\" help line, and the status \"in the bathroom\" beside that sentence.",
+        "Show early whether ₺5,200 is reachable (still not seen).",
+        "Warn about Dilek's meal break in the rush as well as Selim's. After that, make the \"Nobody will work at the grill while Selim eats\" line match the break I chose."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Rewrite the sentences that confused me. \"I will explain the wait. I am leaving the other tables for three minutes.\" should say who he talks to. Make the status (\"in the bathroom\") match the quote. Replace \"Insist\" and \"Hold it to insist\" with plain words."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "the \"Insist / Hold it to insist\" help line and Selim's \"I will explain the wait\" quote. Each cost me a reread, and together they ended both sessions."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Show early whether ₺5,200 is reachable. A line such as \"You have ₺360. You need ₺5,200 by Saturday.\" would do."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "I saw only \"₺160 … ₺5,200 due Saturday\" and a bar. I saw no forecast."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Warn about Dilek's meal break in the rush as well as Selim's. Also make the plan dialog line \"Nobody will work at the grill while Selim eats\" match the break I chose."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "Also, Selim ate at 19:48 when I had moved his break to 21:00, and I could not tell why."
+          }
+        ]
+      }
+    },
+    "sonia": {
+      "tester": "Sonia Ionescu",
+      "primaryReturn": "Not on my own, no. If a friend sent it and asked me to play Tuesday with her, I would try one more evening. But only if the cooks did what they said and someone showed me how ₺5,200 could ever be reached. As it is, I watched one Monday twice and did not feel I was running anything.",
+      "laterFullReturn": "Not on my own, no. If a friend sent it and asked me to play Tuesday with her, I would try one more evening. But only if the cooks did what they said and someone showed me how ₺5,200 could ever be reached. As it is, I watched one Monday twice and did not feel I was running anything.",
+      "laterExtraReturnSpans": {
+        "Section 7 bullet, leave it running": "**Leave it running:** no. It does not hold my attention like that.",
+        "Section 7 bullet, come back another evening": "**Come back another evening:** only under the friend condition above. I would not open it by myself."
+      },
+      "rankedAsks": [
+        "When a cook agrees, the cook should do it. If they will do something else, tell me before it happens. Examples: Selim said \"I will do that now\", then went to eat. Dilek's 18:35 break plan was followed by her eating at 20:24.",
+        "The label should match the words. Dilek asks to phone her mother and the label says \"bathroom\". Selim is labelled \"in the bathroom\" but drawn at the back door while explaining the wait to tables. He was due to pray, and later the same hour it says toilet.",
+        "Show me early how the week's money could work. ₺40 a table against ₺5,200 by Saturday. And say what flatbreads are, if there are always 0."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 5)",
+            "span": "\"I will do that now\" under a job button does not mean he will. The page does say these are \"the chef’s guess\", but then why show it?"
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 5)",
+            "span": "Dilek said \"I’m not at my agreed station\" while marked outside."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 5)",
+            "span": "Flatbreads are always 0 and never explained."
+          }
+        ]
+      }
+    }
+  },
+  "supportingSpans": [
+    {
+      "label": "Maya phone saw a private-talk warning before tapping",
+      "file": "maya/phone/wall-clock.jsonl",
+      "span": "The panel now warns me, before I tap, that a private talk makes the cook stop work and the station may be empty."
+    },
+    {
+      "label": "Maya desktop later says nothing warned her before tapping the Nevin line",
+      "file": "maya/desktop/wall-clock.jsonl",
+      "span": "nothing warned me before I tapped it."
+    },
+    {
+      "label": "Maya desktop previews",
+      "file": "maya/desktop/wall-clock.jsonl",
+      "span": "each job shows the chef guess at his reply under it."
+    },
+    {
+      "label": "Emre phone deliberately keeps a cover who said no",
+      "file": "emre/phone/wall-clock.jsonl",
+      "span": "I keep it anyway to see the loss."
+    },
+    {
+      "label": "Emre phone plan page told him Dilek said no before service",
+      "file": "emre/phone/wall-clock.jsonl",
+      "span": "the plan page now tells me Dilek said no to covering, so the grill will be empty at 18:12."
+    },
+    {
+      "label": "Nia desktop deliberately insists",
+      "file": "nia/desktop/wall-clock.jsonl",
+      "span": "Insisting go home, the silliest one, to see her push back."
+    },
+    {
+      "label": "Nia desktop insists for fun",
+      "file": "nia/desktop/wall-clock.jsonl",
+      "span": "I clicked go home once for fun"
+    },
+    {
+      "label": "Nia phone hold worked",
+      "file": "nia/phone/wall-clock.jsonl",
+      "span": "The hold worked: Dilek said willing and moved to grill."
+    },
+    {
+      "label": "Rosa phone second reread",
+      "file": "rosa/phone/wall-clock.jsonl",
+      "span": "Reread 2: Insist and Hold it to insist, I do not understand. Second reread."
+    },
+    {
+      "label": "Rosa phone Selim eating versus the 21:00 plan",
+      "file": "rosa/phone/wall-clock.jsonl",
+      "span": "But Selim is eating now though the plan said 21:00"
+    },
+    {
+      "label": "Sonia desktop agreed versus action",
+      "file": "sonia/desktop/wall-clock.jsonl",
+      "span": "He agreed to eat at 21:00. Nobody asked me."
+    },
+    {
+      "label": "Sonia desktop bathroom drawn at the back door",
+      "file": "sonia/desktop/wall-clock.jsonl",
+      "span": "Now Selim is in the bathroom, drawn at the back door"
+    },
+    {
+      "label": "Sonia desktop money sum",
+      "file": "sonia/desktop/wall-clock.jsonl",
+      "span": "But ₺40 a table and ₺5,200 due"
+    },
+    {
+      "label": "Sonia section 9 request wording",
+      "file": "sonia/report.md",
+      "span": "Selim's 19:2x request said toilet instead of sunset prayer."
+    },
+    {
+      "label": "Maya section 9 notice wording",
+      "file": "maya/report.md",
+      "span": "The notice looked sensible this time (\"until 17:34\", \"until 18:25\", \"until 18:32\"), and I never saw it jump to \"19 minutes\"."
+    }
+  ]
+}

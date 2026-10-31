@@ -1,0 +1,798 @@
+{
+ "note": "Every packet file except manifest.json and sha256.json. sourceEpoch is the recorded timestamp inside the source file, or null where the source carries none. No file mtime is used.",
+ "files": [
+  {
+   "path": "README.md",
+   "bytes": 14402,
+   "role": "generated: README",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "README.md.preseal.original.txt",
+   "role": "director final seal or inert pre-seal snapshot",
+   "kind": "director-record",
+   "sourceEpoch": "2026-10-31T06:57:33.589289+00:00",
+   "epochNote": "recorded director source preparation",
+   "bytes": 12819
+  },
+  {
+   "path": "all-driver-reactions.json",
+   "bytes": 67274,
+   "role": "generated: all raw reaction rows",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "ask-ledger.md",
+   "bytes": 9790,
+   "role": "generated: ask rows F-2466 to F-2480",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "ask-ledger.md.preseal.original.txt",
+   "role": "director final seal or inert pre-seal snapshot",
+   "kind": "director-record",
+   "sourceEpoch": "2026-10-31T06:57:33.589289+00:00",
+   "epochNote": "recorded director source preparation",
+   "bytes": 9768
+  },
+  {
+   "path": "checkpoint-facts.json",
+   "bytes": 29786,
+   "role": "generated: facts computed from copied raw files",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "diego/brief.original.md.txt",
+   "bytes": 12559,
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "diego/completion.json",
+   "bytes": 368,
+   "role": "driver completion pins",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:28:44.070134+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "diego/desktop/driver.out",
+   "bytes": 85,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "diego/desktop/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "diego/desktop/wall-clock.jsonl",
+   "bytes": 12681,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:26:55.351Z",
+   "epochNote": null
+  },
+  {
+   "path": "diego/dispatch.json",
+   "bytes": 2086,
+   "role": "dispatch record with driver hashes",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:23:28.536151+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "diego/history-source-map.json",
+   "bytes": 3956,
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03.781699+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "diego/own-history.original.md.txt",
+   "bytes": 117796,
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "diego/phone/driver.out",
+   "bytes": 85,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "diego/phone/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "diego/phone/wall-clock.jsonl",
+   "bytes": 5330,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:28:10.735Z",
+   "epochNote": null
+  },
+  {
+   "path": "diego/report.md",
+   "bytes": 11972,
+   "role": "producer report, readable copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:28:44Z",
+   "epochNote": null
+  },
+  {
+   "path": "diego/report.original.md.txt",
+   "bytes": 11972,
+   "role": "producer report, byte-identical .txt copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:28:44Z",
+   "epochNote": null
+  },
+  {
+   "path": "diego/validation.json",
+   "bytes": 2774,
+   "role": "parent validation of stops, image reads and reads",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:04.230082+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "director-finalization.json",
+   "role": "director final seal or inert pre-seal snapshot",
+   "kind": "director-record",
+   "sourceEpoch": "2026-10-31T06:57:33.589289+00:00",
+   "epochNote": "recorded director source preparation",
+   "bytes": 444
+  },
+  {
+   "path": "emre/brief.original.md.txt",
+   "bytes": 12526,
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "emre/completion.json",
+   "bytes": 368,
+   "role": "driver completion pins",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:23:27.264101+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "emre/desktop/driver.out",
+   "bytes": 85,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "emre/desktop/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "emre/desktop/wall-clock.jsonl",
+   "bytes": 14690,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:19:29.083Z",
+   "epochNote": null
+  },
+  {
+   "path": "emre/dispatch.json",
+   "bytes": 2086,
+   "role": "dispatch record with driver hashes",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:11:31.049212+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "emre/history-source-map.json",
+   "bytes": 3651,
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03.726715+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "emre/own-history.original.md.txt",
+   "bytes": 114979,
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "emre/phone/driver.out",
+   "bytes": 85,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "emre/phone/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "emre/phone/wall-clock.jsonl",
+   "bytes": 6935,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:22:54.946Z",
+   "epochNote": null
+  },
+  {
+   "path": "emre/report.md",
+   "bytes": 12372,
+   "role": "producer report, readable copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:23:27Z",
+   "epochNote": null
+  },
+  {
+   "path": "emre/report.original.md.txt",
+   "bytes": 12372,
+   "role": "producer report, byte-identical .txt copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:23:27Z",
+   "epochNote": null
+  },
+  {
+   "path": "emre/validation.json",
+   "bytes": 2578,
+   "role": "parent validation of stops, image reads and reads",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:04.223973+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "exact-quote-extraction.json",
+   "bytes": 13344,
+   "role": "generated: literal spans",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "identity-index.json",
+   "bytes": 5634,
+   "role": "generated: identity of supplied inputs",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "inputs/hearsay-retest-cleanup.json",
+   "bytes": 1422,
+   "role": "director/parent record",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:58.632107+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "inputs/hearsay-retest-director-method-notes.json",
+   "bytes": 750,
+   "role": "director/parent record",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:58.632107+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "inputs/hearsay-retest-final-driver-audit.json",
+   "bytes": 16428,
+   "role": "director/parent record",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:04.240534+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "inputs/hearsay-retest-final-release-after-round.json",
+   "bytes": 193,
+   "role": "director/parent record",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:04.324498+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "inputs/hearsay-retest-input-freeze.json",
+   "bytes": 1666,
+   "role": "director/parent record",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03.863406+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "inputs/hearsay-retest-plan.json",
+   "bytes": 6954,
+   "role": "director/parent record",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "inputs/hearsay-retest-stop-and-capture-audit.json",
+   "bytes": 9703,
+   "role": "director/parent record",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:58.632107+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "irena/brief.original.md.txt",
+   "bytes": 12229,
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "irena/completion.json",
+   "bytes": 368,
+   "role": "driver completion pins",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:38:52.471506+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "irena/desktop/driver.out",
+   "bytes": 84,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "irena/desktop/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "irena/desktop/wall-clock.jsonl",
+   "bytes": 17664,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:36:42.189Z",
+   "epochNote": null
+  },
+  {
+   "path": "irena/dispatch.json",
+   "bytes": 2084,
+   "role": "dispatch record with driver hashes",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:32:26.874777+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "irena/history-source-map.json",
+   "bytes": 281,
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03.863081+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "irena/own-history.original.md.txt",
+   "bytes": 77,
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "irena/phone/driver.out",
+   "bytes": 84,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "irena/phone/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "irena/phone/wall-clock.jsonl",
+   "bytes": 9423,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:38:04.009Z",
+   "epochNote": null
+  },
+  {
+   "path": "irena/report.md",
+   "bytes": 14744,
+   "role": "producer report, readable copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:38:52Z",
+   "epochNote": null
+  },
+  {
+   "path": "irena/report.original.md.txt",
+   "bytes": 14744,
+   "role": "producer report, byte-identical .txt copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:38:52Z",
+   "epochNote": null
+  },
+  {
+   "path": "irena/validation.json",
+   "bytes": 4804,
+   "role": "parent validation of stops, image reads and reads",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:04.240534+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "ledger-additions.md",
+   "bytes": 15866,
+   "role": "generated: ledger rows F-2461 to F-2480",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "ledger-additions.md.preseal.original.txt",
+   "role": "director final seal or inert pre-seal snapshot",
+   "kind": "director-record",
+   "sourceEpoch": "2026-10-31T06:57:33.589289+00:00",
+   "epochNote": "recorded director source preparation",
+   "bytes": 15844
+  },
+  {
+   "path": "logical-tester-ledger.json",
+   "bytes": 13025,
+   "role": "generated: one row per tester",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "logical-tester-ledger.md",
+   "bytes": 1149,
+   "role": "generated: one row per tester, readable",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "manifest.json.preseal.original.txt",
+   "role": "director final seal or inert pre-seal snapshot",
+   "kind": "director-record",
+   "sourceEpoch": "2026-10-31T06:57:33.589289+00:00",
+   "epochNote": "recorded director source preparation",
+   "bytes": 19404
+  },
+  {
+   "path": "maya/brief.original.md.txt",
+   "bytes": 12604,
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "maya/completion.json",
+   "bytes": 368,
+   "role": "driver completion pins",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:11:29.783849+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "maya/desktop/driver.out",
+   "bytes": 85,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "maya/desktop/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "maya/desktop/wall-clock.jsonl",
+   "bytes": 4115,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:11:01.547Z",
+   "epochNote": null
+  },
+  {
+   "path": "maya/director-history-qualification.json",
+   "bytes": 405,
+   "role": "director history-read qualification",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:25:00.164594+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "maya/dispatch.json",
+   "bytes": 2086,
+   "role": "dispatch record with driver hashes",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:19.551399+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "maya/history-source-map.json",
+   "bytes": 3949,
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03.672786+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "maya/own-history.original.md.txt",
+   "bytes": 151819,
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "maya/phone/driver.out",
+   "bytes": 85,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "maya/phone/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "maya/phone/wall-clock.jsonl",
+   "bytes": 6735,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:10:38.420Z",
+   "epochNote": null
+  },
+  {
+   "path": "maya/report.md",
+   "bytes": 9324,
+   "role": "producer report, readable copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:11:29Z",
+   "epochNote": null
+  },
+  {
+   "path": "maya/report.original.md.txt",
+   "bytes": 9324,
+   "role": "producer report, byte-identical .txt copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:11:29Z",
+   "epochNote": null
+  },
+  {
+   "path": "maya/validation.json",
+   "bytes": 2647,
+   "role": "parent validation of stops, image reads and reads",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:04.217681+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "primary-quote-validation.json",
+   "bytes": 28437,
+   "role": "generated: validator output",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "rosa/brief.original.md.txt",
+   "bytes": 13384,
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/completion.json",
+   "bytes": 368,
+   "role": "driver completion pins",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:32:25.680299+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/desktop/driver.out",
+   "bytes": 85,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "rosa/desktop/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "rosa/desktop/wall-clock.jsonl",
+   "bytes": 5567,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:31:57.104Z",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/director-history-qualification.json",
+   "bytes": 425,
+   "role": "director history-read qualification",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:34:01.005487+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/dispatch.json",
+   "bytes": 2086,
+   "role": "dispatch record with driver hashes",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:28:45.323443+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/history-source-map.json",
+   "bytes": 4871,
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03.862338+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/own-history.original.md.txt",
+   "bytes": 177793,
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:09:03Z",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/phone/driver.out",
+   "bytes": 85,
+   "role": "driver start line",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "rosa/phone/release-start.json",
+   "bytes": 119,
+   "role": "release pin at session start",
+   "kind": "byte-copy",
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "path": "rosa/phone/wall-clock.jsonl",
+   "bytes": 7444,
+   "role": "raw driver wall-clock log",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:30:42.487Z",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/report.md",
+   "bytes": 11731,
+   "role": "producer report, readable copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:32:25Z",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/report.original.md.txt",
+   "bytes": 11731,
+   "role": "producer report, byte-identical .txt copy",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:32:25Z",
+   "epochNote": null
+  },
+  {
+   "path": "rosa/validation.json",
+   "bytes": 2575,
+   "role": "parent validation of stops, image reads and reads",
+   "kind": "byte-copy",
+   "sourceEpoch": "2026-10-31T06:40:04.233777+00:00",
+   "epochNote": null
+  },
+  {
+   "path": "screenshots-manifest.json",
+   "bytes": 13460,
+   "role": "generated: PNG hashes from bytes only, no pixels",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "sha256.json.preseal.original.txt",
+   "role": "director final seal or inert pre-seal snapshot",
+   "kind": "director-record",
+   "sourceEpoch": "2026-10-31T06:57:33.589289+00:00",
+   "epochNote": "recorded director source preparation",
+   "bytes": 9206
+  },
+  {
+   "path": "source-map.json",
+   "bytes": 23038,
+   "role": "generated: packet path to source path",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "validate-quotes.py",
+   "bytes": 8796,
+   "role": "generated: validator",
+   "kind": "generated",
+   "sourceEpoch": null,
+   "epochNote": "generated in this preparation, no source epoch"
+  },
+  {
+   "path": "validate-quotes.py.preseal.original.txt",
+   "role": "director final seal or inert pre-seal snapshot",
+   "kind": "director-record",
+   "sourceEpoch": "2026-10-31T06:57:33.589289+00:00",
+   "epochNote": "recorded director source preparation",
+   "bytes": 8647
+  }
+ ],
+ "directorSeal": "2026-10-31T06:57:33.589289+00:00"
+}

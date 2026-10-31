@@ -1,0 +1,181 @@
+[
+  {
+    "id": "F-2521",
+    "tester": "Jonas Berg",
+    "game": "goodhands",
+    "date": "2026-10-31",
+    "exposure": "standing player, first fixed-build retest",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 131.509,
+        "reason": "BORED",
+        "game_clock": "Mon 10:15",
+        "rawStopReaction": "Stopping desktop at about 2 minutes, Mon 10:15. I tested what I asked for last time and two of three are visibly addressed. I would not leave it running; I would come back another evening for trial results. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 31.231,
+        "reason": "BORED",
+        "game_clock": "Mon 08:54",
+        "rawStopReaction": "Stopping phone at about 30 seconds, Mon 08:54. Banner no longer clipped; I know the loop from desktop. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back. First minute and pulse untested.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "Yes, another evening and not now. I would come back once to see whether a fee above ₺9,200 gets refused, and whether the trial outcome punishes it. I would not leave it running. I would stop if the fee never gets a refusal point, or if waiting for the trial is empty.",
+    "laterFullReturn": "Yes, another evening and not now. I would come back once to see whether a fee above ₺9,200 gets refused, and whether the trial outcome punishes it. I would not leave it running. I would stop if the fee never gets a refusal point, or if waiting for the trial is empty.",
+    "laterExtraReturnSpans": {
+      "Section 7 desktop stop words": "I tested what I asked for last time and two of three are visibly addressed. I would not leave it running; I would come back another evening for trial results."
+    },
+    "rankedAsks": [
+      "Show where the fee gets refused. Nobody refused ₺9,200. Only one line of grumbling appeared.",
+      "Show on the call or reference screen when a candidate can next be reached. The phone \"Call a reference\" button still has no subtitle.",
+      "Let a reference settle a trait. Melek said \"listened\" and Nermin stayed \"unsure\", so I cannot tell what would count as enough."
+    ],
+    "askIds": ["F-2526", "F-2527", "F-2528"],
+    "verdict": "mixed"
+  },
+  {
+    "id": "F-2522",
+    "tester": "Aisha Rahman",
+    "game": "goodhands",
+    "date": "2026-10-31",
+    "exposure": "standing player, first fixed-build retest",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 101.683,
+        "reason": "BORED",
+        "game_clock": "Mon 2 Nov 10:21",
+        "rawStopReaction": "Stopping after under two minutes on the laptop. I liked the old-case card where Nermin corrects her own record, but I could not see how to send the letter, and the reference still gave a bad fact instead of a reason. I pressed I would stop here in Feedback, typed nothing, no Submit.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 32.985,
+        "reason": "BORED",
+        "game_clock": "Mon 2 Nov 09:03",
+        "rawStopReaction": "Stopping the phone after about half a minute. I had just played the same opening on the laptop, and Ozlem gave the same thin answer. The phone layout now fits. I pressed I would stop here, typed nothing, no Submit.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "Yes, I would come back another evening, but only if the notes changed when a person gave their own account, and I could actually send the repair letter I drafted for the old case. I would not leave it running.",
+    "laterFullReturn": "The answer is the sentence at the top. I would stay away if the old case ended at an unsent letter again. Another evening, not left running.",
+    "laterExtraReturnSpans": {},
+    "rankedAsks": [
+      "Let me finish the repair. After \"Correct the agency record and write to the worker first\", the letter stayed \"not sent\" and I found no way to send it.",
+      "When I ask why a job ended, give me a reason in the person's own words. I got another bad fact: \"left without handing over the work as agreed.\"",
+      "Make a second candidate's interview answers say more than \"I have worked as a nanny.\""
+    ],
+    "askIds": ["F-2529", "F-2530", "F-2531"],
+    "verdict": "mixed"
+  },
+  {
+    "id": "F-2523",
+    "tester": "Diego Silva",
+    "game": "goodhands",
+    "date": "2026-10-31",
+    "exposure": "standing player, first fixed-build retest",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 98.728,
+        "reason": "BORED",
+        "game_clock": "Mon 2 Nov 11:00",
+        "rawStopReaction": "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 87.446,
+        "reason": "BORED",
+        "game_clock": "Mon 2 Nov 09:58",
+        "rawStopReaction": "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running.",
+    "laterFullReturn": "I would not return voluntarily tonight. I might come back another evening, but only if a wrong promise cost me something and the rent were not covered before noon Monday. I would not leave it running, because nothing in it needs me to be watching.",
+    "laterExtraReturnSpans": {},
+    "rankedAsks": [
+      "Make an unchecked promise cost something. I promised \"warm\", which I had not checked, and the family agreed in seconds. Nothing bit back.",
+      "Don't let the deposit clear rent by Monday morning. Cash was ₺5,250 at 10:04 on desktop, over the ₺5,000 rent.",
+      "Give the incoming calls more than Promise, Decline or Finish. The Kaya call is better written now, but the menu is the same."
+    ],
+    "askIds": ["F-2532", "F-2533", "F-2534"],
+    "verdict": "mixed"
+  },
+  {
+    "id": "F-2524",
+    "tester": "Rosa Alvarez",
+    "game": "goodhands",
+    "date": "2026-10-31",
+    "exposure": "standing player, first fixed-build retest",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 70.146,
+        "reason": "BORED",
+        "game_clock": null,
+        "rawStopReaction": "I placed Ozlem and the rent is covered at 09:35. Reasons are explained now and the fee has numbers. Now I only wait for the next family call, so I stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "desktop": {
+        "elapsed_s": 43.144,
+        "reason": "BORED",
+        "game_clock": null,
+        "rawStopReaction": "On the big screen I understood everything without a reread. The card now says why Sebnem stays unsure. I have placed nobody here and I would rather stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I would come back another evening, probably on the big screen, to see what happens to Özlem and the Kaya family. I would not leave it running; I would close it.",
+    "laterFullReturn": "Yes, another evening. I would play on the tablet or desktop, to see what happens to Özlem and the Kaya family. I understood everything on this visit without a reread, which I could not say last time. I would not leave it running. After the rent was paid I had nothing to do but wait, and I would not know what I missed.",
+    "laterExtraReturnSpans": {},
+    "rankedAsks": [
+      "After a placement, tell me what to do while I wait. Both sessions ended on \"Next: A family is due to call. Wait or meet someone on your bench.\"",
+      "Say each wage and fee once on the agreement screen. The same numbers appear three times.",
+      "Keep \"I'm stopping\" and \"I'm confused\" in Feedback on both devices. Both were there this time."
+    ],
+    "askIds": ["F-2535", "F-2536", "F-2537"],
+    "verdict": "keep"
+  },
+  {
+    "id": "F-2525",
+    "tester": "Nadia Petrović",
+    "game": "goodhands",
+    "date": "2026-10-31",
+    "exposure": "new cold person, empty history, first Good Hands visit",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "opus",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 298.662,
+        "reason": "CONFUSED",
+        "game_clock": "Mon 2 Nov 15:32",
+        "rawStopReaction": "I will stop here. The first placement was satisfying, but now I cannot find where my kept numbers live and the belief rules feel uneven. I would rather stop than guess.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 234.607,
+        "reason": "BORED",
+        "game_clock": "Mon 2 Nov 11:37",
+        "rawStopReaction": "I stop here. Tonight I placed Özlem twice and found the kept-number list, which answered my question from the computer. But it is the same afternoon again, and for me one evening of it is enough.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "Maybe, on one condition: the next evening has to give me a different afternoon or a second day. I would not replay this same Monday a third time.",
+    "laterFullReturn": "Maybe, on one condition: the next evening has to give me a different afternoon or a second day. I would not replay this same Monday a third time. I like checking evidence before I promise, and I like seeing the cash change. Now I know where kept numbers live and that Pace has a Slow setting, so the next attempt would start better. If the doubt/unsure rule stays unexplained, I would stop trusting Nermin's readings, and then the game loses its point for me.",
+    "laterExtraReturnSpans": {
+      "Section 7 leave it running or come back": "I would not leave it running. The clock moves while I read. I would come back another evening, on the desktop, with Pace set to Slow."
+    },
+    "rankedAsks": [
+      "Explain the belief rule in the same words every time. On the computer, Şebnem's one bad reference made Nermin \"doubt\" her, but Cihan's one bad reference (\"would not hire him again… did not come and did not call\") left her only \"still unsure\". Nothing said why.",
+      "Let me see my kept numbers while a card is open. On the computer I never found where Gülce's number had gone. On the phone, the list (\"Şebnem Eren · at home\") appears only when no card is open.",
+      "Show the Pace (Slow) setting at the start. I only found it in the menu at the very end, after feeling rushed for a whole session."
+    ],
+    "askIds": ["F-2538", "F-2539", "F-2540"],
+    "verdict": "mixed"
+  }
+]

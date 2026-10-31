@@ -1,0 +1,2718 @@
+{
+ "time": "built by build-packet.py from the copied raw wall-clock.jsonl files",
+ "note": "Exact surviving reaction rows from all five testers and ten sessions, not a reconstructed producer diary. Report memories and estimates stay separate. Rows with no reaction text (opens, automatic shots, some waits) are counted in rows but not listed. Failed driver taps keep their error text and their reaction. reactionsNotLiterallyInReport counts reactions whose exact text is not a substring of that tester's report.md.",
+ "sessions": [
+  {
+   "tester": "Maya Chen",
+   "device": "phone",
+   "source": "maya/phone/wall-clock.jsonl",
+   "rawSha256": "b9a0e2e63d2caf51f0367c49ea1e5f72acea81e53f45161d48e6829c8c0ca91e",
+   "rows": 51,
+   "reactionRows": 23,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T06:54:46.199Z",
+     "elapsed_s": 7.565,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same title, wait choice still there. I remember Selim and Dilek. Starting with the default normal wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1147,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:54:48.978Z",
+     "elapsed_s": 10.344,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Change Selim’s plan"
+     },
+     "reaction": "New: the page warns me that Selim break leaves the grill empty when the early table arrives. That is the warning I asked for before. Changing his plan.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 741,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:54:57.986Z",
+     "elapsed_s": 19.352,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Talk with Selim another time"
+     },
+     "reaction": "Both offers are greyed out now, with a reason (they are busy) and a button to talk another time. Trying it to see what it does.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 116,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:54:59.968Z",
+     "elapsed_s": 21.334,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Resume"
+     },
+     "reaction": "Tapping Talk with Selim another time changed nothing I can see. Offers are disabled before the doors open, so no conversation yet. Going on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 118,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:55:05.890Z",
+     "elapsed_s": 27.256,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Talk with Dilek another time"
+     },
+     "reaction": "Still greyed out at 17:27 with no orders, saying they are busy with current work. I am not sure that is true when the kitchen is waiting. Trying the another-time button on Dilek.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 135,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:55:10.722Z",
+     "elapsed_s": 32.088,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "How are you doing?"
+     },
+     "reaction": "The panel now warns me, before I tap, that a private talk makes the cook stop work and the station may be empty. That was my first ask last time. I do not see a Choose something he said option this time; trying How are you doing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 181,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:55:13.111Z",
+     "elapsed_s": 34.477,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Same garbled reply as last time: the bathroom line says it twice, then ask me about Nevin when I have a moment. He went to the bathroom right away. No orders yet, so it costs nothing, but the wording is still repeated.",
+     "game_clock": "Mon 17:30",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T06:55:37.194Z",
+     "elapsed_s": 58.56,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Selim is in the bathroom for about a minute; one minute is fair. Leaving the grill empty, a table is waiting but it only needs the cold side too.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 181,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:55:39.616Z",
+     "elapsed_s": 60.982,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "No lore wall; I could act within seconds. New since last time: the opening page warns me that Selim break would leave the grill empty, and the cook panel now says a private talk or a move can leave a station empty. But the offers in People are greyed out before service, and Choose something Selim said is gone. Selim reply still has the garbled doubled bathroom line.",
+     "game_clock": "Mon 17:33",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T06:56:06.689Z",
+     "elapsed_s": 88.055,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim cold side"
+     },
+     "reaction": "Selim left the grill by himself or because of my tap, I am not sure which. 25 minutes empty with a table due at 18:12. I want to ask him why.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 187,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:56:22.602Z",
+     "elapsed_s": 103.968,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Dilek says she cannot take over, and now she is in the bathroom too. Nobody covers the grill for 23 minutes and I never asked Selim to leave it. I can not tell what caused this; guessing it was his own plan.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 119,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:56:34.506Z",
+     "elapsed_s": 115.872,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Grill For now, I will do that."
+     },
+     "reaction": "Clear now: the page says You left the grill empty and you can ask a cook to work there. A table waits for the grill. Asking Selim to take it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 211,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:56:48.872Z",
+     "elapsed_s": 130.238,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Choose something you heard Selim say"
+     },
+     "reaction": "Selim agreed to the grill and then went outside for ten minutes, while a table waits. His reply about explaining the wait and leaving other tables for three minutes does not match what happened. The Choose something you heard option is back, trying it for the Nevin list.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 133,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:56:52.118Z",
+     "elapsed_s": 133.484,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Dilek cold side"
+     },
+     "reaction": "Selim talk-about choice is greyed out while he is outside, and the only thing offered is the wait line, not Nevin. Looking at Dilek instead for her sound clips.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 233,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:56:55.312Z",
+     "elapsed_s": 136.678,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Invite Dilek to talk in private for three minutes"
+     },
+     "reaction": "The warning says she stops work and her station may need someone else. I accept it knowingly, for her clips story.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 239,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:57:35.319Z",
+     "elapsed_s": 176.685,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Dilek gave me her clips story, which I wanted, and it cost a table: 40 lira lost. I knew the risk this time. Selim stepped out again, 4 minutes this time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 182,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:57:48.210Z",
+     "elapsed_s": 189.576,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Dilek now asks me for five minutes to call her mother, which follows from the clips story she just told. That is a person carrying a story forward, and the cost to the station is written next to the choice. Selim leaving the grill on his own is still hard to follow.",
+     "game_clock": "Mon 18:31",
+     "engagement": 4,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T06:57:49.850Z",
+     "elapsed_s": 191.216,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Go on. Take five minutes."
+     },
+     "reaction": "Letting her call her mother. It follows her story.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 132,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:57:58.094Z",
+     "elapsed_s": 199.46,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 6
+     },
+     "reaction": "Waiting for her answer. I have seen the loop again: talk costs a table, the cooks drift off. The stories I wanted came this time though. Opening the menu to stop.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 6115,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T06:59:07.979Z",
+     "elapsed_s": 269.345,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "x": 73,
+      "y": 370
+     },
+     "reaction": "Tapping I am stopping by position, since the name has an apostrophe the shell will not pass.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 126,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T06:59:10.199Z",
+     "elapsed_s": 271.565,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Back to the menu"
+     },
+     "reaction": "I'm stopping got pressed and the note box filled itself with the same words. I typed nothing. Going Back.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 126,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:59:12.554Z",
+     "elapsed_s": 273.92,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Every talk I start costs a table and the cooks wander off on their own. I got the stories, but I do not want to repeat the loop again tonight.",
+     "game_clock": "Mon 18:41",
+     "engagement": 3,
+     "reason": "FRUSTRATED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T06:59:14.576Z",
+     "elapsed_s": 275.942,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping the phone visit. I got Dilek clips story and a follow up, but talking cost a table and cooks left stations on their own, and the Nevin thread went nowhere.",
+     "game_clock": "Mon 18:41",
+     "engagement": 3,
+     "reason": "FRUSTRATED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Maya Chen",
+   "device": "desktop",
+   "source": "maya/desktop/wall-clock.jsonl",
+   "rawSha256": "68541592864c467cb52ec59964f2a719a39b726507fb0907803ff60c575f0db4",
+   "rows": 54,
+   "reactionRows": 29,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T06:59:21.581Z",
+     "elapsed_s": 5.584,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim suggests a longer wait. Nevin’s pace gives customers more time to wait for all four weeks."
+     },
+     "reaction": "Same title as on my phone. This time I pick Selim longer wait to see what it changes.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 148,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:59:27.547Z",
+     "elapsed_s": 11.55,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Change Selim’s plan"
+     },
+     "reaction": "Same warning about the 18:12 table and Selim break. Selim sunset-prayer window 18:35-19:20 is mentioned here, I think that is new to me. Changing his break.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 737,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:59:35.838Z",
+     "elapsed_s": 19.841,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the doors"
+     },
+     "reaction": "Both cooks agreed to the new plan. Opening the doors with the longer wait chosen.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 499,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:59:38.307Z",
+     "elapsed_s": 22.31,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim grill"
+     },
+     "reaction": "Ingredients are 15 grill and 17 cold this time. I do not know if that is the longer wait or just a different run. Talking to Selim first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 240,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:59:41.128Z",
+     "elapsed_s": 25.131,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "How are you doing?"
+     },
+     "reaction": "New to me: each job shows the chef guess at his reply under it. Selim is going to say bathroom for everything except the grill. Asking how he is.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 189,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:59:44.315Z",
+     "elapsed_s": 28.318,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim in the bathroom"
+     },
+     "reaction": "Same doubled bathroom line as on the phone, so the wording is unchanged. Looking at what I can ask now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 230,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T06:59:46.361Z",
+     "elapsed_s": 30.364,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Close"
+     },
+     "reaction": "Closing the panel to let time run. I will ask about Nevin when he is back from the bathroom.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 145,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:00:15.712Z",
+     "elapsed_s": 59.715,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "One minute at the bathroom is fair, and Dilek is needed at the cold side. Leaving it empty.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 198,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:00:17.823Z",
+     "elapsed_s": 61.826,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "I could act within seconds and there was no lore wall. New to me here: each job shows the chef guess at the cook reply, and a table card shows how long it waits and when it leaves. Selim still goes to the bathroom first and his reply still says it twice.",
+     "game_clock": "Mon 17:32",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:00:38.617Z",
+     "elapsed_s": 82.62,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "It is 18:00 already. Selim has left the grill again by himself, and the button says he is at the cold side, the same as Dilek. I did not ask for that.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 139,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:00:42.946Z",
+     "elapsed_s": 86.949,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Both cooks are standing at the cold side and the grill is empty for 25 minutes. I will leave it empty for the prompt, then ask Selim to go back to the grill.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 223,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:00:54.897Z",
+     "elapsed_s": 98.9,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Grill I agree to that now."
+     },
+     "reaction": "The guess under Grill says he agrees now. Trusting it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 236,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:01:06.844Z",
+     "elapsed_s": 110.847,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "How are you doing?"
+     },
+     "reaction": "Selim is back at the grill before the 18:12 table, and the preview was right. Now asking how he is, hoping for the Nevin thread.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 191,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:01:10.280Z",
+     "elapsed_s": 114.283,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim talking at the pass"
+     },
+     "reaction": "At last he says he misses Nevin and asks for three minutes. It ends at 18:09, before the 18:12 table, so I can afford it. Opening his panel.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 239,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:01:12.940Z",
+     "elapsed_s": 116.943,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Choose something you heard Selim say"
+     },
+     "reaction": "He is already talking with me for three minutes, so I did not even have to invite him. Opening the list of things I heard him say.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 115,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:01:15.640Z",
+     "elapsed_s": 119.643,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Close"
+     },
+     "reaction": "The talk-about button is greyed because he is already talking at the pass. I will close and let the three minutes run.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 145,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:01:35.665Z",
+     "elapsed_s": 139.668,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim cold side"
+     },
+     "reaction": "He said three minutes then back. It is 18:14, he is at the cold side not the grill, and table 6 is waiting for the grill. I never got to hear anything about Nevin. Asking him back to the grill.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 269,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:01:50.753Z",
+     "elapsed_s": 154.756,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Choose something you heard Selim say"
+     },
+     "reaction": "Selim is at the grill again and the food is cooking. Now I try the Nevin line to follow up on what he said.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 114,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:01:52.978Z",
+     "elapsed_s": 156.981,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Talk about: “I miss having Nevin beside the grill. These are her pans. Give me three minutes with you before I go back.”"
+     },
+     "reaction": "The Nevin line is available now that he is free. Tapping it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 334,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:01:58.649Z",
+     "elapsed_s": 162.652,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "The Nevin line led somewhere this time: Selim said Nevin knew these pans as well as he does and he misses working beside her. That is a real answer to my follow up, which I never got on the phone. But the talk pulled him off the grill again while table 6 is about to leave, and nothing warned me before I tapped it.",
+     "game_clock": "Mon 18:18",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:02:23.604Z",
+     "elapsed_s": 187.607,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "The Nevin reply came but it is one short line, and while I was reading it Selim stayed off the grill, table 6 is about to walk out, and now Dilek has gone to the bathroom too. I want the stories but I keep losing the kitchen to get them.",
+     "game_clock": "Mon 18:21",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:02:26.625Z",
+     "elapsed_s": 190.628,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Selim to take over They are free now."
+     },
+     "reaction": "Selim is free, so I ask him to cover the cold side.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1082,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:02:47.005Z",
+     "elapsed_s": 211.008,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim cold side"
+     },
+     "reaction": "Now I see why: the table complained at the kitchen door and Dilek went to explain, which is what pulls cooks off stations. I was never told that beforehand. Grill is still empty. Asking Selim for the grill.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 254,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:02:49.579Z",
+     "elapsed_s": 213.582,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Grill Chef, I will do that."
+     },
+     "reaction": "The previews now give a reason, like not now Dilek stepped out. That helps me guess. Asking for the grill.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 236,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:03:04.059Z",
+     "elapsed_s": 228.062,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Dilek cold side"
+     },
+     "reaction": "Table 6 got served at the last minute, 160 lira, nothing lost this time. That felt like a small win. Now I look at Dilek.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 228,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:03:10.123Z",
+     "elapsed_s": 234.126,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Dilek talking at the pass"
+     },
+     "reaction": "Dilek hints at her recordings right away this time, without me paying a table for it. Opening her panel to follow the line.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 223,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:03:23.771Z",
+     "elapsed_s": 247.774,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Back to the menu"
+     },
+     "reaction": "Im stopping is pressed and filled the note box itself. I typed nothing and press no Submit. Going Back.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:03:26.422Z",
+     "elapsed_s": 250.425,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I got what I came for on this device: a Nevin line and a hint about the recordings, and nothing lost. Another loop of talk then cooks wander off is not what I want tonight.",
+     "game_clock": "Mon 18:29",
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:03:27.755Z",
+     "elapsed_s": 251.758,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping the desktop visit at about four minutes. The Nevin follow up finally answered and Dilek hinted at her recordings, but every talk still pulls a cook off a station and I am never told that before I tap.",
+     "game_clock": "Mon 18:29",
+     "engagement": 3,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Emre Kaya",
+   "device": "phone",
+   "source": "emre/phone/wall-clock.jsonl",
+   "rawSha256": "c33a52f4a4d69a6f1fc05b28568d45eada69a4389058fb13526f9847f45e349c",
+   "rows": 20,
+   "reactionRows": 6,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:09:24.661Z",
+     "elapsed_s": 4.448,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Phone, same evening. Same title, default normal wait. Going straight in.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1196,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:09:30.163Z",
+     "elapsed_s": 9.95,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Dilek",
+      "role": "button"
+     },
+     "reaction": "Different from the desktop: I keep the 18:10 break and let Dilek cover the grill, to see what that costs.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 685,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:09:35.211Z",
+     "elapsed_s": 14.998,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the doors"
+     },
+     "reaction": "New: the plan page now tells me Dilek said no to covering, so the grill will be empty at 18:12. I keep it anyway to see the loss.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 502,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:10:26.108Z",
+     "elapsed_s": 65.895,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Phone Monday 18:15, 120 lira. Layout fits, cooks buttons and kitchen picture readable, the table card is small. The plan page told me Dilek would not cover, and it happened: grill empty, a table waiting. I am watching again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:10:27.729Z",
+     "elapsed_s": 67.516,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Phone Monday 18:15. Grill empty because I chose a cover who said no, time slowed to a crawl, nothing to do. Same wait as the desktop, and I already saw Tuesday there.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:10:33.815Z",
+     "elapsed_s": 73.602,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping on phone Monday 18:15, 120 of 5200, about 72 seconds. Layout fits. The plan page now says plainly when a cover said no, which I liked. But the empty grill with slowed time is the same dead wait. I would come back another evening on desktop, not leave it running.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Emre Kaya",
+   "device": "desktop",
+   "source": "emre/desktop/wall-clock.jsonl",
+   "rawSha256": "441294e6826bb3bab966c996e270127d2c296435febddf714095bbbf0c548ade",
+   "rows": 38,
+   "reactionRows": 14,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:04:25.163Z",
+     "elapsed_s": 7.412,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same title, same wait choice as last time. Default normal again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1302,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:04:27.551Z",
+     "elapsed_s": 9.8,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Change Selim’s plan"
+     },
+     "reaction": "Plan page tells me Selim break leaves grill empty at 18:12. I move his break.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 750,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:04:34.437Z",
+     "elapsed_s": 16.686,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the doors"
+     },
+     "reaction": "Selim moved to 21:00. Dilek left at 18:35, in the rush, to see what it costs.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 524,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:05:06.773Z",
+     "elapsed_s": 49.022,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "After closing time"
+     },
+     "reaction": "Same mid-service question as last time. Rush is on; I ask her to wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 146,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:05:08.415Z",
+     "elapsed_s": 50.664,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Same plan page, early table warning, Selim break moved to 21:00. Mid-service question from Dilek again. 160 lira at 18:29, ingredients 6 grill. I know this already, so it goes faster.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:06:41.946Z",
+     "elapsed_s": 144.195,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Ingredients falling again, 2 grill portions. No restock control visible. Watching.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30109,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:06:43.867Z",
+     "elapsed_s": 146.116,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "New: day summary says I need about 920 a night for the 5 nights left. That is the per-night rate I asked for. But I earned 600, 15 of 15 tables again, so I am behind and still do not see how to get more tables.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:07:23.952Z",
+     "elapsed_s": 186.201,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Ingredients refilled overnight, 20 grill 18 cold. That answers my restock worry from last time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30107,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:07:25.515Z",
+     "elapsed_s": 187.764,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Tuesday 18:16, 760 lira. Plan reuse and per-night target help. Tables waiting for the grill with Selim at the grill, I do not see why; I cannot do much but watch.",
+     "game_clock": null,
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:07:59.878Z",
+     "elapsed_s": 222.127,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Rafi dishes"
+     },
+     "reaction": "Cold side empty while Dilek eats in the rush, table waiting. Rafi is on dishes. I look at what I can ask him.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1155,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:08:03.088Z",
+     "elapsed_s": 225.337,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Close"
+     },
+     "reaction": "New: each job shows the chef guess at the reply. Rafi would say bathroom to everything, so asking is pointless. Closing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 985,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:08:36.711Z",
+     "elapsed_s": 258.96,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Tuesday 18:40, cold side empty because Dilek is eating, two tables at risk, time slowed to 3 game minutes per 30 real seconds, and I cannot ask anyone. Same dead wait as last visit.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:08:40.761Z",
+     "elapsed_s": 263.01,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Fast"
+     },
+     "reaction": "New: Kitchen speed in the menu, Slow Steady Fast. This is the faster pace I asked for. Trying Fast.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 182,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:09:19.177Z",
+     "elapsed_s": 301.426,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping desktop Tuesday 18:42, 840 of 5200, about 5 minutes. Per-night target, ingredients refilling, predicted replies and Kitchen speed in the menu are real improvements. But Fast did not help while a station was empty: time stays slowed and I cannot ask anyone useful. I would come back another evening, not leave it running.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Nia Okafor",
+   "device": "phone",
+   "source": "nia/phone/wall-clock.jsonl",
+   "rawSha256": "f14d02792e410f30e5177dbf9ae6834a4dd4a7a7975ca933816bab26041afbff",
+   "rows": 35,
+   "reactionRows": 20,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:11:25.292Z",
+     "elapsed_s": 6.841,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same start as before; taking default and going.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1144,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:11:27.757Z",
+     "elapsed_s": 9.306,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the doors"
+     },
+     "reaction": "Skipping plan sheets, want orders fast, as before.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 522,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:11:29.075Z",
+     "elapsed_s": 10.624,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim grill"
+     },
+     "reaction": "Poke a cook.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 235,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:11:30.674Z",
+     "elapsed_s": 12.223,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "How are you doing?"
+     },
+     "reaction": "Toilet line again for most jobs, same as last time. Trying the personal question instead.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 181,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:11:32.498Z",
+     "elapsed_s": 14.047,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Dilek cold side"
+     },
+     "reaction": "I asked how he is and got the toilet line again, bolted on to a refusal to talk. Try Dilek.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 218,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:11:33.896Z",
+     "elapsed_s": 15.445,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Nobody is at the grill but no orders yet, so leaving it empty.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 171,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:11:57.811Z",
+     "elapsed_s": 39.36,
+     "kind": "tool",
+     "op": "tap",
+     "input": {
+      "name": "Eat For now, I want to use the bathroom first. I cannot hold it much longer.",
+      "duration_ms": 1800
+     },
+     "reaction": "Toilet line again for Dilek on every job. Holding Eat to insist, which I could not do last time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 7,
+     "error": "Eat For now, I want to use the bathroom first. I cannot hold it much longer. is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+     "requested_control_present_before": false
+    },
+    {
+     "t": "2026-10-31T07:12:00.757Z",
+     "elapsed_s": 42.306,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dilek to take over Then nobody works at the cold side."
+     },
+     "reaction": "Selim left the grill for 25 minutes. Asking Dilek to cover, want to see if she pushes back.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 192,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:12:17.060Z",
+     "elapsed_s": 58.609,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 15
+     },
+     "reaction": "Waiting for her answer.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 15113,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:12:20.811Z",
+     "elapsed_s": 62.36,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Orders came within 30s again, 3 tables served and 120 lira. Cooks still give the toilet line for nearly every job, even to How are you doing. Dilek refused cover with a flat system line. Choices pop up but I mostly wait.",
+     "game_clock": "Mon 18:03",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:12:22.112Z",
+     "elapsed_s": 63.661,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Fine, leaving it empty.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 195,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:12:42.626Z",
+     "elapsed_s": 84.175,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Grill Chef, I plan to work the cold side instead.",
+      "duration_ms": 1800
+     },
+     "reaction": "Table 6 is about to leave and the grill is empty. Holding Grill to insist on Dilek.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1956,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:12:58.032Z",
+     "elapsed_s": 99.581,
+     "kind": "note",
+     "op": "tap",
+     "input": {
+      "name": "About what you said"
+     },
+     "reaction": "The hold worked: Dilek said willing and moved to grill. Now the cooks give actual reasons instead of the toilet line. Trying About what you said.",
+     "game_clock": "Mon 18:24",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 208,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:13:00.405Z",
+     "elapsed_s": 101.954,
+     "kind": "note",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Confusing: I asked about what she said and she left her station to talk at the pass, now cold side is empty for 215 minutes. I did not mean to cost a station.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 132,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:13:24.171Z",
+     "elapsed_s": 125.72,
+     "kind": "note",
+     "op": "tap",
+     "input": {
+      "name": "Go on. Take five minutes."
+     },
+     "reaction": "Now that is a person: Dilek asking to call her mother. Saying go on. I lost table 6 and 40 lira though, and did not see it coming.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 135,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:13:47.259Z",
+     "elapsed_s": 148.808,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim grill"
+     },
+     "reaction": "Selim is back at the grill. Checking what he says now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 215,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:13:49.152Z",
+     "elapsed_s": 150.701,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "How are you doing?"
+     },
+     "reaction": "New reason this time, the sunset prayer, not the toilet. Good. Asking how he is again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 180,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:14:20.572Z",
+     "elapsed_s": 182.121,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Real people moments now: Dilek asking to call her mother, Selim prayer, a hold that worked. But my How are you doing got a canned reply twice, and I keep losing tables while I wait.",
+     "game_clock": "Mon 18:57",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:14:34.782Z",
+     "elapsed_s": 196.331,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I would stop here. The cooks have more real reasons now but my personal questions still get canned lines and I lose tables while I wait.",
+     "game_clock": "Mon 18:58",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:14:36.004Z",
+     "elapsed_s": 197.553,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping on Monday evening. Liked Dilek calling her mother and the hold that worked. Disliked that How are you doing got the toilet or prayer line, and the waiting. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+     "game_clock": "Mon 18:58",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Nia Okafor",
+   "device": "desktop",
+   "source": "nia/desktop/wall-clock.jsonl",
+   "rawSha256": "c04a6fa408873a6598bcb1210b6b1a5a5e6b9808e4357e1337bf24a43c517697",
+   "rows": 24,
+   "reactionRows": 10,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:14:41.629Z",
+     "elapsed_s": 4.487,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Second device, same evening. Straight in.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1180,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:14:47.765Z",
+     "elapsed_s": 10.623,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Insist on a job for Dilek"
+     },
+     "reaction": "Toilet line again for nearly everything. Opening the Insist group to see if a click does something this time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 210,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:14:49.737Z",
+     "elapsed_s": 12.595,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Insist: Dilek, go home"
+     },
+     "reaction": "The Insist list now opens and says what it costs. Insisting go home, the silliest one, to see her push back.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 228,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:14:52.923Z",
+     "elapsed_s": 15.781,
+     "kind": "note",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Oh! Insist worked: Dilek said I will do as you ask now, it is getting urgent, and left the kitchen until 22:00. That is a visible effect at last. The words are the toilet line glued on, so it reads odd. I just lost my cold side for the whole night on one click.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 192,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:15:16.069Z",
+     "elapsed_s": 38.927,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim grill"
+     },
+     "reaction": "Dilek is gone and table 5 waits on the cold side. Asking Selim to move over.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 236,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:15:18.212Z",
+     "elapsed_s": 41.07,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "How are you doing?"
+     },
+     "reaction": "Selim gives different reasons here, someone must stay, which makes sense. Asking how he is.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 183,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:15:20.943Z",
+     "elapsed_s": 43.801,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Selim answered How are you doing with I miss having Nevin beside the grill, these are her pans. That is an actual reply to my question, which the phone run never gave me. I like it. He left the grill to talk though, so the grill is empty too.",
+     "game_clock": "Mon 17:39",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:15:44.090Z",
+     "elapsed_s": 66.948,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Insisting go home made Dilek actually leave, a visible effect at last, and Selim answered How are you doing with a line about Nevin. But with Dilek gone tables are piling up with nobody to cook, and the main thing I can do is wait. Desktop layout is calm and readable.",
+     "game_clock": "Mon 17:45",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:16:23.696Z",
+     "elapsed_s": 106.554,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I clicked go home once for fun and now nothing is being served, three tables are about to leave, and Selim keeps leaving the grill to explain waits. I see no quick fix. I would stop.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FRUSTRATED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:16:25.000Z",
+     "elapsed_s": 107.858,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping on Monday 18:11, desktop. Insist finally did something I could see, and Selim gave a real answer about Nevin, but one click sent Dilek home for the night and I could not recover. Would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FRUSTRATED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Rosa Alvarez",
+   "device": "phone",
+   "source": "rosa/phone/wall-clock.jsonl",
+   "rawSha256": "975b3896674452ec9671a5fa1a876a1596f63c6c369be5f96ef2ce54be62f0be",
+   "rows": 34,
+   "reactionRows": 15,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:17:17.858Z",
+     "elapsed_s": 5.314,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same title as last time. I know the goal. New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1271,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:17:20.494Z",
+     "elapsed_s": 7.95,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Change Selim’s plan"
+     },
+     "reaction": "Now it tells me the grill will be empty at 18:12 and to move the break. I read it once; clear. I change Selim.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 784,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:17:22.890Z",
+     "elapsed_s": 10.346,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "21:00 after the rush"
+     },
+     "reaction": "I put the break after the rush so the grill is covered. Plain choices.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 734,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:17:26.153Z",
+     "elapsed_s": 13.609,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask them about the changes"
+     },
+     "reaction": "Dilek also says waiting for a new answer, though I changed only Selim. Slightly odd, but I ask.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:17:27.703Z",
+     "elapsed_s": 15.159,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the doors"
+     },
+     "reaction": "Selim agreed to the late break. Open the doors.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 506,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:17:55.830Z",
+     "elapsed_s": 43.286,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "Three tables served without my doing anything. Better than last time, when the grill was empty at the start.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 127,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:18:21.094Z",
+     "elapsed_s": 68.55,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "The planning screen now warned me about the empty grill in plain words, and I fixed it in one tap. Four tables served and 160 lira with no trouble. Now Dilek asks five minutes to call her mother; the warning says the cold side may be empty. I understood that on first reading.",
+     "game_clock": "Mon 18:33",
+     "engagement": 4,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:18:22.468Z",
+     "elapsed_s": 69.924,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Go on. Take five minutes."
+     },
+     "reaction": "Her mother is not answering; I let her go. It is the human thing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 118,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:18:50.323Z",
+     "elapsed_s": 97.779,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Only about one minute empty and no table waiting. I leave it empty; this choice and its cost are stated plainly.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 203,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:19:24.491Z",
+     "elapsed_s": 131.947,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Selim says: I will explain the wait. I am leaving the other tables for three minutes. I read that twice: who is he explaining to, and why bathroom? Reread 1. Table 3 waits for cold side, so I leave the grill empty.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 215,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:19:57.768Z",
+     "elapsed_s": 165.224,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Nine tables served, 360 lira. Selim is out for ten minutes but no table waits, so I leave it empty.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 196,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:20:21.883Z",
+     "elapsed_s": 189.339,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Money is growing and the screen explains empty stations in plain words. But Selim is eating now though the plan said 21:00, and the quote about explaining the wait is strange. I do not know if I can reach 5,200.",
+     "game_clock": "Mon 19:48",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:20:24.917Z",
+     "elapsed_s": 192.373,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Grill I am willing to do that now."
+     },
+     "reaction": "This menu is long, but the words under each job tell me the answer. I ask for the grill. Reread 2: Insist and Hold it to insist, I do not understand. Second reread.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 182,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:20:27.465Z",
+     "elapsed_s": 194.921,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Second reread: Selim says I will explain the wait. I am leaving the other tables for three minutes. And the cook menu: Tap a job to ask. Hold it to insist, or open Insist on a job for tap and keyboard controls. I do not know what insist or hold means. I will stop after I check Feedback.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:20:44.001Z",
+     "elapsed_s": 211.457,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "The empty grill is now explained and I fixed it, which pleased me. But the cooks leave stations by themselves and the words Insist, Hold it to insist and I will explain the wait I do not understand. I do not know if 5,200 is reachable. I would close it, not leave it running. I stop on the phone. In Feedback I pressed I am confused by position, typed nothing, no Submit.",
+     "game_clock": "Mon 19:56",
+     "engagement": 3,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Rosa Alvarez",
+   "device": "desktop",
+   "source": "rosa/desktop/wall-clock.jsonl",
+   "rawSha256": "394542f6b561f77c3b1658f740634262ab3c08f20f4416ff431e0f5de99a7239",
+   "rows": 24,
+   "reactionRows": 8,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:20:49.193Z",
+     "elapsed_s": 4.083,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same title, big screen. New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1265,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:20:51.995Z",
+     "elapsed_s": 6.885,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Change Selim’s plan"
+     },
+     "reaction": "Same warning as on the phone, in plain words. I move the break again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 739,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:20:56.146Z",
+     "elapsed_s": 11.036,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Done"
+     },
+     "reaction": "The dialog still says Nobody will work at the grill while Selim eats, though the break is now 21:00. I read it twice: is it a warning about now or about 21:00? Reread 1.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 743,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:21:34.767Z",
+     "elapsed_s": 49.657,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "After closing time"
+     },
+     "reaction": "Same request from Dilek as on the phone. This time I try the other answer, After closing time. The screen has two columns and is much easier to read.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:21:53.427Z",
+     "elapsed_s": 68.317,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Big screen: picture left, cook choices right; much easier to read. Dilek asked five minutes for her mother; I said after closing time and she accepted, politely, and now she is on her planned break during the rush, so the cold side is empty. The planning screen warned me only about Selim, not about Dilek. I understood the Dilek request at first reading.",
+     "game_clock": "Mon 18:41",
+     "engagement": 4,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:22:27.468Z",
+     "elapsed_s": 102.358,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Only 200 lira at 19:27 and the grill already shows nobody here; Selim leaves anyway. I read again: I will explain the wait, I am leaving the other tables, and the status says in the bathroom. The words do not match. Reread 2.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 206,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:22:30.424Z",
+     "elapsed_s": 105.314,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Second reread on this device: the planning dialog said Nobody will work at the grill while Selim eats after I moved the break, and Selim says I will explain the wait. I am leaving the other tables for three minutes while the status says in the bathroom. I cannot tell what is happening to my grill. I will stop after Feedback.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:22:40.974Z",
+     "elapsed_s": 115.864,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "On the big screen it is easier to read, and the early warning about the grill was clear. But I earned only 200 lira by 19:32, three tables wait for an empty grill, and Selim says he will explain the wait while the screen says in the bathroom. I do not understand what he does. I would close it, not leave it running. I stop. In Feedback I pressed I am stopping by position, typed nothing, no Submit.",
+     "game_clock": "Mon 19:32",
+     "engagement": 3,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Sonia Ionescu",
+   "device": "phone",
+   "source": "sonia/phone/wall-clock.jsonl",
+   "rawSha256": "c303e2a3b2e492ffb8c930e176d6e1b8723618aa61089fe22440131b0a0c111c",
+   "rows": 35,
+   "reactionRows": 16,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:31:19.030Z",
+     "elapsed_s": 5.139,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim suggests a longer wait. Nevin’s pace gives customers more time to wait for all four weeks."
+     },
+     "reaction": "Same title page on the phone, fits well. Last time tables kept calling Selim out to explain the wait. This time I take the longer wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:31:25.109Z",
+     "elapsed_s": 11.218,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Change Selim’s plan"
+     },
+     "reaction": "Same Monday as on the laptop: Selim, Dilek, the early table at 18:12. I recognise it straight away. Sure of it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 733,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:31:34.339Z",
+     "elapsed_s": 20.448,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "Different numbers this time: 16 grill, 15 cold. Still 0 flatbreads, still nobody says what flatbreads are for.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 132,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:32:08.276Z",
+     "elapsed_s": 54.385,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "On the phone the kitchen drawing is tiny. The labels under the figures, dining room, storeroom, I cannot read them. Small grey text. Dilek’s speech line is cut off behind the cook buttons.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30109,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:32:11.998Z",
+     "elapsed_s": 58.107,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Go on. Take five minutes."
+     },
+     "reaction": "Dilek and her mother again, same words as on the laptop, a few minutes earlier. I let her go again. If my mother did not answer I would want to call too.",
+     "game_clock": "Mon 18:29",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 134,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:32:13.480Z",
+     "elapsed_s": 59.589,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Second time, so the first minute was easy: same plan, doors open, four tables served, ₺160. I knew what to do. The phone layout is fine for reading, but the picture of the kitchen is too small to tell anything from.",
+     "game_clock": "Mon 18:29",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:32:33.251Z",
+     "elapsed_s": 79.36,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Same again: she asks to phone her mother and the label says bathroom. Now I am sure it is not my misreading.",
+     "game_clock": "Mon 18:31",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 184,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:33:06.984Z",
+     "elapsed_s": 113.093,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim grill"
+     },
+     "reaction": "19:19, his prayer time ends at 19:20 and he has been at the grill all along. Last time it bothered me. I tap him to see if I can let him go.",
+     "game_clock": "Mon 19:19",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 204,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:33:10.638Z",
+     "elapsed_s": 116.747,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "10-minute break For now, I plan to use the bathroom first. I have needed the toilet for a while."
+     },
+     "reaction": "Now every line under his jobs says he needs the toilet. On the laptop at this hour it said prayer. There is no button for prayer. I give him a 10-minute break so he can go, two tables wait for the grill but they have until 19:55.",
+     "game_clock": "Mon 19:23",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 197,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:33:36.002Z",
+     "elapsed_s": 142.111,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Four tables waiting now, and Dilek is going out to explain the wait too, so both cooks away. One minute, I leave it.",
+     "game_clock": "Mon 19:27",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 186,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:34:09.351Z",
+     "elapsed_s": 175.46,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Grill Chef, I can do that."
+     },
+     "reaction": "Three tables wait for the grill. He has been out a while. I ask him back to the grill.",
+     "game_clock": "Mon 19:34",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 190,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:35:21.312Z",
+     "elapsed_s": 247.421,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "He came back and said he will work the grill until 22:00. Table 5 served. This time asking worked. I feel a little more in charge than on the laptop, because I knew the faces.",
+     "game_clock": "Mon 19:43",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:35:26.565Z",
+     "elapsed_s": 252.674,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "I closed the panel and it is suddenly 20:03, twenty minutes gone. Partly my slowness. Dilek is marked outside, but the box says she is leaving the cold side, and she says she is not at her agreed station. Same muddle as on the laptop. Leave empty, four minutes.",
+     "game_clock": "Mon 20:03",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 189,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:35:57.737Z",
+     "elapsed_s": 283.846,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "0 grill portions now, so the grill is finished for tonight anyway. Dilek is eating at 20:24, her break was 18:35. Same pattern as the laptop: I say yes to a plan, they do something else, I read it later in the log. ₺560 of ₺5,200. I have seen this Monday twice now. I think I am done for this evening.",
+     "game_clock": "Mon 20:24",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:36:05.324Z",
+     "elapsed_s": 291.433,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Back to the menu"
+     },
+     "reaction": "I’m stopping is pressed, and again it wrote the words into the note box by itself. I press Back, nothing sent.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 132,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:36:07.955Z",
+     "elapsed_s": 294.064,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop here. Same Monday twice, the grill is out of food, and I mostly read afterwards what the cooks already decided. ₺560 of ₺5,200 and still no idea how Saturday could ever work.",
+     "game_clock": "Mon wk1 20:33",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Sonia Ionescu",
+   "device": "desktop",
+   "source": "sonia/desktop/wall-clock.jsonl",
+   "rawSha256": "d778e8a3b3f13459a282331148030644f88663672967a452dc567ba5f59138b5",
+   "rows": 53,
+   "reactionRows": 26,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:23:43.862Z",
+     "elapsed_s": 6.8,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Clear title page. Who is Selim, who is Dilek? I leave the normal wait and press New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1283,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:23:50.218Z",
+     "elapsed_s": 13.156,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Change Selim’s plan"
+     },
+     "reaction": "Good, it tells me plainly the grill is empty at 18:12. Like a job sheet with a gap. I will move Selim’s break.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 742,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:23:53.275Z",
+     "elapsed_s": 16.213,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "21:00 after the rush"
+     },
+     "reaction": "18:35 is his prayer time, 19:45 is the rush. 21:00 looks safe. Guessing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 734,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:23:58.306Z",
+     "elapsed_s": 21.244,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask them about the changes"
+     },
+     "reaction": "Dilek’s break is in the rush too but nobody warned about it, so I leave it. I ask.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 165,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:24:00.471Z",
+     "elapsed_s": 23.409,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the doors"
+     },
+     "reaction": "Both agreed. Sheet looks right. Opening.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 512,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:24:02.424Z",
+     "elapsed_s": 25.362,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "0 flatbreads? Nobody mentioned flatbreads. Hmm.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:24:35.531Z",
+     "elapsed_s": 58.469,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Stick figures, a pass. Nothing to do but wait. I watch.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30108,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:24:38.876Z",
+     "elapsed_s": 61.814,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Four tables served, ₺160. The early table worked. But ₺40 a table and ₺5,200 due, and only 12 grill portions left. I do the sum and it does not add up. What am I supposed to do now, just watch?",
+     "game_clock": "Mon wk1 18:30",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:24:41.290Z",
+     "elapsed_s": 64.228,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim grill"
+     },
+     "reaction": "Tap a cook, it says. I tap Selim to see what I can ask.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 157,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:24:44.155Z",
+     "elapsed_s": 67.093,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Go on. Take five minutes."
+     },
+     "reaction": "Strange. I tapped Selim, it says I am talking to Selim, but the question is from Dilek. Her mother is not answering. Of course she can go. Her break is at 18:35 anyway.",
+     "game_clock": "Mon 18:33",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 147,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:24:58.531Z",
+     "elapsed_s": 81.469,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "She asked for five minutes to call, now it says bathroom and 3 minutes until 18:37. Small things that do not match. I leave the cold side empty, no orders are waiting.",
+     "game_clock": "Mon 18:34",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 197,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:25:28.558Z",
+     "elapsed_s": 111.496,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-003.png"
+     },
+     "reaction": "Every job under Selim says the same: I want to the sunset prayer first. A word is missing. And his prayer window ends 19:20, five minutes from now. Did I keep him from praying? Nobody told me he would need me to let him go.",
+     "game_clock": "Mon 19:15",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 146,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:25:37.290Z",
+     "elapsed_s": 120.228,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "I did not ask him anything. While I read, the screen changed. Now Selim is in the bathroom, drawn at the back door, and his words say he will explain the wait to tables. Three places at once. I do not know what he is doing. Table 8 has until 19:45, so I leave the grill empty.",
+     "game_clock": "Mon 19:16",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 224,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:25:48.003Z",
+     "elapsed_s": 130.941,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Back to the menu"
+     },
+     "reaction": "Pressing I am confused also wrote I am confused into the note box by itself. I did not type it. I press Back, nothing sent.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 141,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:25:50.645Z",
+     "elapsed_s": 133.583,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Slow"
+     },
+     "reaction": "There is a Kitchen speed. Things change while I read, so I choose Slow. Partly that is me being slow.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:26:20.781Z",
+     "elapsed_s": 163.719,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "How are you doing?"
+     },
+     "reaction": "Selim is back. Tables still all served, ₺360. I ask how he is, maybe I learn what that was.",
+     "game_clock": "Mon 19:34",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 184,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:26:23.871Z",
+     "elapsed_s": 166.809,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "The list of earlier conversations explains it: table 8 called Selim to the door. I like a written log, I can read it in order like a job sheet. Selim misses Nevin, these are her pans. That touched me a little. But the money sum still worries me.",
+     "game_clock": "Mon 19:39",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:26:28.185Z",
+     "elapsed_s": 171.123,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Close"
+     },
+     "reaction": "He seems to be already talking with me at the pass, so I let him have his three minutes. I close the panel.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 143,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:27:01.969Z",
+     "elapsed_s": 204.907,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Again the same question: leave it empty or move Dilek. It feels like the game stops and waits for me each time someone steps away. One minute, no orders, empty.",
+     "game_clock": "Mon 19:42",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 215,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:28:06.364Z",
+     "elapsed_s": 269.302,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Table 8 served at 19:22 and again at 19:50. Same table twice? Maybe new people at the same table. And I never saw Selim go to his prayer. I am not sure if that is my fault. Cold side has 2 portions left.",
+     "game_clock": "Mon 19:55",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30108,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:28:41.917Z",
+     "elapsed_s": 304.855,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dilek to take over Then nobody works at the cold side."
+     },
+     "reaction": "Selim is eating now at 20:27. He agreed to eat at 21:00. Nobody asked me. This is what I dislike: the plan says one thing and the kitchen does another. Cold side has one portion left, so I ask Dilek to take the grill.",
+     "game_clock": "Mon 20:27",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 219,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:29:16.065Z",
+     "elapsed_s": 339.003,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Leave the station empty"
+     },
+     "reaction": "Dilek says she cannot. No reason given. Fine, empty. The game waited 30 seconds for me again.",
+     "game_clock": "Mon 20:31",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 210,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:29:50.019Z",
+     "elapsed_s": 372.957,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Selim said back at 20:38, now it is 20:49 and he is outside. I mostly watch and answer the same take-over question. The log reads well, but I am not running anything, I am being told what already happened.",
+     "game_clock": "Mon 20:49",
+     "engagement": 2,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:30:24.125Z",
+     "elapsed_s": 407.063,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Selim cold side"
+     },
+     "reaction": "Now Selim stands at the cold side and the grill is empty, and two tables wait for the grill. When did he move? I did not see it. I tap him to send him back.",
+     "game_clock": "Mon 20:58",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 163,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:31:02.014Z",
+     "elapsed_s": 444.952,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I asked Selim for the grill, the button said I agree to that now, and now he is eating and the grill is still empty with two tables waiting. Yes, 21:00 was his break, I set it myself, but then why say he agrees? The guess under the button and what happens do not match. I am tired of being asked the same leave-it-empty question.",
+     "game_clock": "Mon 21:04",
+     "engagement": null,
+     "reason": "FRUSTRATED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:31:12.062Z",
+     "elapsed_s": 455,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop here. The cooks say yes and then do something else, and I keep answering the same leave-it-empty question. ₺520 of ₺5,200 on Monday and I do not see what I could do to change that.",
+     "game_clock": "Mon wk1 21:06",
+     "engagement": null,
+     "reason": "FRUSTRATED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  }
+ ]
+}

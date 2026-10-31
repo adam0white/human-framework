@@ -1,0 +1,129 @@
+{
+  "tester": "Nia Okafor",
+  "validationTime": "2026-10-31T07:37:36.793982+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T07:14:36.004Z",
+        "elapsed_s": 197.553,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Monday evening. Liked Dilek calling her mother and the hold that worked. Disliked that How are you doing got the toilet or prayer line, and the waiting. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+        "game_clock": "Mon 18:58",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 188.275,
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 193.147,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T07:11:57.811Z",
+          "elapsed_s": 39.36,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Eat For now, I want to use the bathroom first. I cannot hold it much longer.",
+            "duration_ms": 1800
+          },
+          "reaction": "Toilet line again for Dilek on every job. Holding Eat to insist, which I could not do last time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 7,
+          "error": "Eat For now, I want to use the bathroom first. I cannot hold it much longer. is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T07:14:26.726Z",
+          "elapsed_s": 188.275,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T07:16:25.000Z",
+        "elapsed_s": 107.858,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Monday 18:11, desktop. Insist finally did something I could see, and Selim gave a real answer about Nevin, but one click sent Dilek home for the night and I could not recover. Would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "FRUSTRATED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 103.621,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

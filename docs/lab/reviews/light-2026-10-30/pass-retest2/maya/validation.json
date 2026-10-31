@@ -1,0 +1,150 @@
+{
+  "tester": "Maya Chen",
+  "validationTime": "2026-10-31T07:37:36.778607+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T06:59:14.576Z",
+        "elapsed_s": 275.942,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone visit. I got Dilek clips story and a follow up, but talking cost a table and cooks left stations on their own, and the Nevin thread went nowhere.",
+        "game_clock": "Mon 18:41",
+        "engagement": 3,
+        "reason": "FRUSTRATED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 206.838,
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 212.775,
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T06:55:57.774Z",
+          "elapsed_s": 79.14,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Selim grill"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 12,
+          "error": "Selim grill is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T06:58:05.472Z",
+          "elapsed_s": 206.838,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T06:58:11.409Z",
+          "elapsed_s": 212.775,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6,
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T07:03:27.755Z",
+        "elapsed_s": 251.758,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the desktop visit at about four minutes. The Nevin follow up finally answered and Dilek hinted at her recordings, but every talk still pulls a cook off a station and I am never told that before I tap.",
+        "game_clock": "Mon 18:29",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

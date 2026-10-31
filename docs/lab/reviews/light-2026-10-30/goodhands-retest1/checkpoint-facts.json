@@ -1,0 +1,570 @@
+{
+  "note": "Computed from the copied wall-clock.jsonl, completion.json, dispatch.json, release-start.json, driver.out and plan by build-packet.py. first_minute and pulse logs are tester log lines. first-minute.png files are automatic driver captures and are not in this packet. Early flags compare elapsed_s with 60 s for first_minute and 180 s for pulse.",
+  "build": {
+    "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+    "dirty": false,
+    "framework": "4.8.1",
+    "app": "0.1.0",
+    "checkedIn": "ten release-start.json, ten completion pins, inputs/goodhands-retest-final-release-after-round.json and predispatch finalRelease",
+    "label": "HF 4.8.1"
+  },
+  "round": {
+    "id": "light-1031-goodhands-retest1",
+    "url": "https://goodhands.adamwhite.work/?labRunSource=agent",
+    "driver": "native-tap-v2",
+    "driver_check": "fork-unverified",
+    "stop": "free stop, floor 0, ceiling 20 minutes",
+    "lastReturn": "2026-10-31T08:14:43.043376+00:00",
+    "nextPanelNotBefore": "2026-10-31T08:29:43.043376+00:00",
+    "predispatchNotBefore": "2026-10-31T07:51:57.910821+00:00"
+  },
+  "testers": {
+    "jonas": {
+      "tester": "Jonas Berg",
+      "dispatchTime": "2026-10-31T07:52:15.830244+00:00",
+      "model": "sonnet",
+      "completionEnded": "2026-10-31T07:55:36.167062+00:00",
+      "completionExit": 0,
+      "completionPins": [
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        },
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        }
+      ],
+      "deviceOrder": ["desktop", "phone"],
+      "sessions": {
+        "desktop": {
+          "rows": 41,
+          "port": 22701,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":92512,\"port\":22701}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 131.509,
+            "reason": "BORED",
+            "game_clock": "Mon 10:15",
+            "engagement": null,
+            "rawStopReaction": "Stopping desktop at about 2 minutes, Mon 10:15. I tested what I asked for last time and two of three are visibly addressed. I would not leave it running; I would come back another evening for trial results. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 129.134,
+              "reason": "BORED",
+              "game_clock": "Mon 10:15"
+            }
+          ],
+          "firstMinuteLogs": [
+            {
+              "elapsed_s": 62.699,
+              "game_clock": "Mon 09:26",
+              "earlyBefore60s": false
+            }
+          ],
+          "pulseLogs": [],
+          "noteLogs": [
+            {
+              "elapsed_s": 115.306,
+              "game_clock": "Mon 10:15"
+            }
+          ],
+          "toolErrorRows": [],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["a-001.png"],
+          "firstRowT": "2026-10-31T07:52:15.315Z",
+          "lastRowT": "2026-10-31T07:54:36.051Z"
+        },
+        "phone": {
+          "rows": 15,
+          "port": 22700,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":92514,\"port\":22700}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 31.231,
+            "reason": "BORED",
+            "game_clock": "Mon 08:54",
+            "engagement": null,
+            "rawStopReaction": "Stopping phone at about 30 seconds, Mon 08:54. Banner no longer clipped; I know the loop from desktop. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back. First minute and pulse untested.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 30.163,
+              "reason": "BORED",
+              "game_clock": "Mon 08:54"
+            }
+          ],
+          "firstMinuteLogs": [],
+          "pulseLogs": [],
+          "noteLogs": [],
+          "toolErrorRows": [],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["b-001.png", "b-002.png", "b-003.png"],
+          "firstRowT": "2026-10-31T07:52:15.315Z",
+          "lastRowT": "2026-10-31T07:55:07.674Z"
+        }
+      }
+    },
+    "aisha": {
+      "tester": "Aisha Rahman",
+      "dispatchTime": "2026-10-31T07:55:37.403484+00:00",
+      "model": "sonnet",
+      "completionEnded": "2026-10-31T07:58:32.712927+00:00",
+      "completionExit": 0,
+      "completionPins": [
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        },
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        }
+      ],
+      "deviceOrder": ["desktop", "phone"],
+      "sessions": {
+        "desktop": {
+          "rows": 32,
+          "port": 22703,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":95056,\"port\":22703}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 101.683,
+            "reason": "BORED",
+            "game_clock": "Mon 2 Nov 10:21",
+            "engagement": null,
+            "rawStopReaction": "Stopping after under two minutes on the laptop. I liked the old-case card where Nermin corrects her own record, but I could not see how to send the letter, and the reference still gave a bad fact instead of a reason. I pressed I would stop here in Feedback, typed nothing, no Submit.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 85.698,
+              "reason": "BORED",
+              "game_clock": "Mon 2 Nov 10:21"
+            }
+          ],
+          "firstMinuteLogs": [
+            {
+              "elapsed_s": 63.484,
+              "game_clock": "Mon 2 Nov 09:50",
+              "earlyBefore60s": false
+            }
+          ],
+          "pulseLogs": [],
+          "noteLogs": [],
+          "toolErrorRows": [
+            {
+              "elapsed_s": 93.542,
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["a-001.png"],
+          "firstRowT": "2026-10-31T07:55:36.755Z",
+          "lastRowT": "2026-10-31T07:57:32.212Z"
+        },
+        "phone": {
+          "rows": 15,
+          "port": 22702,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":95058,\"port\":22702}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 32.985,
+            "reason": "BORED",
+            "game_clock": "Mon 2 Nov 09:03",
+            "engagement": null,
+            "rawStopReaction": "Stopping the phone after about half a minute. I had just played the same opening on the laptop, and Ozlem gave the same thin answer. The phone layout now fits. I pressed I would stop here, typed nothing, no Submit.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 24.409,
+              "reason": "BORED",
+              "game_clock": "Mon 2 Nov 09:03"
+            }
+          ],
+          "firstMinuteLogs": [],
+          "pulseLogs": [],
+          "noteLogs": [],
+          "toolErrorRows": [],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "firstRowT": "2026-10-31T07:55:36.772Z",
+          "lastRowT": "2026-10-31T07:58:06.316Z"
+        }
+      }
+    },
+    "diego": {
+      "tester": "Diego Silva",
+      "dispatchTime": "2026-10-31T07:58:33.933164+00:00",
+      "model": "sonnet",
+      "completionEnded": "2026-10-31T08:02:19.347524+00:00",
+      "completionExit": 0,
+      "completionPins": [
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        },
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        }
+      ],
+      "deviceOrder": ["desktop", "phone"],
+      "sessions": {
+        "desktop": {
+          "rows": 31,
+          "port": 22705,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":96954,\"port\":22705}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 98.728,
+            "reason": "BORED",
+            "game_clock": "Mon 2 Nov 11:00",
+            "engagement": null,
+            "rawStopReaction": "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 86.764,
+              "reason": "BORED",
+              "game_clock": "Mon 2 Nov 11:00"
+            }
+          ],
+          "firstMinuteLogs": [
+            {
+              "elapsed_s": 62.104,
+              "game_clock": "Mon 2 Nov 09:49",
+              "earlyBefore60s": false
+            }
+          ],
+          "pulseLogs": [],
+          "noteLogs": [],
+          "toolErrorRows": [],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["a-001.png"],
+          "firstRowT": "2026-10-31T07:58:33.229Z",
+          "lastRowT": "2026-10-31T08:00:22.035Z"
+        },
+        "phone": {
+          "rows": 33,
+          "port": 22704,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":96956,\"port\":22704}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 87.446,
+            "reason": "BORED",
+            "game_clock": "Mon 2 Nov 09:58",
+            "engagement": null,
+            "rawStopReaction": "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 77.76,
+              "reason": "BORED",
+              "game_clock": "Mon 2 Nov 09:58"
+            }
+          ],
+          "firstMinuteLogs": [
+            {
+              "elapsed_s": 62.1,
+              "game_clock": "Mon 2 Nov 09:35",
+              "earlyBefore60s": false
+            }
+          ],
+          "pulseLogs": [],
+          "noteLogs": [
+            {
+              "elapsed_s": 74.759,
+              "game_clock": "Mon 2 Nov 09:58"
+            }
+          ],
+          "toolErrorRows": [
+            {
+              "elapsed_s": 5.515,
+              "op": "tap",
+              "input": {
+                "name": "Select Özlem Koç on the bench"
+              },
+              "error": "Select Özlem Koç on the bench is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "firstRowT": "2026-10-31T07:58:33.289Z",
+          "lastRowT": "2026-10-31T08:01:50.655Z"
+        }
+      }
+    },
+    "rosa": {
+      "tester": "Rosa Alvarez",
+      "dispatchTime": "2026-10-31T08:02:20.615846+00:00",
+      "model": "sonnet",
+      "completionEnded": "2026-10-31T08:04:55.888170+00:00",
+      "completionExit": 0,
+      "completionPins": [
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        },
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        }
+      ],
+      "deviceOrder": ["phone", "desktop"],
+      "sessions": {
+        "phone": {
+          "rows": 28,
+          "port": 22706,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":98325,\"port\":22706}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 70.146,
+            "reason": "BORED",
+            "game_clock": null,
+            "engagement": 3,
+            "rawStopReaction": "I placed Ozlem and the rent is covered at 09:35. Reasons are explained now and the fee has numbers. Now I only wait for the next family call, so I stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 59.771,
+              "reason": "BORED",
+              "game_clock": null
+            }
+          ],
+          "firstMinuteLogs": [],
+          "pulseLogs": [],
+          "noteLogs": [],
+          "toolErrorRows": [],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["a-001.png", "a-002.png"],
+          "firstRowT": "2026-10-31T08:02:19.895Z",
+          "lastRowT": "2026-10-31T08:03:44.746Z"
+        },
+        "desktop": {
+          "rows": 19,
+          "port": 22707,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":98329,\"port\":22707}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 43.144,
+            "reason": "BORED",
+            "game_clock": null,
+            "engagement": 3,
+            "rawStopReaction": "On the big screen I understood everything without a reread. The card now says why Sebnem stays unsure. I have placed nobody here and I would rather stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [],
+          "firstMinuteLogs": [],
+          "pulseLogs": [],
+          "noteLogs": [],
+          "toolErrorRows": [],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "firstRowT": "2026-10-31T08:02:19.972Z",
+          "lastRowT": "2026-10-31T08:04:46.310Z"
+        }
+      }
+    },
+    "nadia": {
+      "tester": "Nadia Petrović",
+      "dispatchTime": "2026-10-31T08:04:57.114804+00:00",
+      "model": "opus",
+      "completionEnded": "2026-10-31T08:14:43.043376+00:00",
+      "completionExit": 0,
+      "completionPins": [
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        },
+        {
+          "app": "0.1.0",
+          "framework": "4.8.1",
+          "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+          "dirty": false
+        }
+      ],
+      "deviceOrder": ["desktop", "phone"],
+      "sessions": {
+        "desktop": {
+          "rows": 74,
+          "port": 22709,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":99334,\"port\":22709}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 298.662,
+            "reason": "CONFUSED",
+            "game_clock": "Mon 2 Nov 15:32",
+            "engagement": null,
+            "rawStopReaction": "I will stop here. The first placement was satisfying, but now I cannot find where my kept numbers live and the belief rules feel uneven. I would rather stop than guess.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 274.969,
+              "reason": "CONFUSED",
+              "game_clock": "Mon 2 Nov 15:25"
+            }
+          ],
+          "firstMinuteLogs": [
+            {
+              "elapsed_s": 63.216,
+              "game_clock": "Mon 2 Nov 09:31",
+              "earlyBefore60s": false
+            }
+          ],
+          "pulseLogs": [
+            {
+              "elapsed_s": 179.105,
+              "game_clock": "Mon 2 Nov 12:17",
+              "earlyBefore180s": true
+            }
+          ],
+          "noteLogs": [],
+          "toolErrorRows": [
+            {
+              "elapsed_s": 166.745,
+              "op": "tap",
+              "input": {
+                "name": "Skip to 11:52 · Someone will bring news from outside Good Hands"
+              },
+              "error": "Skip to 11:52 · Someone will bring news from outside Good Hands is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            },
+            {
+              "elapsed_s": 214.429,
+              "op": "tap",
+              "input": {
+                "name": "Skip to 14:00 · A family is due to call"
+              },
+              "error": "Skip to 14:00 · A family is due to call is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            }
+          ],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["a-001.png", "a-002.png", "a-003.png"],
+          "firstRowT": "2026-10-31T08:04:56.395Z",
+          "lastRowT": "2026-10-31T08:10:01.102Z"
+        },
+        "phone": {
+          "rows": 52,
+          "port": 22708,
+          "driverOut": "{\"driver\":\"native-tap-v2\",\"driver_check\":\"fork-unverified\",\"pid\":99336,\"port\":22708}",
+          "releaseStart": {
+            "app": "0.1.0",
+            "framework": "4.8.1",
+            "commit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+            "dirty": false
+          },
+          "stop": {
+            "elapsed_s": 234.607,
+            "reason": "BORED",
+            "game_clock": "Mon 2 Nov 11:37",
+            "engagement": null,
+            "rawStopReaction": "I stop here. Tonight I placed Özlem twice and found the kept-number list, which answered my question from the computer. But it is the same afternoon again, and for me one evening of it is enough.",
+            "rawStopReactionLiterallyInReport": true
+          },
+          "wantQuit": [
+            {
+              "elapsed_s": 220.206,
+              "reason": "BORED",
+              "game_clock": "Mon 2 Nov 11:33"
+            }
+          ],
+          "firstMinuteLogs": [
+            {
+              "elapsed_s": 111.707,
+              "game_clock": "Mon 2 Nov 09:28",
+              "earlyBefore60s": false
+            }
+          ],
+          "pulseLogs": [
+            {
+              "elapsed_s": 177.761,
+              "game_clock": "Mon 2 Nov 10:27",
+              "earlyBefore180s": true
+            }
+          ],
+          "noteLogs": [],
+          "toolErrorRows": [],
+          "inputErrorRows": [],
+          "imageReadReceipts": ["b-001.png", "b-002.png", "b-003.png", "b-004.png"],
+          "firstRowT": "2026-10-31T08:04:56.471Z",
+          "lastRowT": "2026-10-31T08:13:57.362Z"
+        }
+      }
+    }
+  }
+}

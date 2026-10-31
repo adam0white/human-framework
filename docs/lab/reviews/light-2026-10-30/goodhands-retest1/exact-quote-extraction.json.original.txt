@@ -1,0 +1,300 @@
+{
+ "note": "Every string is an exact substring of the named copied report (report.md and the byte-identical report.original.md.txt). Nothing paraphrased, no quote substitution, no pipes, no newlines. primaryReturn is the opening return answer at the top of report.md (Rosa and Nadia wrapped it in straight quote marks, which are not part of the span). laterFullReturn is the separate later occurrence in section 7. laterExtraReturnSpans are further literal section 7 spans that carry conditions. rankedAsks are the three ranked asks at the top of report.md. laterAskSpans are later wording from section 3, 4, 5, 7, 8 or 9, kept only where it adds or changes content and labelled separately. locators give the report line each opening, later and ask span was read from; validate-quotes.py re-reads those lines. Producer words were not normalized.",
+ "testers": {
+  "jonas": {
+   "tester": "Jonas Berg",
+   "primaryReturn": "Yes, another evening and not now. I would come back once to see whether a fee above ₺9,200 gets refused, and whether the trial outcome punishes it. I would not leave it running. I would stop if the fee never gets a refusal point, or if waiting for the trial is empty.",
+   "laterFullReturn": "Yes, another evening and not now. I would come back once to see whether a fee above ₺9,200 gets refused, and whether the trial outcome punishes it. I would not leave it running. I would stop if the fee never gets a refusal point, or if waiting for the trial is empty.",
+   "laterExtraReturnSpans": {
+    "Section 7 desktop stop words": "I tested what I asked for last time and two of three are visibly addressed. I would not leave it running; I would come back another evening for trial results."
+   },
+   "rankedAsks": [
+    "Show where the fee gets refused. Nobody refused ₺9,200. Only one line of grumbling appeared.",
+    "Show on the call or reference screen when a candidate can next be reached. The phone \"Call a reference\" button still has no subtitle.",
+    "Let a reference settle a trait. Melek said \"listened\" and Nermin stayed \"unsure\", so I cannot tell what would count as enough."
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Show where the fee gets refused, or say the family has no limit."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "span": "I found no refusal point, and the wage's effect I did not test. The fee still got accepted."
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Show when a candidate can next be reached, on the reference or call screen, and add the missing phone subtitles."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "span": "I saw no \"next call\" time beyond that line. Phone subtitles under \"Call a reference\" are still missing."
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Say what a reference needs to say to settle a trait."
+     },
+     {
+      "label": "Later wording (section 5)",
+      "span": "Melek said Şebnem \"listened\". Nermin still said unsure. I do not know what would be enough."
+     }
+    ]
+   },
+   "locators": {
+    "openingLine": 1,
+    "openingLabel": "**Would you return voluntarily?** ",
+    "openingOuterQuotesStripped": false,
+    "laterLine": 99,
+    "laterLabel": "**Would you return voluntarily?** ",
+    "askLines": [
+     4,
+     5,
+     6
+    ],
+    "extraLines": {
+     "Section 7 desktop stop words": {
+      "line": 96,
+      "afterLabel": null
+     }
+    }
+   }
+  },
+  "aisha": {
+   "tester": "Aisha Rahman",
+   "primaryReturn": "Yes, I would come back another evening, but only if the notes changed when a person gave their own account, and I could actually send the repair letter I drafted for the old case. I would not leave it running.",
+   "laterFullReturn": "The answer is the sentence at the top. I would stay away if the old case ended at an unsent letter again. Another evening, not left running.",
+   "laterExtraReturnSpans": {},
+   "rankedAsks": [
+    "Let me finish the repair. After \"Correct the agency record and write to the worker first\", the letter stayed \"not sent\" and I found no way to send it.",
+    "When I ask why a job ended, give me a reason in the person's own words. I got another bad fact: \"left without handing over the work as agreed.\"",
+    "Make a second candidate's interview answers say more than \"I have worked as a nanny.\""
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 5)",
+      "span": "Whether the drafted letter to the worker can ever be sent, or whether the old case continues later. I did not find out."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "span": "let me send the letter in the old-case card. The repair stops at \"has not sent the letter or paid anything yet\"."
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 4)",
+      "span": "\"Ask why the job ended\" gave another bad fact, not a reason."
+     },
+     {
+      "label": "Later wording (section 3)",
+      "span": "Asked why the job ended and got another bad fact (left without handing over work), not a reason, same as last time."
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 3)",
+      "span": "Her answers are thin now: I have worked as a nanny. Less than last time, I think."
+     },
+     {
+      "label": "Later wording (section 3, phone)",
+      "span": "Ozlem gives the same thin I have worked as a nanny."
+     }
+    ]
+   },
+   "locators": {
+    "openingLine": 1,
+    "openingLabel": "**Would you return voluntarily?** ",
+    "openingOuterQuotesStripped": false,
+    "laterLine": 84,
+    "laterLabel": "- **Would you return voluntarily?** ",
+    "askLines": [
+     4,
+     5,
+     6
+    ],
+    "extraLines": {}
+   },
+   "laterFullReturnNote": "Aisha section 7 line restates only part of her condition and points to the top sentence (\"The answer is the sentence at the top.\"). The opening return holds her full conditions. Nothing was added to or merged into either span."
+  },
+  "diego": {
+   "tester": "Diego Silva",
+   "primaryReturn": "I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running.",
+   "laterFullReturn": "I would not return voluntarily tonight. I might come back another evening, but only if a wrong promise cost me something and the rent were not covered before noon Monday. I would not leave it running, because nothing in it needs me to be watching.",
+   "laterExtraReturnSpans": {},
+   "rankedAsks": [
+    "Make an unchecked promise cost something. I promised \"warm\", which I had not checked, and the family agreed in seconds. Nothing bit back.",
+    "Don't let the deposit clear rent by Monday morning. Cash was ₺5,250 at 10:04 on desktop, over the ₺5,000 rent.",
+    "Give the incoming calls more than Promise, Decline or Finish. The Kaya call is better written now, but the menu is the same."
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Make an unchecked promise cost something I can feel."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "span": "But I still promised an unchecked trait and the family agreed at once."
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Don't let the deposit cover the rent on Monday morning."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "span": "Cash still passed ₺5,000 at 10:04 Monday on desktop, a few minutes after I agreed."
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Give calls and the old-case choice a visible effect later on."
+     },
+     {
+      "label": "Later wording (section 4)",
+      "span": "The call menu is still Promise to look, Decline, Finish."
+     }
+    ]
+   },
+   "locators": {
+    "openingLine": 1,
+    "openingLabel": "**Would I return voluntarily?** ",
+    "openingOuterQuotesStripped": false,
+    "laterLine": 101,
+    "laterLabel": "- **Return:** ",
+    "askLines": [
+     4,
+     5,
+     6
+    ],
+    "extraLines": {}
+   }
+  },
+  "rosa": {
+   "tester": "Rosa Alvarez",
+   "primaryReturn": "I would come back another evening, probably on the big screen, to see what happens to Özlem and the Kaya family. I would not leave it running; I would close it.",
+   "laterFullReturn": "Yes, another evening. I would play on the tablet or desktop, to see what happens to Özlem and the Kaya family. I understood everything on this visit without a reread, which I could not say last time. I would not leave it running. After the rent was paid I had nothing to do but wait, and I would not know what I missed.",
+   "laterExtraReturnSpans": {},
+   "rankedAsks": [
+    "After a placement, tell me what to do while I wait. Both sessions ended on \"Next: A family is due to call. Wait or meet someone on your bench.\"",
+    "Say each wage and fee once on the agreement screen. The same numbers appear three times.",
+    "Keep \"I'm stopping\" and \"I'm confused\" in Feedback on both devices. Both were there this time."
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Tell me what is worth doing while I wait, after a placement."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "span": "Not met on \"what to do while waiting\". The screen still said only \"Wait or meet someone on your bench.\""
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Say the wage and fee once on the agreement screen."
+     },
+     {
+      "label": "Later wording (section 4)",
+      "span": "The agreement screen says the wage and hours three times."
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Keep the two Feedback labels on both devices."
+     },
+     {
+      "label": "Later wording (section 7)",
+      "span": "both \"I'm stopping\" and \"I'm confused\" were offered on both devices."
+     }
+    ]
+   },
+   "locators": {
+    "openingLine": 1,
+    "openingLabel": "**Would you return voluntarily?** ",
+    "openingOuterQuotesStripped": true,
+    "laterLine": 94,
+    "laterLabel": "- **Would you return voluntarily?** ",
+    "askLines": [
+     4,
+     5,
+     6
+    ],
+    "extraLines": {}
+   }
+  },
+  "nadia": {
+   "tester": "Nadia Petrović",
+   "primaryReturn": "Maybe, on one condition: the next evening has to give me a different afternoon or a second day. I would not replay this same Monday a third time.",
+   "laterFullReturn": "Maybe, on one condition: the next evening has to give me a different afternoon or a second day. I would not replay this same Monday a third time. I like checking evidence before I promise, and I like seeing the cash change. Now I know where kept numbers live and that Pace has a Slow setting, so the next attempt would start better. If the doubt/unsure rule stays unexplained, I would stop trusting Nermin's readings, and then the game loses its point for me.",
+   "laterExtraReturnSpans": {
+    "Section 7 leave it running or come back": "I would not leave it running. The clock moves while I read. I would come back another evening, on the desktop, with Pace set to Slow."
+   },
+   "rankedAsks": [
+    "Explain the belief rule in the same words every time. On the computer, Şebnem's one bad reference made Nermin \"doubt\" her, but Cihan's one bad reference (\"would not hire him again… did not come and did not call\") left her only \"still unsure\". Nothing said why.",
+    "Let me see my kept numbers while a card is open. On the computer I never found where Gülce's number had gone. On the phone, the list (\"Şebnem Eren · at home\") appears only when no card is open.",
+    "Show the Pace (Slow) setting at the start. I only found it in the menu at the very end, after feeling rushed for a whole session."
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Explain the doubt/unsure rule in the same words every time."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "span": "two bad references got different readings with no reason given (Şebnem got doubt, Cihan stayed unsure). This made me stop on the desktop."
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Show kept numbers while a card is open."
+     },
+     {
+      "label": "Later wording (section 5)",
+      "span": "Kept numbers are listed under the bench when no card is open."
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 8)",
+      "span": "Show the Pace setting at the start."
+     },
+     {
+      "label": "Later wording (section 3)",
+      "span": "There is a Pace setting with Slow. I never knew; on the computer I felt rushed."
+     }
+    ]
+   },
+   "locators": {
+    "openingLine": 1,
+    "openingLabel": "**Would you return voluntarily?** ",
+    "openingOuterQuotesStripped": true,
+    "laterLine": 170,
+    "laterLabel": "**Would you return voluntarily?** ",
+    "askLines": [
+     4,
+     5,
+     6
+    ],
+    "extraLines": {
+     "Section 7 leave it running or come back": {
+      "line": 172,
+      "afterLabel": "**Leave it running or come back another evening?** "
+     }
+    }
+   }
+  }
+ }
+}

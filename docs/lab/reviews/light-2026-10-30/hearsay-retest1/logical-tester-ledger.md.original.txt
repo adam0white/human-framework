@@ -1,0 +1,11 @@
+# Logical tester ledger — Hearsay retest 1
+
+One row per tester. Verdict words are each tester's own conditions. They are not votes and not a population estimate. The stop labels are the producers' own session labels. They are not five independent game completions. Full raw stop words are in `logical-tester-ledger.json` and `all-driver-reactions.json`.
+
+| id | tester | exposure | verdict | stops | asks |
+| --- | --- | --- | --- | --- | --- |
+| F-2461 | Maya Chen | standing player, retest after fixes | mixed | phone 71.863 s TASTE, desktop 22.66 s TASTE | F-2466–F-2468 |
+| F-2462 | Emre Kaya | standing player, retest after fixes | mixed | desktop 468.833 s BORED, phone 204.88 s BORED | F-2469–F-2471 |
+| F-2463 | Diego Silva | standing player, retest after fixes | mixed | desktop 196.301 s BORED, phone 74.143 s BORED | F-2472–F-2474 |
+| F-2464 | Rosa Alvarez | standing player, retest after fixes | mixed | phone 108.238 s CONFUSED, desktop 73.576 s BORED | F-2475–F-2477 |
+| F-2465 | Irena Novotná | new cold person, empty history, first Hearsay visit | mixed | desktop 250.253 s BORED, phone 80.308 s BORED | F-2478–F-2480 |

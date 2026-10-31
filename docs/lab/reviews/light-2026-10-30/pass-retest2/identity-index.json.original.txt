@@ -1,0 +1,156 @@
+{
+ "note": "Per tester identity of the supplied inputs and the driver. Hashes of copied histories and briefs are compared with the input freeze and dispatch files by validate-quotes.py. This index does not hash the packet indexes or manifests. History and brief were copied mechanically and not read; the counts below are byte and newline counts.",
+ "testers": [
+  {
+   "id": "pass-retest2-maya",
+   "tester": "Maya Chen",
+   "kind": "standing",
+   "exposure": "retest",
+   "model": "sonnet",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22300,
+    "desktop": 22301
+   },
+   "historyBytes": 161209,
+   "historyNewlines": 1093,
+   "historyLines": 1093,
+   "historyCharactersPerFreeze": 160882,
+   "historySha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045",
+   "briefSha256": "2912a74eedafd26d6ecfda468ce6d696e0398c5cfa54219d3f024149fc01c5ff",
+   "ownSourceCount": 13,
+   "reportedReadThrough": 1094,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T06:54:23.667387+00:00",
+   "note": "Hashes compared with pass-retest2-input-freeze.json and dispatch.json by validate-quotes.py.",
+   "historyReadEvidence": "Parent checked actual Read ranges covering full supplied file; reported last empty rendered line1094."
+  },
+  {
+   "id": "pass-retest2-emre",
+   "tester": "Emre Kaya",
+   "kind": "standing",
+   "exposure": "retest",
+   "model": "sonnet",
+   "deviceOrder": [
+    "desktop",
+    "phone"
+   ],
+   "ports": {
+    "phone": 22302,
+    "desktop": 22303
+   },
+   "historyBytes": 127417,
+   "historyNewlines": 907,
+   "historyLines": 907,
+   "historyCharactersPerFreeze": 127228,
+   "historySha256": "e9cde6923f920d658d4c2233ae55fb0bee4e4da0d52183a256cc4218e5bf0751",
+   "briefSha256": "aa5c586444e6fd026c24ff35ff0d7d94dc793673cd0ecce838daca7572dfd78f",
+   "ownSourceCount": 12,
+   "reportedReadThrough": 598,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T07:04:10.821677+00:00",
+   "note": "Hashes compared with pass-retest2-input-freeze.json and dispatch.json by validate-quotes.py."
+  },
+  {
+   "id": "pass-retest2-nia",
+   "tester": "Nia Okafor",
+   "kind": "standing",
+   "exposure": "retest",
+   "model": "sonnet",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22304,
+    "desktop": 22305
+   },
+   "historyBytes": 127191,
+   "historyNewlines": 963,
+   "historyLines": 963,
+   "historyCharactersPerFreeze": 126963,
+   "historySha256": "3b5c92c0d9cf785de796499d00c36274ef8eb8c40b956f62d74a49ecf074426a",
+   "briefSha256": "e30f8c38f278818d13c5864d60fe342423678b97ccaf0c7653071e61a9b69022",
+   "ownSourceCount": 12,
+   "reportedReadThrough": 599,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T07:11:07.804227+00:00",
+   "note": "Hashes compared with pass-retest2-input-freeze.json and dispatch.json by validate-quotes.py."
+  },
+  {
+   "id": "pass-retest2-rosa",
+   "tester": "Rosa Alvarez",
+   "kind": "standing",
+   "exposure": "retest",
+   "model": "sonnet",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22306,
+    "desktop": 22307
+   },
+   "historyBytes": 202474,
+   "historyNewlines": 1583,
+   "historyLines": 1583,
+   "historyCharactersPerFreeze": 202187,
+   "historySha256": "3b79aa6dba4160965f913991936c99e8a05c2896bfcb0dda4f1b5242981cceff",
+   "briefSha256": "c6a661bcae8c9a586c54d7856446a4937219904c179d8371a19e2adf61f95ca9",
+   "ownSourceCount": 17,
+   "reportedReadThrough": 399,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T07:17:04.631074+00:00",
+   "note": "Hashes compared with pass-retest2-input-freeze.json and dispatch.json by validate-quotes.py."
+  },
+  {
+   "id": "pass-retest2-sonia",
+   "tester": "Sonia Ionescu",
+   "kind": "cold",
+   "exposure": "first",
+   "model": "opus",
+   "deviceOrder": [
+    "desktop",
+    "phone"
+   ],
+   "ports": {
+    "phone": 22308,
+    "desktop": 22309
+   },
+   "historyBytes": 77,
+   "historyNewlines": 1,
+   "historyLines": 1,
+   "historyCharactersPerFreeze": 77,
+   "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+   "briefSha256": "9047104c6dafee8911cbfcfd65d25db84941068c149db4406ad898ebfb5ed04f",
+   "ownSourceCount": 0,
+   "reportedReadThrough": 1,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T07:23:31.578536+00:00",
+   "note": "Hashes compared with pass-retest2-input-freeze.json and dispatch.json by validate-quotes.py."
+  }
+ ]
+}

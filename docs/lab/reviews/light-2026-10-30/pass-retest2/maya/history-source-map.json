@@ -1,0 +1,89 @@
+{
+  "time": "2026-10-31T06:52:03.812625+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "selection": "maya-free complete return plus literal own asks only; excludes CONT and director method interpretation",
+      "selectedReturnAndAsksOnly": true,
+      "selectedSha256": "a458234020342022bedb5ba90b7f9d84819a41a5c5273cc8b86dca9bade8e619"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/hf3-warren-2026-10-25/maya-free-matched.md",
+      "selection": "FREE only; independent CONT alternative excluded",
+      "selectedSha256": "85359de0c9334ebcb089152611f682ef74834bc19b34cd225ca79d7a2a00d91c"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass/maya/report.md",
+      "sourceSha256": "6c298654ee21a3569094c2b1f7ea01eaa6d0ba99c9bddb7640cd96e4a8bb2d29",
+      "selectedSha256": "98b6aa528bc8376569b6559742dc970e0f9ca10ff3f019d03db753bcb1357209"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay/maya/report.md",
+      "sourceSha256": "a24d76137a510fff41e95ffb8d22794ebcc80e658c4ce0c4756c464e26734073",
+      "selectedSha256": "21177efd15134467395fb33d3f82ca5c79546e7683a526c3666c8990c21e3ab9"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell/maya/report.md",
+      "sourceSha256": "ab53d8eb90a45cb484187d41d45b3da2f69bff295ca3b16756a4e2bdd00b348c",
+      "selectedSha256": "f6805f2beb5b27473b69a04f387aa527d3965bb6c4f10dc5380ee9369163dfe8"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word/maya/report.md",
+      "sourceSha256": "1766314580dd88e1d08e7acea180b5dfb0e032f0607734f3e1177782f605231c",
+      "selectedSha256": "0875fc09b167e694e09af48dbe5d08b66c5b1a05fae4ce4e2476b8ee71882227"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest/maya/report.md",
+      "sourceSha256": "845c6cf82eda7ca378e7b21fb5644e174dee5128597f0a8a89089d78ce518d72",
+      "selectedSha256": "6f179f2a748490c45078b5eeba2895d383b36bdaca68ed9830845424eed2a2e3"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/voice-playtest-2026-10-27-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "bc0a3ca05fdaa2288326ff8c41b56e2e534cf9de71c822dd3fec91595f64e90c"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "bcdc58646e1d2746576117d6d23ef0e8e1565d317711ea99a0a8e042a21528e6"
+    },
+    {
+      "repo": "pass",
+      "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+      "path": "docs/playtests/panel-2026-10-27.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "8a8eb822971cde93587def3d84b7bc2fe6f4d263bacb7d352432c66d852c32b6"
+    },
+    {
+      "repo": "valley",
+      "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+      "path": "docs/playtests/2026-10-27-retest2.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "6c74f5fc88a587ea01c70c5a2647aa74f5504666c971accd3570b13d9b1346ad"
+    },
+    {
+      "repo": "commonstead",
+      "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+      "path": "docs/games/commonstead-playtest-2026-10-27b.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "8329da0cfad24288df8dd2d9539c788d4e5fcb90898344c9eb8a8ba9ae62b644"
+    },
+    {
+      "repo": "lefthand",
+      "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+      "path": "docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "8c62e27544acc69679f5633dce9604943167f6da444a62d2d5c656d0507c4901"
+    }
+  ],
+  "historySha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045"
+}

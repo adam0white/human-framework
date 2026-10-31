@@ -1,0 +1,150 @@
+{
+  "note": "Per tester identity of the supplied inputs and the driver. Hashes of copied histories and briefs are compared with the input freeze and dispatch files by validate-quotes.py. History and brief were copied mechanically and not read. Counts here are byte and newline counts of the copies. This index holds no hash of any index or manifest.",
+  "testers": [
+    {
+      "id": "goodhands-retest-jonas",
+      "tester": "Jonas Berg",
+      "kind": "standing",
+      "exposure": "retest",
+      "model": "sonnet",
+      "deviceOrder": ["desktop", "phone"],
+      "ports": {
+        "phone": 22700,
+        "desktop": 22701
+      },
+      "historyBytes": 158676,
+      "historyNewlines": 939,
+      "historySha256": "2ddbf3f2c9bb05f93efa9bb6563a9be4f455d9d19fd3ee8622c141074a1e1ba1",
+      "historySha256PerFreeze": "2ddbf3f2c9bb05f93efa9bb6563a9be4f455d9d19fd3ee8622c141074a1e1ba1",
+      "historyCharactersPerFreeze": 158332,
+      "briefSha256": "56c4fd7dbb70e81a4007802eaa89ac3b741e4639718f34655f59df24b82e7f6e",
+      "briefSha256PerFreeze": "56c4fd7dbb70e81a4007802eaa89ac3b741e4639718f34655f59df24b82e7f6e",
+      "briefSha256PerDispatch": "56c4fd7dbb70e81a4007802eaa89ac3b741e4639718f34655f59df24b82e7f6e",
+      "historySha256PerDispatch": "2ddbf3f2c9bb05f93efa9bb6563a9be4f455d9d19fd3ee8622c141074a1e1ba1",
+      "dispatchTime": "2026-10-31T07:52:15.830244+00:00",
+      "dispatchCommit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+      "driver": {
+        "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+        "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+        "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+      },
+      "parentStatedHistory": "actual 939 lines, Read receipts 1-599, full-read claim false"
+    },
+    {
+      "id": "goodhands-retest-aisha",
+      "tester": "Aisha Rahman",
+      "kind": "standing",
+      "exposure": "retest",
+      "model": "sonnet",
+      "deviceOrder": ["desktop", "phone"],
+      "ports": {
+        "phone": 22702,
+        "desktop": 22703
+      },
+      "historyBytes": 137068,
+      "historyNewlines": 874,
+      "historySha256": "54e9fe10b7fad394e14493d68eb7dae6854d60b3168da299202939627ac9180b",
+      "historySha256PerFreeze": "54e9fe10b7fad394e14493d68eb7dae6854d60b3168da299202939627ac9180b",
+      "historyCharactersPerFreeze": 136947,
+      "briefSha256": "2c7069659ffa62115f90cdcab46e5fc4e6b85761658794db9ebb71f3bd4780d6",
+      "briefSha256PerFreeze": "2c7069659ffa62115f90cdcab46e5fc4e6b85761658794db9ebb71f3bd4780d6",
+      "briefSha256PerDispatch": "2c7069659ffa62115f90cdcab46e5fc4e6b85761658794db9ebb71f3bd4780d6",
+      "historySha256PerDispatch": "54e9fe10b7fad394e14493d68eb7dae6854d60b3168da299202939627ac9180b",
+      "dispatchTime": "2026-10-31T07:55:37.403484+00:00",
+      "dispatchCommit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+      "driver": {
+        "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+        "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+        "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+      },
+      "parentStatedHistory": "full 874 lines, tool render 875"
+    },
+    {
+      "id": "goodhands-retest-diego",
+      "tester": "Diego Silva",
+      "kind": "standing",
+      "exposure": "retest",
+      "model": "sonnet",
+      "deviceOrder": ["desktop", "phone"],
+      "ports": {
+        "phone": 22704,
+        "desktop": 22705
+      },
+      "historyBytes": 129841,
+      "historyNewlines": 1116,
+      "historySha256": "c9cd6d9c87eccc597de3bc5b4b0cfc2650db1ce20e313df7f8f524c288b08ab4",
+      "historySha256PerFreeze": "c9cd6d9c87eccc597de3bc5b4b0cfc2650db1ce20e313df7f8f524c288b08ab4",
+      "historyCharactersPerFreeze": 129645,
+      "briefSha256": "0af65809431b7e63669d2c3aab67cfcdba6d8f6fb3f80235042bd5b45ac75c7d",
+      "briefSha256PerFreeze": "0af65809431b7e63669d2c3aab67cfcdba6d8f6fb3f80235042bd5b45ac75c7d",
+      "briefSha256PerDispatch": "0af65809431b7e63669d2c3aab67cfcdba6d8f6fb3f80235042bd5b45ac75c7d",
+      "historySha256PerDispatch": "c9cd6d9c87eccc597de3bc5b4b0cfc2650db1ce20e313df7f8f524c288b08ab4",
+      "dispatchTime": "2026-10-31T07:58:33.933164+00:00",
+      "dispatchCommit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+      "driver": {
+        "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+        "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+        "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+      },
+      "parentStatedHistory": "full 1116 lines, tool render 1117"
+    },
+    {
+      "id": "goodhands-retest-rosa",
+      "tester": "Rosa Alvarez",
+      "kind": "standing",
+      "exposure": "retest",
+      "model": "sonnet",
+      "deviceOrder": ["phone", "desktop"],
+      "ports": {
+        "phone": 22706,
+        "desktop": 22707
+      },
+      "historyBytes": 209326,
+      "historyNewlines": 1682,
+      "historySha256": "ee21e4187beb9a75ba2eb95ef2b31200dd8f8105dcc4d8d958366ed57149f687",
+      "historySha256PerFreeze": "ee21e4187beb9a75ba2eb95ef2b31200dd8f8105dcc4d8d958366ed57149f687",
+      "historyCharactersPerFreeze": 208979,
+      "briefSha256": "34e88c76d5e5d84fef0bc2e4b1d10a2ba3478e37a1a5815f94dc3598580b061c",
+      "briefSha256PerFreeze": "34e88c76d5e5d84fef0bc2e4b1d10a2ba3478e37a1a5815f94dc3598580b061c",
+      "briefSha256PerDispatch": "34e88c76d5e5d84fef0bc2e4b1d10a2ba3478e37a1a5815f94dc3598580b061c",
+      "historySha256PerDispatch": "ee21e4187beb9a75ba2eb95ef2b31200dd8f8105dcc4d8d958366ed57149f687",
+      "dispatchTime": "2026-10-31T08:02:20.615846+00:00",
+      "dispatchCommit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+      "driver": {
+        "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+        "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+        "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+      },
+      "parentStatedHistory": "actual 1682 lines, Read ended at 468, producer called the file cut which is false, own earlier Good Hands report included, later cross-game tail unread"
+    },
+    {
+      "id": "goodhands-retest-nadia",
+      "tester": "Nadia Petrović",
+      "kind": "cold",
+      "exposure": "first",
+      "model": "opus",
+      "deviceOrder": ["desktop", "phone"],
+      "ports": {
+        "phone": 22708,
+        "desktop": 22709
+      },
+      "historyBytes": 77,
+      "historyNewlines": 1,
+      "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "historySha256PerFreeze": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "historyCharactersPerFreeze": 77,
+      "briefSha256": "78cf35d3b04a50bf3396365d96a97459193a2596ec6a517e7936c5ea2d85997c",
+      "briefSha256PerFreeze": "78cf35d3b04a50bf3396365d96a97459193a2596ec6a517e7936c5ea2d85997c",
+      "briefSha256PerDispatch": "78cf35d3b04a50bf3396365d96a97459193a2596ec6a517e7936c5ea2d85997c",
+      "historySha256PerDispatch": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "dispatchTime": "2026-10-31T08:04:57.114804+00:00",
+      "dispatchCommit": "2e67317e6a0aa187bf41de5d9bac5369916700f2",
+      "driver": {
+        "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+        "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+        "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+      },
+      "parentStatedHistory": "empty one-line history, read in full"
+    }
+  ]
+}

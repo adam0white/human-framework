@@ -1,0 +1,2350 @@
+{
+ "time": "built by build-packet.py from the copied raw wall-clock.jsonl files",
+ "note": "Every raw row with non-empty reaction text from all five testers and ten sessions, not a reconstructed producer diary. Report memories and estimates stay separate. Rows with no reaction text (opens, shots, waits, starts, tool rows without a reaction) are counted in rows but not listed. Failed driver taps keep their error text and their reaction. reactionsNotLiterallyInReport counts reactions whose exact text is not a substring of that tester report.md, for example when the report escapes, rewords or omits them. No reaction was normalized or reconstructed.",
+ "totals": {
+  "reactionRows": 142,
+  "reactionsNotLiterallyInReport": 3,
+  "sessions": 10
+ },
+ "sessions": [
+  {
+   "tester": "Jonas Berg",
+   "device": "desktop",
+   "source": "jonas/desktop/wall-clock.jsonl",
+   "rawSha256": "78a9aa9b75e417df73a5b8521c58d1acd67cdbea0fb54a355d3abb3f8e13a4e2",
+   "rows": 41,
+   "reactionRows": 12,
+   "reactionsNotLiterallyInReport": 1,
+   "notLiterallyInReportElapsedS": [
+    13.884
+   ],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:52:30.314Z",
+     "elapsed_s": 5.772,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Back again. Same title; I remember references before promises.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 467,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:52:38.426Z",
+     "elapsed_s": 13.884,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Gülce Aksoy"
+     },
+     "reaction": "Cash toward rent bar is new. Same three people. Interviewing Gülce first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1904,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:52:53.237Z",
+     "elapsed_s": 28.695,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "What wage do you need?"
+     },
+     "reaction": "New: Nermin has a reading line after the answer, saying she is still unsure. That addresses my doubt about claims.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2360,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:53:04.591Z",
+     "elapsed_s": 40.049,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "☎ Call from the Arslan family · Answer"
+     },
+     "reaction": "The notes say only Gülce says so, nobody confirmed. That is the claim-vs-check distinction written out. Good.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2030,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:53:27.241Z",
+     "elapsed_s": 62.699,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Answers to the crying question now differ per person (Gulce: better if someone explains; Sebnem: patient through quite a lot). Notes explain why each stays unsure: only she says so. That was my ask. Still unclear what fee does.",
+     "game_clock": "Mon 09:26",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:53:53.182Z",
+     "elapsed_s": 88.64,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "End the call"
+     },
+     "reaction": "Reference says she listened, yet Nermin stays unsure. Different from last time, where the reference contradicted the claim. Odd that one reference is not enough.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2077,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:53:57.066Z",
+     "elapsed_s": 92.524,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Negotiate placement Agree on the terms with both sides."
+     },
+     "reaction": "The notes now say why: own word counts less than a reference. Helpful. Now the fee test.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1877,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:54:01.558Z",
+     "elapsed_s": 97.016,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Propose to the Arslan family"
+     },
+     "reaction": "The fee is explained now: quarter on agreement, rest after trial if she stays. That answers my fee question in words.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2185,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:54:12.339Z",
+     "elapsed_s": 107.797,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Increase agency fee"
+     },
+     "reaction": "Live text now shows the later payment rising with the fee. The deposit stays at a quarter of wage. That is a visible consequence of the dial.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1853,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:54:19.848Z",
+     "elapsed_s": 115.306,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "At fee 9200 Suna said it is more than we planned, but we will manage. Last time 9100 got no reaction. So the fee has a visible cost reaction now. Still no refusal point found.",
+     "game_clock": "Mon 10:15",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:54:33.676Z",
+     "elapsed_s": 129.134,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I have what I came to test. Patient answers differ and notes explain why; fee now shows a reaction. Nothing more cheap to probe; the trial payoff is days away.",
+     "game_clock": "Mon 10:15",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:54:36.051Z",
+     "elapsed_s": 131.509,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping desktop at about 2 minutes, Mon 10:15. I tested what I asked for last time and two of three are visibly addressed. I would not leave it running; I would come back another evening for trial results. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back.",
+     "game_clock": "Mon 10:15",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Jonas Berg",
+   "device": "phone",
+   "source": "jonas/phone/wall-clock.jsonl",
+   "rawSha256": "2decd03004b1b22578813133959c11c3fdfeaed43b8dbb0ae5948e18039e0b72",
+   "rows": 15,
+   "reactionRows": 4,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:54:47.570Z",
+     "elapsed_s": 11.127,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Özlem Koç"
+     },
+     "reaction": "Phone banner fully readable now, was clipped before. Interviewing Ozlem.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1546,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:55:01.767Z",
+     "elapsed_s": 25.324,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Game menu"
+     },
+     "reaction": "Phone: banner fits, call bar and buttons are readable. Same loop as desktop, I have tested what I wanted tonight.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1363,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:55:06.606Z",
+     "elapsed_s": 30.163,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Second device, same evening, same loop already tested on desktop. Phone layout is fine now; nothing new to try in a few seconds.",
+     "game_clock": "Mon 08:54",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:55:07.674Z",
+     "elapsed_s": 31.231,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping phone at about 30 seconds, Mon 08:54. Banner no longer clipped; I know the loop from desktop. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back. First minute and pulse untested.",
+     "game_clock": "Mon 08:54",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Aisha Rahman",
+   "device": "desktop",
+   "source": "aisha/desktop/wall-clock.jsonl",
+   "rawSha256": "0126ead65369d0669e57ac81e7547db4bbb46db76a9310a36ad1f2ba73383f11",
+   "rows": 32,
+   "reactionRows": 13,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:55:55.846Z",
+     "elapsed_s": 5.317,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Same title page as before; I know the place.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 477,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:56:07.785Z",
+     "elapsed_s": 17.256,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Look again at one of your earlier agency decisions"
+     },
+     "reaction": "New to me: an old case on the mind of Nermin. I want to see what it is.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2179,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:56:11.587Z",
+     "elapsed_s": 21.058,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Correct the agency record and write to the worker first"
+     },
+     "reaction": "A chance to repair an old mistake. That is exactly my sort of room to repair.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2170,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:56:15.207Z",
+     "elapsed_s": 24.678,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Şebnem Eren"
+     },
+     "reaction": "Letter drafted but not sent, and no button to send it. I will follow Sebnem again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1886,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:56:18.909Z",
+     "elapsed_s": 28.38,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Interview This takes about 30 minutes."
+     },
+     "reaction": "Interview her first, to hear her side before any reference.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2117,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:56:28.946Z",
+     "elapsed_s": 38.417,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "☎ Call from the Arslan family · Answer"
+     },
+     "reaction": "The family call came much earlier than 11:00 this time. Answering.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2048,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:56:32.862Z",
+     "elapsed_s": 42.333,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Say you are still interviewing"
+     },
+     "reaction": "Same call as last time. I will not promise what I cannot yet keep.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2116,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:56:44.068Z",
+     "elapsed_s": 53.539,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "What wage do you need?"
+     },
+     "reaction": "Her answers are thin now: I have worked as a nanny. Less than last time, I think.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2258,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:56:54.013Z",
+     "elapsed_s": 63.484,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "I understand: interview, family call, references, trial. New since last time: an old-case card where Nermin corrects her own record and drafts a letter to a worker, though I see no way to send it. The family call came at 09:17, not 11:00. Sebnem again leaves and wants calling back after 11:38. I recognise the shape.",
+     "game_clock": "Mon 2 Nov 09:50",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:57:08.437Z",
+     "elapsed_s": 77.908,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask about patience"
+     },
+     "reaction": "Melek says Sebnem handed back the change and receipts together, yet the reading says I am still unsure she is honest. Same complaint as last time: the reading does not follow what I heard.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2176,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:57:12.564Z",
+     "elapsed_s": 82.035,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask why the job ended"
+     },
+     "reaction": "This time the reference says she argued when instructions were repeated, and the reading matches it. So the reference differs from last visit, and the note follows. I want her side before judging.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2172,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:57:16.227Z",
+     "elapsed_s": 85.698,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Asked why the job ended and got another bad fact (left without handing over work), not a reason, same as last time. I have seen the shape of this one; her own side would come after 11:38 but I know that part. I would stop here.",
+     "game_clock": "Mon 2 Nov 10:21",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:57:32.212Z",
+     "elapsed_s": 101.683,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping after under two minutes on the laptop. I liked the old-case card where Nermin corrects her own record, but I could not see how to send the letter, and the reference still gave a bad fact instead of a reason. I pressed I would stop here in Feedback, typed nothing, no Submit.",
+     "game_clock": "Mon 2 Nov 10:21",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Aisha Rahman",
+   "device": "phone",
+   "source": "aisha/phone/wall-clock.jsonl",
+   "rawSha256": "af88556f8d93538a81a8a02bb971774ea192ef18dc4ce9c6b7222cefc0aa5c1d",
+   "rows": 15,
+   "reactionRows": 4,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:57:37.150Z",
+     "elapsed_s": 3.819,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Same title page on the phone.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 470,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:57:48.750Z",
+     "elapsed_s": 15.419,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Özlem Koç"
+     },
+     "reaction": "The news bar is no longer cut off on the phone; that was my old complaint. This time I will follow Ozlem.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1512,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:57:57.740Z",
+     "elapsed_s": 24.409,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "The same family call arrives mid-interview and I did this on the laptop a minute ago. Ozlem gives the same thin I have worked as a nanny. Nothing new to learn here, so I would stop on the phone.",
+     "game_clock": "Mon 2 Nov 09:03",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:58:06.316Z",
+     "elapsed_s": 32.985,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping the phone after about half a minute. I had just played the same opening on the laptop, and Ozlem gave the same thin answer. The phone layout now fits. I pressed I would stop here, typed nothing, no Submit.",
+     "game_clock": "Mon 2 Nov 09:03",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Diego Silva",
+   "device": "desktop",
+   "source": "diego/desktop/wall-clock.jsonl",
+   "rawSha256": "220c29271b4fabbd9d857d85f3f1b7ce9a6b9744c819adc49e6dec4c17fe2b4d",
+   "rows": 31,
+   "reactionRows": 14,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T07:58:49.596Z",
+     "elapsed_s": 6.289,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Same nanny office as before. Opening it; I remember rent covered too fast and samey interviews.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 479,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:01.023Z",
+     "elapsed_s": 17.716,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Look again at one of your earlier agency decisions"
+     },
+     "reaction": "New to me: an old case on her mind. Tapping it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2153,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:04.877Z",
+     "elapsed_s": 21.57,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Correct the agency record and write to the worker first"
+     },
+     "reaction": "A real moral fork about the past. Taking the honest route to see what it costs.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2169,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:08.282Z",
+     "elapsed_s": 24.975,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Özlem Koç"
+     },
+     "reaction": "Going to Özlem, the one the reference call separated last time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1974,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:11.440Z",
+     "elapsed_s": 28.133,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Call a reference This takes about 15 minutes."
+     },
+     "reaction": "Reference first, since that was the real signal last time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1849,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:18.382Z",
+     "elapsed_s": 35.075,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask about money and honesty"
+     },
+     "reaction": "Last time I never checked honesty. Asking it now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2223,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:25.263Z",
+     "elapsed_s": 41.956,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask why the job ended"
+     },
+     "reaction": "Asking why the job ended, a question I did not try before.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2177,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:35.839Z",
+     "elapsed_s": 52.532,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Negotiate placement Agree on the terms with both sides."
+     },
+     "reaction": "Going for the placement. Curious whether rent is again covered in two minutes.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1915,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:39.660Z",
+     "elapsed_s": 56.353,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "warm · not checked"
+     },
+     "reaction": "New: the family pays a quarter now and the rest only after the trial. I will promise warm, which I did not check, to see if it bites.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1875,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:45.411Z",
+     "elapsed_s": 62.104,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "New since last visit: an old-case choice on Nermin, and the fee is split, a quarter now and the rest after the trial, so rent is not instantly covered. Reference gave honest and reliable evidence. I promised warm unchecked and the family agreed in seconds anyway, same instant agreement as before. Still no haggling.",
+     "game_clock": "Mon 2 Nov 09:49",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T07:59:54.115Z",
+     "elapsed_s": 70.808,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "End the conversation"
+     },
+     "reaction": "Cash 5250 at 10:04, over rent again. The deposit trick still clears rent before lunch Monday. Ending, then I want to see the trial.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2111,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T07:59:58.324Z",
+     "elapsed_s": 75.017,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to 11:00 · A family is due to call"
+     },
+     "reaction": "Nothing left to touch for her. Skipping to the next call.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2602,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:00:10.071Z",
+     "elapsed_s": 86.764,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "The Kaya call now says the person throws a plate, so patient matters. That is better than the template. But rent is over 5000 again by Monday 10:04 and the call menu is the same Promise, Decline, Finish. I would stop here.",
+     "game_clock": "Mon 2 Nov 11:00",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:00:22.035Z",
+     "elapsed_s": 98.728,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+     "game_clock": "Mon 2 Nov 11:00",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Diego Silva",
+   "device": "phone",
+   "source": "diego/phone/wall-clock.jsonl",
+   "rawSha256": "5194ea15428d5618b3b9345259c20bdb5d3e60761af137b4fff059ed873b319d",
+   "rows": 33,
+   "reactionRows": 14,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:00:27.224Z",
+     "elapsed_s": 4.015,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Phone, same evening. I know the opening now. Going straight to a reference.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 449,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:00:32.425Z",
+     "elapsed_s": 9.216,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Look again at one of your earlier agency decisions"
+     },
+     "reaction": "On the phone I try the other branch of the old case: leave it closed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1739,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:00:39.213Z",
+     "elapsed_s": 16.004,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Gülce Aksoy"
+     },
+     "reaction": "Trying Gülce this time, the first applicant.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1619,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:00:42.719Z",
+     "elapsed_s": 19.51,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Interview This takes about 30 minutes."
+     },
+     "reaction": "Her reference is at work until 14:00, so no shortcut this time. Interviewing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1789,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:00:49.676Z",
+     "elapsed_s": 26.467,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "☎ Call from the Arslan family · Answer"
+     },
+     "reaction": "A bland answer, \"I have worked as a nanny\". The Arslans ring early again, same as before.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1737,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:00:52.990Z",
+     "elapsed_s": 29.781,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Promise an answer today"
+     },
+     "reaction": "Promising an answer today, a commitment. Curious if it holds me to it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1749,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:01:02.307Z",
+     "elapsed_s": 39.098,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "What if a child keeps crying?"
+     },
+     "reaction": "Asking the crying question to get at patience.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1980,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:01:16.492Z",
+     "elapsed_s": 53.283,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Let the candidate go home"
+     },
+     "reaction": "She ran out of questions and left; I have one patience reading from one sentence. Moving to the next.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1737,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:01:19.891Z",
+     "elapsed_s": 56.682,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Şebnem Eren"
+     },
+     "reaction": "Applicants now leave and have stated needs. Next, Şebnem.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1509,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:01:25.309Z",
+     "elapsed_s": 62.1,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Phone fits fine: big buttons, no clipped banner. New to me: an old-case choice, and applicants who leave with stated needs and a call-back time. Gülce answered patience with one line and the notes already say I believe she is patient; that feels too easy. Interviews still cost minutes and the Arslans phone early. Mildly interested.",
+     "game_clock": "Mon 2 Nov 09:35",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:01:31.855Z",
+     "elapsed_s": 68.646,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More questions · 9"
+     },
+     "reaction": "Same 8,000 as Gülce. I want a question that might separate them.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1487,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:01:37.968Z",
+     "elapsed_s": 74.759,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "This separates them. Gülce took a breath and got a believed patient; Şebnem said patient through quite a lot and Nermin is still unsure. Last time the first two applicants gave near-identical answers. That part is better.",
+     "game_clock": "Mon 2 Nov 09:58",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:01:40.969Z",
+     "elapsed_s": 77.76,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I would stop here. The interviews are less samey and applicants leave on their own clock, but I have already seen where this goes: a placement, a deposit, rent covered. I have seen no cost for a wrong promise on this visit.",
+     "game_clock": "Mon 2 Nov 09:58",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:01:50.655Z",
+     "elapsed_s": 87.446,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+     "game_clock": "Mon 2 Nov 09:58",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Rosa Alvarez",
+   "device": "phone",
+   "source": "rosa/phone/wall-clock.jsonl",
+   "rawSha256": "5341565cdc862cb345f8d4250fa671436215f7d5961adc4db534bc53554e26e3",
+   "rows": 28,
+   "reactionRows": 10,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:02:39.243Z",
+     "elapsed_s": 4.643,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Same title as before; I know the aim.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 447,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:02:46.928Z",
+     "elapsed_s": 12.328,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Özlem Koç"
+     },
+     "reaction": "I remember Özlem from last time; I start with her. Cash is 3,000 now, not what I remember.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1455,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:02:57.908Z",
+     "elapsed_s": 23.308,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Say you are still interviewing"
+     },
+     "reaction": "Honest, simple.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1705,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:03:10.335Z",
+     "elapsed_s": 35.735,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask the candidate to wait on the bench"
+     },
+     "reaction": "Patient answer is clear: she takes a breath. The reading now says Özlem said this, I believe. I understand it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1656,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:03:16.341Z",
+     "elapsed_s": 41.741,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Negotiate placement Agree on the terms with both sides."
+     },
+     "reaction": "New: the card now says why: only Özlem says so, nobody confirmed, enough to believe. That is what I asked for.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1468,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:03:19.484Z",
+     "elapsed_s": 44.884,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "patient · Özlem Koç said this."
+     },
+     "reaction": "The fee paragraph now has numbers: 2,250 now, 6,750 after trial. That was my ask. Still a long paragraph but I read it once.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1520,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:03:25.582Z",
+     "elapsed_s": 50.982,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Then we have an agreement. Shall we begin?"
+     },
+     "reaction": "The same wage and hours are said three times on this screen. Too much repeating, but numbers are clear.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1868,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:03:31.119Z",
+     "elapsed_s": 56.519,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "Rent is covered already at under a minute. Placed card shows one sentence now, not five.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 703,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:03:34.371Z",
+     "elapsed_s": 59.771,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I placed one nanny and the rent is covered in under a minute. The Next line is whole now and the buttons sit at the bottom. But now it only says wait; I would stop for tonight.",
+     "game_clock": null,
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:03:44.746Z",
+     "elapsed_s": 70.146,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I placed Ozlem and the rent is covered at 09:35. Reasons are explained now and the fee has numbers. Now I only wait for the next family call, so I stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+     "game_clock": null,
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Rosa Alvarez",
+   "device": "desktop",
+   "source": "rosa/desktop/wall-clock.jsonl",
+   "rawSha256": "01df7bdf8b49db4f8c68ede7486f2a19ddec2ca9c7e6a6fd004a629c03ec7f8b",
+   "rows": 19,
+   "reactionRows": 4,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:03:48.580Z",
+     "elapsed_s": 2.616,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Same title, big screen. I know the aim.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 479,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:03:56.563Z",
+     "elapsed_s": 10.599,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Şebnem Eren"
+     },
+     "reaction": "This time I try Şebnem, the one I doubted before, to see whether the reading explains itself.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2011,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:04:21.036Z",
+     "elapsed_s": 35.072,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "New: the card says why she stays unsure: not clear enough. That is what I asked for.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 729,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:04:29.108Z",
+     "elapsed_s": 43.144,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "On the big screen I understood everything without a reread. The card now says why Sebnem stays unsure. I have placed nobody here and I would rather stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+     "game_clock": null,
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Nadia Petrović",
+   "device": "desktop",
+   "source": "nadia/desktop/wall-clock.jsonl",
+   "rawSha256": "87ab971f765120d217ecbef252437efe80487d6fba2cf14763a47ab567dc645d",
+   "rows": 74,
+   "reactionRows": 42,
+   "reactionsNotLiterallyInReport": 2,
+   "notLiterallyInReportElapsedS": [
+    110.844,
+    270.3
+   ],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:05:08.442Z",
+     "elapsed_s": 6.002,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Clear promise: a nanny by Tuesday, rent Friday. I understand what I owe before I start. Good.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 478,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:05:17.197Z",
+     "elapsed_s": 14.757,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Gülce Aksoy"
+     },
+     "reaction": "I have ₺3,000 and need ₺5,000 by Friday. Let me read the first applicant.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1862,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:05:21.473Z",
+     "elapsed_s": 19.033,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Interview This takes about 30 minutes."
+     },
+     "reaction": "Each action says its time cost. I like that. Interview first, 30 minutes.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2116,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:05:29.574Z",
+     "elapsed_s": 27.134,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "☎ Call from the Arslan family · Answer"
+     },
+     "reaction": "Phone ringing mid-interview. The client matters, I answer.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2048,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:05:34.091Z",
+     "elapsed_s": 31.651,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Say you are still interviewing"
+     },
+     "reaction": "They pay ₺9,000, Gülce asks ₺8,000, and they need patience. I will not promise what I have not checked.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2233,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:05:41.533Z",
+     "elapsed_s": 39.093,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More questions · 9"
+     },
+     "reaction": "The family said patient. I want a question about patience.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1876,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:05:45.737Z",
+     "elapsed_s": 43.297,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "What if a child keeps crying?"
+     },
+     "reaction": "No question literally says patience. I am guessing the crying child one tests it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2248,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:05:49.818Z",
+     "elapsed_s": 47.378,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "What hours can you work?"
+     },
+     "reaction": "Nice that Nermin says plainly she is still unsure. Hours next, Tuesday 08:00 matters.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2220,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:05:58.771Z",
+     "elapsed_s": 56.331,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Let the candidate go home"
+     },
+     "reaction": "She left after four questions. I was warned 4 remain, fair. But the reading line still says the patience thing after her hours answer; it did not change.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2193,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:06:03.138Z",
+     "elapsed_s": 60.698,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Şebnem Eren"
+     },
+     "reaction": "The card explains why she stays unsure: only her own word. That is a record I can reread. I like it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1926,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:06:05.656Z",
+     "elapsed_s": 63.216,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "First minute: I understand the job, the money and the deadline. Each action shows its time cost. Şebnem has a reachable reference, so I will call it before interviewing.",
+     "game_clock": "Mon 2 Nov 09:31",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:06:16.448Z",
+     "elapsed_s": 74.008,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask about patience"
+     },
+     "reaction": "Here is the patience question I wanted. Clear.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2144,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:06:20.738Z",
+     "elapsed_s": 78.298,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "End the call"
+     },
+     "reaction": "Şebnem argued when instructions were repeated. That is exactly what the Arslans warned about. Not her for this family.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2171,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:06:28.272Z",
+     "elapsed_s": 85.832,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Call a reference This takes about 15 minutes."
+     },
+     "reaction": "Top line still says Şebnem is waiting while I read, but I opened Özlem. Small mismatch.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1915,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:06:40.258Z",
+     "elapsed_s": 97.818,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask about keeping arrangements"
+     },
+     "reaction": "Özlem listened when instructions were repeated. That is my candidate. One more check: does she keep arrangements?",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2165,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:06:48.048Z",
+     "elapsed_s": 105.608,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Negotiate placement Agree on the terms with both sides."
+     },
+     "reaction": "Wage not yet asked, but I want to see what negotiating shows before I spend 30 minutes interviewing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1950,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:06:53.284Z",
+     "elapsed_s": 110.844,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "patient · Hale Erol reported this to Nermin."
+     },
+     "reaction": "\"The wage is ₺9,000 and so is the fee\" — I had to read twice. My fee is a whole month of her wage? ₺2,250 now, ₺6,750 after trial. I think so. I will promise only what was checked.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1981,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:07:01.141Z",
+     "elapsed_s": 118.701,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Propose to the Arslan family"
+     },
+     "reaction": "Two checked promises, nothing unchecked. Committing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2253,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:07:05.519Z",
+     "elapsed_s": 123.079,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Then we have an agreement. Shall we begin?"
+     },
+     "reaction": "Nermin says the same terms twice in a row. Odd repetition, but both sides agreed. Taking it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2415,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:07:10.042Z",
+     "elapsed_s": 127.602,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "End the conversation"
+     },
+     "reaction": "₺5,250 now, rent ₺5,000 covered by Monday morning. Satisfying, I can see exactly what changed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2302,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:07:13.363Z",
+     "elapsed_s": 130.923,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "Her card now says ₺8,500 a month. I never asked her wage and we agreed ₺9,000. Where did 8,500 come from? Unexplained.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 781,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:07:18.677Z",
+     "elapsed_s": 136.237,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to 11:00 · A family is due to call"
+     },
+     "reaction": "Plain drawn office, readable. Skipping to the next call.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1984,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:07:32.815Z",
+     "elapsed_s": 150.375,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Promise to look"
+     },
+     "reaction": "Another family, also needs patience. My only carer, Şebnem, argued at repeated instructions. I promise to look, not to deliver.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2201,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:07:45.830Z",
+     "elapsed_s": 163.39,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Keep the phone number This takes 2 minutes. The applicant goes home, and you keep the phone number."
+     },
+     "reaction": "Not placing Şebnem with a plate-thrower after that reference. Keeping her number, she may suit another job later.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2476,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:07:49.185Z",
+     "elapsed_s": 166.745,
+     "kind": "tool",
+     "op": "tap",
+     "input": {
+      "name": "Skip to 11:52 · Someone will bring news from outside Good Hands"
+     },
+     "reaction": "Keeping a number said 2 minutes but the clock jumped from 11:05 to 11:18, then 11:27 while I read. I guess the clock runs while I read. The task line nicely tells me who to call.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 286,
+     "error": "Skip to 11:52 · Someone will bring news from outside Good Hands is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+     "requested_control_present_before": false
+    },
+    {
+     "t": "2026-10-31T08:07:53.970Z",
+     "elapsed_s": 171.53,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "☎ Call from Özlem Koç · Answer"
+     },
+     "reaction": "The clock got to 11:52 by itself before my skip landed. Özlem is calling, already, from her new job? Worried.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2174,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:08:01.545Z",
+     "elapsed_s": 179.105,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "I placed one worker on checked evidence and covered rent; I can reread why I believe each thing. The clock moving while I read makes me a bit rushed.",
+     "game_clock": "Mon 2 Nov 12:17",
+     "engagement": 4,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:08:06.029Z",
+     "elapsed_s": 183.589,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "City"
+     },
+     "reaction": "I need a patient carer and have none. Maybe the City button finds new people.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2202,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:08:11.292Z",
+     "elapsed_s": 188.852,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "☎ Call from Mr Hüsnü · Answer"
+     },
+     "reaction": "City is just a map of where people are, not new applicants. And the landlord calls. I have his rent at least.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2620,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:08:16.050Z",
+     "elapsed_s": 193.61,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Thank him for the news"
+     },
+     "reaction": "Who is Sevil? Nobody introduced her. I just nod along.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2413,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:08:29.725Z",
+     "elapsed_s": 207.285,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hülya"
+     },
+     "reaction": "A new person, Hülya, an oven cook. Not a carer, but I will read her card.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2149,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:08:34.818Z",
+     "elapsed_s": 212.378,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Keep the phone number This takes 2 minutes. The applicant goes home, and you keep the phone number."
+     },
+     "reaction": "No family wants a cook yet. Keep her number.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2802,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:08:45.945Z",
+     "elapsed_s": 223.505,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Promise to look"
+     },
+     "reaction": "A driver now. I have no drivers at all. Promise to look only means look, so I will say that.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2403,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:08:59.340Z",
+     "elapsed_s": 236.9,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Task"
+     },
+     "reaction": "I want the card for Gülce to call her reference, but the bench is empty and I see no list of kept numbers. Trying the task line.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2478,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:09:04.928Z",
+     "elapsed_s": 242.488,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Finish"
+     },
+     "reaction": "I tapped the task line and instead time jumped to 14:45 and the landlord is talking again about Hülya, who already went home. I did not mean to skip time. Confused.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2921,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:09:13.154Z",
+     "elapsed_s": 250.714,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Call a reference This takes about 15 minutes."
+     },
+     "reaction": "A driver just as the Demirs asked. They need discretion. Same method: reference first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2225,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:09:21.651Z",
+     "elapsed_s": 259.211,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More choices · 4"
+     },
+     "reaction": "Need a discretion question, not shown in the first two.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2149,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:09:26.833Z",
+     "elapsed_s": 264.393,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask whether the employer would hire again"
+     },
+     "reaction": "There is no question about keeping private matters private, and that is the one thing the Demirs asked for. The card lists discreet but I cannot ask about it. Guessing: would she hire him again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2552,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:09:32.740Z",
+     "elapsed_s": 270.3,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "End the call"
+     },
+     "reaction": "She would not hire him again, he did not come and did not call. Yet Nermin is only \"still unsure\" he arrives when promised. Earlier one report was enough to doubt Şebnem. Why not here? The rule changed without a reason.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2441,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:09:37.409Z",
+     "elapsed_s": 274.969,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Two references both say something bad, one makes Nermin doubt, the other leaves her unsure, and nothing says why. I cannot ask about discretion, and I cannot find how to reach Gülce for the Kaya job. I am losing the thread.",
+     "game_clock": "Mon 2 Nov 15:25",
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:09:58.505Z",
+     "elapsed_s": 296.065,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Placed"
+     },
+     "reaction": "One last look: maybe the Placed tab shows who I can call back.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2235,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:10:01.102Z",
+     "elapsed_s": 298.662,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I will stop here. The first placement was satisfying, but now I cannot find where my kept numbers live and the belief rules feel uneven. I would rather stop than guess.",
+     "game_clock": "Mon 2 Nov 15:32",
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Nadia Petrović",
+   "device": "phone",
+   "source": "nadia/phone/wall-clock.jsonl",
+   "rawSha256": "aa4f7d53182a76248c52d492cceca4a56819da4a2624461268dedbc20cfa08b7",
+   "rows": 52,
+   "reactionRows": 25,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:10:09.482Z",
+     "elapsed_s": 6.727,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Open the office"
+     },
+     "reaction": "Same opening as on my computer earlier tonight (session A). Fits the phone fine. This time I want to see whether I can call kept numbers back.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 461,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:10:18.922Z",
+     "elapsed_s": 16.167,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Özlem Koç"
+     },
+     "reaction": "Same three names on the bench as in session A on my computer: Gülce, Şebnem, Özlem. Fairly sure. I will see if Özlem is the same person.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1514,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:10:22.858Z",
+     "elapsed_s": 20.103,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "Same Hale Erol reference but now she is at work until 09:00; on the computer she was reachable. So not the same game. Here, three of the action buttons lost their time-cost lines.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 766,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:10:29.067Z",
+     "elapsed_s": 26.312,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Interview This takes about 30 minutes."
+     },
+     "reaction": "On the phone the card shows only a few lines between the bench and the action buttons. Her reference is busy till 09:00, so I interview her first and ask about patience myself.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1853,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:10:33.238Z",
+     "elapsed_s": 30.483,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "What wage do you need?"
+     },
+     "reaction": "Asking wage this time; on the computer her card later showed 8,500 and I never knew where from.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2124,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:10:37.485Z",
+     "elapsed_s": 34.73,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "☎ Call from the Arslan family · Answer"
+     },
+     "reaction": "She asks ₺8,500. So that number on the computer was her own asked wage, filled in without my asking. Now it makes sense, but it should have said so.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1753,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:10:50.295Z",
+     "elapsed_s": 47.54,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask the candidate to wait on the bench"
+     },
+     "reaction": "Her reference is free after 09:00 now. I will keep her on the bench and phone the reference, which worked for me last time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1782,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:11:54.462Z",
+     "elapsed_s": 111.707,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "First minute on the phone: same office, same job. The reference answer is word for word what I heard on the computer. I know the routine now, so it feels less new.",
+     "game_clock": "Mon 2 Nov 09:28",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:11:59.483Z",
+     "elapsed_s": 116.728,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask about keeping arrangements"
+     },
+     "reaction": "Patience confirmed, same as on the computer. Now arrangements.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1843,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:08.410Z",
+     "elapsed_s": 125.655,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "The day’s notes"
+     },
+     "reaction": "A button called The day’s notes. I did not notice it on the computer. A record to reread, maybe it lists kept numbers.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1940,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:12.747Z",
+     "elapsed_s": 129.992,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Back"
+     },
+     "reaction": "A concise log, newest on top. I like it. But it skips the two things Hale actually reported, only her opening line. No list of kept numbers here either.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1515,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:26.563Z",
+     "elapsed_s": 143.808,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Propose to the Arslan family"
+     },
+     "reaction": "Same two checked promises as on the computer. Proposing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1954,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:31.833Z",
+     "elapsed_s": 149.078,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Then we have an agreement. Shall we begin?"
+     },
+     "reaction": "Nermin repeats the terms twice again, same as on the computer. Agreeing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 2230,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:35.948Z",
+     "elapsed_s": 153.193,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "End the conversation"
+     },
+     "reaction": "₺5,250 again, rent covered by 10:04, earlier than on the computer. Suna is named here; I guess she is the Arslan mother.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1774,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:40.878Z",
+     "elapsed_s": 158.123,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Şebnem Eren"
+     },
+     "reaction": "The bench dots changed to half circles. No label says what that means. Guessing they are getting tired of waiting.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1589,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:44.363Z",
+     "elapsed_s": 161.608,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Keep the phone number"
+     },
+     "reaction": "This time I keep her number on purpose, then I look for where it goes.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1807,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:48.766Z",
+     "elapsed_s": 166.011,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Placed"
+     },
+     "reaction": "Her card stays open with Call in to the office. Good. But she vanished from the bench list. If I click away, where do I find her again? Checking Placed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1544,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:12:55.497Z",
+     "elapsed_s": 172.742,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-003.png"
+     },
+     "reaction": "There it is: Şebnem Eren · at home, listed under the bench when no card is open. On the computer I always had a card open, so I never saw this list. That was my big confusion from session A, answered.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 779,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:13:00.516Z",
+     "elapsed_s": 177.761,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Rent covered faster than on the computer, and I found where kept numbers live. The thing that made me stop earlier is gone, so I want to see the next family.",
+     "game_clock": "Mon 2 Nov 10:27",
+     "engagement": 4,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:13:12.689Z",
+     "elapsed_s": 189.934,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "☎ Call from the Kaya family · Answer"
+     },
+     "reaction": "The game paused itself for the phone. That is kind; on the computer I felt rushed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1692,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:13:16.366Z",
+     "elapsed_s": 193.611,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Promise to look"
+     },
+     "reaction": "Kaya family again, same as the computer. This time I can check Şebnem properly, since her reference is reachable.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1769,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:13:39.527Z",
+     "elapsed_s": 216.772,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "End the call"
+     },
+     "reaction": "Same answer as on the computer: Şebnem argued. So the Kaya job again depends on Gülce, whose patience I could not check last time. I am replaying the same afternoon.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1766,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:13:42.961Z",
+     "elapsed_s": 220.206,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "The card says one report is enough for Nermin to doubt. That explains Şebnem but not why Cihan stayed unsure on the computer. Everything here is the same afternoon I already played an hour ago, and the phone screen shows me only a slice at a time. I have had enough for tonight.",
+     "game_clock": "Mon 2 Nov 11:33",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T08:13:48.069Z",
+     "elapsed_s": 225.314,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Feedback"
+     },
+     "reaction": "There is a Pace setting with Slow. I never knew; on the computer I felt rushed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 124,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T08:13:57.362Z",
+     "elapsed_s": 234.607,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop here. Tonight I placed Özlem twice and found the kept-number list, which answered my question from the computer. But it is the same afternoon again, and for me one evening of it is enough.",
+     "game_clock": "Mon 2 Nov 11:37",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-31T06:53:25.402404+00:00",
+  "notBefore": "2026-10-31T06:53:52.471506+00:00",
+  "cooldownElapsedSeconds": 872.930898,
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.12.0",
+    "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+    "dirty": false
+  },
+  "source": "0d076deda40d22311f1bb2f6c985a6fe7fd194d4",
+  "sourceCI": 41168022792,
+  "mainCI": 41168638592,
+  "sourceMainTrees": "ccb97a0091649f82b2694174f3b27f7ff2005232",
+  "githubSignatures": "Both verified valid, merge is a one-parent GitHub-signed squash; no local trust claim.",
+  "reviews": "Code full behavior/frozen shrink-body chain read; final0d documentation-only delta has exact Opus CLEAR. No invented final0d Code receipt.",
+  "normalDeployExit": 0,
+  "servedBytes": "5 fresh body hashes matched06:39 receipt, separate JSON in pass-goodhands-fresh-served-verification.json",
+  "admissionScope": "Ordinary fresh-entry same-standing player retest. Current native public-modified witness, complete native-file/font/geometry proof, ownerNov3 pacing/absence decisions unproved. No source blocker/open PR or actual game author visible; only external harness development known. Wider proof does not become a player observation.",
+  "browserBudget": "One tester/two contexts; Smoke author<=1local +GD<=1 total gives global<=4.",
+  "inputHashes": [
+    {
+      "tester": "Maya Chen",
+      "briefSha256": "2912a74eedafd26d6ecfda468ce6d696e0398c5cfa54219d3f024149fc01c5ff",
+      "historySha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045"
+    },
+    {
+      "tester": "Emre Kaya",
+      "briefSha256": "aa5c586444e6fd026c24ff35ff0d7d94dc793673cd0ecce838daca7572dfd78f",
+      "historySha256": "e9cde6923f920d658d4c2233ae55fb0bee4e4da0d52183a256cc4218e5bf0751"
+    },
+    {
+      "tester": "Nia Okafor",
+      "briefSha256": "e30f8c38f278818d13c5864d60fe342423678b97ccaf0c7653071e61a9b69022",
+      "historySha256": "3b5c92c0d9cf785de796499d00c36274ef8eb8c40b956f62d74a49ecf074426a"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "briefSha256": "c6a661bcae8c9a586c54d7856446a4937219904c179d8371a19e2adf61f95ca9",
+      "historySha256": "3b79aa6dba4160965f913991936c99e8a05c2896bfcb0dda4f1b5242981cceff"
+    },
+    {
+      "tester": "Sonia Ionescu",
+      "briefSha256": "9047104c6dafee8911cbfcfd65d25db84941068c149db4406ad898ebfb5ed04f",
+      "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9"
+    }
+  ]
+}
