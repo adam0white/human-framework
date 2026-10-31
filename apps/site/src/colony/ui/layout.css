@@ -1029,3 +1029,17 @@ body,
   margin: 4px 0;
   font-size: 13px;
 }
+/* Placement intent: the chapter disclosure sits in the header flow, below the top bar, and shrinks and scrolls inside the layout column. */
+.well-layout .well-cast-disclosure {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+.well-layout .well-cast-disclosure:empty {
+  display: none;
+}
+.well-layout .cast-life-note {
+  position: static;
+  max-inline-size: none;
+  margin: 0.25rem 0.5rem;
+}

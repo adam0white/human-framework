@@ -694,7 +694,6 @@ export function App() {
     <div className={`colony well-layout ${shelf ? 'well-on-shelf' : ''} ${showEnd ? 'well-on-end' : ''}`}>
       {fileControls}
       {!fileSession && <CastStartGate game="well" />}
-      {!fileSession && <CastLifeNote game="well" />}
       <header className="well-topbar">
         <div className="well-time">
           {shelf ? (
@@ -735,6 +734,11 @@ export function App() {
           ≡
         </button>
       </header>
+      {!fileSession && (
+        <div className="well-cast-disclosure">
+          <CastLifeNote game="well" />
+        </div>
+      )}
       <LabNotice />
       {!shelf && !showEnd && !feedback && (
         <div className="well-phone-state">
