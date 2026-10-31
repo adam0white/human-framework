@@ -1,0 +1,60 @@
+{
+  "at": "2026-10-31T15:05:32.403035+00:00",
+  "state": "frozen; no dispatch",
+  "finalizerSha256": "98bc2de5d242af9562558ad76bce5231aead7087d13d166cb151030f91db5875",
+  "planSha256": "78f81d372ceb70a53f4aeada5a900ea4e5a7780655dd5dc889ed5e8c2e1ef114",
+  "freezeSha256": "d0d8f7e8339e6c847223f8a05ab141f2bd27466391c47271ea084f2f5558c504",
+  "coldSearch": {
+    "candidate": "Maëlle Pichon",
+    "filesScanned": 370,
+    "hits": [],
+    "errors": [],
+    "scope": "normalized first name or surname in actual dispatch/report/completion textual records and record paths under playtest and playtest-b, plus current cast and lab personas; draft/preparation excluded; encoded image/base64 payloads excluded",
+    "limit": "bounded local search, not exhaustive knowledge"
+  },
+  "players": [
+    {
+      "tester": "Jonas Berg",
+      "historySha256": "ed3384b93d16771ad845e41a4483e8c73b9d51adba8ad81a8c61643ade41ab9a",
+      "briefSha256": "93acdc25d688b9367c98dc7fa71655c165973a9f73b8722012ed801b1ab860df",
+      "sourceMapSha256": "c59ff973b893e45b910868bc4323883d335df418fb79f9a4258ddb2d7d6c816a",
+      "historyLines": 2314,
+      "sourceCount": 20
+    },
+    {
+      "tester": "Aisha Rahman",
+      "historySha256": "f6c1f82527bf9142548141b9a405bbad1b2aeb5e56dad1ce9e284303e0da19b2",
+      "briefSha256": "ae47a6fcdc8246611143c166d9ddb99ad862fca315f19e5981f5eddc52640c52",
+      "sourceMapSha256": "dd646dc9ddf296f011c5f077f9f175faa8894cc144948f094ef4d40479b7dfa7",
+      "historyLines": 1368,
+      "sourceCount": 19
+    },
+    {
+      "tester": "Diego Silva",
+      "historySha256": "3760c02047070a841cafb17547b3b2dd62767614e2fbf69b461e8c76a02ab619",
+      "briefSha256": "a52986ef2f28ab834d6690df5f5ae304029ad615fd59134b9fb9b5aac3547bae",
+      "sourceMapSha256": "615e018398f0f18098c9b634b3916f42410da484bca60779d1194218559753e6",
+      "historyLines": 1760,
+      "sourceCount": 22
+    },
+    {
+      "tester": "Leila Mansour",
+      "historySha256": "583d686932bb708491eba60728c729c0866ae78cc7be63b1be697e0bf9ebf4aa",
+      "briefSha256": "5c8443a404aaf55b94bb6487be360c03676dac8512f3ac8ba67f3a0ee05537a0",
+      "sourceMapSha256": "cbcc1a2a435e2f5e7714a1ea070c766f2ebf1bcd1ebd9b7044eacad33c013940",
+      "historyLines": 1298,
+      "sourceCount": 17
+    },
+    {
+      "tester": "Maëlle Pichon",
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "5f986bda9f148b47a8c2a925f1106684b68a1829c2086c5964838a74277ff8aa",
+      "sourceMapSha256": "ea147a1bda2728c5e4a05f433f114259a2624919bdeb63e984cfe9d6e130347f",
+      "historyLines": 5,
+      "sourceCount": 0
+    }
+  ],
+  "audit": "Mapped private bodies and hashes matched exactly once; no duplicate private source hashes or other panel member complete private report matches. Recognized CONT guard, EOF/line-count, cold empty history, and freeze hashes passed. No exhaustive semantic attribution claim.",
+  "remaining": "Two generated-input reviews, actual Word closure plus 15 minutes, normal-lane window and fresh root admission.",
+  "cleanup": "No browser, tester, runner, preflight, model, test or worktree started."
+}

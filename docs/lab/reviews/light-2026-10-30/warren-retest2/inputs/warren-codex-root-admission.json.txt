@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-31T14:11:50.728359+00:00",
+  "by": "playtest root",
+  "admitted": true,
+  "game": "warren",
+  "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+  "runnerSha256": "0164eadb505aef61698ee4533eed577e451f21790522583dcf953eb7053dddc7",
+  "planSha256": "3dde6f1438665bc2eab15771277b0c187bf50df1464ac472b098b866be3e54d0",
+  "freezeSha256": "5f3d2d1357f96ee585338ea1e722aaeb7876d8963fa245b2017741931d91214b",
+  "prelaunchChecksSha256": "d0aa84ececd431aae7a77f22312afc482477705093eb8332ba0802179763dc16",
+  "currentEntryAndColdSha256": "6891c03f115c195d8616144ec3cbed955bbb887cc2fef72c6dd6b300de859813",
+  "sourceGatesSha256": "2b7787db712e0146b55d7b2662b510a93c25a2611165396104023bb12c8b538a",
+  "wellClosed": "2026-10-31T13:55:50.790589+00:00",
+  "actualPauseSeconds": 959.93777,
+  "wellCleanupSha256": "0a2a552199043b1de733947f0cfb182593153e017cfc22d09ee600a7d1cd4c3e",
+  "centralC2ReturnSha256": "8eb28fee52cc1145cb1a5824f70b3e713329703025cd2133dd09be30087efe99",
+  "fullSuiteCleanupSha256": "1e9d01f21d560e1e066c9acd92aa20154c125349b2bdefe2891fe1d0a6c135dd",
+  "exactBuildBodyEquality": "UNVERIFIED: missing historical archive/inventory. Current release, remote main, exact CI, source signature, source SDK pins and ordinary source handback verified; current entry/two referenced assets fetched with recorded hashes and historical filename agreement. No broader file/native/reader acceptance.",
+  "scope": "SECOND fix/retest cycle. Same four standings plus new cold Sanja. Independent fresh New games only. No old HF3 fixture/import/owner profile, consent or recording change. Serial one tester/two project contexts. Codex Terra low, no ephemeral, during Claude brake.",
+  "idsReserved": "F2761\u20132790; allocate only actual literal rows, no filler",
+  "hold": true
+}

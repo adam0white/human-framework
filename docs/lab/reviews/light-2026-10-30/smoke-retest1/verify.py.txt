@@ -1,0 +1,29 @@
+import pathlib,json,hashlib
+p=pathlib.Path(__file__).parent; rows=json.loads((p/'ledger-rows.json').read_text()); assert [r['id'] for r in rows]==[f'F-{i}' for i in range(2821,2831)]; assert len(rows)==10
+n=0
+for r in rows:
+ assert r['route']=='fix:smoke' and r['status']=='open'
+ s=(p/r['source']).read_text()
+ for x in [r.get('opening'),r.get('primary'),*r.get('returnParagraphs',[])]:
+  if x:
+   assert s[x['char_start']:x['char_end_exclusive']]==x['text']; assert s.count('\n',0,x['char_start'])+1==x['line_start']; assert s.count('\n',0,x['char_end_exclusive'])+1==x['line_end']; n+=1
+sources=json.loads((p/'source-map.json').read_text())
+for x in sources:
+ o=pathlib.Path(x['source']); b=o.read_bytes(); st=o.stat(); assert hashlib.sha256(b).hexdigest()==x['sha256']==hashlib.sha256((p/x['destination']).read_bytes()).hexdigest(); assert len(b)==x['bytes'] and st.st_mtime_ns==x['mtime_ns']
+raw=json.loads((p/'all-driver-reactions.json').read_text()); stops=json.loads((p/'actual-stops.json').read_text()); assert len(stops)==10
+for r in raw:
+ v=json.loads((p/r['source']).read_text().splitlines()[r['line']-1]); assert v['reaction']==r['reaction'] and v['kind']==r['kind'] and v['op']==r['op']
+for name in ['jonas','aisha','diego','leila','maelle']:
+ companion=json.loads((p/name/'raw-reactions-companion.json').read_text())
+ for x in companion['rows']:
+  v=json.loads((p/name/x['device']/'wall-clock.jsonl').read_text().splitlines()[x['row']-1]); assert v['reaction']==x['reaction'] and v['op']==x['op'] and v['kind']==x['kind']
+root=p.parents[1]
+for name in ['jonas','aisha','diego','leila','maelle']:
+ v=json.loads((p/name/'completion.safe.json').read_text()); q=root/'smoke-codex'/name/'completion.json'; b=q.read_bytes(); assert hashlib.sha256(b).hexdigest()==v['sourceSha256'] and len(b)==v['sourceBytes'] and q.stat().st_mtime_ns==v['sourceMtimeNs']
+for v in json.loads((p/'inputs/retained-evidence-safe-summary.json').read_text())['testers']:
+ q=root/({'jonas':'smoke-jonas-retained-audit-1532.json','aisha':'smoke-aisha-retained-audit-1532.json','diego':'smoke-diego-retained-audit-1542.json','leila':'smoke-leila-retained-audit-1542.json','maelle':'smoke-maelle-retained-audit-1546.json'}[v['tester']]); b=q.read_bytes(); assert hashlib.sha256(b).hexdigest()==v['receiptSha256'] and len(b)==v['receiptBytes'] and q.stat().st_mtime_ns==v['receiptMtimeNs'] and v['imageBlocks']>=v['imageCalls']; assert v['historyLines']-v['literalLinesMatched']==(1192 if v['tester']=='jonas' else 0)
+
+for x in json.loads((p/'screenshots-manifest.json').read_text()):
+ q=pathlib.Path(x['source']); b=q.read_bytes(); assert hashlib.sha256(b).hexdigest()==x['sha256'] and len(b)==x['bytes'] and q.stat().st_mtime_ns==x['mtime_ns']
+check=json.loads((p/'curated-parser-check.json').read_text()); assert not check['problems'] and check['parsedRows']==10 and all(x[1]==1 for x in check['fixCounts']) and not check['calibrationRows']
+print(json.dumps(dict(spans=n,sourceCopies=len(sources),rawReactions=len(raw),finalStops=len(stops),screenshotHashes=len(json.loads((p/'screenshots-manifest.json').read_text())),parserRows=check['parsedRows'],parserProblems=0)))

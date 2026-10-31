@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-31T14:51:45.020773+00:00",
+  "admitted": true,
+  "runnerSha256": "aca748c9d860baa4f2beb1248e7de269ed7fcc096ee5ebc84a5472d3986e20e4",
+  "planSha256": "fa64ea103a895793980d1ba1177ba32415410f3c78800f9708ab19b1fb031a69",
+  "freezeSha256": "c7e7d4085958a502b03b9481195ef444743814b87fa7055468640a12b71ff5da",
+  "source": "f1011cbf4532a7e4b272bf7e46328cdbe36b1e36",
+  "release": {
+    "commit": "f1011cbf4532a7e4b272bf7e46328cdbe36b1e36",
+    "dirty": false,
+    "framework": "4.0.0",
+    "app": "0.1.0",
+    "builtAt": "2026-10-31T06:24:49.973Z"
+  },
+  "elapsedSincePriorActualReturnSeconds": 940.55243,
+  "priorActualReturn": "2026-10-31T14:36:04.468343+00:00",
+  "freeBytes": 48917811200,
+  "allTenPortsClosed": true,
+  "projectBrowserOrSuiteProcesses": [],
+  "suiteLockAbsent": true,
+  "proofHashes": {
+    "word-root-prelaunch-checks.json": "45e4635b8c12301f1f0c3beabccbe34b775fa939648facbcaa53a648669d0c28",
+    "word-retest-fresh-assets.json": "64aeba944b17d87eae57fb6f25f1e83d7bd7f177e1c892de5547d2c0e60aedd1",
+    "word-codex-input-code-review-successor.md": "4d266b77d66928ae18b7cc19665069a3de7aed75ef14dda0cc1fd48bde8e29ce",
+    "word-codex-input-qualification-review-successor.md": "67dff5f9fc1fefb35d59c9c21a4b8aa192263f42085160a685304a8bc02eab36",
+    "word-codex-error-wording-correction.json": "cdea7bbbf2f614b3500a8ff136474021ec47eccfccdf248e99a63a6ade9ef7c5",
+    "warren-codex-cleanup.json": "7c1516592d6b1ed2a38019b5f31b5a35ba90926b42661c9746a36240317d8508",
+    "warren-codex-round-state.json": "53f475c5684aa96a594a512bb4e2d06c52d7048dde68ec1617358fcc950b2afd",
+    "central-fee-c2-root-return.json": "8eb28fee52cc1145cb1a5824f70b3e713329703025cd2133dd09be30087efe99",
+    "batch5-lane2-root-verification.json": "1e9d01f21d560e1e066c9acd92aa20154c125349b2bdefe2891fe1d0a6c135dd",
+    "native-tap-v2-approved.json": "f650087efbafde5b091e6f1c5c285eaefd2856920ed62ce872de1f03ee3b41cb"
+  },
+  "scope": "Firstfixedretet; serialTerraLOW oneperson/twofreshprojecttestcontexts. Nativev2, no oldsave/fixture/matchedseed, noephemeral. No engineeringbrowser/fullsuite overlaps. Rootread fullAnika/Maya and otherpersona deltas, finalizer/runner, bothreviews; all42privatehasheschecked; full selected compiledarchive notrootsemantically reread.",
+  "cold": "Anika newapprovedprofile, boundednormalizedactualrecords+rosters/pathsearch355 nohit14:46; no dispatchafterthat untilthisround.",
+  "reservedIds": "F2791\u20132820; onlyactualasks allocated."
+}

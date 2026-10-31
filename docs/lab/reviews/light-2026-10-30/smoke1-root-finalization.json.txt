@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-31T15:53:43.207079+00:00",
+  "packet": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1",
+  "manifestSha256": "754dc912205f9e1f90c2ab4371b8bd4232bee75416d7e0097684b87cc0db4d2a",
+  "payloads": 95,
+  "sourceCopies": 75,
+  "rootFullReportsRead": 5,
+  "rootFullQualificationsRead": 5,
+  "rootAllRoutesRead": 10,
+  "rootVerifyActualExit": 0,
+  "rootCurrentParserActualExit": 0,
+  "actualAsks": "F2821–2830",
+  "unused": "F2831–2850",
+  "blocking": "Sevim tied-bundle display/action conflict, cause unknown; actual differing resolution timelines preserved.",
+  "cohort": "Required Rosa omitted; qualified, not protocol-complete.",
+  "completion": "First retest only; bounded source fix and second cycle await verified delivery. No canonical import or game completion claim."
+}

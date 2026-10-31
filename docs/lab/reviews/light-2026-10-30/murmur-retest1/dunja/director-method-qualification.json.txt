@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-31T13:10:47.700340+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 2,
+    "curl": 56
+  },
+  "historyEvidence": "Fiveemptyhistorylines retained/hashbound; originalstrictparserdidnotsupportdefaultmaxoutputomission, sourcecall19/output22rootread showed exact5lines. v3optionalmaxparamonly preservesownpath/hashgates; originalreceiptunchanged/notunreadproof. Noattention/comprehensionclaim.",
+  "retainedToolsReceipt": "murmur-dunja-retained-tools-successor.json",
+  "imageEvidence": "Four assigned image calls returned image blocks; faintdesktopchoicefromstill notproofpersistentunreachability, later choiceoperated perreport.",
+  "stops": {
+    "phone": 89.809,
+    "desktop": 63.298
+  },
+  "timingQualification": "Producerdesktop63.299 vsraw63.298; firstphone6.380 vsraw6.378 anddesktop39.852 vs39.851. Rawcompanionauthoritative; phonefirstminute63.770valid, desktopnoactualfirst_minutelogdespiteplay>60 (automaticshotnotreaction). No180spulse due.",
+  "rawDiaryQualification": "Initial invalidreasonnote attempt retained asdriverrequesterror4.994, correctednote6.378. Repeatedcorrectionsofphonewant_quit inproducerreportrepeatthesameexactwords, no alteredreactionornewstop.",
+  "driverErrors": [
+    {
+      "device": "phone",
+      "row": 4,
+      "error": "Invalid reason (invalid request, not a driver failure)"
+    }
+  ],
+  "producerNewBlockingAsk": "None. ExactlyTWO rankedasks; no dummy third or fourthask. Neitherpreventedportionplayed.",
+  "returns": "Another eveningconditionalshortstretches/storycuriosity, noleave-running; desktopassignedfresh doesnotestablishnosavefeatureorworkingcontinuedshortsessions.",
+  "observations": "ColdphonegenuinefirstHFexposure; desktoprecognitionfromsamephonevisitonly. Mondayonly; heldchoicesfollowedvisibleconsequences, no hiddentrustsourcecausality. Countdownhurrypreferenceafter<90seach nothuman-speedcaseforclockretune; menuobservedpause/64secs/Slowbetweenchoicesonly, unchangedpace.",
+  "feedback": "Bothlocalstopping/Back/no notesSubmitconsentedit perreport; finalsemanticcommandscanpending. Linkedrunreceiptunverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 50027,
+      "absent": true
+    },
+    {
+      "pid": 49566,
+      "absent": true
+    },
+    {
+      "pid": 49568,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Observedsnapshotsnotfulllifetimejournal; roundcleanupnext."
+}

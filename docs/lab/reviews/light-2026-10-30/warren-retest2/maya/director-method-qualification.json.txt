@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-31T14:23:33.302727+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 17,
+    "curl": 78,
+    "malformedShellFailure": 1
+  },
+  "commandReceipt": "warren-maya-command-audit-1418.json",
+  "retainedToolsReceipt": "warren-maya-retained-audit-1418.json",
+  "historyEvidence": "All 1,995 literal history lines matched aggregated stdout and separately completion-hash-bound retained responses. No unsupported relevant wrapper. Repeated identical lines may align ambiguously. This does not prove attention or comprehension. R1 coordinator recovery and R2 FREE remain separate visits; earlier partial/CONT qualifications remain.",
+  "imageEvidence": "Nine image calls returned high-detail image blocks: phone a001/a002/a003/a005, desktop b001\u2013b005. Phone a004 was saved but no retained view call exists. Six PNGs per device meets five manual plus one automatic limit. Image blocks do not prove perception.",
+  "stops": {
+    "phone": 120.639,
+    "desktop": 224.963
+  },
+  "timedLogs": "Raw phone first-minute 63.539 versus report63.540; desktop61.050 valid. Desktop pulse197.505 valid. No phone180-second pulse; later checkpoints untested. Original wording and raw timing both retained.",
+  "driverErrors": [
+    {
+      "device": "desktop",
+      "row": 33,
+      "elapsed_s": 197.503,
+      "op": "tap",
+      "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)"
+    }
+  ],
+  "driverQualification": "First desktop Show connections returned an actual innerText timeout; later retry returned visible expanded reading. All seven waits and ten shots had nonempty completed responses, including unviewed a004. One initial unmatched-quote confused-label command exited1 before a request; corrected label worked. No parsed forbidden action or foreign read. Native acknowledgment does not establish intended outcome.",
+  "exposure": "Two fresh independent games, no matched fixture or old import. The phone recognition uses her selected own records, then desktop is a second fresh hill the same evening.",
+  "priorAskComparison": "Digging explanation partly met; both diggers started first mark, old days-long lit-sideways case not recreated. Release wording met but not pressed. Repeated routine grouping met in reached journal. Safety explanation partly met, but six safe places were not planned or built.",
+  "producerNewBlockingAsk": "Connection instruction does not tell her whether to change the adjacent chalk plan or wait for the first cut. New blocker retained. Digging started but no finished cut, safe shelter, attack or ending was reached; source cause remains unknown.",
+  "otherRankedAsks": "Phone view moved toward field; cause unproven. Fresh plan reading mentions unavailable Yusuf invitation and unrecorded stopping line; this is an observation, not save corruption or cross-game recovery proof.",
+  "returnExact": "I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.",
+  "cycleRule": "SECOND fix/retest cycle. Remaining asks go to dated Deferred; no third ordinary panel or automatic new gameplay fix cycle.",
+  "feedback": "Both quick labels used locally as fitting, Back to game, no typed note/Submit/consent or recording change. Linked production receipt unverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 42569,
+      "absent": true
+    },
+    {
+      "pid": 42526,
+      "absent": true
+    },
+    {
+      "pid": 42533,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Point-in-time observations only; final round cleanup remains required."
+}

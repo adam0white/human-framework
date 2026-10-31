@@ -1,0 +1,106 @@
+I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running.
+
+**Ranked ask**
+
+1. Give me another meeting or a new situation. I liked finding a different agreement this time, but I have now played this meeting twice.
+
+## 1. Session
+
+I am Mei Tan, 53, an accountant and carer in Singapore. This was a **retest** of His Word, round **light-1031-word-retest1**, free stop, floor 0.
+
+I read all 1,359 lines of the supplied [own history](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/own-history.md), including my earlier His Word report and the selected records from other games. The last line I read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Exact unread ranges: **none**. The supplied history is selected, not my complete archive.
+
+I used https://word.adamwhite.work/?labRunSource=agent.
+
+- **Session A:** 1280×800 laptop, keyboard and mouse, light mode. Fresh game. Stopped at **44.070 real seconds**.
+- **Session B:** 360×690 touch phone, light mode, another visit the same evening. Fresh, independent game. Stopped at **31.993 real seconds**.
+
+## 2. First impressions
+
+On the laptop, the recording page at **1.757 seconds** looked familiar. At **5.258 seconds**, I recognized Nuri and remembered solving the meeting quickly on my first visit. I was confident of that memory.
+
+On the phone, the recording page at **1.774 seconds** was readable. At **4.997 seconds**, I wanted to see what the private conversations offered, having just found the morning agreement on the laptop.
+
+Neither session reached the first-minute checkpoint. I did not wait to reach it.
+
+## 3. Verbatim
+
+These are my logged diary reactions, in order and unedited. Times are the driver’s elapsed seconds.
+
+**Session A — laptop**
+
+- **5.258 s, note:** “The recording page looks familiar. I remember Nuri and the meeting, and solving it quickly; I am confident of that. I will see what is different.”
+- **11.986 s, note, 22 minutes before Osman leaves:** “Rıza and his cart are familiar. His yard offer gives me something to compare with the morning work. I remember the letter helped last time, but I do not remember every term.”
+- **26.075 s, note, 10 minutes before Osman leaves:** “The terms now say they follow my questions. I see a morning trial using the yard as well as the late service I used before. I prefer to preserve the morning promise, though it costs more.”
+- **35.845 s, want_quit, FINISHED, One month later:** “They kept the morning agreement and I had enough for the train. I like that this was a different acceptable arrangement, but the meeting is over and I would stop here.”
+- **44.070 s, stop, FINISHED, One month later:** “Stopping at the agreed ending. The morning arrangement kept a promise and left train money, and the remaining signature time was clear. I chose I am stopping and pressed Not now without typing or submitting.”
+
+One attempted note before the 26.075-second entry failed at the shell with the exact error `zsh:1: unmatched "`. It was not logged. I sent the successful note above afterward.
+
+**Session B — phone**
+
+- **4.997 s, note:** “Same recording page on the phone, readable. I have just seen the morning agreement on the laptop; I would like to see what the private conversations offer.”
+- **11.274 s, note, 24 minutes before Osman leaves:** “Those private statements contradict each other and say everyone agreed when they have not. I do not want to promise either. That is a more uncomfortable choice than the agreement I just signed.”
+- **23.130 s, want_quit, BORED, 24 minutes before Osman leaves:** “I have seen the meeting twice now and do not want to repeat the conversations tonight. The private promises interest me, but I do not want to make either one.”
+- **31.993 s, stop, BORED, 24 minutes before Osman leaves:** “Stopping on the phone before writing. I liked seeing the private promises, but I would not make either and I have already played the meeting. I chose I am stopping and pressed Not now without typing or submitting.”
+
+No pulse was reached in either session.
+
+## 4. Moments
+
+The laptop held me when Rıza offered his yard and I saw a morning trial agreement alongside the late-service arrangement I had used before. I chose to spend ₺60 to preserve Halil’s morning work. All four signed, and the ending said the agreed shifts, storage and rent had been kept. I also kept enough for the train.
+
+On the phone, the private statements caught my attention because they contradicted each other and claimed everyone had agreed. I did not want to make either promise. I looked at the agreement list, then decided I did not want to repeat the conversations that evening.
+
+Both quit wishes stood. The laptop game had ended; the phone game had not. There were no pulses.
+
+## 5. Confusion and clarity
+
+The meeting’s deadline, conversation costs, fund and agreement terms were clear. The agreement page now explicitly said that terms can change after asking people and that unasked people’s acceptance is unknown. It also said writing takes two minutes and each signature takes one.
+
+After I wrote the laptop agreement, the page compared the remaining signatures directly with the time left: four minutes needed against eight remaining. That made the commitment easy to check. The page also said changing the agreement clears every signature.
+
+I did not feel confused enough to open the confusion label. I did not try either private promise, a rewrite, or a refusal this visit, so I cannot say what consequences those choices would have produced.
+
+## 6. Device use
+
+**Laptop screenshots viewed**
+
+- [desktop/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/desktop/a-001.png): a cream notebook page on a dark background, with the recording explanation, checked recording box and “Take a seat.” It was readable.
+
+I used Take a seat, Put the notebook on the table, Hear what someone needs, the four individual questions, Fetch Nuri’s letter, Write an agreement, the morning trial agreement, Ask the next person to sign, Menu, Feedback, “I'm stopping” and Not now. I did not view a screenshot of the laptop agreement or ending layout.
+
+**Phone screenshots viewed**
+
+- [phone/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/b-001.png): the recording page in one readable column, with the checked box and Take a seat visible.
+- [phone/b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/b-002.png): the top of the agreement page, with readable writing-cost and changing-terms explanations. The agreement choices were below the visible screen.
+
+I used Take a seat, Put the notebook on the table, Speak to someone in private, Return to the table, Write an agreement, Menu, Feedback, “I'm stopping” and Not now. I did not view the lower agreement list in a screenshot or write an agreement on the phone. I saw no layout trouble in the portions I viewed.
+
+The only error was my failed shell-quoted diary command described above. No driver control was blocked.
+
+## 7. Stop and return
+
+**Laptop — FINISHED, 44.070 s:** “Stopping at the agreed ending. The morning arrangement kept a promise and left train money, and the remaining signature time was clear. I chose I am stopping and pressed Not now without typing or submitting.”
+
+**Phone — BORED, 31.993 s:** “Stopping on the phone before writing. I liked seeing the private promises, but I would not make either and I have already played the meeting. I chose I am stopping and pressed Not now without typing or submitting.”
+
+In both sessions, Feedback offered “I'm stopping” and “I'm confused.” I chose “I'm stopping”; the game opened a draft with that phrase already in the note field. I pressed Not now. I typed nothing, pressed no Submit, and changed neither consent nor recording.
+
+I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running. The alternative morning arrangement gave me a meaningful comparison this time, but the familiar meeting is still short. The menu said my place is kept in the browser when storage is available; I did not test returning to a saved place.
+
+## 8. Changes I would want
+
+1. Give me another meeting or a new situation. I would like another decision rather than repeating this one.
+
+## 9. Compared with my last visit
+
+1. **Make the first meeting harder, or make later versions different — partly met.** I found a second acceptable agreement: morning work with Rıza’s yard and a ₺60 contribution. The private promises also presented an uncomfortable choice I had not explored before. I still reached an agreed ending quickly, and I did not see a later meeting. I cannot tell which options were newly added and which I had simply not reached before.
+2. **Say at the start that agreement wording changes after asking — met where I saw it.** The agreement page stated that terms can change after asking. On the phone, before asking, it identified the unasked terms and said asking can change them.
+3. **Show rewrite and signature costs against minutes left — partly met.** The agreement page stated the writing and signature costs, and after I wrote, it compared remaining signature time with minutes left. I did not rewrite an agreement, so I did not see a combined rewrite-and-signatures comparison.
+
+**New blocking ask:** None. I stopped the phone session because I did not want to repeat the meeting, not because a new uncertainty blocked me.
+
+The coordinator owns the drivers and their browser cleanup. I started no helpers or processes.
+
+No repo touched; no worktree of mine remains.

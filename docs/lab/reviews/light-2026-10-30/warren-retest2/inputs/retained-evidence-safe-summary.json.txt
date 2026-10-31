@@ -1,0 +1,97 @@
+{
+  "scope": "Hash-bound aggregate only; no provider envelopes, tool commands, session paths or UUIDs. Rosa\u2019s retained 26 unmatched lines are unverified, not proof unread.",
+  "testers": [
+    {
+      "tester": "maya",
+      "receiptSha256": "825749ff3bf59151943db59040bf07cca1a15cc50b73ab2bc6dea327174db844",
+      "receiptBytes": 8433,
+      "receiptMtimeNs": 1793456502161962885,
+      "historySha256": "a44f3eb6365dd0070a5fa6adf9c2297032f2e407bda0eb8bf4a32c9d5f6b3e83",
+      "historyLines": 1995,
+      "literalLinesMatched": 1995,
+      "unmatchedRanges": [],
+      "imageCalls": 9,
+      "imageBlocks": 9,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    },
+    {
+      "tester": "emre",
+      "receiptSha256": "a1310ae23f522ab5a7992e5f322907dc42e6881f71118691d12062e00e1bd13f",
+      "receiptBytes": 5343,
+      "receiptMtimeNs": 1793457110627018796,
+      "historySha256": "007fb272aa24b604eaf80de08917aa7ff7e4c1a62f4289c773a6e7c34c5fad6e",
+      "historyLines": 1473,
+      "literalLinesMatched": 1473,
+      "unmatchedRanges": [],
+      "imageCalls": 5,
+      "imageBlocks": 5,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    },
+    {
+      "tester": "nia",
+      "receiptSha256": "f4c72bb2137488f772aedf7b8acec19f1d0cd17edc2ef9c0bc466b457d85507a",
+      "receiptBytes": 5536,
+      "receiptMtimeNs": 1793457110700548458,
+      "historySha256": "35f4421e4ef8c32de1c13298f5ce813255c1a5e84629b1d92f25afb186ae17fc",
+      "historyLines": 1749,
+      "literalLinesMatched": 1749,
+      "unmatchedRanges": [],
+      "imageCalls": 4,
+      "imageBlocks": 4,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    },
+    {
+      "tester": "rosa",
+      "receiptSha256": "5e33dc5d71841505d349c9c7cabcbed67337445e75a9c5ed9a84683bb5009ac5",
+      "receiptBytes": 9621,
+      "receiptMtimeNs": 1793457541261983170,
+      "historySha256": "9a9077adc7313538a763c1bcbde1f5e725be3345697e3387bade48efd4f860a6",
+      "historyLines": 3358,
+      "literalLinesMatched": 3332,
+      "unmatchedRanges": [
+        [
+          169,
+          175
+        ],
+        [
+          178,
+          179
+        ],
+        [
+          183,
+          195
+        ],
+        [
+          197,
+          200
+        ]
+      ],
+      "imageCalls": 4,
+      "imageBlocks": 4,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    },
+    {
+      "tester": "sanja",
+      "receiptSha256": "bb55b9fba8556802713f5de81036ba5d366a98a074ad99e12cd88d9110c91bf2",
+      "receiptBytes": 2380,
+      "receiptMtimeNs": 1793457478417362341,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "historyLines": 5,
+      "literalLinesMatched": 5,
+      "unmatchedRanges": [],
+      "imageCalls": 4,
+      "imageBlocks": 4,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    }
+  ]
+}

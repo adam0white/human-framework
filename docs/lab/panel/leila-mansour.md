@@ -1108,3 +1108,68 @@ On the phone I opened Feedback when confused by the notebook detail and chose **
 **New blocking asks:** None beyond the ranked asks. The unexplained lemon-candy detail confused me, but it was the repeated conversation that made me stop. I did not reach later days or the Sunday vote, so I cannot judge later consequences.
 
 I started no worktree, server, browser or helper process. The coordinator owns the drivers. No repository was touched, so no worktree list applies.
+<!-- selected-continuity-key: light-1030:smoke-retest1:leila:free -->
+## 2026-10-31 smoke-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/smoke-retest1/leila/report.md.txt), SHA256 `025d88f96ffab1ec34481e38da7b6b4a407c02dc3623a44b67f86e54b7967404`. Method qualification: [leila](../reviews/light-2026-10-30/smoke-retest1/leila/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception. This cohort omitted mandatory Rosa coverage; see [protocol audit](../reviews/light-2026-10-30/rosa-light-protocol-audit.md). No Rosa visit or opinion is inferred.
+
+**Exact producer report follows in a text fence.**
+
+```text
+**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.
+
+**Ranked asks**
+
+1. Give me a more useful indication of how much time a neighbour has when smoke threatens them. Derya’s warning made me hurry, but I could not tell whether the walk out would be fast enough.
+2. Keep Sevim’s spoken update and her actionable status in step. The log said her bundle was tied while her card and hint still said to wait.
+3. Tell me what happens if I tap another destination while walking. I did not see an explanation of whether a repeat tap restarts the walk.
+
+I am Leila Mansour, 26, an Alexandria translator. This was my first fixed-build retest of *Smoke on the Stairs*, after the earlier Smoke visit in my supplied history. I played two fresh, independent games at the assigned URL with `?labRunSource=agent`: a 360×690 touch phone first, then a 1280×800 desktop with keyboard and mouse, both the same evening. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+I read all 1,298 supplied history lines before play. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. The history is selected rather than my complete archive; its earlier method qualifications remain. In particular, reading it now does not repair earlier incomplete reads or premature checkpoints.
+
+The phone run ended with everyone out and I stopped at **119.755 s**. The desktop run also ended with everyone home out and I stopped at **72.009 s**. Both ended before the 180-second pulse and 20-minute ceiling, so neither has a pulse or engagement number. I did not wait to reach a checkpoint.
+
+On the phone, the goal was still immediately clear. At 9.233 s, selecting Sevim produced “Walking to landing 1 · about 5 s at this pace.” That changed how the game felt: I could see that my command had registered. Later the estimate increased in thick smoke and said why. I was tense about Derya, who had a “Smoke may kill me” warning, but I was deciding whom to help rather than guessing whether I could move. Getting everyone out was a relief.
+
+Desktop began differently: Sevim was away, and smoke started on landing 4. The number and speech keys worked, and I used the phone experience to bring Hacer to Derya before leading both out. That second rescue felt easier and less surprising because I recognized the sequence and lines.
+
+**Diary — unedited driver log lines, in order**
+
+Phone:
+
+- **7.828 s, note:** “The job is as clear as I remember. Four neighbours this time, and Burak checks the stair himself. I will approach Sevim once and watch the walk.”
+- **10.816 s, note:** “There it is: between street and landing 1, walking to landing 1, about 5 seconds. I can see my command took effect. That immediately feels fairer.”
+- **28.315 s, note:** “The log says the bundle is tied, but her card still says tying and the hint says wait. I cannot show her the stair yet. I will give it a moment.”
+- **55.005 s, note:** “Sevim and Burak are outside. The picture labels me You and the walk estimate doubled in thick smoke, with a reason. I can read the situation now, though the bundle line arrived before the controls caught up.”
+- **63.941 s, first_minute, stair closes in 98 s:** “Get the neighbours out before the stair closes. Names approach, speech and torch answer their needs, Street leads followers. Sevim and Burak are outside. Walking now reports position and estimated time, including smoke slowdown; that removes my old confusion. Derya is having difficulty breathing and I am going to Hacer.”
+- **92.734 s, note:** “Both are following. Derya has a warning before death, but no time estimate for her; I do not know if the walk will be fast enough. This is tense in a way I understand, apart from that missing time.”
+- **111.494 s, want_quit, FINISHED:** “Everyone is out. I am relieved, and I would stop this run here; the walk was understandable this time.”
+- **119.755 s, stop, FINISHED:** “Stopping the phone run after everyone got out. The walking status made my commands legible and I felt relief rather than cheated. I would try another order another evening.”
+
+Desktop:
+
+- **6.454 s, note:** “Desktop, fresh game: Sevim is away and smoke starts on landing 4. I know Burak can leave on his own, so I am going to Hacer first.”
+- **45.901 s, note:** “The number keys and F, R, T work. I brought Hacer to Derya and both now follow. Knowing the order from the phone makes this feel much easier, but the movement text still tells me what is happening.”
+- **62.987 s, first_minute, stair closes in 99 s:** “The goal and actions are clear from the phone run. Sevim is away, Burak escaped alone, and I led Hacer and Derya out together. Keys 4, 3, F, R and T worked, and Street showed a walk estimate. Everyone is out already; the same dialogue made this second run less surprising.”
+- **64.795 s, want_quit, FINISHED:** “Everyone home is out again. I would stop for tonight: the second run went quickly and I have seen this rescue sequence twice.”
+- **72.009 s, stop, FINISHED:** “Stopping desktop after everyone home got out. The keyboard worked and the walk was visible. I enjoyed the phone rescue more because the second sequence was familiar; I would not leave it running.”
+
+Both quit wishes came after an actual ending. Neither was a wish to abandon an unfinished game. I did feel momentarily confused by Sevim’s contradictory bundle update, but continued after waiting; I did **not** open Feedback at that moment, which missed the assigned confusion procedure.
+
+The goal, speech hints, follower state and walking destination were clear. The main uncertainty left in play was Derya’s individual danger: her status progressed from breathing difficulty to “Smoke may kill me,” but gave no time. Sevim’s log said the bundle was tied several seconds before her card and controls became ready. On the phone, a Derya tap failed because her full control name changed between commands; I copied the new name and the tap worked. A 12-second wait returned no visible driver output; a subsequent wait showed the ending.
+
+**Compared with my earlier Smoke asks**
+
+1. **Show walking and say whether extra taps restart it — partly met.** Position, destination, estimated seconds and thick-smoke slowdown appeared on both devices. I did not see a statement about repeat taps, and I did not test whether they restart a walk.
+2. **Warn before a neighbour dies and show their time — partly met.** Derya received breathing-difficulty and possible-death warnings on the phone, before she got out. I saw no individual time remaining, and nobody died in these runs.
+3. **Start Feedback’s note empty and add a Back button — partly met.** Both Feedback dialogs showed an empty optional note field, including after selecting “I’m stopping.” They offered **Not now**, not Back; it closed Feedback and returned to the ending.
+
+My new blocking ask from what I reached: **none**. The bundle mismatch confused me briefly, but it resolved and did not stop play.
+
+I actually viewed four manual screenshots: [phone title](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/phone/a-001.png), [phone play](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/phone/a-002.png), [desktop title](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/desktop/b-001.png), and [desktop play](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/desktop/b-002.png). The phone play image showed the stairwell, labelled player, neighbour statuses, buttons and walking estimate within the narrow screen. The desktop image showed the building above the controls and a separate left-hand job reminder. Both used a dark game background. I did not view an automatic checkpoint or inspect landscape.
+
+At each ending I opened Feedback, selected **“I’m stopping,”** and used **Not now**. The selected state was visible; I typed no note and submitted nothing. My first phone attempt to select the label failed at shell quoting before reaching the driver; the corrected attempt worked.
+
+I started no worktree, server, browser or helper process. The coordinator owns the drivers. `git worktree list` was not run; no worktree of mine remains.
+```

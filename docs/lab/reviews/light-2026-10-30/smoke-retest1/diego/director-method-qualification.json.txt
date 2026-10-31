@@ -1,0 +1,26 @@
+{
+  "cohortCoverage": "The LIGHT initial and retest cohorts omit required Rosa coverage. See external rosa-light-protocol-audit.md/json. Individual reports remain observations; they do not establish full persona-protocol compliance. No Rosa visit or opinion is inferred.",
+  "feedback": "Stopping quick labels were selected locally and Not now closed Feedback. No typed note, Submit, recording or consent change was found. No production receipt inferred.",
+  "exposure": "Two fresh independent games, phone then desktop on the same evening. No old save or matched seed; differences are not attributable solely to the build.",
+  "cycleRule": "FIRST fixed-build retest. Producer no-new-blocker statements are individual findings; remaining reports and the cohort qualification remain separate.",
+  "descendantScope": "Three recorded PIDs absent per completed tester below. Final round observed-identity and port checks remain required.",
+  "at": "2026-10-31T15:48:03.947731+00:00",
+  "rootReadFullReport": true,
+  "commandReceipt": "smoke-diego-command-audit-1542.json",
+  "retainedToolsReceipt": "smoke-diego-retained-audit-1542.json",
+  "historyEvidence": "All 1,760 supplied lines matched completed stdout and retained responses. Bound session/hash matched. Retention is not attention or comprehension.",
+  "imageEvidence": "Six high-detail input-image blocks, three per device. Blocks do not establish perception.",
+  "stops": {
+    "phone": 88.268,
+    "desktop": 136.181
+  },
+  "timedLogs": "Phone Everyone is out at76.015, FINISHED88.268. Desktop unfinished FRUSTRATED136.181, report136.182. First-minute70.032/65.321 valid. Auto60.047/60.038 before stops; no180-second pulse.",
+  "driverQualification": "Eight permitted reads and65 assigned curls, including8 keys. No shell exception or forbidden parsed action. Desktop confused label ambiguous between two enabled names. Feedback drafts differed: phone empty, desktop confused/stopping prefilled. No typing or Submit.",
+  "priorAskComparison": "Reached phone controls, current position and walk progress improved. Personal smoke time remained a preference; unmatched fresh runs do not establish movement speed or causation.",
+  "producerNewBlockingAsk": "Sevim journal says bundle tied while card says tying, hint says wait and Show the stair remains disabled. Simultaneously visible at100.119 and still after menu/feedback and five-second wait at121.435/125.734. New blocking ask reported. No cause, eventual outcome, pause-time advancement or personal countdown requirement inferred.",
+  "returnExact": "I might come back another evening because the phone run made the rescue feel clear and satisfying, but I would want to know I can get past Sevim’s conflicting book status. I would not leave it running.",
+  "orderCorrection": {
+    "at": "2026-10-31T15:51:09.208935+00:00",
+    "reason": "Root copied the shared desktop-first metadata incorrectly. Actual plan and producer reports are phone then desktop. Original report unchanged."
+  }
+}

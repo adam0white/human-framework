@@ -1,0 +1,77 @@
+{
+  "closed": "2026-10-31T13:08:36.206595+00:00",
+  "nextOrdinaryNotBefore": "2026-10-31T13:23:36.206595+00:00",
+  "fiveLogicalTesters": true,
+  "tenFinalStops": true,
+  "reportsRootRead": 5,
+  "stops": [
+    {
+      "player": "aisha",
+      "device": "desktop",
+      "elapsed_s": 130.053,
+      "reason": "BORED"
+    },
+    {
+      "player": "aisha",
+      "device": "phone",
+      "elapsed_s": 38.742,
+      "reason": "BORED"
+    },
+    {
+      "player": "mei",
+      "device": "phone",
+      "elapsed_s": 134.379,
+      "reason": "BORED"
+    },
+    {
+      "player": "mei",
+      "device": "desktop",
+      "elapsed_s": 233.877,
+      "reason": "CONFUSED"
+    },
+    {
+      "player": "nia",
+      "device": "desktop",
+      "elapsed_s": 96.037,
+      "reason": "BORED"
+    },
+    {
+      "player": "nia",
+      "device": "phone",
+      "elapsed_s": 66.942,
+      "reason": "BORED"
+    },
+    {
+      "player": "rosa",
+      "device": "phone",
+      "elapsed_s": 70.297,
+      "reason": "TASTE"
+    },
+    {
+      "player": "rosa",
+      "device": "desktop",
+      "elapsed_s": 55.576,
+      "reason": "TASTE"
+    },
+    {
+      "player": "dunja",
+      "device": "phone",
+      "elapsed_s": 89.809,
+      "reason": "TASTE"
+    },
+    {
+      "player": "dunja",
+      "device": "desktop",
+      "elapsed_s": 63.298,
+      "reason": "TASTE"
+    }
+  ],
+  "hold": false,
+  "newProducerBlocking": [
+    "Mei tenancyterms/deadline afterreading beforedecision",
+    "Nia variedinsistence replies"
+  ],
+  "iteration": 1,
+  "finished": false,
+  "reservedIds": "F2701\u20132730; actual19rows2701\u20132719 planned,2720\u20132730unused; coldonly2asks"
+}

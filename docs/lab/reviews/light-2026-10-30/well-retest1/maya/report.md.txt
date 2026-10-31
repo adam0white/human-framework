@@ -1,0 +1,107 @@
+I would not return voluntarily tonight; I might come back another evening if I could follow up with Yusuf about the timber token and Zehra, or hear a more personal reason for his choices, but I would not return just to watch the construction stages.
+
+**Ranked asks**
+
+1. Let me follow up with Yusuf about the timber token and Zehra when he brings them up.
+2. Give Yusuf a more specific answer when he changes my request. “I adapted the advice” showed what happened, but left me wanting to know why.
+3. Put the personal interaction somewhere easier to find among the construction details.
+
+## 1. Session
+
+I am Maya Chen, 24, a Vancouver library assistant who likes small discoveries and people who remember choices. This was a **return** visit to *Twice at the Well*, round `light-1030`, free-stop arm, with a zero-minute floor and a 25-minute ceiling per session.
+
+I read all 1,843 lines of the supplied [own history](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/own-history.md). The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. My earlier Well raw diary was not supplied; my comparison uses the selected Well excerpt.
+
+- **URL:** https://human.adamwhite.work/colony/?labRunSource=agent
+- **Session A:** fresh 360×690 touch phone, light mode. Open at 0.462 s; stop at 96.127 s. Day 1 05:00 to 11:40.
+- **Session B:** separate fresh 1280×800 desktop game, light mode, later the same evening. Open at 0.447 s; stop at 71.123 s. Day 1 05:00 to 07:57.
+
+Neither game ended. No save, seed, choice or outcome was matched across sessions. I left recording and consent settings alone. Both sessions ended early, so later checkpoints, the storm and the ending were untested.
+
+## 2. First impressions
+
+**Phone:** The title gave me a clear goal immediately. At 6.075 s I recognised Yusuf’s name from the supplied Well excerpt and remembered wanting to ask about Zehra and the timber token. The phone title image showed the map behind the introduction, though the “Show Human village” button covered part of the title.
+
+**Desktop:** At 5.508 s I liked seeing the two villages side by side. I chose Samira and Tariq’s opening words instead of the phone’s default pair. I chose Slow at 11.465 s because the changing person status had made selection difficult through the driver on the phone.
+
+## 3. Verbatim diary
+
+These are the words I sent in diary operations, unchanged. Times are driver `elapsed_s`.
+
+### Session A — phone
+
+- **6.075 s, note:** “The title puts a clear goal in front of me. Yusuf is familiar from my earlier Well visit; I remember wanting to ask him about Zehra and the timber token, high confidence. I will keep the default words and begin.”
+- **19.475 s, note, Day 1 05:52:** “The moving status names changed before I could tap Yusuf three times; I finally got his panel. There is a lot of construction detail before I find anything personal. He is already building, so I will look at About.”
+- **49.864 s, note, Day 1 08:09:** “I like seeing everyone moving to their own tasks. A cedar suggestion appeared on its own and explains the gain and injury risk; I will review it.”
+- **59.931 s, first_minute, Day 1 09:16:** “The goal is clear and people work on their own. I discarded the cedar proposal because the injury risk was clear and Idris was already gathering timber. Classic Yusuf is recovering after a beam fell; Human Yusuf is still building. I have not heard the Zehra story yet.”
+- **88.186 s, want_quit, TASTE, Day 1 11:24:** “I would stop the phone visit here. I like that Maryam has a reason to refuse, but I am mostly watching stores and stages and have not found the conversation I came back for. I want to try the other device.”
+- **96.127 s, stop, TASTE, Day 1 11:40:** “I am stopping on the phone. The people working and the clear risk and refusal held me briefly, but I wanted a conversation with Yusuf and mostly found construction tables. I selected I am stopping, then Back; I typed and sent nothing.”
+
+The phone `first_minute` line was **premature by 0.069 s**. I did not send a second one; a valid first-minute checkpoint was therefore not recorded.
+
+### Session B — desktop
+
+- **5.508 s, note:** “The two villages are visible side by side here. Same Yusuf name and roof line as the phone, and I remember the old Well excerpt about his timber token and Zehra, high confidence. I will try the other opening words.”
+- **13.053 s, note, Day 1 05:11:** “Choosing Slow because the phone status changed faster than I could select Yusuf. I want time to pick a person and see an answer.”
+- **23.549 s, note, Day 1 05:32:** “I asked Yusuf for timber while he prayed. Classic agreed and walked there; Human said I adapted the advice and went to build. I can see the different result, but I want to know why he chose it in his own words.”
+- **Elapsed time and acceptance unknown, note:** “I am waiting to see whether another personal moment appears. The two villages make the refusal easy to compare, but the answer itself is rather general.” The call returned empty output, so I cannot confirm its recorded timestamp or acceptance.
+- **60.313 s, first_minute, game clock supplied as Day 1 05:39:** “The side-by-side maps make the two results visible. I asked Yusuf for timber; Classic agreed while Human went to build and said he adapted the advice. I want a more personal reason or conversation, and I have not heard the old Zehra thread.” The reply showed **Day 1 07:43**; my supplied game-clock field was stale.
+- **62.488 s, want_quit, TASTE, Day 1 07:43:** “I would stop here tonight. I saw the two versions answer my order differently, but Yusuf has not given me the personal thread I came for and I do not want to watch the stages alone.”
+- **71.123 s, stop, TASTE, Day 1 07:57:** “I am stopping on desktop. The different responses to my order were visible, and Slow gave me more time, but I wanted to hear more from Yusuf than I adapted the advice. I selected I am stopping and went Back without typing or sending.”
+
+## 4. Moments
+
+The people moving to their own tasks held me on the phone. I liked that the cedar proposal stated both the three-timber gain and the injury risk, so I could decide against it. Maryam’s predicted refusal also had a reason: the others would go unfed.
+
+On desktop, the clearest moment was seeing the same timber request produce two different responses: Classic Yusuf agreed and walked to the forest; Human Yusuf declined and went to build. I understood the difference in action, but “I adapted the advice” felt too general to satisfy my interest in him.
+
+Both quit wishes were **TASTE** and neither passed; I stopped each visit. Both sessions ended before 180 seconds, so there were no pulses and that checkpoint was untested.
+
+## 5. Confusion and clarity
+
+The roof, meal and survival goals were clear. The cedar review made its benefit and risk clear before I decided. The desktop order receipt showed the two answers and Human Yusuf’s chosen activity.
+
+I wanted to know why Human Yusuf adapted my forest request. I saw his action and his short answer, but did not find a fuller explanation or the earlier personal thread during these visits. That is a limit of what I reached, not proof that it is absent later.
+
+The driver’s named targets included live activity text. On the phone, three successive Yusuf targets went stale before a fourth tap opened his panel. A later suggestion-dismiss target was also stale and had disappeared in the next reply. On desktop, one Yusuf target and then “Keep watching” went stale; the next visible controls let me continue. These were reported as changing game state by the driver, not as failed game controls. The phone and desktop wait calls returned empty output in my view; subsequent replies showed the game had advanced. I cannot infer a game failure from that output.
+
+## 6. Device use
+
+**Phone, 360×690:**
+
+- Viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/phone/a-001.png) immediately after opening: a map behind the title, a single-column premise and opening-word choices, and a large begin button. The “Show Human village” button covered part of the title.
+- Viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/phone/a-002.png): the map, people and place labels, cedar suggestion, and person cards. The “Show Human village” button covered part of the lower map and a label. I did not see a long speech bubble in this image.
+- Used Begin, person cards, About and Close, Back to people, Review and Discard proposal, Game menu, Feedback, “I’m stopping” and Back.
+
+**Desktop, 1280×800:**
+
+- Viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/desktop/b-001.png) immediately after opening: both village maps side by side, with the introduction and opening choices on the right.
+- Viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/desktop/b-002.png): both maps and Yusuf’s short speech bubble, with the order and construction panel on the right. Some lower order controls extended below the visible edge.
+- Used mouse-like named taps, Slow, Resume, a forest order, Back to people, Game menu and Feedback. I used no keyboard keys, so keyboard play remains untested.
+
+I took two manual screenshots per device. I did not view a phone screenshot containing a long speech bubble or inspect every panel’s layout.
+
+On both devices, Feedback offered “I’m stopping” and “I’m confused.” I selected **“I’m stopping”**, saw it marked pressed, and used **Back** to return to the menu. I typed no note, pressed no Submit, and changed no recording or consent setting.
+
+## 7. Stop and return
+
+- **Phone:** TASTE at 96.127 s. Exact stop words are in section 3. I stopped with the game paused in the menu, before the storm.
+- **Desktop:** TASTE at 71.123 s. Exact stop words are in section 3. I stopped with the game paused in the menu, before the storm.
+
+I would not return voluntarily tonight. I might come back another evening if I could follow up with Yusuf about the timber token and Zehra, or hear a more personal reason for his choices. The people and the different responses interest me; comparing construction stages alone does not hold me. I would **not leave the villages running unattended**.
+
+## 8. Changes I would want
+
+The three ranked asks are at the top. The first carries over my earlier interest; the other two come from what I reached this time.
+
+## 9. Compared with my last visit
+
+These assessments use only the selected earlier Well excerpt and what I saw in these two fresh games.
+
+1. **Ask Yusuf about the timber token and Zehra — not seen.** He did not bring up that thread during either short visit, so I did not reach a chance to follow it up.
+2. **Respond to his injury beyond another work order or appeal — not seen.** On the phone, Classic Yusuf was described as recovering after a beam fell, while Human Yusuf was still building. I did not reach the earlier injury conversation or try a response to it.
+3. **Keep long speech bubbles from covering so much of the phone map — not seen.** I viewed the phone map, but did not see a long speech bubble there. The “Show Human village” button did cover part of the map in a-002.
+
+**New this time that would stop me returning:** The generic “I adapted the advice” answer and the amount of construction detail made the personal conversation feel distant. Those would make me stop if that remained the only kind of interaction I could find; I did not play far enough to say what appears later.
+
+I touched no repository and own no worktree, server, browser or process. The coordinator owns both drivers. `git worktree list`: not applicable; no repository was touched.

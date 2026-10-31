@@ -1,0 +1,12 @@
+# Draft routes for independent review
+
+- F-2791 — Maya Chen rank 1, fix:word, 2026-11-10: Review Maya’s preference for more exploration within or after a meeting. Both reached meetings were short; no expansion or game-length change is mandated.
+- F-2792 — Maya Chen rank 2, fix:word, 2026-11-10: Review Maya’s wish for a private word to matter on more paths. Halil remembered it in one reached path and she did not see an effect on the phone ending; do not infer no later effect.
+- F-2793 — Maya Chen rank 3, fix:word, 2026-11-10: Review whether phone agreement terms can be compared with less reading density. The full phone list was not viewed and no global layout defect is established.
+- F-2794 — Mei Tan rank 1, fix:word, 2026-11-10: Review Mei’s preference for another meeting or new situation. She found a different agreement meaningful but does not want to replay this meeting; no expansion is mandated.
+- F-2795 — Samir Haddad rank 1, fix:word, 2026-11-10: Review Samir’s wish to ask Halil and Rıza what Nuri said to each. Preserve uncertainty and do not invent a private promise.
+- F-2796 — Samir Haddad rank 2, fix:word, 2026-11-10: Review Samir’s preference for a longer meeting with more people and choices after the first agreement. This is taste evidence, not a mandate to expand.
+- F-2797 — Samir Haddad rank 3, fix:word, 2026-11-03: Inspect the opening action’s visibility on the phone. Samir did not scroll, so reachability during a real scroll remains untested.
+- F-2798 — Diego Silva rank 1, fix:word, 2026-11-10: Review Diego’s preference for shorter agreement explanations while retaining useful titles and terms. Do not remove decision-relevant information.
+- F-2799 — Diego Silva rank 2, fix:word, 2026-11-10: Review Diego’s preference for another consequential decision before the agreement. The delivery window mattered at signature; no earlier cost was observed.
+- F-2800 — Anika Perera rank 1, fix:word, 2026-11-03: Inspect how the notebook distinguishes Ferda’s earlier wording from her response after the letter, using the meeting screen as the comparison. This is a copy lead, not proof of a state or save defect.

@@ -1,0 +1,127 @@
+[
+  {
+    "game": "warren",
+    "tester": "Maya Chen",
+    "first": "maya",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 24. Canada; Vancouver library assistant, raised in a multilingual household. She plays narrative adventures and cooperative puzzles with her sister.\n- HF temperament: curious; high openness, moderate conscientiousness and agreeableness, low extraversion.\n- Likes: small discoveries, people who remember a choice, puzzles with readable consequences.\n- Dislikes: mandatory lore before action, repeated exposition.\n- Play habits: Reads a scene twice when interested, tries the unusual reply, then checks who reacted. Usually plays on a phone at home.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md (selected own Warren FREE records and latest own reports, including Well only after an actual return)",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 23100,
+      "desktop": 23101
+    },
+    "url": "https://warren.adamwhite.work/?labRunSource=agent",
+    "title": "The Warren",
+    "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "warren",
+    "tester": "Emre Kaya",
+    "first": "emre",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 37. T\u00fcrkiye; Ankara electrical technician and parent. Strategy games and football management are his familiar leisure.\n- HF temperament: patient; high conscientiousness, moderate openness, low emotionality.\n- Likes: planning with visible tradeoffs, recovering from a bad decision.\n- Dislikes: busywork, unexplained resource losses.\n- Play habits: Uses desktop keyboard and mouse. Looks for a practical objective, pursues it, and accepts a setback if he can explain it.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md (selected own Warren FREE records and latest own reports, including Well only after an actual return)",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 23102,
+      "desktop": 23103
+    },
+    "url": "https://warren.adamwhite.work/?labRunSource=agent",
+    "title": "The Warren",
+    "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "warren",
+    "tester": "Nia Okafor",
+    "first": "nia",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 19. Nigeria; Lagos design student who plays rhythm games and social deduction with friends.\n- HF temperament: impatient; high openness and extraversion, low conscientiousness, moderate emotionality.\n- Likes: quick experiments, expressive choices, surprising reactions.\n- Dislikes: long inert openings, dialogue that ignores her reply.\n- Play habits: Uses a touch phone. Taps a plausible action before reading every option, but will settle into a mystery that answers her curiosity.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md (selected own Warren FREE records and latest own reports, including Well only after an actual return)",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 23104,
+      "desktop": 23105
+    },
+    "url": "https://warren.adamwhite.work/?labRunSource=agent",
+    "title": "The Warren",
+    "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "warren",
+    "tester": "Rosa Alvarez",
+    "first": "rosa",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 62. Mexico; Puebla retired school administrator. Enjoys crosswords, family card games and occasional phone mysteries.\n- HF temperament: patient; high conscientiousness and agreeableness, moderate openness.\n- Likes: ordinary people with understandable obligations, clear language.\n- Dislikes: tiny text, specialist gaming vocabulary, being hurried while reading.\n- Play habits: Uses a tablet or a large phone with deliberate taps. Reads help when it answers a concrete question. Does not assume familiar game conventions.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md (selected own Warren FREE records and latest own reports, including Well only after an actual return)",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 23106,
+      "desktop": 23107
+    },
+    "url": "https://warren.adamwhite.work/?labRunSource=agent",
+    "title": "The Warren",
+    "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "warren",
+    "tester": "Sanja Markovi\u0107",
+    "first": "sanja",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/sanja",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 46. Croatia; Osijek municipal bus dispatcher. Plays occasional phone crosswords and has no regular video-game practice.\n- Temperament: attentive, moderately open and highly conscientious.\n- Likes: understanding how plans affect people and seeing clear consequences.\n- Dislikes: long forms and unclear status.\n- Play habits: Plays on a phone in short stretches after work, reads the opening before acting, and checks results. Will try a laptop after the phone. Stops freely.\n- Exposure: no prior Human Framework exposure or play history.",
+    "prior_src": null,
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 23108,
+      "desktop": 23109
+    },
+    "url": "https://warren.adamwhite.work/?labRunSource=agent",
+    "title": "The Warren",
+    "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  }
+]

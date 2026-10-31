@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-31T12:53:11.100622+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 16,
+    "curl": 63,
+    "malformed_shell_failure": 1
+  },
+  "shellFailures": "One unmatched-quote phone stop command failed before request; corrected actual stop retained.",
+  "historyEvidence": {
+    "frozenAndDispatchHashVerified": true,
+    "aggregatedStdoutAllLines": 1192,
+    "retainedToolResponseMatchedLines": 1192,
+    "unmatchedRanges": [],
+    "initialTruncationCorrectedByLaterSmallerReads": true,
+    "comprehensionUnverified": true,
+    "receipt": "murmur-aisha-retained-tools-complete.json"
+  },
+  "imageEvidence": "Four paired view_image tool returns contain actual image blocks; ownassignedpaths verified by retained receipt. Perception/comprehension not established. Older ephemeral runs unchanged.",
+  "stops": {
+    "desktop": 130.053,
+    "phone": 38.742
+  },
+  "clockQualification": "Producer 15.169/28.007 correspond raw15.168/28.006; raw companion authoritative, no report rewrite. Firstminute61.364 desktop; phone<60; no180s pulses due. Automatic shots separate.",
+  "methodLimits": "Fresh unmatched games/model/nativeinstrument changed; earlier tap-only and held diagnostic limits stay. Independent context exposure, no game-only causal comparison.",
+  "producerNewBlockingAsk": "None. Repetition is earlier ask.",
+  "rankedAsks": "Tuesdayconsequence/pressurewarning/phonefirstchoiceexplanation preserved; no trustmeter or forcedagreement authorized. Existingsource rejected hiddenpressureforecast; inspect before proposal.",
+  "deviceLimits": "Phone perceived explanation clipped, did nottestscrolling; no desktopchoicecardimage or laterphonelayout proof.",
+  "observations": "ReachedTuesday08:26desktop/Monday07:16phone; held choices followed visibleevents, no heldrefusal reached. Plainrefusalsnotproof earlier heldrefusal concern fixed. Pressureclaim/sourcecause notindependentlyverified.",
+  "feedback": "Bothlocalstopping/Back/no typednotes/Submit/consentchanges perreport and strictcommands. Linkedrunreceipt unverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 9249,
+      "absent": true
+    },
+    {
+      "pid": 9145,
+      "absent": true
+    },
+    {
+      "pid": 9147,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Root observed snapshot only, not full lifetime journal; final round cleanup still required."
+}

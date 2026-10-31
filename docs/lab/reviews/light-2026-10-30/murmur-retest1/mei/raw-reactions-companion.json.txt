@@ -1,0 +1,122 @@
+{
+  "scope": "Literal raw reactions, unchanged producer report retained",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.566,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Dilan and Ece are familiar from my earlier visits. I remember wanting Dilan to call Mum and saving trust for that; I am confident of that memory. I will start the ordinary week again."
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "elapsed_s": 20.134,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The first choice now explains that holding can cost trust, she can still say no, and she chooses if time runs out. That is clear before I choose. I will let her sleep and save trust for Mum."
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "elapsed_s": 57.553,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "She sent Aylin tonight after I held. I am pleased to have made that promise, though I still cannot see how much trust remains."
+    },
+    {
+      "device": "phone",
+      "row": 18,
+      "elapsed_s": 62.705,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The opening explains the timer and trust cost clearly. I held for the promise and for telling the truth; she says she dislikes being pushed. I want to keep enough trust for the call, but I cannot see how much is left."
+    },
+    {
+      "device": "phone",
+      "row": 32,
+      "elapsed_s": 124.004,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "Mum called and I am glad they talked. I have seen this Monday several times now and would stop here tonight."
+    },
+    {
+      "device": "phone",
+      "row": 37,
+      "elapsed_s": 134.379,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "Stopping on Monday evening after Dilan called Mum. The choices and consequences held me, but I have played this Monday before. I chose I am stopping and pressed Back without typing or submitting."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.57,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The same people and week again on my laptop. I have just seen Monday on the phone; I wonder whether another start lets me see a later part."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 36.47,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The second week begins with a promise to get up and both choices are willing. I like that I can support her own commitment without insisting. The start and screenshot calls returned no text before this screen appeared."
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "elapsed_s": 64.769,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The second week gives me a new situation: a tenancy letter. Getting up was her own commitment and she was willing. I want to read a contract before signing it. The driver reported a timeout after Skip, but I can see the next choice."
+    },
+    {
+      "device": "desktop",
+      "row": 18,
+      "elapsed_s": 94.536,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "She read it, but I cannot see what the letter says or when it is due. I do not want to insist that she sign terms I cannot compare."
+    },
+    {
+      "device": "desktop",
+      "row": 29,
+      "elapsed_s": 192.346,
+      "kind": "pulse",
+      "op": "log",
+      "reason": null,
+      "reaction": "The second week has new commitments and I care about Mum and the letter. I cannot see the letter terms, but I can now let Mum finish without insisting. Some driver calls have been slow or returned no text."
+    },
+    {
+      "device": "desktop",
+      "row": 32,
+      "elapsed_s": 215.987,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "CONFUSED",
+      "reaction": "I am glad Mum finished her story. I would stop now because I cannot make an informed decision about the tenancy letter, and I have had enough for this evening."
+    },
+    {
+      "device": "desktop",
+      "row": 38,
+      "elapsed_s": 233.877,
+      "kind": "stop",
+      "op": "log",
+      "reason": "CONFUSED",
+      "reaction": "Stopping on Monday of the second week after Mum finished her story. I liked supporting a commitment without insisting, but I could not see the tenancy terms or deadline before deciding. I chose I am confused and pressed Back without typing or submitting."
+    }
+  ]
+}

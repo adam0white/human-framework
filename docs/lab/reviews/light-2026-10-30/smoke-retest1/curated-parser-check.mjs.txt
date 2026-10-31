@@ -1,0 +1,24 @@
+// Runs the existing HF buildCurated parser (current batch5 worktree) on the baseline ledger with the 10 Smoke first fixed-retest rows appended in memory.
+// Run: /opt/homebrew/opt/node@26/bin/node curated-parser-check.mjs   (writes curated-parser-check.json next to this file; no baseline or canonical write)
+import {readFileSync, writeFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {dirname, join} from 'node:path';
+const here = dirname(fileURLToPath(import.meta.url));
+const base = '/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/';
+const {buildCurated, parseLedger} = await import(base + 'apps/site/src/lab/ledger.ts');
+const read = (p) => readFileSync(p, 'utf8');
+const ledgerText = read(base + 'docs/lab/feedback-ledger.md');
+const lines = ledgerText.split('\n');
+let end = lines.findIndex((x) => x.trim() === '## Ledger');
+while (!lines[end]?.trim().startsWith('|')) end++;
+end += 2;
+while (lines[end]?.trim().startsWith('|')) end++;
+const add = read(join(here, 'ledger-additions.md')).split('\n').filter((x) => /^\| F-\d/.test(x));
+const before = buildCurated({ledger: ledgerText, lessons: read(base + 'docs/lab/lessons.md'), asks: read(base + 'docs/lab/testing-asks.md')});
+lines.splice(end, 0, ...add);
+const merged = lines.join('\n');
+const out = buildCurated({ledger: merged, lessons: read(base + 'docs/lab/lessons.md'), asks: read(base + 'docs/lab/testing-asks.md')});
+const mine = parseLedger(merged).rows.filter(r => Number(r.id.slice(2)) >= 2821 && Number(r.id.slice(2)) <= 2830);
+const result = {baselineProblems: before.problems, problems: out.problems, appendedLines: add.length, parsedRows: mine.length, fixCounts: mine.map(r => [r.id, r.routes.filter(x => x.startsWith('fix:')).length]), calibrationRows: mine.filter(r => r.routes.some(x => x.startsWith('calibration:'))).map(r => r.id)};
+writeFileSync(join(here, 'curated-parser-check.json'), JSON.stringify(result, null, 2) + '\n');
+console.log(JSON.stringify(result));

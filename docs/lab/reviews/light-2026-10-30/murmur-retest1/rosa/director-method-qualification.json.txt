@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-31T13:08:53.228456+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 43,
+    "curl": 43
+  },
+  "separateJSToolFailure": "Retainedcustomcall/output321/323 SyntaxErrorbeforeexec, no shellrequestinferred. Notcountedincommand_execution exceptions.",
+  "historyEvidence": {
+    "frozenDispatchAndFinalSessionHashesVerified": true,
+    "retainedLinesMatched": 3018,
+    "unmatchedRanges": [],
+    "comprehensionNotProven": true,
+    "scope": "Strictobservedsinglecommands+literal31rangeloop parsedwithoutJSevaluation; repeatedidenticallinesmayalignambiguously. Initialandloopoutputtruncated; lateroutputcollectivelycovers3018."
+  },
+  "retainedToolsReceipt": "murmur-rosa-retained-tools-successor.json",
+  "oldAuditLimit": "Originalretainedreceipt14unsupported/0matched reflectsstrictparserlimitation notunreadproof; originalpreserved.",
+  "imageEvidence": "Two title-only assignedview_imagecalls returnedimageblocks; no gameplaylayoutimage orperception/comprehensionproof.",
+  "stops": {
+    "phone": 70.297,
+    "desktop": 55.576
+  },
+  "timedLogs": "Phonefirstminute60.514valid; desktop<60/no pulse<180. Automaticdesktop60.05shotafter55.576stop notextra play.",
+  "producerNewBlockingAsk": "None. StopsTASTEafterfamiliarMonday.",
+  "returns": "Wouldreturnanother eveningeitherdevice evenwithtrustquestionopen, noleave-running; trustexplanationwishnotstrictreturncondition. Preserveopeningandlaterfullreturn.",
+  "observations": "Fourphoneinsistencesfollowedcomplaint/publicpressure-resistancelabel; gentlewaterrefusalandcoffeeexplanation. Thesearevisiblewords, nohiddenpressure/trustquantityinference orauthorizationforecast. Shewantslabelwantslaternotreached, skipgeneralnext-eventnameunderstoodbutminutesunknown.",
+  "priorLimits": "Currentselectedarchivefullreadselfreport/retainedtools separatefrom earlierpartialhistory reads andCONTcontamination; coordinatorcut+Codexrecoveryexposure preserved. Freshunmatchedcontexts/model/instrumentchangesnotgame-onlycausality.",
+  "feedback": "Bothlocalstopping/Back/no typednote/Submit/consentedit perparsedcommandsemantics andreport; linkedrunreceiptunverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 40231,
+      "absent": true
+    },
+    {
+      "pid": 40203,
+      "absent": true
+    },
+    {
+      "pid": 40205,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Observed snapshotsnotfullroundjournal; finalcleanupdue."
+}

@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-31T13:52:36.589122+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 10,
+    "curl": 42,
+    "grammarExceptions": 0
+  },
+  "commandReceipt": "well-nia-command-audit-1355.json",
+  "retainedToolsReceipt": "well-nia-retained-audit-1355.json",
+  "auditor": "PersistedEmrequoteparser-succcessor0e4924310ef6308926f17785eb8c89c1fe61e35d5e50ec6e8fea4b9b65f4c11a; originalfailureandprovenancepreserved.",
+  "historyEvidence": "All1596literalhistorylines matchedaggregatedstdoutandseparatelycompletionhash-boundretainedresponses; no unsupportedrelevantwrapper. Repeatedidentical-linealignmentambiguous; notattention/comprehensionproof. OldFREEexcerpt/olderrawmissing/priorpartialmethodlimitsunchanged.",
+  "imageEvidence": "Fiveassignedmanualimagecallsreturnedtypedhighdetailblocks, phonea001/a002/a003desktopb001/b002; notperceptionproof. SavedPNGautomaticartifactseparate.",
+  "stops": {
+    "phone": 81.991,
+    "desktop": 52.123
+  },
+  "producerRounding": "Phonereport81.992/raw81.991; originalsunchanged.",
+  "timedLogs": "Phonefirstminute65.968valid; both<180/nopulses. Desktopstopped52.123beforefirstminute; auto60.060AFTERstopnotplay/checkpoint.",
+  "driverQualification": "Threechanging-state/stale/absenttargets resolvedpubliccontrols; no grammar/observedJSerrorsorreportedtimeouts. All4completedwaitresponsesNONEMPTYincl3tensecondwaits, initialyieldnotfinalabsence. Nativeacknotgameoutcome.",
+  "exposure": "Freshindependentgames/noimportmatchedseed. PhoneMaryamrefusedhouseafterinsistandkeptcooking, Classicagreed; Danyalmosqueunavailableline; desktopSamiragatheredgrainwhileClassicbuilt. Notlicenseforceassentorfaithspecificdesign, hiddenstateuntested.",
+  "priorAskComparison": "PersonalrepliesPARTLYmet/refusalmaintainedbutgenericlines/no stringpuzzle; actionchoicesNOTMETreachedphoneviewbelowconstructiontables, fullscrollreachabilitynotprovedbroken; insistconsequencePARTLYmet/warnings+refusalvisiblebutactualtrustcostnotseen.",
+  "producerNewBlockingAsk": "Danyalsystem-likeunavailable-optionandSamiragenericadaptedadvice replies reducepersonalinterest/newreturnblocker; constructionmanagementdislikepreexistingtaste.",
+  "returnExact": "I would not return voluntarily tonight or plan another evening as it is; I liked seeing people refuse and choose different work, but I do not want to manage the villages through the storm, and the replies I heard were less personal than I hoped.",
+  "trustAskQualification": "Actualconsequenceifoneoccurs; warningdoesnotprovea hiddenchangeorauthorizeblanketforecast/numerictrustexposure. Preserveagency/refusal.",
+  "feedback": "Bothlabelsavailable/localstopping/Back/closeonly; no typednote/Submit/consentrecordingchanges. Linkedproductionreceiptunverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 7649,
+      "absent": true
+    },
+    {
+      "pid": 7624,
+      "absent": true
+    },
+    {
+      "pid": 7626,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Observedpoint-in-timesnapshots only; finalroundcleanuprequired."
+}

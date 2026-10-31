@@ -1,0 +1,65 @@
+I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.
+
+My ranked asks are:
+
+1. Show me clearly which squares remain marked after I tap, especially when the answer says the chalk is unchanged.
+2. Explain “open route” when it becomes relevant. I did not reach that advice on this visit.
+3. Explain “spoil” in the digging message.
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla. I read English as a second language. This was a return visit and the second fix/retest cycle. The two sessions were fresh, independent games on my other devices the same evening: a **360×690 touch phone** and a **1280×800 desktop**, where I used the mouse. Neither used an old save or matched seed. Both began at the supplied URL with the agent query. Recording and consent stayed at their defaults.
+
+I read the selected 3,358-line own history in explicit ranges before play. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread ranges: none.** This is selected history, not my whole archive. The independent CONT body was not supplied; I did not merge it with the FREE visit. In that earlier Warren visit I used taps rather than drags, which limits what I can conclude about those marks.
+
+The phone title appeared at **0.609 seconds**. The goal was familiar and plain. At **10.961 seconds**, the instruction arrow explained that the cellar was the lit room at the bottom of the stair and that open ground was already dug out. That made me feel more ready to act. I liked hearing that Meryem and Tamar had meals, harvest and rest alongside the digging.
+
+The desktop title appeared at **0.556 seconds**. The large hill picture was comfortable to read. I liked the ordinary detail that Maryam cooked for her household. But two touches returned “The chalk is unchanged,” and I could not tell where the plan was.
+
+The phone stopped at **54.730 seconds**, and the desktop at **31.523 seconds**, both before the 20-minute ceiling. Neither reached the 60-second first-minute checkpoint or the 180-second pulse. Those checkpoints are untested. I did not reach an attack, a completed shelter or the end of the game.
+
+**Diary, in the order I logged it**
+
+Phone:
+
+- **8.694 s, note, engagement 3:** “I know the goal and remember marking beside the cellar. I want to see whether another mark now tells me what changed.”
+- **12.741 s, note, engagement 4:** “The arrow now tells me the cellar is the lit room and open ground is already dug out. That is clear and answers two old questions. I can tap one square.”
+- **24.168 s, note, engagement 4:** “One square marked is clear. I like knowing nobody is digging yet and that meals and rest come first. I do not know what spoil means but I can continue.”
+- **27.762 s, note, engagement 4:** “Oh, I touched the same square and removed it. It says so at once. I will mark it again.”
+- **32.717 s, note, engagement 3:** “Now it says chalk unchanged and the plan is marked. I thought I removed it, so I am unsure which square remains. Still, unchanged is an answer I did not get last time.”
+- **46.230 s, want_quit, TASTE, engagement 3:** “I marked a lower square and got a clear answer. I like the people having meals and rest, but I have seen the beginning for tonight. I would stop and try the large screen.”
+- **54.730 s, stop, TASTE, engagement 3:** “I stop on the phone for tonight. The cellar and open ground are explained and my marks get answers. I am still unsure which square remains after removal, but I enjoyed the people having their own duties. I would close it and try the big screen.”
+
+Desktop:
+
+- **8.082 s, note, engagement 4:** “The same clear goal on the large screen. I want to see the hill and learn whether a second mark is reported.”
+- **18.811 s, note, engagement 3:** “The big picture is comfortable. The message says chalk unchanged twice, though I touched two places. I cannot tell which mark is there. I like reading that Maryam cooked for her household.”
+- **28.977 s, want_quit, CONFUSED, engagement 3:** “I like the bigger picture and the household details. But two touches say unchanged and I cannot tell where the plan is. I would stop for tonight.”
+- **31.523 s, stop, CONFUSED, engagement 3:** “I stop on the big screen. The picture is comfortable and the people have ordinary work, but I cannot tell where my chalk plan is after two unchanged answers. I would close it for tonight.”
+
+On the phone, the game reported **“1 square marked for digging”** after my first touch, then **“1 chalk mark removed”** after the next. My later touch returned **“The chalk is unchanged”** while the instruction said the plan was marked. I cannot establish from those messages alone exactly which squares remained marked. A lower touch subsequently returned **“1 square marked for digging.”** On desktop, both touches returned the unchanged message. The driver acknowledged the inputs; I judged the results from the visible messages, not from the acknowledgements.
+
+I did not need to reread two sentences on either device. My desktop quit wish was about the location of the plan, not the two-reread rule.
+
+| Screen and purpose | Concepts I encountered | Count | Sentence reread and reason |
+| --- | --- | ---: | --- |
+| Title, both: begin | Shelter, village, riders, Begin, information, menu, recording notice | 7 | None; the goal was plain. |
+| Hill, both: choose work | Clock, people, jars, bell, pace, chalk, look, rub out, furnish, zoom, Journal, work instruction | 12 | None; I recognised the main task. |
+| “Start at the cellar,” phone: explain the first mark | Keeper, lit cellar, entrance stair, chalk, touching stone square, connected line, open ground | 7 | None; the explanation answered my question. |
+| Chalk result, both: report the plan and work | Marked square, unchanged or removed mark, light and air, spoil, workers, ordinary stone, competing duties | 7 | None; “spoil” was unfamiliar, but I continued. |
+| Game menu, both: reach Feedback | Pause, pace, Feedback, saved hill, download, new game, recording, Resume | 8 | None; I opened it for Feedback. |
+| Feedback, both: choose a label | Three verdicts, stopping, confused, optional note, optional name, what is sent, Back, Submit | 9 | None; the labels were clear. |
+
+These are my counts for the screens I reached, not counts for unseen screens.
+
+I viewed four screenshots. On the phone, [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/phone/a-001.png) showed a readable title, the village and cellar drawing, and a large Begin button. [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/phone/a-002.png) showed the hill, instruction, message and tool row together. On desktop, [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/desktop/b-001.png) showed the title over a wide village drawing. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/desktop/b-002.png) showed the larger hill on the left and text and controls on the right. I did not view a screenshot after the marks, so I cannot describe their final appearance.
+
+When confused on the phone, I opened Feedback and selected **“I'm confused”**; it showed as pressed. I returned to the game, continued briefly, then opened Feedback again when stopping and selected **“I'm stopping”**; it also showed as pressed. On desktop I selected **“I'm confused”** before stopping, and it showed as pressed. Each time, **Back to the game** returned to the game menu. I typed no note and pressed no Submit.
+
+Compared with my earlier Warren asks:
+
+- **Tell me what changed, or that it did not change — partly met.** The game now explicitly reported a square marked, a mark removed, and chalk unchanged. Those messages helped, but I still could not locate the remaining plan confidently.
+- **Explain “open ground” and “open route” in plain words — partly met.** The instruction panel defined open ground as space already dug out. I did not encounter an explanation of “open route.”
+- **Make the instruction arrow show me the cellar — partly met.** It now describes the cellar as the lit room at the bottom of the entrance stair. I did not see it point to the room in the picture.
+
+The blocking question I actually reached was where the chalk plan remained after the unchanged answers. I would like that made visible before relying on my plan.
+
+I created no worktree, branch, server, browser process or helper. The coordinator owns the drivers. I touched no repository, so there is no worktree list for my work.

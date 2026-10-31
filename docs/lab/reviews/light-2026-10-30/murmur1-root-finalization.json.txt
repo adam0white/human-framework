@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-31T13:23:15.776345+00:00",
+  "sealed": true,
+  "canonicalImported": false,
+  "manifestSha256": "22f20e34f72251042fdd8de9653e02c6255f1c91f0842b557dd661e799d6325e",
+  "payloads": 89,
+  "filesIncludingManifest": 90,
+  "exactSourceCopies": 71,
+  "safeCompletionProjections": 5,
+  "safeRetainedReceiptSummaries": 5,
+  "literalSpans": 48,
+  "rows": 19,
+  "ids": "F2701\u20132719;2720\u20132730unused",
+  "rootFullReportsRead": 5,
+  "rootAllRoutesRead": 19,
+  "twoCodexReviewClear": true,
+  "actualVerify": "48spans/71copies/74reactions/10stops/30imagehashes/19parserrows0problems/projectionandreceiptbindings",
+  "qualification": "SourceREADME draftwording unchanged; externalreceipt recordsseal only, no canonicalimport/completedgame/acceptance. Retainedtoolartifacts notcomprehension, earlierlimits unchanged."
+}

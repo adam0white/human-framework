@@ -1,0 +1,114 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "87df8c2ffb55919d893dcd8ee724a75a6d5259d8c46ef089f00ca74e02723d3f",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.654,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The little hill is familiar. I want to try the quiet door test on a new game this time."
+    },
+    {
+      "device": "phone",
+      "row": 9,
+      "elapsed_s": 15.045,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The mark tells me exactly who can dig and why they may wait. I want the door again, so I will speed this up."
+    },
+    {
+      "device": "phone",
+      "row": 18,
+      "elapsed_s": 51.648,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The door mark worked and Meryem was on her way. I switched to Fast because I want to try the finished door. The recent driver replies are empty, so I cannot see what happened yet."
+    },
+    {
+      "device": "phone",
+      "row": 21,
+      "elapsed_s": 55.181,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Quiet testing is described on this new hill. The door is not finished yet, so I cannot ask to test it. I like knowing the conditions."
+    },
+    {
+      "device": "phone",
+      "row": 25,
+      "elapsed_s": 70.718,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The mark worked and Meryem headed for the door. Quiet testing is explained on this new hill, but the door is not finished yet. Main text now tells me about Yusuf and Maryam rather than only dust. I am curious, though still waiting."
+    },
+    {
+      "device": "phone",
+      "row": 30,
+      "elapsed_s": 104.203,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TOOL",
+      "reaction": "I wanted Meryem to test her door, but choosing her timed out twice. I would stop this phone session here."
+    },
+    {
+      "device": "phone",
+      "row": 36,
+      "elapsed_s": 134.86,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TOOL",
+      "reaction": "Stopping on the phone. The quiet test is offered and the door was built, but I could not select Meryem after a retry. I would close it. Feedback marked I am stopping; nothing typed or submitted."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.641,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Same evening, bigger hill. I still want to see the quiet test happen."
+    },
+    {
+      "device": "desktop",
+      "row": 12,
+      "elapsed_s": 21.574,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The main panel lists several people doing things now. That is more lively than the dust line I remember. Door marked, waiting on Fast."
+    },
+    {
+      "device": "desktop",
+      "row": 16,
+      "elapsed_s": 71.944,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The larger view shows several people and their activities on the main panel, which I like. I marked the door and put time on Fast, but I am still waiting for it to be finished. I do not know when riders will arrive."
+    },
+    {
+      "device": "desktop",
+      "row": 20,
+      "elapsed_s": 115.373,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "The door is still unfinished and I have already waited through this on the phone. I want the test, but I do not want another stretch of watching routine lines. I would leave."
+    },
+    {
+      "device": "desktop",
+      "row": 25,
+      "elapsed_s": 124.268,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "Stopping on desktop. The main panel showed people doing more, but the door was still unfinished and I did not want to wait again. I would close it. Feedback marked I am stopping; nothing typed or submitted."
+    }
+  ]
+}

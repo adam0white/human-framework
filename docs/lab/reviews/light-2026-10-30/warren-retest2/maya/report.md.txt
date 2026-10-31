@@ -1,0 +1,62 @@
+I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.
+
+My ranked asks:
+
+1. Tell me whether the first chalked square must be dug before the next one becomes connected. The two marks looked adjacent, but the second still told me to join them.
+2. Keep the cellar and my plan in view on the phone, or make it clear how to get back to them. The view moved to a field while I was waiting.
+3. Explain why the fresh game’s plan reading refers to an unavailable Yusuf invitation and an unrecorded stopping line. I did not know what to make of those words.
+
+I am Maya Chen, 24, a Vancouver library assistant. This was a return to *The Warren*, in two independent fresh games on the same evening. I used the supplied start URL with `?labRunSource=agent`. The phone was 360×690 with touch; the desktop was 1280×800 with mouse-like taps. I imported no save or matched seed. Recording and consent stayed at their defaults. Neither game ended.
+
+I read the supplied own history through line **1995**, whose last line was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. The selected earlier Warren recovery and the later R2 report are separate visits; the missing historical alternatives remain missing.
+
+The phone opened at **0.668 s** and stopped at **120.639 s**, at dusk on 20 August, year 1. The desktop opened at **0.652 s** and stopped at **224.963 s**, before dawn on 22 August. Both were natural stops below the 20-minute ceiling.
+
+The first impression was inviting: the small cutaway made the shelter feel like a place rather than a list of tasks. On the phone I zoomed to see the cellar. On desktop the map and the red chalk marks were easier to read. The most encouraging change was the explanation that only Meryem and Tamar dig, and that meals, harvest and rest take priority. I also liked seeing each of them start work. The wait became less appealing when I still could not tell what the second mark needed.
+
+**Diary — phone**
+
+These are my logged words in order, with driver elapsed seconds.
+
+- **5.505 s, note:** “The little cutaway makes the shelter feel tangible. I remember the nine-step rule and want to see people actually dig the safe end this time.”
+- **27.284 s, note:** “That is much more specific than last time: the mark has light, air and spoil room, and only Meryem and Tamar dig around meals, harvest and rest. I can wait with a reason now, although the words say the chalk is unchanged.”
+- **32.471 s, note:** “The release now says exactly that it stops refuge work for the rest of this hill and cannot be taken back. I would not mistake it for ending her route work now. She is harvesting, so I will let her finish.”
+- **63.540 s, first_minute, engagement 4/5:** “The shelter goal is familiar and the phone cutaway is small until zoomed. The marked stone now explains its conditions and who digs; Meryem is harvesting and the release warning is clear. I am waiting to see the work move.”
+- **91.129 s, note:** “Meryem started cutting my mark. That is a relief, and the journal puts three repeated routine lines in a collapsed group. I can see the new work without hunting through the same sentences.”
+- **98.141 s, note:** “The hill has moved away from my cellar: I see a person and field, but not my mark. I do not know what moved the view. I will fit the hill to find it.”
+- **112.194 s, want_quit, TASTE, engagement 3/5:** “I am pleased Meryem started and Tamar is digging, but I want to try the larger screen rather than keep finding the cellar on my phone tonight.”
+- **120.639 s, stop, TASTE, engagement 3/5:** “I am stopping on the phone. The clearer work explanation and release warning help, and Meryem started my mark, but the view moved away from the cellar and I want to try the larger screen. I selected the feedback labels locally and sent nothing.”
+
+**Diary — desktop**
+
+- **4.969 s, note:** “Same evening, fresh hill on the wider screen. I want to make a route to six safe places and see how far the digging gets.”
+- **20.344 s, note:** “The second square waits for a connecting passage even though it appears directly below the first. I think it may need the first square dug; the message does not say that. The two red marks are much easier to see here.”
+- **61.050 s, first_minute, engagement 3/5:** “The wide hill makes my two marks legible. The first has light and air, but the second says it needs a connecting passage although it looks adjacent. Everyone is asleep now; I will see what happens after morning.”
+- **131.287 s, note:** “Meryem started the first cut here too. The grouped routine makes that line easy to find. I am waiting for the next square to see whether the connection message changes.”
+- **139.830 s, note:** “Tamar has started the same first cut after Meryem. Seeing a person beside the marks makes the wait feel less abstract, though neither square is open yet.”
+- **197.505 s, pulse, engagement 3/5:** “The detailed reading reminds me of the nine-step rule, but says the second mark waits for a connecting passage. I can see the marks touching and do not yet know whether the first must be finished. Meryem and Tamar started work, which keeps me interested, but I am mostly waiting.”
+- **211.260 s, note:** “Show connections names the first connecting stone as the first mark I already made and says the route would be five steps, still reachable. That helps with safety, but I am still unsure why it says join the marks when both are already chalked. The long note about a missing Yusuf invitation is unexpected in this fresh game.”
+- **213.636 s, want_quit, CONFUSED, engagement 2/5:** “I would stop here. I like the clear five-step preview and seeing people start, but I am still waiting on the first cut and cannot tell what the connection instruction wants from me. The missing invitation wording adds more to interpret.”
+- **224.963 s, stop, CONFUSED, engagement 2/5:** “I am stopping on desktop. The preview counts five steps and the journal groups routine lines, and both diggers started the first mark. I still do not know what to do about the connecting passage, and I do not want to wait longer tonight. I selected feedback locally and sent nothing.”
+
+The desktop preview clearly distinguished the current route from the proposed route: if the accepted chalk were dug, the selected place would be five steps from an opening and within the riders’ nine-step search. It did not resolve my immediate question about why an already chalked adjacent square still needed a connection. My thought that the first square needed to be finished is a guess, not something I confirmed.
+
+**Compared with my earlier Warren asks**
+
+- **Explain why lit, available chalk goes undug — partly met.** The new reading named light, air, spoil space, the two diggers, and competing needs. Both diggers started my first mark. I did not recreate the earlier days-long wait on the lit sideways squares, so I cannot judge that exact situation.
+- **Make “End optional work” plainly state that it stops refuge work — met for what I saw.** Meryem’s control is now “Release Meryem from refuge work,” with an explicit warning that it stops that work for the rest of the hill and cannot be reversed. I did not press it.
+- **Collapse repeated routine lines — met for what I saw.** The journal grouped three and then four repeated routine lines, leaving the new cutting entry easy to find. Some meal lines still appeared separately in the visible activity.
+- **Find a safe route and six places beyond riders’ reach — partly met as an explanation, not as an outcome.** The nine-step rule and five-step preview were readable, but I stopped before planning or building six safe places.
+
+The **new blocking ask I reached** is the connection instruction: I need to know whether to change my plan or wait for the first cut. I did not reach an attack, a finished safe room, or the game ending. The phone stopped before the 180-second pulse; later pulses were untested on both devices.
+
+I viewed these screenshots:
+
+- **Phone:** [a-001]( /Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/phone/a-001.png) showed the title and cutaway; [a-002](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/phone/a-002.png) showed the small cellar and toolbar; [a-003](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/phone/a-003.png) showed the zoomed cellar; [a-005](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/phone/a-005.png) showed the field with the cellar out of view. A request for a-004 returned no output; I did not view it.
+- **Desktop:** [b-001](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-001.png) showed the wide title; [b-002](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-002.png) showed the hill beside the activity panel; [b-003](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-003.png) showed the two red marks; [b-004](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-004.png) showed a person by the marks; [b-005](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-005.png) showed the long plan reading extending below the visible panel.
+
+I used named taps and map coordinates on desktop; I did not test keyboard controls. Some wait or screenshot calls returned no output. The first desktop “Show connections” call also returned no output; a retry produced the expanded reading. Those empty replies did not establish a game failure.
+
+On each device, when confused I selected **“I’m confused”** in Feedback; when stopping I selected **“I’m stopping.”** Each showed pressed, and **Back to the game** returned to the paused menu. I typed no note and pressed no Submit. One initial phone command for “I’m confused” failed at shell parsing; the corrected tap worked.
+
+The coordinator owns the drivers and browser processes. I touched no repository and created no worktree, so `git worktree list` is not applicable.

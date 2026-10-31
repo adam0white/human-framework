@@ -1,0 +1,105 @@
+I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.
+
+**Ranked asks:**
+
+1. Give me more to explore in a run, or after its ending. Both meetings ended in under a minute of real play.
+2. Let a private word matter on more paths. Halil remembered mine when I asked him again, but I did not see it affect the phone ending.
+3. Make the agreement choices easier to compare on the phone. The terms are useful, but there is a lot to read in one long list.
+
+## 1. Session
+
+I am Maya Chen, 24, a Vancouver library assistant who likes small discoveries and people who remember choices. This was a **retest** of *His Word*, round `light-1031-word-retest1`, free-stop arm, with a zero-minute floor and a 20-minute ceiling per session.
+
+I read all **2,114 lines** of my supplied `own-history.md` in explicit ranges before playing. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. The file is a selection of my records, not my complete archive.
+
+- **URL:** https://word.adamwhite.work/?labRunSource=agent
+- **Session A:** fresh 360×690 touch phone game, light mode. Open at 0.575 s; stop at **56.437 s**.
+- **Session B:** independent fresh 1280×800 desktop game, keyboard and mouse, light mode, later the same evening. Open at 0.501 s; stop at **46.765 s**.
+
+I left recording at its default and changed no consent setting. Both games reached endings. Neither session reached the first-minute or three-minute pulse checkpoint, so I logged neither.
+
+## 2. First impressions
+
+**Phone:** At 4.930 s the recording page felt familiar and readable. I remembered Halil and Rıza comparing my conflicting words on my earlier visit and wanted to try the letter and late-work path. Ferda’s response after the letter distinguished her current answer from the older standing-need quote; that directly addressed something that had confused me before.
+
+**Desktop:** At 4.825 s the same opening looked clean on the wider screen. I wanted to ask Rıza before writing because his refusal had ended my phone plan.
+
+## 3. Verbatim diary
+
+These are my diary lines exactly as logged, in order. Times are driver `elapsed_s`.
+
+### Session A — phone
+
+- **4.930 s, note:** “The familiar short recording page is readable. I remember Halil and Riza comparing my conflicting words, high confidence; I want the letter and late work this time.”
+- **13.561 s, note, 16 minutes before Osman leaves:** “Ferda now answers the letter directly, and the old quote is explicitly labelled as her standing need from before it. That clears up what looked stale last time.”
+- **32.903 s, note, 8 minutes before Osman leaves:** “Halil repeats my private word when I ask again, just as I saw on desktop last visit. I want to see what he does with the late-work agreement now.”
+- **42.784 s, note, 5 minutes before Osman leaves:** “Letting Halil leave with his signed copy is new to me. The game says he cannot compare accounts with Riza now; I chose that knowing it could keep my word from being challenged.”
+- **45.943 s, note, 4 minutes before Osman leaves:** “Riza refuses the overnight cart and tells me exactly what he needs. Sending Halil away now has a cost: changing the agreement calls him back and clears his signature, with only four minutes left.”
+- **49.531 s, want_quit, FINISHED, One month later:** “The shop stayed shut because I ended the meeting. I like that Riza had a specific refusal and that sending Halil away had a visible cost. I would stop this phone run and try the other device.”
+- **56.437 s, stop, FINISHED, One month later:** “I am stopping on the phone after the shop stayed shut. Riza explained his refusal and Halil leaving made changing the agreement costly. Ferda now distinguishes her old standing need from her answer to the letter. I selected I am stopping and Not now; I sent nothing.”
+
+### Session B — desktop
+
+- **4.825 s, note:** “Same clean page on the wide screen. This time I want to ask Riza before writing, after his refusal on the phone.”
+- **24.023 s, note, 10 minutes before Osman leaves:** “Asking Riza first changed the late agreement to cart home at four, and Halil gets the paid break. That is the readable consequence I wanted after the phone refusal.”
+- **36.351 s, want_quit, FINISHED, One month later:** “They kept the late agreement and Ferda calls the service her own choice. That is satisfying after the phone refusal. I would stop now; I have seen this path and both meetings were quick.”
+- **46.765 s, stop, FINISHED, One month later:** “I am stopping on desktop after the late-work agreement succeeded. Asking each person changed the terms and the ending named what they kept. I enjoyed that, but the meeting was over quickly. I selected I am stopping and Not now without sending.”
+
+## 4. Moments
+
+Rıza’s phone refusal held me because it named the term he needed: taking the cart home at four. I had sent Halil away with his signed copy, and the game made the cost of changing the agreement visible: call him back and clear the signature. I chose to end the meeting, and the shop stayed shut.
+
+On desktop I asked Rıza first. The late-work agreement then included his cart going home at four and Halil’s paid break. All four signed, and the ending named what each person kept. Ferda calling the smaller service her own choice was a satisfying detail.
+
+Both quit wishes came after actual endings and persisted to the stops. The meetings were still very short. No pulse was reached.
+
+## 5. Confusion and clarity
+
+The time cost of conversations, writing and signatures was clear. The agreement listed acceptance, unknowns and refusals, and Rıza’s refusal told me what to ask for. Ferda’s direct answer and the explanation attached to her earlier quote resolved my uncertainty about that quote.
+
+On the phone, I tried to tap the visible heading of the late-service agreement by text. The driver returned:
+
+> “Use the clothing order for a smaller late service and trial lease. (2 minutes) is visible text and also the start of the control …; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)”
+
+The agreement list and eight-minute state remained visible. I then used the full control name, and the “Read it together” screen appeared with six minutes remaining. This was a driver targeting issue; it did not show that the game control failed.
+
+I did not feel confused enough during play to select “I’m confused.” The phone agreement list still felt long, though the terms themselves were informative.
+
+## 6. Device use
+
+**Phone, 360×690:**
+
+- Viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/a-001.png) immediately after opening. The recording page was a cream single column on a dark background, with readable text and the checked recording box.
+- Viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/a-002.png) on the agreement page. The instructions were readable, with the first agreement beginning below the visible edge. I did not view the full list in a screenshot.
+- I used named taps for the table, letter, conversations, private word, agreement and signatures, plus Menu and Feedback.
+
+**Desktop, 1280×800:**
+
+- Viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/b-001.png) immediately after opening. The recording page sat in a wide centred cream card and was readable.
+- Viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/b-002.png) at the ending. The agreement outcome and AGREED stamp were visible; lower content continued beyond the screen.
+- I used mouse-like named taps. I used no keyboard keys, so keyboard operation remains untested.
+
+I took two manual screenshots per device. I did not view the phone ending or every agreement option’s layout.
+
+On both devices, **“I’m stopping”** was offered. Selecting it opened a draft with that text already in the note field. I pressed **Not now**, typed nothing, pressed no Submit and changed no consent or recording setting. No feedback error appeared.
+
+## 7. Stop and return
+
+- **Phone:** FINISHED at 56.437 s. “I am stopping on the phone after the shop stayed shut. Riza explained his refusal and Halil leaving made changing the agreement costly. Ferda now distinguishes her old standing need from her answer to the letter. I selected I am stopping and Not now; I sent nothing.”
+- **Desktop:** FINISHED at 46.765 s. “I am stopping on desktop after the late-work agreement succeeded. Asking each person changed the terms and the ending named what they kept. I enjoyed that, but the meeting was over quickly. I selected I am stopping and Not now without sending.”
+
+I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings. I like the specific refusals, changed terms and people remembering words. I would not return tonight after these two meetings, and I would not leave it running.
+
+## 8. Changes I would want
+
+My three ranked asks are at the top. The people’s reasons and the visible terms are the parts I want to spend more time with.
+
+## 9. Compared with my last visit
+
+- **Make a run last longer, or give me more to try — did not meet it in these visits.** The phone reached its ending at 47.537 s and the desktop at 34.426 s. I saw a new signature choice and the late-work path, but both meetings remained short.
+- **Let people react to my private word sooner and on every path — partly met.** Halil repeated my private word when I asked again on the phone, as he had on desktop last time. He then signed the late-work agreement. I did not see the phone ending mention my private word, and I did not test every path or give Rıza a contradictory private word this time.
+- **Update Ferda’s stale line after fetching the letter — partly met.** Her old wording remains, but it is now explicitly identified as her standing need from before the letter, alongside a direct current answer. That removed my confusion about whether the old wording was her reply to the letter.
+
+**New blocking ask from what I reached:** None. The short run and long agreement list were concerns I already had. I did not see every possible path.
+
+No repo touched; no worktree of mine remains.

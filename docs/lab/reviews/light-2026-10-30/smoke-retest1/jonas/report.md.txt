@@ -1,0 +1,63 @@
+**Would I return voluntarily?** Yes, another evening for one attempt in a different order, to see whether I can avoid leaving a follower behind. I would not leave it running or replay again tonight.
+
+**Ranked ask**
+
+1. Keep each neighbour’s selectable name stable while their status changes. On both devices, a status change caused a named tap to miss; the retry worked.
+
+I have no new blocking ask from these sessions.
+
+I played as Jonas Berg in two fresh, independent games on the same evening: 1280×800 desktop with keyboard and mouse, then 360×690 touch phone. Both used the supplied agent URL and driver. I imported no save or matched seed. Recording, consent and owner settings stayed at their defaults.
+
+The supplied history ends at line 2314: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” I requested explicit ranges covering all 2314 lines before play, but the combined output was truncated. I cannot establish the exact unread ranges from the delivered output, so I cannot claim a complete read. The last line delivered was line 2314. My earlier Smoke asks were visible in the supplied output; I used no other players’ records.
+
+On desktop, the opening at 1.167 seconds presented a familiar evacuation: find who is home, show them the stair and ask them to leave. Sevim was outside by 42.656 seconds. On phone, Burak was home and acted independently; he reached the street by 26.192 seconds. That made the second game more interesting than simply repeating the desktop routine.
+
+The useful tension came from seeing a choice have a consequence. On desktop, I took Derya upward to collect Hacer and saw her breathing warning. On phone, Derya stopped during the descent while Hacer made it out. I went back, asked Derya to follow again and got her out. That felt like a consequence I could understand and answer.
+
+**Diary — exact logged reactions**
+
+Desktop:
+
+- **8.108 s, note, engagement 4:** “I remember the Street confusion. I want to see whether it actually moves us now; first I will get Sevim following.”
+- **33.84 s, note, engagement 4:** “Street now explicitly says it moves me, and the location says I am walking. That answers the earlier ambiguity. I want to see whether Sevim arrives.”
+- **62.954 s, first_minute, engagement 4, 06:10, 97s left:** “Sevim reached the street after Street moved me; the location and time estimate are clear. I can see myself beside Derya on the map. The steps are familiar and feel procedural, but the clock still makes the order matter.”
+- **71.137 s, note, engagement 3:** “Hacer changed status before my tap, so the name still missed once. The retry worked. The location now tells me where I am and why walking is slow.”
+- **111.253 s, note, engagement 4:** “I took Derya upward to collect Hacer, and her breathing warning makes that choice feel costly. I am watching the descent.” The returned screen had already reached the ending by this log.
+- **112.932 s, want_quit, FINISHED, engagement 3:** “Everyone is out. I would stop this run here; the Street result is clear and I do not want another desktop attempt tonight.”
+- **120.832 s, stop, FINISHED, engagement 3:** “Everyone reached the street. I am stopping at the ending; Street moved me and the followers arrived. I selected stopping in Feedback and closed it without sending.”
+
+Phone:
+
+- **8.412 s, note, engagement 4:** “Burak is home this time, so I want to see him act while I work on Sevim. The phone opening is readable.”
+- **38.733 s, note, engagement 4:** “Phone Street moved me and Sevim arrived. Burak checked the stair and got out without my help. I can see the figures and the YOU label on the phone map now.”
+- **60.498 s, first_minute, engagement 4, 106s left:** “Two are outside, Derya follows and I am going to Hacer. Street worked on this phone with a visible walking estimate. The map is legible, though the action labels are small. The routine is familiar; Burak acting independently adds some interest.”
+- **96.719 s, note, engagement 4:** “Derya stopped behind me while Hacer got out. That is a real cost to batching; I am going back for her.”
+- **116.912 s, want_quit, FINISHED, engagement 4:** “Everyone is out, including Derya after I went back. I am satisfied with this attempt and would stop for tonight.”
+- **123.872 s, stop, FINISHED, engagement 4:** “Everyone is out. Derya stopped and I recovered her; the phone Street control worked. I selected stopping in Feedback and closed it without sending.”
+
+Both quit wishes held. Each game had actually ended with “Everyone is out.” The desktop stop was at 120.832 seconds and the phone stop at 123.872 seconds. Both first-minute checkpoints were logged; neither session reached the 180-second pulse, so those pulses were untested.
+
+**Clarity and device behavior**
+
+Street now explained that it moves me and that followers walk after me, though thick smoke can stop them. On both devices, tapping it produced a visible walking destination and estimate, and followers reached the street. The location line and map helped me understand where I was. The phone map showed named figures and a “YOU” label; the phone action labels were small but usable in the actions I reached.
+
+A changing status still caused one named selection to miss on each device: Hacer on desktop and Derya on phone. Each retry using the current full name worked. The driver identified those misses as changed game state. I did not establish a failure of the touch target itself.
+
+Screenshots I actually viewed:
+
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/desktop/a-001.png): readable title and instructions.
+- [Desktop stairwell](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/desktop/a-002.png): the player beside Derya, Hacer above, smoke, timer and actions.
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/phone/b-001.png): readable single-column instructions.
+- [Phone stairwell](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/phone/b-002.png): labelled neighbours and player, smoke, timer and small action controls.
+
+At each ending I opened Feedback, selected **“I'm stopping”**, saw it marked pressed, and closed with **“Not now.”** I typed no note or name and submitted nothing. One initial desktop attempt to select the label failed from shell quoting; the corrected attempt worked.
+
+**My earlier Smoke asks**
+
+| Earlier ask | Retest result |
+|---|---|
+| Make phone walk controls reliable. | **Partly met.** Street worked on the phone and led Sevim and later Derya out. I did not test the separate “Walk to the street” control that was previously off screen. |
+| Show neighbours relative to me on the map, and keep their button names stable. | **Partly met.** I could see labelled figures and my position in the viewed maps. Names still changed with status, causing a missed named tap on each device. |
+| Say plainly what Street does, or remove it. | **Met.** The helper explicitly said it walks me to the street and followers follow; the observed movement matched that explanation in these attempts. |
+
+I created no server, browser, process, repository or worktree. The coordinator owns the two drivers and their cleanup.

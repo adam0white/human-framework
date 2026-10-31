@@ -1,0 +1,130 @@
+{
+  "time": "2026-10-31T15:05:20.993202+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "selection": "jonas-free complete return plus literal own asks only; excludes CONT and director method interpretation",
+      "selectedReturnAndAsksOnly": true,
+      "selectedSha256": "2d8c6dc4dc4eed026ba7029b505be6bee910445c69c5d179e779cdf630f72870"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/hf3-warren-2026-10-25/jonas-free-matched.md",
+      "selection": "FREE only; independent CONT alternative excluded",
+      "selectedSha256": "22bcc8ed4940336ed27db55669dbad8b4e0830f20d8d3fb3aa5dd2c291ae3756"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands/jonas/report.md",
+      "sourceSha256": "8232cb48a1d22b16b6c9d549f45bd43b2bd443591a72a71cd83ef73e862cb07d",
+      "selectedSha256": "890800ed921b90c1223d449746e6d1c2ae9a0f99f0c1ed6961e96405be00f537"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell/jonas/report.md",
+      "sourceSha256": "239f62bc8ce5b9a08cac621dbd2b6d23ba6f196490096e7554c13fbb79c3111a",
+      "selectedSha256": "ba44a19f87d7d2781491981d1a7c1037492a2ce58a1605be0dd8a84a3f2901dd"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/jonas/report.md",
+      "sourceSha256": "feddce0256517b4ae1b36114b8cc489453b80290bf6403862a40bdc340477e7c",
+      "selectedSha256": "4762003d93c31d57416ee2a339843d3c9166b3b54ff227a23906ba3d3a7087da"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/jonas/report.md",
+      "sourceSha256": "6f65ad7e554b435e004140923c238a3637d8450cbb01c12850769b0b8511f94a",
+      "selectedSha256": "9d1a63f842204e2a550120a29edd964f7bbb643b9adbbbb7b9a3acde5a71ac9a"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/jonas/director-method-qualification.json",
+      "sourceSha256": "145240e7c0b4d5370abc85c83b4398de8dd8edec274094832b643306863bbb1c",
+      "directorMetadataOnly": true,
+      "selectedSha256": "2f4b822244744da89ae4df4675ae4c96243c3be6fc96a01ddb1e30fafe6986c9"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/report.md",
+      "sourceSha256": "e00138d6ef386aa263581a6e7267c7a228a23acf54e4a976d175cd477f6c87ae",
+      "selectedSha256": "3392969cb8df1539075bc963b8befbd66b44d5904ba90f9c2345444a6d8841c9"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/director-method-qualification.json",
+      "sourceSha256": "8d24e40f78d89d675c2da5359d8e295a49aa0af883d2a5e32f96d5abb5af200a",
+      "directorMetadataOnly": true,
+      "selectedSha256": "2f2d646bb9cab73038b73ab8273ea124c4c80e378d6028c4469efce1fb4e7fb7"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/report.md",
+      "sourceSha256": "0419a419bb1d545e9ae1aed023b34dc021963b36bab3e86d353753ac434bcb71",
+      "selectedSha256": "877a80662d5432802e094bc19dcb0858f950edf078f134a125b39c6e6cafab17"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/director-method-qualification.json",
+      "sourceSha256": "216410bb5f4421cc9175d563f2ef06f89c7a75aa96038e8d7a8d4d6b997a1e33",
+      "directorMetadataOnly": true,
+      "selectedSha256": "3558a4891fb2c958a840527077a943415e1d5a5811d7862ece430b2b20945edd"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/voice-playtest-2026-10-27-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "015637e0c1b0173990a7998e432c428ef28480c886fd1fd38e49ad696a8bb04f"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "44024b8a8fd8c2eeb4e35ec2cb4de1f5565c56b0529c9921bf3d06afde05e71a"
+    },
+    {
+      "repo": "pass",
+      "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+      "path": "docs/playtests/panel-2026-10-27.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "b3a854a8ebd28b30ad1e22f8a7fcf3707f99b4f1e47b1cdd426b52b3f1219766"
+    },
+    {
+      "repo": "valley",
+      "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+      "path": "docs/playtests/2026-10-27-retest2.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "8e26c40149eda41bbf2c6c0a996ba2acbae062999a5d1336383b54070bd20fa7"
+    },
+    {
+      "repo": "commonstead",
+      "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+      "path": "docs/games/commonstead-playtest-2026-10-27b.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "2a309796dc154f148c817808556e6369933700ea9219515647486ebd28397c29"
+    },
+    {
+      "repo": "lefthand",
+      "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+      "path": "docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "01db01f38e5a85e2a5b18d9f65872b0818a4a5cc7adf927c28efeb2afe8b80de"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-jonas-memory-qualification.json",
+      "sourceSha256": "c097a913cc8131a36dd3c607f31ad774dddcece7a8724f8f462eb6859fcf7f99",
+      "directorMetadataOrOwnRaw": true,
+      "selectedSha256": "cd676958dc34895d2f098fe2755ad01f1f8b2fccdc6e64216f93d442039b9d65"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-jonas-all-driver-reactions.json",
+      "sourceSha256": "058581db2ed8e77fa6945dc8f612768a1c0d30eecb144adddbf30424a6355bd7",
+      "directorMetadataOrOwnRaw": true,
+      "selectedSha256": "d8213ba1880ac45411bab88cb2de1eb385e2843201969d778c9c2add41587966"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/codex-history-evidence-clarification.json",
+      "sourceSha256": "244dba99e92a9a72f3cdb9001ac7c0a326a2992f8b0280765c681aa016f20bf0",
+      "directorMetadataOnly": true,
+      "selectedSha256": "6822c1b5f8ce642174a1091b92dbcb869e045d0ef62df7dc00b4cad1e4a68d15"
+    }
+  ],
+  "historySha256": "ed3384b93d16771ad845e41a4483e8c73b9d51adba8ad81a8c61643ade41ab9a"
+}

@@ -1,0 +1,360 @@
+[
+  {
+    "id": "F-2821",
+    "who": "Jonas Berg",
+    "rank": 1,
+    "source": "jonas/report.md",
+    "primary": {
+      "text": "Keep each neighbour’s selectable name stable while their status changes. On both devices, a status change caused a named tap to miss; the retry worked.",
+      "char_start": 219,
+      "char_end_exclusive": 370,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "**Would I return voluntarily?** Yes, another evening for one attempt in a different order, to see whether I can avoid leaving a follower behind. I would not leave it running or replay again tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 198,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** Yes, another evening for one attempt in a different order, to see whether I can avoid leaving a follower behind. I would not leave it running or replay again tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 198,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect whether selectable neighbour names remain stable as status changes. Jonas saw named taps miss after changes and retries work; no cause or general control defect is established."
+  },
+  {
+    "id": "F-2822",
+    "who": "Aisha Rahman",
+    "rank": 1,
+    "source": "aisha/report.md",
+    "primary": {
+      "text": "Keep the clear walking destination, estimated time and smoke slowdown messages. They gave me the confidence I lacked last time.",
+      "char_start": 176,
+      "char_end_exclusive": 303,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 154,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 154,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Aisha Rahman, a 45-year-old community pharmacist from Birmingham. This was my first fixed-build return to *Smoke on the Stairs*. I played the assigned URL with the agent query retained, in two fresh, independent games on the same evening. The desktop session used a 1280×800 keyboard-and-mouse context and ended at **132.921 seconds**. The 360×690 touch-phone session ended at **122.691 seconds**. Both ended because the game said everyone was out.",
+        "char_start": 491,
+        "char_end_exclusive": 944,
+        "line_start": 10,
+        "line_end": 10
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Keep the clear destination, estimated time and smoke-slowdown messages that helped Aisha. This is a positive maintenance request, not a new defect."
+  },
+  {
+    "id": "F-2823",
+    "who": "Aisha Rahman",
+    "rank": 2,
+    "source": "aisha/report.md",
+    "primary": {
+      "text": "When someone dies, acknowledge more of what I tried. I did not encounter a death this visit, so this remains my earlier ask rather than a new finding.",
+      "char_start": 307,
+      "char_end_exclusive": 457,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 154,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 154,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Aisha Rahman, a 45-year-old community pharmacist from Birmingham. This was my first fixed-build return to *Smoke on the Stairs*. I played the assigned URL with the agent query retained, in two fresh, independent games on the same evening. The desktop session used a 1280×800 keyboard-and-mouse context and ended at **132.921 seconds**. The 360×690 touch-phone session ended at **122.691 seconds**. Both ended because the game said everyone was out.",
+        "char_start": 491,
+        "char_end_exclusive": 944,
+        "line_start": 10,
+        "line_end": 10
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Aisha’s earlier request to acknowledge what she tried when someone dies. No death occurred in this visit, so no new death finding is established."
+  },
+  {
+    "id": "F-2824",
+    "who": "Diego Silva",
+    "rank": 1,
+    "source": "diego/report.md",
+    "primary": {
+      "text": "Let me continue with Sevim when the game says her bundle is tied. On desktop, her status still said she was tying it, and the speech controls stayed disabled while her breathing was difficult.",
+      "char_start": 255,
+      "char_end_exclusive": 447,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "**Would I return voluntarily?** I might come back another evening because the phone run made the rescue feel clear and satisfying, but I would want to know I can get past Sevim’s conflicting book status. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 233,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** I might come back another evening because the phone run made the rescue feel clear and satisfying, but I would want to know I can get past Sevim’s conflicting book status. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 233,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Investigate Sevim’s tied-bundle journal, tying card, wait hint and disabled speech controls in Diego’s unfinished desktop run. The conflict persisted after menu, feedback and a wait; cause and eventual outcome are unknown."
+  },
+  {
+    "id": "F-2825",
+    "who": "Diego Silva",
+    "rank": 2,
+    "source": "diego/report.md",
+    "primary": {
+      "text": "Show how much danger each neighbour is in before I choose who waits. The breathing warning helped, but I still did not see how much time anyone had.",
+      "char_start": 451,
+      "char_end_exclusive": 599,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "**Would I return voluntarily?** I might come back another evening because the phone run made the rescue feel clear and satisfying, but I would want to know I can get past Sevim’s conflicting book status. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 233,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** I might come back another evening because the phone run made the rescue feel clear and satisfying, but I would want to know I can get past Sevim’s conflicting book status. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 233,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Diego’s wish for a useful indication of individual danger before deciding who waits. A breathing warning was observed, not a measurable countdown."
+  },
+  {
+    "id": "F-2826",
+    "who": "Leila Mansour",
+    "rank": 1,
+    "source": "leila/report.md",
+    "primary": {
+      "text": "Give me a more useful indication of how much time a neighbour has when smoke threatens them. Derya’s warning made me hurry, but I could not tell whether the walk out would be fast enough.",
+      "char_start": 131,
+      "char_end_exclusive": 318,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 109,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 109,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Leila’s wish for more useful danger information. Her warning made her hurry; do not invent an exact time or hidden forecast."
+  },
+  {
+    "id": "F-2827",
+    "who": "Leila Mansour",
+    "rank": 2,
+    "source": "leila/report.md",
+    "primary": {
+      "text": "Keep Sevim’s spoken update and her actionable status in step. The log said her bundle was tied while her card and hint still said to wait.",
+      "char_start": 322,
+      "char_end_exclusive": 460,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 109,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 109,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect the lag between Sevim’s tied journal entry and actionable card and hint. In Leila’s phone run the status later changed and the action became enabled; this does not establish why Diego’s different run remained blocked."
+  },
+  {
+    "id": "F-2828",
+    "who": "Leila Mansour",
+    "rank": 3,
+    "source": "leila/report.md",
+    "primary": {
+      "text": "Tell me what happens if I tap another destination while walking. I did not see an explanation of whether a repeat tap restarts the walk.",
+      "char_start": 464,
+      "char_end_exclusive": 600,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "opening": {
+      "text": "**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 109,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 109,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Review whether the game can explain what another destination tap does while walking. Leila did not establish whether it restarts a walk; do not infer behavior."
+  },
+  {
+    "id": "F-2829",
+    "who": "Maëlle Pichon",
+    "rank": 1,
+    "source": "maelle/report.md",
+    "primary": {
+      "text": "Make Sevim’s current instruction and available actions match her statement that the bundle is tied.",
+      "char_start": 117,
+      "char_end_exclusive": 216,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+      "char_start": 0,
+      "char_end_exclusive": 91,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+        "char_start": 0,
+        "char_end_exclusive": 91,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "The phone’s confusion resolved quickly: after I opened the pause menu, the prompt changed to turn on the torch and show the stair. On the desktop, the conflicting message lasted long enough for me to take the other two outside and return. I cannot tell from these observations why the displayed instruction lagged.",
+        "char_start": 2480,
+        "char_end_exclusive": 2794,
+        "line_start": 16,
+        "line_end": 16
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect Sevim’s tied message against current instruction and action. Maëlle saw a conflict before wanting to quit, then after pausing the prompt changed to Show the stair; cause and later desktop outcome remain unknown."
+  },
+  {
+    "id": "F-2830",
+    "who": "Maëlle Pichon",
+    "rank": 2,
+    "source": "maelle/report.md",
+    "primary": {
+      "text": "Make it easier to see whether a follower is moving with me and whether I should wait.",
+      "char_start": 220,
+      "char_end_exclusive": 305,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+      "char_start": 0,
+      "char_end_exclusive": 91,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+        "char_start": 0,
+        "char_end_exclusive": 91,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "The phone’s confusion resolved quickly: after I opened the pause menu, the prompt changed to turn on the torch and show the stair. On the desktop, the conflicting message lasted long enough for me to take the other two outside and return. I cannot tell from these observations why the displayed instruction lagged.",
+        "char_start": 2480,
+        "char_end_exclusive": 2794,
+        "line_start": 16,
+        "line_end": 16
+      }
+    ],
+    "route": "fix:smoke",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Review how the player can see follower movement and decide whether to wait. Preserve Maëlle’s uncertainty and do not infer pathfinding failure."
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-31T13:58:52.534188+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 2,
+    "curl": 66,
+    "grammarExceptions": 0,
+    "scroll": 2
+  },
+  "commandReceipt": "well-petra-command-audit-1400.json",
+  "retainedToolsReceipt": "well-petra-retained-audit-1400.json",
+  "historyEvidence": "All five cold-history lines matched stdout and separately completion-hash-bound retained output. No prior HF play memory. No unsupported relevant wrapper. Retained responses do not prove attention or comprehension.",
+  "imageEvidence": "Four assigned images returned high-detail image blocks: desktop a001, phone b001/b002/b003. Image delivery is not perception proof.",
+  "stops": {
+    "desktop": 90.745,
+    "phone": 51.62
+  },
+  "timedLogs": "Desktop first-minute 62.745 valid. No 180-second pulse. Phone automatic screenshot 60.051 after stop, not continued play or first-minute diary.",
+  "driverQualification": "Two stale Maryam activity labels resolved. No shell grammar exception or actual failed custom-tool response. Two phone scrolls followed by a present kitchen-order control and no driver error establish reachability after scrolling. Native acknowledgment does not prove game outcome.",
+  "exposure": "Cold first-ever HF visit on desktop, then recognition of only her own earlier desktop play on phone. Both independent fresh games. No opening-choice effect established.",
+  "producerReturnBlockers": "Repeated construction detail and order reach, plus unclear agreement while a person does other work. Reached phone kitchen control was operable; no forced compliance or guaranteed immediate order execution is requested. Opening-choice explanation is an additional ranked ask.",
+  "returnExact": "I would not return voluntarily as it stands; I liked comparing the villages, but following the orders did not hold my attention.",
+  "laterReturnConditions": "Might reconsider if choices were easier to reach and agreed-order status clearer. Would not leave it running or return another evening for this version. Preserve the full opening and later statements.",
+  "feedback": "Local desktop confused/stopping, phone stopping, then Back. No typed note, Submit, recording or consent change. Linked production receipt unverified.",
+  "cleanup": "Final round receipt well-codex-cleanup.json records all 15 PIDs absent, 54 observed identities gone and ten closed ports. This is not a whole-lifetime journal."
+}

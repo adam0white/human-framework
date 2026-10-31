@@ -1,0 +1,60 @@
+{
+  "at": "2026-10-31T13:00:27.684860+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 14,
+    "curl": 71
+  },
+  "historyEvidence": "Frozen/dispatchhash+finalownsessionhashbound; all1167literalhistorylines matched across retained toolresponses, no unmatched range/unsupportedwrapper; perception/comprehension notproven. Earlier archivedpartial/CONT/methodlimits unchanged.",
+  "retainedToolsReceipt": "murmur-mei-retained-tools-complete.json",
+  "imageEvidence": "Four assigned image calls returned image blocks: phonea001/a002,desktopb001/b003. b002reportunseen kept; actual filepresence notviewingproof.",
+  "stops": {
+    "phone": 134.379,
+    "desktop": 233.877
+  },
+  "timedLogs": "Phonefirstminute62.705; desktop64.769/onepulse192.346. Automaticshotsseparate.",
+  "driverErrors": [
+    {
+      "device": "desktop",
+      "row": 11,
+      "elapsed_s": 53.973,
+      "op": "tap",
+      "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)"
+    },
+    {
+      "device": "desktop",
+      "row": 16,
+      "elapsed_s": 90.733,
+      "op": "tap",
+      "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)"
+    },
+    {
+      "device": "desktop",
+      "row": 33,
+      "elapsed_s": 225.69,
+      "op": "tap",
+      "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)"
+    }
+  ],
+  "driverQualification": "Three actualdesktop innerText5stimeouts onSkip/readletter/Game menu; producer mentionsSkip/menu andgeneralotherslowcalls. Visiblelaterresponsesrecovered; nativeack!=outcome. No enabledcontrol blockedafterretry. Completedcommandstdout nonempty for claimedemptywait/start/shotcalls; initialyield presentationunknown. No gameclock/agencycause established.",
+  "exposure": "Phoneordinaryweek fresh; desktopOtherways→Beginatsecondweek actual publicstart withweek1playedforher; not actual completionofweek1 or matchedseed. Readletterreached/leftunsigned; no laterterms/deadlineor heldrefusal reached.",
+  "producerNewBlockingAsk": "Show tenancy terms/deadline after Dilan readsletter before signing decision. Source investigation required, notprovenmechanism or licenseinventlegalterms.",
+  "returns": "Laptopanother eveningconditionalterms/deadline AND wantingremainingtrust; no leave-running; savedplacepreference nottesteddefect.",
+  "rankedVariants": "Opening3primaryasks andsection8 variants retained; trustamountwish doesnotauthorize hiddenpressureforecast or forcedagreement.",
+  "feedback": "Phone stopping/desktop confused/Back; no note/Submit/consent changes perstrictcommands/report. Linkedrunreceiptunverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 15320,
+      "absent": true
+    },
+    {
+      "pid": 15297,
+      "absent": true
+    },
+    {
+      "pid": 15299,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Observed snapshots only; final round cleanup required."
+}

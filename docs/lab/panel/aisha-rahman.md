@@ -1076,3 +1076,184 @@ Asks from my earlier Good Hands reports:
 - **New blocking asks:** One. The unsendable old-case letter is still the thing that would stop me returning. It is not new in kind, only now stated plainly.
 
 Repos touched: none. `git worktree list` for any repo: I have no worktrees, branches or processes of mine to clean up.
+<!-- selected-continuity-key: light-1030:murmur-retest1:aisha:free -->
+## 2026-10-31 murmur-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/murmur-retest1/aisha/report.md.txt), SHA256 `084b69151ac5c637192bee581a458e6f31468020338d6e09d09c7f5a2b9f789a`. Method qualification: [aisha](../reviews/light-2026-10-30/murmur-retest1/aisha/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would come back another evening if Dilan’s days responded more distinctly to what happened before, and I could tell how close I was to pushing her too far; I would not leave it running.
+
+Ranked asks:
+
+1. Let Tuesday’s conversations reflect Monday’s events. Murat asked the same traffic question after Dilan had already told him she overslept.
+2. Give me a clearer warning before I push Dilan too far.
+3. Keep the full first-choice explanation visible on the phone.
+
+## 1. Session
+
+I am Aisha Rahman, a 45-year-old community pharmacist from Birmingham. This was a returning visit to Murmur, displayed as *Two Voices*, in round **light-1031-murmur-retest**, free-stop arm, floor 0.
+
+I read all 1,192 lines of my supplied own history. The last line I read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread lines: **none**. The file is a selection, not my complete archive: older records, independent continued alternatives, and the excluded independent Warren alternative bodies were not supplied. The Well excerpt did not include its older raw diary. The file also qualifies my original Murmur phone observations because named taps stalled, and identifies my held-input return as a driver-repair diagnostic on the unchanged game, with a different held-press method from this visit.
+
+I used the assigned URL, https://murmur.adamwhite.work/?labRunSource=agent. Each device began a fresh, independent game.
+
+- **Session A:** desktop, 1280×800, keyboard and mouse, light mode; stopped at **130.053 seconds**, Tuesday 08:26.
+- **Session B:** phone, 360×690, touch, light mode; stopped at **38.742 seconds**, Monday 07:16.
+
+The coordinator adds the release commit.
+
+## 2. First impressions
+
+**Desktop:** At 4.583 seconds, the title and named people brought Dilan and Ece back to mind. The first choice clearly explained tapping, holding, trust, and that Dilan could still say no. I chose to let her sleep and save pressure for something that mattered to me.
+
+**Phone:** At 5.016 seconds, the introduction was readable in a narrow column, though Start was below the visible screen. At 16.554 seconds I noticed that the first-choice explanation appeared cut off after “If time” in the picture.
+
+## 3. Verbatim
+
+These are my diary lines as logged, in order. Times are driver elapsed seconds.
+
+**Session A**
+
+- **4.583, note:** “Two Voices again; I remember Dilan and Ece, and want to see how their week feels now.”
+- **15.169, note, Monday 06:41:** “The alarm and unfinished shelf bring back Monday from my earlier visit, high confidence. I will let her sleep; I want to save pressure for someone who needs her.”
+- **28.007, note, Monday 07:16:** “She did not promise Aylin, and tells me she has no answer yet. I like hearing her reason; I will not force a promise for her.”
+- **40.01, note, Monday 08:26:** “I held for the truth because I suggested the sleep. It says she keeps the words in mind; I want to see what she actually tells Murat.”
+- **61.364, first_minute, Monday 12:41:** “Dilan told Murat the truth and guided Ece, with the late deliveries stated too. Now she says she dislikes my pushing; I feel that cost and want to give her room.”
+- **101.537, note, Monday in bed:** “The night card remembers Mum and my pushing, and the words about saying it plainly. I want to see whether she gets a gentler Tuesday.”
+- **120.424, note, Tuesday 08:26:** “Murat asks the same traffic question again, even after she told him she overslept yesterday. I feel the repetition now; I do not want to make the same decision again.”
+- **122.458, want_quit, BORED, Tuesday 08:26:** “I would stop here: the same question has come back and I have already spent an evening with this Monday before.”
+- **130.053, stop, BORED, Tuesday 08:26:** “I am stopping at Tuesday morning. I liked that Dilan told the truth and helped Ece, and that she told me my pushing hurt. Murat asking the same question again makes me want to leave for tonight.”
+
+**Session B**
+
+- **5.016, note:** “Same title on my phone, same evening. The introduction fits in a narrow column; Start is below what I can see.”
+- **16.554, note, Mon 06:41:** “The alarm and shelf are the same opening I just played. The phone card is readable, though the explanation seems cut after If time.”
+- **28.908, want_quit, BORED, Mon 07:16:** “Aylin asks the same thing I just heard on the laptop. I would stop rather than play Monday again on my phone.”
+- **38.742, stop, BORED, Mon 07:16:** “I am stopping the phone at Aylin's message. Getting Dilan up worked, but I have just played this opening and do not want to repeat it tonight.”
+
+My first attempt to log the phone stop failed before reaching the driver with `zsh:1: unmatched "`. I corrected the apostrophe escaping and logged the line above.
+
+## 4. Moments
+
+Dilan’s answer about Aylin held me: she had no answer yet and chose to leave the message. I appreciated hearing her own reason. When I held for the truth, she later told Murat she overslept and apologised. She also guided Ece street by street; the game said both that Ece delivered and that Dilan’s deliveries remained late.
+
+At lunch I held for Dilan to speak up for Ece. She did, but told me she disliked being pushed. The night card remembered both my pushing and her intention to call Mum. That made me want to give her more room.
+
+The desktop quit wish came when Tuesday repeated Murat’s traffic question after Monday’s honest answer. It did not pass. On the phone, the repeated alarm and Aylin message made me want to stop; that wish did not pass either.
+
+The desktop first-minute entry was valid at 61.364 seconds. The phone ended before 60 seconds, so its first-minute checkpoint was not reached. Neither session reached 180 seconds; no pulse was due.
+
+## 5. Confusion and clarity
+
+The first choice explained that a tap suggests, a hold insists, trust can be affected, and Dilan can still refuse. In play, the held choices were followed by visible outcomes. My plain suggestions to call Mum and put the phone down were declined with Dilan’s own words.
+
+I still could not see how much trust remained before insisting. Her statement that she disliked my pushing made the cost clear after I had pushed. I did not encounter a refusal of a held insist this time, so I cannot judge whether the repeated refusal wording has changed.
+
+The phone screenshot made the explanation appear clipped after “If time”; the driver’s text list contained the full sentence. I did not establish whether scrolling or another layout state would reveal the missing words.
+
+## 6. Device use
+
+**Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/a-001.png), a cream title page with a centred introduction, recording notice, two unchecked start options and a red Start button. I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/a-002.png): the day’s text occupied the left column, while the right said the next choice would appear there, with Skip ahead at the bottom. I used named taps, held mouse presses, waits, Skip ahead, and the menu and Feedback controls. I did not view a screenshot of a desktop choice card.
+
+**Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/b-001.png), where the introduction and checkboxes appeared in a narrow column and Start was below the visible area. I viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/b-002.png), showing the first choice card, large readable choice buttons and the apparently cut explanation. I used a held touch, Skip ahead, a wait, and the menu and Feedback controls. Later phone layouts were not viewed.
+
+On both devices I opened Game menu → Feedback, selected **“I'm stopping”**, saw it marked pressed, and used **← Back**. I typed nothing, pressed no Submit, and left Recording checked. I did not change consent. I did not change the pace.
+
+## 7. Stop and return
+
+**Desktop, BORED:** “I am stopping at Tuesday morning. I liked that Dilan told the truth and helped Ece, and that she told me my pushing hurt. Murat asking the same question again makes me want to leave for tonight.”
+
+**Phone, BORED:** “I am stopping the phone at Aylin's message. Getting Dilan up worked, but I have just played this opening and do not want to repeat it tonight.”
+
+I would come back another evening if Dilan’s days responded more distinctly to what happened before, and I could tell how close I was to pushing her too far. I like her own explanations and the way the night card remembers my pressure. I would not leave it running: I want to be present for her choices. I would not continue tonight after repeating the opening on the phone.
+
+## 8. Changes I would want
+
+1. Let Tuesday’s conversations reflect Monday’s events, especially Murat’s question after Dilan told him the truth.
+2. Warn me more clearly before I push Dilan too far.
+3. Keep the full first-choice explanation visible on the phone.
+
+## 9. Compared with my last visit
+
+My earlier Murmur asks, compared only with what I reached:
+
+**Original visit**
+
+1. **Let me insist, and explain how on the first screen — met in this visit.** The first choice explained holding, and held inputs on both devices led to visible actions.
+2. **Make Tuesday’s opening differ from Monday while retaining the coffee memory — partly met.** Tuesday recalled the third coffee and Dilan’s tiredness, but the alarm, oversleep and Murat’s traffic question returned.
+3. **Give a reason for willingness or insistence on the choice card, and state the cost before I try — partly met.** The first screen said insisting can cost trust and Dilan can still say no. The reached choice labels stated her willingness, but did not explain the reason for each stance or how much trust remained.
+
+**Held-input diagnostic return**
+
+1. **Show remaining trust or warn me before she has had enough — not met in what I saw.** I saw the general trust warning and her later objection, but no remaining amount or warning specific to how close I was.
+2. **Give each refusal its own words — not seen.** I did not have a held insist refused on this visit. Her refusals of plain suggestions used specific words, but that does not answer the earlier repeated held-refusal concern.
+3. **Make Tuesday differ more from Monday and the laptop run differ from the phone run — partly met.** Tuesday remembered the coffee but repeated the traffic question. The two fresh sessions opened with the same alarm and Aylin message; my different choice at the alarm produced a different immediate outcome.
+
+**New blocking ask:** None. The repetition that stopped me is an earlier ask, not a new one.
+
+I owned no Git resource, server, browser or process and created no helpers. I saved only the four assigned screenshots listed above. There is no repository I touched for which to provide `git worktree list`; the coordinator stops both drivers.
+```
+<!-- selected-continuity-key: light-1030:smoke-retest1:aisha:free -->
+## 2026-10-31 smoke-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/smoke-retest1/aisha/report.md.txt), SHA256 `309f2e50d616db10bbdf18412e0a9c42700bad0fd9845f8ffba3b68c5ed140c2`. Method qualification: [aisha](../reviews/light-2026-10-30/smoke-retest1/aisha/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception. This cohort omitted mandatory Rosa coverage; see [protocol audit](../reviews/light-2026-10-30/rosa-light-protocol-audit.md). No Rosa visit or opinion is inferred.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.
+
+**Ranked asks**
+
+1. Keep the clear walking destination, estimated time and smoke slowdown messages. They gave me the confidence I lacked last time.
+2. When someone dies, acknowledge more of what I tried. I did not encounter a death this visit, so this remains my earlier ask rather than a new finding.
+
+I reached no new blocking ask.
+
+I am Aisha Rahman, a 45-year-old community pharmacist from Birmingham. This was my first fixed-build return to *Smoke on the Stairs*. I played the assigned URL with the agent query retained, in two fresh, independent games on the same evening. The desktop session used a 1280×800 keyboard-and-mouse context and ended at **132.921 seconds**. The 360×690 touch-phone session ended at **122.691 seconds**. Both ended because the game said everyone was out.
+
+I read the supplied history through line **1368**. The last line was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. This was a selected history, not my complete archive. The two fresh games were unmatched, so the comparison describes what I saw, not proof that every difference came from the build.
+
+On desktop, the familiar title and Sevim’s books brought my previous visit back. At **8.021 seconds**, selecting her produced “Walking to landing 1 · about 5 s at this pace.” That was immediately reassuring. I helped her tie the books, showed her the stair and walked her out. Hacer’s “I could not have found the stair alone” still felt like a person recognising the help. Derya was in danger by the time I reached her, which gave the last walk some tension, but she got out.
+
+On the phone, the introduction was readable at **2.288 seconds**. Burak was home in this game. He checked the stair, offered to hold Sevim’s books while she tied them, and got out himself. I liked seeing him act for another neighbour without waiting for me. I then walked Hacer, Derya and Sevim out. The familiar speech sequence repeated, but Burak’s action made this night feel different.
+
+These are my logged diary lines, in order, with driver elapsed seconds:
+
+**Desktop**
+
+- **5.243, note:** “I remember Sevim and her books. I want to help her first again, and see whether walking is clearer.”
+- **9.368, note:** “Now it says walking to landing 1 and gives a time. I know the tap took; that is reassuring.”
+- **37.393, note:** “The street walk now says thick smoke slows me and gives an estimate. Sevim has her books; I am relieved to know we are moving.”
+- **59.552, first_minute:** “Sevim is outside with her books. The walking destination and smoke slowdown are now stated, so I feel less lost. I am going to Hacer, who cannot see the stair.” This was premature: it was before 60 seconds.
+- **62.161, first_minute:** “Sevim is outside with her books. Walking destination and smoke slowdown are stated, so I feel less lost. I am going to Hacer, who cannot see the stair.”
+- **126.655, want_quit, FINISHED:** “Everyone is out, including Derya. I feel relieved and would leave this night here.”
+- **132.921, stop, FINISHED:** “I am stopping with everyone out. Sevim kept her books and Hacer said she could not have found the stair alone. The walking status made this less confusing. I selected I am stopping and closed Feedback without sending.”
+
+**Phone**
+
+- **4.776, note:** “The phone introduction fits and is readable. Burak is home this time; I want to follow him.”
+- **18.912, note:** “Burak checked the stair and offers to hold the books without my telling him. I like that he acts for Sevim.”
+- **64.307, first_minute:** “Burak helped Sevim tie her books and got out himself; Hacer is outside with me. The phone tells me where I am walking, and I am now going to Derya. I feel more confident than last time.”
+- **116.672, want_quit, FINISHED:** “Everyone is out again. Burak helping Sevim made this night feel different, and I would stop here for the evening.”
+- **122.691, stop, FINISHED:** “I am stopping on the phone with everyone outside. Burak helped with the books and left on his own; Hacer and Derya got out with me. I selected I am stopping and closed Feedback without sending.”
+
+Neither session reached 180 seconds, so no pulse or engagement score was logged. The later pulse checkpoints were untested. There was one failed phone note command caused by my shell quoting; it did not reach the driver, and the 18.912-second line above is the successful replacement.
+
+The movement instructions were clearer in the play I reached. Both devices named my destination and estimated the remaining walk; thick smoke was explicitly described as slowing me. The estimate changed as the smoke changed, and I could see my reported location progress. I did not experience the old uncertainty about whether a walk tap had registered. One phone selection failed because Sevim’s full status changed between the displayed control list and my tap; I selected her new full name and the approach began. I did not treat that as a game failure.
+
+Compared with my three earlier Smoke asks:
+
+1. **Show when a walk tap registered and whether I am moving — met in the walks I reached.** The destination, location and estimated time appeared on both devices. I did not view a desktop gameplay screenshot, so my desktop assessment rests on the visible text returned during play.
+2. **Tell me when stalled in smoke, or let me retry or reselect without losing time — partly met.** I saw “Thick smoke slows you” and changing estimates, and the phone walk continued through smoke. I did not encounter the same apparent stall as before, so I cannot establish what happens in that situation or whether a retry costs time.
+3. **Say more when someone dies and acknowledge what I tried — not seen.** Nobody died in either game, so I cannot assess the death narration.
+
+I viewed [desktop/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/desktop/a-001.png): a cream introduction modal over the dark stairwell, with the instructions and recording notice readable. I viewed [phone/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/phone/b-001.png), where the introduction fit the narrow screen, and [phone/b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/phone/b-002.png), showing the building, neighbour controls, Street button and walking status. The phone game screen was readable in that view. I took no other manual screenshots.
+
+At each ending I opened **Tell us about this night**, selected **“I'm stopping”**, saw it marked pressed, and closed Feedback with **Not now**. I typed no note and did not submit. Recording, consent and owner settings remained at their defaults.
+
+I created no worktree, server, browser or helper. I touched no repository, so I have no `git worktree list` to report. The coordinator stops the two drivers.
+```

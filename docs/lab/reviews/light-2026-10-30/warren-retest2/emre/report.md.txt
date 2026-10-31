@@ -1,0 +1,81 @@
+I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.
+
+**Ranked asks**
+
+1. Give me a useful shelter decision while the first marked room waits.
+2. Show how Yusuf’s stopping line relates to the hill I am planning.
+3. Tell me what, if anything, I can usefully do about a marked wall that is waiting.
+
+## Sessions and first impressions
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. These were two fresh, independent games at the supplied Warren URL, with no imported save or matched seed. They were the same evening on my other device. I used the default recording and consent settings and changed no owner settings.
+
+I read all **1,473 lines** of the supplied own history. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. The selected earlier FREE visits are separate games; no CONT body was supplied.
+
+- **Desktop, 1280×800, keyboard and mouse:** stopped at **230.533 seconds**, Dawn, 22 Aug, year 1. The title at 0.541 seconds gave me the familiar practical goal: dig shelter against riders. I marked one wall and switched from Slow to Fast. The first room was still undug when I stopped.
+- **Phone, 360×690, touch:** stopped at **75.823 seconds**, Dawn, 20 Aug, year 1. The title and goal fit the screen. I marked one wall and switched to Fast. This was the second opening I had played that evening.
+
+Neither game ended. I stopped before storage, beds, a door, an alarm or riders. Those outcomes and the later checkpoints remain untested. The phone stopped before a 180-second pulse; no pulse was due there.
+
+## Diary
+
+These are my logged reaction words in order. Times are driver elapsed seconds.
+
+**Desktop**
+
+- **6.650, note:** “The shelter goal is familiar. I want to see whether the work and the door make more sense in a fresh village.”
+- **19.217, note:** “The mark now tells me who can dig, that the wall is available, and that meals, harvest and rest take priority. That is a useful explanation for the waiting I remember.”
+- **First-minute attempt, time not captured:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. I want to see the work and plan storage and a protected room.” This request was issued before the next observed time of 55.522 seconds, so I cannot count it as a valid first-minute checkpoint.
+- **61.864, first_minute:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. Six people need sleeping places, and I want to plan storage and a protected room.”
+- **106.834, note:** “The journal now groups four routine lines, which makes the repeated reports less distracting. I asked Yusuf about the stopping line again; the invitation is pending and the journal says so.”
+- **141.472, note:** “Yusuf answered in the main journal this time, so I did not have to reopen him. The admission is clear, but I still do not know where the stopping mark is on my hill or what to do with it.”
+- **208.159, pulse, engagement 3/5:** “I like seeing Yusuf answer in the journal and the routine lines grouped. The first square still seems to be waiting, so I am watching rather than building the shelter I came for.”
+- **220.938, want_quit, BORED, engagement 2/5:** “The first marked square is still stone after several days, and I am watching the same early preparation again. The explanation helps, but I do not want to wait longer tonight.”
+- **230.533, stop, BORED, engagement 2/5:** “I am stopping on desktop before the first room is dug. The wall explanation and visible invitation answer help, but I am tired of waiting through the same preparation. I would return another evening if there were a useful shelter decision while work waits; I would not leave it running.”
+
+**Phone**
+
+- **5.796, note:** “The phone title and shelter goal fit clearly. This is another fresh village, after the slow desktop start.”
+- **20.686, note:** “I can distinguish and mark the small wall on the phone. The explanation is the same as desktop; I will see whether this village starts work.”
+- **61.202, first_minute:** “I marked one square on the small phone hill. Meryem needs food and water and is eating, so I understand why she is not digging at this moment. I have already watched the same start on desktop tonight.”
+- **64.072, want_quit, BORED, engagement 2/5:** “I do not want to wait through the same first room on the phone after doing it on desktop. The needs make sense, but I have no new shelter decision yet.”
+- **75.823, stop, BORED, engagement 2/5:** “I am stopping on the phone after marking the first square. The layout is usable and Meryem eating is understandable, but I have already waited through this opening on desktop. I would return another evening on desktop for a useful decision, not leave it running.”
+
+Both quit wishes persisted to stopping. The desktop pulse returned without a visible snapshot, but its log was acknowledged; the next screenshot showed the marked square still in stone.
+
+## What playing felt like
+
+The clearest improvement was the response to chalk. It counted one marked square, said the wall had light, air and room for spoil, named Meryem and Tamar as the diggers, and explained that meals, harvest and rest can take priority. On the phone I then saw Meryem was eating and needed food and water. That explained her immediate activity; it did not establish the full cause of the desktop wait.
+
+Yusuf’s admission still interested me as a technician: he said the ground had been unstable and he kept people working past the agreed time. This time his answer appeared in the main journal without my reopening him. I still could not connect the stopping mark to a place or decision on my hill. I opened Feedback for that confusion, selected **“I’m confused”** and saw it pressed, then used Back.
+
+The journal said four routine lines were grouped under Daily routine. That reduced the repetition I remembered, although some routine text and Yusuf’s answer were still visible in the main view. I appreciated the clearer information, but the first wall remained stone through the desktop stop. I wanted to plan a shelter, and the wait became the reason I left.
+
+## Device and feedback observations
+
+I actually viewed these screenshots:
+
+- **Desktop [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/desktop/a-001.png):** the title, shelter goal, village illustration and Begin button.
+- **Desktop [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/desktop/a-002.png):** the cellar and surrounding stone, with chalk selected and the prompt visible. I used it to choose the adjacent wall.
+- **Desktop [a-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/desktop/a-003.png):** the red marked square remained beside the cellar; Yusuf’s answer was visible in the journal area.
+- **Phone [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/phone/b-001.png):** the title and Begin button fit the narrow screen.
+- **Phone [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/phone/b-002.png):** the hill was small but distinguishable; the prompt, zoom controls and bottom tools were visible. My subsequent tap marked one square.
+
+At each stop I opened Feedback, selected **“I’m stopping,”** saw it pressed, and used **Back to the game**, which returned to the menu. I typed no note and submitted nothing. My first desktop command for the confused label had a shell quoting error; the corrected command worked. One other malformed shell command made no request. Neither was a game-control failure.
+
+## Earlier Warren asks
+
+These comparisons are limited to what I reached in these fresh sessions.
+
+| Earlier ask | Result from this play |
+|---|---|
+| **R1: Let me ask someone to shut the door or go below during an alarm, or explain their choice at the time.** | **Not seen.** I reached no door or alarm. |
+| **R1: Stop repeating journal lines and give me something to plan during quiet stretches.** | **Partly met.** Four routine lines were grouped, but I found no new shelter decision while the first wall waited. |
+| **R1: Make readings match the map, including unreachable marks, depth and the water warning.** | **Not seen.** I did not reach those readings. The current wall response did clearly say it was available. |
+| **R2: Tell me why a marked square is waiting and whether I can do something useful.** | **Partly met.** The game named the diggers, prerequisites and competing needs. I did not find a useful action to advance this wall, or establish the specific cause of the entire wait. |
+| **R2: Make an invitation answer noticeable without reopening the person.** | **Met in this instance.** Yusuf’s answer appeared in the main journal. |
+| **R2: Explain how Yusuf’s stopping line applies to my planned work.** | **Not met from what I saw.** His admission appeared, but I could not locate or use the line on the hill. |
+
+The blocking ask I reached is the first ranked ask: I need a useful decision during the initial wait to want to continue that session. I would try again another evening on desktop under that condition; I would not leave it running.
+
+I created no worktree, branch, server, browser or worker. The coordinator owns the drivers. No repository was touched, so there is no `git worktree list` result to report.

@@ -1,0 +1,112 @@
+[
+  {
+    "tester": "maya",
+    "device": "phone",
+    "source": "maya/phone/wall-clock.jsonl",
+    "line": 39,
+    "elapsed_s": 120.639,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone. The clearer work explanation and release warning help, and Meryem started my mark, but the view moved away from the cellar and I want to try the larger screen. I selected the feedback labels locally and sent nothing.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "maya",
+    "device": "desktop",
+    "source": "maya/desktop/wall-clock.jsonl",
+    "line": 43,
+    "elapsed_s": 224.963,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on desktop. The preview counts five steps and the journal groups routine lines, and both diggers started the first mark. I still do not know what to do about the connecting passage, and I do not want to wait longer tonight. I selected feedback locally and sent nothing.",
+    "reason": "CONFUSED"
+  },
+  {
+    "tester": "emre",
+    "device": "phone",
+    "source": "emre/phone/wall-clock.jsonl",
+    "line": 21,
+    "elapsed_s": 75.823,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone after marking the first square. The layout is usable and Meryem eating is understandable, but I have already waited through this opening on desktop. I would return another evening on desktop for a useful decision, not leave it running.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "emre",
+    "device": "desktop",
+    "source": "emre/desktop/wall-clock.jsonl",
+    "line": 41,
+    "elapsed_s": 230.533,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on desktop before the first room is dug. The wall explanation and visible invitation answer help, but I am tired of waiting through the same preparation. I would return another evening if there were a useful shelter decision while work waits; I would not leave it running.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "nia",
+    "device": "phone",
+    "source": "nia/phone/wall-clock.jsonl",
+    "line": 36,
+    "elapsed_s": 134.86,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on the phone. The quiet test is offered and the door was built, but I could not select Meryem after a retry. I would close it. Feedback marked I am stopping; nothing typed or submitted.",
+    "reason": "TOOL"
+  },
+  {
+    "tester": "nia",
+    "device": "desktop",
+    "source": "nia/desktop/wall-clock.jsonl",
+    "line": 25,
+    "elapsed_s": 124.268,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on desktop. The main panel showed people doing more, but the door was still unfinished and I did not want to wait again. I would close it. Feedback marked I am stopping; nothing typed or submitted.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "rosa",
+    "device": "phone",
+    "source": "rosa/phone/wall-clock.jsonl",
+    "line": 28,
+    "elapsed_s": 54.73,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I stop on the phone for tonight. The cellar and open ground are explained and my marks get answers. I am still unsure which square remains after removal, but I enjoyed the people having their own duties. I would close it and try the big screen.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "rosa",
+    "device": "desktop",
+    "source": "rosa/desktop/wall-clock.jsonl",
+    "line": 16,
+    "elapsed_s": 31.523,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I stop on the big screen. The picture is comfortable and the people have ordinary work, but I cannot tell where my chalk plan is after two unchanged answers. I would close it for tonight.",
+    "reason": "CONFUSED"
+  },
+  {
+    "tester": "sanja",
+    "device": "phone",
+    "source": "sanja/phone/wall-clock.jsonl",
+    "line": 43,
+    "elapsed_s": 90.964,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone. Meryem is finally on her way, but I would rather try the larger screen than keep waiting here.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "sanja",
+    "device": "desktop",
+    "source": "sanja/desktop/wall-clock.jsonl",
+    "line": 44,
+    "elapsed_s": 111.521,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping after seeing the door test. I would come back another evening, but I would not leave the game running.",
+    "reason": "BORED"
+  }
+]

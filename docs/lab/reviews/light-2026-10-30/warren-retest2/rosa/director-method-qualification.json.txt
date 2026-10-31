@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-31T14:40:30.208003+00:00",
+  "rootReadFullReport": true,
+  "exposure": "Two fresh independent games, same evening on other device, no matched seed or old import.",
+  "feedback": "Both quick labels observed locally as fitting, Back returned menu; no typed note/Submit/recording/consent change found. Production receipt unverified.",
+  "cycleRule": "SECOND fixed-build retest. Remaining asks dated Deferred; no third ordinary panel or automatic new gameplay fix cycle.",
+  "descendantScope": "Recorded PIDs absent, collected point-in-time identities gone and ten ports closed; no whole-lifetime journal.",
+  "historyEvidence": "Producer claims3358lines read. All3358 matched completed-command stdout. Initial retained parser3126; strict literal Promise.allSettled successor3332/3358. Remaining169\u2013175,178\u2013179,183\u2013195,197\u2013200 unverified because retained response truncated, not proof unread. No claim of full model-facing delivery/attention/comprehension. Earlier independent CONT not supplied.",
+  "retainedToolsReceipt": "warren-rosa-retained-allsettled-1439.json",
+  "retainedProvenance": "warren-rosa-allsettled-provenance-1439.json",
+  "imageEvidence": "Four high-detail image blocks: phone a001/a002, desktop b001/b002; no post-mark image viewed, so final marks appearance unverified.",
+  "timedLogs": "Stops phone54.730 TASTE, desktop31.523 CONFUSED; neither reached60firstminute or180pulse. Automatic phone shot60.038 was post-stop, not continued play. No desktop automatic shot.",
+  "stops": {
+    "phone": 54.73,
+    "desktop": 31.523
+  },
+  "driverQualification": "35 permitted reads/42curls, no shell exceptions/current driver errors/forbidden parsedactions. Native acknowledgment alone does not establish mark placement/outcome.",
+  "priorAskComparison": "Changed/unchanged response PARTLY; openground definition PARTLY, openroute not reached; cellar description PARTLY, no pointing evidence.",
+  "producerNewBlockingAsk": "Locate remaining chalk plan after unchanged answers. Cause unknown; no final-mark screenshot seen. Openroute not reached and spoil unfamiliar but continued; do not label both reached blockers.",
+  "returnExact": "I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.",
+  "commandReceipt": "warren-rosa-command-audit-1436.json",
+  "cleanupRecordedPids": [
+    {
+      "player": "rosa",
+      "pid": 65695,
+      "absent": true
+    },
+    {
+      "player": "rosa",
+      "pid": 65672,
+      "absent": true
+    },
+    {
+      "player": "rosa",
+      "pid": 65674,
+      "absent": true
+    }
+  ]
+}

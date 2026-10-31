@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-31T15:34:13.325632+00:00",
+  "originalSeal": "word1-root-finalization.json",
+  "originalSealSha256": "441a4d92ce952f98ed45bc66b5cb3fc53cc97e733e86c2225e711e310815deae",
+  "packetManifestSha256": "3931b1afb2ba0996b6578d775ffff4d9c35fb3bfd52c0c2062afbbf58f5d8fa9",
+  "sourcePacketUnchanged": true,
+  "coverageCorrection": "Word LIGHT initial and first retest omitted mandatory Rosa coverage. All five actual reports explicitly state no new blocking ask; this does not establish full persona-protocol compliance. Do not invent Rosa play or an extra player ask.",
+  "audit": "rosa-light-protocol-audit.md",
+  "auditSha256": "31947b2992485789ef01beafaa30d6e034225e8e7d8ff69fdfeae5f530f2809f",
+  "remaining": "Dated Deferred/source integration must preserve the omission as an external director qualification. Owner roster question is pending for unstarted Days. No extra panel or silent substitution authorized."
+}

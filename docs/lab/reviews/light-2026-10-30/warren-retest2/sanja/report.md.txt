@@ -1,0 +1,51 @@
+I would come back another evening, but I would not leave the game running.
+
+My ranked asks are:
+
+1. Make it clearer which sleeping places already exist, which are planned, and which are safe from riders.
+2. Show the progress of marked work more plainly while people attend to other duties.
+3. Explain what the unavailable invitation and stopping line mean for a first-time player’s decision.
+
+I played as Sanja on a **360×690 touch phone**, then a **1280×800 desktop** on the same evening. Each was a fresh game. This was my first visit to the Human Framework; there is no earlier visit to compare.
+
+I read all five supplied history lines. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**.
+
+The opening illustration made the shelter easy to picture. The village list made the stakes personal: six named people needed protection, and riders could reach even the entrance passage. I liked that workers had meals and rest to consider. I was less sure how to judge progress while waiting for them.
+
+On the phone, tapping stone marked squares, though the instruction asked me to drag and the supplied driver offered no drag action. The first square needed a connection; the next tap made work available. I marked sleeping space, but the header’s three places and a later description of six *potential* places left me uncertain about what existed. The long passage about Yusuf’s unavailable invitation and a stopping line felt like missing background. I stopped at **90.965 seconds**, with Meryem on her way to dig. The game had not ended.
+
+On desktop, the larger view let me read events alongside the hill. Clicking a chalk mark again removed it, which surprised me; I restored it. I marked a stone door, saw that Meryem was assigned to carve it, and later found it finished. I asked Yusuf to test it. The journal reported him shutting and reopening it, a satisfying, clear consequence. I stopped at **111.522 seconds**, with the digging plan still marked. The game had not ended.
+
+Both stops came before the three-minute pulse checkpoint, so that and later checkpoints were untested. No checkpoint was forced. The desktop bed-control attempt produced a driver timeout while the hill was saving; one retry selected beds successfully. The initial phone Feedback selection also encountered a shell quoting error; the corrected call selected the label.
+
+The screenshots I actually viewed were:
+
+- [Phone opening](phone/a-001.png) and [phone game screen](phone/a-002.png): the narrow screen stacked the hill, instruction and tools; the opening drawing and Begin button were clear.
+- [Desktop opening](desktop/a-001.png) and [desktop game screen](desktop/a-002.png): the wider hill and adjacent event text made the village easier to follow.
+
+For each confusion episode I opened Feedback, selected **“I’m confused”**, and used **Back to the game**. When stopping, I selected **“I’m stopping”** and went back. The selected buttons showed as pressed; Back returned to the paused game menu. I entered no note and submitted nothing. Recording and consent remained at their defaults, and I did not change owner settings.
+
+The diary lines below are unedited, in session order. Times are driver `elapsed_s`; engagement is the value I logged.
+
+**Phone**
+
+- **5.643 s — note, engagement 4:** “The drawing makes the shelter idea easy to picture. I want to know who I am protecting and how.”
+- **19.152 s — note, engagement 4:** “I tapped two places because I could not drag with the offered action. The second connected the plan, and I like knowing the workers have other duties, but I do not know when they will start.”
+- **34.100 s — note, engagement 5:** “The village list makes the danger personal: six people, no sleeping places, and even the entrance is reachable. I want to make a safe room for them.”
+- **54.364 s — note, engagement 3:** “The preview says six potential places but the header says three, and the long note about an unavailable invitation and stopping line feels like missing background. I understand the plan is not dug, but not what I should do about that note.”
+- **63.752 s — first_minute, engagement 3:** “I care about the six people, but I am unsure which sleeping places exist and whether waiting will accomplish the plan.”
+- **81.801 s — want_quit, BORED, engagement 2:** “I would put the phone down now; I have made a plan but I am waiting without a clear sense of progress.”
+- **90.965 s — stop, BORED, engagement 2:** “I am stopping on the phone. Meryem is finally on her way, but I would rather try the larger screen than keep waiting here.”
+
+**Desktop**
+
+- **5.558 s — note, engagement 4:** “The bigger drawing gives me a better view of the village. I want to see whether I can make the shelter safer this time.”
+- **23.295 s — note, engagement 4:** “The larger screen lets me read the village events alongside the hill. I accidentally removed a chalk mark by clicking again, then restored it; that surprised me while chalk was selected.”
+- **40.910 s — note, engagement 4:** “A door can make the entrance safer, and the message confirms it is only marked. I want to see someone actually carve it.”
+- **66.972 s — first_minute, engagement 4:** “The door task gave me a clear response, and I can follow people more easily here. I still need sleeping space and am waiting to see the work completed.”
+- **92.450 s — note, engagement 4:** “The door was finished when I checked, which is satisfying. I asked Yusuf to test it; pending is clear, though I missed the moment it was finished.”
+- **99.428 s — note, engagement 5:** “Yusuf shut and reopened the door, and the journal tells me the result. That is the consequence I wanted to see.”
+- **101.717 s — want_quit, BORED, engagement 3:** “I have seen the door work and would leave for tonight. I am interested in the people, but I do not want to wait through more routine right now.”
+- **111.522 s — stop, BORED, engagement 3:** “I am stopping after seeing the door test. I would come back another evening, but I would not leave the game running.”
+
+I created no worktree and started no server, browser, or process. The assigned shell restrictions did not permit running `git worktree list`; the coordinator owns the drivers.

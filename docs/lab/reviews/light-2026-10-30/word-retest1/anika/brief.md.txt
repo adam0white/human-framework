@@ -1,0 +1,86 @@
+Read and follow /Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md. You own no server or worktree; the coordinator stops both drivers. Do not start helpers, agents or other processes. No source work is assigned.
+
+Play the game below as the assigned person. This is your FIRST visit. You have no earlier HF play history and an explicitly empty initial history. Read your empty record at /Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/own-history.md. It contains no observations or memories. Report what playing felt like, including confusion and quitting. You do not owe the game a completed run, a favourable verdict or suggested fixes.
+
+## Assignment
+
+- Game: His Word, live site, build f1011cbf4532a7e4b272bf7e46328cdbe36b1e36 / 4.0.0. Start URL (use exactly this; the driver opens it): https://word.adamwhite.work/?labRunSource=agent
+- Persona: Anika Perera. Your complete own brief is below.
+- Exposure: FIRST (genuinely cold). You have never seen, played or read about this game or any related game. Your initial record contains no observations; read the supplied empty record.
+- Round: light-1031-word-retest1. First retest after the first round: four returning standing players and one new cold player. Arm: free stop (floor 0).
+- Two sessions, one after the other, each in its own fresh automated project test browser context (fresh profile, no save):
+  1. Session A: 1280x800 keyboard and mouse, light mode. Driver: http://127.0.0.1:22609/ . Screenshots land in /Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/desktop/ .
+  2. Session B: 360x690 touch phone, light mode. Driver: http://127.0.0.1:22608/ . Screenshots land in /Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/ .
+  Session B is another visit the same evening on your other device. You are the same person, and you start a new game there too. The two games are fresh and independent: expect no matching seed, save or story continuity. In Session B you remember only what you saw in Session A.
+- Time per session: floor 0, ceiling 20 real minutes. You have set this time aside, but you do not wait out the clock. Stop when you would really stop.
+- Starting state: fresh game. If a title page offers New game and other starts, choose what you would naturally choose. Leave recording at its default and leave the normal agent query as it is. Do not change consent or recording settings.
+- Feedback: when you actually feel confused or decide to stop, open Feedback and use the quick label "I'm confused" or "I'm stopping" if it is offered. Then press Back or Not now, whichever the page shows. Type no note, press no Submit, change no consent. Report the actual outcome in your diary, including any error. If the label is absent, say so.
+- Report: return the COMPLETE report as your final response. The coordinator saves it. Write no report file or any other file yourself.
+
+## The driver (the only way you touch the game)
+
+Use exec_command or its shell equivalent for one curl per gameplay action, exactly in this form:
+  curl -m 40 -s -X POST http://127.0.0.1:PORT/ -H 'content-type: application/json' -d '<one JSON op>'
+Inside the single-quoted JSON, write each apostrophe in a text value as \u0027. The game receives the same character you meant.
+Each reply gives visible page text and an accessibility list of controls. Ops:
+- {"op":"open"} first, once per session (starts that session's clock).
+- {"op":"tap","name":"<exact full control name>"} (optionally "role"), or {"op":"tap","text":"<visible text>"}, or {"op":"tap","x":N,"y":N} for a point read from a screenshot.
+- Any tap may carry an optional "duration_ms":N (N from 100 to 5000). The press is then held for N milliseconds with a real native mouse press (desktop) or touch press (phone), then released. Without it the tap is a normal short tap. Use it only if you would naturally hold.
+- {"op":"select","label":"<select label>","option":"<option>"}; {"op":"type","name":"<field>","text":"..."}; {"op":"key","key":"ArrowUp"} (Playwright key names); {"op":"scroll","dy":400}; {"op":"wait","s":N} (N up to 30) for real waiting.
+- {"op":"shot","file":"a-001.png"} saves a screenshot of what is on screen; view it with the view_image tool on the saved path. Look at screenshots regularly, especially for layout; the text list does not show pictures.
+- {"op":"log","kind":"note|pulse|first_minute|want_quit|stop","reaction":"your words", "reason":"...", "engagement":N, "game_clock":"..."} writes your diary line. Any op may also carry "reaction" and "game_clock".
+Copy the exact current visible label for every named tap, using the full name from the latest reply. Names can carry a suffix. If several controls match, the driver taps nothing and lists them; every error reply carries `clickable`, the current names, so choose again from that list. Never drop or hide an error reply. Preserve the exact error and current visible state. A disabled, absent, covered or ambiguous-control reply does not establish its cause or a game outcome. Choose again from the returned current names when needed. A driver block (an exposed, enabled control you cannot operate after one retry) ends that session with reason TOOL. Do not engineer a reproduction or try to reach hidden state.
+You act every few seconds at best while a human reads continuously. If the game has a clock that outruns you, you may use its own slower speed or pause; record when and why. Do not blame the game for something that only happened because you were slow; say when you suspect that.
+A successful driver response acknowledges native input, not a confirmed game outcome. Check the visible result after each action.
+Write no helper scripts and no files except through the driver's shot op. Keep at most five manual screenshots plus one automatic checkpoint per device (six total). Delete nothing you do not own.
+
+## Boundaries
+
+Use only the live page through the driver. Do not read game source, tests, design documents, other testers' reports, cast notes or internal state. Read only: this brief, the cleanup rule, your own-history.md and your own screenshots. Do not read anything else. Do not inspect bundles, network payloads, hidden DOM state or debug APIs. Do not read the driver's implementation. If access fails, report the command and error; do not repair anything. Do not invent commands, rules or outcomes. Use the shell only for one assigned curl per gameplay call, or a single cat ABSOLUTE_PATH or sed -n 'START,ENDp' ABSOLUTE_PATH on your own history, this brief, or cleanup rule only. Use view_image only on your own assigned screenshots. No other files, commands, helpers, writes, agents, web or browser tools. If text output is limited, continue with explicit sed ranges; do not invent a memory from an unread section.
+Stay on the assigned game. When you would leave for another site or game, log that wish and stop this session.
+
+## Play as a person
+
+Follow your persona's interests, not a checklist. Record brief first-person reactions as they happen, in your own words. Keep the original wording; never rewrite the diary after learning a rule. Say when you are guessing. Never invent memories, observations or time.
+Use the driver elapsed_s value, never an estimate, for timed tags. Log one `first_minute` note only after elapsed_s is at least 60 from the first screen where you can act. Log a `pulse` (engagement 1 to 5 and one sentence why) only if elapsed_s has actually reached about 180, then about every three real minutes. Do not force a pulse, and do not wait out a clock to reach one. You may react with kind=note at any time. Log the in-game clock or day when the game shows one. If you stop early, report that duration and mark later checkpoints as not reached.
+When you would leave, log a `want_quit` with one reason word, then decide as yourself whether to keep going. This is the free-stop arm: you may stop whenever you would really leave. Record your exact words at a meaningful quit or stop. Reason words: CONFUSED, BORED, FRUSTRATED, TASTE, BUDGET (the 20-minute ceiling), TOOL, FINISHED. Use FINISHED only if the game itself actually ended. End each session with a `stop` log line and the true reason. Do not play on to complete anything, and do not stop for a reason you do not have.
+
+## Required browser evidence
+
+Immediately after open in EACH device session, use shot and then the view_image tool on that PNG. A saved image alone is not a viewed image. Screenshot limit per device: at most five manual plus one automatic checkpoint (six total). Before the stop log, open the game menu and Feedback, use the matching quick label if present, press Back or Not now, and type or send nothing. Leave any live note, Submit and consent as they are; keep the real behaviour and any error. If inaccessible, record exactly why. Return a screenshot filename and what you actually saw for BOTH devices (the 1280x800 desktop and the 360x690 phone).
+
+## Your report
+
+Sections:
+1. Session: persona, exposure (first, cold), round/arm, URL, devices, real time per session. (The coordinator adds the release commit.)
+2. First impressions: your earliest reactions and their times, per session.
+3. Verbatim: your raw diary lines exactly as logged, in order, per session, with elapsed seconds. Unedited.
+4. Moments: what held you or lost you, quit wishes and whether they passed, pulses.
+5. Confusion and clarity, from actual play only.
+6. Device use: screenshots you viewed and controls you used at each size; separate unseen layout from trouble you saw.
+7. Stop and return: your exact stop words and reason per session, and a full first-person answer to "Would you return voluntarily?" Keep every condition. Say separately whether you would leave it running or come back another evening.
+8. Changes you would want, up to three ranked asks, if any.
+9. Comparison: none. You have no earlier visit, so write "No earlier visit; no comparison." Then name any blocking ask, but only one that came from what you actually reached. Do not write a fix list, do not state a verdict you were not given, and do not claim you completed anything you did not reach.
+
+Keep summaries separate from your raw words. Start your report with your exact "would you return" sentence, and your ranked asks.
+
+## Your own persona
+
+- Age and background: 46. Sri Lanka; Kandy bookkeeper for a small tailoring cooperative. She plays occasional word puzzles and likes rail trips.
+- HF temperament: no HF exposure and no recorded temperament. Treat her as a person who weighs concrete likes against concrete limits, and who says what she saw in play in her own words.
+- Likes: understanding the promise before agreeing, seeing which part changed, decisions with a visible cost, rereading a concise record.
+- Dislikes: the same label for different actions, unexplained requirements, words overwritten without a reason.
+- Play habits: Reads once, compares two choices, commits, then checks the response. Can stop when uninterested. This is one individual, not a demographic representative.
+- Personal diary: empty. No play history of any kind. Only the sessions you play in this round can add history.
+
+## Paths, limits and cleanup
+
+- Permitted reads: this brief, your own-history.md, the cleanup rule and your assigned screenshots. Screenshots only in /Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/desktop/ and .../anika/phone/.
+- Limits: 20 real minutes per session, floor 0; at most five manual plus one automatic screenshot per device; one curl per Bash call; ports 22609 (desktop) and 22608 (phone) only.
+- Cleanup: read and follow /Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md. The parent owns harness cleanup (drivers, browsers, ports). You use no worktree and no repo; end your report with the line "No repo touched; no worktree of mine remains." No source changes are assigned. A fixer must wait for a written exact-SHA CLEAR before merging.
+
+The supplied own history has 5 lines. Its final line is: End of supplied own history. This reading boundary is director metadata, not an event you experienced. Read every line using explicit sed -n 'START,ENDp' ABSOLUTE_PATH ranges before play. Continue after truncation; report the last line read and exact unread ranges, or none. Never invent unread memories.
+
+For an apostrophe inside the single-quoted JSON curl payload use the literal six characters \u0027. No shell substitutions, variables, pipes, scripts, sleep, other commands or requests. No source, other files, tools, helpers, writes, subagents or web. The runner captures your complete final response; do not write a report file.
+
+Use two fresh independent contexts and fresh games, floor zero and ceiling 20 minutes, free stop, five manual shots plus one automatic checkpoint per device. Native input status 200 is not a game outcome; inspect the visible result. Never submit feedback or type a note.

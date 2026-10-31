@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-31T15:04:51.564167+00:00",
+  "rootReadFullReport": true,
+  "commandReceipt": "word-diego-command-audit-1504.json",
+  "retainedToolsReceipt": "word-diego-retained-audit-1504.json",
+  "historyEvidence": "All 1,586 supplied lines matched stdout and separately completion-hash-bound retained responses. Repeated lines may align ambiguously. No attention or comprehension is inferred. Earlier method limits remain.",
+  "imageEvidence": "Four high-detail image blocks: phone a001/a002 and desktop b001/b002. Phone agreement introduction and desktop cutting-table layout were viewed. No phone ending, desktop agreement/signing/ending or Feedback image was viewed. The cutting-table view does not establish all desktop screens fit.",
+  "stops": {
+    "phone": 93.653,
+    "desktop": 55.392
+  },
+  "timedLogs": "Both visible One month later/AGREED endings: phone80.836 and desktop44.481. Raw FINISHED stops93.653/55.392; report desktop55.393 remains unchanged. Phone first-minute raw72.434/report72.435 valid. Phone auto shot60.036 was before stop; desktop auto60.055 was after stop. No180-second pulse.",
+  "driverQualification": "No shell exception, driver error, forbidden parsed action or foreign read. Reactions attached to tap and shot operations are preserved along with logs. Native input acknowledgment alone does not prove a game outcome.",
+  "feedback": "Stopping quick labels prefilled the optional note textbox; Not now followed. No typing, Submit, recording or consent change was found. No production receipt inferred. Confused label offered but no confusion reported.",
+  "exposure": "Two independent fresh games, phone then desktop. Desktop strategy uses same-evening phone learning. Whether an unfamiliar delivery schedule or cost was newly added is not established by this visit.",
+  "priorAskComparison": "Earlier cost: partly met, risk and schedule clear before writing but actual deposit cost occurred later. Short agreement options: partly met, titles shorter but descriptions still long. Desktop fit: partly met for cutting table only; earlier signing screen was not viewed this time.",
+  "producerNewBlockingAsk": "Explicit NONE. Two ranked asks remain: shorter agreement choices and another consequential decision before writing. No automatic shortening, expansion or difficulty change follows.",
+  "returnExactOpening": "I might come back another evening to try a different agreement or the letter, but I would not return again tonight; I have seen the two outcomes I came for.",
+  "returnFullLater": "I might return voluntarily another evening to try a different agreement or the letter. I would not return again tonight: I got the exposed-lie outcome and then made the separation plan work. I would not leave it running; it is turn-based and nothing needs my attention while I am away.",
+  "cycleRule": "FIRST fixed-build retest. Final judgment awaits the cold report.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 99940,
+      "absent": true
+    },
+    {
+      "pid": 99917,
+      "absent": true
+    },
+    {
+      "pid": 99919,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Three recorded PIDs absent at this check; final round observed-identity and port checks remain required."
+}

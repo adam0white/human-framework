@@ -2741,3 +2741,337 @@ The three ranked asks are at the top. The vote explanation matters most to me. I
 **New blocking asks:** None from the screens I reached. I stopped because I had enjoyed a short visit and wanted to return another evening.
 
 I created no worktree, branch, server or helper process and touched no repository. The coordinator owns the two drivers. I made two manual screenshots per device, within the assigned limit; `git worktree list` is not applicable to my work.
+<!-- selected-continuity-key: light-1030:murmur-retest1:rosa:free -->
+## 2026-10-31 murmur-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/murmur-retest1/rosa/report.md.txt), SHA256 `8683007f61035261bb9a3e778ca58a95530b25cb902d4c8ec8149b9fc3de6142`. Method qualification: [rosa](../reviews/light-2026-10-30/murmur-retest1/rosa/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return voluntarily another evening, on either device, to see more of Dilan’s week, though I still want to understand what trust changes.
+
+**Ranked asks**
+
+1. Explain what trust changes and whether I can see how much remains.
+2. Explain the choice labels together before the first choice, including “She wants to do it later.”
+3. Say how far “Skip ahead” will take me as well as saying it goes to the next event.
+
+## 1. Session
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla and a busy reader of English as a second language. This was a **return visit** to Murmur, whose page is titled **Two Voices**, in round **light-1031-murmur-retest**, free-stop arm, floor 0.
+
+I played two fresh, independent games at https://murmur.adamwhite.work/?labRunSource=agent. There was no saved game or matched seed.
+
+- **A, phone:** 360×690 touch, light mode. Stop log at **70.297 seconds**.
+- **B, desktop:** 1280×800 keyboard and mouse, light mode. Stop log at **55.576 seconds**. I used mouse actions.
+
+I read the supplied history through its last line: **“End of supplied own history. This reading boundary is director metadata, not an event you experienced.”** Exact unread range: **none**. The history is selected, not my complete archive. Older records, independent continued alternatives, the excluded Warren alternative body, and the older Well raw diary were not supplied. Earlier method limits remain: the original Murmur history read reached 865 of 1,203 lines; Hearsay retest1 reached 826 of 1,419; Good Hands retest1 reached 468 of 1,682; Pass retest2 reached 399 of 1,583. My earlier Warren marks used taps rather than drags. The original Hearsay retest2 phone attempt was cut by the coordinator; its separate recovery had repeated exposure and a backend change.
+
+Recording stayed on. I changed no consent, typed no feedback note and pressed no Submit.
+
+## 2. First impressions
+
+On the phone, the title’s parcel job and Aylin’s name brought Dilan back to me. I was fairly confident I remembered her. I started the familiar week and chose to get her up; seeing her up before the second alarm made the result clear.
+
+On desktop, the same title was comfortable to read. I chose sleep instead. She slept through the second and third alarms, as I remembered from my earlier phone visit. Her apology to Murat and his ordinary response held my attention.
+
+## 3. Verbatim
+
+These are the reaction strings I actually sent to the driver, in order. Times are driver `elapsed_s`; actions without reactions are omitted.
+
+### A — phone
+
+- **2.802, screenshot:** “I remember Dilan and her ordinary troubles from the title. I am fairly confident; the parcel job and sister Aylin are familiar.”
+- **6.621, Start:** “I remember this beginning and start a fresh week.”
+- **16.064, held Get up:** “I remember sleeping late before. I want her to get up, so I hold this time.”
+- **17.457, Skip:** “It says next event now. I skip the waiting.”
+- **27.628, held Tell Aylin:** “She got up before the second alarm. I want her to call Mum, so I insist on telling Aylin.”
+- **39.566, held Talk her through it:** “I remember Ece being lost and nearly crying. I am confident from that situation. I want Dilan to talk her through it.”
+- **45.353, wait:** “She guided Ece and the parcel was delivered. That makes me glad.”
+- **48.466, held “She found it, didn’t she?”:** “I do not like Murat mocking her. I speak up for Ece.”
+- **50.084, note, Mon 12:42:** “Dilan says she does not like being pushed. I feel a little sorry; I have insisted four times. I still do not know what trust changes.”
+- **58.166, tap water:** “Now it says she resists pressure and holding works worse. I tap water gently; she is against it, so she may say no.”
+- **60.514, first_minute, engagement 4, Mon 15:21:** “I like the ordinary troubles and see what Dilan chooses. She said she felt pushed, then refused my water suggestion. I understand that result, but still do not know how much trust remains.”
+- **63.422, want_quit, TASTE, Mon 15:21:** “I enjoyed helping Ece, but I have seen this Monday again and would stop on the phone now.”
+- **70.297, stop, TASTE, engagement 4, Mon 17:53:** “I stop on the phone. I liked helping Ece and seeing Dilan answer me, but I have seen this part of Monday again. I would close it for now.”
+
+### B — desktop
+
+- **1.963, screenshot:** “Same familiar title on my larger screen. I will start another week.”
+- **17.164, tap sleep:** “This time I let her sleep. I remember she missed alarms before, but I want to see her morning without pushing.”
+- **28.990, tap read message:** “She slept through the alarms as I remembered. She is late, so I let her read the message for now.”
+- **40.582, held Say you overslept:** “I prefer honesty with Murat. I hold to suggest she tell him.”
+- **44.502, want_quit, TASTE, Monday 09:01:** “Murat accepted her apology. I like the ordinary answer, but I have seen these scenes before and would stop for tonight.”
+- **55.576, stop, TASTE, engagement 4, Monday 10:41:** “I stop on the big screen. I liked that Murat accepted the truth, but I have seen this morning before and would return another evening for more.”
+
+One attempt to call the desktop menu failed before the command ran with `SyntaxError: Unexpected identifier 'r'`. I retried, and the menu opened. It was my tool-call error, not a game response.
+
+## 4. Moments
+
+Helping Ece held me. Dilan guided her street by street, and Ece delivered the parcel. When I insisted that Dilan defend Ece, Dilan said she was doing it because I pushed her and did not like it. That made me pause: I had insisted repeatedly. Later, the page said she resisted pressure and that holding worked worse than tapping. My gentle water suggestion was refused, and she explained why she chose coffee.
+
+On desktop, Murat accepted the honest apology. I liked that small, understandable exchange.
+
+Both quit wishes were **TASTE** and did not pass. I stopped after Feedback. The phone first-minute note was logged after 60 seconds. Desktop stopped before that checkpoint. Neither session reached 180 seconds, so there were no pulses.
+
+## 5. Confusion and clarity
+
+I did not reread a sentence in either session, so my second-reread rule did not trigger. The choices and the visible results were plain. I understood that Dilan could refuse and that she felt pushed.
+
+I still do not know how much trust remains or exactly what it changes. I did not see “She wants to do it later” during these short sessions. The control called Skip “Skip to the next event,” which told me its destination in general, but not how far the game clock would move.
+
+The following counts are my own counts of concepts visible on each screen I visited. I count settings and lab topics even when I ignored them.
+
+| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |
+| --- | --- | ---: | --- | --- |
+| Title, both: start | Voice in Dilan’s head; suggestions can change choices; Monday–Saturday; Saturday look back; Dilan and parcel deliveries; Aylin and cooking; Ece and depot routes; Murat and supervision; Other ways to begin; third week; outcomes week; Start; recording and linked play; All games; Information; Game menu; Human Framework | 17 | None | Familiar and readable |
+| Opening transition, both: wait for alarm | Game day and clock; alarm about to ring | 2 | None | Clear |
+| First choice, both: answer alarm | Answer timer; other voice and pencil handwriting; tap to suggest; hold to insist; trust cost; Dilan can refuse; timeout lets her choose; willingness labels; Say nothing | 9 | None | Instructions were short; trust’s effect remained unclear |
+| Ongoing choices and results, both: guide Dilan through Monday | Recorded suggestion or insistence; words kept in mind; next event and Skip; sleep and alarms; Aylin’s message; lateness and Murat; Ece’s lost delivery; lunch response to mocking; pressure resistance; “She is against it”; Dilan’s refusal and explanation; coffee and late deliveries | 12 | None | The situations and results were understandable |
+| Game menu, both: reach Feedback | Time paused; pace between moments; 64 seconds per choice; Automatic; Slow; Steady; Fast; Feedback; full screen; New game; title page; All games; People across games; download run; Recording; Lab privacy; Debug; Resume | 18 | None | I opened it for Feedback and left settings alone |
+| Feedback, both: choose a label | Keep playing; Not sure; stop here; “I’m stopping”; “I’m confused”; note; optional name or tester ID; linked play history; What is sent; Submit; Back | 11 | None | Labels were plain |
+
+## 6. Device use
+
+**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/phone/a-001.png). It shows the title and readable introduction, the Other ways to begin button, the recording notice, and the two unchecked week options. The Start button was below the visible part of that image. I used Start, held choice buttons, a normal choice tap, Skip to the next event, Game menu, Feedback, “I’m stopping,” and Back.
+
+**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/desktop/b-001.png). It shows the title and introduction in a centered column, both unchecked week options, the recording notice and a large red Start button. I used Start, choice buttons including one held press, Skip to the next event, Game menu, Feedback, “I’m stopping,” and Back.
+
+I viewed only the title layout in screenshots on each device. I cannot describe the game-screen layout from those images. I did not use keyboard keys.
+
+On both devices, Feedback offered “I’m stopping” and “I’m confused.” I chose **“I’m stopping”**; it showed as pressed. Back returned to the menu. I typed nothing and submitted nothing.
+
+## 7. Stop and return
+
+- **Phone, TASTE, 70.297 seconds:** “I stop on the phone. I liked helping Ece and seeing Dilan answer me, but I have seen this part of Monday again. I would close it for now.”
+- **Desktop, TASTE, 55.576 seconds:** “I stop on the big screen. I liked that Murat accepted the truth, but I have seen this morning before and would return another evening for more.”
+
+I would return voluntarily another evening, on either device, to see more of Dilan’s week. I care about her ordinary work and family obligations. I would like trust explained before I make many more insistent choices; I could still return to see the story with that question open. I would close the game now rather than leave it running, because choices arrive on a timer.
+
+## 8. Changes I would want
+
+The ranked asks are at the top. The trust explanation matters most to me.
+
+## 9. Compared with my last visit
+
+1. **Explain trust, where to see it, and what happens at zero — partly met.** The opening now says insistence can cost trust and Dilan can still say no. After repeated pressure, she said she disliked being pushed, and the page said holding worked worse than tapping. Those are useful observations. I still did not see a trust level or an explanation of what happens at zero.
+2. **Explain the three choice labels together before the first choice — partly met.** I saw “She is willing” and “She would agree only if you insist,” and later “She is against it.” I did not see “She wants to do it later,” or a single explanation of all three before the first choice.
+3. **Say what Skip does and how far it jumps — partly met.** Its control name said “Skip to the next event,” and I used it to move the day forward. It did not tell me in advance how many game minutes would pass.
+
+**New blocking ask:** None. My stops came from having revisited familiar scenes, not from a new blocker.
+
+I created no worktree, branch, server, browser or helper process and touched no Git resource. The coordinator owns the drivers. I took one manual screenshot per device; `git worktree list` is not applicable to my work.
+```
+<!-- selected-continuity-key: light-1030:well-retest1:rosa:free -->
+## 2026-10-31 well-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/well-retest1/rosa/report.md.txt), SHA256 `26822b7ccc268d91d5a845a6139662bea53a574bf4fdef9191fd21e3122f1a11`. Method qualification: [rosa](../reviews/light-2026-10-30/well-retest1/rosa/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return voluntarily another evening if someone explained when cooking starts filling the storm reserve; I would close the game now and not leave it running.
+
+**Ranked asks**
+
+1. Tell me in one short sentence when cooking changes from ordinary meals to the storm reserve.
+2. Explain why “An incomplete stage does not establish why work is delayed” appears beside a person who is cooking, or leave it out there.
+3. Keep the roof and meal totals on separate short lines.
+
+## 1. Session
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla and a busy reader of English as a second language. This was a **return visit** to *Twice at the Well*, round **light-1030**, free-stop arm, with a zero-minute floor and a 25-minute ceiling.
+
+I read the supplied `own-history.md` in explicit ranges before play. It is selected history, not my full archive. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread ranges: none.** My older raw Well diary was not supplied. The Well excerpt says I previously stopped confused about ordinary meals and the storm reserve; it contains three asks, compared below.
+
+I played the supplied live URL, https://human.adamwhite.work/colony/?labRunSource=agent, in two fresh, independent games:
+
+- **A:** 360×690 touch phone, light mode. Stop logged at **24.975 seconds**.
+- **B:** 1280×800 keyboard and mouse, light mode, later the same evening. Stop logged at **23.395 seconds**. I used mouse actions.
+
+No older save was imported and the two games were not matched. I left recording and consent unchanged, typed no feedback note and pressed no Submit.
+
+## 2. First impressions
+
+On the phone, the goal was clear: build a roof, store 12 meals and keep six villagers alive. Maryam’s name reminded me that she had agreed to cook in my supplied earlier Well record. I was confident of that memory, but remembered no further details beyond the excerpt.
+
+On desktop, seeing both villages side by side helped me understand the comparison. Yusuf’s opening words about putting the roof first made me curious about his work.
+
+## 3. Verbatim diary
+
+These are the reaction strings I sent, in order, with the driver’s elapsed seconds. Actions without reactions are omitted.
+
+### A — phone
+
+- **5.544, Begin:** “I remember Maryam agreeing to cook and my question about the storm reserve. Her name is the cue; I am confident of that much. The goal is clear, and I begin.”
+- **7.911, tap Maryam Waiting.:** “I choose Maryam because I remember she cooked before. I want to see what she can do here.”
+- **9.757, tap Maryam Cooking.:** “She has already begun cooking. I look at her.”
+- **11.613, note, Day 1 05:31:** “Reread 1: An incomplete stage does not establish why work is delayed. I do not know why this is here beside Maryam cooking. The separate roof and meal lines help.”
+- **13.885, want_quit, CONFUSED, Day 1 05:31:** “Reread 2: “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. I see there are two stores but still do not know when cooking fills the storm reserve. Two sentences need rereading, so I would quit under my rule. I will try asking her to cook once.”
+- **15.636, order Maryam to Kitchen:** “I ask her to cook, though she is already cooking. I want to see what the order says.”
+- **17.437, Game menu:** “The order is waiting and the classic count rose to four. I still cannot tell when the human reserve fills. I stop and check feedback.”
+- **20.984, Feedback choice:** “Both labels are offered. I choose confused and send nothing.”
+- **24.975, stop, CONFUSED, Day 1 05:38:** “I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve.”
+
+### B — desktop
+
+- **5.153, Begin:** “Same title this evening, and I can see both villages on the large screen. I start a fresh morning.”
+- **6.841, tap Yusuf Waiting.:** “Yusuf said the roof comes first, so I look at his work.”
+- **8.959, tap Yusuf Walking to the mosque.:** “He is going to prayer now. I look without hurrying him.”
+- **10.861, tap Yusuf Walking to the house.:** “He has moved again; I select the current line.”
+- **12.841, want_quit, TASTE, Day 1 05:33:** “The same long construction and cooking explanation is here. Yusuf is already going to the house. I have seen enough for tonight and would stop.”
+- **19.394, Feedback choice:** “Both labels are here. I choose stopping and send nothing.”
+- **23.395, stop, TASTE, Day 1 05:36:** “I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals.”
+
+## 4. Moments
+
+Maryam’s agreement held me briefly. My order first showed both villages waiting; when I opened the menu, both showed agreed and Maryam said, “I accepted the advice.” The Classic meal count had risen to four while the Human count remained at zero. I cannot tell from that short observation what caused the difference or when the Human reserve would fill.
+
+On the phone, I wanted to reread two sentences:
+
+1. “An incomplete stage does not establish why work is delayed.” I could not see why it was beside Maryam’s cooking activity.
+2. “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. I understood there was a distinction, but still wanted to know when cooking would fill the reserve.
+
+The second reread triggered my **CONFUSED** quit wish under the standing rule. I continued long enough to ask Maryam to cook, then stopped. On desktop I recognised the same explanation from the phone and did not log another reread; I stopped for **TASTE** after a short second visit.
+
+Neither session reached 60 seconds or 180 seconds. The first-minute and pulse checkpoints were untested.
+
+### Exact-sentence concept table
+
+These are my counts of the concepts presented on the screens I reached, including settings and lab topics. The running count is per device; repeated concepts on later screens are not counted again. A “yes” means I understood the quoted sentence on first reading, not that I mastered every control on that screen.
+
+| Screen and step | Exact sentence from screen | Concepts presented | Running count | Understood first reading? |
+|---|---|---|---:|---|
+| A title | “Two villages hear every order you give. One obeys. One decides.” | Two villages; shared orders; obedience; independent decisions | 4 | Yes |
+| A title | “Build a roof and store 12 meals before the storm.” | Roof; 12 stored meals; storm deadline | 7 | Yes |
+| A title | “Keep all six villagers alive.” | Six villagers; survival | 9 | Yes |
+| A title | “We record and link play across games on this device.” | Recording; linked play; device; All games; Information; Game menu; choice of words by the well; Begin; Lab privacy; Debug; map and locations | 20 | Yes |
+| A village | “Each order goes to both villages.” | Day and clock; time until storm; Classic and Human; roof progress; meal progress; alive count; map selection; six named people and activities; All orders; village mood; elders watching signs | 31 | Yes |
+| A Maryam | “An incomplete stage does not establish why work is delayed.” | Construction stages; incomplete work; uncertainty about delay; current activity; timber in store; timber per stage; workers travelling or working; remaining-stage table; beam | 40 | **No** |
+| A Maryam | “Next order: Rush off · Insist off.” | Next-order settings; Rush; hunger cost; Insist; trust cost; refusal or waiting; Appeal; About; place choices and predicted answers | 49 | Yes |
+| A Maryam | “A building order requests a short task or stage, not a finished roof.” | Short building task; later independent work; continuation not guaranteed | 52 | Yes |
+| A Maryam | “Villagers cook for ordinary meals before storm preparations.” | Ordinary meals; storm preparations; cooking order | 55 | Yes |
+| A Maryam | “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. | Meaning of “enough food stored”; separate storm reserve; grain; field; water; well; ingredients; meal duties; weather affecting cooking | 64 | **No** |
+| A order result | “Waiting for an answer to this order.” | Active order; order identifier and issue time; pending answer; sent modifiers; appeal status; Cancel; later assent | 71 | Yes |
+| A menu | “The game is paused while this menu is open.” | Pause; automatic saving/menu status; pace choices; Feedback; full screen; New game; Recording; People across games; Resume; release record | 81 | Yes |
+| A Feedback | “Your play and saved games are recorded automatically.” | Saved-game recording; stopping/confused labels; keep-playing verdict; feedback box; optional name; Submit; Back | 88 | Yes |
+| B title | “Two villages hear every order you give. One obeys. One decides.” | Two villages; shared orders; obedience; independent decisions; roof and meals; six lives; storm; opening words; recording; navigation and lab links | 14 | Yes |
+| B title and village | “They are getting to know you.” | Classic and Human comparisons; meals; house progress; injuries; alive count; morale; trust; prayers not tracked in Classic; map controls; day and storm clocks; deadlines; named people and activities; orders; elder signs; suggestion | 29 | Yes |
+| B Yusuf | “Choose a place. Each order goes to both villages.” | Person and place selection; current stores; stages; timber; workers’ tasks; remaining requirements; Rush; Insist; hunger; trust; refusal; Appeal; building-order limit; ordinary meals; storm reserve; ingredients; location choices | 46 | Yes |
+| B menu | “The game is paused while this menu is open.” | Pause; pace choices; Feedback; full screen; New game; Recording; People across games; Resume; release record | 55 | Yes |
+| B Feedback | “Your play and saved games are recorded automatically.” | Saved-game recording; stopping/confused labels; keep-playing verdict; feedback box; optional name; Submit; Back | 62 | Yes |
+
+## 5. Confusion and clarity
+
+The main goal and Maryam’s acceptance were clear. The separate lines for roof stages and meals helped me read the numbers.
+
+The cooking explanation partly answered my old question: ordinary meals come before storm preparations, and “enough food stored” may refer to ordinary meals. I still did not learn when the storm reserve begins to fill. The construction sentence about an incomplete stage felt disconnected from Maryam’s cooking, and I did not know why I needed it there.
+
+The visible person labels changed while I selected them. On the phone, **Maryam Waiting.** had become **Maryam Cooking.** before the tap. On desktop, **Yusuf Waiting.** became **Yusuf Walking to the mosque.**, and then **Yusuf Walking to the house.** Both replies explicitly said the page had changed and listed current controls. I selected the current label; these were stale targets, not reported driver failures.
+
+## 6. Device use
+
+**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/phone/a-001.png) immediately after opening. It showed the title and goal, a partial village map behind the title area, the two opening-word choices, a large Begin button and the recording notice. The text was readable. I used Begin, Maryam’s person control, Order Maryam to Kitchen, Game menu, Feedback, “I'm confused” and Back.
+
+**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/desktop/b-001.png) immediately after opening. It showed the Classic and Human village maps side by side, their totals above them, and the title and Begin button in a right-hand panel. I could see both villages together. I used Begin, Yusuf’s person control, Game menu, Feedback, “I'm stopping” and Back.
+
+I viewed only the title layouts in screenshots. I cannot assess the layout of the later person panels from these images. I took one manual screenshot per device, within the limit.
+
+On both devices, Feedback offered **“I'm stopping”** and **“I'm confused.”** The chosen label showed as pressed, and Back returned to the menu. I typed nothing and did not submit.
+
+## 7. Stop and return
+
+- **Phone, CONFUSED, 24.975 seconds:** “I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve.”
+- **Desktop, TASTE, 23.395 seconds:** “I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals.”
+
+I would return voluntarily another evening if someone explained when cooking begins to fill the storm reserve. I like that Maryam can answer and that the people have their own work, but I would not choose another evening alone with the same unanswered meal question yet. I would close it now and **not leave it running**.
+
+## 8. Changes I would want
+
+The ranked asks are at the top. The storm-meal explanation matters most to whether I return.
+
+## 9. Compared with my last visit
+
+1. **Tell me when cooking is for ordinary meals and when it fills the storm reserve — partly met.** This visit explicitly said villagers cook for ordinary meals before storm preparations and distinguished ordinary food from the twelve-meal reserve. I still could not tell when cooking starts filling that reserve.
+2. **Put roof progress and meal total in separate short lines — met on the person panels I reached.** Each village had a roof line followed by a separate meal-total line. I did not inspect every later screen.
+3. **Make it clear whose order Send will send while I am looking at someone else — not seen.** I did not reach that situation or a Send control. Maryam’s Kitchen order was named for her, but I did not test switching to another person while an order was pending.
+
+**New this time that would stop me returning:** the incomplete-stage sentence beside Maryam’s cooking made me reread without helping me understand her task. The storm-reserve question remains the larger reason I would hesitate.
+
+I made no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; `git worktree list` is not applicable to my work.
+```
+<!-- selected-continuity-key: light-1030:warren-retest2:rosa:free -->
+## 2026-10-31 warren-retest2 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/warren-retest2/rosa/report.md.txt), SHA256 `2d20b98966e2a27936754dc2ebd888fd03702cad236603076d9936ecd81d14e2`. Method qualification: [rosa](../reviews/light-2026-10-30/warren-retest2/rosa/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.
+
+My ranked asks are:
+
+1. Show me clearly which squares remain marked after I tap, especially when the answer says the chalk is unchanged.
+2. Explain “open route” when it becomes relevant. I did not reach that advice on this visit.
+3. Explain “spoil” in the digging message.
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla. I read English as a second language. This was a return visit and the second fix/retest cycle. The two sessions were fresh, independent games on my other devices the same evening: a **360×690 touch phone** and a **1280×800 desktop**, where I used the mouse. Neither used an old save or matched seed. Both began at the supplied URL with the agent query. Recording and consent stayed at their defaults.
+
+I read the selected 3,358-line own history in explicit ranges before play. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread ranges: none.** This is selected history, not my whole archive. The independent CONT body was not supplied; I did not merge it with the FREE visit. In that earlier Warren visit I used taps rather than drags, which limits what I can conclude about those marks.
+
+The phone title appeared at **0.609 seconds**. The goal was familiar and plain. At **10.961 seconds**, the instruction arrow explained that the cellar was the lit room at the bottom of the stair and that open ground was already dug out. That made me feel more ready to act. I liked hearing that Meryem and Tamar had meals, harvest and rest alongside the digging.
+
+The desktop title appeared at **0.556 seconds**. The large hill picture was comfortable to read. I liked the ordinary detail that Maryam cooked for her household. But two touches returned “The chalk is unchanged,” and I could not tell where the plan was.
+
+The phone stopped at **54.730 seconds**, and the desktop at **31.523 seconds**, both before the 20-minute ceiling. Neither reached the 60-second first-minute checkpoint or the 180-second pulse. Those checkpoints are untested. I did not reach an attack, a completed shelter or the end of the game.
+
+**Diary, in the order I logged it**
+
+Phone:
+
+- **8.694 s, note, engagement 3:** “I know the goal and remember marking beside the cellar. I want to see whether another mark now tells me what changed.”
+- **12.741 s, note, engagement 4:** “The arrow now tells me the cellar is the lit room and open ground is already dug out. That is clear and answers two old questions. I can tap one square.”
+- **24.168 s, note, engagement 4:** “One square marked is clear. I like knowing nobody is digging yet and that meals and rest come first. I do not know what spoil means but I can continue.”
+- **27.762 s, note, engagement 4:** “Oh, I touched the same square and removed it. It says so at once. I will mark it again.”
+- **32.717 s, note, engagement 3:** “Now it says chalk unchanged and the plan is marked. I thought I removed it, so I am unsure which square remains. Still, unchanged is an answer I did not get last time.”
+- **46.230 s, want_quit, TASTE, engagement 3:** “I marked a lower square and got a clear answer. I like the people having meals and rest, but I have seen the beginning for tonight. I would stop and try the large screen.”
+- **54.730 s, stop, TASTE, engagement 3:** “I stop on the phone for tonight. The cellar and open ground are explained and my marks get answers. I am still unsure which square remains after removal, but I enjoyed the people having their own duties. I would close it and try the big screen.”
+
+Desktop:
+
+- **8.082 s, note, engagement 4:** “The same clear goal on the large screen. I want to see the hill and learn whether a second mark is reported.”
+- **18.811 s, note, engagement 3:** “The big picture is comfortable. The message says chalk unchanged twice, though I touched two places. I cannot tell which mark is there. I like reading that Maryam cooked for her household.”
+- **28.977 s, want_quit, CONFUSED, engagement 3:** “I like the bigger picture and the household details. But two touches say unchanged and I cannot tell where the plan is. I would stop for tonight.”
+- **31.523 s, stop, CONFUSED, engagement 3:** “I stop on the big screen. The picture is comfortable and the people have ordinary work, but I cannot tell where my chalk plan is after two unchanged answers. I would close it for tonight.”
+
+On the phone, the game reported **“1 square marked for digging”** after my first touch, then **“1 chalk mark removed”** after the next. My later touch returned **“The chalk is unchanged”** while the instruction said the plan was marked. I cannot establish from those messages alone exactly which squares remained marked. A lower touch subsequently returned **“1 square marked for digging.”** On desktop, both touches returned the unchanged message. The driver acknowledged the inputs; I judged the results from the visible messages, not from the acknowledgements.
+
+I did not need to reread two sentences on either device. My desktop quit wish was about the location of the plan, not the two-reread rule.
+
+| Screen and purpose | Concepts I encountered | Count | Sentence reread and reason |
+| --- | --- | ---: | --- |
+| Title, both: begin | Shelter, village, riders, Begin, information, menu, recording notice | 7 | None; the goal was plain. |
+| Hill, both: choose work | Clock, people, jars, bell, pace, chalk, look, rub out, furnish, zoom, Journal, work instruction | 12 | None; I recognised the main task. |
+| “Start at the cellar,” phone: explain the first mark | Keeper, lit cellar, entrance stair, chalk, touching stone square, connected line, open ground | 7 | None; the explanation answered my question. |
+| Chalk result, both: report the plan and work | Marked square, unchanged or removed mark, light and air, spoil, workers, ordinary stone, competing duties | 7 | None; “spoil” was unfamiliar, but I continued. |
+| Game menu, both: reach Feedback | Pause, pace, Feedback, saved hill, download, new game, recording, Resume | 8 | None; I opened it for Feedback. |
+| Feedback, both: choose a label | Three verdicts, stopping, confused, optional note, optional name, what is sent, Back, Submit | 9 | None; the labels were clear. |
+
+These are my counts for the screens I reached, not counts for unseen screens.
+
+I viewed four screenshots. On the phone, [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/phone/a-001.png) showed a readable title, the village and cellar drawing, and a large Begin button. [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/phone/a-002.png) showed the hill, instruction, message and tool row together. On desktop, [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/desktop/b-001.png) showed the title over a wide village drawing. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/desktop/b-002.png) showed the larger hill on the left and text and controls on the right. I did not view a screenshot after the marks, so I cannot describe their final appearance.
+
+When confused on the phone, I opened Feedback and selected **“I'm confused”**; it showed as pressed. I returned to the game, continued briefly, then opened Feedback again when stopping and selected **“I'm stopping”**; it also showed as pressed. On desktop I selected **“I'm confused”** before stopping, and it showed as pressed. Each time, **Back to the game** returned to the game menu. I typed no note and pressed no Submit.
+
+Compared with my earlier Warren asks:
+
+- **Tell me what changed, or that it did not change — partly met.** The game now explicitly reported a square marked, a mark removed, and chalk unchanged. Those messages helped, but I still could not locate the remaining plan confidently.
+- **Explain “open ground” and “open route” in plain words — partly met.** The instruction panel defined open ground as space already dug out. I did not encounter an explanation of “open route.”
+- **Make the instruction arrow show me the cellar — partly met.** It now describes the cellar as the lit room at the bottom of the entrance stair. I did not see it point to the room in the picture.
+
+The blocking question I actually reached was where the chalk plan remained after the unchanged answers. I would like that made visible before relying on my plan.
+
+I created no worktree, branch, server, browser process or helper. The coordinator owns the drivers. I touched no repository, so there is no worktree list for my work.
+```

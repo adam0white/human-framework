@@ -1,0 +1,57 @@
+I would come back another evening to try the quiet door test if I could make the request; I would not come back tonight or leave the game running.
+
+**Ranked asks**
+
+1. Let me make the quiet door-test request through the phone control. Selecting Meryem timed out twice through the driver, so I could not reach the experiment I came for.
+2. Give me something engaging to do while I wait for a door to be carved. On desktop I stopped after waiting on Fast and finding it still unfinished.
+3. Give me a clearer sense of when riders might become a concern.
+
+I’m Nia Okafor, 19, a Lagos design student. This was a return visit to **The Warren**, the second fix/retest cycle. I played fresh, independent games at the supplied URL with `?labRunSource=agent`: first on a 360×690 touch phone, then on a 1280×800 desktop the same evening. No save or matched seed was imported. I left recording and consent at their defaults. Both games began on Slow; I changed each to Fast.
+
+I read the supplied history through line 1749. The last line was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. This is selected history, not my complete archive. The earlier FREE and CONT alternatives are independent, and the CONT body was not supplied; this visit does not fill that missing arm.
+
+The opening felt familiar and quick. On the phone, I marked a dig and a door, and the game explained who could dig and why work might wait. Meryem’s completed door was the moment I wanted: she rolled it once to test it. Inspecting it offered a quiet test without a false alarm. The driver then timed out twice when I tried to select Meryem, so I did not request the test or see a result. On desktop, the main panel showed several people’s activities, which felt livelier than the repeated dust sentence I remembered. I stopped while the door was still unfinished.
+
+**Diary: exact logged reactions**
+
+Phone:
+
+- **5.654 s, note:** “The little hill is familiar. I want to try the quiet door test on a new game this time.”
+- **15.046 s, note:** “The mark tells me exactly who can dig and why they may wait. I want the door again, so I will speed this up.”
+- **55.181 s, note:** “Quiet testing is described on this new hill. The door is not finished yet, so I cannot ask to test it. I like knowing the conditions.”
+- **70.719 s, first_minute, engagement 3, Morning 20 Aug year 1:** “The mark worked and Meryem headed for the door. Quiet testing is explained on this new hill, but the door is not finished yet. Main text now tells me about Yusuf and Maryam rather than only dust. I am curious, though still waiting.”
+- **104.203 s, want_quit, TOOL, engagement 2, Night 20 Aug year 1:** “I wanted Meryem to test her door, but choosing her timed out twice. I would stop this phone session here.”
+- **134.860 s, stop, TOOL, engagement 2, Before dawn 21 Aug year 1:** “Stopping on the phone. The quiet test is offered and the door was built, but I could not select Meryem after a retry. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+Desktop:
+
+- **5.641 s, note:** “Same evening, bigger hill. I still want to see the quiet test happen.”
+- **21.574 s, note:** “The main panel lists several people doing things now. That is more lively than the dust line I remember. Door marked, waiting on Fast.”
+- **71.944 s, first_minute, engagement 3, Morning 20 Aug year 1:** “The larger view shows several people and their activities on the main panel, which I like. I marked the door and put time on Fast, but I am still waiting for it to be finished. I do not know when riders will arrive.”
+- **115.373 s, want_quit, BORED, engagement 2, Before dawn 21 Aug year 1:** “The door is still unfinished and I have already waited through this on the phone. I want the test, but I do not want another stretch of watching routine lines. I would leave.”
+- **124.268 s, stop, BORED, engagement 2, Before dawn 21 Aug year 1:** “Stopping on desktop. The main panel showed people doing more, but the door was still unfinished and I did not want to wait again. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+One earlier phone `first_minute` log call returned no output, so I cannot establish whether it was recorded or its elapsed time. The 70.719-second entry above is the confirmed checkpoint. Both sessions stopped before 180 seconds; no pulse was due. Neither game ended, and I did not reach riders, a completed shelter, or later checkpoints.
+
+**Clarity and feedback**
+
+The door placement was clear: the shaft accepted the mark on both devices. On the phone, the finished-door panel named the conditions for a quiet test and offered reachable adults. The selection operation for Meryem timed out twice, with the default selection still shown. I classify that as **TOOL** under this assignment; it does not establish that the game itself would reject the request. I did not try a false alarm this visit.
+
+On both devices, Feedback offered “I'm stopping” and “I'm confused.” I chose “I'm stopping,” saw it marked pressed, and used **Back to the game**, which returned to the menu. I typed no note, changed no consent or recording setting, and pressed no Submit. No feedback receipt is claimed. A phone menu attempt also produced a driver timeout; the retry opened the menu.
+
+**Screenshots and devices**
+
+- Phone [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/phone/a-001.png): I viewed the opening, with the hill illustration, title, Begin button and recording strip. [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/phone/a-002.png): I viewed the active hill, speed controls, instruction and large bottom toolbar. The hill drawing was small, but those controls and text were visible. A later screenshot call returned no output; I did not view that image and make no claim about it.
+- Desktop [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/desktop/b-001.png): I viewed the wide opening and hill. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/desktop/b-002.png): I viewed the large hill on the left and instructions and tools on the right; the shaft was easy to see. I used mouse clicks and no keyboard key.
+
+**Earlier Warren asks, assessed only from this play**
+
+- More people’s activities on the main view: **met** in the desktop view reached. I saw several named activities there; the phone also showed changing activity text.
+- Test a finished door without another false alarm: **partly met**. The new phone hill offered the quiet test, but the selection timeout prevented me from sending it. The earlier ask to test a door on an existing hill is **not seen**: these were fresh games.
+- Clearer sense of when riders become a concern: **not met in the play reached**. I still did not know when they might arrive.
+- Journal plainly saying whether anyone shut the door during a bell call: **not seen**. I made no bell call.
+- Slow down or pause on Fast when something I set up happens: **not seen**. I saw the completion text, but did not establish whether Fast paused for it.
+
+The new blocking ask I actually reached is the phone selection problem: I could see the quiet-test opportunity but could not choose Meryem through the driver after a retry. The independent fresh games and different choices do not establish what caused differences from my earlier visits.
+
+I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns the drivers and browser cleanup; no `git worktree list` applies.

@@ -1,0 +1,22 @@
+{
+  "sourceSha256": "450daec1dd37c1096df19713a6c23e6596dcaa60287c78b56db6f1832f96bdff",
+  "sourceBytes": 816,
+  "sourceMtimeNs": 1793457364468734055,
+  "exit": 0,
+  "pins": [
+    {
+      "app": "0.7.0",
+      "framework": "4.10.0",
+      "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+      "dirty": false
+    },
+    {
+      "app": "0.7.0",
+      "framework": "4.10.0",
+      "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+      "dirty": false
+    }
+  ],
+  "ended": "2026-10-31T14:36:04.468343+00:00",
+  "scope": "Private session metadata excluded."
+}

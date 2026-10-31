@@ -1,0 +1,96 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "19740b613b6bcb360b0b1b9e3b71ff1c8d7527bff82e48cdf230585c3f5ae2f3",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.108,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "A tailor\u2019s notebook catches my eye. I appreciate being told what is recorded before I begin."
+    },
+    {
+      "device": "desktop",
+      "row": 6,
+      "elapsed_s": 8.192,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The conflicting promises and the journey money make this feel like a real decision. I want to see the notebook first."
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "elapsed_s": 22.07,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The yard sounds like a possible compromise. I like that each conversation costs time and gives me a concrete condition."
+    },
+    {
+      "device": "desktop",
+      "row": 21,
+      "elapsed_s": 32.511,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The notebook is useful for comparing what each person said. Ferda\u2019s old wording beside her new statement is a little awkward, but the screen explained it."
+    },
+    {
+      "device": "desktop",
+      "row": 30,
+      "elapsed_s": 50.867,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I am content to leave after seeing the agreement kept and enough money for the train."
+    },
+    {
+      "device": "desktop",
+      "row": 35,
+      "elapsed_s": 59.683,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I am content to leave after seeing the agreement kept and enough money for the train."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.311,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The phone page is narrow but the recording note and button fit clearly. I remember the shop and want to try the morning arrangement this time."
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "elapsed_s": 23.785,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I see Halil\u2019s acceptance is unknown, so I should ask him before committing. The terms tell me the cost clearly."
+    },
+    {
+      "device": "phone",
+      "row": 26,
+      "elapsed_s": 46.488,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I have seen the morning arrangement work too; I am ready to leave it there."
+    },
+    {
+      "device": "phone",
+      "row": 31,
+      "elapsed_s": 54.009,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I have seen the morning arrangement work too; I am ready to leave it there."
+    }
+  ]
+}

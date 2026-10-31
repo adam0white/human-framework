@@ -1,0 +1,176 @@
+{
+  "scope": "Literal wall-clock reactions; producer report unchanged",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 3,
+      "elapsed_s": 2.802,
+      "kind": "input",
+      "op": "shot",
+      "reason": null,
+      "reaction": "I remember Dilan and her ordinary troubles from the title. I am fairly confident; the parcel job and sister Aylin are familiar."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 6.621,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I remember this beginning and start a fresh week."
+    },
+    {
+      "device": "phone",
+      "row": 6,
+      "elapsed_s": 16.064,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I remember sleeping late before. I want her to get up, so I hold this time."
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "elapsed_s": 17.456,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "It says next event now. I skip the waiting."
+    },
+    {
+      "device": "phone",
+      "row": 9,
+      "elapsed_s": 27.628,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "She got up before the second alarm. I want her to call Mum, so I insist on telling Aylin."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 39.565,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I remember Ece being lost and nearly crying. I am confident from that situation. I want Dilan to talk her through it."
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "elapsed_s": 45.353,
+      "kind": "input",
+      "op": "wait",
+      "reason": null,
+      "reaction": "She guided Ece and the parcel was delivered. That makes me glad."
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "elapsed_s": 48.465,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I do not like Murat mocking her. I speak up for Ece."
+    },
+    {
+      "device": "phone",
+      "row": 16,
+      "elapsed_s": 50.084,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Dilan says she does not like being pushed. I feel a little sorry; I have insisted four times. I still do not know what trust changes."
+    },
+    {
+      "device": "phone",
+      "row": 19,
+      "elapsed_s": 58.166,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Now it says she resists pressure and holding works worse. I tap water gently; she is against it, so she may say no."
+    },
+    {
+      "device": "phone",
+      "row": 21,
+      "elapsed_s": 60.514,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "I like the ordinary troubles and see what Dilan chooses. She said she felt pushed, then refused my water suggestion. I understand that result, but still do not know how much trust remains."
+    },
+    {
+      "device": "phone",
+      "row": 22,
+      "elapsed_s": 63.422,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I enjoyed helping Ece, but I have seen this Monday again and would stop on the phone now."
+    },
+    {
+      "device": "phone",
+      "row": 27,
+      "elapsed_s": 70.297,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I stop on the phone. I liked helping Ece and seeing Dilan answer me, but I have seen this part of Monday again. I would close it for now."
+    },
+    {
+      "device": "desktop",
+      "row": 3,
+      "elapsed_s": 1.963,
+      "kind": "input",
+      "op": "shot",
+      "reason": null,
+      "reaction": "Same familiar title on my larger screen. I will start another week."
+    },
+    {
+      "device": "desktop",
+      "row": 6,
+      "elapsed_s": 17.164,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "This time I let her sleep. I remember she missed alarms before, but I want to see her morning without pushing."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 28.99,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "She slept through the alarms as I remembered. She is late, so I let her read the message for now."
+    },
+    {
+      "device": "desktop",
+      "row": 12,
+      "elapsed_s": 40.582,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I prefer honesty with Murat. I hold to suggest she tell him."
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "elapsed_s": 44.501,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "Murat accepted her apology. I like the ordinary answer, but I have seen these scenes before and would stop for tonight."
+    },
+    {
+      "device": "desktop",
+      "row": 19,
+      "elapsed_s": 55.576,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I stop on the big screen. I liked that Murat accepted the truth, but I have seen this morning before and would return another evening for more."
+    }
+  ]
+}

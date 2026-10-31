@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T13:59:44.096828+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Warren ea36 historical handback recorded, no playerdispatchyet; no dispatch, freshlive/disk/pause/slots remain.",
+  "players": [
+    {
+      "tester": "Maya Chen",
+      "characters": 243875,
+      "historySha256": "a44f3eb6365dd0070a5fa6adf9c2297032f2e407bda0eb8bf4a32c9d5f6b3e83",
+      "briefSha256": "184da7618fae7726c22994992695676e8cefcc54d8c52b6dfa3a4b71b8e2bd2b",
+      "ownSourceCount": 23
+    },
+    {
+      "tester": "Emre Kaya",
+      "characters": 178739,
+      "historySha256": "007fb272aa24b604eaf80de08917aa7ff7e4c1a62f4289c773a6e7c34c5fad6e",
+      "briefSha256": "e7265c7516221728310d3e05446d03410a3a315a3d2dd4c10cbb57ce4b2b97df",
+      "ownSourceCount": 19
+    },
+    {
+      "tester": "Nia Okafor",
+      "characters": 199934,
+      "historySha256": "35f4421e4ef8c32de1c13298f5ce813255c1a5e84629b1d92f25afb186ae17fc",
+      "briefSha256": "940079c963cf3e15df0b0e1f89fc37184c2d151f619e147e6af60664c43328c5",
+      "ownSourceCount": 23
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "characters": 339528,
+      "historySha256": "9a9077adc7313538a763c1bcbde1f5e725be3345697e3387bade48efd4f860a6",
+      "briefSha256": "e31065224be78be8a2a7b3d011827937e74039f2f2f77f9d530213a5d082e893",
+      "ownSourceCount": 36
+    },
+    {
+      "tester": "Sanja Markovi\u0107",
+      "characters": 186,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "74087e48f8d1a397fcde562b0782a147af7b28fba45014a05ac7d59b025a5701",
+      "ownSourceCount": 0
+    }
+  ]
+}

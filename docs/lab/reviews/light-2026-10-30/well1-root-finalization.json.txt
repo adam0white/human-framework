@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-31T14:04:06.852300+00:00",
+  "state": "ROOT SEALED private source packet, not canonical import",
+  "manifestSha256": "6ff1755c5285d0c120d35bbd6bbfb4cbe295bdb95d1bed5f842fa7f74d960a82",
+  "files": 95,
+  "payloads": 94,
+  "sourceCopiesVerified": 74,
+  "safeProjections": "Five completion records and five retained-tool summaries, explicitly projected and bound to original bytes/hash/mtime; originals retained privately. Emre parser exception and persisted reproduction provenance preserved.",
+  "literalSpans": 49,
+  "rows": 20,
+  "ids": "F2731\u20132750; F2751\u20132760 unused",
+  "reportsRootReadFull": 5,
+  "editorialRoutesRootRead": 20,
+  "rawReactions": 80,
+  "stops": 10,
+  "screenshotsHashed": 27,
+  "observedCleanup": "15 recorded PIDs absent, 54 observed identities gone, ten ports closed; not whole-lifetime journal",
+  "rootActualVerifyExit": 0,
+  "rootActualParserExit": 0,
+  "rootParserSha256": "3f55fcf61676788e11afdb16fcf3194ceca1999e7dc3d8b16a2f72636d563199",
+  "rootParserSource": "Current ed0 HF candidate parser and ledger; scratch append only. Frozen source-epoch helper/receipt not changed.",
+  "reviews": [
+    "well1-packet-code-review.json",
+    "well1-packet-qualification-review.json"
+  ],
+  "iteration": 1,
+  "finished": false,
+  "limits": "First fixed retest only. No player/owner or broader technical acceptance. Safe retained outputs are evidence of responses, not attention/comprehension/perception. Source causes need investigation; dates are inspection targets. Three old Well arms remain unfilled. Prepared README remains unchanged; this external receipt controls seal status."
+}

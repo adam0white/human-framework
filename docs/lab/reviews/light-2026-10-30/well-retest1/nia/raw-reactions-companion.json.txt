@@ -1,0 +1,150 @@
+{
+  "scope": "Literal raw reactions; unchanged producer report retained; raw timestamps control exact timing and producer rounding remains quoted.",
+  "reportSha256": "2a8153b29116f5ddf00ac51cd42f8df31eeebdfb6aec8844da7409d992600522",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.807,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Maryam is here again; I remember her cooking refusal and string puzzle from my last visit, fairly sure. I want to hear her answer again."
+    },
+    {
+      "device": "phone",
+      "row": 5,
+      "elapsed_s": 9.48,
+      "kind": "tool",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Maryam first. I want a personal answer, not the roof bookkeeping."
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "elapsed_s": 17.042,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The person panel starts with a huge construction inventory again; the action choices are below the screen. I wanted Maryam, not two tables of timber."
+    },
+    {
+      "device": "phone",
+      "row": 9,
+      "elapsed_s": 18.894,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "She says she will not build. Asking anyway to hear why."
+    },
+    {
+      "device": "phone",
+      "row": 11,
+      "elapsed_s": 32.543,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Duties to the others is a reason, but vague. Pushing once to see the consequence."
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "elapsed_s": 50.298,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "She refused again after thinking it over and went back to cooking. I see the insist was sent and may cost trust, but no actual trust consequence yet. I like that she still said no."
+    },
+    {
+      "device": "phone",
+      "row": 16,
+      "elapsed_s": 54.86,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Danyal is cooking too. I want to see if he has his own reason."
+    },
+    {
+      "device": "phone",
+      "row": 17,
+      "elapsed_s": 56.691,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "He will not pray; asking to hear him."
+    },
+    {
+      "device": "phone",
+      "row": 20,
+      "elapsed_s": 65.968,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Maryam refused my building order twice, even after insistence, and kept cooking. That is a choice I can see, though the trust cost is only a warning. Danyal says the prayer option is not available, which sounds like an error rather than a person. The long construction tables bury my choices on phone."
+    },
+    {
+      "device": "phone",
+      "row": 21,
+      "elapsed_s": 68.669,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I got two refusals, but I do not want to manage roof stages and meals through the storm. Danyal sounded like a system message. I would stop here."
+    },
+    {
+      "device": "phone",
+      "row": 27,
+      "elapsed_s": 81.991,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "Stopping on the phone. I liked Maryam refusing again, but Danyal sounded like an error and I do not want to manage the roof and meals. I would close it. Feedback marked I am stopping; nothing typed or submitted."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 10.31,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Second device, same evening. Two villages side by side; I want to try someone other than Maryam."
+    },
+    {
+      "device": "desktop",
+      "row": 8,
+      "elapsed_s": 18.582,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Samira says she will not build too. Asking her anyway to hear her reason."
+    },
+    {
+      "device": "desktop",
+      "row": 10,
+      "elapsed_s": 32.53,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Samira says she adapted my advice and gathers grain instead of building. I can see the difference, but that sentence sounds generic and does not tell me why she chose grain."
+    },
+    {
+      "device": "desktop",
+      "row": 12,
+      "elapsed_s": 38.935,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I can see the two Samiras doing different work, but the reply is generic and I have no appetite for the construction tables again. I would stop here."
+    },
+    {
+      "device": "desktop",
+      "row": 18,
+      "elapsed_s": 52.123,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "Stopping on desktop. Seeing Samira choose grain while her other self built was interesting, but her generic reply and the construction management do not pull me on. I would close it. Feedback marked I am stopping; nothing typed or submitted."
+    }
+  ]
+}

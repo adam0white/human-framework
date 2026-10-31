@@ -1,0 +1,46 @@
+{
+  "time": "2026-10-31T12:47:35.566218+00:00",
+  "notBefore": "2026-10-31T12:47:28.673044+00:00",
+  "actualPauseSeconds": 906.893174,
+  "release": {
+    "app": "0.10.0",
+    "framework": "4.9.0",
+    "commit": "9e0dd19d89ea0e1c0f6dd38bec64b2d1679ddcc9",
+    "dirty": false
+  },
+  "freshAssetHashes": [
+    {
+      "path": "assets/index-01jRDtHy.js",
+      "bytes": 1576511,
+      "sha256": "96b3a439368ad6d927304268a5c566d85336503f0befce8d0fd93cf48447a405"
+    },
+    {
+      "path": "assets/index-o0qeHh9b.css",
+      "bytes": 22299,
+      "sha256": "1db1226be71189458a65e939e40375b0ea861334a5c1398b3f285ad6695fbfb5"
+    }
+  ],
+  "freshExactCI": [
+    {
+      "conclusion": "success",
+      "headSha": "3f173b60908bf5be5a3aa0bd6fb482646e309a09",
+      "status": "completed",
+      "url": "https://github.com/adam0white/murmur/actions/runs/41170316496"
+    },
+    {
+      "conclusion": "success",
+      "headSha": "9e0dd19d89ea0e1c0f6dd38bec64b2d1679ddcc9",
+      "status": "completed",
+      "url": "https://github.com/adam0white/murmur/actions/runs/41171538334"
+    }
+  ],
+  "freeBytes": 48999325696,
+  "allTenPortsClosed": true,
+  "controllerSha256": "c5c756f28a8606d8c523a8aaf85b9ad3cfd721fc327853b743044cbac0c5756b",
+  "planSha256": "d4b48d625587b9a344d1731fab0531870591cafaa406966c7eacfadf4989a251",
+  "freezeSha256": "00b8e667b18f66e035b4e411d3ed1b5c77e07943e04412c421beeef5b173b95a",
+  "reviewSha256": "bbbe744337a7f8cce4ee424b4289551ae1e07e3437d97350537e3e077189823d",
+  "qualificationSha256": "959249d95813708c4808a1cf42377a26255836aac598edf88ebfc4829e1ba672",
+  "technicalWindowReleased": true,
+  "scope": "Fresh admission only. No visual/native/player/owner acceptance or direct model delivery inferred."
+}

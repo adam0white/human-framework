@@ -1,0 +1,84 @@
+{
+  "closed": "2026-10-31T13:55:50.790589+00:00",
+  "nextOrdinaryNotBefore": "2026-10-31T14:10:50.790589+00:00",
+  "fiveLogicalTesters": true,
+  "tenFinalStops": true,
+  "reportsRootRead": 5,
+  "controllerActualExit": 0,
+  "controllerExecSession": 15844,
+  "stops": [
+    {
+      "player": "maya",
+      "device": "phone",
+      "elapsed_s": 96.126,
+      "reason": "TASTE"
+    },
+    {
+      "player": "maya",
+      "device": "desktop",
+      "elapsed_s": 71.123,
+      "reason": "TASTE"
+    },
+    {
+      "player": "emre",
+      "device": "desktop",
+      "elapsed_s": 420.524,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "emre",
+      "device": "phone",
+      "elapsed_s": 47.009,
+      "reason": "TOOL"
+    },
+    {
+      "player": "nia",
+      "device": "phone",
+      "elapsed_s": 81.991,
+      "reason": "TASTE"
+    },
+    {
+      "player": "nia",
+      "device": "desktop",
+      "elapsed_s": 52.123,
+      "reason": "TASTE"
+    },
+    {
+      "player": "rosa",
+      "device": "phone",
+      "elapsed_s": 24.975,
+      "reason": "CONFUSED"
+    },
+    {
+      "player": "rosa",
+      "device": "desktop",
+      "elapsed_s": 23.394,
+      "reason": "TASTE"
+    },
+    {
+      "player": "petra",
+      "device": "desktop",
+      "elapsed_s": 90.745,
+      "reason": "BORED"
+    },
+    {
+      "player": "petra",
+      "device": "phone",
+      "elapsed_s": 51.62,
+      "reason": "BORED"
+    }
+  ],
+  "hold": false,
+  "iteration": 1,
+  "finished": false,
+  "methods": "One phone TOOL stop, nine voluntary stops. No restart cut in this round.",
+  "newProducerBlocking": [
+    "Maya/Nia generic personal replies",
+    "Emre phone speech-dismiss obstruction",
+    "Rosa incomplete-stage explanation beside cooking; older storm-food question",
+    "Petra action reach and agreed-order status"
+  ],
+  "packet": "preparing; all five audits and qualifications complete",
+  "reservedIds": "F2731\u20132760; allocate only literal actual asks",
+  "reportsRootQualified": 5
+}

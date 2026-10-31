@@ -1,0 +1,152 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/first-minute.png",
+    "sha256": "324f8dfc00df46971ea569741940049fc776f5ae2199ff028a700ff41aa47a3e",
+    "bytes": 72708,
+    "mtime_ns": 1793458409274865072
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/a-002.png",
+    "sha256": "a28e89e906ec8e2b6c10edb45251953e124099824968442a7cdbb5aa33075b37",
+    "bytes": 115390,
+    "mtime_ns": 1793458368264864716
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/a-001.png",
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "bytes": 97448,
+    "mtime_ns": 1793458350953121566
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/b-001.png",
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "bytes": 270673,
+    "mtime_ns": 1793458409276410912
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/first-minute.png",
+    "sha256": "7b267fe0d9845d4e6d1bb421ee5786a49e445dec2d0d74d181f77606fa17c20d",
+    "bytes": 141611,
+    "mtime_ns": 1793458467454585956
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/b-002.png",
+    "sha256": "0a6cef3362bf845d0c856fcad42f5421702d7aaf5c1a7b4aaafabeb940f9c880",
+    "bytes": 353580,
+    "mtime_ns": 1793458445590579170
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/b-001.png",
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "bytes": 97448,
+    "mtime_ns": 1793458546648289687
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/b-002.png",
+    "sha256": "0d8a1fe51825159299bcfa427321c401b11d543faf389b59551b49dc31d51628",
+    "bytes": 186885,
+    "mtime_ns": 1793458563899742572
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/desktop/first-minute.png",
+    "sha256": "7b267fe0d9845d4e6d1bb421ee5786a49e445dec2d0d74d181f77606fa17c20d",
+    "bytes": 141611,
+    "mtime_ns": 1793458559305744212
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/desktop/a-001.png",
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "bytes": 270673,
+    "mtime_ns": 1793458500903495727
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-001.png",
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "bytes": 97448,
+    "mtime_ns": 1793458680839491701
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-002.png",
+    "sha256": "4c1a6fcd7ccb97c9a87711b2a29b93cfaee6dd74cb1fa33f77be1f7e0357d62f",
+    "bytes": 123445,
+    "mtime_ns": 1793458685475550702
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/desktop/first-minute.png",
+    "sha256": "7b267fe0d9845d4e6d1bb421ee5786a49e445dec2d0d74d181f77606fa17c20d",
+    "bytes": 141611,
+    "mtime_ns": 1793458680481543432
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/desktop/a-001.png",
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "bytes": 270673,
+    "mtime_ns": 1793458622216073731
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/phone/first-minute.png",
+    "sha256": "312380abb3e5a1cc69875503f3afaef3a611526209563348139628049b7f1ff1",
+    "bytes": 123170,
+    "mtime_ns": 1793458811556865684
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/phone/a-002.png",
+    "sha256": "abc73b31214a98d58b167c66bac7c45595b44ec8e21cf71ffe23b4c78ba39081",
+    "bytes": 185965,
+    "mtime_ns": 1793458778688109796
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/phone/a-001.png",
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "bytes": 97448,
+    "mtime_ns": 1793458753379808804
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/desktop/b-001.png",
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "bytes": 270673,
+    "mtime_ns": 1793458849986609616
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/desktop/first-minute.png",
+    "sha256": "7b267fe0d9845d4e6d1bb421ee5786a49e445dec2d0d74d181f77606fa17c20d",
+    "bytes": 141611,
+    "mtime_ns": 1793458908152141966
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/desktop/b-002.png",
+    "sha256": "bd5b0d04518a48c9cdc9363f521dd7f83c203eadd842f84261b4ec93b0f4bfa0",
+    "bytes": 188779,
+    "mtime_ns": 1793458859215918912
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/b-001.png",
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "bytes": 97448,
+    "mtime_ns": 1793459000939506913
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/first-minute.png",
+    "sha256": "9e89c604bfeb6c8d6841da83b50a16322c10a9a67e33650c110c0264a7267e18",
+    "bytes": 72763,
+    "mtime_ns": 1793459058980100500
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/b-002.png",
+    "sha256": "07abef06420f6aa422a9a36fa793ad26c33b0cb347a9990be37f014cf4cc6f6f",
+    "bytes": 172946,
+    "mtime_ns": 1793459008574312164
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/desktop/first-minute.png",
+    "sha256": "7b267fe0d9845d4e6d1bb421ee5786a49e445dec2d0d74d181f77606fa17c20d",
+    "bytes": 141611,
+    "mtime_ns": 1793458997513786186
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/desktop/a-001.png",
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "bytes": 270673,
+    "mtime_ns": 1793458939155567045
+  }
+]

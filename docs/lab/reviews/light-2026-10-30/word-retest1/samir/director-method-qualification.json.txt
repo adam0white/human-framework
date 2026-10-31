@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-31T15:00:41.931131+00:00",
+  "rootReadFullReport": true,
+  "commandReceipt": "word-samir-command-audit-1500.json",
+  "retainedToolsReceipt": "word-samir-retained-audit-1500.json",
+  "historyEvidence": "All 851 supplied lines matched stdout and separately completion-hash-bound retained responses. Repeated lines may align ambiguously. This does not prove attention or comprehension. Earlier method limits remain.",
+  "imageEvidence": "Three high-detail image blocks: desktop a001 and phone b001/b002. No desktop active-game image was viewed. The phone opening image showed the first action below the visible screen, but no scroll was tried. Scrolling reachability remains untested. Image blocks do not prove perception.",
+  "stops": {
+    "desktop": 57.006,
+    "phone": 26.472
+  },
+  "timedLogs": "Desktop visible ending at42.532 seconds: One month later/AGREED. Raw desktop FINISHED stop57.006 differs from report57.007; preserve both. Phone BORED stop26.472 was before an agreement, not an ending. No first-minute diary or pulse. Desktop automatic shot60.054 was after the stop; no phone automatic shot recorded.",
+  "driverQualification": "No shell exception, current driver error, forbidden parsed action or foreign read. Raw reactions include five tap-attached reactions as well as eight log operations. Native acknowledgment alone does not prove a game outcome.",
+  "feedback": "Both stopping labels prefilled the note textbox, followed by Not now. No typing, Submit, recording or consent change was found. No production receipt is inferred. Confused label was offered but not used because no confusion was reported.",
+  "exposure": "Two fresh independent games, desktop then phone the same evening. No imported save or matched seed. Newly encountered yard/cost options are not established as newly added mechanics.",
+  "priorAskComparison": "Honest cost met for reached route:40 of100 journey fund. Earlier private choice partly met: visible at table; no honest private choice reached. Asking what Nuri originally said unmet in reached conversations. All-path conclusions remain untested.",
+  "producerNewBlockingAsk": "Explicit NONE. Original promises, longer meeting and phone opening-action asks are retained without a mandate to expand the game or a proved phone reachability defect.",
+  "returnExact": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri\u2019s promises; I would not leave it running or return on the phone tonight.",
+  "returnAdditionalContext": "Later return paragraph says the cost made the honest choice more interesting, but he had settled the meeting and did not want to repeat the private lie. Preserve the whole paragraph in the report.",
+  "cycleRule": "FIRST fixed-build retest. Final round judgment awaits remaining reports.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 94765,
+      "absent": true
+    },
+    {
+      "pid": 94742,
+      "absent": true
+    },
+    {
+      "pid": 94744,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Three recorded PIDs absent at this check; final round observed-identity and port checks remain required."
+}

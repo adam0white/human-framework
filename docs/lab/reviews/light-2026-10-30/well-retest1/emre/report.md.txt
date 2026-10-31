@@ -1,0 +1,117 @@
+I would return voluntarily another evening on desktop to try earlier roof orders and see whether I can finish before the storm; I would not leave it running, and I would not play again tonight.
+
+**Ranked asks**
+
+1. Make the speech-dismiss control usable on the phone. The driver reported it covered or off screen twice, including after I closed Yusuf’s panel.
+2. Explain the suggestion reason “Under protest: curiosity:unknown” in words I can use to decide.
+3. Explain how a person was injured when I open the injury notice. Samira’s panel showed her sheltering, but I did not see the cause.
+
+## 1. Session
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was a **return visit** to Twice at the Well, round **light-1030**, **free stop**, floor zero and ceiling 25 minutes.
+
+I read all 1,305 lines of my supplied [own history](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/own-history.md) before play. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. My earlier Well excerpt says I stopped before the main storm after checking totals, and wanted a clearer food limit, roof-stage explanation and dismissible speech bubble.
+
+The live URL was https://human.adamwhite.work/colony/?labRunSource=agent. Each session was a separate fresh game, with no imported save.
+
+- **A:** 1280×800, keyboard and mouse, light mode. Stop at **420.524 seconds**. The run finished at Day 3 dawn.
+- **B:** 360×690, touch phone, light mode, second visit the same evening. Stop at **47.010 seconds**, due to the driver block described below. Later phone play and the storm were not tested.
+
+Recording stayed at its default. I did not type or submit feedback, or change consent.
+
+## 2. First impressions
+
+On desktop, at **5.411 seconds**, the roof and twelve-meal goal reminded me of the supplied Well excerpt. I remembered checking totals and leaving before the storm, with high confidence from that excerpt. I did not assume this was the same village.
+
+At **14.192 seconds**, Maryam’s panel explained ordinary food versus the twelve-meal reserve and listed roof-stage timber requirements. That addressed much of what I had wanted to understand.
+
+On phone, at **8.095 seconds**, the goal and start button were readable. In the opening screenshot, “Show Human village” covered part of the title. I wanted to try an earlier building order after seeing the desktop roof miss its deadline.
+
+## 3. Verbatim
+
+These are the reaction lines I logged, unchanged. Times are the driver’s elapsed seconds.
+
+**Session A — desktop**
+
+- **5.411, note:** “The roof and twelve meals are familiar from my last visit; I remember checking totals and stopping before the storm. High confidence from my diary, not a continued village. I want a deliberate food plan this time.”
+- **14.192, note, Day 1 05:32:** “Maryam is cooking already. The panel explains ordinary food versus the separate twelve-meal reserve, and lists timber needed at each roof stage. That answers much of what I wanted to know. Two earlier taps went stale as her activity changed; the third opened her.”
+- **62.572, first_minute, Day 1 10:01:** “Both villages are working without orders: Human roof 4 and 7 meals, Classic roof 6 and 6 meals. I like seeing Yusuf build while Tariq eats. The stage list and food explanation make the objective easier to plan, though I have not yet seen a late-stage hold.”
+- **96.107, note, Day 1 13:36:** “Human meals reached 25 without an order, comfortably above twelve. Both builders are at work. I will watch the roof rather than issue a redundant order.”
+- **134.257, note, Day 1 18:13:** “At seven stages I can see Yusuf working on eight, over halfway, materials already paid, and five timber for each remaining stage. Useful: I can tell this is work in progress, not a proven shortage. The Human food fell from 25 to 20 and rose to 24 while people ate and cooked; I am guessing meals explain the fall.”
+- **173.123, note, Day 1 21:44:** “A suggestion says Tariq to Forest, under protest: curiosity:unknown. I do not understand that reason, or why I should send him into the forest during a sudden storm.”
+- **184.877, pulse 3, Day 1 22:06:** “The roof details are useful and I want to see the storm, but I have mostly watched automatic work; the forest suggestion has an opaque reason.”
+- **189.454, note, Day 1 22:06:** “I selected confused in Feedback and went back without writing or sending. My first command had a shell quote error; the retry worked. I choose Fast to pass the sleeping stretch and see the storm.”
+- **294.212, note, Day 2 16:41:** “Both roofs are nine of ten at the warning; everyone shelters or closes shutters. The suggestion now explains enough food stored is separate from the storm reserve. Human has exactly twelve, Classic six. I worry the roofs will stay unfinished.”
+- **332.788, note, Day 2 20:23:** “The storm arrived with both roofs failed at nine; meals met at the deadline. Four Classic injuries and one Human injury. Samira is hurt but her panel only says sheltering; I do not see why she was hurt. I will not send her outside to finish the roof.”
+- **368.975, pulse 3, Day 3 00:04:** “I reached the storm I came to see, but now everyone sleeps and injuries rise while I watch. I want to see the dawn result once.”
+- **403.862, want_quit, FINISHED, Day 3 05:00:** “I saw the storm and the dawn report. Both villages missed the roof but met food and kept everyone alive; six versus two injuries. I am done for tonight on this run.”
+- **420.524, stop, FINISHED, Day 3 05:00:** “I am stopping at dawn after the full storm. The stage details and food explanation helped; both roofs missed the deadline, all lived, and the Human village had fewer injuries. I would try another evening with earlier roof orders, but not keep watching tonight.”
+
+**Session B — phone**
+
+- **8.095, note:** “Same roof and twelve meals on the phone, second fresh game tonight. The title is partly covered by Show Human village, but the instructions and start button are readable. I want to try earlier building orders.”
+- **24.090, note, Day 1 05:38:** “I sent Yusuf to build without rush or insist, although he was already going there. The order is pending. Two changing activity names went stale first; I could open him on the third try.”
+- **35.690, want_quit, TOOL, Day 1 06:18:** “Yusuf agreed, but the speech dismissal was covered or off screen on both attempts, including after I closed his panel. The driver blocks this control, so I stop this session.”
+- **47.010, stop, TOOL, Day 1 06:55:** “I am stopping the phone session because the speech dismiss control was covered or off screen twice. Yusuf agreed to build, and I selected stopping in Feedback without typing or submitting. The storm and later phone play are untested.”
+
+No phone first-minute note or pulse was due: the session ended before 60 seconds.
+
+## 4. Moments
+
+The desktop stage details held me. At seven roof stages, I could see Yusuf working on stage eight, its materials paid, and the timber needed for later stages. The Human village reached 25 meals without an order. I chose to watch rather than interrupt work that was already underway.
+
+The approaching storm made the nine-of-ten roofs matter. At dawn, the report said both villages missed the roof deadline, both met the meal goal and all six people lived. It reported six Classic injuries and two Human injuries. I gave no orders on desktop; the report said the Human and no-order comparison were the same run.
+
+Watching sleeping villagers while injuries rose held less interest, but I stayed for dawn. Both desktop pulses were **3/5**, at 184.877 and 368.975 seconds. My desktop quit wish came after the run ended and did not pass. On phone, the TOOL stop followed the failed dismissal retry; I did not reach a natural verdict on the rest of that run.
+
+## 5. Confusion and clarity
+
+The food explanation was clear about the distinction: “enough food stored” can concern ordinary meals even below the separate twelve-meal storm reserve. The suggestion at the warning repeated that distinction. I did not establish an exact ordinary-meal threshold.
+
+The roof panel showed current stage progress, workers, timber in store and remaining requirements. At the late stage it showed work in progress and materials already paid; that did not establish a shortage or a complete cause for the missed deadline.
+
+“Under protest: curiosity:unknown” did not tell me a reason I understood. Later the same forest suggestion changed to “Can’t: asleep” and then “Would agree under these conditions.” I dismissed it without sending it.
+
+I opened the notice for hurt Samira. Her panel said she was sheltering; I did not find an explanation of her injury there. The ending also displayed “This chapter could not be saved.” I did not investigate or retry it.
+
+## 6. Device use
+
+**Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/desktop/a-001.png) immediately after opening. It showed the two village maps side by side, their totals, and the introduction with the goal and start button. I used Begin, person buttons, Keep watching, Back to people, Dismiss suggestion, Game menu, Feedback, Fast, Resume, the injury notice and the report controls. I did not issue an order.
+
+Two Maryam targets and one Yusuf target became stale as their activity changed; choosing the current name worked. A later Dismiss suggestion target had disappeared, and I attempted Keep watching when it was absent; the replies listed the current controls, and I used Dismiss suggestion. My first command for “I’m confused” had a shell quoting error; the corrected command worked. These are separate from game outcomes.
+
+**Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/phone/b-001.png) immediately after opening. It showed the narrow opening page, readable instructions and start button, with the village button covering part of the title. I also viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/phone/b-002.png): it showed the Human map, Yusuf’s speech bubble, the bottom of the food explanation and the order buttons.
+
+I used Begin, Yusuf’s person button, Order Yusuf to House, Back to people, Game menu and Feedback. Yusuf agreed and began building, though he had already been travelling to the house. The named speech-dismiss control returned **“control is covered or off screen”** twice, once with his panel open and once after closing it. Under the assigned driver rule, that ended the session. The speech later disappeared by the time I opened the menu, but I cannot attribute that to either failed tap. I did not view the phone’s later game or Feedback layout in a screenshot.
+
+**Feedback:** On desktop, when confused, I opened the menu and selected “I’m confused”; it showed pressed, and I used Back. Before each stop, I opened the menu and Feedback, selected “I’m stopping,” saw it pressed and used Back. I typed nothing and pressed no Submit.
+
+## 7. Stop and return
+
+**Desktop stop — FINISHED, 420.524 seconds:**
+
+> I am stopping at dawn after the full storm. The stage details and food explanation helped; both roofs missed the deadline, all lived, and the Human village had fewer injuries. I would try another evening with earlier roof orders, but not keep watching tonight.
+
+**Phone stop — TOOL, 47.010 seconds:**
+
+> I am stopping the phone session because the speech dismiss control was covered or off screen twice. Yusuf agreed to build, and I selected stopping in Feedback without typing or submitting. The storm and later phone play are untested.
+
+Would I return voluntarily? **I would return voluntarily another evening on desktop to try earlier roof orders and see whether I can finish before the storm; I would not leave it running, and I would not play again tonight.** I saw enough of the outcome to have a practical plan for another attempt. I cannot judge the later phone game from this short, blocked session.
+
+## 8. Changes I would want
+
+1. Make the phone speech-dismiss control usable.
+2. Explain “Under protest: curiosity:unknown.”
+3. Show the cause when I open a person’s injury notice.
+
+## 9. Compared with my last visit
+
+These comparisons use only my supplied Well excerpt and what I saw in these fresh games. I cannot attribute differences to a particular cause across new games or versions.
+
+1. **Explain “enough food stored” against the twelve-meal storm target — met for the distinction.** The person panel and later suggestion said ordinary meals are separate from the storm reserve. I still did not learn an exact ordinary-meal threshold.
+2. **Show what is holding up the remaining roof stages — partly met.** I saw stage progress, who was building, timber on hand, materials already paid and remaining requirements. That explained more of the work, but I did not establish a full cause for the final stage missing the deadline.
+3. **Let me dismiss the old speech bubble — partly met.** A dismiss control was exposed for Yusuf’s phone speech, but the driver could not operate it after one retry. I cannot say how it would work on another layout or later speech.
+
+New this time, the phone dismissal block would stop me returning to that phone session. The opaque suggestion and unexplained injury also made the result harder to act on, though I would still try the desktop again.
+
+I owned no server, browser, process, branch or worktree. The coordinator owns both drivers; no worktree listing applies.

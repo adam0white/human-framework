@@ -1,0 +1,168 @@
+{
+  "scope": "Literal raw reactions; unchanged producer report retained.",
+  "reportSha256": "3ea1ad39852253837614ef40cb245b2e90bdb20631fad7b983a1a399c3b6acc5",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 4.411,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The goal has numbers I can follow. I do not yet know why I am choosing between these conversations, so I will leave the first one selected."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 12.194,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "That is a lot of construction detail for someone already cooking. I want her to keep making food, but I cannot tell whether ordering the kitchen changes anything."
+    },
+    {
+      "device": "desktop",
+      "row": 16,
+      "elapsed_s": 22.284,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I selected I am confused in Feedback; it stayed on the form and Back returned me to the paused menu. I sent nothing."
+    },
+    {
+      "device": "desktop",
+      "row": 18,
+      "elapsed_s": 26.393,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I chose Slow because the people changed activities while I was trying to select one. I want time to read."
+    },
+    {
+      "device": "desktop",
+      "row": 24,
+      "elapsed_s": 41.59,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "His answer makes sense: he wants to eat first. Seeing the two villages respond differently is more interesting than the tables."
+    },
+    {
+      "device": "desktop",
+      "row": 27,
+      "elapsed_s": 46.608,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "This comparison is much easier to read. I can see what each village has and when it counts."
+    },
+    {
+      "device": "desktop",
+      "row": 32,
+      "elapsed_s": 62.745,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "I understand the aim and the different answers now, but I am mostly watching people do things they were already doing. I am not sure what useful decision comes next."
+    },
+    {
+      "device": "desktop",
+      "row": 37,
+      "elapsed_s": 80.277,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "He agreed to gather timber but is walking to the house. I do not know if he will do it later or if the agreement means something else."
+    },
+    {
+      "device": "desktop",
+      "row": 38,
+      "elapsed_s": 82.068,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I would leave here; I am not enjoying checking whether an agreed instruction happens."
+    },
+    {
+      "device": "desktop",
+      "row": 43,
+      "elapsed_s": 88.974,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I selected I am stopping; it stayed selected on the form, and Back returned to the menu. I sent nothing."
+    },
+    {
+      "device": "desktop",
+      "row": 44,
+      "elapsed_s": 90.745,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping now; the comparison was interesting but the work of following orders has lost me."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.218,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The phone shows one village behind the introduction, and the title is partly covered. The goal and start button are readable. I remember the two villages answer differently from the laptop."
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "elapsed_s": 14.744,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The comparison fits across the phone, but I have to scroll to see the rest. The map and suggestion take much of the screen."
+    },
+    {
+      "device": "phone",
+      "row": 13,
+      "elapsed_s": 25.85,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I selected Samira to find a food job, but the choices are below a long construction section. On this screen I cannot see any place to choose yet."
+    },
+    {
+      "device": "phone",
+      "row": 18,
+      "elapsed_s": 38.48,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Again the human agreed but is doing something else. Perhaps she needs grain first, but I am guessing. I do not want to keep scrolling through the same roof figures for each person."
+    },
+    {
+      "device": "phone",
+      "row": 19,
+      "elapsed_s": 40.338,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I would stop here; the phone makes this feel like too much scrolling for a small decision."
+    },
+    {
+      "device": "phone",
+      "row": 24,
+      "elapsed_s": 49.463,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I selected I am stopping in Feedback. It stayed on the form and Back returned to the paused menu; I sent nothing."
+    },
+    {
+      "device": "phone",
+      "row": 25,
+      "elapsed_s": 51.62,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping on the phone; I do not want to scroll through all of that again to give another order."
+    }
+  ]
+}

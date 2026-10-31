@@ -1,0 +1,623 @@
+[
+  {
+    "id": "F-2761",
+    "who": "Maya Chen",
+    "rank": 1,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Tell me whether the first chalked square must be dug before the next one becomes connected. The two marks looked adjacent, but the second still told me to join them.",
+      "char_start": 224,
+      "char_end_exclusive": 389,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 202,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 202,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Maya Chen, 24, a Vancouver library assistant. This was a return to *The Warren*, in two independent fresh games on the same evening. I used the supplied start URL with `?labRunSource=agent`. The phone was 360×690 with touch; the desktop was 1280×800 with mouse-like taps. I imported no save or matched seed. Recording and consent stayed at their defaults. Neither game ended.",
+        "char_start": 697,
+        "char_end_exclusive": 1077,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect how the connecting-passage instruction distinguishes chalked marks from a completed cut. Maya guessed that the first square must be dug, but did not establish this."
+  },
+  {
+    "id": "F-2762",
+    "who": "Maya Chen",
+    "rank": 2,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Keep the cellar and my plan in view on the phone, or make it clear how to get back to them. The view moved to a field while I was waiting.",
+      "char_start": 393,
+      "char_end_exclusive": 531,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 202,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 202,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Maya Chen, 24, a Vancouver library assistant. This was a return to *The Warren*, in two independent fresh games on the same evening. I used the supplied start URL with `?labRunSource=agent`. The phone was 360×690 with touch; the desktop was 1280×800 with mouse-like taps. I imported no save or matched seed. Recording and consent stayed at their defaults. Neither game ended.",
+        "char_start": 697,
+        "char_end_exclusive": 1077,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect how to find the cellar and plan after the phone view moved. The cause of the movement is unknown."
+  },
+  {
+    "id": "F-2763",
+    "who": "Maya Chen",
+    "rank": 3,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Explain why the fresh game’s plan reading refers to an unavailable Yusuf invitation and an unrecorded stopping line. I did not know what to make of those words.",
+      "char_start": 535,
+      "char_end_exclusive": 695,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "opening": {
+      "text": "I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 202,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 202,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Maya Chen, 24, a Vancouver library assistant. This was a return to *The Warren*, in two independent fresh games on the same evening. I used the supplied start URL with `?labRunSource=agent`. The phone was 360×690 with touch; the desktop was 1280×800 with mouse-like taps. I imported no save or matched seed. Recording and consent stayed at their defaults. Neither game ended.",
+        "char_start": 697,
+        "char_end_exclusive": 1077,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect why a fresh plan reading mentions an unavailable invitation and an unrecorded stopping line. Do not infer save corruption or cross-game recovery."
+  },
+  {
+    "id": "F-2764",
+    "who": "Emre Kaya",
+    "rank": 1,
+    "source": "emre/report.md",
+    "primary": {
+      "text": "Give me a useful shelter decision while the first marked room waits.",
+      "char_start": 170,
+      "char_end_exclusive": 238,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 148,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 148,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "- **6.650, note:** “The shelter goal is familiar. I want to see whether the work and the door make more sense in a fresh village.”\n- **19.217, note:** “The mark now tells me who can dig, that the wall is available, and that meals, harvest and rest take priority. That is a useful explanation for the waiting I remember.”\n- **First-minute attempt, time not captured:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. I want to see the work and plan storage and a protected room.” This request was issued before the next observed time of 55.522 seconds, so I cannot count it as a valid first-minute checkpoint.\n- **61.864, first_minute:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. Six people need sleeping places, and I want to plan storage and a protected room.”\n- **106.834, note:** “The journal now groups four routine lines, which makes the repeated reports less distracting. I asked Yusuf about the stopping line again; the invitation is pending and the journal says so.”\n- **141.472, note:** “Yusuf answered in the main journal this time, so I did not have to reopen him. The admission is clear, but I still do not know where the stopping mark is on my hill or what to do with it.”\n- **208.159, pulse, engagement 3/5:** “I like seeing Yusuf answer in the journal and the routine lines grouped. The first square still seems to be waiting, so I am watching rather than building the shelter I came for.”\n- **220.938, want_quit, BORED, engagement 2/5:** “The first marked square is still stone after several days, and I am watching the same early preparation again. The explanation helps, but I do not want to wait longer tonight.”\n- **230.533, stop, BORED, engagement 2/5:** “I am stopping on desktop before the first room is dug. The wall explanation and visible invitation answer help, but I am tired of waiting through the same preparation. I would return another evening if there were a useful shelter decision while work waits; I would not leave it running.”",
+        "char_start": 1837,
+        "char_end_exclusive": 3981,
+        "line_start": 26,
+        "line_end": 34
+      },
+      {
+        "text": "- **5.796, note:** “The phone title and shelter goal fit clearly. This is another fresh village, after the slow desktop start.”\n- **20.686, note:** “I can distinguish and mark the small wall on the phone. The explanation is the same as desktop; I will see whether this village starts work.”\n- **61.202, first_minute:** “I marked one square on the small phone hill. Meryem needs food and water and is eating, so I understand why she is not digging at this moment. I have already watched the same start on desktop tonight.”\n- **64.072, want_quit, BORED, engagement 2/5:** “I do not want to wait through the same first room on the phone after doing it on desktop. The needs make sense, but I have no new shelter decision yet.”\n- **75.823, stop, BORED, engagement 2/5:** “I am stopping on the phone after marking the first square. The layout is usable and Meryem eating is understandable, but I have already waited through this opening on desktop. I would return another evening on desktop for a useful decision, not leave it running.”",
+        "char_start": 3994,
+        "char_end_exclusive": 5025,
+        "line_start": 38,
+        "line_end": 42
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Review a useful shelter decision during the first-room wait. Emre saw Meryem eating on phone; that does not establish the full cause of the desktop wait. Do not mandate a clock or digging retune."
+  },
+  {
+    "id": "F-2765",
+    "who": "Emre Kaya",
+    "rank": 2,
+    "source": "emre/report.md",
+    "primary": {
+      "text": "Show how Yusuf’s stopping line relates to the hill I am planning.",
+      "char_start": 242,
+      "char_end_exclusive": 307,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 148,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 148,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "- **6.650, note:** “The shelter goal is familiar. I want to see whether the work and the door make more sense in a fresh village.”\n- **19.217, note:** “The mark now tells me who can dig, that the wall is available, and that meals, harvest and rest take priority. That is a useful explanation for the waiting I remember.”\n- **First-minute attempt, time not captured:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. I want to see the work and plan storage and a protected room.” This request was issued before the next observed time of 55.522 seconds, so I cannot count it as a valid first-minute checkpoint.\n- **61.864, first_minute:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. Six people need sleeping places, and I want to plan storage and a protected room.”\n- **106.834, note:** “The journal now groups four routine lines, which makes the repeated reports less distracting. I asked Yusuf about the stopping line again; the invitation is pending and the journal says so.”\n- **141.472, note:** “Yusuf answered in the main journal this time, so I did not have to reopen him. The admission is clear, but I still do not know where the stopping mark is on my hill or what to do with it.”\n- **208.159, pulse, engagement 3/5:** “I like seeing Yusuf answer in the journal and the routine lines grouped. The first square still seems to be waiting, so I am watching rather than building the shelter I came for.”\n- **220.938, want_quit, BORED, engagement 2/5:** “The first marked square is still stone after several days, and I am watching the same early preparation again. The explanation helps, but I do not want to wait longer tonight.”\n- **230.533, stop, BORED, engagement 2/5:** “I am stopping on desktop before the first room is dug. The wall explanation and visible invitation answer help, but I am tired of waiting through the same preparation. I would return another evening if there were a useful shelter decision while work waits; I would not leave it running.”",
+        "char_start": 1837,
+        "char_end_exclusive": 3981,
+        "line_start": 26,
+        "line_end": 34
+      },
+      {
+        "text": "- **5.796, note:** “The phone title and shelter goal fit clearly. This is another fresh village, after the slow desktop start.”\n- **20.686, note:** “I can distinguish and mark the small wall on the phone. The explanation is the same as desktop; I will see whether this village starts work.”\n- **61.202, first_minute:** “I marked one square on the small phone hill. Meryem needs food and water and is eating, so I understand why she is not digging at this moment. I have already watched the same start on desktop tonight.”\n- **64.072, want_quit, BORED, engagement 2/5:** “I do not want to wait through the same first room on the phone after doing it on desktop. The needs make sense, but I have no new shelter decision yet.”\n- **75.823, stop, BORED, engagement 2/5:** “I am stopping on the phone after marking the first square. The layout is usable and Meryem eating is understandable, but I have already waited through this opening on desktop. I would return another evening on desktop for a useful decision, not leave it running.”",
+        "char_start": 3994,
+        "char_end_exclusive": 5025,
+        "line_start": 38,
+        "line_end": 42
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect how Yusuf’s stopping line relates to the current hill and what a player can do with it. He answered in the journal, but Emre could not place the line."
+  },
+  {
+    "id": "F-2766",
+    "who": "Emre Kaya",
+    "rank": 3,
+    "source": "emre/report.md",
+    "primary": {
+      "text": "Tell me what, if anything, I can usefully do about a marked wall that is waiting.",
+      "char_start": 311,
+      "char_end_exclusive": 392,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "opening": {
+      "text": "I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 148,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 148,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "- **6.650, note:** “The shelter goal is familiar. I want to see whether the work and the door make more sense in a fresh village.”\n- **19.217, note:** “The mark now tells me who can dig, that the wall is available, and that meals, harvest and rest take priority. That is a useful explanation for the waiting I remember.”\n- **First-minute attempt, time not captured:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. I want to see the work and plan storage and a protected room.” This request was issued before the next observed time of 55.522 seconds, so I cannot count it as a valid first-minute checkpoint.\n- **61.864, first_minute:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. Six people need sleeping places, and I want to plan storage and a protected room.”\n- **106.834, note:** “The journal now groups four routine lines, which makes the repeated reports less distracting. I asked Yusuf about the stopping line again; the invitation is pending and the journal says so.”\n- **141.472, note:** “Yusuf answered in the main journal this time, so I did not have to reopen him. The admission is clear, but I still do not know where the stopping mark is on my hill or what to do with it.”\n- **208.159, pulse, engagement 3/5:** “I like seeing Yusuf answer in the journal and the routine lines grouped. The first square still seems to be waiting, so I am watching rather than building the shelter I came for.”\n- **220.938, want_quit, BORED, engagement 2/5:** “The first marked square is still stone after several days, and I am watching the same early preparation again. The explanation helps, but I do not want to wait longer tonight.”\n- **230.533, stop, BORED, engagement 2/5:** “I am stopping on desktop before the first room is dug. The wall explanation and visible invitation answer help, but I am tired of waiting through the same preparation. I would return another evening if there were a useful shelter decision while work waits; I would not leave it running.”",
+        "char_start": 1837,
+        "char_end_exclusive": 3981,
+        "line_start": 26,
+        "line_end": 34
+      },
+      {
+        "text": "- **5.796, note:** “The phone title and shelter goal fit clearly. This is another fresh village, after the slow desktop start.”\n- **20.686, note:** “I can distinguish and mark the small wall on the phone. The explanation is the same as desktop; I will see whether this village starts work.”\n- **61.202, first_minute:** “I marked one square on the small phone hill. Meryem needs food and water and is eating, so I understand why she is not digging at this moment. I have already watched the same start on desktop tonight.”\n- **64.072, want_quit, BORED, engagement 2/5:** “I do not want to wait through the same first room on the phone after doing it on desktop. The needs make sense, but I have no new shelter decision yet.”\n- **75.823, stop, BORED, engagement 2/5:** “I am stopping on the phone after marking the first square. The layout is usable and Meryem eating is understandable, but I have already waited through this opening on desktop. I would return another evening on desktop for a useful decision, not leave it running.”",
+        "char_start": 3994,
+        "char_end_exclusive": 5025,
+        "line_start": 38,
+        "line_end": 42
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Review what a player can usefully do while a marked wall waits. Preserve the named diggers and competing needs, without forcing an outcome."
+  },
+  {
+    "id": "F-2767",
+    "who": "Nia Okafor",
+    "rank": 1,
+    "source": "nia/report.md",
+    "primary": {
+      "text": "Let me make the quiet door-test request through the phone control. Selecting Meryem timed out twice through the driver, so I could not reach the experiment I came for.",
+      "char_start": 168,
+      "char_end_exclusive": 335,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would come back another evening to try the quiet door test if I could make the request; I would not come back tonight or leave the game running.",
+      "char_start": 0,
+      "char_end_exclusive": 146,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening to try the quiet door test if I could make the request; I would not come back tonight or leave the game running.",
+        "char_start": 0,
+        "char_end_exclusive": 146,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I’m Nia Okafor, 19, a Lagos design student. This was a return visit to **The Warren**, the second fix/retest cycle. I played fresh, independent games at the supplied URL with `?labRunSource=agent`: first on a 360×690 touch phone, then on a 1280×800 desktop the same evening. No save or matched seed was imported. I left recording and consent at their defaults. Both games began on Slow; I changed each to Fast.",
+        "char_start": 553,
+        "char_end_exclusive": 963,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:lab",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Investigate the phone quiet-test selection in the lab driver: two attempts to select Meryem timed out. No quiet-test request was sent and the cause is unknown; do not diagnose a game-source defect."
+  },
+  {
+    "id": "F-2768",
+    "who": "Nia Okafor",
+    "rank": 2,
+    "source": "nia/report.md",
+    "primary": {
+      "text": "Give me something engaging to do while I wait for a door to be carved. On desktop I stopped after waiting on Fast and finding it still unfinished.",
+      "char_start": 339,
+      "char_end_exclusive": 485,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I would come back another evening to try the quiet door test if I could make the request; I would not come back tonight or leave the game running.",
+      "char_start": 0,
+      "char_end_exclusive": 146,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening to try the quiet door test if I could make the request; I would not come back tonight or leave the game running.",
+        "char_start": 0,
+        "char_end_exclusive": 146,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I’m Nia Okafor, 19, a Lagos design student. This was a return visit to **The Warren**, the second fix/retest cycle. I played fresh, independent games at the supplied URL with `?labRunSource=agent`: first on a 360×690 touch phone, then on a 1280×800 desktop the same evening. No save or matched seed was imported. I left recording and consent at their defaults. Both games began on Slow; I changed each to Fast.",
+        "char_start": 553,
+        "char_end_exclusive": 963,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Review Nia’s request for something engaging while a door is carved. The desktop door remained unfinished during the reached session; no timing retune is implied."
+  },
+  {
+    "id": "F-2769",
+    "who": "Nia Okafor",
+    "rank": 3,
+    "source": "nia/report.md",
+    "primary": {
+      "text": "Give me a clearer sense of when riders might become a concern.",
+      "char_start": 489,
+      "char_end_exclusive": 551,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "opening": {
+      "text": "I would come back another evening to try the quiet door test if I could make the request; I would not come back tonight or leave the game running.",
+      "char_start": 0,
+      "char_end_exclusive": 146,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening to try the quiet door test if I could make the request; I would not come back tonight or leave the game running.",
+        "char_start": 0,
+        "char_end_exclusive": 146,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I’m Nia Okafor, 19, a Lagos design student. This was a return visit to **The Warren**, the second fix/retest cycle. I played fresh, independent games at the supplied URL with `?labRunSource=agent`: first on a 360×690 touch phone, then on a 1280×800 desktop the same evening. No save or matched seed was imported. I left recording and consent at their defaults. Both games began on Slow; I changed each to Fast.",
+        "char_start": 553,
+        "char_end_exclusive": 963,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect how the game communicates when riders might become a concern. Nia did not reach riders; do not invent a schedule."
+  },
+  {
+    "id": "F-2770",
+    "who": "Rosa Alvarez",
+    "rank": 1,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Show me clearly which squares remain marked after I tap, especially when the answer says the chalk is unchanged.",
+      "char_start": 202,
+      "char_end_exclusive": 314,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 176,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 176,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Rosa Alvarez, 62, a retired school administrator from Puebla. I read English as a second language. This was a return visit and the second fix/retest cycle. The two sessions were fresh, independent games on my other devices the same evening: a **360×690 touch phone** and a **1280×800 desktop**, where I used the mouse. Neither used an old save or matched seed. Both began at the supplied URL with the agent query. Recording and consent stayed at their defaults.",
+        "char_start": 452,
+        "char_end_exclusive": 918,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect how remaining chalk marks are communicated after removal or an unchanged answer. Rosa did not view a post-mark screenshot; cause and final mark locations remain unknown."
+  },
+  {
+    "id": "F-2771",
+    "who": "Rosa Alvarez",
+    "rank": 2,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Explain “open route” when it becomes relevant. I did not reach that advice on this visit.",
+      "char_start": 318,
+      "char_end_exclusive": 407,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 176,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 176,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Rosa Alvarez, 62, a retired school administrator from Puebla. I read English as a second language. This was a return visit and the second fix/retest cycle. The two sessions were fresh, independent games on my other devices the same evening: a **360×690 touch phone** and a **1280×800 desktop**, where I used the mouse. Neither used an old save or matched seed. Both began at the supplied URL with the agent query. Recording and consent stayed at their defaults.",
+        "char_start": 452,
+        "char_end_exclusive": 918,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Review plain explanation of open route when relevant. Rosa did not reach that advice in this visit."
+  },
+  {
+    "id": "F-2772",
+    "who": "Rosa Alvarez",
+    "rank": 3,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Explain “spoil” in the digging message.",
+      "char_start": 411,
+      "char_end_exclusive": 450,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "opening": {
+      "text": "I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 176,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 176,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Rosa Alvarez, 62, a retired school administrator from Puebla. I read English as a second language. This was a return visit and the second fix/retest cycle. The two sessions were fresh, independent games on my other devices the same evening: a **360×690 touch phone** and a **1280×800 desktop**, where I used the mouse. Neither used an old save or matched seed. Both began at the supplied URL with the agent query. Recording and consent stayed at their defaults.",
+        "char_start": 452,
+        "char_end_exclusive": 918,
+        "line_start": 9,
+        "line_end": 9
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Review explanation of spoil in the digging message. Rosa found the word unfamiliar but continued."
+  },
+  {
+    "id": "F-2773",
+    "who": "Sanja Marković",
+    "rank": 1,
+    "source": "sanja/report.md",
+    "primary": {
+      "text": "Make it clearer which sleeping places already exist, which are planned, and which are safe from riders.",
+      "char_start": 100,
+      "char_end_exclusive": 203,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would come back another evening, but I would not leave the game running.",
+      "char_start": 0,
+      "char_end_exclusive": 74,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening, but I would not leave the game running.",
+        "char_start": 0,
+        "char_end_exclusive": 74,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "- **5.558 s — note, engagement 4:** “The bigger drawing gives me a better view of the village. I want to see whether I can make the shelter safer this time.”\n- **23.295 s — note, engagement 4:** “The larger screen lets me read the village events alongside the hill. I accidentally removed a chalk mark by clicking again, then restored it; that surprised me while chalk was selected.”\n- **40.910 s — note, engagement 4:** “A door can make the entrance safer, and the message confirms it is only marked. I want to see someone actually carve it.”\n- **66.972 s — first_minute, engagement 4:** “The door task gave me a clear response, and I can follow people more easily here. I still need sleeping space and am waiting to see the work completed.”\n- **92.450 s — note, engagement 4:** “The door was finished when I checked, which is satisfying. I asked Yusuf to test it; pending is clear, though I missed the moment it was finished.”\n- **99.428 s — note, engagement 5:** “Yusuf shut and reopened the door, and the journal tells me the result. That is the consequence I wanted to see.”\n- **101.717 s — want_quit, BORED, engagement 3:** “I have seen the door work and would leave for tonight. I am interested in the people, but I do not want to wait through more routine right now.”\n- **111.522 s — stop, BORED, engagement 3:** “I am stopping after seeing the door test. I would come back another evening, but I would not leave the game running.”",
+        "char_start": 4674,
+        "char_end_exclusive": 6113,
+        "line_start": 42,
+        "line_end": 49
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Clarify the distinction between existing, planned, potential and rider-safe sleeping places using actual source rules. Sanja did not reach a completed shelter."
+  },
+  {
+    "id": "F-2774",
+    "who": "Sanja Marković",
+    "rank": 2,
+    "source": "sanja/report.md",
+    "primary": {
+      "text": "Show the progress of marked work more plainly while people attend to other duties.",
+      "char_start": 207,
+      "char_end_exclusive": 289,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I would come back another evening, but I would not leave the game running.",
+      "char_start": 0,
+      "char_end_exclusive": 74,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening, but I would not leave the game running.",
+        "char_start": 0,
+        "char_end_exclusive": 74,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "- **5.558 s — note, engagement 4:** “The bigger drawing gives me a better view of the village. I want to see whether I can make the shelter safer this time.”\n- **23.295 s — note, engagement 4:** “The larger screen lets me read the village events alongside the hill. I accidentally removed a chalk mark by clicking again, then restored it; that surprised me while chalk was selected.”\n- **40.910 s — note, engagement 4:** “A door can make the entrance safer, and the message confirms it is only marked. I want to see someone actually carve it.”\n- **66.972 s — first_minute, engagement 4:** “The door task gave me a clear response, and I can follow people more easily here. I still need sleeping space and am waiting to see the work completed.”\n- **92.450 s — note, engagement 4:** “The door was finished when I checked, which is satisfying. I asked Yusuf to test it; pending is clear, though I missed the moment it was finished.”\n- **99.428 s — note, engagement 5:** “Yusuf shut and reopened the door, and the journal tells me the result. That is the consequence I wanted to see.”\n- **101.717 s — want_quit, BORED, engagement 3:** “I have seen the door work and would leave for tonight. I am interested in the people, but I do not want to wait through more routine right now.”\n- **111.522 s — stop, BORED, engagement 3:** “I am stopping after seeing the door test. I would come back another evening, but I would not leave the game running.”",
+        "char_start": 4674,
+        "char_end_exclusive": 6113,
+        "line_start": 42,
+        "line_end": 49
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Review how marked work progress is communicated while workers attend to other duties. Sanja saw work begin and a separate door complete; no blanket speed change follows."
+  },
+  {
+    "id": "F-2775",
+    "who": "Sanja Marković",
+    "rank": 3,
+    "source": "sanja/report.md",
+    "primary": {
+      "text": "Explain what the unavailable invitation and stopping line mean for a first-time player’s decision.",
+      "char_start": 293,
+      "char_end_exclusive": 391,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "opening": {
+      "text": "I would come back another evening, but I would not leave the game running.",
+      "char_start": 0,
+      "char_end_exclusive": 74,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening, but I would not leave the game running.",
+        "char_start": 0,
+        "char_end_exclusive": 74,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "- **5.558 s — note, engagement 4:** “The bigger drawing gives me a better view of the village. I want to see whether I can make the shelter safer this time.”\n- **23.295 s — note, engagement 4:** “The larger screen lets me read the village events alongside the hill. I accidentally removed a chalk mark by clicking again, then restored it; that surprised me while chalk was selected.”\n- **40.910 s — note, engagement 4:** “A door can make the entrance safer, and the message confirms it is only marked. I want to see someone actually carve it.”\n- **66.972 s — first_minute, engagement 4:** “The door task gave me a clear response, and I can follow people more easily here. I still need sleeping space and am waiting to see the work completed.”\n- **92.450 s — note, engagement 4:** “The door was finished when I checked, which is satisfying. I asked Yusuf to test it; pending is clear, though I missed the moment it was finished.”\n- **99.428 s — note, engagement 5:** “Yusuf shut and reopened the door, and the journal tells me the result. That is the consequence I wanted to see.”\n- **101.717 s — want_quit, BORED, engagement 3:** “I have seen the door work and would leave for tonight. I am interested in the people, but I do not want to wait through more routine right now.”\n- **111.522 s — stop, BORED, engagement 3:** “I am stopping after seeing the door test. I would come back another evening, but I would not leave the game running.”",
+        "char_start": 4674,
+        "char_end_exclusive": 6113,
+        "line_start": 42,
+        "line_end": 49
+      }
+    ],
+    "route": "fix:warren",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Explain the unavailable invitation and stopping line in the context a cold player can actually know. Do not invent prior events or hidden facts."
+  }
+]

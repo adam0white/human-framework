@@ -1,0 +1,48 @@
+# Build the Word first fixed-retest draft; parser checks use the current batch5 worktree.
+import json,pathlib,hashlib,re
+R=pathlib.Path('/Users/abdul/code/.lab-scratch/playtest/light-1030');P=pathlib.Path(__file__).parent;plan=json.loads((R/'word-retest-codex-plan.json').read_text());sources=[];shots=[];rows=[];returns=[];raw=[];stops=[];audits=[]
+def sha(b):return hashlib.sha256(b).hexdigest()
+def copy(src,dst):
+ dst.parent.mkdir(parents=True,exist_ok=True); b=src.read_bytes();dst.write_bytes(b);st=src.stat();sources.append(dict(source=str(src),destination=str(dst.relative_to(P)),sha256=sha(b),bytes=len(b),mtime_ns=st.st_mtime_ns))
+def span(s,a,b):return dict(text=s[a:b],char_start=a,char_end_exclusive=b,line_start=s.count('\n',0,a)+1,line_end=s.count('\n',0,b)+1)
+routes=['Review Maya’s preference for more exploration within or after a meeting. Both reached meetings were short; no expansion or game-length change is mandated.', 'Review Maya’s wish for a private word to matter on more paths. Halil remembered it in one reached path and she did not see an effect on the phone ending; do not infer no later effect.', 'Review whether phone agreement terms can be compared with less reading density. The full phone list was not viewed and no global layout defect is established.', 'Review Mei’s preference for another meeting or new situation. She found a different agreement meaningful but does not want to replay this meeting; no expansion is mandated.', 'Review Samir’s wish to ask Halil and Rıza what Nuri said to each. Preserve uncertainty and do not invent a private promise.', 'Review Samir’s preference for a longer meeting with more people and choices after the first agreement. This is taste evidence, not a mandate to expand.', 'Inspect the opening action’s visibility on the phone. Samir did not scroll, so reachability during a real scroll remains untested.', 'Review Diego’s preference for shorter agreement explanations while retaining useful titles and terms. Do not remove decision-relevant information.', 'Review Diego’s preference for another consequential decision before the agreement. The delivery window mattered at signature; no earlier cost was observed.', 'Inspect how the notebook distinguishes Ferda’s earlier wording from her response after the letter, using the meeting screen as the comparison. This is a copy lead, not proof of a state or save defect.']
+next_id=2791
+
+for i,p in enumerate(plan):
+ name=p['first'];src=pathlib.Path(p['dir']);d=P/name;d.mkdir(exist_ok=True)
+ for f in ['report.md','brief.md','own-history.md','history-source-map.json','dispatch.json','director-method-qualification.json','raw-reactions-companion.json']:
+  if (src/f).exists():copy(src/f,d/f)
+ c=src/'completion.json';v=json.loads(c.read_text());(d/'completion.safe.json').write_text(json.dumps(dict(sourceSha256=sha(c.read_bytes()),sourceBytes=c.stat().st_size,sourceMtimeNs=c.stat().st_mtime_ns,exit=v.get('exit'),pins=v.get('pins'),ended=v.get('ended'),scope='Private session metadata excluded.'),indent=2)+'\n')
+ for dev in ['phone','desktop']:
+  for f in ['wall-clock.jsonl','driver.out','release-start.json']:
+   if (src/dev/f).exists():copy(src/dev/f,d/dev/f)
+  for x in (src/dev).glob('*.png'):
+   b=x.read_bytes();shots.append(dict(source=str(x),sha256=sha(b),bytes=len(b),mtime_ns=x.stat().st_mtime_ns))
+  for num,line in enumerate((src/dev/'wall-clock.jsonl').read_text().splitlines(),1):
+   v=json.loads(line)
+   if v.get('reaction') is not None:
+    x=dict(tester=name,device=dev,source=f'{name}/{dev}/wall-clock.jsonl',line=num,elapsed_s=v.get('elapsed_s'),kind=v.get('kind'),op=v.get('op'),reaction=v['reaction'],reason=v.get('reason'));raw.append(x)
+    if v.get('kind')=='stop':stops.append(x)
+ s=(src/'report.md').read_text(); first=span(s,0,s.index('\n')); matches=list(re.finditer(r'^([123])\. (.+)$',s,re.M))[:[3,1,3,2,1][i]];assert len(matches)==[3,1,3,2,1][i]
+ # Capture whole paragraphs that contain return statements, including original opening and diary stops.
+ ps=[]
+ for m in re.finditer(r'[^\n]+(?:\n(?!\n)[^\n]+)*',s):
+  if re.search(r'\breturn\b|come back',m.group(),re.I): ps.append(span(s,m.start(),m.end()))
+ returns.append(dict(tester=p['tester'],source=f'{name}/report.md',opening=first,returnParagraphs=ps))
+ for j,m in enumerate(matches):
+  k=next_id-2791;next_id+=1;rows.append(dict(id=f'F-{2791+k}',who=p['tester'],rank=j+1,source=f'{name}/report.md',primary=span(s,m.start(2),m.end(2)),opening=first,returnParagraphs=ps,route='fix:word',target='2026-11-03' if k in (6,9) else '2026-11-10',status='open',editorial_route=routes[k]))
+ receipt=R/({'maya':'word-maya-retained-audit-1455.json','mei':'word-mei-retained-audit-1457.json','samir':'word-samir-retained-audit-1500.json','diego':'word-diego-retained-audit-1504.json','anika':'word-anika-retained-audit-1506.json'}[name]);b=receipt.read_bytes();z=json.loads(b);audits.append(dict(tester=name,receiptSha256=sha(b),receiptBytes=len(b),receiptMtimeNs=receipt.stat().st_mtime_ns,historySha256=z['historySha256'],historyLines=z['historyLines'],literalLinesMatched=z['literalLinesMatched'],unmatchedRanges=z['unmatchedRanges'],imageCalls=len(z['imageCalls']),imageBlocks=sum(x.get('imageBlocks',0) for x in z['imageCalls']),matchesDispatchAndFreeze=z['matchesDispatchAndFreeze'],matchesCompletionSessionHashAndBytes=z['matchesCompletionSessionHashAndBytes'],scope='Retained responses do not prove attention or comprehension.'))
+assert len(rows)==10 and len(stops)==10
+for f in ['word-retest-codex-plan.json','word-retest-codex-input-freeze.json','word-codex-input-freeze-audit.json','word-retest-codex-root-admission.json','word-retest-codex-round-state.json','word-retest-codex-cleanup.json','word-retest-codex-final-release-after-round.json']:
+ if (R/f).exists():copy(R/f,P/'inputs'/f)
+(P/'inputs/retained-evidence-safe-summary.json').write_text(json.dumps({'scope':'Hash-bound aggregate only; no provider envelopes, tool commands, session paths or UUIDs. Retained responses do not establish attention or comprehension.','testers':audits},indent=2)+'\n')
+for f,obj in [('ledger-rows.json',rows),('returns.json',returns),('all-driver-reactions.json',raw),('actual-stops.json',stops),('source-map.json',sources),('screenshots-manifest.json',shots)]: (P/f).write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n')
+def fmt(r,x,label):return f'{label} [{r["source"]}:{x["line_start"]} chars {x["char_start"]}–{x["char_end_exclusive"]}]: '+x['text'].replace('|','&#124;').replace('\n','<br>')
+lines=['Draft source packet. Ten ranked asks only. Dated Deferred: F-2797 and F-2800 on 2026-11-03, remaining preferences on 2026-11-10. First fixed retest; no second retest indicated.','', '| id | date | game | kind | who | words | verdict | routes | source |','| --- | --- | --- | --- | --- | --- | --- | --- | --- |']
+for r in rows:
+ words=fmt(r,r['primary'],f'Ranked ask {r["rank"]}')+' '+fmt(r,r['opening'],'Whole opening return')
+ for x in r['returnParagraphs'][1:]:words+=' '+fmt(r,x,'Additional whole source paragraph containing a return statement')
+ lines.append('| '+' | '.join([r['id'],'2026-10-31','word','playtester','Fictional LIGHT panel: '+r['who'],words,'mixed',r['route']+' '+r['editorial_route'].replace(';',',')+' target'+r['target']+' (open)','docs/lab/reviews/light-2026-10-30/word-retest1/'+r['source']])+' |')
+(P/'ledger-additions.md').write_text('\n'.join(lines)+'\n')
+(P/'README.md').write_text('# His Word first fixed-retest draft\n\nPrivate draft for independent review, not sealed, canonical, imported, finished or accepted. Five testers and ten actual ranked asks F-2791–F-2800; F-2801–F-2820 are unused. This is the first fixed retest. All five explicitly report no new blocker. The work is eligible for finishing after dated Deferred integration; no second retest is indicated.\n\nTen voluntary stops comprise eight supported endings and two BORED stops. Original reports, entire return paragraphs and raw reactions preserve timing rounding, tap and shot events, post-stop automatic screenshots and unsent prefilled feedback drafts. Diego and Anika state their leave-running answer in their later return paragraphs, not their opening sentences. F-2797 concerns Samir’s phone opening action: no scroll was tried and a reachability defect is not established. F-2800 is Anika’s notebook wording inspection, not proof of a state defect.\n\nRetained current tool responses and image blocks are hash-bound; they do not establish attention or perception. Earlier selected histories, partial reads and separate CONT limits remain. Completion and audit summaries are safe hash-bound projections because originals include private session metadata. No native provider envelopes, UUIDs, session paths or command payloads are copied. Screenshot files are represented by hashes only. Controller exit zero, fifteen recorded PIDs absent, 72 observed identities gone and ten ports closed are point-in-time evidence, not a lifetime process journal.\n')
+print('sources',len(sources),'reactions',len(raw),'stops',len(stops),'screenshots',len(shots),'returns',len(returns))

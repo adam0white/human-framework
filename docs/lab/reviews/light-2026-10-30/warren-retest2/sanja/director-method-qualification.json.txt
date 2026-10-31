@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-31T14:40:30.208003+00:00",
+  "rootReadFullReport": true,
+  "exposure": "Two fresh independent games, same evening on other device, no matched seed or old import.",
+  "feedback": "Both quick labels observed locally as fitting, Back returned menu; no typed note/Submit/recording/consent change found. Production receipt unverified.",
+  "cycleRule": "SECOND fixed-build retest. Remaining asks dated Deferred; no third ordinary panel or automatic new gameplay fix cycle.",
+  "descendantScope": "Recorded PIDs absent, collected point-in-time identities gone and ten ports closed; no whole-lifetime journal.",
+  "historyEvidence": "Cold5literal lines matched completed stdout and completion-bound retained responses. No priorHFhistory supplied; not proof attention/comprehension. New root-supplied persona, not recovered prior reservation.",
+  "retainedToolsReceipt": "warren-sanja-retained-audit-1436.json",
+  "imageEvidence": "Four high-detail image blocks: phone a001/a002, desktop a001/a002; not proof perception.",
+  "timedLogs": "Phone firstminute63.752 valid; rawstop90.964 versus report90.965. Desktop firstminute66.972 valid; rawstop111.521 versus report111.522. Both BORED, no180pulse due. Raw and original report unchanged.",
+  "stops": {
+    "phone": 90.964,
+    "desktop": 111.521
+  },
+  "driverQualification": "One unmatchedquote shell exit1 before request. Desktop beds tap returned innerText5000 timeout with nonempty visible/controls response; later retry reported bedsselected. Cause/outcome of timedout attempt unknown. Door completion and Yusuf shut/reopened described in actual subsequent visiblejournal; not acknowledgmentalone.",
+  "priorAskComparison": "First visit, no prior ask comparison. Phone concern existing/planned/potential/safe sleeping places; desktop finished door and requested test/observedjournalresult, no completed shelter/attack/ending.",
+  "producerNewBlockingAsk": "No explicit new-blocker declaration. Three ranked asks retained as clarity/work-progress/first-time-fiction leads, not presumed proven defects or timing-retune mandates.",
+  "returnExact": "I would come back another evening, but I would not leave the game running.",
+  "commandReceipt": "warren-sanja-command-audit-1436.json",
+  "cleanupRecordedPids": [
+    {
+      "player": "sanja",
+      "pid": 69760,
+      "absent": true
+    },
+    {
+      "player": "sanja",
+      "pid": 69732,
+      "absent": true
+    },
+    {
+      "player": "sanja",
+      "pid": 69736,
+      "absent": true
+    }
+  ]
+}

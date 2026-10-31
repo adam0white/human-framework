@@ -1,0 +1,116 @@
+[
+  {
+    "tester": "Jonas Berg",
+    "source": "jonas/report.md",
+    "opening": {
+      "text": "**Would I return voluntarily?** Yes, another evening for one attempt in a different order, to see whether I can avoid leaving a follower behind. I would not leave it running or replay again tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 198,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** Yes, another evening for one attempt in a different order, to see whether I can avoid leaving a follower behind. I would not leave it running or replay again tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 198,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ]
+  },
+  {
+    "tester": "Aisha Rahman",
+    "source": "aisha/report.md",
+    "opening": {
+      "text": "I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 154,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 154,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I am Aisha Rahman, a 45-year-old community pharmacist from Birmingham. This was my first fixed-build return to *Smoke on the Stairs*. I played the assigned URL with the agent query retained, in two fresh, independent games on the same evening. The desktop session used a 1280×800 keyboard-and-mouse context and ended at **132.921 seconds**. The 360×690 touch-phone session ended at **122.691 seconds**. Both ended because the game said everyone was out.",
+        "char_start": 491,
+        "char_end_exclusive": 944,
+        "line_start": 10,
+        "line_end": 10
+      }
+    ]
+  },
+  {
+    "tester": "Diego Silva",
+    "source": "diego/report.md",
+    "opening": {
+      "text": "**Would I return voluntarily?** I might come back another evening because the phone run made the rescue feel clear and satisfying, but I would want to know I can get past Sevim’s conflicting book status. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 233,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** I might come back another evening because the phone run made the rescue feel clear and satisfying, but I would want to know I can get past Sevim’s conflicting book status. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 233,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ]
+  },
+  {
+    "tester": "Leila Mansour",
+    "source": "leila/report.md",
+    "opening": {
+      "text": "**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 109,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** Yes, another evening, to try a different order. I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 109,
+        "line_start": 1,
+        "line_end": 1
+      }
+    ]
+  },
+  {
+    "tester": "Maëlle Pichon",
+    "source": "maelle/report.md",
+    "opening": {
+      "text": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+      "char_start": 0,
+      "char_end_exclusive": 91,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+        "char_start": 0,
+        "char_end_exclusive": 91,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "The phone’s confusion resolved quickly: after I opened the pause menu, the prompt changed to turn on the torch and show the stair. On the desktop, the conflicting message lasted long enough for me to take the other two outside and return. I cannot tell from these observations why the displayed instruction lagged.",
+        "char_start": 2480,
+        "char_end_exclusive": 2794,
+        "line_start": 16,
+        "line_end": 16
+      }
+    ]
+  }
+]

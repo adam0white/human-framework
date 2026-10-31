@@ -1,0 +1,164 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/phone/first-minute.png",
+    "sha256": "66b8cc0d489287709f63ea5a59c0df7f81ca2a1b53672833fb24f22ee36bbafa",
+    "bytes": 70631,
+    "mtime_ns": 1793453802466322242
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/phone/a-002.png",
+    "sha256": "092d34b0a4517aa2177a912c5d9ac7e02e7d6c46bc57462284d51c81c4cb120c",
+    "bytes": 78656,
+    "mtime_ns": 1793453788493346097
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/phone/a-001.png",
+    "sha256": "7fd50c7f95c81bfc87b070b6e3eb6be4d3abfb469b192e13dba744a168570c0b",
+    "bytes": 74632,
+    "mtime_ns": 1793453744022033857
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/desktop/b-001.png",
+    "sha256": "2101178bc686f0344e88693d38992bf190da459e45c423df8959f3e77042389e",
+    "bytes": 191451,
+    "mtime_ns": 1793453841873977903
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/desktop/first-minute.png",
+    "sha256": "2c320bce4da63a5752063e8d7c247fb2b36f6079adf07be10d54739d6a6f62d6",
+    "bytes": 174787,
+    "mtime_ns": 1793453900124036103
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/desktop/b-002.png",
+    "sha256": "81a522881f6822ed8659bd8e5efc6e8821f021e44ea4bb845f81652e27cc38b9",
+    "bytes": 231594,
+    "mtime_ns": 1793453865207206252
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/phone/b-001.png",
+    "sha256": "208c3b1c9d00ee08946080fa679ba06235c0465d9e4a00951f6cfe284d433c64",
+    "bytes": 74657,
+    "mtime_ns": 1793454393606332884
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/phone/first-minute.png",
+    "sha256": "ad07a90f6d116e3e2fe2c2c71de8ad1363fac99576a34a6d78860cf4991951b6",
+    "bytes": 37318,
+    "mtime_ns": 1793454450156600941
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/phone/b-002.png",
+    "sha256": "6b53b60cd92d2f9b5dd274443f36b131929993afca752391e53c7cb274d87c28",
+    "bytes": 78802,
+    "mtime_ns": 1793454416271356076
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/desktop/first-minute.png",
+    "sha256": "91362c6b26fda53e6335a00861e53722ded012f43a1eb26d652e4301c488a7fd",
+    "bytes": 165291,
+    "mtime_ns": 1793454027486262499
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/desktop/a-001.png",
+    "sha256": "22d8400a9954070b190f723442981574761a006c785ff766b611bbf835f7baaf",
+    "bytes": 191769,
+    "mtime_ns": 1793453969206441702
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/first-minute.png",
+    "sha256": "958020126288f42310db1e585ccee8058e7546c7fb03572d9256f10baa32ef4a",
+    "bytes": 77451,
+    "mtime_ns": 1793454552051026602
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-002.png",
+    "sha256": "8cc26c097c2465bd9fc822745391d5455bcca3037c0b9818a817b5d50866346d",
+    "bytes": 76352,
+    "mtime_ns": 1793454504592163487
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-003.png",
+    "sha256": "963d748dc204c9c05972675b73e083cff8826c82885b451a4d47b9f5a69ae17e",
+    "bytes": 80858,
+    "mtime_ns": 1793454538673083074
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-001.png",
+    "sha256": "30987f6ec6bb8fc14438d64c3d6c7a81a43eb799ba1476343b90d976253cea88",
+    "bytes": 74496,
+    "mtime_ns": 1793454493726959900
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/desktop/b-001.png",
+    "sha256": "2352d3c88f9b22300bee2bf723be5ce287a04c14af004864e07a27bc34ebe9fe",
+    "bytes": 192659,
+    "mtime_ns": 1793454582219092143
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/desktop/first-minute.png",
+    "sha256": "a2506bf5fe8bf5b1f91bfdbf6a7c2cee4e71d2ad880dcadbc10fe6d9c94ecc38",
+    "bytes": 207120,
+    "mtime_ns": 1793454636332497111
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/desktop/b-002.png",
+    "sha256": "4b9cdb6e80b3d47e863067925c2a3b97591fa656ec38966b08d8550e08ac1eb9",
+    "bytes": 213606,
+    "mtime_ns": 1793454611252954965
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/phone/first-minute.png",
+    "sha256": "1e06fd729142a9ff62d1d2febedb830516c557f6298b0d9aa4bc8a52ea4bb41d",
+    "bytes": 37603,
+    "mtime_ns": 1793454755974074522
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/phone/a-001.png",
+    "sha256": "7b41cabf6503aa8bf3f88ce10fccb99eb1aacc9a1388c8f10f0b60fd811df7f7",
+    "bytes": 74487,
+    "mtime_ns": 1793454697854149369
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/desktop/b-001.png",
+    "sha256": "8ac0497c7a3db9579355b4783e9adf56ffbcdeeebe9d6476718f7f1b4869fcc9",
+    "bytes": 192437,
+    "mtime_ns": 1793454724693530895
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/phone/b-001.png",
+    "sha256": "f3123c05a6f07312b6194d88bc29a955273dadbca0a22987deb8acf9498a45a5",
+    "bytes": 74484,
+    "mtime_ns": 1793454881507221597
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/phone/first-minute.png",
+    "sha256": "2c44272b06a55dc599ac9689fe691b8f23f11159f5077572dce77b34d661cb2a",
+    "bytes": 37463,
+    "mtime_ns": 1793454939824987064
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/phone/b-002.png",
+    "sha256": "4fc616dc8894f6130e89f8ee5b7adcc6664591c5037e166a860a7985583f3235",
+    "bytes": 69876,
+    "mtime_ns": 1793454891689689576
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/phone/b-003.png",
+    "sha256": "f81be1ce89691a57518b3d36318845989c1eb802bb531901f1bac6bd47b46067",
+    "bytes": 72250,
+    "mtime_ns": 1793454901605633873
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/desktop/first-minute.png",
+    "sha256": "1dc6a5e943de50fee977e8ee6ba6b62b8c8b7a256d21be3e634052bdc18a57f4",
+    "bytes": 166295,
+    "mtime_ns": 1793454846421114865
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/desktop/a-001.png",
+    "sha256": "011ca4b5bc5f9e3058a396fe323a23e779e2715c6d6e6ad0dafed58b398af091",
+    "bytes": 192034,
+    "mtime_ns": 1793454787962072815
+  }
+]

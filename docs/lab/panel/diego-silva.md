@@ -1463,3 +1463,206 @@ The three ranked asks are at the top of this report.
 - Explain "A person's chapter could not be saved": not seen. I never reached Day 2 04:02, where it appeared before.
 
 **New blocking ask:** none beyond the unmet empty-garden ask above.
+<!-- selected-continuity-key: light-1030:word-retest1:diego:free -->
+## 2026-10-31 word-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/word-retest1/diego/report.md.txt), SHA256 `edc20e9666ecb762593ac5d6c052ebba6c1ad7d85c51b50318c1768d567e61b6`. Method qualification: [diego](../reviews/light-2026-10-30/word-retest1/diego/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception. This cohort omitted mandatory Rosa coverage; see [protocol audit](../reviews/light-2026-10-30/rosa-light-protocol-audit.md). No Rosa visit or opinion is inferred.
+
+**Exact producer report follows in a text fence.**
+
+```text
+**Would I return voluntarily?** I might come back another evening to try a different agreement or the letter, but I would not return again tonight; I have seen the two outcomes I came for.
+
+**Ranked asks**
+
+1. Shorten the agreement choices. The titles help, but the long explanations still feel like a form.
+2. Give me another consequential decision before writing the agreement. The delivery window made the signature stage interesting; I did not see a cost incurred earlier.
+
+## 1. Session
+
+I’m Diego Silva, 28, a sound editor from Recife. This was a **retest**, round **light-1031-word-retest1**, free-stop arm with floor zero. I played https://word.adamwhite.work/?labRunSource=agent.
+
+I read all 1,586 lines of my supplied [own history](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/own-history.md). The last line I read was “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. It included my earlier His Word report and selected records from other games.
+
+The sessions were fresh, independent games:
+
+- **A:** 360×690 touch phone, light mode. Stopped at **93.653 seconds**.
+- **B:** 1280×800 desktop, light mode, mouse. Stopped at **55.393 seconds**, another visit the same evening.
+
+## 2. First impressions
+
+On the phone at **6.133 seconds**, the notebook and recording page brought back the private lies and the moment Halil and Rıza compared them. At **8.478 seconds**, I noticed Rıza’s stated delivery round; I did not remember that constraint from the earlier visit. I wanted to see what it changed.
+
+On desktop at **6.938 seconds**, I recognized the same notebook and remembered the phone’s delivery window. I wanted to make the separation work. At **14.522 seconds**, I saw that the cutting-table controls fit in the desktop view.
+
+## 3. Verbatim diary
+
+These are my reaction fields and log entries, unchanged and in order. Times are driver elapsed seconds.
+
+### Session A — phone
+
+- **6.133, action:** “Same notebook and recording page. I remember lying to Halil and Rıza and having them compare words; high confidence from their names and the title. Sitting down again.”
+- **8.478, action:** “Rıza now has a delivery round and returns at ten minutes. I do not remember that constraint from last time. I want to see what it changes.”
+- **10.171, action:** “The private lie was the good part last time. Going there first.”
+- **13.424, action:** “Now it says the private promise may waive a ₺40 guarantee before I make it. That is clearer. Lying to Halil.”
+- **19.017, action:** “Opposite promise again. I want the comparison to bite.”
+- **25.395, action:** “Rıza left at 18 as promised. I want to see the agreement while he is away.”
+- **27.274, screenshot:** “The titles are shorter but the buttons still carry long explanations. I like the unknown acceptance warning; it gives the gamble a shape.”
+- **31.638, action:** “Trying the free agreement while Rıza is away, despite unknown acceptance.”
+- **36.180, action:** “Halil signed after reading, and I can let him leave with it. That feels like an actual tactical choice. Sending him away.”
+- **41.878, action:** “Ferda refused the same gamble as before, but now calling Halil back costs two minutes and clears signatures. That is a sharper cost.”
+- **49.320, action:** “Nine minutes left, both men back. Trying the corrected free trial even though they can compare now.”
+- **54.764, action:** “There is the exposure again, earned. My attempt to keep them apart failed because I had to call Halil back. Six minutes is exactly enough to write and get four signatures, I think.”
+- **72.435, first_minute, 3 minutes before Osman leaves:** “The delivery round gives me a window to separate the men. I sent Halil away after he signed, but Ferda refused my full lease and changing it brought him back. They compared my lies and the deposit took the last of my fund. I like that chain. The agreement choices still read like a lot of form.”
+- **80.836, action:** “One minute and one signature. This is tight enough to hold me.”
+- **82.717, want_quit, FINISHED:** “That was a good tight finish. I spent the whole journey fund and they now require everything in writing. I would stop this run here.”
+- **93.653, stop, FINISHED, One month later:** “Stopping phone after the agreement. The separation window and my costly recall made the lie more interesting; I finished exactly on time and spent the whole fund. Feedback opened, I chose I am stopping and pressed Not now without typing or submitting.”
+
+### Session B — desktop
+
+- **6.938, action:** “Same notebook on desktop, same evening. I remember the delivery window from the phone a minute ago; high confidence. This time I want to make the separation work.”
+- **11.223, screenshot:** “Checking whether the desktop controls fit now.”
+- **14.522, action:** “The table controls all fit in this desktop view. Lying again, but I will ask Ferda and Osman before writing.”
+- **31.709, action:** “I know the trial terms now. Trying to get Halil signed and out before Rıza returns.”
+- **42.942, action:** “Three signed, Halil gone, Rıza due. The timing plan is working so far.”
+- **46.584, want_quit, FINISHED:** “I kept them apart and got the free agreement. The timing plan worked, and that is satisfying, but I have seen both outcomes I came for tonight. I would stop.”
+- **55.393, stop, FINISHED, One month later:** “Stopping desktop after the free agreement. I used the delivery window to keep the men apart and the plan worked. It was satisfying to apply what the phone run taught me. Feedback: I chose I am stopping, pressed Not now, typed and submitted nothing.”
+
+## 4. Moments
+
+The phone held me when Halil could sign and leave while Rıza was away. I gambled on a full lease, Ferda refused, and changing it brought Halil back. The men compared my conflicting promises and withdrew their waivers. I recovered with a smaller trial agreement, but used the entire ₺100 journey fund and got the last signature at the deadline. The ending said I took the overnight coach instead of the train and that the men would require future agreements in writing.
+
+On desktop I used what I had just learned: I asked Ferda and Osman first, wrote the smaller trial, and sent Halil away after he signed. Rıza returned and signed while Halil was absent. The agreement cost ₺0. Applying that timing plan was satisfying.
+
+Both quit wishes followed actual endings and did not pass. I logged no pulses: neither session reached 180 seconds. The desktop session also ended before the first-minute checkpoint.
+
+## 5. Confusion and clarity
+
+I did not feel confused enough to open the confusion label. The game clearly stated when Rıza would leave and return, that a changed agreement clears signatures, and that calling Halil back costs two minutes. Ferda’s refusal said what she needed, and the screen counted the minutes needed for remaining signatures.
+
+The private-promise screen said a promise could persuade someone to waive a ₺40 guarantee. That made the reason to lie clearer before I acted. The agreement screen also marked unasked people’s acceptance as unknown.
+
+The long agreement descriptions still took effort to compare. Their shorter opening titles helped, but the choices remained dense.
+
+## 6. Device use
+
+**Phone, 360×690**
+
+- Viewed `phone/a-001.png`: the cream notebook recording page, checked recording box and Take a seat control. It was readable.
+- Viewed `phone/a-002.png`: the agreement page at its top. The introductory text filled nearly the whole phone screen, with only the beginning of the first choice visible at the bottom.
+- Used named touch taps for private promises, conversations, agreement choices, signatures, the menu and Feedback. No driver errors occurred.
+- I did not view screenshots of the phone ending or Feedback layout; I read their visible text.
+
+**Desktop, 1280×800**
+
+- Viewed `desktop/b-001.png`: the recording page centered in a dark frame, readable and unclipped.
+- Viewed `desktop/b-002.png`: the cutting table. All five main actions and Open notebook were visible on that screen.
+- Used named mouse taps for conversations, private promises, the agreement, signatures, waiting, the menu and Feedback. No driver errors occurred.
+- I did not view a screenshot of the desktop agreement list, signing screen, ending or Feedback dialog. The cutting-table screenshot establishes that screen’s layout only.
+
+## 7. Stop and return
+
+**Phone:** FINISHED at **93.653 seconds**. Exact stop words are in the diary above. The game showed “They kept their word” and the one-month-later account.
+
+**Desktop:** FINISHED at **55.393 seconds**. Exact stop words are in the diary above. The game showed the same ending heading with the free agreement and train-home account.
+
+On both devices, Feedback offered **“I’m stopping”** and **“I’m confused.”** I chose **“I’m stopping”**. The dialog opened with that phrase prefilled in the note field. I typed nothing, changed no consent or recording setting, pressed no Submit, and pressed **Not now**. Neither attempt produced an error.
+
+I might return voluntarily another evening to try a different agreement or the letter. I would not return again tonight: I got the exposed-lie outcome and then made the separation plan work. I would not leave it running; it is turn-based and nothing needs my attention while I am away.
+
+## 8. Changes I would want
+
+1. Shorten the agreement choices while keeping the useful terms and acceptance information available.
+2. Give me another consequential decision before writing. The timing and signature sequence gave me something meaningful to plan around once an agreement existed.
+
+## 9. Compared with my last visit
+
+- **Let me feel a cost before the agreement stage — partly met.** I saw a clearer reason and risk around the private promise, and the delivery schedule gave me something to plan before writing. The actual exposure and deposit still happened after I wrote and asked for a signature. I did not see an earlier incurred cost.
+- **Show agreement options as short lines rather than long paragraphs — partly met.** The choices now have short opening titles, but the explanations remain long and form-like.
+- **Fit desktop controls on one screen — partly met.** The cutting-table controls fit in the screenshot I viewed. I did not view the desktop signing screen that ran off the bottom on my previous visit, so I cannot say whether that screen is fixed.
+
+**New blocking ask:** none from what I reached.
+
+No repo touched; no worktree of mine remains.
+```
+<!-- selected-continuity-key: light-1030:smoke-retest1:diego:free -->
+## 2026-10-31 smoke-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/smoke-retest1/diego/report.md.txt), SHA256 `e7be6d73cdf88da46eca4d8e695620e0b4e6986ecc88b969a37999e13ab400e9`. Method qualification: [diego](../reviews/light-2026-10-30/smoke-retest1/diego/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception. This cohort omitted mandatory Rosa coverage; see [protocol audit](../reviews/light-2026-10-30/rosa-light-protocol-audit.md). No Rosa visit or opinion is inferred.
+
+**Exact producer report follows in a text fence.**
+
+```text
+**Would I return voluntarily?** I might come back another evening because the phone run made the rescue feel clear and satisfying, but I would want to know I can get past Sevim’s conflicting book status. I would not leave it running.
+
+**Ranked asks**
+
+1. Let me continue with Sevim when the game says her bundle is tied. On desktop, her status still said she was tying it, and the speech controls stayed disabled while her breathing was difficult.
+2. Show how much danger each neighbour is in before I choose who waits. The breathing warning helped, but I still did not see how much time anyone had.
+
+I’m Diego Silva, 28, a sound editor from Recife. This was my first fixed-build retest of **Smoke on the Stairs**, at `https://smoke.adamwhite.work/?labRunSource=agent`. The phone and desktop sessions were fresh, independent games on the same evening, with no imported save or matched seed.
+
+I read all **1,760 lines** of the supplied selected own history. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. The history is selected, not my complete archive.
+
+The phone session was **360×690 touch**, stopped at **88.268 seconds** after the game’s “Everyone is out” ending. The desktop session was **1280×800 keyboard and mouse**, stopped at **136.182 seconds** with Sevim still inside. Both ended before the 180-second pulse; that and later timed checkpoints were untested.
+
+On the phone, my first reaction at **5.489 seconds** was to remember the movement confusion and Hacer’s death from the earlier visit. At **9.069 seconds**, selecting Derya immediately produced a walking destination and estimate. On desktop, at **7.316 seconds**, I saw Hacer was home and decided to go to her first. Getting her out felt good after losing her before.
+
+### Diary
+
+These are my logged reactions, unchanged, in order. Times are driver elapsed seconds; engagement is on a five-point scale.
+
+**Phone**
+
+- **5.489, note, engagement 3:** “Same stairwell. Last time I could not see myself move and Hacer died without a clock I could read. Going in.”
+- **11.136, note, engagement 4:** “Derya tap immediately says walking to landing 3, about nine seconds. That is the answer I was missing on the phone. Hacer is away tonight.”
+- **16.102, note, engagement 4:** “I can see the YOU figure on the stairs now and the remaining walk time drops from nine to five. Much easier to trust the tap.”
+- **25.880, note, engagement 4:** “Derya follows after torch and two clear answers. Burak is helping with the books without my order. The walk says 24 seconds in thick smoke; I know what I am waiting for.”
+- **47.167, note, engagement 4:** “Derya and Burak are outside. Sevim has her bundle ready. I like that Burak helped without waiting for me; going back for her.”
+- **70.032, first_minute, engagement 4, stair closes in 104s:** “The phone is much clearer: I see YOU and a walking estimate, and the torch and speech give immediate answers. Derya and Burak are outside; Sevim follows with her books. I have not seen a personal smoke deadline, but this cast gave me time to take one person at a time.”
+- **78.200, want_quit, FINISHED, engagement 4:** “Everyone home is out. That was satisfying and much clearer than my first phone run. I would stop this run here.”
+- **88.268, stop, FINISHED, engagement 4:** “Stopping the phone after everyone home got out. The visible figure and walk estimates made this feel responsive; Burak helping Sevim was a good surprise. Feedback: I chose I am stopping and closed with Not now, without typing or sending.”
+
+**Desktop**
+
+- **7.316, note, engagement 4:** “Desktop, same evening and a new night. Hacer is home this time; I remember losing her before. I will go to her first.”
+- **21.531, note, engagement 4:** “The 4 key sends me toward Hacer and F lights the torch. The figure and walk estimate are clear. Smoke starts on landing 3 this time.”
+- **40.339, note, engagement 4:** “Hacer follows. I am taking her straight out rather than collecting everyone as I did before. The 29 second estimate makes the cost of the trip legible.”
+- **61.073, note, engagement 4:** “Hacer is outside this time. That feels good after losing her before. Burak needs waking and Sevim still has her books, so I am going back.”
+- **65.321, first_minute, engagement 4, stair closes in 112s:** “Hacer is out because I took her directly to the street. The keyboard selection and torch are clear, and the walk estimate helps. I still do not see how long Burak or Sevim can breathe, so the choice of who waits remains a guess.”
+- **82.394, note, engagement 4:** “Burak now says smoke is making breathing difficult. That is a warning I can use, though it is not a time. He is checking the stair; I will get Sevim.”
+- **102.858, note, engagement 3:** “The log says the bundle is tied, but Sevim still says tying and the speech buttons are grey. I do not know whether to wait or act.”
+- **125.734, want_quit, FRUSTRATED, engagement 2, stair closes in 55s:** “I am standing next to Sevim while the log says the bundle is tied and the controls still say wait. The clock runs and her breathing is difficult. I would leave here; I cannot see what else to do.”
+- **136.182, stop, FRUSTRATED, engagement 2, stair closes in 48s:** “Stopping desktop with Sevim still inside. The log said the books were tied, but her status and disabled speech kept telling me to wait while smoke made breathing difficult. Hacer and Burak got out. I opened confusion and stopping feedback, typed nothing, and closed each with Not now.”
+
+### What playing felt like
+
+The phone run gave me a clear chain to attend to: approach Derya, light the torch, show her the stair, ask her to follow, and lead her outside. Each step answered me. Burak checking the stair and helping with Sevim’s books without my order gave the neighbours some life. The ending said Sevim and Derya walked out with me and Burak escaped alone; Hacer was away.
+
+On desktop I used the same understanding to take Hacer directly outside. The keyboard selection and speech keys worked, and the walking estimate made the trip’s cost visible. Burak’s “smoke is making breathing difficult” warning gave me useful urgency, though I could not tell how long he or Sevim had.
+
+The Sevim contradiction stopped me. After I helped with the books, the log said the bundle was tied and told me to show her the stair. Her selected status still said “tying the books,” the prompt said to wait, and the speech buttons remained disabled after I resumed and waited. I do not know why the two accounts differed or what would have happened later. I left with 48 seconds on the stair timer; I did not see a desktop ending.
+
+### Earlier Smoke asks
+
+1. **Show each neighbour’s smoke clock before I commit — partly met.** I saw a personal warning that smoke was making Burak’s and then Sevim’s breathing difficult. I did not see a per-person time remaining before choosing who to help.
+2. **On phone, show my figure and a visible reaction to a tap — met in the play I saw.** The `YOU` figure was visible, and selecting Derya immediately showed a destination and walking estimate. I did not retest every landing control.
+3. **Make walking faster, or show progress — met for progress.** Both devices showed my location and estimated time to the destination. I cannot establish a speed comparison from these different fresh nights.
+
+The **new blocking ask** I reached is the Sevim book-state conflict ranked first above.
+
+### Screens, controls, and feedback
+
+I viewed these screenshots:
+
+- **Phone:** `a-001.png`, the readable opening card; `a-002.png`, the stairwell with the labelled `YOU` figure, Derya selected and a five-second walking estimate; `a-003.png`, the street with my figure, Derya and Burak outside, and Sevim still inside.
+- **Desktop:** `b-001.png`, the centered opening card; `b-002.png`, the stairwell, figure and torch cone while approaching Hacer; `b-003.png`, the thick-smoke view after Hacer reached the street.
+
+I used named touch controls on the phone, and keyboard selection and speech keys plus mouse taps on desktop. I did not view an automatic checkpoint image. I read Feedback as driver text rather than viewing its layout.
+
+On the phone, the ending’s **Tell us about this night** opened Feedback. I chose **“I’m stopping”**; it showed pressed. I typed nothing and closed it with **Not now**.
+
+On desktop, the pause-menu **“I’m confused”** opened Feedback with that phrase prefilled in the optional note. A subsequent named tap was ambiguous because both the pause menu and Feedback had an enabled control with that name; the driver reported the ambiguity. I closed with **Not now**, resumed, and later opened **“I’m stopping”** from the pause menu. That opened a draft prefilled with the phrase; I closed it with **Not now**. I typed nothing and submitted nothing. The desktop remained paused.
+
+Recording, consent and owner settings stayed at their defaults. I created no browser, server, worktree or process; the coordinator owns the drivers. No worktree of mine remains.
+```

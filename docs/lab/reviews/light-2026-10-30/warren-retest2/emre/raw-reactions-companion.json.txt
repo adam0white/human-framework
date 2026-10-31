@@ -1,0 +1,132 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "4b460210b3c07a630229fc57a572118b8409bf4ad8dfa71cddf5150cc3ec0449",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.796,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The phone title and shelter goal fit clearly. This is another fresh village, after the slow desktop start."
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "elapsed_s": 20.686,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I can distinguish and mark the small wall on the phone. The explanation is the same as desktop; I will see whether this village starts work."
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "elapsed_s": 61.201,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "I marked one square on the small phone hill. Meryem needs food and water and is eating, so I understand why she is not digging at this moment. I have already watched the same start on desktop tonight."
+    },
+    {
+      "device": "phone",
+      "row": 16,
+      "elapsed_s": 64.072,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I do not want to wait through the same first room on the phone after doing it on desktop. The needs make sense, but I have no new shelter decision yet."
+    },
+    {
+      "device": "phone",
+      "row": 21,
+      "elapsed_s": 75.823,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping on the phone after marking the first square. The layout is usable and Meryem eating is understandable, but I have already waited through this opening on desktop. I would return another evening on desktop for a useful decision, not leave it running."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 6.649,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The shelter goal is familiar. I want to see whether the work and the door make more sense in a fresh village."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 19.217,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The mark now tells me who can dig, that the wall is available, and that meals, harvest and rest take priority. That is a useful explanation for the waiting I remember."
+    },
+    {
+      "device": "desktop",
+      "row": 13,
+      "elapsed_s": 54.413,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. I want to see the work and plan storage and a protected room."
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "elapsed_s": 61.864,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. Six people need sleeping places, and I want to plan storage and a protected room."
+    },
+    {
+      "device": "desktop",
+      "row": 25,
+      "elapsed_s": 106.834,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The journal now groups four routine lines, which makes the repeated reports less distracting. I asked Yusuf about the stopping line again; the invitation is pending and the journal says so."
+    },
+    {
+      "device": "desktop",
+      "row": 27,
+      "elapsed_s": 141.471,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Yusuf answered in the main journal this time, so I did not have to reopen him. The admission is clear, but I still do not know where the stopping mark is on my hill or what to do with it."
+    },
+    {
+      "device": "desktop",
+      "row": 34,
+      "elapsed_s": 208.159,
+      "kind": "pulse",
+      "op": "log",
+      "reason": null,
+      "reaction": "I like seeing Yusuf answer in the journal and the routine lines grouped. The first square still seems to be waiting, so I am watching rather than building the shelter I came for."
+    },
+    {
+      "device": "desktop",
+      "row": 36,
+      "elapsed_s": 220.937,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "The first marked square is still stone after several days, and I am watching the same early preparation again. The explanation helps, but I do not want to wait longer tonight."
+    },
+    {
+      "device": "desktop",
+      "row": 41,
+      "elapsed_s": 230.533,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping on desktop before the first room is dug. The wall explanation and visible invitation answer help, but I am tired of waiting through the same preparation. I would return another evening if there were a useful shelter decision while work waits; I would not leave it running."
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"spans": 56, "sourceCopies": 72, "rawReactions": 66, "finalStops": 10, "screenshotHashes": 25, "parserRows": 10, "parserProblems": 0}

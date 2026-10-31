@@ -1,0 +1,159 @@
+{
+  "scope": "Literal raw reactions; unchanged producer report retained; raw timestamps control exact timing and producer rounding remains quoted.",
+  "reportSha256": "b4539aab5cb759d04a5d5cf2de61e8ed83da3ba0e4bf2bc530cb5f31ae0ad41c",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.411,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The roof and twelve meals are familiar from my last visit; I remember checking totals and stopping before the storm. High confidence from my diary, not a continued village. I want a deliberate food plan this time."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 14.192,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Maryam is cooking already. The panel explains ordinary food versus the separate twelve-meal reserve, and lists timber needed at each roof stage. That answers much of what I wanted to know. Two earlier taps went stale as her activity changed; the third opened her."
+    },
+    {
+      "device": "desktop",
+      "row": 15,
+      "elapsed_s": 62.572,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Both villages are working without orders: Human roof 4 and 7 meals, Classic roof 6 and 6 meals. I like seeing Yusuf build while Tariq eats. The stage list and food explanation make the objective easier to plan, though I have not yet seen a late-stage hold."
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "elapsed_s": 96.107,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Human meals reached 25 without an order, comfortably above twelve. Both builders are at work. I will watch the roof rather than issue a redundant order."
+    },
+    {
+      "device": "desktop",
+      "row": 21,
+      "elapsed_s": 134.257,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "At seven stages I can see Yusuf working on eight, over halfway, materials already paid, and five timber for each remaining stage. Useful: I can tell this is work in progress, not a proven shortage. The Human food fell from 25 to 20 and rose to 24 while people ate and cooked; I am guessing meals explain the fall."
+    },
+    {
+      "device": "desktop",
+      "row": 25,
+      "elapsed_s": 173.122,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "A suggestion says Tariq to Forest, under protest: curiosity:unknown. I do not understand that reason, or why I should send him into the forest during a sudden storm."
+    },
+    {
+      "device": "desktop",
+      "row": 30,
+      "elapsed_s": 184.877,
+      "kind": "pulse",
+      "op": "log",
+      "reason": null,
+      "reaction": "The roof details are useful and I want to see the storm, but I have mostly watched automatic work; the forest suggestion has an opaque reason."
+    },
+    {
+      "device": "desktop",
+      "row": 32,
+      "elapsed_s": 189.453,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I selected confused in Feedback and went back without writing or sending. My first command had a shell quote error; the retry worked. I choose Fast to pass the sleeping stretch and see the storm."
+    },
+    {
+      "device": "desktop",
+      "row": 40,
+      "elapsed_s": 294.212,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Both roofs are nine of ten at the warning; everyone shelters or closes shutters. The suggestion now explains enough food stored is separate from the storm reserve. Human has exactly twelve, Classic six. I worry the roofs will stay unfinished."
+    },
+    {
+      "device": "desktop",
+      "row": 44,
+      "elapsed_s": 332.788,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The storm arrived with both roofs failed at nine; meals met at the deadline. Four Classic injuries and one Human injury. Samira is hurt but her panel only says sheltering; I do not see why she was hurt. I will not send her outside to finish the roof."
+    },
+    {
+      "device": "desktop",
+      "row": 47,
+      "elapsed_s": 368.975,
+      "kind": "pulse",
+      "op": "log",
+      "reason": null,
+      "reaction": "I reached the storm I came to see, but now everyone sleeps and injuries rise while I watch. I want to see the dawn result once."
+    },
+    {
+      "device": "desktop",
+      "row": 49,
+      "elapsed_s": 403.862,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I saw the storm and the dawn report. Both villages missed the roof but met food and kept everyone alive; six versus two injuries. I am done for tonight on this run."
+    },
+    {
+      "device": "desktop",
+      "row": 55,
+      "elapsed_s": 420.524,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I am stopping at dawn after the full storm. The stage details and food explanation helped; both roofs missed the deadline, all lived, and the Human village had fewer injuries. I would try another evening with earlier roof orders, but not keep watching tonight."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 8.094,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Same roof and twelve meals on the phone, second fresh game tonight. The title is partly covered by Show Human village, but the instructions and start button are readable. I want to try earlier building orders."
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "elapsed_s": 24.09,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I sent Yusuf to build without rush or insist, although he was already going there. The order is pending. Two changing activity names went stale first; I could open him on the third try."
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "elapsed_s": 35.69,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TOOL",
+      "reaction": "Yusuf agreed, but the speech dismissal was covered or off screen on both attempts, including after I closed his panel. The driver blocks this control, so I stop this session."
+    },
+    {
+      "device": "phone",
+      "row": 20,
+      "elapsed_s": 47.009,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TOOL",
+      "reaction": "I am stopping the phone session because the speech dismiss control was covered or off screen twice. Yusuf agreed to build, and I selected stopping in Feedback without typing or submitting. The storm and later phone play are untested."
+    }
+  ]
+}

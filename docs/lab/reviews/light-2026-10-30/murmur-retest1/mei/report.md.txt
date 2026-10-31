@@ -1,0 +1,115 @@
+I would return another evening on my laptop to continue the second week, if I could see the tenancy terms and deadline before deciding whether Dilan should sign; I would also want to know how much trust she has left before I insist. I would not leave it running.
+
+Ranked asks:
+
+1. Show me the tenancy terms and deadline after Dilan reads the letter, before asking me whether she should sign.
+2. Show how much trust Dilan has left before I insist.
+3. Give me a way to continue from a saved place, so I do not have to repeat a week I have already played.
+
+## 1. Session
+
+I am Mei Tan, a returning Murmur player. This was round **light-1031-murmur-retest**, free stop, floor 0. I used the assigned URL, https://murmur.adamwhite.work/?labRunSource=agent.
+
+- **Session A:** 360×690 touch phone, light mode. Fresh ordinary-week game. Stopped at **134.379 real seconds**, Monday 21:31.
+- **Session B:** 1280×800 keyboard and mouse, light mode. Fresh game; I chose **Begin at the second week**, where the game said the first week was played for me. Stopped at **233.877 real seconds**, Monday 19:21 of the second week.
+
+I read all 1,167 lines of my supplied own history. The last line I read was:
+
+> End of supplied own history. This reading boundary is director metadata, not an event you experienced.
+
+Exact unread range: **none**. The history is selected, not a complete archive. Older records and independent continued alternatives were not supplied; the bodies of partial or excluded independent Warren, Good Hands, Hearsay and Pass histories were absent. The Well excerpt did not supply its older raw diary. The history also qualifies my original Murmur desktop visit: one named tap stalled for about 31.5 seconds. My second Murmur record was a held-input driver-repair diagnostic on the unchanged game, not a fixed-game retest. Its held-press method differs from this visit’s, so my comparisons do not establish a game-only cause or identical instruments.
+
+## 2. First impressions
+
+**Phone.** At 5.566 seconds, I recognized Dilan and Ece and remembered wanting the Mum call. At 18.49 seconds, the first choice explained the timer and holding. I found the explanation clear before choosing.
+
+**Desktop.** At 5.57 seconds, I wanted a later start because I had just played Monday on the phone. At 7.405 seconds, **Other ways to begin** offered the second week. By 34.359 seconds, I could see its first choice. Dilan had said she would get up, and she was willing to do so.
+
+## 3. Verbatim
+
+These are my log-op reactions, in order and unedited. Ordinary taps carried no reaction text. The game-clock tags are as I entered them.
+
+**Session A — phone**
+
+- **5.566 s, note:** “Dilan and Ece are familiar from my earlier visits. I remember wanting Dilan to call Mum and saving trust for that; I am confident of that memory. I will start the ordinary week again.”
+- **20.134 s, note, Mon 06:41:** “The first choice now explains that holding can cost trust, she can still say no, and she chooses if time runs out. That is clear before I choose. I will let her sleep and save trust for Mum.”
+- **57.553 s, note, Mon 07:31:** “She sent Aylin tonight after I held. I am pleased to have made that promise, though I still cannot see how much trust remains.”
+- **62.705 s, first_minute, Mon 08:28:** “The opening explains the timer and trust cost clearly. I held for the promise and for telling the truth; she says she dislikes being pushed. I want to keep enough trust for the call, but I cannot see how much is left.”
+- **124.004 s, want_quit, BORED, Mon 20:18:** “Mum called and I am glad they talked. I have seen this Monday several times now and would stop here tonight.”
+- **134.379 s, stop, BORED, Mon 21:31:** “Stopping on Monday evening after Dilan called Mum. The choices and consequences held me, but I have played this Monday before. I chose I am stopping and pressed Back without typing or submitting.”
+
+**Session B — desktop**
+
+- **5.57 s, note:** “The same people and week again on my laptop. I have just seen Monday on the phone; I wonder whether another start lets me see a later part.”
+- **36.47 s, note, Monday 06:41 · second week:** “The second week begins with a promise to get up and both choices are willing. I like that I can support her own commitment without insisting. The start and screenshot calls returned no text before this screen appeared.”
+- **64.769 s, first_minute, Monday 07:13 · second week:** “The second week gives me a new situation: a tenancy letter. Getting up was her own commitment and she was willing. I want to read a contract before signing it. The driver reported a timeout after Skip, but I can see the next choice.”
+- **94.536 s, note, Monday 07:26 · second week:** “She read it, but I cannot see what the letter says or when it is due. I do not want to insist that she sign terms I cannot compare.”
+- **192.346 s, pulse, engagement 4, Monday 18:15 · second week:** “The second week has new commitments and I care about Mum and the letter. I cannot see the letter terms, but I can now let Mum finish without insisting. Some driver calls have been slow or returned no text.”
+- **215.987 s, want_quit, CONFUSED, Monday 18:38 · second week:** “I am glad Mum finished her story. I would stop now because I cannot make an informed decision about the tenancy letter, and I have had enough for this evening.”
+- **233.877 s, stop, CONFUSED, Monday 19:21 · second week:** “Stopping on Monday of the second week after Mum finished her story. I liked supporting a commitment without insisting, but I could not see the tenancy terms or deadline before deciding. I chose I am confused and pressed Back without typing or submitting.”
+
+## 4. Moments
+
+On the phone, the promise to Aylin mattered to me. I held for it, saw Dilan send “tonight,” and later held for the call. The game showed Dilan and Mum talking for twenty minutes. I also insisted that Dilan tell Murat she had overslept and defend Ece; Dilan said she disliked being pushed. Those answers made the cost feel personal, even though I could not see a remaining trust amount.
+
+The phone quit wish did not pass. I stopped after the call because I had seen that Monday several times. There was no pulse: the session ended before 180 seconds.
+
+On desktop, starting in the second week gave me situations I had not seen. I liked being able to support Dilan’s commitment to get up, and later to let Mum finish, while Dilan was willing. The tenancy decision lost me: after Dilan read the letter, I was offered signing or putting it away without seeing its terms or deadline. My quit wish did not pass. The one pulse was at 192.346 seconds, engagement 4.
+
+## 5. Confusion and clarity
+
+The first phone choice clearly said a hold can cost trust, Dilan can still say no, and she chooses for herself if time runs out. The willingness labels and the ticked suggestions helped me see what I had asked. I saw successful held choices and subsequent story outcomes; I did not see a held choice fail this time.
+
+I still could not see how much trust remained. I also could not judge the tenancy letter after Dilan read it. I chose to put it under the fruit bowl rather than insist on signing. I did not see whether the terms or deadline would appear later.
+
+The menu said each choice allows 64 seconds and that Slow changes only the time between choices. I found Slow in the menu when stopping; I did not change pace.
+
+## 6. Device use
+
+**Phone screenshots viewed:**
+
+- `phone/a-001.png`: the title and introduction were readable in one column. The recording notice crossed the page above the optional checkboxes. Start was below the visible screen.
+- `phone/a-002.png`: the Mum-message choice showed large buttons and readable text, with the clock and answer time above it.
+
+I used Start, choice buttons including touch holds, Skip ahead, Game menu, Feedback, “I'm stopping,” and “← Back.” I did not view the entire phone page or later-week layout. Two 10-second wait calls returned no text; subsequent responses showed the game had advanced.
+
+**Desktop screenshots viewed:**
+
+- `desktop/b-001.png`: the title page, introduction, optional starts, recording notice and Start button were visible.
+- `desktop/b-003.png`: the story log occupied the left side, with the next-choice message and Skip ahead on the right. The letter and Ece outcomes were readable.
+
+I used Other ways to begin, Begin at the second week, choice buttons including holds, Skip ahead, Game menu, Feedback, “I'm confused,” and “← Back.” A request for `b-002.png` returned no text, so I cannot say whether that image was saved or what it showed. I did not view later days or the full desktop layout at a choice.
+
+The desktop driver returned `locator.innerText: Timeout 5000ms exceeded` after Skip; the next response showed the tenancy choice. It returned the same error on my first Game menu tap; one retry opened the menu. Several other desktop calls returned no text or were slow, but later visible responses showed the relevant choices and outcomes. I cannot attribute those delays to the game. No exposed control remained blocked after a retry.
+
+## 7. Stop and return
+
+My exact stop words and reason for each session are in section 3. I stopped the phone session **BORED** after the familiar Monday call, and the desktop session **CONFUSED** with the tenancy letter unsigned. Neither game ended.
+
+On the phone, Feedback offered “I'm stopping” and “I'm confused.” I selected **“I'm stopping”**, saw it marked pressed, then pressed **“← Back.”** On desktop I selected **“I'm confused”**, saw it marked pressed, and pressed **“← Back.”** I typed no note, pressed no Submit, and changed no consent or recording setting.
+
+Would I return voluntarily? I would return another evening on my laptop to continue the second week, if I could see the tenancy terms and deadline before deciding whether Dilan should sign; I would also want to know how much trust she has left before I insist. The new commitments made me curious, and I cared about the call. I would prefer a saved place to starting again. I would not leave it running: the timed choices need my attention.
+
+## 8. Changes I would want
+
+1. Show the tenancy terms and deadline after Dilan reads the letter.
+2. Show remaining trust before a hold.
+3. Keep a saved place for a later evening.
+
+## 9. Compared with my last visit
+
+**Original Murmur report**
+
+1. **Show what insisting does before I commit: whether it always works and what trust it costs — partly met.** The first phone choice said it can cost trust and Dilan can still say no. I saw held choices succeed and her objection to being pushed. I did not see a quantity of trust or a failed hold.
+2. **Give me a choice where the kind option is not the unwilling one, or say insisting is the only way to the kind outcome — met for a choice I reached.** In the second week, “Put the screen away. Let Mum finish.” was willing, and I chose it. On the familiar phone Monday, the supportive choices I chose to insist on still required holding.
+3. **Say that an unanswered timer lets her choose, and make Slow easier to find — partly met.** The phone’s first choice said she chooses if time runs out. Slow was in the game menu, which I opened at stopping; I did not establish whether it was easier to find during play.
+
+**Held-input diagnostic return**
+
+1. **Show how much trust is left before I hold — did not meet it in what I saw.** I saw willingness labels and Dilan’s words, but no remaining amount.
+2. **Say at the start that insisting spends trust and works only while she trusts me — partly met.** The first phone choice said holding can cost trust and she can still say no. I did not see the more specific statement that it works only while she trusts me.
+3. **Show a held choice failing before the next scene — not seen.** My held choices in these sessions were followed by ticks and outcomes; I did not encounter a failure.
+
+**New blocking ask:** After Dilan reads the tenancy letter, show me its terms and deadline before asking whether she should sign. That is the new uncertainty that contributed to my desktop stop.
+
+I owned no server, browser, process, branch or worktree. The coordinator owns the drivers and their cleanup. I touched no repository, so there is no `git worktree list` output.

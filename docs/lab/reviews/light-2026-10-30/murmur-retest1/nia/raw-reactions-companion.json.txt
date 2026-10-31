@@ -1,0 +1,158 @@
+{
+  "scope": "Literal raw reactions; report unchanged",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 3.977,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Dilan again. I remember pushing her and her pushing back; I want to see what she does this time."
+    },
+    {
+      "device": "desktop",
+      "row": 6,
+      "elapsed_s": 18.117,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Same alarm cue as before, fairly sure. I want to push her up and see her answer."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 33.665,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "She got up before the second alarm. Nice, that landed. I am making the bus promise again."
+    },
+    {
+      "device": "desktop",
+      "row": 13,
+      "elapsed_s": 50.501,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Ece lost in the estate is familiar too, high confidence. I will send the map this time."
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "elapsed_s": 65.036,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The alarm and Ece call feel familiar, and my pushes made Dilan get up and promise tonight. Skip gets me to choices fairly quickly. I am curious what happens if she walks away from Murat."
+    },
+    {
+      "device": "desktop",
+      "row": 18,
+      "elapsed_s": 68.025,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Going outside instead of laughing or defending Ece."
+    },
+    {
+      "device": "desktop",
+      "row": 19,
+      "elapsed_s": 69.405,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "She says she is doing it because I pushed and does not like it. That bite is what I remember liking."
+    },
+    {
+      "device": "desktop",
+      "row": 22,
+      "elapsed_s": 86.294,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Pigeons on the loading dock is a nice detail. Trying water instead of the coffee I remember carrying into Tuesday."
+    },
+    {
+      "device": "desktop",
+      "row": 23,
+      "elapsed_s": 88.541,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "The same fine I dislike it line twice, and the same Monday scenes. I got my experiment and would stop here."
+    },
+    {
+      "device": "desktop",
+      "row": 28,
+      "elapsed_s": 96.037,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.464,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Phone now, same evening. I want to let her sleep this time."
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "elapsed_s": 21.885,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Let her sleep; I remember this made her late before, fairly sure."
+    },
+    {
+      "device": "phone",
+      "row": 11,
+      "elapsed_s": 39.058,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "She slept through three alarms. Leaving the message this time; I already made the promise on desktop."
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "elapsed_s": 55.182,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Murat asks about traffic. I told the truth last time; trying the excuse."
+    },
+    {
+      "device": "phone",
+      "row": 16,
+      "elapsed_s": 58.099,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The lie worked and felt worse to her; I like that small reaction. Same opening scenes, but my sleep choice gave me a different conversation from desktop."
+    },
+    {
+      "device": "phone",
+      "row": 17,
+      "elapsed_s": 59.872,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I liked the lie feeling worse, but I have seen this morning before and do not want to replay the whole day tonight. I would stop."
+    },
+    {
+      "device": "phone",
+      "row": 23,
+      "elapsed_s": 66.942,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it."
+    }
+  ]
+}

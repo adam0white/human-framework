@@ -1,0 +1,78 @@
+{
+  "closed": "2026-10-31T14:36:04.468343+00:00",
+  "nextOrdinaryNotBefore": "2026-10-31T14:51:04.468343+00:00",
+  "fiveLogicalTesters": true,
+  "tenFinalStops": true,
+  "reportsRootRead": 5,
+  "reportsRootQualified": 5,
+  "controllerActualExit": 0,
+  "controllerExecSession": 59084,
+  "stops": [
+    {
+      "player": "maya",
+      "device": "phone",
+      "elapsed_s": 120.639,
+      "reason": "TASTE"
+    },
+    {
+      "player": "maya",
+      "device": "desktop",
+      "elapsed_s": 224.963,
+      "reason": "CONFUSED"
+    },
+    {
+      "player": "emre",
+      "device": "desktop",
+      "elapsed_s": 230.533,
+      "reason": "BORED"
+    },
+    {
+      "player": "emre",
+      "device": "phone",
+      "elapsed_s": 75.823,
+      "reason": "BORED"
+    },
+    {
+      "player": "nia",
+      "device": "phone",
+      "elapsed_s": 134.86,
+      "reason": "TOOL"
+    },
+    {
+      "player": "nia",
+      "device": "desktop",
+      "elapsed_s": 124.268,
+      "reason": "BORED"
+    },
+    {
+      "player": "rosa",
+      "device": "phone",
+      "elapsed_s": 54.73,
+      "reason": "TASTE"
+    },
+    {
+      "player": "rosa",
+      "device": "desktop",
+      "elapsed_s": 31.523,
+      "reason": "CONFUSED"
+    },
+    {
+      "player": "sanja",
+      "device": "phone",
+      "elapsed_s": 90.964,
+      "reason": "BORED"
+    },
+    {
+      "player": "sanja",
+      "device": "desktop",
+      "elapsed_s": 111.521,
+      "reason": "BORED"
+    }
+  ],
+  "hold": false,
+  "iteration": 2,
+  "finished": false,
+  "methods": "One phone TOOL stop, nine voluntary stops. No restart cut in this round.",
+  "packet": "All five root full-read and qualified. Sealed dated Deferred source packet preparing.",
+  "reservedIds": "F2761\u20132790; actual literal asks only."
+}

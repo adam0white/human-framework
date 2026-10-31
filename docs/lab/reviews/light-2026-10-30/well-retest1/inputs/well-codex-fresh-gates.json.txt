@@ -1,0 +1,70 @@
+{
+  "time": "2026-10-31T13:33:34.514862+00:00",
+  "checks": {
+    "live": {
+      "ok": true,
+      "evidence": {
+        "release": {
+          "app": "1.0.0",
+          "framework": "4.15.0",
+          "frameworkLibrary": "4.15.0",
+          "commit": "fee70f1da338ebe075cc630f9452c66f4d14bf17",
+          "dirty": false
+        },
+        "assetsMatched": 28,
+        "proofSha256": "5c314d5182840549d395ebde799dfbe87864c4a23e62c23729ecc44123009c6b",
+        "runtimeClaim": "release fields only; rendered browser behavior unverified"
+      }
+    },
+    "source": {
+      "ok": false,
+      "error": "source parent unresolved"
+    },
+    "inputs": {
+      "ok": true,
+      "evidence": {
+        "runner_sha256": "b0f681784059e957858f274013e1f17352e944e45bf47cc44a7ac4d111aa2172",
+        "plan_sha256": "3b2bf25c52a6fc8f2ce728241a260d92e644e22de1b687458c40e45a055ace02",
+        "freeze_sha256": "f8efa15c00437e1016822594c3f1bb050e2680700426a31ea9d1c5d984a9b21c"
+      }
+    },
+    "instrument": {
+      "ok": true,
+      "evidence": {
+        "hashes": {
+          "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+          "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+          "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+        }
+      }
+    },
+    "ports": {
+      "ok": true,
+      "evidence": {
+        "closed": "21700-21709 IPv4 and IPv6 loopback"
+      }
+    },
+    "capacity": {
+      "ok": true,
+      "evidence": {
+        "freeBytes": 49758908416,
+        "notBefore": "2026-10-31T13:23:36.206595+00:00",
+        "suiteLock": "absent; read-only observation"
+      }
+    },
+    "centralC2": {
+      "ok": true,
+      "evidence": {
+        "returnSha256": "8eb28fee52cc1145cb1a5824f70b3e713329703025cd2133dd09be30087efe99",
+        "browserPhaseSha256": "c170a7379b032c3f2904ea35d2024d2a2f36b48f573b070338bfff7ec62a0d3e",
+        "technicalComplete": false,
+        "browserExit": 1
+      }
+    },
+    "projectProcesses": {
+      "ok": false,
+      "error": "project automation processes found: ['93111 /opt/homebrew/bin/codex exec --sandbox danger-full-access -C /Users/abdul/code/.lab-scratch/wt/human-framework/gd-central-fee-proof1031 -m gpt-6.1-sol -c model_reasoning_effort=\"medium\" READONLY bounded actualcentralC2failureclassification/recommendation; NOsource/harnesschange/retry/offline/browser. Parentsoleoperator actualcentral-live-c4a-fee-c2-root1318/browser-phase.json:79988ms/0pass10fail4dependentUNRUN/10opened10closedmax1/0images/teardowngone/truetimeouts0; actualsourcefee+livepreflightpassed. Readactualpercasefinalproofs/logs/collectorfailurefields+boundsource/harness; bindhashes, don\\'tdumprawprivateheaders/credentials/fullproviderpayloads. GroupA Voice360/1280chainround1 no NEWvisiblepublicsuggestion(previousGo-to-sleep/emptylist); traceactualpubliclog/outgoingdraft/selectedinput/currentworker/UI/sourcevspositive-setup-assertion,noforceactorassentorhiddenstate. GroupB Well360/1280file-onlyimport expects local/nonowning fivefields butactualcastAuthorityshared/castLocalOnlyfalse: traceactualfile-session/nativeownership/castinit paths/currentliveboundmodules vswrongharnessjourney/observablemetadata; distinguishactualauthority/writecapabilitybugvsobservercontractunknown. GroupC Watch/starts/listing strictfontglyph/familypaint failures: actualexpectedfamily/currentcomputed/renderedfonts/sourceCSS+fontbytes/navigationcontexts060x, no blanketfallback/1letter/mixed waiver ornewglyph-face-filedemand. 0pageerrors/assetmismatchinthoseproofsnotwholeacceptance. No commoncauseassumption/allappbrokenclaim. Actualrawproof current vsstaged source95pins unaffected. Readparentcleanup/RETURNifpresent; reportteardownshownvsoverallrootidentityconfirmationseparate. No newrun/predicateexecution/tolerance/sourceedit/Claude/helpers/CI/commit/grant. Producefinitecauseclassificationtable exactly10+4unrun, knownsourceprovenvsunknown, smallestboundednextsourceorharnessfix+meaningfulcontrol andwhichneedsrealbrowser. All30offlineUNRUN/noCPUauthority. KeepcurrentreaderproofFAIL. Write restart-central-fee-c2-failure-classification.md/json;appendSTATUS. RootretainfeeWT.GD=/Users/abdul/code/.lab-scratch/games-deferred.\\\\012Cleanup (owner, 2026-10-24: \"ask subagents to clean up after themselves automatically\"): you own your mess. Remove each of your worktrees (`git worktree remove`) as soon as its branch is merged and pushed, and delete your merged task branches, locally and on origin. Stop your dev servers and browsers by exact PID when done with them. Keep at most the screenshots your brief allows; delete the rest. If a tree is dirty or unmerged when you stop, save `git diff` and untracked files to ~/code/.lab-scratch/stale-patches/<repo>-<name>.* first, then remove it. Sub-workers you launch get this same rule. Your final report ends with `git worktree list` for each repo you touched, showing none of yours remain.\\\\012\\\\012Model choice (owner, 2026-10-27): for your own sub-agents, pick the cheapest model that fits. Terra 6.1 (`codex exec -m gpt-6.1-terra ...`) or Claude Sonnet 5.5 (Agent tool `model: \"sonnet\"`) for short docs, bounded implementation, reading and cautious synthetic play. Default Codex or Opus for final review, hard implementation and taste judgments; in the 2026-10-27 experiment both cheaper models missed every blocker as reviewers (docs/lab/experiments/model-roles-2026-10-27.md). Sub-workers you launch get this same rule.\\\\012\\\\012Active root handoff retains the source tree. No foreign cleanup.\\\\012']"
+    }
+  },
+  "scope": "Read-only evidence only; no admission, dispatch or browser proof."
+}

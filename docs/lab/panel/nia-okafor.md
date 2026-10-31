@@ -1631,3 +1631,293 @@ The wait 167→244 s step reported a longer elapsed time than the 15 s I asked f
   - Everyone saying "I want to go down" and then walking up.
 
 I created no worktree, server or browser. I wrote no files except driver screenshots and touched no repository, so no `git worktree list` applies.
+<!-- selected-continuity-key: light-1030:murmur-retest1:nia:free -->
+## 2026-10-31 murmur-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/murmur-retest1/nia/report.md.txt), SHA256 `8ef5e97e4357b6fc67a268404a0a917db682ed10ee92cd761d9c3060bb8441e4`. Method qualification: [nia](../reviews/light-2026-10-30/murmur-retest1/nia/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would not return voluntarily tonight; I might come back another evening on my phone if I could reach new scenes without replaying the familiar morning and Dilan’s replies varied when I pushed her.
+
+Ranked asks:
+
+1. Let me reach new scenes without replaying the same opening.
+2. Give Dilan more varied replies when I insist.
+3. Show less repeated day-so-far text on the phone.
+
+## 1. Session
+
+I’m Nia Okafor, 19, a Lagos design student and returning Murmur player. This was round **light-1031-murmur-retest**, free stop, floor 0. Each session was a fresh independent game at https://murmur.adamwhite.work/?labRunSource=agent.
+
+- **A:** desktop, 1280×800, mouse and keyboard, light mode. Stop at **96.037 elapsed seconds**.
+- **B:** phone, 360×690, touch, light mode, another visit the same evening. Stop at **66.942 elapsed seconds**.
+
+I read all 1,339 lines of my supplied history. The last line I read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread range: none.** The history is selected, not a complete archive. It says older records and independent continued alternatives were not supplied; the excluded independent Warren alternative bodies were absent. The Well excerpt did not include its older raw diary. The method qualification says a named tap stalled for about 31.5 seconds on my original Murmur phone visit, which materially qualifies some earlier Tuesday observations.
+
+Recording stayed at its default. I did not change consent, type feedback or submit it.
+
+## 2. First impressions
+
+**Desktop:** At 3.977 seconds I recognised Dilan and wanted to push her again. The alarm choice looked familiar. Insisting got her up before the second alarm, and I made the bus promise again. The Ece call also looked familiar, with high confidence.
+
+**Phone:** At 5.466 seconds I wanted to let her sleep. She slept through the second and third alarms, then watched kitchen videos. I tried the traffic excuse and liked that the successful lie felt worse to her.
+
+## 3. Verbatim diary
+
+These are the reaction texts as logged, in order, with driver elapsed seconds. The phone `first_minute` entry was **premature at 58.099 seconds**; it is not a valid 60-second checkpoint.
+
+**A — desktop**
+
+- **3.977 s, Start:** “Dilan again. I remember pushing her and her pushing back; I want to see what she does this time.”
+- **18.117 s, hold, Monday 06:41:** “Same alarm cue as before, fairly sure. I want to push her up and see her answer.”
+- **33.666 s, hold, Monday 07:16:** “She got up before the second alarm. Nice, that landed. I am making the bus promise again.”
+- **50.501 s, tap, Monday 10:41:** “Ece lost in the estate is familiar too, high confidence. I will send the map this time.”
+- **65.036 s, first_minute, Monday 12:41:** “The alarm and Ece call feel familiar, and my pushes made Dilan get up and promise tonight. Skip gets me to choices fairly quickly. I am curious what happens if she walks away from Murat.”
+- **68.025 s, hold, Monday 12:41:** “Going outside instead of laughing or defending Ece.”
+- **69.405 s, note, Monday 12:42:** “She says she is doing it because I pushed and does not like it. That bite is what I remember liking.”
+- **86.294 s, hold, Monday 15:21:** “Pigeons on the loading dock is a nice detail. Trying water instead of the coffee I remember carrying into Tuesday.”
+- **88.541 s, want_quit, BORED, Monday 15:22:** “The same fine I dislike it line twice, and the same Monday scenes. I got my experiment and would stop here.”
+- **96.037 s, stop, BORED, Monday 17:00:** “Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it.”
+
+**B — phone**
+
+- **5.466 s, Start:** “Phone now, same evening. I want to let her sleep this time.”
+- **21.885 s, tap, Mon 06:42:** “Let her sleep; I remember this made her late before, fairly sure.”
+- **39.058 s, tap, Mon 07:16:** “She slept through three alarms. Leaving the message this time; I already made the promise on desktop.”
+- **55.182 s, tap, Mon 08:26:** “Murat asks about traffic. I told the truth last time; trying the excuse.”
+- **58.099 s, premature first_minute, Mon 08:31:** “The lie worked and felt worse to her; I like that small reaction. Same opening scenes, but my sleep choice gave me a different conversation from desktop.”
+- **59.872 s, want_quit, BORED, Mon 08:31:** “I liked the lie feeling worse, but I have seen this morning before and do not want to replay the whole day tonight. I would stop.”
+- **66.942 s, stop, BORED, Mon 10:41:** “Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it.”
+
+## 4. Moments
+
+On desktop, Dilan’s objection to eating outside held me: she did it but said she disliked being pushed. Eating with the pigeons was a small detail I enjoyed. Then the water choice produced the same objection word for word, and the familiar sequence lost me. My quit wish at 88.541 seconds did not pass.
+
+On phone, sleeping in led to Murat asking about lateness. His accepting the excuse, followed by Dilan feeling worse, made the choice feel personal. I still did not want to replay the morning. My quit wish at 59.872 seconds did not pass.
+
+No pulse was due in either session; both ended before 180 seconds. Neither game ended.
+
+## 5. Confusion and clarity
+
+The choice labels made it clear which options Dilan was willing to take and which required insistence. The hold produced visible “You insisted” text, and later events showed what she did. Skip moved between choices fairly quickly in this visit.
+
+I was not sufficiently confused to open Feedback for confusion. The repeated day text remained noticeable in the driver’s visible text, though the desktop screenshot presented the history in a separate column.
+
+One desktop ten-second wait and two phone ten-second waits returned empty output. The following screenshot calls showed the current game state. I do not know why those replies were empty; I did not encounter a driver block.
+
+## 6. Device use
+
+**Desktop, 1280×800:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-001.png), the title page: a centred cream page, introduction, unchecked alternative starts and a red Start button. The recording strip crossed the area below “Other ways to begin.” I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-002.png): the day history was on the left and Ece’s scene and large choices were on the right. I saw no clipping in that image.
+
+I used Start, mouse clicks, 1.5-second holds, Skip, Game menu, Feedback, “I'm stopping” and Back. I used no keyboard key. I did not see the menu or Feedback as a picture.
+
+**Phone, 360×690:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-001.png), showing the title and introduction, the recording strip and alternative-start checkboxes. Start was below the visible edge. In [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-002.png), the alarm card and three choices were visible; the instruction paragraph was cut off after “If time” where the choice area began. [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-003.png) showed the Aylin card and choices, with the lower choice and bottom of the page beyond the viewport.
+
+I used touch taps on Start, choices, Skip, Game menu, Feedback, “I'm stopping” and Back. I did not view the phone menu or Feedback as pictures, or inspect the page with a keyboard open.
+
+## 7. Stop and return
+
+- **Desktop, BORED:** “Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it.”
+- **Phone, BORED:** “Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it.”
+
+On both devices, Feedback offered “I'm stopping” and “I'm confused”. I chose “I'm stopping”; the driver showed it pressed. I pressed “← Back”, typed no note, changed no consent or recording setting, and pressed no Submit.
+
+I would not leave the game running. I would not come back tonight. I might return another evening on my phone if I could get to new scenes without replaying the familiar morning and Dilan’s replies to insistence varied. Her pushback and the emotional consequence of the lie still interest me.
+
+## 8. Changes I would want
+
+1. Let me get to new scenes without replaying the familiar opening.
+2. Vary Dilan’s replies to different instances of insistence.
+3. Reduce the repeated day-so-far text on the phone.
+
+## 9. Compared with my last visit
+
+- **Make days differ or let me skip scenes I have seen: partly met.** Skip moved time toward the next event, and sleeping in led to the lateness conversation. The alarm, Aylin message and Ece call were familiar. I did not reach Tuesday, so I cannot say whether its opening differs now.
+- **Shorten dead time between choices or give me something to do: partly met.** I used Skip and reached several choices in the desktop session. I still waited between them; I did not explore other pace settings.
+- **Show less repeated day text, especially on phone: did not meet it in the text I received.** Earlier events continued to appear above later ones. The phone screenshots show only parts of the page, so they do not establish its full length.
+
+**New blocking ask from this visit:** Give Dilan more varied replies to insistence. The same “Fine. I’m doing it because you pushed me. I don’t like it” appeared for both eating outside and drinking water, and that repetition contributed to my desktop stop.
+
+I created no worktree, branch, server, browser or helper and touched no Git resource. The coordinator owns the drivers and browser cleanup.
+```
+<!-- selected-continuity-key: light-1030:well-retest1:nia:free -->
+## 2026-10-31 well-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/well-retest1/nia/report.md.txt), SHA256 `2a8153b29116f5ddf00ac51cd42f8df31eeebdfb6aec8844da7409d992600522`. Method qualification: [nia](../reviews/light-2026-10-30/well-retest1/nia/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would not return voluntarily tonight or plan another evening as it is; I liked seeing people refuse and choose different work, but I do not want to manage the villages through the storm, and the replies I heard were less personal than I hoped.
+
+**Ranked asks**
+
+1. Give me more specific personal replies explaining a person’s choice. Danyal’s unavailable-option line and Samira’s “adapted the advice” sounded generic.
+2. Put the action choices ahead of the long construction inventories, especially on phone.
+3. Show me what insisting actually cost, if anything, after the answer.
+
+## 1. Session
+
+I’m Nia Okafor, 19, a Lagos design student. This was a **return** to Twice at the Well, round **light-1030**, free stop, floor 0 and ceiling 25 minutes. The URL was https://human.adamwhite.work/colony/?labRunSource=agent.
+
+My supplied Well history says I previously liked Maryam’s cooking refusal and string puzzle, but stopped because I did not want to manage two villages through the storm. It supplied my return answer and three asks, not my old raw diary. The rest of the supplied file contained selected records from other games. I read lines 1–1596; the last line was **“End of supplied own history. This reading boundary is director metadata, not an event you experienced.”** Unread ranges: **none**.
+
+- **A, phone:** 360×690, touch, light mode. Open at 0.397 seconds; stop at **81.992 seconds**.
+- **B, desktop:** 1280×800, mouse and keyboard, light mode, a separate fresh game the same evening. Open at 0.456 seconds; stop at **52.123 seconds**.
+
+Neither game imported an older save. I left recording and consent unchanged. Neither run reached the storm or ended.
+
+## 2. First impressions
+
+**Phone:** At 5.807 seconds, Maryam’s name reminded me of her earlier cooking refusal and string puzzle. I was fairly sure of that recognition and wanted another personal answer. At 17.042 seconds, the construction inventory already felt like an obstacle between me and her action choices.
+
+**Desktop:** At 10.310 seconds, seeing the two villages side by side made me want to try another person. At 30.465 seconds, Samira’s two versions were visibly doing different work, but her explanation felt generic.
+
+## 3. Verbatim diary
+
+These are the reaction texts as logged, in order, with the driver’s elapsed seconds.
+
+**Session A — phone**
+
+- **5.807 s, Begin the first morning:** “Maryam is here again; I remember her cooking refusal and string puzzle from my last visit, fairly sure. I want to hear her answer again.”
+- **9.480 s, attempted Maryam tap:** “Maryam first. I want a personal answer, not the roof bookkeeping.”
+- **17.042 s, note, Day 1 05:34:** “The person panel starts with a huge construction inventory again; the action choices are below the screen. I wanted Maryam, not two tables of timber.”
+- **18.894 s, order Maryam to House, Day 1 05:34:** “She says she will not build. Asking anyway to hear why.”
+- **32.543 s, Insist on it, Day 1 06:12:** “Duties to the others is a reason, but vague. Pushing once to see the consequence.”
+- **50.298 s, note, Day 1 07:06:** “She refused again after thinking it over and went back to cooking. I see the insist was sent and may cost trust, but no actual trust consequence yet. I like that she still said no.”
+- **54.861 s, Danyal:** “Danyal is cooking too. I want to see if he has his own reason.”
+- **56.691 s, order Danyal to Mosque, Day 1 07:45:** “He will not pray; asking to hear him.”
+- **65.968 s, first_minute, Day 1 08:02:** “Maryam refused my building order twice, even after insistence, and kept cooking. That is a choice I can see, though the trust cost is only a warning. Danyal says the prayer option is not available, which sounds like an error rather than a person. The long construction tables bury my choices on phone.”
+- **68.669 s, want_quit, TASTE, Day 1 08:02:** “I got two refusals, but I do not want to manage roof stages and meals through the storm. Danyal sounded like a system message. I would stop here.”
+- **81.992 s, stop, TASTE, Day 1 08:10:** “Stopping on the phone. I liked Maryam refusing again, but Danyal sounded like an error and I do not want to manage the roof and meals. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+**Session B — desktop**
+
+- **10.310 s, Begin the first morning:** “Second device, same evening. Two villages side by side; I want to try someone other than Maryam.”
+- **18.583 s, order Samira to House, Day 1 05:33:** “Samira says she will not build too. Asking her anyway to hear her reason.”
+- **32.530 s, note, Day 1 06:05:** “Samira says she adapted my advice and gathers grain instead of building. I can see the difference, but that sentence sounds generic and does not tell me why she chose grain.”
+- **38.935 s, want_quit, TASTE, Day 1 06:24:** “I can see the two Samiras doing different work, but the reply is generic and I have no appetite for the construction tables again. I would stop here.”
+- **52.123 s, stop, TASTE, Day 1 06:46:** “Stopping on desktop. Seeing Samira choose grain while her other self built was interesting, but her generic reply and the construction management do not pull me on. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+## 4. Moments
+
+Maryam held me briefly. Her Human-village version refused the house order, then refused again after I insisted; the Classic version agreed and built. I liked that my insistence did not force her to agree. I also liked seeing Samira gather grain while her Classic counterpart worked on the house.
+
+Danyal’s “That option is not available” and Samira’s “I adapted the advice after thinking it over” lost me. I wanted reasons that sounded like those people, not just a description of the decision. The roof stages, timber tables and meals made the longer game feel like management I did not want to do.
+
+My phone quit wish at 68.669 seconds and desktop quit wish at 38.935 seconds both persisted. No pulse was due: both sessions stopped before 180 seconds. The desktop session also ended before a first-minute note was due.
+
+## 5. Confusion and clarity
+
+The labels showing a likely answer helped me choose an experiment. The result then showed **Classic agreed / Human will not**, and the people’s activities made the different outcomes visible. The game also showed that my second Maryam order had **Insist on** and warned that asking again might cost trust.
+
+I did not see whether that insistence actually changed trust. Maryam’s refusal was clear, but “duties to the others” left me wanting a more specific reason. Danyal’s answer said the prayer option was unavailable without telling me why. I was not sufficiently confused to choose the confusion feedback label.
+
+The phone’s first named tap became stale as Maryam changed from waiting to cooking; I retried the current name successfully. On desktop, Samira changed activity twice before my named taps arrived, producing two stale-target errors; the third current name worked. Those replies said the page had changed. I did not encounter an enabled control that remained inoperable after a retry.
+
+One phone ten-second wait returned empty output. The following screenshot and visible text showed the later state; I do not know why that wait reply was empty.
+
+## 6. Device use
+
+**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-001.png), the opening page with the village map, title, two opening quotations and Begin button. The title was partly covered by the “Show Human village” control. I viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-002.png), where Maryam’s panel began below the map and the construction section started at the bottom edge; the action choices were below the visible screen. I viewed [a-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-003.png), showing Maryam’s second refusal, the sent insistence and the construction section beneath it.
+
+I used touch taps on Begin, people, House, Insist on it, Back to people, Mosque, Game menu, Feedback, “I'm stopping”, Back and Close menu. I did not view the menu or Feedback as pictures.
+
+**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/desktop/b-001.png), showing the two villages side by side and the opening card on the right. I viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/desktop/b-002.png), showing the two Samiras on their respective maps and the action panel on the right. Its lower action row extended beyond the bottom of the viewport; I did not inspect the whole panel in that image.
+
+I used mouse clicks on Begin, Samira, House, Game menu, Feedback, “I'm stopping”, Back and Close menu. I used no keyboard keys. I did not view the desktop menu or Feedback as pictures.
+
+## 7. Stop and return
+
+**Phone — TASTE, 81.992 seconds:** “Stopping on the phone. I liked Maryam refusing again, but Danyal sounded like an error and I do not want to manage the roof and meals. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+**Desktop — TASTE, 52.123 seconds:** “Stopping on desktop. Seeing Samira choose grain while her other self built was interesting, but her generic reply and the construction management do not pull me on. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+On both devices I opened Game menu and Feedback, selected **“I'm stopping”**, saw it marked pressed, went Back and closed the menu. Both also offered **“I'm confused”**. I typed no note, changed no consent or recording setting, and pressed no Submit.
+
+I would close it rather than leave it running. I would not come back tonight, and I would not plan another evening with it as it is. More personal answers could interest me, but the prospect of managing both villages through the storm still puts me off.
+
+## 8. Changes I would want
+
+1. Give replies specific to the person and the choice they made.
+2. Keep action choices ahead of the repeated construction detail, especially on phone.
+3. Show the actual consequence of insisting when one occurs.
+
+## 9. Compared with my last visit
+
+- **More personal replies like Maryam’s cooking refusal and string puzzle — partly met.** Maryam gave a reason and maintained her refusal after insistence. I liked that choice, but her reason was vague to me, and Danyal’s and Samira’s replies sounded generic. I did not see another string puzzle.
+- **Keep action choices visible without pushing them beneath repeated status text — did not meet it in the phone view I reached.** The person panel placed long construction inventories before the choices. The phone screenshot showed the start of that section while the actions were below the visible edge. The desktop screenshot showed actions after the panel had moved down to them.
+- **Make the consequence of insisting clearer — partly met.** I saw that Insist was sent, that Maryam refused again, and that asking again may cost trust. I did not see an actual trust change or other cost from my insistence.
+
+These were fresh, unmatched games with different choices, so I cannot attribute the differences to a particular change. **New this time that would stop me returning:** Danyal’s system-like unavailable-option reply and Samira’s generic explanation made the personal reactions less compelling, alongside the construction management I already disliked.
+
+I created no browser, server, process or worktree. The coordinator owns the drivers and browser cleanup; no worktree listing applies.
+```
+<!-- selected-continuity-key: light-1030:warren-retest2:nia:free -->
+## 2026-10-31 warren-retest2 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/warren-retest2/nia/report.md.txt), SHA256 `87df8c2ffb55919d893dcd8ee724a75a6d5259d8c46ef089f00ca74e02723d3f`. Method qualification: [nia](../reviews/light-2026-10-30/warren-retest2/nia/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would come back another evening to try the quiet door test if I could make the request; I would not come back tonight or leave the game running.
+
+**Ranked asks**
+
+1. Let me make the quiet door-test request through the phone control. Selecting Meryem timed out twice through the driver, so I could not reach the experiment I came for.
+2. Give me something engaging to do while I wait for a door to be carved. On desktop I stopped after waiting on Fast and finding it still unfinished.
+3. Give me a clearer sense of when riders might become a concern.
+
+I’m Nia Okafor, 19, a Lagos design student. This was a return visit to **The Warren**, the second fix/retest cycle. I played fresh, independent games at the supplied URL with `?labRunSource=agent`: first on a 360×690 touch phone, then on a 1280×800 desktop the same evening. No save or matched seed was imported. I left recording and consent at their defaults. Both games began on Slow; I changed each to Fast.
+
+I read the supplied history through line 1749. The last line was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. This is selected history, not my complete archive. The earlier FREE and CONT alternatives are independent, and the CONT body was not supplied; this visit does not fill that missing arm.
+
+The opening felt familiar and quick. On the phone, I marked a dig and a door, and the game explained who could dig and why work might wait. Meryem’s completed door was the moment I wanted: she rolled it once to test it. Inspecting it offered a quiet test without a false alarm. The driver then timed out twice when I tried to select Meryem, so I did not request the test or see a result. On desktop, the main panel showed several people’s activities, which felt livelier than the repeated dust sentence I remembered. I stopped while the door was still unfinished.
+
+**Diary: exact logged reactions**
+
+Phone:
+
+- **5.654 s, note:** “The little hill is familiar. I want to try the quiet door test on a new game this time.”
+- **15.046 s, note:** “The mark tells me exactly who can dig and why they may wait. I want the door again, so I will speed this up.”
+- **55.181 s, note:** “Quiet testing is described on this new hill. The door is not finished yet, so I cannot ask to test it. I like knowing the conditions.”
+- **70.719 s, first_minute, engagement 3, Morning 20 Aug year 1:** “The mark worked and Meryem headed for the door. Quiet testing is explained on this new hill, but the door is not finished yet. Main text now tells me about Yusuf and Maryam rather than only dust. I am curious, though still waiting.”
+- **104.203 s, want_quit, TOOL, engagement 2, Night 20 Aug year 1:** “I wanted Meryem to test her door, but choosing her timed out twice. I would stop this phone session here.”
+- **134.860 s, stop, TOOL, engagement 2, Before dawn 21 Aug year 1:** “Stopping on the phone. The quiet test is offered and the door was built, but I could not select Meryem after a retry. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+Desktop:
+
+- **5.641 s, note:** “Same evening, bigger hill. I still want to see the quiet test happen.”
+- **21.574 s, note:** “The main panel lists several people doing things now. That is more lively than the dust line I remember. Door marked, waiting on Fast.”
+- **71.944 s, first_minute, engagement 3, Morning 20 Aug year 1:** “The larger view shows several people and their activities on the main panel, which I like. I marked the door and put time on Fast, but I am still waiting for it to be finished. I do not know when riders will arrive.”
+- **115.373 s, want_quit, BORED, engagement 2, Before dawn 21 Aug year 1:** “The door is still unfinished and I have already waited through this on the phone. I want the test, but I do not want another stretch of watching routine lines. I would leave.”
+- **124.268 s, stop, BORED, engagement 2, Before dawn 21 Aug year 1:** “Stopping on desktop. The main panel showed people doing more, but the door was still unfinished and I did not want to wait again. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+One earlier phone `first_minute` log call returned no output, so I cannot establish whether it was recorded or its elapsed time. The 70.719-second entry above is the confirmed checkpoint. Both sessions stopped before 180 seconds; no pulse was due. Neither game ended, and I did not reach riders, a completed shelter, or later checkpoints.
+
+**Clarity and feedback**
+
+The door placement was clear: the shaft accepted the mark on both devices. On the phone, the finished-door panel named the conditions for a quiet test and offered reachable adults. The selection operation for Meryem timed out twice, with the default selection still shown. I classify that as **TOOL** under this assignment; it does not establish that the game itself would reject the request. I did not try a false alarm this visit.
+
+On both devices, Feedback offered “I'm stopping” and “I'm confused.” I chose “I'm stopping,” saw it marked pressed, and used **Back to the game**, which returned to the menu. I typed no note, changed no consent or recording setting, and pressed no Submit. No feedback receipt is claimed. A phone menu attempt also produced a driver timeout; the retry opened the menu.
+
+**Screenshots and devices**
+
+- Phone [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/phone/a-001.png): I viewed the opening, with the hill illustration, title, Begin button and recording strip. [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/phone/a-002.png): I viewed the active hill, speed controls, instruction and large bottom toolbar. The hill drawing was small, but those controls and text were visible. A later screenshot call returned no output; I did not view that image and make no claim about it.
+- Desktop [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/desktop/b-001.png): I viewed the wide opening and hill. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/desktop/b-002.png): I viewed the large hill on the left and instructions and tools on the right; the shaft was easy to see. I used mouse clicks and no keyboard key.
+
+**Earlier Warren asks, assessed only from this play**
+
+- More people’s activities on the main view: **met** in the desktop view reached. I saw several named activities there; the phone also showed changing activity text.
+- Test a finished door without another false alarm: **partly met**. The new phone hill offered the quiet test, but the selection timeout prevented me from sending it. The earlier ask to test a door on an existing hill is **not seen**: these were fresh games.
+- Clearer sense of when riders become a concern: **not met in the play reached**. I still did not know when they might arrive.
+- Journal plainly saying whether anyone shut the door during a bell call: **not seen**. I made no bell call.
+- Slow down or pause on Fast when something I set up happens: **not seen**. I saw the completion text, but did not establish whether Fast paused for it.
+
+The new blocking ask I actually reached is the phone selection problem: I could see the quiet-test opportunity but could not choose Meryem through the driver after a retry. The independent fresh games and different choices do not establish what caused differences from my earlier visits.
+
+I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns the drivers and browser cleanup; no `git worktree list` applies.
+```

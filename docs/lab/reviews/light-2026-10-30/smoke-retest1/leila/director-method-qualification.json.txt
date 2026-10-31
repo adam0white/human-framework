@@ -1,0 +1,26 @@
+{
+  "cohortCoverage": "The LIGHT initial and retest cohorts omit required Rosa coverage. See external rosa-light-protocol-audit.md/json. Individual reports remain observations; they do not establish full persona-protocol compliance. No Rosa visit or opinion is inferred.",
+  "feedback": "Stopping quick labels were selected locally and Not now closed Feedback. No typed note, Submit, recording or consent change was found. No production receipt inferred.",
+  "exposure": "Two fresh independent games, phone then desktop on the same evening. No old save or matched seed; differences are not attributable solely to the build.",
+  "cycleRule": "FIRST fixed-build retest. Producer no-new-blocker statements are individual findings; remaining reports and the cohort qualification remain separate.",
+  "descendantScope": "Three recorded PIDs absent per completed tester below. Final round observed-identity and port checks remain required.",
+  "at": "2026-10-31T15:48:03.948114+00:00",
+  "rootReadFullReport": true,
+  "commandReceipt": "smoke-leila-command-audit-1542.json",
+  "retainedToolsReceipt": "smoke-leila-retained-audit-1542.json",
+  "historyEvidence": "All1,298 supplied lines matched completed stdout and retained responses; completion/session hashes matched. Retention is not attention or comprehension.",
+  "imageEvidence": "Four high-detail input-image blocks, two per device. Blocks do not establish perception.",
+  "stops": {
+    "phone": 119.755,
+    "desktop": 72.009
+  },
+  "timedLogs": "Both Everyone is out endings observed; phone ending106.125. FINISHED119.755/72.009. First-minute63.941/62.987; desktop checkpoint occurred after ending. Auto60.044/60.064 before stops; no180-second pulse.",
+  "driverQualification": "Twelve permitted reads/62 curls incl7 keys. One unmatched quote before request and one stale Derya full name. The12-second wait completed with5,640 characters and ending despite producer initial empty-looking observation. No actual tool failure established. Producer missed assigned confused-label procedure at moment of conflict. No typing or Submit.",
+  "priorAskComparison": "Phone bundle journal/card mismatch observed25.065; at34.686 status needed stair and Show the stair enabled. Later following and ending. Its resolution does not explain Diego’s different outcome. Personal danger information and repeat-destination behavior remain bounded preferences.",
+  "producerNewBlockingAsk": "Explicit NONE. Three ranked asks include danger information, bundle status synchronization and repeated destination taps. The status conflict resolved in this run; not a universal no-blocker or cause claim.",
+  "returnExact": "Yes, another evening, to try a different order. I would not leave it running.",
+  "orderCorrection": {
+    "at": "2026-10-31T15:51:09.208935+00:00",
+    "reason": "Root copied the shared desktop-first metadata incorrectly. Actual plan and producer reports are phone then desktop. Original report unchanged."
+  }
+}

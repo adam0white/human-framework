@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T15:05:21.145538+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Smoke 701 historical delivery recorded, no playerdispatchyet; no dispatch, freshlive/disk/pause/slots remain.",
+  "players": [
+    {
+      "tester": "Jonas Berg",
+      "characters": 231169,
+      "historySha256": "ed3384b93d16771ad845e41a4483e8c73b9d51adba8ad81a8c61643ade41ab9a",
+      "briefSha256": "93acdc25d688b9367c98dc7fa71655c165973a9f73b8722012ed801b1ab860df",
+      "ownSourceCount": 20
+    },
+    {
+      "tester": "Aisha Rahman",
+      "characters": 179529,
+      "historySha256": "f6c1f82527bf9142548141b9a405bbad1b2aeb5e56dad1ce9e284303e0da19b2",
+      "briefSha256": "ae47a6fcdc8246611143c166d9ddb99ad862fca315f19e5981f5eddc52640c52",
+      "ownSourceCount": 19
+    },
+    {
+      "tester": "Diego Silva",
+      "characters": 180388,
+      "historySha256": "3760c02047070a841cafb17547b3b2dd62767614e2fbf69b461e8c76a02ab619",
+      "briefSha256": "a52986ef2f28ab834d6690df5f5ae304029ad615fd59134b9fb9b5aac3547bae",
+      "ownSourceCount": 22
+    },
+    {
+      "tester": "Leila Mansour",
+      "characters": 161700,
+      "historySha256": "583d686932bb708491eba60728c729c0866ae78cc7be63b1be697e0bf9ebf4aa",
+      "briefSha256": "5c8443a404aaf55b94bb6487be360c03676dac8512f3ac8ba67f3a0ee05537a0",
+      "ownSourceCount": 17
+    },
+    {
+      "tester": "Ma\u00eblle Pichon",
+      "characters": 186,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "5f986bda9f148b47a8c2a925f1106684b68a1829c2086c5964838a74277ff8aa",
+      "ownSourceCount": 0
+    }
+  ]
+}

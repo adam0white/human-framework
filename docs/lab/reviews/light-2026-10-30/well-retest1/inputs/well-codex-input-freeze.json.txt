@@ -1,0 +1,46 @@
+{
+  "time": "2026-10-31T13:09:36.437570+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Well fee70f1 historical delivery proof recorded, no playerdispatchyet; no dispatch, freshlive/disk/pause/slots remain.",
+  "players": [
+    {
+      "tester": "Maya Chen",
+      "characters": 229384,
+      "historySha256": "b5471415d6dc71b37e68696e19039cf2c595a6fd5442fc0a4c459b2afa5eb231",
+      "briefSha256": "85421d81fd306f0f740b4378b0c76ba615793e90efbd2154d7cba757978d55b5",
+      "ownSourceCount": 21
+    },
+    {
+      "tester": "Emre Kaya",
+      "characters": 161466,
+      "historySha256": "1d7960efc3cdeb74d787126bec8308881f0876d084658ca176cd144631a24e76",
+      "briefSha256": "bac442af91fc740adf97390c0f041c5accfa1af68c5ea80aaf520f2c7d378e87",
+      "ownSourceCount": 17
+    },
+    {
+      "tester": "Nia Okafor",
+      "characters": 185154,
+      "historySha256": "2e00c9deb1622200dab42c3ecd37f04c3bb07d579ad8dd6232cf6ce6cd7db967",
+      "briefSha256": "6c816c4c4482a7d5754ad4a1ea80eae9b675b2d9a06aa37308b7ef7d4bc92998",
+      "ownSourceCount": 21
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "characters": 321646,
+      "historySha256": "189c4f34d79177d07a77a3640d7ccf83402b2b9c1cd66dcbe85bf90155ea5091",
+      "briefSha256": "0145c114bcdeb174e5b3042f8356c0895abc90509e2a340eecacb96bc4468f8d",
+      "ownSourceCount": 34
+    },
+    {
+      "tester": "Petra Horvat",
+      "characters": 186,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "3490f34bb75f6f9577d276095cb73b38263d0c5f2be2fc42a5609c4606f424e6",
+      "ownSourceCount": 0
+    }
+  ],
+  "scopeClarification": {
+    "at": "2026-10-31T13:21:52.907288+00:00",
+    "change": "Only four returner section9 comparison instructions explicitly target Well; crossgameasks notcomparison task. Ownhistories/plan/coldbrief/runner unchanged.",
+    "priorFreezeSha256": "c6e1524d4e14070d0c522a2a53cf83f86a24bd1909040552f49de3900fa0d3ad"
+  }
+}

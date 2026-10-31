@@ -1,0 +1,105 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "a78541278ec6234c931fc60023777316fe6da50b9081505de61cf4ed4553ac48",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 4.807,
+      "kind": "tool",
+      "op": "log",
+      "reason": null,
+      "reaction": "The situation is clear and alarming. I like that the instructions tell me how to lead people down, though there is quite a lot to remember."
+    },
+    {
+      "device": "phone",
+      "row": 5,
+      "elapsed_s": 6.669,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The situation is clear and alarming. I like that the instructions tell me how to lead people down, though there is quite a lot to remember."
+    },
+    {
+      "device": "phone",
+      "row": 11,
+      "elapsed_s": 24.485,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "She says the bundle is tied, but the instruction still says to wait and the stair button is unavailable. I do not know whether it has finished."
+    },
+    {
+      "device": "phone",
+      "row": 25,
+      "elapsed_s": 65.844,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Getting Sevim and her books outside felt worthwhile. The prompts now tell me what to do, although the clock makes reading feel hurried."
+    },
+    {
+      "device": "phone",
+      "row": 41,
+      "elapsed_s": 129.721,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone is out. I am relieved and satisfied with one night; I do not feel a need to repeat it now."
+    },
+    {
+      "device": "phone",
+      "row": 45,
+      "elapsed_s": 135.247,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone is out. I am relieved and satisfied with one night; I do not feel a need to repeat it now."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.008,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I recognise the instructions from the phone, and the larger screen is easier to read. I want to see whether I can reach the upper neighbours first."
+    },
+    {
+      "device": "desktop",
+      "row": 21,
+      "elapsed_s": 63.469,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The letter keys work and collecting people on the way down makes sense to me. I am anxious about making them wait while Sevim ties her books."
+    },
+    {
+      "device": "desktop",
+      "row": 24,
+      "elapsed_s": 69.661,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Again she says the bundle is tied, but the highlighted instruction still says wait. Hacer is having trouble breathing, so I am worried about waiting here."
+    },
+    {
+      "device": "desktop",
+      "row": 34,
+      "elapsed_s": 98.235,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FRUSTRATED",
+      "reaction": "I came back for Sevim, but I am still told to wait after she said the bundle was tied. I do not want to watch her suffer while I cannot tell what to do. I would stop here."
+    },
+    {
+      "device": "desktop",
+      "row": 39,
+      "elapsed_s": 105.871,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FRUSTRATED",
+      "reaction": "I came back for Sevim, but I am still told to wait after she said the bundle was tied. I do not want to watch her suffer while I cannot tell what to do. I would stop here."
+    }
+  ]
+}

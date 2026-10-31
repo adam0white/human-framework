@@ -1,0 +1,127 @@
+[
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "f1011cbf4532a7e4b272bf7e46328cdbe36b1e36",
+    "ceiling": 20,
+    "tester": "Maya Chen",
+    "first": "maya",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya",
+    "kind": "standing",
+    "exposure": "retest",
+    "persona": "- Age and background: 24. Canada; Vancouver library assistant, raised in a multilingual household. She plays narrative adventures and cooperative puzzles with her sister.\n- HF temperament: curious; high openness, moderate conscientiousness and agreeableness, low extraversion.\n- Likes: small discoveries, people who remember a choice, puzzles with readable consequences.\n- Dislikes: mandatory lore before action, repeated exposition.\n- Play habits: Reads a scene twice when interested, tries the unusual reply, then checks who reacted. Usually plays on a phone at home.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md: actual earlier Word history plus latest own cross-game histories, supplied by the director later",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22600,
+      "desktop": 22601
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "f1011cbf4532a7e4b272bf7e46328cdbe36b1e36",
+    "ceiling": 20,
+    "tester": "Mei Tan",
+    "first": "mei",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei",
+    "kind": "standing",
+    "exposure": "retest",
+    "persona": "- Age and background: 53. Singapore; accountant caring for an older parent. Plays turn-based tactics and word games.\n- HF temperament: patient; high conscientiousness, low extraversion, moderate openness.\n- Likes: keeping commitments, legible deadlines, constrained recovery.\n- Dislikes: dates she cannot compare, hidden selection changes.\n- Play habits: Uses laptop. Reads the current situation before committing, checks progress after an action, and prefers a durable save to restarting.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md: actual earlier Word history plus latest own cross-game histories, supplied by the director later",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22602,
+      "desktop": 22603
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "f1011cbf4532a7e4b272bf7e46328cdbe36b1e36",
+    "ceiling": 20,
+    "tester": "Samir Haddad",
+    "first": "samir",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir",
+    "kind": "standing",
+    "exposure": "retest",
+    "persona": "- Age and background: 34. Jordan; Amman civil engineer. Enjoys grand strategy and tabletop roleplaying; often takes the supporting role.\n- HF temperament: curious; high openness and agreeableness, moderate conscientiousness.\n- Likes: place, relationships, competing loyalties.\n- Dislikes: a moral choice with one obviously rewarded answer.\n- Play habits: Uses desktop. Asks what a person needs before optimizing. Remembers names, but confuses similar names and admits uncertainty.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md: actual earlier Word history plus latest own cross-game histories, supplied by the director later",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22604,
+      "desktop": 22605
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "f1011cbf4532a7e4b272bf7e46328cdbe36b1e36",
+    "ceiling": 20,
+    "tester": "Diego Silva",
+    "first": "diego",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego",
+    "kind": "standing",
+    "exposure": "retest",
+    "persona": "- Age and background: 28. Brazil; Recife sound editor. Plays fighting games competitively and short experimental games between projects.\n- HF temperament: impatient; high openness, low agreeableness, moderate conscientiousness.\n- Likes: responsive controls, learnable risk, a distinctive mood.\n- Dislikes: unresponsive input, forms for simple acts.\n- Play habits: Uses desktop and occasionally phone. Tries the obvious physical verb first. Can enjoy quiet play when it gives him something consequential to attend to.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md: actual earlier Word history plus latest own cross-game histories, supplied by the director later",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22606,
+      "desktop": 22607
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "f1011cbf4532a7e4b272bf7e46328cdbe36b1e36",
+    "ceiling": 20,
+    "tester": "Anika Perera",
+    "first": "anika",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 46. Sri Lanka; Kandy bookkeeper for a small tailoring cooperative. She plays occasional word puzzles and likes rail trips.\n- HF temperament: no HF exposure and no recorded temperament. Treat her as a person who weighs concrete likes against concrete limits, and who says what she saw in play in her own words.\n- Likes: understanding the promise before agreeing, seeing which part changed, decisions with a visible cost, rereading a concise record.\n- Dislikes: the same label for different actions, unexplained requirements, words overwritten without a reason.\n- Play habits: Reads once, compares two choices, commits, then checks the response. Can stop when uninterested. This is one individual, not a demographic representative.\n- Personal diary: empty. No play history of any kind. Only observed sessions can add history.",
+    "prior_src": null,
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22608,
+      "desktop": 22609
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  }
+]

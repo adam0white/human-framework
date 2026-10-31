@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-31T15:36:26.425722+00:00",
+  "rootReadFullReport": true,
+  "cohortCoverage": "The LIGHT initial and retest cohorts omit required Rosa coverage. See external rosa-light-protocol-audit.md/json. Individual reports remain observations; they do not establish full persona-protocol compliance. No Rosa visit or opinion is inferred.",
+  "feedback": "Stopping quick labels were selected locally and Not now closed Feedback. No typed note, Submit, recording or consent change was found. No production receipt inferred.",
+  "exposure": "Two fresh independent games, desktop then phone on the same evening. No old save or matched seed; differences are not attributable solely to the build.",
+  "cycleRule": "FIRST fixed-build retest. Producer no-new-blocker statements are individual findings; remaining reports and the cohort qualification remain separate.",
+  "descendantScope": "Three recorded PIDs absent per completed tester below. Final round observed-identity and port checks remain required.",
+  "commandReceipt": "smoke-aisha-command-audit-1532.json",
+  "retainedToolsReceipt": "smoke-aisha-retained-audit-1532.json",
+  "historyEvidence": "All1,368 supplied lines matched stdout and separately completion-hash-bound retained responses. No unsupported relevant wrapper. Repeated lines can align ambiguously; retention does not prove attention or comprehension. Prior qualifications remain.",
+  "imageEvidence": "Three high-detail image blocks: desktop a001 and phone b001/b002. Desktop title only; desktop gameplay layout not viewed. Phone gameplay image was viewed. Blocks do not prove perception.",
+  "stops": {
+    "desktop": 132.921,
+    "phone": 122.691
+  },
+  "timedLogs": "Everyone is out observed desktop125.323 and phone115.168. Both FINISHED stops supported. Early desktop first-minute59.552 invalid; corrected raw62.160/report62.161 valid. Phone64.307 valid. Auto shots60.042/60.038 before stops. No180-second pulse.",
+  "driverQualification": "One unmatched-quote shell exit1 before a request; one stale Sevim full-name reply, corrected current name worked. No forbidden parsed action or foreign read. Native acknowledgment alone does not prove intended outcome.",
+  "priorAskComparison": "Walking destination/location/estimate met in reached walks. Thick-smoke slowdown partly met; the earlier apparent stall and retry-time behavior were not recreated. Death acknowledgment not seen: nobody died.",
+  "producerNewBlockingAsk": "Explicit NONE. First ranked ask is to KEEP the clearer movement messages, a positive maintenance request. Second repeats an earlier death acknowledgment ask that was not reached; it is not a new death finding.",
+  "returnExact": "I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 19145,
+      "absent": true
+    },
+    {
+      "pid": 19122,
+      "absent": true
+    },
+    {
+      "pid": 19124,
+      "absent": true
+    }
+  ]
+}

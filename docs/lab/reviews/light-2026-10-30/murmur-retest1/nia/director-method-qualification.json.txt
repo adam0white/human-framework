@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-31T13:04:25.936260+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 13,
+    "curl": 47
+  },
+  "retainedToolsReceipt": "murmur-nia-retained-tools-complete.json",
+  "historyEvidence": {
+    "frozenAndDispatchHashVerified": true,
+    "retainedLiteralLinesMatched": 1339,
+    "unmatchedRanges": [],
+    "comprehensionNotProven": true
+  },
+  "imageEvidence": "Assigned own image calls and typed image responses in retained-tool receipt; perception/comprehension notestablished. Earlier ephemeral limits notchanged.",
+  "stops": {
+    "desktop": 96.037,
+    "phone": 66.942
+  },
+  "timingQualification": "Phonefirstminute58.099 ispremature, produceracknowledges. Desktop65.036 valid; no180spulsesdue. Automaticshotsseparate. Raw1msdifferencesretainedincompanion.",
+  "producerNewBlockingAsk": "Morevaried Dilan replies toinsistence; exactsame objectionobservedaftereatingoutsideanddrinkingwater. No forcedagreement/trustmeter/clockchange authorized.",
+  "methodLimits": "Freshunmatchedsessions; model/nativeinstrumentchanges; prior31.5stapfallback/CONT/historylimitskept. OnlyMondayreached, noTuesday/laterdifferenceproof.",
+  "observations": "Nativeholds followed visibleoutcomes; lieacceptedandstoryfeelingworse arevisibletext nothiddenstatecausality. Skipseemedfaster thisvisit, notcontrolledperformanceproof. Repeateddaytextobserved, phoneimagespartial/no fullpagescrollprobe.",
+  "driverErrors": [],
+  "emptyYieldQualification": "Producerclaims3emptytensecondwaits; completecommandstdoutcoverage isseparatefrominitialyieldpresentation. No gamefailureinferred.",
+  "returns": "Nottonight; conditionalanother eveningphone onlynewscenes+variedpushreplies; noleave-running. All3rankedprimaryandsection8variants preserved.",
+  "feedback": "Bothlocalstopping/Back/no typednote/Submit/consentchange perstrictcommands/report; linkedrunreceiptnotverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 24422,
+      "absent": true
+    },
+    {
+      "pid": 24399,
+      "absent": true
+    },
+    {
+      "pid": 24401,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Observed snapshotsonly, finalroundcleanupdue."
+}

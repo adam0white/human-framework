@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-31T16:26:02.521802+00:00",
+  "decision": "Retain non-secret local workspace provenance locators in verbatim fictional reports and evidence maps. They are not public asset links or disclosures of the files at those paths.",
+  "basis": [
+    "User explicitly requires each tester\u2019s words verbatim.",
+    "Public fee70f1 baseline already contains the same /Users/abdul/code/.lab-scratch root in293docs/lab orsite-lab files; retaining that known workspace root introduces no new account or credential.",
+    "Initial content scan found no provider session/rollout paths, UUIDs, bearer headers or private keys. This bounded scan is not exhaustive proof."
+  ],
+  "allowed": "Documented workspace root/path provenance, filenames and hash-only screenshot locators for these fictional panel records. Preserve exact source bytes and source-epoch snapshots.",
+  "excluded": "Provider session/rollout contents or paths/UUIDs, credentials/tokens/keys, actual personal correspondence/account/health/financial records. Any newly found sensitive content is a concrete blocker.",
+  "deliveryBoundary": "Local screenshot/provenance paths are nonportable source locators only. PNGs are retained locally and hash-indexed, not published or available through those references. Source-epoch scripts remain inert evidence.",
+  "required": "Add explicit locator/public-asset boundary to integrationREADME/policy; do not silently rewrite tester words or exact packet copies. Independent parser/semantic/qualification/content checks remain before source apply."
+}

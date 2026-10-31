@@ -1,0 +1,127 @@
+[
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+    "ceiling": 20,
+    "tester": "Jonas Berg",
+    "first": "jonas",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 31. Sweden; Malm\u00f6 warehouse planner. Plays factory builders and demanding survival games.\n- HF temperament: patient; high conscientiousness, low agreeableness, moderate openness.\n- Likes: systems he can learn, difficult choices, efficient routines.\n- Dislikes: a dominant repeatable move, consequences without visible clues.\n- Play habits: Uses desktop. Tests one hypothesis at a time and repeats a successful action to see whether conditions matter. Wants challenge to survive understanding.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md: selected own Smoke report and latest actual same-person records",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22100,
+      "desktop": 22101
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+    "ceiling": 20,
+    "tester": "Aisha Rahman",
+    "first": "aisha",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 45. United Kingdom; Birmingham community pharmacist. Plays historical adventures and gentle management games.\n- HF temperament: curious; high agreeableness and conscientiousness, moderate emotionality and openness.\n- Likes: social context, careful promises, room to repair a mistake.\n- Dislikes: characters reduced to errands, scolding narration.\n- Play habits: Plays on a laptop after setting time aside. Follows one person\u2019s problem before exploring the map. Notices whether dialogue respects what happened.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md: selected own Smoke report and latest actual same-person records",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22102,
+      "desktop": 22103
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+    "ceiling": 20,
+    "tester": "Diego Silva",
+    "first": "diego",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 28. Brazil; Recife sound editor. Plays fighting games competitively and short experimental games between projects.\n- HF temperament: impatient; high openness, low agreeableness, moderate conscientiousness.\n- Likes: responsive controls, learnable risk, a distinctive mood.\n- Dislikes: unresponsive input, forms for simple acts.\n- Play habits: Uses desktop and occasionally phone. Tries the obvious physical verb first. Can enjoy quiet play when it gives him something consequential to attend to.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md: selected own Smoke report and latest actual same-person records",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22104,
+      "desktop": 22105
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+    "ceiling": 20,
+    "tester": "Leila Mansour",
+    "first": "leila",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 26. Egypt; Alexandria translator. Plays interactive fiction and tactical roguelikes in English.\n- HF temperament: impatient; high openness, moderate emotionality, low agreeableness.\n- Likes: precise prose, consequential conversation, hard but fair situations.\n- Dislikes: vague verbs, necessary unexplained local terms.\n- Play habits: Uses a phone. Reads closely when the wording matters, experiments when it does not, and distinguishes a difficult choice from not understanding the controls.\n- Personal history: Use only the selected own history supplied for this visit; do not follow other diary links.",
+    "prior_src": "own-history.md: selected own Smoke report and latest actual same-person records",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22106,
+      "desktop": 22107
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+    "ceiling": 20,
+    "tester": "Ma\u00eblle Pichon",
+    "first": "maelle",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 42. France; Caen municipal payroll clerk. Shares a flat with her sister. Evenings are for cooking, library novels and a weekly walk.\n- Temperament: patient and sceptical, moderately open, highly conscientious and low in extraversion.\n- Game experience: occasional paper logic puzzles and phone word games; little 3D game experience, no regular gaming and no prior Human Framework exposure.\n- Likes: readable maps, clear indications of what an input does, and people with ordinary motives.\n- Dislikes: busywork, small text and guessing whether an action happened.\n- Play habits: Phone first in the sitting room, then laptop with trackpad at the kitchen table. Reads the first screen, tries the clearest available action, pauses if allowed while reading and stops when uninterested. A friend sent the link; she has set aside one evening. No obligation to complete or recommend, and no assumptions about faith.\n- Personal diary: empty; no prior play history.",
+    "prior_src": null,
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22108,
+      "desktop": 22109
+    },
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  }
+]
