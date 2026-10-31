@@ -16,6 +16,7 @@ import {
   type Side,
 } from './renderer.ts';
 import type { FrameStore } from './useColony.ts';
+import { mealContext } from './village-words.ts';
 import { wellWords as settingWords } from './words.ts';
 
 export interface PaneProps {
@@ -699,9 +700,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
                     Short building task, not a finished roof. Continuing on their own is not guaranteed.
                   </span>
                 )}
-                {item.placeId === 'kitchen' && (
-                  <span>Ordinary meals can be enough below the separate twelve-meal storm reserve.</span>
-                )}
+                {item.placeId === 'kitchen' && <span>{mealContext(store.current.curr?.village, true)}</span>}
               </button>
             ))}
           </section>
@@ -769,7 +768,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
                     </span>
                   )}
                   {item.placeId === 'kitchen' && (
-                    <span>Ordinary meals can be enough below the separate twelve-meal storm reserve.</span>
+                    <span>{mealContext(store.current.curr?.village, true)}</span>
                   )}
                 </button>
               ))}

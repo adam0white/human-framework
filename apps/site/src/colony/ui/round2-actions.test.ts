@@ -201,7 +201,7 @@ it('explains initial quick suggestions before sending their unchanged payload, w
   colony.frame = { ...idle, nudges: [cooking] };
   await act(() => root.render(createElement(App)));
   expect(container.querySelector('.well-caption .well-task-context')?.textContent ?? '').toContain(
-    '12-meal storm reserve',
+    'threshold rises from 6 to 12 at Day 2 16:00',
   );
   await click('Send');
   expect(colony.actions.order).toHaveBeenNthCalledWith(2, suggestionInputForTest(cooking), cooking.id);
@@ -515,4 +515,45 @@ it('checks current storm risk again when sending the captured reviewed draft', a
   expect(container.querySelector('.well-risk')?.textContent).toContain('Yusuf');
   await click('Send anyway');
   expect(colony.actions.order).toHaveBeenCalledExactlyOnceWith(held.order, held.id);
+});
+
+it('retains selected injury context across newer news, clears it on another selection and restart', async () => {
+  await begin();
+  if (!colony.frame) throw Error('Missing frame');
+  const first = { personId: 'idris' as const, side: 'classic' as const, minute: 2, how: 'hurt at work' };
+  colony.frame = { ...colony.frame, news: [first] };
+  await act(() => root.render(createElement(App)));
+  await click('Hurt · Idris (Classic) · Show');
+  const context = () => container.querySelector('.well-selected-injury')?.textContent;
+  expect(context()).toContain('Idris');
+  expect(context()).toContain('Classic');
+  expect(context()).toContain('Day 1 05:02');
+  expect(context()).toContain('hurt at work');
+  colony.frame = {
+    ...colony.frame,
+    news: [{ personId: 'samira', side: 'human', minute: 7, how: 'hurt in the storm' }],
+  };
+  await act(() => root.render(createElement(App)));
+  expect(context()).toContain('Idris');
+  expect(context()).not.toContain('Samira');
+  expect(container.querySelector('.well-person-body')?.textContent).toContain('Human village:');
+  await click('Scene person human');
+  expect(context()).toBeUndefined();
+  // Reopen a notice, then use the ordinary new-game route.
+  await click('Hurt · Samira (Human) · Show');
+  expect(context()).toContain('Samira');
+  await act(() => container.querySelector<HTMLButtonElement>('[aria-label="Game menu"]')?.click());
+  await click('New game');
+  await click('Replace this game and start again');
+  expect(context()).toBeUndefined();
+});
+
+it('explains both opening preparation choices without changing their actual start input', async () => {
+  await act(() => root.render(createElement(App)));
+  const labels = [...container.querySelectorAll('.well-village-choice label')];
+  expect(labels[0]?.textContent).toContain('Day 2 16:00');
+  expect(labels[1]?.textContent).toContain('Day 2 12:00');
+  expect(labels[1]?.textContent).toContain('Day 2 19:00');
+  await act(() => labels[1]?.querySelector<HTMLInputElement>('input')?.click());
+  expect(colony.actions.restart).toHaveBeenCalledWith('early-warning');
 });

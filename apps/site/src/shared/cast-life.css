@@ -9,9 +9,9 @@
   border-radius: 0.4rem;
   background: var(--surface, #f5f0e8);
   color: var(--text, var(--ink, #222));
-  font:
-    0.8rem / 1.4 system-ui,
-    sans-serif;
+  font-family: inherit;
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 .cast-life-note summary {
   cursor: pointer;
@@ -48,9 +48,9 @@
   border-radius: 0.5rem;
   background: #f5f0e8;
   color: #222;
-  font:
-    1rem / 1.5 system-ui,
-    sans-serif;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 .cast-start-gate button {
   display: block;

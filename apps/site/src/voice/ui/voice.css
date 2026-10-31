@@ -2371,11 +2371,15 @@ button.v-log-btn {
   color: var(--ink-soft);
 }
 .v-model-numbers summary::before {
-  content: "▸";
+  content: "";
+  width: 0;
+  height: 0;
+  border-block: 0.3em solid transparent;
+  border-inline-start: 0.4em solid currentColor;
   margin-right: 8px;
 }
 .v-model-numbers[open] summary::before {
-  content: "▾";
+  transform: rotate(90deg);
 }
 /* Choice context stays beside the selected action. Only the alternative actions scroll. */
 .v-choice-context {

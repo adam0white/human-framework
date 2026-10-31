@@ -125,7 +125,7 @@ export function Report({
                           .replace(/on the days you spoke/g, 'on the days you played'),
                       )}
                     </strong>{' '}
-                    → {settingWords(l.eid)}
+                    to {settingWords(l.eid)}
                   </li>
                 ))}
               </ul>

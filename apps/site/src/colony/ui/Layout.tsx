@@ -22,7 +22,7 @@ import {
   shortName,
   TaskContext,
 } from './parts.tsx';
-import { VILLAGE_WORDS } from './village-words.ts';
+import { mealContext, VILLAGE_WORDS } from './village-words.ts';
 import { forecastWords, wellWords as settingWords } from './words.ts';
 
 export const JOB_SHORT: Record<string, string> = {
@@ -80,11 +80,13 @@ export function Status({ card }: { card: OrderCard }) {
         <span key={side} className={`chip chip-${card[side].state}`}>
           {side === 'classic' ? 'Classic' : 'Human'} {settingWords(glyph(card[side].state))}{' '}
           {settingWords(
-            card[side].settled && ['ok', 'assent', 'complied', 'done'].includes(card[side].state)
-              ? card[side].state === 'complied'
-                ? 'done under protest'
-                : 'done'
-              : CHIP_TEXT[card[side].state],
+            side === 'classic' && card.classic.state === 'ok' && card.classic.settled
+              ? 'done'
+              : card[side].settled && ['ok', 'assent', 'complied'].includes(card[side].state)
+                ? card[side].state === 'complied'
+                  ? 'order ended under protest'
+                  : 'order ended'
+                : CHIP_TEXT[card[side].state],
           )}
         </span>
       ))}
@@ -306,6 +308,7 @@ export function PersonSheet({
   onCancel,
   onRepeat,
   outline,
+  injuryNotice,
 }: {
   frame: Frame;
   id: VillagerId;
@@ -329,6 +332,7 @@ export function PersonSheet({
   onCancel(id: string): void;
   onRepeat(card: OrderCard): void;
   outline: PlaceId | null;
+  injuryNotice?: HurtNews | null;
 }) {
   const h = frame.human.find((p) => p.id === id),
     c = frame.classic.find((p) => p.id === id),
@@ -349,6 +353,13 @@ export function PersonSheet({
       <div className="well-person-body">
         <p>Human village: {settingWords(activityLabel(h?.label ?? 'waiting'))}</p>
         <p>Classic village: {settingWords(activityLabel(c?.label ?? 'waiting'))}</p>
+        {injuryNotice?.personId === id && (
+          <p className="well-selected-injury">
+            Recorded injury notice: {shortName(id)} · {injuryNotice.side === 'classic' ? 'Classic' : 'Human'}{' '}
+            · {dayClock(injuryNotice.minute)} · {injuryNotice.how || 'how unavailable'}. This is the notice’s
+            coarse account; current activity is shown above.
+          </p>
+        )}
         <section className="well-latest" aria-label="Latest order">
           {card ? (
             <>
@@ -397,51 +408,61 @@ export function PersonSheet({
                   </button>
                 ) : null}
               </div>
+              {card.human.says && card.human.label && card.human.label !== card.human.says && (
+                <p className="well-reply-context">
+                  Recorded alternative or condition: {settingWords(card.human.label)}.
+                </p>
+              )}
+              {['assent', 'complied', 'ok'].includes(card.human.state) && !card.human.settled && (
+                <p>
+                  Agreed describes the answer. Current activity is shown above; agreement does not establish
+                  that this work has started or finished.
+                </p>
+              )}
+              {trustChanges.length > 0 ? (
+                <section className="well-trust-changes">
+                  <p>
+                    Retained changes since this order, from the last three rounded trust records. Other events
+                    can also affect trust. These records do not isolate this order’s effect.
+                  </p>
+                  <p>
+                    These are dated events, not a current injury report. A past injury does not establish
+                    healing or present pain. Current injury reading:{' '}
+                    {injury ? needDescription('injury', injury.value) : 'unknown.'}
+                  </p>
+                  {trustChanges.map((e) => (
+                    <p key={`${e.minute}-${e.label}`}>
+                      Recorded at {dayClock(e.minute)}: {shortName(id)} trusts you{' '}
+                      {e.delta < 0 ? 'less' : 'more'}. {settingWords(e.label).replace(/[.!?]+$/, '')}.
+                    </p>
+                  ))}
+                </section>
+              ) : (
+                <p className="well-trust-changes">
+                  No matching retained trust change is shown. Only the last three rounded trust records are
+                  available; this does not show that trust was unchanged.
+                </p>
+              )}
               {card.human.outcome && <p>{settingWords(card.human.outcome)}</p>}
               <OrderWorkEvents events={card.human.workEvents} />
               {card.order.action === 'cook' && card.human.says?.includes('enough food stored') && (
-                <p className="well-food-explanation">
-                  Before storm preparations, villagers cook for ordinary meals. The storm reserve is a
-                  separate goal. Meal duties, ingredients and the weather also affect whether cooking is
-                  available.
-                </p>
+                <p className="well-food-explanation">{mealContext(frame.village)}</p>
               )}
             </>
           ) : (
             <p>Choose a place. Each order goes to both villages.</p>
           )}
         </section>
-        <section className="well-order-goals" aria-label="Current stores and construction">
-          <h3>Current stores and construction</h3>
-          {(['classic', 'human'] as const).map((side) => {
-            const world = side === 'classic' ? frame.classicWorld : frame.humanWorld;
-            const ended = card && (card.status !== 'active' || isSettled(card[side]));
-            const roofWork = card && ['build', 'raise-beam'].includes(card.order.action);
-            return (
-              <div key={side}>
-                <ConstructionReadout
-                  world={world}
-                  side={side === 'classic' ? 'Classic' : 'Human'}
-                  personId={id}
-                  activity={settingWords(
-                    activityLabel((side === 'human' ? h?.label : c?.label) ?? 'unknown'),
-                  )}
-                  {...(stockGoal ? { stockTarget: stockGoal.targetValue } : {})}
-                />
-                {ended &&
-                  roofWork &&
-                  world.project.kind === 'house' &&
-                  world.project.stage < world.project.stages && (
-                    <p className="well-roof-order-ended">
-                      This {side === 'classic' ? 'Classic' : 'Human'} order has ended. The roof is still
-                      unfinished now. A new order can ask for another work session. Human villagers may also
-                      choose more work on their own; another order does not guarantee the roof.
-                    </p>
-                  )}
-                <ConstructionRequirements world={world} />
-              </div>
-            );
-          })}
+        <section className="well-order-goals" aria-label="Current stores">
+          {(['classic', 'human'] as const).map((side) => (
+            <ConstructionReadout
+              key={side}
+              summaryOnly
+              world={side === 'classic' ? frame.classicWorld : frame.humanWorld}
+              side={side === 'classic' ? 'Classic' : 'Human'}
+              {...(stockGoal ? { stockTarget: stockGoal.targetValue } : {})}
+            />
+          ))}
         </section>
         <p className="well-draft-how">
           Next order: Rush {rush ? 'on' : 'off'} · Insist {insist ? 'on' : 'off'}. Rush means faster work and
@@ -461,8 +482,8 @@ export function PersonSheet({
             About
           </button>
         </div>
-        <TaskContext job={inferredJob(frame, 'site')} />
-        <TaskContext job={inferredJob(frame, 'kitchen')} />
+        <TaskContext job={inferredJob(frame, 'site')} village={frame.village} />
+        <TaskContext job={inferredJob(frame, 'kitchen')} village={frame.village} />
         {pending ? (
           <div className="well-risk">
             <strong>
@@ -481,7 +502,7 @@ export function PersonSheet({
                 ? forecastWords(forecasts[pending].prediction.text)
                 : 'Checking the answer…'}
             </p>
-            <TaskContext job={inferredJob(frame, pending)} />
+            <TaskContext job={inferredJob(frame, pending)} village={frame.village} />
             <button type="button" className="well-send-anyway" onClick={onConfirm}>
               Send anyway
             </button>
@@ -550,28 +571,47 @@ export function PersonSheet({
             })}
           </div>
         )}
+        <details className="well-construction-details">
+          <summary>Construction details and remaining materials</summary>
+          <section className="well-construction-inventory" aria-label="Current stores and construction">
+            <h3>Current stores and construction</h3>
+            {(['classic', 'human'] as const).map((side) => {
+              const world = side === 'classic' ? frame.classicWorld : frame.humanWorld;
+              const ended = card && (card.status !== 'active' || isSettled(card[side]));
+              const roofWork = card && ['build', 'raise-beam'].includes(card.order.action);
+              return (
+                <div key={side}>
+                  <ConstructionReadout
+                    world={world}
+                    side={side === 'classic' ? 'Classic' : 'Human'}
+                    personId={id}
+                    activity={settingWords(
+                      activityLabel((side === 'human' ? h?.label : c?.label) ?? 'unknown'),
+                    )}
+                    {...(stockGoal ? { stockTarget: stockGoal.targetValue } : {})}
+                  />
+                  {ended &&
+                    roofWork &&
+                    world.project.kind === 'house' &&
+                    world.project.stage < world.project.stages && (
+                      <p className="well-roof-order-ended">
+                        This {side === 'classic' ? 'Classic' : 'Human'} order has ended. The roof is still
+                        unfinished now. A new order can ask for another work session. Human villagers may also
+                        choose more work on their own; another order does not guarantee the roof.
+                      </p>
+                    )}
+                  <ConstructionRequirements world={world} />
+                </div>
+              );
+            })}
+          </section>
+        </details>
         {card && (
           <div className="well-order-notes">
             {homeOrderMeaning(card) && <p>{homeOrderMeaning(card)}</p>}
             {card.order.insist && <p>Insist was used. Asking again may cost trust.</p>}
             {(card.human.state === 'complied' || card.human.first?.state === 'complied') && (
               <p>{shortName(id)} went along, but minded being pushed.</p>
-            )}
-            {trustChanges.length > 0 && (
-              <section className="well-trust-changes">
-                <p>Recent recorded trust changes since this order. Other events can also affect trust.</p>
-                <p>
-                  These are dated events, not a current injury report. A past injury does not establish
-                  healing or present pain. Current injury reading:{' '}
-                  {injury ? needDescription('injury', injury.value) : 'unknown.'}
-                </p>
-                {trustChanges.map((e) => (
-                  <p key={`${e.minute}-${e.label}`}>
-                    Recorded at {dayClock(e.minute)}: {shortName(id)} trusts you{' '}
-                    {e.delta < 0 ? 'less' : 'more'}. {settingWords(e.label).replace(/[.!?]+$/, '')}.
-                  </p>
-                ))}
-              </section>
             )}
           </div>
         )}
