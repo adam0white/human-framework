@@ -210,6 +210,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
   if (msg.type === 'fileSession') {
     if (run) throw new Error('Session mode must be selected before a game.');
     fileMode = true;
+    // A native context chosen before the session must not outlive it: files are local and nonowning.
+    castAuthority = localCastAuthority();
+    castSources = {};
+    castOwnership = {};
+    castLocalOnly = true;
+    castSkipped = [];
     return;
   }
   if (
@@ -456,6 +462,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
                     ...run.export(),
                     snapshot: run.snapshot(),
                     build: typeof imported.build === 'string' ? imported.build : 'dev',
+                    // The file session's own local, nonowning scope replaces whatever the incoming file carried.
+                    castAuthority,
+                    castOwnership,
+                    castSources,
+                    castLocalOnly,
+                    castSkipped,
                   }
                 : run.export(),
               fileImport,

@@ -160,16 +160,29 @@ it('keeps complete text-file imports nonowning and byte-bound through re-downloa
   const { WatchRun } = await import('./sim/run.ts');
   const { localCastAuthority } = await import('../shared/cast-authority.ts');
   const { importedFileRecord } = await import('../shared/file-record.ts');
+  const { castForGame } = await import('@adam0white/lab-client');
   const run = new WatchRun(7);
   run.input({ k: 'start' });
+  // Synthetic metadata fixture for a native shared export; not real owned history or a receipt.
+  const owned = { 'hf.cast.tamar.watch': { castId: 'hf.cast.tamar.watch', revision: 'native-head' } };
   const original = {
     ...run.export(),
     snapshot: run.snapshot(),
-    castAuthority: localCastAuthority(),
+    castAuthority: {
+      format: 'site-cast-authority/1',
+      mode: 'shared',
+      expectedHeads: Object.fromEntries(
+        castForGame('watch').map((p) => [
+          p.castId,
+          p.castId === 'hf.cast.tamar.watch' ? 'e'.repeat(64) : null,
+        ]),
+      ),
+      denied: ['hf.cast.tamar.watch'],
+    },
     castOwnership: {},
     castSources: {},
-    castSkipped: [],
-    castLocalOnly: true,
+    castSkipped: ['hf.cast.tamar.watch'],
+    castLocalOnly: false,
   };
   let receive: ((event: MessageEvent<MainToWorker>) => void) | undefined;
   const replies: (WorkerReply & { gen: number })[] = [];
@@ -216,10 +229,27 @@ it('keeps complete text-file imports nonowning and byte-bound through re-downloa
       if (!receive) throw new Error('No worker message handler');
       receive({ data: structuredClone(data) } as MessageEvent<MainToWorker>);
     };
+    // An owned native context selected before the file session must not leak into file exports.
+    await send({
+      type: 'castOwnership',
+      heads: owned,
+      authority: original.castAuthority,
+      sources: { 'hf.cast.tamar.watch': { source: 'native' } },
+      localOnly: false,
+      skipped: original.castSkipped,
+    } as unknown as MainToWorker);
     await send({ type: 'fileSession' });
-    let text = JSON.stringify(original);
+    const originalBytes = JSON.stringify(original);
+    let text = originalBytes;
     for (const gen of [1, 2]) {
       const bytes = text;
+      // Captured before reimport: gen 1 loads the original file, gen 2 loads gen 1's re-download.
+      const previous = JSON.parse(bytes);
+      expect(bytes === originalBytes).toBe(gen === 1);
+      const bytesSha = Array.from(
+        new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(bytes))),
+        (b) => b.toString(16).padStart(2, '0'),
+      ).join('');
       const [loaded] = await Promise.all([reply('fileLoaded', gen), send({ type: 'loadFile', text, gen })]);
       expect(loaded).toEqual({ type: 'fileLoaded', ok: true, seed: 7, gen });
       const [exported] = await Promise.all([
@@ -229,12 +259,17 @@ it('keeps complete text-file imports nonowning and byte-bound through re-downloa
       if (exported.type !== 'exported') throw new Error('No complete file reply');
       const data = exported.data as typeof exported.data & Record<string, unknown>;
       expect(data.fileImport).toEqual(await importedFileRecord(JSON.parse(bytes), bytes));
+      expect((data.fileImport as { sourceHash?: string }).sourceHash).toBe(bytesSha);
       expect(data.castAuthority).toEqual(localCastAuthority());
       expect(data.castOwnership).toEqual({});
       expect(data.castSources).toEqual({});
       expect(data.castSkipped).toEqual([]);
       expect(data.castLocalOnly).toBe(true);
       expect(exported.data.snapshot).toEqual(original.snapshot);
+      // The incoming bytes were not rewritten, and the foreign shared scope in them is not carried over.
+      expect(JSON.parse(bytes)).toEqual(previous);
+      expect(previous.castAuthority).toEqual(gen === 1 ? original.castAuthority : localCastAuthority());
+      expect(data.castAuthority).not.toEqual(original.castAuthority);
       expect(exported.data.end).toEqual(original.end);
       text = JSON.stringify(exported.data);
     }
