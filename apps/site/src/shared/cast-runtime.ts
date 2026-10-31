@@ -102,7 +102,9 @@ export async function readGameFile(file: File): Promise<string> {
 }
 type State = {
   game: string;
-  rejectLoad?: (failure: { gen: number; message: string }) => void;
+  rejectLoad?: (failure: { gen: number; message: string; restore?: true }) => void;
+  /** Asks the page to start a fresh local game on its own new generation, after a refused restore. */
+  requestFreshStart?: (gen: number) => void;
   validatingLoad?: boolean;
   lab: Lab;
   worker: Worker;
@@ -136,6 +138,8 @@ type State = {
   fileImport?: FileImport;
   pendingInit?: Record<string, unknown>;
   startupQueue?: Record<string, unknown>[];
+  /** Controls sent after a local load is accepted but before its ownership receipts settle. */
+  restoreQueue?: Record<string, unknown>[];
   previewInit?: Record<string, unknown>;
   claiming?: number;
   afterClaim?: Record<string, unknown>[];
@@ -265,6 +269,7 @@ function reset(s: State, gen?: number) {
   s.played = false;
   s.localRestore = undefined;
   s.startupQueue = undefined;
+  s.restoreQueue = undefined;
   s.localLoad = false;
   s.blocked = false;
   s.skipped = [];
@@ -352,11 +357,43 @@ async function restoreOwnership(s: State, value: unknown, generation: number) {
     s.status = 'Local save restored its exact accepted heads. A changed shelf still conflicts.';
   }
   s.busy = false;
+  flushRestoreQueue(s);
   changed();
+}
+/** Delivers controls held while ownership restored, in order, through the ordinary gate. */
+function flushRestoreQueue(s: State) {
+  const queued = s.restoreQueue ?? [];
+  s.restoreQueue = undefined;
+  for (const control of queued) dispatchCastMessage(s.worker, s.game, control);
+}
+const RESTORE_FAILED = "This save's people could not be restored, so it cannot continue. Start a fresh game.";
+/**
+ * A local load whose replay was accepted but whose ownership receipts failed is refused:
+ * HF 4 never continues an old or damaged save without its exact owners. The gate opens
+ * (busy clears) but stays blocked until a fresh start resets it, and the staged authority is
+ * revoked so no checkpoint or close can write for this run. Obsolete generations are ignored.
+ * The refused save itself is never written or removed here.
+ */
+function failRestore(s: State, generation: number) {
+  if (generation !== s.generation) return;
+  s.busy = false;
+  s.blocked = true;
+  s.restoreQueue = undefined;
+  s.authority = undefined;
+  s.heads = {};
+  s.histories = {};
+  s.sources = {};
+  s.localRestore = undefined;
+  s.localSources = undefined;
+  s.status = RESTORE_FAILED;
+  changed();
+  if (s.runGen !== undefined) s.rejectLoad?.({ gen: s.runGen, message: RESTORE_FAILED, restore: true });
 }
 async function closeOwned(s: State, terminal: { castId: string; at: number }, generation: number) {
   const parent = s.heads[terminal.castId];
+  const stale = () => generation !== s.generation || Boolean(s.blocked);
   if (
+    s.blocked ||
     s.validatingLoad ||
     !canCheckpoint(s.authority, terminal.castId, s.heads) ||
     !parent ||
@@ -370,9 +407,9 @@ async function closeOwned(s: State, terminal: { castId: string; at: number }, ge
     { game: s.game, build: await fetchBuild(), engine: FRAMEWORK_PACKAGE_VERSION, rules: 'hf4-cast-1' },
     terminal.at,
   );
-  if (generation !== s.generation) return;
+  if (stale()) return;
   await requireValue(shelf).request({ action: 'put', envelope: receipt });
-  if (generation !== s.generation || s.heads[terminal.castId]?.revision !== parent.revision) return;
+  if (stale() || s.heads[terminal.castId]?.revision !== parent.revision) return;
   s.heads[terminal.castId] = receipt;
   s.histories[terminal.castId] = receipt;
   pinOwnership(s);
@@ -384,6 +421,7 @@ export function bindCastWorker(
   game: string,
   lab: Lab,
   rejectLoad?: State['rejectLoad'],
+  requestFreshStart?: State['requestFreshStart'],
 ): () => void {
   if (fileSession) return () => {};
   const s: State = {
@@ -391,6 +429,7 @@ export function bindCastWorker(
     game,
     lab,
     rejectLoad,
+    requestFreshStart,
     generation: 0,
     heads: {},
     sources: {},
@@ -458,6 +497,7 @@ export function bindCastWorker(
         });
       if (r.ownership && s.localLoad && m.gen === s.runGen) {
         const generation = s.generation;
+        s.restoreQueue ??= [];
         void validateCastRecord(game, {
           castAuthority: r.authority,
           castOwnership: r.ownership,
@@ -474,12 +514,7 @@ export function bindCastWorker(
             s.localSources = record.sources;
             await restoreOwnership(s, record.heads, generation);
           })
-          .catch((e) => {
-            s.status = String(e);
-            s.blocked = true;
-            s.busy = false;
-            changed();
-          });
+          .catch(() => failRestore(s, generation));
       }
       const pending = s.pending.get(r.requestId);
       s.pending.delete(r.requestId);
@@ -493,6 +528,7 @@ export function bindCastWorker(
       const prior = s.loadPrior;
       s.loadPrior = undefined;
       s.busy = false;
+      s.restoreQueue = undefined;
       s.startPrior = undefined;
       Object.assign(s, prior);
       gate(s, prior.gate);
@@ -520,11 +556,11 @@ export function bindCastWorker(
         file.castLocalOnly = s.localOnly ?? false;
         file.castSkipped = [...(s.skipped ?? [])];
       }
-    if (m.type === 'replayed' && m.result?.matches && s.localRestore)
-      void restoreOwnership(s, s.localRestore, s.generation).catch((e) => {
-        s.status = String(e);
-        changed();
-      });
+    if (m.type === 'replayed' && m.result?.matches && s.localRestore) {
+      const generation = s.generation;
+      s.restoreQueue ??= [];
+      void restoreOwnership(s, s.localRestore, generation).catch(() => failRestore(s, generation));
+    }
     if (m.type === 'frame' && m.frame) {
       const f = m.frame;
       if (f.phase !== undefined) s.phase = f.phase;
@@ -673,6 +709,12 @@ function dispatchCastMessage(
     changed();
     return;
   }
+  if (message.type === 'init' && message.castFresh === true) {
+    // The page's fresh start after a refused restore: local people only, no shelf claim.
+    const { castFresh: _fresh, ...init } = message;
+    startLocal(s, init);
+    return;
+  }
   if (message.type === 'loadPlaytest' || message.type === 'load') {
     s.pinnedImport =
       (message.local !== true && message.type !== 'load') || prepared?.fileImport?.imported === true;
@@ -704,7 +746,21 @@ function dispatchCastMessage(
     return;
   }
   if (message.type !== 'init') {
-    if (s.blocked || (s.busy && s.localLoad)) return;
+    if (s.blocked) return;
+    if (s.busy && s.localLoad) {
+      // Before replay acceptance nothing passes. After it, ownership is still restoring: hold real
+      // controls and exports for this run. Elapsed frames and reads are not inputs. Stale
+      // generations were already dropped above, and a replacement clears the queue.
+      if (['tick', 'predict', 'why'].includes(String(message.type)) || !s.restoreQueue) return;
+      // A pending export is never dropped: only one can wait, and losing it would leave the page's export flag set.
+      if (s.restoreQueue.length < 32 || message.type === 'exportPlaytest')
+        s.restoreQueue.push(structuredClone(message));
+      else {
+        s.status = 'Too many controls arrived while this save was restoring. The extra control was refused.';
+        changed();
+      }
+      return;
+    }
     if (s.startupQueue) {
       // No simulation exists yet. Elapsed frames and reads of the previous view are not inputs to the new run.
       if (['tick', 'predict', 'why'].includes(String(message.type))) return;
@@ -847,18 +903,26 @@ export function startCastFresh(game: string) {
   if (s.pendingInit && !s.busy) {
     const message = s.pendingInit;
     reset(s, typeof message.gen === 'number' ? message.gen : undefined);
-    s.localOnly = true;
-    s.authority = localCastAuthority();
-    s.line = 'This game uses local people. Carryover remains available in other games.';
-    s.status = s.line;
-    gate(s, null);
-    startWorker(s, message);
+    startLocal(s, message);
+  } else if (s.blocked && !s.busy && s.runGen !== undefined) {
+    // A refused restore has no pending init. The page owns run generations, so it sends a new
+    // `castFresh` init on its next generation; the refused save stays as it was.
+    s.requestFreshStart?.(s.runGen);
   }
   changed();
 }
+function startLocal(s: State, message: Record<string, unknown>) {
+  s.localOnly = true;
+  s.authority = localCastAuthority();
+  s.line = 'This game uses local people. Carryover remains available in other games.';
+  s.status = s.line;
+  gate(s, null);
+  startWorker(s, message);
+}
 
 async function checkpointPerson(s: State, selectedCastId: string, fork: boolean): Promise<void> {
-  if (s.busy || s.validatingLoad) return;
+  // A blocked run has no authority to write; every await below rechecks before writing.
+  if (s.busy || s.validatingLoad || s.blocked) return;
   if (!canCheckpoint(s.authority, selectedCastId, s.heads)) {
     s.status = `${castForGame(s.game).find((p) => p.castId === selectedCastId)?.name ?? 'This person'} is local in this game. Their saved history stays unchanged.`;
     changed();
@@ -866,13 +930,14 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
   }
   s.busy = true;
   const generation = s.generation;
+  const stale = () => generation !== s.generation || Boolean(s.blocked);
   s.status = `Waiting for ${canonicalCast(selectedCastId).name}'s actual action to finish. Close the menu and continue play.`;
   changed();
   try {
     await requireValue(shelf).ready;
     if (!requireValue(shelf).enabled) throw new Error('Enable fictional-person continuity first.');
     const result = await ask(s, { type: 'castCheckpoint', castId: selectedCastId });
-    if (generation !== s.generation) return;
+    if (stale()) return;
     if (result.terminal) {
       await closeOwned(s, result.terminal, generation);
       return;
@@ -888,7 +953,7 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
         result.transfer,
         result.sourceSnapshot,
       );
-      if (generation !== s.generation) return;
+      if (stale()) return;
       s.sources[selectedCastId] = raw;
       const key = `hf-cast-source:${s.game}`;
       let prior: Record<string, unknown> = {};
@@ -912,6 +977,7 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
       action: 'get',
       castId: cast.castId,
     });
+    if (stale()) return;
     if (existing && !fork && s.heads[cast.castId]?.revision !== existing.revision)
       throw new Error('Another chapter owns this person. Export or explicitly fork.');
     const branchId = !fork && existing ? existing.branchId : crypto.randomUUID();
@@ -937,14 +1003,14 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
         'Bounded coarse local life; no full days, travel, healing or duty completion is inferred.',
       ],
     });
-    if (generation !== s.generation || !requireValue(shelf).enabled) return;
+    if (stale() || !requireValue(shelf).enabled) return;
     await requireValue(shelf).request({
       action: 'put',
       envelope,
       fork,
       authored: !existing && !s.gate,
     });
-    if (generation !== s.generation) return;
+    if (stale()) return;
     s.heads[cast.castId] = envelope;
     s.histories[cast.castId] = envelope;
     gate(s, `cast-group-${crypto.randomUUID()}`);
@@ -952,7 +1018,7 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
     await recording(s, generation);
     s.status = `${cast.name} is saved for another chapter. Loaded play stays pinned.`;
   } catch (e) {
-    if (generation === s.generation) s.status = String(e);
+    if (!stale()) s.status = String(e);
   } finally {
     if (generation === s.generation) s.busy = false;
     changed();
@@ -961,7 +1027,7 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
 export async function checkpointCast(game: string, fork = false): Promise<boolean> {
   requireNativeSession();
   const s = states.get(game);
-  if (!s || s.busy) return false;
+  if (!s || s.busy || s.blocked) return false;
   const id = s.selected;
   const prior = s.heads[id]?.revision;
   await checkpointPerson(s, id, fork);

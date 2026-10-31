@@ -141,6 +141,8 @@ export type MainToWorker =
   | {
       type: 'init';
       castPreview?: boolean;
+      /** A fresh start with local people after a refused restore; the page stops it at the cast runtime. */
+      castFresh?: boolean;
       castChapter?: CastChapter;
       seed: number;
       gen: number;
@@ -424,6 +426,8 @@ export type WorkerReply =
   | { type: 'report'; view: ReportView }
   | { type: 'playtest'; requestId?: number; file: PlaytestFile }
   | { type: 'replayed'; result: ReplayResult }
-  | { type: 'playtestError'; message: string }
+  | { type: 'playtestError'; message: string; restore?: true }
+  /** From the cast runtime, not the worker: the player chose a fresh game after a refused restore. */
+  | { type: 'castFreshStart' }
   | { type: 'error'; message: string };
 export type WorkerToMain = WorkerReply & { gen: number };

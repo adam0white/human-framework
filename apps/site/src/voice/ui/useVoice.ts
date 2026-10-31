@@ -255,6 +255,21 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
             else waiter?.reject(new Error(msg.error ?? 'Return validation failed.'));
             return;
           }
+          if (msg.type === 'castFreshStart') {
+            // A fresh game after a refused restore, on a new generation. The refused save is left as it was.
+            if (msg.gen !== gen.current) return;
+            resetVoicePersona();
+            gen.current = Math.max(gen.current, pendingLoad.current) + 1;
+            resetRef.current();
+            t.post({
+              type: 'init',
+              seed: seedRef.current,
+              gen: gen.current,
+              scenarioVersion: VOICE_SCENARIO_VERSION,
+              castFresh: true,
+            });
+            return;
+          }
           if (msg.gen === pendingLoad.current && msg.gen !== gen.current) {
             if (msg.type === 'replayed') {
               settleVoiceFileGate(true);
@@ -316,12 +331,18 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
                 });
               return;
             }
-            case 'playtestError':
+            case 'playtestError': {
+              const exporting = exportPending.current;
               exportPending.current = false;
               for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error(msg.message));
-              if (!exportRequest.current.finish(msg.gen)) return;
+              if (msg.restore) exportAgain.current = false;
+              const finished = exportRequest.current.finish(msg.gen);
+              // A failed people restore is the player's only explanation for a stopped game, so it always
+              // shows, even while the loaded frame's autosave export waits. Other errors stay quiet then.
+              if (!finished && exporting && !msg.restore) return;
               setPlaytest({ error: msg.message });
               return;
+            }
             case 'replayed':
               return;
             case 'frame': {
