@@ -4,8 +4,8 @@
   "files": [
     {
       "file": "ask-ledger.md",
-      "canonicalSha256": "68b240188b0fbc45c5557d342106773bcb765f79ef2495fa835f50a692ba04c5",
-      "privateSha256": "0ab4634393c14e049d6da5dddaeeefe741d4527ab25d14f710eb3185d0d45de2"
+      "canonicalSha256": "dfb92cc8d0eab83f7f0c945e6226ffea7e19f1ce2dadae9401b3b3b468d8a41d",
+      "privateSha256": "03486019574302c394b60845c57a9503bdc03226ec149b02f5848d4e5ca73a6a"
     },
     {
       "file": "history-qualification.json",
@@ -24,8 +24,8 @@
     },
     {
       "file": "ledger-additions.md",
-      "canonicalSha256": "c0e9c49467eaa96e350b22e98768256ecf86911e1948458c4e3fbabc9520e4ca",
-      "privateSha256": "c0e9c49467eaa96e350b22e98768256ecf86911e1948458c4e3fbabc9520e4ca"
+      "canonicalSha256": "6ff33042a1f29f57958fcf14e24075c76fd45389f96bfcc7bcf14d617ffb9f4c",
+      "privateSha256": "6ff33042a1f29f57958fcf14e24075c76fd45389f96bfcc7bcf14d617ffb9f4c"
     },
     {
       "file": "README.md",

@@ -15384,7 +15384,7 @@
    "game": "pass",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Amal Haddad",
-   "words": "A 'who takes over' answer should count once. Right now the same question comes back with a new end time each time.",
+   "words": "A \"who takes over\" answer should count once. Right now the same question comes back with a new end time each time.",
    "verdict": "quit",
    "routes": [
     "fix:pass accepted takeover answer and visible result, target2026-11-03 (open)"
@@ -15397,7 +15397,7 @@
    "game": "pass",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Amal Haddad",
-   "words": "When a cook leaves or refuses, show the reason in the main view. Do not make me dig through the log for it. If they 'need the toilet first', they should actually go.",
+   "words": "When a cook leaves or refuses, show the reason in the main view. Do not make me dig through the log for it. If they \"need the toilet first\", they should actually go.",
    "verdict": "quit",
    "routes": [
     "fix:pass actual absence/urgent need and available recovery agree, target2026-11-03 (open)"
@@ -15423,7 +15423,7 @@
    "game": "pass",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Nia Okafor",
-   "words": "Give the cooks more than one line for the same ask. 'I need to use the toilet first' came back for almost every job.",
+   "words": "Give the cooks more than one line for the same ask. \"I need to use the toilet first\" came back for almost every job.",
    "verdict": "mixed",
    "routes": [
     "fix:pass deduplicate displayed need clauses, keep actual need, target2026-11-03 (open)"
@@ -15462,7 +15462,7 @@
    "game": "pass",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Maya Chen",
-   "words": "Make Selim's 'ask me about Nevin when I have a moment' lead somewhere I can see. I never learned how to ask again, or when he would have a moment.",
+   "words": "Make Selim's \"ask me about Nevin when I have a moment\" lead somewhere I can see. I never learned how to ask again, or when he would have a moment.",
    "verdict": "mixed",
    "routes": [
     "fix:pass follow up later Nevin invitation, target2026-11-10 (open)"
@@ -15488,7 +15488,7 @@
    "game": "pass",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Rosa Alvarez",
-   "words": "Keep the planning text short. Selim's and Dilek's 'I agree to that…' quotes are long and repeat the line above them.",
+   "words": "Keep the planning text short. Selim's and Dilek's \"I agree to that…\" quotes are long and repeat the line above them.",
    "verdict": "mixed",
    "routes": [
     "fix:pass shorten repeated plan quotes, target2026-11-10 (open)"
@@ -15501,7 +15501,7 @@
    "game": "pass",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Emre Kaya",
-   "words": "The order cards at the left are cramped and cut off ('grill ○○ cold s...').",
+   "words": "The order cards at the left are cramped and cut off (\"grill ○○ cold s...\").",
    "verdict": "mixed",
    "routes": [
     "fix:pass readable desktop order-card labels, target2026-11-10 (open)"
@@ -15514,7 +15514,7 @@
    "game": "pass",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Nia Okafor",
-   "words": "Make 'Insist' do something I can see. A click on desktop changed nothing on screen.",
+   "words": "Make \"Insist\" do something I can see. A click on desktop changed nothing on screen.",
    "verdict": "mixed",
    "routes": [
     "fix:pass Insist ordinary-tap desire, hold action NOT TESTED, no game input defect established, target2026-11-10 (open)"
@@ -15620,7 +15620,7 @@
    "game": "goodhands",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Rosa Alvarez",
-   "words": "Make 'Nermin's reading' say why. The same quote gave 'unsure' for Şebnem and 'believe' for Özlem.",
+   "words": "Make \"Nermin's reading\" say why. The same quote gave \"unsure\" for Şebnem and \"believe\" for Özlem.",
    "verdict": "mixed",
    "routes": [
     "fix:goodhands explain judgement and received accounts without making every claim trusted, target2026-11-03 (open)"
@@ -15646,7 +15646,7 @@
    "game": "goodhands",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Lena Fischer",
-   "words": "Give every family, reference and neighbour their own words. The Arslans and the Kayas had identical needs and wording. Mr Hüsnü told the same 'glass of water, buses from Bornova' story about two different applicants. Özlem and the landlord ended calls with the same sentence.",
+   "words": "Give every family, reference and neighbour their own words. The Arslans and the Kayas had identical needs and wording. Mr Hüsnü told the same \"glass of water, buses from Bornova\" story about two different applicants. Özlem and the landlord ended calls with the same sentence.",
    "verdict": "mixed",
    "routes": [
     "fix:goodhands distinct supported family/reference/neighbor wording, target2026-11-03 (open)"
@@ -15659,7 +15659,7 @@
    "game": "goodhands",
    "kind": "playtester",
    "who": "Fictional LIGHT panel: Diego Silva",
-   "words": "Make a placement cost something I can feel. Promising an unchecked trait ('honest') changed nothing, and the rent was covered within two minutes in both sessions.",
+   "words": "Make a placement cost something I can feel. Promising an unchecked trait (\"honest\") changed nothing, and the rent was covered within two minutes in both sessions.",
    "verdict": "quit",
    "routes": [
     "fix:goodhands show pending consequences and remaining stakes before changing economy, target2026-11-03 (open)"
