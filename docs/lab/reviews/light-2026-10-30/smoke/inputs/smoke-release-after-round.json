@@ -1,0 +1,9 @@
+{
+  "time": "2026-10-31T04:36:11.549443+00:00",
+  "release": {
+    "app": "smoke",
+    "framework": "4.8.0",
+    "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
+    "dirty": false
+  }
+}

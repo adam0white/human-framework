@@ -1,0 +1,138 @@
+**Would you return?** "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why."
+
+**Ranked asks**
+1. Show clearly where a tap sends me. On the phone I tapped "Walk to landing 4", and my group went down to the street instead of up. Nothing on screen explained it.
+2. Let me approach a neighbour with one tap, and keep the name buttons steady while I aim. Hacer's status kept changing ("needs to see the stair" / "catching my breath"), so my clicks missed her twice on desktop. On the phone, every name needed two taps.
+3. Unlock "Show the stair" at the same moment the neighbour says she is ready. On the phone, hide the E/B/T/R/F key letters, because they mean nothing there.
+
+---
+
+# Report: Marta Kowalska, Smoke on the Stairs
+
+## 1. Session
+
+- Persona: Marta Kowalska, 38, courier dispatch clerk from Gdańsk. First visit to this game. I had no exposure to any game from this lab.
+- Round: light-1031-smoke1, free-stop arm (floor 0).
+- Own history: read in full. It is one line: "No prior HF exposure. Empty initial diary. No observed sessions or memories." Nothing was left unread.
+- URL: https://smoke.adamwhite.work/?labRunSource=agent
+- Session A: desktop, 1280x800, keyboard and mouse, light mode. About 128 s by elapsed_s. All four neighbours who were home got out, then I stopped.
+- Session B: phone, 360x690, touch, light mode. About 234 s by elapsed_s. Two got out and Hacer died, then I stopped.
+
+## 2. First impressions
+
+- A, at about 8 s: the intro card was short, and I could read it once. One big button. I liked that.
+- A, at about 10–17 s: I tapped Sevim and the text did not change. Only the picture showed that my figure had walked.
+- B, at about 8–19 s: the same card fitted the phone screen. The night was different (Burak away, Derya home). Everything fitted on one screen, and the buttons were about thumb size.
+
+## 3. Verbatim diary (elapsed s, as logged)
+
+**Session A (desktop)**
+- ~7.9 "Short intro card, I can read it once. Smoke, get people to street. One big button. Fine, going in."
+- ~10.3 "It says tap Sevim to approach. Most obvious thing. Trying it."
+- ~12.7 "I tapped Sevim and the text is the same. Did I walk? Not sure."
+- ~16.7 "OK my little figure walked to Sevim on landing 1. Hint says choose The books. Doing that."
+- ~23 "Told to wait while she ties books. Waiting, clock is ticking though."
+- ~26.4 "Log says bundle tied, show me the stair. But Show the stair is greyed out and the hint still says wait. Guessing torch must come first."
+- ~28.6 "Torch on, now Show the stair lit up. Good guess."
+- ~31.2 "Burak just walked out by himself, nice. Sevim says walk with me."
+- ~34.3 "Sevim is following. She is on the lowest floor so I take her down first, then go up for Hacer."
+- ~43.7 "I pressed Street and 6 seconds later nothing says we moved. Hint still says tap Street. Did it not take? Trying the street on the picture instead."
+- ~47.4 "Sevim is out. I cannot tell if the first Street press worked slowly in the thick smoke or my second press did it. Now up for Hacer, top floor."
+- (A driver error followed: Hacer's button text changed between "needs to see the stair" and "catching my breath", so the tap missed.)
+- ~51.8 "Her button text keeps changing so my click missed. Using the 4 key."
+- ~56.9 "Missed Hacer again, her status keeps flipping between two texts. Walking to landing 4 instead."
+- 68.2 first_minute (3) "First minute: the order is clear from the hints (approach, torch, show stair, walk with me, street). Two people out already. But I keep not knowing if my press did anything - Street, and now Hacer. Names change text while I aim."
+- ~73.3 "Took a long climb, about 15 s. Now I am next to Hacer. Using R key since the buttons are labelled with keys."
+- ~77.7 "Hacer follows. Street, once, and this time I will just wait and watch."
+- ~96.2 "Everyone is out, about a minute and a half. That was quick. I barely had to time anything - I never really dealt with the thick smoke, I just waited."
+- ~102.2 "It says try another order. I want to see what happens if I skip the books and just say Come now." / "Ignoring the books hint on purpose. Come now."
+- 112.9 want_quit BORED (2) "She just says not without the books. So the other order is the same steps again. I already understood this, I do not want to repeat it on this computer. Stopping here."
+- ~124.7 "Feedback opened with I am stopping already typed in the note box. No Back button, I press Not now instead. Sending nothing."
+- 127.6 stop BORED "I got everyone out once. The retry asks me to do the same steps again, so I stop here on the computer."
+
+**Session B (phone)**
+- ~8.5 "Same card, fits on the phone screen. Behind it I can read the names changed: Burak is away now and Derya is home. So not the same night."
+- ~11.5 "I recognise Sevim and her books from the computer an hour ago, sure of it. Going to her first, I know she wants the books."
+- ~18.7 "Everything fits on one phone screen, nice. Buttons are about thumb size. Speech buttons still show E, B, T letters which mean nothing on a phone."
+- ~21.9 "Last time Show the stair needed the torch on. Switching it on now while she ties."
+- ~34.3 "She says the bundle is tied, but her name still says tying and Show the stair is grey. Torch is already on. Same stuck feeling as on the computer."
+- ~37.8 "Ah, it just unlocked by itself a few seconds after she said tied. So on the computer the torch was maybe not the reason. The words came before the button."
+- ~44.1 "This time I try something different: take Sevim with me up to Derya, then everybody down together. Guessing she keeps following."
+- ~47.2 "First tap only picked her, it says tap Derya to approach. So a second tap on the same name. I did not expect two taps."
+- ~59.9 "Derya, same steps as the others. Show stair, walk with me. Now it feels like a routine."
+- 62.6 first_minute (3) "First minute on the phone: I already know the routine from before, so it went fast. Two followers behind me. Going up to Hacer with both of them."
+- ~82 "The picture says THICK SMOKE WAIT 5s and my little group is standing low down by the stairs. I thought Derya was on landing 3, now her name is down at landing 1. Confusing. Waiting for the smoke."
+- ~94.4 "Wait - Sevim and Derya are outside? I never tapped Street. I tapped landing 4 and we went DOWN instead. I do not understand what happened, but fine. Hacer is struggling to breathe, 72 s left. Going up for real now."
+- ~117 "I am still standing at the street door. My landing 4 tap did nothing that I can see. Hacer says smoke may kill me. Tapping her name directly."
+- (A driver error followed: the text "4 Hacer" matched more than one control. I then tapped her by screen point, twice.)
+- ~122.5 "Selected. Second tap to approach, again the two-tap thing. Smoke is thin now, go go."
+- ~137.6 note (3) "Hacer died. That hit me. Part is my fault, I waited around and tried to carry two people up the stairs. But I also lost time because my landing 4 tap did not move me and my group went down instead, and Hacer needed two taps. I never saw her die on the picture, only a line of text."
+- ~140 "No end screen yet. I think I am at the street. Waiting for the stair to close to see what it says."
+- 175.0 want_quit CONFUSED (2) "2 walked out, Hacer died. I would try again if I knew why my landing 4 tap took us down to the street instead of up. I do not, so another try is just guessing. I stop here."
+- ~181.6 "The menu button is covered by the end card, so I use Tell us about this night to reach feedback."
+- ~227.5 "Feedback opened from the end card. Choosing I am confused."
+- ~230.9 "I am confused is marked, note box stays empty this time. No Back button again, pressing Not now. Sending nothing."
+- 233.3 pulse (2) "Hacer dying got to me, but I cannot say what my landing 4 tap did, so I have nothing to practise next time."
+- 234.5 stop CONFUSED "I stop on the phone. Hacer died and I do not know why my tap took us down instead of up. Trying again would be guessing."
+
+## 4. Moments
+
+- **What held me:** the short card and the clear chain of hints (approach, books, show the stair, walk with me, street). Burak walking out on his own was a nice small surprise. Hacer's death on the phone landed emotionally, even though it was only one line of text.
+- **What lost me on desktop:** the night was solved in about 90 s, and I barely had to time anything. The "try another order" test showed that Sevim refuses without her books, so a retry meant the same steps again. My want_quit was BORED and it did not pass; I stopped.
+- **What lost me on the phone:** I could not tell what my landing-4 tap did. My group went down and out, and I stayed at the street door. My want_quit was CONFUSED and it did not pass; I stopped.
+- **Pulses:** desktop ended before 180 s, so it has no pulse. Phone pulse at 233 s: engagement 2.
+- **My own pace:** I act every few seconds at best. On the phone, my long waits (one of them 30 s) and my plan to carry two followers up the stairs probably cost Hacer time. I can't separate how much of her death came from my pace and how much from the tap that took us down.
+
+## 5. Confusion and clarity
+
+- **Clear:** what to do with each neighbour, and the goal (get everyone to the street).
+- **Confusing:**
+  - Whether a press worked. On desktop, the Street press showed no change for about 6 s.
+  - Name buttons whose text flips while I aim.
+  - "Show the stair" stays grey for a few seconds after the neighbour says the bundle is tied. On desktop I guessed the torch unlocked it. The phone showed me that guess was probably wrong.
+  - Approaching needs two taps on the phone. On desktop the name tap seemed to approach at once at first; later, the 4 key only selected Hacer.
+  - Most of all: on the phone, the landing-4 tap was followed by my group going down and out while I stayed at the street door. My guess, unconfirmed, is that followers walked to the street on their own while I was slowed in the smoke. I never saw the picture or the text explain it.
+  - Derya's name appeared at landing 1 in the phone picture, which I did not expect.
+
+## 6. Device use
+
+- **Desktop shots:**
+  - a-001: intro card, viewed.
+  - a-002: building picture with my figure beside Sevim, viewed.
+  - a-003: taken but NOT viewed.
+  - a-004: end card reading "everyone out", viewed. Its buttons were Try this night again, Watch this run, Download this run, and Tell us about this night.
+  - a-005: Feedback panel with "I'm stopping" prefilled in the note box, viewed.
+- **Desktop controls used:** named taps, the number key 4, the letter keys R and T, Street, Walk to the street, and Walk to landing 4.
+- **Desktop feedback path:** the menu (≡) offered "I'm stopping". Tapping it opened Feedback with the note box prefilled by the game. There was no Back button, so I pressed Not now.
+- **Phone shots:**
+  - b-001: the intro card fits the screen, viewed.
+  - b-002: the whole layout fits one screen, with thumb-sized buttons, viewed.
+  - b-003: "THICK SMOKE · WAIT", with my group low near the bottom, viewed.
+  - b-004: still at the street door, viewed.
+  - One manual shot was left unused.
+- **Phone controls used:** name taps (two per neighbour), The books, Torch, Show the stair, Walk with me, Walk to landing 4, a point tap on Hacer, and Tell us about this night.
+- **Phone feedback path:** "Pause and open menu" returned an error: "control is covered or off screen". The end card covers it. I used "Tell us about this night" instead. It opened Feedback with both "I'm stopping" and "I'm confused". I chose "I'm confused", and the note box stayed empty. There was no Back button, so I pressed Not now. I typed nothing and submitted nothing.
+- **Layout I did not see** (I never checked it): dark mode, landscape on the phone, and scrolling of the log on long nights.
+- **Trouble I saw:** the menu covered by the end card on the phone, the key letters shown on the phone, and the name text changing while I aimed.
+
+## 7. Stop and return
+
+- **Desktop stop words:** "I got everyone out once. The retry asks me to do the same steps again, so I stop here on the computer." Reason: BORED.
+- **Phone stop words:** "I stop on the phone. Hacer died and I do not know why my tap took us down instead of up. Trying again would be guessing." Reason: CONFUSED.
+- **Would I return voluntarily?** I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why. I like that a night takes two minutes and that the people have small wants, like Sevim and her books. But I return to things where I can get better at the timing. Here I could not tell whether I had timed anything at all. If the game showed me where my tap sends me, and let me approach someone in one tap, I would try the phone night again in a short break to save Hacer.
+- **Leave it running?** No.
+- **Come back another evening?** Maybe, under the condition above. I would not come back as it is now.
+
+## 8. Changes I would want (ranked)
+
+1. Show clearly where a tap on a landing sends me, and show it when my followers go somewhere else without me.
+2. One tap to approach a neighbour, with stable button names while I aim.
+3. Unlock the action at the moment the speech line says it is ready. On the phone, hide the keyboard letters.
+
+## 9. Compared with my last visit
+
+This was my first visit. Within this evening, I recognised Sevim and her books on the phone at about 11.5 s. I remembered her from the computer about an hour earlier and was sure of it. She again wanted her books, and that held true.
+
+---
+
+I own no worktrees, servers or processes. The coordinator stops both drivers. I wrote no files except the driver screenshots.

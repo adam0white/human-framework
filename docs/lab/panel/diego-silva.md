@@ -635,3 +635,275 @@ First visit.
 I touched no repository, worktree, server or browser of my own.
 
 `git worktree list`: none of mine exist.
+
+<!-- selected-continuity-key: light-1030:smoke:diego:free -->
+## 2026-10-31 Smoke on the Stairs LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/smoke/diego/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/smoke/diego/report.original.md.txt), original SHA256 `fd64da6878f1904080017404b7510f8b22da2e7e720e64d8d8c85169c3f94eae`. Build 7070afb11b2262ffc5fef8997189f749238ef653/HF4.8.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order phone then desktop; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- His phone FINISHED (150.985 s) is a personal stop before ending: no end card appeared and about 22 s remained on the clock; his own report calls the label inaccurate. No whole-game inference. His desktop stop (151.132 s) is FRUSTRATED.
+- One shell quote failed before any request was made. His phone log has a "Walk to landing 3" covered-or-offscreen refusal at 38.097 s, a tool refusal, not an accepted action. The director viewed his desktop b-002 frame (player figure and torch cone on the stair); a static capture does not prove continuous movement ([director-image-observations.json](../reviews/light-2026-10-30/smoke/director-image-observations.json)).
+- Movement and death claims in this report are qualified: dynamic accessible names, offscreen "covered" landing controls (which may be screen-reader-only) and model/tool latency leave the cause of walking confusion and of any death unknown. A native public-pointer reprobe comes before any defect, and the clock or difficulty is not retuned without the C14 human-speed comparison. Character agency, Sevim's books refusal, the short clock, smoke and deaths are preserved design.
+- The driver is native-tap-v2 (status 200 acknowledges input only; driver_check fork-unverified; the fork is hash-bound and not upstream approved). Feedback: the quick label was selected and the draft prefilled; no note was typed or submitted and no consent setting changed. No production agent receipt for the run-source marker was independently read.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would you return voluntarily?** I might come back another evening, but only if the game showed me how long each neighbour has before the smoke gets them, and only if the phone showed where my figure is. I would not leave it running. Both times I stopped at about 150 seconds with two of the four neighbours dead.
+
+**Ranked asks**
+1. Show each neighbour's smoke clock before I commit to them. Hacer died unseen on the phone, and Derya and Hacer died together on the desktop.
+2. On the phone, show my figure and give a visible reaction to a tap. The named landing buttons were covered or off screen, and for the first minute I could not tell if I was moving.
+3. Make the walk to a neighbour or the street feel faster, or show progress. I spent a lot of the run waiting on it.
+
+## 1. Session
+
+- **Persona:** Diego Silva, 28, Recife sound editor, impatient.
+- **Exposure:** first visit to this game. I have played other HF games. I read all 753 lines of my own-history.md before play. It says nothing about this game.
+- **Round and arm:** light-1031-smoke1, free stop (floor 0), ceiling 20 min.
+- **Build:** draft 7070afb11b2262ffc5fef8997189f749238ef653 / HF4.8.0.
+- **URL:** https://smoke.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, port 22104. About 151 s.
+- **Session B:** 1280x800 keyboard and mouse, light mode, port 22105. About 151 s.
+
+## 2. First impressions
+
+- **A, 6 s:** "Fire in a block of flats, get people out. Clock already running behind the card." The goal was clear straight away.
+- **A, 10 to 48 s:** the drawing is nice, but selecting a neighbour or tapping a landing showed no movement. I felt frustrated.
+- **B, 5 s:** it was the same game with a different cast. Sevim is home this time with her books. Smoke starts on landing 4, not landing 1.
+- **B, 24 s:** I could see my figure climbing with a torch cone. "Much clearer than the phone."
+
+## 3. Verbatim diary
+
+### Session A (elapsed s, kind: text)
+
+- 6.302: "Fire in a block of flats, get people out. Clock already running behind the card. Going in."
+- 8.428: "Hacer needs to see the stair, I have a torch. Approaching her."
+- 10.211: "Selecting did not move me. Tapping her again to approach."
+- 15.195: "The drawing is nice but selecting a neighbour does not walk me. Walking to her landing by hand."
+- 24.796: "Smoke is thin now; I waited, so trying the walk again. I cannot tell where I am or whether I moved."
+- 36.545: "Burak made it out alone. My taps on neighbours and landings have not visibly moved me. Trying a key."
+- 38.097: "Derya is nearer; trying her landing instead." The driver replied "covered or off screen".
+- 40.627: "The named landing buttons are off screen. Tapping the drawn top landing by coordinates."
+- 46.06: "I am at the bottom of the stair, apparently. Walking up one landing at a time by tapping the drawing."
+- 48.309 note: "Nice drawn stairwell, but I cannot tell if my taps move me. Burak left by himself; Hacer and Derya still wait. Waiting to see if I walk."
+- 67.052 first_minute (clock "stair closes in 103s"): "A minute in and nothing I did visibly worked. Pretty drawing, clear goal, but my taps on neighbours and landings gave no movement I could see. Burak walked out on his own while I stood there. Clock ticking and I do not know what my figure is doing. Frustrated, not gone yet."
+- 69.61: "Trying Derya, the nearer person."
+- 83.694: "Speech buttons woke up, so I was walking, just slowly and silently. Asking Derya to come."
+- 85.243: "Derya is following. Leading her down."
+- 100.925: "Now there is a real problem: Derya lost me in the smoke. Torch on, then show her the stair."
+- 120.494: "Hacer now says smoke may kill her. That landed. But I still crawl toward Derya and cannot hurry."
+- 123.577: "The torch worked: she sees the stair. Walk with me."
+- 142.969 note (clock "stair closes in 26s"): "Hacer died from smoke while I led Derya out. That hit. I picked Derya because she was close, and I never knew the clock for Hacer was that short. Real cost, but I did not get to choose it knowing."
+- 150.986 stop, FINISHED (clock "stair closes in 22s"): "I am stopping the phone session at about 150 seconds. Two out, one dead, one away. The first minute was me tapping and not knowing if I moved; from the torch moment on it was good and the death landed. I did not wait for the end card. Feedback: I picked I am stopping, typed nothing, pressed Not now."
+
+### Session B (elapsed s, kind: text)
+
+- 4.959: "Same game, different cast: Sevim is home this time with her books. This time I know to wait for the walk. Going in."
+- 7.181: "Last time Hacer died. Going for her first with the keyboard."
+- 23.564: "On desktop I can see my figure climbing with a torch cone. Much clearer than the phone. Waiting to reach Hacer."
+- 30.047: "Hacer follows. Derya is on the landing below; I will collect her on the way down instead of making a second trip."
+- 51.595: "Two followers. Burak is the next landing down; collecting him before heading for the street."
+- 63.862 first_minute (clock "stair closes in 100s"): "Desktop is far clearer: I can see my figure and the torch cone, keys E/B/T/R/F and 1-4 work, and I picked up Hacer and Derya as followers on the way. The different cast this time (Sevim and her books) means it is not the same night. I like that Burak can just go down himself. The walking is slow and I am waiting on it, but now I know what I am waiting for."
+- Several of these lines went in through the `reaction` field on an action call, not as separate log ops. The summary I wrote has no elapsed seconds for the 115.84 and 121.475 reactions, so I give them here as I remember them:
+  - 115.84: "Walking down to Sevim with two followers behind me."
+  - 121.475: "Three followers-ish: Sevim and Derya following, Hacer stopped behind. Leading down now."
+  - 138.175: "Waiting for the walk to the street."
+- 142.767 want_quit, FRUSTRATED (clock "stair closes in 22s"): "Both followers died while I walked slowly down with Sevim. I collected them early, and the smoke clock ran out on them while I waited for the slow walk. I did not see their clocks coming."
+- 151.132 stop, FRUSTRATED (clock "stair closes in 16s"): "I am stopping the desktop session at about 150 seconds. Sevim and Burak out, Derya and Hacer dead. Desktop controls were clear and fast, but I collected two followers early and they died while I fetched the others, with no visible warning of how long they had. Feedback: I picked I am stopping, typed nothing, pressed Not now."
+- On B I logged no `pulse`, because the session ended before 180 s. On A I logged no `pulse` and no `want_quit`. Later checkpoints were not tested.
+
+## 4. Moments
+
+- **What lost me (A):** the first minute of tapping without seeing a result.
+- **What held me (A):** the torch moment. Derya lost me in the smoke, I turned the torch on and used Show the stair, and she followed. "From the torch moment on it was good."
+- **What hit (A):** Hacer died while I led Derya out. I chose Derya because she was close and did not know Hacer's clock was that short.
+- **What held me (B):** the keyboard. I could see my figure and torch cone, and I collected Hacer and Derya on the way. I liked that Burak checks the stair and goes down by himself.
+- **What lost me (B):** Derya and Hacer died while I went for Sevim and walked down. My plan was to collect them early and save a trip. It cost me both. I wanted the smoke clocks to be visible.
+- **Quit wishes:** one `want_quit` (B, 142.767, FRUSTRATED). It did not pass. I stopped about 8 s later.
+
+## 5. Confusion and clarity
+
+- **Confused (A):**
+  - Whether my tap moved me.
+  - Why the named "Walk to landing" buttons were covered or off screen.
+  - Why speech buttons stayed grey. I only found out they wake up when I am near, around 83 s.
+- **Clear:**
+  - The goal in the left panel (Find who is home. Show them the stair. Ask them to leave).
+  - The log lines and the status text under each name. I mostly learned the rules from those.
+  - The torch and Show the stair rule, once I met it.
+- **Not clear:** how long each neighbour has before the smoke gets them.
+- **End card:** I never saw one on either device, because I stopped early. I saw the Feedback dialog only as text in the driver reply.
+
+## 6. Device use
+
+- **Phone screenshots viewed:**
+  - `phone/a-001.png`: the title card "Smoke on the Stairs." with an "Enter the stairwell" button.
+  - `phone/a-002.png`: the dark stairwell drawing with Hacer, Derya and Burak and a "MOVE · THICK IN 3s" banner. The neighbour tabs and verb buttons sit below it.
+  - `phone/a-003.png`: my figure near the bottom, at the street end.
+- **Desktop screenshots viewed:**
+  - `desktop/b-001.png`: the title card centered over a dimmed game.
+  - `desktop/b-002.png`: the building drawing with the torch cone, with Derya, Hacer, Burak and Sevim named on their landings. The text panel is below it and the clock and goals panel is on the left.
+- **Phone controls used:** tapping neighbour tabs, taps on the drawing by coordinates, the verb buttons, Torch, Street, and the menu.
+- **Desktop controls used:** keys 1 to 4, E, B, T, R and F, the "Walk to landing" buttons, Street, and the menu.
+- **Trouble I saw on the phone:** the named walk buttons were covered or off screen. A tap gave no visible response. I did not see the layout beyond the three screenshots.
+- **Different between devices:** the desktop showed the left panel and a clearly visible figure. The phone showed neither. Both sessions also had a different cast and smoke location.
+
+## 7. Stop and return
+
+- **A stop:** FINISHED, at about 151 s. That reason is inaccurate: no end card appeared. I stopped with "stair closes in 22s" still showing. Hacer was dead, Burak and Derya were out, and Sevim was away.
+- **B stop:** FRUSTRATED, at about 151 s, with "stair closes in 16s" showing.
+- **Feedback on both:** I opened the menu and Feedback and chose "I'm stopping". The note box came up prefilled with "I'm stopping". I typed nothing, changed no consent, left Record checked, and pressed Not now.
+- **Would you return voluntarily?** Conditions as at the top. Another evening: yes, maybe, with the conditions above. Leave it running: no.
+
+## 8. Changes wanted
+
+1. Show each neighbour's smoke clock before I commit to them.
+2. On the phone, show my figure and give a visible response to a tap.
+3. Make the walk faster, or show its progress.
+
+## 9. Compared with my last visit
+
+First visit to this game. Session B was a second visit the same evening on the other device. I recognized the same four names and the "Hacer: I cannot see the stair" line from session A, with high confidence. The cast and smoke location were different.
+
+`git worktree list`: I touched no repo, so none of my worktrees exist.
+
+<!-- selected-continuity-key: light-1030:word:diego:free -->
+## 2026-10-31 His Word LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/word/diego/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/word/diego/report.original.md.txt), original SHA256 `6ef8bec68cc0d873b2842721aea30da40d7c6c3c4b7df5d0f3b1a46100187b8e`. Build 349cd3a9bc8292b1a379a97442720813a6b93253/HF 4.0.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order phone then desktop; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- Stops: phone 90.288 s FINISHED after two outcomes (a 32 s win, then a deliberate lie that lost) and desktop 24.752 s BORED. The desktop stop came after a game he already knew from the phone, so it is not a fresh cold play; it has no first_minute line and no automatic capture. One BORED stop does not mean everyone quit from boredom.
+- His phone log has a named-control ambiguity refusal at 24.04 s, an instrument limit, not a game error. Desktop clipping (b-002) is not established without a scroll test.
+- The stop labels (TASTE, FINISHED, BORED) are the producers' own session labels; this is one individual of five, ten stops in all, not ten independent people and not five complete games. The return answers are conditional and the conditions differ. Feedback: the quick "I'm stopping" label prefilled the draft, Not now closed it, no note was typed or submitted and no consent setting changed. The agent run-source marker has no independently read production receipt. The driver is native-tap-v2 (fork-unverified, hash-bound, not upstream approved). Short durations are model and tool time.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would I return voluntarily?** I might come back on another evening to lie to Halil and Rıza again and see the exposure. I would not come back tonight, and I would not leave it running. It is turn-based and nothing happens while I'm away.
+
+**Ranked asks**
+1. Let me feel a cost before the agreement stage. The risk only showed up after I wrote an agreement. Asking, then writing, always worked, and I solved it in 32 seconds.
+2. Show the agreement options as short lines, not five long paragraphs that read like a form.
+3. On desktop, fit the controls on one screen. The page runs off the bottom.
+
+## 1. Session
+
+- Persona: Diego Silva, 28, Recife sound editor. Impatient.
+- Exposure: first visit to His Word. I have played other HF games.
+- Round and arm: light-1031-word1, free stop (floor 0).
+- Own history: read all 864 lines. None of it is about His Word.
+- URL: https://word.adamwhite.work/?labRunSource=agent
+- Session A: 360x690 touch phone, light mode, port 22406. 90 s real time.
+- Session B: 1280x800 keyboard and mouse, light mode, port 22407. 25 s real time.
+- Release commit: for the coordinator to add.
+
+## 2. First impressions
+
+- **A, 4 s:** the title is "Nuri's promises. Your words." The notebook look is quiet and different from the other HF games I've played.
+- **A, 6–15 s:** the obvious verbs are "Hear what someone needs" and "Ask…". The game answered at once. Time costs game minutes, not real seconds. That suited me.
+- **A, 16 s:** the agreement list is five long paragraphs as buttons. It felt like a form.
+- **A, 32 s:** I won on my first try. The ending line was "They kept their word." I didn't have to risk anything.
+- **A, 42 s:** private speech turned out to be the real verb. I could tell Halil and Rıza opposite things. They both agreed.
+- **B, 5 s:** same scenario and text as the phone. It didn't feel new.
+
+## 3. Verbatim
+
+Entries marked "(reaction field)" went in on an action call, not as a separate log op. Elapsed seconds are the driver's.
+
+### Session A (phone)
+
+- 4.1 (reaction field): "Tailor notebook, promises. Sitting down."
+- 5.9 (reaction field): "Obvious verb: put it on the table."
+- 7.4 (reaction field): "Ask first."
+- 18.3 (reaction field): "Five long paragraphs as buttons. Feels like a form. Ferda is unknown, asking her first."
+- 35.3 (reaction field): "That was it? Under a minute. Trying again to see if anything differs."
+- 41.8 (reaction field): "Now this is the interesting verb: promise opposite things to each. Lying to Halil first."
+- 45.2 (reaction field): "Contradicting myself to Rıza. Let us see what bites."
+- 49.5 (reaction field): "Gamble: full lease, zero cost, Ferda not asked."
+- 55.9 (reaction field): "My gamble failed and cost me about 6 minutes of the clock. That is learnable risk, I like it."
+- 61.3 first_minute, engagement 3, game clock "13 min before Osman leaves": "Tailor notebook, turn-based: time costs in-game minutes, not real seconds. Asking people is plain. First run ended in 32s with a clean agreement. Second run I lied privately to both men and gambled on the free deal; Ferda refused and cost me six minutes. That bite I like. The agreement menus are walls of text, form-ish."
+- 66.1 (reaction field): "Again my fault, I skipped asking Osman. Clock is tight now."
+- 72.7 (no reaction; this was the ask-to-sign tap): the game said Halil and Rıza had compared my words and withdrawn their waivers.
+- 75.1 (reaction field): "Caught lying to both. They compared notes. That is a consequence I earned. Six minutes left, writing the yard one."
+- 79.3 (reaction field): "Text warns it will not work. I try it anyway, it is the only one in budget and time."
+- 81.1 (reaction field): "Four minutes, nothing can finish. Letting it end."
+- 83.2 want_quit FINISHED: "Lost it on purpose and got exactly what I deserved: lies exposed, shop shut. I have seen the shape of both endings. I would stop here for now."
+- 90.3 stop FINISHED: "Stopping phone. Won in 32 s, then lied on purpose and lost: the lie got exposed and cost a deposit, the shop stayed shut. That consequence was good. Feedback I am stopping chosen, closed with Not now, nothing typed."
+
+### Session B (desktop)
+
+- 3.7 (reaction field): "Desktop. I know the setup; this time I try fetching the letter."
+- 7.1 (reaction field): "Desktop looks the same as phone, just wider. Fetching the letter, the one thing I skipped."
+- 10.9 (reaction field): "Blind gamble again, no asking. Cheap and uses the letter."
+- 14.6 (reaction field): "Checking the desktop in-play layout."
+- 17.8 want_quit BORED: "Same game as the phone, same refusals. I know the trick now: ask first, then write. Nothing new on this device."
+- 24.8 stop BORED: "Stopping desktop at 23 s. Same scenario as phone, I already know the rule: ask, then write. The late-work blind gamble got refused by Halil. Feedback I am stopping chosen, closed with Not now, nothing typed."
+
+## 4. Moments
+
+**What held me**
+- The first run, because every verb answered immediately and I wasn't racing a real-time clock.
+- Private speech. The wording is nasty and exact ("The floor is reserved…" to one man, the opposite to the other).
+- The exposure. "Halil and Rıza compare what you told them. You promised each man the whole floor. They withdraw their fee waivers… A new agreement needs a ₺40 deposit." Then "Everyone now asks for a ₺40 deposit, because your private word proved false." That is a cost I could feel and I caused it.
+- The ending where Osman rents to someone else.
+
+**What lost me**
+- The first agreement went smoothly. Win in 32 s with no risk.
+- The agreement list reads like a form. In a later session, the "(2 minutes)" prefix and the long trailing text made every option look the same.
+- The skip-asking gamble failed twice with the same kind of message ("Ferda refuses…", "Osman refuses…"). By the third time I wasn't learning anything.
+
+**Quit wishes**
+- A: want_quit FINISHED at 83 s. I stopped at 90 s.
+- B: want_quit BORED at 17.8 s. I stopped at 24.8 s.
+
+**Pulses**
+- None. Both sessions ended before 180 s. The one first_minute was on A at 61 s (the elapsed_s was 61.258). No first_minute on B because I stopped at 25 s.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The goal and the deadline: sign one agreement before Osman leaves, under 24 game minutes.
+- Costs sit next to every control, for example "(2 minutes)", "(0 minutes)" and "Total from your fund: ₺60".
+- "Ferda refuses: she needs a smaller service and a trial lease" told me exactly what to change.
+- The two-minute cost of each failed attempt.
+
+**Unclear**
+- When I was first shown five agreement options, I didn't know the difference between the ₺0 options and the ₺60 one. I only learned it by reading each paragraph.
+- I wasn't told in advance that the free deal depends on the private word being true. The warning appears only after the lie.
+- "Everyone must sign one agreement" doesn't say who is allowed to refuse.
+- I never found the notebook ("Open notebook", "Read the notebook"). I didn't open it, so I don't know what it is for.
+
+## 6. Device use
+
+**Screenshots viewed**
+- Phone: `phone/a-001.png`, right after open. A cream notebook-page title with a recording note, a checked "Record my play for the lab" checkbox, a "Read the privacy notice" link and a "Take a seat" button. Readable and nothing clipped.
+- Desktop: `desktop/b-001.png`, right after open. The same note, but the page is smaller in a dark frame, with "Nuri's promises. Your words." in the lower corner.
+- Desktop: `desktop/b-002.png`, mid-play ("Read it together"). Only the first three controls fit. The rest ("End the meeting…", "Open notebook") are off the bottom, so I would have to scroll.
+
+**Controls used**
+- Phone: named taps. Once the driver refused a text tap because the visible text was the start of a longer control name, so I sent the full control name. No coordinate taps.
+- Desktop: named taps. No driver trouble.
+
+**Layout**
+- Unseen: the phone mid-play layout (I read it as text only, no screenshot), the ending page on both devices, and the notebook view.
+- Seen: the off-screen controls on desktop.
+
+## 7. Stop and return
+
+- **A stop:** "Stopping phone. Won in 32 s, then lied on purpose and lost: the lie got exposed and cost a deposit, the shop stayed shut. That consequence was good. Feedback I am stopping chosen, closed with Not now, nothing typed." Reason: FINISHED.
+- **B stop:** "Stopping desktop at 23 s. Same scenario as phone, I already know the rule: ask, then write. The late-work blind gamble got refused by Halil. Feedback I am stopping chosen, closed with Not now, nothing typed." Reason: BORED.
+- **Feedback:** both "I'm stopping" and "I'm confused" were offered on both devices. I chose "I'm stopping" on both. A dialog opened with "I'd keep playing / Not sure / I'd stop here" and a note field prefilled with "I'm stopping". I typed nothing, changed no consent and pressed Not now.
+- **Would I return voluntarily?** Another evening, maybe, to lie again and see the exposure. Not tonight. It is turn-based, so I wouldn't leave it running: nothing happens while I'm away.
+
+## 8. Changes I would want
+
+1. Let a cost show before the write step. Right now asking, then writing, always works, and I won in 32 s.
+2. Shorten the agreement options. Five paragraph-length buttons felt like a form.
+3. On desktop, fit the play controls in one screen.
+
+## 9. Compared with my last visit
+
+First visit to this game. I recognised nothing from session A to session B except the same text (same scenario, same names). Both sessions were fresh games, so no seed or save continuity.
+
+**Cleanup:** I created no worktrees, servers or browsers and touched no repository. The coordinator stops the drivers. `git worktree list`: none of mine.

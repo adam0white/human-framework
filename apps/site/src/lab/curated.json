@@ -17281,6 +17281,805 @@
     "fix:glance new blocker phone inspection panel reach and lightning drawing size, unwanted dialog and scroll op may be an instrument issue and v2 ack is not proof of intended outcome, target2026-11-03 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/glance-retest1/ida/report.md"
+  },
+  {
+   "id": "F-2371",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Opening return: \"Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running.\" Separate later return: \"Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running. It needs my attention every few seconds.\"",
+   "verdict": "keep",
+   "routes": [
+    "fix:smoke return conditions movement and Street meaning F-2376–F-2378, first Smoke LIGHT panel, the same four standing players and a new cold player return later, canonical import and director routing pending, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/jonas/report.md"
+  },
+  {
+   "id": "F-2372",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Opening return: \"Yes, but only on another evening and only if walking gave clearer feedback. I would not leave it running. I would not come back tonight.\" Separate later return: \"the \"would you return\" sentence is at the top. I would not leave it running, and I would not come back tonight.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke return conditions walk feedback and stall legibility F-2379–F-2381, first Smoke LIGHT panel, the same four standing players and a new cold player return later, canonical import and director routing pending, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/aisha/report.md"
+  },
+  {
+   "id": "F-2373",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Opening return: \"I might come back another evening, but only if the game showed me how long each neighbour has before the smoke gets them, and only if the phone showed where my figure is. I would not leave it running. Both times I stopped at about 150 seconds with two of the four neighbours dead.\" Separate later return: \"Conditions as at the top. Another evening: yes, maybe, with the conditions above. Leave it running: no.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke return conditions neighbour urgency visibility and phone figure reaction F-2382–F-2384, first Smoke LIGHT panel, the same four standing players and a new cold player return later, canonical import and director routing pending, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/diego/report.md"
+  },
+  {
+   "id": "F-2374",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Opening return: \"I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now.\" Separate later return: \"I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now. The conditions: show walking progress and tell me extra taps restart the walk. Without that, I would repeat the same silent 12 s waits.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke return conditions how walking works and walk progress F-2385–F-2387, first Smoke LIGHT panel, the same four standing players and a new cold player return later, canonical import and director routing pending, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/leila/report.md"
+  },
+  {
+   "id": "F-2375",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Marta Kowalska",
+   "words": "Opening return: \"I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why.\" Separate later return: \"I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why. I like that a night takes two minutes and that the people have small wants, like Sevim and her books. But I return to things where I can get better at the timing. Here I could not tell whether I had timed anything at all. If the game showed me where my tap sends me, and let me approach someone in one tap, I would try the phone night again in a short break to save Hacer.\" Another-evening answer: \"Maybe, under the condition above. I would not come back as it is now.\" Leave-it-running answer: \"No.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke return conditions where a landing tap sends the player F-2388–F-2390, new cold player with within-person desktop learning before phone, first Smoke LIGHT panel, canonical import and director routing pending, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/marta/report.md"
+  },
+  {
+   "id": "F-2376",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Make the phone walk controls reliable. \"Walk to the street\" was reported covered or off screen, and \"Street\" did nothing visible. I stood still while Derya died.",
+   "verdict": "keep",
+   "routes": [
+    "fix:smoke Nov3 movement destination, progress, current position and why the player is waiting, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/jonas/report.md"
+  },
+  {
+   "id": "F-2377",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Show on the map where each neighbour is relative to me, and keep the neighbour button names stable. Their labels change with state, so my named taps kept failing.",
+   "verdict": "keep",
+   "routes": [
+    "fix:smoke Nov3 current position of each neighbour relative to the player and stable neighbour button names, dynamic accessible names that change with state qualify named taps, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/jonas/report.md"
+  },
+  {
+   "id": "F-2378",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Say plainly what \"Street\" does, or remove it. Its hint says \"tap Street to lead followers down\", but nothing happened.",
+   "verdict": "keep",
+   "routes": [
+    "fix:smoke Nov3 what the Street control means and why the player is waiting, the exact pointer and public-map reprobe comes before any defect, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/jonas/report.md"
+  },
+  {
+   "id": "F-2379",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Show clearly when a walk tap has registered and whether I am moving. Show my figure moving or give a \"walking to landing 4\" line. This was the main cause of both my confusion and my loss on the phone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke Nov3 movement progress and current position after a walk tap, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/aisha/report.md"
+  },
+  {
+   "id": "F-2380",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Tell me when I am stalled in smoke, or let me retry or reselect without losing time. On the phone I never reached Derya or Hacer. Derya died while I could not tell whether I was climbing.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke Nov3 why the player is waiting or stalled in smoke, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open)",
+    "calibration:C14",
+    "fix:smoke human-speed before any timing defect or speed retune, retry without lost time is not an automatic difficulty change, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/aisha/report.md"
+  },
+  {
+   "id": "F-2381",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "When someone dies, say more than one line. I want the narration to acknowledge what I tried, without scolding.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke death narration preference, preserve character agency, books refusal, short clock, smoke and deaths, not an automatic difficulty change, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/aisha/report.md"
+  },
+  {
+   "id": "F-2382",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Show each neighbour's smoke clock before I commit to them. Hacer died unseen on the phone, and Derya and Hacer died together on the desktop.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke player framing of each neighbour clock, use authored observable urgency only unless the owner chooses otherwise, no automatic numeric individual death clock, no automatic hidden health or future countdown, preserve short clock, smoke and deaths, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/diego/report.md"
+  },
+  {
+   "id": "F-2383",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "On the phone, show my figure and give a visible reaction to a tap. The named landing buttons were covered or off screen, and for the first minute I could not tell if I was moving.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke Nov3 phone figure position and visible tap reaction, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/diego/report.md"
+  },
+  {
+   "id": "F-2384",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Make the walk to a neighbour or the street feel faster, or show progress. I spent a lot of the run waiting on it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke Nov3 walk progress display, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open)",
+    "calibration:C14",
+    "fix:smoke human-speed before timing defect or speed retune, faster walk and longer stake are preferences, not an automatic difficulty change, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/diego/report.md"
+  },
+  {
+   "id": "F-2385",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Show walking. After one landing tap, show a \"walking, N s\" marker or my figure moving. Say that extra taps restart the walk.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke Nov3 walk progress and what repeated taps do, her 12 s rule is her own inference and unproved, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open)",
+    "calibration:C14",
+    "fix:smoke human-speed before timing defect or speed retune, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/leila/report.md"
+  },
+  {
+   "id": "F-2386",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Warn before a neighbour dies. The status text said \"Smoke may kill me\" and then they were dead, with no time shown for them.\" Later wording (section 8): \"Show each neighbour's time left before smoke kills them.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke player framing of each neighbour clock, use authored observable urgency only unless the owner chooses otherwise, no automatic numeric individual death clock, no automatic hidden health or future countdown, preserve short clock, smoke and deaths, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/leila/report.md"
+  },
+  {
+   "id": "F-2387",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Start the Feedback note box empty. It opens pre-filled with \"I'm confused\", so a stray Submit would send words I did not choose.\" Later wording (section 8): \"Start the Feedback note empty, and add a Back button next to \"Not now\".",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke feedback draft preference, empty note and extra Back, she selected the quick label, the normal draft preloads the selected words, Not now closed it, zero actual note submit, no fake feedback and no manual POST, not a broken setting, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/leila/report.md"
+  },
+  {
+   "id": "F-2388",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Marta Kowalska",
+   "words": "Show clearly where a tap sends me. On the phone I tapped \"Walk to landing 4\", and my group went down to the street instead of up. Nothing on screen explained it.\" Later wording (section 8): \"Show clearly where a tap on a landing sends me, and show it when my followers go somewhere else without me.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke Nov3 what a landing tap sends the player to and where followers go, cause unknown between game and pointer selection, her followers-walked-out guess is unconfirmed, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/marta/report.md"
+  },
+  {
+   "id": "F-2389",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Marta Kowalska",
+   "words": "Let me approach a neighbour with one tap, and keep the name buttons steady while I aim. Hacer's status kept changing (\"needs to see the stair\" / \"catching my breath\"), so my clicks missed her twice on desktop. On the phone, every name needed two taps.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke Nov3 selected versus approach two-tap semantics and stable name buttons reproduce, no automatic one-tap compliance or sprint, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/marta/report.md"
+  },
+  {
+   "id": "F-2390",
+   "date": "2026-10-31",
+   "game": "smoke",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Marta Kowalska",
+   "words": "Unlock \"Show the stair\" at the same moment the neighbour says she is ready. On the phone, hide the E/B/T/R/F key letters, because they mean nothing there.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:smoke Nov3 action-ready wording and Show the stair unlock timing reproduce, unlock after delay and torch guess unproved, target2026-11-03 (open)",
+    "fix:smoke hide keyboard key letters on the phone, a preference, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/smoke/marta/report.md"
+  },
+  {
+   "id": "F-2401",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Opening return: \"I would come back another evening on desktop to try a third path, for example paying the bill myself and telling Selin everything, but only because each run is short, and not tonight. I would not leave it running. It does not run in real time, so there is nothing to leave running.\" Separate later return: \"Yes, another evening on desktop for a third path, on the condition that the choices are different enough to be worth a second look. Because it is short, I would not leave it running; it does not seem to need me to.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days return conditions third path and phone choice reach F-2406–F-2408, first Days LIGHT panel, four standing players on a first Days visit and one new cold player, canonical import and director routing pending, phone fold evidence Emre did not fully scroll and his ask rests on a screenshot alone, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/emre/report.md"
+  },
+  {
+   "id": "F-2402",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Pavel Novak",
+   "words": "Opening return: \"Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently, but I would not leave it running. Each run took about a minute and a half, and I want a reason to play it a third time.\" Separate later return: \"Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently. I would not leave it running, because nothing in it runs by itself.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days return conditions visit affordability and recovery clarity F-2409–F-2411, first Days LIGHT panel, four standing players on a first Days visit and one new cold player, canonical import and director routing pending, phone fold evidence Pavel scrolled once and viewed no after-image, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/pavel/report.md"
+  },
+  {
+   "id": "F-2403",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Tessa Williams",
+   "words": "Opening return: \"Not tonight. I might come back another evening on my laptop only if the three days had more than two choices per screen, or a way to say something of my own, and I would not leave it running.\" Separate later return: \"No, not tonight. I would come back another evening on my laptop only if there were more than two choices per screen, or a way to say something of my own. I did like seeing my choices named in the ending, and I might try a third run for a different ending. I would not leave it running, because it has no clock and just waits for a tap. I would not come back for the same three days I have now seen twice.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days return conditions more than two choices or own words F-2412–F-2414, first Days LIGHT panel, four standing players on a first Days visit and one new cold player, canonical import and director routing pending, phone fold evidence Tessa did not scroll the phone, she explicitly liked allowed failure with a clear reason, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/tessa/report.md"
+  },
+  {
+   "id": "F-2404",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Opening return: \"Not tonight, and I would not leave it running. I might come back another evening, but only if a second run gave me something new. Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up.\" Separate later return: \"Not tonight. I might come back another evening, but only if the game gave me a different story or a character who answered back. I would not leave it running, because there is nothing to wait for.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days return conditions a second run with something new or a character who answers back F-2415–F-2417, first Days LIGHT panel, four standing players on a first Days visit and one new cold player, canonical import and director routing pending, her opening says both runs ended the same way and her later desktop stop says the ending text changed and both literal claims stay, phone fold evidence only intro images and no story-layout claim, her supplied prior Rope history continuity qualification stays, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/nia/report.md"
+  },
+  {
+   "id": "F-2405",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Miles Osei",
+   "words": "Opening return: \"I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford.\" Separate later return: \"I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford. The story is gentle and honest, and I liked doing the sums. But each run takes under a minute, and after two runs I can already see most of the shape.\" Leave-it-running answer: \"No, there is nothing to leave running. It is something I would come back to another evening, briefly.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days return conditions unaffordable visit button F-2418–F-2420, new cold person with an empty history and within-person desktop learning before the phone, first Days LIGHT panel, four standing players on a first Days visit and one new cold player, canonical import and director routing pending, phone fold evidence a real 500 px scroll worked with no problem beyond the scroll, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/miles/report.md"
+  },
+  {
+   "id": "F-2406",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Show a number for savings. After I paid from savings the text said only \"Her savings are smaller\" on the phone run. I could not price that tradeoff.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days numeric savings display is a taste and clarity preference, no automatic major rewrite, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/emre/report.md"
+  },
+  {
+   "id": "F-2407",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Say why I could not see a choice or its cost in advance when it changed. On the phone run the visit cost 3 hours instead of 2 because Selin refused cover. I worked it out from the card text, but a one-line reason on the changed card would help.\" Later wording (section 8): \"Put a one-line reason on any card whose cost has changed from a first visit.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days one-line reason on a card whose cost changed is a clarity preference, the 3 hour and 2 hour visit cost changes were traced by Emre from card text, no automatic major rewrite, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/emre/report.md"
+  },
+  {
+   "id": "F-2408",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Let me see the choice cards on the phone without scrolling past the story. I did not test the phone's scroll fully, and this ask rests on the screenshot alone.\" Later wording (section 8): \"On the phone, keep the choice cards on screen with the story text.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days Nov3 phone picture and choices below the fold, a qualified REACH LEAD and not proven unreachable, a named driver can reveal controls and is not human pointer proof, needs a bounded actual repro with a real pointer first, Emre did not fully scroll and the ask rests on the screenshot alone, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/emre/report.md"
+  },
+  {
+   "id": "F-2409",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Pavel Novak",
+   "words": "Grey out or explain a choice I cannot afford before I press it. On desktop I pressed \"Make the journey yourself, if there is time\". It took one tap, said \"2 hours; 1 remains\", and moved the story on. I could not retry, and the game ended with my promised visit unkept and an hour unused.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days Nov3 BLOCKING LEAD visit affordability and irreversible advance or recovery clarity, a visit costing 2 hours with 1 hour left was an accepted attempt and then the story advanced with no recovery, needs a bounded actual mechanism repro and clear before-commit, decline or fallback semantics without removing meaningful failure, Tessa explicitly liked allowed failure with a clear reason and that player preference disagreement stays, no automatic disable or hide of all failed actions, no free hours, no promised-visit guarantee, no undo, no safety plan, no difficulty flattening, neither a full-game bug nor a fix is proven by player reports alone, desktop only since on the phone Pavel had 2 hours and the visit worked, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/pavel/report.md"
+  },
+  {
+   "id": "F-2410",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Pavel Novak",
+   "words": "Tell me the hour budget early. The visit needs 2 hours, but nothing warned me on day 1 or 2 that I must keep them. On the phone I kept the visit only because I happened to have 2 hours.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days earlier future hour-budget warning is a taste and clarity preference, no promised-visit guarantee, no automatic major rewrite, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/pavel/report.md"
+  },
+  {
+   "id": "F-2411",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Pavel Novak",
+   "words": "Give me something to read over time. Each run was about 75 seconds of choices with no clock, so it felt short and I could not compare one day with the next.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days longer runs and a sense of time passing are taste preferences, no automatic major rewrite, target2026-11-10 (open)",
+    "calibration:C14",
+    "fix:days short run lengths of 30–85 s are actual model tool time, not proof of human read speed or zero emotion or that all runs are the same, no pretend longer wait and no forced 20 min, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/pavel/report.md"
+  },
+  {
+   "id": "F-2412",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Tessa Williams",
+   "words": "Give me more than two buttons per moment, or let me say something of my own to Hacer, Burak or Selin. I only ever picked between two set lines.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days more branches and free expression are taste and clarity preferences, no automatic major rewrite, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/tessa/report.md"
+  },
+  {
+   "id": "F-2413",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Tessa Williams",
+   "words": "Make the run longer or add a reason to play it again. Both of my runs finished in about 75 seconds.\" Later wording (section 8): \"Make a run longer, or give me a reason to replay beyond swapping which of two buttons I press.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days longer runs and replay variety are taste preferences, no automatic major rewrite, target2026-11-10 (open)",
+    "calibration:C14",
+    "fix:days short run lengths of 30–85 s are actual model tool time, not proof of human read speed or zero emotion or that all runs are the same, no pretend longer wait and no forced 20 min, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/tessa/report.md"
+  },
+  {
+   "id": "F-2414",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Tessa Williams",
+   "words": "Show the phone room picture and its objects properly. On the phone I read only the text and never saw the picture's objects.\" Later wording (section 8): \"Show the room picture and its objects properly on the phone, as the laptop does.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days Nov3 phone picture and choices below the fold, a qualified REACH LEAD and not proven unreachable, a named driver can reveal controls and is not human pointer proof, needs a bounded actual repro with a real pointer first, Tessa did not scroll the phone, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/tessa/report.md"
+  },
+  {
+   "id": "F-2415",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Make the game longer or make later runs differ. I finished all three days in about 27 s on my phone and about 25 s on desktop. After that I only had \"Play another three days\".\" Later wording (section 8): \"Make the game longer, or make a second run open on different scenes.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days longer runs and replay variety are taste preferences, no automatic major rewrite, target2026-11-10 (open)",
+    "calibration:C14",
+    "fix:days short run lengths of 30–85 s are actual model tool time, not proof of human read speed or zero emotion or that all runs are the same, no pretend longer wait and no forced 20 min, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/nia/report.md"
+  },
+  {
+   "id": "F-2416",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Give me a reply from the people I'm affecting. After I read the private page aloud, or told Selin about my marriage, I got narration but no answer from the person I affected.\" Later wording (section 8): \"Let the people I affect answer me in their own words.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days character responses are a taste and clarity preference, no automatic major rewrite, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/nia/report.md"
+  },
+  {
+   "id": "F-2417",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Tell me up front how much is at stake. The story texts said grief was not settled but never said what I had won or lost. I had to guess whether my choices mattered.\" Later wording (section 8): \"Say what is at stake before I choose, so I know my choices matter.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days stakes stated up front are a taste and clarity preference, no automatic major rewrite, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/nia/report.md"
+  },
+  {
+   "id": "F-2418",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Miles Osei",
+   "words": "Do not offer \"Make the journey yourself\" when the hours left are fewer than the visit needs. On the phone it took my last turn, and the delivery choice was gone afterwards.\" Later wording (section 8): \"Hide or disable a visit I cannot afford, or keep the delivery choice open after a failed attempt.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days Nov3 BLOCKING LEAD visit affordability and irreversible advance or recovery clarity, a visit costing 2 hours with 1 hour left was an accepted attempt and then the story advanced with no recovery, needs a bounded actual mechanism repro and clear before-commit, decline or fallback semantics without removing meaningful failure, Tessa explicitly liked allowed failure with a clear reason and that player preference disagreement stays, no automatic disable or hide of all failed actions, no free hours, no promised-visit guarantee, no undo, no safety plan, no difficulty flattening, neither a full-game bug nor a fix is proven by player reports alone, Miles phone attempt probed the offered visit on purpose, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/miles/report.md"
+  },
+  {
+   "id": "F-2419",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Miles Osei",
+   "words": "Introduce Selin before she appears. On the desktop she \"has the receipt\" before anyone says who she is.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days Nov3 Selin introduced before the receipt lead, Miles desktop only, fresh-device cast differences are not save failures and the seed cause is unknown, cheap clear wording only after an actual repro, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/miles/report.md"
+  },
+  {
+   "id": "F-2420",
+   "date": "2026-10-31",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Miles Osei",
+   "words": "Make the tiredness and hour wording match what happens. \"Saves an hour\" left my hours unchanged. \"Obtain the original\" appeared after I already had the receipt in hand.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:days Nov3 contradictory receipt and saves-an-hour cost wording lead from Miles and Pavel, cheap clear wording only after an actual repro, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days/miles/report.md"
+  },
+  {
+   "id": "F-2431",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Opening return: \"Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running.\" Separate later return: \"Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running. I would not come back tonight, only another evening.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word return conditions a longer run and people who keep reacting to her private word F-2436–F-2438, first Word LIGHT panel, four standing players on a first Word visit and one new cold player, canonical import and director routing pending, her phone visit included another meeting after the first ending and stopped TASTE with 13 minutes left, her phone lie went unanswered because she had not asked Halil again while desktop responses and costly caught lies were seen so not globally unresponsive, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/maya/report.md"
+  },
+  {
+   "id": "F-2432",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "Opening return: \"I would come back another evening on the laptop, but only if the meeting could end in a way I could not see coming. I solved it on my first try in 33 seconds, so I would not replay the same one. I would not leave it running.\" Separate later return: \"I would come back another evening on the laptop, but only if the next meeting could end in a way I could not see coming. I would not replay the same one. I would not leave it running.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word return conditions a meeting that can end in a way she cannot see coming F-2439–F-2441, first Word LIGHT panel, four standing players on a first Word visit and one new cold player, canonical import and director routing pending, one meeting per device, laptop AGREED in about 33 seconds and phone NO AGREEMENT, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/mei/report.md"
+  },
+  {
+   "id": "F-2433",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Opening return: \"I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.\" Separate later return: \"I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word return conditions a longer meeting with more people and an honest agreement that does not finish in 30 seconds F-2442–F-2444, first Word LIGHT panel, four standing players on a first Word visit and one new cold player, canonical import and director routing pending, more people is a preference and not new scope authorization, Voice diary name familiarity is his own guess with no canonical identity or continuity claim, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/samir/report.md"
+  },
+  {
+   "id": "F-2434",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Opening return: \"I might come back on another evening to lie to Halil and Rıza again and see the exposure. I would not come back tonight, and I would not leave it running. It is turn-based and nothing happens while I'm away.\" Separate later return: \"Another evening, maybe, to lie again and see the exposure. Not tonight. It is turn-based, so I wouldn't leave it running: nothing happens while I'm away.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word return conditions lying again to see the exposure F-2445–F-2447, first Word LIGHT panel, four standing players on a first Word visit and one new cold player, canonical import and director routing pending, phone FINISHED after two outcomes and desktop BORED after a game he already knew from the phone so not a fresh cold play and not all quit because BORED, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/diego/report.md"
+  },
+  {
+   "id": "F-2435",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mina Georgiou",
+   "words": "Opening return: \"I would come back once, maybe on a Thursday with my friend, to compare which agreement each of us wrote. I would not come back alone, because I have seen both honest endings and the only other road is lying to Halil and Rıza.\" Separate later return: \"I would come back once, maybe on a Thursday with my friend, to compare which agreement each of us wrote. I would not come back alone, because I have seen both honest endings and the only other road is lying to Halil and Rıza.\" Later added newness condition: \"Conditions: only with a friend to compare notes, and only if it offered something new beyond the endings I have seen. I would not play the lying road for its own sake.\" Later leave-it-running answer: \"No. It is a one-sitting puzzle.\" Later another-evening answer: \"Only for that compare-notes evening, and probably just once.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word return conditions once with a friend to compare agreements and only if something new beyond the endings seen F-2448–F-2450, first Word LIGHT panel, four standing players on a first Word visit and one new cold player, canonical import and director routing pending, new cold person with an empty history, friend-only condition plus a later added newness condition, her open pre-return words do not oblige her to want the lying road, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/mina/report.md"
+  },
+  {
+   "id": "F-2436",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Make a run last longer, or give me more to try. Both runs ended in under a minute. After each, I had seen the loop.\" Later wording (section 8): \"Make a run last longer, or give me more to try after the ending.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word longer run or more to try after the ending is a taste preference, both of her runs lasted under a minute of model and tool time which is not human reading proof, no automatic timer or speed change or forced wait, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/maya/report.md"
+  },
+  {
+   "id": "F-2437",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Let people react to my private word sooner, and on every path. On desktop Halil, Rıza and the ending all answered my lie. On the phone I never asked Halil again, so nobody reacted to it.\" Later wording (section 8): \"Let people react to my private word on every path, not just when both men are asked again.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word earlier private-word consequences on every path is a preference for more private choice, her desktop run showed Halil and Riza and the ending answering her lie and the phone lie went unanswered only because she had not asked Halil again, preserve the knowledge gate and competent honest play, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/maya/report.md"
+  },
+  {
+   "id": "F-2438",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Update a person's stale line after I fetch the letter. On the phone, Ferda's reply still carried \"The letter may tell us whether late work pays\" after I had fetched the letter.\" Later wording (section 8): \"Update a person's line after I fetch the letter, so the old quote does not stay.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word Nov3 lead on an older quoted line staying under the person after the letter was fetched, the Ferda line may be a historic last-heard quotation, reproduce the actual cause first, then a context label such as last-heard rather than an invented unheard reply or rewritten memory, Maya was unsure it was stale, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/maya/report.md"
+  },
+  {
+   "id": "F-2439",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "Make the first meeting harder, or make the later versions different. Asking all four and fetching the letter pointed straight at one agreement.\" Later wording (section 8): \"Make the meeting harder, or different on each try.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word a harder first meeting or different later versions is a taste preference, she solved it first try in about 33 seconds of model and tool time which is not human proof of too-easy difficulty, no automatic penalty or new timer or forced wait, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/mei/report.md"
+  },
+  {
+   "id": "F-2440",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "Say at the start that the agreement list unlocks after you ask. On the phone, \"without a paid break\" was offered before I had asked Halil, and the version with a paid break did not appear until I did.\" Later wording (section 8): \"Say up front that agreement wording unlocks after you ask each person.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word Nov3 knowledge and unlock cue, the agreement list said acceptance unknown and ask before writing on her phone before asking and offered a without paid break wording where the laptop read with a paid break, say up front that asking unlocks wording, preserve the knowledge gate and do not require omniscient unknown requirements, show exact terms before writing, needs an actual cause reproduction before any fix, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/mei/report.md"
+  },
+  {
+   "id": "F-2441",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "Show clearly what each rewrite costs against the minutes left. I wasted time on the phone before I saw I could not finish.\" Later wording (section 8): \"Show how many minutes a rewrite plus signatures needs against the minutes left.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word rewrite plus signature minutes against minutes left clarity is a Nov10 preference, per action minute costs and minutes needed versus remaining were already praised by Mei and Mina so not globally absent, no automatic timer or forced wait, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/mei/report.md"
+  },
+  {
+   "id": "F-2442",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Make the honest route cost something. One agreement satisfied everyone in 30 seconds. The game never showed me a hard case on that route.\" Later wording (section 8): \"Make the honest route cost something, so one agreement cannot satisfy everyone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word honest route cost preference, no automatic mechanical cost punishment for honesty, preserve competent honest play and the costs time money signatures and refusals already shown, Samir likes the lying route while Mina explicitly declines it, a 30 second run is model and tool time and not human proof of too-short difficulty, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/samir/report.md"
+  },
+  {
+   "id": "F-2443",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Show the private-word lie earlier, or give the honest route its own private choices. I found it only by poking after the easy win. It was the best part, because the men compared notes and caught me.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word earlier private-word lie or private choices on the honest route is a preference for more private choice, he found the lie only by poking after the easy win and liked it, keep Samir likes lying versus Mina explicitly declines it, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/samir/report.md"
+  },
+  {
+   "id": "F-2444",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Let me ask people more than what they need. I would like to ask Halil and Rıza what Nuri really said, since both claim a promise.\" Later wording (section 8): \"Let me ask people more than what they need, such as what Nuri really said.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word ask people more than what they need such as what Nuri really said is a more asking and free chat preference and not new scope authorization, preserve the knowledge gate and do not require omniscient unknown requirements, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/samir/report.md"
+  },
+  {
+   "id": "F-2445",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Let me feel a cost before the agreement stage. The risk only showed up after I wrote an agreement. Asking, then writing, always worked, and I solved it in 32 seconds.\" Later wording (section 8): \"Let a cost show before the write step. Right now asking, then writing, always works, and I won in 32 s.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word an earlier felt risk before the agreement stage is a Nov10 preference, his phone lie cost a deposit and he called that consequence good, preserve competent honest play and no automatic mechanical cost punishment for honesty, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/diego/report.md"
+  },
+  {
+   "id": "F-2446",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Show the agreement options as short lines, not five long paragraphs that read like a form.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word shorter agreement option rows is a Nov10 preference, Diego read five long paragraphs as a form while Mina found warnings written out in advance clear and liked them, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/diego/report.md"
+  },
+  {
+   "id": "F-2447",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "On desktop, fit the controls on one screen. The page runs off the bottom.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word desktop one-screen fit of the play controls is a Nov10 preference, his b-002 screenshot showed only the first three controls on screen, a named target can reveal offscreen controls so neither desktop clipping nor phone unreachability is established without scroll and per-person view limits stay, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/diego/report.md"
+  },
+  {
+   "id": "F-2448",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mina Georgiou",
+   "words": "When a button's terms change, show it. On the phone, \"Suggest late work without the letter\" kept its title, but the terms under it changed between two visits to the list.\" Later wording (section 8): \"When a button's terms change, show it. Same title, different terms is what I dislike most.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word Nov3 BLOCKING clarity lead, a button kept its title Suggest late work without the letter while its printed agreement terms changed after asking, needs an actual cause reproduction before any fix, then exact terms shown before writing, preserve the knowledge gate and costs time money signatures refusals and competent honest play, no omniscient unknown requirements, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/mina/report.md"
+  },
+  {
+   "id": "F-2449",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mina Georgiou",
+   "words": "Make the ending say more about the road I chose. My two endings used nearly the same words.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word ending variety so the chosen road shows in the result is a Nov10 preference, her two honest endings used nearly the same words, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/mina/report.md"
+  },
+  {
+   "id": "F-2450",
+   "date": "2026-10-31",
+   "game": "word",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mina Georgiou",
+   "words": "Give the \"private word\" choice a name that tells me up front it means telling the two men opposite things.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:word a clearer name for the private word choice up front is a Nov10 preference, she declined the lying road and her open pre-return words do not oblige her to want it, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/word/mina/report.md"
   }
  ],
  "lessons": [
@@ -17905,10 +18704,10 @@
   }
  ],
  "routes": {
-  "fix": 1645,
+  "fix": 1712,
   "lesson": 291,
   "hf": 14,
-  "calibration": 46,
+  "calibration": 58,
   "none": 9
  }
 }

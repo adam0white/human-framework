@@ -1,0 +1,587 @@
+{
+ "failures": 0,
+ "checks": [
+  {
+   "label": "maya primaryReturn",
+   "file": "maya/report.md",
+   "span": "Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "maya primaryReturn",
+   "file": "maya/report.original.md.txt",
+   "span": "Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "maya laterFullReturn",
+   "file": "maya/report.md",
+   "span": "Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running. I would not come back tonight, only another evening.",
+   "exact": true
+  },
+  {
+   "label": "maya laterFullReturn",
+   "file": "maya/report.original.md.txt",
+   "span": "Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running. I would not come back tonight, only another evening.",
+   "exact": true
+  },
+  {
+   "label": "maya ask 1",
+   "file": "maya/report.md",
+   "span": "Make a run last longer, or give me more to try. Both runs ended in under a minute. After each, I had seen the loop.",
+   "exact": true
+  },
+  {
+   "label": "maya ask 1",
+   "file": "maya/report.original.md.txt",
+   "span": "Make a run last longer, or give me more to try. Both runs ended in under a minute. After each, I had seen the loop.",
+   "exact": true
+  },
+  {
+   "label": "maya ask 2",
+   "file": "maya/report.md",
+   "span": "Let people react to my private word sooner, and on every path. On desktop Halil, Rıza and the ending all answered my lie. On the phone I never asked Halil again, so nobody reacted to it.",
+   "exact": true
+  },
+  {
+   "label": "maya ask 2",
+   "file": "maya/report.original.md.txt",
+   "span": "Let people react to my private word sooner, and on every path. On desktop Halil, Rıza and the ending all answered my lie. On the phone I never asked Halil again, so nobody reacted to it.",
+   "exact": true
+  },
+  {
+   "label": "maya ask 3",
+   "file": "maya/report.md",
+   "span": "Update a person's stale line after I fetch the letter. On the phone, Ferda's reply still carried \"The letter may tell us whether late work pays\" after I had fetched the letter.",
+   "exact": true
+  },
+  {
+   "label": "maya ask 3",
+   "file": "maya/report.original.md.txt",
+   "span": "Update a person's stale line after I fetch the letter. On the phone, Ferda's reply still carried \"The letter may tell us whether late work pays\" after I had fetched the letter.",
+   "exact": true
+  },
+  {
+   "label": "maya later ask 1",
+   "file": "maya/report.md",
+   "span": "Make a run last longer, or give me more to try after the ending.",
+   "exact": true
+  },
+  {
+   "label": "maya later ask 2",
+   "file": "maya/report.md",
+   "span": "Let people react to my private word on every path, not just when both men are asked again.",
+   "exact": true
+  },
+  {
+   "label": "maya later ask 3",
+   "file": "maya/report.md",
+   "span": "Update a person's line after I fetch the letter, so the old quote does not stay.",
+   "exact": true
+  },
+  {
+   "label": "mei primaryReturn",
+   "file": "mei/report.md",
+   "span": "I would come back another evening on the laptop, but only if the meeting could end in a way I could not see coming. I solved it on my first try in 33 seconds, so I would not replay the same one. I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "mei primaryReturn",
+   "file": "mei/report.original.md.txt",
+   "span": "I would come back another evening on the laptop, but only if the meeting could end in a way I could not see coming. I solved it on my first try in 33 seconds, so I would not replay the same one. I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "mei laterFullReturn",
+   "file": "mei/report.md",
+   "span": "I would come back another evening on the laptop, but only if the next meeting could end in a way I could not see coming. I would not replay the same one. I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "mei laterFullReturn",
+   "file": "mei/report.original.md.txt",
+   "span": "I would come back another evening on the laptop, but only if the next meeting could end in a way I could not see coming. I would not replay the same one. I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "mei ask 1",
+   "file": "mei/report.md",
+   "span": "Make the first meeting harder, or make the later versions different. Asking all four and fetching the letter pointed straight at one agreement.",
+   "exact": true
+  },
+  {
+   "label": "mei ask 1",
+   "file": "mei/report.original.md.txt",
+   "span": "Make the first meeting harder, or make the later versions different. Asking all four and fetching the letter pointed straight at one agreement.",
+   "exact": true
+  },
+  {
+   "label": "mei ask 2",
+   "file": "mei/report.md",
+   "span": "Say at the start that the agreement list unlocks after you ask. On the phone, \"without a paid break\" was offered before I had asked Halil, and the version with a paid break did not appear until I did.",
+   "exact": true
+  },
+  {
+   "label": "mei ask 2",
+   "file": "mei/report.original.md.txt",
+   "span": "Say at the start that the agreement list unlocks after you ask. On the phone, \"without a paid break\" was offered before I had asked Halil, and the version with a paid break did not appear until I did.",
+   "exact": true
+  },
+  {
+   "label": "mei ask 3",
+   "file": "mei/report.md",
+   "span": "Show clearly what each rewrite costs against the minutes left. I wasted time on the phone before I saw I could not finish.",
+   "exact": true
+  },
+  {
+   "label": "mei ask 3",
+   "file": "mei/report.original.md.txt",
+   "span": "Show clearly what each rewrite costs against the minutes left. I wasted time on the phone before I saw I could not finish.",
+   "exact": true
+  },
+  {
+   "label": "mei later ask 1",
+   "file": "mei/report.md",
+   "span": "Make the meeting harder, or different on each try.",
+   "exact": true
+  },
+  {
+   "label": "mei later ask 2",
+   "file": "mei/report.md",
+   "span": "Say up front that agreement wording unlocks after you ask each person.",
+   "exact": true
+  },
+  {
+   "label": "mei later ask 3",
+   "file": "mei/report.md",
+   "span": "Show how many minutes a rewrite plus signatures needs against the minutes left.",
+   "exact": true
+  },
+  {
+   "label": "samir primaryReturn",
+   "file": "samir/report.md",
+   "span": "I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.",
+   "exact": true
+  },
+  {
+   "label": "samir primaryReturn",
+   "file": "samir/report.original.md.txt",
+   "span": "I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.",
+   "exact": true
+  },
+  {
+   "label": "samir laterFullReturn",
+   "file": "samir/report.md",
+   "span": "I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.",
+   "exact": true
+  },
+  {
+   "label": "samir laterFullReturn",
+   "file": "samir/report.original.md.txt",
+   "span": "I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.",
+   "exact": true
+  },
+  {
+   "label": "samir ask 1",
+   "file": "samir/report.md",
+   "span": "Make the honest route cost something. One agreement satisfied everyone in 30 seconds. The game never showed me a hard case on that route.",
+   "exact": true
+  },
+  {
+   "label": "samir ask 1",
+   "file": "samir/report.original.md.txt",
+   "span": "Make the honest route cost something. One agreement satisfied everyone in 30 seconds. The game never showed me a hard case on that route.",
+   "exact": true
+  },
+  {
+   "label": "samir ask 2",
+   "file": "samir/report.md",
+   "span": "Show the private-word lie earlier, or give the honest route its own private choices. I found it only by poking after the easy win. It was the best part, because the men compared notes and caught me.",
+   "exact": true
+  },
+  {
+   "label": "samir ask 2",
+   "file": "samir/report.original.md.txt",
+   "span": "Show the private-word lie earlier, or give the honest route its own private choices. I found it only by poking after the easy win. It was the best part, because the men compared notes and caught me.",
+   "exact": true
+  },
+  {
+   "label": "samir ask 3",
+   "file": "samir/report.md",
+   "span": "Let me ask people more than what they need. I would like to ask Halil and Rıza what Nuri really said, since both claim a promise.",
+   "exact": true
+  },
+  {
+   "label": "samir ask 3",
+   "file": "samir/report.original.md.txt",
+   "span": "Let me ask people more than what they need. I would like to ask Halil and Rıza what Nuri really said, since both claim a promise.",
+   "exact": true
+  },
+  {
+   "label": "samir later ask 1",
+   "file": "samir/report.md",
+   "span": "Make the honest route cost something, so one agreement cannot satisfy everyone.",
+   "exact": true
+  },
+  {
+   "label": "samir later ask 3",
+   "file": "samir/report.md",
+   "span": "Let me ask people more than what they need, such as what Nuri really said.",
+   "exact": true
+  },
+  {
+   "label": "diego primaryReturn",
+   "file": "diego/report.md",
+   "span": "I might come back on another evening to lie to Halil and Rıza again and see the exposure. I would not come back tonight, and I would not leave it running. It is turn-based and nothing happens while I'm away.",
+   "exact": true
+  },
+  {
+   "label": "diego primaryReturn",
+   "file": "diego/report.original.md.txt",
+   "span": "I might come back on another evening to lie to Halil and Rıza again and see the exposure. I would not come back tonight, and I would not leave it running. It is turn-based and nothing happens while I'm away.",
+   "exact": true
+  },
+  {
+   "label": "diego laterFullReturn",
+   "file": "diego/report.md",
+   "span": "Another evening, maybe, to lie again and see the exposure. Not tonight. It is turn-based, so I wouldn't leave it running: nothing happens while I'm away.",
+   "exact": true
+  },
+  {
+   "label": "diego laterFullReturn",
+   "file": "diego/report.original.md.txt",
+   "span": "Another evening, maybe, to lie again and see the exposure. Not tonight. It is turn-based, so I wouldn't leave it running: nothing happens while I'm away.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 1",
+   "file": "diego/report.md",
+   "span": "Let me feel a cost before the agreement stage. The risk only showed up after I wrote an agreement. Asking, then writing, always worked, and I solved it in 32 seconds.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 1",
+   "file": "diego/report.original.md.txt",
+   "span": "Let me feel a cost before the agreement stage. The risk only showed up after I wrote an agreement. Asking, then writing, always worked, and I solved it in 32 seconds.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 2",
+   "file": "diego/report.md",
+   "span": "Show the agreement options as short lines, not five long paragraphs that read like a form.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 2",
+   "file": "diego/report.original.md.txt",
+   "span": "Show the agreement options as short lines, not five long paragraphs that read like a form.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 3",
+   "file": "diego/report.md",
+   "span": "On desktop, fit the controls on one screen. The page runs off the bottom.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 3",
+   "file": "diego/report.original.md.txt",
+   "span": "On desktop, fit the controls on one screen. The page runs off the bottom.",
+   "exact": true
+  },
+  {
+   "label": "diego later ask 1",
+   "file": "diego/report.md",
+   "span": "Let a cost show before the write step. Right now asking, then writing, always works, and I won in 32 s.",
+   "exact": true
+  },
+  {
+   "label": "mina primaryReturn",
+   "file": "mina/report.md",
+   "span": "I would come back once, maybe on a Thursday with my friend, to compare which agreement each of us wrote. I would not come back alone, because I have seen both honest endings and the only other road is lying to Halil and Rıza.",
+   "exact": true
+  },
+  {
+   "label": "mina primaryReturn",
+   "file": "mina/report.original.md.txt",
+   "span": "I would come back once, maybe on a Thursday with my friend, to compare which agreement each of us wrote. I would not come back alone, because I have seen both honest endings and the only other road is lying to Halil and Rıza.",
+   "exact": true
+  },
+  {
+   "label": "mina laterFullReturn",
+   "file": "mina/report.md",
+   "span": "I would come back once, maybe on a Thursday with my friend, to compare which agreement each of us wrote. I would not come back alone, because I have seen both honest endings and the only other road is lying to Halil and Rıza.",
+   "exact": true
+  },
+  {
+   "label": "mina laterFullReturn",
+   "file": "mina/report.original.md.txt",
+   "span": "I would come back once, maybe on a Thursday with my friend, to compare which agreement each of us wrote. I would not come back alone, because I have seen both honest endings and the only other road is lying to Halil and Rıza.",
+   "exact": true
+  },
+  {
+   "label": "mina Later added newness condition",
+   "file": "mina/report.md",
+   "span": "Conditions: only with a friend to compare notes, and only if it offered something new beyond the endings I have seen. I would not play the lying road for its own sake.",
+   "exact": true
+  },
+  {
+   "label": "mina Later leave-it-running answer",
+   "file": "mina/report.md",
+   "span": "No. It is a one-sitting puzzle.",
+   "exact": true
+  },
+  {
+   "label": "mina Later another-evening answer",
+   "file": "mina/report.md",
+   "span": "Only for that compare-notes evening, and probably just once.",
+   "exact": true
+  },
+  {
+   "label": "mina ask 1",
+   "file": "mina/report.md",
+   "span": "When a button's terms change, show it. On the phone, \"Suggest late work without the letter\" kept its title, but the terms under it changed between two visits to the list.",
+   "exact": true
+  },
+  {
+   "label": "mina ask 1",
+   "file": "mina/report.original.md.txt",
+   "span": "When a button's terms change, show it. On the phone, \"Suggest late work without the letter\" kept its title, but the terms under it changed between two visits to the list.",
+   "exact": true
+  },
+  {
+   "label": "mina ask 2",
+   "file": "mina/report.md",
+   "span": "Make the ending say more about the road I chose. My two endings used nearly the same words.",
+   "exact": true
+  },
+  {
+   "label": "mina ask 2",
+   "file": "mina/report.original.md.txt",
+   "span": "Make the ending say more about the road I chose. My two endings used nearly the same words.",
+   "exact": true
+  },
+  {
+   "label": "mina ask 3",
+   "file": "mina/report.md",
+   "span": "Give the \"private word\" choice a name that tells me up front it means telling the two men opposite things.",
+   "exact": true
+  },
+  {
+   "label": "mina ask 3",
+   "file": "mina/report.original.md.txt",
+   "span": "Give the \"private word\" choice a name that tells me up front it means telling the two men opposite things.",
+   "exact": true
+  },
+  {
+   "label": "mina later ask 1",
+   "file": "mina/report.md",
+   "span": "When a button's terms change, show it. Same title, different terms is what I dislike most.",
+   "exact": true
+  },
+  {
+   "label": "Maya phone lie unanswered, she had not re-asked",
+   "file": "maya/report.md",
+   "span": "On the phone I never asked Halil again, so nobody reacted to it.",
+   "exact": true
+  },
+  {
+   "label": "Maya desktop responses and costly caught lies",
+   "file": "maya/report.md",
+   "span": "On desktop Halil, Rıza and the ending all answered my lie.",
+   "exact": true
+  },
+  {
+   "label": "Maya desktop caught lie raw reaction",
+   "file": "maya/desktop/wall-clock.jsonl",
+   "span": "Halil and Riza compared what I told them and withdrew their waivers; a 40 lira deposit now.",
+   "exact": true
+  },
+  {
+   "label": "Maya phone first run and second run on one device visit",
+   "file": "maya/phone/wall-clock.jsonl",
+   "span": "First run ended in 39 seconds, quite short. Second run, I fetched the letter and Ferda changed her answer but kept the old quote underneath.",
+   "exact": true
+  },
+  {
+   "label": "Maya phone stop TASTE words",
+   "file": "maya/report.md",
+   "span": "I am stopping on the phone after about 75 seconds. Talking changed what the agreement options said, and Halil refused with a clear reason, which I liked.",
+   "exact": true
+  },
+  {
+   "label": "Maya Riza quote uncertainty",
+   "file": "maya/report.md",
+   "span": "Rıza's second quote still said \"I need storage until four\" after I changed things. I did not know if it was stale.",
+   "exact": true
+  },
+  {
+   "label": "Mei report omits most tap reactions from verbatim",
+   "file": "mei/report.md",
+   "span": "Only logged lines are listed. Ordinary taps also carried reaction text, which is in the driver diary.",
+   "exact": true
+  },
+  {
+   "label": "Mei phone options before asking",
+   "file": "mei/report.md",
+   "span": "On the phone, before I had asked anyone, the same options said \"acceptance unknown; ask before writing.\"",
+   "exact": true
+  },
+  {
+   "label": "Mei wording differs between devices, her guess unverified",
+   "file": "mei/report.md",
+   "span": "My guess is that the wording depends on what I have asked, but I did not verify that.",
+   "exact": true
+  },
+  {
+   "label": "Mei wording without and with a paid break",
+   "file": "mei/report.md",
+   "span": "On the phone the late agreement read \"without a paid break\". On the laptop it read \"with a paid break\". I do not know why.",
+   "exact": true
+  },
+  {
+   "label": "Mei minutes costs praised",
+   "file": "mei/report.md",
+   "span": "Every action showed its cost in minutes before I chose it.",
+   "exact": true
+  },
+  {
+   "label": "Samir Voice diary names, own guess",
+   "file": "samir/report.md",
+   "span": "I recognised the names Halil and Rıza from my Voice diary, plus Osman, and thought of Selin and Nuran there. These are different characters and a different setting. I am fairly sure of the names and not sure of anything else.",
+   "exact": true
+  },
+  {
+   "label": "Samir Voice diary raw reaction",
+   "file": "samir/desktop/wall-clock.jsonl",
+   "span": "Halil, Riza, Osman ring a bell from my Voice diary, fairly sure but different setting here.",
+   "exact": true
+  },
+  {
+   "label": "Samir likes the lie while saying he would not",
+   "file": "samir/desktop/wall-clock.jsonl",
+   "span": "I said I would not, but I want to see what the game does with a lie. Doing it once as a test.",
+   "exact": true
+  },
+  {
+   "label": "Samir phone not scrolled",
+   "file": "samir/report.md",
+   "span": "I did not scroll or touch-scroll.",
+   "exact": true
+  },
+  {
+   "label": "Samir refusals explain themselves",
+   "file": "samir/report.md",
+   "span": "Refusals that say why: Halil \"late work needs a paid break\"",
+   "exact": true
+  },
+  {
+   "label": "Samir honest route 30 seconds stop words",
+   "file": "samir/report.md",
+   "span": "But the honest route finishes in 30 seconds with no tension and nobody needs me afterward.",
+   "exact": true
+  },
+  {
+   "label": "Diego desktop BORED stop words",
+   "file": "diego/desktop/wall-clock.jsonl",
+   "span": "Stopping desktop at 23 s. Same scenario as phone, I already know the rule: ask, then write.",
+   "exact": true
+  },
+  {
+   "label": "Diego desktop BORED want_quit words, known phone game",
+   "file": "diego/desktop/wall-clock.jsonl",
+   "span": "Same game as the phone, same refusals. I know the trick now: ask first, then write. Nothing new on this device.",
+   "exact": true
+  },
+  {
+   "label": "Diego phone FINISHED after two outcomes",
+   "file": "diego/phone/wall-clock.jsonl",
+   "span": "Stopping phone. Won in 32 s, then lied on purpose and lost: the lie got exposed and cost a deposit, the shop stayed shut.",
+   "exact": true
+  },
+  {
+   "label": "Diego desktop controls off the bottom, scroll not tested",
+   "file": "diego/report.md",
+   "span": "Only the first three controls fit. The rest (\"End the meeting…\", \"Open notebook\") are off the bottom, so I would have to scroll.",
+   "exact": true
+  },
+  {
+   "label": "Diego refusal told him what to change",
+   "file": "diego/report.md",
+   "span": "\"Ferda refuses: she needs a smaller service and a trial lease\" told me exactly what to change.",
+   "exact": true
+  },
+  {
+   "label": "Diego cost felt only after writing",
+   "file": "diego/report.md",
+   "span": "The risk only showed up after I wrote an agreement.",
+   "exact": true
+  },
+  {
+   "label": "Mina phone recognition, her own words, an hour ago",
+   "file": "mina/phone/wall-clock.jsonl",
+   "span": "I recognise it all from the laptop an hour ago, fully sure.",
+   "exact": true
+  },
+  {
+   "label": "Mina desktop dont raw spelling",
+   "file": "mina/desktop/wall-clock.jsonl",
+   "span": "I dont feel I need to begin again right now.",
+   "exact": true
+  },
+  {
+   "label": "Mina report on dropped apostrophe",
+   "file": "mina/report.md",
+   "span": "(My shell quoting dropped the apostrophe, so the log reads \"dont\".)",
+   "exact": true
+  },
+  {
+   "label": "Mina phone wont raw spelling",
+   "file": "mina/phone/wall-clock.jsonl",
+   "span": "I wont do that, it is not who I am at work either.",
+   "exact": true
+  },
+  {
+   "label": "Mina Rizas raw spelling",
+   "file": "mina/phone/wall-clock.jsonl",
+   "span": "Going back. I will try the honest morning plan with Rızas yard instead, just to see if it also works.",
+   "exact": true
+  },
+  {
+   "label": "Mina changed terms under one title raw reaction",
+   "file": "mina/phone/wall-clock.jsonl",
+   "span": "Same button title, different terms. I had to reread. Picking the yard plan.",
+   "exact": true
+  },
+  {
+   "label": "Mina unlock cue read as intended",
+   "file": "mina/phone/wall-clock.jsonl",
+   "span": "So asking unlocks options. Makes sense, I will ask Rıza and Osman first.",
+   "exact": true
+  },
+  {
+   "label": "Mina minutes needed versus remaining praised",
+   "file": "mina/desktop/wall-clock.jsonl",
+   "span": "It shows the minutes needed versus remaining. Very clerk-friendly. Signing.",
+   "exact": true
+  },
+  {
+   "label": "Mina stale Wait for Riza tap, her own fault",
+   "file": "mina/phone/wall-clock.jsonl",
+   "span": "The sign button became Wait for Rıza. Fair, he is out. My extra tap missed, my fault for rushing.",
+   "exact": true
+  },
+  {
+   "label": "Mina opening lie refusal, not obligated",
+   "file": "mina/report.md",
+   "span": "I would not play the lying road for its own sake.",
+   "exact": true
+  },
+  {
+   "label": "Mina phone no problem from layout",
+   "file": "mina/report.md",
+   "span": "Trouble: none from the layout.",
+   "exact": true
+  }
+ ]
+}

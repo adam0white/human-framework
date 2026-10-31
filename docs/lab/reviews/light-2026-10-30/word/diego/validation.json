@@ -1,0 +1,104 @@
+{
+  "tester": "Diego Silva",
+  "validationTime": "2026-10-31T05:53:51.498214+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T05:49:07.405Z",
+        "elapsed_s": 90.288,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping phone. Won in 32 s, then lied on purpose and lost: the lie got exposed and cost a deposit, the shop stayed shut. That consequence was good. Feedback I am stopping chosen, closed with Not now, nothing typed.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 87.126,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T05:48:01.157Z",
+          "elapsed_s": 24.04,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "Morning work. Smaller service and trial lease. Use R\u0131za\u2019s yard. (2 minutes)"
+          },
+          "reaction": "Cheapest that Ferda will take and honours the promises.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Morning work. Smaller service and trial lease. Use R\u0131za\u2019s yard. (2 minutes) is visible text and also the start of the control \"Morning work. Smaller service and trial lease. Use R\u0131za\u2019s yard. (2 minutes) Halil works mornings on a clear floor. R\u0131za stores his cart in his own yard. You cover the rent gap. Ferda takes a smaller service on a one-month trial lease. Total from your fund: \u20ba60. Writing takes 2 minutes, even if someone then refuses.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T05:49:33.313Z",
+        "elapsed_s": 24.752,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping desktop at 23 s. Same scenario as phone, I already know the rule: ask, then write. The late-work blind gamble got refused by Halil. Feedback I am stopping chosen, closed with Not now, nothing typed.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 21.808,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

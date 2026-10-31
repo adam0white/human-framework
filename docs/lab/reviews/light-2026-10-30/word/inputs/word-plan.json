@@ -1,0 +1,102 @@
+[
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "349cd3a9bc8292b1a379a97442720813a6b93253",
+    "ceiling": 20,
+    "tester": "Maya Chen",
+    "first": "maya",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word/maya",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 24. Canada; Vancouver library assistant, raised in a multilingual household. She plays narrative adventures and cooperative puzzles with her sister.\n- HF temperament: curious; high openness, moderate conscientiousness and agreeableness, low extraversion.\n- Likes: small discoveries, people who remember a choice, puzzles with readable consequences.\n- Dislikes: mandatory lore before action, repeated exposition.\n- Play habits: Reads a scene twice when interested, tries the unusual reply, then checks who reacted. Usually plays on a phone at home.\n- Personal diary: [panel/maya-chen.md](panel/maya-chen.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual other-game HF history supplied by the director later; first target visit",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22400,
+      "desktop": 22401
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "349cd3a9bc8292b1a379a97442720813a6b93253",
+    "ceiling": 20,
+    "tester": "Mei Tan",
+    "first": "mei",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word/mei",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 53. Singapore; accountant caring for an older parent. Plays turn-based tactics and word games.\n- HF temperament: patient; high conscientiousness, low extraversion, moderate openness.\n- Likes: keeping commitments, legible deadlines, constrained recovery.\n- Dislikes: dates she cannot compare, hidden selection changes.\n- Play habits: Uses laptop. Reads the current situation before committing, checks progress after an action, and prefers a durable save to restarting.\n- Personal diary: [panel/mei-tan.md](panel/mei-tan.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual other-game HF history supplied by the director later; first target visit",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22402,
+      "desktop": 22403
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "349cd3a9bc8292b1a379a97442720813a6b93253",
+    "ceiling": 20,
+    "tester": "Samir Haddad",
+    "first": "samir",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word/samir",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 34. Jordan; Amman civil engineer. Enjoys grand strategy and tabletop roleplaying; often takes the supporting role.\n- HF temperament: curious; high openness and agreeableness, moderate conscientiousness.\n- Likes: place, relationships, competing loyalties.\n- Dislikes: a moral choice with one obviously rewarded answer.\n- Play habits: Uses desktop. Asks what a person needs before optimizing. Remembers names, but confuses similar names and admits uncertainty.\n- Personal diary: [panel/samir-haddad.md](panel/samir-haddad.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual other-game HF history supplied by the director later; first target visit",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22404,
+      "desktop": 22405
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "349cd3a9bc8292b1a379a97442720813a6b93253",
+    "ceiling": 20,
+    "tester": "Diego Silva",
+    "first": "diego",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word/diego",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 28. Brazil; Recife sound editor. Plays fighting games competitively and short experimental games between projects.\n- HF temperament: impatient; high openness, low agreeableness, moderate conscientiousness.\n- Likes: responsive controls, learnable risk, a distinctive mood.\n- Dislikes: unresponsive input, forms for simple acts.\n- Play habits: Uses desktop and occasionally phone. Tries the obvious physical verb first. Can enjoy quiet play when it gives him something consequential to attend to.\n- Personal diary: [panel/diego-silva.md](panel/diego-silva.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual other-game HF history supplied by the director later; first target visit",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22406,
+      "desktop": 22407
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "word",
+    "title": "His Word",
+    "url": "https://word.adamwhite.work/?labRunSource=agent",
+    "commit": "349cd3a9bc8292b1a379a97442720813a6b93253",
+    "ceiling": 20,
+    "tester": "Mina Georgiou",
+    "first": "mina",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word/mina",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 29. Cyprus; Nicosia civil records clerk. Plays occasional word games on her phone and a weekly cooperative mystery game with a friend.\n- HF temperament: no HF exposure and no recorded temperament. Treat her as a person who weighs concrete likes against concrete limits, and who says what she saw in play in her own words.\n- Likes: promises she can understand before she acts, consequences written down where she can reread them, checking what changed after each choice, a friend to compare notes with after a session, tea within reach.\n- Dislikes: text or options that change while she is reading them, the same label on buttons that do different things, being asked for accounts or permissions without a visible reason, loud sounds she did not start.\n- Play habits: Does word games in spare minutes on her phone. Plays the cooperative mystery with a friend on a laptop one evening a week, taking turns and comparing notes. At work she files and cross-checks records, so she reads the whole screen, weighs the choices, picks one and checks what changed. Has no special experience with this lab's games. Says plainly when something does not suit her.\n- Personal diary: empty. No play history of any kind. Only observed sessions can add history.",
+    "prior_src": null,
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22408,
+      "desktop": 22409
+    },
+    "model": "opus"
+  }
+]

@@ -1,0 +1,549 @@
+{
+  "time": "2026-10-31T04:45:36.686128+00:00",
+  "sessions": {
+    "jonas": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T03:57:38.721Z",
+          "elapsed_s": 148.884,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping at 146 s. First run: all three home reached the street at about 114 s. Second run: tested Come now shortcut and Sevim refused without her books, so no free skip. I understand the loop. One wish: I want to know what happens if smoke kills someone, and whether Burak ever matters. I would come back another evening to see whether order or speed changes who chooses to follow. Would not leave it running. Selected I am stopping in Feedback; typed nothing, submitted nothing.",
+          "game_clock": "06:10, second run, stair closes in 127s",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T03:55:10.450Z",
+          "elapsed_s": 0.613,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 614,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 2,
+        "automaticShots": 1,
+        "retainedShots": 3,
+        "errors": [
+          {
+            "t": "2026-10-31T03:55:37.437Z",
+            "elapsed_s": 27.6,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "3 Derya Stopped \u00b7 needs to see the stair"
+            },
+            "reaction": "Sevim follows now. Fetch Derya and Hacer before going down, to batch the trip.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "3 Derya Stopped \u00b7 needs to see the stair is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          },
+          {
+            "t": "2026-10-31T03:56:16.891Z",
+            "elapsed_s": 67.054,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "4 Hacer Stopped \u00b7 catching my breath"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 3,
+            "error": "4 Hacer Stopped \u00b7 catching my breath is not on the page now; it was listed 7 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          },
+          {
+            "t": "2026-10-31T03:56:18.386Z",
+            "elapsed_s": 68.549,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 2,
+            "error": "4 Hacer Stopped \u00b7 needs to see the stair is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ],
+        "rawSha256": "4108e26cef93a1fef955b20083fd073b54f947e4185aec143103ee7b294e476c"
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T03:59:56.553Z",
+          "elapsed_s": 136.365,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Two of three home, Derya dead from smoke while I tried a dead Street button. I have seen what this version does and I am stopping here.",
+          "game_clock": "31s left",
+          "engagement": 3,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T03:57:41.111Z",
+          "elapsed_s": 0.923,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 923,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 3,
+        "automaticShots": 1,
+        "retainedShots": 4,
+        "errors": [
+          {
+            "t": "2026-10-31T03:57:50.362Z",
+            "elapsed_s": 10.174,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "The books B"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 16,
+            "error": "The books B is shown but disabled right now (game state, not a driver failure)",
+            "requested_control_present_before": true
+          },
+          {
+            "t": "2026-10-31T03:59:27.309Z",
+            "elapsed_s": 107.121,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Walk to the street"
+            },
+            "reaction": "Both following. Leading them out.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 34,
+            "error": "Cannot tap Walk to the street: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+            "requested_control_present_before": true
+          }
+        ],
+        "rawSha256": "449790c094d850bb962826c1d46094ae628265d65717d9fd01d82c628e6ed193"
+      }
+    },
+    "aisha": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T04:02:41.845Z",
+          "elapsed_s": 130.822,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping after about two minutes; everyone is out. I liked Hacer saying she could not have found the stair alone. I would try a different order another evening, but I do not need it tonight. Pressed I am stopping, typed nothing, Not now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T04:00:31.513Z",
+          "elapsed_s": 0.49,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 490,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 3,
+        "automaticShots": 1,
+        "retainedShots": 4,
+        "errors": [],
+        "rawSha256": "b92ad2e9cbf4c28abe2a6225f7f72089c60f256578f44c43f2a5d25525bc700b"
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T04:05:20.259Z",
+          "elapsed_s": 157.105,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping at about 2.7 minutes. Derya died and Hacer was still stuck; I could not tell whether my walk taps were moving me. Sevim and her books was the best part. I would not need it again tonight.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T04:02:44.171Z",
+          "elapsed_s": 1.017,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1018,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 2,
+        "automaticShots": 1,
+        "retainedShots": 3,
+        "errors": [],
+        "rawSha256": "27feeb7f9d68d14b66c47495f4476eac6befcb5ceb7f24bd5d48857f626666c9"
+      }
+    },
+    "diego": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T04:08:25.210Z",
+          "elapsed_s": 150.985,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the phone session at about 150 seconds. Two out, one dead, one away. The first minute was me tapping and not knowing if I moved; from the torch moment on it was good and the death landed. I did not wait for the end card. Feedback: I picked I am stopping, typed nothing, pressed Not now.",
+          "game_clock": "stair closes in 22s",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T04:05:54.728Z",
+          "elapsed_s": 0.503,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 503,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 3,
+        "automaticShots": 1,
+        "retainedShots": 4,
+        "errors": [
+          {
+            "t": "2026-10-31T04:06:32.322Z",
+            "elapsed_s": 38.097,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Walk to landing 3"
+            },
+            "reaction": "Derya is nearer; trying her landing instead.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 19,
+            "error": "Cannot tap Walk to landing 3: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+            "requested_control_present_before": true
+          }
+        ],
+        "rawSha256": "efc247410d74877aeaeebdd89f889bd3dfa0ecdafbec454daa764286666e6a59"
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T04:10:58.110Z",
+          "elapsed_s": 151.132,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the desktop session at about 150 seconds. Sevim and Burak out, Derya and Hacer dead. Desktop controls were clear and fast, but I collected two followers early and they died while I fetched the others, with no visible warning of how long they had. Feedback: I picked I am stopping, typed nothing, pressed Not now.",
+          "game_clock": "stair closes in 16s",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T04:08:27.881Z",
+          "elapsed_s": 0.903,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 903,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 2,
+        "automaticShots": 1,
+        "retainedShots": 3,
+        "errors": [],
+        "rawSha256": "15e977f105721c3be0ba0346d11667d3918294990349f17afe6a9a6608de0f95"
+      }
+    },
+    "leila": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T04:13:30.852Z",
+          "elapsed_s": 114.503,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the phone session at under two minutes. Talking to Sevim worked well and the hints were precise, but I could not make myself move to the other floors, Hacer died, and I do not know why. I would not leave it running.",
+          "game_clock": "stair closes 50s",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T04:11:37.279Z",
+          "elapsed_s": 0.93,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 931,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 3,
+        "automaticShots": 1,
+        "retainedShots": 4,
+        "errors": [
+          {
+            "t": "2026-10-31T04:12:15.144Z",
+            "elapsed_s": 38.795,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "3 Derya Stopped \u00b7 catching my breath"
+            },
+            "reaction": "Sevim made it, a clear win. Going to Derya.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "3 Derya Stopped \u00b7 catching my breath is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ],
+        "rawSha256": "9ac364e66c70366d648488ec9666159a6eee0488bc98e2d1cc01f7393d2e70b8"
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T04:16:16.021Z",
+          "elapsed_s": 163.988,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping at under three minutes. Sevim got out, Derya and Hacer died. Talking to people is precise and good. The silent walk delay cost me the run. Feedback opened with I am confused already in the note; I pressed Not now and sent nothing.",
+          "game_clock": "stair closes in 5s",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T04:13:33.148Z",
+          "elapsed_s": 1.115,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1116,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 2,
+        "automaticShots": 1,
+        "retainedShots": 3,
+        "errors": [],
+        "rawSha256": "7720b27e8566ec4760db7c942de7ef7c2ea8892a6daeff8a42202a2fe71f1281"
+      }
+    },
+    "marta": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T04:19:00.552Z",
+          "elapsed_s": 127.61,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I got everyone out once. The retry asks me to do the same steps again, so I stop here on the computer.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T04:16:53.864Z",
+          "elapsed_s": 0.922,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 922,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 5,
+        "automaticShots": 1,
+        "retainedShots": 6,
+        "errors": [
+          {
+            "t": "2026-10-31T04:17:40.328Z",
+            "elapsed_s": 47.386,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+            },
+            "reaction": "Sevim is out. I cannot tell if the first Street press worked slowly in the thick smoke or my second press did it. Now up for Hacer, top floor.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 4,
+            "error": "4 Hacer Stopped \u00b7 needs to see the stair is not on the page now; it was listed 4 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          },
+          {
+            "t": "2026-10-31T04:17:47.098Z",
+            "elapsed_s": 54.156,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 4,
+            "error": "4 Hacer Stopped \u00b7 needs to see the stair is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ],
+        "rawSha256": "d2674eaf2165abd2ac4a3b6a999238ff7481e4538501767d004a9a7ced1a7dd5"
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T04:22:57.055Z",
+          "elapsed_s": 234.476,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop on the phone. Hacer died and I do not know why my tap took us down instead of up. Trying again would be guessing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "open": {
+          "t": "2026-10-31T04:19:03.651Z",
+          "elapsed_s": 1.072,
+          "kind": "input",
+          "op": "open",
+          "input": {},
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 1073,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "successfulManualShots": 4,
+        "automaticShots": 1,
+        "retainedShots": 5,
+        "errors": [
+          {
+            "t": "2026-10-31T04:20:59.606Z",
+            "elapsed_s": 117.027,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "4 Hacer"
+            },
+            "reaction": "I am still standing at the street door. My landing 4 tap did nothing that I can see. Hacer says smoke may kill me. Tapping her name directly.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 18,
+            "error": "4 Hacer is visible text and also the start of the control \"4 Hacer Stopped \u00b7 needs to see the stair \u00b7 Smoke may kill me. Get me outside.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+            "requested_control_present_before": true
+          },
+          {
+            "t": "2026-10-31T04:22:00.273Z",
+            "elapsed_s": 177.694,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Pause and open menu"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 271,
+            "error": "Cannot tap Pause and open menu: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+            "requested_control_present_before": true
+          }
+        ],
+        "rawSha256": "9e3d005a1d7500b402a1cac04fbf5c3c239b8cacdc2dc9ac57b9add67b07d66c"
+      }
+    }
+  },
+  "lastReturn": "2026-10-31T04:23:43.494642+00:00",
+  "nextRoundNotBefore": "2026-10-31T04:38:43.494642+00:00"
+}

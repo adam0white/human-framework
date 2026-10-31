@@ -1,0 +1,353 @@
+[
+ {
+  "tester": "Jonas Berg",
+  "device": "desktop",
+  "privatePath": "smoke/jonas/desktop/a-001.png",
+  "bytes": 100846,
+  "sha256": "60f5acfad9e94bc3354dff441e8bb588009426f46417fbd2619e148313ce303c",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Jonas Berg",
+  "device": "desktop",
+  "privatePath": "smoke/jonas/desktop/a-002.png",
+  "bytes": 102031,
+  "sha256": "7df3a9c53909af19217635eb80600634575ed2717d3f4bd65d593c2235207370",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Jonas Berg",
+  "device": "desktop",
+  "privatePath": "smoke/jonas/desktop/first-minute.png",
+  "bytes": 95273,
+  "sha256": "929ffe396acda6a4070f5cfad91ab86f3349ca5aeba48ef7cfaca5679673d231",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Jonas Berg",
+  "device": "phone",
+  "privatePath": "smoke/jonas/phone/b-001.png",
+  "bytes": 64397,
+  "sha256": "4039a27a1d6a1b09a4db81b7b2395119e9debb5738dd5c5e2e46fae99394d16a",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Jonas Berg",
+  "device": "phone",
+  "privatePath": "smoke/jonas/phone/b-002.png",
+  "bytes": 56497,
+  "sha256": "bad19c08d4859a236b4bc14fe074db6f0fdb99cb3a855a8c3488a4cc040de239",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Jonas Berg",
+  "device": "phone",
+  "privatePath": "smoke/jonas/phone/b-003.png",
+  "bytes": 58681,
+  "sha256": "55301ef384cbb41fa35b5079aa998becaaf3ddcc69e063e066eed09df9dbeb73",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Jonas Berg",
+  "device": "phone",
+  "privatePath": "smoke/jonas/phone/first-minute.png",
+  "bytes": 56082,
+  "sha256": "d11b018ac8f99026bdb5c16cd9a3798c91e0bbad64a1d23ae1609e61f4860a8d",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Aisha Rahman",
+  "device": "desktop",
+  "privatePath": "smoke/aisha/desktop/a-001.png",
+  "bytes": 100028,
+  "sha256": "7660d2e2b70255b937fdc7bc656dcf1fdb234f65758192d1d6922181647d79dc",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Aisha Rahman",
+  "device": "desktop",
+  "privatePath": "smoke/aisha/desktop/a-002.png",
+  "bytes": 87601,
+  "sha256": "333788a035faba45c45510e14d8a3341f2226720e81a115d172030d60bd644bf",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Aisha Rahman",
+  "device": "desktop",
+  "privatePath": "smoke/aisha/desktop/a-003.png",
+  "bytes": 73522,
+  "sha256": "2f89ca00c61e25b799f51197f7fd9bd2ad74628143a7a31a8a0660cd3b54ac41",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Aisha Rahman",
+  "device": "desktop",
+  "privatePath": "smoke/aisha/desktop/first-minute.png",
+  "bytes": 88671,
+  "sha256": "e2aab4b3569dd734665cd1b4f9ae0587278c5f6835978daafa9509d54ef51dbb",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Aisha Rahman",
+  "device": "phone",
+  "privatePath": "smoke/aisha/phone/b-001.png",
+  "bytes": 64391,
+  "sha256": "40da412e4be85eb16b1e26ae49613e37eee66bbbed849bb01f2ca157f78ff248",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Aisha Rahman",
+  "device": "phone",
+  "privatePath": "smoke/aisha/phone/b-002.png",
+  "bytes": 53734,
+  "sha256": "1b7d0f047bd39902364cc6a29d1279fe7307dde1f433b66c79296d4b989b019d",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Aisha Rahman",
+  "device": "phone",
+  "privatePath": "smoke/aisha/phone/first-minute.png",
+  "bytes": 57803,
+  "sha256": "d361deb4686b60c83a72a67a3b72667bc4e9786d03b0f400f4cc25e86bac4e31",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Diego Silva",
+  "device": "phone",
+  "privatePath": "smoke/diego/phone/a-001.png",
+  "bytes": 64203,
+  "sha256": "aa2aec2e8a316efe14cafe3159c89da0ecacca2e3226b590bf5eb6e911818dfd",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Diego Silva",
+  "device": "phone",
+  "privatePath": "smoke/diego/phone/a-002.png",
+  "bytes": 55168,
+  "sha256": "ca4997143d3dde5fe8610395c1e3ae9c8274b73064f8ae322ed1cc19da0599d4",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Diego Silva",
+  "device": "phone",
+  "privatePath": "smoke/diego/phone/a-003.png",
+  "bytes": 54227,
+  "sha256": "e00656357a69adf3e99be9a6d51d2016ee38aea03c222ef69ac8517b0c068f26",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Diego Silva",
+  "device": "phone",
+  "privatePath": "smoke/diego/phone/first-minute.png",
+  "bytes": 54996,
+  "sha256": "67839ea46cac4ae9cd1e43ee648e91758ad3fd334f71021ff5878cdda12be849",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Diego Silva",
+  "device": "desktop",
+  "privatePath": "smoke/diego/desktop/b-001.png",
+  "bytes": 100901,
+  "sha256": "be6cb623f02c3038f0bfd82292283dc60840e9041ec502b4602b271b88ee9c34",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Diego Silva",
+  "device": "desktop",
+  "privatePath": "smoke/diego/desktop/b-002.png",
+  "bytes": 87278,
+  "sha256": "d761137e0dcb54d727856609c32596e22387172bcf41d27dc65d63366eab53e1",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Diego Silva",
+  "device": "desktop",
+  "privatePath": "smoke/diego/desktop/first-minute.png",
+  "bytes": 96086,
+  "sha256": "35f78fde86d44b8affe34d1bea20cd51a1591a754e0e320aa63966026a6014ad",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Leila Mansour",
+  "device": "phone",
+  "privatePath": "smoke/leila/phone/a-001.png",
+  "bytes": 64478,
+  "sha256": "f72bd7e5174d91c1264a74bbf84bea3eaa28e6dcbce487fa0031262ca35b855c",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Leila Mansour",
+  "device": "phone",
+  "privatePath": "smoke/leila/phone/a-002.png",
+  "bytes": 59419,
+  "sha256": "f24c5738d31d0e7551705ff44aea5b9e7f0cb6515b763706f309e5ebac511303",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Leila Mansour",
+  "device": "phone",
+  "privatePath": "smoke/leila/phone/a-003.png",
+  "bytes": 59219,
+  "sha256": "c83c22a107897b8f699e3ab828c05ff23df7b1dd85b2b51f0697b73f77c23b80",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Leila Mansour",
+  "device": "phone",
+  "privatePath": "smoke/leila/phone/first-minute.png",
+  "bytes": 56463,
+  "sha256": "dc1fd8ddda225d726100dd338183681ca7b36582e4bbed8d731dbeeb3ad85d01",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Leila Mansour",
+  "device": "desktop",
+  "privatePath": "smoke/leila/desktop/b-001.png",
+  "bytes": 100846,
+  "sha256": "60f5acfad9e94bc3354dff441e8bb588009426f46417fbd2619e148313ce303c",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Leila Mansour",
+  "device": "desktop",
+  "privatePath": "smoke/leila/desktop/b-002.png",
+  "bytes": 87078,
+  "sha256": "24d08953ff19b73428989e3670f753fd0e5c792d47e22ce20ca5a831b9bdb144",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Leila Mansour",
+  "device": "desktop",
+  "privatePath": "smoke/leila/desktop/first-minute.png",
+  "bytes": 90894,
+  "sha256": "f4ad03320419afb2f2e06e9f0c3ab499fec8c7d6d40aa1fd7b5c7e47bcc39e62",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "desktop",
+  "privatePath": "smoke/marta/desktop/a-001.png",
+  "bytes": 101975,
+  "sha256": "3531795c7a1b631b9347cd6b086ca324dd7de5bd37125682879dfe0a70da6909",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "desktop",
+  "privatePath": "smoke/marta/desktop/a-002.png",
+  "bytes": 82167,
+  "sha256": "c4584515b8ff6393bc72641ba6d6700b99df1b688aa7ffb0515a5928d9393b13",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "desktop",
+  "privatePath": "smoke/marta/desktop/a-003.png",
+  "bytes": 87258,
+  "sha256": "1bdf3d491a9b2a96061fbc4f234b3a14a1cec1ead1c076bda61e60ec2670e922",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "desktop",
+  "privatePath": "smoke/marta/desktop/a-004.png",
+  "bytes": 74372,
+  "sha256": "795a0bc6c07efa17dc5d038f8925a381db9f5715ce86b988cb38e4c66e075341",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "desktop",
+  "privatePath": "smoke/marta/desktop/a-005.png",
+  "bytes": 74647,
+  "sha256": "6fd62db3d819119f7e71c580c3418f34ee6b8d35ed6ce4e973fb54a11c7e47f0",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "desktop",
+  "privatePath": "smoke/marta/desktop/first-minute.png",
+  "bytes": 93884,
+  "sha256": "cb1999f4d620fa1869fe354b370dc258971ba5c8dde087f39a036cde5c3f23eb",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "phone",
+  "privatePath": "smoke/marta/phone/b-001.png",
+  "bytes": 64391,
+  "sha256": "40da412e4be85eb16b1e26ae49613e37eee66bbbed849bb01f2ca157f78ff248",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "phone",
+  "privatePath": "smoke/marta/phone/b-002.png",
+  "bytes": 54404,
+  "sha256": "9f2a824e36d73b574ccf87632b64a2db907f85f20540a1f68143f7f568fc01b9",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "phone",
+  "privatePath": "smoke/marta/phone/b-003.png",
+  "bytes": 64080,
+  "sha256": "4c79ab17d467750779e8bca9e6b7957bd620a629c293fef357e30a404f96d9da",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "phone",
+  "privatePath": "smoke/marta/phone/b-004.png",
+  "bytes": 56323,
+  "sha256": "0cdacead228bf5830306927a6627607d9216b379f475e91ba4a2e342e200150d",
+  "testerImageReadReceipt": true,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ },
+ {
+  "tester": "Marta Kowalska",
+  "device": "phone",
+  "privatePath": "smoke/marta/phone/first-minute.png",
+  "bytes": 64083,
+  "sha256": "c220b2f8976d9fe7d6f3c14217ffdb65124d49a409bcba213501b06a2891bdf9",
+  "testerImageReadReceipt": false,
+  "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic or unviewed capture."
+ }
+]

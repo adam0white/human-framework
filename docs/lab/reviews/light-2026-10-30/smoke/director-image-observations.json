@@ -1,0 +1,22 @@
+{
+  "time": "2026-10-31T05:08:43.607610+00:00",
+  "scope": "Director viewed existing tester captures; no new screenshot or browser launched",
+  "images": [
+    {
+      "tester": "marta",
+      "device": "phone",
+      "file": "b-004.png",
+      "privateSha256": "0cdacead228bf5830306927a6627607d9216b379f475e91ba4a2e342e200150d"
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "file": "b-002.png",
+      "privateSha256": "d761137e0dcb54d727856609c32596e22387172bcf41d27dc65d63366eab53e1"
+    }
+  ],
+  "observations": [
+    "Marta phone shows the small player figure at the street, two neighbours marked Outside and Hacer warning that smoke may kill her. This frame does not establish the target of an earlier tap or why she died.",
+    "Diego desktop shows the player figure and torch cone on the stair. Static captures do not prove continuous movement or the timing of earlier controls."
+  ]
+}

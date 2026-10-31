@@ -1990,3 +1990,149 @@ Other items from my earlier report:
 - The clipped status line "Time is paus…" on desktop.
 
 **Cleanup:** I touched no repo, started no processes and own no worktree, so `git worktree list` does not apply. I wrote no files except the four screenshots through the driver (a-001, a-002, b-001, b-002), which are within the five per device allowed.
+
+<!-- selected-continuity-key: light-1030:word:maya:free -->
+## 2026-10-31 His Word LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/word/maya/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/word/maya/report.original.md.txt), original SHA256 `1766314580dd88e1d08e7acea180b5dfb0e032f0607734f3e1177782f605231c`. Build 349cd3a9bc8292b1a379a97442720813a6b93253/HF 4.0.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order phone then desktop; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- Stops: phone 77.667 s TASTE (13 minutes left on the game clock) and desktop 71.252 s TASTE. Her phone visit held a second meeting after the first ended AGREED at about 39 s.
+- Her phone report says the lie went unanswered, but she had not asked Halil again there; on desktop Halil, Riza and the ending answered it and caught lies were costly. The game is not globally unresponsive to a private word.
+- Ferda's reply still carried "The letter may tell us whether late work pays" after the letter (F-2438); this may be a historic last-heard line, and she said she did not know whether it was stale. Desktop clipping (b-002) is not established without a scroll test.
+- The stop labels (TASTE, FINISHED, BORED) are the producers' own session labels; this is one individual of five, ten stops in all, not ten independent people and not five complete games. The return answers are conditional and the conditions differ. Feedback: the quick "I'm stopping" label prefilled the draft, Not now closed it, no note was typed or submitted and no consent setting changed. The agent run-source marker has no independently read production receipt. The driver is native-tap-v2 (fork-unverified, hash-bound, not upstream approved). Short durations are model and tool time.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would you return:** Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running.
+
+**Ranked asks:**
+1. Make a run last longer, or give me more to try. Both runs ended in under a minute. After each, I had seen the loop.
+2. Let people react to my private word sooner, and on every path. On desktop Halil, Rıza and the ending all answered my lie. On the phone I never asked Halil again, so nobody reacted to it.
+3. Update a person's stale line after I fetch the letter. On the phone, Ferda's reply still carried "The letter may tell us whether late work pays" after I had fetched the letter.
+
+## 1. Session
+
+- **Persona:** Maya Chen, 24, Vancouver library assistant.
+- **Exposure:** first visit to His Word. I have played other Human Framework (HF) games before.
+- **Round and arm:** light-1031-word1, free stop (floor 0, ceiling 20 min).
+- **Own history:** I read all 872 lines of own-history.md in two chunks. None of it covers this game.
+- **URL:** https://word.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light, port 22400. About 78 s on the driver clock.
+- **Session B:** 1280x800 keyboard and mouse, light, port 22401. About 71 s on the driver clock.
+- **Both sessions** ended far under the 20-minute ceiling. Recording stayed on. I changed no consent.
+
+## 2. First impressions
+
+- **A, 0.5 s:** A short recording note and a "Take a seat" button. There was no lore wall.
+- **A, ~9 s:** Halil said what he needs in one clear quote. Each person's request was short and specific.
+- **A, ~14 s:** The "Write an agreement" screen showed five long options at once. That was a lot to read.
+- **A, ~25 s:** After I talked, the agreement list changed and a cheaper yard option appeared. My questions had an effect.
+- **A, ~39 s:** The first run ended AGREED. That was fast.
+- **B, ~4 s:** Same opening on desktop, in a centred column.
+- **B, ~16 s:** Halil said "You told me the floor was reserved for morning repairs." He remembered what I told him.
+
+## 3. Verbatim
+
+Times are the driver's elapsed_s. Lines sent on an op have no kind.
+
+### Session A (phone)
+
+- 4.2: "Short and clean; no lore wall. Taking a seat."
+- 6.8: "A clock and a deadline with two promises that clash. Reasonably short intro. Trying the table."
+- 11.1: "Halil gave a clear need. Trying the private talk, the unusual option."
+- 13.1: "These are contradictory claims to each man. A lie, probably. I want to see who reacts."
+- 16.5: "Five long agreement options at once is a lot to read. I have not asked Riza or Osman yet, so going back to hear them first."
+- 21.2: "Riza left on his round just as I asked him; the clock is pressing. Now Osman."
+- 26.8: "The agreement list changed after I talked: a Riza-yard option appeared at lower cost. Good, my questions mattered. Ferda still unknown, so asking her."
+- 33.6: "Every option now says whether Ferda refuses, in the text itself. That is readable. Writing the yard and trial-lease one."
+- 41.4: "Finished in under 40 seconds. It ended well, but my little lie to Halil was never mentioned. Reading the notebook."
+- 43.4: "Nice record of who said what. My lie to Halil is in it, but nobody ever reacted to it."
+- 48.4: "One run is under a minute. I want to try the other lie and the letter this time."
+- 64.4, first_minute (16 minutes before Osman leaves): "No lore wall; I was asking people within seconds. My questions changed the agreement list, and my small lie to Halil showed in the notebook. First run ended in 39 seconds, quite short. Second run, I fetched the letter and Ferda changed her answer but kept the old quote underneath."
+- 68.0: "Halil said he needs a paid break for late work and this one says without one. Trying it to see whether he refuses."
+- 71.4: "Halil refused with a plain reason, which I liked. I have seen the loop twice; opening Feedback before I stop."
+- 77.7, stop, TASTE, engagement 3 (13 minutes before Osman leaves): "I am stopping on the phone after about 75 seconds. Talking changed what the agreement options said, and Halil refused with a clear reason, which I liked. But the first run ended in 39 seconds and nobody reacted to my small lie to Halil. I have seen the loop; I want to try the desktop."
+
+### Session B (desktop)
+
+- 3.8: "Second visit tonight, desktop. Same opening. This time I will try the private talk to Riza, and no letter."
+- 8.4: "This time I will lie to Riza instead. Then maybe to Halil too, and see if anyone catches the contradiction."
+- 11.7: "A new option appeared: withdraw my private word in writing for a 40 lira deposit. So a lie can be undone at a price. Now I will say the opposite to Halil and see what happens."
+- 16.0: "The text says I can ask again after something changes. Both men heard me tell the opposite thing. I want to see if Halil says anything different now."
+- 18.2, note (18 minutes before Osman leaves): "Halil now says: You told me the floor was reserved for morning repairs. A person remembering what I said. That is what I like. On the phone this was not there because I never asked him again."
+- 24.0: "Zero lira cost because both men waived on my word. Cheap but built on contradictory claims. Writing it to see who notices."
+- 31.1: "Now Riza is back, and he is the one I told the opposite thing. Will the two lies collide?"
+- 33.4, note (9 minutes before Osman leaves): "Halil and Riza compared what I told them and withdrew their waivers; a 40 lira deposit now. That is my lie coming back on me, and it is written plainly. This is the readable consequence I like. The game even suggests Rizas yard."
+- 38.3: "Riza: This time I will rely on what is written, not your word. A person who has stopped trusting me. That stung, in a good way."
+- 47.9: "The ending remembers my lie: Halil and Riza check every detail, any future agreement must be in writing, and I took the overnight coach instead of the train. That is the payoff I wanted. Phone run had none of it."
+- 64.2, first_minute (One month later): "No lore wall; I was asking people within seconds. This desktop run was richer than the phone: I lied to both men and they compared notes, withdrew waivers and charged a deposit, and the ending named it. The finished run took under a minute, so I have already seen an ending."
+- 71.3, stop, TASTE, engagement 3 (One month later): "I am stopping on desktop after about 70 seconds. The lie coming back on me, Riza saying he will rely on what is written, and the coach home in the ending were exactly what I like. But a whole run takes under a minute, and I have now seen both a clean and a lying ending. I would try the letter and late work another evening."
+
+The B first_minute line was logged at 64.2 s, after the 60 s mark. The A first_minute line was logged at 64.4 s. I logged no pulse in either session, because both ended before 180 s. The timed pulse checkpoint is untested. I logged no want_quit line in either session. Each stop line carries the reason.
+
+## 4. Moments
+
+**What held me**
+- **Halil's memory:** "You told me the floor was reserved for morning repairs."
+- **Rıza's distrust:** "This time I will rely on what is written, not your word."
+- **The lie coming back:** Halil and Rıza compared notes and withdrew their waivers.
+- **The ending:** it named my lie and charged me for it (the overnight coach).
+- **Readable options:** each agreement option said whether a person would accept or refuse, and why.
+
+**What lost me**
+- **Run length:** each run ended in under a minute.
+- **Phone path:** I never saw anyone react to my lie there, because I did not ask Halil again.
+- **Ferda's stale quote:** after I fetched the letter, her reply still held the old line.
+- **Option wall:** five long agreement options on one screen.
+
+**Quit wishes:** I never wrote a want_quit. The wish to stop was mild, and it grew from having seen the loop. It did not pass. **Pulses:** none, because I stopped before 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The deadline and the cost of each action in minutes.
+  - Each agreement option shows its total, and says "Ferda refuses: …" or "acceptance unknown".
+  - Halil's refusal gave a reason: "late work needs a paid break".
+- **Confusing:**
+  - I did not know my phone lie had a consequence waiting. On the phone I told only Halil, and nobody mentioned it.
+  - On desktop the "Withdraw your private word" option appeared in the private menu. I did not try it, so I do not know what it does beyond the label.
+  - Rıza's second quote still said "I need storage until four" after I changed things. I did not know if it was stale.
+- **Unsure about:** why the first phone run had no repercussion for the lie. I am guessing it only fires when both men hear opposite claims.
+
+## 6. Device use
+
+- **Phone (360x690):**
+  - Viewed a-001.png (title, 2 s) and a-002.png (ending, 45 s).
+  - a-001: a cream single column with "His Word", the recording heading and text, a checked "Record my play for the lab" box, "Read the privacy notice", and "Take a seat". Nothing clipped.
+  - a-002: the ending text, "They kept their word.", with "Menu" at top right. Nothing clipped, though the text runs below the fold.
+  - Controls used: Take a seat, the table buttons, the private-talk buttons, Write an agreement, Read the notebook, Back, Menu, Feedback, I'm stopping, Not now, New game, Start new game.
+- **Desktop (1280x800):**
+  - Viewed b-001.png (title, 2 s) and b-002.png (ending, 48 s).
+  - b-001: a centred card about 740 px wide on a dark background. The text is large and readable.
+  - b-002: the ending text in the same card, with "Menu" at top right. The card runs off the bottom of the screen, so the AGREED stamp is cut off at the edge.
+  - Controls used: taps by name only. I pressed no keys, so I do not know if keyboard play works.
+- **Feedback:**
+  - The Feedback dialog offered "I'm stopping" and "I'm confused". I pressed "I'm stopping" on both devices.
+  - A dialog opened with the note field prefilled with "I'm stopping".
+  - I pressed "Not now" on both devices. I typed nothing and pressed no Submit.
+- **Screenshots:** 2 manual per device (a-001, a-002, b-001, b-002). No automatic checkpoint was reported.
+- **Unseen:** I never took a screenshot of the phone mid-game, so I did not look at the phone's mid-game layout. I read the page text instead.
+
+## 7. Stop and return
+
+- **Session A stop (TASTE, engagement 3):** "I am stopping on the phone after about 75 seconds. Talking changed what the agreement options said, and Halil refused with a clear reason, which I liked. But the first run ended in 39 seconds and nobody reacted to my small lie to Halil. I have seen the loop; I want to try the desktop."
+- **Session B stop (TASTE, engagement 3):** "I am stopping on desktop after about 70 seconds. The lie coming back on me, Riza saying he will rely on what is written, and the coach home in the ending were exactly what I like. But a whole run takes under a minute, and I have now seen both a clean and a lying ending. I would try the letter and late work another evening."
+- **Would you return voluntarily?** Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running. I would not come back tonight, only another evening.
+
+## 8. Changes I would want
+
+1. Make a run last longer, or give me more to try after the ending.
+2. Let people react to my private word on every path, not just when both men are asked again.
+3. Update a person's line after I fetch the letter, so the old quote does not stay.
+
+## 9. Compared with my last visit
+
+This was my first visit to His Word.
+
+**Cleanup:** I own no worktree, started no processes, and wrote no files except the four screenshots through the driver. `git worktree list`: I touched no repository, so there is nothing to list.

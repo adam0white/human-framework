@@ -1,0 +1,680 @@
+{
+ "note": "Computed from copied wall-clock.jsonl, completion.json and release-start.json by build-smoke-packet.py. first_minute op shot lines are automatic driver lines with no tester words. A first_minute tag before 60 s or a pulse before 180 s is premature. Raw maximum elapsed includes only the stop line, no further play.",
+ "allPinsClean": "commit 7070afb11b2262ffc5fef8997189f749238ef653, framework 4.8.0, dirty false in every completion.json pin and every release-start.json",
+ "testers": {
+  "jonas": {
+   "tester": "Jonas Berg",
+   "exit": 0,
+   "devices": {
+    "desktop": {
+     "firstOpenElapsed_s": 0.613,
+     "openT": "2026-10-31T03:55:10.450Z",
+     "wallClockStartT": "2026-10-31T03:55:00.534Z",
+     "stopT": "2026-10-31T03:57:38.721Z",
+     "stopElapsed_s": 148.884,
+     "stopReason": "FINISHED",
+     "stopGameClock": "06:10, second run, stair closes in 127s",
+     "maxElapsed_s": 148.884,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.039,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 65.5,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 148.884,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 8,
+     "longestWait_ms": 10113,
+     "rawErrors": [
+      {
+       "elapsed_s": 27.6,
+       "op": "tap",
+       "input": {
+        "name": "3 Derya Stopped · needs to see the stair"
+       },
+       "error": "3 Derya Stopped · needs to see the stair is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "requestedControlPresentBefore": false
+      },
+      {
+       "elapsed_s": 67.054,
+       "op": "tap",
+       "input": {
+        "name": "4 Hacer Stopped · catching my breath"
+       },
+       "error": "4 Hacer Stopped · catching my breath is not on the page now; it was listed 7 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "requestedControlPresentBefore": false
+      },
+      {
+       "elapsed_s": 68.549,
+       "op": "tap",
+       "input": {
+        "name": "4 Hacer Stopped · needs to see the stair"
+       },
+       "error": "4 Hacer Stopped · needs to see the stair is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "requestedControlPresentBefore": false
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ]
+    },
+    "phone": {
+     "firstOpenElapsed_s": 0.923,
+     "openT": "2026-10-31T03:57:41.111Z",
+     "wallClockStartT": "2026-10-31T03:55:00.534Z",
+     "stopT": "2026-10-31T03:59:56.553Z",
+     "stopElapsed_s": 136.365,
+     "stopReason": "FINISHED",
+     "stopGameClock": "31s left",
+     "maxElapsed_s": 136.365,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.032,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 71.912,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 136.365,
+       "reason": "FINISHED",
+       "engagement": 3,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 3,
+     "longestWait_ms": 6107,
+     "rawErrors": [
+      {
+       "elapsed_s": 10.174,
+       "op": "tap",
+       "input": {
+        "name": "The books B"
+       },
+       "error": "The books B is shown but disabled right now (game state, not a driver failure)",
+       "requestedControlPresentBefore": true
+      },
+      {
+       "elapsed_s": 107.121,
+       "op": "tap",
+       "input": {
+        "name": "Walk to the street"
+       },
+       "error": "Cannot tap Walk to the street: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+       "requestedControlPresentBefore": true
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 4,
+     "manualShots": 3,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  },
+  "aisha": {
+   "tester": "Aisha Rahman",
+   "exit": 0,
+   "devices": {
+    "desktop": {
+     "firstOpenElapsed_s": 0.49,
+     "openT": "2026-10-31T04:00:31.513Z",
+     "wallClockStartT": "2026-10-31T04:00:21.940Z",
+     "stopT": "2026-10-31T04:02:41.845Z",
+     "stopElapsed_s": 130.822,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "maxElapsed_s": 130.822,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 36.117,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.053,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 80.89,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 130.822,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [
+      36.117
+     ],
+     "prematurePulses": [],
+     "waitOps": 6,
+     "longestWait_ms": 20111,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 4,
+     "manualShots": 3,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png",
+      "first-minute.png"
+     ]
+    },
+    "phone": {
+     "firstOpenElapsed_s": 1.017,
+     "openT": "2026-10-31T04:02:44.171Z",
+     "wallClockStartT": "2026-10-31T04:00:21.997Z",
+     "stopT": "2026-10-31T04:05:20.259Z",
+     "stopElapsed_s": 157.105,
+     "stopReason": "FRUSTRATED",
+     "stopGameClock": null,
+     "maxElapsed_s": 157.105,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.039,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 68.337,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 150.404,
+       "reason": "FRUSTRATED",
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 157.105,
+       "reason": "FRUSTRATED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 7,
+     "longestWait_ms": 30108,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  },
+  "diego": {
+   "tester": "Diego Silva",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.503,
+     "openT": "2026-10-31T04:05:54.728Z",
+     "wallClockStartT": "2026-10-31T04:05:43.544Z",
+     "stopT": "2026-10-31T04:08:25.210Z",
+     "stopElapsed_s": 150.985,
+     "stopReason": "FINISHED",
+     "stopGameClock": "stair closes in 22s",
+     "maxElapsed_s": 150.985,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.04,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 67.052,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 150.985,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 9,
+     "longestWait_ms": 14111,
+     "rawErrors": [
+      {
+       "elapsed_s": 38.097,
+       "op": "tap",
+       "input": {
+        "name": "Walk to landing 3"
+       },
+       "error": "Cannot tap Walk to landing 3: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+       "requestedControlPresentBefore": true
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 4,
+     "manualShots": 3,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png",
+      "first-minute.png"
+     ]
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 0.903,
+     "openT": "2026-10-31T04:08:27.881Z",
+     "wallClockStartT": "2026-10-31T04:05:43.612Z",
+     "stopT": "2026-10-31T04:10:58.110Z",
+     "stopElapsed_s": 151.132,
+     "stopReason": "FRUSTRATED",
+     "stopGameClock": "stair closes in 16s",
+     "maxElapsed_s": 151.132,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.047,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 63.862,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 142.766,
+       "reason": "FRUSTRATED",
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 151.132,
+       "reason": "FRUSTRATED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 6,
+     "longestWait_ms": 15109,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  },
+  "leila": {
+   "tester": "Leila Mansour",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.93,
+     "openT": "2026-10-31T04:11:37.279Z",
+     "wallClockStartT": "2026-10-31T04:11:25.394Z",
+     "stopT": "2026-10-31T04:13:30.852Z",
+     "stopElapsed_s": 114.503,
+     "stopReason": "CONFUSED",
+     "stopGameClock": "stair closes 50s",
+     "maxElapsed_s": 114.503,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.04,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 62.881,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 105.525,
+       "reason": "CONFUSED",
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 114.503,
+       "reason": "CONFUSED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 7,
+     "longestWait_ms": 12110,
+     "rawErrors": [
+      {
+       "elapsed_s": 38.795,
+       "op": "tap",
+       "input": {
+        "name": "3 Derya Stopped · catching my breath"
+       },
+       "error": "3 Derya Stopped · catching my breath is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "requestedControlPresentBefore": false
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 4,
+     "manualShots": 3,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png",
+      "first-minute.png"
+     ]
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 1.115,
+     "openT": "2026-10-31T04:13:33.148Z",
+     "wallClockStartT": "2026-10-31T04:11:25.440Z",
+     "stopT": "2026-10-31T04:16:16.021Z",
+     "stopElapsed_s": 163.988,
+     "stopReason": "FRUSTRATED",
+     "stopGameClock": "stair closes in 5s",
+     "maxElapsed_s": 163.988,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.083,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 63.902,
+       "reason": null,
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 156.647,
+       "reason": "FRUSTRATED",
+       "engagement": null,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 163.988,
+       "reason": "FRUSTRATED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 6,
+     "longestWait_ms": 15117,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  },
+  "marta": {
+   "tester": "Marta Kowalska",
+   "exit": 0,
+   "devices": {
+    "desktop": {
+     "firstOpenElapsed_s": 0.922,
+     "openT": "2026-10-31T04:16:53.864Z",
+     "wallClockStartT": "2026-10-31T04:16:47.228Z",
+     "stopT": "2026-10-31T04:19:00.552Z",
+     "stopElapsed_s": 127.61,
+     "stopReason": "BORED",
+     "stopGameClock": null,
+     "maxElapsed_s": 127.61,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.053,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 68.225,
+       "reason": null,
+       "engagement": 3,
+       "authored": true
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 112.949,
+       "reason": "BORED",
+       "engagement": 2,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 127.61,
+       "reason": "BORED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 4,
+     "longestWait_ms": 12143,
+     "rawErrors": [
+      {
+       "elapsed_s": 47.386,
+       "op": "tap",
+       "input": {
+        "name": "4 Hacer Stopped · needs to see the stair"
+       },
+       "error": "4 Hacer Stopped · needs to see the stair is not on the page now; it was listed 4 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "requestedControlPresentBefore": false
+      },
+      {
+       "elapsed_s": 54.156,
+       "op": "tap",
+       "input": {
+        "name": "4 Hacer Stopped · needs to see the stair"
+       },
+       "error": "4 Hacer Stopped · needs to see the stair is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "requestedControlPresentBefore": false
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 6,
+     "manualShots": 5,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png",
+      "a-004.png",
+      "a-005.png",
+      "first-minute.png"
+     ]
+    },
+    "phone": {
+     "firstOpenElapsed_s": 1.072,
+     "openT": "2026-10-31T04:19:03.651Z",
+     "wallClockStartT": "2026-10-31T04:16:47.296Z",
+     "stopT": "2026-10-31T04:22:57.055Z",
+     "stopElapsed_s": 234.476,
+     "stopReason": "CONFUSED",
+     "stopGameClock": null,
+     "maxElapsed_s": 234.476,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.046,
+       "reason": null,
+       "engagement": null,
+       "authored": false
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 62.644,
+       "reason": null,
+       "engagement": 3,
+       "authored": true
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 175.024,
+       "reason": "CONFUSED",
+       "engagement": 2,
+       "authored": true
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 233.33,
+       "reason": null,
+       "engagement": 2,
+       "authored": true
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 234.476,
+       "reason": "CONFUSED",
+       "engagement": null,
+       "authored": true
+      }
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "waitOps": 8,
+     "longestWait_ms": 30148,
+     "rawErrors": [
+      {
+       "elapsed_s": 117.027,
+       "op": "tap",
+       "input": {
+        "text": "4 Hacer"
+       },
+       "error": "4 Hacer is visible text and also the start of the control \"4 Hacer Stopped · needs to see the stair · Smoke may kill me. Get me outside.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+       "requestedControlPresentBefore": true
+      },
+      {
+       "elapsed_s": 177.694,
+       "op": "tap",
+       "input": {
+        "name": "Pause and open menu"
+       },
+       "error": "Cannot tap Pause and open menu: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+       "requestedControlPresentBefore": true
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 5,
+     "manualShots": 4,
+     "automaticShots": 1,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "b-004.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  }
+ },
+ "martaDesktopStopToPhoneOpen_s": 3.099,
+ "martaGapNote": "Her report says about an hour between sessions. Raw wall-clock stamps put the phone open about 3 s after the desktop stop, and the whole round spans about 6 minutes (both drivers were started together), so the hour is her estimate, not an interval. Within-person desktop learning before the phone is actual exposure."
+}

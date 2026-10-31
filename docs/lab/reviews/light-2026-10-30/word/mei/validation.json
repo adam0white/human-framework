@@ -1,0 +1,87 @@
+{
+  "tester": "Mei Tan",
+  "validationTime": "2026-10-31T05:53:51.485317+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T05:42:27.231Z",
+        "elapsed_s": 72.39,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping after the AGREED ending, about 70 seconds in. Clear, readable, minute costs I could compare. Too easy: the letter plus the four talks pointed straight at one agreement. I picked I'm stopping in Feedback, pressed Not now, submitted nothing.",
+        "game_clock": "One month later, AGREED",
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 67.86,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T05:43:47.188Z",
+        "elapsed_s": 78.761,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on the phone after the NO AGREEMENT ending, about 80 seconds. Readable at 360 wide, nothing broke. I picked I'm stopping in Feedback, pressed Not now, submitted nothing.",
+        "game_clock": "One month later, NO AGREEMENT",
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 74.01,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

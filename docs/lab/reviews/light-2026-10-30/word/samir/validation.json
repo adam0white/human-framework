@@ -1,0 +1,114 @@
+{
+  "tester": "Samir Haddad",
+  "validationTime": "2026-10-31T05:53:51.492816+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T05:45:52.320Z",
+        "elapsed_s": 95.235,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping at about 93 seconds, after two endings. I liked the clash of promises and being caught in my own lie. But the honest route finishes in 30 seconds with no tension and nobody needs me afterward. I pressed I am stopping in Feedback, then Not now, typed nothing.",
+        "game_clock": null,
+        "engagement": 3,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 89.137,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T05:44:39.782Z",
+          "elapsed_s": 22.697,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "Use the clothing order for a smaller late service and trial lease. (2 minutes)"
+          },
+          "reaction": "This one matches what each person said: Halil paid late work, Riza cart home at four, Ferda small trial, Osman trial. Not obviously a trap, so I try it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Use the clothing order for a smaller late service and trial lease. (2 minutes) is visible text and also the start of the control \"Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, with a paid break. R\u0131za takes his cart home at four. You pay \u20ba40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: \u20ba40. Writing takes 2 minutes, even if someone then refuses.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T05:46:59.137Z",
+        "elapsed_s": 65.404,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the phone at about 65 seconds. I have seen both endings on desktop and a failed one here. Refusals explain themselves, which I like. But the whole meeting is under a minute and the first honest run leaves nothing for me to come back to. Pressed I am stopping in Feedback, then Not now, typed nothing.",
+        "game_clock": null,
+        "engagement": 3,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 59.481,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

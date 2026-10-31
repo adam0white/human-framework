@@ -1,0 +1,251 @@
+{
+ "note": "Every string is an exact substring of the named copied raw file (report text or a wall-clock.jsonl reaction field). Nothing paraphrased, no quote substitution, no word replacement, no pipes, no newlines. primaryReturn is the opening return answer in report.md. laterFullReturn is the separate section 7 answer. rankedAsks are the top three asks of report.md. laterAskSpans are the section 8 wording, kept only where it adds or changes content, labelled separately. Miles wrapped his opening answer in producer quote marks, which are not part of the span. Internal double quotes are original.",
+ "testers": {
+  "emre": {
+   "tester": "Emre Kaya",
+   "primaryReturn": "I would come back another evening on desktop to try a third path, for example paying the bill myself and telling Selin everything, but only because each run is short, and not tonight. I would not leave it running. It does not run in real time, so there is nothing to leave running.",
+   "laterFullReturn": "Yes, another evening on desktop for a third path, on the condition that the choices are different enough to be worth a second look. Because it is short, I would not leave it running; it does not seem to need me to.",
+   "rankedAsks": [
+    "Show a number for savings. After I paid from savings the text said only \"Her savings are smaller\" on the phone run. I could not price that tradeoff.",
+    "Say why I could not see a choice or its cost in advance when it changed. On the phone run the visit cost 3 hours instead of 2 because Selin refused cover. I worked it out from the card text, but a one-line reason on the changed card would help.",
+    "Let me see the choice cards on the phone without scrolling past the story. I did not test the phone's scroll fully, and this ask rests on the screenshot alone."
+   ],
+   "laterAskSpans": {
+    "2": "Put a one-line reason on any card whose cost has changed from a first visit.",
+    "3": "On the phone, keep the choice cards on screen with the story text."
+   }
+  },
+  "pavel": {
+   "tester": "Pavel Novak",
+   "primaryReturn": "Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently, but I would not leave it running. Each run took about a minute and a half, and I want a reason to play it a third time.",
+   "laterFullReturn": "Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently. I would not leave it running, because nothing in it runs by itself.",
+   "rankedAsks": [
+    "Grey out or explain a choice I cannot afford before I press it. On desktop I pressed \"Make the journey yourself, if there is time\". It took one tap, said \"2 hours; 1 remains\", and moved the story on. I could not retry, and the game ended with my promised visit unkept and an hour unused.",
+    "Tell me the hour budget early. The visit needs 2 hours, but nothing warned me on day 1 or 2 that I must keep them. On the phone I kept the visit only because I happened to have 2 hours.",
+    "Give me something to read over time. Each run was about 75 seconds of choices with no clock, so it felt short and I could not compare one day with the next."
+   ],
+   "laterAskSpans": {}
+  },
+  "tessa": {
+   "tester": "Tessa Williams",
+   "primaryReturn": "Not tonight. I might come back another evening on my laptop only if the three days had more than two choices per screen, or a way to say something of my own, and I would not leave it running.",
+   "laterFullReturn": "No, not tonight. I would come back another evening on my laptop only if there were more than two choices per screen, or a way to say something of my own. I did like seeing my choices named in the ending, and I might try a third run for a different ending. I would not leave it running, because it has no clock and just waits for a tap. I would not come back for the same three days I have now seen twice.",
+   "rankedAsks": [
+    "Give me more than two buttons per moment, or let me say something of my own to Hacer, Burak or Selin. I only ever picked between two set lines.",
+    "Make the run longer or add a reason to play it again. Both of my runs finished in about 75 seconds.",
+    "Show the phone room picture and its objects properly. On the phone I read only the text and never saw the picture's objects."
+   ],
+   "laterAskSpans": {
+    "2": "Make a run longer, or give me a reason to replay beyond swapping which of two buttons I press.",
+    "3": "Show the room picture and its objects properly on the phone, as the laptop does."
+   }
+  },
+  "nia": {
+   "tester": "Nia Okafor",
+   "primaryReturn": "Not tonight, and I would not leave it running. I might come back another evening, but only if a second run gave me something new. Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up.",
+   "laterFullReturn": "Not tonight. I might come back another evening, but only if the game gave me a different story or a character who answered back. I would not leave it running, because there is nothing to wait for.",
+   "rankedAsks": [
+    "Make the game longer or make later runs differ. I finished all three days in about 27 s on my phone and about 25 s on desktop. After that I only had \"Play another three days\".",
+    "Give me a reply from the people I'm affecting. After I read the private page aloud, or told Selin about my marriage, I got narration but no answer from the person I affected.",
+    "Tell me up front how much is at stake. The story texts said grief was not settled but never said what I had won or lost. I had to guess whether my choices mattered."
+   ],
+   "laterAskSpans": {
+    "1": "Make the game longer, or make a second run open on different scenes.",
+    "2": "Let the people I affect answer me in their own words.",
+    "3": "Say what is at stake before I choose, so I know my choices matter."
+   }
+  },
+  "miles": {
+   "tester": "Miles Osei",
+   "primaryReturn": "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford.",
+   "laterFullReturn": "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford. The story is gentle and honest, and I liked doing the sums. But each run takes under a minute, and after two runs I can already see most of the shape.",
+   "rankedAsks": [
+    "Do not offer \"Make the journey yourself\" when the hours left are fewer than the visit needs. On the phone it took my last turn, and the delivery choice was gone afterwards.",
+    "Introduce Selin before she appears. On the desktop she \"has the receipt\" before anyone says who she is.",
+    "Make the tiredness and hour wording match what happens. \"Saves an hour\" left my hours unchanged. \"Obtain the original\" appeared after I already had the receipt in hand."
+   ],
+   "laterAskSpans": {
+    "1": "Hide or disable a visit I cannot afford, or keep the delivery choice open after a failed attempt."
+   },
+   "laterExtraReturnSpans": {
+    "Leave-it-running answer": "No, there is nothing to leave running. It is something I would come back to another evening, briefly."
+   }
+  }
+ },
+ "supportingSpans": [
+  {
+   "label": "Emre report: phone scroll untested, ask 3 rests on the screenshot alone",
+   "tester": "emre",
+   "file": "emre/report.md",
+   "span": "I did not test the phone's scroll fully, and this ask rests on the screenshot alone."
+  },
+  {
+   "label": "Emre phone: savings never shown as a number",
+   "tester": "emre",
+   "file": "emre/phone/wall-clock.jsonl",
+   "span": "Savings are never shown as a number, only smaller."
+  },
+  {
+   "label": "Emre phone: visit cost 3 hours without cover",
+   "tester": "emre",
+   "file": "emre/phone/wall-clock.jsonl",
+   "span": "Visit without cover is now 3 hours. Cover is worth asking for."
+  },
+  {
+   "label": "Emre report: Feedback prefill, Back, no Submit and no consent change",
+   "tester": "emre",
+   "file": "emre/report.md",
+   "span": "I pressed Back and did not press Submit. I typed nothing and changed no consent or recording setting."
+  },
+  {
+   "label": "Pavel desktop: offered visit failed with 2 needed and 1 remaining",
+   "tester": "pavel",
+   "file": "pavel/desktop/wall-clock.jsonl",
+   "span": "The visit button was offered but did not work; it said 2 needed, 1 remains, and moved the story on."
+  },
+  {
+   "label": "Pavel report: desktop refusal text and no retry",
+   "tester": "pavel",
+   "file": "pavel/report.md",
+   "span": "The page said \"The visit needs 2 hours; 1 remains.\" It then moved on, and I could not retry."
+  },
+  {
+   "label": "Pavel phone: the same visit worked with 2 hours",
+   "tester": "pavel",
+   "file": "pavel/phone/wall-clock.jsonl",
+   "span": "The visit worked. So on the desktop I simply lacked an hour; the game let me press a button I could not afford."
+  },
+  {
+   "label": "Pavel desktop: receipt contradiction wording",
+   "tester": "pavel",
+   "file": "pavel/desktop/wall-clock.jsonl",
+   "span": "Odd: the page says obtain the original, but Burak has just brought it. Small contradiction; I compare anyway."
+  },
+  {
+   "label": "Pavel report: receipt owner and Selin difference, cause unknown",
+   "tester": "pavel",
+   "file": "pavel/report.md",
+   "span": "I do not know if that is a seed or my choices. I am guessing."
+  },
+  {
+   "label": "Pavel report: one scroll, no screenshot after it",
+   "tester": "pavel",
+   "file": "pavel/report.md",
+   "span": "I used `scroll` once. It did not visibly change what the driver reported, and I did not look at a screenshot after scrolling."
+  },
+  {
+   "label": "Pavel report: phone layout below the fold unseen",
+   "tester": "pavel",
+   "file": "pavel/report.md",
+   "span": "Layout I did not see: whether a phone user can see the choice buttons without scrolling. This is unseen. I used the driver's named taps."
+  },
+  {
+   "label": "Tessa laptop: liked being allowed to fail",
+   "tester": "tessa",
+   "file": "tessa/desktop/wall-clock.jsonl",
+   "span": "I kind of liked being allowed to fail."
+  },
+  {
+   "label": "Tessa laptop stop: failing the visit was honest",
+   "tester": "tessa",
+   "file": "tessa/desktop/wall-clock.jsonl",
+   "span": "failing the visit was honest and told me why."
+  },
+  {
+   "label": "Tessa report: did not scroll the phone",
+   "tester": "tessa",
+   "file": "tessa/report.md",
+   "span": "I did not scroll the phone."
+  },
+  {
+   "label": "Tessa report: phone picture unseen beyond the strip",
+   "tester": "tessa",
+   "file": "tessa/report.md",
+   "span": "I did not scroll the phone to find the room picture, so I only saw the squashed strip."
+  },
+  {
+   "label": "Tessa phone first_minute: picture squashed at the bottom",
+   "tester": "tessa",
+   "file": "tessa/phone/wall-clock.jsonl",
+   "span": "Room picture is squashed at the bottom of the phone."
+  },
+  {
+   "label": "Tessa report: longer opening and Very tired start, cause unknown",
+   "tester": "tessa",
+   "file": "tessa/report.md",
+   "span": "I cannot tell from what I saw."
+  },
+  {
+   "label": "Nia report: opening claim that both runs ended the same way",
+   "tester": "nia",
+   "file": "nia/report.md",
+   "span": "Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up."
+  },
+  {
+   "label": "Nia desktop stop: ending text changed",
+   "tester": "nia",
+   "file": "nia/desktop/wall-clock.jsonl",
+   "span": "ending text changed (private page stayed private, delivery not yet happened)."
+  },
+  {
+   "label": "Nia report: phone ending line",
+   "tester": "nia",
+   "file": "nia/report.md",
+   "span": "A private page was read aloud. The agreement to limit its spread does not undo that harm."
+  },
+  {
+   "label": "Nia report: no claim about phone story layout",
+   "tester": "nia",
+   "file": "nia/report.md",
+   "span": "I did not take or view a phone screenshot of the story page itself. I make no claim about its layout."
+  },
+  {
+   "label": "Nia report: no authored first_minute or pulse",
+   "tester": "nia",
+   "file": "nia/report.md",
+   "span": "I logged no first_minute or pulse line in either session."
+  },
+  {
+   "label": "Miles phone: unaffordable visit button offered",
+   "tester": "miles",
+   "file": "miles/phone/wall-clock.jsonl",
+   "span": "The button lets me try a 2 hour visit with 1 hour left. Why offer it? I press it to learn."
+  },
+  {
+   "label": "Miles phone: delivery choice gone after the attempt",
+   "tester": "miles",
+   "file": "miles/phone/wall-clock.jsonl",
+   "span": "That stings. The game let me press a visit it knew I could not make, and now the delivery choice is gone."
+  },
+  {
+   "label": "Miles phone: deliberate probe knowing the visit would likely break",
+   "tester": "miles",
+   "file": "miles/phone/wall-clock.jsonl",
+   "span": "I know this probably breaks the visit. I want to see it."
+  },
+  {
+   "label": "Miles desktop: Selin not introduced",
+   "tester": "miles",
+   "file": "miles/desktop/wall-clock.jsonl",
+   "span": "Who is Selin? She has the receipt but nobody introduced her."
+  },
+  {
+   "label": "Miles desktop: saves an hour wording and obtain the original",
+   "tester": "miles",
+   "file": "miles/desktop/wall-clock.jsonl",
+   "span": "Small confusion: it says I saved an hour, but I still have 4 like before."
+  },
+  {
+   "label": "Miles report: 500 px scroll, no layout trouble beyond the scroll",
+   "tester": "miles",
+   "file": "miles/report.md",
+   "span": "I scrolled 500 px. I saw no layout trouble beyond needing that scroll."
+  },
+  {
+   "label": "Miles report: two ambiguous taps were driver ambiguities",
+   "tester": "miles",
+   "file": "miles/report.md",
+   "span": "Two prefix taps were ambiguous and I resent them by full name. Those were driver ambiguities, not game faults."
+  }
+ ]
+}

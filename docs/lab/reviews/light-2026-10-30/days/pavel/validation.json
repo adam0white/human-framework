@@ -1,0 +1,87 @@
+{
+  "tester": "Pavel Novak",
+  "validationTime": "2026-10-31T05:16:04.151011+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T04:53:28.258Z",
+        "elapsed_s": 86.663,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at the end of the three days, about 85 seconds. The leave ended with my promised visit to Sukru not kept and an hour unused, and I could not see how to keep it. I chose Im stopping in Feedback, typed nothing, submitted nothing.",
+        "game_clock": "Leave ended",
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 83.61,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T04:54:52.722Z",
+        "elapsed_s": 83.343,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at the end of the three days, about 82 seconds, with the visit kept and the notebook lent to Burak. Chose Im stopping in Feedback, typed nothing, submitted nothing.",
+        "game_clock": "Leave ended",
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 80.436,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

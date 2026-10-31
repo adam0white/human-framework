@@ -1,0 +1,46 @@
+{
+  "time": "2026-10-31T04:03:14.252013+00:00",
+  "tester": "Jonas Berg",
+  "sourceReportSha256": "feddce0256517b4ae1b36114b8cc489453b80290bf6403862a40bdc340477e7c",
+  "qualification": "Producer context compacted after desktop, report omitted exact desktop diary/stop and estimated15minutes. Raw desktop log survives, actualstop148.884s, not15minutes. Preserve original report unedited; director extracted raw reactions separately, never reconstructed diary. PhoneFINISHED is producer label; his words say personalstop after seeing shape, not proof whole gameended. Inspect actual visible outcome before gameending claim. Phone Street/movement cause remains game-versus-locator/selection/covered-control unknown, no automatic causaldeath claim.",
+  "devices": {
+    "desktop": {
+      "actualStop": {
+        "t": "2026-10-31T03:57:38.721Z",
+        "elapsed_s": 148.884,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping at 146 s. First run: all three home reached the street at about 114 s. Second run: tested Come now shortcut and Sevim refused without her books, so no free skip. I understand the loop. One wish: I want to know what happens if smoke kills someone, and whether Burak ever matters. I would come back another evening to see whether order or speed changes who chooses to follow. Would not leave it running. Selected I am stopping in Feedback; typed nothing, submitted nothing.",
+        "game_clock": "06:10, second run, stair closes in 127s",
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "rawSha256": "4108e26cef93a1fef955b20083fd073b54f947e4185aec143103ee7b294e476c",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/jonas/desktop/wall-clock.jsonl",
+      "kind": "actual surviving driver log, not reconstructed producer diary"
+    },
+    "phone": {
+      "actualStop": {
+        "t": "2026-10-31T03:59:56.553Z",
+        "elapsed_s": 136.365,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Two of three home, Derya dead from smoke while I tried a dead Street button. I have seen what this version does and I am stopping here.",
+        "game_clock": "31s left",
+        "engagement": 3,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "rawSha256": "449790c094d850bb962826c1d46094ae628265d65717d9fd01d82c628e6ed193",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/jonas/phone/wall-clock.jsonl",
+      "kind": "actual surviving driver log, not reconstructed producer diary"
+    }
+  }
+}

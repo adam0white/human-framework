@@ -1,0 +1,252 @@
+[
+  {
+    "tester": "Emre Kaya",
+    "device": "desktop",
+    "privatePath": "days/emre/desktop/a-001.png",
+    "bytes": 219786,
+    "sha256": "69272539469388830a6aa69df1cbfbfdc09ed110b5d8d846db7c4b4f8928b322",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "desktop",
+    "privatePath": "days/emre/desktop/first-minute.png",
+    "bytes": 189249,
+    "sha256": "2037701985b10f65d31668377d767540761b036810f4b743afe5c87802840422",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "privatePath": "days/emre/phone/b-001.png",
+    "bytes": 60496,
+    "sha256": "0fdd9e2954ab2666d0b1d027d071b99844d3a77a4a19605915ea5b7f64d6719a",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "privatePath": "days/emre/phone/b-002.png",
+    "bytes": 67260,
+    "sha256": "f2b2342607916128d71242e006e0bef4fd049b94f6c80a13240d8121ac5b4315",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Emre Kaya",
+    "device": "phone",
+    "privatePath": "days/emre/phone/first-minute.png",
+    "bytes": 67260,
+    "sha256": "f2b2342607916128d71242e006e0bef4fd049b94f6c80a13240d8121ac5b4315",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "desktop",
+    "privatePath": "days/pavel/desktop/a-001.png",
+    "bytes": 217900,
+    "sha256": "7391616a7e7b28b16307b6cc5d97bc82d973c088b6f8f4b852a556e5f5c9397f",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "desktop",
+    "privatePath": "days/pavel/desktop/first-minute.png",
+    "bytes": 184756,
+    "sha256": "cfc9f18137b285ac9d20b796f289de4147adffdb12396e88286a518bf4ae165b",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "phone",
+    "privatePath": "days/pavel/phone/b-001.png",
+    "bytes": 60496,
+    "sha256": "0fdd9e2954ab2666d0b1d027d071b99844d3a77a4a19605915ea5b7f64d6719a",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "phone",
+    "privatePath": "days/pavel/phone/b-002.png",
+    "bytes": 71184,
+    "sha256": "08653e043a45c217482dcc552ffdffb2898ffb9ae98212e078b2f82a89ac166d",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Pavel Novak",
+    "device": "phone",
+    "privatePath": "days/pavel/phone/first-minute.png",
+    "bytes": 66806,
+    "sha256": "6862eb482a63380ab419ad092e51036f083aa644fcd4bc9e7744d6072caa47e2",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "phone",
+    "privatePath": "days/tessa/phone/a-001.png",
+    "bytes": 60496,
+    "sha256": "0fdd9e2954ab2666d0b1d027d071b99844d3a77a4a19605915ea5b7f64d6719a",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "phone",
+    "privatePath": "days/tessa/phone/a-002.png",
+    "bytes": 67260,
+    "sha256": "654c3817b76c195ef194085d5a01be614389ccc411ac76ab2667e5a280121279",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "phone",
+    "privatePath": "days/tessa/phone/first-minute.png",
+    "bytes": 67260,
+    "sha256": "654c3817b76c195ef194085d5a01be614389ccc411ac76ab2667e5a280121279",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "desktop",
+    "privatePath": "days/tessa/desktop/b-001.png",
+    "bytes": 219786,
+    "sha256": "69272539469388830a6aa69df1cbfbfdc09ed110b5d8d846db7c4b4f8928b322",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "desktop",
+    "privatePath": "days/tessa/desktop/b-002.png",
+    "bytes": 190180,
+    "sha256": "5de3e392b83454ea2df8524a5bb60ad7820be8e6e8555e2996291802ec27a98d",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Tessa Williams",
+    "device": "desktop",
+    "privatePath": "days/tessa/desktop/first-minute.png",
+    "bytes": 190180,
+    "sha256": "5de3e392b83454ea2df8524a5bb60ad7820be8e6e8555e2996291802ec27a98d",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "privatePath": "days/nia/phone/a-001.png",
+    "bytes": 60496,
+    "sha256": "0fdd9e2954ab2666d0b1d027d071b99844d3a77a4a19605915ea5b7f64d6719a",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "phone",
+    "privatePath": "days/nia/phone/first-minute.png",
+    "bytes": 49997,
+    "sha256": "03ff6d57bffc8f590f658cae09f9080f1e16aebe35ed95b4fb8e27f7348342a2",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Nia Okafor",
+    "device": "desktop",
+    "privatePath": "days/nia/desktop/b-001.png",
+    "bytes": 217900,
+    "sha256": "7391616a7e7b28b16307b6cc5d97bc82d973c088b6f8f4b852a556e5f5c9397f",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Miles Osei",
+    "device": "desktop",
+    "privatePath": "days/miles/desktop/a-001.png",
+    "bytes": 217900,
+    "sha256": "7391616a7e7b28b16307b6cc5d97bc82d973c088b6f8f4b852a556e5f5c9397f",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Miles Osei",
+    "device": "desktop",
+    "privatePath": "days/miles/desktop/a-002.png",
+    "bytes": 122578,
+    "sha256": "4e51d9ac97413943781f11be99d5a8e89afd60e3b7dee126cafe2e3f1903073e",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Miles Osei",
+    "device": "desktop",
+    "privatePath": "days/miles/desktop/first-minute.png",
+    "bytes": 122578,
+    "sha256": "4e51d9ac97413943781f11be99d5a8e89afd60e3b7dee126cafe2e3f1903073e",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Miles Osei",
+    "device": "phone",
+    "privatePath": "days/miles/phone/b-001.png",
+    "bytes": 60496,
+    "sha256": "0fdd9e2954ab2666d0b1d027d071b99844d3a77a4a19605915ea5b7f64d6719a",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Miles Osei",
+    "device": "phone",
+    "privatePath": "days/miles/phone/b-002.png",
+    "bytes": 64562,
+    "sha256": "d4f76229435cd795cc980617875426c7bd8688564964c3b4c1cf9aa95e254e99",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Miles Osei",
+    "device": "phone",
+    "privatePath": "days/miles/phone/first-minute.png",
+    "bytes": 67902,
+    "sha256": "6ffa32352fc03318e642aac68519487b58a20cc6693d8dc68fab7dac7b2ae5d1",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  }
+]

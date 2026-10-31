@@ -1,0 +1,177 @@
+{
+  "tester": "Marta Kowalska",
+  "validationTime": "2026-10-31T04:36:11.429073+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T04:19:00.552Z",
+        "elapsed_s": 127.61,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I got everyone out once. The retry asks me to do the same steps again, so I stop here on the computer.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-004.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-005.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 117.595,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T04:17:40.328Z",
+          "elapsed_s": 47.386,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": "Sevim is out. I cannot tell if the first Street press worked slowly in the thick smoke or my second press did it. Now up for Hacer, top floor.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "4 Hacer Stopped \u00b7 needs to see the stair is not on the page now; it was listed 4 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T04:17:47.098Z",
+          "elapsed_s": 54.156,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "4 Hacer Stopped \u00b7 needs to see the stair is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T04:22:57.055Z",
+        "elapsed_s": 234.476,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop on the phone. Hacer died and I do not know why my tap took us down instead of up. Trying again would be guessing.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-004.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 227.496,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T04:20:59.606Z",
+          "elapsed_s": 117.027,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "4 Hacer"
+          },
+          "reaction": "I am still standing at the street door. My landing 4 tap did nothing that I can see. Hacer says smoke may kill me. Tapping her name directly.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 18,
+          "error": "4 Hacer is visible text and also the start of the control \"4 Hacer Stopped \u00b7 needs to see the stair \u00b7 Smoke may kill me. Get me outside.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:22:00.273Z",
+          "elapsed_s": 177.694,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Pause and open menu"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 271,
+          "error": "Cannot tap Pause and open menu: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,92 @@
+{
+  "tester": "Maya Chen",
+  "validationTime": "2026-10-31T05:53:51.480301+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T05:39:20.702Z",
+        "elapsed_s": 77.667,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone after about 75 seconds. Talking changed what the agreement options said, and Halil refused with a clear reason, which I liked. But the first run ended in 39 seconds and nobody reacted to my small lie to Halil. I have seen the loop; I want to try the desktop.",
+        "game_clock": "13 minutes before Osman leaves",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 73.938,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T05:40:33.051Z",
+        "elapsed_s": 71.252,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on desktop after about 70 seconds. The lie coming back on me, Riza saying he will rely on what is written, and the coach home in the ending were exactly what I like. But a whole run takes under a minute, and I have now seen both a clean and a lying ending. I would try the letter and late work another evening.",
+        "game_clock": "One month later",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 67.939,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

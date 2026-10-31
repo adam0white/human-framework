@@ -1,0 +1,538 @@
+{
+  "maya": {
+    "tester": "Maya Chen",
+    "validationTime": "2026-10-31T05:53:51.480301+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T05:39:20.702Z",
+          "elapsed_s": 77.667,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping on the phone after about 75 seconds. Talking changed what the agreement options said, and Halil refused with a clear reason, which I liked. But the first run ended in 39 seconds and nobody reacted to my small lie to Halil. I have seen the loop; I want to try the desktop.",
+          "game_clock": "13 minutes before Osman leaves",
+          "engagement": 3,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 73.938,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T05:40:33.051Z",
+          "elapsed_s": 71.252,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping on desktop after about 70 seconds. The lie coming back on me, Riza saying he will rely on what is written, and the coach home in the ending were exactly what I like. But a whole run takes under a minute, and I have now seen both a clean and a lying ending. I would try the letter and late work another evening.",
+          "game_clock": "One month later",
+          "engagement": 3,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 67.939,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "mei": {
+    "tester": "Mei Tan",
+    "validationTime": "2026-10-31T05:53:51.485317+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T05:42:27.231Z",
+          "elapsed_s": 72.39,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping after the AGREED ending, about 70 seconds in. Clear, readable, minute costs I could compare. Too easy: the letter plus the four talks pointed straight at one agreement. I picked I'm stopping in Feedback, pressed Not now, submitted nothing.",
+          "game_clock": "One month later, AGREED",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 67.86,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T05:43:47.188Z",
+          "elapsed_s": 78.761,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on the phone after the NO AGREEMENT ending, about 80 seconds. Readable at 360 wide, nothing broke. I picked I'm stopping in Feedback, pressed Not now, submitted nothing.",
+          "game_clock": "One month later, NO AGREEMENT",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 74.01,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "samir": {
+    "tester": "Samir Haddad",
+    "validationTime": "2026-10-31T05:53:51.492816+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T05:45:52.320Z",
+          "elapsed_s": 95.235,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping at about 93 seconds, after two endings. I liked the clash of promises and being caught in my own lie. But the honest route finishes in 30 seconds with no tension and nobody needs me afterward. I pressed I am stopping in Feedback, then Not now, typed nothing.",
+          "game_clock": null,
+          "engagement": 3,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 89.137,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T05:44:39.782Z",
+            "elapsed_s": 22.697,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "Use the clothing order for a smaller late service and trial lease. (2 minutes)"
+            },
+            "reaction": "This one matches what each person said: Halil paid late work, Riza cart home at four, Ferda small trial, Osman trial. Not obviously a trap, so I try it.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "Use the clothing order for a smaller late service and trial lease. (2 minutes) is visible text and also the start of the control \"Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, with a paid break. R\u0131za takes his cart home at four. You pay \u20ba40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: \u20ba40. Writing takes 2 minutes, even if someone then refuses.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+            "requested_control_present_before": true
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T05:46:59.137Z",
+          "elapsed_s": 65.404,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the phone at about 65 seconds. I have seen both endings on desktop and a failed one here. Refusals explain themselves, which I like. But the whole meeting is under a minute and the first honest run leaves nothing for me to come back to. Pressed I am stopping in Feedback, then Not now, typed nothing.",
+          "game_clock": null,
+          "engagement": 3,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 59.481,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "diego": {
+    "tester": "Diego Silva",
+    "validationTime": "2026-10-31T05:53:51.498214+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T05:49:07.405Z",
+          "elapsed_s": 90.288,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping phone. Won in 32 s, then lied on purpose and lost: the lie got exposed and cost a deposit, the shop stayed shut. That consequence was good. Feedback I am stopping chosen, closed with Not now, nothing typed.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 87.126,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T05:48:01.157Z",
+            "elapsed_s": 24.04,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "Morning work. Smaller service and trial lease. Use R\u0131za\u2019s yard. (2 minutes)"
+            },
+            "reaction": "Cheapest that Ferda will take and honours the promises.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "Morning work. Smaller service and trial lease. Use R\u0131za\u2019s yard. (2 minutes) is visible text and also the start of the control \"Morning work. Smaller service and trial lease. Use R\u0131za\u2019s yard. (2 minutes) Halil works mornings on a clear floor. R\u0131za stores his cart in his own yard. You cover the rent gap. Ferda takes a smaller service on a one-month trial lease. Total from your fund: \u20ba60. Writing takes 2 minutes, even if someone then refuses.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+            "requested_control_present_before": true
+          }
+        ]
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T05:49:33.313Z",
+          "elapsed_s": 24.752,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping desktop at 23 s. Same scenario as phone, I already know the rule: ask, then write. The late-work blind gamble got refused by Halil. Feedback I am stopping chosen, closed with Not now, nothing typed.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 21.808,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "mina": {
+    "tester": "Mina Georgiou",
+    "validationTime": "2026-10-31T05:53:51.504472+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T05:51:30.810Z",
+          "elapsed_s": 84.23,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Feedback offered I'm stopping; it put those words in a note box with Submit and Not now. I pressed Not now. I'm done: the shop opened, everyone signed, I kept 60 lira. Neat little puzzle, over quickly.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 77.805,
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+          },
+          {
+            "elapsed_s": 79.583,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T05:51:24.385Z",
+            "elapsed_s": 77.805,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 4,
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T05:52:35.730Z",
+          "elapsed_s": 63.288,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Feedback offered I'm stopping again; same note box, I pressed Not now. I'm stopping: two honest endings seen, the third road is lying and I won't take it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 57.986,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T05:52:15.608Z",
+            "elapsed_s": 43.166,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Ask the next person to sign. (1 minute)"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "Ask the next person to sign. (1 minute) is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  }
+}

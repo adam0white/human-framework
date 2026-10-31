@@ -1,0 +1,13 @@
+# Logical tester ledger — Smoke on the Stairs
+
+One row per tester. Verdict words are each tester's own conditions. They are not votes and not a population estimate. Primary return is the opening answer. The later full return is the separate section 7 answer. Both are literal in `logical-tester-ledger.json`.
+
+| id     | tester         | exposure                           | stops                                                  | verdict | asks          |
+| ------ | -------------- | ---------------------------------- | ------------------------------------------------------ | ------- | ------------- |
+| F-2371 | Jonas Berg     | standing player, first Smoke visit | desktop 148.884 s FINISHED, phone 136.365 s FINISHED   | keep    | F-2376–F-2378 |
+| F-2372 | Aisha Rahman   | standing player, first Smoke visit | desktop 130.822 s FINISHED, phone 157.105 s FRUSTRATED | mixed   | F-2379–F-2381 |
+| F-2373 | Diego Silva    | standing player, first Smoke visit | phone 150.985 s FINISHED, desktop 151.132 s FRUSTRATED | mixed   | F-2382–F-2384 |
+| F-2374 | Leila Mansour  | standing player, first Smoke visit | phone 114.503 s CONFUSED, desktop 163.988 s FRUSTRATED | mixed   | F-2385–F-2387 |
+| F-2375 | Marta Kowalska | new cold person                    | desktop 127.61 s BORED, phone 234.476 s CONFUSED       | mixed   | F-2388–F-2390 |
+
+Reasons: Jonas Berg: Keep: Yes, another evening, with no stated condition that blocks a return. Plain evidence supports keep for this tester only. Aisha Rahman: Conditional: another evening only if walking gives clearer feedback, not tonight. Plain evidence supports mixed. Diego Silva: Conditional: another evening only if neighbour smoke clocks and the phone figure are visible. Plain evidence supports mixed. Leila Mansour: Conditional: another evening only if someone explains walking, and not as the game stands now. Plain evidence supports mixed. Marta Kowalska: Conditional: one short desktop try only if a landing tap clearly moves her to the tapped place, and not as it is now. Plain evidence supports mixed.

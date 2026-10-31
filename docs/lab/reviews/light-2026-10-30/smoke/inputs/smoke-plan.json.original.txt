@@ -1,0 +1,117 @@
+[
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
+    "ceiling": 20,
+    "tester": "Jonas Berg",
+    "first": "jonas",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/jonas",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 31. Sweden; Malm\u00f6 warehouse planner. Plays factory builders and demanding survival games.\n- HF temperament: patient; high conscientiousness, low agreeableness, moderate openness.\n- Likes: systems he can learn, difficult choices, efficient routines.\n- Dislikes: a dominant repeatable move, consequences without visible clues.\n- Play habits: Uses desktop. Tests one hypothesis at a time and repeats a successful action to see whether conditions matter. Wants challenge to survive understanding.\n- Personal diary: [panel/jonas-berg.md](panel/jonas-berg.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: explicit selected FREE and latest own actual other-game reports; first target visit",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22100,
+      "desktop": 22101
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
+    "ceiling": 20,
+    "tester": "Aisha Rahman",
+    "first": "aisha",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/aisha",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 45. United Kingdom; Birmingham community pharmacist. Plays historical adventures and gentle management games.\n- HF temperament: curious; high agreeableness and conscientiousness, moderate emotionality and openness.\n- Likes: social context, careful promises, room to repair a mistake.\n- Dislikes: characters reduced to errands, scolding narration.\n- Play habits: Plays on a laptop after setting time aside. Follows one person\u2019s problem before exploring the map. Notices whether dialogue respects what happened.\n- Personal diary: [panel/aisha-rahman.md](panel/aisha-rahman.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: explicit selected FREE and latest own actual other-game reports; first target visit",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22102,
+      "desktop": 22103
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
+    "ceiling": 20,
+    "tester": "Diego Silva",
+    "first": "diego",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/diego",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 28. Brazil; Recife sound editor. Plays fighting games competitively and short experimental games between projects.\n- HF temperament: impatient; high openness, low agreeableness, moderate conscientiousness.\n- Likes: responsive controls, learnable risk, a distinctive mood.\n- Dislikes: unresponsive input, forms for simple acts.\n- Play habits: Uses desktop and occasionally phone. Tries the obvious physical verb first. Can enjoy quiet play when it gives him something consequential to attend to.\n- Personal diary: [panel/diego-silva.md](panel/diego-silva.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: explicit selected FREE and latest own actual other-game reports; first target visit",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22104,
+      "desktop": 22105
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
+    "ceiling": 20,
+    "tester": "Leila Mansour",
+    "first": "leila",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/leila",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 26. Egypt; Alexandria translator. Plays interactive fiction and tactical roguelikes in English.\n- HF temperament: impatient; high openness, moderate emotionality, low agreeableness.\n- Likes: precise prose, consequential conversation, hard but fair situations.\n- Dislikes: vague verbs, necessary unexplained local terms.\n- Play habits: Uses a phone. Reads closely when the wording matters, experiments when it does not, and distinguishes a difficult choice from not understanding the controls.\n- Personal diary: [panel/leila-mansour.md](panel/leila-mansour.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: explicit selected FREE and latest own actual other-game reports; first target visit",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22106,
+      "desktop": 22107
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "smoke",
+    "title": "Smoke on the Stairs",
+    "url": "https://smoke.adamwhite.work/?labRunSource=agent",
+    "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
+    "ceiling": 20,
+    "tester": "Marta Kowalska",
+    "first": "marta",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/marta",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 38. Poland; Gda\u0144sk courier dispatch clerk. Plays cooperative platformers with friends on weekends and occasional phone puzzles.\n- HF temperament: no HF exposure and no recorded temperament. Treat her as a person who weighs concrete likes against concrete limits, and who says what she saw in play in her own words.\n- Likes: knowing what a control will do before she presses it, short sittings she can pause, timing and coordination that she can improve at, a short situation she can read once and act on.\n- Dislikes: long text before the first action, small touch targets, repeating a step she already understood, screens that ask for more than she can see a reason for.\n- Play habits: Plays platformers on a desktop with friends at weekends and puzzles on her phone in short breaks. Reads the first screen, tries the most obvious control, and checks what changed. Says plainly when something does not suit her.\n- Personal diary: empty. No play history of any kind. Only observed sessions can add history.",
+    "prior_src": null,
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22108,
+      "desktop": 22109
+    },
+    "model": "opus"
+  }
+]

@@ -1,0 +1,140 @@
+{
+  "tester": "Miles Osei",
+  "validationTime": "2026-10-31T05:16:04.168127+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T05:01:57.519Z",
+        "elapsed_s": 79.161,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "The three days are over and Leyla went home with things in order. I stop here. Good, but it was over before I settled in.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 74.259,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T05:01:01.354Z",
+          "elapsed_s": 22.996,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "Stay at the door and skip the meal."
+          },
+          "reaction": "I am already Rested, so eating again feels wasted. But \"can add\" an hour is vague. I need 2 for the visit and some for checking. Gamble on the door.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 2,
+          "error": "Stay at the door and skip the meal. is visible text and also the start of the control \"Stay at the door and skip the meal. Save the hour; become more tired, which can add a checking or travel hour.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T05:01:21.125Z",
+          "elapsed_s": 42.767,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "Tell Selin what you wished you could say."
+          },
+          "reaction": "The hours fit exactly. Relief. Selin did not ask for the story, only stays. I let Leyla say it. This line touched me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3,
+          "error": "Tell Selin what you wished you could say. is visible text and also the start of the control \"Tell Selin what you wished you could say. Ask Selin to stay and listen; the conversation tires you.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T05:03:12.001Z",
+        "elapsed_s": 73.849,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Two leaves, two endings. I know the sums now. I stop for tonight.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 71.003,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [
+    {
+      "type": "system",
+      "subtype": "permission_denied",
+      "messageType": "str",
+      "tool": "Bash",
+      "decisionReason": "mode"
+    },
+    {
+      "type": "system",
+      "subtype": "permission_denied",
+      "messageType": "str",
+      "tool": "Bash",
+      "decisionReason": "mode"
+    }
+  ],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,658 @@
+{
+ "note": "Computed from copied wall-clock.jsonl, completion.json, dispatch.json and release-start.json by build-days-packet.py. A first_minute line with op shot is an automatic driver line with no tester words. A first_minute tag before 60 s or a pulse before 180 s is premature. Every stop was under 180 s, so no pulse is due.",
+ "allPinsClean": "commit 2741f06a0e4c96ffdec26e2e5b6b8874765dc126, framework and engine 4.8.1, dirty false in every completion.json pin and every release-start.json",
+ "driver": {
+  "name": "native-tap-v2",
+  "hashes": {
+   "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+   "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+   "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "approved": true,
+  "scope": "scratch diagnostic panel input, no upstream approval or gamefix",
+  "limits": [
+   "Input status200 acknowledges native input, not intended game outcome; inspect visible result.",
+   "A moving/replaced target can be missed or compat-clicked on phone; no post-press confirmation.",
+   "Chromium only. No v2 live-game run yet; local real-input controls passed.",
+   "select/type and ambiguous boundingBox retain existing timeout limitations.",
+   "driver_check remains fork-unverified; deliberate scratch staleoverride paired with exact hash checks."
+  ],
+  "sameHashesInAllFiveDispatchFiles": true
+ },
+ "testers": {
+  "emre": {
+   "tester": "Emre Kaya",
+   "exit": 0,
+   "devices": {
+    "desktop": {
+     "firstOpenElapsed_s": 0.524,
+     "openT": "2026-10-31T04:48:41.151Z",
+     "wallClockStartT": "2026-10-31T04:48:31.858Z",
+     "stopT": "2026-10-31T04:50:03.622Z",
+     "stopElapsed_s": 82.995,
+     "stopReason": "FINISHED",
+     "stopGameClock": "leave ended",
+     "stopReaction": "Finished in about 80 seconds. A clear ledger of hours with costs shown first; I could explain every setback. But it is short, and I never saw what the other choices would have changed. I would replay once to try the other path, not tonight.",
+     "wantQuitReason": null,
+     "wantQuitElapsed_s": null,
+     "maxElapsed_s": 82.995,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.053,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 65.935,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Day 3 morning, 2 hours free"
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 82.995,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "leave ended"
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      65.935
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 2,
+     "longestWait_ms": 25111,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 2,
+     "manualShots": 1,
+     "retainedPngNames": [
+      "a-001.png",
+      "first-minute.png"
+     ]
+    },
+    "phone": {
+     "firstOpenElapsed_s": 0.577,
+     "openT": "2026-10-31T04:50:05.542Z",
+     "wallClockStartT": "2026-10-31T04:48:31.858Z",
+     "stopT": "2026-10-31T04:51:26.383Z",
+     "stopElapsed_s": 81.418,
+     "stopReason": "FINISHED",
+     "stopGameClock": "leave ended",
+     "stopReaction": "Done on the phone in about 80 seconds. Second path, different costs and a different ending, all traceable. I would come back one more evening for a third path, not tonight.",
+     "wantQuitReason": null,
+     "wantQuitElapsed_s": null,
+     "maxElapsed_s": 81.418,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.028,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 65.512,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Day 3 morning, 3 hours free"
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 81.418,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "leave ended"
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      65.512
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 2,
+     "longestWait_ms": 30111,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  },
+  "pavel": {
+   "tester": "Pavel Novak",
+   "exit": 0,
+   "devices": {
+    "desktop": {
+     "firstOpenElapsed_s": 0.711,
+     "openT": "2026-10-31T04:52:02.306Z",
+     "wallClockStartT": "2026-10-31T04:51:53.164Z",
+     "stopT": "2026-10-31T04:53:28.258Z",
+     "stopElapsed_s": 86.663,
+     "stopReason": "FINISHED",
+     "stopGameClock": "Leave ended",
+     "stopReaction": "I stop at the end of the three days, about 85 seconds. The leave ended with my promised visit to Sukru not kept and an hour unused, and I could not see how to keep it. I chose Im stopping in Feedback, typed nothing, submitted nothing.",
+     "wantQuitReason": "FINISHED",
+     "wantQuitElapsed_s": 79.246,
+     "maxElapsed_s": 86.663,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.07,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 66.889,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Third day, 2 hours free"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 79.246,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Leave ended, 1 hour free"
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 86.663,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Leave ended"
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      66.889
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 2,
+     "longestWait_ms": 30113,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 2,
+     "manualShots": 1,
+     "retainedPngNames": [
+      "a-001.png",
+      "first-minute.png"
+     ]
+    },
+    "phone": {
+     "firstOpenElapsed_s": 0.725,
+     "openT": "2026-10-31T04:53:30.104Z",
+     "wallClockStartT": "2026-10-31T04:51:53.226Z",
+     "stopT": "2026-10-31T04:54:52.722Z",
+     "stopElapsed_s": 83.343,
+     "stopReason": "FINISHED",
+     "stopGameClock": "Leave ended",
+     "stopReaction": "I stop at the end of the three days, about 82 seconds, with the visit kept and the notebook lent to Burak. Chose Im stopping in Feedback, typed nothing, submitted nothing.",
+     "wantQuitReason": "FINISHED",
+     "wantQuitElapsed_s": 76.046,
+     "maxElapsed_s": 83.343,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.035,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 66.312,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Third day, 3 hours free"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 76.046,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Leave ended, 0 hours"
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 83.343,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Leave ended"
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      66.312
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 2,
+     "longestWait_ms": 30114,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  },
+  "tessa": {
+   "tester": "Tessa Williams",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.617,
+     "openT": "2026-10-31T04:55:33.444Z",
+     "wallClockStartT": "2026-10-31T04:55:24.753Z",
+     "stopT": "2026-10-31T04:56:56.626Z",
+     "stopElapsed_s": 83.799,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopReaction": "Stopping the phone. It finished fast, the ending named what I did, but I only ever picked between two set buttons and the story was over before I felt like I made it mine.",
+     "wantQuitReason": "FINISHED",
+     "wantQuitElapsed_s": 82.861,
+     "maxElapsed_s": 83.799,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.03,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 67.355,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Second day, 3 free hours"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 82.861,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 83.799,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      67.355
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 2,
+     "longestWait_ms": 30106,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ]
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 0.761,
+     "openT": "2026-10-31T04:56:58.360Z",
+     "wallClockStartT": "2026-10-31T04:55:24.844Z",
+     "stopT": "2026-10-31T04:58:21.859Z",
+     "stopElapsed_s": 84.26,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopReaction": "Stopping the laptop. Nicer than the phone, and failing the visit was honest and told me why. But it is one short pass of two-button choices and I have seen what changes. I would not come back for the same three days.",
+     "wantQuitReason": "FINISHED",
+     "wantQuitElapsed_s": 83.127,
+     "maxElapsed_s": 84.26,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.037,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 66.75,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "Second day, 3 free hours"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 83.127,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 84.26,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      66.75
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 2,
+     "longestWait_ms": 30114,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  },
+  "nia": {
+   "tester": "Nia Okafor",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.726,
+     "openT": "2026-10-31T04:59:01.007Z",
+     "wallClockStartT": "2026-10-31T04:58:51.326Z",
+     "stopT": "2026-10-31T04:59:36.321Z",
+     "stopElapsed_s": 36.04,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopReaction": "Finished all three days in under 30 seconds. Quick, readable, costs shown on buttons. I liked the Selin choice but it was over before I got hooked. I would close it.",
+     "wantQuitReason": null,
+     "wantQuitElapsed_s": null,
+     "maxElapsed_s": 60.026,
+     "autoLineAfterStop": true,
+     "checkpoints": [
+      {
+       "kind": "stop",
+       "elapsed_s": 36.04,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.026,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 0,
+     "longestWait_ms": null,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 2,
+     "manualShots": 1,
+     "retainedPngNames": [
+      "a-001.png",
+      "first-minute.png"
+     ]
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 0.659,
+     "openT": "2026-10-31T04:59:38.481Z",
+     "wallClockStartT": "2026-10-31T04:58:51.377Z",
+     "stopT": "2026-10-31T05:00:10.622Z",
+     "stopElapsed_s": 32.8,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopReaction": "Done again in about 30 seconds with different choices; ending text changed (private page stayed private, delivery not yet happened). Wide layout is nice. Too short to hook me. Would close it.",
+     "wantQuitReason": null,
+     "wantQuitElapsed_s": null,
+     "maxElapsed_s": 32.8,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "stop",
+       "elapsed_s": 32.8,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 0,
+     "longestWait_ms": null,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 1,
+     "manualShots": 1,
+     "retainedPngNames": [
+      "b-001.png"
+     ]
+    }
+   }
+  },
+  "miles": {
+   "tester": "Miles Osei",
+   "exit": 0,
+   "devices": {
+    "desktop": {
+     "firstOpenElapsed_s": 0.765,
+     "openT": "2026-10-31T05:00:39.123Z",
+     "wallClockStartT": "2026-10-31T05:00:32.717Z",
+     "stopT": "2026-10-31T05:01:57.519Z",
+     "stopElapsed_s": 79.161,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopReaction": "The three days are over and Leyla went home with things in order. I stop here. Good, but it was over before I settled in.",
+     "wantQuitReason": "FINISHED",
+     "wantQuitElapsed_s": 70.02,
+     "maxElapsed_s": 79.161,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.04,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 66.749,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "leave ended"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 70.02,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 79.161,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      66.749
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 1,
+     "longestWait_ms": 12108,
+     "rawErrors": [
+      {
+       "elapsed_s": 22.996,
+       "op": "tap",
+       "input": {
+        "text": "Stay at the door and skip the meal."
+       },
+       "error": "Stay at the door and skip the meal. is visible text and also the start of the control \"Stay at the door and skip the meal. Save the hour; become more tired, which can add a checking or travel hour.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+       "requestedControlPresentBefore": true
+      },
+      {
+       "elapsed_s": 42.767,
+       "op": "tap",
+       "input": {
+        "text": "Tell Selin what you wished you could say."
+       },
+       "error": "Tell Selin what you wished you could say. is visible text and also the start of the control \"Tell Selin what you wished you could say. Ask Selin to stay and listen; the conversation tires you.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+       "requestedControlPresentBefore": true
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ]
+    },
+    "phone": {
+     "firstOpenElapsed_s": 0.742,
+     "openT": "2026-10-31T05:01:58.894Z",
+     "wallClockStartT": "2026-10-31T05:00:32.817Z",
+     "stopT": "2026-10-31T05:03:12.001Z",
+     "stopElapsed_s": 73.849,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopReaction": "Two leaves, two endings. I know the sums now. I stop for tonight.",
+     "wantQuitReason": "FINISHED",
+     "wantQuitElapsed_s": 66.845,
+     "maxElapsed_s": 73.849,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.023,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 65.636,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "leave ended"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 66.845,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 73.849,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      65.636
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 1,
+     "longestWait_ms": 14106,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ]
+    }
+   }
+  }
+ }
+}

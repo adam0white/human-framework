@@ -1,0 +1,105 @@
+**Would you return voluntarily?** I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now.
+
+**Ranked asks**
+1. Show walking. After one landing tap, show a "walking, N s" marker or my figure moving. Say that extra taps restart the walk.
+2. Warn before a neighbour dies. The status text said "Smoke may kill me" and then they were dead, with no time shown for them.
+3. Start the Feedback note box empty. It opens pre-filled with "I'm confused", so a stray Submit would send words I did not choose.
+
+Cleanup: I own no worktree, server or helper process. I started none, so none of mine remain. The coordinator stops both drivers. `git worktree list` was not run. The playtest folder is not a git repository, so it would only error.
+
+## 1. Session
+- **Persona:** Leila Mansour, 26, Alexandria translator. Impatient, likes precise prose, uses a phone.
+- **Exposure:** first visit to this game. I have played other Human Framework games.
+- **Round and arm:** light-1031-smoke1, first panel round, free stop (floor 0, ceiling 20 min).
+- **Own history:** I read the whole file, 837 lines, in two chunks, with nothing unread. It has nothing about this game.
+- **URL:** https://smoke.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode requested, driver 22106. It ran 114.5 s.
+- **Session B:** 1280x800 keyboard and mouse, light mode requested, driver 22107. It ran 164 s.
+- **Early stops:** I stopped both sessions early, well under the 20-minute ceiling. The three-minute pulse was only reachable on desktop, and I stopped there at 164 s before it, so no pulse was logged in either session.
+- **Dark theme:** the game was dark-themed on both devices although I asked for light.
+
+## 2. First impressions
+- **Phone, 5.8 s:** a clear job, to get everyone to the street, with a timer of 153 s.
+- **Phone, 21.8 s:** the picture is clear (building, smoke bands, people on floors).
+- **Phone, 23.4 s:** "the hint says exactly what to do." I liked the grey hint line most.
+- **Desktop, 5.7 s:** a different start from the phone. Burak was away, Sevim was asleep and the clock read 06:10.
+- **Desktop, about 60 s:** I had lost about 45 s learning that walking is slow and silent.
+
+## 3. Verbatim diary lines
+**Session A (phone):**
+- 5.8: "Clear job: get everyone to the street. Timer says stair closes in 153s. Entering."
+- 7.4: "Going to Sevim, she needs help with books."
+- 16.8: "Speech still disabled. Tapping Sevim to approach, as the hint says."
+- 21.8: "Picture is clear: building, smoke bands, people on floors. It is dark-themed though I asked light. Trying Come now."
+- 23.4: "Good: the hint says exactly what to do. Torch on."
+- 26.4: "She answers what I do; consequential, clear next-step hints."
+- 28.2: "Sevim follows. Leading her to the street."
+- 38.8: "Sevim made it, a clear win. Going to Derya."
+- 58.5, note: "Walking to Derya takes a long time and I cannot tell where I am; speech still greyed after 15 seconds. Waiting out thick smoke, I guess."
+- 62.9, first_minute: "Reason to act: get four neighbours out before the stair closes. Tappable: neighbours, speech buttons, landings, Street, Torch. Got Sevim out in about 35s: Come now, Torch, Show the stair, Walk with me, Street. The grey hint line always told me the next step, which I like. Walking to Derya takes long and I cannot see my own position well. Picture is dark though I asked for light."
+- 80.5: "Picture shows me still at the street door; the banner says MOVE. My earlier walk taps seem to have done nothing. Trying again during the MOVE window."
+- 103.1: "Landing taps do nothing visible after four tries; trying ArrowUp from the title instructions."
+- 105.5, want_quit CONFUSED: "Hacer died and I never got off the street. I tapped Walk to landing 3 five times and nothing visibly moved me; I cannot tell whether the walk needs a thin-smoke window, or the first taps were ignored. I am guessing at the rule, not making choices."
+- 107.6: "Last try: tapping the landing in the picture directly."
+- 112.6: "Feedback opened with the note box already holding the words I am confused; no Back button, only Not now. Pressing Not now, sending nothing."
+- 114.5, stop CONFUSED: "I am stopping the phone session at under two minutes. Talking to Sevim worked well and the hints were precise, but I could not make myself move to the other floors, Hacer died, and I do not know why. I would not leave it running."
+
+**Session B (desktop):**
+- 5.7: "Second visit, desktop. Different start: Burak away, Sevim asleep, clock 06:10. The seed differs. This time I will use WASD to move."
+- 19.2: "Trying W while MOVE window is up."
+- 24.0: "Guess: maybe walking needs a held press."
+- 37.5: "Tapping Sevim to approach, as the hint says."
+- 58.9: "I think I see it: one walk tap needs about 12 s of leaving it alone; my extra taps probably restarted the walk. The game never says so."
+- 63.9, first_minute: "Reason to act: get the people home to the street before the stair closes. Tappable: neighbours, speech buttons, landings, Street, Torch, menu. Different start from my phone: Burak away, Sevim asleep. I lost about 45 s because walking takes about 12 s after one tap and nothing shows that; my extra taps seemed to restart it. Once near, Sevim answered in character and the grey hint line named her need, the books. Good prose; slow, silent walking."
+- 65.3: "Using the keyboard B for the books."
+- 117.1, reaction on key T: "Walk with me, then street. Time is short."
+- 123.4, reaction on tap: "Street did nothing visible; one walk tap then I wait."
+- 138.2, reaction on tap: "Sevim out. 27 seconds left, trying Derya."
+- 156.6, want_quit FRUSTRATED: "Derya and Hacer died while I waited for a walk that never showed progress. Only Sevim got out. I lost 45 seconds at the start learning the walk rule, and then the clock beat me. It feels unfair because the rule was never shown."
+- 164.0, stop FRUSTRATED: "Stopping at under three minutes. Sevim got out, Derya and Hacer died. Talking to people is precise and good. The silent walk delay cost me the run. Feedback opened with I am confused already in the note; I pressed Not now and sent nothing."
+
+The desktop log also holds a few entries I made with no text: at 7.3 (ArrowUp), 9.5 and 13.9.
+
+## 4. Moments
+- **What held me:** talking to Sevim. Her lines are individual ("Not without the books. Stay and help me bundle them."). The grey hint line named the next step each time. Sevim's rescue chain works: Come now, Torch, Show the stair, Walk with me, Street.
+- **What lost me:** walking. On the phone I could not reach landing 3 after about five taps, a held tap, a key press and a point tap. I do not know why. My best guess is that the walk needs uninterrupted time and my extra taps reset it. That is unverified.
+- **Desktop:** I found that one tap plus about 12 s of waiting works. I lost about 45 s learning it, and the stair then closed before I got to Derya.
+- **Quit wishes:** phone CONFUSED at 105.5 s, desktop FRUSTRATED at 156.6 s. Neither passed. I stopped right after each one, and both stops came within about 10 s of the want_quit.
+- **Pulses:** none logged. Both sessions ended before a pulse was due. I did not log one, so there is no engagement rating.
+
+## 5. Confusion and clarity
+- **Clear:** the goal, the timer, the grey hint line and the speech buttons.
+- **Confusing:**
+  - Walking gives no feedback. I could not tell whether a tap had registered.
+  - The speech buttons stay grey for a long time, and I could not tell where I was.
+  - Neighbour statuses ("Smoke may kill me. Get me outside.") gave no countdown.
+  - The Feedback box opens pre-filled, and it has no Back button, only "Not now".
+  - The stair-closes timer does not say what it means. Hacer and Derya died around 9 s before the end on desktop.
+  - I did not understand "Street", a button that did nothing visible on desktop while Sevim was following. I may have misread it.
+
+## 6. Device use
+- **Phone screenshots viewed:** a-001.png (title card), a-002.png (playing, about 18 s) and a-003.png (playing, about 76 s). All were viewed with Read.
+- **Desktop screenshots viewed:** b-001.png (title dialog over a dimmed game) and b-002.png (playing, about 15 s). Both were viewed with Read.
+- **Count:** 3 of 5 manual shots on phone, 2 of 5 on desktop. I did not separately see an automatic checkpoint.
+- **Controls used on phone:** taps on neighbours, speech buttons, landing buttons, the held tap, ArrowUp, and a point tap on the picture.
+- **Controls used on desktop:** the same taps plus the keys B, F, R and T. The keys worked. W and ArrowUp did not walk me.
+- **Layout:** desktop adds a left column ("06:10 · Istanbul / Find who is home...") that the phone lacks. The picture was clearer on desktop. I saw no layout breakage on either device. Both starts were different, and the difference mattered to me only a little.
+- **Trouble I saw:** walking and the dark theme. I did not see any unseen layout beyond the screenshots.
+
+## 7. Stop and return
+- **Phone stop, 114.5 s, CONFUSED:** "I am stopping the phone session at under two minutes. Talking to Sevim worked well and the hints were precise, but I could not make myself move to the other floors, Hacer died, and I do not know why. I would not leave it running."
+- **Desktop stop, 164.0 s, FRUSTRATED:** "Stopping at under three minutes. Sevim got out, Derya and Hacer died. Talking to people is precise and good. The silent walk delay cost me the run. Feedback opened with I am confused already in the note; I pressed Not now and sent nothing."
+- **Feedback:**
+  - In both sessions I opened the pause menu (≡). I chose "I'm confused" on desktop and the matching choice on phone.
+  - The dialog has no Back button, so I used "Not now".
+  - I typed nothing and pressed no Submit.
+  - I changed no consent or recording setting.
+- **Would you return voluntarily?** I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now. The conditions: show walking progress and tell me extra taps restart the walk. Without that, I would repeat the same silent 12 s waits.
+
+## 8. Changes
+1. Show walking: a visible "walking, N s" marker or a moving figure after one tap, plus a line that extra taps restart the walk.
+2. Show each neighbour's time left before smoke kills them.
+3. Start the Feedback note empty, and add a Back button next to "Not now".
+
+## 9. Compared with my last visit
+This was my first visit to this game, so there is no earlier visit to compare with. On the second device I did notice a different start from the phone, with Burak away and Sevim asleep. That is the only difference I can point to, and I cannot say it mattered.

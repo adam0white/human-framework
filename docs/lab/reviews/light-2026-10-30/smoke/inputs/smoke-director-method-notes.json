@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T04:45:36.686128+00:00",
+  "players": {
+    "jonas": {
+      "calls": 79,
+      "validAssignedCurl": 78,
+      "failedShellQuotes": 1
+    },
+    "aisha": {
+      "calls": 61,
+      "validAssignedCurl": 61,
+      "failedShellQuotes": 0
+    },
+    "diego": {
+      "calls": 72,
+      "validAssignedCurl": 71,
+      "failedShellQuotes": 1
+    },
+    "leila": {
+      "calls": 65,
+      "validAssignedCurl": 64,
+      "failedShellQuotes": 1
+    },
+    "marta": {
+      "calls": 72,
+      "validAssignedCurl": 72,
+      "failedShellQuotes": 0
+    }
+  },
+  "executedOutOfProtocolCommands": 0,
+  "qualifications": [
+    "Three malformed quotes failed before curl, no request. Provider envelopes remain private.",
+    "Jonas report lost desktop diary after context compaction and guessed15minutes; actualrawstop148.884s and exactdesktopreactions survive separately, not reconstructeddiary.",
+    "Diego phone FINISHED is a personal stop: noendcard/staircloses22s. Jonas desktop includes successfulrun then retry/personalstop. Preserve reasonlabels without whole-game inference.",
+    "Aisha early firstminute on tap is not a valid log checkpoint; actual log80.891s survives.",
+    "Marta hour-ago estimate is not an actual interval; rawdevice timestamps govern. Within-person desktop learning beforephone remains actualexposure.",
+    "Dynamic accessible names/offscreen coveredlandingbuttons and tool latency qualify movement/death causalclaims. All5observe walkingconfusion, whichneedsnativepublicpointer reproduction, notautomaticclock/difficultyretune.",
+    "Dark art despite lightbrowserpreference is not proof a theme toggle is broken.",
+    "Feedbackdraftprefill comes after selectedquicklabel; no Submit/note/consentchange. Blanknote/Back preference doesnotprove unchosen notes sent. Endcard offers alternatefeedbackpath whenpausebuttoncovered."
+  ]
+}

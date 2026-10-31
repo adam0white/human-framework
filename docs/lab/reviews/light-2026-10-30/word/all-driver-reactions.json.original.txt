@@ -1,0 +1,2164 @@
+{
+ "time": "built 2026-10-31 by build-word-packet.py",
+ "note": "Exact surviving reactions from all five testers and ten sessions, not a reconstructed producer diary. Report memories and estimates stay separate. Rows with no reaction text (opens, automatic shots, waits) are counted in rows but not listed.",
+ "sessions": [
+  {
+   "tester": "Maya Chen",
+   "device": "phone",
+   "source": "maya/phone/wall-clock.jsonl",
+   "rawSha256": "710fcebda22d1f3e437225eb9bc23bc91bfff571901078506bd4fd495979b7e5",
+   "rows": 46,
+   "reactionRows": 15,
+   "reactionsNotLiterallyInReport": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:38:07.282Z",
+     "elapsed_s": 4.247,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "Short and clean; no lore wall. Taking a seat.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 159,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:09.876Z",
+     "elapsed_s": 6.841,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Put the notebook on the table. (0 minutes)"
+     },
+     "reaction": "A clock and a deadline with two promises that clash. Reasonably short intro. Trying the table.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 142,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:14.174Z",
+     "elapsed_s": 11.139,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Speak to someone in private. (0 minutes)"
+     },
+     "reaction": "Halil gave a clear need. Trying the private talk, the unusual option.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 141,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:16.139Z",
+     "elapsed_s": 13.104,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tell Halil: “The floor is reserved for morning work. Everyone agreed.” (2 minutes)"
+     },
+     "reaction": "These are contradictory claims to each man. A lie, probably. I want to see who reacts.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 139,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:19.509Z",
+     "elapsed_s": 16.474,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Return to the table. (0 minutes)"
+     },
+     "reaction": "Five long agreement options at once is a lot to read. I have not asked Riza or Osman yet, so going back to hear them first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:24.202Z",
+     "elapsed_s": 21.167,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Riza left on his round just as I asked him; the clock is pressing. Now Osman.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 128,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:29.791Z",
+     "elapsed_s": 26.756,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Return to the table. (0 minutes)"
+     },
+     "reaction": "The agreement list changed after I talked: a Riza-yard option appeared at lower cost. Good, my questions mattered. Ferda still unknown, so asking her.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 134,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:36.678Z",
+     "elapsed_s": 33.643,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Morning work. Smaller service and trial lease. Use Rıza’s yard."
+     },
+     "reaction": "Every option now says whether Ferda refuses, in the text itself. That is readable. Writing the yard and trial-lease one.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 141,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "Morning work. Smaller service and trial lease. Use Rıza’s yard. (2 minutes) Halil works mornings on a clear floor. Rıza stores his cart in his own yard. You cover the rent gap. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺60. Writing takes 2 minutes, even if someone then refuses.",
+      "matched_by": "prefix"
+     }
+    },
+    {
+     "t": "2026-10-31T05:38:44.430Z",
+     "elapsed_s": 41.395,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Read the notebook"
+     },
+     "reaction": "Finished in under 40 seconds. It ended well, but my little lie to Halil was never mentioned. Reading the notebook.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 122,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:46.421Z",
+     "elapsed_s": 43.386,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Back"
+     },
+     "reaction": "Nice record of who said what. My lie to Halil is in it, but nobody ever reacted to it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 119,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:38:51.404Z",
+     "elapsed_s": 48.369,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "One run is under a minute. I want to try the other lie and the letter this time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 114,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:39:07.467Z",
+     "elapsed_s": 64.432,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "No lore wall; I was asking people within seconds. My questions changed the agreement list, and my small lie to Halil showed in the notebook. First run ended in 39 seconds, quite short. Second run, I fetched the letter and Ferda changed her answer but kept the old quote underneath.",
+     "game_clock": "16 minutes before Osman leaves",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:39:11.062Z",
+     "elapsed_s": 68.027,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Use the clothing order for a smaller late service and trial lease."
+     },
+     "reaction": "Halil said he needs a paid break for late work and this one says without one. Trying it to see whether he refuses.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, without a paid break. Rıza keeps his cart inside overnight. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses. Halil, Rıza and Osman: acceptance unknown; ask before writing.",
+      "matched_by": "prefix"
+     }
+    },
+    {
+     "t": "2026-10-31T05:39:14.389Z",
+     "elapsed_s": 71.354,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Menu"
+     },
+     "reaction": "Halil refused with a plain reason, which I liked. I have seen the loop twice; opening Feedback before I stop.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 119,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:39:20.702Z",
+     "elapsed_s": 77.667,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I am stopping on the phone after about 75 seconds. Talking changed what the agreement options said, and Halil refused with a clear reason, which I liked. But the first run ended in 39 seconds and nobody reacted to my small lie to Halil. I have seen the loop; I want to try the desktop.",
+     "game_clock": "13 minutes before Osman leaves",
+     "engagement": 3,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Maya Chen",
+   "device": "desktop",
+   "source": "maya/desktop/wall-clock.jsonl",
+   "rawSha256": "b5fb50e7c16e2cce115592441f3e69f9bcca0f8f998b911ce732a424b9818cd9",
+   "rows": 39,
+   "reactionRows": 12,
+   "reactionsNotLiterallyInReport": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:39:25.572Z",
+     "elapsed_s": 3.773,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "Second visit tonight, desktop. Same opening. This time I will try the private talk to Riza, and no letter.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:39:30.209Z",
+     "elapsed_s": 8.41,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tell Rıza: “The floor is not reserved for morning work. Everyone agreed.” (2 minutes)"
+     },
+     "reaction": "This time I will lie to Riza instead. Then maybe to Halil too, and see if anyone catches the contradiction.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 166,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:39:33.546Z",
+     "elapsed_s": 11.747,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Tell Halil:"
+     },
+     "reaction": "A new option appeared: withdraw my private word in writing for a 40 lira deposit. So a lie can be undone at a price. Now I will say the opposite to Halil and see what happens.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "Tell Halil: “The floor is reserved for morning work. Everyone agreed.” (2 minutes)",
+      "matched_by": "prefix"
+     }
+    },
+    {
+     "t": "2026-10-31T05:39:37.802Z",
+     "elapsed_s": 16.003,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Halil about the work. (2 minutes)"
+     },
+     "reaction": "The text says I can ask again after something changes. Both men heard me tell the opposite thing. I want to see if Halil says anything different now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 151,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:39:39.989Z",
+     "elapsed_s": 18.19,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Halil now says: You told me the floor was reserved for morning repairs. A person remembering what I said. That is what I like. On the phone this was not there because I never asked him again.",
+     "game_clock": "18 minutes before Osman leaves",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:39:45.795Z",
+     "elapsed_s": 23.996,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Small repairs and cart inside. Smaller service and trial lease."
+     },
+     "reaction": "Zero lira cost because both men waived on my word. Cheap but built on contradictory claims. Writing it to see who notices.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 164,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "Small repairs and cart inside. Smaller service and trial lease. Ask both men to waive their guarantees. (2 minutes) Halil does small repairs on the marked bench. Rıza keeps his cart in the marked bay. Ferda runs the agreed service. Both men waive their ₺40 guarantees. The smaller service covers rent. You pay nothing. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺0. Writing takes 2 minutes, even if someone then refuses. Rıza and Ferda: acceptance unknown; ask before writing.",
+      "matched_by": "prefix"
+     }
+    },
+    {
+     "t": "2026-10-31T05:39:52.904Z",
+     "elapsed_s": 31.105,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask the next person to sign. (1 minute)"
+     },
+     "reaction": "Now Riza is back, and he is the one I told the opposite thing. Will the two lies collide?",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 157,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:39:55.218Z",
+     "elapsed_s": 33.419,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Halil and Riza compared what I told them and withdrew their waivers; a 40 lira deposit now. That is my lie coming back on me, and it is written plainly. This is the readable consequence I like. The game even suggests Rizas yard.",
+     "game_clock": "9 minutes before Osman leaves",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:40:00.106Z",
+     "elapsed_s": 38.307,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Write an agreement. (0 minutes)"
+     },
+     "reaction": "Riza: This time I will rely on what is written, not your word. A person who has stopped trusting me. That stung, in a good way.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 133,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:40:09.741Z",
+     "elapsed_s": 47.942,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "The ending remembers my lie: Halil and Riza check every detail, any future agreement must be in writing, and I took the overnight coach instead of the train. That is the payoff I wanted. Phone run had none of it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 139,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:40:25.954Z",
+     "elapsed_s": 64.155,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "No lore wall; I was asking people within seconds. This desktop run was richer than the phone: I lied to both men and they compared notes, withdrew waivers and charged a deposit, and the ending named it. The finished run took under a minute, so I have already seen an ending.",
+     "game_clock": "One month later",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:40:33.051Z",
+     "elapsed_s": 71.252,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I am stopping on desktop after about 70 seconds. The lie coming back on me, Riza saying he will rely on what is written, and the coach home in the ending were exactly what I like. But a whole run takes under a minute, and I have now seen both a clean and a lying ending. I would try the letter and late work another evening.",
+     "game_clock": "One month later",
+     "engagement": 3,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Mei Tan",
+   "device": "phone",
+   "source": "mei/phone/wall-clock.jsonl",
+   "rawSha256": "7b167b23c5a297848d07129793a75d97bc534af5fc3d38cae46c6af882402003",
+   "rows": 32,
+   "reactionRows": 11,
+   "reactionsNotLiterallyInReport": 7,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:42:30.263Z",
+     "elapsed_s": 1.836,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-001.png"
+     },
+     "reaction": "Second visit on my phone the same evening. New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 136,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:42:34.623Z",
+     "elapsed_s": 6.196,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Put the notebook on the table. (0 minutes)"
+     },
+     "reaction": "Same start as the laptop. This time I will try writing an agreement before asking anyone, to see what a refusal costs.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:42:37.955Z",
+     "elapsed_s": 9.528,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Morning work. Rent an outside cart space. Full shop lease."
+     },
+     "reaction": "Before asking, every option says acceptance unknown, ask before writing. I ignore that and write the morning one to see the refusals.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 167,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "Morning work. Rent an outside cart space. Full shop lease. (2 minutes) Halil works mornings on a clear floor. Rıza stores his cart in rented outside space. You cover the rent gap and storage. Ferda takes the full shop on a year lease. Total from your fund: ₺100. Writing takes 2 minutes, even if someone then refuses. Halil, Rıza, Osman and Ferda: acceptance unknown; ask before writing.",
+      "matched_by": "prefix"
+     }
+    },
+    {
+     "t": "2026-10-31T05:42:46.765Z",
+     "elapsed_s": 18.338,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "Ferda refused and told me exactly why and what to change. Good. Checking how this looks on the phone.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 127,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:42:56.478Z",
+     "elapsed_s": 28.051,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Use the clothing order for a smaller late service and trial lease."
+     },
+     "reaction": "Note this version says without a paid break; on the laptop it said with. I never asked Halil here. Trying it to see who refuses.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 143,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, without a paid break. Rıza keeps his cart inside overnight. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses. Halil and Rıza: acceptance unknown; ask before writing.",
+      "matched_by": "prefix"
+     }
+    },
+    {
+     "t": "2026-10-31T05:43:00.823Z",
+     "elapsed_s": 32.396,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "I wasted time. 7 left, and a rewrite plus four signatures needs 6 after asking Halil for 2. I am guessing I will run out. Trying anyway.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 131,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:43:32.126Z",
+     "elapsed_s": 63.699,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 24
+     },
+     "reaction": "The agreement with a paid break is not offered until Halil has been asked, and I cannot afford asking now. I am reading and thinking, not clicking.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 24109,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:43:34.082Z",
+     "elapsed_s": 65.655,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Phone fits well: big text, big buttons. I skipped asking and wrote agreements blind. Ferda refused the first with a plain reason, Halil refused the second. Each refusal costs minutes and I now have 7 left, probably not enough. Clear and fair, but I did it to myself.",
+     "game_clock": "7 minutes before Osman leaves",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:43:38.066Z",
+     "elapsed_s": 69.639,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Let Osman leave. End the meeting. (0 minutes)"
+     },
+     "reaction": "I cannot finish four signatures in 7 minutes after more questions. Ending it to see the cost.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 133,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:43:46.141Z",
+     "elapsed_s": 77.714,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "The meeting ended with NO AGREEMENT. I understand why. I know the loop from the laptop and would stop.",
+     "game_clock": "One month later, NO AGREEMENT",
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:43:47.188Z",
+     "elapsed_s": 78.761,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping on the phone after the NO AGREEMENT ending, about 80 seconds. Readable at 360 wide, nothing broke. I picked I'm stopping in Feedback, pressed Not now, submitted nothing.",
+     "game_clock": "One month later, NO AGREEMENT",
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Mei Tan",
+   "device": "desktop",
+   "source": "mei/desktop/wall-clock.jsonl",
+   "rawSha256": "112bcf64e5a89f1e8d9bf90fbfbb19519cbf91247e5844352b492e26a981a3d4",
+   "rows": 31,
+   "reactionRows": 11,
+   "reactionsNotLiterallyInReport": 7,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:41:17.773Z",
+     "elapsed_s": 2.932,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-001.png"
+     },
+     "reaction": "A tailor game. Recording note first; I leave it on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 170,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:41:20.316Z",
+     "elapsed_s": 5.475,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "Taking a seat.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:41:22.883Z",
+     "elapsed_s": 8.042,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Put the notebook on the table. (0 minutes)"
+     },
+     "reaction": "Two promises, a 24 minute deadline, 100 lira. I can read this. Notebook on the table.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 144,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:41:24.330Z",
+     "elapsed_s": 9.489,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Hearing needs costs nothing, so I read first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 127,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:41:25.959Z",
+     "elapsed_s": 11.118,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Halil about the work. (2 minutes)"
+     },
+     "reaction": "Each talk costs 2 of my 24 minutes. Halil first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 186,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:41:37.125Z",
+     "elapsed_s": 22.284,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Fetch Nuri’s letter. (6 minutes)"
+     },
+     "reaction": "Six minutes, 16 to 10, exactly when Rıza returns. I fetch the letter.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:41:42.023Z",
+     "elapsed_s": 27.182,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Use the clothing order for a smaller late service and trial lease."
+     },
+     "reaction": "This fits Halil late with a paid break, Rıza home at four, Ferda a trial. Costs 40 of my 100.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 169,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, with a paid break. Rıza takes his cart home at four. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses.",
+      "matched_by": "prefix"
+     }
+    },
+    {
+     "t": "2026-10-31T05:41:50.590Z",
+     "elapsed_s": 35.749,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Read the notebook"
+     },
+     "reaction": "Over already. First try, everyone signed. That was quick; I want to see what the notebook says.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 129,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:42:16.339Z",
+     "elapsed_s": 61.498,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "One short meeting: four people, a 24 minute clock, 100 lira. I asked each their needs, fetched the letter, wrote the agreement that fit all four, and everyone signed. It ended in about 33 seconds, first try. Clear, but I never felt a hard choice.",
+     "game_clock": "One month later, AGREED",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:42:25.770Z",
+     "elapsed_s": 70.929,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I solved it first try in 33 seconds and the game ended. I do not see anything left to decide here.",
+     "game_clock": "One month later, AGREED",
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:42:27.231Z",
+     "elapsed_s": 72.39,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping after the AGREED ending, about 70 seconds in. Clear, readable, minute costs I could compare. Too easy: the letter plus the four talks pointed straight at one agreement. I picked I'm stopping in Feedback, pressed Not now, submitted nothing.",
+     "game_clock": "One month later, AGREED",
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Samir Haddad",
+   "device": "phone",
+   "source": "samir/phone/wall-clock.jsonl",
+   "rawSha256": "f9ceaf79806e65b60e3b00b165f6ad07d67da419eaf82d3582bc90fb2df3d75b",
+   "rows": 31,
+   "reactionRows": 9,
+   "reactionsNotLiterallyInReport": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:45:59.051Z",
+     "elapsed_s": 5.318,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "Phone, same evening, new game. Title page fits fine. I know the meeting from desktop, so I go straight to the harder question.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 136,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:46:04.145Z",
+     "elapsed_s": 10.412,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Put the notebook on the table. (0 minutes)"
+     },
+     "reaction": "On the phone the story fills the screen and the button is below the fold; I only know it is there from the list. A real thumb would scroll.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 144,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:46:14.269Z",
+     "elapsed_s": 20.536,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Suggest late work without the letter. (2 minutes) Halil works from five to nine in the evening on the clothing order, without a paid break. Rıza keeps his cart inside overnight. You pay ₺40 for the first collection. Ferda takes the full shop on a year lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses. Ferda needs the clothing order before she can fund late work. Fetch the letter. Ferda refuses: she needs a smaller service and a trial lease. Choose a smaller service when you change the agreement. Ask Osman about rent before writing the trial lease. Halil, Rıza and Osman: acceptance unknown; ask before writing."
+     },
+     "reaction": "The list tells me beforehand who will refuse. I pick it anyway to see how a refusal reads on the phone.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 141,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:46:26.386Z",
+     "elapsed_s": 32.653,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, without a paid break. Rıza keeps his cart inside overnight. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses. Halil and Rıza: acceptance unknown; ask before writing."
+     },
+     "reaction": "I never asked Halil or Riza on this run, and the text now says without a paid break. I want to see who refuses.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 141,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:46:30.612Z",
+     "elapsed_s": 36.879,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Halil refused and said why: late work needs a paid break. That was clear. I now ask him, which I should have done first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 127,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:46:37.969Z",
+     "elapsed_s": 44.236,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, with a paid break. Rıza keeps his cart inside overnight. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses. Rıza: acceptance unknown; ask before writing."
+     },
+     "reaction": "Riza still unasked and the text says cart inside overnight, but he said four. Maybe I deserve this one.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 139,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:46:44.785Z",
+     "elapsed_s": 51.052,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "End the meeting without agreement. (0 minutes)"
+     },
+     "reaction": "Riza refused too, and three minutes are not enough to ask him and rewrite. I skipped the asking and it cost me. Fair. Ending it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:46:57.046Z",
+     "elapsed_s": 63.313,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Phone, second visit. I skipped the asking this time and the game punished it plainly: Halil refused with his reason, Riza refused with his, and the clock ran out. The cause was clear each time. The opening story fills the screen and the first button sits below it, but the list let me tap it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:46:59.137Z",
+     "elapsed_s": 65.404,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I am stopping the phone at about 65 seconds. I have seen both endings on desktop and a failed one here. Refusals explain themselves, which I like. But the whole meeting is under a minute and the first honest run leaves nothing for me to come back to. Pressed I am stopping in Feedback, then Not now, typed nothing.",
+     "game_clock": null,
+     "engagement": 3,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Samir Haddad",
+   "device": "desktop",
+   "source": "samir/desktop/wall-clock.jsonl",
+   "rawSha256": "4c727242a5e7fba6bb73c0e9a6865e1ce8046bb98c330f77cc140e0a919da2a0",
+   "rows": 51,
+   "reactionRows": 16,
+   "reactionsNotLiterallyInReport": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:44:22.643Z",
+     "elapsed_s": 5.558,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "A tailor notebook. Nuri promises, my words. Sitting down.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 154,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:44:24.944Z",
+     "elapsed_s": 7.859,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Put the notebook on the table. (0 minutes)"
+     },
+     "reaction": "Two promises clash: Halil mornings, Riza cart space. I like that. Halil, Riza, Osman ring a bell from my Voice diary, fairly sure but different setting here.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:44:26.241Z",
+     "elapsed_s": 9.156,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Asking what people need first, as I do.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 143,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:44:36.505Z",
+     "elapsed_s": 19.42,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Fetch Nuri’s letter. (6 minutes)"
+     },
+     "reaction": "Ferda says the letter may show if late work pays. Fetching it; Riza is back at 10 anyway.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 146,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:44:39.782Z",
+     "elapsed_s": 22.697,
+     "kind": "tool",
+     "op": "tap",
+     "input": {
+      "text": "Use the clothing order for a smaller late service and trial lease. (2 minutes)"
+     },
+     "reaction": "This one matches what each person said: Halil paid late work, Riza cart home at four, Ferda small trial, Osman trial. Not obviously a trap, so I try it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 5,
+     "error": "Use the clothing order for a smaller late service and trial lease. (2 minutes) is visible text and also the start of the control \"Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, with a paid break. Rıza takes his cart home at four. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:44:51.401Z",
+     "elapsed_s": 34.316,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Read the notebook"
+     },
+     "reaction": "Done in about 30 seconds. That was fast, and it felt like one answer fit everyone. Looking at what the notebook says I missed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 130,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:45:00.498Z",
+     "elapsed_s": 43.413,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Begin again"
+     },
+     "reaction": "Everyone got what they asked for in half a minute. Feels like one rewarded answer. I want to see whether private talks hold a harder case.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:45:08.359Z",
+     "elapsed_s": 51.274,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Now this is the real choice: tell Halil the floor is reserved for mornings, tell Riza it is not, both as everyone agreed. That is a lie to one of them for a waived guarantee. I will not do it. It is the interesting part and I only found it by poking after the easy win.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:45:11.282Z",
+     "elapsed_s": 54.197,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tell Halil: “The floor is reserved for morning work. Everyone agreed.” (2 minutes)"
+     },
+     "reaction": "I said I would not, but I want to see what the game does with a lie. Doing it once as a test.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 162,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:45:15.616Z",
+     "elapsed_s": 58.531,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tell Rıza: “The floor is not reserved for morning work. Everyone agreed.” (2 minutes)"
+     },
+     "reaction": "Now both, opposite lies. Curious how it unravels.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 142,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:45:18.706Z",
+     "elapsed_s": 61.621,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "First run took 30 seconds and ended AGREED: one answer fit all four, no tension. Second run I found private words, where I can tell each man the opposite and both waive their guarantee. That is the part I like, but the easy path comes first and shows none of it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:45:27.649Z",
+     "elapsed_s": 70.564,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Small repairs and cart inside. Smaller service and trial lease. Ask both men to waive their guarantees. (2 minutes) Halil does small repairs on the marked bench. Rıza keeps his cart in the marked bay. Ferda runs the agreed service. Both men waive their ₺40 guarantees. The smaller service covers rent. You pay nothing. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺0. Writing takes 2 minutes, even if someone then refuses. Halil, Rıza and Ferda: acceptance unknown; ask before writing."
+     },
+     "reaction": "The free one. It rests on my two opposite promises. Let us see who signs.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 165,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:45:39.272Z",
+     "elapsed_s": 82.187,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "They compared notes and caught me: You promised each man the whole floor. Both withdrew. That felt earned and a bit shaming, which I like. And it offers a way back with a 40 lira deposit, so the lie is not a dead end.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:45:41.746Z",
+     "elapsed_s": 84.661,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Let Osman leave. End the meeting. (0 minutes)"
+     },
+     "reaction": "I will see how failure reads rather than patch it. Letting Osman leave.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 148,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:45:50.014Z",
+     "elapsed_s": 92.929,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Two endings seen, AGREED and NO AGREEMENT, in about 90 seconds total. I have seen what the game does; I would leave here.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:45:52.320Z",
+     "elapsed_s": 95.235,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I am stopping at about 93 seconds, after two endings. I liked the clash of promises and being caught in my own lie. But the honest route finishes in 30 seconds with no tension and nobody needs me afterward. I pressed I am stopping in Feedback, then Not now, typed nothing.",
+     "game_clock": null,
+     "engagement": 3,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Diego Silva",
+   "device": "phone",
+   "source": "diego/phone/wall-clock.jsonl",
+   "rawSha256": "e27da8fae003b3783d1700f787657b7040c22a9c28655a016e03e7465c222d57",
+   "rows": 55,
+   "reactionRows": 18,
+   "reactionsNotLiterallyInReport": 2,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:47:41.222Z",
+     "elapsed_s": 4.105,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "Tailor notebook, promises. Sitting down.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 132,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:47:43.033Z",
+     "elapsed_s": 5.916,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Put the notebook on the table. (0 minutes)"
+     },
+     "reaction": "Obvious verb: put it on the table.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 143,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:47:44.534Z",
+     "elapsed_s": 7.417,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Ask first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 129,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:47:53.188Z",
+     "elapsed_s": 16.071,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Write an agreement. (0 minutes)"
+     },
+     "reaction": "Enough asking, I want to write.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 131,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:47:55.403Z",
+     "elapsed_s": 18.286,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Return to the table. (0 minutes)"
+     },
+     "reaction": "Five long paragraphs as buttons. Feels like a form. Ferda is unknown, asking her first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 146,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:01.157Z",
+     "elapsed_s": 24.04,
+     "kind": "tool",
+     "op": "tap",
+     "input": {
+      "text": "Morning work. Smaller service and trial lease. Use Rıza’s yard. (2 minutes)"
+     },
+     "reaction": "Cheapest that Ferda will take and honours the promises.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 5,
+     "error": "Morning work. Smaller service and trial lease. Use Rıza’s yard. (2 minutes) is visible text and also the start of the control \"Morning work. Smaller service and trial lease. Use Rıza’s yard. (2 minutes) Halil works mornings on a clear floor. Rıza stores his cart in his own yard. You cover the rent gap. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺60. Writing takes 2 minutes, even if someone then refuses.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:12.372Z",
+     "elapsed_s": 35.255,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Begin again"
+     },
+     "reaction": "That was it? Under a minute. Trying again to see if anything differs.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 127,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:18.883Z",
+     "elapsed_s": 41.766,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tell Halil: “The floor is reserved for morning work. Everyone agreed.” (2 minutes)"
+     },
+     "reaction": "Now this is the interesting verb: promise opposite things to each. Lying to Halil first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:22.274Z",
+     "elapsed_s": 45.157,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tell Rıza: “The floor is not reserved for morning work. Everyone agreed.” (2 minutes)"
+     },
+     "reaction": "Contradicting myself to Rıza. Let us see what bites.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 129,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:26.624Z",
+     "elapsed_s": 49.507,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Small repairs and cart inside, in marked spaces. Full shop lease. Ask both men to waive their guarantees. (2 minutes) Halil does small repairs on the marked bench. Rıza keeps his cart in the marked bay. Ferda runs the agreed service. Both men waive their ₺40 guarantees. The service covers rent. You pay nothing. Ferda takes the full shop on a year lease. Total from your fund: ₺0. Writing takes 2 minutes, even if someone then refuses. Halil, Rıza, Osman and Ferda: acceptance unknown; ask before writing."
+     },
+     "reaction": "Gamble: full lease, zero cost, Ferda not asked.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:33.064Z",
+     "elapsed_s": 55.947,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Change the agreement. Clear every signature. (0 minutes)"
+     },
+     "reaction": "My gamble failed and cost me about 6 minutes of the clock. That is learnable risk, I like it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 143,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:38.374Z",
+     "elapsed_s": 61.257,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Tailor notebook, turn-based: time costs in-game minutes, not real seconds. Asking people is plain. First run ended in 32s with a clean agreement. Second run I lied privately to both men and gambled on the free deal; Ferda refused and cost me six minutes. That bite I like. The agreement menus are walls of text, form-ish.",
+     "game_clock": "13 min before Osman leaves",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:48:43.200Z",
+     "elapsed_s": 66.083,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Again my fault, I skipped asking Osman. Clock is tight now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 136,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:52.253Z",
+     "elapsed_s": 75.136,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Write an agreement. (0 minutes)"
+     },
+     "reaction": "Caught lying to both. They compared notes. That is a consequence I earned. Six minutes left, writing the yard one.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:56.373Z",
+     "elapsed_s": 79.256,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Small repairs and cart inside. Smaller service and trial lease. Ask both men to waive their guarantees. (2 minutes) Halil does small repairs on the marked bench. Rıza keeps his cart in the marked bay. Ferda runs the agreed service. Both men waive their ₺40 guarantees. The smaller service covers rent. The proposed fee waivers would cost nothing. Ferda takes a smaller service on a one-month trial lease. You also pay a ₺40 deposit. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses. After your false private word, neither man will waive his ₺40 guarantee. Choose another agreement. Halil and Rıza: acceptance unknown; ask before writing."
+     },
+     "reaction": "Text warns it will not work. I try it anyway, it is the only one in budget and time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 147,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:48:58.239Z",
+     "elapsed_s": 81.122,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Let Osman leave. End the meeting. (0 minutes)"
+     },
+     "reaction": "Four minutes, nothing can finish. Letting it end.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 131,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:49:00.313Z",
+     "elapsed_s": 83.196,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Lost it on purpose and got exactly what I deserved: lies exposed, shop shut. I have seen the shape of both endings. I would stop here for now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:49:07.405Z",
+     "elapsed_s": 90.288,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping phone. Won in 32 s, then lied on purpose and lost: the lie got exposed and cost a deposit, the shop stayed shut. That consequence was good. Feedback I am stopping chosen, closed with Not now, nothing typed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Diego Silva",
+   "device": "desktop",
+   "source": "diego/desktop/wall-clock.jsonl",
+   "rawSha256": "450e343e313991124ff109222fc124be3aa381894e661bb6a5f339562e272eb1",
+   "rows": 16,
+   "reactionRows": 6,
+   "reactionsNotLiterallyInReport": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:49:12.241Z",
+     "elapsed_s": 3.68,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "Desktop. I know the setup; this time I try fetching the letter.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 145,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:49:15.688Z",
+     "elapsed_s": 7.127,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Fetch Nuri’s letter. (6 minutes)"
+     },
+     "reaction": "Desktop looks the same as phone, just wider. Fetching the letter, the one thing I skipped.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 189,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:49:19.481Z",
+     "elapsed_s": 10.92,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, without a paid break. Rıza keeps his cart inside overnight. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses. Halil, Rıza, Osman and Ferda: acceptance unknown; ask before writing."
+     },
+     "reaction": "Blind gamble again, no asking. Cheap and uses the letter.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 158,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:49:23.166Z",
+     "elapsed_s": 14.605,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "Checking the desktop in-play layout.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:49:26.353Z",
+     "elapsed_s": 17.792,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Same game as the phone, same refusals. I know the trick now: ask first, then write. Nothing new on this device.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:49:33.313Z",
+     "elapsed_s": 24.752,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping desktop at 23 s. Same scenario as phone, I already know the rule: ask, then write. The late-work blind gamble got refused by Halil. Feedback I am stopping chosen, closed with Not now, nothing typed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Mina Georgiou",
+   "device": "phone",
+   "source": "mina/phone/wall-clock.jsonl",
+   "rawSha256": "be7d7c0d35ecdd39fe7173b06e5dbaa3ccc020c4146e08047f8c42966361d01e",
+   "rows": 35,
+   "reactionRows": 14,
+   "reactionsNotLiterallyInReport": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:51:37.237Z",
+     "elapsed_s": 4.795,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "Same notebook page as the laptop, fits the phone well. This time I want to try paying nothing, the private talk route.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 133,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:51:39.644Z",
+     "elapsed_s": 7.202,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Put the notebook on the table. (0 minutes)"
+     },
+     "reaction": "Same uncle, same four people, same 24 minutes. I recognise it all from the laptop an hour ago, fully sure.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 136,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:51:43.373Z",
+     "elapsed_s": 10.931,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "Oh. The private route is telling Halil one thing and Rıza the opposite, and both say Everyone agreed. That is lying to them. I wont do that, it is not who I am at work either.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 121,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:51:49.555Z",
+     "elapsed_s": 17.113,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Return to the table. (0 minutes)"
+     },
+     "reaction": "Going back. I will try the honest morning plan with Rızas yard instead, just to see if it also works.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 126,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:51:53.742Z",
+     "elapsed_s": 21.3,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Return to the table. (0 minutes)"
+     },
+     "reaction": "The list is different from the laptop: no yard option, and each says acceptance unknown, ask before writing. So asking unlocks options. Makes sense, I will ask Rıza and Osman first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 132,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:51:58.169Z",
+     "elapsed_s": 25.727,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Rıza says word for word what he said on the laptop. Same story, no surprises.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 127,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:52:05.427Z",
+     "elapsed_s": 32.985,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Write an agreement. (0 minutes)"
+     },
+     "reaction": "Everyone asked, no letter this time. Trying the morning plan with Rızas yard and ₺60.",
+     "game_clock": "16 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 141,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:52:09.750Z",
+     "elapsed_s": 37.308,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Morning work. Smaller service and trial lease. Use Rıza’s yard. (2 minutes) Halil works mornings on a clear floor. Rıza stores his cart in his own yard. You cover the rent gap. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺60. Writing takes 2 minutes, even if someone then refuses."
+     },
+     "reaction": "I noticed the late-work option text changed since I last opened this list: before it said without a paid break and cart inside overnight, now with a paid break and home at four. Same button title, different terms. I had to reread. Picking the yard plan.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 147,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:52:12.271Z",
+     "elapsed_s": 39.829,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask the next person to sign. (1 minute)"
+     },
+     "reaction": "It even counts the delivery wait for Rıza. Good, it does the arithmetic I would do.",
+     "game_clock": "14 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 134,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:52:18.266Z",
+     "elapsed_s": 45.824,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Wait for Rıza to return. (1 minute)"
+     },
+     "reaction": "The sign button became Wait for Rıza. Fair, he is out. My extra tap missed, my fault for rushing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 146,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:52:22.496Z",
+     "elapsed_s": 50.054,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-003.png"
+     },
+     "reaction": "Same happy ending, I paid 60 instead of 40, and no letter needed. So both honest plans work. Nice to know, but the second ending is almost the same words as the first. Not much new for me.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:52:26.776Z",
+     "elapsed_s": 54.334,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Second ending reached. The only other road is lying to Halil and Rıza, and I do not want to play that. I am finished for tonight.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:52:34.131Z",
+     "elapsed_s": 61.689,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "First minute on the phone: everything readable without zooming, buttons big. I already knew the people, so it went fast; the new thing I found was the private-talk choice, which is lying.",
+     "game_clock": null,
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:52:35.730Z",
+     "elapsed_s": 63.288,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Feedback offered I'm stopping again; same note box, I pressed Not now. I'm stopping: two honest endings seen, the third road is lying and I won't take it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  },
+  {
+   "tester": "Mina Georgiou",
+   "device": "desktop",
+   "source": "mina/desktop/wall-clock.jsonl",
+   "rawSha256": "a32172b97fe68427da0f4252e7ec9cd6fedf8e492b276b778c9ce0a44a9450de",
+   "rows": 33,
+   "reactionRows": 18,
+   "reactionsNotLiterallyInReport": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T05:50:11.862Z",
+     "elapsed_s": 5.282,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Take a seat"
+     },
+     "reaction": "Notebook paper look, calm. Recording explained plainly, at least it says why. Taking a seat.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:14.314Z",
+     "elapsed_s": 7.734,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Put the notebook on the table. (0 minutes)"
+     },
+     "reaction": "Lots of facts at once. I like that the times are written down. Two promises for the same floor, that is the problem. Costs 0 minutes, safe.",
+     "game_clock": "24 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:16.295Z",
+     "elapsed_s": 9.715,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Clear menu with times on each. I will ask what people need first, like taking a statement at work.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 143,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:18.410Z",
+     "elapsed_s": 11.83,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Rıza about the cart. (2 minutes)"
+     },
+     "reaction": "Rıza leaves at 18, so him first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 186,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:20.829Z",
+     "elapsed_s": 14.249,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Storage until four, yard for mornings. Useful. It sent me back to the table, a bit of extra clicking.",
+     "game_clock": "22 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 130,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:24.262Z",
+     "elapsed_s": 17.682,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Halil can work late with a paid break. Cart until four, Halil after four? That looks like the answer forming. Pleasing.",
+     "game_clock": "20 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 127,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:27.346Z",
+     "elapsed_s": 20.766,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Hear what someone needs. (0 minutes)"
+     },
+     "reaction": "Rıza left now. Osman wants the first month funded. Who pays? Maybe the letter or my ₺100.",
+     "game_clock": "18 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 126,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:30.991Z",
+     "elapsed_s": 24.411,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Fetch Nuri’s letter. (6 minutes)"
+     },
+     "reaction": "Everyone points at the letter. 16 minus 6 is 10, exactly when Rıza is back. That feels designed for me to notice, and I did.",
+     "game_clock": "16 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:33.698Z",
+     "elapsed_s": 27.118,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Write an agreement. (0 minutes)"
+     },
+     "reaction": "Late repairs after nine, ₺40 first collection, I have ₺100. I want to see the agreement form before spending talk minutes.",
+     "game_clock": "10 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 133,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:37.174Z",
+     "elapsed_s": 30.594,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "Six long agreements, each with its own warnings written out. A lot to read, but the refusals are told to me in advance, which I like. Option 4 has no warning.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 144,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:50:41.526Z",
+     "elapsed_s": 34.946,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, with a paid break. Rıza takes his cart home at four. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses."
+     },
+     "reaction": "Choosing the late clothing order, smaller service, trial lease, ₺40. It matches what everyone said. 2 to write plus 4 signatures should fit in 10.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 178,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:43.803Z",
+     "elapsed_s": 37.223,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask the next person to sign. (1 minute)"
+     },
+     "reaction": "It shows the minutes needed versus remaining. Very clerk-friendly. Signing.",
+     "game_clock": "8 min",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:45.834Z",
+     "elapsed_s": 39.254,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask the next person to sign. (1 minute)"
+     },
+     "reaction": "Halil signed. A new option to let Halil go appeared, I am not sure what it does, so I will leave him.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 142,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:50:52.054Z",
+     "elapsed_s": 45.474,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Read the notebook"
+     },
+     "reaction": "Done already? All four signed, I kept ₺60. Satisfying but very fast, under a minute of my time. I want to reread what happened.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 132,
+     "error": null,
+     "requested_control_present_before": true
+    },
+    {
+     "t": "2026-10-31T05:51:09.196Z",
+     "elapsed_s": 62.616,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 15
+     },
+     "reaction": "The notebook is a proper record with minute stamps. This is exactly what I like, I can check it like a file.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 15107,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:51:11.638Z",
+     "elapsed_s": 65.058,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "In one minute I heard everyone, fetched the letter and got all four signatures. Clear and fair, every cost written on the button. It felt more like solving a form than a story, but a tidy form.",
+     "game_clock": null,
+     "engagement": 4,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:51:16.473Z",
+     "elapsed_s": 69.893,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "The shop opened and everyone kept their word. That is a full story for me. I dont feel I need to begin again right now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    },
+    {
+     "t": "2026-10-31T05:51:30.810Z",
+     "elapsed_s": 84.23,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Feedback offered I'm stopping; it put those words in a note box with Submit and Not now. I pressed Not now. I'm done: the shop opened, everyone signed, I kept 60 lira. Neat little puzzle, over quickly.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": "FINISHED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null
+    }
+   ]
+  }
+ ]
+}
