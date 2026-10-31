@@ -320,8 +320,11 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               const exporting = exportPending.current;
               exportPending.current = false;
               for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error(msg.message));
-              // An accepted Continue whose people could not be restored arrives with no export open.
-              if (!exportRequest.current.finish(msg.gen) && exporting) return;
+              if (msg.restore) exportAgain.current = false;
+              const finished = exportRequest.current.finish(msg.gen);
+              // A failed people restore is the player's only explanation for a stopped game, so it always
+              // shows, even while the loaded frame's autosave export waits. Other errors stay quiet then.
+              if (!finished && exporting && !msg.restore) return;
               setPlaytest({ error: msg.message });
               return;
             }

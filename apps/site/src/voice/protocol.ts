@@ -424,6 +424,6 @@ export type WorkerReply =
   | { type: 'report'; view: ReportView }
   | { type: 'playtest'; requestId?: number; file: PlaytestFile }
   | { type: 'replayed'; result: ReplayResult }
-  | { type: 'playtestError'; message: string }
+  | { type: 'playtestError'; message: string; restore?: true }
   | { type: 'error'; message: string };
 export type WorkerToMain = WorkerReply & { gen: number };

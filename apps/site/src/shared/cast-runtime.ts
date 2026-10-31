@@ -102,7 +102,7 @@ export async function readGameFile(file: File): Promise<string> {
 }
 type State = {
   game: string;
-  rejectLoad?: (failure: { gen: number; message: string }) => void;
+  rejectLoad?: (failure: { gen: number; message: string; restore?: true }) => void;
   validatingLoad?: boolean;
   lab: Lab;
   worker: Worker;
@@ -377,7 +377,7 @@ function failRestore(s: State, generation: number) {
   s.restoreQueue = undefined;
   s.status = RESTORE_FAILED;
   changed();
-  if (s.runGen !== undefined) s.rejectLoad?.({ gen: s.runGen, message: RESTORE_FAILED });
+  if (s.runGen !== undefined) s.rejectLoad?.({ gen: s.runGen, message: RESTORE_FAILED, restore: true });
 }
 async function closeOwned(s: State, terminal: { castId: string; at: number }, generation: number) {
   const parent = s.heads[terminal.castId];
@@ -732,7 +732,9 @@ function dispatchCastMessage(
       // controls and exports for this run. Elapsed frames and reads are not inputs. Stale
       // generations were already dropped above, and a replacement clears the queue.
       if (['tick', 'predict', 'why'].includes(String(message.type)) || !s.restoreQueue) return;
-      if (s.restoreQueue.length < 32) s.restoreQueue.push(structuredClone(message));
+      // A pending export is never dropped: only one can wait, and losing it would leave the page's export flag set.
+      if (s.restoreQueue.length < 32 || message.type === 'exportPlaytest')
+        s.restoreQueue.push(structuredClone(message));
       else {
         s.status = 'Too many controls arrived while this save was restoring. The extra control was refused.';
         changed();
