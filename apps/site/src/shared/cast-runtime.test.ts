@@ -1367,11 +1367,14 @@ async function acceptedVoice(heads: Record<string, PersonaEnvelope>) {
   expect(accepted.result).toMatchObject({ matches: true, hash: file.hash, expected: file.hash, driftAt: -1 });
   return { text: JSON.stringify(file), accepted };
 }
-async function continueVoice(rejectLoad?: (failure: { gen: number; message: string }) => void) {
+async function continueVoice(
+  rejectLoad?: (failure: { gen: number; message: string }) => void,
+  requestFreshStart?: (gen: number) => void,
+) {
   const id = 'hf.cast.riza.voice';
   const { text, accepted } = await acceptedVoice({ [id]: await head(id) });
   const worker = new FakeWorker();
-  close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never, rejectLoad);
+  close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never, rejectLoad, requestFreshStart);
   postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1, castPreview: true });
   postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, local: true, text });
   await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
@@ -1451,4 +1454,52 @@ it('C86-2: a receipt failure from a replaced Continue does not touch the new cha
   } finally {
     spy.mockRestore();
   }
+});
+
+// C88 controls: the same genuine accepted Continue whose ownership restore is refused.
+async function refusedContinue(requestFreshStart?: (gen: number) => void) {
+  const { worker, accepted } = await continueVoice(vi.fn(), requestFreshStart);
+  const spy = vi.spyOn(crypto.subtle, 'digest').mockRejectedValue(new Error('receipt digest failed'));
+  try {
+    worker.reply(accepted);
+    await vi.waitFor(() => expect(castState('voice')).toMatchObject({ busy: false, blocked: true }));
+  } finally {
+    spy.mockRestore();
+  }
+  return worker;
+}
+
+it('C88-1: a refused restore keeps no authority, so a checkpoint cannot reach the shelf', async () => {
+  const worker = await refusedContinue();
+  selectCast('voice', 'hf.cast.riza.voice');
+  const saved = checkpointCast('voice');
+  // Answer a checkpoint request with a real bound HF receipt if one is (wrongly) sent.
+  await vi
+    .waitFor(() => expect(worker.requests('castCheckpoint')).toHaveLength(1), { timeout: 300 })
+    .catch(() => {});
+  const request = worker.requests('castCheckpoint').at(-1);
+  if (request) worker.reply({ type: 'castReady', requestId: request.requestId, ...(await capture()) });
+  expect(await saved).toBe(false);
+  expect(worker.requests('castCheckpoint')).toHaveLength(0);
+  expect(control.puts).toEqual([]);
+});
+
+it('C88-2: after a refused restore, the fresh-start button starts a new local game through the page', async () => {
+  let worker: FakeWorker | undefined;
+  const requestFreshStart = vi.fn((gen: number) =>
+    postCastMessage(requireValue(worker) as unknown as Worker, 'voice', {
+      type: 'init',
+      seed: 1,
+      gen: gen + 1,
+      castFresh: true,
+    }),
+  );
+  worker = await refusedContinue(requestFreshStart);
+  const inits = worker.requests('init').length;
+  startCastFresh('voice'); // The CastStartGate button.
+  expect(requestFreshStart).toHaveBeenCalledWith(2);
+  expect(worker.requests('init')).toHaveLength(inits + 1);
+  expect(worker.requests('init').at(-1)).toEqual({ type: 'init', seed: 1, gen: 3 });
+  expect(castState('voice')).toMatchObject({ busy: false, blocked: false });
+  expect(control.puts).toEqual([]);
 });

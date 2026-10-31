@@ -39,9 +39,17 @@ async function mockTransport(): Promise<Transport> {
 function workerTransport(): Transport {
   const w = new VoiceWorker();
   const listeners = new Set<(message: WorkerToMain) => void>();
-  const stopCast = bindCastWorker(w, 'voice', gameLabs.voice, (failure) => {
-    for (const listener of listeners) listener({ type: 'playtestError', ...failure });
-  });
+  const stopCast = bindCastWorker(
+    w,
+    'voice',
+    gameLabs.voice,
+    (failure) => {
+      for (const listener of listeners) listener({ type: 'playtestError', ...failure });
+    },
+    (gen) => {
+      for (const listener of listeners) listener({ type: 'castFreshStart', gen });
+    },
+  );
   w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
     for (const listener of listeners) listener(e.data);
   });

@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { expect, it, vi } from 'vitest';
 import type { MainToWorker, WorkerToMain } from '../protocol.ts';
 import { sampleFrame } from '../sim/fixtures.ts';
+import { VOICE_SAVE_KEY } from './autosave.ts';
 import { useVoice, type Voice } from './useVoice.ts';
 
 vi.mock('../../shared/lab.tsx', () => ({ useLabScreen: () => {}, gameLabs: { voice: {} } }));
@@ -42,7 +43,7 @@ vi.mock('./transport.ts', () => ({
 }));
 vi.mock('../../shared/tick-loop.ts', () => ({ startTickLoop: () => () => {} }));
 
-it('shows a failed people restore even while an export is waiting', async () => {
+it('shows a failed people restore even while an export is waiting, and its fresh start keeps the save', async () => {
   let voice: Voice | undefined;
   const root = createRoot(document.createElement('div'));
   try {
@@ -69,6 +70,15 @@ it('shows a failed people restore even while an export is waiting', async () => 
     flushSync(() => channel.receive({ type: 'playtestError', gen: init.gen, message, restore: true }));
     expect(voice.playtest).toEqual({ error: message });
     expect(await waiting).toBe(message);
+    // The fresh-start button (C88-2): a new generation and a local init, with the refused save left alone.
+    localStorage.setItem(VOICE_SAVE_KEY, 'refused save');
+    channel.post.mockClear();
+    flushSync(() => channel.receive({ type: 'castFreshStart', gen: init.gen }));
+    expect(channel.post).toHaveBeenCalledWith(expect.objectContaining({ type: 'init', castFresh: true }));
+    const fresh = channel.post.mock.calls.find(([m]) => m.type === 'init')?.[0];
+    expect(fresh?.type === 'init' && fresh.gen > init.gen).toBe(true);
+    expect(voice.playtest).toBeNull();
+    expect(localStorage.getItem(VOICE_SAVE_KEY)).toBe('refused save');
   } finally {
     root.unmount();
   }

@@ -255,6 +255,21 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
             else waiter?.reject(new Error(msg.error ?? 'Return validation failed.'));
             return;
           }
+          if (msg.type === 'castFreshStart') {
+            // A fresh game after a refused restore, on a new generation. The refused save is left as it was.
+            if (msg.gen !== gen.current) return;
+            resetVoicePersona();
+            gen.current = Math.max(gen.current, pendingLoad.current) + 1;
+            resetRef.current();
+            t.post({
+              type: 'init',
+              seed: seedRef.current,
+              gen: gen.current,
+              scenarioVersion: VOICE_SCENARIO_VERSION,
+              castFresh: true,
+            });
+            return;
+          }
           if (msg.gen === pendingLoad.current && msg.gen !== gen.current) {
             if (msg.type === 'replayed') {
               settleVoiceFileGate(true);
