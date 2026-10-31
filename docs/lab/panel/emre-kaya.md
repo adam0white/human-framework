@@ -1484,3 +1484,340 @@ The wait reactions at 112.7 and the unnumbered ones above are as I attached them
 - **New blocker from what I reached:** none new. The one thing that would keep me away is the unchanged dead wait on an empty station.
 
 I started no helpers and no browsers. My only files are the screenshots a-001.png and a-002.png on desktop and b-001.png and b-002.png on phone. I touched no repository, so no `git worktree list` applies.
+<!-- selected-continuity-key: light-1030:hearsay-retest2:emre:free -->
+## 2026-10-31 hearsay-retest2 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/hearsay-retest2/emre/report.md), [exact producer original](../reviews/light-2026-10-30/hearsay-retest2/emre/report.original.md.txt), original SHA256 `27041fef2d5a4a68b188f3f1d90935dd3338aafa1147dd8e3cd7d3fc6670ba14`. Method qualification: [emre](../reviews/light-2026-10-30/hearsay-retest2/emre/director-method-qualification.json).
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+**Would you return voluntarily?** I would come back another evening on desktop, but only if there were something to decide between the Day 4 order and Day 8. I would not leave it running, and I would not return tonight.
+
+**Ranked asks**
+1. Give me a decision, or a way to skip ahead, in the empty stretch between Day 4 and Day 8. On the phone the same gap sits between the first talks and Day 4.
+2. Show when each person returns, not only that "other return times are unknown".
+3. Say what a private choice earns or costs me, the way the repeat text already shows the cost.
+
+## 1. Session
+
+- **Persona:** Emre Kaya, 37, Ankara electrical technician and parent.
+- **Exposure:** RETEST, returning standing player.
+- **Round and arm:** light-1031-hearsay-retest2, free stop (floor 0, ceiling 20 min).
+- **Own history:**
+  - I read it through the "End of supplied own history" marker. The brief gave 1039 lines and my notes say 1040. Unread range: none.
+  - It is a selection of my earlier reports, Hearsay and other games, not a complete archive.
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent
+- **Devices:** A is 1280x800 keyboard and mouse, light mode. B is 360x690 touch, light mode. Each session was a fresh new game.
+- **Real time:** A ran 487.6 s, to the stop log, and stopped at Day 4 12:03. B ran 89.3 s, to the stop log, and stopped at Day 1 17:32.
+- **Cleanup:** I touched no repository. `git worktree list`: none of mine exist.
+
+## 2. First impressions
+
+- **A, 5.2 s:** The title page and the Day 13 lunch goal were the same as last time.
+- **A, 6.8 s:** The "Next: Day 4 at 12:00" line was shown from the start.
+- **A, 17.2–19.9 s:** Dilan accepted a quiet conversation. Last time he said "busy" in a loop.
+- **B, 3.8 s:** The phone title page fit the screen and the wording matched desktop.
+- **B, 9.9–12.5 s:** Dilan accepted a talk on the phone too.
+
+## 3. Verbatim diary lines
+
+**Session A (1280x800)**
+- 5.2: "Same title as last time. Goal is the same Day 13 lunch. Beginning."
+- 6.8: "Next line about Day 4 order is still there. Talking to Riza first."
+- 9.4: "Same tradeoff text as last time, cost of repeating shown first. Keeping private."
+- 14.3: "Osman needs to stay my produce supplier. Keeping private."
+- 17.2: "Trying Dilan again, since he was busy loop last time."
+- 19.9: "Dilan opened up this time, no busy. Keeping private."
+- 21.2: "Three talks done, now Fast toward Day 4 order."
+- (My first attempt at the first_minute note was lost to a shell quoting error.)
+- 74.2 first_minute, Day 1 14:13: "Goal clear and Next line gives Day 4 12:00 for the order. Three private talks went through and Dilan did not say busy. Garden empty now, where-people-are lines are clear. Waiting for Day 4."
+- 191.1 pulse, engagement 3, Day 2 14:08: "Money climbs, Next line tells me when the first decision comes, and the chapter-could-not-be-saved message has not shown at all so far. But I am only waiting again."
+- 317.9 pulse, engagement 3, Day 3 15:32: "Day 3 15:32, 1080 lira. I stay only because the Next line says when the order comes. No chapter message this time. Still pure waiting."
+- 428.7, Day 4 12:00: "The order screen again, with numbers: 380 now or 410 on credit. I have 1220, paying now."
+- 430.7 want_quit, BORED, Day 4 12:00: "I reached the Day 4 order again and it went through. The next decision is Day 8, four more days of an empty garden. I have seen this stretch before."
+- 487.6 stop, BORED, Day 4 12:03: "I got what I came for: the order went through, the numbers were shown, and no chapter message appeared. Next decision is Day 8, four days of an empty garden away, so I stop here."
+
+**Session B (360x690)**
+- 3.8: "Phone title page fits the screen, same wording as desktop. Beginning a fresh game."
+- 5.9: "Same opening as desktop, Next line shows Day 4 12:00. Talking to Riza."
+- 8.7: "Same tradeoff text as desktop. Keeping private."
+- 9.9: "Trying Dilan on the phone, since he was busy last time."
+- 12.5: "Dilan accepted a talk on phone too, no busy."
+- 14.9: "Two private talks done on phone. Fast toward Day 4."
+- 79.0 first_minute, Day 1 16:42: "Phone page reads fine at 360 wide and the Next line gives Day 4 12:00. Two private talks went through, Dilan not busy. Garden empty again from about 10:00 and now I am just waiting."
+- 80.7 want_quit, BORED, Day 1 16:42: "Same empty garden stretch I already sat through on desktop tonight. I would not wait three more game days again on the phone."
+- 89.3 stop, BORED, Day 1 17:32: "I have already seen this run on desktop tonight. The phone shows the same empty garden and the same wait to Day 4. I am stopping here."
+- I logged no pulse on B, because it ended before 180 s.
+
+## 4. Moments
+
+- **What held me:** The Next line gave the date of the first decision. The order screen showed real numbers: 1220 lira, 380 now or 410 on credit, meals selling for 100. Paying 120 left 1100 and gave "Next: Day 8 at 12:00. Aylin offers paid cooking".
+- **What lost me:** The empty garden from about 10:00 each day. I rated engagement 3 at both pulses ("only waiting"), and I chose to stop, BORED, on both devices.
+- **Quit wishes:** The want_quit at 430.7 on A did not pass. I stopped at 487.6. On B, the want_quit came at 80.7 and I stopped at 89.3.
+- **Recognised from my history (high confidence, wording matched):** the Day 4 order screen, the "Next" line, the cost-of-repeating text shown first, and the empty garden from about 10:00.
+- **Money on A:** 400 at the start, 540 at Day 1 10:41, 640 at 14:13, 780 on Day 2 09:49, 860 at 14:08, 1000 on Day 3 09:19, 1080 at 15:32, 1220 on Day 4 10:28.
+
+## 5. Confusion and clarity
+
+- **Clear:** where each person is ("out delivering parcels", "sleeping at the temporary lodging", "at the school kitchen"). The sentence "Other return times are unknown" when the garden is empty. The date of the next decision. The order numbers.
+- **Not clear:** the pace sentence. B opened with "Pace: Automatic". After my first tap on the pace row it read "Automatic pace is available in the game menu". I did not look into it.
+- **Not seen:** the "chapter could not be saved" message did not appear on either device. Dilan was never "busy".
+- **Not mine to blame on the game:** my apostrophe quoting for "I'm stopping" failed on desktop through the driver. I then tapped it by screenshot position. That was a quoting problem on my side, and the game was not at fault.
+
+## 6. Device use
+
+- **Desktop screenshots:** a-001.png and a-002.png, both viewed.
+  - a-001 showed a cream title page with a large serif "Hearsay" and "FOURTEEN DAYS IN THE NEIGHBOURHOOD". It had the goal text, a "How to play" disclosure, and Begin, Feedback and Fullscreen buttons. It also had All games and People across games links, a checked Recording box, "Other ways to begin", and a "We record and link play across games on this device" banner.
+  - a-002 showed the Feedback dialog open with "I'd keep playing", "Not sure", "I'd stop here", "I'm stopping" and "I'm confused". It also showed a note box and a name box, with the garden dimmed behind.
+- **Desktop controls used:** Begin, talk and keep-private buttons, Fast, Pay 120, Game menu, Feedback (via position), Not now.
+- **Phone screenshots:** b-001.png and b-002.png, both viewed.
+  - b-001 showed the title page fitting the 360 width with no cut-off. Begin, Feedback and Fullscreen sat in one row. The Recording box was checked.
+  - b-002 showed the Feedback dialog as a bottom sheet. The label buttons wrapped onto two rows, and the note box was in view.
+- **Phone controls used:** Begin, the talk buttons, Keep this private, Fast, Game menu, Feedback, "I'm stopping" (tapped by position from b-002), Not now.
+- **Feedback result:** On both devices "I'm stopping" showed as pressed, and "Not now" closed the dialog with no error. I typed no note, pressed no Submit and changed no consent. Recording stayed on.
+- **Not seen on either device:** the Day 8 screen, the Day 13 lunch, the phone Day 4 order screen, and anything after Day 4 12:03.
+
+## 7. Stop and return
+
+- **A stop words:** "I got what I came for: the order went through, the numbers were shown, and no chapter message appeared. Next decision is Day 8, four days of an empty garden away, so I stop here." Reason: BORED.
+- **B stop words:** "I have already seen this run on desktop tonight. The phone shows the same empty garden and the same wait to Day 4. I am stopping here." Reason: BORED.
+- **Return, same condition as my opening sentence:** I would come back another evening on desktop, but only if there were something to decide between Day 4 and Day 8. I would not leave it running. I would not return tonight.
+
+## 8. Changes I would want
+
+1. A decision, or a way to skip ahead, in the empty stretch. This is between Day 4 and Day 8 on desktop, and between the first talks and Day 4 on the phone.
+2. Show when each person returns. The game says only that other return times are unknown.
+3. Say what a private choice earns or costs, not only the cost of repeating it.
+
+## 9. Compared with my last visit
+
+**First Hearsay report**
+- **Ask 1, say why a talk is refused and show when each person returns:** Partly met.
+  - Where each person is shown clearly now.
+  - Return times still read "unknown".
+  - I was never refused, so I did not see the reason text.
+- **Ask 2, a decision or a skip while the garden is empty:** Did not meet it. The garden was empty again from about 10:00 on both devices. I had only Fast, and nothing to decide.
+- **Ask 3, show where and when bread and produce are ordered, and what private or gossip choices earn or cost:** Met for the order. The Next line gave Day 4 12:00 from the start, and the order screen showed the numbers. Partly met for choices. The cost of repeating is shown, but I saw no statement of what a private choice earns.
+
+**Retest 1 report**
+- **Ask 1, explain the "chapter could not be saved" message or remove it:** Not seen. It did not appear on either device, so I cannot say whether it was explained or removed.
+- **Ask 2, say why Dilan stays "busy" and when he is free:** Not seen as asked. Dilan was never "busy" on either device, so I did not see a reason.
+- **Ask 3, a way to skip ahead while waiting for Day 8, and between talks and Day 4 on the phone:** Did not meet it. I got only Fast and no decision on either device.
+
+**New blocking ask:** none from what I reached.
+<!-- selected-continuity-key: light-1030:well-retest1:emre:free -->
+## 2026-10-31 well-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/well-retest1/emre/report.md.txt), SHA256 `b4539aab5cb759d04a5d5cf2de61e8ed83da3ba0e4bf2bc530cb5f31ae0ad41c`. Method qualification: [emre](../reviews/light-2026-10-30/well-retest1/emre/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return voluntarily another evening on desktop to try earlier roof orders and see whether I can finish before the storm; I would not leave it running, and I would not play again tonight.
+
+**Ranked asks**
+
+1. Make the speech-dismiss control usable on the phone. The driver reported it covered or off screen twice, including after I closed Yusuf’s panel.
+2. Explain the suggestion reason “Under protest: curiosity:unknown” in words I can use to decide.
+3. Explain how a person was injured when I open the injury notice. Samira’s panel showed her sheltering, but I did not see the cause.
+
+## 1. Session
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was a **return visit** to Twice at the Well, round **light-1030**, **free stop**, floor zero and ceiling 25 minutes.
+
+I read all 1,305 lines of my supplied [own history](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/own-history.md) before play. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. My earlier Well excerpt says I stopped before the main storm after checking totals, and wanted a clearer food limit, roof-stage explanation and dismissible speech bubble.
+
+The live URL was https://human.adamwhite.work/colony/?labRunSource=agent. Each session was a separate fresh game, with no imported save.
+
+- **A:** 1280×800, keyboard and mouse, light mode. Stop at **420.524 seconds**. The run finished at Day 3 dawn.
+- **B:** 360×690, touch phone, light mode, second visit the same evening. Stop at **47.010 seconds**, due to the driver block described below. Later phone play and the storm were not tested.
+
+Recording stayed at its default. I did not type or submit feedback, or change consent.
+
+## 2. First impressions
+
+On desktop, at **5.411 seconds**, the roof and twelve-meal goal reminded me of the supplied Well excerpt. I remembered checking totals and leaving before the storm, with high confidence from that excerpt. I did not assume this was the same village.
+
+At **14.192 seconds**, Maryam’s panel explained ordinary food versus the twelve-meal reserve and listed roof-stage timber requirements. That addressed much of what I had wanted to understand.
+
+On phone, at **8.095 seconds**, the goal and start button were readable. In the opening screenshot, “Show Human village” covered part of the title. I wanted to try an earlier building order after seeing the desktop roof miss its deadline.
+
+## 3. Verbatim
+
+These are the reaction lines I logged, unchanged. Times are the driver’s elapsed seconds.
+
+**Session A — desktop**
+
+- **5.411, note:** “The roof and twelve meals are familiar from my last visit; I remember checking totals and stopping before the storm. High confidence from my diary, not a continued village. I want a deliberate food plan this time.”
+- **14.192, note, Day 1 05:32:** “Maryam is cooking already. The panel explains ordinary food versus the separate twelve-meal reserve, and lists timber needed at each roof stage. That answers much of what I wanted to know. Two earlier taps went stale as her activity changed; the third opened her.”
+- **62.572, first_minute, Day 1 10:01:** “Both villages are working without orders: Human roof 4 and 7 meals, Classic roof 6 and 6 meals. I like seeing Yusuf build while Tariq eats. The stage list and food explanation make the objective easier to plan, though I have not yet seen a late-stage hold.”
+- **96.107, note, Day 1 13:36:** “Human meals reached 25 without an order, comfortably above twelve. Both builders are at work. I will watch the roof rather than issue a redundant order.”
+- **134.257, note, Day 1 18:13:** “At seven stages I can see Yusuf working on eight, over halfway, materials already paid, and five timber for each remaining stage. Useful: I can tell this is work in progress, not a proven shortage. The Human food fell from 25 to 20 and rose to 24 while people ate and cooked; I am guessing meals explain the fall.”
+- **173.123, note, Day 1 21:44:** “A suggestion says Tariq to Forest, under protest: curiosity:unknown. I do not understand that reason, or why I should send him into the forest during a sudden storm.”
+- **184.877, pulse 3, Day 1 22:06:** “The roof details are useful and I want to see the storm, but I have mostly watched automatic work; the forest suggestion has an opaque reason.”
+- **189.454, note, Day 1 22:06:** “I selected confused in Feedback and went back without writing or sending. My first command had a shell quote error; the retry worked. I choose Fast to pass the sleeping stretch and see the storm.”
+- **294.212, note, Day 2 16:41:** “Both roofs are nine of ten at the warning; everyone shelters or closes shutters. The suggestion now explains enough food stored is separate from the storm reserve. Human has exactly twelve, Classic six. I worry the roofs will stay unfinished.”
+- **332.788, note, Day 2 20:23:** “The storm arrived with both roofs failed at nine; meals met at the deadline. Four Classic injuries and one Human injury. Samira is hurt but her panel only says sheltering; I do not see why she was hurt. I will not send her outside to finish the roof.”
+- **368.975, pulse 3, Day 3 00:04:** “I reached the storm I came to see, but now everyone sleeps and injuries rise while I watch. I want to see the dawn result once.”
+- **403.862, want_quit, FINISHED, Day 3 05:00:** “I saw the storm and the dawn report. Both villages missed the roof but met food and kept everyone alive; six versus two injuries. I am done for tonight on this run.”
+- **420.524, stop, FINISHED, Day 3 05:00:** “I am stopping at dawn after the full storm. The stage details and food explanation helped; both roofs missed the deadline, all lived, and the Human village had fewer injuries. I would try another evening with earlier roof orders, but not keep watching tonight.”
+
+**Session B — phone**
+
+- **8.095, note:** “Same roof and twelve meals on the phone, second fresh game tonight. The title is partly covered by Show Human village, but the instructions and start button are readable. I want to try earlier building orders.”
+- **24.090, note, Day 1 05:38:** “I sent Yusuf to build without rush or insist, although he was already going there. The order is pending. Two changing activity names went stale first; I could open him on the third try.”
+- **35.690, want_quit, TOOL, Day 1 06:18:** “Yusuf agreed, but the speech dismissal was covered or off screen on both attempts, including after I closed his panel. The driver blocks this control, so I stop this session.”
+- **47.010, stop, TOOL, Day 1 06:55:** “I am stopping the phone session because the speech dismiss control was covered or off screen twice. Yusuf agreed to build, and I selected stopping in Feedback without typing or submitting. The storm and later phone play are untested.”
+
+No phone first-minute note or pulse was due: the session ended before 60 seconds.
+
+## 4. Moments
+
+The desktop stage details held me. At seven roof stages, I could see Yusuf working on stage eight, its materials paid, and the timber needed for later stages. The Human village reached 25 meals without an order. I chose to watch rather than interrupt work that was already underway.
+
+The approaching storm made the nine-of-ten roofs matter. At dawn, the report said both villages missed the roof deadline, both met the meal goal and all six people lived. It reported six Classic injuries and two Human injuries. I gave no orders on desktop; the report said the Human and no-order comparison were the same run.
+
+Watching sleeping villagers while injuries rose held less interest, but I stayed for dawn. Both desktop pulses were **3/5**, at 184.877 and 368.975 seconds. My desktop quit wish came after the run ended and did not pass. On phone, the TOOL stop followed the failed dismissal retry; I did not reach a natural verdict on the rest of that run.
+
+## 5. Confusion and clarity
+
+The food explanation was clear about the distinction: “enough food stored” can concern ordinary meals even below the separate twelve-meal storm reserve. The suggestion at the warning repeated that distinction. I did not establish an exact ordinary-meal threshold.
+
+The roof panel showed current stage progress, workers, timber in store and remaining requirements. At the late stage it showed work in progress and materials already paid; that did not establish a shortage or a complete cause for the missed deadline.
+
+“Under protest: curiosity:unknown” did not tell me a reason I understood. Later the same forest suggestion changed to “Can’t: asleep” and then “Would agree under these conditions.” I dismissed it without sending it.
+
+I opened the notice for hurt Samira. Her panel said she was sheltering; I did not find an explanation of her injury there. The ending also displayed “This chapter could not be saved.” I did not investigate or retry it.
+
+## 6. Device use
+
+**Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/desktop/a-001.png) immediately after opening. It showed the two village maps side by side, their totals, and the introduction with the goal and start button. I used Begin, person buttons, Keep watching, Back to people, Dismiss suggestion, Game menu, Feedback, Fast, Resume, the injury notice and the report controls. I did not issue an order.
+
+Two Maryam targets and one Yusuf target became stale as their activity changed; choosing the current name worked. A later Dismiss suggestion target had disappeared, and I attempted Keep watching when it was absent; the replies listed the current controls, and I used Dismiss suggestion. My first command for “I’m confused” had a shell quoting error; the corrected command worked. These are separate from game outcomes.
+
+**Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/phone/b-001.png) immediately after opening. It showed the narrow opening page, readable instructions and start button, with the village button covering part of the title. I also viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/phone/b-002.png): it showed the Human map, Yusuf’s speech bubble, the bottom of the food explanation and the order buttons.
+
+I used Begin, Yusuf’s person button, Order Yusuf to House, Back to people, Game menu and Feedback. Yusuf agreed and began building, though he had already been travelling to the house. The named speech-dismiss control returned **“control is covered or off screen”** twice, once with his panel open and once after closing it. Under the assigned driver rule, that ended the session. The speech later disappeared by the time I opened the menu, but I cannot attribute that to either failed tap. I did not view the phone’s later game or Feedback layout in a screenshot.
+
+**Feedback:** On desktop, when confused, I opened the menu and selected “I’m confused”; it showed pressed, and I used Back. Before each stop, I opened the menu and Feedback, selected “I’m stopping,” saw it pressed and used Back. I typed nothing and pressed no Submit.
+
+## 7. Stop and return
+
+**Desktop stop — FINISHED, 420.524 seconds:**
+
+> I am stopping at dawn after the full storm. The stage details and food explanation helped; both roofs missed the deadline, all lived, and the Human village had fewer injuries. I would try another evening with earlier roof orders, but not keep watching tonight.
+
+**Phone stop — TOOL, 47.010 seconds:**
+
+> I am stopping the phone session because the speech dismiss control was covered or off screen twice. Yusuf agreed to build, and I selected stopping in Feedback without typing or submitting. The storm and later phone play are untested.
+
+Would I return voluntarily? **I would return voluntarily another evening on desktop to try earlier roof orders and see whether I can finish before the storm; I would not leave it running, and I would not play again tonight.** I saw enough of the outcome to have a practical plan for another attempt. I cannot judge the later phone game from this short, blocked session.
+
+## 8. Changes I would want
+
+1. Make the phone speech-dismiss control usable.
+2. Explain “Under protest: curiosity:unknown.”
+3. Show the cause when I open a person’s injury notice.
+
+## 9. Compared with my last visit
+
+These comparisons use only my supplied Well excerpt and what I saw in these fresh games. I cannot attribute differences to a particular cause across new games or versions.
+
+1. **Explain “enough food stored” against the twelve-meal storm target — met for the distinction.** The person panel and later suggestion said ordinary meals are separate from the storm reserve. I still did not learn an exact ordinary-meal threshold.
+2. **Show what is holding up the remaining roof stages — partly met.** I saw stage progress, who was building, timber on hand, materials already paid and remaining requirements. That explained more of the work, but I did not establish a full cause for the final stage missing the deadline.
+3. **Let me dismiss the old speech bubble — partly met.** A dismiss control was exposed for Yusuf’s phone speech, but the driver could not operate it after one retry. I cannot say how it would work on another layout or later speech.
+
+New this time, the phone dismissal block would stop me returning to that phone session. The opaque suggestion and unexplained injury also made the result harder to act on, though I would still try the desktop again.
+
+I owned no server, browser, process, branch or worktree. The coordinator owns both drivers; no worktree listing applies.
+```
+<!-- selected-continuity-key: light-1030:warren-retest2:emre:free -->
+## 2026-10-31 warren-retest2 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/warren-retest2/emre/report.md.txt), SHA256 `4b460210b3c07a630229fc57a572118b8409bf4ad8dfa71cddf5150cc3ec0449`. Method qualification: [emre](../reviews/light-2026-10-30/warren-retest2/emre/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.
+
+**Ranked asks**
+
+1. Give me a useful shelter decision while the first marked room waits.
+2. Show how Yusuf’s stopping line relates to the hill I am planning.
+3. Tell me what, if anything, I can usefully do about a marked wall that is waiting.
+
+## Sessions and first impressions
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. These were two fresh, independent games at the supplied Warren URL, with no imported save or matched seed. They were the same evening on my other device. I used the default recording and consent settings and changed no owner settings.
+
+I read all **1,473 lines** of the supplied own history. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. The selected earlier FREE visits are separate games; no CONT body was supplied.
+
+- **Desktop, 1280×800, keyboard and mouse:** stopped at **230.533 seconds**, Dawn, 22 Aug, year 1. The title at 0.541 seconds gave me the familiar practical goal: dig shelter against riders. I marked one wall and switched from Slow to Fast. The first room was still undug when I stopped.
+- **Phone, 360×690, touch:** stopped at **75.823 seconds**, Dawn, 20 Aug, year 1. The title and goal fit the screen. I marked one wall and switched to Fast. This was the second opening I had played that evening.
+
+Neither game ended. I stopped before storage, beds, a door, an alarm or riders. Those outcomes and the later checkpoints remain untested. The phone stopped before a 180-second pulse; no pulse was due there.
+
+## Diary
+
+These are my logged reaction words in order. Times are driver elapsed seconds.
+
+**Desktop**
+
+- **6.650, note:** “The shelter goal is familiar. I want to see whether the work and the door make more sense in a fresh village.”
+- **19.217, note:** “The mark now tells me who can dig, that the wall is available, and that meals, harvest and rest take priority. That is a useful explanation for the waiting I remember.”
+- **First-minute attempt, time not captured:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. I want to see the work and plan storage and a protected room.” This request was issued before the next observed time of 55.522 seconds, so I cannot count it as a valid first-minute checkpoint.
+- **61.864, first_minute:** “The shelter goal and chalk are familiar. The new mark explains who digs and what takes priority, which gives me a reason for waiting. Six people need sleeping places, and I want to plan storage and a protected room.”
+- **106.834, note:** “The journal now groups four routine lines, which makes the repeated reports less distracting. I asked Yusuf about the stopping line again; the invitation is pending and the journal says so.”
+- **141.472, note:** “Yusuf answered in the main journal this time, so I did not have to reopen him. The admission is clear, but I still do not know where the stopping mark is on my hill or what to do with it.”
+- **208.159, pulse, engagement 3/5:** “I like seeing Yusuf answer in the journal and the routine lines grouped. The first square still seems to be waiting, so I am watching rather than building the shelter I came for.”
+- **220.938, want_quit, BORED, engagement 2/5:** “The first marked square is still stone after several days, and I am watching the same early preparation again. The explanation helps, but I do not want to wait longer tonight.”
+- **230.533, stop, BORED, engagement 2/5:** “I am stopping on desktop before the first room is dug. The wall explanation and visible invitation answer help, but I am tired of waiting through the same preparation. I would return another evening if there were a useful shelter decision while work waits; I would not leave it running.”
+
+**Phone**
+
+- **5.796, note:** “The phone title and shelter goal fit clearly. This is another fresh village, after the slow desktop start.”
+- **20.686, note:** “I can distinguish and mark the small wall on the phone. The explanation is the same as desktop; I will see whether this village starts work.”
+- **61.202, first_minute:** “I marked one square on the small phone hill. Meryem needs food and water and is eating, so I understand why she is not digging at this moment. I have already watched the same start on desktop tonight.”
+- **64.072, want_quit, BORED, engagement 2/5:** “I do not want to wait through the same first room on the phone after doing it on desktop. The needs make sense, but I have no new shelter decision yet.”
+- **75.823, stop, BORED, engagement 2/5:** “I am stopping on the phone after marking the first square. The layout is usable and Meryem eating is understandable, but I have already waited through this opening on desktop. I would return another evening on desktop for a useful decision, not leave it running.”
+
+Both quit wishes persisted to stopping. The desktop pulse returned without a visible snapshot, but its log was acknowledged; the next screenshot showed the marked square still in stone.
+
+## What playing felt like
+
+The clearest improvement was the response to chalk. It counted one marked square, said the wall had light, air and room for spoil, named Meryem and Tamar as the diggers, and explained that meals, harvest and rest can take priority. On the phone I then saw Meryem was eating and needed food and water. That explained her immediate activity; it did not establish the full cause of the desktop wait.
+
+Yusuf’s admission still interested me as a technician: he said the ground had been unstable and he kept people working past the agreed time. This time his answer appeared in the main journal without my reopening him. I still could not connect the stopping mark to a place or decision on my hill. I opened Feedback for that confusion, selected **“I’m confused”** and saw it pressed, then used Back.
+
+The journal said four routine lines were grouped under Daily routine. That reduced the repetition I remembered, although some routine text and Yusuf’s answer were still visible in the main view. I appreciated the clearer information, but the first wall remained stone through the desktop stop. I wanted to plan a shelter, and the wait became the reason I left.
+
+## Device and feedback observations
+
+I actually viewed these screenshots:
+
+- **Desktop [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/desktop/a-001.png):** the title, shelter goal, village illustration and Begin button.
+- **Desktop [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/desktop/a-002.png):** the cellar and surrounding stone, with chalk selected and the prompt visible. I used it to choose the adjacent wall.
+- **Desktop [a-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/desktop/a-003.png):** the red marked square remained beside the cellar; Yusuf’s answer was visible in the journal area.
+- **Phone [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/phone/b-001.png):** the title and Begin button fit the narrow screen.
+- **Phone [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/phone/b-002.png):** the hill was small but distinguishable; the prompt, zoom controls and bottom tools were visible. My subsequent tap marked one square.
+
+At each stop I opened Feedback, selected **“I’m stopping,”** saw it pressed, and used **Back to the game**, which returned to the menu. I typed no note and submitted nothing. My first desktop command for the confused label had a shell quoting error; the corrected command worked. One other malformed shell command made no request. Neither was a game-control failure.
+
+## Earlier Warren asks
+
+These comparisons are limited to what I reached in these fresh sessions.
+
+| Earlier ask | Result from this play |
+|---|---|
+| **R1: Let me ask someone to shut the door or go below during an alarm, or explain their choice at the time.** | **Not seen.** I reached no door or alarm. |
+| **R1: Stop repeating journal lines and give me something to plan during quiet stretches.** | **Partly met.** Four routine lines were grouped, but I found no new shelter decision while the first wall waited. |
+| **R1: Make readings match the map, including unreachable marks, depth and the water warning.** | **Not seen.** I did not reach those readings. The current wall response did clearly say it was available. |
+| **R2: Tell me why a marked square is waiting and whether I can do something useful.** | **Partly met.** The game named the diggers, prerequisites and competing needs. I did not find a useful action to advance this wall, or establish the specific cause of the entire wait. |
+| **R2: Make an invitation answer noticeable without reopening the person.** | **Met in this instance.** Yusuf’s answer appeared in the main journal. |
+| **R2: Explain how Yusuf’s stopping line applies to my planned work.** | **Not met from what I saw.** His admission appeared, but I could not locate or use the line on the hill. |
+
+The blocking ask I reached is the first ranked ask: I need a useful decision during the initial wait to want to continue that session. I would try again another evening on desktop under that condition; I would not leave it running.
+
+I created no worktree, branch, server, browser or worker. The coordinator owns the drivers. No repository was touched, so there is no `git worktree list` result to report.
+```

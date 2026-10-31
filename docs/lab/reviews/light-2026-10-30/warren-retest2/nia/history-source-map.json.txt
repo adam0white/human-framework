@@ -1,0 +1,148 @@
+{
+  "time": "2026-10-31T13:59:44.043525+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "selection": "nia-free complete return plus literal own asks only; excludes CONT and director method interpretation",
+      "selectedReturnAndAsksOnly": true,
+      "selectedSha256": "96a00b6f8dc8d0cef782609e1df46beb2cdb16023db8b6a4739c1ea69aa05545"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/hf3-warren-2026-10-25/nia-free-matched.md",
+      "selection": "FREE only; independent CONT alternative excluded",
+      "selectedSha256": "71df17beab8a7bcb85b5586ae8478736733be4671eecc510af4888985d693389"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "6f4a657283ac02a7b860b4b8514e371c9a969254",
+      "path": "docs/lab/reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-free.md",
+      "selection": "later accepted own R2 FREE only; independent CONT excluded",
+      "reconciliation": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-r2-selection-reconciliation.json",
+      "limits": "selected identity FREE record only; raw companion not supplied",
+      "selectedSha256": "30afd47ce1a49647b605a7bd0eb10091a5118fd139840b4b3b1d2504a5c62575"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass/nia/report.md",
+      "sourceSha256": "956a0f4f99948c75f6fff02129742ad2ae27fda3e8ed1dc95140346fab183ed3",
+      "selectedSha256": "143fe849613c18cc63aae06ecf58e91bd99a85919511029e80c550d223c7a1e8"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope/nia/report.md",
+      "sourceSha256": "238cfec43f48920da23e227aa09b745d71fbde77e8f90fc05103e3999cc9a482",
+      "selectedSha256": "c6a7ddd7ebd7bf6adb957d0174e1265e41626bf9b366cb66c420a75531549e23"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur/nia/report.md",
+      "sourceSha256": "df1ce68439754070bf1a175b3bb3e00399ea8d34ef4cc99f3fb5a2f1d39299b9",
+      "selectedSha256": "0a2d6a9e734d395d1ba771f72e5aa54724930879cdaeaf4455d2f65ba890a89c"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days/nia/report.md",
+      "sourceSha256": "7b561855e877ac186d7b25e82d23bdf49c7221df313efdd705792a38d75ea067",
+      "selectedSha256": "4ccd1e4884a21dd63ab40c5e077c38c045e3535b182d369d177a1661e664e5a3"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/report.md",
+      "sourceSha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d",
+      "selectedSha256": "8c5a9798e89bff4ee4cd5c9b904018f7760c9912fdfa07e5b742783063ee9852"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/director-method-qualification.json",
+      "sourceSha256": "c26c6b246dd5450672a9af1a4c1595ed6e05a5eca77a7d7dbf493fe918aa3b1b",
+      "directorMetadataOnly": true,
+      "selectedSha256": "2f179a8be4723eb7ee6bf87d0be3fe509ac78eab2509c0eaac2d67f41704ad67"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-supplement/nia/report.md",
+      "sourceSha256": "f74a048ecb52bd3cc0c6106567dd8c21fd60a2c2e37214eaf22a71e6d2904b24",
+      "selectedSha256": "d95562ea604c543fc4c443d4f10cfd6f60066238449224e40562ea095ab89773"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/nia/report.md",
+      "sourceSha256": "33491cf4fba8ca3b366f56e7cd6177f018a0aaccdeccdc3c445dfaa2959d199c",
+      "selectedSha256": "825d4be924681b7d8124bc3ddf505820ac25ab7c6ea6e92c050d47664d4c0ac9"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/nia/director-method-qualification.json",
+      "sourceSha256": "3946ca99d7f367d5484eaa068a624845faa0f9070b063278105b13083487a009",
+      "directorMetadataOnly": true,
+      "selectedSha256": "d1e8ea0d398ff5d003d353aa014463e17a89ffe0908e021ff1bea1fd0b4fdf8a"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/report.md",
+      "sourceSha256": "8ef5e97e4357b6fc67a268404a0a917db682ed10ee92cd761d9c3060bb8441e4",
+      "selectedSha256": "65fa4ac88607b95403e22c982902023ecbae80dc0f21c93358e1c866d07ec24c"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/director-method-qualification.json",
+      "sourceSha256": "798fb6da207af92d75462bdc7e5e06b7fab0ef95a88533d627ce996a734d96d0",
+      "directorMetadataOnly": true,
+      "selectedSha256": "8a0e5fffe9c4aa7be926065381449ab9b9428f9f2d18cc7fb276c2b52b342fd5"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/report.md",
+      "sourceSha256": "2a8153b29116f5ddf00ac51cd42f8df31eeebdfb6aec8844da7409d992600522",
+      "selectedSha256": "9263d6e397ce43e9fb39ea3afb91f59467dfb791fc86ca7fc143b7cedf5d1f5b"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/director-method-qualification.json",
+      "sourceSha256": "5c9865d687ed9594e6be6bc25d83b157384cbb89cf1ab02d3249e7c823fbedbc",
+      "directorMetadataOnly": true,
+      "selectedSha256": "a89c05d259b0bf6c9ddc5501955f6e5755e08509900ef7a9c1c8600cd4fcc9e9"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/voice-playtest-2026-10-27-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "3364452c6ba29ba5d4104e333168715fbd7fcd91e297b654ba460753f6871ad9"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "e524b509b0a718a0f32ced568d322cb8ec5c0cfb2af5469c647117b8564aa0c1"
+    },
+    {
+      "repo": "pass",
+      "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+      "path": "docs/playtests/panel-2026-10-27.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "a41486ee99d561ab61072cfbd649fc02471345a9bd6f63c28a15c355388fec06"
+    },
+    {
+      "repo": "valley",
+      "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+      "path": "docs/playtests/2026-10-27-retest2.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "6e3eca9fd8da9d315ddd717b913a6420626737a3f85cc2c9700ba85e17c83b34"
+    },
+    {
+      "repo": "commonstead",
+      "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+      "path": "docs/games/commonstead-playtest-2026-10-27b.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "6482717b1b54b511cc1d862bfe54a3ee2018a43385e72812a05e8f27fd4737e1"
+    },
+    {
+      "repo": "lefthand",
+      "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+      "path": "docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "6734f90436783e9287e19ff0c399940f11b2b1a695496b013a55bbeb0c1b19bc"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/codex-history-evidence-clarification.json",
+      "sourceSha256": "244dba99e92a9a72f3cdb9001ac7c0a326a2992f8b0280765c681aa016f20bf0",
+      "directorMetadataOnly": true,
+      "selectedSha256": "54621156517e4761dee3c8b1772ab7f145ce7301a7d4c1707795059553f982c6"
+    }
+  ],
+  "historySha256": "35f4421e4ef8c32de1c13298f5ce813255c1a5e84629b1d92f25afb186ae17fc"
+}

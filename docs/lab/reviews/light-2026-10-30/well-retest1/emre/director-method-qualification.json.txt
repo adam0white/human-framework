@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-31T13:50:25.268637+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 11,
+    "curl": 72,
+    "malformedShellFailure": 1
+  },
+  "commandReceipt": "well-emre-command-audit-1347.json",
+  "retainedToolsReceipt": "well-emre-retained-audit-quote-reproduction.json",
+  "auditorProvenance": "well-emre-retained-quote-provenance.json",
+  "auditorLimit": "OriginalparserValueErrorNoClosingQuotationretainedasrecordedtool-runfailure/noseparatetraceback. Persistednarrowcatchsuccessorhashbound/reproductionequalexceptcreated. MalformedFeedbackcurlnotahistoryorimagetarget/no request inferred; originalscript/firstreceiptunchanged.",
+  "historyEvidence": "All1305literalhistorylines matchedaggregatedstdout+separatelycompletionhash-boundretainedoutputs. No relevantunsupportedwrapper; repeatedidentical-linealignmentambiguous. Notattention/comprehensionproof; selectedFREEandpriorpartialmethodlimitsunchanged.",
+  "imageEvidence": "Threeassignedmanualimagesreturnedtypedhighdetailblocks:desktopa001,phoneb001/b002; notperceptionproof. FivePNGfilesincludingautomatic2notfiveviewedimages.",
+  "stops": {
+    "desktop": 420.524,
+    "phone": 47.009
+  },
+  "producerRounding": "Phonereport47.010/raw47.009; originalwordsunchanged.",
+  "timedLogs": "Desktopfirstminute62.572/pulses184.877and368.975validelapsed. PhoneTOOLbefore60/no firstminute; automaticshot60.032AFTER47.009stopnotcontinuedplay.",
+  "driverQualification": "Sevenstale/absenttargets +twophonecovered/offscreenDismissYusufspeechminute38at29.197/32.861, secondafterBackpeople. Actualboundeddriverobstruction; scroll/otherphysicaltapgeometry/wholegamebrokennotestablished. Oneunmatchedshellquoteexit1confusedlabelmadeNOrequest; correctedlocalactionworked. No observedJSerror/timeout. Nativeacknotgameoutcome.",
+  "exposure": "Independentfreshdefaultgames/no oldsave/seedmatch. Desktopnoorders/Fastafterconfusion, reachedstorm+dawnDay3:bothroofsfailednine/foodmet/allalive/injurycountsreported6Classic2Human. No timing/difficultyretune mandate. PhoneorderYusufbuildwithoutinsist/rushthenTOOLstop; no laterphoneverdict.",
+  "priorAskComparison": "Foodordinaryvs12reserveMETdistinction/exactthresholdnotseen; roofdetailsPARTLYmet/fullmisseddeadlinecauseunknown; speechdismissPARTLYmet/exposedbutdriverblocked.",
+  "producerNewBlockingAsk": "Phone speechdismisscontrol obstruction stopsreturntothatphonesession. OpaqueUnderprotestcuriosity:unknownandinjurycauseasksretainedbutdesktopreturnYES.",
+  "additionalObservation": "Actualcompleteddesktopresponsesitem61/62showThischaptercouldnotbesaved; causeandpersistenceunknown, notreportedlostprogressorsavecorruption. Whole-returnrowwillpreserveobservation, no inventedfourthrankedask.",
+  "returnExact": "I would return voluntarily another evening on desktop to try earlier roof orders and see whether I can finish before the storm; I would not leave it running, and I would not play again tonight.",
+  "returnQualification": "Earlierroofordersarehis intendednextstrategy, notconditionthatgameaddneworders/roofcompletionguarantee. Phoneobstructionseparatefromdesktoppositiveverdict.",
+  "feedback": "Bothlabels/localconfusedorstop/Backonly; no typednote/Submit/recording/consentchanges. Linkedproductionreceiptunverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 2859,
+      "absent": true
+    },
+    {
+      "pid": 2836,
+      "absent": true
+    },
+    {
+      "pid": 2838,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Observedpoint-in-timesnapshots only; finalroundcleanupstillrequired."
+}

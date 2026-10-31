@@ -1,0 +1,367 @@
+{
+  "schema": "sealed-source-publication-map/v1",
+  "packet": "murmur-retest1",
+  "scope": "Exact source-epoch bytes under inert .txt names. Paths are provenance, not runnable tools or public screenshot assets.",
+  "files": {
+    "README.md": {
+      "publishedPath": "README.md.txt",
+      "sha256": "c8c2b85a971e19f43b22524b8635e329541d0bcfc19e8df194c19b1dccdda651"
+    },
+    "actual-stops.json": {
+      "publishedPath": "actual-stops.json.txt",
+      "sha256": "fd23fd1e72f277bd60246f61f47ec213022977e4be3d482d0971c235c8cbfe45"
+    },
+    "aisha/brief.md": {
+      "publishedPath": "aisha/brief.md.txt",
+      "sha256": "7e5221c477dc76a4a8f55e6961fab2ad3048334334b7f511f0a27ccbc2fa0e03"
+    },
+    "aisha/completion.safe.json": {
+      "publishedPath": "aisha/completion.safe.json.txt",
+      "sha256": "a51d05c8c1dcf19d707b32f1901ea24d8760a81d4b488fb5a147fb660bb60e4a"
+    },
+    "aisha/desktop/driver.out": {
+      "publishedPath": "aisha/desktop/driver.out.txt",
+      "sha256": "5e8bfbb97567e7222e5bc4c6d67118813edbeb4addae22766dbfce2fd4664ac3"
+    },
+    "aisha/desktop/release-start.json": {
+      "publishedPath": "aisha/desktop/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "aisha/desktop/wall-clock.jsonl": {
+      "publishedPath": "aisha/desktop/wall-clock.jsonl.txt",
+      "sha256": "ca4ae722abf4b636df22166e3960ef2bd35e8ae234e5b1701e723a4bb4872a1e"
+    },
+    "aisha/director-method-qualification.json": {
+      "publishedPath": "aisha/director-method-qualification.json.txt",
+      "sha256": "5d854b2bf287c3f7e0535a9c04f0f2b0c5648530ef128499181c8029fae1f782"
+    },
+    "aisha/dispatch.json": {
+      "publishedPath": "aisha/dispatch.json.txt",
+      "sha256": "086d20402af62c06d350406b2045a3d7fd0c13a0378572edd288af73373a01a7"
+    },
+    "aisha/history-source-map.json": {
+      "publishedPath": "aisha/history-source-map.json.txt",
+      "sha256": "e2e97dad69f2668a7b6ec79c079b0102aceea2afc2732abfd86b208af73e5cf9"
+    },
+    "aisha/own-history.md": {
+      "publishedPath": "aisha/own-history.md.txt",
+      "sha256": "a5314ca657db18ff276bf5e95e37062191b69fe4b6b9f35fac373516b6a15111"
+    },
+    "aisha/phone/driver.out": {
+      "publishedPath": "aisha/phone/driver.out.txt",
+      "sha256": "1a17f26a8d9b5e2f30f2900522361b4e62f337c04c306727c30205b0966df978"
+    },
+    "aisha/phone/release-start.json": {
+      "publishedPath": "aisha/phone/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "aisha/phone/wall-clock.jsonl": {
+      "publishedPath": "aisha/phone/wall-clock.jsonl.txt",
+      "sha256": "8098e499309ca4001ab0326dd16f310f3b66ed9e0b2543506f527def4a49b3b5"
+    },
+    "aisha/raw-reactions-companion.json": {
+      "publishedPath": "aisha/raw-reactions-companion.json.txt",
+      "sha256": "4d2e8bd5479994ccb3ea365e4b5783d11199cca175c917a8fb81e10871af4a17"
+    },
+    "aisha/report.md": {
+      "publishedPath": "aisha/report.md.txt",
+      "sha256": "084b69151ac5c637192bee581a458e6f31468020338d6e09d09c7f5a2b9f789a"
+    },
+    "all-driver-reactions.json": {
+      "publishedPath": "all-driver-reactions.json.txt",
+      "sha256": "fc303d946586b6b37da7129265266830648de5ed0cf4b2e173453677faee420c"
+    },
+    "build.py": {
+      "publishedPath": "build.py.txt",
+      "sha256": "45afec703d267a385a819fa8f23f360d36a546ba511f97e9175aa71561a7e70b"
+    },
+    "curated-parser-check.json": {
+      "publishedPath": "curated-parser-check.json.txt",
+      "sha256": "6b76eb62ab518114b8d0853469284d1c8ac106a0de824a354fb11f00eb53809b"
+    },
+    "curated-parser-check.mjs": {
+      "publishedPath": "curated-parser-check.mjs.txt",
+      "sha256": "6f35852c4c58421f155d393177e992bf31f1da7ff0de5e0d793ecb169d732388"
+    },
+    "dunja/brief.md": {
+      "publishedPath": "dunja/brief.md.txt",
+      "sha256": "b7361aae34146218084cff2c7a43d715fe2033002b6d840f22047eef0fb6d46e"
+    },
+    "dunja/completion.safe.json": {
+      "publishedPath": "dunja/completion.safe.json.txt",
+      "sha256": "6e27c15eb64542c0c61e4c16c44fe73f6c9eeed6686f46544bbf78029c65cf1c"
+    },
+    "dunja/desktop/driver.out": {
+      "publishedPath": "dunja/desktop/driver.out.txt",
+      "sha256": "a48e56cfbbe29c768a8de1a55fa881121d585c4021827a9e015ca560651d1942"
+    },
+    "dunja/desktop/release-start.json": {
+      "publishedPath": "dunja/desktop/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "dunja/desktop/wall-clock.jsonl": {
+      "publishedPath": "dunja/desktop/wall-clock.jsonl.txt",
+      "sha256": "85a7c773b33646628b6c7f6c630bc7098f909edef0b42830bb18a9ac09977ae7"
+    },
+    "dunja/director-method-qualification.json": {
+      "publishedPath": "dunja/director-method-qualification.json.txt",
+      "sha256": "13bbb5ec7ff33b5de34de728e3bda0efc8e640e0d3b9c79fc996bb9a4f600c64"
+    },
+    "dunja/dispatch.json": {
+      "publishedPath": "dunja/dispatch.json.txt",
+      "sha256": "c814eeff09f34b0f060cbf02a24f5106b9e2814f56f18718d54e25305d47f98f"
+    },
+    "dunja/history-source-map.json": {
+      "publishedPath": "dunja/history-source-map.json.txt",
+      "sha256": "3f590b4b609c1f6c681e88e1e4c4a3e6ba044934e17677fb197096802be7f86c"
+    },
+    "dunja/own-history.md": {
+      "publishedPath": "dunja/own-history.md.txt",
+      "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9"
+    },
+    "dunja/phone/driver.out": {
+      "publishedPath": "dunja/phone/driver.out.txt",
+      "sha256": "62b40070ec100c8a682d25cf2028467d2a966fe8b6cd13866b7168e485805e54"
+    },
+    "dunja/phone/release-start.json": {
+      "publishedPath": "dunja/phone/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "dunja/phone/wall-clock.jsonl": {
+      "publishedPath": "dunja/phone/wall-clock.jsonl.txt",
+      "sha256": "b12667a7cf3af20763f117b322c85267e6692cda4cb963da36fa191e2f95edf1"
+    },
+    "dunja/raw-reactions-companion.json": {
+      "publishedPath": "dunja/raw-reactions-companion.json.txt",
+      "sha256": "21fce63e885de961188200ca5c8b446a20dc08e52b9921205f6be45be62ade79"
+    },
+    "dunja/report.md": {
+      "publishedPath": "dunja/report.md.txt",
+      "sha256": "a9c08e5a4dc39ce3a8340295e99655e451916f567e8db75cefe29666e3df196a"
+    },
+    "inputs/murmur-codex-fresh-admission.json": {
+      "publishedPath": "inputs/murmur-codex-fresh-admission.json.txt",
+      "sha256": "f16f03038af0518906071fd3ab207a14ac56bef7c5b9760f58499337e6290792"
+    },
+    "inputs/murmur-retest-codex-cleanup.json": {
+      "publishedPath": "inputs/murmur-retest-codex-cleanup.json.txt",
+      "sha256": "f4e3dc3b0ad3e7f86d602463ee3a1190374b41091b25ff6bfceee241b7abb09d"
+    },
+    "inputs/murmur-retest-codex-final-release-after-round.json": {
+      "publishedPath": "inputs/murmur-retest-codex-final-release-after-round.json.txt",
+      "sha256": "34fcde837100ef963b8f0b2bb735f8fac35746dfeb74bac3aef0d790595d4f6d"
+    },
+    "inputs/murmur-retest-codex-input-freeze.json": {
+      "publishedPath": "inputs/murmur-retest-codex-input-freeze.json.txt",
+      "sha256": "00b8e667b18f66e035b4e411d3ed1b5c77e07943e04412c421beeef5b173b95a"
+    },
+    "inputs/murmur-retest-codex-plan.json": {
+      "publishedPath": "inputs/murmur-retest-codex-plan.json.txt",
+      "sha256": "d4b48d625587b9a344d1731fab0531870591cafaa406966c7eacfadf4989a251"
+    },
+    "inputs/murmur-retest-codex-round-state.json": {
+      "publishedPath": "inputs/murmur-retest-codex-round-state.json.txt",
+      "sha256": "582abe0642cc0f74b94d63b21a1d0d7f6c6e10708d9b518a11c8bd52d0bef681"
+    },
+    "inputs/retained-evidence-safe-summary.json": {
+      "publishedPath": "inputs/retained-evidence-safe-summary.json.txt",
+      "sha256": "134705f7bce5dcd294dea3c7c617c81ff722474f0e6775ddbea8deffb74a6ed7"
+    },
+    "ledger-additions.md": {
+      "publishedPath": "ledger-additions.md.txt",
+      "sha256": "e67cbde1e1772d5fa88395d40da459cee2c15a788698563016cec50471b85165"
+    },
+    "ledger-rows.json": {
+      "publishedPath": "ledger-rows.json.txt",
+      "sha256": "0163ca6ee336e6e3791f7b49185efa1cfaa615a7a58cf9d3e9a3e941cd1b87f6"
+    },
+    "manifest.json": {
+      "publishedPath": "manifest.json.txt",
+      "sha256": "22f20e34f72251042fdd8de9653e02c6255f1c91f0842b557dd661e799d6325e"
+    },
+    "mei/brief.md": {
+      "publishedPath": "mei/brief.md.txt",
+      "sha256": "a347fe8deba360f135abc53665c51de82a7e16fd2da490e29349da7f2f76ee6e"
+    },
+    "mei/completion.safe.json": {
+      "publishedPath": "mei/completion.safe.json.txt",
+      "sha256": "735ffecb9e05622f754d2e23443f97c2d9fb2456d67f4d8ba23e4955887287af"
+    },
+    "mei/desktop/driver.out": {
+      "publishedPath": "mei/desktop/driver.out.txt",
+      "sha256": "9e696de6d354bc9071a336aaae6a6e5a9be9bd535e811e5b881c1fb1e1e3e295"
+    },
+    "mei/desktop/release-start.json": {
+      "publishedPath": "mei/desktop/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "mei/desktop/wall-clock.jsonl": {
+      "publishedPath": "mei/desktop/wall-clock.jsonl.txt",
+      "sha256": "f79f435be4085178f8863dd0bbcf5044c535d7fca51cb8a14b670980362aca81"
+    },
+    "mei/director-method-qualification.json": {
+      "publishedPath": "mei/director-method-qualification.json.txt",
+      "sha256": "f6f4b7906ada43d8cc3dc11452968cda8c48d28750ca6cc65cbaba0622424fad"
+    },
+    "mei/dispatch.json": {
+      "publishedPath": "mei/dispatch.json.txt",
+      "sha256": "a53ea08e14ff422e630a6ae58b17a59bde4ee0a0c7e211804a9ba04e566e6599"
+    },
+    "mei/history-source-map.json": {
+      "publishedPath": "mei/history-source-map.json.txt",
+      "sha256": "1644b21f735f59a135e58c25676412a44c2eebb41e60160da8c7c410efe61cca"
+    },
+    "mei/own-history.md": {
+      "publishedPath": "mei/own-history.md.txt",
+      "sha256": "689dbeffdc4a86d185e4aa1cba4e8c975674d9a3a77f39447466538de733102f"
+    },
+    "mei/phone/driver.out": {
+      "publishedPath": "mei/phone/driver.out.txt",
+      "sha256": "ff03b4e254e5cc5521778e1d606edee588d28c66fbbbf5d7c9930cf200b42537"
+    },
+    "mei/phone/release-start.json": {
+      "publishedPath": "mei/phone/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "mei/phone/wall-clock.jsonl": {
+      "publishedPath": "mei/phone/wall-clock.jsonl.txt",
+      "sha256": "145d823913559541b43deab5e1fe8fd34a8d22101eb6edb111c929104fbcc80b"
+    },
+    "mei/raw-reactions-companion.json": {
+      "publishedPath": "mei/raw-reactions-companion.json.txt",
+      "sha256": "b95204eaa2003baa26f8de521af0b06773cb43c76825b9e0b73fb11a5919d032"
+    },
+    "mei/report.md": {
+      "publishedPath": "mei/report.md.txt",
+      "sha256": "9632f013492f51e90b6e17116b9c9d6c68595613631bf17f3bef7e8a10d7e4b5"
+    },
+    "nia/brief.md": {
+      "publishedPath": "nia/brief.md.txt",
+      "sha256": "7c927eefb0940456bdd40950574188e5830f90d0d8a6d96fa90dd39d7c583a64"
+    },
+    "nia/completion.safe.json": {
+      "publishedPath": "nia/completion.safe.json.txt",
+      "sha256": "4c4080c438af97393706a8c760a5e480ca598532a2456d7d5b98aa47ed3901bc"
+    },
+    "nia/desktop/driver.out": {
+      "publishedPath": "nia/desktop/driver.out.txt",
+      "sha256": "d4dfebc8d1b8a728487d26f1bb10e480440796f78e1c181fb1d158720429bcda"
+    },
+    "nia/desktop/release-start.json": {
+      "publishedPath": "nia/desktop/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "nia/desktop/wall-clock.jsonl": {
+      "publishedPath": "nia/desktop/wall-clock.jsonl.txt",
+      "sha256": "38929a1cb35fd1bef4574f120c733f0394b50c76e6f42c2a559ea023b7c97156"
+    },
+    "nia/director-method-qualification.json": {
+      "publishedPath": "nia/director-method-qualification.json.txt",
+      "sha256": "798fb6da207af92d75462bdc7e5e06b7fab0ef95a88533d627ce996a734d96d0"
+    },
+    "nia/dispatch.json": {
+      "publishedPath": "nia/dispatch.json.txt",
+      "sha256": "9bfb8bba691e20ddde5d5479b66ea24ca4ad1b468eb62e55c4ca3ce90a57a1c6"
+    },
+    "nia/history-source-map.json": {
+      "publishedPath": "nia/history-source-map.json.txt",
+      "sha256": "544eea55e5df427cadae67d7aa6b9f7c05e26d6bf4c4f507c97a52b930987846"
+    },
+    "nia/own-history.md": {
+      "publishedPath": "nia/own-history.md.txt",
+      "sha256": "744b1b5eeb1828c1f01ef6511a87220cb3d00807cf3f439b308b50578c35a2a7"
+    },
+    "nia/phone/driver.out": {
+      "publishedPath": "nia/phone/driver.out.txt",
+      "sha256": "9815ce1f9550f83fc906cb170eaff354d441f4dbea629209d77e950fdae9fd93"
+    },
+    "nia/phone/release-start.json": {
+      "publishedPath": "nia/phone/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "nia/phone/wall-clock.jsonl": {
+      "publishedPath": "nia/phone/wall-clock.jsonl.txt",
+      "sha256": "451f498452d68f86f754cb5e8c5669b01386ab573e7b0bb24d3ddf556a2a0841"
+    },
+    "nia/raw-reactions-companion.json": {
+      "publishedPath": "nia/raw-reactions-companion.json.txt",
+      "sha256": "ff3a881f681b31c4fa3538594bf9b8d9eda1a27ab1c7cef314c8ca36e517c22a"
+    },
+    "nia/report.md": {
+      "publishedPath": "nia/report.md.txt",
+      "sha256": "8ef5e97e4357b6fc67a268404a0a917db682ed10ee92cd761d9c3060bb8441e4"
+    },
+    "rosa/brief.md": {
+      "publishedPath": "rosa/brief.md.txt",
+      "sha256": "ae7449199caf088690774de32000be5ff51e491d0c019c72f92bb9ace89dc52f"
+    },
+    "rosa/completion.safe.json": {
+      "publishedPath": "rosa/completion.safe.json.txt",
+      "sha256": "6c81197226b7938cb4671a310c26f81a9ba514508d257dfd8bfa3918321311af"
+    },
+    "rosa/desktop/driver.out": {
+      "publishedPath": "rosa/desktop/driver.out.txt",
+      "sha256": "fad4205ee769238ca081155e2108d24c55c6ef5ffc7a74b7bedf36f75f67693c"
+    },
+    "rosa/desktop/release-start.json": {
+      "publishedPath": "rosa/desktop/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "rosa/desktop/wall-clock.jsonl": {
+      "publishedPath": "rosa/desktop/wall-clock.jsonl.txt",
+      "sha256": "889bdb3aa31133e6908b57d81011e6fe03a85f6baa8f6f47d38fbc47936a7d1b"
+    },
+    "rosa/director-method-qualification.json": {
+      "publishedPath": "rosa/director-method-qualification.json.txt",
+      "sha256": "d75fb2dd09f71fe5a44064cf11cb27339a055b9d40c2c5265214bc0f95c3531a"
+    },
+    "rosa/dispatch.json": {
+      "publishedPath": "rosa/dispatch.json.txt",
+      "sha256": "c0db6602c4109630c0378372aabb9775e731e7ecd3cbd9b543a08d24cf559cb9"
+    },
+    "rosa/history-source-map.json": {
+      "publishedPath": "rosa/history-source-map.json.txt",
+      "sha256": "33b73425c7281e6cf6cbde2fc2bb25940a83c602a6fe0ce5e1d2d649be0f0638"
+    },
+    "rosa/own-history.md": {
+      "publishedPath": "rosa/own-history.md.txt",
+      "sha256": "4800c3606d8bdc83d63a8066f18e0348e46eb57dfdb784953fe53860080068c5"
+    },
+    "rosa/phone/driver.out": {
+      "publishedPath": "rosa/phone/driver.out.txt",
+      "sha256": "3cb674d52401a55266d632ac14b46b492e7e265b7077edbe99cd09d3b21d2994"
+    },
+    "rosa/phone/release-start.json": {
+      "publishedPath": "rosa/phone/release-start.json.txt",
+      "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037"
+    },
+    "rosa/phone/wall-clock.jsonl": {
+      "publishedPath": "rosa/phone/wall-clock.jsonl.txt",
+      "sha256": "8067c9a86bd510d6d3e8325684adc651b07369b27c47b88b1c7c9a63cf44f24a"
+    },
+    "rosa/raw-reactions-companion.json": {
+      "publishedPath": "rosa/raw-reactions-companion.json.txt",
+      "sha256": "ca8bb498375eb854293fe88f851f889bbf5a1cc1ccd9f7b379e899807cce3f84"
+    },
+    "rosa/report.md": {
+      "publishedPath": "rosa/report.md.txt",
+      "sha256": "8683007f61035261bb9a3e778ca58a95530b25cb902d4c8ec8149b9fc3de6142"
+    },
+    "screenshots-manifest.json": {
+      "publishedPath": "screenshots-manifest.json.txt",
+      "sha256": "14756fd9567cf48879357baf9dfa3b87d3c33fef1752fc07df41a24f34990189"
+    },
+    "source-map.json": {
+      "publishedPath": "source-map.json.txt",
+      "sha256": "4f0abaf5606484044f4d7c57dbc65bd899e6d6af053aa88da99ba57430a8e76a"
+    },
+    "span-hash-check.json": {
+      "publishedPath": "span-hash-check.json.txt",
+      "sha256": "da044ea2625731b1213d3735e2b99a7e04f5bb238daa883c3cf8697850547946"
+    },
+    "verify.py": {
+      "publishedPath": "verify.py.txt",
+      "sha256": "2b56d506206a62709ea6ac9d91bf8f1acf63578387041a8db85f7a99ed483b24"
+    }
+  }
+}

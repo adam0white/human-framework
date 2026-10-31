@@ -1,0 +1,17 @@
+# Draft routes for independent review
+
+- F-2761 — Maya Chen rank 1, fix:warren, 2026-11-03: Inspect how the connecting-passage instruction distinguishes chalked marks from a completed cut. Maya guessed that the first square must be dug, but did not establish this.
+- F-2762 — Maya Chen rank 2, fix:warren, 2026-11-03: Inspect how to find the cellar and plan after the phone view moved. The cause of the movement is unknown.
+- F-2763 — Maya Chen rank 3, fix:warren, 2026-11-03: Inspect why a fresh plan reading mentions an unavailable invitation and an unrecorded stopping line. Do not infer save corruption or cross-game recovery.
+- F-2764 — Emre Kaya rank 1, fix:warren, 2026-11-03: Review a useful shelter decision during the first-room wait. Emre saw Meryem eating on phone; that does not establish the full cause of the desktop wait. Do not mandate a clock or digging retune.
+- F-2765 — Emre Kaya rank 2, fix:warren, 2026-11-03: Inspect how Yusuf’s stopping line relates to the current hill and what a player can do with it. He answered in the journal, but Emre could not place the line.
+- F-2766 — Emre Kaya rank 3, fix:warren, 2026-11-03: Review what a player can usefully do while a marked wall waits. Preserve the named diggers and competing needs, without forcing an outcome.
+- F-2767 — Nia Okafor rank 1, fix:lab, 2026-11-03: Investigate the phone quiet-test selection in the lab driver: two attempts to select Meryem timed out. No quiet-test request was sent and the cause is unknown; do not diagnose a game-source defect.
+- F-2768 — Nia Okafor rank 2, fix:warren, 2026-11-03: Review Nia’s request for something engaging while a door is carved. The desktop door remained unfinished during the reached session; no timing retune is implied.
+- F-2769 — Nia Okafor rank 3, fix:warren, 2026-11-03: Inspect how the game communicates when riders might become a concern. Nia did not reach riders; do not invent a schedule.
+- F-2770 — Rosa Alvarez rank 1, fix:warren, 2026-11-03: Inspect how remaining chalk marks are communicated after removal or an unchanged answer. Rosa did not view a post-mark screenshot; cause and final mark locations remain unknown.
+- F-2771 — Rosa Alvarez rank 2, fix:warren, 2026-11-03: Review plain explanation of open route when relevant. Rosa did not reach that advice in this visit.
+- F-2772 — Rosa Alvarez rank 3, fix:warren, 2026-11-03: Review explanation of spoil in the digging message. Rosa found the word unfamiliar but continued.
+- F-2773 — Sanja Marković rank 1, fix:warren, 2026-11-03: Clarify the distinction between existing, planned, potential and rider-safe sleeping places using actual source rules. Sanja did not reach a completed shelter.
+- F-2774 — Sanja Marković rank 2, fix:warren, 2026-11-03: Review how marked work progress is communicated while workers attend to other duties. Sanja saw work begin and a separate door complete; no blanket speed change follows.
+- F-2775 — Sanja Marković rank 3, fix:warren, 2026-11-03: Explain the unavailable invitation and stopping line in the context a cold player can actually know. Do not invent prior events or hidden facts.

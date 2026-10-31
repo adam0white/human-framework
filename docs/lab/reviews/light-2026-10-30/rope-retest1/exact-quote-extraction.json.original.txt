@@ -1,0 +1,1450 @@
+{
+ "note": "Every span is an exact substring of the named copied report, with a 1-based line locator into report.md (report.original.md.txt is byte-identical). mode after-label: the whole line equals prefix + span (prefix may be empty when the answer is a paragraph under a label line). mode inline: the span lies inside the line. Nothing is paraphrased, abbreviated or joined, and no ellipses stand in for conditions. primaryReturn is the opening answer at the top of report.md. laterFullReturn is the separate section 7 answer. laterExtraReturnSpans are further literal section 7 answers. Nia wrote her opening answer as a quoted sentence inside the bold label: primaryReturnAfterLabelLiteral keeps the quote marks and the closing bold marks, primaryReturn is the text between the quote marks. Farah wrapped her opening answer in producer quote marks: primaryReturnAfterLabelLiteral keeps them, primaryReturn is the text between them. rankedAsks are the top three asks of report.md, whole. sectionEightAsks are the section 8 lines. laterAskSpans are later wording from section 1, 3, 4, 5, 6, 7, 8 or 9 kept where it adds or changes content, labelled separately. unrankedBlockingClauses are producer new-blocker wording kept separately and never as a fourth ranked ask. Which later spans count as materially different is the preparer's placement for the parent to confirm at the seal. Nia section 3 diary spans are labelled as reconstructed by the producer and are never presented as verbatim.",
+ "testers": {
+  "pavel": {
+   "tester": "Pavel Novak",
+   "primaryReturnLocator": {
+    "line": 1,
+    "mode": "after-label",
+    "prefix": "**Would you return voluntarily?** ",
+    "span": "Not tonight. I might come back on the desktop on another evening, but only if the group stays within earshot of me, and I would not leave it running."
+   },
+   "primaryReturn": "Not tonight. I might come back on the desktop on another evening, but only if the group stays within earshot of me, and I would not leave it running.",
+   "primaryReturnWrapperQuotesStripped": false,
+   "laterFullReturn": "Not tonight. I might come back on the desktop on another evening to see the hurt climber and the 12:00 or 13:00 turn-back promise, but only if the group stays within earshot of me and the quiet stretches are shorter. I would not leave it running. I would come back another evening, not leave it running.",
+   "laterFullReturnLocator": {
+    "line": 111,
+    "mode": "after-label",
+    "prefix": "- **Would I return voluntarily?** ",
+    "span": "Not tonight. I might come back on the desktop on another evening to see the hurt climber and the 12:00 or 13:00 turn-back promise, but only if the group stays within earshot of me and the quiet stretches are shorter. I would not leave it running. I would come back another evening, not leave it running."
+   },
+   "laterExtraReturnSpans": [],
+   "rankedAsks": [
+    "Keep the group within earshot after they say yes, and say what \"stay with them\" does. On desktop all five drifted below me. On the phone Oskar, then Wren, \"cannot hear you\" even after I pressed it.",
+    "Speed up the quiet stretches, or let Skip go further. Desktop gave about 4 to 8 game minutes per 20 to 30 real seconds, and the Pace \"fast\" setting made no visible difference. Skip on the phone gave two hours at once.",
+    "Let me reach the hurt climber and the turn-back promise. I reached neither this time, so I cannot say whether the old \"walk to Bilal\" problem is fixed."
+   ],
+   "rankedAskLocators": [
+    {
+     "line": 4,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Keep the group within earshot after they say yes, and say what \"stay with them\" does. On desktop all five drifted below me. On the phone Oskar, then Wren, \"cannot hear you\" even after I pressed it."
+    },
+    {
+     "line": 5,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Speed up the quiet stretches, or let Skip go further. Desktop gave about 4 to 8 game minutes per 20 to 30 real seconds, and the Pace \"fast\" setting made no visible difference. Skip on the phone gave two hours at once."
+    },
+    {
+     "line": 6,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Let me reach the hurt climber and the turn-back promise. I reached neither this time, so I cannot say whether the old \"walk to Bilal\" problem is fixed."
+    }
+   ],
+   "sectionEightAsks": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 114,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Keep the group within earshot after they say yes, and say what \"stay with them\" does.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 115,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Speed up the quiet stretches, or let Skip go further, and make the Pace setting visibly change the speed.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 116,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Let me reach the hurt climber and the turn-back promise within a few minutes, so I can see whether they work.",
+     "sameAsRankedAsk": false
+    }
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 114,
+      "mode": "after-label",
+      "prefix": "1. ",
+      "span": "Keep the group within earshot after they say yes, and say what \"stay with them\" does."
+     },
+     {
+      "label": "Later wording (section 5) desktop",
+      "line": 90,
+      "mode": "inline",
+      "span": "After everyone said yes on desktop, all five were \"Not walking, below you\", while the text said \"Everyone, will you keep climbing?\". Asking gently with \"Climb on\" brought most of them back."
+     },
+     {
+      "label": "Later wording (section 5) phone",
+      "line": 91,
+      "mode": "inline",
+      "span": "On the phone, \"stay with them\" gave the best result at 05:11, with everyone above me. A few minutes later Oskar \"cannot hear you\". I pressed it again and the tag went away, then came back at 09:52. I do not know what the button does. I am guessing about cause."
+     },
+     {
+      "label": "Later wording (section 3) phone diary 184.3 s",
+      "line": 57,
+      "mode": "inline",
+      "span": "Oskar no longer says he cannot hear me after stay with them. Visible improvement on my old second ask, though I cannot prove the cause."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "line": 122,
+      "mode": "inline",
+      "span": "But the group still drifted after saying yes on desktop. On the phone, \"cannot hear you\" appeared for Oskar and then Wren. Nothing on the page says what \"stay with them\" does."
+     },
+     {
+      "label": "Later wording (section 9) new blocker",
+      "line": 128,
+      "mode": "after-label",
+      "prefix": "- ",
+      "span": "Two of five still \"cannot hear you\" on the phone at 09:57, with no way I could see to fix it."
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 115,
+      "mode": "after-label",
+      "prefix": "2. ",
+      "span": "Speed up the quiet stretches, or let Skip go further, and make the Pace setting visibly change the speed."
+     },
+     {
+      "label": "Later wording (section 1) status messages",
+      "line": 17,
+      "mode": "inline",
+      "span": "Some of my status messages to you were slow because I was waiting on replies. I am not blaming the game for that."
+     },
+     {
+      "label": "Later wording (section 5) Pace",
+      "line": 92,
+      "mode": "inline",
+      "span": "The Pace setting: I chose \"fast\" and saw no visible change (5 game minutes in 20 s)."
+     },
+     {
+      "label": "Later wording (section 5) Skip absent",
+      "line": 93,
+      "mode": "inline",
+      "span": "On desktop Skip was often absent while a reading note was shown, and I waited without a way to move."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "line": 123,
+      "mode": "inline",
+      "span": "Partly met. The page now says \"Nothing new has happened. Walking continues quickly until something happens\", and phone Skip gave two hours in one tap. But the desktop clock still crawled at 4 to 8 game minutes per 20 to 30 seconds. The \"fast\" pace made no visible difference, and Skip was often missing while I waited."
+     },
+     {
+      "label": "Later wording (section 9) new blocker, no event in 4.5 minutes",
+      "line": 126,
+      "mode": "inline",
+      "span": "On desktop I never reached any event that needed me in about 4.5 minutes."
+     },
+     {
+      "label": "Later wording (section 9) new blocker, Pace unclear",
+      "line": 127,
+      "mode": "inline",
+      "span": "I could not tell whether the Pace setting did anything."
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 116,
+      "mode": "after-label",
+      "prefix": "3. ",
+      "span": "Let me reach the hurt climber and the turn-back promise within a few minutes, so I can see whether they work."
+     },
+     {
+      "label": "Later wording (section 5) unseen",
+      "line": 94,
+      "mode": "inline",
+      "span": "the hurt climber (my old desktop trouble), the 12:00 and 13:00 promises being tested, and anything past 10:11."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "line": 121,
+      "mode": "inline",
+      "span": "Not seen. I never reached a hurt climber on either device. The nearest was Nell wanting to go down on the phone. That one gave named choices, and \"send Tamar Vale\" was accepted with a visible answer (\"Tamar Vale agreed to meet, then consider going down together\"). I cannot say whether the Bilal problem is fixed."
+     }
+    ]
+   },
+   "unrankedBlockingClauses": []
+  },
+  "tessa": {
+   "tester": "Tessa Williams",
+   "primaryReturnLocator": {
+    "line": 1,
+    "mode": "after-label",
+    "prefix": "**Would you return voluntarily?** ",
+    "span": "Maybe once, another evening on my laptop, to see what happens when we reach the top and whether I can get more than a stock yes from Tamar, Nell and Oskar. I would not come back tonight. I would not leave it running."
+   },
+   "primaryReturn": "Maybe once, another evening on my laptop, to see what happens when we reach the top and whether I can get more than a stock yes from Tamar, Nell and Oskar. I would not come back tonight. I would not leave it running.",
+   "primaryReturnWrapperQuotesStripped": false,
+   "laterFullReturn": "Maybe once. I would come back another evening on my laptop, only to see what happens when we reach the top and whether Tamar, Nell and Oskar ever answer in their own words. I would not come back tonight. I would not leave it running, because the group only moves when I walk or ask.",
+   "laterFullReturnLocator": {
+    "line": 124,
+    "mode": "after-label",
+    "prefix": "**Would I return voluntarily?** ",
+    "span": "Maybe once. I would come back another evening on my laptop, only to see what happens when we reach the top and whether Tamar, Nell and Oskar ever answer in their own words. I would not come back tonight. I would not leave it running, because the group only moves when I walk or ask."
+   },
+   "laterExtraReturnSpans": [],
+   "rankedAsks": [
+    "Stop most people giving the same stock yes or the same \"hut path\" line to different asks. Tamar, Nell, Oskar and Wren still did, mostly on the phone.",
+    "Give me something to do while the group walks. I kept waiting on the clock or pressing Skip.",
+    "Fix the overlapping name labels on the laptop map near the hut."
+   ],
+   "rankedAskLocators": [
+    {
+     "line": 4,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Stop most people giving the same stock yes or the same \"hut path\" line to different asks. Tamar, Nell, Oskar and Wren still did, mostly on the phone."
+    },
+    {
+     "line": 5,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Give me something to do while the group walks. I kept waiting on the clock or pressing Skip."
+    },
+    {
+     "line": 6,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Fix the overlapping name labels on the laptop map near the hut."
+    }
+   ],
+   "sectionEightAsks": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 127,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Stop most people giving one stock yes or one hut-path line to different asks. Wren and Bilal were better. Tamar, Nell and Oskar were not.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 128,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Give me something to do while the group walks. I kept waiting or pressing Skip.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 129,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Fix the overlapping name labels on the laptop map near the hut.",
+     "sameAsRankedAsk": true
+    }
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 127,
+      "mode": "after-label",
+      "prefix": "1. ",
+      "span": "Stop most people giving one stock yes or one hut-path line to different asks. Wren and Bilal were better. Tamar, Nell and Oskar were not."
+     },
+     {
+      "label": "Later wording (section 3) phone note 75.4 s",
+      "line": 45,
+      "mode": "inline",
+      "span": "Insist worked, Oskar rests, said Yes! Count me in, the same stock yes as last visit even though he was resting. Mischief: leaving him behind to see what happens."
+     },
+     {
+      "label": "Later wording (section 4) lost me, phone turn back",
+      "line": 79,
+      "mode": "inline",
+      "span": "On the phone, Tamar, Oskar, Nell and Wren gave the hut-path line to \"turn back\", even though we were minutes up. On the phone it was my first request before the group had moved, and the reasons given were \"busy until about 06:38\"."
+     },
+     {
+      "label": "Later wording (section 4) lost me, eat and survey",
+      "line": 80,
+      "mode": "inline",
+      "span": "The same hut-path line for eat and for the habitat survey on the phone."
+     },
+     {
+      "label": "Later wording (section 4) lost me, Oskar yes",
+      "line": 81,
+      "mode": "inline",
+      "span": "Oskar said \"Yes! Count me in\" when I told him to rest. That is the same yes as last visit."
+     },
+     {
+      "label": "Later wording (section 5) unclear, hut-path line far from the hut",
+      "line": 101,
+      "mode": "inline",
+      "span": "Why the hut-path line appears on the phone when the group is far above the hut. I do not know if it is a stock phrase or the first stretch of the climb."
+     },
+     {
+      "label": "Later wording (section 5) unclear, Count me in after insist",
+      "line": 102,
+      "mode": "inline",
+      "span": "After insisting on a rest, Oskar says \"Count me in\", which reads as joining."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "line": 132,
+      "mode": "inline",
+      "span": "On the laptop, Wren's turn-back answer fit what she was doing (\"I will consider it after I eat something\", busy until 07:14). Bilal said \"Yes, my friend\" and \"Gladly\", and Oskar's rest refusal was phrased differently from Wren's. But on the phone Wren gave the hut-path line to both eat and the habitat survey. Tamar, Oskar, Nell and Wren gave hut-path lines to turn back. Oskar still said \"Yes! Count me in\". \"Stop once we have left the hut\" was not met on the phone. On the phone the line came back while I was minutes up."
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 128,
+      "mode": "after-label",
+      "prefix": "2. ",
+      "span": "Give me something to do while the group walks. I kept waiting or pressing Skip."
+     },
+     {
+      "label": "Later wording (section 3) laptop pulse 182.97 s",
+      "line": 66,
+      "mode": "inline",
+      "span": "Still, most yeses are one shape, and I walk off alone and have to wait for them."
+     },
+     {
+      "label": "Later wording (section 4) lost me, group waiting",
+      "line": 83,
+      "mode": "inline",
+      "span": "Everyone was stopped, waiting for me, after I walked ahead on the laptop."
+     },
+     {
+      "label": "Later wording (section 5) unclear, skipped section",
+      "line": 103,
+      "mode": "inline",
+      "span": "I did not see what a skipped section does while I am ahead. The group stopped and I waited for them."
+     },
+     {
+      "label": "Later wording (section 9) new blocker",
+      "line": 138,
+      "mode": "inline",
+      "span": "The group stopped and waited for me on the laptop after I walked ahead. Bilal stopped on his own with no reason shown."
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 3) laptop diary 70.5 s",
+      "line": 62,
+      "mode": "inline",
+      "span": "The labels on the map overlap near the hut, hard to read who is who."
+     },
+     {
+      "label": "Later wording (section 6) desktop b-002",
+      "line": 110,
+      "mode": "inline",
+      "span": "a wide map on the left with the group a small cluster near the hut and labels overlapping (\"the hut\", Tamar Vale, Nell)."
+     },
+     {
+      "label": "Later wording (section 6) trouble seen",
+      "line": 116,
+      "mode": "inline",
+      "span": "the laptop labels overlap near the hut."
+     },
+     {
+      "label": "Later wording (section 6) laptop tap failure",
+      "line": 116,
+      "mode": "inline",
+      "span": "One tap on the laptop (Wren) failed because the page changed during Skip."
+     }
+    ]
+   },
+   "unrankedBlockingClauses": []
+  },
+  "nia": {
+   "tester": "Nia Okafor",
+   "primaryReturnLocator": {
+    "line": 1,
+    "mode": "inline",
+    "span": "I would come back another evening, but only if the first reply to a question stopped being the generic line and the clock moved at a pace where something happens within a minute; I would not leave it running."
+   },
+   "primaryReturn": "I would come back another evening, but only if the first reply to a question stopped being the generic line and the clock moved at a pace where something happens within a minute; I would not leave it running.",
+   "primaryReturnTrailingMarks": "**",
+   "primaryReturnAfterLabelLiteral": "\"I would come back another evening, but only if the first reply to a question stopped being the generic line and the clock moved at a pace where something happens within a minute; I would not leave it running.\"",
+   "primaryReturnWrapperQuotesStripped": true,
+   "laterFullReturn": "Yes, but only on these conditions. The first reply has to answer what I asked instead of \"I will do as you ask.\" Refusals have to sound like a person every time. Several people must stop saying the same line. And something has to happen within about a minute, which means a faster clock without me hunting for the Pace setting.",
+   "laterFullReturnLocator": {
+    "line": 127,
+    "mode": "after-label",
+    "prefix": "- **Would I return voluntarily?** ",
+    "span": "Yes, but only on these conditions. The first reply has to answer what I asked instead of \"I will do as you ask.\" Refusals have to sound like a person every time. Several people must stop saying the same line. And something has to happen within about a minute, which means a faster clock without me hunting for the Pace setting."
+   },
+   "laterExtraReturnSpans": [
+    {
+     "label": "Later wording (section 7) bullet, leave it running or come back another evening",
+     "line": 128,
+     "mode": "after-label",
+     "prefix": "- **Leave it running or come back another evening?** ",
+     "span": "I would not leave it running. I would come back another evening if those conditions were met."
+    }
+   ],
+   "rankedAsks": [
+    "Make the first reply to a question or request specific. Today the generic line (\"I agree. Let's do it.\" / \"I will do as you ask.\") comes first and the real answer arrives 20–30 s later.",
+    "Make refusals sound like people every time. Oskar's \"I can't make that happen. I do not have what I need for that.\" still reads like an error message. Stop several people giving the identical line.",
+    "Make the clock move at a pace where something happens in a minute. On Automatic pace it was 05:30 after about 3 minutes."
+   ],
+   "rankedAskLocators": [
+    {
+     "line": 4,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Make the first reply to a question or request specific. Today the generic line (\"I agree. Let's do it.\" / \"I will do as you ask.\") comes first and the real answer arrives 20–30 s later."
+    },
+    {
+     "line": 5,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Make refusals sound like people every time. Oskar's \"I can't make that happen. I do not have what I need for that.\" still reads like an error message. Stop several people giving the identical line."
+    },
+    {
+     "line": 6,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Make the clock move at a pace where something happens in a minute. On Automatic pace it was 05:30 after about 3 minutes."
+    }
+   ],
+   "sectionEightAsks": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 131,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Make the first reply specific to my question, with no generic line first.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 132,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Give every refusal a person's voice and stop identical lines from several people.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 133,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Make the default clock fast enough that something happens within a minute.",
+     "sameAsRankedAsk": false
+    }
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 131,
+      "mode": "after-label",
+      "prefix": "1. ",
+      "span": "Make the first reply specific to my question, with no generic line first."
+     },
+     {
+      "label": "Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 40.5 s",
+      "line": 37,
+      "mode": "inline",
+      "span": "Nell answered my question a bit later: The Sunny Chair is a wet hollow, maps of what people say. That is a real answer to mountain names. Last time I only got I agree. The first line is still the generic one though."
+     },
+     {
+      "label": "Later wording (section 3) (reconstructed by the producer, not word-for-word) desktop 36.6 s",
+      "line": 64,
+      "mode": "inline",
+      "span": "Tamar answered my turn-back question for real: she once blamed weather when she had lost confidence. That is exactly what I wanted last time. The first line I will do as you ask is still generic and it comes first, but the real answer follows within seconds."
+     },
+     {
+      "label": "Later wording (section 4) lost me",
+      "line": 89,
+      "mode": "inline",
+      "span": "The generic first line still comes first."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "line": 136,
+      "mode": "inline",
+      "span": "Real topic answers came (Nell on mountain names, Tamar on turn-back). They arrived 20–30 s after a generic first line."
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 132,
+      "mode": "after-label",
+      "prefix": "2. ",
+      "span": "Give every refusal a person's voice and stop identical lines from several people."
+     },
+     {
+      "label": "Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 103.9 s",
+      "line": 47,
+      "mode": "inline",
+      "span": "Oskar refused with I cannot make that happen, I do not have what I need for that. That is the same error-message voice I complained about last time. It came after a wait, and it is not a person talking."
+     },
+     {
+      "label": "Later wording (section 4) lost me, Oskar on both devices",
+      "line": 90,
+      "mode": "inline",
+      "span": "Oskar gave the same deferral line on both devices."
+     },
+     {
+      "label": "Later wording (section 4) lost me, identical line",
+      "line": 91,
+      "mode": "inline",
+      "span": "Three people said the identical \"I want to go down. Who will come with me?\""
+     },
+     {
+      "label": "Later wording (section 4) lost me, error voice",
+      "line": 93,
+      "mode": "inline",
+      "span": "Oskar's error-voice refusal came back."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "line": 137,
+      "mode": "inline",
+      "span": "Refusals came at 10 s and were varied: \"Ask me after I eat something\", \"First I will eat something, then we can talk\", and \"I will do it, but I disagree\" again. Oskar's \"I can't make that happen. I do not have what I need for that.\" is still error-style. Three people also said the same line."
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 133,
+      "mode": "after-label",
+      "prefix": "3. ",
+      "span": "Make the default clock fast enough that something happens within a minute."
+     },
+     {
+      "label": "Later wording (section 4) lost me",
+      "line": 94,
+      "mode": "inline",
+      "span": "The clock was slow on Automatic."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "line": 138,
+      "mode": "inline",
+      "span": "did not meet it on the phone."
+     },
+     {
+      "label": "Later wording (section 9) phone Automatic",
+      "line": 139,
+      "mode": "inline",
+      "span": "On the phone's Automatic pace the clock read 05:30 after about 3 minutes."
+     },
+     {
+      "label": "Later wording (section 9) desktop Fast",
+      "line": 140,
+      "mode": "inline",
+      "span": "On desktop with Pace set to fast it moved about 11 game minutes in 25 s."
+     },
+     {
+      "label": "Later wording (section 9) turn-back time not reached",
+      "line": 141,
+      "mode": "inline",
+      "span": "I never reached turn-back time on either device."
+     },
+     {
+      "label": "Later wording (section 3) wait discrepancy",
+      "line": 79,
+      "mode": "inline",
+      "span": "The wait 167→244 s step reported a longer elapsed time than the 15 s I asked for. I do not know why."
+     }
+    ]
+   },
+   "unrankedBlockingClauses": [
+    {
+     "key": "wants-to-wait-before-waiting",
+     "classification": "producer-new-blocker",
+     "target": "2026-11-03",
+     "routeDescriptionMetadata": "fix:rope Nia reads the Wren wants to wait before waiting wording as a template, source inspection of the produced wording, not a fourth ranked ask, target2026-11-03 (open)",
+     "rowRouteClause": "also an unranked producer labelled new blocking clause wants to wait before waiting, Nia reads the Wren wants to wait before waiting wording as a template, source inspection of the produced wording, not a fourth ranked ask, dated 2026-11-03",
+     "spans": [
+      {
+       "label": "Later wording (section 9) new blocking asks",
+       "line": 148,
+       "mode": "inline",
+       "span": "The odd \"wants to wait before waiting\" wording."
+      },
+      {
+       "label": "Later wording (section 5) confusing",
+       "line": 106,
+       "mode": "inline",
+       "span": "\"Wren wants to wait before waiting\" reads like a template."
+      },
+      {
+       "label": "Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 62.5 s",
+       "line": 43,
+       "mode": "inline",
+       "span": "Wren wants to wait before waiting is an odd sentence, like a template. But Eat something then we can talk is a person line."
+      }
+     ]
+    },
+    {
+     "key": "going-down-speech-versus-actual-climb",
+     "classification": "producer-new-blocker",
+     "target": "2026-11-03",
+     "routeDescriptionMetadata": "fix:rope everyone says I want to go down and then walks up, source inspection comparing the going down speech with the actual climb, a stated wish to descend is not a completed action and nobody is forced to comply, not a fourth ranked ask, target2026-11-03 (open)",
+     "rowRouteClause": "also an unranked producer labelled new blocking clause going down speech versus actual climb, everyone says I want to go down and then walks up, source inspection comparing the going down speech with the actual climb, a stated wish to descend is not a completed action and nobody is forced to comply, not a fourth ranked ask, dated 2026-11-03",
+     "spans": [
+      {
+       "label": "Later wording (section 9) new blocking asks",
+       "line": 149,
+       "mode": "inline",
+       "span": "Everyone saying \"I want to go down\" and then walking up."
+      },
+      {
+       "label": "Later wording (section 5) confusing",
+       "line": 107,
+       "mode": "inline",
+       "span": "On both devices everyone said \"I want to go down\" and then walked up, with no explanation."
+      },
+      {
+       "label": "Later wording (section 4) lost me",
+       "line": 92,
+       "mode": "inline",
+       "span": "They then all walked up anyway."
+      }
+     ]
+    },
+    {
+     "key": "cannot-hear-greyed-buttons",
+     "classification": "producer-new-blocker",
+     "target": "2026-11-03",
+     "routeDescriptionMetadata": "fix:rope the He cannot hear you walk closer state with greyed buttons on desktop, source inspection linked to F-2586 and F-2600, explain it truthfully, no forced co-location and no forced following, not a fourth ranked ask, target2026-11-03 (open)",
+     "rowRouteClause": "also an unranked producer labelled new blocking clause cannot hear greyed buttons, the He cannot hear you walk closer state with greyed buttons on desktop, source inspection linked to F-2586 and F-2600, explain it truthfully, no forced co-location and no forced following, not a fourth ranked ask, dated 2026-11-03",
+     "spans": [
+      {
+       "label": "Later wording (section 9) new blocking asks",
+       "line": 147,
+       "mode": "inline",
+       "span": "The \"He cannot hear you. Walk closer.\" state on desktop. It greyed all my request buttons, and I could only walk up or wait."
+      }
+     ]
+    }
+   ]
+  },
+  "rosa": {
+   "tester": "Rosa Alvarez",
+   "primaryReturnLocator": {
+    "line": 3,
+    "mode": "after-label",
+    "prefix": "**Would I return voluntarily?** ",
+    "span": "Yes, on another evening, if someone asked me to try it, because the writing about the people is kind and clear. No, I would not leave it running, and I would not come back tonight. I mostly waited and pressed Skip, and I have seen the whole loop twice."
+   },
+   "primaryReturn": "Yes, on another evening, if someone asked me to try it, because the writing about the people is kind and clear. No, I would not leave it running, and I would not come back tonight. I mostly waited and pressed Skip, and I have seen the whole loop twice.",
+   "primaryReturnWrapperQuotesStripped": false,
+   "laterFullReturn": "Yes, on another evening, if the game showed me something new. I want the second mountain, or a person asking me for something I did not expect. I came back tonight because I was asked, and the writing about the people is why I would come again. I would not leave the game running while I did something else. The waiting makes me want to press things, and I cannot tell whether a press did anything. I would not come back tonight. I would play on my phone before the desktop, because the phone screen showed everything at once.",
+   "laterFullReturnLocator": {
+    "line": 176,
+    "mode": "after-label",
+    "prefix": "",
+    "span": "Yes, on another evening, if the game showed me something new. I want the second mountain, or a person asking me for something I did not expect. I came back tonight because I was asked, and the writing about the people is why I would come again. I would not leave the game running while I did something else. The waiting makes me want to press things, and I cannot tell whether a press did anything. I would not come back tonight. I would play on my phone before the desktop, because the phone screen showed everything at once."
+   },
+   "laterExtraReturnSpans": [],
+   "rankedAsks": [
+    "Keep Skip on the screen. Say how far it jumps (\"Skip to 08:00\" or \"Skip to the next event: about 1 hour\").",
+    "Rewrite the sentence \"You also stop at a place on the path when nobody behind can hear you\" in plain words. Say which place, and why they cannot hear me.",
+    "During the long waits, write what I am waiting for and what I can do now. For example: \"Waiting. You can open the Journal, or press Skip.\""
+   ],
+   "rankedAskLocators": [
+    {
+     "line": 6,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Keep Skip on the screen. Say how far it jumps (\"Skip to 08:00\" or \"Skip to the next event: about 1 hour\")."
+    },
+    {
+     "line": 7,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Rewrite the sentence \"You also stop at a place on the path when nobody behind can hear you\" in plain words. Say which place, and why they cannot hear me."
+    },
+    {
+     "line": 8,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "During the long waits, write what I am waiting for and what I can do now. For example: \"Waiting. You can open the Journal, or press Skip.\""
+    }
+   ],
+   "sectionEightAsks": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 179,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Keep Skip on screen and say how far it goes.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 180,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Rewrite the \"nobody behind can hear you\" sentence in plain words.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 181,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "During waits, say what I am waiting for and what I can do now.",
+     "sameAsRankedAsk": false
+    }
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 179,
+      "mode": "after-label",
+      "prefix": "1. ",
+      "span": "Keep Skip on screen and say how far it goes."
+     },
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 125,
+      "mode": "inline",
+      "span": "Skip is not always on the screen."
+     },
+     {
+      "label": "Later wording (section 4) lost me",
+      "line": 106,
+      "mode": "inline",
+      "span": "Skip appearing and disappearing, with no stated size of jump."
+     },
+     {
+      "label": "Later wording (section 9) Skip label",
+      "line": 188,
+      "mode": "inline",
+      "span": "Skip is now labelled \"Skip to the next event\"."
+     },
+     {
+      "label": "Later wording (section 9)",
+      "line": 188,
+      "mode": "inline",
+      "span": "Skip still comes and goes, and it does not say how far it jumps."
+     },
+     {
+      "label": "Later wording (section 9) new blocker",
+      "line": 191,
+      "mode": "inline",
+      "span": "Skip is missing on both devices at times, with no reason given."
+     },
+     {
+      "label": "Later wording (section 6) trouble seen",
+      "line": 164,
+      "mode": "inline",
+      "span": "Skip missing on both devices; the desktop clock stuck at 05:03; the desktop path hidden under the right panel."
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 180,
+      "mode": "after-label",
+      "prefix": "2. ",
+      "span": "Rewrite the \"nobody behind can hear you\" sentence in plain words."
+     },
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 124,
+      "mode": "inline",
+      "span": "\"You also stop at a place on the path when nobody behind can hear you.\" I did not understand what place, or why they could not hear me."
+     },
+     {
+      "label": "Later wording (section 9) new blocker",
+      "line": 193,
+      "mode": "inline",
+      "span": "One sentence in the lead-on hint still needs a reread: \"You also stop at a place on the path when nobody behind can hear you.\""
+     },
+     {
+      "label": "Later wording (section 3) desktop reread 9.197 s",
+      "line": 76,
+      "mode": "inline",
+      "span": "Reread 1: You also stop at a place on the path when nobody behind can hear you. What place? Why can they not hear me?"
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 181,
+      "mode": "after-label",
+      "prefix": "3. ",
+      "span": "During waits, say what I am waiting for and what I can do now."
+     },
+     {
+      "label": "Later wording (section 4) lost me",
+      "line": 105,
+      "mode": "inline",
+      "span": "Long waits with little to do."
+     },
+     {
+      "label": "Later wording (section 4) held me, phone waiting line",
+      "line": 102,
+      "mode": "inline",
+      "span": "The waiting line on the phone: \"You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up.\""
+     },
+     {
+      "label": "Later wording (section 9) Skip and waiting statement",
+      "line": 188,
+      "mode": "inline",
+      "span": "The phone now says plainly \"You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up.\""
+     },
+     {
+      "label": "Later wording (section 3) phone pulse 184.117 s",
+      "line": 63,
+      "mode": "inline",
+      "span": "Still long waits between actions, but I know why now."
+     }
+    ]
+   },
+   "unrankedBlockingClauses": [
+    {
+     "key": "reading-note-and-first-lead-on-uncertainty",
+     "classification": "producer-new-blocker",
+     "target": "2026-11-03",
+     "routeDescriptionMetadata": "fix:rope the desktop clock stayed at 05:03 after Lead on until a second tap, after she read the Journal and dismissed the Time slows for reading note, source inspection of the reading note and first Lead on behavior, no clock cause assumed and no default clock bug proved, not a fourth ranked ask, target2026-11-03 (open)",
+     "rowRouteClause": "also an unranked producer labelled new blocking clause reading note and first lead on uncertainty, the desktop clock stayed at 05:03 after Lead on until a second tap, after she read the Journal and dismissed the Time slows for reading note, source inspection of the reading note and first Lead on behavior, no clock cause assumed and no default clock bug proved, not a fourth ranked ask, dated 2026-11-03",
+     "spans": [
+      {
+       "label": "Later wording (section 9) new this time",
+       "line": 192,
+       "mode": "inline",
+       "span": "On desktop, the clock stayed at 05:03 until I tapped lead on a second time, and I could not tell whether the first tap had worked."
+      },
+      {
+       "label": "Later wording (section 5) confusing",
+       "line": 126,
+       "mode": "inline",
+       "span": "On desktop, the clock stayed at 05:03 after I tapped lead on. I do not know whether my first tap worked or the second one did."
+      },
+      {
+       "label": "Later wording (section 4) lost me",
+       "line": 107,
+       "mode": "inline",
+       "span": "The desktop clock stuck at 05:03 (\"Time slows for reading\") until I tapped lead on a second time."
+      },
+      {
+       "label": "Later wording (section 3) desktop 78.285 s",
+       "line": 82,
+       "mode": "inline",
+       "span": "The clock is stuck at 05:03 and says Time slows for reading. I close the note with the x to see if the climb moves."
+      }
+     ]
+    },
+    {
+     "key": "auto-filled-feedback-note",
+     "classification": "producer-new-blocker",
+     "target": "2026-11-10",
+     "routeDescriptionMetadata": "fix:rope the Feedback note box fills itself with the verdict words and a reader may think it must be sent, a clarity preference and not a question, the auto-filled text is not a typed note, no Submit and no consent change, not a fourth ranked ask, target2026-11-10 (open)",
+     "rowRouteClause": "also an unranked producer labelled new blocking clause auto filled feedback note, the Feedback note box fills itself with the verdict words and a reader may think it must be sent, a clarity preference and not a question, the auto-filled text is not a typed note, no Submit and no consent change, not a fourth ranked ask, dated 2026-11-10",
+     "spans": [
+      {
+       "label": "Later wording (section 9) new this time",
+       "line": 194,
+       "mode": "inline",
+       "span": "The note box fills with \"I'm stopping\" when I press that verdict. I typed nothing, but a reader might think they must send it."
+      },
+      {
+       "label": "Later wording (section 5) confusing",
+       "line": 128,
+       "mode": "inline",
+       "span": "After \"I'm stopping\", the note box filled itself with \"I'm stopping\". I typed nothing."
+      }
+     ]
+    },
+    {
+     "key": "desktop-path-under-right-panel",
+     "classification": "source-observation",
+     "target": "2026-11-03",
+     "routeDescriptionMetadata": "fix:rope the desktop path running under the right panel, source inspection of the layout, clipping is not proved unreachable, a section 5 source observation and not her listed new blocker, not a fourth ranked ask, target2026-11-03 (open)",
+     "rowRouteClause": "also an unranked source observation, not a producer labelled new blocker desktop path under right panel, the desktop path running under the right panel, source inspection of the layout, clipping is not proved unreachable, a section 5 source observation and not her listed new blocker, not a fourth ranked ask, dated 2026-11-03",
+     "spans": [
+      {
+       "label": "Later wording (section 5) confusing",
+       "line": 127,
+       "mode": "inline",
+       "span": "On desktop, the path runs under the right panel, so I could not see where it goes."
+      }
+     ]
+    }
+   ]
+  },
+  "farah": {
+   "tester": "Farah Bensaid",
+   "primaryReturnLocator": {
+    "line": 1,
+    "mode": "inline",
+    "span": "Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting."
+   },
+   "primaryReturn": "Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting.",
+   "primaryReturnAfterLabelLiteral": "\"Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting.\"",
+   "primaryReturnWrapperQuotesStripped": true,
+   "laterFullReturn": "Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting. I liked the people and the promise enough to want to know what happens on the mountain. I don't enjoy fixing people one by one without seeing the rule.",
+   "laterFullReturnLocator": {
+    "line": 140,
+    "mode": "after-label",
+    "prefix": "",
+    "span": "Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting. I liked the people and the promise enough to want to know what happens on the mountain. I don't enjoy fixing people one by one without seeing the rule."
+   },
+   "laterExtraReturnSpans": [
+    {
+     "label": "Later wording (section 7) bullet, leave it running or come back another evening",
+     "line": 142,
+     "mode": "after-label",
+     "prefix": "**Leave it running, or come back another evening?** ",
+     "span": "I would not leave it running. Time keeps moving, and I don't trust what happens while I am away. I might come back another evening, with the condition above."
+    }
+   ],
+   "rankedAsks": [
+    "When someone stops, walks down or refuses, say why in plain words. Say what \"something I need is missing\" means: which thing, and who has it.",
+    "On the phone, show fewer tutorial notes stacked on top of each other, and keep the Submit bar inside the screen.",
+    "Make \"stay with them\" visibly keep me beside the group, or explain what it does."
+   ],
+   "rankedAskLocators": [
+    {
+     "line": 4,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "When someone stops, walks down or refuses, say why in plain words. Say what \"something I need is missing\" means: which thing, and who has it."
+    },
+    {
+     "line": 5,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "On the phone, show fewer tutorial notes stacked on top of each other, and keep the Submit bar inside the screen."
+    },
+    {
+     "line": 6,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Make \"stay with them\" visibly keep me beside the group, or explain what it does."
+    }
+   ],
+   "sectionEightAsks": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 145,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Give a plain reason for every stop, walk-down or refusal, and name what is missing.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 146,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "On the phone, show fewer stacked notes and keep the Submit bar on the screen.",
+     "sameAsRankedAsk": false
+    },
+    {
+     "label": "Later wording (section 8)",
+     "line": 147,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Make \"stay with them\" do what it says, or explain it.",
+     "sameAsRankedAsk": false
+    }
+   ],
+   "laterAskSpans": {
+    "1": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 145,
+      "mode": "after-label",
+      "prefix": "1. ",
+      "span": "Give a plain reason for every stop, walk-down or refusal, and name what is missing."
+     },
+     {
+      "label": "Later wording (section 5) confusing, missing",
+      "line": 112,
+      "mode": "inline",
+      "span": "What \"something I need for that is missing\" means."
+     },
+     {
+      "label": "Later wording (section 5) confusing, Tamar and Bilal",
+      "line": 111,
+      "mode": "inline",
+      "span": "Why Tamar went down and Bilal stopped on the phone."
+     },
+     {
+      "label": "Later wording (section 5) confusing, rope picker",
+      "line": 109,
+      "mode": "inline",
+      "span": "The rope picker offered someone who was too far away, with no warning."
+     },
+     {
+      "label": "Later wording (section 3) laptop 255.2 s",
+      "line": 73,
+      "mode": "inline",
+      "span": "Something I need is missing. What thing? A rope? Who carries it? Nothing on screen says. And a new note about Scout appears on top. I look in the Journal for an answer."
+     },
+     {
+      "label": "Later wording (section 3) phone want_quit 331.2 s",
+      "line": 52,
+      "mode": "inline",
+      "span": "They all said yes at 09:24 and ten minutes later one walks down and one stands still. The answers list does not tell me why. I keep fixing people one by one and I cannot see the rule."
+     },
+     {
+      "label": "Later wording (section 7) laptop stop",
+      "line": 75,
+      "mode": "inline",
+      "span": "twice now the rope fails and the game does not tell me what is missing"
+     }
+    ],
+    "2": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 146,
+      "mode": "after-label",
+      "prefix": "2. ",
+      "span": "On the phone, show fewer stacked notes and keep the Submit bar on the screen."
+     },
+     {
+      "label": "Later wording (section 6) phone a-003",
+      "line": 120,
+      "mode": "inline",
+      "span": "Feedback with \"I'm confused\" selected and the box auto-filled. The Submit bar was cut off at the bottom of the screen."
+     },
+     {
+      "label": "Later wording (section 6) phone trouble",
+      "line": 122,
+      "mode": "inline",
+      "span": "the slope picture was hidden among stacked notes, and there was a lot of reading."
+     },
+     {
+      "label": "Later wording (section 3) phone 229 s",
+      "line": 45,
+      "mode": "inline",
+      "span": "The notes keep piling up though, a lot of reading on a small screen."
+     },
+     {
+      "label": "Later wording (section 6) laptop b-004",
+      "line": 129,
+      "mode": "inline",
+      "span": "Feedback with \"I'm stopping\" highlighted and the box auto-filled with \"I'm stopping\". There were five chips, an optional name field and a Submit bar that was fully visible."
+     },
+     {
+      "label": "Later wording (section 7) phone stop",
+      "line": 54,
+      "mode": "inline",
+      "span": "too much reading for a short sitting"
+     }
+    ],
+    "3": [
+     {
+      "label": "Later wording (section 8)",
+      "line": 147,
+      "mode": "after-label",
+      "prefix": "3. ",
+      "span": "Make \"stay with them\" do what it says, or explain it."
+     },
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 107,
+      "mode": "inline",
+      "span": "What \"stay with them\" did. I still ended up below everyone."
+     },
+     {
+      "label": "Later wording (section 3) laptop 159.1 s",
+      "line": 66,
+      "mode": "inline",
+      "span": "Everyone is above me even though I chose stay with them. I do not know what stay with them actually did. I lead on to catch up."
+     },
+     {
+      "label": "Later wording (section 3) phone 168.0 s",
+      "line": 42,
+      "mode": "inline",
+      "span": "I keep running ahead and waiting. I try stay with them instead."
+     }
+    ]
+   },
+   "unrankedBlockingClauses": [
+    {
+     "key": "collapsed-weather-heading",
+     "classification": "source-observation",
+     "target": "2026-11-03",
+     "routeDescriptionMetadata": "fix:rope the Route and weather warning showed only a heading until clicked, source inspection of the collapsed heading affordance, the weather was expanded after her click per her laptop diary at 225.0 s and the director capture shows a closed heading so it is not a missing warning, a source observation and not an explicit new blocking ask, not a fourth ranked ask, target2026-11-03 (open)",
+     "rowRouteClause": "also an unranked source observation, not a producer labelled new blocker collapsed weather heading, the Route and weather warning showed only a heading until clicked, source inspection of the collapsed heading affordance, the weather was expanded after her click per her laptop diary at 225.0 s and the director capture shows a closed heading so it is not a missing warning, a source observation and not an explicit new blocking ask, not a fourth ranked ask, dated 2026-11-03",
+     "spans": [
+      {
+       "label": "Later wording (section 5) confusing",
+       "line": 113,
+       "mode": "inline",
+       "span": "The weather warning showed only a heading until I clicked it."
+      },
+      {
+       "label": "Later wording (section 3) laptop 221.6 s",
+       "line": 69,
+       "mode": "inline",
+       "span": "The warning is just a heading with nothing under it. I click it in case it opens."
+      },
+      {
+       "label": "Later wording (section 3) laptop 225.0 s",
+       "line": 70,
+       "mode": "inline",
+       "span": "Wind from 11:00 and I promised 12:00. Glad I chose the early time. Nell and Wren are both level with me this time, so I rope them now."
+      },
+      {
+       "label": "Later wording (section 6) laptop b-003",
+       "line": 128,
+       "mode": "inline",
+       "span": "08:56, with the rope hint, the figures near the glacier rocks and the collapsed weather warning."
+      }
+     ]
+    },
+    {
+     "key": "wren-wants-to-wait-while-climbing",
+     "classification": "source-observation",
+     "target": "2026-11-03",
+     "routeDescriptionMetadata": "fix:rope Wren status line says wants to wait while she was busy climbing, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, target2026-11-03 (open)",
+     "rowRouteClause": "also an unranked source observation, not a producer labelled new blocker wren wants to wait while climbing, Wren status line says wants to wait while she was busy climbing, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, dated 2026-11-03",
+     "spans": [
+      {
+       "label": "Later wording (section 5) confusing",
+       "line": 108,
+       "mode": "inline",
+       "span": "Wren's status line said \"wants to wait\" while she was busy climbing."
+      }
+     ]
+    },
+    {
+     "key": "people-shown-walking-up-before-asked",
+     "classification": "source-observation",
+     "target": "2026-11-03",
+     "routeDescriptionMetadata": "fix:rope people shown walking up before she had asked them, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, target2026-11-03 (open)",
+     "rowRouteClause": "also an unranked source observation, not a producer labelled new blocker people shown walking up before asked, people shown walking up before she had asked them, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, dated 2026-11-03",
+     "spans": [
+      {
+       "label": "Later wording (section 5) confusing",
+       "line": 105,
+       "mode": "inline",
+       "span": "People showed \"walking up\" before I had asked them."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "supportingSpans": [
+  {
+   "label": "Pavel history read complete, selected records not the whole archive",
+   "file": "pavel/report.md",
+   "line": 11,
+   "mode": "inline",
+   "span": "read completely in three chunks to the \"End of supplied own history\" marker. Nothing was left unread. Keeping the earlier qualification: the file is selected records, not my whole archive."
+  },
+  {
+   "label": "Pavel slow status messages not blamed on the game",
+   "file": "pavel/report.md",
+   "line": 17,
+   "mode": "inline",
+   "span": "Some of my status messages to you were slow because I was waiting on replies. I am not blaming the game for that."
+  },
+  {
+   "label": "Pavel typed nothing and pressed no Submit in Feedback",
+   "file": "pavel/report.md",
+   "line": 106,
+   "mode": "inline",
+   "span": "I typed nothing, pressed Back and did not press Submit. Recording stayed checked and untouched."
+  },
+  {
+   "label": "Pavel phone drawing after the group moved higher is unseen",
+   "file": "pavel/report.md",
+   "line": 105,
+   "mode": "inline",
+   "span": "I did not look at the phone drawing after the group moved higher. Whether the figures stay readable there is unseen."
+  },
+  {
+   "label": "Pavel both pulses at or after 180 s",
+   "file": "pavel/report.md",
+   "line": 77,
+   "mode": "inline",
+   "span": "Both are at or after 180 s on the driver clock."
+  },
+  {
+   "label": "Pavel Stay-with cause is a guess",
+   "file": "pavel/report.md",
+   "line": 91,
+   "mode": "inline",
+   "span": "I do not know what the button does. I am guessing about cause."
+  },
+  {
+   "label": "Tessa driver speed not claimed to change an outcome",
+   "file": "tessa/report.md",
+   "line": 18,
+   "mode": "inline",
+   "span": "I do not think my driver speed changed any outcome."
+  },
+  {
+   "label": "Tessa lead-on hint dependence is a guess",
+   "file": "tessa/report.md",
+   "line": 57,
+   "mode": "inline",
+   "span": "So I think the hint depends on that choice, but I am guessing."
+  },
+  {
+   "label": "Tessa did not scroll the phone log or open the Journal",
+   "file": "tessa/report.md",
+   "line": 117,
+   "mode": "inline",
+   "span": "I did not scroll the phone log. I did not open the Journal on either device. I took four screenshots, not the five allowed per device."
+  },
+  {
+   "label": "Tessa typed nothing and pressed no Submit in Feedback",
+   "file": "tessa/report.md",
+   "line": 122,
+   "mode": "inline",
+   "span": "I typed nothing, did not press Submit, changed no consent or recording, and pressed Back."
+  },
+  {
+   "label": "Nia diary is reconstructed, not word-for-word",
+   "file": "nia/report.md",
+   "line": 27,
+   "mode": "inline",
+   "span": "I did not keep the raw log text. These are reproduced from my session notes, in order, and not word-for-word."
+  },
+  {
+   "label": "Nia earlier CONT input and excluded Warren body qualification",
+   "file": "nia/report.md",
+   "line": 14,
+   "mode": "inline",
+   "span": "The earlier CONT input qualification and the excluded Warren alternative body were not supplied as text. I keep those observations with that continuity qualification."
+  },
+  {
+   "label": "Nia 167 to 244 s wait discrepancy has no known cause",
+   "file": "nia/report.md",
+   "line": 79,
+   "mode": "inline",
+   "span": "The wait 167→244 s step reported a longer elapsed time than the 15 s I asked for. I do not know why."
+  },
+  {
+   "label": "Nia one desktop tap error was a game state change",
+   "file": "nia/report.md",
+   "line": 118,
+   "mode": "inline",
+   "span": "one tap error on desktop at 34 s (\"Skip to the next event\" no longer on the page). The game had changed state. It was not a driver block."
+  },
+  {
+   "label": "Nia typed nothing and pressed no Submit in Feedback",
+   "file": "nia/report.md",
+   "line": 126,
+   "mode": "inline",
+   "span": "I typed nothing, pressed no Submit, changed no consent, and pressed ← Back."
+  },
+  {
+   "label": "Nia phone keyboard unseen",
+   "file": "nia/report.md",
+   "line": 120,
+   "mode": "inline",
+   "span": "I did not look at the phone with the on-screen keyboard."
+  },
+  {
+   "label": "Rosa earlier CONT input qualification stands",
+   "file": "rosa/report.md",
+   "line": 15,
+   "mode": "inline",
+   "span": "In the earlier Rope visit, the CONT input worked differently from a real person's. That qualification stands. The earlier method notes still apply."
+  },
+  {
+   "label": "Rosa Session B lines partly given as the reactions sent with driver ops",
+   "file": "rosa/report.md",
+   "line": 35,
+   "mode": "inline",
+   "span": "Session A and the first Session B lines are kept as logged. The Session B lines from 14.9 s onward are given as the reactions I sent with each driver op, plus the logs."
+  },
+  {
+   "label": "Rosa logged no want_quit",
+   "file": "rosa/report.md",
+   "line": 110,
+   "mode": "inline",
+   "span": "I logged no `want_quit`. I reached only one reread (desktop), so my second-reread rule never fired."
+  },
+  {
+   "label": "Rosa panels and second mountain not reached",
+   "file": "rosa/report.md",
+   "line": 130,
+   "mode": "inline",
+   "span": "the \"All 5 answers\" panel, the \"i\" Information button, Close up, and any second mountain."
+  },
+  {
+   "label": "Rosa unsure which Lead on tap worked",
+   "file": "rosa/report.md",
+   "line": 126,
+   "mode": "inline",
+   "span": "I do not know whether my first tap worked or the second one did."
+  },
+  {
+   "label": "Rosa typed nothing and pressed no Submit in Feedback",
+   "file": "rosa/report.md",
+   "line": 168,
+   "mode": "inline",
+   "span": "I typed nothing and pressed no Submit."
+  },
+  {
+   "label": "Farah first no-picture thought",
+   "file": "farah/report.md",
+   "line": 33,
+   "mode": "inline",
+   "span": "No picture of the mountain, just names and arrows."
+  },
+  {
+   "label": "Farah self-correction, there is a slope drawing",
+   "file": "farah/report.md",
+   "line": 40,
+   "mode": "inline",
+   "span": "Oh, there is a drawing of the slope. I was wrong, there is a picture."
+  },
+  {
+   "label": "Farah supplied history was empty",
+   "file": "farah/report.md",
+   "line": 14,
+   "mode": "inline",
+   "span": "No prior HF exposure. Empty initial diary. No observed sessions or memories."
+  },
+  {
+   "label": "Farah missing item not diagnosed",
+   "file": "farah/report.md",
+   "line": 73,
+   "mode": "inline",
+   "span": "Something I need is missing. What thing? A rope? Who carries it? Nothing on screen says."
+  },
+  {
+   "label": "Farah two missed taps were game state changes",
+   "file": "farah/report.md",
+   "line": 132,
+   "mode": "inline",
+   "span": "Two taps missed because the game state changed (Skip vanished on the phone; Nell's label changed on the laptop)."
+  },
+  {
+   "label": "Farah Time slows for reading is not time stops",
+   "file": "farah/report.md",
+   "line": 110,
+   "mode": "inline",
+   "span": "\"Time slows for reading\" still let time pass, so a label changed under my click. My slowness was part of this."
+  },
+  {
+   "label": "Farah phone Submit bar cut off at the bottom of the screen",
+   "file": "farah/report.md",
+   "line": 120,
+   "mode": "inline",
+   "span": "The Submit bar was cut off at the bottom of the screen."
+  },
+  {
+   "label": "Farah laptop Submit bar fully visible",
+   "file": "farah/report.md",
+   "line": 129,
+   "mode": "inline",
+   "span": "a Submit bar that was fully visible."
+  },
+  {
+   "label": "Farah typed nothing and sent nothing in Feedback",
+   "file": "farah/report.md",
+   "line": 137,
+   "mode": "inline",
+   "span": "It filled the note box by itself. I sent nothing and pressed Back."
+  },
+  {
+   "label": "Pavel desktop Fast pace no visible difference (raw reaction)",
+   "file": "pavel/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "Fast pace made no visible difference",
+   "elapsed_s": 265.689
+  },
+  {
+   "label": "Pavel phone Stay-with cause unproven (raw reaction)",
+   "file": "pavel/phone/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "though I cannot prove the cause",
+   "elapsed_s": 184.272
+  },
+  {
+   "label": "Tessa laptop labels overlap near the hut (raw reaction)",
+   "file": "tessa/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "The labels on the map overlap near the hut",
+   "elapsed_s": 70.527
+  },
+  {
+   "label": "Nia desktop cannot hear me (raw reaction)",
+   "file": "nia/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "they cannot hear me",
+   "elapsed_s": 106.758
+  },
+  {
+   "label": "Rosa desktop dismissed the reading note (raw reaction)",
+   "file": "rosa/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "I close the note with the x to see if the climb moves",
+   "elapsed_s": 78.285
+  },
+  {
+   "label": "Rosa desktop first Lead on uncertainty (raw reaction)",
+   "file": "rosa/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "I am not sure my first lead on worked",
+   "elapsed_s": 81.533
+  },
+  {
+   "label": "Rosa phone Skip error op keeps a reaction (raw reaction)",
+   "file": "rosa/phone/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "Slow. I press Skip, which now says what it does.",
+   "elapsed_s": 66.874
+  },
+  {
+   "label": "Rosa desktop Skip error op keeps a reaction (raw reaction)",
+   "file": "rosa/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "Twenty minutes of game time in thirty real seconds. I try Skip.",
+   "elapsed_s": 148.206
+  },
+  {
+   "label": "Farah phone Skip error op keeps a reaction (raw reaction)",
+   "file": "farah/phone/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "There is a Skip. Good, I set my own pace.",
+   "elapsed_s": 77.618
+  },
+  {
+   "label": "Farah laptop Nell label error op keeps a reaction (raw reaction)",
+   "file": "farah/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "Nell and Wren are both level with me this time",
+   "elapsed_s": 224.964
+  },
+  {
+   "label": "Farah laptop weather heading (raw reaction)",
+   "file": "farah/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "The warning is just a heading with nothing under it",
+   "elapsed_s": 221.551
+  },
+  {
+   "label": "Farah laptop Stay-with unknown effect (raw reaction)",
+   "file": "farah/desktop/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "I do not know what stay with them actually did",
+   "elapsed_s": 159.136
+  },
+  {
+   "label": "Farah phone first-minute no picture (raw reaction)",
+   "file": "farah/phone/wall-clock.jsonl",
+   "mode": "raw-reaction",
+   "span": "No picture of the mountain",
+   "elapsed_s": 68.197
+  }
+ ]
+}

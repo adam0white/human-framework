@@ -1,0 +1,22 @@
+{
+  "sourceSha256": "39bf304f3f38e9dc56edb3fc9052ac7656923251a8f0ebf001d3a19b753e5605",
+  "sourceBytes": 814,
+  "sourceMtimeNs": 1793460649514222895,
+  "exit": 0,
+  "pins": [
+    {
+      "app": "smoke",
+      "framework": "4.8.0",
+      "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+      "dirty": false
+    },
+    {
+      "app": "smoke",
+      "framework": "4.8.0",
+      "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+      "dirty": false
+    }
+  ],
+  "ended": "2026-10-31T15:30:49.514105+00:00",
+  "scope": "Private session metadata excluded."
+}

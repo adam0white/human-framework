@@ -1,0 +1,790 @@
+{
+  "at": "2026-10-31T15:47:50.422645+00:00",
+  "recordedPids": [
+    {
+      "player": "jonas",
+      "pid": 16998,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "jonas",
+      "pid": 16974,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "jonas",
+      "pid": 16976,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "aisha",
+      "pid": 19145,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "aisha",
+      "pid": 19122,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "aisha",
+      "pid": 19124,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "diego",
+      "pid": 22434,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "diego",
+      "pid": 22411,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "diego",
+      "pid": 22413,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "leila",
+      "pid": 26091,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "leila",
+      "pid": 26068,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "leila",
+      "pid": 26070,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "maelle",
+      "pid": 27049,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "maelle",
+      "pid": 27024,
+      "absent": true,
+      "observedStartIfPresent": null
+    },
+    {
+      "player": "maelle",
+      "pid": 27026,
+      "absent": true,
+      "observedStartIfPresent": null
+    }
+  ],
+  "observedDescendantIdentities": [
+    {
+      "pid": 16974,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16976,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16989,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16990,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16992,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16993,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16994,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16995,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16996,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16997,
+      "lstart": "Sat Oct 31 10:21:06 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 16998,
+      "lstart": "Sat Oct 31 10:21:07 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 17386,
+      "lstart": "Sat Oct 31 10:21:11 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 17428,
+      "lstart": "Sat Oct 31 10:21:25 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 18596,
+      "lstart": "Sat Oct 31 10:23:27 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19122,
+      "lstart": "Sat Oct 31 10:25:52 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19124,
+      "lstart": "Sat Oct 31 10:25:53 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19137,
+      "lstart": "Sat Oct 31 10:25:53 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19138,
+      "lstart": "Sat Oct 31 10:25:53 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19139,
+      "lstart": "Sat Oct 31 10:25:53 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19140,
+      "lstart": "Sat Oct 31 10:25:53 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19141,
+      "lstart": "Sat Oct 31 10:25:53 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19142,
+      "lstart": "Sat Oct 31 10:25:53 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19145,
+      "lstart": "Sat Oct 31 10:25:54 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19522,
+      "lstart": "Sat Oct 31 10:25:57 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 19631,
+      "lstart": "Sat Oct 31 10:26:14 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 20295,
+      "lstart": "Sat Oct 31 10:28:28 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22411,
+      "lstart": "Sat Oct 31 10:30:49 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22413,
+      "lstart": "Sat Oct 31 10:30:49 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22426,
+      "lstart": "Sat Oct 31 10:30:49 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22427,
+      "lstart": "Sat Oct 31 10:30:49 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22428,
+      "lstart": "Sat Oct 31 10:30:49 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22429,
+      "lstart": "Sat Oct 31 10:30:49 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22430,
+      "lstart": "Sat Oct 31 10:30:50 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22431,
+      "lstart": "Sat Oct 31 10:30:50 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22432,
+      "lstart": "Sat Oct 31 10:30:50 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22433,
+      "lstart": "Sat Oct 31 10:30:50 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22434,
+      "lstart": "Sat Oct 31 10:30:50 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 22813,
+      "lstart": "Sat Oct 31 10:30:53 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26068,
+      "lstart": "Sat Oct 31 10:35:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26070,
+      "lstart": "Sat Oct 31 10:35:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26083,
+      "lstart": "Sat Oct 31 10:35:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26084,
+      "lstart": "Sat Oct 31 10:35:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26085,
+      "lstart": "Sat Oct 31 10:35:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26087,
+      "lstart": "Sat Oct 31 10:35:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26088,
+      "lstart": "Sat Oct 31 10:35:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26089,
+      "lstart": "Sat Oct 31 10:35:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26091,
+      "lstart": "Sat Oct 31 10:35:17 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26491,
+      "lstart": "Sat Oct 31 10:35:20 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26516,
+      "lstart": "Sat Oct 31 10:35:39 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 26833,
+      "lstart": "Sat Oct 31 10:37:40 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27024,
+      "lstart": "Sat Oct 31 10:39:12 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27026,
+      "lstart": "Sat Oct 31 10:39:12 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27041,
+      "lstart": "Sat Oct 31 10:39:13 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27042,
+      "lstart": "Sat Oct 31 10:39:13 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27043,
+      "lstart": "Sat Oct 31 10:39:13 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27045,
+      "lstart": "Sat Oct 31 10:39:13 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27046,
+      "lstart": "Sat Oct 31 10:39:13 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27047,
+      "lstart": "Sat Oct 31 10:39:13 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27048,
+      "lstart": "Sat Oct 31 10:39:13 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27049,
+      "lstart": "Sat Oct 31 10:39:13 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27434,
+      "lstart": "Sat Oct 31 10:39:16 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27442,
+      "lstart": "Sat Oct 31 10:39:19 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    },
+    {
+      "pid": 27833,
+      "lstart": "Sat Oct 31 10:40:47 2026",
+      "identityGone": true,
+      "pidCurrentlyPresent": false
+    }
+  ],
+  "journalSnapshotSha256": "f250a91412436c341390c5805d1d26ace6032520166d18f648048ff65b0e88b4",
+  "journalSnapshotBytes": 7874,
+  "journalRecords": 6,
+  "ports": [
+    {
+      "port": 22100,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22101,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22102,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22103,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22104,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22105,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22106,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22107,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22108,
+      "closed": true,
+      "connectEx": 61
+    },
+    {
+      "port": 22109,
+      "closed": true,
+      "connectEx": 61
+    }
+  ],
+  "allTenPortsClosed": true,
+  "screenshots": [
+    {
+      "player": "jonas",
+      "device": "phone",
+      "total": 3,
+      "manual": 2,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "b-001.png",
+          "bytes": 63985,
+          "sha256": "3855596e27b260dd99939ad33cbcc9c21696d67691b5efce65752bd6bbde0717"
+        },
+        {
+          "name": "b-002.png",
+          "bytes": 59511,
+          "sha256": "4162bb7a18a475b277c5eec946413f1912d0b91ebe28d68b4e89cae9ac9e3bf9"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 58922,
+          "sha256": "8fbb739486d7f91959ff1361e7fd7d4d14da5fdfff56db54e67af3354cd84a42"
+        }
+      ]
+    },
+    {
+      "player": "jonas",
+      "device": "desktop",
+      "total": 3,
+      "manual": 2,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "a-001.png",
+          "bytes": 99762,
+          "sha256": "fa5a5fc2fd920168fd819ebd988c858d5921acf7e6eee2810891ec207309b13f"
+        },
+        {
+          "name": "a-002.png",
+          "bytes": 96642,
+          "sha256": "15dd52a4c6a08f862883f6474840ddc2f5ae7d5aa81615af0e9f8b94af791f75"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 90957,
+          "sha256": "3655ae4ea3518362d1b409ab9cb554b19f0e247c5c7d270ff633ef2d1bf65fdc"
+        }
+      ]
+    },
+    {
+      "player": "aisha",
+      "device": "phone",
+      "total": 3,
+      "manual": 2,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "b-001.png",
+          "bytes": 64084,
+          "sha256": "7b181261e1858f2e4061a3e8de55842a0f6cd55de0e10bab9a039efcf79658c1"
+        },
+        {
+          "name": "b-002.png",
+          "bytes": 59156,
+          "sha256": "0cc6c95dc5d66d2ae515b83ff899f71e0deb4cfcf7dfc20ec3949cfd6d50341b"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 60822,
+          "sha256": "fdb61de65e4c940755f39712fea52cc76a5369530bd92de632fe9674a8f4ce99"
+        }
+      ]
+    },
+    {
+      "player": "aisha",
+      "device": "desktop",
+      "total": 2,
+      "manual": 1,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "a-001.png",
+          "bytes": 99749,
+          "sha256": "9bfdd53645ea48bbfa6c182e18eab0eceb870865632140f6561b9013d6a6bbef"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 93494,
+          "sha256": "84922914f30dd89a35ba05880d6f4b7682780b04b2a0bf78d125c41fa761d1e3"
+        }
+      ]
+    },
+    {
+      "player": "diego",
+      "device": "phone",
+      "total": 4,
+      "manual": 3,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "a-001.png",
+          "bytes": 64026,
+          "sha256": "695f947512e4dd9a1f1dcbcc6e66fdc4b551e318efef5a997ff6f0bf23b4882c"
+        },
+        {
+          "name": "a-002.png",
+          "bytes": 59520,
+          "sha256": "e826c8818e33564d487d78eeda7062e7e058a14b7ed94ea3aaa416ed5db17806"
+        },
+        {
+          "name": "a-003.png",
+          "bytes": 53506,
+          "sha256": "55cc65aab7ff1638520a2dca40bce861ce7722899c7ca27750d5f45ebfbffa4b"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 56461,
+          "sha256": "50004e1bf3c4006611ec51dd54a96b5aa57672ceb8201ea3446647d8c02794b7"
+        }
+      ]
+    },
+    {
+      "player": "diego",
+      "device": "desktop",
+      "total": 4,
+      "manual": 3,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "b-001.png",
+          "bytes": 99749,
+          "sha256": "9bfdd53645ea48bbfa6c182e18eab0eceb870865632140f6561b9013d6a6bbef"
+        },
+        {
+          "name": "b-002.png",
+          "bytes": 90747,
+          "sha256": "e740c17054a6a662a3d92075c53b257782a0b9c31da13e8b124dd80771112aed"
+        },
+        {
+          "name": "b-003.png",
+          "bytes": 92370,
+          "sha256": "e84422982cdb7102f18f77a11d2e1fc1b0d02b47be701566d600911d1c14c602"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 88602,
+          "sha256": "845fb28bce25b27dc264f5651808d0b55f18208a5d9e01b807418af5d5c9d97c"
+        }
+      ]
+    },
+    {
+      "player": "leila",
+      "device": "phone",
+      "total": 3,
+      "manual": 2,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "a-001.png",
+          "bytes": 64084,
+          "sha256": "7b181261e1858f2e4061a3e8de55842a0f6cd55de0e10bab9a039efcf79658c1"
+        },
+        {
+          "name": "a-002.png",
+          "bytes": 64074,
+          "sha256": "e53ef04a020a8ccc1ac6fef862f4cf6b70e4a0b610652185d4b45e2329a1d081"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 60632,
+          "sha256": "4067d05f5121107a83b9af47d5a65b07c0502a80df4934e1069b04a62d263cf3"
+        }
+      ]
+    },
+    {
+      "player": "leila",
+      "device": "desktop",
+      "total": 3,
+      "manual": 2,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "b-001.png",
+          "bytes": 98778,
+          "sha256": "87c902c27c67a85a00c9c0402f5fa1bc125c26336aec8ec351137317eeeac79b"
+        },
+        {
+          "name": "b-002.png",
+          "bytes": 91030,
+          "sha256": "7bbe9e3795759b0e367fd9acde37f6cc484d8e735fd39b8854650bfc3a3b72f9"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 70915,
+          "sha256": "c5d4c76040b8fef4e3c582da71e58ece5da931457c16f7a62e254e4c309f797b"
+        }
+      ]
+    },
+    {
+      "player": "maelle",
+      "device": "phone",
+      "total": 3,
+      "manual": 2,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "a-001.png",
+          "bytes": 63985,
+          "sha256": "3855596e27b260dd99939ad33cbcc9c21696d67691b5efce65752bd6bbde0717"
+        },
+        {
+          "name": "a-002.png",
+          "bytes": 45108,
+          "sha256": "7c1e8cade5a3092528098c64a475bdd22874d860389b4793b3cdd8ed86028e20"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 66078,
+          "sha256": "7e4c0c40763a964906897830819deed69ac750989aa8d97b210c2b0fd00fe75d"
+        }
+      ]
+    },
+    {
+      "player": "maelle",
+      "device": "desktop",
+      "total": 3,
+      "manual": 2,
+      "automatic": 1,
+      "withinLimit": true,
+      "files": [
+        {
+          "name": "a-001.png",
+          "bytes": 99749,
+          "sha256": "9bfdd53645ea48bbfa6c182e18eab0eceb870865632140f6561b9013d6a6bbef"
+        },
+        {
+          "name": "a-002.png",
+          "bytes": 91744,
+          "sha256": "18890eeaf548140419eee1654185dd53c694078a3ae1799a33112dd83f3ed5aa"
+        },
+        {
+          "name": "first-minute.png",
+          "bytes": 91643,
+          "sha256": "4fa29d8e81656c37cbda497531484fd3ecca89879b1ad3dd72d1eaa77ecd4b92"
+        }
+      ]
+    }
+  ],
+  "controllerExit": "0 reported as actually observed by root; not independently verified by this snapshot",
+  "scope": "Point-in-time ps PID/start identity and IPv4 loopback connect checks; sampled identity journal only, not a complete lifetime process inventory. No process signaled. Screenshot names classify automatic checkpoint; no image perception claim."
+}

@@ -1110,3 +1110,401 @@ I logged no pulse in either session, because both ended before 180 s.
 First visit to this game.
 
 I made no files, workers, branches or worktrees, and used only the two drivers. No repository was touched, so there is no `git worktree list` output.
+<!-- selected-continuity-key: light-1030:glance-retest2:mei:free -->
+## 2026-10-31 glance-retest2 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/glance-retest2/mei/report.md), [exact producer original](../reviews/light-2026-10-30/glance-retest2/mei/report.original.md.txt), original SHA256 `f634275975e7de2164c507baacf1ec2bc7481d8557d2563d13e89cc6f82ce8c3`. Method qualification: [mei](../reviews/light-2026-10-30/glance-retest2/mei/director-method-qualification.json).
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+**Would I return voluntarily?** I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises. I would not leave it running.
+
+**Ranked asks**
+1. Tell me at the start when nothing needs deciding. The phone gave me nothing to decide in 80 s.
+2. Show what the gate is doing to the level after I set it, without a second call to Dai. This visit the sheet said "may not show what the gate has done since. Ask for a new reading." That is a warning, not a new reading.
+3. Show me how much of the level change is the gate and how much is the rain easing.
+
+## 1. Session
+
+- **Persona:** Mei Tan, 53, accountant and carer in Singapore.
+- **Exposure:** RETEST. This is my third Glance visit.
+- **Round and arm:** light-1031-glance-retest2, free stop (floor 0).
+- **History:** I read all 999 lines of own-history.md, in four chunks, through the End marker. Nothing was unread. It holds my round 1 and first-retest Glance reports, plus my reports from other games.
+- **Build:** the coordinator adds the release commit. The brief gives c112497284e78d4c99aa62895262368214f37d9f / 4.14.0.
+- **URL:** https://glance.adamwhite.work/?labRunSource=agent
+- **Session A:** 1280x800 keyboard and mouse, light mode, port 22801. Real time 213.7 s.
+- **Session B:** 360x690 touch phone, light mode, port 22800. Real time 81.1 s.
+- **Fresh game each time:** the laptop opened at 4.2 m and the phone at 4.3 m.
+
+## 2. First impressions
+
+**A (laptop)**
+- At 0.4 s I saw the same title page. I viewed a-001.png at 2.4 s.
+- At 6.4 s I tapped Start game. The game screen showed at 11.3 s.
+- At 13.3 s I asked Dai to read the level.
+- At 69.0 s I logged first_minute. The opening text felt shorter than last visit.
+
+**B (phone)**
+- At 0.3 s I saw the title page. I viewed b-001.png at 1.9 s.
+- At 5.2 s I tapped Start game.
+- At 6.6 s Skip was disabled with the message "No report is on its way."
+- At 70.4 s I logged first_minute.
+
+## 3. Verbatim
+
+Only my log ops are listed. Ordinary taps also carried reaction text, which is in the driver diary.
+
+**Session A**
+- **69.03 s, first_minute, game Mon 23:06:** "Same night desk, goal and deadline clear. Level 4.0 read 22:12, falling with gate shut. Opening text is shorter than before and the log no longer repeats it. Still nothing to decide yet."
+- **187.24 s, pulse, engagement 3, game Tue 01:27:** "A decision came at 4.5 within about 100 s, which is better than my last two visits. The gate worked and the sheet warned me the level reading was older than the gate. I am still waiting between decisions."
+- **189.39 s, want_quit, BORED, game Tue 01:27:** "I know this loop now: a long wait, then one gate call. The first night went better this time, but I would stop here for the evening."
+- **213.73 s, stop, BORED, game Tue 01:36:** "Stopping on Tuesday 01:36 with the gate at 2 of 6 and the level back to 3.4 m. This visit gave me a real decision at 4.5 m within about 100 s, and the sheet told me my level reading was older than the gate. Long waits between decisions still lose me. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing."
+
+**Session B**
+- **70.42 s, first_minute, game Mon 23:04:** "Phone fits well. The Dai strip now wraps and ends in dots instead of being cut at the edge, and both gauges are fully visible. Level 3.9 and falling, nothing to decide yet. Skip greyed out earlier with the reason no report is on its way, which I liked."
+- **72.63 s, want_quit, BORED, game Mon 23:04:** "I have seen this quiet opening on the laptop and nothing to decide has come on the phone; I would stop here."
+- **81.13 s, stop, BORED, game Mon 23:14:** "Stopping on the phone at Monday 23:14 after a quiet opening with no decision. Readable at 360 wide, and the Dai strip is no longer cut off. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing."
+
+I logged no pulse on the phone, because the session ended before 180 s. The laptop pulse went in at 187 s, after the minimum.
+
+## 4. Moments
+
+**What held me**
+- On the laptop the level rose to 4.5 m at about 100 s, against a 5.0 m lip. That gave me a real choice.
+- I opened 2 turns and the level read 3.4 m at 00:40. That was a fall of 1.1 m in about 70 game minutes.
+- The level sheet now says: "The level reading may not show what the gate has done since. Ask for a new reading." I liked that it says so.
+- Dai's line "Where has Morgan gone?" still reads like a person.
+
+**What lost me**
+- The first 100 s had nothing to decide, and on the phone nothing came in 80 s.
+- After the gate worked, the loop became waiting again.
+
+**Quit wishes**
+- One per session, both BORED. Neither passed. I stopped both times.
+
+**Pulses**
+- A: one, engagement 3, at 187 s.
+- B: none.
+
+**Pacing**
+- On the laptop a 25 to 30 s wait covered roughly 30 to 60 game minutes.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The goal, the deadline, and the crest and lip marks.
+- Each reading carries its age.
+- The gate sheet lists Dai's willingness for each number of turns.
+- "Time stops while this menu is open."
+- On the phone, Skip greys out with the reason "No report is on its way."
+
+**Unclear**
+- After I set 2 turns, the level on the board stayed at 4.50 m (read 23:31) until I asked again at 00:30. The sheet explains why, but I still had to ask.
+- I still cannot separate the gate's effect from the rain easing.
+
+**Guess**
+- I assumed the fall from 4.5 to 3.4 m was mostly the gate. I did not verify it.
+
+**Not used**
+- Doubt this reading, Compare observations, Watch arrangements, Information, and the pace buttons.
+
+**Driver notes**
+- My first "I'm stopping" taps failed on apostrophe quoting. Once the name was rejected as "not on the page", and once the shell broke. I then tapped by partial text "m stopping", and it matched by substring.
+- I also piped one curl through `head`, which the brief does not allow. It changed nothing in the game.
+
+## 6. Device use
+
+**Screenshots viewed**
+- desktop/a-001.png: the title page. It showed the title, the red level line over the crest and lip marks, a gate line, a red Start game button, and the recording note at the bottom.
+- desktop/a-002.png (Mon 00:58): the Dai strip fully visible, the dam picture with the crest at 6.0, the lip at 5.0 and a 3.4 m label, the log on the right, the level and gate gauges at the bottom left, and Skip at the bottom right.
+- phone/b-001.png: the title page at 360 wide, with a small chart, the sample morning text and Start game above the recording note.
+- phone/b-002.png (Mon 23:04): the Dai strip now wraps and ends in "…" instead of being clipped. The dam picture is small. Both gauges are fully visible, and Skip fits at the bottom.
+
+**Controls used**
+- **Laptop:** Start game, Ask Dai to read the level, Skip, the gate gauge, 2 turns, the level gauge, Ask Dai to read it, Game menu, Feedback, I'm stopping (by partial text), ← Back.
+- **Phone:** Start game, Ask Dai to read the level, Skip, Game menu, Feedback, I'm stopping (by partial text), ← Back.
+
+**Trouble seen**
+- None on either device apart from the quoting trouble above.
+
+**Unseen**
+- I did not scroll the phone, set the gate on it, or play a night on it.
+- I did not use the pace buttons.
+
+## 7. Stop and return
+
+**Stop words**
+- **A (BORED, 213.7 s):** "Stopping on Tuesday 01:36 with the gate at 2 of 6 and the level back to 3.4 m. This visit gave me a real decision at 4.5 m within about 100 s, and the sheet told me my level reading was older than the gate. Long waits between decisions still lose me. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing."
+- **B (BORED, 81.1 s):** "Stopping on the phone at Monday 23:14 after a quiet opening with no decision. Readable at 360 wide, and the Dai strip is no longer cut off. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing."
+
+**Feedback**
+- Both sessions offered "I'd keep playing", "Not sure", "I'd stop here", "I'm stopping" and "I'm confused".
+- I pressed "I'm stopping" in both. It showed pressed. Then I pressed ← Back.
+- I typed nothing, pressed no Submit, and changed no consent or recording setting.
+
+**Would I return voluntarily?** I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises.
+
+**Would I leave it running?** No. I want to make the gate calls myself, and I do not trust Dai alone.
+
+## 8. Changes I would want
+
+1. A plain line at the start when nothing needs deciding yet.
+2. Show the gate's effect on the level after I set it, without a second call.
+3. Separate the gate's effect from the rain easing.
+
+## 9. Compared with my last visit
+
+**First-retest ask 1: a decision, or a plain statement that none is needed, in the first hours.** Partly met. The laptop gave me a decision at 4.5 m within about 100 s, which is quicker than last time. The phone gave me nothing in 80 s. I saw no statement that none is needed.
+
+**First-retest ask 2: show what the gate did to the level, apart from the rain.** Partly met, on the laptop. The level sheet now warns that the reading may not show what the gate has done since. It does not show the effect. I still had to ask Dai again to see 3.4 m. I still could not separate the gate from the rain.
+
+**First-retest ask 3: fix the clipped Dai strip on the phone, and shorten the opening text.** Mostly met. The phone strip now wraps and ends in "…" instead of being cut off. The opening log text was shorter this time, and no longer repeated. I did not compare it line by line.
+
+**Round 1 ask 1 (a decision or a plain statement in the first hour).** Same as first-retest ask 1 above: partly met.
+
+**Round 1 ask 2 (show the gate's effect without asking Dai again).** Same as first-retest ask 2 above: partly met.
+
+**Round 1 ask 3 (cut the opening text, fix the clipped strip).** Same as first-retest ask 3 above: mostly met.
+
+**New blocking ask:** none. The same long wait between decisions is what would stop me.
+
+I created no files, workers, branches or worktrees, and used only the two drivers. No repo touched; no worktree of mine remains.
+<!-- selected-continuity-key: light-1030:murmur-retest1:mei:free -->
+## 2026-10-31 murmur-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/murmur-retest1/mei/report.md.txt), SHA256 `9632f013492f51e90b6e17116b9c9d6c68595613631bf17f3bef7e8a10d7e4b5`. Method qualification: [mei](../reviews/light-2026-10-30/murmur-retest1/mei/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return another evening on my laptop to continue the second week, if I could see the tenancy terms and deadline before deciding whether Dilan should sign; I would also want to know how much trust she has left before I insist. I would not leave it running.
+
+Ranked asks:
+
+1. Show me the tenancy terms and deadline after Dilan reads the letter, before asking me whether she should sign.
+2. Show how much trust Dilan has left before I insist.
+3. Give me a way to continue from a saved place, so I do not have to repeat a week I have already played.
+
+## 1. Session
+
+I am Mei Tan, a returning Murmur player. This was round **light-1031-murmur-retest**, free stop, floor 0. I used the assigned URL, https://murmur.adamwhite.work/?labRunSource=agent.
+
+- **Session A:** 360×690 touch phone, light mode. Fresh ordinary-week game. Stopped at **134.379 real seconds**, Monday 21:31.
+- **Session B:** 1280×800 keyboard and mouse, light mode. Fresh game; I chose **Begin at the second week**, where the game said the first week was played for me. Stopped at **233.877 real seconds**, Monday 19:21 of the second week.
+
+I read all 1,167 lines of my supplied own history. The last line I read was:
+
+> End of supplied own history. This reading boundary is director metadata, not an event you experienced.
+
+Exact unread range: **none**. The history is selected, not a complete archive. Older records and independent continued alternatives were not supplied; the bodies of partial or excluded independent Warren, Good Hands, Hearsay and Pass histories were absent. The Well excerpt did not supply its older raw diary. The history also qualifies my original Murmur desktop visit: one named tap stalled for about 31.5 seconds. My second Murmur record was a held-input driver-repair diagnostic on the unchanged game, not a fixed-game retest. Its held-press method differs from this visit’s, so my comparisons do not establish a game-only cause or identical instruments.
+
+## 2. First impressions
+
+**Phone.** At 5.566 seconds, I recognized Dilan and Ece and remembered wanting the Mum call. At 18.49 seconds, the first choice explained the timer and holding. I found the explanation clear before choosing.
+
+**Desktop.** At 5.57 seconds, I wanted a later start because I had just played Monday on the phone. At 7.405 seconds, **Other ways to begin** offered the second week. By 34.359 seconds, I could see its first choice. Dilan had said she would get up, and she was willing to do so.
+
+## 3. Verbatim
+
+These are my log-op reactions, in order and unedited. Ordinary taps carried no reaction text. The game-clock tags are as I entered them.
+
+**Session A — phone**
+
+- **5.566 s, note:** “Dilan and Ece are familiar from my earlier visits. I remember wanting Dilan to call Mum and saving trust for that; I am confident of that memory. I will start the ordinary week again.”
+- **20.134 s, note, Mon 06:41:** “The first choice now explains that holding can cost trust, she can still say no, and she chooses if time runs out. That is clear before I choose. I will let her sleep and save trust for Mum.”
+- **57.553 s, note, Mon 07:31:** “She sent Aylin tonight after I held. I am pleased to have made that promise, though I still cannot see how much trust remains.”
+- **62.705 s, first_minute, Mon 08:28:** “The opening explains the timer and trust cost clearly. I held for the promise and for telling the truth; she says she dislikes being pushed. I want to keep enough trust for the call, but I cannot see how much is left.”
+- **124.004 s, want_quit, BORED, Mon 20:18:** “Mum called and I am glad they talked. I have seen this Monday several times now and would stop here tonight.”
+- **134.379 s, stop, BORED, Mon 21:31:** “Stopping on Monday evening after Dilan called Mum. The choices and consequences held me, but I have played this Monday before. I chose I am stopping and pressed Back without typing or submitting.”
+
+**Session B — desktop**
+
+- **5.57 s, note:** “The same people and week again on my laptop. I have just seen Monday on the phone; I wonder whether another start lets me see a later part.”
+- **36.47 s, note, Monday 06:41 · second week:** “The second week begins with a promise to get up and both choices are willing. I like that I can support her own commitment without insisting. The start and screenshot calls returned no text before this screen appeared.”
+- **64.769 s, first_minute, Monday 07:13 · second week:** “The second week gives me a new situation: a tenancy letter. Getting up was her own commitment and she was willing. I want to read a contract before signing it. The driver reported a timeout after Skip, but I can see the next choice.”
+- **94.536 s, note, Monday 07:26 · second week:** “She read it, but I cannot see what the letter says or when it is due. I do not want to insist that she sign terms I cannot compare.”
+- **192.346 s, pulse, engagement 4, Monday 18:15 · second week:** “The second week has new commitments and I care about Mum and the letter. I cannot see the letter terms, but I can now let Mum finish without insisting. Some driver calls have been slow or returned no text.”
+- **215.987 s, want_quit, CONFUSED, Monday 18:38 · second week:** “I am glad Mum finished her story. I would stop now because I cannot make an informed decision about the tenancy letter, and I have had enough for this evening.”
+- **233.877 s, stop, CONFUSED, Monday 19:21 · second week:** “Stopping on Monday of the second week after Mum finished her story. I liked supporting a commitment without insisting, but I could not see the tenancy terms or deadline before deciding. I chose I am confused and pressed Back without typing or submitting.”
+
+## 4. Moments
+
+On the phone, the promise to Aylin mattered to me. I held for it, saw Dilan send “tonight,” and later held for the call. The game showed Dilan and Mum talking for twenty minutes. I also insisted that Dilan tell Murat she had overslept and defend Ece; Dilan said she disliked being pushed. Those answers made the cost feel personal, even though I could not see a remaining trust amount.
+
+The phone quit wish did not pass. I stopped after the call because I had seen that Monday several times. There was no pulse: the session ended before 180 seconds.
+
+On desktop, starting in the second week gave me situations I had not seen. I liked being able to support Dilan’s commitment to get up, and later to let Mum finish, while Dilan was willing. The tenancy decision lost me: after Dilan read the letter, I was offered signing or putting it away without seeing its terms or deadline. My quit wish did not pass. The one pulse was at 192.346 seconds, engagement 4.
+
+## 5. Confusion and clarity
+
+The first phone choice clearly said a hold can cost trust, Dilan can still say no, and she chooses for herself if time runs out. The willingness labels and the ticked suggestions helped me see what I had asked. I saw successful held choices and subsequent story outcomes; I did not see a held choice fail this time.
+
+I still could not see how much trust remained. I also could not judge the tenancy letter after Dilan read it. I chose to put it under the fruit bowl rather than insist on signing. I did not see whether the terms or deadline would appear later.
+
+The menu said each choice allows 64 seconds and that Slow changes only the time between choices. I found Slow in the menu when stopping; I did not change pace.
+
+## 6. Device use
+
+**Phone screenshots viewed:**
+
+- `phone/a-001.png`: the title and introduction were readable in one column. The recording notice crossed the page above the optional checkboxes. Start was below the visible screen.
+- `phone/a-002.png`: the Mum-message choice showed large buttons and readable text, with the clock and answer time above it.
+
+I used Start, choice buttons including touch holds, Skip ahead, Game menu, Feedback, “I'm stopping,” and “← Back.” I did not view the entire phone page or later-week layout. Two 10-second wait calls returned no text; subsequent responses showed the game had advanced.
+
+**Desktop screenshots viewed:**
+
+- `desktop/b-001.png`: the title page, introduction, optional starts, recording notice and Start button were visible.
+- `desktop/b-003.png`: the story log occupied the left side, with the next-choice message and Skip ahead on the right. The letter and Ece outcomes were readable.
+
+I used Other ways to begin, Begin at the second week, choice buttons including holds, Skip ahead, Game menu, Feedback, “I'm confused,” and “← Back.” A request for `b-002.png` returned no text, so I cannot say whether that image was saved or what it showed. I did not view later days or the full desktop layout at a choice.
+
+The desktop driver returned `locator.innerText: Timeout 5000ms exceeded` after Skip; the next response showed the tenancy choice. It returned the same error on my first Game menu tap; one retry opened the menu. Several other desktop calls returned no text or were slow, but later visible responses showed the relevant choices and outcomes. I cannot attribute those delays to the game. No exposed control remained blocked after a retry.
+
+## 7. Stop and return
+
+My exact stop words and reason for each session are in section 3. I stopped the phone session **BORED** after the familiar Monday call, and the desktop session **CONFUSED** with the tenancy letter unsigned. Neither game ended.
+
+On the phone, Feedback offered “I'm stopping” and “I'm confused.” I selected **“I'm stopping”**, saw it marked pressed, then pressed **“← Back.”** On desktop I selected **“I'm confused”**, saw it marked pressed, and pressed **“← Back.”** I typed no note, pressed no Submit, and changed no consent or recording setting.
+
+Would I return voluntarily? I would return another evening on my laptop to continue the second week, if I could see the tenancy terms and deadline before deciding whether Dilan should sign; I would also want to know how much trust she has left before I insist. The new commitments made me curious, and I cared about the call. I would prefer a saved place to starting again. I would not leave it running: the timed choices need my attention.
+
+## 8. Changes I would want
+
+1. Show the tenancy terms and deadline after Dilan reads the letter.
+2. Show remaining trust before a hold.
+3. Keep a saved place for a later evening.
+
+## 9. Compared with my last visit
+
+**Original Murmur report**
+
+1. **Show what insisting does before I commit: whether it always works and what trust it costs — partly met.** The first phone choice said it can cost trust and Dilan can still say no. I saw held choices succeed and her objection to being pushed. I did not see a quantity of trust or a failed hold.
+2. **Give me a choice where the kind option is not the unwilling one, or say insisting is the only way to the kind outcome — met for a choice I reached.** In the second week, “Put the screen away. Let Mum finish.” was willing, and I chose it. On the familiar phone Monday, the supportive choices I chose to insist on still required holding.
+3. **Say that an unanswered timer lets her choose, and make Slow easier to find — partly met.** The phone’s first choice said she chooses if time runs out. Slow was in the game menu, which I opened at stopping; I did not establish whether it was easier to find during play.
+
+**Held-input diagnostic return**
+
+1. **Show how much trust is left before I hold — did not meet it in what I saw.** I saw willingness labels and Dilan’s words, but no remaining amount.
+2. **Say at the start that insisting spends trust and works only while she trusts me — partly met.** The first phone choice said holding can cost trust and she can still say no. I did not see the more specific statement that it works only while she trusts me.
+3. **Show a held choice failing before the next scene — not seen.** My held choices in these sessions were followed by ticks and outcomes; I did not encounter a failure.
+
+**New blocking ask:** After Dilan reads the tenancy letter, show me its terms and deadline before asking whether she should sign. That is the new uncertainty that contributed to my desktop stop.
+
+I owned no server, browser, process, branch or worktree. The coordinator owns the drivers and their cleanup. I touched no repository, so there is no `git worktree list` output.
+```
+<!-- selected-continuity-key: light-1030:word-retest1:mei:free -->
+## 2026-10-31 word-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/word-retest1/mei/report.md.txt), SHA256 `055fd136469f7861e3184393cb469c0e9a7df17a247c983b15318a7ebb235e7a`. Method qualification: [mei](../reviews/light-2026-10-30/word-retest1/mei/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception. This cohort omitted mandatory Rosa coverage; see [protocol audit](../reviews/light-2026-10-30/rosa-light-protocol-audit.md). No Rosa visit or opinion is inferred.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running.
+
+**Ranked ask**
+
+1. Give me another meeting or a new situation. I liked finding a different agreement this time, but I have now played this meeting twice.
+
+## 1. Session
+
+I am Mei Tan, 53, an accountant and carer in Singapore. This was a **retest** of His Word, round **light-1031-word-retest1**, free stop, floor 0.
+
+I read all 1,359 lines of the supplied [own history](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/own-history.md), including my earlier His Word report and the selected records from other games. The last line I read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Exact unread ranges: **none**. The supplied history is selected, not my complete archive.
+
+I used https://word.adamwhite.work/?labRunSource=agent.
+
+- **Session A:** 1280×800 laptop, keyboard and mouse, light mode. Fresh game. Stopped at **44.070 real seconds**.
+- **Session B:** 360×690 touch phone, light mode, another visit the same evening. Fresh, independent game. Stopped at **31.993 real seconds**.
+
+## 2. First impressions
+
+On the laptop, the recording page at **1.757 seconds** looked familiar. At **5.258 seconds**, I recognized Nuri and remembered solving the meeting quickly on my first visit. I was confident of that memory.
+
+On the phone, the recording page at **1.774 seconds** was readable. At **4.997 seconds**, I wanted to see what the private conversations offered, having just found the morning agreement on the laptop.
+
+Neither session reached the first-minute checkpoint. I did not wait to reach it.
+
+## 3. Verbatim
+
+These are my logged diary reactions, in order and unedited. Times are the driver’s elapsed seconds.
+
+**Session A — laptop**
+
+- **5.258 s, note:** “The recording page looks familiar. I remember Nuri and the meeting, and solving it quickly; I am confident of that. I will see what is different.”
+- **11.986 s, note, 22 minutes before Osman leaves:** “Rıza and his cart are familiar. His yard offer gives me something to compare with the morning work. I remember the letter helped last time, but I do not remember every term.”
+- **26.075 s, note, 10 minutes before Osman leaves:** “The terms now say they follow my questions. I see a morning trial using the yard as well as the late service I used before. I prefer to preserve the morning promise, though it costs more.”
+- **35.845 s, want_quit, FINISHED, One month later:** “They kept the morning agreement and I had enough for the train. I like that this was a different acceptable arrangement, but the meeting is over and I would stop here.”
+- **44.070 s, stop, FINISHED, One month later:** “Stopping at the agreed ending. The morning arrangement kept a promise and left train money, and the remaining signature time was clear. I chose I am stopping and pressed Not now without typing or submitting.”
+
+One attempted note before the 26.075-second entry failed at the shell with the exact error `zsh:1: unmatched "`. It was not logged. I sent the successful note above afterward.
+
+**Session B — phone**
+
+- **4.997 s, note:** “Same recording page on the phone, readable. I have just seen the morning agreement on the laptop; I would like to see what the private conversations offer.”
+- **11.274 s, note, 24 minutes before Osman leaves:** “Those private statements contradict each other and say everyone agreed when they have not. I do not want to promise either. That is a more uncomfortable choice than the agreement I just signed.”
+- **23.130 s, want_quit, BORED, 24 minutes before Osman leaves:** “I have seen the meeting twice now and do not want to repeat the conversations tonight. The private promises interest me, but I do not want to make either one.”
+- **31.993 s, stop, BORED, 24 minutes before Osman leaves:** “Stopping on the phone before writing. I liked seeing the private promises, but I would not make either and I have already played the meeting. I chose I am stopping and pressed Not now without typing or submitting.”
+
+No pulse was reached in either session.
+
+## 4. Moments
+
+The laptop held me when Rıza offered his yard and I saw a morning trial agreement alongside the late-service arrangement I had used before. I chose to spend ₺60 to preserve Halil’s morning work. All four signed, and the ending said the agreed shifts, storage and rent had been kept. I also kept enough for the train.
+
+On the phone, the private statements caught my attention because they contradicted each other and claimed everyone had agreed. I did not want to make either promise. I looked at the agreement list, then decided I did not want to repeat the conversations that evening.
+
+Both quit wishes stood. The laptop game had ended; the phone game had not. There were no pulses.
+
+## 5. Confusion and clarity
+
+The meeting’s deadline, conversation costs, fund and agreement terms were clear. The agreement page now explicitly said that terms can change after asking people and that unasked people’s acceptance is unknown. It also said writing takes two minutes and each signature takes one.
+
+After I wrote the laptop agreement, the page compared the remaining signatures directly with the time left: four minutes needed against eight remaining. That made the commitment easy to check. The page also said changing the agreement clears every signature.
+
+I did not feel confused enough to open the confusion label. I did not try either private promise, a rewrite, or a refusal this visit, so I cannot say what consequences those choices would have produced.
+
+## 6. Device use
+
+**Laptop screenshots viewed**
+
+- [desktop/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/desktop/a-001.png): a cream notebook page on a dark background, with the recording explanation, checked recording box and “Take a seat.” It was readable.
+
+I used Take a seat, Put the notebook on the table, Hear what someone needs, the four individual questions, Fetch Nuri’s letter, Write an agreement, the morning trial agreement, Ask the next person to sign, Menu, Feedback, “I'm stopping” and Not now. I did not view a screenshot of the laptop agreement or ending layout.
+
+**Phone screenshots viewed**
+
+- [phone/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/b-001.png): the recording page in one readable column, with the checked box and Take a seat visible.
+- [phone/b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/b-002.png): the top of the agreement page, with readable writing-cost and changing-terms explanations. The agreement choices were below the visible screen.
+
+I used Take a seat, Put the notebook on the table, Speak to someone in private, Return to the table, Write an agreement, Menu, Feedback, “I'm stopping” and Not now. I did not view the lower agreement list in a screenshot or write an agreement on the phone. I saw no layout trouble in the portions I viewed.
+
+The only error was my failed shell-quoted diary command described above. No driver control was blocked.
+
+## 7. Stop and return
+
+**Laptop — FINISHED, 44.070 s:** “Stopping at the agreed ending. The morning arrangement kept a promise and left train money, and the remaining signature time was clear. I chose I am stopping and pressed Not now without typing or submitting.”
+
+**Phone — BORED, 31.993 s:** “Stopping on the phone before writing. I liked seeing the private promises, but I would not make either and I have already played the meeting. I chose I am stopping and pressed Not now without typing or submitting.”
+
+In both sessions, Feedback offered “I'm stopping” and “I'm confused.” I chose “I'm stopping”; the game opened a draft with that phrase already in the note field. I pressed Not now. I typed nothing, pressed no Submit, and changed neither consent nor recording.
+
+I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running. The alternative morning arrangement gave me a meaningful comparison this time, but the familiar meeting is still short. The menu said my place is kept in the browser when storage is available; I did not test returning to a saved place.
+
+## 8. Changes I would want
+
+1. Give me another meeting or a new situation. I would like another decision rather than repeating this one.
+
+## 9. Compared with my last visit
+
+1. **Make the first meeting harder, or make later versions different — partly met.** I found a second acceptable agreement: morning work with Rıza’s yard and a ₺60 contribution. The private promises also presented an uncomfortable choice I had not explored before. I still reached an agreed ending quickly, and I did not see a later meeting. I cannot tell which options were newly added and which I had simply not reached before.
+2. **Say at the start that agreement wording changes after asking — met where I saw it.** The agreement page stated that terms can change after asking. On the phone, before asking, it identified the unasked terms and said asking can change them.
+3. **Show rewrite and signature costs against minutes left — partly met.** The agreement page stated the writing and signature costs, and after I wrote, it compared remaining signature time with minutes left. I did not rewrite an agreement, so I did not see a combined rewrite-and-signatures comparison.
+
+**New blocking ask:** None. I stopped the phone session because I did not want to repeat the meeting, not because a new uncertainty blocked me.
+
+The coordinator owns the drivers and their browser cleanup. I started no helpers or processes.
+
+No repo touched; no worktree of mine remains.
+```

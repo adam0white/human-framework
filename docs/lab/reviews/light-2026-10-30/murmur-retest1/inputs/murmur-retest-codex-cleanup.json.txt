@@ -1,0 +1,149 @@
+{
+  "at": "2026-10-31T13:11:19.238616+00:00",
+  "recordedPids": [
+    {
+      "player": "aisha",
+      "pid": 9249,
+      "absent": true
+    },
+    {
+      "player": "aisha",
+      "pid": 9145,
+      "absent": true
+    },
+    {
+      "player": "aisha",
+      "pid": 9147,
+      "absent": true
+    },
+    {
+      "player": "mei",
+      "pid": 15320,
+      "absent": true
+    },
+    {
+      "player": "mei",
+      "pid": 15297,
+      "absent": true
+    },
+    {
+      "player": "mei",
+      "pid": 15299,
+      "absent": true
+    },
+    {
+      "player": "nia",
+      "pid": 24422,
+      "absent": true
+    },
+    {
+      "player": "nia",
+      "pid": 24399,
+      "absent": true
+    },
+    {
+      "player": "nia",
+      "pid": 24401,
+      "absent": true
+    },
+    {
+      "player": "rosa",
+      "pid": 40231,
+      "absent": true
+    },
+    {
+      "player": "rosa",
+      "pid": 40203,
+      "absent": true
+    },
+    {
+      "player": "rosa",
+      "pid": 40205,
+      "absent": true
+    },
+    {
+      "player": "dunja",
+      "pid": 50027,
+      "absent": true
+    },
+    {
+      "player": "dunja",
+      "pid": 49566,
+      "absent": true
+    },
+    {
+      "player": "dunja",
+      "pid": 49568,
+      "absent": true
+    }
+  ],
+  "observedDescendantIdentities": [
+    {
+      "pid": 9145,
+      "lstart": "Sat Oct 31 07:48:03 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9147,
+      "lstart": "Sat Oct 31 07:48:03 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9167,
+      "lstart": "Sat Oct 31 07:48:03 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9168,
+      "lstart": "Sat Oct 31 07:48:03 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9169,
+      "lstart": "Sat Oct 31 07:48:03 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9170,
+      "lstart": "Sat Oct 31 07:48:03 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9172,
+      "lstart": "Sat Oct 31 07:48:03 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9173,
+      "lstart": "Sat Oct 31 07:48:03 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9249,
+      "lstart": "Sat Oct 31 07:48:04 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9642,
+      "lstart": "Sat Oct 31 07:48:07 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 9879,
+      "lstart": "Sat Oct 31 07:48:27 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 13890,
+      "lstart": "Sat Oct 31 07:50:39 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 14026,
+      "lstart": "Sat Oct 31 07:51:01 2026",
+      "identityGone": true
+    }
+  ],
+  "allTenPortsClosed": true,
+  "scope": "Actual15recordedPIDsabsent/observedsnapshotidentitiesgone only; nofullrounddescendantjournal."
+}

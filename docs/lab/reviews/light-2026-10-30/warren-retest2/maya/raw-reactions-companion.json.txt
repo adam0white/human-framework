@@ -1,0 +1,159 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "91df9201fa7252f6f13e4d7bd1ab2a4fe47069ba91463de37ce5ba8c606ba190",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.505,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The little cutaway makes the shelter feel tangible. I remember the nine-step rule and want to see people actually dig the safe end this time."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 27.284,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "That is much more specific than last time: the mark has light, air and spoil room, and only Meryem and Tamar dig around meals, harvest and rest. I can wait with a reason now, although the words say the chalk is unchanged."
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "elapsed_s": 32.471,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The release now says exactly that it stops refuge work for the rest of this hill and cannot be taken back. I would not mistake it for ending her route work now. She is harvesting, so I will let her finish."
+    },
+    {
+      "device": "phone",
+      "row": 21,
+      "elapsed_s": 63.539,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The shelter goal is familiar and the phone cutaway is small until zoomed. The marked stone now explains its conditions and who digs; Meryem is harvesting and the release warning is clear. I am waiting to see the work move."
+    },
+    {
+      "device": "phone",
+      "row": 26,
+      "elapsed_s": 91.129,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Meryem started cutting my mark. That is a relief, and the journal puts three repeated routine lines in a collapsed group. I can see the new work without hunting through the same sentences."
+    },
+    {
+      "device": "phone",
+      "row": 29,
+      "elapsed_s": 98.141,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The hill has moved away from my cellar: I see a person and field, but not my mark. I do not know what moved the view. I will fit the hill to find it."
+    },
+    {
+      "device": "phone",
+      "row": 35,
+      "elapsed_s": 112.194,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I am pleased Meryem started and Tamar is digging, but I want to try the larger screen rather than keep finding the cellar on my phone tonight."
+    },
+    {
+      "device": "phone",
+      "row": 39,
+      "elapsed_s": 120.639,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I am stopping on the phone. The clearer work explanation and release warning help, and Meryem started my mark, but the view moved away from the cellar and I want to try the larger screen. I selected the feedback labels locally and sent nothing."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 4.969,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Same evening, fresh hill on the wider screen. I want to make a route to six safe places and see how far the digging gets."
+    },
+    {
+      "device": "desktop",
+      "row": 11,
+      "elapsed_s": 20.344,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The second square waits for a connecting passage even though it appears directly below the first. I think it may need the first square dug; the message does not say that. The two red marks are much easier to see here."
+    },
+    {
+      "device": "desktop",
+      "row": 21,
+      "elapsed_s": 61.05,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The wide hill makes my two marks legible. The first has light and air, but the second says it needs a connecting passage although it looks adjacent. Everyone is asleep now; I will see what happens after morning."
+    },
+    {
+      "device": "desktop",
+      "row": 26,
+      "elapsed_s": 131.287,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Meryem started the first cut here too. The grouped routine makes that line easy to find. I am waiting for the next square to see whether the connection message changes."
+    },
+    {
+      "device": "desktop",
+      "row": 29,
+      "elapsed_s": 139.829,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Tamar has started the same first cut after Meryem. Seeing a person beside the marks makes the wait feel less abstract, though neither square is open yet."
+    },
+    {
+      "device": "desktop",
+      "row": 34,
+      "elapsed_s": 197.505,
+      "kind": "pulse",
+      "op": "log",
+      "reason": null,
+      "reaction": "The detailed reading reminds me of the nine-step rule, but says the second mark waits for a connecting passage. I can see the marks touching and do not yet know whether the first must be finished. Meryem and Tamar started work, which keeps me interested, but I am mostly waiting."
+    },
+    {
+      "device": "desktop",
+      "row": 37,
+      "elapsed_s": 211.26,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Show connections names the first connecting stone as the first mark I already made and says the route would be five steps, still reachable. That helps with safety, but I am still unsure why it says join the marks when both are already chalked. The long note about a missing Yusuf invitation is unexpected in this fresh game."
+    },
+    {
+      "device": "desktop",
+      "row": 38,
+      "elapsed_s": 213.636,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "CONFUSED",
+      "reaction": "I would stop here. I like the clear five-step preview and seeing people start, but I am still waiting on the first cut and cannot tell what the connection instruction wants from me. The missing invitation wording adds more to interpret."
+    },
+    {
+      "device": "desktop",
+      "row": 43,
+      "elapsed_s": 224.963,
+      "kind": "stop",
+      "op": "log",
+      "reason": "CONFUSED",
+      "reaction": "I am stopping on desktop. The preview counts five steps and the journal groups routine lines, and both diggers started the first mark. I still do not know what to do about the connecting passage, and I do not want to wait longer tonight. I selected feedback locally and sent nothing."
+    }
+  ]
+}

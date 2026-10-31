@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-31T14:44:34.519705+00:00",
+  "sealedForHandoff": true,
+  "canonicalImported": false,
+  "finished": false,
+  "manifestSha256": "1070be3c67c0f096fc0f141662c9856f6e771f02c9331311abeaabefaddc969b",
+  "rootFullReadReports": 5,
+  "rootAll15LiteralRoutesReviewed": true,
+  "payloadCount": 91,
+  "packetTotalFiles": 92,
+  "rootIntegrityReceipt": "warren2-root-integrity.json",
+  "codeReview": "warren2-packet-code-review-successor.md",
+  "qualificationReview": "warren2-packet-qualification-review-successor.md",
+  "methods": "9voluntary+1NiaPhoneTOOL; Rosa26retainedhistorylinesunverified; secondcycle datedDeferred only; no thirdpanel/automaticnewgamefixcycle.",
+  "assetBoundary": "Live release/source/CI/current assets observed. Historical exact-ea clean-build inventory/archive unavailable; exact served-to-clean-build equality not established."
+}

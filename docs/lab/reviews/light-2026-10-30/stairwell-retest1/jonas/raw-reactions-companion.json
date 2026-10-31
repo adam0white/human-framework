@@ -1,0 +1,195 @@
+{
+  "reportUnchanged": true,
+  "source": "Exact wall-clock reactions, no reconstruction",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "reaction": "Back to the six-day week. I want to see whether talking leaves a trace this time.",
+      "elapsed_s": 5.406,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 6,
+      "reaction": "Five orders again; I remember batching them last time and want to see the deadlines.",
+      "elapsed_s": 10.921,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 11,
+      "reaction": "I pressed Go to the bakery and waited; I still appear in my room. I do not know whether the walk started.",
+      "elapsed_s": 34.657,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "reaction": "Second press started the walk. The swap now says it is a prank with exchanged crosswords and a possible witness. That answers what it is; I will deliver properly.",
+      "elapsed_s": 45.455,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "reaction": "Hacer is familiar from last visit: flat 1 and the newspaper order. Confident it is the same named neighbour, not necessarily the same circumstances. The panel now says I do not know her feeling or trust.",
+      "elapsed_s": 55.265,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 20,
+      "reaction": "Five bakery orders with close first deadlines. Hacer received hers; I chose to sit and heard about her niece. Her panel says I do not know her feeling or trust. The swap now explains the prank. I want to see whether sitting changes what I can learn.",
+      "elapsed_s": 65.483,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 22,
+      "reaction": "It now explicitly says the reply wording does not change her choice. That answers my old question, though it makes the two replies less of a decision.",
+      "elapsed_s": 73.719,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 24,
+      "reaction": "Same leave-it-there answer as before. Checking whether the notebook moved.",
+      "elapsed_s": 82.639,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 26,
+      "reaction": "The notebook explains 0 of 16 counts facts that reached it, and explicitly says it does not show feelings or trust. I heard a story but the count is still zero. I do not know what makes a story reach it.",
+      "elapsed_s": 90.806,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 29,
+      "reaction": "Anything new gave a specific claim about Tarik and says I added a notebook line. That is a visible result. I want to check it.",
+      "elapsed_s": 96.364,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 31,
+      "reaction": "Now 1 of 16: the notebook says Tarik would give me his last lemon candy. The count moved, though Hacer only said he is kind. I can see a result, but not what the story or reply did for Sunday.",
+      "elapsed_s": 102.606,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 36,
+      "reaction": "Sevim at flat 2 is familiar from the previous newspaper order; confident in the name, not the new run. Testing a second sit.",
+      "elapsed_s": 115.217,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 41,
+      "reaction": "Sevim says she would rather we left it there: slightly different words, same outcome as Hacer. The game told me my reply wording would not change her choice, so I believe that explanation.",
+      "elapsed_s": 138.813,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 46,
+      "reaction": "The tell buttons now identify each item and explain that false certainty can cost trust. I will pass on the water notice marked sure.",
+      "elapsed_s": 153.667,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 47,
+      "reaction": "I have answered my return question enough for tonight: the notebook moves for news, but two sits ended similarly and feelings stay unknown. I do not want to work through six days for the vote now.",
+      "elapsed_s": 156.852,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "BORED"
+    },
+    {
+      "device": "desktop",
+      "row": 53,
+      "reaction": "Stopping desktop at Monday 08:07. The notebook moved after news, but I do not want six days of similar replies to reach the vote tonight. I selected stopping in Feedback and closed it without typing or submitting.",
+      "elapsed_s": 169.2,
+      "op": "log",
+      "kind": "stop",
+      "reason": "BORED"
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "reaction": "Second device, fresh week. I know the notebook can move from asking for news now.",
+      "elapsed_s": 6.367,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "reaction": "Phone building and order fit. Tarik is first due here, unlike desktop; I will try his route.",
+      "elapsed_s": 17.629,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "reaction": "Tarik has no news today, unlike Hacer on desktop. A repeat of the question is not automatically another notebook fact.",
+      "elapsed_s": 34.066,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "reaction": "Same evening and the phone repeats the route I just learned. Tarik has no news; I do not want to repeat the week here.",
+      "elapsed_s": 42.452,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "BORED"
+    },
+    {
+      "device": "phone",
+      "row": 19,
+      "reaction": "Stopping phone at Monday 07:29. I know the loop from desktop and do not want to repeat it tonight. I selected stopping in Feedback and closed it without typing or submitting.",
+      "elapsed_s": 53.765,
+      "op": "log",
+      "kind": "stop",
+      "reason": "BORED"
+    }
+  ]
+}

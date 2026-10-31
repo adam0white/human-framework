@@ -1,0 +1,118 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-31T10:10:35.979379+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T09:53:56.417Z",
+        "elapsed_s": 195.581,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+        "game_clock": "Hollin Crag 09:00",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T09:51:47.710Z",
+          "elapsed_s": 66.874,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Slow. I press Skip, which now says what it does.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T09:57:11.578Z",
+        "elapsed_s": 194.079,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+        "game_clock": "Hollin Crag 06:01",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T09:56:25.705Z",
+          "elapsed_s": 148.206,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "Skip"
+          },
+          "reaction": "Twenty minutes of game time in thirty real seconds. I try Skip.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 18,
+          "error": "Skip is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

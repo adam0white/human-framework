@@ -1,0 +1,112 @@
+[
+  {
+    "tester": "maya",
+    "device": "phone",
+    "source": "maya/phone/wall-clock.jsonl",
+    "line": 34,
+    "elapsed_s": 108.271,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone after about 105 seconds. Nermin and Ece gave new small secrets, helping Nermin changed what she did, and I could pick the person and claim myself. But Derya cannot talk with no reason, nobody visibly reacted to my praise, and I have seen the Day 1 loop. I want to try desktop.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "maya",
+    "device": "desktop",
+    "source": "maya/desktop/wall-clock.jsonl",
+    "line": 19,
+    "elapsed_s": 105.354,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on desktop after about 100 seconds. Aylin gave a small new secret and Ece passed a claim to Riza on her own, which showed me the world moves without me. But I still could not tell whether my own choices change anything beyond Nermin, and I have seen this opening loop three times.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "emre",
+    "device": "phone",
+    "source": "emre/phone/wall-clock.jsonl",
+    "line": 23,
+    "elapsed_s": 89.336,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I have already seen this run on desktop tonight. The phone shows the same empty garden and the same wait to Day 4. I am stopping here.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "emre",
+    "device": "desktop",
+    "source": "emre/desktop/wall-clock.jsonl",
+    "line": 45,
+    "elapsed_s": 487.551,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I got what I came for: the order went through, the numbers were shown, and no chapter message appeared. Next decision is Day 8, four days of an empty garden away, so I stop here.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "diego",
+    "device": "phone",
+    "source": "diego/phone/wall-clock.jsonl",
+    "line": 23,
+    "elapsed_s": 139.911,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping the phone session at about 138 seconds. Garden empty at 08:10 on Day 1, only pour tea, Day 4 far off. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "diego",
+    "device": "desktop",
+    "source": "diego/desktop/wall-clock.jsonl",
+    "line": 30,
+    "elapsed_s": 160.909,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping the desktop session at about 158 seconds. Gossip price is clear and the Derya cannot talk now line is plain, but the garden is empty again by 10:46 and 19:08, Day 4 is far and I can only pour tea. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "rosa",
+    "device": "phone",
+    "source": "rosa/phone/wall-clock.jsonl",
+    "line": 23,
+    "elapsed_s": 43.25,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I liked helping three people quietly. Nermin cannot talk and I do not know why or when she will be free. I stop on the phone.",
+    "reason": "CONFUSED"
+  },
+  {
+    "tester": "rosa",
+    "device": "desktop",
+    "source": "rosa/desktop/wall-clock.jsonl",
+    "line": 17,
+    "elapsed_s": 30.127,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "The lists worked and Riza answered clearly. I liked his story again, but I have seen it tonight and would stop rather than wait for Day 4.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "boris",
+    "device": "phone",
+    "source": "boris/phone/wall-clock.jsonl",
+    "line": 27,
+    "elapsed_s": 45.872,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I would stop here. The stories are nice, but I have repeated the same choices and lunch still feels far away.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "boris",
+    "device": "desktop",
+    "source": "boris/desktop/wall-clock.jsonl",
+    "line": 20,
+    "elapsed_s": 86.007,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I would leave now; waiting for the order is not the small problem I wanted to solve.",
+    "reason": "BORED"
+  }
+]

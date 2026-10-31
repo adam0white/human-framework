@@ -1,0 +1,6 @@
+{
+  "time": "2026-10-31T13:09:36.437283+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [],
+  "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9"
+}

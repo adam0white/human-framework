@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-31T12:42:33.817280+00:00",
+  "sealed": true,
+  "canonicalImported": false,
+  "manifestSha256": "fa9815decaa0af25a5f9632ee19c119ee804a44b175ea4482c1a60390142bb7f",
+  "files": 92,
+  "indexedPayloads": 91,
+  "sourceCopies": 79,
+  "literalSpans": 46,
+  "rows": 20,
+  "ids": "F2671\u20132690;2691\u20132700 unused",
+  "rootReportsRead": 5,
+  "rootRoutesRead": 20,
+  "reviewers": ["stairwell1-packet-code-review.md", "stairwell1-packet-qualification-review.md"],
+  "verifyActual": "46spans/79copies/123reactions/10stops/31imagehashes/parserreceipt20rows0problems",
+  "readerScope": "README draft wording remains original bytes; this external receipt records root seal only. No canonical import, completion or acceptance. History stdout vs model delivery and image limits remain.",
+  "sourceInvestigation": "stairwell-retest-source-investigation.md; readonly actual292 and transcript/source findings, order-tap cause unproven"
+}

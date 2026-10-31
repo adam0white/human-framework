@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-31T15:07:00.841155+00:00",
+  "rootReadFullReport": true,
+  "commandReceipt": "word-anika-command-audit-1506.json",
+  "retainedToolsReceipt": "word-anika-retained-audit-1506.json",
+  "historyEvidence": "All five cold-history lines matched stdout and separately completion-bound retained responses. Empty initial record, new root-supplied profile, not recovered prior exposure. Retained text does not prove attention or comprehension.",
+  "imageEvidence": "Three high-detail image blocks: desktop a001 and phone b001/b002. Only the desktop recording page was viewed; later desktop layout was not. Phone cutting-table choices extended below the viewport. Later phone agreement layout was not viewed. Blocks do not prove perception.",
+  "stops": {
+    "desktop": 59.683,
+    "phone": 54.009
+  },
+  "timedLogs": "Both visible One month later/AGREED endings: desktop48.996 and phone44.467. Raw desktop stop59.683 versus report59.684; preserve both. Both FINISHED supported. Automatic shots60.047/60.031 were after the stops, not continued play. No first-minute diary or180-second pulse.",
+  "driverQualification": "One unmatched-quote shell command exited1 before a request. One ambiguous agreement text/control-name reply tapped nothing; corrected full name later worked. No forbidden parsed action or foreign read. No actual Script failed output. Native acknowledgment does not prove intended outcome.",
+  "feedback": "Both stopping labels prefilled optional note text, followed by Not now. No typing, Submit, recording or consent change was found. No production receipt inferred.",
+  "exposure": "First HF visit. Two fresh independent games, desktop then phone; phone remembers same-evening desktop. No imported save or matched seed.",
+  "producerNewBlockingAsk": "Explicit no blocking ask from reached play. One ranked ask: distinguish Ferda earlier wording from her post-letter answer in notebook as clearly as the meeting screen. Treat as copy inspection lead, not proof of a state or save defect.",
+  "returnExactOpening": "I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation.",
+  "returnFullLater": "I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation. I would not leave it running: both games had ended, and the choices advanced the game clock when I acted.",
+  "cycleRule": "FIRST fixed-build retest. All four standing reports and cold report explicitly raise no new blocking ask; dated Deferred integration remains.",
+  "cleanup": "Final round recorded PID, observed identity and port checks are in word-retest-codex-cleanup.json. These are point-in-time observations, not a lifetime journal."
+}

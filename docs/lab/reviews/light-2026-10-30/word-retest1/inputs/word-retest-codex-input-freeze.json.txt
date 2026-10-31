@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T14:40:01.152959+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Wordf101 technicaldeliveryrootverified, no playerdispatchyet; no dispatch, freshlive/disk/pause/slots remain.",
+  "players": [
+    {
+      "tester": "Maya Chen",
+      "characters": 257959,
+      "historySha256": "557a5f734721770aceb172a59e11ccca1cf02f53304ebb7410556ae6f9dbb903",
+      "briefSha256": "aeabe0cc249730d6b455ce4a93ce823efd62a44df6af0c2aef1c5f6185b27ed7",
+      "ownSourceCount": 25
+    },
+    {
+      "tester": "Mei Tan",
+      "characters": 158390,
+      "historySha256": "dc6ee4f035dd7369fec67e16ba7e56bbcb43bb616df92f890c1101f7fe6d1008",
+      "briefSha256": "f2d4970be325cfbbf3d5a6fd000cc6559049cb6a8a26c73bb5f4fd4c2cc2ba44",
+      "ownSourceCount": 18
+    },
+    {
+      "tester": "Samir Haddad",
+      "characters": 119011,
+      "historySha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "briefSha256": "f48cbb830e25bc7c1de966cd6da220e029c447a5dfeaee4db16b936198c4e5cc",
+      "ownSourceCount": 13
+    },
+    {
+      "tester": "Diego Silva",
+      "characters": 165053,
+      "historySha256": "210c8be40589bc38df87dca3f8266bbd23edbca1dd76e21a2c93671effffef89",
+      "briefSha256": "cb96d8207af0835a2fac277d0e8da9a1070151429680a5030e7fd063ffdd0a2d",
+      "ownSourceCount": 19
+    },
+    {
+      "tester": "Anika Perera",
+      "characters": 186,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "994b399528c85c055b9330e9cbf657bea6a2f8dd5fbd9e430b73ba64401db88e",
+      "ownSourceCount": 0
+    }
+  ]
+}

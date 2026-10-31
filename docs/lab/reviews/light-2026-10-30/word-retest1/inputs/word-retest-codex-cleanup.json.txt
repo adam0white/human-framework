@@ -1,0 +1,538 @@
+{
+  "at": "2026-10-31T15:07:00.841155+00:00",
+  "recordedPids": [
+    {
+      "player": "maya",
+      "pid": 84949,
+      "absent": true
+    },
+    {
+      "player": "maya",
+      "pid": 84926,
+      "absent": true
+    },
+    {
+      "player": "maya",
+      "pid": 84928,
+      "absent": true
+    },
+    {
+      "player": "mei",
+      "pid": 90153,
+      "absent": true
+    },
+    {
+      "player": "mei",
+      "pid": 90130,
+      "absent": true
+    },
+    {
+      "player": "mei",
+      "pid": 90132,
+      "absent": true
+    },
+    {
+      "player": "samir",
+      "pid": 94765,
+      "absent": true
+    },
+    {
+      "player": "samir",
+      "pid": 94742,
+      "absent": true
+    },
+    {
+      "player": "samir",
+      "pid": 94744,
+      "absent": true
+    },
+    {
+      "player": "diego",
+      "pid": 99940,
+      "absent": true
+    },
+    {
+      "player": "diego",
+      "pid": 99917,
+      "absent": true
+    },
+    {
+      "player": "diego",
+      "pid": 99919,
+      "absent": true
+    },
+    {
+      "player": "anika",
+      "pid": 3241,
+      "absent": true
+    },
+    {
+      "player": "anika",
+      "pid": 3173,
+      "absent": true
+    },
+    {
+      "player": "anika",
+      "pid": 3175,
+      "absent": true
+    }
+  ],
+  "observedDescendantIdentities": [
+    {
+      "pid": 84926,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84928,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84941,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84942,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84943,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84944,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84945,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84946,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84947,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84948,
+      "lstart": "Sat Oct 31 09:51:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 84949,
+      "lstart": "Sat Oct 31 09:51:51 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 85362,
+      "lstart": "Sat Oct 31 09:51:54 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 86426,
+      "lstart": "Sat Oct 31 09:52:29 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 88633,
+      "lstart": "Sat Oct 31 09:53:27 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90130,
+      "lstart": "Sat Oct 31 09:54:41 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90132,
+      "lstart": "Sat Oct 31 09:54:41 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90145,
+      "lstart": "Sat Oct 31 09:54:41 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90146,
+      "lstart": "Sat Oct 31 09:54:41 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90147,
+      "lstart": "Sat Oct 31 09:54:41 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90148,
+      "lstart": "Sat Oct 31 09:54:41 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90149,
+      "lstart": "Sat Oct 31 09:54:41 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90150,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90151,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90152,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90153,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90154,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90177,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90222,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90223,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90224,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90235,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90236,
+      "lstart": "Sat Oct 31 09:54:42 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90553,
+      "lstart": "Sat Oct 31 09:54:45 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 90940,
+      "lstart": "Sat Oct 31 09:54:59 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 92730,
+      "lstart": "Sat Oct 31 09:55:45 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94742,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94744,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94757,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94758,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94759,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94761,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94762,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94763,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94764,
+      "lstart": "Sat Oct 31 09:56:43 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 94765,
+      "lstart": "Sat Oct 31 09:56:44 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 95504,
+      "lstart": "Sat Oct 31 09:56:47 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 95970,
+      "lstart": "Sat Oct 31 09:57:00 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 460,
+      "lstart": "Sat Oct 31 09:58:53 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 495,
+      "lstart": "Sat Oct 31 09:59:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99917,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99919,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99932,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99933,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99934,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99935,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99937,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99938,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99939,
+      "lstart": "Sat Oct 31 09:58:49 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 99940,
+      "lstart": "Sat Oct 31 09:58:50 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 2929,
+      "lstart": "Sat Oct 31 10:00:48 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3173,
+      "lstart": "Sat Oct 31 10:02:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3175,
+      "lstart": "Sat Oct 31 10:02:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3188,
+      "lstart": "Sat Oct 31 10:02:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3190,
+      "lstart": "Sat Oct 31 10:02:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3191,
+      "lstart": "Sat Oct 31 10:02:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3193,
+      "lstart": "Sat Oct 31 10:02:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3215,
+      "lstart": "Sat Oct 31 10:02:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3219,
+      "lstart": "Sat Oct 31 10:02:11 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3241,
+      "lstart": "Sat Oct 31 10:02:12 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3618,
+      "lstart": "Sat Oct 31 10:02:15 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3622,
+      "lstart": "Sat Oct 31 10:02:17 2026",
+      "identityGone": true
+    },
+    {
+      "pid": 3701,
+      "lstart": "Sat Oct 31 10:03:19 2026",
+      "identityGone": true
+    }
+  ],
+  "ports": [
+    {
+      "port": 22600,
+      "closed": true
+    },
+    {
+      "port": 22601,
+      "closed": true
+    },
+    {
+      "port": 22602,
+      "closed": true
+    },
+    {
+      "port": 22603,
+      "closed": true
+    },
+    {
+      "port": 22604,
+      "closed": true
+    },
+    {
+      "port": 22605,
+      "closed": true
+    },
+    {
+      "port": 22606,
+      "closed": true
+    },
+    {
+      "port": 22607,
+      "closed": true
+    },
+    {
+      "port": 22608,
+      "closed": true
+    },
+    {
+      "port": 22609,
+      "closed": true
+    }
+  ],
+  "allTenPortsClosed": true,
+  "pngCounts": [
+    {
+      "player": "maya",
+      "device": "phone",
+      "count": 3
+    },
+    {
+      "player": "maya",
+      "device": "desktop",
+      "count": 3
+    },
+    {
+      "player": "mei",
+      "device": "desktop",
+      "count": 2
+    },
+    {
+      "player": "mei",
+      "device": "phone",
+      "count": 2
+    },
+    {
+      "player": "samir",
+      "device": "desktop",
+      "count": 2
+    },
+    {
+      "player": "samir",
+      "device": "phone",
+      "count": 2
+    },
+    {
+      "player": "diego",
+      "device": "phone",
+      "count": 3
+    },
+    {
+      "player": "diego",
+      "device": "desktop",
+      "count": 3
+    },
+    {
+      "player": "anika",
+      "device": "desktop",
+      "count": 2
+    },
+    {
+      "player": "anika",
+      "device": "phone",
+      "count": 3
+    }
+  ],
+  "scope": "15 recorded PIDs absent and collected point-in-time identities gone. No whole-lifetime descendant journal."
+}

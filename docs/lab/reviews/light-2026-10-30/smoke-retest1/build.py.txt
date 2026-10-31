@@ -1,0 +1,48 @@
+# Build the Smoke first fixed-retest draft; parser checks use the current batch5 worktree.
+import json,pathlib,hashlib,re
+R=pathlib.Path('/Users/abdul/code/.lab-scratch/playtest/light-1030');P=pathlib.Path(__file__).parent;plan=json.loads((R/'smoke-codex-plan.json').read_text());sources=[];shots=[];rows=[];returns=[];raw=[];stops=[];audits=[]
+def sha(b):return hashlib.sha256(b).hexdigest()
+def copy(src,dst):
+ dst.parent.mkdir(parents=True,exist_ok=True); b=src.read_bytes();dst.write_bytes(b);st=src.stat();sources.append(dict(source=str(src),destination=str(dst.relative_to(P)),sha256=sha(b),bytes=len(b),mtime_ns=st.st_mtime_ns))
+def span(s,a,b):return dict(text=s[a:b],char_start=a,char_end_exclusive=b,line_start=s.count('\n',0,a)+1,line_end=s.count('\n',0,b)+1)
+routes=['Inspect whether selectable neighbour names remain stable as status changes. Jonas saw named taps miss after changes and retries work; no cause or general control defect is established.', 'Keep the clear destination, estimated time and smoke-slowdown messages that helped Aisha. This is a positive maintenance request, not a new defect.', 'Review Aisha’s earlier request to acknowledge what she tried when someone dies. No death occurred in this visit, so no new death finding is established.', 'Investigate Sevim’s tied-bundle journal, tying card, wait hint and disabled speech controls in Diego’s unfinished desktop run. The conflict persisted after menu, feedback and a wait; cause and eventual outcome are unknown.', 'Review Diego’s wish for a useful indication of individual danger before deciding who waits. A breathing warning was observed, not a measurable countdown.', 'Review Leila’s wish for more useful danger information. Her warning made her hurry; do not invent an exact time or hidden forecast.', 'Inspect the lag between Sevim’s tied journal entry and actionable card and hint. In Leila’s phone run the status later changed and the action became enabled; this does not establish why Diego’s different run remained blocked.', 'Review whether the game can explain what another destination tap does while walking. Leila did not establish whether it restarts a walk; do not infer behavior.', 'Inspect Sevim’s tied message against current instruction and action. Maëlle saw a conflict before wanting to quit, then after pausing the prompt changed to Show the stair; cause and later desktop outcome remain unknown.', 'Review how the player can see follower movement and decide whether to wait. Preserve Maëlle’s uncertainty and do not infer pathfinding failure.']
+next_id=2821
+
+for i,p in enumerate(plan):
+ name=p['first'];src=pathlib.Path(p['dir']);d=P/name;d.mkdir(exist_ok=True)
+ for f in ['report.md','brief.md','own-history.md','history-source-map.json','dispatch.json','director-method-qualification.json','raw-reactions-companion.json']:
+  if (src/f).exists():copy(src/f,d/f)
+ c=src/'completion.json';v=json.loads(c.read_text());(d/'completion.safe.json').write_text(json.dumps(dict(sourceSha256=sha(c.read_bytes()),sourceBytes=c.stat().st_size,sourceMtimeNs=c.stat().st_mtime_ns,exit=v.get('exit'),pins=v.get('pins'),ended=v.get('ended'),scope='Private session metadata excluded.'),indent=2)+'\n')
+ for dev in ['phone','desktop']:
+  for f in ['wall-clock.jsonl','driver.out','release-start.json']:
+   if (src/dev/f).exists():copy(src/dev/f,d/dev/f)
+  for x in (src/dev).glob('*.png'):
+   b=x.read_bytes();shots.append(dict(source=str(x),sha256=sha(b),bytes=len(b),mtime_ns=x.stat().st_mtime_ns))
+  for num,line in enumerate((src/dev/'wall-clock.jsonl').read_text().splitlines(),1):
+   v=json.loads(line)
+   if v.get('reaction') is not None:
+    x=dict(tester=name,device=dev,source=f'{name}/{dev}/wall-clock.jsonl',line=num,elapsed_s=v.get('elapsed_s'),kind=v.get('kind'),op=v.get('op'),reaction=v['reaction'],reason=v.get('reason'));raw.append(x)
+    if v.get('kind')=='stop':stops.append(x)
+ s=(src/'report.md').read_text(); first=span(s,0,s.index('\n')); matches=list(re.finditer(r'^([123])\. (.+)$',s,re.M))[:[1,2,2,3,2][i]];assert len(matches)==[1,2,2,3,2][i]
+ # Capture whole paragraphs that contain return statements, including original opening and diary stops.
+ ps=[]
+ for m in re.finditer(r'[^\n]+(?:\n(?!\n)[^\n]+)*',s):
+  if re.search(r'\breturn\b|come back',m.group(),re.I): ps.append(span(s,m.start(),m.end()))
+ returns.append(dict(tester=p['tester'],source=f'{name}/report.md',opening=first,returnParagraphs=ps))
+ for j,m in enumerate(matches):
+  k=next_id-2821;next_id+=1;rows.append(dict(id=f'F-{2821+k}',who=p['tester'],rank=j+1,source=f'{name}/report.md',primary=span(s,m.start(2),m.end(2)),opening=first,returnParagraphs=ps,route='fix:smoke',target='2026-11-03' if k in (0,3,6,7,8,9) else '2026-11-10',status='open',editorial_route=routes[k]))
+ receipt=R/({'jonas':'smoke-jonas-retained-audit-1532.json','aisha':'smoke-aisha-retained-audit-1532.json','diego':'smoke-diego-retained-audit-1542.json','leila':'smoke-leila-retained-audit-1542.json','maelle':'smoke-maelle-retained-audit-1546.json'}[name]);b=receipt.read_bytes();z=json.loads(b);audits.append(dict(tester=name,receiptSha256=sha(b),receiptBytes=len(b),receiptMtimeNs=receipt.stat().st_mtime_ns,historySha256=z['historySha256'],historyLines=z['historyLines'],literalLinesMatched=z['literalLinesMatched'],unmatchedRanges=z['unmatchedRanges'],imageCalls=len(z['imageCalls']),imageBlocks=sum(x.get('imageBlocks',0) for x in z['imageCalls']),matchesDispatchAndFreeze=z['matchesDispatchAndFreeze'],matchesCompletionSessionHashAndBytes=z['matchesCompletionSessionHashAndBytes'],scope='Retained responses do not prove attention or comprehension.'))
+assert len(rows)==10 and len(stops)==10
+for f in ['smoke-codex-plan.json','smoke-codex-input-freeze.json','smoke-codex-input-freeze-audit.json','smoke-codex-root-admission.json','smoke-codex-round-state.json','smoke-codex-cleanup.json','smoke-codex-release-final.json','rosa-light-protocol-audit.json','rosa-light-protocol-audit.md','smoke-qualification-order-correction.json']:
+ if (R/f).exists():copy(R/f,P/'inputs'/f)
+(P/'inputs/retained-evidence-safe-summary.json').write_text(json.dumps({'scope':'Hash-bound aggregate only; no provider envelopes, tool commands, session paths or UUIDs. Retained responses do not establish attention or comprehension.','testers':audits},indent=2)+'\n')
+for f,obj in [('ledger-rows.json',rows),('returns.json',returns),('all-driver-reactions.json',raw),('actual-stops.json',stops),('source-map.json',sources),('screenshots-manifest.json',shots)]: (P/f).write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n')
+def fmt(r,x,label):return f'{label} [{r["source"]}:{x["line_start"]} chars {x["char_start"]}–{x["char_end_exclusive"]}]: '+x['text'].replace('|','&#124;').replace('\n','<br>')
+lines=['Draft source packet. Ten ranked asks only. Dated Deferred: source inspection on 2026-11-03 and preferences on 2026-11-10. First fixed retest; no canonical import or completion claim.','', '| id | date | game | kind | who | words | verdict | routes | source |','| --- | --- | --- | --- | --- | --- | --- | --- | --- |']
+for r in rows:
+ words=fmt(r,r['primary'],f'Ranked ask {r["rank"]}')+' '+fmt(r,r['opening'],'Whole opening return')
+ for x in r['returnParagraphs'][1:]:words+=' '+fmt(r,x,'Additional whole source paragraph containing a return statement')
+ lines.append('| '+' | '.join([r['id'],'2026-10-31','smoke','playtester','Fictional LIGHT panel: '+r['who'],words,'keep' if r['id']=='F-2822' else 'mixed',r['route']+' '+r['editorial_route'].replace(';',',')+' Required Rosa coverage omitted and no Rosa visit inferred. target'+r['target']+' (open)','docs/lab/reviews/light-2026-10-30/smoke-retest1/'+r['source']])+' |')
+(P/'ledger-additions.md').write_text('\n'.join(lines)+'\n')
+(P/'README.md').write_text('# Smoke first fixed-retest draft\n\nPrivate scratch draft for independent review; not published, sealed, canonical, imported, complete or accepted. Five logical testers and ten actual ranked asks F-2821–F-2830; F-2831–F-2850 unused. Eight supported FINISHED endings and two voluntary unfinished FRUSTRATED stops. Source 701df5428899b2fe25b693bba4120caf3e806a7c and HF 4.8.0 remained unchanged.\n\nThe initial and retest cohorts omit required Rosa coverage. No Rosa visit, opinion or protocol coverage is inferred. Jonas’s original Smoke opening and asks at history lines 481–487 are within retained matched lines 1–500. Completed-command stdout covered 2,314 lines, but retained responses matched 1,122; lines 501–1692 remain unverified, not proven unread. Maëlle was cold with five empty-history lines and no prior HF exposure. Retained text and image blocks do not establish attention or perception.\n\nSevim’s journal tied, card tying, wait hint and disabled controls are a source lead: Diego’s desktop conflict persisted and was unfinished, while Leila’s resolved in her run. Maëlle wanted to quit at 98.235 seconds and the prompt changed after pause at 99.692; source cause and later desktop outcome remain unknown. Report timing remains original; raw Diego desktop stop 136.181 versus 136.182 reported and Maëlle phone 135.247 versus 135.248. Preserve actual feedback prefill or empty fields and the absence of Submit; no delivery receipt is inferred.\n\nOriginal reports and raw companions are copied. Completion and retained audits are hash-bound safe projections that omit provider envelopes, session paths, UUIDs and command payloads. PNGs are represented only by hashes. Unseen layouts and prior history limits remain in the individual method qualifications.\n')
+print('sources',len(sources),'reactions',len(raw),'stops',len(stops),'screenshots',len(shots),'returns',len(returns))

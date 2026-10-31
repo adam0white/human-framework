@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-31T14:38:36.786102+00:00",
+  "state": "frozen; no dispatch",
+  "finalizerSha256": "efa312dc4000e851e1422f9f9b6e4c598078f65835af929ae91e296c3ccbd66d",
+  "planSha256": "fa64ea103a895793980d1ba1177ba32415410f3c78800f9708ab19b1fb031a69",
+  "freezeSha256": "a380957be8fccf971679e3ced4f66459c4f291edd9b7b3e764e64f80cab5897f",
+  "coldSearch": {
+    "name": "Anika Perera",
+    "filesScanned": 355,
+    "hits": [],
+    "errors": [],
+    "scope": "actual dispatch/report/completion textual records under playtest and playtest-b plus current cast and lab personas; normalized full name, drafts excluded, encoded image/base64 excluded",
+    "limit": "bounded local records, not exhaustive knowledge"
+  },
+  "players": [
+    {
+      "tester": "Maya Chen",
+      "historySha256": "557a5f734721770aceb172a59e11ccca1cf02f53304ebb7410556ae6f9dbb903",
+      "briefSha256": "a72b8f596636e21a6359ef82d120ad344296cb7635bb42b2e6e5e63e8a6c1cf7",
+      "sourceMapSha256": "b894f679cbce3e195cd1e9a300318e5054be9be6cf1664d3482c896b57c07c16",
+      "historyLines": 2114
+    },
+    {
+      "tester": "Mei Tan",
+      "historySha256": "dc6ee4f035dd7369fec67e16ba7e56bbcb43bb616df92f890c1101f7fe6d1008",
+      "briefSha256": "6c906e31b1c09ef0db6fa7caa1525860ee9990f86f01b956c6e529a4f4629a16",
+      "sourceMapSha256": "f989ad8587aee07b66f960d6738c7e82fa284a8432137a0a8c7463409be58a0d",
+      "historyLines": 1359
+    },
+    {
+      "tester": "Samir Haddad",
+      "historySha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "briefSha256": "6fdaa60114b396ed1ee21a49d26d1883381471358bf20cf4601e8b8c64958b1a",
+      "sourceMapSha256": "1711b83973138922eabbfb08ad398258d0b51b9150d10f67a643dbaceda4d613",
+      "historyLines": 851
+    },
+    {
+      "tester": "Diego Silva",
+      "historySha256": "210c8be40589bc38df87dca3f8266bbd23edbca1dd76e21a2c93671effffef89",
+      "briefSha256": "c0e77cc0b6a573ad58479c1ab4f6c5c2c44c0d28d60dca9c1bd4faedb70f316f",
+      "sourceMapSha256": "444b16cfab4cfc9bc265faeaa6a0e4476a5cc91d35ff29eeba1b03e144478786",
+      "historyLines": 1586
+    },
+    {
+      "tester": "Anika Perera",
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "05f80dbfb255c368751ac1809940784fb23418074597d89a28b58418e5cf35e6",
+      "sourceMapSha256": "ef2745d0107fc1e4bbb0a942ffe3e41e7f4bdaba56d97abffc4e70adc3c97102",
+      "historyLines": 5
+    }
+  ],
+  "audit": "Mapped private sources matched source bytes/hash and appeared once, no repeated private source hashes, recognized CONT check passed, EOF/count and freeze hashes matched, no other panel member complete mapped private report matched. No exhaustive semantic attribution claim.",
+  "remaining": "Root review and fresh admission; runner requires actual Warren closure plus 15 minutes.",
+  "cleanup": "No browser, tester, runner, model, preflight, test or worktree started."
+}

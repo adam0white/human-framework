@@ -1,0 +1,141 @@
+{
+  "time": "2026-10-31T10:25:24.648339+00:00",
+  "source": "a547f7d868cd1bf76588242dcccd0c3d60780fdb",
+  "main": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+  "identities": [
+    {
+      "sha": "a547f7d868cd1bf76588242dcccd0c3d60780fdb",
+      "tree": "0e630195c286544c9cf7c7a40c5dca3d60144567",
+      "signatureVerified": true,
+      "trailer": true
+    },
+    {
+      "sha": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+      "tree": "0e630195c286544c9cf7c7a40c5dca3d60144567",
+      "signatureVerified": true,
+      "trailer": true
+    }
+  ],
+  "bodies": [
+    {
+      "path": "HANDOFF.md",
+      "sha256": "3092d82fc053a0817bfbf7706284a8bb65365f24e80bb65f16d6ee813039c19f"
+    },
+    {
+      "path": "docs/design.md",
+      "sha256": "f004a9406d4db2ec1f33cd51de763fe127198c215fb58568bde444e987849ea7"
+    },
+    {
+      "path": "src/sim/cast-scenes.ts",
+      "sha256": "a199c88e7620839e7790471c95d2660876c2f817f76fe6cbc4728b7998828f3e"
+    },
+    {
+      "path": "src/sim/index.ts",
+      "sha256": "a17eb802000e9b6a82c458d022be1f939d24f797d8f3aa491b199f45fe526c15"
+    },
+    {
+      "path": "src/sim/references.ts",
+      "sha256": "3c24b60c5a0aba6c2a9e3a61dd293eb55371f6be1b442edbeba1cf85c23937bd"
+    },
+    {
+      "path": "src/ui/app.ts",
+      "sha256": "60e7e30f68bd58a4fc0fbfe5176d96770843df215e3f6773bc22317a36a12270"
+    },
+    {
+      "path": "src/ui/render.ts",
+      "sha256": "cb6c620c45887c3846131e546ef2e479d73e708d1165d953e61d28169f5a594a"
+    },
+    {
+      "path": "src/ui/style.css",
+      "sha256": "dd92b85e3066d8247d4b56cbde875b78ff3e9024ff80f09eba559dbe6622dc97"
+    },
+    {
+      "path": "test/canonical-cast.test.ts",
+      "sha256": "4424aa12527f24ac46765649d079a9dd27d0de96572f17a621c58511d052ff49"
+    },
+    {
+      "path": "test/light-fixes.test.ts",
+      "sha256": "5bda373ff4a515af561aae409d3cf9f88e0f8b06e603c0e27c109513c2b4f35b"
+    }
+  ],
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.8.1",
+    "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "dirty": false
+  },
+  "assets": [
+    {
+      "path": "assets/app-BH8kdeHc.js",
+      "sha256": "17be60eb9682028e68b37bd65eb59e2bb8bc671a2fc0c520f0e06061efccb667",
+      "bytes": 513329
+    },
+    {
+      "path": "assets/archive-worker-CVikkYbv.js",
+      "sha256": "e5509ef483a4549b34135bf09ca922b7481f5accf8c539066b7b4f16eeb83024",
+      "bytes": 1298539
+    },
+    {
+      "path": "assets/main-DDFN8_kw.js",
+      "sha256": "d28c58ffbc83be7bea7b23165709609ebd193b2e3c6c0753bd4faa9095d3a603",
+      "bytes": 1116
+    },
+    {
+      "path": "assets/dist-vsC4utru.js",
+      "sha256": "4339f04acede95c20281aa633960d71f82373b67dc75ecece506ac44ce0c2285",
+      "bytes": 79
+    },
+    {
+      "path": "assets/app-DyezL6gq.css",
+      "sha256": "757e4693db6229f5e4b7b0df22780dc1cdae14c9f72cb11fe633ebc6d14bd778",
+      "bytes": 3417
+    },
+    {
+      "path": "assets/preload-helper-CXdW9A8s.js",
+      "sha256": "6f2513fc1a128604a1a04d2e931ef6e93601ae851bb3067bda48cbcec00ec559",
+      "bytes": 1762
+    },
+    {
+      "path": "assets/cast-chapter-CNvrr7vh.js",
+      "sha256": "33eb40f037dcfb853f69977f9185cc6ef26e95feeae825c96b6fafb2b05b070c",
+      "bytes": 60
+    },
+    {
+      "path": "assets/cast-chapter-B4tlGSDK.js",
+      "sha256": "0e14fb372fc0d9c0c06fe1e622b0b4682a0729eb5f98239305b46efbb04a30c0",
+      "bytes": 1925
+    },
+    {
+      "path": "assets/main-C8yFn4kO.css",
+      "sha256": "097bfd01fee77a1df96cccb6e809d32a6cf51803785cee268b5d98ef60dd9830",
+      "bytes": 31215
+    },
+    {
+      "path": "assets/dist-DRiTUITc.js",
+      "sha256": "d7f7b2bb7ef1b58595225c6f771fce140c84a61cc382467af1ee06db287ddb97",
+      "bytes": 39556
+    },
+    {
+      "path": "assets/cast-COEU1F0x.js",
+      "sha256": "b8820b3b4d9757d5a7dade6ce8635a6fa7a9023ed922a83555d974b66ba0689a",
+      "bytes": 45
+    },
+    {
+      "path": "assets/cast-DhlkDrGq.js",
+      "sha256": "47ccdb2e7da10e489a00e517f282591b64f45fc9857334801aa9d0407cda692e",
+      "bytes": 910185
+    }
+  ],
+  "normalDeployExit": 0,
+  "scope": "Fresh ordinary second-retet source/live gate. Root read exact Opus, Code correction1 and coordinator d9 recheck. Broader font/geometry/native/file gates and player/owner acceptance separate; no dispatch from this script.",
+  "sourceCI": {
+    "conclusion": "success",
+    "headSha": "a547f7d868cd1bf76588242dcccd0c3d60780fdb",
+    "status": "completed"
+  },
+  "mainCI": {
+    "conclusion": "success",
+    "headSha": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "status": "completed"
+  }
+}

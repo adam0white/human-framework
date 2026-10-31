@@ -1,0 +1,14 @@
+{
+  "time": "2026-10-31T10:13:41.129549+00:00",
+  "commandCounts": {
+    "Bash": 368,
+    "strictAssignedCurl": 361,
+    "executedDirectoryListingsOutsideBrief": 4,
+    "failedShellParsingBeforeRequest": 3
+  },
+  "scope": "All four ls calls listed only their assigned session directory filenames; these are executed curl-only-brief violations, not forbidden file content Reads. Allowed Read audit separately passed. All three malformed curl strings show unmatched quote shell errors before request. Preserve full private command audit and producer reports; do not publish provider envelopes.",
+  "timing": "Reading notes, pace selection/device/order and native wait/target delays qualify clock claims. C14 before any retune; do not assert generic Fast/default-clock failure.",
+  "history": "All five actual supplied histories fully Read806/756/1097/1921/5lines with endmarkers. Older partial-read/CONT exposure limitations remain separate.",
+  "literalPreservation": "Nia explicitly reconstructed diary wording. Original driver reactions preserved as separate raw objects, no reconstructed lines labelled verbatim.",
+  "cold": "Farah all101 commands strict assigned curl, entire5line empty history Read verified. Same source/per-device order, no new command-scope exception."
+}

@@ -1,0 +1,123 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "ed71baf2d1b2a1448a44b1bce3334e17651bdb41d18fc6b4fe6c781a80bf8138",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 5,
+      "elapsed_s": 8.108,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I remember the Street confusion. I want to see whether it actually moves us now; first I will get Sevim following."
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "elapsed_s": 33.839,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Street now explicitly says it moves me, and the location says I am walking. That answers the earlier ambiguity. I want to see whether Sevim arrives."
+    },
+    {
+      "device": "desktop",
+      "row": 21,
+      "elapsed_s": 62.954,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Sevim reached the street after Street moved me; the location and time estimate are clear. I can see myself beside Derya on the map. The steps are familiar and feel procedural, but the clock still makes the order matter."
+    },
+    {
+      "device": "desktop",
+      "row": 25,
+      "elapsed_s": 71.137,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Hacer changed status before my tap, so the name still missed once. The retry worked. The location now tells me where I am and why walking is slow."
+    },
+    {
+      "device": "desktop",
+      "row": 32,
+      "elapsed_s": 111.253,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I took Derya upward to collect Hacer, and her breathing warning makes that choice feel costly. I am watching the descent."
+    },
+    {
+      "device": "desktop",
+      "row": 33,
+      "elapsed_s": 112.932,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone is out. I would stop this run here; the Street result is clear and I do not want another desktop attempt tonight."
+    },
+    {
+      "device": "desktop",
+      "row": 37,
+      "elapsed_s": 120.831,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone reached the street. I am stopping at the ending; Street moved me and the followers arrived. I selected stopping in Feedback and closed it without sending."
+    },
+    {
+      "device": "phone",
+      "row": 5,
+      "elapsed_s": 8.412,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Burak is home this time, so I want to see him act while I work on Sevim. The phone opening is readable."
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "elapsed_s": 38.733,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Phone Street moved me and Sevim arrived. Burak checked the stair and got out without my help. I can see the figures and the YOU label on the phone map now."
+    },
+    {
+      "device": "phone",
+      "row": 22,
+      "elapsed_s": 60.498,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Two are outside, Derya follows and I am going to Hacer. Street worked on this phone with a visible walking estimate. The map is legible, though the action labels are small. The routine is familiar; Burak acting independently adds some interest."
+    },
+    {
+      "device": "phone",
+      "row": 29,
+      "elapsed_s": 96.718,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Derya stopped behind me while Hacer got out. That is a real cost to batching; I am going back for her."
+    },
+    {
+      "device": "phone",
+      "row": 35,
+      "elapsed_s": 116.912,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone is out, including Derya after I went back. I am satisfied with this attempt and would stop for tonight."
+    },
+    {
+      "device": "phone",
+      "row": 39,
+      "elapsed_s": 123.872,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone is out. Derya stopped and I recovered her; the phone Street control worked. I selected stopping in Feedback and closed it without sending."
+    }
+  ]
+}

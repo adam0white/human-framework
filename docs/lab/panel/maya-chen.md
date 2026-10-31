@@ -2434,3 +2434,548 @@ Source: [complete own report](../reviews/light-2026-10-30/pass-retest2/maya/repo
 - **Not seen:** I did not reach Tuesday or the bank deadline, so any later-week change is untouched. I never saw what the wait-length choice changes.
 
 `git worktree list` is not applicable. I touched no repo, and I own no worktree, server or process.
+<!-- selected-continuity-key: light-1030:hearsay-retest2:maya:free -->
+## 2026-10-31 hearsay-retest2 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/hearsay-retest2/maya/report.md), [exact producer original](../reviews/light-2026-10-30/hearsay-retest2/maya/report.original.md.txt), original SHA256 `7bebda3bb0b027b4390ffc490de30064da8f12f21f71a2024581837261eeaa36`. Method qualification: [maya](../reviews/light-2026-10-30/hearsay-retest2/maya/director-method-qualification.json).
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+**Would you return voluntarily?** I would come back another evening only if the garden shows me that people react to what I did, for example someone changing how they treat Nermin after I praised her. I would not leave it running.
+
+**Ranked asks**
+1. Show a visible reaction to what I did. I praised Nermin to Derya and saw nothing happen, on the phone.
+2. Give a reason when someone cannot talk. Derya said "cannot talk now" and I never learned why or when.
+3. Show each line in the Garden record once. The Osman crates line appears in both the top block and the list.
+
+## 1. Session
+
+- **Persona:** Maya Chen. **Exposure:** retest, returning standing player. **Round and arm:** light-1031-hearsay-retest2, free stop (floor 0).
+- **Own history:** I read lines 1–1271 in three chunks. The last line read is 1271, "End of supplied own history". The unread range is none. Earlier method qualifications stay with the file. The retest1 report in it notes its own read reached lines 1–349 only. Other-game reports are only selected ones, not a full archive.
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, driver port 22900. It lasted about 108 s of driver time.
+- **Session B:** 1280x800 keyboard and mouse, light mode, driver port 22901. It lasted about 105 s of driver time.
+- **Cleanup:** I own no worktree or repo and started no process. `git worktree list` is not applicable.
+
+## 2. First impressions
+
+- **Phone, 2.5 s:** the same clean title as before. People appeared within seconds, with no lore wall.
+- **Phone, 7.1 s:** same opening. I tried Nermin this time instead of Rıza.
+- **Desktop, 2 s:** the title is a clean left-aligned column. At 5.6 s: "Aylin is someone I have not talked to yet in any visit."
+
+## 3. Verbatim diary
+
+**Session A (phone):**
+- 2.5 (shot a-001): "Same clean title as before. Beginning."
+- 7.1: "Same opening. Trying Nermin this time instead of Riza."
+- 13.2: "Nermin story is a real one. This time I keep it and help, since last time I betrayed one and wanted to see the other side."
+- 15.1: "Nermin drafted a correction because I helped. That is someone changing from my choice. Now Ece, whose refusals I remember."
+- 18.8: "Ece refusal shows in place again with a reason-ish line. Inviting her to talk instead."
+- 22.7: "Ece secret is new to me, a personal map of places to sit. Keeping it private. Still the game names the listener and claim before I tap, which I asked for earlier."
+- 32.3: "Praising Nermin honesty to Derya, since I helped her with the correction. The unusual reply is being kind in public."
+- 54.9: "This route let me choose both the person and the claim, which is what I asked for before. Waiting to see who reacts."
+- 57.1: "No visible reaction to my praise of Nermin; money just went up to 540. Now Derya quiet talk about her letter."
+- 62.0 first_minute (Day 1 07:24): "No lore wall; people within seconds. Nermin secret was new to me and helping her changed her next step (drafts a correction). I could pick the person and claim myself when talking about someone else. Derya says she cannot talk now but not why, and nobody reacted to my praise of Nermin that I could see."
+- 106.3 want_quit, TASTE: "Derya still cannot talk and nothing visibly reacted to my praise; I have seen the Day 1 loop again and want to try desktop."
+- 108.3 stop, TASTE, engagement 3 (Day 1 07:55): "I am stopping on the phone after about 105 seconds. Nermin and Ece gave new small secrets, helping Nermin changed what she did, and I could pick the person and claim myself. But Derya cannot talk with no reason, nobody visibly reacted to my praise, and I have seen the Day 1 loop. I want to try desktop."
+
+**Session B (desktop):**
+- 5.6 (reaction field): "Desktop, same evening. Aylin is someone I have not talked to yet in any visit."
+- 52.8 (Keep this private): "Aylin secret is a harmless dance class; keeping it private. New person for me."
+- 56.2 (opened the record): "Opening the record to see if it is shorter and whether the goal repeats."
+- 58.8 first_minute (Day 1 07:10): "No lore wall, people within seconds. Aylin is new to me and her secret was small and kind. The record is short on Day 1: the goal shows once, but the Osman crates line shows twice, once in the top part and once in the list." This was logged at 58.8 s, slightly before the 60 s mark.
+- 92.5 (wait 30): "Waiting to see if the garden changes or empties and whether anything new to do appears."
+- 95.5 (shot b-002): "Ece told Riza that Osman is not honest on her own at 7:19. So other people spread claims without me. That is a visible reaction in the world, which I missed on the phone."
+- 104.1 want_quit, TASTE: "I have seen the Day 1 opening three times now and want to stop here. Aylin was new and Ece spreading a claim on her own was the best moment."
+- 105.4 stop, TASTE, engagement 3 (Day 1 07:48): "I am stopping on desktop after about 100 seconds. Aylin gave a small new secret and Ece passed a claim to Riza on her own, which showed me the world moves without me. But I still could not tell whether my own choices change anything beyond Nermin, and I have seen this opening loop three times."
+
+## 4. Moments
+
+- **What held me:**
+  - Nermin drafted a correction because I helped her.
+  - Ece's refusal showed next to the buttons.
+  - Choosing both the person and the claim myself under "Talk about someone else".
+  - On desktop, Ece telling Rıza "Osman is not honest" without me.
+- **What lost me:**
+  - Derya said she could not talk and gave no reason.
+  - After I praised Nermin, nothing visible followed.
+  - I had now seen the Day 1 opening three times.
+- **Quit wishes:** both were TASTE. Neither passed, and I stopped each session.
+- **Pulses:** none. Both sessions ended before elapsed 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The Repeat button names the listener and the claim before I tap, including "It is not proof" and the risk to trust.
+  - The record was short on Day 1, with the goal shown once in the record.
+  - The status paragraph with the Day 13 goal is now at the top.
+- **Unclear:**
+  - Derya's "cannot talk now. You do not know when Derya will be free." stayed after about 30 s of waiting.
+  - The Osman crates line appears twice in the record on desktop.
+  - I could not tell whether money rising from 400 to 540 came from my choices or the normal tea trade.
+  - "Talk about someone else" is a collapsed group that I could only tap by its text.
+
+## 6. Device use
+
+- **Phone, a-001.png:** the title. A cream single column with "FOURTEEN DAYS IN THE NEIGHBOURHOOD", a large "Hearsay", the premise, a collapsed "How to play", and buttons Begin / Feedback / Fullscreen. Below those are two links, the Recording checkbox (checked), "Other ways to begin", a banner, Lab privacy and Debug. Nothing was clipped.
+- **Phone, a-002.png:** Derya's panel with her cannot-talk status, the Invite and Press buttons, and the open "Talk about someone else" group. It was readable and nothing was covered.
+- **Phone, a-003.png:** the Feedback sheet over the dimmed game. It was clean.
+- **Desktop, b-001.png:** the title, a left-aligned column with a large "Hearsay", the premise, collapsed "How to play", buttons Begin / Feedback / Fullscreen with the links, and a full-width banner. It was clean.
+- **Desktop, b-002.png:** the Aylin panel. The eight-person grid is on the left and the Aylin panel is on the right, with the record opened underneath. Nothing was clipped.
+- **Controls used:** on both devices I tapped people cards, Invite, Keep this private, Offer practical help, "Talk about someone else", Pour tea, the Garden record, Game menu, Feedback and Not now.
+- **Feedback on the phone:** "I'm stopping" would not match by name or text. A tap at screenshot point (102, 257) worked, then I pressed "Not now". I typed nothing, pressed no Submit and changed no consent.
+- **Feedback on desktop:** "I'm stopping" worked by name and showed [pressed]. Then I pressed "Not now", typed nothing and pressed no Submit.
+- **Automatic checkpoint:** not seen.
+- **Screenshots used:** phone 3 of 5, desktop 2 of 5.
+- **Unseen layout:** I did not view the phone at the Garden record.
+- **No trouble seen:** no layout trouble at either size.
+
+## 7. Stop and return
+
+- **Phone stop:** TASTE at about 108 s. In my own words: "I am stopping on the phone after about 105 seconds… I want to try desktop."
+- **Desktop stop:** TASTE at about 105 s. In my own words: "I am stopping on desktop after about 100 seconds… I have seen this opening loop three times."
+- **Return:** as above. I would come back another evening if I knew people react to my choices, and I would not leave it running while nothing visibly answers me.
+
+## 8. Changes I would want
+
+1. Show a visible reaction when I praise or accuse someone.
+2. Give a reason, or a time, when someone cannot talk.
+3. Show each Garden record line once.
+
+## 9. Compared with my last visit
+
+**First Hearsay report:**
+- **Choose who I repeat a secret to and what I say:** partly met. Under "Talk about someone else" I picked both the person and the claim. "Repeat this at another table" still names the listener and claim itself.
+- **Show refusals with a reason next to the button:** met for Ece, whose refusal showed in place ("Ece chooses to keep this private for now."). Derya's "cannot talk now" gave no reason.
+- **Shorten the Garden record and remove off-topic lines:** partly met. The Day 1 record on desktop was short. I did not see Day 4, and the Osman line appeared twice.
+
+**Retest1 report:**
+- **Something to do when everyone has left:** not seen. Everyone stayed at the garden in both sessions.
+- **Stop repeating the goal paragraph in the record:** met on Day 1 desktop. The goal showed once.
+- **Pick the listener myself on "Repeat this at another table":** did not meet it. The button still names the listener.
+
+**New blocking ask:** none. My two asks above come from what I reached this time: no visible reaction to praise, and no reason for Derya's refusal.
+
+<!-- selected-continuity-key: light-1030:stairwell-retest1:maya:free -->
+## 2026-10-31 stairwell-retest1 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/stairwell-retest1/maya/report.md), [exact producer original](../reviews/light-2026-10-30/stairwell-retest1/maya/report.original.md.txt), original SHA256 `bb25a4241e623c8222a3e1d58ca873e5d41f82feb812f738b65c588b9669df2b`. Method qualification: [maya](../reviews/light-2026-10-30/stairwell-retest1/maya/director-method-qualification.json). Codex producer reports a full history read; complete command stdout coverage is verified, but delivery to the model and comprehension are not verified. Image viewing is self-reported and unverified.
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+Would I return voluntarily? I would come back another evening only if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories; I would not return tonight or leave it running.
+
+**Ranked asks:**
+
+1. Let neighbours respond to things they saw me do. Hacer saw the gate and the newspaper swap, but greeted me with familiar praise; Sevim did not mention the swapped paper in the conversation I reached.
+2. Give conversations more varied responses. Hacer and Sevim both said “Tarık is kind,” and Hacer and Tarık both declined to continue after my replies, though in slightly different words.
+3. Give Tarık something on the first “Anything new?” ask. He said he had no news, then told the ferry story when I sat with him.
+
+## 1. Session
+
+I am Maya Chen, 24, a Vancouver library assistant who likes small discoveries and people who remember choices. This was a returning-player retest of The Stairwell, round `light-1031-stairwell-retest1`, free-stop arm, with a zero-minute floor and 20-minute ceiling per session.
+
+I read all 1,487 lines of the supplied `own-history.md`, including my earlier Stairwell report. The last line I read was:
+
+> End of supplied own history. This reading boundary is director metadata, not an event you experienced.
+
+There were **no unread ranges in this supplied file**. It is a selection, not my complete archive: older records and independent continued alternatives were not supplied, nor was the older raw diary for the Well excerpt. The supplied Warren report is a coordinator recovery, not an original player-authored final report. The earlier Hearsay retest1 report retains its own history-read limit of lines 1–349; that limit does not apply to my reading today.
+
+- **URL:** https://stairwell.adamwhite.work/?labRunSource=agent
+- **Session A:** fresh phone game, 360×690 touch, light mode, driver port 22700. Open at 0.575 s; stop at 90.582 s. Game clock reached Monday 07:35.
+- **Session B:** fresh desktop game, 1280×800 keyboard and mouse, light mode, driver port 22701. Open at 0.505 s; stop at 77.059 s. Game clock reached Monday 07:39.
+
+The sessions had no shared save or matched seed. I left recording on and changed no consent setting. Neither game ended.
+
+## 2. First impressions
+
+**Phone:** The title was familiar and easy to read. At 8.508 s, Hacer was first on the bread round. The gate choice now said a neighbour might see and something might follow later. Hacer did see both the gate and the swapped newspapers, but her first greeting was the praise I remembered.
+
+**Desktop:** The same title appeared in a centred column. At 12.375 s, Tarık was the first order. I wanted to ask him for news because I remembered his frozen ferry story and his earlier “no news” answer.
+
+## 3. Verbatim diary
+
+These are the reaction and log words I sent, unchanged. Times are the driver’s `elapsed_s`; reactions attached to an action are identified as such.
+
+### Session A — phone
+
+- **5.204 s, tap reaction:** “Same familiar title and bread round ahead. I am leaving the longer options alone.”
+- **10.494 s, tap reaction:** “Hacer is first this time. The gate now says someone may see and something may follow later; I remember her seeing it without mentioning it last time, high confidence.”
+- **18.510 s, tap reaction:** “The same prank I tried before. I want to see whether either woman answers it this time.”
+- **28.841 s, tap reaction:** “Hacer praises and tips me again without mentioning the gate or papers. I remember this same response from last visit, high confidence.”
+- **30.407 s, tap reaction:** “Tarik is kind again, the familiar line. Sitting with Hacer for her story.”
+- **36.240 s, wait reaction:** “Shop counter and niece paperwork again, same as last visit, high confidence. I still like the detail but I know the line.”
+- **48.590 s, tap reaction:** “New explanation says my reply words do not change whether she goes on. At least I know before choosing.”
+- **63.077 s, first_minute, Monday 07:32:** “Hacer saw the gate and swapped papers but greeted me with the same praise. Her shop story and Tarik gossip are familiar. The reply now says caretaker and explains that my words do not change whether she continues.”
+- **65.626 s, tap reaction:** “She still says I would rather leave it there. The explanation is honest, but I wanted a different answer.”
+- **74.787 s, tap reaction:** “Sevim noticed I was on time, as on desktop last visit; no mention of the swapped crossword yet.”
+- **80.304 s, want_quit, BORED, Monday 07:35:** “Both Hacer and Sevim say Tarik is kind again, and neither mentions the papers. I would stop this phone visit and try the other device.”
+- **88.340 s, tap reaction:** “I am stopping became pressed. I saw no Back button, so I closed Feedback without typing or submitting.”
+- **90.582 s, stop, BORED, Monday 07:35:** “I am stopping on the phone. Hacer saw both choices but gave the familiar praise, and both women said Tarik is kind. The reply explanation and caretaker label are clearer, but I want to try the desktop now.”
+
+### Session B — desktop
+
+- **7.748 s, tap reaction:** “Same evening on desktop, fresh Monday. I want to find Tarik and ask for news.”
+- **30.060 s, tap reaction:** “Tarik is first here. I remember his frozen ferry story and the first no-news answer from last visit, high confidence.”
+- **33.192 s, tap reaction:** “Still no news on the first ask. Sitting with him.”
+- **35.444 s, screenshot reaction:** “The frozen ferry in 1974 is exactly the story I remember; high confidence. I like it, but it is the same visit again.”
+- **64.835 s, first_minute, Monday 07:39:** “Tarik first said no news, then told the familiar frozen ferry story when I sat. His answer to thanks is now I would sooner leave it there, slightly different wording from Hacer but the same refusal. The caretaker label is clear.”
+- **66.979 s, want_quit, BORED, Monday 07:39:** “I have heard the ferry again and the same sort of refusal. I would stop rather than repeat the morning tonight.”
+- **74.909 s, tap reaction:** “I am stopping is pressed. There is no Back label here; Close feedback returns to the menu. I typed and sent nothing.”
+- **77.059 s, stop, BORED, Monday 07:39:** “I am stopping on desktop. Tarik gave me the same ferry story and no news first. His refusal is worded a little differently, but I do not want to repeat this morning again tonight.”
+
+## 4. Moments
+
+The gate’s description held my attention because it offered a possible later consequence. I liked that Sevim noticed I arrived on time, and I still like Hacer’s shop-counter detail and Tarık’s ferry story as character details.
+
+I lost interest when the two women gave the same “Tarık is kind” news and neither mentioned the papers during the conversations I reached. On desktop, Tarık’s familiar story followed the same initial “no news” answer. His “I would sooner leave it there” differed in wording from Hacer’s “I would rather leave it there,” but both closed the exchange.
+
+My quit wishes at 80.304 s and 66.979 s did not pass; I stopped each session. Both sessions ended before 180 s, so the pulse checkpoint was untested. First-minute notes were logged after 60 s on both devices.
+
+## 5. Confusion and clarity
+
+The game clearly showed that Hacer saw the gate and the swap, while saying I did not know what she thought. I did not see her later reaction; her immediate greeting did not mention either action. I cannot conclude that no later reaction exists.
+
+The new reply explanation was clear: the words I pick do not change whether the resident continues. My own line appeared as “You (the caretaker),” which resolved the label I had not understood last visit. I understood the explanation, though I still wanted the conversation to respond more distinctly.
+
+The game said time was paused during conversation and showed the expected arrival and order deadline. I was not confused enough to choose “I’m confused.”
+
+Two ten-second wait calls returned empty output, one on each device. The next driver replies showed the game had advanced to the conversation result. I did not treat the empty replies as game outcomes.
+
+## 6. Device use
+
+**Phone, 360×690 touch:**
+
+- Viewed **a-001.png** immediately after open. It showed the cream single-column title, unchecked longer-game options, the Begin button and recording banner. The bottom explanation ran behind the fixed Begin area in the image; I could read its complete text in the driver reply.
+- Viewed **a-002.png** at Sevim’s flat. The building, tabs and conversation controls were visible. The speech strip covered part of the upper building drawing; the visible controls and text were readable.
+- I used Begin, the gate choice, bakery and flat travel, the newspaper swap, Anything new?, Sit together, a reply, Close conversation, Game menu and Feedback.
+
+**Desktop, 1280×800:**
+
+- Viewed **b-001.png** immediately after open. It showed the title in a centred column, with the Begin button fixed near the bottom. Some lower title text was outside the visible area.
+- Viewed **b-002.png** during Tarık’s story. The building filled the left pane and the conversation journal the right. The top status area was partly clipped at the upper edge; the ferry text was readable.
+- I used mouse-like named taps and waits. I used no keyboard keys, so keyboard operation remains untested.
+
+On **both devices**, Feedback offered “I’m stopping” and “I’m confused.” I selected “I’m stopping”; it appeared pressed. There was no control labelled Back in the dialog, so I used **Close feedback**, which returned me to the game menu. I typed no note, pressed no Submit and changed no consent or recording setting. I took two manual screenshots per device.
+
+## 7. Stop and return
+
+- **Phone, BORED at 90.582 s:** “I am stopping on the phone. Hacer saw both choices but gave the familiar praise, and both women said Tarik is kind. The reply explanation and caretaker label are clearer, but I want to try the desktop now.”
+- **Desktop, BORED at 77.059 s:** “I am stopping on desktop. Tarik gave me the same ferry story and no news first. His refusal is worded a little differently, but I do not want to repeat this morning again tonight.”
+
+I would come back another evening only if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories. I still want to know what happens on Tuesday and whether the gate or swap is mentioned later, but I would not return tonight to repeat this opening. I would not leave the game running.
+
+## 8. Changes I would want
+
+My three ranked asks are at the top. The reply explanation is useful, but knowing that my words do not affect whether someone continues does not make the repeated refusals more interesting to me.
+
+## 9. Compared with my last visit
+
+- **Let neighbours answer what I did — partly met.** The gate choice now warns that something may follow later, and the game explicitly recorded Hacer seeing both actions. In the conversation I reached, Hacer praised and tipped me without mentioning either; Sevim noticed my timing without mentioning her paper. I stopped before any later response, so that remains unseen.
+- **Make replies vary; stop repeated “Tarık is kind”; explain “kapici” — partly met.** My line now says “You (the caretaker),” and the game explains the reply choices. Tarık said “I would sooner leave it there” while Hacer said “I would rather leave it there,” so the wording varied slightly. Both still declined to continue, and Hacer and Sevim both said “Tarık is kind.”
+- **Give the first “Anything new?” something — did not meet it for Tarık.** He again said he had no news, then told the ferry story when I sat with him.
+
+**New blocking asks from this visit:** None. The repeated responses and missing immediate acknowledgement were concerns I brought from the last visit. I did not reach Tuesday or see whether a later consequence follows.
+
+I owned no worktree, server, browser or process. The coordinator owns and stops both drivers. No repository was touched, so `git worktree list` is not applicable.
+<!-- selected-continuity-key: light-1030:well-retest1:maya:free -->
+## 2026-10-31 well-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/well-retest1/maya/report.md.txt), SHA256 `80062e01bfa35cb0a9c9531b7f420f32653abf64f7d82a84d5b6fe1e1e087cdd`. Method qualification: [maya](../reviews/light-2026-10-30/well-retest1/maya/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would not return voluntarily tonight; I might come back another evening if I could follow up with Yusuf about the timber token and Zehra, or hear a more personal reason for his choices, but I would not return just to watch the construction stages.
+
+**Ranked asks**
+
+1. Let me follow up with Yusuf about the timber token and Zehra when he brings them up.
+2. Give Yusuf a more specific answer when he changes my request. “I adapted the advice” showed what happened, but left me wanting to know why.
+3. Put the personal interaction somewhere easier to find among the construction details.
+
+## 1. Session
+
+I am Maya Chen, 24, a Vancouver library assistant who likes small discoveries and people who remember choices. This was a **return** visit to *Twice at the Well*, round `light-1030`, free-stop arm, with a zero-minute floor and a 25-minute ceiling per session.
+
+I read all 1,843 lines of the supplied [own history](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/own-history.md). The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. My earlier Well raw diary was not supplied; my comparison uses the selected Well excerpt.
+
+- **URL:** https://human.adamwhite.work/colony/?labRunSource=agent
+- **Session A:** fresh 360×690 touch phone, light mode. Open at 0.462 s; stop at 96.127 s. Day 1 05:00 to 11:40.
+- **Session B:** separate fresh 1280×800 desktop game, light mode, later the same evening. Open at 0.447 s; stop at 71.123 s. Day 1 05:00 to 07:57.
+
+Neither game ended. No save, seed, choice or outcome was matched across sessions. I left recording and consent settings alone. Both sessions ended early, so later checkpoints, the storm and the ending were untested.
+
+## 2. First impressions
+
+**Phone:** The title gave me a clear goal immediately. At 6.075 s I recognised Yusuf’s name from the supplied Well excerpt and remembered wanting to ask about Zehra and the timber token. The phone title image showed the map behind the introduction, though the “Show Human village” button covered part of the title.
+
+**Desktop:** At 5.508 s I liked seeing the two villages side by side. I chose Samira and Tariq’s opening words instead of the phone’s default pair. I chose Slow at 11.465 s because the changing person status had made selection difficult through the driver on the phone.
+
+## 3. Verbatim diary
+
+These are the words I sent in diary operations, unchanged. Times are driver `elapsed_s`.
+
+### Session A — phone
+
+- **6.075 s, note:** “The title puts a clear goal in front of me. Yusuf is familiar from my earlier Well visit; I remember wanting to ask him about Zehra and the timber token, high confidence. I will keep the default words and begin.”
+- **19.475 s, note, Day 1 05:52:** “The moving status names changed before I could tap Yusuf three times; I finally got his panel. There is a lot of construction detail before I find anything personal. He is already building, so I will look at About.”
+- **49.864 s, note, Day 1 08:09:** “I like seeing everyone moving to their own tasks. A cedar suggestion appeared on its own and explains the gain and injury risk; I will review it.”
+- **59.931 s, first_minute, Day 1 09:16:** “The goal is clear and people work on their own. I discarded the cedar proposal because the injury risk was clear and Idris was already gathering timber. Classic Yusuf is recovering after a beam fell; Human Yusuf is still building. I have not heard the Zehra story yet.”
+- **88.186 s, want_quit, TASTE, Day 1 11:24:** “I would stop the phone visit here. I like that Maryam has a reason to refuse, but I am mostly watching stores and stages and have not found the conversation I came back for. I want to try the other device.”
+- **96.127 s, stop, TASTE, Day 1 11:40:** “I am stopping on the phone. The people working and the clear risk and refusal held me briefly, but I wanted a conversation with Yusuf and mostly found construction tables. I selected I am stopping, then Back; I typed and sent nothing.”
+
+The phone `first_minute` line was **premature by 0.069 s**. I did not send a second one; a valid first-minute checkpoint was therefore not recorded.
+
+### Session B — desktop
+
+- **5.508 s, note:** “The two villages are visible side by side here. Same Yusuf name and roof line as the phone, and I remember the old Well excerpt about his timber token and Zehra, high confidence. I will try the other opening words.”
+- **13.053 s, note, Day 1 05:11:** “Choosing Slow because the phone status changed faster than I could select Yusuf. I want time to pick a person and see an answer.”
+- **23.549 s, note, Day 1 05:32:** “I asked Yusuf for timber while he prayed. Classic agreed and walked there; Human said I adapted the advice and went to build. I can see the different result, but I want to know why he chose it in his own words.”
+- **Elapsed time and acceptance unknown, note:** “I am waiting to see whether another personal moment appears. The two villages make the refusal easy to compare, but the answer itself is rather general.” The call returned empty output, so I cannot confirm its recorded timestamp or acceptance.
+- **60.313 s, first_minute, game clock supplied as Day 1 05:39:** “The side-by-side maps make the two results visible. I asked Yusuf for timber; Classic agreed while Human went to build and said he adapted the advice. I want a more personal reason or conversation, and I have not heard the old Zehra thread.” The reply showed **Day 1 07:43**; my supplied game-clock field was stale.
+- **62.488 s, want_quit, TASTE, Day 1 07:43:** “I would stop here tonight. I saw the two versions answer my order differently, but Yusuf has not given me the personal thread I came for and I do not want to watch the stages alone.”
+- **71.123 s, stop, TASTE, Day 1 07:57:** “I am stopping on desktop. The different responses to my order were visible, and Slow gave me more time, but I wanted to hear more from Yusuf than I adapted the advice. I selected I am stopping and went Back without typing or sending.”
+
+## 4. Moments
+
+The people moving to their own tasks held me on the phone. I liked that the cedar proposal stated both the three-timber gain and the injury risk, so I could decide against it. Maryam’s predicted refusal also had a reason: the others would go unfed.
+
+On desktop, the clearest moment was seeing the same timber request produce two different responses: Classic Yusuf agreed and walked to the forest; Human Yusuf declined and went to build. I understood the difference in action, but “I adapted the advice” felt too general to satisfy my interest in him.
+
+Both quit wishes were **TASTE** and neither passed; I stopped each visit. Both sessions ended before 180 seconds, so there were no pulses and that checkpoint was untested.
+
+## 5. Confusion and clarity
+
+The roof, meal and survival goals were clear. The cedar review made its benefit and risk clear before I decided. The desktop order receipt showed the two answers and Human Yusuf’s chosen activity.
+
+I wanted to know why Human Yusuf adapted my forest request. I saw his action and his short answer, but did not find a fuller explanation or the earlier personal thread during these visits. That is a limit of what I reached, not proof that it is absent later.
+
+The driver’s named targets included live activity text. On the phone, three successive Yusuf targets went stale before a fourth tap opened his panel. A later suggestion-dismiss target was also stale and had disappeared in the next reply. On desktop, one Yusuf target and then “Keep watching” went stale; the next visible controls let me continue. These were reported as changing game state by the driver, not as failed game controls. The phone and desktop wait calls returned empty output in my view; subsequent replies showed the game had advanced. I cannot infer a game failure from that output.
+
+## 6. Device use
+
+**Phone, 360×690:**
+
+- Viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/phone/a-001.png) immediately after opening: a map behind the title, a single-column premise and opening-word choices, and a large begin button. The “Show Human village” button covered part of the title.
+- Viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/phone/a-002.png): the map, people and place labels, cedar suggestion, and person cards. The “Show Human village” button covered part of the lower map and a label. I did not see a long speech bubble in this image.
+- Used Begin, person cards, About and Close, Back to people, Review and Discard proposal, Game menu, Feedback, “I’m stopping” and Back.
+
+**Desktop, 1280×800:**
+
+- Viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/desktop/b-001.png) immediately after opening: both village maps side by side, with the introduction and opening choices on the right.
+- Viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/desktop/b-002.png): both maps and Yusuf’s short speech bubble, with the order and construction panel on the right. Some lower order controls extended below the visible edge.
+- Used mouse-like named taps, Slow, Resume, a forest order, Back to people, Game menu and Feedback. I used no keyboard keys, so keyboard play remains untested.
+
+I took two manual screenshots per device. I did not view a phone screenshot containing a long speech bubble or inspect every panel’s layout.
+
+On both devices, Feedback offered “I’m stopping” and “I’m confused.” I selected **“I’m stopping”**, saw it marked pressed, and used **Back** to return to the menu. I typed no note, pressed no Submit, and changed no recording or consent setting.
+
+## 7. Stop and return
+
+- **Phone:** TASTE at 96.127 s. Exact stop words are in section 3. I stopped with the game paused in the menu, before the storm.
+- **Desktop:** TASTE at 71.123 s. Exact stop words are in section 3. I stopped with the game paused in the menu, before the storm.
+
+I would not return voluntarily tonight. I might come back another evening if I could follow up with Yusuf about the timber token and Zehra, or hear a more personal reason for his choices. The people and the different responses interest me; comparing construction stages alone does not hold me. I would **not leave the villages running unattended**.
+
+## 8. Changes I would want
+
+The three ranked asks are at the top. The first carries over my earlier interest; the other two come from what I reached this time.
+
+## 9. Compared with my last visit
+
+These assessments use only the selected earlier Well excerpt and what I saw in these two fresh games.
+
+1. **Ask Yusuf about the timber token and Zehra — not seen.** He did not bring up that thread during either short visit, so I did not reach a chance to follow it up.
+2. **Respond to his injury beyond another work order or appeal — not seen.** On the phone, Classic Yusuf was described as recovering after a beam fell, while Human Yusuf was still building. I did not reach the earlier injury conversation or try a response to it.
+3. **Keep long speech bubbles from covering so much of the phone map — not seen.** I viewed the phone map, but did not see a long speech bubble there. The “Show Human village” button did cover part of the map in a-002.
+
+**New this time that would stop me returning:** The generic “I adapted the advice” answer and the amount of construction detail made the personal conversation feel distant. Those would make me stop if that remained the only kind of interaction I could find; I did not play far enough to say what appears later.
+
+I touched no repository and own no worktree, server, browser or process. The coordinator owns both drivers. `git worktree list`: not applicable; no repository was touched.
+```
+<!-- selected-continuity-key: light-1030:warren-retest2:maya:free -->
+## 2026-10-31 warren-retest2 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/warren-retest2/maya/report.md.txt), SHA256 `91df9201fa7252f6f13e4d7bd1ab2a4fe47069ba91463de37ce5ba8c606ba190`. Method qualification: [maya](../reviews/light-2026-10-30/warren-retest2/maya/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would not return voluntarily tonight; I might return another evening to see the shelter take shape if I understood what the connecting-passage instruction wants me to do. I would not leave it running.
+
+My ranked asks:
+
+1. Tell me whether the first chalked square must be dug before the next one becomes connected. The two marks looked adjacent, but the second still told me to join them.
+2. Keep the cellar and my plan in view on the phone, or make it clear how to get back to them. The view moved to a field while I was waiting.
+3. Explain why the fresh game’s plan reading refers to an unavailable Yusuf invitation and an unrecorded stopping line. I did not know what to make of those words.
+
+I am Maya Chen, 24, a Vancouver library assistant. This was a return to *The Warren*, in two independent fresh games on the same evening. I used the supplied start URL with `?labRunSource=agent`. The phone was 360×690 with touch; the desktop was 1280×800 with mouse-like taps. I imported no save or matched seed. Recording and consent stayed at their defaults. Neither game ended.
+
+I read the supplied own history through line **1995**, whose last line was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. The selected earlier Warren recovery and the later R2 report are separate visits; the missing historical alternatives remain missing.
+
+The phone opened at **0.668 s** and stopped at **120.639 s**, at dusk on 20 August, year 1. The desktop opened at **0.652 s** and stopped at **224.963 s**, before dawn on 22 August. Both were natural stops below the 20-minute ceiling.
+
+The first impression was inviting: the small cutaway made the shelter feel like a place rather than a list of tasks. On the phone I zoomed to see the cellar. On desktop the map and the red chalk marks were easier to read. The most encouraging change was the explanation that only Meryem and Tamar dig, and that meals, harvest and rest take priority. I also liked seeing each of them start work. The wait became less appealing when I still could not tell what the second mark needed.
+
+**Diary — phone**
+
+These are my logged words in order, with driver elapsed seconds.
+
+- **5.505 s, note:** “The little cutaway makes the shelter feel tangible. I remember the nine-step rule and want to see people actually dig the safe end this time.”
+- **27.284 s, note:** “That is much more specific than last time: the mark has light, air and spoil room, and only Meryem and Tamar dig around meals, harvest and rest. I can wait with a reason now, although the words say the chalk is unchanged.”
+- **32.471 s, note:** “The release now says exactly that it stops refuge work for the rest of this hill and cannot be taken back. I would not mistake it for ending her route work now. She is harvesting, so I will let her finish.”
+- **63.540 s, first_minute, engagement 4/5:** “The shelter goal is familiar and the phone cutaway is small until zoomed. The marked stone now explains its conditions and who digs; Meryem is harvesting and the release warning is clear. I am waiting to see the work move.”
+- **91.129 s, note:** “Meryem started cutting my mark. That is a relief, and the journal puts three repeated routine lines in a collapsed group. I can see the new work without hunting through the same sentences.”
+- **98.141 s, note:** “The hill has moved away from my cellar: I see a person and field, but not my mark. I do not know what moved the view. I will fit the hill to find it.”
+- **112.194 s, want_quit, TASTE, engagement 3/5:** “I am pleased Meryem started and Tamar is digging, but I want to try the larger screen rather than keep finding the cellar on my phone tonight.”
+- **120.639 s, stop, TASTE, engagement 3/5:** “I am stopping on the phone. The clearer work explanation and release warning help, and Meryem started my mark, but the view moved away from the cellar and I want to try the larger screen. I selected the feedback labels locally and sent nothing.”
+
+**Diary — desktop**
+
+- **4.969 s, note:** “Same evening, fresh hill on the wider screen. I want to make a route to six safe places and see how far the digging gets.”
+- **20.344 s, note:** “The second square waits for a connecting passage even though it appears directly below the first. I think it may need the first square dug; the message does not say that. The two red marks are much easier to see here.”
+- **61.050 s, first_minute, engagement 3/5:** “The wide hill makes my two marks legible. The first has light and air, but the second says it needs a connecting passage although it looks adjacent. Everyone is asleep now; I will see what happens after morning.”
+- **131.287 s, note:** “Meryem started the first cut here too. The grouped routine makes that line easy to find. I am waiting for the next square to see whether the connection message changes.”
+- **139.830 s, note:** “Tamar has started the same first cut after Meryem. Seeing a person beside the marks makes the wait feel less abstract, though neither square is open yet.”
+- **197.505 s, pulse, engagement 3/5:** “The detailed reading reminds me of the nine-step rule, but says the second mark waits for a connecting passage. I can see the marks touching and do not yet know whether the first must be finished. Meryem and Tamar started work, which keeps me interested, but I am mostly waiting.”
+- **211.260 s, note:** “Show connections names the first connecting stone as the first mark I already made and says the route would be five steps, still reachable. That helps with safety, but I am still unsure why it says join the marks when both are already chalked. The long note about a missing Yusuf invitation is unexpected in this fresh game.”
+- **213.636 s, want_quit, CONFUSED, engagement 2/5:** “I would stop here. I like the clear five-step preview and seeing people start, but I am still waiting on the first cut and cannot tell what the connection instruction wants from me. The missing invitation wording adds more to interpret.”
+- **224.963 s, stop, CONFUSED, engagement 2/5:** “I am stopping on desktop. The preview counts five steps and the journal groups routine lines, and both diggers started the first mark. I still do not know what to do about the connecting passage, and I do not want to wait longer tonight. I selected feedback locally and sent nothing.”
+
+The desktop preview clearly distinguished the current route from the proposed route: if the accepted chalk were dug, the selected place would be five steps from an opening and within the riders’ nine-step search. It did not resolve my immediate question about why an already chalked adjacent square still needed a connection. My thought that the first square needed to be finished is a guess, not something I confirmed.
+
+**Compared with my earlier Warren asks**
+
+- **Explain why lit, available chalk goes undug — partly met.** The new reading named light, air, spoil space, the two diggers, and competing needs. Both diggers started my first mark. I did not recreate the earlier days-long wait on the lit sideways squares, so I cannot judge that exact situation.
+- **Make “End optional work” plainly state that it stops refuge work — met for what I saw.** Meryem’s control is now “Release Meryem from refuge work,” with an explicit warning that it stops that work for the rest of the hill and cannot be reversed. I did not press it.
+- **Collapse repeated routine lines — met for what I saw.** The journal grouped three and then four repeated routine lines, leaving the new cutting entry easy to find. Some meal lines still appeared separately in the visible activity.
+- **Find a safe route and six places beyond riders’ reach — partly met as an explanation, not as an outcome.** The nine-step rule and five-step preview were readable, but I stopped before planning or building six safe places.
+
+The **new blocking ask I reached** is the connection instruction: I need to know whether to change my plan or wait for the first cut. I did not reach an attack, a finished safe room, or the game ending. The phone stopped before the 180-second pulse; later pulses were untested on both devices.
+
+I viewed these screenshots:
+
+- **Phone:** [a-001]( /Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/phone/a-001.png) showed the title and cutaway; [a-002](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/phone/a-002.png) showed the small cellar and toolbar; [a-003](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/phone/a-003.png) showed the zoomed cellar; [a-005](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/phone/a-005.png) showed the field with the cellar out of view. A request for a-004 returned no output; I did not view it.
+- **Desktop:** [b-001](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-001.png) showed the wide title; [b-002](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-002.png) showed the hill beside the activity panel; [b-003](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-003.png) showed the two red marks; [b-004](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-004.png) showed a person by the marks; [b-005](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/desktop/b-005.png) showed the long plan reading extending below the visible panel.
+
+I used named taps and map coordinates on desktop; I did not test keyboard controls. Some wait or screenshot calls returned no output. The first desktop “Show connections” call also returned no output; a retry produced the expanded reading. Those empty replies did not establish a game failure.
+
+On each device, when confused I selected **“I’m confused”** in Feedback; when stopping I selected **“I’m stopping.”** Each showed pressed, and **Back to the game** returned to the paused menu. I typed no note and pressed no Submit. One initial phone command for “I’m confused” failed at shell parsing; the corrected tap worked.
+
+The coordinator owns the drivers and browser processes. I touched no repository and created no worktree, so `git worktree list` is not applicable.
+```
+<!-- selected-continuity-key: light-1030:word-retest1:maya:free -->
+## 2026-10-31 word-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/word-retest1/maya/report.md.txt), SHA256 `68b7fdfbbb2fdd25ab6530a95005cb2513324722ba253d7f31ba0357707405f8`. Method qualification: [maya](../reviews/light-2026-10-30/word-retest1/maya/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception. This cohort omitted mandatory Rosa coverage; see [protocol audit](../reviews/light-2026-10-30/rosa-light-protocol-audit.md). No Rosa visit or opinion is inferred.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.
+
+**Ranked asks:**
+
+1. Give me more to explore in a run, or after its ending. Both meetings ended in under a minute of real play.
+2. Let a private word matter on more paths. Halil remembered mine when I asked him again, but I did not see it affect the phone ending.
+3. Make the agreement choices easier to compare on the phone. The terms are useful, but there is a lot to read in one long list.
+
+## 1. Session
+
+I am Maya Chen, 24, a Vancouver library assistant who likes small discoveries and people who remember choices. This was a **retest** of *His Word*, round `light-1031-word-retest1`, free-stop arm, with a zero-minute floor and a 20-minute ceiling per session.
+
+I read all **2,114 lines** of my supplied `own-history.md` in explicit ranges before playing. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. The file is a selection of my records, not my complete archive.
+
+- **URL:** https://word.adamwhite.work/?labRunSource=agent
+- **Session A:** fresh 360×690 touch phone game, light mode. Open at 0.575 s; stop at **56.437 s**.
+- **Session B:** independent fresh 1280×800 desktop game, keyboard and mouse, light mode, later the same evening. Open at 0.501 s; stop at **46.765 s**.
+
+I left recording at its default and changed no consent setting. Both games reached endings. Neither session reached the first-minute or three-minute pulse checkpoint, so I logged neither.
+
+## 2. First impressions
+
+**Phone:** At 4.930 s the recording page felt familiar and readable. I remembered Halil and Rıza comparing my conflicting words on my earlier visit and wanted to try the letter and late-work path. Ferda’s response after the letter distinguished her current answer from the older standing-need quote; that directly addressed something that had confused me before.
+
+**Desktop:** At 4.825 s the same opening looked clean on the wider screen. I wanted to ask Rıza before writing because his refusal had ended my phone plan.
+
+## 3. Verbatim diary
+
+These are my diary lines exactly as logged, in order. Times are driver `elapsed_s`.
+
+### Session A — phone
+
+- **4.930 s, note:** “The familiar short recording page is readable. I remember Halil and Riza comparing my conflicting words, high confidence; I want the letter and late work this time.”
+- **13.561 s, note, 16 minutes before Osman leaves:** “Ferda now answers the letter directly, and the old quote is explicitly labelled as her standing need from before it. That clears up what looked stale last time.”
+- **32.903 s, note, 8 minutes before Osman leaves:** “Halil repeats my private word when I ask again, just as I saw on desktop last visit. I want to see what he does with the late-work agreement now.”
+- **42.784 s, note, 5 minutes before Osman leaves:** “Letting Halil leave with his signed copy is new to me. The game says he cannot compare accounts with Riza now; I chose that knowing it could keep my word from being challenged.”
+- **45.943 s, note, 4 minutes before Osman leaves:** “Riza refuses the overnight cart and tells me exactly what he needs. Sending Halil away now has a cost: changing the agreement calls him back and clears his signature, with only four minutes left.”
+- **49.531 s, want_quit, FINISHED, One month later:** “The shop stayed shut because I ended the meeting. I like that Riza had a specific refusal and that sending Halil away had a visible cost. I would stop this phone run and try the other device.”
+- **56.437 s, stop, FINISHED, One month later:** “I am stopping on the phone after the shop stayed shut. Riza explained his refusal and Halil leaving made changing the agreement costly. Ferda now distinguishes her old standing need from her answer to the letter. I selected I am stopping and Not now; I sent nothing.”
+
+### Session B — desktop
+
+- **4.825 s, note:** “Same clean page on the wide screen. This time I want to ask Riza before writing, after his refusal on the phone.”
+- **24.023 s, note, 10 minutes before Osman leaves:** “Asking Riza first changed the late agreement to cart home at four, and Halil gets the paid break. That is the readable consequence I wanted after the phone refusal.”
+- **36.351 s, want_quit, FINISHED, One month later:** “They kept the late agreement and Ferda calls the service her own choice. That is satisfying after the phone refusal. I would stop now; I have seen this path and both meetings were quick.”
+- **46.765 s, stop, FINISHED, One month later:** “I am stopping on desktop after the late-work agreement succeeded. Asking each person changed the terms and the ending named what they kept. I enjoyed that, but the meeting was over quickly. I selected I am stopping and Not now without sending.”
+
+## 4. Moments
+
+Rıza’s phone refusal held me because it named the term he needed: taking the cart home at four. I had sent Halil away with his signed copy, and the game made the cost of changing the agreement visible: call him back and clear the signature. I chose to end the meeting, and the shop stayed shut.
+
+On desktop I asked Rıza first. The late-work agreement then included his cart going home at four and Halil’s paid break. All four signed, and the ending named what each person kept. Ferda calling the smaller service her own choice was a satisfying detail.
+
+Both quit wishes came after actual endings and persisted to the stops. The meetings were still very short. No pulse was reached.
+
+## 5. Confusion and clarity
+
+The time cost of conversations, writing and signatures was clear. The agreement listed acceptance, unknowns and refusals, and Rıza’s refusal told me what to ask for. Ferda’s direct answer and the explanation attached to her earlier quote resolved my uncertainty about that quote.
+
+On the phone, I tried to tap the visible heading of the late-service agreement by text. The driver returned:
+
+> “Use the clothing order for a smaller late service and trial lease. (2 minutes) is visible text and also the start of the control …; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)”
+
+The agreement list and eight-minute state remained visible. I then used the full control name, and the “Read it together” screen appeared with six minutes remaining. This was a driver targeting issue; it did not show that the game control failed.
+
+I did not feel confused enough during play to select “I’m confused.” The phone agreement list still felt long, though the terms themselves were informative.
+
+## 6. Device use
+
+**Phone, 360×690:**
+
+- Viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/a-001.png) immediately after opening. The recording page was a cream single column on a dark background, with readable text and the checked recording box.
+- Viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/a-002.png) on the agreement page. The instructions were readable, with the first agreement beginning below the visible edge. I did not view the full list in a screenshot.
+- I used named taps for the table, letter, conversations, private word, agreement and signatures, plus Menu and Feedback.
+
+**Desktop, 1280×800:**
+
+- Viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/b-001.png) immediately after opening. The recording page sat in a wide centred cream card and was readable.
+- Viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/b-002.png) at the ending. The agreement outcome and AGREED stamp were visible; lower content continued beyond the screen.
+- I used mouse-like named taps. I used no keyboard keys, so keyboard operation remains untested.
+
+I took two manual screenshots per device. I did not view the phone ending or every agreement option’s layout.
+
+On both devices, **“I’m stopping”** was offered. Selecting it opened a draft with that text already in the note field. I pressed **Not now**, typed nothing, pressed no Submit and changed no consent or recording setting. No feedback error appeared.
+
+## 7. Stop and return
+
+- **Phone:** FINISHED at 56.437 s. “I am stopping on the phone after the shop stayed shut. Riza explained his refusal and Halil leaving made changing the agreement costly. Ferda now distinguishes her old standing need from her answer to the letter. I selected I am stopping and Not now; I sent nothing.”
+- **Desktop:** FINISHED at 46.765 s. “I am stopping on desktop after the late-work agreement succeeded. Asking each person changed the terms and the ending named what they kept. I enjoyed that, but the meeting was over quickly. I selected I am stopping and Not now without sending.”
+
+I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings. I like the specific refusals, changed terms and people remembering words. I would not return tonight after these two meetings, and I would not leave it running.
+
+## 8. Changes I would want
+
+My three ranked asks are at the top. The people’s reasons and the visible terms are the parts I want to spend more time with.
+
+## 9. Compared with my last visit
+
+- **Make a run last longer, or give me more to try — did not meet it in these visits.** The phone reached its ending at 47.537 s and the desktop at 34.426 s. I saw a new signature choice and the late-work path, but both meetings remained short.
+- **Let people react to my private word sooner and on every path — partly met.** Halil repeated my private word when I asked again on the phone, as he had on desktop last time. He then signed the late-work agreement. I did not see the phone ending mention my private word, and I did not test every path or give Rıza a contradictory private word this time.
+- **Update Ferda’s stale line after fetching the letter — partly met.** Her old wording remains, but it is now explicitly identified as her standing need from before the letter, alongside a direct current answer. That removed my confusion about whether the old wording was her reply to the letter.
+
+**New blocking ask from what I reached:** None. The short run and long agreement list were concerns I already had. I did not see every possible path.
+
+No repo touched; no worktree of mine remains.
+```

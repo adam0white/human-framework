@@ -1,0 +1,123 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "025d88f96ffab1ec34481e38da7b6b4a407c02dc3623a44b67f86e54b7967404",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 5,
+      "elapsed_s": 7.828,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The job is as clear as I remember. Four neighbours this time, and Burak checks the stair himself. I will approach Sevim once and watch the walk."
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "elapsed_s": 10.816,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "There it is: between street and landing 1, walking to landing 1, about 5 seconds. I can see my command took effect. That immediately feels fairer."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 28.315,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The log says the bundle is tied, but her card still says tying and the hint says wait. I cannot show her the stair yet. I will give it a moment."
+    },
+    {
+      "device": "phone",
+      "row": 20,
+      "elapsed_s": 55.005,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Sevim and Burak are outside. The picture labels me You and the walk estimate doubled in thick smoke, with a reason. I can read the situation now, though the bundle line arrived before the controls caught up."
+    },
+    {
+      "device": "phone",
+      "row": 23,
+      "elapsed_s": 63.941,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Get the neighbours out before the stair closes. Names approach, speech and torch answer their needs, Street leads followers. Sevim and Burak are outside. Walking now reports position and estimated time, including smoke slowdown; that removes my old confusion. Derya is having difficulty breathing and I am going to Hacer."
+    },
+    {
+      "device": "phone",
+      "row": 33,
+      "elapsed_s": 92.734,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Both are following. Derya has a warning before death, but no time estimate for her; I do not know if the walk will be fast enough. This is tense in a way I understand, apart from that missing time."
+    },
+    {
+      "device": "phone",
+      "row": 36,
+      "elapsed_s": 111.494,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone is out. I am relieved, and I would stop this run here; the walk was understandable this time."
+    },
+    {
+      "device": "phone",
+      "row": 40,
+      "elapsed_s": 119.755,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Stopping the phone run after everyone got out. The walking status made my commands legible and I felt relief rather than cheated. I would try another order another evening."
+    },
+    {
+      "device": "desktop",
+      "row": 5,
+      "elapsed_s": 6.454,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Desktop, fresh game: Sevim is away and smoke starts on landing 4. I know Burak can leave on his own, so I am going to Hacer first."
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "elapsed_s": 45.901,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The number keys and F, R, T work. I brought Hacer to Derya and both now follow. Knowing the order from the phone makes this feel much easier, but the movement text still tells me what is happening."
+    },
+    {
+      "device": "desktop",
+      "row": 21,
+      "elapsed_s": 62.987,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The goal and actions are clear from the phone run. Sevim is away, Burak escaped alone, and I led Hacer and Derya out together. Keys 4, 3, F, R and T worked, and Street showed a walk estimate. Everyone is out already; the same dialogue made this second run less surprising."
+    },
+    {
+      "device": "desktop",
+      "row": 22,
+      "elapsed_s": 64.794,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone home is out again. I would stop for tonight: the second run went quickly and I have seen this rescue sequence twice."
+    },
+    {
+      "device": "desktop",
+      "row": 26,
+      "elapsed_s": 72.009,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Stopping desktop after everyone home got out. The keyboard worked and the walk was visible. I enjoyed the phone rescue more because the second sequence was familiar; I would not leave it running."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "tester": "maya",
+    "device": "phone",
+    "source": "maya/phone/wall-clock.jsonl",
+    "line": 34,
+    "elapsed_s": 96.126,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone. The people working and the clear risk and refusal held me briefly, but I wanted a conversation with Yusuf and mostly found construction tables. I selected I am stopping, then Back; I typed and sent nothing.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "maya",
+    "device": "desktop",
+    "source": "maya/desktop/wall-clock.jsonl",
+    "line": 27,
+    "elapsed_s": 71.123,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on desktop. The different responses to my order were visible, and Slow gave me more time, but I wanted to hear more from Yusuf than I adapted the advice. I selected I am stopping and went Back without typing or sending.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "emre",
+    "device": "phone",
+    "source": "emre/phone/wall-clock.jsonl",
+    "line": 20,
+    "elapsed_s": 47.009,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping the phone session because the speech dismiss control was covered or off screen twice. Yusuf agreed to build, and I selected stopping in Feedback without typing or submitting. The storm and later phone play are untested.",
+    "reason": "TOOL"
+  },
+  {
+    "tester": "emre",
+    "device": "desktop",
+    "source": "emre/desktop/wall-clock.jsonl",
+    "line": 55,
+    "elapsed_s": 420.524,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping at dawn after the full storm. The stage details and food explanation helped; both roofs missed the deadline, all lived, and the Human village had fewer injuries. I would try another evening with earlier roof orders, but not keep watching tonight.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "nia",
+    "device": "phone",
+    "source": "nia/phone/wall-clock.jsonl",
+    "line": 27,
+    "elapsed_s": 81.991,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on the phone. I liked Maryam refusing again, but Danyal sounded like an error and I do not want to manage the roof and meals. I would close it. Feedback marked I am stopping; nothing typed or submitted.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "nia",
+    "device": "desktop",
+    "source": "nia/desktop/wall-clock.jsonl",
+    "line": 18,
+    "elapsed_s": 52.123,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on desktop. Seeing Samira choose grain while her other self built was interesting, but her generic reply and the construction management do not pull me on. I would close it. Feedback marked I am stopping; nothing typed or submitted.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "rosa",
+    "device": "phone",
+    "source": "rosa/phone/wall-clock.jsonl",
+    "line": 14,
+    "elapsed_s": 24.975,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve.",
+    "reason": "CONFUSED"
+  },
+  {
+    "tester": "rosa",
+    "device": "desktop",
+    "source": "rosa/desktop/wall-clock.jsonl",
+    "line": 13,
+    "elapsed_s": 23.394,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "petra",
+    "device": "phone",
+    "source": "petra/phone/wall-clock.jsonl",
+    "line": 25,
+    "elapsed_s": 51.62,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone; I do not want to scroll through all of that again to give another order.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "petra",
+    "device": "desktop",
+    "source": "petra/desktop/wall-clock.jsonl",
+    "line": 44,
+    "elapsed_s": 90.745,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping now; the comparison was interesting but the work of following orders has lost me.",
+    "reason": "BORED"
+  }
+]

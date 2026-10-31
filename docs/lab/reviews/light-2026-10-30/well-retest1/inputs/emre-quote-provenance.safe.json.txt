@@ -1,0 +1,17 @@
+{
+  "originalScriptSha256": "c7e48be9e6072ce49fdcad8921c7c39d1f04579d4bd5cb392dd45dd6aaa1d362",
+  "successorScriptSha256": "0e4924310ef6308926f17785eb8c89c1fe61e35d5e50ec6e8fea4b9b65f4c11a",
+  "priorReceiptSha256": "94a41046aeaa171a563b298acf8c99cd9e0abecced06e964ff71e34b3a4c425e",
+  "reproductionReceiptSha256": "cc71241ab6993a470fb067e653f77392f6bb0cdf036ad4baeae2d57f851c4621",
+  "receiptEqualExceptCreated": true,
+  "initialFailure": {
+    "exit": 1,
+    "exception": "ValueError: No closing quotation",
+    "evidence": "Recorded from prior tool run in conversation; no separate traceback file was retained."
+  },
+  "provenance": "The prior receipt was produced by an in-memory copy with this exact source replacement, not the unmodified script. The new receipt was generated using the persisted successor.",
+  "scope": "Completed Emre only. No active players inspected.",
+  "sourceSha256": "e08d2abb6e078f86ab9470a0aac75c1f78204b172a0c223ab94b38e4ef8cce0a",
+  "sourceBytes": 1828,
+  "sourceMtimeNs": 1793454582123334415
+}

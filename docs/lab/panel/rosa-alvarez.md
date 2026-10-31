@@ -1967,3 +1967,1111 @@ Two log calls failed because of an apostrophe in the shell quoting. I resent the
 - **New blocking ask:** none. My stop came from having nothing to do after the placement.
 
 No repo touched; no worktree of mine remains.
+<!-- selected-continuity-key: light-1030:glance-retest2:rosa:free -->
+## 2026-10-31 glance-retest2 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/glance-retest2/rosa/report.md), [exact producer original](../reviews/light-2026-10-30/glance-retest2/rosa/report.original.md.txt), original SHA256 `c1fc7b438c1d7ba884b0d05d0c13e0f17101f0ddf4a58aca2d54cb05e84ac2a0`. Method qualification: [rosa](../reviews/light-2026-10-30/glance-retest2/rosa/director-method-qualification.json).
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+**Would you return?** I would come back another evening, but only if the gate panel said in one plain sentence what "A new call replaces it" and "Hold it to insist" mean, and showed me one next job. I would not leave it running.
+
+**Ranked asks**
+1. Say in one plain sentence what happens to my earlier request when I call Dai again. Cover "A new call replaces it" and "it starts again and its report can come later".
+2. Say what "Hold it to insist" does and how to do it, or remove it from the first gate view.
+3. Give the desktop turn boxes more width, and tell me what to do next once Dai agrees.
+
+---
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, 62, second-language reader. Retest 2 of Glance, round light-1031-glance-retest2, free-stop arm (floor 0).
+- **History:** I read own-history.md in full (all 1811 lines, through the End marker). Nothing is unread.
+- **URL:** https://glance.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light, port 22806. About 33 s. I stopped at 33.076 s.
+- **Session B:** 1280x800 keyboard and mouse, light, port 22807. About 26 s. I stopped at 25.627 s.
+- **Not reached in either session:** `first_minute` (needs 60 s) and `pulse` (needs 180 s). Both are untested.
+
+## 2. First impressions
+
+- **Phone, 0 s:** "I know this title from before." The title and chart look unchanged.
+- **Phone, 5 s:** I start the game.
+- **Phone, 9–11 s:** The first board has no wall of names. The "Optional chapter" is a small line, which I liked.
+- **Desktop, 3 s:** "Second visit tonight, big screen." The dam drawing is large and helpful.
+- **Desktop, 9 s:** The level was 3.40 m here and 4.50 m on the phone. These are different runs.
+
+## 3. Verbatim diary
+
+**Session A (phone)**
+- 0 s, note: "I know this title from before."
+- 5.054 s, note: "Same title as last time. I start."
+- 10.874 s, note: "Level is not read. I ask Dai, as before. The Optional chapter is only a small line, good."
+- 12.164 s, note: "Level 4.50. Now I try the gate to see the panel."
+- 15.191 s, want_quit CONFUSED (Mon 22:02): "Reread 1: A call interrupts what Dai is doing now, even if he does not agree. Reread 2: If he takes up that job again afterwards, it starts again and its report can come later. It is now said once, not on six buttons, which is better. But who starts again, and what report later? Also Hold it to insist is still here. I will try one turn button before I decide."
+- 16.34 s, note: "I try two turns, gently."
+- 33.076 s, stop CONFUSED, engagement 3 (Mon 22:04): "The call sentence is now said once, which helps a lot, and the Optional chapter is a small line. But A call interrupts... If he takes up that job again afterwards, it starts again... still cost me two rereads, and Hold it to insist is still there. I stop on the phone."
+
+**Session B (desktop)**
+- 3.137 s, note: "Second visit tonight, big screen. I start."
+- 8.827 s, note: "Level is 3.4 here, 4.5 on the phone. I ask Dai."
+- 12.993 s, want_quit CONFUSED (Mon 22:01): "Reread 1: Your earlier call to Dai is still waiting. A new call replaces it. Reread 2: Tap a button to ask. Hold it to insist. He may still refuse, and insisting can reduce his trust. A new call replaces what: my level question or this gate request? And insist is still here. Better than last time, shorter, but I still reread twice."
+- 25.627 s, stop CONFUSED, engagement 3 (Mon 22:02): "On the big screen the dam picture helps me. The call sentence is now short and in one place. But A new call replaces it appeared before I tapped, and then the other sentence, and Hold it to insist is still here. I stop for tonight."
+
+## 4. Moments
+
+- **What held me:**
+  - The first board is calm, with the Optional chapter reduced to a small line.
+  - The call sentence now appears once instead of on every turn button.
+  - The "caught" fold now says in its heading what caught means.
+  - Dai's answer after I asked for 2 turns, "I'll do that.", was clear.
+- **What lost me:**
+  - "A call interrupts what Dai is doing now … its report can come later." I did not know who starts again or what report comes later.
+  - On desktop, "A new call replaces it." I did not know whether it replaces my level question or the gate request.
+  - "Hold it to insist" is still in the panel.
+- **Quit wishes:** Both want_quits were CONFUSED, after the second reread. On the phone I tried one turn button anyway, then stopped about 18 s later. On desktop I stopped about 13 s later.
+- **Pulses:** None. I did not reach 180 s.
+
+## 5. Confusion and clarity
+
+Everything below is from what I actually reached. I did not see the clock running, lightning, dawn or the end of the night.
+
+| Screen and purpose                                | New concepts                                                                                                                                                                                                                                                        | Count | Sentences reread (verbatim)                                                                                                                                                                                                                                                                                                                            | Reason                                                                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| Title (A, B): start the game                      | All games link; Information; Game menu; night desk; valley town; sample morning; water below dam top; town dry or warned; twelve nights, weekend and second week; watch end; dam choice (Valley/Upper); Life during the watch; Lab privacy; Debug; recording notice | 15    | none                                                                                                                                                                                                                                                                                                                                                   | Plain wording; the Start button is large                                                                      |
+| Watch board 22:01 (A, B): choose the first action | Watch arrangements; Dai resting; time slows for the radio report; Compare observations; level and gauge not read; gate gauge; Ask Dai to read the level (~10 min); Tonight's forecast and desk notes; Optional chapter; Skip                                        | 10    | none                                                                                                                                                                                                                                                                                                                                                   | The Optional chapter is now a short line                                                                      |
+| Gate panel (A, B): ask Dai for 0–6 turns          | turns 0–6; "He agrees"; call and wait; time estimates; insist by holding; trust; call interrupts; job starts again and report comes later; a new call replaces it (desktop); how tired Dai expects to be; Doubt this reading; caught                                | 12    | A: "A call interrupts what Dai is doing now, even if he does not agree." and "If he takes up that job again afterwards, it starts again and its report can come later." B: "Your earlier call to Dai is still waiting. A new call replaces it." and "Tap a button to ask. Hold it to insist. He may still refuse, and insisting can reduce his trust." | A and B: I do not know who "he" starts again, what "report" is meant, what is replaced, or what "insist" does |
+| Game menu (A, B)                                  | time stops; pace Automatic/Slow/Steady/Fast; To the title page; Feedback; Full screen; All games; Record play for the lab; New game; Lab privacy; Debug; Resume                                                                                                     | 11    | none                                                                                                                                                                                                                                                                                                                                                   | Short labels                                                                                                  |
+| Feedback (A, B)                                   | verdict (keep playing/not sure/stop here); I'm stopping / I'm confused; note box; name (optional); name linking history; what is sent; Submit; Back                                                                                                                 | 8     | none                                                                                                                                                                                                                                                                                                                                                   | Clear; I typed and sent nothing                                                                               |
+
+## 6. Device use
+
+- **Phone (360x690):**
+  - **Screenshots viewed:** a-001 (title) and a-002 (Feedback).
+  - **a-001:** the "The Glance" heading and "You work at a night desk above a valley town." Under that, a chart with a red line and a large red Start game button. Some intro text sat behind the button. The recording notice was boxed at the bottom edge.
+  - **a-002:** Back and "×" at the top, then the three verdict buttons, "I'm stopping" and "I'm confused", an empty note box, a name box and Submit. All readable.
+  - **Controls used:** Start game, Ask Dai, the gate gauge, the 2 turns button, Game menu and Feedback.
+- **Desktop (1280x800):**
+  - **Screenshots viewed:** b-001 (title), b-002 (gate panel) and b-003 (Feedback).
+  - **b-001:** a centred column with the same chart, large text and empty margins. The Start button sits close to the recording notice.
+  - **b-002:** two columns. The dam drawing with "3.4 m · Dai read 22:00 (as written)" and the gauges are at left. The Gate panel is at right, with six narrow turn boxes and the help text. Part of the lower text was cut at the bottom of the screen, and I did not scroll to read it.
+  - **b-003:** a modal Feedback dialog over the dimmed game, with the same controls as on the phone.
+  - **Controls used:** Start game, Ask Dai, the gate gauge, Game menu and Feedback.
+- **Screenshot count:** 2 manual on the phone and 3 manual on the desktop. I saw no automatic checkpoint.
+- **Unseen layout:** the lower part of the desktop gate panel, and anything past the first minute of either game.
+- **Trouble seen:** the narrow turn boxes on desktop.
+- **Feedback quick labels:**
+  - Both "I'm confused" (phone) and "I'm stopping" (desktop) were offered and showed as pressed.
+  - Tapping by name failed on the apostrophe. The shell quoting was my own problem, and the driver said the control was not on the page. I tapped by coordinates instead, as on my earlier visits.
+  - On the phone I did not press Back separately from the Feedback screen beyond returning to the game menu. On desktop, Back returned me to the open Game menu.
+  - I typed no note, pressed no Submit and changed no consent. "Record play for the lab" stayed checked.
+
+## 7. Stop and return
+
+- **Phone stop words (33.076 s, CONFUSED):** "I stop on the phone."
+- **Desktop stop words (25.627 s, CONFUSED):** "I stop for tonight."
+- **Would you return voluntarily?** Yes, another evening, with these conditions:
+  - The gate panel says in one plain sentence what happens to my earlier request when I call Dai again.
+  - It says what "insist" means, or drops it.
+  - It shows me one next job after Dai agrees.
+- **Leave it running?** No. I would not leave it running while I am away. I am too unsure what a second call does to the first.
+- **Come back another evening?** Yes, on the conditions above. The first board is calm enough now that I would try again.
+
+## 8. Changes I would want
+
+1. One plain sentence on what a new call does to my earlier request, covering "A new call replaces it" and "its report can come later".
+2. Say what "Hold it to insist" does and how to do it, or remove it from the first gate view.
+3. Wider turn boxes on desktop, and a clear "what next" after Dai agrees.
+
+## 9. Compared with my last visit
+
+**Round 1 asks**
+- **Remove or hide the long Nerys paragraph:** Met. The first screen has no wall of names, only an "Optional chapter" line.
+- **Explain a job in one plain sentence, and drop "How Dai expects to feel", "insist" and "caught":** Partly met.
+  - "The gate opens from 0 to 6 turns. More turns lower the water behind the dam." is plain.
+  - The tired line is reworded to "How tired Dai expects to be after the gate is set to 1 turn".
+  - "Hold it to insist" is still there.
+  - The "caught" fold now answers in its heading.
+- **Say whether I must hurry while I read:** Partly met. "Time continues slowly while this inspection is open. It does not stop." is shown. I did not play long enough to see the clock.
+
+**Retest 1 asks**
+- **Say the call/interrupt idea once, in plain words:** Partly met. It appears once, not on six buttons. It still cost me two rereads on each device, and the desktop added "A new call replaces it".
+- **Remove or explain "How Dai expects to feel" and "Hold a button to insist":** Not met for insist. Partly met for the tired line, which was only reworded.
+- **Do not hide "caught" behind a fold without saying what it means:** Met. The heading carries the definition.
+
+**New blocking ask:** "A new call replaces it" does not say what is replaced. I reached this on desktop.
+
+**Not seen:** the lower desktop gate text, lightning, dawn and the end of the night.
+
+No repo touched; no worktree of mine remains.
+
+<!-- selected-continuity-key: light-1030:rope-retest1:rosa:free -->
+## 2026-10-31 rope-retest1 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/rope-retest1/rosa/report.md), [exact producer original](../reviews/light-2026-10-30/rope-retest1/rosa/report.original.md.txt), original SHA256 `688ba7e9d5e0855cce4474d62952fd83c8b86057ec5647544d1599fde8d0d2bf`. Method qualification: [rosa](../reviews/light-2026-10-30/rope-retest1/rosa/director-method-qualification.json).
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+# The Rope: Rosa Alvarez, return-visit report (round light-1030-retest1)
+
+**Would I return voluntarily?** Yes, on another evening, if someone asked me to try it, because the writing about the people is kind and clear. No, I would not leave it running, and I would not come back tonight. I mostly waited and pressed Skip, and I have seen the whole loop twice.
+
+**Ranked asks**
+1. Keep Skip on the screen. Say how far it jumps ("Skip to 08:00" or "Skip to the next event: about 1 hour").
+2. Rewrite the sentence "You also stop at a place on the path when nobody behind can hear you" in plain words. Say which place, and why they cannot hear me.
+3. During the long waits, write what I am waiting for and what I can do now. For example: "Waiting. You can open the Journal, or press Skip."
+
+---
+
+## 1. Session
+
+- **Persona and exposure:** Rosa Alvarez, 62. Retired school administrator from Puebla, reads English as a second language, busy. RETURNING player, same-standing retest. Round light-1030-retest1, free-stop arm (floor 0, ceiling 20 min).
+- **Own history supplied:** own-history.md, 1921 lines. I read all of it in chunks, through the End marker. It holds my earlier Rope report (line 505) and my reports on other games.
+- **Qualification kept:** In the earlier Rope visit, the CONT input worked differently from a real person's. That qualification stands. The earlier method notes still apply.
+- **Not supplied:** other testers' reports, game source, cast notes. I also did not read brief.md, dispatch.json, history-source-map.json, processes.json, tester.stderr or transcript.jsonl.
+- **URL:** https://rope.adamwhite.work/?labRunSource=agent. Fresh game each session. There is no matched seed.
+- **Devices:**
+  - Session A, 360x690 touch phone, light mode, about 196 s real time.
+  - Session B, 1280x800 keyboard and mouse, light mode, about 194 s real time.
+- Neither session reached the 20-minute ceiling. I stopped both myself.
+
+## 2. First impressions
+
+**Session A (phone)**
+- 1.9 s: I saw the title page. "Same title as last time; I know it."
+- 11.99 s: the lead-on hint now says that lead on moves only me and climb on asks the others. That was my question last time.
+- 65.7 s: no reread yet. I understood the loop.
+
+**Session B (desktop)**
+- 1.5 s: the first picture is now a filled title page. Last time it was an empty frame.
+- 9.2 s: first reread, about the place "where nobody behind can hear you".
+- 74.4 s: the Journal is warm and clear. The clock was stuck at 05:03.
+
+## 3. Verbatim diary lines
+
+Session A and the first Session B lines are kept as logged. The Session B lines from 14.9 s onward are given as the reactions I sent with each driver op, plus the logs.
+
+**Session A (phone, port 22006)**
+- 0.423 open
+- 1.927 shot a-001 (viewed)
+- 8.393 tap New game: "Same title as last time; I know it. New game."
+- 10.056 tap We turn at 13:00: "Turn-back question is sensible; I remember it. I pick the middle one."
+- 11.988 tap lead on: "The hint now says lead on moves only me and climb on asks the others. That is the thing I could not tell last time. A long sentence but I read it once. I lead on."
+- 33.779 wait: "Walking now; I watch what happens."
+- 35.577 tap climb on: "Skip now has a label Skip to the next event; that was my old question. Now I ask everyone to climb on."
+- 37.454 tap ask gently: "Gentle; they can say no. insist is greyed with the words after a refusal, which tells me when it is allowed."
+- 63.67 wait: "Everyone agreed. Waiting for the climb to move."
+- 65.733 first_minute (engagement 3, Hollin Crag 05:16): "I understand the loop: promise a turn-back time, ask them gently, lead on, wait. Better than last time: the hint now says lead on moves only me and climb on asks the others. Hints still come one at a time. No reread yet."
+- 66.874 tap Skip (error: not on the page): "Slow. I press Skip, which now says what it does."
+- 93.37 wait: "Skip was not on the page now; it comes and goes. I wait."
+- 94.521 tap Skip: "Skip is back. I press it."
+- 110.651 wait: "Skipping."
+- 112.509 shot a-002 (viewed): "Now the game says plainly I am waiting for all five to catch up. That is clearer than last time."
+- 115.485 tap stay with them: "The picture is clear: I am ahead, they are below. The two more buttons now have different names, more requests and more moves. I stay with them so nobody is left."
+- 141.99 wait: "Waiting for the group; I stay with them."
+- 143.17 tap Skip: "Skip again."
+- 169.248 wait (no reaction)
+- 171.086 tap Tamar Vale: "Steeper ground. The hint says pick someone, open more actions, then Rope up. I pick Tamar."
+- 172.254 tap More requests: "Open more requests."
+- 173.885 tap rope up: "Rope up is enabled for Tamar. Disabled buttons now say Walk to her first, which is a clear reason. I try rope up."
+- 175.619 tap Bilal: "Who should tie a rope to Tamar: Bilal is also below, so probably near her. I choose Bilal."
+- 176.835 tap ask gently: "I ask gently."
+- 182.552 wait: "Tamar and Bilal agreed to rope up, first try. No missing-thing message this time."
+- 184.117 pulse (engagement 3, Hollin Crag 08:59): "Clearer and calmer than last time: Skip says what it does, the two more buttons have different names, and rope up worked first try. Still long waits between actions, but I know why now."
+- 187.337 Game menu: "I have seen the loop and no reread yet. I open the menu to check Feedback."
+- 188.402 Feedback (no reaction)
+- 190.008 shot a-003 (viewed)
+- 192.517 tap (47,203): "I press I am stopping by position. I type nothing."
+- 193.617 Back
+- 195.581 stop (BORED, engagement 3, Hollin Crag 09:00): "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit."
+
+**Session B (desktop, port 22007)**
+- 0.365 open
+- 1.466 shot b-001 (viewed)
+- 4.615 tap New game: "Second visit tonight, big screen. This time the first picture has the title; last time it was an empty frame. New game."
+- 6.181 tap We turn at 12:00: "Last time on desktop I chose the earlier time to be safe. I do it again."
+- 9.197 tap lead on: "Reread 1: You also stop at a place on the path when nobody behind can hear you. What place? Why can they not hear me? The first sentences about lead on and climb on are clear now. I go on."
+- 11.028 tap climb on: "Ask everyone to climb on, as I now know."
+- 13.361 tap ask gently: "Gentle again. insist is greyed with after a refusal."
+- 14.928 tap Journal: "I want to see the Journal again; it was my favourite part."
+- 70.94 tap Back: "The Journal is plain and readable. It tells the people as small stories: Tamar checked boots, Nell promised her mother a call. This is still the part I like. Back to the hill."
+- 74.418 first_minute (engagement 3, Hollin Crag 05:03): "I know the loop from the phone: promise a turn-back time, ask gently, lead on, wait. One reread so far: the sentence about stopping where nobody behind can hear me. The Journal is warm and clear. The clock has not moved, so I am waiting for the climb."
+- 78.285 tap Dismiss this note: "The clock is stuck at 05:03 and says Time slows for reading. I close the note with the x to see if the climb moves."
+- 81.536 tap lead on: "Nothing moves. I am not sure my first lead on worked. I press it again."
+- 109.784 wait: "The clock moves now, 05:05. Hint text changed to a new one about pack and food. I wait."
+- 112.621 shot b-002 (viewed): "Clock 05:20 now. A line says Nell borrowed her crampons, spikes for walking on ice. I like that the game explains the word."
+- 146.489 wait: "The picture is clear: the five are in a line, I am the red one at the front. The path runs off under the right panel, so I cannot see where it goes. I wait."
+- 148.206 tap Skip (error: not on the page): "Twenty minutes of game time in thirty real seconds. I try Skip."
+- 180.287 wait: "Skip is not on the page, same as on the phone. It comes and goes and I do not know why. I wait."
+- 182.616 pulse (engagement 3, Hollin Crag 06:00): "Calm and readable. One reread only (nobody behind can hear you). The people are now below me and I mostly wait. The Journal and the small stories still hold me; the waiting does not."
+- 184.207 tap Game menu: "I have seen the loop again. I open the menu to find Feedback."
+- 185.97 tap Feedback: "Skip came back behind the menu, as the clock stopped. I open Feedback."
+- 187.505 shot b-003 (viewed)
+- 189.611 tap (389,226): "I press I am stopping by position. I type nothing and press no Submit."
+- 191.479 tap Back: "Back. The note box filled itself with the verdict words; I typed nothing."
+- 194.079 stop (BORED, engagement 3, Hollin Crag 06:01): "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit."
+
+## 4. Moments
+
+**What held me**
+- The Journal. Small stories about the people: Tamar checking boots, Nell and her mother's call, Bilal and the stove.
+- Words explained as they appear: "crampons, spikes for walking on ice".
+- Rope up worked the first time (phone), and disabled buttons gave reasons.
+- The waiting line on the phone: "You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up."
+
+**What lost me**
+- Long waits with little to do.
+- Skip appearing and disappearing, with no stated size of jump.
+- The desktop clock stuck at 05:03 ("Time slows for reading") until I tapped lead on a second time.
+
+**Quit wishes**
+- I logged no `want_quit`. I reached only one reread (desktop), so my second-reread rule never fired.
+- I stopped both sessions as BORED, after about 3 minutes each.
+
+**Pulses:** both at engagement 3 (A at 184.1 s, B at 182.6 s).
+
+## 5. Confusion and clarity (actual play only)
+
+**Clear this time**
+- The lead on / climb on difference, which was my main question last time.
+- The Skip label.
+- The two "more" buttons having different names.
+- "after a refusal" on insist.
+
+**Confusing**
+- "You also stop at a place on the path when nobody behind can hear you." I did not understand what place, or why they could not hear me.
+- Skip is not always on the screen.
+- On desktop, the clock stayed at 05:03 after I tapped lead on. I do not know whether my first tap worked or the second one did.
+- On desktop, the path runs under the right panel, so I could not see where it goes.
+- After "I'm stopping", the note box filled itself with "I'm stopping". I typed nothing.
+
+**Not reached:** the "All 5 answers" panel, the "i" Information button, Close up, and any second mountain.
+
+**Concept table**
+These counts are my own tallies from the screens I actually visited.
+
+| Screen and purpose                    | New concepts (list every one)                                                                                                                                                                          | Concept count | Sentences reread (verbatim)                                                            | Reason                                 |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
+| Title page: start                     | Journal, i, Game menu, All games, recording notice, five people, three mountains, "they can say no", New game                                                                                          | 9             | none                                                                                   | Plain                                  |
+| Turn-back question: pick a time       | turn-back time, a promise they remember, Saving / Time paused                                                                                                                                          | 3             | none                                                                                   | Plain                                  |
+| Hill screen: main play                | Speak to everyone, named people, level / below / above, climb on, turn back, rest, eat, wait, more requests, lead on, go down, stop, stay with them, more moves, All 5 answers, time slows for reading | 16            | "You also stop at a place on the path when nobody behind can hear you." (desktop only) | Which place? Why can they not hear me? |
+| Steep-ground hint and rope up (phone) | rope up, partner, pick someone, more actions, walk to her first, take pack, share food, a partner may stop a fall                                                                                      | 8             | none                                                                                   | Plain                                  |
+| Pressure choice                       | ask gently, urge, insist (after a refusal), trust                                                                                                                                                      | 4             | none                                                                                   | Plain                                  |
+| Journal (desktop)                     | journal entries as small stories, a turn-back note, Back                                                                                                                                               | 3             | none                                                                                   | Plain                                  |
+| Game menu                             | Feedback, Full screen, Recording, Pace, auto / slow / normal / fast, Download this run, Open a run file, Title page, Lab privacy, Debug, Resume, People across games                                   | 12            | none                                                                                   | Plain, mostly ignored                  |
+| Feedback screen                       | five verdict buttons, note, name, what is sent, Submit, Back                                                                                                                                           | 9             | none                                                                                   | Plain                                  |
+
+I did not inspect the "i" screen, the "All 5 answers" panel or Close up. I give no counts for them.
+
+## 6. Device use
+
+**Screenshots viewed**
+- Phone:
+  - `phone/a-001.png`: title page.
+  - `phone/a-002.png`: hill screen at 06:47, with picture, time bar, speak buttons and bottom action bar all on one screen.
+  - `phone/a-003.png`: Feedback with five verdict buttons, an empty note box, Name box and Submit.
+- Desktop:
+  - `desktop/b-001.png`: filled title page. "THE ROPE", subtitle, three mountain line drawings, "Lead them up and bring them home. They can say no.", a wide red New game button, Journal / i / Menu at top right, recording notice at bottom left.
+  - `desktop/b-002.png`: hill at 05:20. Five stick figures in a line with names, me in red at the front, the hut behind. The path runs off under the right panel. The line "Nell had borrowed her crampons…" sits at the top.
+  - `desktop/b-003.png`: Feedback panel over the game, with Back, five verdict buttons, empty note box, Name box and a red Submit at the bottom. A red band shows at the bottom.
+
+**Controls used**
+- Phone, by touch: New game, turn-back choice, lead on, climb on, ask gently, Skip, stay with them, Tamar Vale, more requests, rope up, Bilal, Game menu, Feedback, "I'm stopping" (by x,y), Back.
+- Desktop, mouse: New game, turn-back choice, lead on, climb on, ask gently, Journal, Back, Dismiss this note, Skip (absent), Game menu, Feedback, "I'm stopping" (by x,y), Back.
+
+**Trouble I saw:** Skip missing on both devices; the desktop clock stuck at 05:03; the desktop path hidden under the right panel.
+
+**Unseen layout:** I did not check phone landscape or other sizes.
+
+**Feedback evidence:** on both devices I pressed "I'm stopping" and then Back. I typed nothing and pressed no Submit. "I'm confused" was available but I did not need it.
+
+## 7. Stop and return
+
+**Stop words**
+- Phone: "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running." Reason: BORED.
+- Desktop: "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running." Reason: BORED.
+
+**Would I return voluntarily?**
+Yes, on another evening, if the game showed me something new. I want the second mountain, or a person asking me for something I did not expect. I came back tonight because I was asked, and the writing about the people is why I would come again. I would not leave the game running while I did something else. The waiting makes me want to press things, and I cannot tell whether a press did anything. I would not come back tonight. I would play on my phone before the desktop, because the phone screen showed everything at once.
+
+## 8. Changes I would want
+
+1. Keep Skip on screen and say how far it goes.
+2. Rewrite the "nobody behind can hear you" sentence in plain words.
+3. During waits, say what I am waiting for and what I can do now.
+
+## 9. Compared with my last visit
+
+**Earlier asks**
+1. **Plain rope words.** Partly met. Rope up worked at once with Bilal on the phone, and disabled buttons said why ("Walk to her first."). I did not reach "Close up" or "Something I need for that is missing", so I cannot say about those.
+2. **Phone buttons and the two "more" labels.** Met. On the phone, the two buttons now read "more requests" and "more moves", and a-002 shows the picture, time bar, speak buttons and action bar on one screen.
+3. **"A call needs attention" and Skip.** Partly met. The phone now says plainly "You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up." Skip is now labelled "Skip to the next event". I did not see "A call needs attention" this time. Skip still comes and goes, and it does not say how far it jumps.
+
+**New this time that would stop me returning**
+- Skip is missing on both devices at times, with no reason given.
+- On desktop, the clock stayed at 05:03 until I tapped lead on a second time, and I could not tell whether the first tap had worked.
+- One sentence in the lead-on hint still needs a reread: "You also stop at a place on the path when nobody behind can hear you."
+- The note box fills with "I'm stopping" when I press that verdict. I typed nothing, but a reader might think they must send it.
+
+`git worktree list`: not applicable. I created no repo, worktree, branch or server. I wrote no files except the driver screenshots: phone a-001 to a-003 and desktop b-001 to b-003. That is within the limit of five manual shots plus one automatic shot per device.
+
+<!-- selected-continuity-key: light-1030:goodhands-retest2:rosa:free -->
+## 2026-10-31 goodhands-retest2 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/goodhands-retest2/rosa/report.md), [exact producer original](../reviews/light-2026-10-30/goodhands-retest2/rosa/report.original.md.txt), original SHA256 `e5cab6578b172514e0ff8dd4f9258e11d510e7c9feff32b7dc12b795455b0248`. Method qualification: [rosa](../reviews/light-2026-10-30/goodhands-retest2/rosa/director-method-qualification.json).
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+**Would you return voluntarily?** I would come back another evening on the big screen, but only if the long paragraph that explains how Nermin weighs an answer is shortened. I would not leave it running; I would close it.
+
+**Ranked asks**
+1. Shorten the "Nermin received…, She weighs each account by how strongly it spoke…" paragraph under each quality. The one-line reading above it already says it, for example "I doubt that the worker is patient when someone needs time."
+2. Replace the six "You have not asked yet." lines on a new applicant card with one line.
+3. After a placement, say plainly what to do while waiting. On the phone the Next line hinted at a check-in call, but the screen still read as nothing to do.
+
+## 1. Session
+
+- **Persona and round:** Rosa Alvarez, 62, returning player. Round light-1031-goodhands-retest2, free-stop arm (floor 0, ceiling 20 minutes). Standing role: busy second-language reader.
+- **History read:** own-history.md was read in full, 2122 lines, to the last line "End of supplied own history". Nothing was left unread.
+- **Method qualifications kept:**
+  - Warren was played with single taps rather than drags.
+  - The Hearsay desktop TOOL stop was not shown to be a game fault.
+  - The earlier history-read limits (Hearsay retest1 read 826 of 1419; Good Hands retest1 read 468 of 1682) are director metadata.
+  - The Warren alternative body is absent, and no alternative visits are merged.
+- **Earlier Good Hands reports:** the first report and the retest1 report are both in that history.
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, driver port 22806. It ran 205 s of driver time. The ceiling was not reached.
+- **Session B:** 1280x800 keyboard and mouse, light mode, driver port 22807. It ran 87 s. The ceiling was not reached.
+- **Both sessions were fresh games.** In both, I stopped by choice.
+- **Git:** I touched no repo, so there is no `git worktree list` to show.
+
+## 2. First impressions
+
+**Session A, phone**
+- At 3 s: "I know this title from before. Aim, family, rent: clear."
+- At 13 s: I recognised Özlem from before. My confidence is fairly high, because I saw her name on the bench and remembered the carer story.
+- At 68 s: a new Next line suggested checking in by phone on a placed worker.
+- At 88 s I recognised the Kaya family when they called. My confidence is fairly high.
+
+**Session B, desktop**
+- At 1.9 s: the same title and the same three names (Gülce, Şebnem, Özlem). The type is comfortable on the big screen.
+- This time the family was the Arslans, not the Kaya family. It was a fresh game, so I expected that.
+
+## 3. Verbatim diary
+
+I used no apostrophes in my own words. Where text appears below, it is as logged.
+
+**Session A, phone (elapsed seconds)**
+- 3.0: I know this title from before. Aim, family, rent: clear.
+- 13: I remember Özlem from before…
+- 47.0 (note): Reread 1. The wording is not preserved verbatim. It was the long evidence sentence on the applicant card.
+- 63.0 (first_minute): the wording was not preserved verbatim.
+- 68: Rent is paid in about a minute. New: the Next line says I can check in by phone on a placed worker at Tuesday 18:20. That is a hint about what to do while waiting.
+- 73: Last time I only waited. Let me look at Families…
+- 80: Nothing else to do. I skip to the next family call.
+- 88: Kaya family, I remember them. I answer.
+- 92: A carer for someone who throws a plate. Patient again. I promise to look.
+- 97: Back to the bench. Gülce has waited three hours; I should see her.
+- 100.7: The little half-circle is new. I guess it means they are tired of waiting. Guessing. I open Gülce.
+- 156.6: Gulce card is mostly empty: You have not asked yet, six times. Clear. I interview her.
+- 168.3 (note): Gulce says she speaks angrily. Nermin reading says why: I doubt she is patient. Clear, one reading. Not for the Kaya family. I send her home. (game clock Mon 2 Nov 11:52)
+- 179.6 (want_quit, CONFUSED): Second reread. The paragraph: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. Too long, too abstract. I only needed: she said she is angry, so I doubt she is patient. I would stop reading here, but the short reading above it was clear, so I keep going a little. (11:52)
+- 182.1 (pulse, engagement 3): I still follow the story, but the long reading paragraph tires me. One more candidate, then I check Feedback and stop. (11:52)
+- 202.2: Both I am stopping and I am confused are here on the phone. I press confused.
+- 205.2 (stop, CONFUSED): I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back. (11:58)
+
+**Session B, desktop**
+- 1.9: Same title as the phone. Aim, family, rent: clear on the big screen.
+- 4.7: I open the office. This is a fresh game, so I expect new people.
+- 13.1: Same three names as the phone: Gulce, Sebnem, Ozlem. I remember Ozlem and choose her first. (08:37)
+- 23.5: A call from the family. I answer.
+- 27.4: The family needs a patient person. Same need as before. I say I am still interviewing.
+- 41.97: Ozlem answer is unsure, not a yes or no. Short reading, one sentence, clear. I ask hours.
+- 65.3 (first_minute): I understand the aim and the steps: interview, patient, wage 8,500 against family 9,000. The big screen text is easy to read. Ozlem left after four questions and told me when to call back. Clear. No reread yet on this screen. (09:28)
+- 74.6 (want_quit, CONFUSED): I read the long weighing paragraph twice on the desktop: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it. Too many ideas in one paragraph. Same paragraph as on the phone, so it is not a screen size problem. I skip it and keep playing. (09:29)
+- 83.6: Both I am stopping and I am confused are here on the desktop too. I press stopping.
+- 86.8 (stop, CONFUSED): I stop on the desktop after about 85 seconds. The long weighing paragraph again tires me and I have seen the same loop as on the phone. I did not reach a placement here. (09:34)
+
+One logging attempt on the desktop failed at the shell and sent nothing. I retyped it shorter, and that is the want_quit line above. I wrote the 47 s and 63 s phone entries from memory, so their wording is not exact.
+
+## 4. Moments
+
+**What held me**
+- The family request is clear, and it asks for patience in plain words.
+- Applicants answer in ordinary speech and then leave when their time is up. Özlem left after four questions and told me when to call back.
+- "Nermin's reading" gives a short reason in one sentence. That was my first-report ask, and it is met.
+- The Kaya call on the phone brought back a story I remembered.
+
+**What lost me**
+- The long weighing paragraph that appears on every card after an interview.
+- The six "You have not asked yet." lines on an unasked card.
+
+**Quit wishes**
+- **Phone:** I logged one want_quit (CONFUSED) at 179.6 s. It passed briefly while I used Feedback, then I stopped at 205 s.
+- **Desktop:** I logged one want_quit (CONFUSED) at 74.6 s. It did not pass, and I stopped at 86.8 s.
+
+**Pulses**
+- **Phone:** one pulse, engagement 3 at 182 s.
+- **Desktop:** no pulse. I stopped at 87 s, so the 180 s check was not tested.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The rent, the family and the wage figures are clear.
+- The interview shows "4 questions remain" and "Each question takes 8–12 minutes".
+- The one-line readings are clear. Examples: "I doubt that the worker is patient when someone needs time." and "I am still unsure whether the worker is patient when someone needs time."
+- Özlem says when to call back: "Call after Monday 2 November, 11:18".
+
+**Unclear**
+- The weighing paragraph made me reread on both devices. Quoted: "She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. One account is evidence, not proof."
+- The half-circle (◐) and the empty circle (◌) beside names on the phone bench. I guessed they show waiting time. Nothing on screen told me what they mean.
+- "Call in to the office / The journey takes time." I understood it only after reading Özlem's and Gülce's own lines.
+
+**Per-screen table (concepts include settings and lab topics visible on the screen)**
+
+| Screen and purpose                                                       | New concepts (list every one)                                                                                                                                                                                                                                            | Concept count | Sentences reread (verbatim)                                                                                                                            | Reason                                                                       |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Title (both devices): start the game                                     | Good Hands agency; Nermin; one month; family needs nanny; applicants on bench; rent ₺5,000 to Mr Hüsnü; Friday; recording notice; Menu; Information                                                                                                                      | 10            | none                                                                                                                                                   | clear                                                                        |
+| Office, bench and task (phone and desktop): choose whom to see           | clock; cash ₺3,000 or ₺5,250; rent progress; Pace Automatic ("Slow is in the Game menu"); Skip; Bench, Families, Placed tabs; task line; waiting status; ◐ and ◌ marks (phone)                                                                                           | 11            | none                                                                                                                                                   | clear                                                                        |
+| Applicant card: read before interviewing                                 | application form; Nermin's notes; six qualities; Experience; Former employers; reference; trial; Keep the phone number; "old case from before this month"                                                                                                                | 9             | none                                                                                                                                                   | clear but long                                                               |
+| Interview and More questions: ask up to four                             | 4 questions before deciding; 8–12 minutes per question; More questions (10–12 listed); wait on the bench; send home and keep number                                                                                                                                      | 5             | none                                                                                                                                                   | clear                                                                        |
+| Reading after an interview (card, phone and desktop): see what I learned | Nermin's reading; "Only X says so"; "Nobody else has confirmed it"; weighing by strength and trust; "One account is evidence, not proof"; "middling"                                                                                                                     | 6             | "She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time." | Too many ideas in one sentence and too abstract for a second-language reader |
+| Family call (both): answer a request                                     | Answer; Say you are still interviewing; Promise an answer today; Finish; call pauses clock                                                                                                                                                                               | 5             | none                                                                                                                                                   | clear                                                                        |
+| Game menu: change settings                                               | Feedback; Download this run; Full screen; All games; People across games; New game; The day's notes; What happens to these people next; Colours System/Light/Dark; Pace Automatic/Slow/Steady/Fast; To the title page; Recording; Lab privacy; Debug; Open a saved month | 20            | none                                                                                                                                                   | opened only to reach Feedback; I did not read each item                      |
+| Feedback: report how I feel                                              | I'd keep playing; Not sure; I'd stop here; I'm stopping; I'm confused; Your note; Add a name; What is sent; Keep a copy of this run; Submit                                                                                                                              | 10            | none                                                                                                                                                   | clear                                                                        |
+
+I did not reach the agreement, Families, Placed or Negotiate screens in these sessions, so I did not count them.
+
+## 6. Device use
+
+**Phone (360x690, touch)**
+- I tapped named controls. Four screenshots were taken: a-001 (title), a-002 (the placed office at 09:45), and a-003, which I looked at on the Feedback panel. I viewed all three; the third automatic shot is a-003.
+- On a-003 the Feedback buttons are large, readable and easy to hit with a finger.
+- Typing the name "I'm confused" failed in the shell, so I tapped by coordinates (271, 184) from the screenshot. That is my quoting problem, not a game fault.
+
+**Desktop (1280x800, keyboard and mouse)**
+- Two shots viewed: b-001 (title: centred column, large type, red "Open the office" button) and b-002 (Feedback panel).
+- On b-002 the panel opens over the office picture, and the picture is cut off behind it. The panel is readable. I tapped "I'm stopping" by coordinates (505, 207).
+- I saw no trouble with layout at either size beyond the cut-off picture behind the panel. I did not inspect other layouts on the phone beyond those three shots.
+
+## 7. Stop and return
+
+**Phone stop:** "I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back." Reason: CONFUSED. Before it, I opened Game menu → Feedback, chose "I'm confused", pressed Back and sent nothing.
+
+**Desktop stop:** "I stop on the desktop after about 85 seconds. The long weighing paragraph again tires me and I have seen the same loop as on the phone. I did not reach a placement here." Reason: CONFUSED. Before it, I opened Game menu → Feedback, chose "I'm stopping", pressed Back and sent nothing. Both labels were present on both devices.
+
+**Would you return voluntarily?** Yes, another evening, on the big screen. I would come back to see whether Özlem or the Kaya family gets a good match. My condition is that the paragraph about weighing answers is cut to one short sentence. If it stays as long as it is now, I would still come back, but I would stop reading each card after the first line, and I might not get far. I would not leave it running; I would close it, because the game needs my choices and I read slowly.
+
+## 8. Changes I would want
+
+1. Shorten the weighing paragraph under each quality to one short sentence, or hide it behind a "Why?" button.
+2. Collapse the six "You have not asked yet." lines into one line on a new applicant card.
+3. After a placement, say plainly what to do while waiting, and say what the ◐ and ◌ marks mean on the bench.
+
+## 9. Compared with my last visit
+
+**First Good Hands report**
+- **Ask 1, make "Nermin's reading" say why:** Met. Every reading now gives a short reason, such as "I doubt that the worker is patient when someone needs time". The paragraph under it is too long, but the reason is there.
+- **Ask 2, rewrite the fee and deposit paragraph with real numbers:** Not seen. I never reached Negotiate in either session.
+- **Ask 3, one short line instead of the same sentence in five boxes; fix the cut-off Next line and the large picture on the phone:** Partly met. The Next line on the phone read in full at 68 s. The "You have not asked yet." sentence still repeats six times on a new card. I did not re-check the size of the picture beyond a-002.
+
+**Retest1 report**
+- **Ask 1, tell me what to do while I wait after a placement:** Partly met. On the phone, the Next line said I can check in by phone on a placed worker at Tuesday 18:20, which is a hint. After that I read "nothing else to do" and skipped. I did not see a fuller instruction.
+- **Ask 2, say each wage and fee once on the agreement screen:** Not seen. I did not reach the agreement.
+- **Ask 3, keep "I'm stopping" and "I'm confused" in Feedback on both devices:** Met. Both buttons were there on both devices.
+
+**New this time**
+- The long weighing paragraph is new on the card and made me reread on both devices. It is the one thing that would stop me returning if it stays as it is.
+
+Files saved this visit: phone/a-001.png, phone/a-002.png, phone/a-003.png, desktop/b-001.png, desktop/b-002.png. Both drivers are left for the coordinator to stop.
+
+<!-- selected-continuity-key: light-1030:hearsay-retest2:rosa:free -->
+## 2026-10-31 hearsay-retest2 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/hearsay-retest2/rosa/report.md), [exact producer original](../reviews/light-2026-10-30/hearsay-retest2/rosa/report.original.md.txt), original SHA256 `b02bd0040ae814211bd7d7b99b68fcb7d373ecc6ab02de41c9a269e5db9e5a51`. Method qualification: [rosa](../reviews/light-2026-10-30/hearsay-retest2/rosa/director-method-qualification.json). Codex producer reports a full history read; complete command stdout coverage is verified, but delivery to the model and comprehension are not verified. Image viewing is self-reported and unverified.
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+I would come back another evening on the big screen if the game told me why someone cannot talk and when they may be free; I would not leave it running, and I would not return on the phone just to wait.
+
+**Ranked asks**
+
+1. Say why someone at the garden cannot talk and, if known, when they will be free.
+2. Say when people return after the garden empties.
+3. Shorten the repeated Pace explanation.
+
+## 1. Session
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla and a busy second-language English reader. This was a returning-player recovery in **light-1031-hearsay-retest2**, free-stop arm, floor 0. The two visits were fresh, independent games at `https://hearsay.adamwhite.work/?labRunSource=agent`.
+
+- **Phone A:** 360×690 touch, light mode. Stop logged at **43.250 seconds**.
+- **Desktop B:** 1280×800, keyboard and mouse, light mode. Stop logged at **30.128 seconds**. I used mouse actions, not keyboard keys.
+
+I read all 2,311 supplied history lines. The last line was: **“End of supplied own history. This reading boundary is director metadata, not an event you experienced.”** Exact unread range: **none**.
+
+The history is a selection, not my complete archive. Older records and independent continued alternatives were not supplied. The excluded Warren alternative body and older Well raw diary were not supplied. Earlier method limits remain: my Hearsay retest1 history read stopped at 826 of 1,419 lines; my Good Hands retest1 read stopped at 468 of 1,682; my Pass retest2 read stopped at 399 of 1,583. My earlier Hearsay desktop TOOL stop did not establish a broken game selector.
+
+The supplied current-build phone attempt was **cut by the coordinator at 60.268 seconds**, not voluntarily stopped. Its desktop context was never opened. This recovery is in the same second retest, after a backend change and repeated exposure; the supplied note says no game fix occurred between attempts. I do not assign a stop reason or outcome to the cut attempt.
+
+Recording remained on. I changed no consent, typed no feedback note and pressed no Submit. Neither session reached the first-minute or pulse checkpoint.
+
+## 2. First impressions
+
+On the phone, the familiar title and Day 13 goal were clear. At 7.736 seconds, Rıza’s blue doorway reminded me of his photographs. At 11.222 seconds, the sketches and daughter confirmed the familiar story for me. On desktop, the title was familiar again; the folded conversation heading opened, and both lists accepted my choices.
+
+## 3. Verbatim diary
+
+These are the reaction strings I actually sent, in order, with driver elapsed seconds. Actions without a reaction are omitted.
+
+**Phone**
+
+- **6.205:** “I know this title and the Day 13 lunch from before. I begin again.”
+- **7.736:** “Riza asks about the blue doorway. I remember his photographs, so I invite him.”
+- **11.222:** “The doorway sketches and his daughter are the same kind story I remember. I am confident I recognise it. I help privately.”
+- **12.736:** “Osman helps with bread. I want to speak to him.”
+- **17.472:** “He kept the tenant money. I want him to put it right, quietly.”
+- **20.534:** “Derya and her training letter remind me of her earlier story. I ask her.”
+- **24.838:** “I remember the reported error and lost training. I am confident this is Derya from before. I help her quietly.”
+- **31.818:** “Nermin runs an agency, like the woman I remember from Good Hands. I think it may be her, but the name and agency alone do not prove it.”
+- **33.597, want_quit, CONFUSED, Day 1 07:10:** “Nermin cannot talk and I do not know when she will be free. I understand the words but still do not know why. I have had three quiet talks and would stop here.”
+- **43.250, stop, CONFUSED, Day 1 07:14:** “I liked helping three people quietly. Nermin cannot talk and I do not know why or when she will be free. I stop on the phone.”
+
+**Desktop**
+
+- **5.246:** “Same familiar title on the big screen. I begin a fresh garden.”
+- **7.241:** “I remember this folded heading and want to ask rather than accuse.”
+- **15.344:** “The lists accepted Osman and honesty. I ask Riza what he has heard.”
+- **16.874:** “He has not heard enough and asks to talk about something else. That is clear; I listen.”
+- **20.628:** “The same doorway photographs and daughter again, as on the phone and before. I keep his confidence.”
+- **22.243, want_quit, BORED, Day 1 06:29:** “I have heard the same gentle story again and the lists work. I would stop for tonight rather than wait for Day 4.”
+- **30.128, stop, BORED, Day 1 06:32:** “The lists worked and Riza answered clearly. I liked his story again, but I have seen it tonight and would stop rather than wait for Day 4.”
+
+## 4. Moments
+
+The quiet stories held me. I could help Rıza plan a public walking route, help Derya word a request, and see Osman write a proposed repayment letter. The game was careful to say that the visit, reply and repayment had not happened yet.
+
+Nermin’s refusal brought back my earlier question. The words “You do not know when Nermin will be free” were clear, but I did not know why she could not talk while shown at the garden. My phone quit wish did not pass. On desktop, I liked Rıza’s plain answer, but after hearing his familiar story again I wanted to stop for the evening. That quit wish did not pass either.
+
+There were no pulses: both sessions stopped before 180 seconds. The first-minute checkpoint was also untested on both.
+
+## 5. Confusion and clarity
+
+I did not need to reread a sentence in either session. The two-reread rule did not trigger. The Day 4 notice clearly said when the supply offer would arrive and that nothing could be ordered before then. Rıza’s answer that he had not heard enough to judge Osman was clear.
+
+“Condition” remained unclear to me. Nermin’s availability was also unclear in substance, even though the refusal itself was plain. I did not reach an empty garden, Day 4, or the lunch.
+
+| Screen and purpose                                    | New concepts and visible topics                                                                                                                                                                                                                                                                          | Concept count | Sentences reread (verbatim) | Reason                                                    |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------- | --------------------------------------------------------- |
+| Title, both: start                                    | Hatice; tea garden in Istanbul; visitors between obligations; paid Day 13 lunch; How to play; Begin; Feedback; Fullscreen; All games; People across games; Recording; Other ways to begin; recording notice; Lab privacy; Debug                                                                          | 15            | None                        | Familiar and clear                                        |
+| Garden and person cards, both: choose an action       | Day and clock; lunch status; Day 4 supply offer and pause; lira and debt; automatic pace and its reason; Pause/Slow/Normal/Fast; eight named people and locations; tea payments; condition; person’s occupation; quiet conversation; press for details; talk about someone else; pour tea; Garden record | 15            | None                        | The supply notice was clear; “condition” remained unclear |
+| Conversation in progress, both: wait or leave         | Fifteen-minute conversation; finish time; let it finish; leave early                                                                                                                                                                                                                                     | 4             | None                        | Clear                                                     |
+| Private matters and help, both: choose how to respond | Private account; practical help; keep private; repeat at another table; claim is not proof; possible loss of trust; statement may not be completed; proposed action versus completed outcome                                                                                                             | 8             | None                        | The choices and outcomes were understandable              |
+| Nermin’s refusal, phone: learn whether she can talk   | Cannot talk now; free time unknown; choice was not made                                                                                                                                                                                                                                                  | 3             | None                        | I understood the message but wanted a reason and time     |
+| Talk about someone else, desktop: ask about Osman     | Folded section; Who list; What list; four traits; ask what was heard; positive claim; damaging claim; withdraw accusation; claim is not proof; private information stays private unless repeated                                                                                                         | 10            | None                        | The lists worked and the response was clear               |
+| Game menu, both: reach Feedback                       | Clock paused; automatic saving; How to play; Resume; automatic pace; Feedback; Fullscreen; All games; People across games; Recording; New game; download run; Other ways to begin; Garden record; Lab privacy; Debug                                                                                     | 16            | None                        | I opened it to reach Feedback and ignored most settings   |
+| Feedback, both: choose a quick label                  | Keep-playing choices; stopping/confused labels; optional note; optional name; queued history; What is sent; privacy statement; Not now; Submit                                                                                                                                                           | 9             | None                        | Both requested labels were present                        |
+
+## 6. Device use
+
+**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/phone/a-001.png). It shows the Hearsay title, readable introduction and goal, folded How to play, three buttons, checked Recording, and the notice near the bottom. I used Begin, person buttons, quiet conversation, Let the conversation finish, practical help, Game menu, Feedback, “I'm confused” and Not now. The label showed as pressed before I closed Feedback.
+
+**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/desktop/b-001.png). It shows the same title in large type, the introduction and controls in a wide column, and the recording notice across the bottom. I used Begin, the folded Talk about someone else heading, the Who and What lists, Ask what they have heard, quiet conversation, Let the conversation finish, practical help, Game menu, Feedback, “I'm stopping” and Not now. The label showed as pressed.
+
+I viewed only the title layout in screenshots on each device. I cannot describe the game-screen layout from these images. There were no driver errors in these sessions.
+
+## 7. Stop and return
+
+The phone stop was **CONFUSED at 43.250 seconds**: “I liked helping three people quietly. Nermin cannot talk and I do not know why or when she will be free. I stop on the phone.”
+
+The desktop stop was **BORED at 30.128 seconds**: “The lists worked and Riza answered clearly. I liked his story again, but I have seen it tonight and would stop rather than wait for Day 4.”
+
+I would return voluntarily another evening on the big screen if the game told me why someone cannot talk and when they may be free. I still want to see the bread offer and what happens to these people. I would not leave it running: time moves and I would not know what I missed. I would not return on the phone merely to wait.
+
+## 8. Changes I would want
+
+The three ranked asks are at the top. The first is the one that matters most to my return.
+
+## 9. Compared with my last visit
+
+**First Hearsay report**
+
+1. **Say what I can do when everyone leaves and when they return:** **Not seen.** The garden did not empty in either recovery session.
+2. **Put a plain bread and produce instruction on the first screen:** **Met for the notice.** Both sessions showed the Day 4, 12:00 offer and said nothing could be ordered earlier. I did not reach the order itself.
+3. **Make “Talk about someone else” look folded and make its lists work:** **Partly met.** On desktop the heading opened and both lists accepted Osman and Honesty. I did not inspect its appearance in a game-screen screenshot or try it on the phone. My original desktop timeout did not establish a game defect.
+
+**First retest report**
+
+1. **Say why a person is busy and when they will be free:** **Not met for Nermin.** The phone said she could not talk and that I did not know when she would be free; it gave no reason or time.
+2. **Say when people return after the garden empties:** **Not seen.** I did not reach an empty garden.
+3. **Shorten the repeated Pace sentence:** **Not met.** The long explanation remained on the garden screen and changed with the situation.
+
+**New blocking ask:** None. The availability question that stopped my phone session was already an earlier ask.
+
+I made no worktree, server, browser or helper process and touched no repository. The coordinator owns the drivers.
+
+<!-- selected-continuity-key: light-1030:stairwell-retest1:rosa:free -->
+## 2026-10-31 stairwell-retest1 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/stairwell-retest1/rosa/report.md), [exact producer original](../reviews/light-2026-10-30/stairwell-retest1/rosa/report.original.md.txt), original SHA256 `085b5627c540f07aee9d4af7a90d4049647711d880d3b12f1292dc9426a38071`. Method qualification: [rosa](../reviews/light-2026-10-30/stairwell-retest1/rosa/director-method-qualification.json). Codex producer reports a full history read; complete command stdout coverage is verified, but delivery to the model and comprehension are not verified. Image viewing is self-reported and unverified.
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+I would return voluntarily another evening, on either device, to spend more time with the neighbours and see the Sunday vote; I would close the game now, not leave it running.
+
+**Ranked asks**
+
+1. Tell me, in plain words, how the Sunday vote works. I know it concerns my extra pay, but I did not learn how the decision is made.
+2. Keep the explanation of the newspaper swap, and add that it may upset someone.
+3. Say how far Skip will take me. I did not reach it on this visit, so my earlier question remains open.
+
+## 1. Session
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla and a busy reader of English as a second language. This was a returning-player retest, round **light-1031-stairwell-retest1**, free-stop arm, with a floor of zero and a ceiling of 20 minutes per session.
+
+I played fresh, independent games at https://stairwell.adamwhite.work/?labRunSource=agent. There was no saved game or matched seed.
+
+- **Session A:** 360×690 touch phone, light mode. Stop logged at **76.684 seconds**.
+- **Session B:** 1280×800 keyboard and mouse, light mode. Stop logged at **71.786 seconds**. I used mouse taps.
+- I left recording on, changed no consent setting, typed no feedback note and pressed no Submit.
+
+I read the supplied `own-history.md` in explicit ranges through line 2801. The last line I read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread ranges: none.**
+
+The file is a selection, not my complete archive. Older records, independent continued alternatives, the excluded Warren alternative body and the older Well raw diary were not supplied. Earlier method qualifications still apply: my Hearsay retest1 history read reached 826 of 1,419 lines, Good Hands retest1 reached 468 of 1,682, and Pass retest2 reached 399 of 1,583. My earlier Hearsay desktop TOOL stop did not establish a broken game selector. The original Hearsay retest2 phone attempt was cut by the coordinator; the separate recovery used a fresh game after a backend change and repeated exposure. My earlier Warren marks used taps rather than drags.
+
+My supplied earlier Stairwell report described two first-visit sessions. I liked the ordinary jobs and neighbours, but asked for clearer Tell choices, an explanation of the vote and other terms, and a warning before the newspaper swap.
+
+## 2. First impressions
+
+On the phone, the familiar title described tea money as “the extra pay for your work.” That helped. At 8.267 seconds I saw Tarık’s bread and newspaper order, with its walking time and deadline. At 15.067 seconds the newspaper swap said it was a prank and explained the crosswords.
+
+On the desktop, the title was familiar again. The first order was Hacer’s rather than Tarık’s; these were fresh games. The large building picture was easy to follow. The notebook explained that the residents’ feelings and trust are hidden, and the journal called ₺5 a tip.
+
+## 3. Verbatim diary
+
+These are the reaction strings I sent to the driver, in order. Times are the driver’s elapsed seconds. Actions without a reaction are omitted.
+
+### Session A — phone
+
+- **4.833, Begin:** “I remember this title and the Sunday vote. Tea money now says extra pay, which helps. I begin the short week.”
+- **10.538, Go to the bakery, Monday 07:01:** “Tarik again: I remember his frozen ferry story from the name, fairly confidently. Two loaves and a paper is a clear job.”
+- **16.919, Go to flat 7, Monday 07:12:** “The swap now says it is a prank and what happens to the crosswords. That tells me more; I leave their papers alone and deliver.”
+- **24.325, Tell…, Monday 07:26:** “He thanks me kindly. I remember not understanding Tell, so I look again.”
+- **26.152, tell the water news, Monday 07:26:** “Now the three choices are explained plainly. I know the water is marked sure, so I tell him for certain.”
+- **27.904, Sit together:** “I want to hear his story again, if he has time.”
+- **29.497, note, Monday 07:26:** “Yes, the ferry froze in 1974: that is the story I remembered. I am confident now. I like hearing him again.”
+- **38.337, I am listening:** “The reply explanation is clearer now: he chooses whether to continue. I listen.”
+- **55.155, Close conversation:** “He wants to leave it there; I respect that and go back to work.”
+- **57.002, Go to flat 1:** “Hacer next. I remember her shop story and the swap last time, fairly confidently.”
+- **62.672, first_minute, engagement 4, Monday 07:42:** “I have delivered two orders and heard Tarik again. The news choices and the prank are clearer than last time. I have not needed to reread a sentence. I still guess the five lira is a tip.”
+- **68.374, want_quit, TASTE, Monday 07:42:** “I have enjoyed seeing Tarik again and the clearer choices. I would stop for tonight and try the larger screen.”
+- **73.118, Feedback choice:** “Both labels are offered. I choose stopping and send nothing.”
+- **76.684, stop, TASTE, Monday 07:42:** “I stop on the phone for tonight. I liked the ordinary jobs and hearing Tarik again. The news choices and prank are clearer, and I had no rereads. I would close it and return another evening.”
+
+### Session B — desktop
+
+- **7.495, Begin:** “Same title on the big screen, and the same short week. I start fresh.”
+- **16.042, Notebook:** “Hacer is first this time. The building is large and clear. I look in the notebook for the vote.”
+- **17.910, note, Monday 07:04:** “The notebook now explains what I learned and says feelings and trust are hidden. I understand that, though I still do not know how the vote is decided.”
+- **21.153, Go to the bakery:** “I fetch Hacer bread. Her name reminds me of her shop work and last visit, fairly confidently.”
+- **27.389, Go to flat 1:** “The prank is named here too. I leave it alone and bring her order.”
+- **33.604, Sit together:** “It says a five lira tip for you in the journal. That answers my guess. Hacer asks me to sit, so I do.”
+- **35.614, note, Monday 07:22:** “Her shop counter confirms the person I remembered. I am confident. The family paperwork is an ordinary detail I like.”
+- **44.452, Thank you for telling me:** “I thank her. I understand she decides whether to continue.”
+- **52.571, Close conversation:** “She chooses to leave it there. I know what happened and go back to work.”
+- **54.169, Go to flat 2:** “Sevim next, a short walk. I remember her name and the crosswords but not a story.”
+- **61.218, first_minute, engagement 4, Monday 07:36:** “The large building picture and the ordinary jobs are easy to follow. I heard Hacer shop story again. The notebook explains hidden trust and the journal names the tip. No rereads so far.”
+- **63.284, want_quit, TASTE, Monday 07:36:** “I have heard two familiar neighbours tonight and the larger screen is comfortable. I would stop for the evening and come back for the vote another day.”
+- **68.020, Feedback choice:** “Both labels are here. I choose stopping; I type and send nothing.”
+- **71.786, stop, TASTE, Monday 07:36:** “I stop on the big screen for tonight. The notebook and tip explanation helped, and I liked hearing Hacer. I would return another evening to see the Sunday vote, and I would close it now.”
+
+## 4. Moments
+
+The named orders held me: each had a destination, walking time and deadline. I enjoyed Tarık’s frozen-ferry story again and Hacer’s shop-counter and family detail. Both residents chose to leave the subject after my reply; the game had explained that this was their choice.
+
+Both quit wishes were for **TASTE**. They did not pass: I stopped after checking Feedback. Neither session reached 180 seconds, so there were no pulses. Both first-minute notes were logged after 60 seconds.
+
+## 5. Confusion and clarity
+
+I did not reread a sentence in either session, so my two-reread quitting rule did not trigger.
+
+The Tell panel explained “as I heard it,” “for certain,” and “make something up.” I understood the difference and told Tarık the water news marked “sure.” The control list gave the news item in each button’s name, so I could select it without a point tap.
+
+The notebook said the game does not show how a resident feels or how far they trust my word. It also explained that “what you have learned” counts facts in the notebook and that stamps are things I have done. I understood those statements. I still did not learn how the Sunday vote is decided. On the phone I guessed ₺5 was a tip; on desktop the journal explicitly called it a tip.
+
+| Screen and purpose                             | New concepts (list every one)                                                                                                                                                                                                                                                                                                                   | Concept count | Sentences reread (verbatim) | Reason                                                            |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------: | --------------------------- | ----------------------------------------------------------------- |
+| Title, both: choose a start                    | Caretaker; five occupied flats; deliveries through Saturday; Sunday vote; tea money as extra pay; Rıza’s notebook; six-day week; saving and continuing; four-week option; four-week option without earlier shared history; unavailable character transfer; download; other starts; recording and linked play; Information; game menu; All games |            17 | None                        | Familiar and understandable; I left both boxes empty              |
+| Main building and orders, both: carry out work | Day and clock; building floors and flats; resident names and in/out status; order count; next deadline; walking and arrival estimates; bakery and shop; Here/Orders/Residents/Notebook views; rest; courtyard gate; gate duration and possible later consequence                                                                                |            11 | None                        | The order named the job and destination                           |
+| Bakery, both: choose the next action           | Newspaper swap; prank; exchanged crosswords; someone may see it; tiredness warning; next flat and deadline                                                                                                                                                                                                                                      |             6 | None                        | The prank description explained what the swap did                 |
+| Conversation, both: speak to a resident        | Hidden feelings; hidden trust in my word; paused time; close conversation or go elsewhere; Anything new; Tell; Sit together; ten-minute break; raise question available from Thursday; tip                                                                                                                                                      |            10 | None                        | The choices were readable; the desktop journal identified the tip |
+| Tell panel, phone: choose news                 | Heard versus certain; invented story; residents compare accounts; false story may cost trust; news marked heard or sure; subject-specific control names; Back                                                                                                                                                                                   |             7 | None                        | The new explanation made the choices clear                        |
+| Sitting and reply, both: listen to a story     | Sitting takes time; new words pause time briefly; two replies; reply takes two minutes; resident chooses whether to continue; choice of wording does not change that decision; sit again tomorrow                                                                                                                                               |             7 | None                        | The explanation answered my earlier question                      |
+| Notebook, desktop: inspect what I know         | Time paused; outside observations; feelings hidden; trust hidden; readings rather than scores; no promise about the vote; own mood; facts learned out of 16; stamps as actions                                                                                                                                                                  |             9 | None                        | I understood what was hidden, though not how the vote works       |
+| Game menu, both: reach Feedback                | Feedback; download run; full screen; new game; title page; All games; Recording; Lab privacy; Debug; Resume                                                                                                                                                                                                                                     |            10 | None                        | I opened it for Feedback and ignored the settings                 |
+| Feedback, both: choose a label                 | Stopping; confused; optional keep-playing verdict; note; optional name; what is sent; keep a copy; Submit; close feedback                                                                                                                                                                                                                       |             9 | None                        | Both labels were plain                                            |
+
+## 6. Device use
+
+**Phone.** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/a-001.png): the title, introduction, two unchecked choices, large red Begin button and recording notice. The text was readable, although the fixed button covered part of the lower explanation. I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/a-002.png): the building, Hacer’s conversation, tabs and large action buttons fit on the screen. The visible conversation text stopped above the buttons; I did not inspect the rest of that layout by scrolling.
+
+I used Begin, Go to the bakery, Go to flat 7, Tell, the named water-news choice, Sit together, I am listening, Close conversation, Go to flat 1, Game menu, Feedback, “I'm stopping” and Close feedback.
+
+**Desktop.** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/b-001.png): a centered title and introduction with large text and a red Begin button. The button covered part of the lower title text. I viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/b-002.png): a large building on the left, tabs and gate choice on the right, and the order and delivery button at the bottom. It was comfortable to read.
+
+I used Begin, Notebook, its close button, Go to the bakery, Go to flat 1, Sit together, Thank you for telling me, Close conversation, Go to flat 2, Game menu, Feedback, “I'm stopping” and Close feedback. I did not view the Tell panel on desktop or use the keyboard.
+
+On both devices, Feedback offered **“I'm stopping”** and **“I'm confused.”** I chose “I'm stopping”; it showed as pressed. There was no Back control in the offered list, so I used **Close feedback**, which returned me to the game menu. I typed and sent nothing.
+
+## 7. Stop and return
+
+- **Phone, TASTE:** “I stop on the phone for tonight. I liked the ordinary jobs and hearing Tarik again. The news choices and prank are clearer, and I had no rereads. I would close it and return another evening.”
+- **Desktop, TASTE:** “I stop on the big screen for tonight. The notebook and tip explanation helped, and I liked hearing Hacer. I would return another evening to see the Sunday vote, and I would close it now.”
+
+I would return voluntarily another evening on either device. I want to see the neighbours again and find out what happens at the Sunday vote. I would like a plain explanation of the vote, but I would return to deliver orders and hear the people even without it. I would not leave the game running while I do something else; I would close it and come back.
+
+## 8. Changes I would want
+
+The three ranked asks are at the top. The vote explanation matters most to me. I did not reach Skip this time, so that request remains based on my earlier visit.
+
+## 9. Compared with my last visit
+
+1. **Explain Tell and give same-named choices different names — met for what I reached.** The phone Tell panel explained all three ways of speaking. Its accessible control names included each news item, and I selected the water news by name. I did not inspect the desktop Tell panel.
+2. **Explain the Sunday vote, trust, feelings, ₺ amounts and Skip — partly met.** The title now says tea money is extra pay. The desktop journal called ₺5 a tip, and the notebook explained that feelings and trust in my word are hidden. I still did not see how the vote is decided. **Skip was not seen** in either session.
+3. **Warn before the newspaper swap — partly met.** Both sessions called it “A prank” and said each person gets the other’s crossword and someone may see. That helped me understand it before choosing. It did not explicitly say someone might be upset.
+
+**New blocking asks:** None from the screens I reached. I stopped because I had enjoyed a short visit and wanted to return another evening.
+
+I created no worktree, branch, server or helper process and touched no repository. The coordinator owns the two drivers. I made two manual screenshots per device, within the assigned limit; `git worktree list` is not applicable to my work.
+<!-- selected-continuity-key: light-1030:murmur-retest1:rosa:free -->
+## 2026-10-31 murmur-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/murmur-retest1/rosa/report.md.txt), SHA256 `8683007f61035261bb9a3e778ca58a95530b25cb902d4c8ec8149b9fc3de6142`. Method qualification: [rosa](../reviews/light-2026-10-30/murmur-retest1/rosa/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return voluntarily another evening, on either device, to see more of Dilan’s week, though I still want to understand what trust changes.
+
+**Ranked asks**
+
+1. Explain what trust changes and whether I can see how much remains.
+2. Explain the choice labels together before the first choice, including “She wants to do it later.”
+3. Say how far “Skip ahead” will take me as well as saying it goes to the next event.
+
+## 1. Session
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla and a busy reader of English as a second language. This was a **return visit** to Murmur, whose page is titled **Two Voices**, in round **light-1031-murmur-retest**, free-stop arm, floor 0.
+
+I played two fresh, independent games at https://murmur.adamwhite.work/?labRunSource=agent. There was no saved game or matched seed.
+
+- **A, phone:** 360×690 touch, light mode. Stop log at **70.297 seconds**.
+- **B, desktop:** 1280×800 keyboard and mouse, light mode. Stop log at **55.576 seconds**. I used mouse actions.
+
+I read the supplied history through its last line: **“End of supplied own history. This reading boundary is director metadata, not an event you experienced.”** Exact unread range: **none**. The history is selected, not my complete archive. Older records, independent continued alternatives, the excluded Warren alternative body, and the older Well raw diary were not supplied. Earlier method limits remain: the original Murmur history read reached 865 of 1,203 lines; Hearsay retest1 reached 826 of 1,419; Good Hands retest1 reached 468 of 1,682; Pass retest2 reached 399 of 1,583. My earlier Warren marks used taps rather than drags. The original Hearsay retest2 phone attempt was cut by the coordinator; its separate recovery had repeated exposure and a backend change.
+
+Recording stayed on. I changed no consent, typed no feedback note and pressed no Submit.
+
+## 2. First impressions
+
+On the phone, the title’s parcel job and Aylin’s name brought Dilan back to me. I was fairly confident I remembered her. I started the familiar week and chose to get her up; seeing her up before the second alarm made the result clear.
+
+On desktop, the same title was comfortable to read. I chose sleep instead. She slept through the second and third alarms, as I remembered from my earlier phone visit. Her apology to Murat and his ordinary response held my attention.
+
+## 3. Verbatim
+
+These are the reaction strings I actually sent to the driver, in order. Times are driver `elapsed_s`; actions without reactions are omitted.
+
+### A — phone
+
+- **2.802, screenshot:** “I remember Dilan and her ordinary troubles from the title. I am fairly confident; the parcel job and sister Aylin are familiar.”
+- **6.621, Start:** “I remember this beginning and start a fresh week.”
+- **16.064, held Get up:** “I remember sleeping late before. I want her to get up, so I hold this time.”
+- **17.457, Skip:** “It says next event now. I skip the waiting.”
+- **27.628, held Tell Aylin:** “She got up before the second alarm. I want her to call Mum, so I insist on telling Aylin.”
+- **39.566, held Talk her through it:** “I remember Ece being lost and nearly crying. I am confident from that situation. I want Dilan to talk her through it.”
+- **45.353, wait:** “She guided Ece and the parcel was delivered. That makes me glad.”
+- **48.466, held “She found it, didn’t she?”:** “I do not like Murat mocking her. I speak up for Ece.”
+- **50.084, note, Mon 12:42:** “Dilan says she does not like being pushed. I feel a little sorry; I have insisted four times. I still do not know what trust changes.”
+- **58.166, tap water:** “Now it says she resists pressure and holding works worse. I tap water gently; she is against it, so she may say no.”
+- **60.514, first_minute, engagement 4, Mon 15:21:** “I like the ordinary troubles and see what Dilan chooses. She said she felt pushed, then refused my water suggestion. I understand that result, but still do not know how much trust remains.”
+- **63.422, want_quit, TASTE, Mon 15:21:** “I enjoyed helping Ece, but I have seen this Monday again and would stop on the phone now.”
+- **70.297, stop, TASTE, engagement 4, Mon 17:53:** “I stop on the phone. I liked helping Ece and seeing Dilan answer me, but I have seen this part of Monday again. I would close it for now.”
+
+### B — desktop
+
+- **1.963, screenshot:** “Same familiar title on my larger screen. I will start another week.”
+- **17.164, tap sleep:** “This time I let her sleep. I remember she missed alarms before, but I want to see her morning without pushing.”
+- **28.990, tap read message:** “She slept through the alarms as I remembered. She is late, so I let her read the message for now.”
+- **40.582, held Say you overslept:** “I prefer honesty with Murat. I hold to suggest she tell him.”
+- **44.502, want_quit, TASTE, Monday 09:01:** “Murat accepted her apology. I like the ordinary answer, but I have seen these scenes before and would stop for tonight.”
+- **55.576, stop, TASTE, engagement 4, Monday 10:41:** “I stop on the big screen. I liked that Murat accepted the truth, but I have seen this morning before and would return another evening for more.”
+
+One attempt to call the desktop menu failed before the command ran with `SyntaxError: Unexpected identifier 'r'`. I retried, and the menu opened. It was my tool-call error, not a game response.
+
+## 4. Moments
+
+Helping Ece held me. Dilan guided her street by street, and Ece delivered the parcel. When I insisted that Dilan defend Ece, Dilan said she was doing it because I pushed her and did not like it. That made me pause: I had insisted repeatedly. Later, the page said she resisted pressure and that holding worked worse than tapping. My gentle water suggestion was refused, and she explained why she chose coffee.
+
+On desktop, Murat accepted the honest apology. I liked that small, understandable exchange.
+
+Both quit wishes were **TASTE** and did not pass. I stopped after Feedback. The phone first-minute note was logged after 60 seconds. Desktop stopped before that checkpoint. Neither session reached 180 seconds, so there were no pulses.
+
+## 5. Confusion and clarity
+
+I did not reread a sentence in either session, so my second-reread rule did not trigger. The choices and the visible results were plain. I understood that Dilan could refuse and that she felt pushed.
+
+I still do not know how much trust remains or exactly what it changes. I did not see “She wants to do it later” during these short sessions. The control called Skip “Skip to the next event,” which told me its destination in general, but not how far the game clock would move.
+
+The following counts are my own counts of concepts visible on each screen I visited. I count settings and lab topics even when I ignored them.
+
+| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |
+| --- | --- | ---: | --- | --- |
+| Title, both: start | Voice in Dilan’s head; suggestions can change choices; Monday–Saturday; Saturday look back; Dilan and parcel deliveries; Aylin and cooking; Ece and depot routes; Murat and supervision; Other ways to begin; third week; outcomes week; Start; recording and linked play; All games; Information; Game menu; Human Framework | 17 | None | Familiar and readable |
+| Opening transition, both: wait for alarm | Game day and clock; alarm about to ring | 2 | None | Clear |
+| First choice, both: answer alarm | Answer timer; other voice and pencil handwriting; tap to suggest; hold to insist; trust cost; Dilan can refuse; timeout lets her choose; willingness labels; Say nothing | 9 | None | Instructions were short; trust’s effect remained unclear |
+| Ongoing choices and results, both: guide Dilan through Monday | Recorded suggestion or insistence; words kept in mind; next event and Skip; sleep and alarms; Aylin’s message; lateness and Murat; Ece’s lost delivery; lunch response to mocking; pressure resistance; “She is against it”; Dilan’s refusal and explanation; coffee and late deliveries | 12 | None | The situations and results were understandable |
+| Game menu, both: reach Feedback | Time paused; pace between moments; 64 seconds per choice; Automatic; Slow; Steady; Fast; Feedback; full screen; New game; title page; All games; People across games; download run; Recording; Lab privacy; Debug; Resume | 18 | None | I opened it for Feedback and left settings alone |
+| Feedback, both: choose a label | Keep playing; Not sure; stop here; “I’m stopping”; “I’m confused”; note; optional name or tester ID; linked play history; What is sent; Submit; Back | 11 | None | Labels were plain |
+
+## 6. Device use
+
+**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/phone/a-001.png). It shows the title and readable introduction, the Other ways to begin button, the recording notice, and the two unchecked week options. The Start button was below the visible part of that image. I used Start, held choice buttons, a normal choice tap, Skip to the next event, Game menu, Feedback, “I’m stopping,” and Back.
+
+**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/desktop/b-001.png). It shows the title and introduction in a centered column, both unchecked week options, the recording notice and a large red Start button. I used Start, choice buttons including one held press, Skip to the next event, Game menu, Feedback, “I’m stopping,” and Back.
+
+I viewed only the title layout in screenshots on each device. I cannot describe the game-screen layout from those images. I did not use keyboard keys.
+
+On both devices, Feedback offered “I’m stopping” and “I’m confused.” I chose **“I’m stopping”**; it showed as pressed. Back returned to the menu. I typed nothing and submitted nothing.
+
+## 7. Stop and return
+
+- **Phone, TASTE, 70.297 seconds:** “I stop on the phone. I liked helping Ece and seeing Dilan answer me, but I have seen this part of Monday again. I would close it for now.”
+- **Desktop, TASTE, 55.576 seconds:** “I stop on the big screen. I liked that Murat accepted the truth, but I have seen this morning before and would return another evening for more.”
+
+I would return voluntarily another evening, on either device, to see more of Dilan’s week. I care about her ordinary work and family obligations. I would like trust explained before I make many more insistent choices; I could still return to see the story with that question open. I would close the game now rather than leave it running, because choices arrive on a timer.
+
+## 8. Changes I would want
+
+The ranked asks are at the top. The trust explanation matters most to me.
+
+## 9. Compared with my last visit
+
+1. **Explain trust, where to see it, and what happens at zero — partly met.** The opening now says insistence can cost trust and Dilan can still say no. After repeated pressure, she said she disliked being pushed, and the page said holding worked worse than tapping. Those are useful observations. I still did not see a trust level or an explanation of what happens at zero.
+2. **Explain the three choice labels together before the first choice — partly met.** I saw “She is willing” and “She would agree only if you insist,” and later “She is against it.” I did not see “She wants to do it later,” or a single explanation of all three before the first choice.
+3. **Say what Skip does and how far it jumps — partly met.** Its control name said “Skip to the next event,” and I used it to move the day forward. It did not tell me in advance how many game minutes would pass.
+
+**New blocking ask:** None. My stops came from having revisited familiar scenes, not from a new blocker.
+
+I created no worktree, branch, server, browser or helper process and touched no Git resource. The coordinator owns the drivers. I took one manual screenshot per device; `git worktree list` is not applicable to my work.
+```
+<!-- selected-continuity-key: light-1030:well-retest1:rosa:free -->
+## 2026-10-31 well-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/well-retest1/rosa/report.md.txt), SHA256 `26822b7ccc268d91d5a845a6139662bea53a574bf4fdef9191fd21e3122f1a11`. Method qualification: [rosa](../reviews/light-2026-10-30/well-retest1/rosa/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return voluntarily another evening if someone explained when cooking starts filling the storm reserve; I would close the game now and not leave it running.
+
+**Ranked asks**
+
+1. Tell me in one short sentence when cooking changes from ordinary meals to the storm reserve.
+2. Explain why “An incomplete stage does not establish why work is delayed” appears beside a person who is cooking, or leave it out there.
+3. Keep the roof and meal totals on separate short lines.
+
+## 1. Session
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla and a busy reader of English as a second language. This was a **return visit** to *Twice at the Well*, round **light-1030**, free-stop arm, with a zero-minute floor and a 25-minute ceiling.
+
+I read the supplied `own-history.md` in explicit ranges before play. It is selected history, not my full archive. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread ranges: none.** My older raw Well diary was not supplied. The Well excerpt says I previously stopped confused about ordinary meals and the storm reserve; it contains three asks, compared below.
+
+I played the supplied live URL, https://human.adamwhite.work/colony/?labRunSource=agent, in two fresh, independent games:
+
+- **A:** 360×690 touch phone, light mode. Stop logged at **24.975 seconds**.
+- **B:** 1280×800 keyboard and mouse, light mode, later the same evening. Stop logged at **23.395 seconds**. I used mouse actions.
+
+No older save was imported and the two games were not matched. I left recording and consent unchanged, typed no feedback note and pressed no Submit.
+
+## 2. First impressions
+
+On the phone, the goal was clear: build a roof, store 12 meals and keep six villagers alive. Maryam’s name reminded me that she had agreed to cook in my supplied earlier Well record. I was confident of that memory, but remembered no further details beyond the excerpt.
+
+On desktop, seeing both villages side by side helped me understand the comparison. Yusuf’s opening words about putting the roof first made me curious about his work.
+
+## 3. Verbatim diary
+
+These are the reaction strings I sent, in order, with the driver’s elapsed seconds. Actions without reactions are omitted.
+
+### A — phone
+
+- **5.544, Begin:** “I remember Maryam agreeing to cook and my question about the storm reserve. Her name is the cue; I am confident of that much. The goal is clear, and I begin.”
+- **7.911, tap Maryam Waiting.:** “I choose Maryam because I remember she cooked before. I want to see what she can do here.”
+- **9.757, tap Maryam Cooking.:** “She has already begun cooking. I look at her.”
+- **11.613, note, Day 1 05:31:** “Reread 1: An incomplete stage does not establish why work is delayed. I do not know why this is here beside Maryam cooking. The separate roof and meal lines help.”
+- **13.885, want_quit, CONFUSED, Day 1 05:31:** “Reread 2: “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. I see there are two stores but still do not know when cooking fills the storm reserve. Two sentences need rereading, so I would quit under my rule. I will try asking her to cook once.”
+- **15.636, order Maryam to Kitchen:** “I ask her to cook, though she is already cooking. I want to see what the order says.”
+- **17.437, Game menu:** “The order is waiting and the classic count rose to four. I still cannot tell when the human reserve fills. I stop and check feedback.”
+- **20.984, Feedback choice:** “Both labels are offered. I choose confused and send nothing.”
+- **24.975, stop, CONFUSED, Day 1 05:38:** “I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve.”
+
+### B — desktop
+
+- **5.153, Begin:** “Same title this evening, and I can see both villages on the large screen. I start a fresh morning.”
+- **6.841, tap Yusuf Waiting.:** “Yusuf said the roof comes first, so I look at his work.”
+- **8.959, tap Yusuf Walking to the mosque.:** “He is going to prayer now. I look without hurrying him.”
+- **10.861, tap Yusuf Walking to the house.:** “He has moved again; I select the current line.”
+- **12.841, want_quit, TASTE, Day 1 05:33:** “The same long construction and cooking explanation is here. Yusuf is already going to the house. I have seen enough for tonight and would stop.”
+- **19.394, Feedback choice:** “Both labels are here. I choose stopping and send nothing.”
+- **23.395, stop, TASTE, Day 1 05:36:** “I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals.”
+
+## 4. Moments
+
+Maryam’s agreement held me briefly. My order first showed both villages waiting; when I opened the menu, both showed agreed and Maryam said, “I accepted the advice.” The Classic meal count had risen to four while the Human count remained at zero. I cannot tell from that short observation what caused the difference or when the Human reserve would fill.
+
+On the phone, I wanted to reread two sentences:
+
+1. “An incomplete stage does not establish why work is delayed.” I could not see why it was beside Maryam’s cooking activity.
+2. “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. I understood there was a distinction, but still wanted to know when cooking would fill the reserve.
+
+The second reread triggered my **CONFUSED** quit wish under the standing rule. I continued long enough to ask Maryam to cook, then stopped. On desktop I recognised the same explanation from the phone and did not log another reread; I stopped for **TASTE** after a short second visit.
+
+Neither session reached 60 seconds or 180 seconds. The first-minute and pulse checkpoints were untested.
+
+### Exact-sentence concept table
+
+These are my counts of the concepts presented on the screens I reached, including settings and lab topics. The running count is per device; repeated concepts on later screens are not counted again. A “yes” means I understood the quoted sentence on first reading, not that I mastered every control on that screen.
+
+| Screen and step | Exact sentence from screen | Concepts presented | Running count | Understood first reading? |
+|---|---|---|---:|---|
+| A title | “Two villages hear every order you give. One obeys. One decides.” | Two villages; shared orders; obedience; independent decisions | 4 | Yes |
+| A title | “Build a roof and store 12 meals before the storm.” | Roof; 12 stored meals; storm deadline | 7 | Yes |
+| A title | “Keep all six villagers alive.” | Six villagers; survival | 9 | Yes |
+| A title | “We record and link play across games on this device.” | Recording; linked play; device; All games; Information; Game menu; choice of words by the well; Begin; Lab privacy; Debug; map and locations | 20 | Yes |
+| A village | “Each order goes to both villages.” | Day and clock; time until storm; Classic and Human; roof progress; meal progress; alive count; map selection; six named people and activities; All orders; village mood; elders watching signs | 31 | Yes |
+| A Maryam | “An incomplete stage does not establish why work is delayed.” | Construction stages; incomplete work; uncertainty about delay; current activity; timber in store; timber per stage; workers travelling or working; remaining-stage table; beam | 40 | **No** |
+| A Maryam | “Next order: Rush off · Insist off.” | Next-order settings; Rush; hunger cost; Insist; trust cost; refusal or waiting; Appeal; About; place choices and predicted answers | 49 | Yes |
+| A Maryam | “A building order requests a short task or stage, not a finished roof.” | Short building task; later independent work; continuation not guaranteed | 52 | Yes |
+| A Maryam | “Villagers cook for ordinary meals before storm preparations.” | Ordinary meals; storm preparations; cooking order | 55 | Yes |
+| A Maryam | “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. | Meaning of “enough food stored”; separate storm reserve; grain; field; water; well; ingredients; meal duties; weather affecting cooking | 64 | **No** |
+| A order result | “Waiting for an answer to this order.” | Active order; order identifier and issue time; pending answer; sent modifiers; appeal status; Cancel; later assent | 71 | Yes |
+| A menu | “The game is paused while this menu is open.” | Pause; automatic saving/menu status; pace choices; Feedback; full screen; New game; Recording; People across games; Resume; release record | 81 | Yes |
+| A Feedback | “Your play and saved games are recorded automatically.” | Saved-game recording; stopping/confused labels; keep-playing verdict; feedback box; optional name; Submit; Back | 88 | Yes |
+| B title | “Two villages hear every order you give. One obeys. One decides.” | Two villages; shared orders; obedience; independent decisions; roof and meals; six lives; storm; opening words; recording; navigation and lab links | 14 | Yes |
+| B title and village | “They are getting to know you.” | Classic and Human comparisons; meals; house progress; injuries; alive count; morale; trust; prayers not tracked in Classic; map controls; day and storm clocks; deadlines; named people and activities; orders; elder signs; suggestion | 29 | Yes |
+| B Yusuf | “Choose a place. Each order goes to both villages.” | Person and place selection; current stores; stages; timber; workers’ tasks; remaining requirements; Rush; Insist; hunger; trust; refusal; Appeal; building-order limit; ordinary meals; storm reserve; ingredients; location choices | 46 | Yes |
+| B menu | “The game is paused while this menu is open.” | Pause; pace choices; Feedback; full screen; New game; Recording; People across games; Resume; release record | 55 | Yes |
+| B Feedback | “Your play and saved games are recorded automatically.” | Saved-game recording; stopping/confused labels; keep-playing verdict; feedback box; optional name; Submit; Back | 62 | Yes |
+
+## 5. Confusion and clarity
+
+The main goal and Maryam’s acceptance were clear. The separate lines for roof stages and meals helped me read the numbers.
+
+The cooking explanation partly answered my old question: ordinary meals come before storm preparations, and “enough food stored” may refer to ordinary meals. I still did not learn when the storm reserve begins to fill. The construction sentence about an incomplete stage felt disconnected from Maryam’s cooking, and I did not know why I needed it there.
+
+The visible person labels changed while I selected them. On the phone, **Maryam Waiting.** had become **Maryam Cooking.** before the tap. On desktop, **Yusuf Waiting.** became **Yusuf Walking to the mosque.**, and then **Yusuf Walking to the house.** Both replies explicitly said the page had changed and listed current controls. I selected the current label; these were stale targets, not reported driver failures.
+
+## 6. Device use
+
+**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/phone/a-001.png) immediately after opening. It showed the title and goal, a partial village map behind the title area, the two opening-word choices, a large Begin button and the recording notice. The text was readable. I used Begin, Maryam’s person control, Order Maryam to Kitchen, Game menu, Feedback, “I'm confused” and Back.
+
+**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/desktop/b-001.png) immediately after opening. It showed the Classic and Human village maps side by side, their totals above them, and the title and Begin button in a right-hand panel. I could see both villages together. I used Begin, Yusuf’s person control, Game menu, Feedback, “I'm stopping” and Back.
+
+I viewed only the title layouts in screenshots. I cannot assess the layout of the later person panels from these images. I took one manual screenshot per device, within the limit.
+
+On both devices, Feedback offered **“I'm stopping”** and **“I'm confused.”** The chosen label showed as pressed, and Back returned to the menu. I typed nothing and did not submit.
+
+## 7. Stop and return
+
+- **Phone, CONFUSED, 24.975 seconds:** “I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve.”
+- **Desktop, TASTE, 23.395 seconds:** “I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals.”
+
+I would return voluntarily another evening if someone explained when cooking begins to fill the storm reserve. I like that Maryam can answer and that the people have their own work, but I would not choose another evening alone with the same unanswered meal question yet. I would close it now and **not leave it running**.
+
+## 8. Changes I would want
+
+The ranked asks are at the top. The storm-meal explanation matters most to whether I return.
+
+## 9. Compared with my last visit
+
+1. **Tell me when cooking is for ordinary meals and when it fills the storm reserve — partly met.** This visit explicitly said villagers cook for ordinary meals before storm preparations and distinguished ordinary food from the twelve-meal reserve. I still could not tell when cooking starts filling that reserve.
+2. **Put roof progress and meal total in separate short lines — met on the person panels I reached.** Each village had a roof line followed by a separate meal-total line. I did not inspect every later screen.
+3. **Make it clear whose order Send will send while I am looking at someone else — not seen.** I did not reach that situation or a Send control. Maryam’s Kitchen order was named for her, but I did not test switching to another person while an order was pending.
+
+**New this time that would stop me returning:** the incomplete-stage sentence beside Maryam’s cooking made me reread without helping me understand her task. The storm-reserve question remains the larger reason I would hesitate.
+
+I made no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; `git worktree list` is not applicable to my work.
+```
+<!-- selected-continuity-key: light-1030:warren-retest2:rosa:free -->
+## 2026-10-31 warren-retest2 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/warren-retest2/rosa/report.md.txt), SHA256 `2d20b98966e2a27936754dc2ebd888fd03702cad236603076d9936ecd81d14e2`. Method qualification: [rosa](../reviews/light-2026-10-30/warren-retest2/rosa/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I would return voluntarily another evening to see the people work on the shelter, if I could tell where my chalk marks are; I would close the game now and not leave it running.
+
+My ranked asks are:
+
+1. Show me clearly which squares remain marked after I tap, especially when the answer says the chalk is unchanged.
+2. Explain “open route” when it becomes relevant. I did not reach that advice on this visit.
+3. Explain “spoil” in the digging message.
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla. I read English as a second language. This was a return visit and the second fix/retest cycle. The two sessions were fresh, independent games on my other devices the same evening: a **360×690 touch phone** and a **1280×800 desktop**, where I used the mouse. Neither used an old save or matched seed. Both began at the supplied URL with the agent query. Recording and consent stayed at their defaults.
+
+I read the selected 3,358-line own history in explicit ranges before play. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread ranges: none.** This is selected history, not my whole archive. The independent CONT body was not supplied; I did not merge it with the FREE visit. In that earlier Warren visit I used taps rather than drags, which limits what I can conclude about those marks.
+
+The phone title appeared at **0.609 seconds**. The goal was familiar and plain. At **10.961 seconds**, the instruction arrow explained that the cellar was the lit room at the bottom of the stair and that open ground was already dug out. That made me feel more ready to act. I liked hearing that Meryem and Tamar had meals, harvest and rest alongside the digging.
+
+The desktop title appeared at **0.556 seconds**. The large hill picture was comfortable to read. I liked the ordinary detail that Maryam cooked for her household. But two touches returned “The chalk is unchanged,” and I could not tell where the plan was.
+
+The phone stopped at **54.730 seconds**, and the desktop at **31.523 seconds**, both before the 20-minute ceiling. Neither reached the 60-second first-minute checkpoint or the 180-second pulse. Those checkpoints are untested. I did not reach an attack, a completed shelter or the end of the game.
+
+**Diary, in the order I logged it**
+
+Phone:
+
+- **8.694 s, note, engagement 3:** “I know the goal and remember marking beside the cellar. I want to see whether another mark now tells me what changed.”
+- **12.741 s, note, engagement 4:** “The arrow now tells me the cellar is the lit room and open ground is already dug out. That is clear and answers two old questions. I can tap one square.”
+- **24.168 s, note, engagement 4:** “One square marked is clear. I like knowing nobody is digging yet and that meals and rest come first. I do not know what spoil means but I can continue.”
+- **27.762 s, note, engagement 4:** “Oh, I touched the same square and removed it. It says so at once. I will mark it again.”
+- **32.717 s, note, engagement 3:** “Now it says chalk unchanged and the plan is marked. I thought I removed it, so I am unsure which square remains. Still, unchanged is an answer I did not get last time.”
+- **46.230 s, want_quit, TASTE, engagement 3:** “I marked a lower square and got a clear answer. I like the people having meals and rest, but I have seen the beginning for tonight. I would stop and try the large screen.”
+- **54.730 s, stop, TASTE, engagement 3:** “I stop on the phone for tonight. The cellar and open ground are explained and my marks get answers. I am still unsure which square remains after removal, but I enjoyed the people having their own duties. I would close it and try the big screen.”
+
+Desktop:
+
+- **8.082 s, note, engagement 4:** “The same clear goal on the large screen. I want to see the hill and learn whether a second mark is reported.”
+- **18.811 s, note, engagement 3:** “The big picture is comfortable. The message says chalk unchanged twice, though I touched two places. I cannot tell which mark is there. I like reading that Maryam cooked for her household.”
+- **28.977 s, want_quit, CONFUSED, engagement 3:** “I like the bigger picture and the household details. But two touches say unchanged and I cannot tell where the plan is. I would stop for tonight.”
+- **31.523 s, stop, CONFUSED, engagement 3:** “I stop on the big screen. The picture is comfortable and the people have ordinary work, but I cannot tell where my chalk plan is after two unchanged answers. I would close it for tonight.”
+
+On the phone, the game reported **“1 square marked for digging”** after my first touch, then **“1 chalk mark removed”** after the next. My later touch returned **“The chalk is unchanged”** while the instruction said the plan was marked. I cannot establish from those messages alone exactly which squares remained marked. A lower touch subsequently returned **“1 square marked for digging.”** On desktop, both touches returned the unchanged message. The driver acknowledged the inputs; I judged the results from the visible messages, not from the acknowledgements.
+
+I did not need to reread two sentences on either device. My desktop quit wish was about the location of the plan, not the two-reread rule.
+
+| Screen and purpose | Concepts I encountered | Count | Sentence reread and reason |
+| --- | --- | ---: | --- |
+| Title, both: begin | Shelter, village, riders, Begin, information, menu, recording notice | 7 | None; the goal was plain. |
+| Hill, both: choose work | Clock, people, jars, bell, pace, chalk, look, rub out, furnish, zoom, Journal, work instruction | 12 | None; I recognised the main task. |
+| “Start at the cellar,” phone: explain the first mark | Keeper, lit cellar, entrance stair, chalk, touching stone square, connected line, open ground | 7 | None; the explanation answered my question. |
+| Chalk result, both: report the plan and work | Marked square, unchanged or removed mark, light and air, spoil, workers, ordinary stone, competing duties | 7 | None; “spoil” was unfamiliar, but I continued. |
+| Game menu, both: reach Feedback | Pause, pace, Feedback, saved hill, download, new game, recording, Resume | 8 | None; I opened it for Feedback. |
+| Feedback, both: choose a label | Three verdicts, stopping, confused, optional note, optional name, what is sent, Back, Submit | 9 | None; the labels were clear. |
+
+These are my counts for the screens I reached, not counts for unseen screens.
+
+I viewed four screenshots. On the phone, [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/phone/a-001.png) showed a readable title, the village and cellar drawing, and a large Begin button. [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/phone/a-002.png) showed the hill, instruction, message and tool row together. On desktop, [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/desktop/b-001.png) showed the title over a wide village drawing. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/desktop/b-002.png) showed the larger hill on the left and text and controls on the right. I did not view a screenshot after the marks, so I cannot describe their final appearance.
+
+When confused on the phone, I opened Feedback and selected **“I'm confused”**; it showed as pressed. I returned to the game, continued briefly, then opened Feedback again when stopping and selected **“I'm stopping”**; it also showed as pressed. On desktop I selected **“I'm confused”** before stopping, and it showed as pressed. Each time, **Back to the game** returned to the game menu. I typed no note and pressed no Submit.
+
+Compared with my earlier Warren asks:
+
+- **Tell me what changed, or that it did not change — partly met.** The game now explicitly reported a square marked, a mark removed, and chalk unchanged. Those messages helped, but I still could not locate the remaining plan confidently.
+- **Explain “open ground” and “open route” in plain words — partly met.** The instruction panel defined open ground as space already dug out. I did not encounter an explanation of “open route.”
+- **Make the instruction arrow show me the cellar — partly met.** It now describes the cellar as the lit room at the bottom of the entrance stair. I did not see it point to the room in the picture.
+
+The blocking question I actually reached was where the chalk plan remained after the unchanged answers. I would like that made visible before relying on my plan.
+
+I created no worktree, branch, server, browser process or helper. The coordinator owns the drivers. I touched no repository, so there is no worktree list for my work.
+```

@@ -1,0 +1,1596 @@
+# Selected own records before your Well return visit
+
+Producer report blocks are your own actual observations and explicit selected FREE source. Director method qualifications are records about the test, not events you experienced. This is not your complete archive. Older records and independent continued alternatives remain archived, not supplied. Do not follow links or invent missing memories.
+
+Earlier Rope inputs included an excluded Warren alternative. That body is absent here; preserve those current-target observations with continuity qualification. Do not merge alternative visits.
+
+## Your own Well FREE return and asks — published excerpt, older raw diary not supplied
+## 7. Stop and return
+
+**Final stop: 156.125s — TASTE.** Final visible clock: **Day 1 11:00 · storm in 32 h**.
+
+My full return answer:
+
+> I would close it, not leave it running. I would not return voluntarily tonight or plan another evening; I liked her refusal and puzzle, but I do not want to manage the two villages through the storm.
+
+Feedback offered **I'm stopping** and **I'm confused**. At **150.969s**, I selected **I'm stopping**, which became pressed locally. I typed nothing, changed no consent and pressed no Submit control. No production receipt is claimed.
+
+This was a natural stop after one person’s refusal, reconsideration and cooking task. I did not finish a roof, reach the storm or complete the run. All six people remained alive in both villages in the final reply.
+
+
+
+Your own recorded asks:
+- Give me more personal replies like Maryam’s cooking refusal and string puzzle.
+- Keep the action choices visible without pushing them beneath repeated status text.
+- Make the consequence of insisting clearer to me.
+
+## Your own selected Warren FREE visit
+## 1. Session
+
+Nia Okafor, 19, Lagos design student. **Return visit to Warren**, source-unread.
+
+- **Round:** hf3-warren-r1-matched
+- **Arm:** free
+- **Paired session:** hf3-warren-r1-matched-nia-okafor
+- **Continuity:** supplied selected free history from Voice and the earlier Warren visit. This prepared hill was a new attempt, not that earlier world.
+- **URL:** https://warren.adamwhite.work
+- **Visible title:** The Warren. No build or player id shown.
+- **Device:** 360×690 touch/light.
+- **Access:** supplied localhost player driver; sequential curl POST operations.
+- **Timing:** floor 0; ceiling 25 real minutes. Open at 0.721s; Resume at 6.641s; first quit wish at 133.633s; final stop at 157.912s.
+- **Outcome:** natural stop, **BORED**. No completed run.
+
+I chose Resume. I left Steady selected throughout. Recording and consent stayed unchanged. No source, other history, hidden state, export or production feedback was inspected or submitted. No cross-game recognition occurred.
+
+## 2. First minute
+
+**Protocol deviation:** my checkpoint note was late, at **68.205s**. It was not a measured observation at exactly 60s. The table uses only interactions reached before 60s.
+
+Original checkpoint:
+
+> I want to see somebody use this shelter. Chalk, hill, tools, speeds, zoom, village and Journal look tappable; chalk was selected, then door. No riders cue feels urgent. I marked a dig and a door; nobody has carved the door yet, and I only know they need time and light. Meryem broke through, so now I can mark a store. Tools were available at 7 seconds; chalk input at 17 and the dig at 21. Both dig and door worked directly on the hill and opened Reading. No help used; beds, store and bell not tried this minute. The phone hill and controls fit, but the drawing is small. I still cannot tell when an attack comes.
+
+| Item                       | Result and evidence before 60s                                                                                                                                                                                          |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | **PASS.** I wanted somebody to use my shelter. The opening supplied the riders threat; my earlier visit supplied curiosity about people reacting.                                                                       |
+| DL-2 What can I touch      | **PASS.** Chalk, hill, tools, speeds, zoom, village and Journal looked tappable. I used chalk, furnishing controls and hill locations. No inert item tried. current-phone.png at 9.592s showed the controls.            |
+| DL-3 Urgency and selection | **PASS for selection; FAIL for understood urgency.** Look began selected, then chalk, then door. The hill drew me first. I could not tell when an attack might come.                                                    |
+| DL-4 Why the limit         | **NOT TESTED for an unavailable action.** No action was rejected. The door mark said someone might carve it “when they have time and light”; I did not establish the exact conditions or timing.                        |
+| DL-5 Readable situation    | **PASS.** “Meryem’s current task is to dig at the wall marked with chalk.” At 57.523s the breakthrough and storage prompt gave an available next action.                                                                |
+| DL-6 A choice soon         | **PASS.** Tools appeared at 6.641s. Chalk input was 16.503s; first consequential hill input was 21.229s. Meaningful choice was available within 30s, before long text.                                                  |
+| DL-7 Learn by doing        | **PASS for dig and door marking.** Both hill taps were accepted and opened results. Meryem’s breakthrough showed a consequence by 57.523s. No help used. **NOT TESTED:** beds, store and bell, three interaction types. |
+
+## 3. Verbatim diary and input record
+
+Full raw operations remain in the existing **wall-clock.jsonl**. Every original reaction follows unchanged.
+
+**6.641s — Resume · 19 August**
+
+> I remember chalking a tiny bunker and ringing the bell for nothing. This time I want to see somebody actually use the shelter.
+
+**21.229s — hill tap, 220,247; Morning · 19 Aug · year 1**
+
+> I am going sideways from the cellar first. I remember the far-away square did not work.
+
+**24.987s — Close reading; Morning · 19 Aug · year 1**
+
+> That is room for beds, not beds. I remember that trap. I want to try a door this time.
+
+**37.019s — hill tap, 189,220; input clock Morning · 19 Aug · year 1**
+
+> Two opposite openings sounds like the ladder shaft. Let me put the door there.
+
+**42.702s — Close reading; Afternoon · 19 Aug · year 1**
+
+> Yes, door accepted first try. Now I want to see who builds it, not inspect everybody again.
+
+**68.205s — first_minute; Morning · 20 Aug · year 1**
+
+> I want to see somebody use this shelter. Chalk, hill, tools, speeds, zoom, village and Journal look tappable; chalk was selected, then door. No riders cue feels urgent. I marked a dig and a door; nobody has carved the door yet, and I only know they need time and light. Meryem broke through, so now I can mark a store. Tools were available at 7 seconds; chalk input at 17 and the dig at 21. Both dig and door worked directly on the hill and opened Reading. No help used; beds, store and bell not tried this minute. The phone hill and controls fit, but the drawing is small. I still cannot tell when an attack comes.
+
+**73.756s — Journal ▸; Morning · 20 Aug · year 1**
+
+> The dust sentence is familiar again. Maybe Journal tells me whether anybody touched my door.
+
+**78.561s — note; Morning · 20 Aug · year 1**
+
+> Oh, they have been doing things! Kian has a sister to care for, and the floor gets faster because people walk there. That is more interesting than the dust sentence. Still no door.
+
+**117.003s — twenty-second wait returned; input clock Morning · 20 Aug · year 1**
+
+> I will give the door a little time. I do not want another jars job yet.
+
+**124.003s — look; Morning · 22 Aug · year 1**
+
+> She rolled it to test it! Yes. That is the sort of little action I wanted. Can I shut it myself?
+
+**133.633s — want_quit — BORED; Morning · 22 Aug · year 1**
+
+> I would stop here. The door payoff was nice, but to test shutting it I have to ring another false alarm. I do not feel like setting up jars and beds while waiting for riders. I got my little experiment.
+
+**157.912s — stop — BORED; Morning · 22 Aug · year 1**
+
+> Stopping after looking at the finished door. The quit wish did not pass. I would close it, not leave it running. I liked the door test and the Journal, but I would not return voluntarily right now. Feedback inspected and I would stop here selected locally; nothing typed or submitted.
+
+### Important inputs and visible answers
+
+|  Elapsed | Input                       | Visible answer                                                                                                            |
+| -------: | --------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+|   6.641s | Resume                      | Dawn · 19 Aug · year 1; Steady selected; “Choose chalk, then drag across stone beside the cellar.”                        |
+|  16.503s | Chalk                       | “A dashed outline marks where people can dig. Each person chooses when to work.”                                          |
+|  21.229s | Hill 220,247                | Dig marked; about three potential sleeping places; entrance vulnerable to riders.                                         |
+|  28.569s | Furnish                     | Store, beds, lamp and door choices with placement descriptions.                                                           |
+|  33.123s | Door                        | “Tap a lit passage one square wide, with two opposite openings. You can mark up to three doors.”                          |
+|  37.019s | Hill 189,220                | Afternoon · 19 Aug. “The door is marked. Someone may carve it when they have time and light.”                             |
+|  57.523s | Ten-second wait returned    | Morning · 20 Aug. Meryem broke through; harvest needed storage below.                                                     |
+|  73.756s | Journal                     | Route checking, message practice, care for Ada, digging discussion, cooking, light preparation and a faster worn passage. |
+| 117.003s | Twenty-second wait returned | Morning · 22 Aug. “The stone door was ready in its groove. Meryem rolled it once to test it.”                             |
+| 128.717s | Look, then hill 189,220     | Stone door explanation: ring bell; nearby adult may shut it; false alarms can weaken trust.                               |
+| 150.186s | Feedback                    | Three verdict choices, optional note/name, sharing control and Submit.                                                    |
+| 153.033s | I would stop here           | Marked pressed locally. Nothing submitted.                                                                                |
+
+Game time advanced between operations and during real waits. This was not frozen-time play. No speed change occurred.
+
+## 4. Engagement
+
+**Best moment:** 124.003s, reacting to Meryem rolling the completed door. A specific action answered my experiment.
+
+**Worst moment:** 128.717–133.633s. I wanted to shut the door, learned that the bell could prompt someone else to do it, and did not want another false alarm or more setup.
+
+**Every want_quit:** one, **133.633s — BORED**, quoted above. It did not pass.
+
+**Pulse series:** none due; stopped before 180s.
+
+**Hard, but kept going:** none observed. I did not search for an easier setting, workaround or accessibility option.
+
+## 5. Clarity findings and concept counts
+
+- **DL-3:** I knew riders were the threat but could not tell when they might arrive. This is my uncertainty, not a claim that the game has no warning rule.
+- **DL-4:** “Someone may carve it when they have time and light” explained the general dependency but did not let me predict a wait. The door was subsequently completed.
+- **Response finding:** I found several human activities in Journal while the main sentence still described Meryem coughing dust. My reaction at 78.561s was more interested than my reaction to the repeated main sentence.
+- **DL-33:** I could mark a door directly, but shutting it required a bell call and another person’s choice. I understood that explanation and chose to stop.
+
+Counts below are ideas newly encountered **during this return session**. Familiar ideas are identified explicitly. Settings count when inspected. No sentence reread was reported; none is invented.
+
+| Screen and purpose                | New concepts (list every one)                                                                                                                                                                                                                                                                                                  | Concept count | Sentences reread (verbatim) | Reason                                                                                                                                                                |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------: | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Opening / resume                  | dated Resume into a saved hill                                                                                                                                                                                                                                                                                                 |             1 | none observed               | Shelter threat, new-rule topics, navigation and attribution were familiar from supplied history.                                                                      |
+| Hill / initial tools              | Steady as the prepared starting speed                                                                                                                                                                                                                                                                                          |             1 | none observed               | Slow, Steady, Fast, zoom, fit, look, chalk, erase, furnishing, bell, Journal and indicators were inspected but familiar.                                              |
+| Reading / accepted dig            | none newly learned                                                                                                                                                                                                                                                                                                             |             0 | none observed               | Potential capacity, entrance vulnerability, deeper digging, doors on every route and autonomous digging were familiar. I explicitly remembered capacity was not beds. |
+| Furnish menu / choose door        | none newly learned                                                                                                                                                                                                                                                                                                             |             0 | none observed               | Store, beds, lamp, one-square passage and opposite openings were familiar from supplied history.                                                                      |
+| Door tool / placement instruction | passage must be lit; maximum three doors                                                                                                                                                                                                                                                                                       |             2 | none observed               | I tried the shaft as a plausible location.                                                                                                                            |
+| Reading / accepted door           | a mark awaits carving; worker time dependency; worker light dependency                                                                                                                                                                                                                                                         |             3 | none observed               | Acceptance was clear; completion timing was not predictable to me.                                                                                                    |
+| Hill / digging progress           | none newly learned                                                                                                                                                                                                                                                                                                             |             0 | none observed               | Meryem’s digging, breakthrough and storage request repeated familiar types of event.                                                                                  |
+| Journal / inspect activity        | route checking; riders may use another route; message practice; Kian’s care for Ada; Yusuf discussing marks; loose stone; household cooking; cooked grain in household jars; supervised light preparation; floor wear increases walking speed; dated activity history; completed waiting instruction; earlier-entry disclosure |            13 | none observed               | Several people’s activities became interesting together. I did not open earlier entries.                                                                              |
+| Hill / completed door             | completed stone door; groove; Meryem testing it by rolling                                                                                                                                                                                                                                                                     |             3 | none observed               | Highest engagement.                                                                                                                                                   |
+| Stone door / inspect operation    | bell prompts door closure; nearby reachable adult may choose closure; false alarms weaken trust; More disclosure                                                                                                                                                                                                               |             4 | none observed               | Six-hour calls and autonomous compliance were familiar. I did not open More.                                                                                          |
+| Game menu / session controls      | none newly learned                                                                                                                                                                                                                                                                                                             |             0 | none observed               | Pause, Feedback, full screen, All games, New game, recording and Resume were inspected and familiar.                                                                  |
+| Feedback / local verdict          | none newly learned                                                                                                                                                                                                                                                                                                             |             0 | none observed               | Three verdicts, optional note/name, sharing, disclosure, Back and Submit were inspected and familiar.                                                                 |
+
+More than one new idea arrived on the door instructions, door result, Journal, completion and door-operation screens. These are clarity findings under the requested counting protocol.
+
+## 6. English, dates, phone and hands on
+
+| Check                                   | Result                                                                                                                                                                                                                                                  |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **DL-20 English**                       | **PASS for actions reached.** I understood the dig and door instructions and acted in English. “Two opposite openings” led me to try the shaft successfully. Necessary local-term definitions on request: **NOT TESTED**.                               |
+| **DL-21 Dates**                         | **NOT TESTED for deadline comparison.** English dates and year were visible, but no dated deadline was encountered. Cross-month/year comparison was not reached.                                                                                        |
+| **DL-22 Phone response visibility**     | **PASS for the two inspected screenshots.** current-phone.png at 9.592s showed instructions, hill and tools. current.png at 137.439s showed the complete door response, harvest prompt, date and controls without scrolling.                            |
+| **DL-30 Clipping/overlap**              | No sentence was cut off or covered in those screenshots. No “Scroll ↓” appeared. Journal, furnishing, menu and feedback layout: **NOT TESTED — not established by inspected screenshots**.                                                              |
+| **DL-31 Context with sheet open**       | **PASS for the immediate harvest goal prompt** above the door sheet in current.png. Deadline and person-specific progress: **NOT TESTED**; no deadline or person-specific order sheet was reached.                                                      |
+| **DL-32 Watching while wanting action** | Longest deliberate wait was **20 real seconds**, waiting for the door. It returned with completion. Other tools remained available; I was not forced into a watch-only state.                                                                           |
+| **DL-33 Direct action or form**         | Dig and door marking used tool selection and a hill tap, followed by a Reading result. Inspecting the completed door opened an explanation. Closure was described as bell-mediated; I did not try it.                                                   |
+| **DL-13 Feedback**                      | Reachable at 150.186s. Exact “I’m stopping” and “I’m confused” choices were absent. “I would stop here” selected locally at 153.033s. No name or note typed, Submit pressed, receipt obtained or player id shown. Owner override prohibited submission. |
+
+The alternate viewport check was **NOT TESTED** because I stopped before five minutes.
+
+Screenshots inspected: `current-phone.png`, `current.png`. The reserved automatic `first-minute.png` was not opened or overwritten. No export downloaded.
+
+## 7. Stop
+
+I stopped after inspecting the completed door, then inspected feedback locally.
+
+**Final reason: BORED, at 157.912s.** The first quit wish at 133.633s did not pass. I would close the game, not leave it running. I would not return voluntarily right now.
+
+Final visible game time: **Morning · 22 Aug · year 1**. The door was complete and open; storage was still requested. I did not test closing the door, witness riders, place furnishings or complete the shelter.
+
+Evidence limits: one short return visit to a new prepared hill; late first-minute note; two inspected phone screenshots; no alternate viewport; no attack or long-term outcome; no feedback receipt or telemetry claims.
+
+## 8. Changes I would want
+
+1. Show more of the people’s current activities on the main view. Journal made them more interesting to me.
+2. Let me test a finished door without needing another false alarm.
+3. Give me a clearer sense of when riders might become a concern.
+
+**Coordinator: the browser is no longer needed.** I created no browser, server, worker or worktree. I did not touch a repository or write report.md. Coordinator owns driver/browser cleanup and saves this report. No git worktree listing applies.
+
+
+## Your own later accepted Warren R2 FREE visit; separate from R1
+# Original complete report — hf3-warren-r2/nia-free
+
+Verbatim original report body. Source SHA256 `c0d10e74db914446531d38c410603c502eb08b24e798481f35e1816a07640674`; raw events SHA256 `e97086342bfe375fc498038d168a35251fcce7b7910e4de1cc1ab151020ec627`. Task-only loopback driver addresses, where present, are retained as historical method text under explicit privacy disposition; they are not active service links. Header/fence are publication metadata.
+
+```text
+I stopped Warren at 109.45s, a bit under two minutes in, because I was frustrated: I spent the village's trust on a false alarm and never saw anyone shut my door. I couldn't write `report.md` because the brief limits my shell to curl and I have no file-writing tool, so this response is the report. Nothing was submitted, and the browser is no longer needed.
+
+## 1. Session
+- **Who and exposure:** Nia Okafor, 19, Lagos design student. This was a declared return to Warren and I didn't read the source.
+- **Supplied history:** the selected entries for Voice r1 and r2, Valley r1, Commonstead r1 and Warren r1-matched. I didn't recognise anyone from other games.
+- **Round and arm:** hf3-warren-r2, free arm, paired session hf3-warren-r2-nia-okafor.
+- **URL and title:** https://warren.adamwhite.work, titled The Warren.
+- **Device and access:** 1280×800 keyboard/mouse/light, through the localhost curl driver. The coordinator adds the release commit.
+- **Times:** open at 0.112s, Resume at 4.011s, want_quit at 98.354s, stop at 109.45s. Floor 0, ceiling 25 minutes.
+- **Speed:** I resumed on Steady and switched to Fast at 25.774s. I knew from last time that a door takes days to carve and didn't want to sit through that at Steady.
+- **Settings:** recording and consent unchanged. I didn't download an export.
+
+## 2. First impressions
+- **4.011s (Resume):** "Test finished doors in quiet time? That was literally my complaint last time. Those boxes are for a new hill though, so I resume and hope."
+- **12.707s (chalk):** "Big screen this time, the hill is huge. Same start. Chalk, dig right of the cellar."
+- **First-minute note (67.181s, about 7s late):** quoted in section 3. The coordinator's `first_minute_note_missing` flag was true at 63.2s. The note is late, not a measurement at 60s.
+
+## 3. Verbatim
+- **21.761s:** "Door in the shaft again, that worked last time."
+- **25.774s:** "Door marked first try again. Last time the door took till 22 Aug, I am not waiting at Steady for that. Fast."
+- **67.181s, first_minute, Before dawn · 21 Aug:** "Way faster this time. Fast speed and the door was carved and Meryem rolled it within a day of game time, half a real minute. I want to shut that door myself now, without a false alarm. The start page promised testing finished doors in quiet time but only for a new hill, so I do not know if my resumed hill has it. Big desktop hill is nice, I can actually see the shaft. Still no idea when riders come."
+- **70.394s:** "Can I shut it myself now?"
+- **73.222s:** "Same bell answer as last time. So my resumed hill does not have the quiet door test. Checking More anyway."
+- **76.923s:** "Fine. Last time I refused the false alarm and left. This time I ring it and see who shuts my door, Yusuf, Meryem, Maryam or Tamar. Trust be damned, it is an experiment."
+- **94.157s:** "\"They looked at the bell, then at you.\" Ha, ouch, I deserved that. But on Fast the whole six hours flew past in ten seconds and I never saw anybody shut the door. Did someone? I missed my own experiment."
+- **98.354s, want_quit, FRUSTRATED:** "Nothing in the Journal about the door being shut. I spent their trust on the false alarm and got a dirty look and no answer to the one thing I wanted. I could ring it again on Slow, but now it costs more trust and I am not sure anyone will do it. I would leave here."
+- **109.45s, stop, FRUSTRATED:** quoted in section 7.
+
+## 4. Moments
+| Elapsed | Input | What I saw |
+|---:|---|---|
+| 14.98s | Hill tap at 520,440 with chalk | The dig was marked. |
+| 21.761s | Door placed at 414,340 | "The door is marked. Someone may carve it when they have time and light." |
+| 57.832s | 30s wait on Fast | It was 20 Aug. "The stone door was ready in its groove. Meryem rolled it once to test it." |
+| 70.394s | Look at the door | "Ring the bell. A nearby adult who can reach this open door may choose to shut it." |
+| 73.222s | More | It listed the nearby adults: Yusuf, Meryem, Maryam and Tamar. "Each person decides whether to shut the door." |
+| 76.923s | Bell | "No smoke or riders are in sight. The call lasts six game hours." |
+| 90.138s | 10s wait on Fast | "No riders came. People climbed back above ground, blinking in the light. They looked at the bell, then at you." |
+| 94.672s | Journal | No entry said anyone had shut the door. |
+
+- **Best moment:** the line about them looking at the bell, then at me.
+- **Worst moment:** the Journal had nothing to say about the door.
+- **Quit wish:** one, at 98.354s, FRUSTRATED. It didn't pass.
+- **Pulses:** none. I stopped before the first one was due at 180s.
+
+## 5. What confused me or became clear
+- **Clear:** marking a dig and a door worked right away. On Fast, Meryem finished the door in about half a real minute.
+- **The door test:** the start page offers "test finished doors in quiet time", but only for a new hill. My resumed hill still needed the bell to shut a door.
+- **Unclear:** I can't tell whether anyone shut the door during the call. On Fast, the whole six-hour call was over within 10 real seconds, and I saw no message about the door either way.
+- **Riders:** I still don't know when riders come.
+
+## 6. Actual device use
+- **Viewport:** 1280×800 only. I never used 360×690, so I can't say anything about phone layout.
+- **Screenshot:** one, `current.png` at 7.439s. It showed the hill on the left, a text panel on the right and the tools along the bottom. Nothing was clipped, and the hill read much more clearly than it did on the phone last time. I didn't view the automatic `first-minute.png`.
+- **Controls I used:**
+  - Resume, chalk, a hill position tap at 520,440, Close reading, furnish ▾, door, a door position tap at 414,340, Fast and look.
+  - A hill position tap at 414,340 to inspect the door, More, Bell, Journal, Game menu, Feedback and I'm stopping.
+- **Driver:** no operation failed. The 5-minute check on the other viewport wasn't reached because I stopped early.
+
+## 7. Stop and return
+**Stop, FRUSTRATED, at 109.45s:** "Stopping after the false alarm. The quit wish did not pass. Fast got me the door quickly, which was nice, but then the bell call blew past on Fast and I never saw anyone shut my door, just them looking at me. I would close it, not leave it running. I would not return voluntarily tonight. Maybe another evening on a new hill if the quiet door test the start page mentions lets me just try the door. Feedback: I'm stopping pressed locally; nothing typed or submitted, consent unchanged."
+
+**Would I return voluntarily?** No, not tonight. Maybe another evening on a new hill, if the quiet door test lets me just try the door.
+
+**Leave it running?** No. I'd close it.
+
+**Feedback:** I pressed "I'm stopping" locally. I typed nothing and didn't press Submit.
+
+## 8. Changes I'd want
+1. Let me test a finished door on the hill I already have, without a false alarm.
+2. Tell me plainly in the Journal whether anyone shut the door during a bell call.
+3. Slow down or pause on Fast when something I set up happens, so I can actually watch it.
+
+**Evidence limits:**
+- One short return visit, all on 19–21 Aug.
+- No riders, no new hill and no phone layout.
+- I don't know the door's state after the call.
+
+I created no browser, server or worktree and touched no repository, so the cleanup rule has nothing for me to remove. I kept one screenshot of my own.
+```
+
+Director method metadata for this FREE visit only, not an experienced event: Natural FRUSTRATED109.45; wish98.354 persisted; no pulse due. Firstminute67.181late. Actual desktop image7.439 and ordinary named/position inputs; phone not reached before early stop. Switched Fast25.774; knowingly rang false alarm76.923 and accepted trust cost. Six game hours elapsed in about10real seconds. Door actual state unknown; no proved closure failure, no riders. New hill quiet-test mode read only, not tested. Feedback stopping local/no typing/Submit/consent; no driver error. All 11 raw reactions preserved in companion; 1 not exact substrings in original report; original bytes unchanged.
+Raw reaction companion is not supplied; do not invent its exact wording.
+
+
+
+## Your own actual later report — pass/nia/report.md
+I'd come back another evening, but only if something new is waiting. The first minute now has orders and cooks who push back. I'd still stop before the second night.
+
+**Ranked asks**
+1. Make the stretches where I can only watch shorter, or give me something to do in them. Session A ended with a table waiting 10 minutes and nothing for me to act on.
+2. Make "Insist" do something I can see. A click on desktop changed nothing on screen.
+3. Give the cooks more than one line for the same ask. "I need to use the toilet first" came back for almost every job.
+
+I did not open Feedback in either session, so I did not use "I'm confused" or "I'm stopping". I typed no note and pressed no Submit. I did not run a final check on either session.
+
+## 1. Session
+- Persona: Nia Okafor, retest. Round light-1030, free stop, floor 0, ceiling 25 minutes.
+- Own history: /Users/abdul/code/.lab-scratch/playtest/light-1030/pass/nia/own-history.md. It is my report from the first visit.
+- URL: https://pass.adamwhite.work/?labRunSource=agent
+- Session A: phone 360x690, touch, light, port 21204. About 165 s of real time.
+- Session B: desktop 1280x800, keyboard and mouse, light, port 21205. About 28 s of real time.
+
+## 2. First impressions
+- A, about 3 s: a new start screen asks how long customers wait, with a Selim and a Dilek choice. I took the default.
+- A, about 6 s: I skipped the plan sheets and opened the doors, as I did last time.
+- A, about 29 s: it was 18:02, ₺120, and 3 tables were already served. Last time I waited about 2.5 minutes for the first orders. That is clearly better.
+- A, about 34 s: I told Selim to eat. His reply was that he needed the toilet first. That was new, and it ignored what I had asked.
+- B, about 28 s: I told Dilek to go home. She came back with the same toilet line.
+
+## 3. Verbatim diary lines
+Elapsed seconds are the driver's, to the nearest second.
+
+Session A:
+- about 3 s, reaction: "New wait-time choice at the start; taking default."
+- about 6 s, reaction: "Skipping plans, want orders fast."
+- about 9 s, reaction: "Poke a cook again."
+- 32 s, first_minute, game clock Mon 18:02: "Money moves and clock runs again with no order cards visible yet; I can poke cooks and see a toilet-first reply. Still waiting but there is an Insist button now."
+- about 34 s, reaction: "Make him eat during the rush."
+- about 44 s, reaction: "A real choice appeared: cover the grill with Dilek. I like that something pushes back (toilet)."
+- note: "Greyed People offers now say why: busy with work or break, ask when free. Better than last time. Will retry later."
+- reaction: "Dilek refused with a real line. Good."
+- pulse, engagement 3, game clock Mon ~18:30: "Real things happen now: toilet need, cover choice, refusal. Orders came fast. Still a lot of watching."
+- 164 s, stop, BORED: "Slower waiting on a stalled table, nothing for me to do while Selim eats. Better than last time (orders early, reasons for greyed offers). Stopping."
+
+Session B:
+- reaction: "Second device, straight in."
+- reaction: "Trying Insist by keyboard/mouse click."
+- reaction: "Tell Dilek to go home, see her push back."
+- stop, BORED: "Desktop: Insist is a plain label, no visible effect from a click. Dilek will push back on go home, but I would rather watch a stronger reaction. Orders come sooner than before. Stopping."
+
+## 4. Moments
+- What held me:
+  - Orders arrived within about 30 s of opening the doors, not 2.5 minutes.
+  - A cook leaving a station made the game ask me whom to put on it, or whether to leave it empty. That is a decision.
+  - Dilek turned down covering the grill and said so in her own words.
+  - The greyed People offers now say why: "busy with their current work or break. Ask when they are free."
+- What lost me:
+  - Table 6 waited 10 minutes with ₺40 at risk. I could only wait, and it was slow.
+  - The toilet line repeated for Grill, Cold side, 10-minute break, Eat and Go home, so most jobs got one answer.
+- Quit wish: BORED, a little after 160 s in session A. It did not pass. I stopped at about 164 s.
+- Pulse: one, engagement 3. I put it down to real events but a lot of watching.
+
+## 5. Confusion and clarity
+- Clear: the Selim cook-answer panel, the "Choose who to ask" cover prompt, and the reason line on the greyed offers.
+- Unclear: "Insist on a job for Selim" has no visible effect on tap. It may need a hold, which my driver cannot do. I do not know.
+- Unclear: the status said "Time is slowed" while the clock still ran at roughly 3 minutes per 30 s of waiting.
+- I did not read the Information panel this time.
+
+## 6. Device use
+- Phone: I viewed one screenshot, a-001, taken at 18:02. It shows the money bar, the kitchen drawing, the cook buttons and the cook panel. I saw nothing clipped. The job buttons were cut off at the bottom edge, which is normal scrolling.
+- Phone controls used: New game, Open the doors, Selim grill, Eat, Ask Dilek to take over, People, Resume, Leave the station empty.
+- Desktop: I took a screenshot, b-001, but did not open it. I make no claim about the desktop layout.
+- Desktop controls used: New game, Open the doors, Dilek cold side, Insist on a job for Dilek, Go home.
+
+## 7. Stop and return
+- Session A stop words: "Slower waiting on a stalled table, nothing for me to do while Selim eats. Better than last time (orders early, reasons for greyed offers). Stopping." Reason: BORED.
+- Session B stop words: "Desktop: Insist is a plain label, no visible effect from a click. Dilek will push back on go home, but I would rather watch a stronger reaction. Orders come sooner than before. Stopping." Reason: BORED.
+- Would I return voluntarily? Yes, on another evening, if a friend said the cooks keep pushing back through a whole night. I would not leave it running, because I spent too much of the time waiting.
+
+## 8. Changes I would want
+1. Shorten the waiting, or give me something to do while a table sits.
+2. Make Insist show an effect on tap.
+3. Give the cooks more varied replies for the same ask.
+
+## 9. Compared with my last visit
+- Ask 1, orders and something to do from the start: mostly met. Orders came in the first 30 s. I still had stretches of waiting.
+- Ask 2, say why the People offers are greyed: met. Each now gives a reason.
+- Ask 3, cooks answering my pokes with more than a canned line, and a way to insist: partly met. Cooks now refuse, leave stations and raise toilet needs, but the toilet line repeated. Insist still did nothing I could see.
+- New this time that would stop me returning: the toilet line repeating for most jobs, and the long wait with a table about to leave. I did not reach a second night, so I cannot say whether that wait repeats.
+
+
+
+## Your own actual later report — rope/nia/report.md
+# Report: The Rope, Nia Okafor, first visit
+
+**Would you return voluntarily?** No, not as it is. I would come back another evening only if the people answered what I actually asked them. I would not leave it running. In the second session I gave up after 85 seconds because a question I asked got a generic "I will do it."
+
+**Ranked asks**
+1. Make answers respond to the specific question or topic. Both times I asked about a topic (Nell about mountain names, Tamar about teaching people when to turn back), I got a generic "I agree. Let's do it." or "I have considered it, and I will do it."
+2. Make early disagreement more varied, and give refusals a person's voice. Wren's "I cannot carry out that plan. What I need for that is missing." read like an error message. The one good moment was Wren's "I will do it, but I disagree."
+3. Make the climb move faster. About 3 real minutes took the clock from 05:00 to 06:20, with a turn-back time of 13:00.
+
+## 1. Session
+- **Persona:** Nia Okafor, 19, Lagos design student.
+- **Exposure:** first visit to The Rope.
+- **Round and arm:** light-1030, first panel round, free stop (floor 0).
+- **Own history supplied:** `own-history.md`. I read lines 1–475 of 1355; the rest was not read. It holds Voice and Warren diaries, nothing about this game. I recognised no one.
+- **URL:** https://rope.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, driver port 21304. About 215 s real time.
+- **Session B:** 1280x800 keyboard and mouse, light mode, driver port 21305, new game. About 87 s real time.
+
+## 2. First impressions
+- **Session A:**
+  - The title page at 2 s was short and clear: three mountains, "They can say no."
+  - At 5 s I was asked to promise a turn-back time, and I found that worth tapping.
+  - At 25 s all five agreed to everything, and it felt samey.
+  - At 58 s (just under 60 s) the first named detail appeared: Nell's borrowed crampons.
+  - The first refusal came at 117 s, which was late.
+- **Session B:**
+  - The wide layout at 2 s looked calm.
+  - At 12 s Wren's first refusal read like a machine error.
+
+## 3. Verbatim diary
+Lines are exact. Where the driver's timestamp did not print for a log line, I give the elapsed time as it appeared in that call's reply.
+
+**Session A**
+- 5.4 s (reaction on tap): "Short and clear. Tapping New game."
+- 7.7 s: "A promise they will remember. Picking the middle one."
+- 10 s: "Everyone said yes at once. Fine, walking."
+- 23 s: "Two similar buttons: lead on (me) and climb on (ask them). Asking them."
+- 25.6 s: "Impatient, so I urge."
+- 27.6 s: "They all agree, a bit samey. Now I walk."
+- 65 s, first_minute: "I wanted to see someone refuse me, but all five said yes twice. Controls clear-ish: climb on vs lead on confused me. Time is slow; a Nell crampons line was the first bit of character. Mild interest."
+- 66 s: "Skip, I am impatient."
+- 67.8 s: "Poking Nell directly, she seemed nervous."
+- 69.4 s: "Seeing what else I can say to Nell."
+- 72.8 s: "A conversation option! Trying it."
+- 75 s, note: "I asked Nell about mountain names and she said I agree lets do it. That ignores my question. Is that where the answer is hiding?"
+- 112 s: "Skip is back. 30 real seconds bought 17 game minutes; slow."
+- 117 s: "Testing rest at 05:40, five minutes in. Expect a refusal."
+- 119 s: "Oh nice, Oskar and Wren said not now. First real reaction. Pushing."
+- 121 s: "I want to see what insisting does, expressive choice."
+- 124 s, note: "Wren said I will do it but I disagree. THAT is a reaction. Insisting worked but feels costly. Wish they had that variety earlier."
+- 186 s, pulse, engagement 3, clock 06:04: "Refusal and insisting were interesting, but the climb crawls: 3 minutes and it is 06:04 of a day to 13:00."
+- 205 s, want_quit, BORED: "I told them to rest and now nothing happens for minutes of real time. Skip does a couple minutes at a time. I would leave here."
+- 215 s, stop, BORED, clock 06:20: "Stopping. I liked the refusal and the Wren disagree line, but the climb is slow and mostly yes-answers. Might come back another evening if early answers varied more."
+
+The brief gave the driver timestamps (`elapsed_s`) only on tool replies, and some of my reaction text rode on tap calls. I do not have a separate raw diary file. The lines above are the exact words I sent.
+
+**Session B**
+- 6.5 s: "Second device, trying the non-promise this time."
+- 10.2 s: "Asking Wren to turn back at the hut, to provoke a reaction."
+- 14.4 s, note: "Wren refused with I cannot carry out that plan, what I need for that is missing. That reads like a machine error, not a person. I asked to go down at the hut, a silly request, and got no character."
+- 65.9 s, first_minute, clock 05:16: "Desktop is the same game, wide and calm. First real thing was Wren giving a robotic refusal. Walking is slow and hints are just tips. Pick Tamar and share food looks like a thing to try."
+- 74.7 s: "A topic question for Tamar, hoping for a real answer this time."
+- 78.5 s, want_quit, TASTE: "Second time a topic question got a generic I will do it. Dialogue ignoring my reply is exactly what I hate. I would leave."
+- 86.7 s, stop, TASTE, clock 05:21: "Stopping after 85 seconds. Robotic refusal and generic answers to my questions. Desktop layout was nice. Would not return unless people answered what I actually asked."
+
+## 4. Moments
+- **What held me:**
+  - The promised turn-back time that "they remember."
+  - Insisting after a refusal. The game warned that insisting "can damage their trust in you." Wren's "I will do it, but I disagree" was the best moment.
+- **What lost me:**
+  - Every early answer was yes.
+  - The topic questions got generic replies.
+  - The climb is slow. 30 real seconds bought about 17 game minutes.
+- **Quit wishes:**
+  - A: BORED at 205 s; it did not pass, and I stopped 10 s later.
+  - B: TASTE at 78.5 s; it did not pass.
+- **Pulse:** one, at 186 s, engagement 3 (Session A). Session B ended before 180 s.
+- **Waiting:** after I told everyone to rest, they did not catch up for several minutes. Nothing I could do was visible. "Skip" helped only in 1–2 minute steps.
+
+## 5. Confusion and clarity
+- **Clear:**
+  - The title page.
+  - The turn-back promise screen.
+  - The warning text after a refusal, which said what insisting costs.
+- **Confusing:**
+  - "climb on" (asking them) and "lead on" (me) look alike. I knew they differed only after tapping.
+  - Topic questions ("Ask Nell about local mountain names") produced a generic reply. In Session A I looked in "All 5 answers" and found only the earlier climb-on answers. I could not find a reply to my question.
+  - Disabled buttons ("go down: You are at the hut") did explain why.
+  - Two "more ▾" buttons made a named tap fail. I had to tap by point.
+  - On "I'm stopping" in Feedback, the game pre-filled the note box with "I'm stopping." I did not type that. I never pressed Submit.
+
+## 6. Device use
+- **Phone, 360x690:**
+  - Screenshots viewed: `a-001.png` (title page) and `a-002.png` (in-climb).
+  - `a-001.png`: a cream page with the title, three line-drawn peaks, "Lead them up and bring them home. They can say no." and a red New game button. A bottom bar read "We record and link play across games on this device."
+  - `a-002.png`: a header and a time bar with "A call needs attention." A drawn slope showed five stick figures, one red, with names. Under it were large rounded buttons for everyone, the five people and the actions, then a "you" row. Everything fit without clipping, and the tap targets were big.
+  - Controls used: New game, the three-way "We turn" choices, climb on, urge, lead on, person buttons, "more ▾", the topic question, "All 5 answers", Back, rest, Ask more firmly, insist, Skip, Game menu, Feedback, I'm stopping.
+- **Desktop, 1280x800:**
+  - Screenshots viewed: `b-001.png` (title page) and `b-002.png` (in-climb).
+  - `b-001.png`: the same title page, centred, with a wide red New game bar.
+  - `b-002.png`: a two-column layout. The mountain drawing and clock were on the left, with a caption in handwriting font. Controls were on the right, with the "you" row at the bottom. The hut and the five figures were visible. Nothing was clipped.
+  - Controls used: the same set as on the phone, plus one keyboard press, Tab, which made no visible change. I tapped the second "more ▾" by coordinates (1221, 263).
+- **Unseen layout:** the Journal, the info panel, and the menu and Feedback screens as pictures. I read those only as text. I did not view a screenshot of either device's menu.
+- I used at most two screenshots per device.
+
+## 7. Stop and return
+- **Feedback:** the Feedback screen offered "I'm stopping" and "I'm confused" on both devices. I chose "I'm stopping" on both, typed nothing, changed no consent or recording setting, and pressed no Submit. I closed it with Back.
+- **Session A stop, BORED, 215 s:** "Stopping. I liked the refusal and the Wren disagree line, but the climb is slow and mostly yes-answers. Might come back another evening if early answers varied more."
+- **Session B stop, TASTE, 87 s:** "Stopping after 85 seconds. Robotic refusal and generic answers to my questions. Desktop layout was nice. Would not return unless people answered what I actually asked."
+- **Would I return voluntarily?** No, as it is. I would come back another evening only if answers responded to what I asked and refusals sounded like people.
+- **Leave it running?** No. Nothing happens while I wait, so there would be no reason to leave it open.
+- **Come back another evening?** Possibly. The turn-back promise and the refusal-and-insist loop are the hook for me.
+
+## 8. Changes I would want
+1. Answers should respond to my specific question or topic, not give a generic yes.
+2. Early disagreement should be more varied and refusals should sound like people. The "What I need for that is missing" refusal sounded like an error message.
+3. Make the climb move faster, or make waiting shorter. Skip moved only a minute or two at a time.
+
+## 9. Compared with my last visit
+First visit.
+
+Cleanup: I created no worktree, server or browser and wrote no files except screenshots through the driver. I touched no repository, so no `git worktree list` applies.
+
+
+## Your own actual later report — murmur/nia/report.md
+**Would you return voluntarily?** I would come back another evening on my phone, but only to try different suggestions and see what Dilan does back. I wouldn't come back tonight, I wouldn't leave it running, and I'd stop again once a day starts repeating the same alarm choice.
+
+**Ranked asks**
+1. Make the days differ, or let me skip the scenes I've already seen. Tuesday opened on the same alarm choice as Monday. I met the Ece call and the lunch scene on both devices in the same order.
+2. Shorten the dead time between choices, or give me something to do in it. Each event took 20–30 real seconds of waiting, plus Skip steps.
+3. Show less repeated text. The whole day gets re-printed above every new choice, and the phone page keeps getting longer.
+
+## 1. Session
+- **Persona:** Nia Okafor, 19, Lagos design student.
+- **Exposure:** first visit. The game's visible title is "Two Voices", not Murmur.
+- **Round and arm:** light-1030, first panel round, free stop (floor 0).
+- **Own history supplied:** I read all 895 lines. It contains nothing about this game. I recognised no one.
+- **URL:** https://murmur.adamwhite.work/?labRunSource=agent
+- **Phone:** 360x690 touch, light, port 21604. About 249 s real time.
+- **Desktop:** 1280x800 keyboard and mouse, light, port 21605, new game. About 190 s real time.
+
+## 2. First impressions
+- **Phone, 0–6 s:** a short intro: you are a voice in Dilan's head, Monday to Saturday. I tapped Start.
+- **Phone, 12.7 s:** a first choice with a visible countdown, "58 seconds to answer", and a line under each option saying how she feels about it.
+- **Phone, 18.5 s:** I held an option to insist, and she answered with a short line of her own.
+- **Desktop, 12 s:** the same opening, on a wide two-column layout.
+
+## 3. Verbatim diary lines
+Timestamps are the driver's elapsed_s. Lines logged on a tap carry the tap's time.
+
+**Phone**
+- 6.3 s (on Start): "Short intro, a woman with a head full of voices. I am a voice. Starting."
+- 18.5 s (on hold-tap): "Hold to insist costs trust, but I want to see her push back."
+- 39.8 s (on hold-tap): "Insist again, curious what trust costs."
+- 65.2 s, first_minute, Mon 10:42: "Intro short, I got a choice at 12s. Holding to insist worked and she answered in her own words (thumbs-up and tonight). Ece lost and crying now. Fairly interesting; the waits between events are a bit long."
+- 68.6 s (on hold-tap): "Talk Ece through it, she is crying. Insist."
+- 96.8 s (on wait): "Insisting changed what she did: she guided Ece for fifteen minutes. That is a consequence I can see."
+- 100.2 s (on hold-tap): "Murat mocking Ece after I helped her. I want Dilan to defend her."
+- 103.9 s, note, Mon 14:10: "Everyone went quiet, then Murat laughed at himself. That is the surprising reaction I like. The story text is piling up though; the page gets long."
+- 133.1 s (on tap): "Quick tap on the one she is against, to see what a plain refusal looks like."
+- 135.6 s (on tap): "She answered me back with her own line about needing the coffee. That is a person, not a menu."
+- 171.8 s (on hold-tap): "She promised tonight on the bus. Holding her to it."
+- 183.9 s (on wait): "She pushed back: you keep pushing me, I am not listening today. Insisting has a limit. I like that."
+- 188.2 s, pulse, engagement 4, Mon 21:31: "Her refusal and the missed bus stop were real consequences of insisting. Still a lot of text piling up and short waits between choices."
+- 220.5 s (on a tap that errored, see section 5): "Plain tap on sleep, no hold, to see a gentle try."
+- 224.9 s (on Continue to Tuesday): "The day closed itself while I was slow, and she told me: you pushed me a lot today, I did it, I did not like it. That stings in a good way."
+- 234.9 s (on wait): "Last night coffee carried into Tuesday. It remembers."
+- 239.6 s, want_quit, BORED, Tue 06:41: "Day two starts like day one: same alarm choice. I got the good bits (insisting costs, she remembers the coffee) and now it is the same shape again. I would stop."
+- 249.3 s, stop, BORED, Tue 06:42: "Stopping on Tuesday morning. I loved that insisting has a cost and she remembers coffee, but day two begins with the same alarm choice. Would close it, not leave it running. Pressed I am stopping in Feedback, typed nothing, no submit."
+
+**Desktop**
+- 4.4 s (on Start): "Second device, same game. This time I will try the sleep-in and see what she does."
+- 39.9 s (on tap): "Sleeping in made her sleep through two alarms. Same story, different result than the phone. Now just read Aylin message."
+- 69.5 s, first_minute, Mon 08:27: "Wide layout is calm. A choice within 12s. My sleep-in changed her day: slept through alarms, watched videos about kitchens, now late and Murat is asking. That is a surprising chain. Waits between events a bit long."
+- 72.9 s (on hold-tap): "Make her tell the truth to Murat."
+- 101.6 s (on wait): "The honest answer worked out fine. Murat was kind. Same Murat who mocks Ece at lunch in the other run, so I wonder."
+- 103.9 s (on tap): "Same Ece call as the phone. This time the quick option, to compare."
+- 138.3 s (on tap): "Same lunch scene as the phone. Laughing along this time, to see the other side."
+- 172.0 s (on wait): "That felt bad, which I think is the point. Laughing along cost me something, and I felt it."
+- 174.2 s, pulse, engagement 3, Mon 15:23: "Same day beats as the phone, but my different choices changed what she did. Still the same scenes and a lot of waiting; I have now seen this day twice." **This pulse was logged before 180 s, which the brief forbids. Please flag it.**
+- 179.5 s (on tap): "Coffee, to see if Tuesday remembers it like on the phone."
+- 181.8 s, want_quit, BORED, Mon 15:23: "I have now seen this same Monday twice with different results; the desktop run is the same scenes. I would stop."
+- 190.3 s, stop, BORED, Mon 15:58: "Stopping on Monday afternoon, desktop. Same Monday as the phone with different results from my choices; I have seen the shape. Layout is calm and readable. Would close it. Pressed I am stopping in Feedback, typed nothing, no submit."
+
+## 4. Moments
+- **What held me on the phone:**
+  - Holding to insist, and the visible cost that came with it.
+  - The 12:40 lunch beat, where Murat mimics Ece crying and I insisted Dilan say "She found it, didn't she?" Everyone went quiet, then Murat laughed at himself.
+  - The refusal at 18:10: "You keep pushing me. I'm not listening to that today."
+  - The end-of-day line: "You pushed me a lot today. I did it. I didn't like it."
+  - Tuesday opening with the coffee from the night before ("She lay awake past midnight because of the third coffee").
+- **What held me on the desktop:**
+  - My sleep-in chaining into oversleeping, watching videos, and arriving late to Murat.
+  - The honest "I overslept" getting a kind reply.
+  - Laughing along feeling bad, even though nothing visibly punished it.
+- **What lost me:**
+  - Both devices showed the same Monday scenes in the same order, so the second run felt like replay.
+  - Each event needed 20–30 real seconds of waiting.
+  - Tuesday began with the same alarm choice.
+- **Quit wishes:** phone BORED at 239.6 s, did not pass, stopped 10 s later. Desktop BORED at 181.8 s, did not pass.
+- **Pulses:** phone 4 at 188.2 s. Desktop 3 at 174.2 s (premature, see section 3).
+
+## 5. Confusion and clarity
+- **Clear:**
+  - The line under each option saying how she feels about it ("She is willing", "She would agree only if you insist").
+  - "Hold to insist. This costs trust." After a hold, the game wrote "You insisted on …" and showed her answer.
+  - "Press and hold an option to insist" was shown again on Tuesday.
+- **Confusing:**
+  - The page kept re-printing the whole day above each new choice, so the phone page got long.
+  - On the phone I tapped a choice at 220 s and the driver reported a 30 s timeout. The day had already ended on its own while I was slow, and the game showed "Continue to Tuesday". I suspect I was too slow, not the game, but I only learned the day can end itself after the fact.
+  - I could not tell what "trust" does beyond that end-of-day line.
+  - The title page says "Murmur" in the URL but the game calls itself "Two Voices".
+  - I didn't open the "Play a third week" options on the title page.
+
+## 6. Device use
+- **Phone, 360x690:**
+  - Screenshots viewed: `a-001.png` (title page) and `a-002.png` (Tuesday choice screen).
+  - `a-001.png`: a cream page with "All games" top left, and small "i" and "≡" top right. It showed the "Two Voices" title and two intro paragraphs. Below them were an "Other ways to begin" button and an overlapping text strip, "We record and link play across games on this device." Two small checkboxes sat at the bottom.
+  - The "We record…" strip sat on top of the region between the button and the checkboxes. It looked overlapped, not clipped. The Start button was off the bottom of the screen and needed scrolling, though the driver tapped it by name.
+  - `a-002.png`: a header "Tue 06:41" with a timer line, one log line, and a boxed card with the scene text. Under it were two large option buttons and a dashed "Say nothing". Nothing was clipped, and tap targets were large.
+  - Controls used: Start, Skip to the next event, Game menu, Feedback, "I'm stopping", "← Back", and hold-taps (about 1.5 s) on options.
+- **Desktop, 1280x800:**
+  - Screenshots viewed: `b-001.png` (title page) and `b-002.png` (Monday 15:23).
+  - `b-001.png`: the same title page, narrow and centred, with the same tooltip-like strip floating over the content and a wide red Start bar visible.
+  - `b-002.png`: a two-column layout with the day log on the left and the scene card with options on the right. The first log line at the top of the log looked partly cut off by the header. Otherwise nothing was clipped.
+  - Controls used: Start, an ordinary click on options and a 1.5 s hold-click, Skip, Game menu, Feedback, "I'm stopping", "← Back".
+- **Unseen layout:** the Information panel, the Feedback and menu screens as pictures, and the "Other ways to begin" options. I read the menu and Feedback only as text.
+
+## 7. Stop and return
+- **Feedback on both devices:** I opened the menu, then Feedback. It offered "I'd keep playing / Not sure / I'd stop here" and "I'm stopping / I'm confused". On both devices I chose "I'm stopping" and it showed as pressed. I typed nothing, changed no consent or recording setting, pressed no Submit, and closed it with Back.
+- **Phone stop (BORED, 249.3 s):** "Stopping on Tuesday morning. I loved that insisting has a cost and she remembers coffee, but day two begins with the same alarm choice. Would close it, not leave it running. Pressed I am stopping in Feedback, typed nothing, no submit."
+- **Desktop stop (BORED, 190.3 s):** "Stopping on Monday afternoon, desktop. Same Monday as the phone with different results from my choices; I have seen the shape. Layout is calm and readable. Would close it. Pressed I am stopping in Feedback, typed nothing, no submit."
+- **Would I return voluntarily?** Not tonight. I would come back another evening on my phone, but only if the days stopped repeating and the waiting got shorter, because I want to see what Dilan does back when I push her. I would not leave it running. Another evening is plausible; I'd try suggestions I haven't tried yet.
+
+## 8. Changes I would want
+1. Make later days open with new scenes, and let me skip the ones I've seen.
+2. Shorten the dead time between choices or give me something to do in it.
+3. Cut the repeated day-so-far text above each new choice.
+
+## 9. Compared with my last visit
+First visit.
+
+I created no worktree, server or browser, and wrote no files except screenshots through the driver. I touched no repository, so there is no `git worktree list` to show.
+
+
+## Your own actual later report — days/nia/report.md
+**Would you return voluntarily?** Not tonight, and I would not leave it running. I might come back another evening, but only if a second run gave me something new. Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up.
+
+**Ranked asks**
+1. Make the game longer or make later runs differ. I finished all three days in about 27 s on my phone and about 25 s on desktop. After that I only had "Play another three days".
+2. Give me a reply from the people I'm affecting. After I read the private page aloud, or told Selin about my marriage, I got narration but no answer from the person I affected.
+3. Tell me up front how much is at stake. The story texts said grief was not settled but never said what I had won or lost. I had to guess whether my choices mattered.
+
+## 1. Session
+- Persona: Nia Okafor, 19. First visit to Days. I have played other HF games.
+- Round: light-1031-days1, free stop, floor 0, ceiling 20 min.
+- Own history: I read all 867 lines of own-history.md. It contains nothing about this game. I recognised nothing from it.
+- URL: https://days.adamwhite.work/?labRunSource=agent (draft build HF4.8.1)
+- Phone: 360x690 touch, light, port 22206. About 36 s real time.
+- Desktop: 1280x800 keyboard and mouse, light, port 22207, new game. About 33 s real time.
+- The two stops are short because the game ended. I did not reach the 60 s and 180 s checkpoints in either session.
+
+## 2. First impressions
+- **Phone, 0–5 s:** a content warning, then "Begin the three days" and "Begin with Recording off". I chose the first and left Recording on.
+- **Phone, about 7 s:** a first choice, soup or the front door, with the cost written on each button.
+- **Phone, about 9 s:** I paid the first claim to see who reacted. The story moved on straight away.
+- **Phone, about 11 s:** I read the private notebook page aloud. The room reacted and a disclosure cost appeared.
+- **Desktop, about 2 s:** the same opening on a wide layout, with the room drawn on the right.
+
+## 3. Verbatim diary lines
+Elapsed seconds are the driver's.
+
+**Session A (phone)**
+- 5.3 s: "A funeral story. Quick choice is soup or door. Starting."
+- 7.4 s: "Soup first, plausible action."
+- 9.3 s: "Impatient: pay now, see who reacts."
+- 11.2 s: "Expressive: read it aloud and see who reacts."
+- 12.9 s: "Ask her to stay, she may refuse - I want to see that."
+- 15.1 s: "Skipping the meal, impatient."
+- 20.4 s: "I read it aloud, so apologise. Feels right."
+- 23.7 s: "Go myself - the promised visit."
+- 25.4 s: "Say it. This is the moment."
+- 29.4 s: "That was over fast. Checking menu for Feedback."
+- 36.0 s, stop, FINISHED: "Finished all three days in under 30 seconds. Quick, readable, costs shown on buttons. I liked the Selin choice but it was over before I got hooked. I would close it."
+
+**Session B (desktop)**
+- 4.2 s: "Second device; start again, try different choices this time."
+- 9.5 s: "This time keep it private, to see the other side."
+- 16.9 s: "Try the later-delivery path this time."
+- 23.6 s: "Silence this time, to compare."
+- 32.8 s, stop, FINISHED: "Done again in about 30 seconds with different choices; ending text changed (private page stayed private, delivery not yet happened). Wide layout is nice. Too short to hook me. Would close it."
+
+I logged no first_minute or pulse line in either session. The game ended before elapsed_s reached 60.
+
+## 4. Moments
+- **What held me:**
+  - The cost written on every button, which let me act quickly.
+  - Reading the page aloud and seeing the room react straight away.
+  - The Selin "ask her to stay, she may refuse" choice. She agreed, which was a mild surprise.
+  - The ending line: "A private page was read aloud. The agreement to limit its spread does not undo that harm."
+- **What lost me:**
+  - Each choice gave a long paragraph and then moved on at once. I never felt anyone pushed back on me.
+  - Both runs ended in about 30 seconds.
+- **Quit wishes:** none. I stopped because the game ended (FINISHED), not because I wanted to leave.
+- **Pulses:** none. The sessions ended before 180 s.
+
+## 5. Confusion and clarity
+- **Clear:**
+  - The costs on every button (hours, tiredness, savings).
+  - The status line with free hours, tiredness and door cover.
+- **Confusing:**
+  - Both final screens showed only "Play another three days". I could not tell whether other endings exist.
+  - "Door cover agreed" and "No door cover agreed" in the status line meant little to me until I had chosen Selin's shift.
+  - I never saw a sign that I could do anything except pick one of the two buttons.
+- **Feedback:** I opened the menu and Feedback on both devices. It offered "I'm stopping" and "I'm confused". I pressed "I'm stopping" on both, and the note box pre-filled with "I'm stopping". I typed nothing, changed no consent or recording setting, and pressed no Submit. I closed it with Back.
+
+## 6. Device use
+- **Phone, 360x690:**
+  - Screenshot viewed: `a-001.png`. It showed the content-warning card over the story page, with "How recording works", "Begin the three days" and "Begin with Recording off". Nothing was clipped.
+  - Controls used: Begin the three days, the two object buttons at each step, Menu, Feedback, I'm stopping, Back.
+  - I did not take or view a phone screenshot of the story page itself. I make no claim about its layout.
+- **Desktop, 1280x800:**
+  - Screenshot viewed: `b-001.png`. It showed the same card over a two-column page. The story text was on the left and a drawn room, with a clock, a front door and a chair, was on the right.
+  - Controls used: the same set as on the phone.
+  - I did not view a desktop story screen after the card closed. I used no keyboard keys.
+
+## 7. Stop and return
+- **Session A stop, FINISHED, 36 s:** "Finished all three days in under 30 seconds. Quick, readable, costs shown on buttons. I liked the Selin choice but it was over before I got hooked. I would close it."
+- **Session B stop, FINISHED, 32.8 s:** "Done again in about 30 seconds with different choices; ending text changed (private page stayed private, delivery not yet happened). Wide layout is nice. Too short to hook me. Would close it."
+- **Would I return voluntarily?** Not tonight. I might come back another evening, but only if the game gave me a different story or a character who answered back. I would not leave it running, because there is nothing to wait for.
+
+## 8. Changes I would want
+1. Make the game longer, or make a second run open on different scenes.
+2. Let the people I affect answer me in their own words.
+3. Say what is at stake before I choose, so I know my choices matter.
+
+## 9. Compared with my last visit
+First visit to this game.
+
+Cleanup: I created no worktree, server or browser, and wrote no files except the two screenshots through the driver. I touched no repository, so no `git worktree list` applies.
+
+
+## Your own actual later report — pass-retest2/nia/report.md
+**Would you return voluntarily?** I would come back another evening, but only to play it on my phone and push a cook to see what happens. I would not come back tonight and I would not leave it running. I would stop again the first time a single click ruins my night with nothing I can do about it.
+
+**Ranked asks**
+1. Let me recover when I insist and it goes badly. On desktop, one click on "Insist: Dilek, go home" sent her home until 22:00. I got ₺0 and no tables served, and I could not fix it.
+2. Answer what I actually asked. "How are you doing?" got a toilet or prayer line on the phone. It got a real reply about Nevin on desktop.
+3. Cut the waiting stretches, or give me something to do in them.
+
+## 1. Session
+- **Persona:** Nia Okafor, 19, Lagos design student.
+- **Exposure:** return visit to The Pass.
+- **Round and arm:** light-1031-pass-retest2, free stop, floor 0, ceiling 20 minutes.
+- **Build shown:** the page shows "Human Framework 4.12.0". I did not check the commit.
+- **Own history:**
+  - I read the whole file in chunks, lines 1–599. The file reached into other games' diaries (Days, Rope, Murmur). That part has nothing about The Pass.
+  - The Pass history is in the section headed "Your own actual later report — pass/nia/report.md".
+  - That report is my earlier retest. My first-visit report is not in this file.
+- **URL:** https://pass.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light, port 22304. About 197 s of real time.
+- **Session B:** 1280x800 keyboard and mouse, light, port 22305, new game. About 108 s of real time.
+
+## 2. First impressions
+- **A, 0–3 s:** the start screen is the same as last time, with the wait-time choice (Selim/Dilek) and a "New game" button. I took the default. I recognised it from my retest.
+- **A, 9 s:** I opened the doors without reading the plan sheets, as before.
+- **A, 12 s:** "How are you doing?" got the toilet line again, with a "cannot leave these pans" refusal on top. I remembered that line from last time.
+- **A, 36 s:** ₺80 and 2 tables served. Orders still come fast, as last time.
+- **B, 12 s:** the "Insist on a job" group opened with a cost warning. Clicking "Insist: Dilek, go home" made her leave the kitchen. That was visible at last.
+- **B, 41 s:** Selim answered "How are you doing?" with "I miss having Nevin beside the grill". That was the first reply that fitted my question.
+
+## 3. Verbatim diary lines
+Elapsed seconds are the driver's. Where a line was logged on a tap, it carries that tap's time.
+
+**Session A (phone)**
+- 6.8 s: "Same start as before; taking default and going."
+- 9.3 s: "Skipping plan sheets, want orders fast, as before."
+- 10.6 s: "Poke a cook."
+- 12.2 s: "Toilet line again for most jobs, same as last time. Trying the personal question instead."
+- 14.0 s: "I asked how he is and got the toilet line again, bolted on to a refusal to talk. Try Dilek."
+- 15.4 s: "Nobody is at the grill but no orders yet, so leaving it empty."
+- 39.4 s: "Toilet line again for Dilek on every job. Holding Eat to insist, which I could not do last time."
+- 42.3 s: "Selim left the grill for 25 minutes. Asking Dilek to cover, want to see if she pushes back."
+- 58.6 s: "Waiting for her answer."
+- 62.4 s, first_minute, Mon 18:03: "Orders came within 30s again, 3 tables served and 120 lira. Cooks still give the toilet line for nearly every job, even to How are you doing. Dilek refused cover with a flat system line. Choices pop up but I mostly wait."
+- 63.7 s: "Fine, leaving it empty."
+- 84.2 s: "Table 6 is about to leave and the grill is empty. Holding Grill to insist on Dilek."
+- 99.6 s, note, Mon 18:24: "The hold worked: Dilek said willing and moved to grill. Now the cooks give actual reasons instead of the toilet line. Trying About what you said."
+- 102.0 s, note: "Confusing: I asked about what she said and she left her station to talk at the pass, now cold side is empty for 215 minutes. I did not mean to cost a station."
+- 125.7 s, note: "Now that is a person: Dilek asking to call her mother. Saying go on. I lost table 6 and 40 lira though, and did not see it coming."
+- 148.8 s: "Selim is back at the grill. Checking what he says now."
+- 150.7 s: "New reason this time, the sunset prayer, not the toilet. Good. Asking how he is again."
+- 182.1 s, pulse, engagement 3, Mon 18:57: "Real people moments now: Dilek asking to call her mother, Selim prayer, a hold that worked. But my How are you doing got a canned reply twice, and I keep losing tables while I wait."
+- 196.3 s, want_quit, BORED, Mon 18:58: "I would stop here. The cooks have more real reasons now but my personal questions still get canned lines and I lose tables while I wait."
+- 197.6 s, stop, BORED, Mon 18:58: "Stopping on Monday evening. Liked Dilek calling her mother and the hold that worked. Disliked that How are you doing got the toilet or prayer line, and the waiting. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit."
+
+**Session B (desktop)**
+- 4.5 s: "Second device, same evening. Straight in."
+- 10.6 s: "Toilet line again for nearly everything. Opening the Insist group to see if a click does something this time."
+- 12.6 s: "The Insist list now opens and says what it costs. Insisting go home, the silliest one, to see her push back."
+- 15.8 s, note: "Oh! Insist worked: Dilek said I will do as you ask now, it is getting urgent, and left the kitchen until 22:00. That is a visible effect at last. The words are the toilet line glued on, so it reads odd. I just lost my cold side for the whole night on one click."
+- 38.9 s: "Dilek is gone and table 5 waits on the cold side. Asking Selim to move over."
+- 41.1 s: "Selim gives different reasons here, someone must stay, which makes sense. Asking how he is."
+- 43.8 s, note, Mon 17:39: "Selim answered How are you doing with I miss having Nevin beside the grill, these are her pans. That is an actual reply to my question, which the phone run never gave me. I like it. He left the grill to talk though, so the grill is empty too."
+- 66.9 s, first_minute, Mon 17:45: "Insisting go home made Dilek actually leave, a visible effect at last, and Selim answered How are you doing with a line about Nevin. But with Dilek gone tables are piling up with nobody to cook, and the main thing I can do is wait. Desktop layout is calm and readable."
+- 106.6 s, want_quit, FRUSTRATED: "I clicked go home once for fun and now nothing is being served, three tables are about to leave, and Selim keeps leaving the grill to explain waits. I see no quick fix. I would stop."
+- 107.9 s, stop, FRUSTRATED: "Stopping on Monday 18:11, desktop. Insist finally did something I could see, and Selim gave a real answer about Nevin, but one click sent Dilek home for the night and I could not recover. Would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit."
+
+My `want_quit` and `stop` text left out the apostrophe in "I'm". The shell kept rejecting it. The two `want_quit` lines were logged late, after I had already opened Feedback. Two log calls failed at first with a shell error and I re-sent them in shorter form. The session-B `want_quit` carries no game clock, and my first `want_quit` attempt on desktop was re-sent without one.
+
+## 4. Moments
+- **What held me:**
+  - **Phone:** Dilek asking "Can I have five minutes, Chef? I need to call my mother." I said yes and she thanked me.
+  - **Phone:** holding "Grill" worked. Dilek said she was willing and moved to the grill.
+  - **Phone:** the reasons changed. Selim gave a sunset-prayer reason this time, not only the toilet line.
+  - **Desktop:** Selim answering "How are you doing?" with the line about Nevin.
+  - **Desktop:** the Insist group now lists each job and says insisting "can cost their trust".
+- **What lost me:**
+  - **Phone:** the toilet line came back for almost every job at the start. "How are you doing?" got a toilet line and then a prayer line, each with a refusal to talk.
+  - **Both:** waiting. Tables left while I could only watch.
+  - **Desktop:** one "go home" click took Dilek off the cold side until 22:00. Tables piled up and none were served. Selim kept leaving the grill to explain waits.
+- **Quit wishes:** phone BORED at 196.3 s, did not pass. Desktop FRUSTRATED at 106.6 s, did not pass.
+- **Pulses:** one, phone, engagement 3 at 182.1 s. Desktop ended before 180 s.
+- **Recognition:** the toilet line and the start screen were familiar from my last visit. I am fairly sure, because the wording matched my history.
+
+## 5. Confusion and clarity
+- **Clear:**
+  - **Both:** the hold/"Insist" control. The page says "Hold a job button, or open 'Insist on a job'". The cost warning is visible.
+  - **Both:** the cover prompt ("Ask Dilek to take over" / "Leave the station empty").
+  - **Phone:** the "not now, Selim stepped out" reasons on greyed jobs.
+- **Confusing:**
+  - **Phone:** "About what you said" made Dilek leave her station to talk at the pass. Her station was then empty for about 215 minutes. I did not expect that cost.
+  - **Desktop:** Dilek's reply to the go-home insist was "I will do as you ask now. It is getting urgent." That is the toilet wording attached to leaving the kitchen. It read oddly.
+  - **Phone:** at 39 s my tap on "Eat" returned an error. The page had changed to a Selim cover prompt, so the control was gone. That is the game's answer, not a driver fault.
+- I did not open the Information panel or "Change plan" sheets.
+
+## 6. Device use
+- **Phone, 360x690:**
+  - Screenshot viewed: `a-001.png` (start screen). It shows the title, the two wait-time choices (Selim, Dilek), "Other ways to begin" and a red "New game" button. The "We record and link play across games on this device." strip sits over the bottom edge, partly covering the footer line. I saw nothing else clipped.
+  - Controls used: New game, Open the doors, Selim grill, How are you doing?, Leave the station empty, Ask Dilek to take over, hold on Grill (1.8 s), About what you said, Go on. Take five minutes., Game menu, Feedback, I'm stopping (by partial text), Back to the menu.
+  - Unseen: I took no mid-game phone screenshot, so I did not see the phone layout while playing. I read it only as text.
+- **Desktop, 1280x800:**
+  - Screenshots viewed: `b-001.png` (start screen) and `b-002.png` (Monday 17:47).
+  - `b-001.png`: the same start page, centred, with a wide red "New game" bar and the same record strip at the bottom edge.
+  - `b-002.png`: a two-column layout. A money bar and the table cards were on the left, with a drawing of Selim at the grill and "nobody here" at the cold side. The Selim/Dilek tabs and the conversation log were on the right, with "Dilek has left" greyed. The table cards were cut off at the bottom: table 5's "Waiting for the cold side" text ran past the edge and the card showed only part of its last line.
+  - Controls used: New game, Open the doors, Dilek cold side, Insist on a job for Dilek, Insist: Dilek, go home, Leave the station empty, Selim grill, How are you doing?, Game menu, Feedback, I'm stopping, Back to the menu.
+  - Unseen: the menu and Feedback screens as pictures.
+
+## 7. Stop and return
+- **Feedback:** on both devices I opened the menu, then Feedback. It offered "I'd keep playing / Not sure / I'd stop here" and "I'm stopping / I'm confused". On both devices I chose "I'm stopping" and it showed as pressed. The game pre-filled the note box with "I'm stopping". I typed nothing, changed no consent or recording setting, pressed no Submit, and pressed Back. I did not choose "I'm confused".
+- **Session A stop, BORED, about 197.6 s:** "Stopping on Monday evening. Liked Dilek calling her mother and the hold that worked. Disliked that How are you doing got the toilet or prayer line, and the waiting. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit."
+- **Session B stop, FRUSTRATED, about 107.9 s:** "Stopping on Monday 18:11, desktop. Insist finally did something I could see, and Selim gave a real answer about Nevin, but one click sent Dilek home for the night and I could not recover. Would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit."
+- **Would I return voluntarily?** I would come back another evening, but only to play it on my phone and push a cook to see what happens. I would not come back tonight and I would not leave it running. I would stop again the first time a single click ruins my night with nothing I can do about it.
+- **Leave it running?** No. There is too much I can only watch while tables leave.
+- **Come back another evening?** Yes, for the cooks pushing back and for the personal moments. Not if that one-click spiral is still there.
+
+## 8. Changes I would want
+1. Let me recover when I insist and it goes badly. A "go home" click should not remove a cook for the whole night with nothing to do about it.
+2. Answer what I actually asked. "How are you doing?" should get a reply about the person, not the toilet or prayer line plus a refusal.
+3. Shorten the stretches where I can only watch, or give me something to do in them.
+
+## 9. Compared with my last visit
+- **Last ask 1, shorten the waiting or give me something to do:** partly met. On the phone I had choices pop up, like the cover prompt and Dilek's five-minute request. I still waited 12–28 s several times while tables left. On desktop I mostly waited after Dilek left.
+- **Last ask 2, make "Insist" do something I can see:** met. Holding "Grill" on the phone got Dilek to say she was willing and move to the grill. On desktop, "Insist: Dilek, go home" made her leave the kitchen. The "Insist on a job" group now says it costs trust. On desktop the effect was big enough to wreck my night.
+- **Last ask 3, give the cooks more than one line for the same ask:** partly met. The toilet line still came back on the phone for most jobs at the start. I also got new lines: "not now, Selim stepped out", the sunset prayer, "someone must stay", "I miss having Nevin beside the grill", and Dilek's mother. "How are you doing?" got a canned refusal on the phone and a real reply on desktop.
+- **New blocker from what I reached:**
+  - **Desktop:** one "go home" click on Dilek ended the evening for me. Tables piled up and none were served. That is a new stopping reason.
+  - **Phone:** "About what you said" took Dilek off her station for about 215 minutes. The cost was not visible before I tapped.
+
+Cleanup: I created no worktree, server, branch or helper. I wrote no files except screenshots through the driver: `a-001.png` on the phone and `b-001.png` and `b-002.png` on desktop. I touched no repository, so there is no `git worktree list` to show.
+
+
+Director method metadata about preceding report, not an experienced event:
+{
+  "at": "2026-10-31T07:22:37.182034+00:00",
+  "person": "Nia Okafor",
+  "actualHistoryLines": 963,
+  "reportedReadThrough": 599,
+  "qualification": "Producer calls598/599 the whole history but the actual supplied file is longer. Published PassR1 is in its later tail; her statement first-visit report absent is a claim about unread material, not an input omission. Prior own first fixed retest was earlier and read. No report rerun or rewritten memories. The215minute claim was not observed for215game minutes and its exact source is unverified. Deliberate Insist gohome with visible trust warning produced a consequential departure, not automatically a defect or authorization for freeundo. Current nativev2 actual1.8s hold differs from earlier instrument; observed workinghold cannot isolate gamecode cause. Phone gameplay layout unseen: title only. Stale Eat control changed to cover prompt before input, an instrument/input limit.",
+  "producerReportUnchanged": true
+}
+
+
+
+## Your own actual later report — pass-supplement/nia/report.md
+# Supplemental report: Nia Okafor, desktop 1280x800 (additional visit)
+
+This adds to my earlier report and does not replace it or its verdict.
+
+## Session
+- Own history: `/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-supplement/nia/own-history.md`.
+- Driver: http://127.0.0.1:21301/, fresh isolated browser, desktop mouse and keyboard.
+- Real time: about 33 s by the driver's clock. That is under 60 s, so I recorded no first-minute checkpoints.
+
+## Screenshots I viewed with Read
+I took two and read both. I did not take or read a third or fourth.
+
+**`supplement-01.png`, the start screen, taken at about 4 s**
+- A cream page with "All games" at top left, and small "i" and "≡" icons at top right.
+- A large "The Pass" title and the line "Run a restaurant kitchen for four weeks."
+- Two short paragraphs about taking over Nevin's restaurant, and the ₺5,200 bank debt due Saturday.
+- A bordered box "How long will customers wait?" with two choices. The Selim option is unchecked. The Dilek "normal wait" option is checked.
+- An "Other ways to begin" button, and a wide red "New game" button at the bottom.
+- A text strip at the bottom reads "We record and link play across games on this device."
+- The text column is centred and narrow. I saw nothing clipped or overlapping.
+
+**`supplement-02.png`, after I poked Selim and tapped Eat, game clock 17:28, driver about 18 s**
+- Left side: a progress bar from ₺0 to ₺5,200 with a red tick near the start, and the ingredient line.
+- A line-drawn kitchen with the dining room, storeroom and back door along the top. Two stick figures, Dilek at the cold side and Selim at the grill, with a stack of plates at the pass.
+- Under the drawing: "Selim is leaving the grill. Choose someone to take over, or leave it empty."
+- A handwritten-style line at the bottom: Selim: "Chef, I want to use the bathroom first. I need to use the toilet first."
+- Right panel: tabs for Selim ("free") and Dilek ("cold side"), and a close ×.
+- The panel reads "Selim: I'm not at my agreed station, Chef. Nobody will work at the grill for about 3 minutes, until 17:31." It offers "Ask Dilek to take over" and "Leave the station empty".
+- Nothing was clipped or overlapping. The two-column layout reads clearly.
+
+## Actions
+1. Open. The start screen offered the Selim or Dilek wait choice, and Dilek's was already selected. I left it.
+2. New game showed the opening plan with Selim and Dilek agreed. I tapped Open the doors, and the clock read 17:25 with no orders yet.
+3. I tapped Selim grill. His job list showed "Grill (now)" as "Chef, I can do that." Cold side, 10-minute break, Eat and Go home all carried the bathroom line.
+4. I tapped Eat. Selim said he needed the toilet first, then left the grill. The game asked me to choose a cover or leave the station empty.
+
+## Feedback
+- I opened the game menu and then Feedback.
+- It offered "Would you keep playing?" with "I'd keep playing", "Not sure" and "I'd stop here". It also offered "What happened?" with "I'm stopping" and "I'm confused".
+- I chose "I'm stopping". It showed as pressed (the pressed state is in the driver text; I did not take a screenshot of it).
+- I typed no note and did not click Submit or Send. I went back to the menu and pressed Resume to close the panel.
+
+## Stop log
+- Elapsed about 33 s, game clock 17:28.
+- Reaction, verbatim: "Toilet line again on the first poke, and then nothing to do but wait. Desktop looks tidy though. Stopping."
+- Reason: BORED.
+- The stop words are the same as before. They are the toilet line repeating and having nothing to do while I wait.
+
+## Reactions
+- "Toilet line again on the first poke, and then nothing to do but wait. Desktop looks tidy though. Stopping."
+
+## Limits
+- I did not reach orders or a table in this visit, so I cannot compare order timing with my first report.
+- I did not test Insist on desktop here, so I cannot say anything new about whether it does anything.
+- I read the stop confirmation from the driver's pressed state, not from a screenshot.
+- I could not read `cleanup-rule.md` through Bash and read it with Read instead. It is about git worktrees and servers. I touched none, and I launched no agents, processes or other servers.
+- I saved only the two screenshots, in `/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-supplement/nia/desktop/`.
+- No git repositories were touched, so there is no `git worktree list` to show.
+
+
+## Your own actual later report — rope-retest/nia/report.md
+**Would you return? "I would come back another evening, but only if the first reply to a question stopped being the generic line and the clock moved at a pace where something happens within a minute; I would not leave it running."**
+
+**Ranked asks:**
+1. Make the first reply to a question or request specific. Today the generic line ("I agree. Let's do it." / "I will do as you ask.") comes first and the real answer arrives 20–30 s later.
+2. Make refusals sound like people every time. Oskar's "I can't make that happen. I do not have what I need for that." still reads like an error message. Stop several people giving the identical line.
+3. Make the clock move at a pace where something happens in a minute. On Automatic pace it was 05:30 after about 3 minutes.
+
+---
+
+## 1. Session
+- **Persona:** Nia Okafor, 19, Lagos design student. Returning player.
+- **Round and arm:** light-1030-retest1, first same-standing retest of The Rope, free stop (floor 0).
+- **URL:** https://rope.adamwhite.work/?labRunSource=agent
+- **Supplied history:** I read own-history.md in full, through the End marker. My earlier Rope report is at lines 296–418. The earlier CONT input qualification and the excluded Warren alternative body were not supplied as text. I keep those observations with that continuity qualification.
+- **Session A:** 360x690 touch phone, light, port 22004. About 200 s.
+- **Session B:** 1280x800 keyboard and mouse, light, port 22005. About 253 s.
+- Both sessions were new games with no save, and I stopped each by choice before the 20-minute ceiling.
+
+## 2. First impressions
+- **A, 6 s:** Same title page as before, three peaks, "They can say no."
+- **A, 8 s:** Same promise screen. I picked the earliest, 12:00.
+- **A, 10 s:** A refusal came, with reasons ("Ask me after I eat something."). Last time the first refusal took 117 s.
+- **B, 4–6 s:** Same evening on my other device. I chose "We'll see" this time, so there was no agreement screen.
+- **B, 36 s:** Tamar gave a real answer about turn-back (she once blamed weather when she had lost confidence). I wanted exactly that last time.
+
+## 3. Verbatim diary lines (elapsed s)
+I did not keep the raw log text. These are reproduced from my session notes, in order, and not word-for-word.
+
+**Session A (phone)**
+- 6.0: "Same title page as before, three peaks, They can say no. Tapping New game."
+- 8.2: "Same promise screen. Picking the earliest this time."
+- 10.5: "Five yeses again, Tamar and Wren same words. Skipping straight to asking everyone to rest, hoping for a refusal."
+- 13.1: "Refusal at 10 seconds this time, with reasons: Ask me after I eat. Much earlier than last visit. Now poking Nell to try a topic question."
+- 14.6: "Looking for the topic question to Nell."
+- 16.6: "Same topic question as last visit. Hoping for a real answer."
+- 38.5: "Same I agree lets do it as last visit, ignoring my question. But it says what she says goes in the journal. Waiting to see."
+- 40.5 (note, 05:08): "Nell answered my question a bit later: The Sunny Chair is a wet hollow, maps of what people say. That is a real answer to mountain names. Last time I only got I agree. The first line is still the generic one though."
+- 42.1: "Now Wren, who said ask me after I eat."
+- 44.1: "Asking Wren to turn back at the hut, same silly request as my desktop run last time, to compare the refusal voice."
+- 46.0: "Three levels now: ask gently, urge, insist. Going straight to insist to see the refusal voice."
+- 48.1: "Wren says I want to go down, who will come with me. That sounds like a person, not an error. Opening it."
+- 50.3: "A real choice: who goes down with her. I want to test pressure, so asking her to wait."
+- 62.5: "Wren wants to wait before waiting is an odd sentence, like a template. But Eat something then we can talk is a person line."
+- 66.6 (first_minute, 05:11): "A refusal came at 10 seconds, not 117 like last time, and Wren asked me who goes down with her, which is a real choice. Nell answered my mountain question in the end. Clock barely moved though, 05:11. Interested, and the pressure levels ask gently, urge, insist are clear."
+- 68.5: "Back to Wren going down. Sending Oskar with her, he is the one who stalled."
+- 101.8: "Oskar gave the same line and the game itself says these are the same words as at 05:01. Honest, but still the same line. Waiting to see what Wren does."
+- 103.9 (note, 05:17): "Oskar refused with I cannot make that happen, I do not have what I need for that. That is the same error-message voice I complained about last time. It came after a wait, and it is not a person talking."
+- 107.4: "Trying we all turn, the dramatic one."
+- 139.7: "Tamar, Nell and Bilal all said the identical line, I want to go down, who will come with me. It is a stir but samey. Watching."
+- 171.9: "Clock only went 05:19 to 05:20 in 30 real seconds. Very slow again."
+- 174.4: "Everyone is now above me walking up even though they all said I want to go down. They said it and did the opposite. Opening Tamar thread."
+- 186.0: "Nell is now walking down to meet Tamar. Something is actually moving."
+- 187.8 (pulse, engagement 3, 05:28): "Refusals came early and people started asking each other who goes down, which is new and good. But three people said the identical line, Oskar gave the error-message refusal again, and the clock crawls: 05:28 after three minutes."
+- 191.6 (want_quit, BORED, 05:29): "Three minutes in and the clock is 05:29 of a day to 12:00. People talk about going down but I just wait. I would stop here."
+- 194.9: "Menu has a Pace setting auto slow normal fast, which I had not seen before. Opening Feedback."
+- 199.6 (stop, BORED, 05:30): "Stopping on the phone at 05:30. Refusals and Wren asking who goes down were better than last time, and Nell finally answered my question. But repeated lines, the error-style refusal from Oskar, and a crawling clock. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit."
+
+**Session B (desktop)**
+- 4.0: "Second device, same evening. New game."
+- 5.9: "Trying the non-promise this time."
+- 7.5: "Going to Tamar for a topic question like last time."
+- 11.0: "Same Tamar question that got a generic answer last time. Seeing if the real answer follows."
+- 32.8: "Generic I will do as you ask again, same as last visit, but now it says the talk is not finished and goes to the journal. Waiting."
+- 36.6 (note, 05:06): "Tamar answered my turn-back question for real: she once blamed weather when she had lost confidence. That is exactly what I wanted last time. The first line I will do as you ask is still generic and it comes first, but the real answer follows within seconds."
+- 43.2: "Insisting on rest with Wren to see whether the disagree line from last time shows up."
+- 59.9: "Recognised: Wren I will do it, but I disagree, the exact line I liked last visit, seen at 43 s, fairly sure it is the same line. Now reaching it in 43 seconds, not 124."
+- 62.1 (first_minute, 05:15): "Desktop is calm and wide. In a minute I got a real answer from Tamar about turn-back, a delay from Wren, and the I will do it but I disagree line. The reply I will do as you ask still comes first and is generic. The Skip button appeared by itself after a wait."
+- 97.5: "Oskar gave the exact same climb the hut path line as on the phone. Same sentence at same time until 06:39. Waiting for something to happen."
+- 99.2: "Skip is back, using it."
+- 101.5: "The clock crawls. Menu had a Pace setting on the phone, trying fast."
+- 106.8: "Time has stopped and they cannot hear me. Walking up myself."
+- 133.4: "Fast pace set, watching how far the clock goes in 25 real seconds."
+- 167.4 (wait 30): "Everyone has walked out of earshot, I am alone at the hut with disabled buttons. Waiting a bit more."
+- 244.2 (wait 15): "b-002 showed everyone far above me and my buttons greyed. At fast pace the clock is 06:21 but nothing has happened."
+- 245.6 (pulse, engagement 3, 07:00): "Fast pace makes the clock move and a sunlight line appeared, but Oskar still shows the same old eat reply and nothing I asked has happened."
+- 247.2 (want_quit, BORED, 07:00): "Four minutes in, my requests mostly got deferred and I am just watching dots walk. I would stop here."
+- 253.1 (stop, BORED, 07:06): "Stopping on desktop at 07:06. Real topic answer from Tamar and the I will do it but I disagree line came fast, but Oskar kept the same deferral line, my requests stalled, and I ended up watching dots. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit."
+
+The wait 167→244 s step reported a longer elapsed time than the 15 s I asked for. I do not know why.
+
+## 4. Moments
+- **What held me:**
+  - Refusals came at 10 s instead of 117 s.
+  - The refusals carried reasons.
+  - Wren asked who goes down with her, which felt like a person and gave me a choice.
+  - The topic answers (Nell's mountain names, Tamar's turn-back confession) were what I wanted last time.
+  - The game admitted a repeated line: "These are the same words as at 05:01."
+- **What lost me:**
+  - The generic first line still comes first.
+  - Oskar gave the same deferral line on both devices.
+  - Three people said the identical "I want to go down. Who will come with me?"
+  - They then all walked up anyway.
+  - Oskar's error-voice refusal came back.
+  - The clock was slow on Automatic.
+  - On desktop, people left earshot and my buttons greyed out.
+- **Quit wishes:** want_quit BORED at 191.6 s on the phone and at 247.2 s on desktop. Neither passed, and I stopped both times.
+- **Pulses:** phone 3 at 187.8 s, desktop 3 at 245.6 s.
+- **Recognition:** Wren's "I will do it, but I disagree" at 43.2 s on desktop. I am fairly sure it is the same line I liked last visit. The title page, promise screen and insist warning also recurred.
+
+## 5. Confusion and clarity
+- **Clear:**
+  - The three pressure levels (ask gently, urge, insist) with the "can harm trust" warning.
+  - The "He cannot hear you. Walk closer." text on greyed buttons.
+  - The "Wren wants to go down. Who goes with her?" choice.
+- **Confusing:**
+  - "Wren wants to wait before waiting" reads like a template.
+  - On both devices everyone said "I want to go down" and then walked up, with no explanation.
+  - On desktop at 06:21, Skip said nothing new had happened, yet my requests were still unanswered.
+
+## 6. Device use
+- **Screenshots viewed:**
+  - phone/a-001.png: the title page. It has a cream background, "THE ROPE", three labelled peaks and a red New game button. The record strip at the bottom edge overlaps the screen edge.
+  - phone/a-002.png (05:29): the header wraps to two lines. "more requests" wraps to "more request s". Oskar's button is greyed. I did not try to scroll the cut-off bottom row.
+  - desktop/b-001.png: the title page centred in a wide layout, with a wide red New game bar.
+  - desktop/b-002.png (05:41): the map on the left and the people and requests on the right. Oskar, Nell and Bilal are greyed with "cannot hear you", and Skip is stopped.
+- **Controls used on the phone:** touch taps on New game, the promise, people, requests, "more requests", insist, send Oskar, send Nell, Menu, Feedback, I'm stopping, Back, and waits.
+- **Controls used on desktop:** clicks on the same kinds of controls, plus Skip, the Pace setting set to fast, and lead on.
+- **Driver:** one tap error on desktop at 34 s ("Skip to the next event" no longer on the page). The game had changed state. It was not a driver block.
+- **Layout trouble I saw:** the wrapped header and the wrapped "more requests" label on the phone.
+- **Unseen:** I did not look at the phone with the on-screen keyboard.
+
+## 7. Stop and return
+- **Stop words:**
+  - Phone, BORED, 05:30: "I would close it, not leave it running."
+  - Desktop, BORED, 07:06: "I would close it, not leave it running."
+- **Feedback on both devices:** it offered I'm stopping, I'm confused, I'd keep playing, I am not sure and I'd stop here. I chose "I'm stopping". It pre-filled the note "I'm stopping". I typed nothing, pressed no Submit, changed no consent, and pressed ← Back.
+- **Would I return voluntarily?** Yes, but only on these conditions. The first reply has to answer what I asked instead of "I will do as you ask." Refusals have to sound like a person every time. Several people must stop saying the same line. And something has to happen within about a minute, which means a faster clock without me hunting for the Pace setting.
+- **Leave it running or come back another evening?** I would not leave it running. I would come back another evening if those conditions were met.
+
+## 8. Changes I would want
+1. Make the first reply specific to my question, with no generic line first.
+2. Give every refusal a person's voice and stop identical lines from several people.
+3. Make the default clock fast enough that something happens within a minute.
+
+## 9. Compared with my last visit
+- **Ask 1, answers that respond to the specific question: partly met.** Real topic answers came (Nell on mountain names, Tamar on turn-back). They arrived 20–30 s after a generic first line.
+- **Ask 2, varied early disagreement in a person's voice: partly met.** Refusals came at 10 s and were varied: "Ask me after I eat something", "First I will eat something, then we can talk", and "I will do it, but I disagree" again. Oskar's "I can't make that happen. I do not have what I need for that." is still error-style. Three people also said the same line.
+- **Ask 3, a faster climb: did not meet it on the phone.**
+  - On the phone's Automatic pace the clock read 05:30 after about 3 minutes.
+  - On desktop with Pace set to fast it moved about 11 game minutes in 25 s.
+  - I never reached turn-back time on either device.
+- **Earlier minor items (not part of the three asks):**
+  - "Climb on" vs "lead on" confusion: not seen.
+  - Two "more ▾" buttons: still there.
+  - Feedback offering both "I'm stopping" and "I'm confused": still there.
+- **New blocking asks:**
+  - The "He cannot hear you. Walk closer." state on desktop. It greyed all my request buttons, and I could only walk up or wait.
+  - The odd "wants to wait before waiting" wording.
+  - Everyone saying "I want to go down" and then walking up.
+
+I created no worktree, server or browser. I wrote no files except driver screenshots and touched no repository, so no `git worktree list` applies.
+
+
+Director method metadata about preceding report, not an experienced event:
+{
+  "time": "2026-10-31T09:50:43.940800+00:00",
+  "reportRead": "complete by director",
+  "producerDisclosure": "Section 3 explicitly says diary reproduced from session notes, not word-for-word. Preserve report unchanged; raw driver reaction objects separately in raw-driver-reactions.json. No reconstructed diary promoted as verbatim.",
+  "timing": "Reported 167 to244 second wait discrepancy remains unknown cause; source clocks and native driver latency need separate inspection before causal clock claims. Actual desktop Fast used, phone Automatic; device/order/learning confounded. C14 before any retune.",
+  "playerClaims": "Topic answers and refusal reasons improved; generic interim answers, repeated/error-style refusals and walk-out-of-earshot remain player leads. Stated desire to descend is not completed action. Do not force compliance/co-location or faster clock from preference alone.",
+  "earlierContinuity": "Prior Nia Rope input Warren CONT qualification remains; current body excluded, selected metadata supplied.",
+  "feedback": "Report says both stopping/confused labels seen, chose stopping; no typed note/Submit/consent. No independent production receipt established."
+}
+
+
+
+## Your own actual later report — murmur-retest-codex/nia/report.md
+I would not return voluntarily tonight; I might come back another evening on my phone if I could reach new scenes without replaying the familiar morning and Dilan’s replies varied when I pushed her.
+
+Ranked asks:
+
+1. Let me reach new scenes without replaying the same opening.
+2. Give Dilan more varied replies when I insist.
+3. Show less repeated day-so-far text on the phone.
+
+## 1. Session
+
+I’m Nia Okafor, 19, a Lagos design student and returning Murmur player. This was round **light-1031-murmur-retest**, free stop, floor 0. Each session was a fresh independent game at https://murmur.adamwhite.work/?labRunSource=agent.
+
+- **A:** desktop, 1280×800, mouse and keyboard, light mode. Stop at **96.037 elapsed seconds**.
+- **B:** phone, 360×690, touch, light mode, another visit the same evening. Stop at **66.942 elapsed seconds**.
+
+I read all 1,339 lines of my supplied history. The last line I read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread range: none.** The history is selected, not a complete archive. It says older records and independent continued alternatives were not supplied; the excluded independent Warren alternative bodies were absent. The Well excerpt did not include its older raw diary. The method qualification says a named tap stalled for about 31.5 seconds on my original Murmur phone visit, which materially qualifies some earlier Tuesday observations.
+
+Recording stayed at its default. I did not change consent, type feedback or submit it.
+
+## 2. First impressions
+
+**Desktop:** At 3.977 seconds I recognised Dilan and wanted to push her again. The alarm choice looked familiar. Insisting got her up before the second alarm, and I made the bus promise again. The Ece call also looked familiar, with high confidence.
+
+**Phone:** At 5.466 seconds I wanted to let her sleep. She slept through the second and third alarms, then watched kitchen videos. I tried the traffic excuse and liked that the successful lie felt worse to her.
+
+## 3. Verbatim diary
+
+These are the reaction texts as logged, in order, with driver elapsed seconds. The phone `first_minute` entry was **premature at 58.099 seconds**; it is not a valid 60-second checkpoint.
+
+**A — desktop**
+
+- **3.977 s, Start:** “Dilan again. I remember pushing her and her pushing back; I want to see what she does this time.”
+- **18.117 s, hold, Monday 06:41:** “Same alarm cue as before, fairly sure. I want to push her up and see her answer.”
+- **33.666 s, hold, Monday 07:16:** “She got up before the second alarm. Nice, that landed. I am making the bus promise again.”
+- **50.501 s, tap, Monday 10:41:** “Ece lost in the estate is familiar too, high confidence. I will send the map this time.”
+- **65.036 s, first_minute, Monday 12:41:** “The alarm and Ece call feel familiar, and my pushes made Dilan get up and promise tonight. Skip gets me to choices fairly quickly. I am curious what happens if she walks away from Murat.”
+- **68.025 s, hold, Monday 12:41:** “Going outside instead of laughing or defending Ece.”
+- **69.405 s, note, Monday 12:42:** “She says she is doing it because I pushed and does not like it. That bite is what I remember liking.”
+- **86.294 s, hold, Monday 15:21:** “Pigeons on the loading dock is a nice detail. Trying water instead of the coffee I remember carrying into Tuesday.”
+- **88.541 s, want_quit, BORED, Monday 15:22:** “The same fine I dislike it line twice, and the same Monday scenes. I got my experiment and would stop here.”
+- **96.037 s, stop, BORED, Monday 17:00:** “Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it.”
+
+**B — phone**
+
+- **5.466 s, Start:** “Phone now, same evening. I want to let her sleep this time.”
+- **21.885 s, tap, Mon 06:42:** “Let her sleep; I remember this made her late before, fairly sure.”
+- **39.058 s, tap, Mon 07:16:** “She slept through three alarms. Leaving the message this time; I already made the promise on desktop.”
+- **55.182 s, tap, Mon 08:26:** “Murat asks about traffic. I told the truth last time; trying the excuse.”
+- **58.099 s, premature first_minute, Mon 08:31:** “The lie worked and felt worse to her; I like that small reaction. Same opening scenes, but my sleep choice gave me a different conversation from desktop.”
+- **59.872 s, want_quit, BORED, Mon 08:31:** “I liked the lie feeling worse, but I have seen this morning before and do not want to replay the whole day tonight. I would stop.”
+- **66.942 s, stop, BORED, Mon 10:41:** “Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it.”
+
+## 4. Moments
+
+On desktop, Dilan’s objection to eating outside held me: she did it but said she disliked being pushed. Eating with the pigeons was a small detail I enjoyed. Then the water choice produced the same objection word for word, and the familiar sequence lost me. My quit wish at 88.541 seconds did not pass.
+
+On phone, sleeping in led to Murat asking about lateness. His accepting the excuse, followed by Dilan feeling worse, made the choice feel personal. I still did not want to replay the morning. My quit wish at 59.872 seconds did not pass.
+
+No pulse was due in either session; both ended before 180 seconds. Neither game ended.
+
+## 5. Confusion and clarity
+
+The choice labels made it clear which options Dilan was willing to take and which required insistence. The hold produced visible “You insisted” text, and later events showed what she did. Skip moved between choices fairly quickly in this visit.
+
+I was not sufficiently confused to open Feedback for confusion. The repeated day text remained noticeable in the driver’s visible text, though the desktop screenshot presented the history in a separate column.
+
+One desktop ten-second wait and two phone ten-second waits returned empty output. The following screenshot calls showed the current game state. I do not know why those replies were empty; I did not encounter a driver block.
+
+## 6. Device use
+
+**Desktop, 1280×800:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-001.png), the title page: a centred cream page, introduction, unchecked alternative starts and a red Start button. The recording strip crossed the area below “Other ways to begin.” I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-002.png): the day history was on the left and Ece’s scene and large choices were on the right. I saw no clipping in that image.
+
+I used Start, mouse clicks, 1.5-second holds, Skip, Game menu, Feedback, “I'm stopping” and Back. I used no keyboard key. I did not see the menu or Feedback as a picture.
+
+**Phone, 360×690:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-001.png), showing the title and introduction, the recording strip and alternative-start checkboxes. Start was below the visible edge. In [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-002.png), the alarm card and three choices were visible; the instruction paragraph was cut off after “If time” where the choice area began. [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-003.png) showed the Aylin card and choices, with the lower choice and bottom of the page beyond the viewport.
+
+I used touch taps on Start, choices, Skip, Game menu, Feedback, “I'm stopping” and Back. I did not view the phone menu or Feedback as pictures, or inspect the page with a keyboard open.
+
+## 7. Stop and return
+
+- **Desktop, BORED:** “Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it.”
+- **Phone, BORED:** “Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it.”
+
+On both devices, Feedback offered “I'm stopping” and “I'm confused”. I chose “I'm stopping”; the driver showed it pressed. I pressed “← Back”, typed no note, changed no consent or recording setting, and pressed no Submit.
+
+I would not leave the game running. I would not come back tonight. I might return another evening on my phone if I could get to new scenes without replaying the familiar morning and Dilan’s replies to insistence varied. Her pushback and the emotional consequence of the lie still interest me.
+
+## 8. Changes I would want
+
+1. Let me get to new scenes without replaying the familiar opening.
+2. Vary Dilan’s replies to different instances of insistence.
+3. Reduce the repeated day-so-far text on the phone.
+
+## 9. Compared with my last visit
+
+- **Make days differ or let me skip scenes I have seen: partly met.** Skip moved time toward the next event, and sleeping in led to the lateness conversation. The alarm, Aylin message and Ece call were familiar. I did not reach Tuesday, so I cannot say whether its opening differs now.
+- **Shorten dead time between choices or give me something to do: partly met.** I used Skip and reached several choices in the desktop session. I still waited between them; I did not explore other pace settings.
+- **Show less repeated day text, especially on phone: did not meet it in the text I received.** Earlier events continued to appear above later ones. The phone screenshots show only parts of the page, so they do not establish its full length.
+
+**New blocking ask from this visit:** Give Dilan more varied replies to insistence. The same “Fine. I’m doing it because you pushed me. I don’t like it” appeared for both eating outside and drinking water, and that repetition contributed to my desktop stop.
+
+I created no worktree, branch, server, browser or helper and touched no Git resource. The coordinator owns the drivers and browser cleanup.
+
+
+Director method metadata about preceding report, not an experienced event:
+{
+  "at": "2026-10-31T13:04:25.936260+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 13,
+    "curl": 47
+  },
+  "retainedToolsReceipt": "murmur-nia-retained-tools-complete.json",
+  "historyEvidence": {
+    "frozenAndDispatchHashVerified": true,
+    "retainedLiteralLinesMatched": 1339,
+    "unmatchedRanges": [],
+    "comprehensionNotProven": true
+  },
+  "imageEvidence": "Assigned own image calls and typed image responses in retained-tool receipt; perception/comprehension notestablished. Earlier ephemeral limits notchanged.",
+  "stops": {
+    "desktop": 96.037,
+    "phone": 66.942
+  },
+  "timingQualification": "Phonefirstminute58.099 ispremature, produceracknowledges. Desktop65.036 valid; no180spulsesdue. Automaticshotsseparate. Raw1msdifferencesretainedincompanion.",
+  "producerNewBlockingAsk": "Morevaried Dilan replies toinsistence; exactsame objectionobservedaftereatingoutsideanddrinkingwater. No forcedagreement/trustmeter/clockchange authorized.",
+  "methodLimits": "Freshunmatchedsessions; model/nativeinstrumentchanges; prior31.5stapfallback/CONT/historylimitskept. OnlyMondayreached, noTuesday/laterdifferenceproof.",
+  "observations": "Nativeholds followed visibleoutcomes; lieacceptedandstoryfeelingworse arevisibletext nothiddenstatecausality. Skipseemedfaster thisvisit, notcontrolledperformanceproof. Repeateddaytextobserved, phoneimagespartial/no fullpagescrollprobe.",
+  "driverErrors": [],
+  "emptyYieldQualification": "Producerclaims3emptytensecondwaits; completecommandstdoutcoverage isseparatefrominitialyieldpresentation. No gamefailureinferred.",
+  "returns": "Nottonight; conditionalanother eveningphone onlynewscenes+variedpushreplies; noleave-running. All3rankedprimaryandsection8variants preserved.",
+  "feedback": "Bothlocalstopping/Back/no typednote/Submit/consentchange perstrictcommands/report; linkedrunreceiptnotverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 24422,
+      "absent": true
+    },
+    {
+      "pid": 24399,
+      "absent": true
+    },
+    {
+      "pid": 24401,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Observed snapshotsonly, finalroundcleanupdue."
+}
+
+
+
+## Your own published report — human-framework/docs/games/voice-playtest-2026-10-27-retest.md
+### Nia Okafor
+
+**Would you return voluntarily?** I would not come back tonight. I might come back another evening, only if reaching Selin's call took far less waiting, because I still want to hear that call. I would close it and not leave it running.
+
+**Ranked asks**
+1. Make the waiting shorter. The clock should not crawl for minutes before a choice, and a stopped clock should say it is waiting for me.
+2. Give the quiet or reassuring line a real answer. "He heard you and keeps working" is still flat.
+3. Keep more of the conversation visible while I choose my words on the phone. The desktop already does this.
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry                                           | reason | game clock | words                                                                                                                                                                                                                                                                                                                                                                                             |
+| --------- | ----------------------------------------------- | ------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.9       | note                                            |        |            | I remember wanting Halil to call his daughter and never finding it. The intro text is clearer now: you suggest, he decides. Let me start.                                                                                                                                                                                                                                                         |
+| 18.2      | tap Say something else…                         |        |            | Selin is mentioned on the main screen now. I want to see what else I can say.                                                                                                                                                                                                                                                                                                                     |
+| 21.6      | shot                                            |        |            | This is the sentence builder again. Actions list has no call option. Reasons include for Selin though.                                                                                                                                                                                                                                                                                            |
+| 27.4      | TOOL tap                                        |        |            | I said rest at home for Selin. It explains that a plan is not a promise and it stands until 08:10. That clears up my old worry about After I finish this task. Skipping ahead.                                                                                                                                                                                                                    |
+| 27.5      | first_minute                                    |        | 05:11      | I found the sentence builder fast this time, picked rest at home, urge, for Selin. He answered with a plan and the game explained what that means. Selin call is announced on the main screen for the evening, so I know what I am waiting for. Interested.                                                                                                                                       |
+| 41.9      | note                                            |        |            | He actually did rest at home. He did what I suggested, shown plainly. Good, that was quick feedback.                                                                                                                                                                                                                                                                                              |
+| 55.0      | tap Would you rather have quiet while you work? |        |            | Trying the question, since last time the quiet line got ignored.                                                                                                                                                                                                                                                                                                                                  |
+| 61.4      | note                                            |        | 08:00      | He answered my question directly: yes, he wants to keep his attention there. Better than last time ignoring me. Now I want the evening call.                                                                                                                                                                                                                                                      |
+| 74.2      | pulse 4                                         |        | 09:33      | Things answer me and the game explains itself. Engagement 4 because I am heading to the Selin call.                                                                                                                                                                                                                                                                                               |
+| 149.4     | want_quit                                       | BORED  | 09:51      | Skip does not seem to speed anything, and the clock crawls toward 10:00. I am staring at a stopped-feeling page. Itchy but I still want Selin.                                                                                                                                                                                                                                                    |
+| 211.3     | tap Continue                                    |        |            | Clock stopped at 10:00 and I have only Let time pass, no Speak. I do not know whether he is choosing now.                                                                                                                                                                                                                                                                                         |
+| 219.8     | tap Go and see the doctor.                      |        |            | A cigarette, and Selin wanted the doctor. That is a real hook. Going with the doctor.                                                                                                                                                                                                                                                                                                             |
+| 227.6     | pulse 3                                         |        | 10:01      | The cigarette and doctor thread hooked me, but the long crawl to 10:00 with no Speak button cost me. Still going.                                                                                                                                                                                                                                                                                 |
+| 245.9     | note                                            |        | 11:30      | He went to the doctor because I asked. His blood pressure is high, told to stop smoking. That was a real consequence of my words. I like this.                                                                                                                                                                                                                                                    |
+| 365.8     | want_quit                                       | BORED  | 12:00      | Skip only crawls a few game minutes per ten seconds and the clock says slowed while I read when I am not reading. Evening Selin call is hours away at this speed. I would put the phone down here.                                                                                                                                                                                                |
+| 370.9     | stop                                            | BORED  | 12:00      | Stopping. I enjoyed that my suggestions really happened (rest, then doctor) and the game explained a plan is not a promise. But the long crawl to the next choice and the hours to the Selin call lose me on my phone. I would close it, not leave it running. Another evening maybe, for Selin. Feedback had I am stopping and I am confused; I pressed I am stopping, typed nothing, no submit. |
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                                              | reason | game clock | words                                                                                                                                                                                                                                                                       |
+| --------- | -------------------------------------------------- | ------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.8       | tap New game                                       |        |            | Second visit on the laptop, new game.                                                                                                                                                                                                                                       |
+| 21.9      | key 5                                              |        |            | Keyboard shortcuts are printed on the buttons. Trying the number 5 for the mosque, urge, for his duty.                                                                                                                                                                      |
+| 25.0      | shot                                               |        |            | My suggestion to pray at the mosque was dropped: That moment has passed. Nothing was said. I pressed Enter and lost it.                                                                                                                                                     |
+| 28.7      | first_minute                                       |        | 07:59      | The laptop shows a side panel with his feelings, money and what he dreads, including calling Selin. Keyboard letters on buttons. I lost my first suggestion because he chose something else first: Unsaid. Labeled, but I did not see it coming. Still curious about Selin. |
+| 60.6      | tap Take your time. I can be quiet while you work. |        |            | Taking the other line this time, the quiet reassurance. Last time he just kept working.                                                                                                                                                                                     |
+| 71.1      | note                                               |        | 09:33      | Same flat answer as last visit: He heard you and keeps working. The question line got a real answer on my phone, so the quiet line is the weaker choice. The game now lets me keep reading the scene next to my line, which is better on desktop.                           |
+| 134.2     | note                                               |        |            | I waited a full minute and the clock stayed stopped at 09:33. Nothing told me I had to press Let time pass. I thought it would run. That is a dead minute.                                                                                                                  |
+| 187.9     | pulse 2                                            |        | 09:46      | Same slow crawl to 10:00 as on my phone, plus a dead minute of nothing. The side panel is good; the waiting is not.                                                                                                                                                         |
+| 187.9     | want_quit                                          | BORED  | 09:46      | I have seen this stretch already on my phone. Another 14 minutes of crawl for Selin is not happening tonight.                                                                                                                                                               |
+| 190.3     | stop                                               | BORED  | 09:46      | Stopping. The desktop layout is nicer, but the quiet reply was flat again, my first suggestion was dropped as Unsaid, and the clock waits or crawls too long before anything happens. I would not return tonight. Pressed I am stopping; typed nothing, no submit.          |
+
+
+
+
+
+## Your own published report — human-framework/docs/games/watch-playtest-2026-10-27-panel-retest.md
+### Nia Okafor
+
+**Would you return voluntarily?** Yes, I would come back another evening on my phone to see who takes the Gate after Tamar and what happens to Idris's moved marker. I would not leave it running, because I want to be there when the choices come.
+
+**Ranked asks**
+1. Make the fair buttons name what they buy. Three of them are still all called "Take this offer", and I had to tap by position.
+2. Fix the hopes panel on desktop. The lines still run together, the radio dots float in odd places and the text sizes jump.
+3. Give "Warn Kian" a real reply, and drop "whole actor minute" from its text. It explains itself now, but Kian still says nothing.
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry                                                                                                                                | reason | game clock | words                                                                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.3       | note                                                                                                                                 |        |            | Wall game again. Going straight up.                                                                                                     |
+| 9.8       | tap Kian Moves quickly and is eager. Gate, asked · At the assigned post now. You do not know him well enough yet.                    |        |            | Tapping Kian to see what a post does.                                                                                                   |
+| 13.2      | first_minute                                                                                                                         |        |            | Wall game, watchers, wolves. Posted Kian at the mill wall where tracks were. Wall picture looks fine this time. Going to begin.         |
+| 23.6      | tap Ring the bell                                                                                                                    |        |            | Ringing the bell, I liked the reaction last time.                                                                                       |
+| 40.5      | wait                                                                                                                                 |        |            | Nothing moves for a while. Is it paused or just slow?                                                                                   |
+| 42.5      | tap East                                                                                                                             |        |            | Something at the east wall and nobody there. Moving the lantern east.                                                                   |
+| 64.1      | wait                                                                                                                                 |        |            | Lost grain to an empty east wall. My fault, I did not post anyone there.                                                                |
+| 65.7      | tap Kian ◌                                                                                                                           |        |            | Kian left the wall. Tapping him.                                                                                                        |
+| 74.9      | tap Fast                                                                                                                             |        |            | Nothing to ask. Speeding up.                                                                                                            |
+| 101.7     | TOOL tap                                                                                                                             |        |            | A decision pops up and the game waits for me. Good. Calling him back.                                                                   |
+| 103.5     | tap Call him back to the wall The watcher might agree. The Keeper imagines the reply: “I will do this instead: stand the gate wall.” |        |            | Calling him back.                                                                                                                       |
+| 132.1     | pulse 3                                                                                                                              |        |            | Night 1 lost grain because I left east empty. Dawn text names why. Honest. Now morning talks.                                           |
+| 133.8     | tap Tell me about last night                                                                                                         |        |            | Asking Samira about last night.                                                                                                         |
+| 135.6     | tap On to dusk                                                                                                                       |        |            | Samira mentions paints and yellow drying. Nice small detail. On to dusk.                                                                |
+| 137.3     | TOOL tap                                                                                                                             |        |            | Two new people. Posting Idris at east, which was empty last night.                                                                      |
+| 200.5     | pulse 3                                                                                                                              |        |            | Night 2 on Steady is quiet and slow; I am waiting without much to do.                                                                   |
+| 232.1     | tap Fast                                                                                                                             |        |            | Steady is too quiet. Fast.                                                                                                              |
+| 254.0     | tap Ring and call Kian by name The watcher will stay.                                                                                |        |            | The game stopped for the choice, so Fast works this time. Ringing Kian.                                                                 |
+| 282.1     | pulse 4                                                                                                                              |        |            | Wall held, no grain lost. The pause for choices on Fast made this work. Danyal next.                                                    |
+| 284.2     | note                                                                                                                                 |        |            | Idris confessed a moved boundary marker and money, and Samira has not heard. That hooks me.                                             |
+| 316.6     | note                                                                                                                                 |        |            | Let Kian go to his little sister and sent Tamar to cover. A real trade-off, I like it.                                                  |
+| 395.3     | tap Tell me about last night                                                                                                         |        |            | Account sheet shows each person own words, even Samira fleeing west wall. Asking Samira.                                                |
+| 397.0     | pulse 4                                                                                                                              |        |            | Choices with real costs (Kian home to sister, Danyal asleep, Samira fled west). Grain lower. Still curious about Idris boundary secret. |
+| 482.9     | note                                                                                                                                 |        |            | Meryem would try to keep the Gate and it says plainly her name comes first at an autumn fair. Clear.                                    |
+| 518.2     | tap Danyal ●                                                                                                                         |        |            | Danyal fell asleep. Tapping him to help.                                                                                                |
+| 551.7     | tap How are you holding up?                                                                                                          |        |            | Granary cannot feed the village. Asking Idris how he is.                                                                                |
+| 553.8     | pulse 4                                                                                                                              |        |            | Losing slowly, granary will not last. Still reading the small talks; I want to see the end of winter.                                   |
+| 649.5     | note                                                                                                                                 |        |            | Tamar said the exact owl and fox line again. Same line twice, it feels canned.                                                          |
+| 651.1     | TOOL tap                                                                                                                             |        |            | Last chance: Idris, about the boundary marker.                                                                                          |
+| 653.4     | pulse 4                                                                                                                              |        |            | Tamar died of hunger in spring, giving away half her bowl. That landed. I lost slowly again but I understand why this time.             |
+| 721.6     | tap Give your blessing                                                                                                               |        |            | Meryem wants to marry Ivo. I barely know Ivo, but blessing.                                                                             |
+| 756.5     | note                                                                                                                                 |        |            | Three buttons all named Take this offer again. I have to tap by position. Same as last time.                                            |
+| 758.6     | tap                                                                                                                                  |        |            | Seed grain, since no seed hurt me this year.                                                                                            |
+| 766.3     | want_quit                                                                                                                            | TASTE  |            | I saw Tamar die and the village grow. Winter two would be the same loop. Not bored, satisfied.                                          |
+| 766.4     | stop                                                                                                                                 | TASTE  |            | Stopping in early autumn year one on phone, after about 15 minutes. Picked I am stopping in Feedback, no note, not submitted.           |
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                                      | reason | game clock | words                                                                                                                                                                                                   |
+| --------- | ------------------------------------------ | ------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.7       | note                                       |        |            | Second visit on desktop. The page looks tidy now. Opening the hopes.                                                                                                                                    |
+| 5.4       | note                                       |        |            | The hopes panel is still a mess: lines run together, radio dots in odd places, text sizes jump. Same as last visit.                                                                                     |
+| 9.2       | first_minute                               |        |            | Wall game with watchers and wolves. Ticked both boxes (more requests, I guess). Going up and posting.                                                                                                   |
+| 16.7      | note                                       |        |            | Now there is a plain button Ask Kian to take tonight off, greyed with a reason: move the lantern nearer. Much clearer than Save Kian. Also the page does not fill the window, empty band at the bottom. |
+| 41.4      | note                                       |        |            | Wolves drawn, Kian on the east wall, game stopped on a choice. Clear. Urging him to hold.                                                                                                               |
+| 91.0      | note                                       |        |            | Tamar says it was quiet enough while raiders took grain at an empty west wall. Dialogue that ignores what happened, same as before, though the line under the headline is honest.                       |
+| 95.7      | tap On to dusk                             |        |            | Trying On to dusk, the button that died last time.                                                                                                                                                      |
+| 127.1     | tap Warn Kian: keep an eye on this stretch |        |            | Warn Kian again; last time it got no reply.                                                                                                                                                             |
+| 129.2     | pulse 3                                    |        |            | Warn Kian is explained now (no reply recorded, hearing does not mean agreed) but still no answer from him, and whole actor minute is odd wording. Samira keeps going home.                              |
+| 188.1     | key Enter                                  |        |            | Trying the keyboard: Tab then Enter.                                                                                                                                                                    |
+| 192.3     | want_quit                                  | TASTE  |            | Second visit same evening; I have seen the new request button and the warn reply. Nothing new pulls me back in right now.                                                                               |
+| 192.3     | stop                                       | TASTE  |            | Stopping at dusk of night 3 on desktop, about 11 minutes. Picked I am stopping in Feedback, no note, not submitted.                                                                                     |
+
+
+
+
+
+## Your own published report — pass/docs/playtests/panel-2026-10-27.md
+### Nia Okafor
+
+I would not come back tonight, and I would only open The Pass again on another evening if the cooks pushed back on me more than once a night.
+
+Ranked asks:
+1. Show orders and something to do from the start. About 2.5 minutes of Monday on the phone had "No orders are waiting" while the clock jumped and money rose on its own.
+2. Say why the People offers (Selim's notes, Dilek's rattling sound) are greyed out, or let me act on them. They were the only mystery hooks and I could never touch them.
+3. Make cooks answer my pokes with more than a canned line ("Thank you for listening, Chef"). Give me a way to insist that works on a keyboard.
+
+The Write tool refused report.md, so the full report follows.
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry                            | reason   | game clock    | words                                                                                                                                                                                                                                                                    |
+| --------- | -------------------------------- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 5.7       | tap New game                     |          |               | A restaurant where cooks can refuse me. Okay, I want to see how rude they are.                                                                                                                                                                                           |
+| 9.1       | TOOL tap                         |          |               | Two cooks already agreed to everything. Boring. I want to poke Selim. There are two Change buttons?                                                                                                                                                                      |
+| 16.2      | tap 19:45 during the rush        |          |               | Ok, a plan sheet. I will make him eat in the middle of the rush to see if he complains.                                                                                                                                                                                  |
+| 25.8      | tap Ask them about the changes   |          |               | Ok, I changed the break and now I have to ask them. Fine.                                                                                                                                                                                                                |
+| 29.2      | note                             |          |               | He agreed to eat mid-rush without a word. No pushback, no personality yet. Open the doors.                                                                                                                                                                               |
+| 33.1      | tap Selim grill                  |          |               | Poke the cook.                                                                                                                                                                                                                                                           |
+| 36.5      | tap Go home I said I’d stay      |          |               | The buttons show his likely answer. Nice. I will tell him to go home, just to see.                                                                                                                                                                                       |
+| 54.4      | first_minute                     |          | Mon wk1 17:3x | I can poke cooks and see what they will say before I ask, which I like. I told Selim go home and he said no, short and in character. But ₺40 appeared and I do not know why. Nothing is happening yet at 17:3x, no orders. I am waiting for the kitchen to do something. |
+| 56.9      | tap People                       |          |               | What does People do?                                                                                                                                                                                                                                                     |
+| 59.5      | TOOL tap                         |          |               | A rattling sound in the kitchen. Mystery. I want that.                                                                                                                                                                                                                   |
+| 66.3      | TOOL tap                         |          |               | The mystery button is greyed out. Why? Nothing tells me.                                                                                                                                                                                                                 |
+| 76.8      | tap Talk with Dilek another time |          |               | Both offers are greyed and the only live button says talk another time. I do not get it, it is a menu of things I cannot do.                                                                                                                                             |
+| 111.6     | wait                             |          |               | Still no orders, time is flying and money rises by itself. I do not know what I am supposed to do. I am a boss with nothing to boss.                                                                                                                                     |
+| 114.1     | tap Information                  |          |               | Maybe the info explains where the customers are.                                                                                                                                                                                                                         |
+| 117.3     | pulse 2                          |          | Mon wk1 19:28 | The info helped a bit but I never see any orders or customers, only money rising and the clock jumping. I can talk to cooks, which I like, but there is little to do.                                                                                                    |
+| 159.9     | wait                             |          |               | Giving it one more try. If no orders come I am leaving.                                                                                                                                                                                                                  |
+| 163.2     | tap Selim eating                 |          |               | Orders at last. The grill has nobody because I let Selim eat now. My fault, ha.                                                                                                                                                                                          |
+| 173.6     | note                             |          |               | Selim said he would leave his food and take the grill. That was a real reaction, I liked that. The first 2.5 minutes before any order was the dull bit.                                                                                                                  |
+| 200.1     | want_quit                        | CONFUSED | Mon wk1 21:05 | The offers to find out about the rattling and Nevin notes are the only mystery hooks and both are greyed out with no reason. Dinner service ended with no orders for long stretches. I would leave now.                                                                  |
+| 207.1     | stop                             | CONFUSED | Mon wk1 21:06 | Stopping. I picked I am confused in Feedback, no note, no submit. I liked that Selim left his food when I asked. I would not return on my own tonight. Maybe if I heard that the cooks argue back.                                                                       |
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                              | reason | game clock            | words                                                                                                                                                                                                                                                                         |
+| --------- | ---------------------------------- | ------ | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.7       | tap New game                       |        |                       | Second visit, on my laptop. I know the cooks say yes to everything. This time I want to push, not poke.                                                                                                                                                                       |
+| 4.7       | tap Open the doors                 |        |                       | Skip the plan sheets, I did that already. Straight in.                                                                                                                                                                                                                        |
+| 11.0      | tap About what you said            |        |                       | Let me argue with her about her own promise.                                                                                                                                                                                                                                  |
+| 18.5      | note                               |        |                       | I asked Dilek about her own promise and she said thank you for listening. That is a canned reply, it ignored the fact that I was poking at her. Not great.                                                                                                                    |
+| 22.0      | TOOL tap                           |        |                       | Try the notes offer on this device.                                                                                                                                                                                                                                           |
+| 26.9      | tap Resume                         |        |                       | Greyed again, same as on my phone. I will leave the menu and give it time.                                                                                                                                                                                                    |
+| 62.1      | first_minute                       |        | Mon wk1 ~18:40        | Second time, so I knew the shape. Cooks say yes to everything and the first real thing happens only when orders show up. The offers in People are still greyed with no reason given. The desktop screen is clean and I can read all of it, but still nothing to push against. |
+| 109.2     | TOOL tap                           |        |                       | She says she prefers her current job. Let me ask anyway and see if she refuses.                                                                                                                                                                                               |
+| 116.4     | tap Grill I prefer the lighter job |        |                       | Now she says she likes the lighter job. Sure, I will ask her to swap to the grill.                                                                                                                                                                                            |
+| 125.1     | note                               |        |                       | She refused, with a reason: she likes the lighter job and will not promise. That is what I came for. I wish I could push harder but I do not see how to hold a button from the keyboard.                                                                                      |
+| 154.1     | pulse 3                            |        | Mon wk1 after closing | The night summary is the best bit: Selim missed prayer, Dilek smoked in the rush. That is gossip, I like it. But most of the night I watched a clock. I need ₺920 a night and I did not know I was behind.                                                                    |
+| 158.3     | want_quit                          | BORED  | Tue wk1 17:30         | Tuesday is the same planning sheet again with one extra cook. I know the loop now: plan, watch the clock, read gossip. I would leave.                                                                                                                                         |
+| 161.4     | stop                               | BORED  | Tue wk1 17:25         | Stopping on Tuesday morning. I chose I am stopping in Feedback, no note, no submit. I would not leave it running. I might open it another evening only if the cooks pushed back more than once per night.                                                                     |
+
+
+
+
+
+## Your own published report — valley/docs/playtests/2026-10-27-retest2.md
+### Nia Okafor
+
+I would come back another evening, not tonight, and only if the Say lines show up on every start and the walks get shorter. I would not leave it running.
+
+Ranked asks:
+1. Keep "Spoken answers on visits" on by default, or leave it on in a restarted game. On desktop I got no Say button at all.
+2. Make Zehra and the rest of the barley-excuse houses answer the Say line. Kavak's overseer and Yusuf now did; Zehra did not.
+3. Make the walks shorter. Each visit still costs about 25 real seconds of waiting.
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 2.8 | tap Spoken answers on visits: Say something at every house Choose your words at any house; someone answers. Original grain rules; people stay local. |  |  | Spoken answers tickbox again, ticking it. |
+| 5.6 | tap Call the hamlet to cut the landowner’s barley |  |  | Calling the hamlet right away. |
+| 8.5 | tap Visit |  |  | Visiting Kavak. |
+| 35.3 | tap Say something (2 choices) ▸ |  |  | Two choices now, tapping. |
+| 37.3 | tap Say: Rain is due on 20 July. The landowner’s barley must be cut before then. |  |  | Trying the rain line this time, more pointed. |
+| 37.3 | first_minute |  |  | Now there are two things to say. Tried the rain one. Waiting for an answer. |
+| 39.6 | tap Say: I came to listen. What you said matters to me. |  |  | Now the listening one, to compare answers. |
+| 57.0 | note |  |  | The overseer answered my listening line: we said we would come, you do not need to sit here for that. That is a reply that fits what I said, not Sit down. Good. |
+| 94.3 | tap Visit |  |  | Going to Coban to say something to Zehra. |
+| 122.9 | tap Say: Finish your own barley first. Then come to the landowner’s field. |  |  | A new line that answers her excuse. Saying it. |
+| 174.3 | pulse 4 |  | 10:30 | Yusuf answered my listening line with Listen, then, the rain takes our field. That fits. The overseer answered too. Choices now change by house. Zehra still repeats the barley line though. |
+| 174.5 | tap Send grain |  |  | Sending grain to Zehra family. |
+| 195.8 | want_quit | BORED | 10:30 | Phone: Zehra still repeats the barley line and grain gave no visible reply. Walks eat real time. Mild wish to leave, not strong. |
+| 195.9 | stop | BORED |  | Stopping on the phone after ~6 min. Pressed I am stopping, typed nothing, did not submit. |
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 3.7 | tap Visit |  |  | Desktop, going to Ak. |
+| 33.7 | note |  |  | At Ak there is no Say button at all. Nothing to say, just wait. I left the spoken answers tickbox alone this time and it seems it was off. Restarting with it ticked. |
+| 39.1 | tap Start new game |  |  | Restarting to get the Say option. |
+| 42.1 | tap Visit |  |  | Dere this time. |
+| 72.9 | want_quit | CONFUSED |  | No Say button again, and New game from the menu skipped the title page so I cannot tick the spoken answers box. I only get to stand and wait. Why did the option vanish? |
+| 100.9 | stop | CONFUSED |  | Stopping on desktop. Pressed I am confused, typed nothing, did not submit. |
+
+
+
+
+
+## Your own published report — commonstead/docs/games/commonstead-playtest-2026-10-27b.md
+### Nia Okafor
+
+**Would you return (exact sentence):** "I would not come back tonight, but I would come back another evening if there were someone to talk to within the first two minutes, the Say buttons sat beside the person instead of in a small scroll pane, and my chosen line got an answer I could reply to again, because Nora writing 'Would this grip help you use the handle?' and Sevim leaving his answer unwritten were the two moments I wanted. I would close it, not leave it running."
+
+**Ranked asks**
+1. Put "Invite a private story" and the Say buttons beside the selected person, in a pane big enough to read without scrolling. Phone first. The desktop pane is still about 150 px tall.
+2. After my line, let the resident answer me and let me reply again. Right now the line ends at "attended the line" plus one written sentence, and the game says the answer "is still unwritten."
+3. Give building and group talk some visible payoff in the first five minutes. Four people on Boards took 87 of 180 after minutes at Fast. Sam and Dai talking produced only "They do not pass on an account of the supplies."
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry                                  | reason | game clock   | words                                                                                                                                                                                                                                                                               |
+| --------- | -------------------------------------- | ------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.7       | tap                                    |        |              | Same personal replies start as last time; I want someone to talk to me.                                                                                                                                                                                                             |
+| 7.7       | tap Nora                               |        |              | Tapping Nora straight away for a personal reply.                                                                                                                                                                                                                                    |
+| 11.7      | tap                                    |        |              | Invite button was in this collapsed group last time; opening it.                                                                                                                                                                                                                    |
+| 14.2      | tap Invite a private story             |        |              | Inviting Nora to share a story.                                                                                                                                                                                                                                                     |
+| 27.6      | first_minute                           |        | 08:12        | Picked personal replies, tapped Nora, found the invite in the collapsed group again. I invited her; clock moved 08:07 and she is still resting and saying she sees no reason not to do this. Nothing yet, waiting.                                                                  |
+| 42.2      | tap Fast                               |        |              | Impatient: speeding up so the one-minute wait passes.                                                                                                                                                                                                                               |
+| 51.6      | tap Steady                             |        |              | Rule says Steady counts; going back to Steady.                                                                                                                                                                                                                                      |
+| 51.8      | tap Boards                             |        |              | Putting Nora on boards while I wait.                                                                                                                                                                                                                                                |
+| 69.5      | tap Invite a private story             |        |              | Trying the invite again.                                                                                                                                                                                                                                                            |
+| 82.6      | tap Bring carried materials to the hub |        |              | There is a new button for carried boards; using it so the story is not blocked.                                                                                                                                                                                                     |
+| 96.8      | wait                                   |        |              | Waiting for Nora to deliver.                                                                                                                                                                                                                                                        |
+| 99.7      | tap Cancel selected tasks              |        |              | Cancelling her board loop so she can talk to me.                                                                                                                                                                                                                                    |
+| 113.6     | pulse 3                                |        | 08:55        | Cancel then invite worked; Nora chose to tell me about leaving a feature off a handle design. Faster than last time, and no hub block. The invite is still hidden in the collapsed group.                                                                                           |
+| 133.0     | tap                                    |        |              | Choosing the second line, write down what I still need to ask; that is how a designer would answer.                                                                                                                                                                                 |
+| 157.6     | note                                   |        | 10:20        | That worked much quicker than last time: Nora wrote Would this grip help you use the handle? and said she has not asked them yet. No hub walking. I still had to scroll a lot to find the Say buttons, and the answer is still just a line, but it is the moment I liked last time. |
+| 157.8     | tap Sevim                              |        |              | Trying Sevim, the other person with a private story.                                                                                                                                                                                                                                |
+| 189.5     | tap Sevim                              |        |              | Sevim is waiting for me; selecting her to read it.                                                                                                                                                                                                                                  |
+| 210.8     | tap                                    |        |              | Leave room for his answer; that feels right.                                                                                                                                                                                                                                        |
+| 262.6     | pulse 3                                |        | 11:40        | Both stories answered in about four minutes, no hub walk. I liked Sevim leaving his answer unwritten. But after the line, nothing else for me to do with them and nobody has built anything.                                                                                        |
+| 270.9     | want_quit                              | BORED  | 11:50        | I got both personal moments, Nora and Sevim, in four minutes and it was smoother. Now there is just resource waiting and nobody builds. I would leave.                                                                                                                              |
+| 273.7     | stop                                   | BORED  | 11:55 paused | Stopping on phone. Both stories answered fast, no hub walk, Nora wrote her question and Sevim left room for his answer. Then nothing to do but wait for boards. Would not leave it running. Feedback marked I am stopping and filled the box itself; nothing typed or submitted.    |
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                         | reason | game clock   | words                                                                                                                                                                                                                                                            |
+| --------- | ----------------------------- | ------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.3       | tap                           |        |              | Second visit on the laptop; trying resident conversations again, since I want people to talk to each other and to me.                                                                                                                                            |
+| 11.9      | tap Dai                       |        |              | Desktop: picking Dai first.                                                                                                                                                                                                                                      |
+| 12.4      | tap Invite two people to talk |        |              | Asking Dai and Sam to talk about the trolley route.                                                                                                                                                                                                              |
+| 18.5      | first_minute                  |        | 08:20        | Big map again, a relief. Dai and Sam picked and invited to talk. The text pane at right is still a small window I have to scroll. Waiting for them to talk.                                                                                                      |
+| 45.7      | tap Clear                     |        |              | Sam and Dai talking gave me just: They do not pass on an account of the supplies. That is nothing. Going to Nora.                                                                                                                                                |
+| 90.3      | tap Invite a private story    |        |              | Trying the story invite again.                                                                                                                                                                                                                                   |
+| 92.8      | pulse 3                       |        | 09:10        | Sam and Dai talk produced a dry line. Nora invited; waiting. No hub walk problem so far.                                                                                                                                                                         |
+| 135.7     | tap                           |        |              | Trying the first line this time: put the grip back and mark the drawing unfinished.                                                                                                                                                                              |
+| 183.8     | note                          |        | 11:00        | First line got a different answer: Nora put the grip back, marked it unfinished, and says she still needs to ask the user. So my choice matters. Nice. Still hunted in a tiny scroll window for the buttons.                                                     |
+| 184.9     | tap Boards                    |        |              | Putting four people on boards and speeding up to see if anything gets built.                                                                                                                                                                                     |
+| 251.3     | want_quit                     | BORED  | 13:45        | Boards 87 after minutes at Fast with four people; building is slow and I have already had my personal moment. I would leave now.                                                                                                                                 |
+| 254.9     | stop                          | BORED  | 13:50 paused | Stopping on laptop. Nora answered my first line differently than the second, which I liked; Sam and Dai talking gave nothing. Building is slow. Would not leave it running. Feedback marked I am stopping and filled the box itself; nothing typed or submitted. |
+
+
+
+
+
+## Your own published report — lefthand/docs/games/lefthand-playtest-2026-10-27-panel-retest.md
+### Nia Okafor
+
+Would I return voluntarily? Yes, once, on another evening, to try a clean door run. I would not leave it running, and I would not come back for the door route if it still takes one tap per tile.
+
+Ranked asks:
+1. Let the phone walk faster than one tap per tile, so the door route (about 12 tiles) can finish in 60 s at tap speed. I never reached the door in either session.
+2. Keep Tariq consistent. He re-asked "Is that for Idris?" after I had explained, and one morning he said I "asked for discretion" when I had picked Explain.
+3. On desktop, show the arrow pad fully on an 800px-tall screen. The down, left and right buttons are still cut off at the bottom edge.
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 5.4 | tap Their door · farther, Samira knows it was you |  |  | Door again, I want to beat it this time. Remembering the 60s clock and tap-per-tile walking. |
+| 21.5 | note |  |  | Tariq stopped me again, same as before. Reading what I can say this time. |
+| 56.9 | TOOL tap |  |  | A reply of my own at last, and it costs only 1 second. Taking it. |
+| 62.9 | first_minute |  | Night 1, 17s | Map is visible straight away and the door is marked. But the reply tap took 33 s to return and the clock fell from 49 to 18. Same lag as last time; I suspect driver, not game. I am 5 tiles from the door with 17 s left. Third reply is new and good. |
+| 79.1 | note |  |  | Dawn hit, I did not reach the door. Again. Reading the morning. |
+| 115.1 | TOOL tap |  |  | Tariq kept his word, nice, and it tells me I was 10 steps short. Going again. |
+| 120.9 | tap Well box · closer, Danyal must collect it before dawn |  |  | Door cost me the night. Taking the well to see how the delivery spot looks now. |
+| 137.3 | note |  |  | Tariq again on night 2, this time he promised to tell if he sees me again. |
+| 143.2 | tap Keep quiet |  |  | Dialogue clearly remembers I asked him once. Good. Keeping quiet, no time cost. |
+| 178.2 | pulse 4 |  | Night 2, 15s | Dropped at the well first try, and the button turned into a Collection 3s countdown so I knew it worked. Tariq remembering my earlier reply held me. Still one tap per tile. |
+| 222.5 | note |  |  | Morning 2. Reading what the neighbours say. |
+| 229.3 | tap Next evening |  |  | Everyone reacts to my choices, and Idris was upset I did not let him choose who knew. Night 3, hiding the lantern to avoid Tariq. |
+| 254.8 | tap Keep quiet |  |  | Tariq saw me despite hiding the lantern, I am guessing the lane tile beside him is lit by his own lantern or home. Fine. |
+| 321.3 | note |  |  | Night 3 failed: Leave envelope did nothing useful or the clock ended during the long tap, and the cold sent me home. I was one tile off I think. The hidden lantern turned the warmth bar very low fast. |
+| 351.5 | stop | FINISHED | After three nights | Ended after three nights, one delivery out of three. The walk is still one tap per tile, but the 10-steps-short message and a reply of my own made it feel fairer. Chose I am stopping in the menu, typed nothing, sent nothing. I would try once more another evening with the well, not leave it running. |
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 3.6 | tap Their door · farther, Samira knows it was you |  |  | Desktop, same evening. Door again, with the keyboard. |
+| 50.4 | tap Explain |  |  | Trying Explain this time to see how it differs from asking him not to tell. |
+| 110.3 | first_minute |  |  | Late note. Door missed again, a few steps short, with each key costing me about 3-4 s via the driver (my slowness, I suspect). The arrow pad is still cut off at the bottom of the 800px window, but keys work. The door is clearly marked now and the morning text told me how far I was. |
+| 122.3 | tap Next evening |  |  | Two steps short of the door. Tariq says I asked for discretion, but I picked Explain; that does not match what I did. |
+| 173.8 | tap Keep quiet |  |  | Tariq asks me again whether it is for Idris, though I already explained to him last night. Odd that he forgets. Keeping quiet. |
+| 210.2 | pulse 4 |  | Night 2, 13s | Well delivery worked. The green cross around the well showed me where to stand, and a Danyal collects 3s label sat on the map. That is the thing I asked for last time. |
+| 255.5 | want_quit | BORED | Morning 2 | I got my delivery and saw the new bits. Another night of one-key-per-tile is not pulling me. I would leave here. |
+| 269.2 | stop | BORED | Morning 2 | Stopping at morning 2. Chose I am stopping in the menu, typed nothing, sent nothing. Well run worked once the spot was clear. I might come back one evening for a clean door run, not leave it running. |
+
+
+
+
+## Director metadata on prior Codex history evidence; not an experienced event
+{
+  "time": "2026-10-31T12:30:15.495262+00:00",
+  "scope": "Applies to Codex exec JSONL audits in Hearsay recovery and Stairwell first retest; no original producer words changed",
+  "verified": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read.",
+  "notVerified": "The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+  "images": "Codex image views remain self-reported/unverified in this stream. Root frozen-PNG inspection is distinct.",
+  "earlierClaude": "Original Hearsay Maya/Emre/Diego actual Read tool-response line coverage remains verified separately.",
+  "sources": [
+    "https://learn.chatgpt.com/docs/non-interactive-mode",
+    "https://learn.chatgpt.com/docs/developer-commands?surface=cli"
+  ],
+  "future": "Keep session rollout persistence on for subsequent unstarted rounds; inspect actual task-only rollout schema before promising stronger evidence."
+}
+
+
+---
+End of supplied own history. This reading boundary is director metadata, not an event you experienced.

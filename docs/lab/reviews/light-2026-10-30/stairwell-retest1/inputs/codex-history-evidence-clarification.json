@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-31T12:30:15.495262+00:00",
+  "scope": "Applies to Codex exec JSONL audits in Hearsay recovery and Stairwell first retest; no original producer words changed",
+  "verified": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read.",
+  "notVerified": "The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+  "images": "Codex image views remain self-reported/unverified in this stream. Root frozen-PNG inspection is distinct.",
+  "earlierClaude": "Original Hearsay Maya/Emre/Diego actual Read tool-response line coverage remains verified separately.",
+  "sources": [
+    "https://learn.chatgpt.com/docs/non-interactive-mode",
+    "https://learn.chatgpt.com/docs/developer-commands?surface=cli"
+  ],
+  "future": "Keep session rollout persistence on for subsequent unstarted rounds; inspect actual task-only rollout schema before promising stronger evidence."
+}

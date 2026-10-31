@@ -1,0 +1,12 @@
+{
+  "tester": "Rosa Alvarez",
+  "time": "2026-10-31T08:52:48.990663+00:00",
+  "historyActualLines": 1811,
+  "historyReadThrough": 1811,
+  "producerFullReadClaim": true,
+  "actualWholeHistoryReadVerified": true,
+  "producerHistoryEndClaim": "Reached explicit end marker; actual successful line responses checked.",
+  "priorContinuityQualificationRetained": true,
+  "limits": "Current history read completeness does not erase earlier input contamination or make earlier incomplete reads complete. No production agent receipt independently read.",
+  "historyReadFailureRecovered": "First tail read1201/620 was refused for context size. Retries1201/310 and1511/310 reached actual end1811."
+}

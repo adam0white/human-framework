@@ -1,0 +1,7 @@
+{
+  "app": "1.0.0",
+  "framework": "4.15.0",
+  "frameworkLibrary": "4.15.0",
+  "commit": "fee70f1da338ebe075cc630f9452c66f4d14bf17",
+  "dirty": false
+}

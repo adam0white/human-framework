@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-31T15:21:02.384001+00:00",
+  "admitted": true,
+  "runnerSha256": "49d8a3fb9df89ea7b027bd4605482895326f7d892a52bec92d6abab3bd2344a3",
+  "planSha256": "78f81d372ceb70a53f4aeada5a900ea4e5a7780655dd5dc889ed5e8c2e1ef114",
+  "freezeSha256": "d0d8f7e8339e6c847223f8a05ab141f2bd27466391c47271ea084f2f5558c504",
+  "source": "701df5428899b2fe25b693bba4120caf3e806a7c",
+  "release": {
+    "app": "smoke",
+    "framework": "4.8.0",
+    "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+    "dirty": false
+  },
+  "elapsedSincePriorActualReturnSeconds": 984.944346,
+  "priorActualReturn": "2026-10-31T15:04:37.439655+00:00",
+  "freeBytes": 48839176192,
+  "allTenPortsClosed": true,
+  "projectBrowserOrSuiteProcesses": [],
+  "suiteLockAbsent": true,
+  "proofHashes": {
+    "smoke-root-prelaunch-checks.json": "9900bd396d3d73587b431cb8e53268269b44f600af1c188af1444eedc18099f6",
+    "smoke-retest-fresh-assets.json": "7fbdb93b93037b8c637e6240edd13395f8e94aab9da88c55277ba9780d2b92a1",
+    "smoke-codex-input-code-review.md": "021d2d0c64a888592903bb93a4821109996cf0cdfaf0d0c9819b30d64a69bc4c",
+    "smoke-codex-input-qualification-review.md": "d3c46a706d775e41154a6506aee32d496d6c89a59cd5fcdb08397f00a61815c5",
+    "smoke-codex-input-freeze-audit.json": "79d1efd11f4fd67b51398dc525289a95dad2f07e32a3a8a8c5d7f92e652e7ff3",
+    "word-retest-codex-cleanup.json": "75d56c3143595594d3f92c90c4856b0c041726a8eb4126b99999d202c06c952a",
+    "word-retest-codex-round-state.json": "ea1becee678c5a9dbd6e19af9d67b1fce986f81219f5787d39ad69bb39584f1f",
+    "central-fee-c2-root-return.json": "8eb28fee52cc1145cb1a5824f70b3e713329703025cd2133dd09be30087efe99",
+    "batch5-lane2-root-verification.json": "1e9d01f21d560e1e066c9acd92aa20154c125349b2bdefe2891fe1d0a6c135dd",
+    "native-tap-v2-approved.json": "f650087efbafde5b091e6f1c5c285eaefd2856920ed62ce872de1f03ee3b41cb",
+    "central-normal-lane-scheduling-1520.json": "fe0710d262f25f4364af6bdd96ebeccfd3476386340c9bbdb67f6cd253feb9c9"
+  },
+  "scope": "First fixed retest; serial Terra LOW one person/two fresh project-test contexts. Native v2, no imported old save/fixture/matched seed, no ephemeral flag. No engineering browser or full suite overlaps. Root read full Jonas and Maelle briefs, finalizer and both reviews; all46 private hashes checked. Full other brief reads delegated; compiled histories were not exhaustively reread by root.",
+  "cold": "Ma\u00eblle is a newly approved profile. Bounded normalized first/surname actual-record/path/roster search370 no hit at15:16; no dispatch since that check.",
+  "reservedIds": "F2821\u20132850; allocate only actual asks."
+}

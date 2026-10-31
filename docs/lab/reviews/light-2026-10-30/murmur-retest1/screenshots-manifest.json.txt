@@ -1,0 +1,182 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/b-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "bytes": 72521,
+    "mtime_ns": 1793451040759781844
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/first-minute.png",
+    "sha256": "dc7064ba6d9fd35cd98c19622d604d7051df845cda9ef342eab7fc3c40af960a",
+    "bytes": 47338,
+    "mtime_ns": 1793451099129427243
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/b-002.png",
+    "sha256": "090d64049012ff580c2f9c5a89877bd47b240b213927aef5bdddc1f4e22da971",
+    "bytes": 70689,
+    "mtime_ns": 1793451052191390209
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/first-minute.png",
+    "sha256": "47769f3aa94807ed8718269c14220fb4340fbfcb8e1d21ec99ffd4cdaae7413f",
+    "bytes": 170676,
+    "mtime_ns": 1793450967772412916
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/a-002.png",
+    "sha256": "c9810dd5d65ad8096796fe403d3cde264b51bf9a11f8ad1dfe80b27b0c0dd64d",
+    "bytes": 165233,
+    "mtime_ns": 1793450970283215001
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/a-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "bytes": 122189,
+    "mtime_ns": 1793450909482321633
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/phone/first-minute.png",
+    "sha256": "78a5bfa15ac5a64a674247dd5e9e2f4bbc2c0a37a95b7877df9b4fa7577b8964",
+    "bytes": 85635,
+    "mtime_ns": 1793451192547538051
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/phone/a-002.png",
+    "sha256": "8496ec815e71dca33ef7732be0d41960f92fbd9fb6485b18919a7d18e6e898f0",
+    "bytes": 69441,
+    "mtime_ns": 1793451169021936864
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/phone/a-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "bytes": 72521,
+    "mtime_ns": 1793451134339295890
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/desktop/b-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "bytes": 122189,
+    "mtime_ns": 1793451270477045408
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/desktop/first-minute.png",
+    "sha256": "ec8eb7c9746a59ed914ef7562d4442be5037a4e3edbb9ba09f77cb9a6b4878a4",
+    "bytes": 129424,
+    "mtime_ns": 1793451331192076183
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/desktop/b-002.png",
+    "sha256": "d66747a0b5c5ebf21cb08410bae3751a829b81e57e7dfb6be7aec394b8057150",
+    "bytes": 70763,
+    "mtime_ns": 1793451301575282595
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/desktop/b-003.png",
+    "sha256": "af5392312920c9d36b411a820cdb1697ab72b1521dd89ea10e42d0fd01a0389e",
+    "bytes": 146090,
+    "mtime_ns": 1793451415112368562
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "bytes": 72521,
+    "mtime_ns": 1793451654695429231
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/first-minute.png",
+    "sha256": "6cd76d582b8ed4a52fb54131603c015d0ad244846d663ecd76d569faab397fc9",
+    "bytes": 64238,
+    "mtime_ns": 1793451712324240191
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-002.png",
+    "sha256": "3d898826ad016ee5792b8ee1d642f8fb6bf1cc5e4ee4a06664e23dfa0658eec1",
+    "bytes": 70628,
+    "mtime_ns": 1793451671027837523
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-003.png",
+    "sha256": "6976f55c7eaf284cfa4cc4514b6d3cddb4add2ba46e2acb7812b58561325a525",
+    "bytes": 69440,
+    "mtime_ns": 1793451688326544622
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/first-minute.png",
+    "sha256": "9024c8de5fa8a7fd40af6ffdfaedfa554be447ed003b305729fa6bf6915d95d1",
+    "bytes": 210519,
+    "mtime_ns": 1793451614784440375
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-002.png",
+    "sha256": "60b33bd225711d35eb21f45eb21abc28f026999beea8ddcb52767b93cb869991",
+    "bytes": 160825,
+    "mtime_ns": 1793451602047333050
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "bytes": 122189,
+    "mtime_ns": 1793451556177467682
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/phone/first-minute.png",
+    "sha256": "6a98921706d3b5d74d5ab8c391d67859260a04d881e6b11fa311d1d66c1ac2ab",
+    "bytes": 90832,
+    "mtime_ns": 1793451831150820533
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/phone/a-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "bytes": 72521,
+    "mtime_ns": 1793451773788228948
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/desktop/b-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "bytes": 122189,
+    "mtime_ns": 1793451845540102498
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/desktop/first-minute.png",
+    "sha256": "35f3a78e919d90f2de5bd94db3f8de2c5e93f0bb39b1b4bdb743e19d204ede00",
+    "bytes": 212103,
+    "mtime_ns": 1793451903734101116
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/phone/first-minute.png",
+    "sha256": "c3c1c39de1fb449c7fa2b681336a0d68e00bdf7b287c965b7937fcd697951042",
+    "bytes": 65827,
+    "mtime_ns": 1793451997251622272
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/phone/a-002.png",
+    "sha256": "bceae63dafb9e1b9dfe3997e520391c62afd658378c802f4dc19c900a4203de1",
+    "bytes": 90002,
+    "mtime_ns": 1793451989640998734
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/phone/a-001.png",
+    "sha256": "26778243dd444af5b4ea43cd6fbc09e566a6f9c33701d49d63941e9e293eba9a",
+    "bytes": 72521,
+    "mtime_ns": 1793451938888832570
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/desktop/b-001.png",
+    "sha256": "e9b486172b0ecab7d6c63bf8554351fffad93f5ddcbced7fd6a1c252a197cd30",
+    "bytes": 122189,
+    "mtime_ns": 1793452031601528981
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/desktop/first-minute.png",
+    "sha256": "a9d769a3d4b8e407b032fa9c0102da230d97612c60af1385372b8f498f208c95",
+    "bytes": 206379,
+    "mtime_ns": 1793452089618118182
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/desktop/b-002.png",
+    "sha256": "79ded82e8e6dc049f54492981ca92c8acab1489bab775a38bf3f5af221c8052b",
+    "bytes": 180968,
+    "mtime_ns": 1793452073770686601
+  }
+]

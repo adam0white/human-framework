@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-31T14:58:26.029467+00:00",
+  "rootReadFullReport": true,
+  "commandReceipt": "word-mei-command-audit-1457.json",
+  "retainedToolsReceipt": "word-mei-retained-audit-1457.json",
+  "historyEvidence": "All 1,359 supplied lines matched stdout and separately completion-hash-bound retained responses. Repeated lines may align ambiguously. This does not prove attention or comprehension. Earlier partial, CONT and ephemeral-session limits remain.",
+  "imageEvidence": "Three high-detail image blocks: desktop a001 and phone b001/b002. No desktop agreement or ending image was viewed. Lower phone agreement options were not viewed. Image blocks do not prove perception.",
+  "stops": {
+    "desktop": 44.07,
+    "phone": 31.993
+  },
+  "timedLogs": "Desktop reached One month later/AGREED at 34.060 seconds. Desktop FINISHED is supported. Phone BORED stop was before writing and is not an ending. Neither reached a first-minute diary or pulse. Desktop automatic shot60.052 was after the stop; no phone automatic shot was recorded.",
+  "driverQualification": "One unmatched-quote shell command exited1 before any request. The corrected diary note was logged. No current control failure, forbidden parsed action or foreign read was found.",
+  "feedback": "Both stopping quick labels prefilled the note textbox. Not now was then selected. No typing, Submit, recording or consent change was found. No production receipt is inferred. Confused label was offered but not used because no confusion was reported.",
+  "exposure": "Two fresh independent games, desktop then phone the same evening. Phone remembers the desktop visit. No imported save, matched seed or persistent shared game state is claimed.",
+  "priorAskComparison": "A different agreement was reached; whether it was newly added is unknown. Terms changing after questions: met where seen. Writing/signature costs against minutes: partly met; no rewrite or combined rewrite-plus-signatures comparison was tested. No private promise or refusal consequence was tested.",
+  "producerNewBlockingAsk": "Explicit NONE. Only one ranked ask: another meeting or new situation. This is not a mandate to expand the game or raise difficulty. Other reports remain pending.",
+  "returnExact": "I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running.",
+  "returnAdditionalContext": "Her later return paragraph also values the alternative morning arrangement, calls the familiar meeting short, and says saved-place return was not tested. Preserve the whole paragraph with the original report.",
+  "cycleRule": "FIRST fixed-build retest. Final round judgment remains pending.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 90153,
+      "absent": true
+    },
+    {
+      "pid": 90130,
+      "absent": true
+    },
+    {
+      "pid": 90132,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Three recorded PIDs absent at this check. Final round observed-identity and port checks remain required."
+}

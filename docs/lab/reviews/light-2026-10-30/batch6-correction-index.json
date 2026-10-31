@@ -1,0 +1,14 @@
+{
+  "scope": "External successor qualification; source packets and original ledger rows remain unchanged.",
+  "artifacts": {
+    "word1-root-coverage-successor.json": "10539149101ffcf9f431a733dcee7c91534abc88e4dd03f70095c28f95224a9d",
+    "rosa-light-protocol-audit.md": "31947b2992485789ef01beafaa30d6e034225e8e7d8ff69fdfeae5f530f2809f",
+    "rosa-light-protocol-audit.json": "a9434465c2535fc3bb37325806e136c46b6920a91aba10a36ba760759b299e43"
+  },
+  "wordOriginalSealSha256": "441a4d92ce952f98ed45bc66b5cb3fc53cc97e733e86c2225e711e310815deae",
+  "wordPacketManifestSha256": "3931b1afb2ba0996b6578d775ffff4d9c35fb3bfd52c0c2062afbbf58f5d8fa9",
+  "publicationPolicy": {
+    "path": "batch6-publication-path-policy.json",
+    "sha256": "8cab7210677b46e430abed8d3fe6125d6d895ec5f16e60e97efbcd280bb7d5e0"
+  }
+}

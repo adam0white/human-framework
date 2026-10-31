@@ -1,0 +1,141 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "4d15f5ae1b4965491732f7507e8ea118db69b8af1a86abee4b551702fd5bb93c",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.643,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The drawing makes the shelter idea easy to picture. I want to know who I am protecting and how."
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "elapsed_s": 19.151,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I tapped two places because I could not drag with the offered action. The second connected the plan, and I like knowing the workers have other duties, but I do not know when they will start."
+    },
+    {
+      "device": "phone",
+      "row": 17,
+      "elapsed_s": 34.1,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The village list makes the danger personal: six people, no sleeping places, and even the entrance is reachable. I want to make a safe room for them."
+    },
+    {
+      "device": "phone",
+      "row": 28,
+      "elapsed_s": 54.364,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The preview says six potential places but the header says three, and the long note about an unavailable invitation and stopping line feels like missing background. I understand the plan is not dug, but not what I should do about that note."
+    },
+    {
+      "device": "phone",
+      "row": 34,
+      "elapsed_s": 63.752,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "I care about the six people, but I am unsure which sleeping places exist and whether waiting will accomplish the plan."
+    },
+    {
+      "device": "phone",
+      "row": 38,
+      "elapsed_s": 81.801,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I would put the phone down now; I have made a plan but I am waiting without a clear sense of progress."
+    },
+    {
+      "device": "phone",
+      "row": 43,
+      "elapsed_s": 90.964,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping on the phone. Meryem is finally on her way, but I would rather try the larger screen than keep waiting here."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.558,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The bigger drawing gives me a better view of the village. I want to see whether I can make the shelter safer this time."
+    },
+    {
+      "device": "desktop",
+      "row": 11,
+      "elapsed_s": 23.295,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The larger screen lets me read the village events alongside the hill. I accidentally removed a chalk mark by clicking again, then restored it; that surprised me while chalk was selected."
+    },
+    {
+      "device": "desktop",
+      "row": 20,
+      "elapsed_s": 40.91,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "A door can make the entrance safer, and the message confirms it is only marked. I want to see someone actually carve it."
+    },
+    {
+      "device": "desktop",
+      "row": 29,
+      "elapsed_s": 66.972,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The door task gave me a clear response, and I can follow people more easily here. I still need sleeping space and am waiting to see the work completed."
+    },
+    {
+      "device": "desktop",
+      "row": 36,
+      "elapsed_s": 92.45,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The door was finished when I checked, which is satisfying. I asked Yusuf to test it; pending is clear, though I missed the moment it was finished."
+    },
+    {
+      "device": "desktop",
+      "row": 38,
+      "elapsed_s": 99.428,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Yusuf shut and reopened the door, and the journal tells me the result. That is the consequence I wanted to see."
+    },
+    {
+      "device": "desktop",
+      "row": 39,
+      "elapsed_s": 101.717,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I have seen the door work and would leave for tonight. I am interested in the people, but I do not want to wait through more routine right now."
+    },
+    {
+      "device": "desktop",
+      "row": 44,
+      "elapsed_s": 111.521,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping after seeing the door test. I would come back another evening, but I would not leave the game running."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "time": "2026-10-31T11:50:22.514740+00:00",
+  "status": "SAFE with explicit method qualifications",
+  "shellCalls": 50,
+  "strictAssignedCurls": 49,
+  "shellParseFailuresBeforeCurl": 1,
+  "fullHistoryRead": 1356,
+  "rawStops": {
+    "desktop": 160.909,
+    "phone": 139.911
+  },
+  "qualifications": [
+    "Producer phone stop139.912 rounded differs from raw139.911; preserve producer words and raw separately.",
+    "Both stops BORED below180; no pulse required.",
+    "Phone Feedback apostrophe shell parse failure made no request; corrected text fallback worked.",
+    "Desktop Dilan left before tap: visible game state, not driver block; Fast and agent latency qualify pacing.",
+    "Benches empty at observed times; evening crowd returned18:38 desktop, not permanently empty.",
+    "Clock slowing observation is a source lead, not proven defect or blanket clock retune.",
+    "Desktop viewed title image only; phone title and gameplay; automatic checkpoints unviewed.",
+    "Chapter-save error not reached at former Day2 boundary; absence is not proof of fix.",
+    "New blocking ask explicitly none beyond old empty-garden ask; preserve all three ranked asks and both full return conditions."
+  ]
+}

@@ -1,0 +1,527 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/report.md",
+    "destination": "jonas/report.md",
+    "sha256": "ed71baf2d1b2a1448a44b1bce3334e17651bdb41d18fc6b4fe6c781a80bf8138",
+    "bytes": 7355,
+    "mtime_ns": 1793460347942102829
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/brief.md",
+    "destination": "jonas/brief.md",
+    "sha256": "93acdc25d688b9367c98dc7fa71655c165973a9f73b8722012ed801b1ab860df",
+    "bytes": 6730,
+    "mtime_ns": 1793459120993988687
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/own-history.md",
+    "destination": "jonas/own-history.md",
+    "sha256": "ed3384b93d16771ad845e41a4483e8c73b9d51adba8ad81a8c61643ade41ab9a",
+    "bytes": 231754,
+    "mtime_ns": 1793459120993140600
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/history-source-map.json",
+    "destination": "jonas/history-source-map.json",
+    "sha256": "c59ff973b893e45b910868bc4323883d335df418fb79f9a4258ddb2d7d6c816a",
+    "bytes": 6750,
+    "mtime_ns": 1793459120993638602
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/dispatch.json",
+    "destination": "jonas/dispatch.json",
+    "sha256": "e8389776f1d7df6daaf2287fc29ab768a61ac653201ddd1facad77176f50b7ed",
+    "bytes": 2115,
+    "mtime_ns": 1793460067331976487
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/director-method-qualification.json",
+    "destination": "jonas/director-method-qualification.json",
+    "sha256": "46b8e4ff35ca92bb0db5a12bbb4a4c9a094f51d700f8e9076ebad4b51218e56b",
+    "bytes": 3357,
+    "mtime_ns": 1793460986437670703
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/raw-reactions-companion.json",
+    "destination": "jonas/raw-reactions-companion.json",
+    "sha256": "d1e21d95f73d8bed12dd8fe9b424db48f646734627bb150cca9fa2d17b9d3737",
+    "bytes": 4297,
+    "mtime_ns": 1793460910779547894
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/phone/wall-clock.jsonl",
+    "destination": "jonas/phone/wall-clock.jsonl",
+    "sha256": "297ac8beb8f8d41d6970c174619ded62b43a5d17f98d3739466fda3fcaa49409",
+    "bytes": 10585,
+    "mtime_ns": 1793460331542261826
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/phone/driver.out",
+    "destination": "jonas/phone/driver.out",
+    "sha256": "da0c4a7b9f50cfe6d94d51fc49b8b04baaaabf62baf31f661bf8db44ff574e7a",
+    "bytes": 85,
+    "mtime_ns": 1793460066866870708
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/phone/release-start.json",
+    "destination": "jonas/phone/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793460066319090841
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/desktop/wall-clock.jsonl",
+    "destination": "jonas/desktop/wall-clock.jsonl",
+    "sha256": "bf70602d42dd05e8e043d0d5f3a9531b191a5d53f6c73b63f98ea2480a342274",
+    "bytes": 10057,
+    "mtime_ns": 1793460206058982906
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/desktop/driver.out",
+    "destination": "jonas/desktop/driver.out",
+    "sha256": "6166b7e6210208b0c9d3ee67a1a777326111b6fb608c1ea1a43f86c093f37c53",
+    "bytes": 85,
+    "mtime_ns": 1793460066867083167
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/desktop/release-start.json",
+    "destination": "jonas/desktop/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793460066232330360
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/report.md",
+    "destination": "aisha/report.md",
+    "sha256": "309f2e50d616db10bbdf18412e0a9c42700bad0fd9845f8ffba3b68c5ed140c2",
+    "bytes": 7105,
+    "mtime_ns": 1793460647873778597
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/brief.md",
+    "destination": "aisha/brief.md",
+    "sha256": "ae47a6fcdc8246611143c166d9ddb99ad862fca315f19e5981f5eddc52640c52",
+    "bytes": 6750,
+    "mtime_ns": 1793459121045280272
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/own-history.md",
+    "destination": "aisha/own-history.md",
+    "sha256": "f6c1f82527bf9142548141b9a405bbad1b2aeb5e56dad1ce9e284303e0da19b2",
+    "bytes": 179845,
+    "mtime_ns": 1793459121044711603
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/history-source-map.json",
+    "destination": "aisha/history-source-map.json",
+    "sha256": "dd646dc9ddf296f011c5f077f9f175faa8894cc144948f094ef4d40479b7dfa7",
+    "bytes": 6347,
+    "mtime_ns": 1793459121044996604
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/dispatch.json",
+    "destination": "aisha/dispatch.json",
+    "sha256": "f84abb73136026a15e67121dd7d5134602b65624d80a9e2dc44f6dde35499714",
+    "bytes": 2115,
+    "mtime_ns": 1793460354024270100
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/director-method-qualification.json",
+    "destination": "aisha/director-method-qualification.json",
+    "sha256": "b8d755266aac74a9044d0c674662af19f8e99bb119cd6b60b75fffe24d5bbe0e",
+    "bytes": 3038,
+    "mtime_ns": 1793460986445619111
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/raw-reactions-companion.json",
+    "destination": "aisha/raw-reactions-companion.json",
+    "sha256": "c0484b6e4405b893d0645cdcefb7f3492cbe8ce87e8d23f65618df370e482340",
+    "bytes": 3852,
+    "mtime_ns": 1793460910780343272
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/phone/wall-clock.jsonl",
+    "destination": "aisha/phone/wall-clock.jsonl",
+    "sha256": "b34f2305f79e01dfb777620f16078466d5d856213797479aaca970ac5c9b244c",
+    "bytes": 10562,
+    "mtime_ns": 1793460631236636040
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/phone/driver.out",
+    "destination": "aisha/phone/driver.out",
+    "sha256": "bb2f899965c3aa96678646700b34c2eb60cf2f3ed7d00e07a12af50c1f6ba5a2",
+    "bytes": 85,
+    "mtime_ns": 1793460353391177383
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/phone/release-start.json",
+    "destination": "aisha/phone/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793460353009186320
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/desktop/wall-clock.jsonl",
+    "destination": "aisha/desktop/wall-clock.jsonl",
+    "sha256": "d36e14f9de436e2081d0a3322a1f96c97df8f413e33949bb5166e0ec67ae9d59",
+    "bytes": 10449,
+    "mtime_ns": 1793460506948733136
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/desktop/driver.out",
+    "destination": "aisha/desktop/driver.out",
+    "sha256": "0d43a525d698d3747c4ddac01615848aa6375be7d6417e09b947931addcaa133",
+    "bytes": 85,
+    "mtime_ns": 1793460353391184050
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/desktop/release-start.json",
+    "destination": "aisha/desktop/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793460352915975855
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/report.md",
+    "destination": "diego/report.md",
+    "sha256": "e7be6d73cdf88da46eca4d8e695620e0b4e6986ecc88b969a37999e13ab400e9",
+    "bytes": 9234,
+    "mtime_ns": 1793460914702023741
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/brief.md",
+    "destination": "diego/brief.md",
+    "sha256": "a52986ef2f28ab834d6690df5f5ae304029ad615fd59134b9fb9b5aac3547bae",
+    "bytes": 6732,
+    "mtime_ns": 1793459121094926268
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/own-history.md",
+    "destination": "diego/own-history.md",
+    "sha256": "3760c02047070a841cafb17547b3b2dd62767614e2fbf69b461e8c76a02ab619",
+    "bytes": 180806,
+    "mtime_ns": 1793459121094385849
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/history-source-map.json",
+    "destination": "diego/history-source-map.json",
+    "sha256": "615e018398f0f18098c9b634b3916f42410da484bca60779d1194218559753e6",
+    "bytes": 7305,
+    "mtime_ns": 1793459121094655016
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/dispatch.json",
+    "destination": "diego/dispatch.json",
+    "sha256": "762930e8da2126be77204845395252c1b612ed6f12eb96540b983d30a80b7168",
+    "bytes": 2115,
+    "mtime_ns": 1793460650746258563
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/director-method-qualification.json",
+    "destination": "diego/director-method-qualification.json",
+    "sha256": "200d5931fe3aa8c7e3eb46e9cc52ba8721f946fa7931c8cf1e59440fb3066644",
+    "bytes": 3003,
+    "mtime_ns": 1793461869210235754
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/raw-reactions-companion.json",
+    "destination": "diego/raw-reactions-companion.json",
+    "sha256": "93b2b6142d9c50533e2411cabf70bb96aa16867ea661643438f22d38fb5effa1",
+    "bytes": 5869,
+    "mtime_ns": 1793461662047789928
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/phone/wall-clock.jsonl",
+    "destination": "diego/phone/wall-clock.jsonl",
+    "sha256": "1199ccec538ec5786101d6ccb63f9edd9873097ccff5ac59ecf72abfce29c6c4",
+    "bytes": 8406,
+    "mtime_ns": 1793460754980282299
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/phone/driver.out",
+    "destination": "diego/phone/driver.out",
+    "sha256": "5452b099411077521fc8b3f277335fda2f40ca6fc1c685ff5d3a817801170a9d",
+    "bytes": 85,
+    "mtime_ns": 1793460650022111058
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/phone/release-start.json",
+    "destination": "diego/phone/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793460649640487579
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/desktop/wall-clock.jsonl",
+    "destination": "diego/desktop/wall-clock.jsonl",
+    "sha256": "00c83f2d1e478f1f4ae01d7b8ff590123edaaf9c6ce54afeb5c731faba119011",
+    "bytes": 10726,
+    "mtime_ns": 1793460893339001589
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/desktop/driver.out",
+    "destination": "diego/desktop/driver.out",
+    "sha256": "5d57435a07d99e8a97bd0811c030886c150beb83b3dd02c309f1cbb0a435eb31",
+    "bytes": 85,
+    "mtime_ns": 1793460650102345469
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/desktop/release-start.json",
+    "destination": "diego/desktop/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793460649731134533
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/report.md",
+    "destination": "leila/report.md",
+    "sha256": "025d88f96ffab1ec34481e38da7b6b4a407c02dc3623a44b67f86e54b7967404",
+    "bytes": 8414,
+    "mtime_ns": 1793461151711442395
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/brief.md",
+    "destination": "leila/brief.md",
+    "sha256": "5c8443a404aaf55b94bb6487be360c03676dac8512f3ac8ba67f3a0ee05537a0",
+    "bytes": 6732,
+    "mtime_ns": 1793459121144999848
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/own-history.md",
+    "destination": "leila/own-history.md",
+    "sha256": "583d686932bb708491eba60728c729c0866ae78cc7be63b1be697e0bf9ebf4aa",
+    "bytes": 162066,
+    "mtime_ns": 1793459121144464304
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/history-source-map.json",
+    "destination": "leila/history-source-map.json",
+    "sha256": "cbcc1a2a435e2f5e7714a1ea070c766f2ebf1bcd1ebd9b7044eacad33c013940",
+    "bytes": 5669,
+    "mtime_ns": 1793459121144739639
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/dispatch.json",
+    "destination": "leila/dispatch.json",
+    "sha256": "3cbc49ea541478745cfe0fbc743f7a84b5c0b3182da27f47cad2412d1608fa20",
+    "bytes": 2115,
+    "mtime_ns": 1793460917366633106
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/director-method-qualification.json",
+    "destination": "leila/director-method-qualification.json",
+    "sha256": "ed1ed6fbec5a4243f206f75bddd3c0a990b2c8ddf8bac016f3e79658d1093501",
+    "bytes": 2970,
+    "mtime_ns": 1793461869211019799
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/raw-reactions-companion.json",
+    "destination": "leila/raw-reactions-companion.json",
+    "sha256": "10efed786fb2fa865c974a60288a92eebd53795328dc9493a13e865f200910a5",
+    "bytes": 4745,
+    "mtime_ns": 1793461662048172887
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/phone/wall-clock.jsonl",
+    "destination": "leila/phone/wall-clock.jsonl",
+    "sha256": "9ae7c84d5ed5cd7cfa6d2c0742bf463a8f25925bb97c09c34fb70b8d497d4a3f",
+    "bytes": 11268,
+    "mtime_ns": 1793461058795286846
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/phone/driver.out",
+    "destination": "leila/phone/driver.out",
+    "sha256": "1c2175d4b494d10443c98cb61c007b3248018ee999d6ed3fcbe12a5b2d7392bc",
+    "bytes": 85,
+    "mtime_ns": 1793460916629400838
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/phone/release-start.json",
+    "destination": "leila/phone/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793460916259691950
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/desktop/wall-clock.jsonl",
+    "destination": "leila/desktop/wall-clock.jsonl",
+    "sha256": "dd9a2e5b739201105e5b8079faa1ebc8548dc732fdd8d3c8f12a473fa055fb08",
+    "bytes": 6982,
+    "mtime_ns": 1793461132291661854
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/desktop/driver.out",
+    "destination": "leila/desktop/driver.out",
+    "sha256": "a6cc86bfaae33c0be068e6391fa67bb6cb83756b30a8849252d14113f6a5841e",
+    "bytes": 85,
+    "mtime_ns": 1793460916725745816
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/desktop/release-start.json",
+    "destination": "leila/desktop/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793460916351710160
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/report.md",
+    "destination": "maelle/report.md",
+    "sha256": "a78541278ec6234c931fc60023777316fe6da50b9081505de61cf4ed4553ac48",
+    "bytes": 6226,
+    "mtime_ns": 1793461414639109910
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/brief.md",
+    "destination": "maelle/brief.md",
+    "sha256": "5f986bda9f148b47a8c2a925f1106684b68a1829c2086c5964838a74277ff8aa",
+    "bytes": 6890,
+    "mtime_ns": 1793459121145423891
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/own-history.md",
+    "destination": "maelle/own-history.md",
+    "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+    "bytes": 186,
+    "mtime_ns": 1793459121145233766
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/history-source-map.json",
+    "destination": "maelle/history-source-map.json",
+    "sha256": "ea147a1bda2728c5e4a05f433f114259a2624919bdeb63e984cfe9d6e130347f",
+    "bytes": 281,
+    "mtime_ns": 1793459121145299224
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/dispatch.json",
+    "destination": "maelle/dispatch.json",
+    "sha256": "1d255200bc53b9902d0bbbf9996cb01e6a5a5b38f902249bc2c39b35c2e88c6b",
+    "bytes": 2115,
+    "mtime_ns": 1793461153965177096
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/director-method-qualification.json",
+    "destination": "maelle/director-method-qualification.json",
+    "sha256": "1800478fc5884b2f9e975292b9d5eeaeb6c4982e9ef4807376bde135f1e15412",
+    "bytes": 3081,
+    "mtime_ns": 1793461869211695926
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/raw-reactions-companion.json",
+    "destination": "maelle/raw-reactions-companion.json",
+    "sha256": "29baad88705cc2db95990d8ba16c2e4e7d2d4fa37423de9faebc859bf67b5828",
+    "bytes": 3603,
+    "mtime_ns": 1793461662048534930
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/phone/wall-clock.jsonl",
+    "destination": "maelle/phone/wall-clock.jsonl",
+    "sha256": "e325a6be0463b544b8cc1b120d79065a6206a08e9af32365c3079408c66edcd9",
+    "bytes": 12340,
+    "mtime_ns": 1793461294491092351
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/phone/driver.out",
+    "destination": "maelle/phone/driver.out",
+    "sha256": "728ee99835aa34d7c5aef4fb3707edf98f8f2cdfddbdbba6a77cffb4939efbb7",
+    "bytes": 85,
+    "mtime_ns": 1793461153231072772
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/phone/release-start.json",
+    "destination": "maelle/phone/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793461152853083653
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/desktop/wall-clock.jsonl",
+    "destination": "maelle/desktop/wall-clock.jsonl",
+    "sha256": "00e4c54f8e51029a7d1637f6d8bca947e3b679901026c129819f518d6300966e",
+    "bytes": 10130,
+    "mtime_ns": 1793461401441110552
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/desktop/driver.out",
+    "destination": "maelle/desktop/driver.out",
+    "sha256": "c8a73371e1ac580869a414de4152e671b4bd518f64072b1f1626f8b2c1a98e7c",
+    "bytes": 85,
+    "mtime_ns": 1793461153323113147
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/desktop/release-start.json",
+    "destination": "maelle/desktop/release-start.json",
+    "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a",
+    "bytes": 118,
+    "mtime_ns": 1793461152950034588
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-plan.json",
+    "destination": "inputs/smoke-codex-plan.json",
+    "sha256": "78f81d372ceb70a53f4aeada5a900ea4e5a7780655dd5dc889ed5e8c2e1ef114",
+    "bytes": 6983,
+    "mtime_ns": 1793459121145526767
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-input-freeze.json",
+    "destination": "inputs/smoke-codex-input-freeze.json",
+    "sha256": "d0d8f7e8339e6c847223f8a05ab141f2bd27466391c47271ea084f2f5558c504",
+    "bytes": 1663,
+    "mtime_ns": 1793459121145599351
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-input-freeze-audit.json",
+    "destination": "inputs/smoke-codex-input-freeze-audit.json",
+    "sha256": "79d1efd11f4fd67b51398dc525289a95dad2f07e32a3a8a8c5d7f92e652e7ff3",
+    "bytes": 3140,
+    "mtime_ns": 1793459132405494606
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-root-admission.json",
+    "destination": "inputs/smoke-codex-root-admission.json",
+    "sha256": "26a3cd28675d533e44511074fd7aece44a0dd1824519d96086ae8536e6c35497",
+    "bytes": 2622,
+    "mtime_ns": 1793460062735080796
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-round-state.json",
+    "destination": "inputs/smoke-codex-round-state.json",
+    "sha256": "10126abfde7048b59e6d66c2ed44c32409f2f555997a1714f344f7de8b466928",
+    "bytes": 2015,
+    "mtime_ns": 1793461720127179677
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-cleanup.json",
+    "destination": "inputs/smoke-codex-cleanup.json",
+    "sha256": "0eb558a06017771c1cca8d5058120fae7ff7c98f927022f5cc51ae97bf1ed770",
+    "bytes": 18977,
+    "mtime_ns": 1793461670423234283
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-release-final.json",
+    "destination": "inputs/smoke-codex-release-final.json",
+    "sha256": "979bcf246818b2fac9891fa6edf4b090a83b563966993d18ae677952cea2de06",
+    "bytes": 119,
+    "mtime_ns": 1793461720124062458
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rosa-light-protocol-audit.json",
+    "destination": "inputs/rosa-light-protocol-audit.json",
+    "sha256": "a9434465c2535fc3bb37325806e136c46b6920a91aba10a36ba760759b299e43",
+    "bytes": 1071,
+    "mtime_ns": 1793460406283935802
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rosa-light-protocol-audit.md",
+    "destination": "inputs/rosa-light-protocol-audit.md",
+    "sha256": "31947b2992485789ef01beafaa30d6e034225e8e7d8ff69fdfeae5f530f2809f",
+    "bytes": 4050,
+    "mtime_ns": 1793460406264660723
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-qualification-order-correction.json",
+    "destination": "inputs/smoke-qualification-order-correction.json",
+    "sha256": "31c8b2b54eb0db2720e1a6c000b6ec0ab4bdb9bd34f16e48298c8ad73c448e57",
+    "bytes": 299,
+    "mtime_ns": 1793461869211902344
+  }
+]

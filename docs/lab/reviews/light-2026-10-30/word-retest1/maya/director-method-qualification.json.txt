@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-31T14:55:53.500613+00:00",
+  "rootReadFullReport": true,
+  "commandReceipt": "word-maya-command-audit-1455.json",
+  "retainedToolsReceipt": "word-maya-retained-audit-1455.json",
+  "historyEvidence": "All 2,114 supplied lines matched completed-command stdout and separately completion-hash-bound retained responses. Repeated lines may align ambiguously. This does not prove attention or comprehension. Earlier partial-history, CONT and ephemeral-session limits remain in the supplied records.",
+  "imageEvidence": "Four high-detail image blocks returned: phone a001/a002 and desktop b001/b002. The full phone list and phone ending were not viewed. The desktop ending image was viewed. Image blocks do not prove perception.",
+  "stops": {
+    "phone": 56.437,
+    "desktop": 46.765
+  },
+  "timedLogs": "Both games reached visible endings: phone at 47.537 seconds showed One month later and shop stayed shut; desktop at 34.426 showed One month later and AGREED. Neither reached a 60-second diary checkpoint or 180-second pulse. Automatic shots at 60.013 and 60.027 were after the stops, not continued play.",
+  "driverQualification": "One phone text/control ambiguity returned an error and tapped nothing. The corrected full name later worked. No shell failures, forbidden parsed actions or foreign reads were found. Native input acknowledgment alone does not prove an outcome.",
+  "feedback": "The stopping quick label prefilled the draft textbox. Not now was selected. No typing, Submit, recording or consent change was found. A draft is not delivery. The confused label was not used because the producer did not feel confused; its absence was not established.",
+  "exposure": "Two fresh independent games, without an imported save or matched seed. Desktop choices reflect the phone visit earlier that evening; no persistent cross-device game state is claimed.",
+  "priorAskComparison": "More to explore: unmet. Private word: partly met; Halil remembered it when asked, but every path and contradictory words were not tested. Ferda stale quote: producer says partly met; the current reply and older standing-need label resolved her confusion.",
+  "producerNewBlockingAsk": "Explicitly NONE. Earlier length, private-word and phone-list concerns remain. They do not mandate expanding the game or changing its length. The other four reports are still pending.",
+  "returnExact": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+  "returnFullLater": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings. I like the specific refusals, changed terms and people remembering words. I would not return tonight after these two meetings, and I would not leave it running.",
+  "cycleRule": "FIRST fixed-build retest. The final round judgment does not follow from one producer.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 84949,
+      "absent": true
+    },
+    {
+      "pid": 84926,
+      "absent": true
+    },
+    {
+      "pid": 84928,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Three recorded PIDs were absent at this check. Final round checks of observed identities and ports remain required."
+}

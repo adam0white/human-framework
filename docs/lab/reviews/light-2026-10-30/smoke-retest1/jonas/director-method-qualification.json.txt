@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-31T15:36:26.425722+00:00",
+  "rootReadFullReport": true,
+  "cohortCoverage": "The LIGHT initial and retest cohorts omit required Rosa coverage. See external rosa-light-protocol-audit.md/json. Individual reports remain observations; they do not establish full persona-protocol compliance. No Rosa visit or opinion is inferred.",
+  "feedback": "Stopping quick labels were selected locally and Not now closed Feedback. No typed note, Submit, recording or consent change was found. No production receipt inferred.",
+  "exposure": "Two fresh independent games, desktop then phone on the same evening. No old save or matched seed; differences are not attributable solely to the build.",
+  "cycleRule": "FIRST fixed-build retest. Producer no-new-blocker statements are individual findings; remaining reports and the cohort qualification remain separate.",
+  "descendantScope": "Three recorded PIDs absent per completed tester below. Final round observed-identity and port checks remain required.",
+  "commandReceipt": "smoke-jonas-command-audit-1532.json",
+  "retainedToolsReceipt": "smoke-jonas-retained-audit-1532.json",
+  "historyEvidence": "Completed-command stdout matched all2,314 lines, but retained auditor matched1,122. Lines501\u20131692 remain unverified; an unsupported literal loop had a truncated paired output. This is not proof unread. Producer explicitly declined a complete-read claim. The original Smoke opening and three ranked asks at481\u2013487 are within matched1\u2013500. Later target-body and cross-game coverage are not claimed complete. Prior original compaction/148.884-second/personal-FINISHED qualifications remain. Retention is not attention or comprehension.",
+  "imageEvidence": "Four high-detail image blocks: desktop a001/a002 and phone b001/b002. Active stairwell screenshots were viewed on both. Blocks do not prove perception.",
+  "stops": {
+    "desktop": 120.831,
+    "phone": 123.872
+  },
+  "timedLogs": "Both Everyone is out endings observed: desktop111.253 and phone115.069. Raw desktop FINISHED120.831 versus report120.832; phone123.872. First-minute62.954/60.498 valid. Auto shots60.038/60.087 before stops. No180-second pulse.",
+  "driverQualification": "One unmatched-quote shell exit1 before a request; two stale full-name replies after state changed. Retrying the current full name worked. No forbidden parsed action or foreign read. These do not establish a physical touch-target defect.",
+  "priorAskComparison": "Phone Street observed working, but separate earlier off-screen Walk to the street not tested. Labels/player position visible on maps; changing full names still caused misses. Street wording and reached movement match. No global movement, stall or all-target reliability claim.",
+  "producerNewBlockingAsk": "Explicit NONE. One ranked ask: keep selectable names stable while status changes. It is an existing request with a bounded driver interaction observation, not a new blocking game defect.",
+  "returnExact": "Yes, another evening for one attempt in a different order, to see whether I can avoid leaving a follower behind. I would not leave it running or replay again tonight.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 16998,
+      "absent": true
+    },
+    {
+      "pid": 16974,
+      "absent": true
+    },
+    {
+      "pid": 16976,
+      "absent": true
+    }
+  ]
+}

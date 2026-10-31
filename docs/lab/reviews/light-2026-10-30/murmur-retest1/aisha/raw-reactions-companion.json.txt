@@ -1,0 +1,122 @@
+{
+  "scope": "Literal wall-clock reactions, unchanged report retained; raw clock authoritative",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 4.583,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Two Voices again; I remember Dilan and Ece, and want to see how their week feels now."
+    },
+    {
+      "device": "desktop",
+      "row": 7,
+      "elapsed_s": 15.168,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The alarm and unfinished shelf bring back Monday from my earlier visit, high confidence. I will let her sleep; I want to save pressure for someone who needs her."
+    },
+    {
+      "device": "desktop",
+      "row": 12,
+      "elapsed_s": 28.006,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "She did not promise Aylin, and tells me she has no answer yet. I like hearing her reason; I will not force a promise for her."
+    },
+    {
+      "device": "desktop",
+      "row": 16,
+      "elapsed_s": 40.01,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I held for the truth because I suggested the sleep. It says she keeps the words in mind; I want to see what she actually tells Murat."
+    },
+    {
+      "device": "desktop",
+      "row": 24,
+      "elapsed_s": 61.364,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Dilan told Murat the truth and guided Ece, with the late deliveries stated too. Now she says she dislikes my pushing; I feel that cost and want to give her room."
+    },
+    {
+      "device": "desktop",
+      "row": 37,
+      "elapsed_s": 101.537,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The night card remembers Mum and my pushing, and the words about saying it plainly. I want to see whether she gets a gentler Tuesday."
+    },
+    {
+      "device": "desktop",
+      "row": 43,
+      "elapsed_s": 120.424,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Murat asks the same traffic question again, even after she told him she overslept yesterday. I feel the repetition now; I do not want to make the same decision again."
+    },
+    {
+      "device": "desktop",
+      "row": 44,
+      "elapsed_s": 122.458,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I would stop here: the same question has come back and I have already spent an evening with this Monday before."
+    },
+    {
+      "device": "desktop",
+      "row": 49,
+      "elapsed_s": 130.053,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping at Tuesday morning. I liked that Dilan told the truth and helped Ece, and that she told me my pushing hurt. Murat asking the same question again makes me want to leave for tonight."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.016,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Same title on my phone, same evening. The introduction fits in a narrow column; Start is below what I can see."
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "elapsed_s": 16.554,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The alarm and shelf are the same opening I just played. The phone card is readable, though the explanation seems cut after If time."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 28.908,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "Aylin asks the same thing I just heard on the laptop. I would stop rather than play Monday again on my phone."
+    },
+    {
+      "device": "phone",
+      "row": 17,
+      "elapsed_s": 38.742,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping the phone at Aylin's message. Getting Dilan up worked, but I have just played this opening and do not want to repeat it tonight."
+    }
+  ]
+}

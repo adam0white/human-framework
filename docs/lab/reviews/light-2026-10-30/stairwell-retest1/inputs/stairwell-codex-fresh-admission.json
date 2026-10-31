@@ -1,0 +1,52 @@
+{
+  "time": "2026-10-31T12:11:24.647384+00:00",
+  "notBefore": "2026-10-31T12:11:15.518252+00:00",
+  "actualPauseSeconds": 909.129132,
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.14.0",
+    "commit": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+    "dirty": false
+  },
+  "freshAssetHashes": [
+    {
+      "path": "assets/main-CJjIAQ6N.css",
+      "sha256": "74f060ecdeed31fa711f05f8e131ef0b5504f684c1ac26b74f4b8f8755b9e298",
+      "bytes": 22853
+    },
+    {
+      "path": "assets/main-Cwzjp80S.js",
+      "sha256": "cd8a31785d02d17dfa3710c178453bb474f2f84629b21b5df5dd68ba9565e069",
+      "bytes": 1176188
+    },
+    {
+      "path": "assets/native-owner.worker-8A1TMOXS.js",
+      "sha256": "65abea2556567c11b8c0a7eabba8a1ae5b4b928dce4deec49e1bc7387182f85d",
+      "bytes": 1031538
+    },
+    {
+      "path": "assets/native-storage.worker-C_jzLg0k.js",
+      "sha256": "29981013aab2c4dd1711355cb0f7f717f86c728c82321859b828dbdd3a42df9e",
+      "bytes": 846369
+    }
+  ],
+  "freshExactCI": [
+    {
+      "conclusion": "success",
+      "headSha": "afa4bdfdb5f7638633662c744b5f324121adb837",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "headSha": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+      "status": "completed"
+    }
+  ],
+  "freeBytes": 49235804160,
+  "allTenPortsClosed": true,
+  "driverApprovalSha256": "f650087efbafde5b091e6f1c5c285eaefd2856920ed62ce872de1f03ee3b41cb",
+  "controllerSha256": "cc53dc18649ed5921a56534081d0e693ca7400596adbac303c91bef30c87e31a",
+  "planSha256": "d848075fdb7ab9f41f303c074d65c00575b1968b5966098d62d3dca0eaeb1968",
+  "inputFreezeSha256": "fa6dae754fd90d86cf019989c7c69d96b613bb2254b28931cee17450751628b5",
+  "scope": "Fresh admission only, not actual dispatch/visual/native/player/owner acceptance. Coordinator must retain global browser lease and Claude brake."
+}

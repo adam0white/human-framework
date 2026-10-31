@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T11:02:50.163948+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Hearsay second correction ordinary-entry source/live root verified; final fresh gates and cooldown remain; wider proof separate. No dispatch from preparation.",
+  "players": [
+    {
+      "tester": "Maya Chen",
+      "characters": 179581,
+      "historySha256": "9fe8b5d9e9d276ea567ab23f1c71f81da56e990a807ecd6143a57e8310c5e3de",
+      "briefSha256": "43c5fee89292fca07610acea71cc14377734252d3542ae415e76b32a26dc389b",
+      "ownSourceCount": 14
+    },
+    {
+      "tester": "Emre Kaya",
+      "characters": 139466,
+      "historySha256": "e92fff8a41dd22338067a883bba83edf9a96d2ca48c6b527174e576973af8fa7",
+      "briefSha256": "51091f2d8c7f0c57e899a3a064d70aae435e94197d3fefa0ba11cc0199251acd",
+      "ownSourceCount": 13
+    },
+    {
+      "tester": "Diego Silva",
+      "characters": 151121,
+      "historySha256": "2ee3bb7fc892a56c25b792b068450098beed89b904bec2e139d4a2c3ff3229fe",
+      "briefSha256": "b5038d66cab8f7022458727b507a6b6712c0d942b424d8c5cba26a7a2ad285ae",
+      "ownSourceCount": 15
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "characters": 263178,
+      "historySha256": "21cabc191388e26dacd966dba5e6b83c0365027de04e4d1bf4a9384843c53066",
+      "briefSha256": "884aedba45ffe7cbfd400ecd87acfbafe9cd96c38dc8f9f75f2f6e5d82002c3a",
+      "ownSourceCount": 21
+    },
+    {
+      "tester": "Boris Petrov",
+      "characters": 186,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "5f0fe9cd3bc8b13a4409faab3c71d22cb34c43642ec07dc72492b8de02359cf7",
+      "ownSourceCount": 0
+    }
+  ]
+}

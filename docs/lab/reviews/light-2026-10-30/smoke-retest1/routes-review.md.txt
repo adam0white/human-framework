@@ -1,0 +1,14 @@
+# Draft routes for independent review
+
+Required Rosa coverage was omitted; no Rosa visit is inferred.
+
+- F-2821 — Jonas Berg rank 1, fix:smoke, 2026-11-03: Inspect whether selectable neighbour names remain stable as status changes. Jonas saw named taps miss after changes and retries work; no cause or general control defect is established.
+- F-2822 — Aisha Rahman rank 1, fix:smoke, 2026-11-10: Keep the clear destination, estimated time and smoke-slowdown messages that helped Aisha. This is a positive maintenance request, not a new defect.
+- F-2823 — Aisha Rahman rank 2, fix:smoke, 2026-11-10: Review Aisha’s earlier request to acknowledge what she tried when someone dies. No death occurred in this visit, so no new death finding is established.
+- F-2824 — Diego Silva rank 1, fix:smoke, 2026-11-03: Investigate Sevim’s tied-bundle journal, tying card, wait hint and disabled speech controls in Diego’s unfinished desktop run. The conflict persisted after menu, feedback and a wait; cause and eventual outcome are unknown.
+- F-2825 — Diego Silva rank 2, fix:smoke, 2026-11-10: Review Diego’s wish for a useful indication of individual danger before deciding who waits. A breathing warning was observed, not a measurable countdown.
+- F-2826 — Leila Mansour rank 1, fix:smoke, 2026-11-10: Review Leila’s wish for more useful danger information. Her warning made her hurry; do not invent an exact time or hidden forecast.
+- F-2827 — Leila Mansour rank 2, fix:smoke, 2026-11-03: Inspect the lag between Sevim’s tied journal entry and actionable card and hint. In Leila’s phone run the status later changed and the action became enabled; this does not establish why Diego’s different run remained blocked.
+- F-2828 — Leila Mansour rank 3, fix:smoke, 2026-11-03: Review whether the game can explain what another destination tap does while walking. Leila did not establish whether it restarts a walk; do not infer behavior.
+- F-2829 — Maëlle Pichon rank 1, fix:smoke, 2026-11-03: Inspect Sevim’s tied message against current instruction and action. Maëlle saw a conflict before wanting to quit, then after pausing the prompt changed to Show the stair; cause and later desktop outcome remain unknown.
+- F-2830 — Maëlle Pichon rank 2, fix:smoke, 2026-11-03: Review how the player can see follower movement and decide whether to wait. Preserve Maëlle’s uncertainty and do not infer pathfinding failure.

@@ -1,0 +1,18 @@
+{
+  "created": "2026-10-31T15:26:46.283695+00:00",
+  "finding": "Rosa mandatory every future round omitted from specified LIGHT cohorts; no explicit exception found in inspected local authority.",
+  "authority": [
+    "human-framework/docs/lab/lab-personas.md:168-170",
+    ".lab-scratch/briefs/playtest-resume-light-1030.md:3-7,32,38",
+    ".lab-scratch/hfroad/V3-COORDINATION.md:15984-15990,16102-16103"
+  ],
+  "affected": [
+    "Word first and retest",
+    "Smoke first and active retest",
+    "Days first and frozen unlaunched retest"
+  ],
+  "recommendation": "Preserve active and completed evidence; hold unlaunched Days for explicit resolution of mandatory Rosa versus same-standing continuity; no silent substitution, extra seat or third round. Reserve Rosa inside four standing seats for genuinely new first rounds.",
+  "authorityLimit": "Recommendation only; no exception or additional run authorized.",
+  "searchLimit": "Named local rulings and targeted later Rosa exception search; no exhaustive authority claim.",
+  "report": "rosa-light-protocol-audit.md"
+}

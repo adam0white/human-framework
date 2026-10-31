@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-31T13:55:55.523126+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 18,
+    "curl": 25,
+    "grammarExceptions": 0
+  },
+  "commandReceipt": "well-rosa-command-audit-1359.json",
+  "retainedToolsReceipt": "well-rosa-retained-audit-1359.json",
+  "historyEvidence": "All 3,180 literal history lines matched aggregated stdout and separately completion-hash-bound retained responses. No unsupported relevant wrapper. Repeated identical lines may align ambiguously. This does not prove attention or comprehension. Prior selected FREE and partial-history limits remain.",
+  "imageEvidence": "Two assigned TITLE screenshots returned high-detail image blocks. Neither shows a person panel. Producer panel geometry remains unverified by images. Image blocks do not prove perception.",
+  "stops": {
+    "phone": 24.975,
+    "desktop": 23.394
+  },
+  "producerRounding": "Desktop report 23.395; raw 23.394. Original report unchanged.",
+  "timedLogs": "Neither session reached the 60-second diary threshold or 180-second pulse. Phone automatic screenshot 60.039 occurred after stop. Desktop has no recorded automatic screenshot; only b-001.png exists.",
+  "driverQualification": "Three stale or absent Maryam/Yusuf labels resolved using current visible controls. No shell grammar exception. Actual paired tool responses show no current Script failed result; SyntaxError words in returned history refer to prior sessions. Native acknowledgment does not prove intended outcome.",
+  "exposure": "Fresh independent games. Phone asked already-cooking Maryam to cook once and saw agreement; short meal-count differences do not establish their cause. Desktop selected Yusuf but gave no order. Storm and later food behavior were not reached.",
+  "readingRule": "Two phone rereads triggered her standing CONFUSED quit wish. She briefly continued to ask Maryam, then stopped. Desktop stopped TASTE after recognizing the same explanations. Her concept totals 88/62 are subjective producer counts, not objective cognitive measurements.",
+  "priorAskComparison": "Food explanation partly met; roof and meal lines met in reached person panels; named Send while inspecting another person not seen. No broad screen-layout acceptance follows.",
+  "producerNewBlockingAsk": "The incomplete-stage sentence beside cooking caused rereading without explaining the task. The older storm-food question remains the larger return condition.",
+  "foodQualification": "Her two-stores wording is a perception. It does not establish mechanically separate pools or an actual reserve-switch rule. Preserve literal asks; investigate source before proposing a rule or changing the economy.",
+  "returnExact": "I would return voluntarily another evening if someone explained when cooking starts filling the storm reserve; I would close the game now and not leave it running.",
+  "feedback": "Phone confused and desktop stopping labels selected locally, Back only. No typed note, Submit, recording or consent change. Linked production receipt unverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 11691,
+      "absent": true
+    },
+    {
+      "pid": 11665,
+      "absent": true
+    },
+    {
+      "pid": 11667,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Point-in-time observed snapshots only. Final round cleanup remains required."
+}

@@ -72,3 +72,27 @@ The three later packets above were collected after the packets before them. Thei
 ## Director checkpoint — 2026-10-31T09:06:04.589439+00:00
 
 Pass documentation merge9879d70f4ac428609a87c5ce3ad072535f2f507c has exact main CI41185978154 SUCCESS. Its player loop is finished under the two-iteration rule, with remaining asks dated, not fixed. Live runtime remains288b2fda/HF4.12. The root missed the required pre-merge Opus/coordinator CLEAR; that rule violation remains recorded. Exact-source Opus CLEAR was post-merge and does not retroactively clear the sequence. Earlier paragraphs describing pending CI are source-epoch records. No technical, player or owner acceptance is inferred.
+
+## Batch 5 prepared evidence views
+
+These selected private reports and packet views are prepared for review; they have not been imported. Source seals concern custody and do not establish game completion or acceptance. See the packet READMEs and root receipts for source-epoch scope.
+
+- [Glance second retest](glance-retest2/README.md): parent verified later documentation-only merge `9d0768ee33f461826a1df12ef03b2995eb799165` and [main CI success](https://github.com/adam0white/glance/actions/runs/41196434575). The player loop finished through two iterations and dated Deferred; November 3 and 10 asks remain open. The frozen packet epoch is unchanged.
+- [Good Hands second retest](goodhands-retest2/README.md): parent verified later documentation-only merge `a03c4e4b4bdc5ca4d094379d085c2a522aa4905d` and [main CI success](https://github.com/adam0white/goodhands/actions/runs/41198685003). The player loop finished through two iterations and dated Deferred; November 3 and 10 asks remain open. The frozen packet epoch is unchanged.
+- [Rope first retest](rope-retest1/README.md) and [Stairwell first retest](stairwell-retest1/README.md): first retests collected; subsequent dispositions and source work remain pending.
+- [Hearsay second retest](hearsay-retest2/README.md): collected; current draft PR 15 documentation integration is held at the Opus merge gate under the owner Claude brake. Parent verified exact signed source `490` and [source CI success](https://github.com/adam0white/hearsay/actions/runs/41201446073).
+
+Current [history evidence clarification](codex-history-evidence-clarification.json) controls stale administrative claims. Codex producers report full reading and complete command stdout coverage is verified; direct delivery to the model and comprehension are not verified. Original three Claude Read-response coverage remains verified. Codex image viewing is self-reported and unverified. Prior partial and CONT exposure qualifications remain. Images are hash-only, and raw companion files must be read with their source qualifications.
+## Batch 6 private preparation
+
+Five sealed source packets are prepared for review, not imported or accepted: [Murmur](murmur-retest1/publication-map.json), [Well](well-retest1/publication-map.json), [Warren](warren-retest2/publication-map.json), [Word](word-retest1/publication-map.json), and [Smoke](smoke-retest1/publication-map.json). External root finalization receipts control source custody over historical draft README wording.
+
+Word and Smoke omitted mandatory Rosa coverage in their initial and retest cohorts. Neither round is protocol-complete. The [coverage successor](word1-root-coverage-successor.json), [audit](rosa-light-protocol-audit.md), and [correction index](batch6-correction-index.json) accompany the evidence; no Rosa visit, opinion, extra ask or replacement is inferred. The original packet ledger rows remain unchanged. Word's five actual reports state no new blocking ask; this finding does not establish protocol compliance. Smoke retains its source lead and qualification.
+
+Retained current responses and image blocks do not establish attention or perception; selected histories, prior CONT and partial-read limitations remain in individual qualifications. Screenshots are hashes only. Source-epoch helpers and receipts are not proof of a later canonical view.
+
+### Provenance and public assets
+
+The [publication path policy](batch6-publication-path-policy.json) permits non-secret local workspace locators in these fictional reports and source maps so the tester words and source bytes remain exact. Those paths are nonportable provenance references. They are not public asset links and do not make the files at those paths available. Screenshot files are not published; packet manifests retain their hashes only. Source-epoch scripts are retained as historical evidence, not as portable tools or validators of this prepared view. Provider session or rollout paths and contents, UUIDs, credentials, and actual private account, correspondence, health or financial records are excluded; any concrete sensitive content remains a blocker for publication.
+
+Each packet publication map resolves original source filenames to exact inert `.txt` snapshots. They are source-epoch evidence, not runnable tools or public screenshot downloads. The [external receipt map](batch6-external-publication-map.json) preserves the Well seal as an inert exact snapshot.

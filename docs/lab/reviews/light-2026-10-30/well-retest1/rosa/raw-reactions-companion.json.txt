@@ -1,0 +1,150 @@
+{
+  "scope": "Literal raw reactions; unchanged producer report retained; raw timestamps control exact timing and producer rounding remains quoted.",
+  "reportSha256": "26822b7ccc268d91d5a845a6139662bea53a574bf4fdef9191fd21e3122f1a11",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.543,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I remember Maryam agreeing to cook and my question about the storm reserve. Her name is the cue; I am confident of that much. The goal is clear, and I begin."
+    },
+    {
+      "device": "phone",
+      "row": 5,
+      "elapsed_s": 7.911,
+      "kind": "tool",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I choose Maryam because I remember she cooked before. I want to see what she can do here."
+    },
+    {
+      "device": "phone",
+      "row": 6,
+      "elapsed_s": 9.756,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "She has already begun cooking. I look at her."
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "elapsed_s": 11.613,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Reread 1: An incomplete stage does not establish why work is delayed. I do not know why this is here beside Maryam cooking. The separate roof and meal lines help."
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "elapsed_s": 13.885,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "CONFUSED",
+      "reaction": "Reread 2: \u201cEnough food stored\u201d can mean enough for ordinary meals, below the separate twelve-meal storm reserve. I see there are two stores but still do not know when cooking fills the storm reserve. Two sentences need rereading, so I would quit under my rule. I will try asking her to cook once."
+    },
+    {
+      "device": "phone",
+      "row": 9,
+      "elapsed_s": 15.636,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I ask her to cook, though she is already cooking. I want to see what the order says."
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "elapsed_s": 17.437,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "The order is waiting and the classic count rose to four. I still cannot tell when the human reserve fills. I stop and check feedback."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 20.984,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Both labels are offered. I choose confused and send nothing."
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "elapsed_s": 24.975,
+      "kind": "stop",
+      "op": "log",
+      "reason": "CONFUSED",
+      "reaction": "I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.153,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Same title this evening, and I can see both villages on the large screen. I start a fresh morning."
+    },
+    {
+      "device": "desktop",
+      "row": 5,
+      "elapsed_s": 6.841,
+      "kind": "tool",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Yusuf said the roof comes first, so I look at his work."
+    },
+    {
+      "device": "desktop",
+      "row": 6,
+      "elapsed_s": 8.959,
+      "kind": "tool",
+      "op": "tap",
+      "reason": null,
+      "reaction": "He is going to prayer now. I look without hurrying him."
+    },
+    {
+      "device": "desktop",
+      "row": 7,
+      "elapsed_s": 10.861,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "He has moved again; I select the current line."
+    },
+    {
+      "device": "desktop",
+      "row": 8,
+      "elapsed_s": 12.841,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "The same long construction and cooking explanation is here. Yusuf is already going to the house. I have seen enough for tonight and would stop."
+    },
+    {
+      "device": "desktop",
+      "row": 11,
+      "elapsed_s": 19.393,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Both labels are here. I choose stopping and send nothing."
+    },
+    {
+      "device": "desktop",
+      "row": 13,
+      "elapsed_s": 23.394,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals."
+    }
+  ]
+}

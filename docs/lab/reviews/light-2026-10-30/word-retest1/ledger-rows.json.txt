@@ -1,0 +1,514 @@
+[
+  {
+    "id": "F-2791",
+    "who": "Maya Chen",
+    "rank": 1,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Give me more to explore in a run, or after its ending. Both meetings ended in under a minute of real play.",
+      "char_start": 236,
+      "char_end_exclusive": 342,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 213,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 213,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 8347,
+        "char_end_exclusive": 8368,
+        "line_start": 86,
+        "line_end": 86
+      },
+      {
+        "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings. I like the specific refusals, changed terms and people remembering words. I would not return tonight after these two meetings, and I would not leave it running.",
+        "char_start": 8958,
+        "char_end_exclusive": 9284,
+        "line_start": 91,
+        "line_end": 91
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Maya’s preference for more exploration within or after a meeting. Both reached meetings were short; no expansion or game-length change is mandated."
+  },
+  {
+    "id": "F-2792",
+    "who": "Maya Chen",
+    "rank": 2,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Let a private word matter on more paths. Halil remembered mine when I asked him again, but I did not see it affect the phone ending.",
+      "char_start": 346,
+      "char_end_exclusive": 478,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 213,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 213,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 8347,
+        "char_end_exclusive": 8368,
+        "line_start": 86,
+        "line_end": 86
+      },
+      {
+        "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings. I like the specific refusals, changed terms and people remembering words. I would not return tonight after these two meetings, and I would not leave it running.",
+        "char_start": 8958,
+        "char_end_exclusive": 9284,
+        "line_start": 91,
+        "line_end": 91
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Maya’s wish for a private word to matter on more paths. Halil remembered it in one reached path and she did not see an effect on the phone ending; do not infer no later effect."
+  },
+  {
+    "id": "F-2793",
+    "who": "Maya Chen",
+    "rank": 3,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Make the agreement choices easier to compare on the phone. The terms are useful, but there is a lot to read in one long list.",
+      "char_start": 482,
+      "char_end_exclusive": 607,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "opening": {
+      "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 213,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 213,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 8347,
+        "char_end_exclusive": 8368,
+        "line_start": 86,
+        "line_end": 86
+      },
+      {
+        "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings. I like the specific refusals, changed terms and people remembering words. I would not return tonight after these two meetings, and I would not leave it running.",
+        "char_start": 8958,
+        "char_end_exclusive": 9284,
+        "line_start": 91,
+        "line_end": 91
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review whether phone agreement terms can be compared with less reading density. The full phone list was not viewed and no global layout defect is established."
+  },
+  {
+    "id": "F-2794",
+    "who": "Mei Tan",
+    "rank": 1,
+    "source": "mei/report.md",
+    "primary": {
+      "text": "Give me another meeting or a new situation. I liked finding a different agreement this time, but I have now played this meeting twice.",
+      "char_start": 207,
+      "char_end_exclusive": 341,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 186,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 186,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I used Take a seat, Put the notebook on the table, Speak to someone in private, Return to the table, Write an agreement, Menu, Feedback, “I'm stopping” and Not now. I did not view the lower agreement list in a screenshot or write an agreement on the phone. I saw no layout trouble in the portions I viewed.",
+        "char_start": 6804,
+        "char_end_exclusive": 7110,
+        "line_start": 78,
+        "line_end": 78
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 7217,
+        "char_end_exclusive": 7238,
+        "line_start": 82,
+        "line_end": 82
+      },
+      {
+        "text": "I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running. The alternative morning arrangement gave me a meaningful comparison this time, but the familiar meeting is still short. The menu said my place is kept in the browser when storage is available; I did not test returning to a saved place.",
+        "char_start": 7991,
+        "char_end_exclusive": 8413,
+        "line_start": 90,
+        "line_end": 90
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Mei’s preference for another meeting or new situation. She found a different agreement meaningful but does not want to replay this meeting; no expansion is mandated."
+  },
+  {
+    "id": "F-2795",
+    "who": "Samir Haddad",
+    "rank": 1,
+    "source": "samir/report.md",
+    "primary": {
+      "text": "Let me ask Halil and Rıza what Nuri actually said to each of them.",
+      "char_start": 213,
+      "char_end_exclusive": 279,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 191,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 191,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "On the phone I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-001.png): the recording page fit, including **Take a seat**. I also viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-002.png): the opening story extended below the screen, and its first action was not visible. I used named taps to reach the table, inspect private words, return, and open Feedback. I did not scroll, so I cannot describe how the opening behaves during a real thumb scroll.",
+        "char_start": 6268,
+        "char_end_exclusive": 6826,
+        "line_start": 67,
+        "line_end": 67
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 7136,
+        "char_end_exclusive": 7157,
+        "line_start": 71,
+        "line_end": 71
+      },
+      {
+        "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight. The cost made the honest choice more interesting, but I had just settled the meeting and did not want to repeat the private lie.",
+        "char_start": 7735,
+        "char_end_exclusive": 8055,
+        "line_start": 81,
+        "line_end": 81
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Samir’s wish to ask Halil and Rıza what Nuri said to each. Preserve uncertainty and do not invent a private promise."
+  },
+  {
+    "id": "F-2796",
+    "who": "Samir Haddad",
+    "rank": 2,
+    "source": "samir/report.md",
+    "primary": {
+      "text": "Give me a longer meeting with more people and choices after the first agreement.",
+      "char_start": 283,
+      "char_end_exclusive": 363,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 191,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 191,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "On the phone I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-001.png): the recording page fit, including **Take a seat**. I also viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-002.png): the opening story extended below the screen, and its first action was not visible. I used named taps to reach the table, inspect private words, return, and open Feedback. I did not scroll, so I cannot describe how the opening behaves during a real thumb scroll.",
+        "char_start": 6268,
+        "char_end_exclusive": 6826,
+        "line_start": 67,
+        "line_end": 67
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 7136,
+        "char_end_exclusive": 7157,
+        "line_start": 71,
+        "line_end": 71
+      },
+      {
+        "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight. The cost made the honest choice more interesting, but I had just settled the meeting and did not want to repeat the private lie.",
+        "char_start": 7735,
+        "char_end_exclusive": 8055,
+        "line_start": 81,
+        "line_end": 81
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Samir’s preference for a longer meeting with more people and choices after the first agreement. This is taste evidence, not a mandate to expand."
+  },
+  {
+    "id": "F-2797",
+    "who": "Samir Haddad",
+    "rank": 3,
+    "source": "samir/report.md",
+    "primary": {
+      "text": "Show the phone’s opening action without making me scroll past the whole introduction.",
+      "char_start": 367,
+      "char_end_exclusive": 452,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "opening": {
+      "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 191,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 191,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "On the phone I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-001.png): the recording page fit, including **Take a seat**. I also viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-002.png): the opening story extended below the screen, and its first action was not visible. I used named taps to reach the table, inspect private words, return, and open Feedback. I did not scroll, so I cannot describe how the opening behaves during a real thumb scroll.",
+        "char_start": 6268,
+        "char_end_exclusive": 6826,
+        "line_start": 67,
+        "line_end": 67
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 7136,
+        "char_end_exclusive": 7157,
+        "line_start": 71,
+        "line_end": 71
+      },
+      {
+        "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight. The cost made the honest choice more interesting, but I had just settled the meeting and did not want to repeat the private lie.",
+        "char_start": 7735,
+        "char_end_exclusive": 8055,
+        "line_start": 81,
+        "line_end": 81
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect the opening action’s visibility on the phone. Samir did not scroll, so reachability during a real scroll remains untested."
+  },
+  {
+    "id": "F-2798",
+    "who": "Diego Silva",
+    "rank": 1,
+    "source": "diego/report.md",
+    "primary": {
+      "text": "Shorten the agreement choices. The titles help, but the long explanations still feel like a form.",
+      "char_start": 210,
+      "char_end_exclusive": 307,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "**Would I return voluntarily?** I might come back another evening to try a different agreement or the letter, but I would not return again tonight; I have seen the two outcomes I came for.",
+      "char_start": 0,
+      "char_end_exclusive": 188,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** I might come back another evening to try a different agreement or the letter, but I would not return again tonight; I have seen the two outcomes I came for.",
+        "char_start": 0,
+        "char_end_exclusive": 188,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I did not feel confused enough to open the confusion label. The game clearly stated when Rıza would leave and return, that a changed agreement clears signatures, and that calling Halil back costs two minutes. Ferda’s refusal said what she needed, and the screen counted the minutes needed for remaining signatures.",
+        "char_start": 6629,
+        "char_end_exclusive": 6943,
+        "line_start": 68,
+        "line_end": 68
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 8444,
+        "char_end_exclusive": 8465,
+        "line_start": 90,
+        "line_end": 90
+      },
+      {
+        "text": "I might return voluntarily another evening to try a different agreement or the letter. I would not return again tonight: I got the exposed-lie outcome and then made the separation plan work. I would not leave it running; it is turn-based and nothing needs my attention while I am away.",
+        "char_start": 9106,
+        "char_end_exclusive": 9391,
+        "line_start": 98,
+        "line_end": 98
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Diego’s preference for shorter agreement explanations while retaining useful titles and terms. Do not remove decision-relevant information."
+  },
+  {
+    "id": "F-2799",
+    "who": "Diego Silva",
+    "rank": 2,
+    "source": "diego/report.md",
+    "primary": {
+      "text": "Give me another consequential decision before writing the agreement. The delivery window made the signature stage interesting; I did not see a cost incurred earlier.",
+      "char_start": 311,
+      "char_end_exclusive": 476,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "opening": {
+      "text": "**Would I return voluntarily?** I might come back another evening to try a different agreement or the letter, but I would not return again tonight; I have seen the two outcomes I came for.",
+      "char_start": 0,
+      "char_end_exclusive": 188,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** I might come back another evening to try a different agreement or the letter, but I would not return again tonight; I have seen the two outcomes I came for.",
+        "char_start": 0,
+        "char_end_exclusive": 188,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I did not feel confused enough to open the confusion label. The game clearly stated when Rıza would leave and return, that a changed agreement clears signatures, and that calling Halil back costs two minutes. Ferda’s refusal said what she needed, and the screen counted the minutes needed for remaining signatures.",
+        "char_start": 6629,
+        "char_end_exclusive": 6943,
+        "line_start": 68,
+        "line_end": 68
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 8444,
+        "char_end_exclusive": 8465,
+        "line_start": 90,
+        "line_end": 90
+      },
+      {
+        "text": "I might return voluntarily another evening to try a different agreement or the letter. I would not return again tonight: I got the exposed-lie outcome and then made the separation plan work. I would not leave it running; it is turn-based and nothing needs my attention while I am away.",
+        "char_start": 9106,
+        "char_end_exclusive": 9391,
+        "line_start": 98,
+        "line_end": 98
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-10",
+    "status": "open",
+    "editorial_route": "Review Diego’s preference for another consequential decision before the agreement. The delivery window mattered at signature; no earlier cost was observed."
+  },
+  {
+    "id": "F-2800",
+    "who": "Anika Perera",
+    "rank": 1,
+    "source": "anika/report.md",
+    "primary": {
+      "text": "In the notebook, distinguish Ferda’s earlier wording from her response after the letter as clearly as the meeting screen does.",
+      "char_start": 185,
+      "char_end_exclusive": 311,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "opening": {
+      "text": "I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation.",
+      "char_start": 0,
+      "char_end_exclusive": 166,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation.",
+        "char_start": 0,
+        "char_end_exclusive": 166,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "### 7. Stop and return",
+        "char_start": 6177,
+        "char_end_exclusive": 6199,
+        "line_start": 65,
+        "line_end": 65
+      },
+      {
+        "text": "I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation. I would not leave it running: both games had ended, and the choices advanced the game clock when I acted.",
+        "char_start": 6440,
+        "char_end_exclusive": 6712,
+        "line_start": 70,
+        "line_end": 70
+      }
+    ],
+    "route": "fix:word",
+    "target": "2026-11-03",
+    "status": "open",
+    "editorial_route": "Inspect how the notebook distinguishes Ferda’s earlier wording from her response after the letter, using the meeting screen as the comparison. This is a copy lead, not proof of a state or save defect."
+  }
+]

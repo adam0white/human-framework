@@ -1,0 +1,11 @@
+{
+  "closed": true,
+  "reports": 5,
+  "stops": 10,
+  "lastActualReturn": "2026-10-31T11:01:06.244095+00:00",
+  "nextRoundNotBefore": "2026-10-31T11:16:06.244095+00:00",
+  "HOLD": "released after root full5 report read, final audit and recorded cleanup verified",
+  "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+  "gameFinished": false,
+  "remaining": "Two iterations reached; dated Deferred integration required. No third panel/broader acceptance."
+}

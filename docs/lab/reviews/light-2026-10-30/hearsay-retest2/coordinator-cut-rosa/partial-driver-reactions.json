@@ -1,0 +1,213 @@
+{
+  "state": "CUTBYCOORDINATOR, notvoluntarystop; actualrawreactions only",
+  "lastElapsed": 60.268,
+  "reactions": [
+    {
+      "t": "2026-10-31T11:37:03.408Z",
+      "elapsed_s": 2.769,
+      "op": "shot",
+      "kind": "input",
+      "input": {
+        "file": "a-001.png"
+      },
+      "reaction": "I know this title from before. Same goal, Day 13 lunch.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:05.622Z",
+      "elapsed_s": 4.983,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Begin"
+      },
+      "reaction": "Begin.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:07.521Z",
+      "elapsed_s": 6.882,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Invite a quiet conversation"
+      },
+      "reaction": "Same Next line as last time. I talk to Riza again.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:09.092Z",
+      "elapsed_s": 8.453,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Let the conversation finish"
+      },
+      "reaction": "Fifteen minutes, clear. I let it finish.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:10.574Z",
+      "elapsed_s": 9.935,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Offer practical help and keep this private"
+      },
+      "reaction": "Same kind secret as before. I keep it private and offer help.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:12.385Z",
+      "elapsed_s": 11.746,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Derya at the garden"
+      },
+      "reaction": "Last time Derya was busy with no reason. I try her to see if it says why now.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:13.802Z",
+      "elapsed_s": 13.163,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Invite a quiet conversation"
+      },
+      "reaction": "I invite Derya.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:15.376Z",
+      "elapsed_s": 14.737,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Let the conversation finish"
+      },
+      "reaction": "I let it finish.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:16.906Z",
+      "elapsed_s": 16.267,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Offer practical help and keep this private"
+      },
+      "reaction": "Sad, ordinary. I help privately.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:18.736Z",
+      "elapsed_s": 18.097,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Dilan at the garden"
+      },
+      "reaction": "Now Dilan, to see if anyone is busy and whether the reason is given.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:20.251Z",
+      "elapsed_s": 19.612,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Invite a quiet conversation"
+      },
+      "reaction": "I invite Dilan.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:23.451Z",
+      "elapsed_s": 22.812,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Keep this private"
+      },
+      "reaction": "A longer secret about Dilan and Ece. I keep it private. I want to see who is busy next.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:25.152Z",
+      "elapsed_s": 24.513,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Osman at the garden"
+      },
+      "reaction": "Osman is part of the bread order. I try him.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:26.619Z",
+      "elapsed_s": 25.98,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Invite a quiet conversation"
+      },
+      "reaction": "I invite Osman.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:29.156Z",
+      "elapsed_s": 28.517,
+      "op": "log",
+      "kind": "note",
+      "input": null,
+      "reaction": "Osman cannot talk now. You do not know when Osman will be free. This choice was not made. It is said plainly but still not why he is busy while he sits here. Same as last visit.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:30.684Z",
+      "elapsed_s": 30.045,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Nermin at the garden"
+      },
+      "reaction": "I try Nermin.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:32.102Z",
+      "elapsed_s": 31.463,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Invite a quiet conversation"
+      },
+      "reaction": "I invite Nermin.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:37:34.434Z",
+      "elapsed_s": 33.795,
+      "op": "tap",
+      "kind": "input",
+      "input": {
+        "name": "Fast"
+      },
+      "reaction": "Nermin cannot talk now either. Two people refused in a minute, no reason. I try Fast to see the garden move.",
+      "error": null
+    },
+    {
+      "t": "2026-10-31T11:38:00.907Z",
+      "elapsed_s": 60.268,
+      "op": "wait",
+      "kind": "input",
+      "input": {
+        "s": 25
+      },
+      "reaction": "Waiting on Fast to see who is free and whether the garden empties.",
+      "error": null
+    }
+  ]
+}

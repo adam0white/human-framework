@@ -1,0 +1,84 @@
+**Would you return voluntarily?** I might come back another evening, on desktop only, if I could answer Dai or learn who the town people are, and if the waiting cost much less. I would not leave it running. I would not come back on the phone tonight.
+
+**Ranked asks**
+1. Give me someone to talk to besides Dai: a way to ask him about himself or the town, and to meet Nerys and Wren.
+2. Cut the idle waiting. Both sessions were mostly half-minute waits with nothing for me to do.
+3. Make the first level reading appear sooner, or say why the tile starts as a dash.
+
+## 1. Session
+- Persona: Samir Haddad. Exposure: RETEST (second return). Round light-1031-glance-retest2, arm free stop (floor 0).
+- History: I read all 749 lines of own-history.md in three chunks, through the End marker. Nothing is unread. The other games in it (Warren, Voice, Watch, Pass, Valley, Commonstead, Lefthand, Word) I used only for how I tend to play.
+- URL: https://glance.adamwhite.work/?labRunSource=agent
+- Session A, phone 360x690, port 22802: about 82 s. Session B, desktop 1280x800, port 22803: about 98 s.
+- I started a new game in each. I did not scroll or drag.
+
+## 2. First impressions
+- Phone, 3 s: the title page is tidy, with a sample chart. The Start button covers the intro text.
+- Phone, 10 s: Dai is resting, and the level tile is a dash.
+- Phone, 11.7 s: after I called Dai, the tile showed 4.00 m with its read time. That is new.
+- Desktop, 1.6 s: the title chart is cropped at the bottom by the Start button.
+- Desktop, 7.8 s: the start level is 3.5 and Dai is resting. The two sessions started differently again.
+
+## 3. Verbatim diary (elapsed s)
+Phone:
+- 5.379: "Phone first. Title as before. Starting valley dam."
+- 11.736: "Same opening as before, shorter. Dai resting; I call him for a number."
+- 13.61: "Level tile now shows 4.00 m with read time, not a dash. That was my ask. Skipping."
+- 70.345 first_minute: "Phone: level tile now keeps 4.00 m with its read time and a was-line, my last ask. Opening short. Still only Dai, nothing to answer, nothing needs me."
+- 81.898 stop, BORED, engagement 3: "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me. Pressed Im stopping in Feedback, then Back, typed nothing."
+
+Desktop:
+- 3.514: "Desktop, other device same evening. Starting valley dam."
+- 10.015: "Desktop opening the same. I still want to know who Nerys and Wren are."
+- 64.595 first_minute: "Desktop: opening short, standing request saved, Dai reading on his own. Level tile still a dash because nobody has read tonight. Nerys and Wren still unexplained. Nothing to do but wait."
+- 98.002 stop, BORED, engagement 3: "Stopping desktop at about 96 seconds, Mon 23:38. Level tile now keeps 4.10 m with its age and a was-line, which I asked for. Standing request saved and Dai reads on his own. But still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained. Pressed Im stopping in Feedback, then Back, typed nothing."
+
+The first_minute lines were logged after 60 s (70.3 s phone, 64.6 s desktop). Both sessions ended before 180 s, so I logged no pulse. I logged no separate want_quit. The apostrophe in my stop lines was dropped ("Im stopping") because my first attempt at escaping failed.
+
+## 4. Moments
+- Held me:
+  - The level tile now keeps its last reading with its age and a "was" line.
+  - The lightning flash showing the dam wall.
+  - Dai saying "I'm sure of it" when he read 4.0. That makes his reading something I can doubt.
+- Lost me:
+  - Nothing needed me for half-minute stretches.
+  - I could not talk to anyone but Dai.
+  - Nerys and Wren are still unexplained.
+- Quit wishes: the BORED feeling was there from about 60 s on both devices. It did not pass.
+- Pulses: none, because both sessions ended before 180 s.
+
+## 5. Confusion and clarity
+- Clear: the level tile's age and "was" line. The standing-request wording ("He still decides whether he can do the work").
+- Confusing:
+  - Different start levels (4.0 on the phone, 3.5 on the desktop).
+  - "(as written)" on the readings, still unexplained.
+  - On desktop the level tile stayed a dash until about 23:13, because nobody had read it, even after I saved a request.
+- I never reached dawn or any gate opening.
+
+## 6. Device use
+- Phone: I viewed phone/b-001.png (title page). Sketch visible, Start button over the intro, recording banner below. I took no other phone shots.
+- Desktop: I viewed desktop/a-001.png (title page). The chart is readable, and its bottom (the bridge line) is cut by the Start button. I took no game-screen shots and no automatic checkpoint.
+- Controls used: Start game, Ask Dai to read the level, Skip, Watch arrangements, the gate-turns select, Save this request, Back, Game menu, Feedback, "I'm stopping", "← Back".
+- Layout trouble seen: only the cropped chart on both title pages. I saw no game-screen layout in a screenshot, so I cannot say whether the phone game screen fits this time.
+- Feedback: on both devices "I'm stopping" and "I'm confused" were offered. I pressed "I'm stopping" (the button showed pressed), then "← Back". I typed nothing, submitted nothing and changed no consent or recording setting.
+
+## 7. Stop and return
+- Phone stop (82 s, BORED): "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me."
+- Desktop stop (98 s, BORED): "Stopping desktop at about 96 seconds, Mon 23:38. … still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained."
+- Return: I might come back another evening on desktop, if I could answer Dai or learn who the town people are, and if each step cost much less waiting. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight, because I already know the loop from desktop.
+
+## 8. Changes I would want
+1. Let me talk to someone besides Dai, or ask him about himself and the town.
+2. Cut the idle waiting, or give me something to decide while Dai rests.
+3. Show or explain the first level reading earlier, and explain "(as written)".
+
+## 9. Compared with my last visit
+Round 1 and first-retest asks:
+- Answer Dai, or ask him about the town: did not meet it. I never saw the Morgan question this time, because both sessions ended early. I saw no reply control.
+- Cut the opening wall of text and introduce Nerys, Bilal and Wren one at a time: partly met. The opening is short and Bilal still has his one-line note. Nerys and Wren are still unexplained.
+- Phone: show the level and gauges, with the banner off them: not seen. I viewed only the title page on the phone.
+- Show the level tile's last reading with its age instead of "not read": met. Both devices showed it, e.g. "4.10 m, Dai · read 23:13, was 3.5, read 22:00". The tile was still a dash before the first reading on desktop.
+- Cut the waiting (about 30 real seconds per step): did not meet it. I waited 22 to 30 s at a time on both devices.
+- New blocking ask: none beyond the above.
+
+No repo touched; no worktree of mine remains.

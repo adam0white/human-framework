@@ -1,0 +1,101 @@
+I would not return voluntarily as it stands; I liked comparing the villages, but following the orders did not hold my attention.
+
+My ranked requests would be:
+
+1. Put the available orders before the long construction details, especially on the phone.
+2. Explain what an agreement means when the person is doing something else.
+3. Explain what the opening conversation selection changes.
+
+## 1. Session
+
+I played as Petra Horvat, a first-time visitor with no prior HF exposure. The round was light-1030, free stop, floor zero. My supplied history was empty of play and memories. I read all five supplied lines; the last line read was “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: none.
+
+Start URL: https://human.adamwhite.work/colony/?labRunSource=agent
+
+- **Session A:** 1280×800, keyboard and mouse, light mode, fresh game. Stopped at **90.745 seconds**.
+- **Session B:** 360×690 touch phone, light mode, separate fresh game, second visit the same evening. Stopped at **51.620 seconds**.
+
+Both sessions ended early. The three-minute pulse and all later checkpoints were untested. The phone session ended before a first-minute note was due.
+
+## 2. First impressions
+
+On desktop, at 4.411 seconds, the numbered goal appealed to me, but I did not understand what selecting one of the opening conversations would do. I left the first selected.
+
+On phone, at 5.218 seconds, I noticed one village behind the introduction and a partly covered title. The goal and start button were readable. I remembered from the desktop session that the villages answered differently.
+
+## 3. Verbatim diary
+
+Elapsed times below are the driver’s `elapsed_s` values. The words are exactly as logged.
+
+### Session A — desktop
+
+- **4.411 s — note:** The goal has numbers I can follow. I do not yet know why I am choosing between these conversations, so I will leave the first one selected.
+- **12.194 s — note, Day 1 05:31:** That is a lot of construction detail for someone already cooking. I want her to keep making food, but I cannot tell whether ordering the kitchen changes anything.
+- **22.284 s — note, Day 1 05:37:** I selected I am confused in Feedback; it stayed on the form and Back returned me to the paused menu. I sent nothing.
+- **26.394 s — note, Day 1 05:37:** I chose Slow because the people changed activities while I was trying to select one. I want time to read.
+- **41.591 s — note, Day 1 06:07:** His answer makes sense: he wants to eat first. Seeing the two villages respond differently is more interesting than the tables.
+- **46.608 s — note, Day 1 06:26:** This comparison is much easier to read. I can see what each village has and when it counts.
+- **62.745 s — first_minute, Day 1 07:31:** I understand the aim and the different answers now, but I am mostly watching people do things they were already doing. I am not sure what useful decision comes next.
+- **80.277 s — note, Day 1 08:07:** He agreed to gather timber but is walking to the house. I do not know if he will do it later or if the agreement means something else.
+- **82.068 s — want_quit, BORED, Day 1 08:07:** I would leave here; I am not enjoying checking whether an agreed instruction happens.
+- **88.974 s — note, Day 1 08:17:** I selected I am stopping; it stayed selected on the form, and Back returned to the menu. I sent nothing.
+- **90.745 s — stop, BORED, Day 1 08:17:** I am stopping now; the comparison was interesting but the work of following orders has lost me.
+
+### Session B — phone
+
+- **5.218 s — note:** The phone shows one village behind the introduction, and the title is partly covered. The goal and start button are readable. I remember the two villages answer differently from the laptop.
+- **14.744 s — note, Day 1 05:32:** The comparison fits across the phone, but I have to scroll to see the rest. The map and suggestion take much of the screen.
+- **25.851 s — note, Day 1 06:15:** I selected Samira to find a food job, but the choices are below a long construction section. On this screen I cannot see any place to choose yet.
+- **38.480 s — note, Day 1 07:01:** Again the human agreed but is doing something else. Perhaps she needs grain first, but I am guessing. I do not want to keep scrolling through the same roof figures for each person.
+- **40.338 s — want_quit, BORED, Day 1 07:01:** I would stop here; the phone makes this feel like too much scrolling for a small decision.
+- **49.463 s — note, Day 1 07:24:** I selected I am stopping in Feedback. It stayed on the form and Back returned to the paused menu; I sent nothing.
+- **51.620 s — stop, BORED, Day 1 07:24:** I am stopping on the phone; I do not want to scroll through all of that again to give another order.
+
+## 4. Moments
+
+The targets held me initially: a roof, twelve meals, and six people alive are concrete things to check. Idris’s answer—that he needed to eat first—made the difference between the villages understandable and briefly interesting. The comparison table also gave me a clear view of their progress and deadlines.
+
+I lost interest when I had to follow an agreed order to see whether it happened. Tariq agreed to gather timber, while the Human village showed him going to the house and then building. I did not establish whether he would eventually gather timber. My desktop quit wish did not pass; I stopped after opening Feedback.
+
+On the phone, selecting Samira brought up the repeated construction details before the order choices. After scrolling and giving one cooking order, I did not want to repeat that process. My quit wish did not pass there either. No engagement pulses were due in either short session.
+
+## 5. Confusion and clarity
+
+The opening conversation choices looked selectable, but I could not tell what the choice would affect. I left the default.
+
+“Each order goes to both villages” became clear through play. Idris’s different answers gave that statement a useful example. The comparison table clearly showed roof stages, meals, injuries, people alive, and the judging times.
+
+I was uncertain whether ordering Maryam to cook added anything when she was already cooking. Later, both Tariq and Samira agreed to orders while their Human counterparts were shown doing other work. For Samira, needing grain first was my guess, not an explanation I saw.
+
+On desktop, two attempts to select Maryam used names that had just become stale as her activity changed. The driver reported each stale target; selecting the current “Maryam Cooking.” control succeeded. I chose Slow afterward to have more time to read. The menu itself paused the game while open.
+
+I selected **“I'm confused”** in desktop Feedback when I felt unsure. Before stopping each session, I selected **“I'm stopping”** in Feedback. Each selection stayed on the form, and Back returned to the paused menu. I typed and submitted nothing.
+
+## 6. Device use
+
+**Desktop, 1280×800.** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/desktop/a-001.png): it showed the two village maps side by side, their initial counts, the opening conversation choices, and the start button. I used the start button, person selections, kitchen, house and forest orders, the comparison and order list, the menu, Slow, and Feedback. The two stale person names were driver-reported changes in the visible activity, not a failed game control.
+
+**Phone, 360×690.** I viewed:
+
+- [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/phone/b-001.png): the Human map behind the introduction, a title partly covered by the village button, readable goal text and start button.
+- [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/phone/b-002.png): the map, suggestion and upper portion of the comparison table. The remaining table was below the visible screen.
+- [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/petra/phone/b-003.png): Samira selected, her current activities, and the beginning of the construction section; no order choices were visible in that view.
+
+I used the start button, comparison, Keep watching, Samira, scrolling, the kitchen order, menu and Feedback. The order options appeared in the driver’s control list, but were below the screen in the screenshot; my reported trouble was the scrolling and repeated detail, not an inability to operate the kitchen control.
+
+## 7. Stop and return
+
+- **Desktop stop:** “I am stopping now; the comparison was interesting but the work of following orders has lost me.” Reason: **BORED**, at 90.745 seconds.
+- **Phone stop:** “I am stopping on the phone; I do not want to scroll through all of that again to give another order.” Reason: **BORED**, at 51.620 seconds.
+
+I would not return voluntarily as it stands; I liked comparing the villages, but following the orders did not hold my attention. I might reconsider if the choices were easier to reach and the status of an agreed order were clearer. I would not leave it running: I would want to know what was happening before letting time pass. I would not come back another evening for this version.
+
+## 8. Changes I would want
+
+1. Put the available orders before the long construction details, especially on the phone.
+2. Explain what an agreement means when the person is doing something else.
+3. Explain what the opening conversation selection changes.
+
+## 9. Compared with my last visit
+
+first visit

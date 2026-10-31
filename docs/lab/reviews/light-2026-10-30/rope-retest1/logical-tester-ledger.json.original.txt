@@ -1,0 +1,447 @@
+[
+ {
+  "id": "F-2581",
+  "tester": "Pavel Novak",
+  "game": "rope",
+  "date": "2026-10-31",
+  "exposure": "standing player, first fixed-build retest",
+  "deviceOrder": [
+   "desktop",
+   "phone"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "desktop": {
+    "elapsed_s": 271.27,
+    "reason": "BORED",
+    "game_clock": "07:29",
+    "rawStopReaction": "I stop at 07:29 on desktop. The notes explain more than before and Wren's refusal was explained, but I still wait for the group at a slow clock and never reached the hurt climber. Chose I'm stopping in Feedback, typed nothing, submitted nothing.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "phone": {
+    "elapsed_s": 230.551,
+    "reason": "TASTE",
+    "game_clock": "10:11",
+    "rawStopReaction": "I stop at 10:11 on the phone. Skip and the weather warning now explain themselves and Nell asked to go down with named choices. But two of five still cannot hear me and the clock still crawls. Chose I am stopping in Feedback, typed nothing, submitted nothing.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "Not tonight. I might come back on the desktop on another evening, but only if the group stays within earshot of me, and I would not leave it running.",
+  "laterFullReturn": "Not tonight. I might come back on the desktop on another evening to see the hurt climber and the 12:00 or 13:00 turn-back promise, but only if the group stays within earshot of me and the quiet stretches are shorter. I would not leave it running. I would come back another evening, not leave it running.",
+  "laterExtraReturnSpans": [],
+  "verdict": "mixed",
+  "verdictReason": "Conditional on his own words: not tonight; maybe another evening on the desktop only if the group stays within earshot of him and the quiet stretches are shorter. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2586",
+   "F-2587",
+   "F-2588"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:rope Pavel return is mixed and conditional, not tonight, maybe another evening on the desktop only if the group stays within earshot of him and the later return adds shorter quiet stretches and a wish to see the hurt climber and the 12:00 or 13:00 promise, not left running, asks F-2586–F-2588, BORED desktop at 271.27 s and TASTE phone at 230.551 s, the hurt climber and the turn-back promises were not reached so the old walk-to-Bilal problem is neither fixed nor broken by this round, earliest related target is the hearing-range and Stay-with source lead F-2586, target2026-11-03 (open)",
+  "unrankedBlockingClauses": [],
+  "historyQualification": "All 806 actual history lines were read in three successful Reads through the End marker (director history-read audit). The file is selected records, not the whole archive. Older CONT and partial-read qualifications stay separate.",
+  "viewEvidence": "Viewed desktop a-001 and a-002 and phone b-001 and b-002 by image Read receipt. The automatic first-minute captures carry no receipt. He did not look at the phone drawing after the group moved higher."
+ },
+ {
+  "id": "F-2582",
+  "tester": "Tessa Williams",
+  "game": "rope",
+  "date": "2026-10-31",
+  "exposure": "standing player, first fixed-build retest",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 190.697,
+    "reason": "BORED",
+    "game_clock": "Hollin Crag 05:53",
+    "rawStopReaction": "Stopping the phone. This time I got up the mountain, saw the map and the hint, and people had busy-until reasons. But most of them still say the hut-path line to different asks, so I have seen what poking does.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "desktop": {
+    "elapsed_s": 190.582,
+    "reason": "TASTE",
+    "game_clock": "Hollin Crag 07:09",
+    "rawStopReaction": "Stopping the laptop. Replies fit better this time, Wren gave a reason that matched what she was doing and Bilal sounded like himself. But most yeses are one shape and I have not found my own kind of trouble beyond splitting the group.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "Maybe once, another evening on my laptop, to see what happens when we reach the top and whether I can get more than a stock yes from Tamar, Nell and Oskar. I would not come back tonight. I would not leave it running.",
+  "laterFullReturn": "Maybe once. I would come back another evening on my laptop, only to see what happens when we reach the top and whether Tamar, Nell and Oskar ever answer in their own words. I would not come back tonight. I would not leave it running, because the group only moves when I walk or ask.",
+  "laterExtraReturnSpans": [],
+  "verdict": "mixed",
+  "verdictReason": "Conditional on her own words: maybe once, another evening on the laptop, to see what happens at the top and whether Tamar, Nell and Oskar answer with more than a stock yes. Not tonight. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2589",
+   "F-2590",
+   "F-2591"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:rope Tessa return is mixed and conditional, maybe once on another evening on the laptop to see what happens at the top and whether Tamar and Nell and Oskar answer with more than a stock yes, not tonight, not left running, asks F-2589–F-2591, BORED phone at 190.697 s and TASTE laptop at 190.582 s, Wren and Bilal answers fit better, she does not claim her driver speed changed any outcome, earliest related target is the repeated stock yes and hut-path wording source lead F-2589, target2026-11-03 (open)",
+  "unrankedBlockingClauses": [],
+  "historyQualification": "All 756 actual history lines were read in three successful Reads through the End marker (director history-read audit). Older CONT and partial-read qualifications stay separate.",
+  "viewEvidence": "Viewed phone a-001 and a-002 and desktop b-001 and b-002 by receipt. Four manual shots. She did not scroll the phone log or open the Journal on either device."
+ },
+ {
+  "id": "F-2583",
+  "tester": "Nia Okafor",
+  "game": "rope",
+  "date": "2026-10-31",
+  "exposure": "standing player, first fixed-build retest",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 199.556,
+    "reason": "BORED",
+    "game_clock": "05:30",
+    "rawStopReaction": "Stopping on the phone at 05:30. Refusals and Wren asking who goes down were better than last time, and Nell finally answered my question. But repeated lines, the error-style refusal from Oskar, and a crawling clock. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "desktop": {
+    "elapsed_s": 253.14,
+    "reason": "BORED",
+    "game_clock": "07:06",
+    "rawStopReaction": "Stopping on desktop at 07:06. Real topic answer from Tamar and the I will do it but I disagree line came fast, but Oskar kept the same deferral line, my requests stalled, and I ended up watching dots. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "I would come back another evening, but only if the first reply to a question stopped being the generic line and the clock moved at a pace where something happens within a minute; I would not leave it running.",
+  "laterFullReturn": "Yes, but only on these conditions. The first reply has to answer what I asked instead of \"I will do as you ask.\" Refusals have to sound like a person every time. Several people must stop saying the same line. And something has to happen within about a minute, which means a faster clock without me hunting for the Pace setting.",
+  "laterExtraReturnSpans": [
+   {
+    "label": "Later wording (section 7) bullet, leave it running or come back another evening",
+    "line": 128,
+    "mode": "after-label",
+    "prefix": "- **Leave it running or come back another evening?** ",
+    "span": "I would not leave it running. I would come back another evening if those conditions were met."
+   }
+  ],
+  "verdict": "mixed",
+  "verdictReason": "Conditional on her own words: another evening only if the first reply stops being the generic line, refusals sound like a person every time, several people stop saying the same line, and something happens within about a minute. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2592",
+   "F-2593",
+   "F-2594"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:rope Nia return is mixed and conditional, another evening only if the first reply to a question stops being the generic line and the clock moves so something happens within about a minute, the later return adds that refusals sound like a person every time and several people stop saying the same line, not left running, asks F-2592–F-2594, BORED phone at 199.556 s and BORED desktop at 253.14 s, the section 3 diary is reconstructed by the producer and is not word-for-word with the raw driver reactions kept separately, the phone ran Automatic pace and the desktop ran Fast so pace and device and order and learning are confounded and the 167 s to 244 s wait discrepancy has no known cause, earliest related target is the unranked wants-to-wait wording and going-down speech versus actual climb source inspection, also an unranked producer labelled new blocking clause wants to wait before waiting, Nia reads the Wren wants to wait before waiting wording as a template, source inspection of the produced wording, not a fourth ranked ask, dated 2026-11-03, also an unranked producer labelled new blocking clause going down speech versus actual climb, everyone says I want to go down and then walks up, source inspection comparing the going down speech with the actual climb, a stated wish to descend is not a completed action and nobody is forced to comply, not a fourth ranked ask, dated 2026-11-03, also an unranked producer labelled new blocking clause cannot hear greyed buttons, the He cannot hear you walk closer state with greyed buttons on desktop, source inspection linked to F-2586 and F-2600, explain it truthfully, no forced co-location and no forced following, not a fourth ranked ask, dated 2026-11-03, target2026-11-03 (open)",
+  "unrankedBlockingClauses": [
+   {
+    "key": "wants-to-wait-before-waiting",
+    "classification": "producer-new-blocker",
+    "target": "2026-11-03",
+    "routeDescriptionMetadata": "fix:rope Nia reads the Wren wants to wait before waiting wording as a template, source inspection of the produced wording, not a fourth ranked ask, target2026-11-03 (open)",
+    "rowRouteClause": "also an unranked producer labelled new blocking clause wants to wait before waiting, Nia reads the Wren wants to wait before waiting wording as a template, source inspection of the produced wording, not a fourth ranked ask, dated 2026-11-03",
+    "spans": [
+     {
+      "label": "Later wording (section 9) new blocking asks",
+      "line": 148,
+      "mode": "inline",
+      "span": "The odd \"wants to wait before waiting\" wording."
+     },
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 106,
+      "mode": "inline",
+      "span": "\"Wren wants to wait before waiting\" reads like a template."
+     },
+     {
+      "label": "Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 62.5 s",
+      "line": 43,
+      "mode": "inline",
+      "span": "Wren wants to wait before waiting is an odd sentence, like a template. But Eat something then we can talk is a person line."
+     }
+    ]
+   },
+   {
+    "key": "going-down-speech-versus-actual-climb",
+    "classification": "producer-new-blocker",
+    "target": "2026-11-03",
+    "routeDescriptionMetadata": "fix:rope everyone says I want to go down and then walks up, source inspection comparing the going down speech with the actual climb, a stated wish to descend is not a completed action and nobody is forced to comply, not a fourth ranked ask, target2026-11-03 (open)",
+    "rowRouteClause": "also an unranked producer labelled new blocking clause going down speech versus actual climb, everyone says I want to go down and then walks up, source inspection comparing the going down speech with the actual climb, a stated wish to descend is not a completed action and nobody is forced to comply, not a fourth ranked ask, dated 2026-11-03",
+    "spans": [
+     {
+      "label": "Later wording (section 9) new blocking asks",
+      "line": 149,
+      "mode": "inline",
+      "span": "Everyone saying \"I want to go down\" and then walking up."
+     },
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 107,
+      "mode": "inline",
+      "span": "On both devices everyone said \"I want to go down\" and then walked up, with no explanation."
+     },
+     {
+      "label": "Later wording (section 4) lost me",
+      "line": 92,
+      "mode": "inline",
+      "span": "They then all walked up anyway."
+     }
+    ]
+   },
+   {
+    "key": "cannot-hear-greyed-buttons",
+    "classification": "producer-new-blocker",
+    "target": "2026-11-03",
+    "routeDescriptionMetadata": "fix:rope the He cannot hear you walk closer state with greyed buttons on desktop, source inspection linked to F-2586 and F-2600, explain it truthfully, no forced co-location and no forced following, not a fourth ranked ask, target2026-11-03 (open)",
+    "rowRouteClause": "also an unranked producer labelled new blocking clause cannot hear greyed buttons, the He cannot hear you walk closer state with greyed buttons on desktop, source inspection linked to F-2586 and F-2600, explain it truthfully, no forced co-location and no forced following, not a fourth ranked ask, dated 2026-11-03",
+    "spans": [
+     {
+      "label": "Later wording (section 9) new blocking asks",
+      "line": 147,
+      "mode": "inline",
+      "span": "The \"He cannot hear you. Walk closer.\" state on desktop. It greyed all my request buttons, and I could only walk up or wait."
+     }
+    ]
+   }
+  ],
+  "historyQualification": "All 1097 actual history lines were read in three successful Reads through the End marker (director history-read audit). The earlier Warren CONT input qualification remains: the excluded alternative body was not supplied as text.",
+  "viewEvidence": "Viewed phone a-001 and a-002 and desktop b-001 and b-002 by receipt. She did not try to scroll the cut-off bottom row on the phone and did not view the phone with the on-screen keyboard.",
+  "primaryReturnAfterLabelLiteral": "\"I would come back another evening, but only if the first reply to a question stopped being the generic line and the clock moved at a pace where something happens within a minute; I would not leave it running.\"",
+  "diaryNote": "Report section 3 is the producer's own reconstruction and says so. Original reactions are in all-driver-reactions.json and nia/raw-driver-reactions.json."
+ },
+ {
+  "id": "F-2584",
+  "tester": "Rosa Alvarez",
+  "game": "rope",
+  "date": "2026-10-31",
+  "exposure": "standing player, first fixed-build retest",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 195.581,
+    "reason": "BORED",
+    "game_clock": "Hollin Crag 09:00",
+    "rawStopReaction": "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "desktop": {
+    "elapsed_s": 194.079,
+    "reason": "BORED",
+    "game_clock": "Hollin Crag 06:01",
+    "rawStopReaction": "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "Yes, on another evening, if someone asked me to try it, because the writing about the people is kind and clear. No, I would not leave it running, and I would not come back tonight. I mostly waited and pressed Skip, and I have seen the whole loop twice.",
+  "laterFullReturn": "Yes, on another evening, if the game showed me something new. I want the second mountain, or a person asking me for something I did not expect. I came back tonight because I was asked, and the writing about the people is why I would come again. I would not leave the game running while I did something else. The waiting makes me want to press things, and I cannot tell whether a press did anything. I would not come back tonight. I would play on my phone before the desktop, because the phone screen showed everything at once.",
+  "laterExtraReturnSpans": [],
+  "verdict": "mixed",
+  "verdictReason": "Two answers kept separate. Opening: yes on another evening if someone asked her to try it. Later: yes on another evening if the game showed her something new, phone before desktop. Not tonight. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2595",
+   "F-2596",
+   "F-2597"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:rope Rosa return is mixed and conditional, the opening answer is yes on another evening if someone asked her to try it because the writing about the people is kind and clear, the later full return is yes on another evening if the game showed her something new such as the second mountain or a person asking for something unexpected and she would play the phone before the desktop, not tonight and not left running, asks F-2595–F-2597, BORED phone at 195.581 s and BORED desktop at 194.079 s, no want_quit was logged, the earlier CONT input qualification stands, her first-try rope up success and clearer phone labels are kept, earliest related target is Skip availability and endpoint clarity F-2595, also an unranked producer labelled new blocking clause reading note and first lead on uncertainty, the desktop clock stayed at 05:03 after Lead on until a second tap, after she read the Journal and dismissed the Time slows for reading note, source inspection of the reading note and first Lead on behavior, no clock cause assumed and no default clock bug proved, not a fourth ranked ask, dated 2026-11-03, also an unranked producer labelled new blocking clause auto filled feedback note, the Feedback note box fills itself with the verdict words and a reader may think it must be sent, a clarity preference and not a question, the auto-filled text is not a typed note, no Submit and no consent change, not a fourth ranked ask, dated 2026-11-10, also an unranked source observation, not a producer labelled new blocker desktop path under right panel, the desktop path running under the right panel, source inspection of the layout, clipping is not proved unreachable, a section 5 source observation and not her listed new blocker, not a fourth ranked ask, dated 2026-11-03, target2026-11-03 (open)",
+  "unrankedBlockingClauses": [
+   {
+    "key": "reading-note-and-first-lead-on-uncertainty",
+    "classification": "producer-new-blocker",
+    "target": "2026-11-03",
+    "routeDescriptionMetadata": "fix:rope the desktop clock stayed at 05:03 after Lead on until a second tap, after she read the Journal and dismissed the Time slows for reading note, source inspection of the reading note and first Lead on behavior, no clock cause assumed and no default clock bug proved, not a fourth ranked ask, target2026-11-03 (open)",
+    "rowRouteClause": "also an unranked producer labelled new blocking clause reading note and first lead on uncertainty, the desktop clock stayed at 05:03 after Lead on until a second tap, after she read the Journal and dismissed the Time slows for reading note, source inspection of the reading note and first Lead on behavior, no clock cause assumed and no default clock bug proved, not a fourth ranked ask, dated 2026-11-03",
+    "spans": [
+     {
+      "label": "Later wording (section 9) new this time",
+      "line": 192,
+      "mode": "inline",
+      "span": "On desktop, the clock stayed at 05:03 until I tapped lead on a second time, and I could not tell whether the first tap had worked."
+     },
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 126,
+      "mode": "inline",
+      "span": "On desktop, the clock stayed at 05:03 after I tapped lead on. I do not know whether my first tap worked or the second one did."
+     },
+     {
+      "label": "Later wording (section 4) lost me",
+      "line": 107,
+      "mode": "inline",
+      "span": "The desktop clock stuck at 05:03 (\"Time slows for reading\") until I tapped lead on a second time."
+     },
+     {
+      "label": "Later wording (section 3) desktop 78.285 s",
+      "line": 82,
+      "mode": "inline",
+      "span": "The clock is stuck at 05:03 and says Time slows for reading. I close the note with the x to see if the climb moves."
+     }
+    ]
+   },
+   {
+    "key": "auto-filled-feedback-note",
+    "classification": "producer-new-blocker",
+    "target": "2026-11-10",
+    "routeDescriptionMetadata": "fix:rope the Feedback note box fills itself with the verdict words and a reader may think it must be sent, a clarity preference and not a question, the auto-filled text is not a typed note, no Submit and no consent change, not a fourth ranked ask, target2026-11-10 (open)",
+    "rowRouteClause": "also an unranked producer labelled new blocking clause auto filled feedback note, the Feedback note box fills itself with the verdict words and a reader may think it must be sent, a clarity preference and not a question, the auto-filled text is not a typed note, no Submit and no consent change, not a fourth ranked ask, dated 2026-11-10",
+    "spans": [
+     {
+      "label": "Later wording (section 9) new this time",
+      "line": 194,
+      "mode": "inline",
+      "span": "The note box fills with \"I'm stopping\" when I press that verdict. I typed nothing, but a reader might think they must send it."
+     },
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 128,
+      "mode": "inline",
+      "span": "After \"I'm stopping\", the note box filled itself with \"I'm stopping\". I typed nothing."
+     }
+    ]
+   },
+   {
+    "key": "desktop-path-under-right-panel",
+    "classification": "source-observation",
+    "target": "2026-11-03",
+    "routeDescriptionMetadata": "fix:rope the desktop path running under the right panel, source inspection of the layout, clipping is not proved unreachable, a section 5 source observation and not her listed new blocker, not a fourth ranked ask, target2026-11-03 (open)",
+    "rowRouteClause": "also an unranked source observation, not a producer labelled new blocker desktop path under right panel, the desktop path running under the right panel, source inspection of the layout, clipping is not proved unreachable, a section 5 source observation and not her listed new blocker, not a fourth ranked ask, dated 2026-11-03",
+    "spans": [
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 127,
+      "mode": "inline",
+      "span": "On desktop, the path runs under the right panel, so I could not see where it goes."
+     }
+    ]
+   }
+  ],
+  "historyQualification": "All 1921 actual history lines were read in four successful Reads through the End marker (director history-read audit). The known excluded Warren CONT-body exposure in the prior input remains a continuity qualification; her remark that CONT worked differently is not a new finding about the actual input.",
+  "viewEvidence": "Viewed phone a-001 to a-003 and desktop b-001 to b-003 by receipt. The All 5 answers panel, the i button, Close up and a second mountain were not reached.",
+  "returnNote": "Opening answer (yes on another evening if someone asked her to try it) and later full answer (yes on another evening if the game showed her something new, phone before desktop) differ and are both kept; neither is reduced to a vote."
+ },
+ {
+  "id": "F-2585",
+  "tester": "Farah Bensaid",
+  "game": "rope",
+  "date": "2026-10-31",
+  "exposure": "new cold person, empty history, first Rope visit",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "opus",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 345.735,
+    "reason": "CONFUSED",
+    "game_clock": "09:35",
+    "rawStopReaction": "I stop here on the phone. I liked the promise and the people asking for a drink, but I spend my time pulling people back into line without knowing why they left it. On a small screen that is too much reading for a short sitting. I will try the laptop tonight.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "desktop": {
+    "elapsed_s": 324.278,
+    "reason": "CONFUSED",
+    "game_clock": "09:07",
+    "rawStopReaction": "I stop here. On the laptop it is calmer and the people are good company, Tamar and the journal especially. But twice now the rope fails and the game does not tell me what is missing. I pressed I am stopping, it filled the box, I sent nothing and went back.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting.",
+  "laterFullReturn": "Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting. I liked the people and the promise enough to want to know what happens on the mountain. I don't enjoy fixing people one by one without seeing the rule.",
+  "laterExtraReturnSpans": [
+   {
+    "label": "Later wording (section 7) bullet, leave it running or come back another evening",
+    "line": 142,
+    "mode": "after-label",
+    "prefix": "**Leave it running, or come back another evening?** ",
+    "span": "I would not leave it running. Time keeps moving, and I don't trust what happens while I am away. I might come back another evening, with the condition above."
+   }
+  ],
+  "verdict": "mixed",
+  "verdictReason": "Conditional on her own words: yes, only on the laptop, on an evening she has set aside, and only if the game tells her in plain reasons why people stop, turn round or refuse. Not on the phone for a short sitting. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2598",
+   "F-2599",
+   "F-2600"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:rope Farah cold return is mixed and conditional, yes but only on the laptop on an evening she has set aside and only if the game tells her in plain reasons why her people stop and turn round and refuse, not on the phone for a short sitting, not left running, asks F-2598–F-2600, CONFUSED phone at 345.735 s and CONFUSED laptop at 324.278 s, same-evening second device so device and order and learning are confounded, her first no-picture thought and her later self-correction are both kept, the missing item was not diagnosed, earliest related target is the plain stop and refusal and missing-item reasons F-2598, also an unranked source observation, not a producer labelled new blocker collapsed weather heading, the Route and weather warning showed only a heading until clicked, source inspection of the collapsed heading affordance, the weather was expanded after her click per her laptop diary at 225.0 s and the director capture shows a closed heading so it is not a missing warning, a source observation and not an explicit new blocking ask, not a fourth ranked ask, dated 2026-11-03, also an unranked source observation, not a producer labelled new blocker wren wants to wait while climbing, Wren status line says wants to wait while she was busy climbing, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, dated 2026-11-03, also an unranked source observation, not a producer labelled new blocker people shown walking up before asked, people shown walking up before she had asked them, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, dated 2026-11-03, target2026-11-03 (open)",
+  "unrankedBlockingClauses": [
+   {
+    "key": "collapsed-weather-heading",
+    "classification": "source-observation",
+    "target": "2026-11-03",
+    "routeDescriptionMetadata": "fix:rope the Route and weather warning showed only a heading until clicked, source inspection of the collapsed heading affordance, the weather was expanded after her click per her laptop diary at 225.0 s and the director capture shows a closed heading so it is not a missing warning, a source observation and not an explicit new blocking ask, not a fourth ranked ask, target2026-11-03 (open)",
+    "rowRouteClause": "also an unranked source observation, not a producer labelled new blocker collapsed weather heading, the Route and weather warning showed only a heading until clicked, source inspection of the collapsed heading affordance, the weather was expanded after her click per her laptop diary at 225.0 s and the director capture shows a closed heading so it is not a missing warning, a source observation and not an explicit new blocking ask, not a fourth ranked ask, dated 2026-11-03",
+    "spans": [
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 113,
+      "mode": "inline",
+      "span": "The weather warning showed only a heading until I clicked it."
+     },
+     {
+      "label": "Later wording (section 3) laptop 221.6 s",
+      "line": 69,
+      "mode": "inline",
+      "span": "The warning is just a heading with nothing under it. I click it in case it opens."
+     },
+     {
+      "label": "Later wording (section 3) laptop 225.0 s",
+      "line": 70,
+      "mode": "inline",
+      "span": "Wind from 11:00 and I promised 12:00. Glad I chose the early time. Nell and Wren are both level with me this time, so I rope them now."
+     },
+     {
+      "label": "Later wording (section 6) laptop b-003",
+      "line": 128,
+      "mode": "inline",
+      "span": "08:56, with the rope hint, the figures near the glacier rocks and the collapsed weather warning."
+     }
+    ]
+   },
+   {
+    "key": "wren-wants-to-wait-while-climbing",
+    "classification": "source-observation",
+    "target": "2026-11-03",
+    "routeDescriptionMetadata": "fix:rope Wren status line says wants to wait while she was busy climbing, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, target2026-11-03 (open)",
+    "rowRouteClause": "also an unranked source observation, not a producer labelled new blocker wren wants to wait while climbing, Wren status line says wants to wait while she was busy climbing, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, dated 2026-11-03",
+    "spans": [
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 108,
+      "mode": "inline",
+      "span": "Wren's status line said \"wants to wait\" while she was busy climbing."
+     }
+    ]
+   },
+   {
+    "key": "people-shown-walking-up-before-asked",
+    "classification": "source-observation",
+    "target": "2026-11-03",
+    "routeDescriptionMetadata": "fix:rope people shown walking up before she had asked them, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, target2026-11-03 (open)",
+    "rowRouteClause": "also an unranked source observation, not a producer labelled new blocker people shown walking up before asked, people shown walking up before she had asked them, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, dated 2026-11-03",
+    "spans": [
+     {
+      "label": "Later wording (section 5) confusing",
+      "line": 105,
+      "mode": "inline",
+      "span": "People showed \"walking up\" before I had asked them."
+     }
+    ]
+   }
+  ],
+  "historyQualification": "Cold person. The supplied history is five lines with no prior exposure and no observed sessions; all five were read in one Read through the end marker (director history-read audit).",
+  "viewEvidence": "Viewed phone a-001 to a-003 and desktop b-001 to b-004 by receipt. The director also viewed phone a-003 (Submit control shows only its top at the bottom edge, scrolling untested) and desktop b-003 (weather heading closed in the capture, which does not prove the weather text absent).",
+  "primaryReturnAfterLabelLiteral": "\"Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting.\"",
+  "selfCorrections": "First no-picture thought at the 68.2 s first_minute and the later correction at 130.3 s that a slope drawing exists are both kept (see exact-quote-extraction.json supporting spans)."
+ }
+]

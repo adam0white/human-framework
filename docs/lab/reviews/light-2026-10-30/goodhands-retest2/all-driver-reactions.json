@@ -1,0 +1,2062 @@
+{
+  "time": "built by build.py from the copied raw wall-clock.jsonl files",
+  "note": "Every reaction row of every tester and device in raw order. rowIndex is 0-based among the non-empty lines of the copied file. reactionNotLiterallyInReport means the exact reaction text is not a substring of that tester report.md (reconstructed or rephrased in the report). No reconstructed diary is presented as verbatim.",
+  "sessions": [
+    {
+      "tester": "Jonas Berg",
+      "testerKey": "jonas",
+      "device": "desktop",
+      "source": "jonas/desktop/wall-clock.jsonl",
+      "rawSha256": "2c44d5855de060e1985cf516e179912e6296ea41d025dcc1b4fdcb834428c1a5",
+      "rows": 58,
+      "reactionRows": 23,
+      "reactionsNotLiterallyInReport": 0,
+      "notLiterallyInReportElapsedS": [],
+      "errorRowsWithReaction": 0,
+      "errorRowsWithoutReaction": 0,
+      "reactions": [
+        {
+          "rowIndex": 3,
+          "elapsed_s": 6.608,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Back again, third visit. Title looks the same; I remember references before promises, and the fee asks.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 14.548,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Rent bar and pace line are back. New: a note that an old case is on my mind, with a button to look again at an earlier decision. I want to check the fee refusal point this time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 6,
+          "elapsed_s": 18.439,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Ayten Aydin, a reference for Gulce, is shown at work until 14:00 - so a availability time is stated. Interviewing.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 8,
+          "elapsed_s": 25.669,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Same patience probe as before; checking whether answers still differ per person.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 9,
+          "elapsed_s": 30.063,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Reading now says I believe she is patient, from her word alone. Last time it said unsure. Odd; I will check with a reference. Answering the family call.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 15,
+          "elapsed_s": 52.053,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The note now says one self-claim is enough for Nermin to believe it. Last visit the same sort of note said unsure. I dislike that: a lone claim is now belief. Checking Ozlem.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 19,
+          "elapsed_s": 62.73,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Elapsed about 60s: first minute. I have interviewed one, benched her, and called a reference for another.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 20,
+          "elapsed_s": 65.29,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "Interviewed Gulce (patience, wage 8000), benched her, called Hale Erol for Ozlem: she listened when instructions were repeated. Clear: nanny needs patience, pay 9000, rent 5000 Friday. New since last time: a lone self-claim now reads as I believe she is patient, where it said unsure before; the note says one account is enough to believe. Unclear: what the fee does.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 22,
+          "elapsed_s": 73.265,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The note text for a reference and for a self-claim now ends the same way: enough to believe. Last visit own word counted less than a reference. That distinction I valued looks gone, at least for patience. Going to the fee.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 25,
+          "elapsed_s": 84.007,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Everyone agrees at the usual terms again. Going to push the fee well past 9200 to find a refusal point, as I asked last time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 31,
+          "elapsed_s": 104.738,
+          "kind": "note",
+          "op": "log",
+          "reaction": "Fee 9400 accepted: Suna says more than we planned but we will manage, same words as 9200 last time. Still no refusal point. Ozlem also never asked for her own wage, just accepted 9000. Pushing further.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 33,
+          "elapsed_s": 115.03,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Holding the plus to see whether it repeats, to save taps.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 37,
+          "elapsed_s": 130.193,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "9700 accepted with the same line as 9400. No refusal at 9700 and no new text. The fee reaction is one fixed line, not a gradient. Taking the agreement to see the consequence.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 39,
+          "elapsed_s": 139.292,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Odd: the header on Ozlem now says 8,500 a month though I never asked her wage and placed her at 9,000. Now opening the old-case button, which I never reached before.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 40,
+          "elapsed_s": 144.361,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A real choice with no price shown: correct the record and write to the worker, or leave the file closed. I will take the correction and watch what it costs.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 41,
+          "elapsed_s": 149.067,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The old-case choice cost nothing visible: no cash change, and the text says the game has no step that sends the letter or pays. It is honest, but it makes the choice feel free. Opening the day notes, also new to me.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 43,
+          "elapsed_s": 156.71,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Buttons are disabled because Ozlem is placed, so no cause is shown beside them. Moving to Sebnem.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 47,
+          "elapsed_s": 171.913,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A reference can now make me doubt: Melek says Sebnem argued, so the reading is I doubt. That is a real check. Asking about honesty.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 50,
+          "elapsed_s": 183.197,
+          "kind": "pulse",
+          "op": "log",
+          "reaction": "The reference check is a real test again: Melek made me doubt Sebnem on two traits. But a lone self-claim now counts as enough to believe, the fee still gets accepted up to 9700, and the old-case choice cost nothing. Fewer levers than I hoped. The notes pane is short on the desktop; I scroll for the reasons.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 52,
+          "elapsed_s": 230.646,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Skip landed on a call from the Kaya family at 10:50. I have seen the fee, references and old case; little new to act on. Opening the menu for Feedback.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 54,
+          "elapsed_s": 234.258,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Choosing I am stopping; nothing typed.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 56,
+          "elapsed_s": 238.312,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "Fee never refuses, a lone claim counts as belief, old-case choice is free. Little left to test on this world.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 57,
+          "elapsed_s": 240.77,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "Stopping desktop at about 4 minutes. I tested fee, reference and old case; nothing pushes back. I chose I am stopping in Feedback, pressed Back, typed nothing.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Jonas Berg",
+      "testerKey": "jonas",
+      "device": "phone",
+      "source": "jonas/phone/wall-clock.jsonl",
+      "rawSha256": "d6424f7d16b1fbc988bb1a3caabd8c4485613f7424f4cfe9a008be0c3cddfb34",
+      "rows": 18,
+      "reactionRows": 9,
+      "reactionsNotLiterallyInReport": 0,
+      "notLiterallyInReportElapsedS": [],
+      "errorRowsWithReaction": 0,
+      "errorRowsWithoutReaction": 0,
+      "reactions": [
+        {
+          "rowIndex": 3,
+          "elapsed_s": 5.248,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Phone title page fits cleanly; button reachable at the bottom. Starting a new game.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 12.635,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Phone: new world, Arslan family. Opening Ozlem to look at the action buttons and subtitles.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 6,
+          "elapsed_s": 15.203,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Call a reference, Send for a trial and Keep the phone number have no subtitle text in the page again; Hale Erol shows At work until 09:00.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 7,
+          "elapsed_s": 19.238,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Banner is now fully readable on the phone. Trying to call Hale, who is at work until 09:00, to see what the game says.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 8,
+          "elapsed_s": 22.766,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The call screen shows the disabled call with At work until 09:00, so reachability is stated here. Good. Going back to interview.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 10,
+          "elapsed_s": 29.541,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Asking wage this time, since last visit I never did for Ozlem.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 11,
+          "elapsed_s": 33.276,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Her wage is 8,500, the same figure the desktop header showed unasked. So that header was her real wage leaking early. A family call arrived at 09:00. Opening Feedback.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 15,
+          "elapsed_s": 38.341,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "On the phone I confirmed what I came to check: banner legible, call screen shows At work until 09:00, subtitles still absent. Same loop as desktop; I stop here.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 16,
+          "elapsed_s": 39.685,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "Stopping phone at under a minute. Chose I am stopping in Feedback, pressed Back, typed nothing.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Aisha Rahman",
+      "testerKey": "aisha",
+      "device": "desktop",
+      "source": "aisha/desktop/wall-clock.jsonl",
+      "rawSha256": "a568508e6ff1d2af72c5ae5574fcd3e8238fd3fb2b7ea72e17225caa1b7f28ce",
+      "rows": 59,
+      "reactionRows": 32,
+      "reactionsNotLiterallyInReport": 0,
+      "notLiterallyInReportElapsedS": [],
+      "errorRowsWithReaction": 0,
+      "errorRowsWithoutReaction": 1,
+      "reactions": [
+        {
+          "rowIndex": 2,
+          "elapsed_s": 2.552,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Same cream title page; I know this place.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 3,
+          "elapsed_s": 4.898,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Opening the office.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 12.429,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The old case again. Last time the letter could not be sent; I want to see if it can now.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 6,
+          "elapsed_s": 15.918,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Repairing. Looking for a send button this time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 7,
+          "elapsed_s": 19.89,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "It now says plainly this game has no step that sends the letter. Honest, but I still cannot send it. Following Özlem this time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 8,
+          "elapsed_s": 23.426,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Interview her first; I want to hear her own words.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 9,
+          "elapsed_s": 26.599,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I want a patience question, and the reason a job ended.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 10,
+          "elapsed_s": 30.307,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A patience question, to hear how she thinks.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 11,
+          "elapsed_s": 34.239,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Özlem sounds patient and the note matches. Family call at 09:07 again; answering.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 12,
+          "elapsed_s": 37.655,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I will not promise what I cannot yet keep.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 14,
+          "elapsed_s": 44.985,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Same apology to the candidate as before; still considerate. Asking about her past work.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 15,
+          "elapsed_s": 48.264,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Thin again: I have worked as a nanny. Asking whether that job ended.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 17,
+          "elapsed_s": 56.05,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A real answer on why the job ended this time, with no bad fact thrown in. Last question.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 18,
+          "elapsed_s": 58.112,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "I know the loop: interview, family call, reference, trial. New: Nermin says plainly the letter cannot be sent in this game; the family call came at 09:07; Ozlem answered a patience question with a real line and her reading matched. Same apology to her after the call. Same leave and be called back after 11:28.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 20,
+          "elapsed_s": 62.169,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "My first_minute above was logged at 58 s, a little early.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 21,
+          "elapsed_s": 65.996,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The note now explains how one account is weighed, one account is evidence not proof. That is careful. Calling Hale Erol.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 24,
+          "elapsed_s": 76.633,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Reference confirms patience and the reading holds. Now money and honesty.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 25,
+          "elapsed_s": 80.567,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Honest-about-money reading follows what I heard. Now the reason the job ended; this was my old complaint.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 27,
+          "elapsed_s": 89.052,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The notes now show who said what and say her own word counts for less than a reference. I follow Şebnem to see if her own account moves her note.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 31,
+          "elapsed_s": 103.4,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Missing change again: unable to account for it. Not the same as taking it. I want to put this to her.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 33,
+          "elapsed_s": 110.612,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Putting the reference claim to her so she can answer in her own words.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 34,
+          "elapsed_s": 115.018,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "She deflects: we need to compare the receipts. Fair that the note stays doubtful, but it is not an account. Looking for why the job ended.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 36,
+          "elapsed_s": 122.652,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Same sentence about the job ending as Ozlem used, word for word. Now asking what she does if she breaks something, which is about repair.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 38,
+          "elapsed_s": 130.667,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A small mistake is better fixed quietly: that fits the doubt, and it is her own voice. And a different family, Kaya, is calling; that is new to me.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 39,
+          "elapsed_s": 134.498,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A day later than the Arslans. A promise to look, not to deliver, is one I can keep.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 43,
+          "elapsed_s": 148.962,
+          "kind": "note",
+          "op": "log",
+          "reaction": "Sebnem note now lists her own words next to Melek and says her account was middling, not clearly for or against, so still doubt. I can see why. That is what I asked for before: her answer counted and was shown. I still cannot send the old-case letter.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 44,
+          "elapsed_s": 152.691,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Gülce has waited three hours, apparently. I will hear her now.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 48,
+          "elapsed_s": 166.854,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I asked what happens if she breaks something and she answered about money staying separate. A bit off the question, but I can see the sense.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 49,
+          "elapsed_s": 181.251,
+          "kind": "input",
+          "op": "wait",
+          "reaction": "All three applicants answer what work did you do with the very same I have worked as a nanny. Thin, and the same sentence.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 50,
+          "elapsed_s": 183.47,
+          "kind": "pulse",
+          "op": "log",
+          "reaction": "The notes now show who said what and how it was weighed, and Sebnem own words are in her note; that held me. Less good: the three applicants share lines like I have worked as a nanny and That job has ended, and the old-case letter still cannot be sent.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 52,
+          "elapsed_s": 188.562,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "I have seen what changed: the notes explain themselves and show candidate words, and the letter honestly says it cannot be sent. The interview lines still repeat across applicants. I would stop here on the laptop.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 58,
+          "elapsed_s": 202.653,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "Stopping the laptop after about 3.4 minutes. The notes now show who said what and why they weigh as they do, and Sebnem own words are in her note. I liked that. The old-case letter still cannot be sent, and the applicants share lines. I pressed I am stopping in Feedback, typed nothing, no Submit.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Aisha Rahman",
+      "testerKey": "aisha",
+      "device": "phone",
+      "source": "aisha/phone/wall-clock.jsonl",
+      "rawSha256": "1f76f085a1565b5c91320c92a1d7b3c8953d973590467bdf6079994ed314f268",
+      "rows": 24,
+      "reactionRows": 15,
+      "reactionsNotLiterallyInReport": 0,
+      "notLiterallyInReportElapsedS": [],
+      "errorRowsWithReaction": 0,
+      "errorRowsWithoutReaction": 0,
+      "reactions": [
+        {
+          "rowIndex": 2,
+          "elapsed_s": 1.994,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Same title page on the phone.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 9.961,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Did the office open? Checking the phone layout.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 6,
+          "elapsed_s": 56.623,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Phone office is readable; the sketch and bench fit. Following Sebnem this time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 7,
+          "elapsed_s": 59.672,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Interviewing Sebnem first on the phone.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 9,
+          "elapsed_s": 61.262,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "Phone feels the same as the laptop: office sketch, bench, old-case card, and an interview opened with Sebnem. The text fits at 360 wide and nothing is cut off. I am still reading the same loop I know.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 10,
+          "elapsed_s": 63.612,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Asking about her past work.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 11,
+          "elapsed_s": 67.19,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The same thin nanny line again, now from Sebnem on the phone. Answering the Arslans.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 12,
+          "elapsed_s": 70.033,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I will say I am still interviewing; no promise I cannot keep.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 13,
+          "elapsed_s": 72.934,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Polite reply from the family. Back to Sebnem.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 14,
+          "elapsed_s": 76.112,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Wage next.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 15,
+          "elapsed_s": 78.84,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I want the why-did-the-job-end question; looking in the longer list.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 16,
+          "elapsed_s": 81.793,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Asking whether the job ended.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 17,
+          "elapsed_s": 83.632,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Same stock job-ended sentence as on the laptop. Checking the interview layout on the phone.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 18,
+          "elapsed_s": 86.885,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "The phone shows the same game as the laptop: same nanny line, same job-ended sentence, same apology after the call. The layout is fine. I have nothing new to learn on this device, so I would stop here.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 23,
+          "elapsed_s": 94.493,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "Stopping the phone visit after about 1.5 minutes. Same loop and same stock lines as the laptop; layout was clear. I pressed I am stopping in Feedback, typed nothing, no Submit, then Back.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Diego Silva",
+      "testerKey": "diego",
+      "device": "desktop",
+      "source": "diego/desktop/wall-clock.jsonl",
+      "rawSha256": "871fc6eb8809b935470dd184d0937011e5ef227d44e09c7a5cb68d1ecdf2e8b6",
+      "rows": 42,
+      "reactionRows": 20,
+      "reactionsNotLiterallyInReport": 0,
+      "notLiterallyInReportElapsedS": [],
+      "errorRowsWithReaction": 1,
+      "errorRowsWithoutReaction": 1,
+      "reactions": [
+        {
+          "rowIndex": 3,
+          "elapsed_s": 4.883,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Same nanny office. Last time unchecked promise cost nothing; I will see if that changed.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 11.73,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Going to Özlem and reference first, same as before.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 6,
+          "elapsed_s": 15.501,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Reference is at work until 09:00, so interview instead.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 9,
+          "elapsed_s": 26.175,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Call menu is still three buttons.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 12,
+          "elapsed_s": 39.562,
+          "kind": "tool",
+          "op": "tap",
+          "reaction": "Skip to the reference time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 13,
+          "elapsed_s": 44.031,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "No reference yet; I will go straight to negotiating and promise something I have not checked.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 14,
+          "elapsed_s": 47.35,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Promising patient with nothing checked, to see if it bites.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 16,
+          "elapsed_s": 54.903,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Unchecked patient promise, family agreed instantly again. No haggling.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 19,
+          "elapsed_s": 60.873,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "Skipped the reference and promised patient unchecked; the family agreed in seconds and cash went to 5250 by 09:19, over rent before 10 on Monday. Worse than last time. No bite for the false promise yet; I do not know whether the trial will bite later. Calls are still Answer, Say still interviewing, Promise, Finish.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 20,
+          "elapsed_s": 64.464,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Checking whether looking at the map still spends game time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 21,
+          "elapsed_s": 69.978,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Map cost about 3 game minutes, small now. Skipping to the next call.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 24,
+          "elapsed_s": 82.067,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Same Promise, Decline, Finish menu as last time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 26,
+          "elapsed_s": 89.614,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Skipping onward to see whether the false promise ever bites.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 28,
+          "elapsed_s": 110.057,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Looking at Placed for the first time, to see if the unchecked promise shows up anywhere.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 30,
+          "elapsed_s": 145.951,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Nothing to touch; the clock is slow and no Skip is offered. Opening the menu.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 31,
+          "elapsed_s": 148.508,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Trying Fast to reach the trial result.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 34,
+          "elapsed_s": 183.863,
+          "kind": "pulse",
+          "op": "log",
+          "reaction": "I promised an unchecked trait and nothing bit; rent was covered by 09:19. Now I am waiting with nothing to touch while a slow clock crawls, even on Fast.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 35,
+          "elapsed_s": 185.493,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "Rent covered before 10, unchecked promise free, now nothing to touch. I would leave.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 37,
+          "elapsed_s": 189.977,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Pace shows nothing pressed now; my Fast did not stick. Opening Feedback.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 41,
+          "elapsed_s": 198.671,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "I am stopping the desktop session at about 196 seconds. Unchecked promise cost nothing again, rent was covered by 09:19 Monday, and then I only waited. Feedback: I am stopping chosen, Back pressed, nothing typed.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Diego Silva",
+      "testerKey": "diego",
+      "device": "phone",
+      "source": "diego/phone/wall-clock.jsonl",
+      "rawSha256": "63e5b74392a4d75b6d3c0f859b29e5f6825603e5cfbe75b0005113a326566bfc",
+      "rows": 42,
+      "reactionRows": 19,
+      "reactionsNotLiterallyInReport": 0,
+      "notLiterallyInReportElapsedS": [],
+      "errorRowsWithReaction": 0,
+      "errorRowsWithoutReaction": 1,
+      "reactions": [
+        {
+          "rowIndex": 3,
+          "elapsed_s": 4.014,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Phone, same evening. This time I will do the reference first and promise honestly checked traits, to see if the game differs.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 9.115,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Old-case card is still here; opening it this time on the phone.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 6,
+          "elapsed_s": 12.815,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Taking the honest route this time. Curious if it costs or pays later.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 10,
+          "elapsed_s": 25.009,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Asking the patience question.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 12,
+          "elapsed_s": 32.518,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Promising an answer today, to see whether the game holds me to it.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 16,
+          "elapsed_s": 44.653,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Calling the reference to see if she separates from the first answer.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 19,
+          "elapsed_s": 55.026,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The reference gave a weaker answer than the one I remember; Nermin is still unsure. Good, that is a real middle.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 20,
+          "elapsed_s": 58.528,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Going to place her even though patient is only middling. I promise patient anyway to see if a doubtful promise bites.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 23,
+          "elapsed_s": 64.412,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Adding honest, which I never asked about.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 26,
+          "elapsed_s": 75.202,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "Phone fits fine. This time I opened the old case and chose to correct it; the text said the game has no step that sends the letter, which is honest. The reference gave only a weak answer and Nermin stayed unsure, which is better than an instant yes. But I promised patient on weak evidence and honest unchecked, and the family agreed instantly and cash hit 5250 by 09:55. Still no bite.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 28,
+          "elapsed_s": 125.406,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Checking the phone map and whether it spends game time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 29,
+          "elapsed_s": 128.771,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Map opened; clock now 10:18, was 09:55 before. Cannot tell if map or my waiting spent it.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 30,
+          "elapsed_s": 134.924,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Skipping to the next family call.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 31,
+          "elapsed_s": 156.415,
+          "kind": "input",
+          "op": "wait",
+          "reaction": "Waiting to see what the Kaya call gives.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 32,
+          "elapsed_s": 159.495,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Answering the Kaya call.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 33,
+          "elapsed_s": 162.305,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Same three buttons again. Finishing.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 35,
+          "elapsed_s": 187.245,
+          "kind": "pulse",
+          "op": "log",
+          "reaction": "The honest route changed nothing I could feel: family agreed instantly, rent covered by 09:55, now I only wait for a slow clock. Same call buttons.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 36,
+          "elapsed_s": 188.031,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "Nothing to touch, no cost for a doubtful promise. I would leave.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 41,
+          "elapsed_s": 195.112,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "I am stopping the phone session at about 194 seconds. The honest route paid the same as the careless one: instant agreement, rent covered by 09:55, no cost for a doubtful promise, then waiting. Feedback: I am stopping chosen, Back pressed, nothing typed.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "testerKey": "rosa",
+      "device": "phone",
+      "source": "rosa/phone/wall-clock.jsonl",
+      "rawSha256": "5fb35770f142410dc42d2e2424fbf04fecd3023338db0e309447745497f2c8f4",
+      "rows": 49,
+      "reactionRows": 34,
+      "reactionsNotLiterallyInReport": 21,
+      "notLiterallyInReportElapsedS": [
+        6.471, 13.166, 16.393, 19.808, 22.712, 25.923, 29.124, 32.022, 34.841, 38.77, 41.764, 47.046, 50.601,
+        53.823, 57.396, 61.027, 63.014, 73.389, 76.086, 84.783, 160.189
+      ],
+      "errorRowsWithReaction": 0,
+      "errorRowsWithoutReaction": 1,
+      "reactions": [
+        {
+          "rowIndex": 2,
+          "elapsed_s": 2.906,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "I know this title from before. Aim, family, rent: clear.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 3,
+          "elapsed_s": 6.471,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Open the office.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 13.166,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I remember Özlem from before. I start with her.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 6,
+          "elapsed_s": 16.393,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Interview her. New buttons: Send for a trial, Keep the phone number. I do not know them yet.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 7,
+          "elapsed_s": 19.808,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Wage first, plain question.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 8,
+          "elapsed_s": 22.712,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I want a question about patience. I look in More questions.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 9,
+          "elapsed_s": 25.923,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "This question is about patience, plain.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 10,
+          "elapsed_s": 29.124,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Clear, I understand the patient answer. The family calls; I answer.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 11,
+          "elapsed_s": 32.022,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Honest and simple. Family pays 9000, she wants 8500.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 12,
+          "elapsed_s": 34.841,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Back to Ozlem.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 13,
+          "elapsed_s": 38.77,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Hours, plain question.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 14,
+          "elapsed_s": 41.764,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I have what I need. She waits on the bench.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 16,
+          "elapsed_s": 47.046,
+          "kind": "note",
+          "op": "log",
+          "reaction": "Reread 1: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. Who is she? Nermin? Too many ideas in one sentence. The line before and after it are clear.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 17,
+          "elapsed_s": 50.601,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Negotiate placement for Ozlem.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 18,
+          "elapsed_s": 53.823,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I promise only patient, which I checked. The money paragraph has numbers and I read it once.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 19,
+          "elapsed_s": 57.396,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Propose Ozlem.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 21,
+          "elapsed_s": 61.027,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Numbers are clear. Same wage and hours appear twice on this screen, still repeated.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 22,
+          "elapsed_s": 63.014,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "I understand: place a nanny with the Arslans, pay the rent. I interviewed Ozlem, promised patient, agreed, and cash is already 5,250, above rent 5,000. One reread so far (She weighs each account...). Quick this time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 24,
+          "elapsed_s": 68.462,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Rent is paid in about a minute. New: the Next line says I can check in by phone on a placed worker at Tuesday 18:20. That is a hint about what to do while waiting.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 25,
+          "elapsed_s": 73.389,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Last time I only waited. Let me look at Families to see if there is something to do.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 26,
+          "elapsed_s": 76.086,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "No open requests. Placed next.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 27,
+          "elapsed_s": 80.194,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Nothing else to do. I skip to the next family call.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 28,
+          "elapsed_s": 84.783,
+          "kind": "input",
+          "op": "wait",
+          "reaction": "The Kaya family is calling. I wait for the Answer button.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 29,
+          "elapsed_s": 87.772,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Kaya family, I remember them. I answer.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 30,
+          "elapsed_s": 91.549,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A carer for someone who throws a plate. Patient again. I promise to look.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 32,
+          "elapsed_s": 97.368,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Back to the bench. Gülce has waited three hours; I should see her.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 33,
+          "elapsed_s": 100.708,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The little half-circle is new. I guess it means they are tired of waiting. Guessing. I open Gülce.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 34,
+          "elapsed_s": 156.615,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Gulce card is mostly empty: You have not asked yet, six times. Clear. I interview her.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 35,
+          "elapsed_s": 160.189,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I need a question about patience. Opening the list.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 37,
+          "elapsed_s": 168.288,
+          "kind": "note",
+          "op": "log",
+          "reaction": "Gulce says she speaks angrily. Nermin reading says why: I doubt she is patient. Clear, one reading. Not for the Kaya family. I send her home.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 40,
+          "elapsed_s": 179.628,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "Second reread. The paragraph: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. Too long, too abstract. I only needed: she said she is angry, so I doubt she is patient. I would stop reading here, but the short reading above it was clear, so I keep going a little.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 41,
+          "elapsed_s": 182.133,
+          "kind": "pulse",
+          "op": "log",
+          "reaction": "I still follow the story, but the long reading paragraph tires me. One more candidate, then I check Feedback and stop.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 46,
+          "elapsed_s": 202.225,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Both I am stopping and I am confused are here on the phone. I press confused.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 48,
+          "elapsed_s": 205.24,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "testerKey": "rosa",
+      "device": "desktop",
+      "source": "rosa/desktop/wall-clock.jsonl",
+      "rawSha256": "8ca2be9aae82f0f508805d34a0bea44b6e540d841097cf8ab48117f711bd1100",
+      "rows": 26,
+      "reactionRows": 10,
+      "reactionsNotLiterallyInReport": 0,
+      "notLiterallyInReportElapsedS": [],
+      "errorRowsWithReaction": 0,
+      "errorRowsWithoutReaction": 0,
+      "reactions": [
+        {
+          "rowIndex": 2,
+          "elapsed_s": 1.863,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Same title as the phone. Aim, family, rent: clear on the big screen.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 3,
+          "elapsed_s": 4.739,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I open the office. This is a fresh game, so I expect new people.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 13.122,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Same three names as the phone: Gulce, Sebnem, Ozlem. I remember Ozlem and choose her first.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 8,
+          "elapsed_s": 23.498,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A call from the family. I answer.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 9,
+          "elapsed_s": 27.407,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The family needs a patient person. Same need as before. I say I am still interviewing.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 13,
+          "elapsed_s": 41.969,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Ozlem answer is unsure, not a yes or no. Short reading, one sentence, clear. I ask hours.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 17,
+          "elapsed_s": 65.308,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "I understand the aim and the steps: interview, patient, wage 8,500 against family 9,000. The big screen text is easy to read. Ozlem left after four questions and told me when to call back. Clear. No reread yet on this screen.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 19,
+          "elapsed_s": 74.608,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "I read the long weighing paragraph twice on the desktop: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it. Too many ideas in one paragraph. Same paragraph as on the phone, so it is not a screen size problem. I skip it and keep playing.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 23,
+          "elapsed_s": 83.615,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Both I am stopping and I am confused are here on the desktop too. I press stopping.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 25,
+          "elapsed_s": 86.771,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "I stop on the desktop after about 85 seconds. The long weighing paragraph again tires me and I have seen the same loop as on the phone. I did not reach a placement here.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Elena Dimitrova",
+      "testerKey": "elena",
+      "device": "phone",
+      "source": "elena/phone/wall-clock.jsonl",
+      "rawSha256": "038ec5f982633453269adceae120db4fc608d06aea40beb9e2a9b29f12c99153",
+      "rows": 68,
+      "reactionRows": 35,
+      "reactionsNotLiterallyInReport": 31,
+      "notLiterallyInReportElapsedS": [
+        5.043, 13.095, 16.687, 20.279, 26.794, 30.153, 43.916, 50.489, 57.283, 68.917, 84.621, 88.005, 92.113,
+        99.473, 103.314, 106.458, 112.036, 123.548, 136.836, 140.693, 144.858, 152.528, 156.833, 160.592,
+        168.772, 181.051, 185.451, 190.588, 206.955, 217.614, 228.246
+      ],
+      "errorRowsWithReaction": 1,
+      "errorRowsWithoutReaction": 1,
+      "reactions": [
+        {
+          "rowIndex": 3,
+          "elapsed_s": 5.043,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Clear setup: nanny by Tuesday, rent Friday. I know what I am aiming at.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 13.095,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Time is running (08:37). I will read the first applicant card.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 6,
+          "elapsed_s": 16.687,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Six traits all say not asked. Interview seems the obvious first step.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 7,
+          "elapsed_s": 20.279,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Only 4 questions for 6 traits plus wage. I want to see the list before spending one.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 9,
+          "elapsed_s": 26.794,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Her answer was vague and Nermin is unsure too. Fair. The family is calling, I answer.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 10,
+          "elapsed_s": 30.153,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "So patience is what matters. Good, my crying-child question was the right one.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 13,
+          "elapsed_s": 43.916,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "8,000 wage under the family offer of 9,000. The gap is presumably my fee? Guessing.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 15,
+          "elapsed_s": 50.489,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Four questions and I still do not know if she is patient, the one thing the family asked for. A bit deflating.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 17,
+          "elapsed_s": 57.283,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Her former employer is reachable now. Someone else confirming patience should count more than her own word.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 20,
+          "elapsed_s": 63.055,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "First minute: the setup is clear and I like that each question costs clock time. The game moves fast though; one interview ate almost an hour and left me unsure on the one quality that matters.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 22,
+          "elapsed_s": 68.917,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Clear answer at last: she argued when instructions were repeated. That is exactly the Arslan problem. Şebnem is out.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 27,
+          "elapsed_s": 84.621,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Özlem listened when instructions were repeated. That is my nanny. Satisfying to see the note change to believe.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 28,
+          "elapsed_s": 88.005,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Wage not asked, but let me see what negotiate shows. The dots changed from full to half; not sure what that means.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 29,
+          "elapsed_s": 92.113,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The wage is 9,000 and so is the fee? I read that twice. Is my fee 9,000 or a quarter of it? Ambiguous. I will only promise patient, the one thing I checked.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 31,
+          "elapsed_s": 99.473,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Everyone agreed instantly. I never asked her wage and it did not matter. Taking it.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 32,
+          "elapsed_s": 103.314,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Cash 5,250, rent is covered already on Monday morning. Visible consequence, I like it. But the Friday tension is gone in under two minutes.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 33,
+          "elapsed_s": 106.458,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Her card now says 8,500 a month though I never asked and agreed 9,000. Which number is her wage? Unclear.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 34,
+          "elapsed_s": 112.036,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Simple line drawing, readable on the phone. The placed worker card still shows dashed action boxes under it, which look like buttons I cannot use.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 37,
+          "elapsed_s": 123.548,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Again patience. Şebnem is a carer but argued; Gülce is unclear. I will promise to look and check Gülce properly this time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 41,
+          "elapsed_s": 136.836,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Gülce is nanny/housekeeper; only Şebnem is a carer. Her reference was bad, but I will hear her out before I give up on Kaya.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 42,
+          "elapsed_s": 140.693,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I can put the reference words to her face. That is a nice touch.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 43,
+          "elapsed_s": 144.858,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "She admitted it plainly. Honest, but not patient. I will not put her with a family whose relative throws plates.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 45,
+          "elapsed_s": 152.528,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Bench is empty now. Curious about this old case that has been sitting there the whole time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 46,
+          "elapsed_s": 156.833,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The clock jumped from 11:36 to 12:05 while I read the old case. Then the landlord rings. I will come back to the old file.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 47,
+          "elapsed_s": 160.592,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "I am not sure what this news means. Gülce waited in a doorway... earlier? now? Is she here? Ambiguous.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 49,
+          "elapsed_s": 168.772,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Nermin wronged a worker before. Correcting it is plainly right to me.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 50,
+          "elapsed_s": 170.902,
+          "kind": "pulse",
+          "op": "log",
+          "reaction": "The old-case answer says the game has no step that sends the letter, so nothing happened. That undercuts the choice; I wanted to see a consequence. Placing Özlem felt good though.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 53,
+          "elapsed_s": 181.051,
+          "kind": "tool",
+          "op": "tap",
+          "reaction": "No carer on hand. Nothing to do but wait for someone to walk in.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 54,
+          "elapsed_s": 185.451,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "The clock got there before my tap. The skip vanished under my finger.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 55,
+          "elapsed_s": 190.588,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Second landlord call with gossip and the same Thank him button. Pleasant colour, but nothing for me to decide.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 58,
+          "elapsed_s": 206.955,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "A driver now, and nobody on my bench drives. Two open requests and an empty bench.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 60,
+          "elapsed_s": 213.05,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "Rent is paid, two families want people I do not have, and the next thing is more news from outside. For a phone sitting this is my natural stopping point.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 62,
+          "elapsed_s": 217.614,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Clock ran to 14:46 before the menu opened and someone called Hülya came up. I missed it.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 66,
+          "elapsed_s": 228.246,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Both I would stop here and I am stopping are offered; they look like the same thing to me. I picked I am stopping, then Back. Nothing sent.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 67,
+          "elapsed_s": 230.675,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "I stop here. One placement done, rent covered, and the rest was waiting for the right people to appear. A cook named Hülya just arrived, but she is not a carer or a driver. Enough for one phone sitting.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    },
+    {
+      "tester": "Elena Dimitrova",
+      "testerKey": "elena",
+      "device": "desktop",
+      "source": "elena/desktop/wall-clock.jsonl",
+      "rawSha256": "ca1cd2ad6ee5155af1d5e0380ce60c8f6e024fd55ad66d620c6925985f1bf66f",
+      "rows": 35,
+      "reactionRows": 14,
+      "reactionsNotLiterallyInReport": 8,
+      "notLiterallyInReportElapsedS": [4.689, 13.027, 17.957, 24.468, 27.949, 45.034, 57.447, 66.359],
+      "errorRowsWithReaction": 0,
+      "errorRowsWithoutReaction": 0,
+      "reactions": [
+        {
+          "rowIndex": 3,
+          "elapsed_s": 4.689,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Same opening words as on my phone: nanny by Tuesday, rent Friday. Menu now has a word next to it. This time I will look for the Slow pace first.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 5,
+          "elapsed_s": 13.027,
+          "kind": "note",
+          "op": "log",
+          "reaction": "Recognition: the bench shows Gülce Aksoy, Şebnem Eren and Özlem Koç again, same three names and the Arslan nanny request, same 08:37 start. I remember Özlem had the good patience reference and Şebnem argued. Confident these are the same names; I do not know if they are the same people underneath.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 7,
+          "elapsed_s": 17.957,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Choosing Slow pace on purpose: on the phone the clock kept running while I read long cards. The clock still went from 08:38 to 08:49 while the menu opened.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 9,
+          "elapsed_s": 24.468,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "On the big screen I can click the people on the drawn bench itself. I go straight to Özlem; I do not want to repeat the whole morning.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 10,
+          "elapsed_s": 27.949,
+          "kind": "input",
+          "op": "shot",
+          "reaction": "Here every action button says how long it takes and what happens; on the phone some of these lines were missing. Hale Erol is at work until 09:00, only a few minutes.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 12,
+          "elapsed_s": 45.034,
+          "kind": "input",
+          "op": "wait",
+          "reaction": "Disabled until 09:00. Four game minutes; I will just wait on Slow.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 15,
+          "elapsed_s": 57.447,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Word for word the same reference as on my phone. So I am repeating a step I already did. To make it worth something, I ask a second question this time.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 18,
+          "elapsed_s": 66.359,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "How the job ended -> she passed on the work -> Nermin decides she arrives when promised. That jump does not quite follow for me, but fine.",
+          "containsBackslash": false,
+          "notLiterallyInReport": true
+        },
+        {
+          "rowIndex": 19,
+          "elapsed_s": 68.942,
+          "kind": "first_minute",
+          "op": "log",
+          "reaction": "First minute on the laptop: it feels like a replay of my phone evening, same people and same answers. Slow pace helps me read. I know already that Özlem will be my nanny, so the suspense is gone.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 23,
+          "elapsed_s": 110.892,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Promising patient and honest this time, two qualities instead of one. Same fee sentence as on the phone; it still reads oddly to me.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 25,
+          "elapsed_s": 119.474,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Placed again, rent covered again by 10:13, exactly as on my phone. Same result, same cash. I am now repeating what I already did.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 27,
+          "elapsed_s": 125.036,
+          "kind": "input",
+          "op": "tap",
+          "reaction": "Skipping to the 11:00 call to see whether the laptop game goes somewhere new.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 28,
+          "elapsed_s": 127.242,
+          "kind": "want_quit",
+          "op": "log",
+          "reaction": "The Kaya family is calling, the same family that called on my phone. It is the same story again, so I already know what comes next. I would close the laptop here.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        },
+        {
+          "rowIndex": 34,
+          "elapsed_s": 138.331,
+          "kind": "stop",
+          "op": "log",
+          "reaction": "I stop here. The laptop game started with the same names, the same reference words and the same Kaya call as my phone game. I placed Özlem again and covered the rent again. Doing a finished thing twice is what I like least.",
+          "containsBackslash": false,
+          "notLiterallyInReport": false
+        }
+      ]
+    }
+  ]
+}

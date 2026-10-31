@@ -1,0 +1,506 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/report.md",
+    "destination": "maya/report.md",
+    "sha256": "68b7fdfbbb2fdd25ab6530a95005cb2513324722ba253d7f31ba0357707405f8",
+    "bytes": 10686,
+    "mtime_ns": 1793458477257572083
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/brief.md",
+    "destination": "maya/brief.md",
+    "sha256": "aeabe0cc249730d6b455ce4a93ce823efd62a44df6af0c2aef1c5f6185b27ed7",
+    "bytes": 13277,
+    "mtime_ns": 1793457601010397267
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/own-history.md",
+    "destination": "maya/own-history.md",
+    "sha256": "557a5f734721770aceb172a59e11ccca1cf02f53304ebb7410556ae6f9dbb903",
+    "bytes": 258853,
+    "mtime_ns": 1793457601009319637
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/history-source-map.json",
+    "destination": "maya/history-source-map.json",
+    "sha256": "bc3a861f5753d2fd64ad3a037ce262d14fcbe3deea2284261b8c214b22609ff3",
+    "bytes": 8478,
+    "mtime_ns": 1793457601009928973
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/dispatch.json",
+    "destination": "maya/dispatch.json",
+    "sha256": "451fc96e7d6186a9efaf9c19b018e38e0c658f424a351ba93becf8bb29e713d9",
+    "bytes": 2115,
+    "mtime_ns": 1793458311209485973
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/director-method-qualification.json",
+    "destination": "maya/director-method-qualification.json",
+    "sha256": "ab32fdfc53cbd9fa2190babc16e7438a31c095b12657b8c96b268c4a77ec3b63",
+    "bytes": 3400,
+    "mtime_ns": 1793458576392142706
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/raw-reactions-companion.json",
+    "destination": "maya/raw-reactions-companion.json",
+    "sha256": "a09ebb2244170546f7ab20fb7136edd9fcf8f8fb9ecd874d5436d0aadbdfaffb",
+    "bytes": 4041,
+    "mtime_ns": 1793458509502817825
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/wall-clock.jsonl",
+    "destination": "maya/phone/wall-clock.jsonl",
+    "sha256": "d03fdeef66e5cc677bcdedc110afb2d4ea7c795bf418bb05d731608178519215",
+    "bytes": 12392,
+    "mtime_ns": 1793458409275017240
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/driver.out",
+    "destination": "maya/phone/driver.out",
+    "sha256": "95cef22c2882001605bdacc3d836f29370e2c2b021d9f6dab210979d1f4f83d7",
+    "bytes": 85,
+    "mtime_ns": 1793458310699633279
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/phone/release-start.json",
+    "destination": "maya/phone/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458310107663306
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/wall-clock.jsonl",
+    "destination": "maya/desktop/wall-clock.jsonl",
+    "sha256": "b317bf79952afb3864fce343a708a6050cf68c18793d9f7f430bfd86e7ca1b7b",
+    "bytes": 8727,
+    "mtime_ns": 1793458467454771915
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/driver.out",
+    "destination": "maya/desktop/driver.out",
+    "sha256": "773ff55dcc51620e0d908dfebe17fa00433312ce2bb7274484b8ffd95ff2a85e",
+    "bytes": 85,
+    "mtime_ns": 1793458310699630154
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/desktop/release-start.json",
+    "destination": "maya/desktop/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458310196139653
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/report.md",
+    "destination": "mei/report.md",
+    "sha256": "055fd136469f7861e3184393cb469c0e9a7df17a247c983b15318a7ebb235e7a",
+    "bytes": 9962,
+    "mtime_ns": 1793458597965260865
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/brief.md",
+    "destination": "mei/brief.md",
+    "sha256": "f2d4970be325cfbbf3d5a6fd000cc6559049cb6a8a26c73bb5f4fd4c2cc2ba44",
+    "bytes": 13189,
+    "mtime_ns": 1793457601058661228
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/own-history.md",
+    "destination": "mei/own-history.md",
+    "sha256": "dc6ee4f035dd7369fec67e16ba7e56bbcb43bb616df92f890c1101f7fe6d1008",
+    "bytes": 158676,
+    "mtime_ns": 1793457601058039476
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/history-source-map.json",
+    "destination": "mei/history-source-map.json",
+    "sha256": "0b2b050d48e43d34a5a38d7d55ee01a20535f43f5992f8f50235dd123c31f327",
+    "bytes": 5945,
+    "mtime_ns": 1793457601058314477
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/dispatch.json",
+    "destination": "mei/dispatch.json",
+    "sha256": "cdf07ceebd684d53366ae48fbaeb3ae49d2210598bfed81d41748b0057b2db31",
+    "bytes": 2115,
+    "mtime_ns": 1793458482705547940
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/director-method-qualification.json",
+    "destination": "mei/director-method-qualification.json",
+    "sha256": "57451574c65bda93685c7bc0776b004f17b1cd05f6bdf6bf3c77ff5e3edff26c",
+    "bytes": 3080,
+    "mtime_ns": 1793458706030062491
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/raw-reactions-companion.json",
+    "destination": "mei/raw-reactions-companion.json",
+    "sha256": "b02c7b99124526c0b81d88cc0372f06b0e121db06f97bf7cad22fbdf932ec10f",
+    "bytes": 3305,
+    "mtime_ns": 1793458706019412156
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/wall-clock.jsonl",
+    "destination": "mei/phone/wall-clock.jsonl",
+    "sha256": "06cc870e43aab081e62913b6e00378627dd7ccb7eabb73abab9dbab44d8c56dc",
+    "bytes": 4894,
+    "mtime_ns": 1793458576972438209
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/driver.out",
+    "destination": "mei/phone/driver.out",
+    "sha256": "0fc76fc9e87341b652886b894c2fdf3b3ca0664c59acc671c8f17d5596178312",
+    "bytes": 85,
+    "mtime_ns": 1793458482046629299
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/phone/release-start.json",
+    "destination": "mei/phone/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458481689942694
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/desktop/wall-clock.jsonl",
+    "destination": "mei/desktop/wall-clock.jsonl",
+    "sha256": "88df70af6f375bd7548c411bf33861c49ca5c12092c869b097c760f07b0e2ff4",
+    "bytes": 8815,
+    "mtime_ns": 1793458559305944671
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/desktop/driver.out",
+    "destination": "mei/desktop/driver.out",
+    "sha256": "5302250c2c8e7a818bf615a1c0abde0693a8e9590558a8875c8eff87e75bf61c",
+    "bytes": 85,
+    "mtime_ns": 1793458481972942393
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/desktop/release-start.json",
+    "destination": "mei/desktop/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458481608474461
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/report.md",
+    "destination": "samir/report.md",
+    "sha256": "529ef7cf91c692731b8acf863af761fca9507047bc85dd19ac75d18cbe0c951d",
+    "bytes": 9224,
+    "mtime_ns": 1793458727395042361
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/brief.md",
+    "destination": "samir/brief.md",
+    "sha256": "f48cbb830e25bc7c1de966cd6da220e029c447a5dfeaee4db16b936198c4e5cc",
+    "bytes": 13196,
+    "mtime_ns": 1793457601105514351
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+    "destination": "samir/own-history.md",
+    "sha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+    "bytes": 119214,
+    "mtime_ns": 1793457601104969307
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/history-source-map.json",
+    "destination": "samir/history-source-map.json",
+    "sha256": "dd546f45e9d25389f2871013725f5af3842f843ad529afa395a7144b7fa6ab86",
+    "bytes": 4333,
+    "mtime_ns": 1793457601105195974
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/dispatch.json",
+    "destination": "samir/dispatch.json",
+    "sha256": "d0821a83f085cddb515f2075107d874699cfbd28ea57b8bafb3b070979ae9a7e",
+    "bytes": 2115,
+    "mtime_ns": 1793458604146349511
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/director-method-qualification.json",
+    "destination": "samir/director-method-qualification.json",
+    "sha256": "b7ec451e59667f8f0cb2a5eb8c215d1414954f441b4810156e0c8fd5fcc86c85",
+    "bytes": 3177,
+    "mtime_ns": 1793458841931442514
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/raw-reactions-companion.json",
+    "destination": "samir/raw-reactions-companion.json",
+    "sha256": "2d0356fa31dad25692a87ac85fcc70b2de9a0516526a050103c42dc492ce4276",
+    "bytes": 4382,
+    "mtime_ns": 1793458841922796812
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/wall-clock.jsonl",
+    "destination": "samir/phone/wall-clock.jsonl",
+    "sha256": "220a95175f7c79b374b8ec67ae406d9df61ed0be8ce45d513ddc409df1479906",
+    "bytes": 4435,
+    "mtime_ns": 1793458705375634472
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/driver.out",
+    "destination": "samir/phone/driver.out",
+    "sha256": "837392a920a6cb4b35b58b9e0f130dc27dd097e6de658e0d7789dd87c6ab44f4",
+    "bytes": 85,
+    "mtime_ns": 1793458603489812896
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/release-start.json",
+    "destination": "samir/phone/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458603131341783
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/desktop/wall-clock.jsonl",
+    "destination": "samir/desktop/wall-clock.jsonl",
+    "sha256": "77ec81619afff53c85f9e98418e71d60ff08fb6ee1105b7f6dea479804e5d2d8",
+    "bytes": 9570,
+    "mtime_ns": 1793458680481726725
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/desktop/driver.out",
+    "destination": "samir/desktop/driver.out",
+    "sha256": "5187999f3d5fcf8bcc0819136322f5b057a9a4d9293ae762cbf4d4ea7d870a6d",
+    "bytes": 85,
+    "mtime_ns": 1793458603408190091
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/desktop/release-start.json",
+    "destination": "samir/desktop/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458603043486875
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/report.md",
+    "destination": "diego/report.md",
+    "sha256": "edc20e9666ecb762593ac5d6c052ebba6c1ad7d85c51b50318c1768d567e61b6",
+    "bytes": 10727,
+    "mtime_ns": 1793458926325407220
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/brief.md",
+    "destination": "diego/brief.md",
+    "sha256": "cb96d8207af0835a2fac277d0e8da9a1070151429680a5030e7fd063ffdd0a2d",
+    "bytes": 13232,
+    "mtime_ns": 1793457601152376514
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/own-history.md",
+    "destination": "diego/own-history.md",
+    "sha256": "210c8be40589bc38df87dca3f8266bbd23edbca1dd76e21a2c93671effffef89",
+    "bytes": 165306,
+    "mtime_ns": 1793457601151754387
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/history-source-map.json",
+    "destination": "diego/history-source-map.json",
+    "sha256": "825ccaa2e46c911d8c53cc0bab653ff5197f21ce9b0d79e77ac3f205ce22c935",
+    "bytes": 6279,
+    "mtime_ns": 1793457601152020221
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/dispatch.json",
+    "destination": "diego/dispatch.json",
+    "sha256": "2a5caa38feb29b91eb75a31d076fb3696f3b6123770fd205f16c5fa2010fb798",
+    "bytes": 2115,
+    "mtime_ns": 1793458730658290875
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/director-method-qualification.json",
+    "destination": "diego/director-method-qualification.json",
+    "sha256": "52539b7d2bf679e41cabf09ee5359188b384051d39c674baf4fc749af474e747",
+    "bytes": 3232,
+    "mtime_ns": 1793459091564507318
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/raw-reactions-companion.json",
+    "destination": "diego/raw-reactions-companion.json",
+    "sha256": "dc2e7f6c921586c8d2c2daa7be3d644c57bfa49e3debb4b6ae6bdd01d29cca95",
+    "bytes": 7087,
+    "mtime_ns": 1793459091556777828
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/phone/wall-clock.jsonl",
+    "destination": "diego/phone/wall-clock.jsonl",
+    "sha256": "81a8f2621ce53df12e51cc94f653c9bcd055cadda6c9cb53badc405ef7372bfc",
+    "bytes": 13078,
+    "mtime_ns": 1793458845173409695
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/phone/driver.out",
+    "destination": "diego/phone/driver.out",
+    "sha256": "c0d856e69c2c05699337043bbf09cd7b868793ab5a3466889d205db108bdfdf6",
+    "bytes": 85,
+    "mtime_ns": 1793458729939970436
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/phone/release-start.json",
+    "destination": "diego/phone/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458729549983549
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/desktop/wall-clock.jsonl",
+    "destination": "diego/desktop/wall-clock.jsonl",
+    "sha256": "02f93b347ec3a49867e693ebb95ea3d8d3529f22a6f9c0e5d5787555d3f8700c",
+    "bytes": 8884,
+    "mtime_ns": 1793458908152412759
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/desktop/driver.out",
+    "destination": "diego/desktop/driver.out",
+    "sha256": "5e7ae62213b9cc10fdf522728a35e20aea135cb9a51131a0e532c50b6e90f2c6",
+    "bytes": 85,
+    "mtime_ns": 1793458730005477746
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/diego/desktop/release-start.json",
+    "destination": "diego/desktop/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458729643775641
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/report.md",
+    "destination": "anika/report.md",
+    "sha256": "19740b613b6bcb360b0b1b9e3b71ff1c8d7527bff82e48cdf230585c3f5ae2f3",
+    "bytes": 7079,
+    "mtime_ns": 1793459072414410721
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/brief.md",
+    "destination": "anika/brief.md",
+    "sha256": "994b399528c85c055b9330e9cbf657bea6a2f8dd5fbd9e430b73ba64401db88e",
+    "bytes": 12927,
+    "mtime_ns": 1793457601152861808
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/own-history.md",
+    "destination": "anika/own-history.md",
+    "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+    "bytes": 186,
+    "mtime_ns": 1793457601152610307
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/history-source-map.json",
+    "destination": "anika/history-source-map.json",
+    "sha256": "ce27ff1f6b92e8405f18946cac65a3e46b7f6bd7866b87fa0720e056e5a77938",
+    "bytes": 281,
+    "mtime_ns": 1793457601152672807
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/dispatch.json",
+    "destination": "anika/dispatch.json",
+    "sha256": "5c66eb96ace78d71564e01b80c4340fc1a621f680f03094d46ff02c258b5fc0b",
+    "bytes": 2115,
+    "mtime_ns": 1793458932213245219
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/director-method-qualification.json",
+    "destination": "anika/director-method-qualification.json",
+    "sha256": "fcfc65c1c7a5272a4219714b441306a97c32c9689c45e0936023b14100f258d2",
+    "bytes": 2848,
+    "mtime_ns": 1793459220842149490
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/raw-reactions-companion.json",
+    "destination": "anika/raw-reactions-companion.json",
+    "sha256": "9a39e927e101d0fd44dc0cf8bd111938bc32d9a75d99668e4f091e55f78baa38",
+    "bytes": 2947,
+    "mtime_ns": 1793459220842044364
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/wall-clock.jsonl",
+    "destination": "anika/phone/wall-clock.jsonl",
+    "sha256": "d416ded0028104b275946cd00197c37e4fad7042b8d06c809b45955d9a3a6603",
+    "bytes": 8861,
+    "mtime_ns": 1793459058980369918
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/driver.out",
+    "destination": "anika/phone/driver.out",
+    "sha256": "b5f9ca81983581e03fec2d2d40b308033544e72033bd8a0f7211d9da63e05e37",
+    "bytes": 84,
+    "mtime_ns": 1793458931573386843
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/release-start.json",
+    "destination": "anika/phone/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458931198267303
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/desktop/wall-clock.jsonl",
+    "destination": "anika/desktop/wall-clock.jsonl",
+    "sha256": "4f9f18f878e16d46d77f827c349dc449e7423df68a5c34ad8a54ced45cc9cc2c",
+    "bytes": 10941,
+    "mtime_ns": 1793458997513985437
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/desktop/driver.out",
+    "destination": "anika/desktop/driver.out",
+    "sha256": "ccac5a4d3011c32e8cbfa409f41561913947318069abb9ee2dccee3d98712fe6",
+    "bytes": 84,
+    "mtime_ns": 1793458931496232568
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/desktop/release-start.json",
+    "destination": "anika/desktop/release-start.json",
+    "sha256": "3882cd760c06d8ffaca78a1167cd817fcee1bbeb321150ac9ed53286020f24c2",
+    "bytes": 159,
+    "mtime_ns": 1793458931114102791
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex-plan.json",
+    "destination": "inputs/word-retest-codex-plan.json",
+    "sha256": "fa64ea103a895793980d1ba1177ba32415410f3c78800f9708ab19b1fb031a69",
+    "bytes": 6895,
+    "mtime_ns": 1793457601152951600
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex-input-freeze.json",
+    "destination": "inputs/word-retest-codex-input-freeze.json",
+    "sha256": "c7e7d4085958a502b03b9481195ef444743814b87fa7055468640a12b71ff5da",
+    "bytes": 1650,
+    "mtime_ns": 1793457601153013351
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-codex-input-freeze-audit.json",
+    "destination": "inputs/word-codex-input-freeze-audit.json",
+    "sha256": "3a59a02f4c482d950fa091eec2d6b68d171de37d0987e934f637a5ea76f1e8f4",
+    "bytes": 2927,
+    "mtime_ns": 1793457516788369193
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex-root-admission.json",
+    "destination": "inputs/word-retest-codex-root-admission.json",
+    "sha256": "462132edbbad428dd2cda905d9da731dd76d324c0c28ca8a88e301f0eab469a9",
+    "bytes": 2473,
+    "mtime_ns": 1793458305351534901
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex-round-state.json",
+    "destination": "inputs/word-retest-codex-round-state.json",
+    "sha256": "ea1becee678c5a9dbd6e19af9d67b1fce986f81219f5787d39ad69bb39584f1f",
+    "bytes": 1813,
+    "mtime_ns": 1793459221021217516
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex-cleanup.json",
+    "destination": "inputs/word-retest-codex-cleanup.json",
+    "sha256": "75d56c3143595594d3f92c90c4856b0c041726a8eb4126b99999d202c06c952a",
+    "bytes": 10297,
+    "mtime_ns": 1793459221020085387
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex-final-release-after-round.json",
+    "destination": "inputs/word-retest-codex-final-release-after-round.json",
+    "sha256": "9d5444b739d966eee7299ccd8df3d4064fd47a86a8869a7ad1883854d0341147",
+    "bytes": 233,
+    "mtime_ns": 1793459221207197946
+  }
+]

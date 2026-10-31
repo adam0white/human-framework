@@ -1,0 +1,87 @@
+{
+  "time": "2026-10-31T10:35:38.719139+00:00",
+  "source": "532ab01640d9a95b99428cba90e268f3fb9cde7d",
+  "main": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+  "identities": [
+    {
+      "sha": "532ab01640d9a95b99428cba90e268f3fb9cde7d",
+      "tree": "7a3089ff287bd90bd7c1f2cc81189dbff9716765",
+      "signatureVerified": true,
+      "trailer": true
+    },
+    {
+      "sha": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+      "tree": "7a3089ff287bd90bd7c1f2cc81189dbff9716765",
+      "signatureVerified": true,
+      "trailer": true
+    }
+  ],
+  "bodies": [
+    {
+      "path": "src/ui/garden-checkpoint.ts",
+      "sha256": "7f834af5654fc96bc04a09b14c852ea4b786f2bffe54edde5de9b0841cfac62c"
+    },
+    {
+      "path": "test/garden-checkpoint.test.ts",
+      "sha256": "c131ea3a28ebc61a416f8fc3d2e1d41db992c18b20f01491b6ef937416785870"
+    },
+    {
+      "path": "src/ui/garden-guidance.ts",
+      "sha256": "9695864da7afe1d1b825ddf37c8dcdaf5a68c15136de3dd5d8286e2f4a3a27f6"
+    },
+    {
+      "path": "src/ui/garden-app.ts",
+      "sha256": "a8b86f6e459df6e7277846c50f320caa7acee52a8ff303257291ff036ee98919"
+    },
+    {
+      "path": "src/sim/garden4-continuity.ts",
+      "sha256": "42e30e5b0d1f10f906d69912619b98b52c8b597471a4e2a124c5618811861323"
+    },
+    {
+      "path": "test/garden-guidance.test.ts",
+      "sha256": "98cbe0b3d2ac88e2260763c14ffad8266acdd87ebb4bbae37f98d16b2cf4066b"
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "1625a937c297f3f94965fd76519623afffe176c853cfd0ca31760da0eba5fdc9"
+    },
+    {
+      "path": "docs/design.md",
+      "sha256": "3896510d50ea3de57d1b78da13015c2962352fca59268af318de2526afd7626f"
+    },
+    {
+      "path": "test/garden4-route-replay.test.ts",
+      "sha256": "4a6dc8b7402643d889d221a3f2bb0ab12bfd87ea8f4b44128d8f12725c99c794"
+    }
+  ],
+  "sourceCI": {
+    "conclusion": "success",
+    "headSha": "532ab01640d9a95b99428cba90e268f3fb9cde7d",
+    "status": "completed"
+  },
+  "mainCI": {
+    "conclusion": "success",
+    "headSha": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+    "status": "completed"
+  },
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.12.0",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+    "dirty": false
+  },
+  "assets": [
+    {
+      "path": "assets/index-CovXtBMC.js",
+      "sha256": "84065649fe4c3c8df4d0af96ba332742ca01f5b3a8e246bc192d118ace585aeb",
+      "bytes": 1009098
+    },
+    {
+      "path": "assets/index-DzZUr3rN.css",
+      "sha256": "ccd9dade170437172d196ae3a13bf4131f1c11b4484013116e77549f91c01f37",
+      "bytes": 24022
+    }
+  ],
+  "normalDeployExit": 0,
+  "scope": "Fresh ordinary second-retet source/live gate. Root read final route Opus/Code and preceding C3 Opus/Code source reviews. Broad font/geometry/native/file proof and player/owner acceptance remain separate. Not dispatch."
+}

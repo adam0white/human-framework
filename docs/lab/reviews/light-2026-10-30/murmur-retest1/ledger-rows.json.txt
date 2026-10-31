@@ -1,0 +1,567 @@
+[
+  {
+    "id": "F-2701",
+    "who": "Aisha Rahman",
+    "type": "return",
+    "source": "aisha/report.md",
+    "opening": {
+      "text": "I would come back another evening if Dilan’s days responded more distinctly to what happened before, and I could tell how close I was to pushing her too far; I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 187,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\n**Desktop, BORED:** “I am stopping at Tuesday morning. I liked that Dilan told the truth and helped Ece, and that she told me my pushing hurt. Murat asking the same question again makes me want to leave for tonight.”\n\n**Phone, BORED:** “I am stopping the phone at Aylin's message. Getting Dilan up worked, but I have just played this opening and do not want to repeat it tonight.”\n\nI would come back another evening if Dilan’s days responded more distinctly to what happened before, and I could tell how close I was to pushing her too far. I like her own explanations and the way the night card remembers my pressure. I would not leave it running: I want to be present for her choices. I would not continue tonight after repeating the opening on the phone.\n",
+      "char_start": 8039,
+      "char_end_exclusive": 8819,
+      "line_start": 79,
+      "line_end": 86
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nThe first choice explained that a tap suggests, a hold insists, trust can be affected, and Dilan can still refuse. In play, the held choices were followed by visible outcomes. My plain suggestions to call Mum and put the phone down were declined with Dilan’s own words.\n\nI still could not see how much trust remained before insisting. Her statement that she disliked my pushing made the cost clear after I had pushed. I did not encounter a refusal of a held insist this time, so I cannot judge whether the repeated refusal wording has changed.\n\nThe phone screenshot made the explanation appear clipped after “If time”; the driver’s text list contained the full sentence. I did not establish whether scrolling or another layout state would reveal the missing words.\n",
+        "char_start": 5779,
+        "char_end_exclusive": 6573,
+        "line_start": 63,
+        "line_end": 70
+      },
+      {
+        "label": "unranked device observations",
+        "text": "## 6. Device use\n\n**Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/a-001.png), a cream title page with a centred introduction, recording notice, two unchecked start options and a red Start button. I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/a-002.png): the day’s text occupied the left column, while the right said the next choice would appear there, with Skip ahead at the bottom. I used named taps, held mouse presses, waits, Skip ahead, and the menu and Feedback controls. I did not view a screenshot of a desktop choice card.\n\n**Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/b-001.png), where the introduction and checkboxes appeared in a narrow column and Start was below the visible area. I viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/b-002.png), showing the first choice card, large readable choice buttons and the apparently cut explanation. I used a held touch, Skip ahead, a wait, and the menu and Feedback controls. Later phone layouts were not viewed.\n\nOn both devices I opened Game menu → Feedback, selected **“I'm stopping”**, saw it marked pressed, and used **← Back**. I typed nothing, pressed no Submit, and left Recording checked. I did not change consent. I did not change the pace.\n",
+        "char_start": 6574,
+        "char_end_exclusive": 8038,
+        "line_start": 71,
+        "line_end": 78
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\nMy earlier Murmur asks, compared only with what I reached:\n\n**Original visit**\n\n1. **Let me insist, and explain how on the first screen — met in this visit.** The first choice explained holding, and held inputs on both devices led to visible actions.\n2. **Make Tuesday’s opening differ from Monday while retaining the coffee memory — partly met.** Tuesday recalled the third coffee and Dilan’s tiredness, but the alarm, oversleep and Murat’s traffic question returned.\n3. **Give a reason for willingness or insistence on the choice card, and state the cost before I try — partly met.** The first screen said insisting can cost trust and Dilan can still say no. The reached choice labels stated her willingness, but did not explain the reason for each stance or how much trust remained.\n\n**Held-input diagnostic return**\n\n1. **Show remaining trust or warn me before she has had enough — not met in what I saw.** I saw the general trust warning and her later objection, but no remaining amount or warning specific to how close I was.\n2. **Give each refusal its own words — not seen.** I did not have a held insist refused on this visit. Her refusals of plain suggestions used specific words, but that does not answer the earlier repeated held-refusal concern.\n3. **Make Tuesday differ more from Monday and the laptop run differ from the phone run — partly met.** Tuesday remembered the coffee but repeated the traffic question. The two fresh sessions opened with the same alarm and Aylin message; my different choice at the alarm produced a different immediate outcome.\n\n**New blocking ask:** None. The repetition that stopped me is an earlier ask, not a new one.\n\nI owned no Git resource, server, browser or process and created no helpers. I saved only the four assigned screenshots listed above. There is no repository I touched for which to provide `git worktree list`; the coordinator stops both drivers.",
+        "char_start": 9082,
+        "char_end_exclusive": 11023,
+        "line_start": 93,
+        "line_end": 111
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Aisha would return another evening if days responded more distinctly to prior events and she could tell when pressure was too much, not tonight or unattended. She reached Tuesday on desktop and saw a coffee memory as well as a repeated question. No new blocker was reported."
+  },
+  {
+    "id": "F-2702",
+    "who": "Mei Tan",
+    "type": "return",
+    "source": "mei/report.md",
+    "opening": {
+      "text": "I would return another evening on my laptop to continue the second week, if I could see the tenancy terms and deadline before deciding whether Dilan should sign; I would also want to know how much trust she has left before I insist. I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 262,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\nMy exact stop words and reason for each session are in section 3. I stopped the phone session **BORED** after the familiar Monday call, and the desktop session **CONFUSED** with the tenancy letter unsigned. Neither game ended.\n\nOn the phone, Feedback offered “I'm stopping” and “I'm confused.” I selected **“I'm stopping”**, saw it marked pressed, then pressed **“← Back.”** On desktop I selected **“I'm confused”**, saw it marked pressed, and pressed **“← Back.”** I typed no note, pressed no Submit, and changed no consent or recording setting.\n\nWould I return voluntarily? I would return another evening on my laptop to continue the second week, if I could see the tenancy terms and deadline before deciding whether Dilan should sign; I would also want to know how much trust she has left before I insist. The new commitments made me curious, and I cared about the call. I would prefer a saved place to starting again. I would not leave it running: the timed choices need my attention.\n",
+      "char_start": 9081,
+      "char_end_exclusive": 10093,
+      "line_start": 85,
+      "line_end": 92
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nThe first phone choice clearly said a hold can cost trust, Dilan can still say no, and she chooses for herself if time runs out. The willingness labels and the ticked suggestions helped me see what I had asked. I saw successful held choices and subsequent story outcomes; I did not see a held choice fail this time.\n\nI still could not see how much trust remained. I also could not judge the tenancy letter after Dilan read it. I chose to put it under the fruit bowl rather than insist on signing. I did not see whether the terms or deadline would appear later.\n\nThe menu said each choice allows 64 seconds and that Slow changes only the time between choices. I found Slow in the menu when stopping; I did not change pace.\n",
+        "char_start": 6628,
+        "char_end_exclusive": 7379,
+        "line_start": 59,
+        "line_end": 66
+      },
+      {
+        "label": "unranked device observations",
+        "text": "## 6. Device use\n\n**Phone screenshots viewed:**\n\n- `phone/a-001.png`: the title and introduction were readable in one column. The recording notice crossed the page above the optional checkboxes. Start was below the visible screen.\n- `phone/a-002.png`: the Mum-message choice showed large buttons and readable text, with the clock and answer time above it.\n\nI used Start, choice buttons including touch holds, Skip ahead, Game menu, Feedback, “I'm stopping,” and “← Back.” I did not view the entire phone page or later-week layout. Two 10-second wait calls returned no text; subsequent responses showed the game had advanced.\n\n**Desktop screenshots viewed:**\n\n- `desktop/b-001.png`: the title page, introduction, optional starts, recording notice and Start button were visible.\n- `desktop/b-003.png`: the story log occupied the left side, with the next-choice message and Skip ahead on the right. The letter and Ece outcomes were readable.\n\nI used Other ways to begin, Begin at the second week, choice buttons including holds, Skip ahead, Game menu, Feedback, “I'm confused,” and “← Back.” A request for `b-002.png` returned no text, so I cannot say whether that image was saved or what it showed. I did not view later days or the full desktop layout at a choice.\n\nThe desktop driver returned `locator.innerText: Timeout 5000ms exceeded` after Skip; the next response showed the tenancy choice. It returned the same error on my first Game menu tap; one retry opened the menu. Several other desktop calls returned no text or were slow, but later visible responses showed the relevant choices and outcomes. I cannot attribute those delays to the game. No exposed control remained blocked after a retry.\n",
+        "char_start": 7380,
+        "char_end_exclusive": 9080,
+        "line_start": 67,
+        "line_end": 84
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\n**Original Murmur report**\n\n1. **Show what insisting does before I commit: whether it always works and what trust it costs — partly met.** The first phone choice said it can cost trust and Dilan can still say no. I saw held choices succeed and her objection to being pushed. I did not see a quantity of trust or a failed hold.\n2. **Give me a choice where the kind option is not the unwilling one, or say insisting is the only way to the kind outcome — met for a choice I reached.** In the second week, “Put the screen away. Let Mum finish.” was willing, and I chose it. On the familiar phone Monday, the supportive choices I chose to insist on still required holding.\n3. **Say that an unanswered timer lets her choose, and make Slow easier to find — partly met.** The phone’s first choice said she chooses if time runs out. Slow was in the game menu, which I opened at stopping; I did not establish whether it was easier to find during play.\n\n**Held-input diagnostic return**\n\n1. **Show how much trust is left before I hold — did not meet it in what I saw.** I saw willingness labels and Dilan’s words, but no remaining amount.\n2. **Say at the start that insisting spends trust and works only while she trusts me — partly met.** The first phone choice said holding can cost trust and she can still say no. I did not see the more specific statement that it works only while she trusts me.\n3. **Show a held choice failing before the next scene — not seen.** My held choices in these sessions were followed by ticks and outcomes; I did not encounter a failure.\n\n**New blocking ask:** After Dilan reads the tenancy letter, show me its terms and deadline before asking whether she should sign. That is the new uncertainty that contributed to my desktop stop.\n\nI owned no server, browser, process, branch or worktree. The coordinator owns the drivers and their cleanup. I touched no repository, so there is no `git worktree list` output.",
+        "char_start": 10274,
+        "char_end_exclusive": 12240,
+        "line_start": 99,
+        "line_end": 115
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Mei would return to the second week on laptop if she could see tenancy terms and deadline before deciding and also wants remaining trust information. The unsigned tenancy question is her new blocker. A saved place is a preference, not an established defect."
+  },
+  {
+    "id": "F-2703",
+    "who": "Nia Okafor",
+    "type": "return",
+    "source": "nia/report.md",
+    "opening": {
+      "text": "I would not return voluntarily tonight; I might come back another evening on my phone if I could reach new scenes without replaying the familiar morning and Dilan’s replies varied when I pushed her.",
+      "char_start": 0,
+      "char_end_exclusive": 198,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\n- **Desktop, BORED:** “Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it.”\n- **Phone, BORED:** “Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it.”\n\nOn both devices, Feedback offered “I'm stopping” and “I'm confused”. I chose “I'm stopping”; the driver showed it pressed. I pressed “← Back”, typed no note, changed no consent or recording setting, and pressed no Submit.\n\nI would not leave the game running. I would not come back tonight. I might return another evening on my phone if I could get to new scenes without replaying the familiar morning and Dilan’s replies to insistence varied. Her pushback and the emotional consequence of the lie still interest me.\n",
+      "char_start": 7689,
+      "char_end_exclusive": 8538,
+      "line_start": 79,
+      "line_end": 87
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nThe choice labels made it clear which options Dilan was willing to take and which required insistence. The hold produced visible “You insisted” text, and later events showed what she did. Skip moved between choices fairly quickly in this visit.\n\nI was not sufficiently confused to open Feedback for confusion. The repeated day text remained noticeable in the driver’s visible text, though the desktop screenshot presented the history in a separate column.\n\nOne desktop ten-second wait and two phone ten-second waits returned empty output. The following screenshot calls showed the current game state. I do not know why those replies were empty; I did not encounter a driver block.\n",
+        "char_start": 5349,
+        "char_end_exclusive": 6059,
+        "line_start": 61,
+        "line_end": 68
+      },
+      {
+        "label": "unranked device observations",
+        "text": "## 6. Device use\n\n**Desktop, 1280×800:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-001.png), the title page: a centred cream page, introduction, unchecked alternative starts and a red Start button. The recording strip crossed the area below “Other ways to begin.” I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-002.png): the day history was on the left and Ece’s scene and large choices were on the right. I saw no clipping in that image.\n\nI used Start, mouse clicks, 1.5-second holds, Skip, Game menu, Feedback, “I'm stopping” and Back. I used no keyboard key. I did not see the menu or Feedback as a picture.\n\n**Phone, 360×690:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-001.png), showing the title and introduction, the recording strip and alternative-start checkboxes. Start was below the visible edge. In [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-002.png), the alarm card and three choices were visible; the instruction paragraph was cut off after “If time” where the choice area began. [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-003.png) showed the Aylin card and choices, with the lower choice and bottom of the page beyond the viewport.\n\nI used touch taps on Start, choices, Skip, Game menu, Feedback, “I'm stopping” and Back. I did not view the phone menu or Feedback as pictures, or inspect the page with a keyboard open.\n",
+        "char_start": 6060,
+        "char_end_exclusive": 7688,
+        "line_start": 69,
+        "line_end": 78
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\n- **Make days differ or let me skip scenes I have seen: partly met.** Skip moved time toward the next event, and sleeping in led to the lateness conversation. The alarm, Aylin message and Ece call were familiar. I did not reach Tuesday, so I cannot say whether its opening differs now.\n- **Shorten dead time between choices or give me something to do: partly met.** I used Skip and reached several choices in the desktop session. I still waited between them; I did not explore other pace settings.\n- **Show less repeated day text, especially on phone: did not meet it in the text I received.** Earlier events continued to appear above later ones. The phone screenshots show only parts of the page, so they do not establish its full length.\n\n**New blocking ask from this visit:** Give Dilan more varied replies to insistence. The same “Fine. I’m doing it because you pushed me. I don’t like it” appeared for both eating outside and drinking water, and that repetition contributed to my desktop stop.\n\nI created no worktree, branch, server, browser or helper and touched no Git resource. The coordinator owns the drivers and browser cleanup.",
+        "char_start": 8751,
+        "char_end_exclusive": 9925,
+        "line_start": 94,
+        "line_end": 102
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Nia might return another evening on phone only for new scenes without replaying the opening and varied replies to insistence, not tonight or unattended. She explicitly identifies repeated insistence replies as a new blocker; Monday was reached, not Tuesday."
+  },
+  {
+    "id": "F-2704",
+    "who": "Rosa Alvarez",
+    "type": "return",
+    "source": "rosa/report.md",
+    "opening": {
+      "text": "I would return voluntarily another evening, on either device, to see more of Dilan’s week, though I still want to understand what trust changes.",
+      "char_start": 0,
+      "char_end_exclusive": 144,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\n- **Phone, TASTE, 70.297 seconds:** “I stop on the phone. I liked helping Ece and seeing Dilan answer me, but I have seen this part of Monday again. I would close it for now.”\n- **Desktop, TASTE, 55.576 seconds:** “I stop on the big screen. I liked that Murat accepted the truth, but I have seen this morning before and would return another evening for more.”\n\nI would return voluntarily another evening, on either device, to see more of Dilan’s week. I care about her ordinary work and family obligations. I would like trust explained before I make many more insistent choices; I could still return to see the story with that question open. I would close the game now rather than leave it running, because choices arrive on a timer.\n",
+      "char_start": 9807,
+      "char_end_exclusive": 10564,
+      "line_start": 94,
+      "line_end": 100
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nI did not reread a sentence in either session, so my second-reread rule did not trigger. The choices and the visible results were plain. I understood that Dilan could refuse and that she felt pushed.\n\nI still do not know how much trust remains or exactly what it changes. I did not see “She wants to do it later” during these short sessions. The control called Skip “Skip to the next event,” which told me its destination in general, but not how far the game clock would move.\n\nThe following counts are my own counts of concepts visible on each screen I visited. I count settings and lab topics even when I ignored them.\n\n| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |\n| --- | --- | ---: | --- | --- |\n| Title, both: start | Voice in Dilan’s head; suggestions can change choices; Monday–Saturday; Saturday look back; Dilan and parcel deliveries; Aylin and cooking; Ece and depot routes; Murat and supervision; Other ways to begin; third week; outcomes week; Start; recording and linked play; All games; Information; Game menu; Human Framework | 17 | None | Familiar and readable |\n| Opening transition, both: wait for alarm | Game day and clock; alarm about to ring | 2 | None | Clear |\n| First choice, both: answer alarm | Answer timer; other voice and pencil handwriting; tap to suggest; hold to insist; trust cost; Dilan can refuse; timeout lets her choose; willingness labels; Say nothing | 9 | None | Instructions were short; trust’s effect remained unclear |\n| Ongoing choices and results, both: guide Dilan through Monday | Recorded suggestion or insistence; words kept in mind; next event and Skip; sleep and alarms; Aylin’s message; lateness and Murat; Ece’s lost delivery; lunch response to mocking; pressure resistance; “She is against it”; Dilan’s refusal and explanation; coffee and late deliveries | 12 | None | The situations and results were understandable |\n| Game menu, both: reach Feedback | Time paused; pace between moments; 64 seconds per choice; Automatic; Slow; Steady; Fast; Feedback; full screen; New game; title page; All games; People across games; download run; Recording; Lab privacy; Debug; Resume | 18 | None | I opened it for Feedback and left settings alone |\n| Feedback, both: choose a label | Keep playing; Not sure; stop here; “I’m stopping”; “I’m confused”; note; optional name or tester ID; linked play history; What is sent; Submit; Back | 11 | None | Labels were plain |\n",
+        "char_start": 6102,
+        "char_end_exclusive": 8606,
+        "line_start": 67,
+        "line_end": 83
+      },
+      {
+        "label": "unranked device observations",
+        "text": "## 6. Device use\n\n**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/phone/a-001.png). It shows the title and readable introduction, the Other ways to begin button, the recording notice, and the two unchecked week options. The Start button was below the visible part of that image. I used Start, held choice buttons, a normal choice tap, Skip to the next event, Game menu, Feedback, “I’m stopping,” and Back.\n\n**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/desktop/b-001.png). It shows the title and introduction in a centered column, both unchecked week options, the recording notice and a large red Start button. I used Start, choice buttons including one held press, Skip to the next event, Game menu, Feedback, “I’m stopping,” and Back.\n\nI viewed only the title layout in screenshots on each device. I cannot describe the game-screen layout from those images. I did not use keyboard keys.\n\nOn both devices, Feedback offered “I’m stopping” and “I’m confused.” I chose **“I’m stopping”**; it showed as pressed. Back returned to the menu. I typed nothing and submitted nothing.\n",
+        "char_start": 8607,
+        "char_end_exclusive": 9806,
+        "line_start": 84,
+        "line_end": 93
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\n1. **Explain trust, where to see it, and what happens at zero — partly met.** The opening now says insistence can cost trust and Dilan can still say no. After repeated pressure, she said she disliked being pushed, and the page said holding worked worse than tapping. Those are useful observations. I still did not see a trust level or an explanation of what happens at zero.\n2. **Explain the three choice labels together before the first choice — partly met.** I saw “She is willing” and “She would agree only if you insist,” and later “She is against it.” I did not see “She wants to do it later,” or a single explanation of all three before the first choice.\n3. **Say what Skip does and how far it jumps — partly met.** Its control name said “Skip to the next event,” and I used it to move the day forward. It did not tell me in advance how many game minutes would pass.\n\n**New blocking ask:** None. My stops came from having revisited familiar scenes, not from a new blocker.\n\nI created no worktree, branch, server, browser or helper process and touched no Git resource. The coordinator owns the drivers. I took one manual screenshot per device; `git worktree list` is not applicable to my work.",
+        "char_start": 10668,
+        "char_end_exclusive": 11901,
+        "line_start": 105,
+        "line_end": 113
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Rosa would return another evening on either device even while her trust question remains open and would close the game now. Trust explanation is a wish, not a condition of return; she reports no new blocker."
+  },
+  {
+    "id": "F-2705",
+    "who": "Dunja Kovačević",
+    "type": "return",
+    "source": "dunja/report.md",
+    "opening": {
+      "text": "I would return voluntarily another evening if I could continue in short stretches, because I want to see what happens to Dilan and Ece, but I would not leave the game running unattended.",
+      "char_start": 0,
+      "char_end_exclusive": 186,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\nOn the phone I stopped for **TASTE**: “I have had enough for now; I would put the phone down.” On desktop I stopped for **TASTE**: “I would close this now; I have had my look at the different choices.”\n\nI would return voluntarily another evening if I could continue in short stretches, because I want to see what happens to Dilan and Ece. I would not leave it running while away: choices have a countdown, and the page says Dilan chooses for herself if time runs out. My desktop visit was an assigned fresh game; my interest in returning later is conditional on being able to continue in short stretches.\n",
+      "char_start": 6221,
+      "char_end_exclusive": 6849,
+      "line_start": 70,
+      "line_end": 75
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nThe introduction made my role clear, but I did not understand why a first-time player would select a third week or outcomes week. I left both unchecked.\n\nThe first choice explained tapping to suggest and holding to insist, including the possible trust cost. The visible confirmations and later outcomes made those actions understandable. The countdown made me feel hurried. I discovered the menu pauses time when I opened it to stop; it said **“Every choice allows 64 seconds. Slow changes only the time between choices.”** I did not change pace.\n\nMy first diary attempt on the phone returned **“Invalid reason”** because I supplied an unsupported reason for a note. I retried without that field and it logged. This was my driver-input error, not a game failure.\n",
+        "char_start": 4111,
+        "char_end_exclusive": 4903,
+        "line_start": 56,
+        "line_end": 63
+      },
+      {
+        "label": "unranked device observations",
+        "text": "## 6. Device use\n\n**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/phone/a-001.png), which showed a single column of introductory text, the other-starts control, recording notice and week checkboxes. The Start button was below the captured viewport; the driver listed it. I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/phone/a-002.png), showing the story, handwritten-style other voice and Skip ahead button. I tapped choices, held choices to insist, skipped ahead, and used the menu and Feedback. I did not visually inspect every part of the scrolling page.\n\n**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/desktop/b-001.png), showing the introduction in a centered column and the red Start button. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/desktop/b-002.png) showed the history on the left and a very faint choice panel on the right at that captured moment. I cannot tell from that still whether the faintness persisted; the subsequent choice operated and its result appeared. I used mouse clicks and holds, Skip ahead, the menu and Feedback. I did not inspect the entire desktop layout.\n",
+        "char_start": 4904,
+        "char_end_exclusive": 6220,
+        "line_start": 64,
+        "line_end": 69
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\nThis was my first visit. The desktop session was a second device session within this assignment, so I recognized its introduction and Ece’s situation from the phone, not from an earlier visit. I encountered no blocking ask in the play I reached.\n\nI owned no Git resources, servers, browsers or processes. The coordinator stops the drivers; I did not run `git worktree list` because the assignment prohibited Git commands and assigned me no Git resource.",
+        "char_start": 7015,
+        "char_end_exclusive": 7503,
+        "line_start": 80,
+        "line_end": 84
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Dunja would return another evening if she could continue in short stretches and would not leave it unattended. Her assigned fresh desktop visit does not prove the absence of saving or that continuation works. She reports no blocker and exactly two ranked asks."
+  },
+  {
+    "id": "F-2706",
+    "who": "Aisha Rahman",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "aisha/report.md",
+    "primary": {
+      "text": "Let Tuesday’s conversations reflect Monday’s events. Murat asked the same traffic question after Dilan had already told him she overslept.",
+      "char_start": 206,
+      "char_end_exclusive": 344,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Inspect Tuesday’s repeated traffic question in the context of Monday’s disclosed oversleep and remembered coffee. Do not claim all prior events are ignored or invent a response.",
+    "later_ask": {
+      "text": "Let Tuesday’s conversations reflect Monday’s events, especially Murat’s question after Dilan told him the truth.",
+      "char_start": 8851,
+      "char_end_exclusive": 8963,
+      "line_start": 89,
+      "line_end": 89
+    }
+  },
+  {
+    "id": "F-2707",
+    "who": "Aisha Rahman",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "aisha/report.md",
+    "primary": {
+      "text": "Give me a clearer warning before I push Dilan too far.",
+      "char_start": 348,
+      "char_end_exclusive": 402,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Inspect how the player understands the risk of pressing Dilan. A general warning and her later objection were observed; do not expose hidden trust quantities, add a forecast or force agreement.",
+    "later_ask": {
+      "text": "Warn me more clearly before I push Dilan too far.",
+      "char_start": 8967,
+      "char_end_exclusive": 9016,
+      "line_start": 90,
+      "line_end": 90
+    }
+  },
+  {
+    "id": "F-2708",
+    "who": "Aisha Rahman",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "aisha/report.md",
+    "primary": {
+      "text": "Keep the full first-choice explanation visible on the phone.",
+      "char_start": 406,
+      "char_end_exclusive": 466,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Inspect the phone first-choice explanation visibility, including whether scrolling reveals the covered text. The producer did not test scrolling and no broad layout claim follows.",
+    "later_ask": {
+      "text": "Keep the full first-choice explanation visible on the phone.",
+      "char_start": 9020,
+      "char_end_exclusive": 9080,
+      "line_start": 91,
+      "line_end": 91
+    }
+  },
+  {
+    "id": "F-2709",
+    "who": "Mei Tan",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "mei/report.md",
+    "primary": {
+      "text": "Show me the tenancy terms and deadline after Dilan reads the letter, before asking me whether she should sign.",
+      "char_start": 281,
+      "char_end_exclusive": 391,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Inspect what tenancy terms and deadline are visible after Dilan reads the letter and before the signing decision. Mei identifies this as a new blocker; the letter remained unsigned and no legal terms or cause may be invented.",
+    "later_ask": {
+      "text": "Show the tenancy terms and deadline after Dilan reads the letter.",
+      "char_start": 10125,
+      "char_end_exclusive": 10190,
+      "line_start": 95,
+      "line_end": 95
+    }
+  },
+  {
+    "id": "F-2710",
+    "who": "Mei Tan",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "mei/report.md",
+    "primary": {
+      "text": "Show how much trust Dilan has left before I insist.",
+      "char_start": 395,
+      "char_end_exclusive": 446,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Review Mei’s request to know remaining trust before insisting. Existing warning and later objection are visible; no hidden quantity or guaranteed insistence outcome is established.",
+    "later_ask": {
+      "text": "Show remaining trust before a hold.",
+      "char_start": 10194,
+      "char_end_exclusive": 10229,
+      "line_start": 96,
+      "line_end": 96
+    }
+  },
+  {
+    "id": "F-2711",
+    "who": "Mei Tan",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "mei/report.md",
+    "primary": {
+      "text": "Give me a way to continue from a saved place, so I do not have to repeat a week I have already played.",
+      "char_start": 450,
+      "char_end_exclusive": 552,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-10",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Review Mei’s preference to continue from a saved place. Her desktop began at the public second-week start with week one played for her, not by her; this visit does not establish a save defect.",
+    "later_ask": {
+      "text": "Keep a saved place for a later evening.",
+      "char_start": 10233,
+      "char_end_exclusive": 10272,
+      "line_start": 97,
+      "line_end": 97
+    }
+  },
+  {
+    "id": "F-2712",
+    "who": "Nia Okafor",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "nia/report.md",
+    "primary": {
+      "text": "Let me reach new scenes without replaying the same opening.",
+      "char_start": 217,
+      "char_end_exclusive": 276,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Review Nia’s return condition for reaching new scenes without repeating the opening. She used Skip and did not reach Tuesday; do not claim later scenes repeat.",
+    "later_ask": {
+      "text": "Let me get to new scenes without replaying the familiar opening.",
+      "char_start": 8570,
+      "char_end_exclusive": 8634,
+      "line_start": 90,
+      "line_end": 90
+    }
+  },
+  {
+    "id": "F-2713",
+    "who": "Nia Okafor",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "nia/report.md",
+    "primary": {
+      "text": "Give Dilan more varied replies when I insist.",
+      "char_start": 280,
+      "char_end_exclusive": 325,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Inspect the same insistence reply after the two reached choices. Nia explicitly names varied replies as a new blocking ask; preserve Dilan’s agency and do not force agreement or infer hidden trust.",
+    "later_ask": {
+      "text": "Vary Dilan’s replies to different instances of insistence.",
+      "char_start": 8638,
+      "char_end_exclusive": 8696,
+      "line_start": 91,
+      "line_end": 91
+    }
+  },
+  {
+    "id": "F-2714",
+    "who": "Nia Okafor",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "nia/report.md",
+    "primary": {
+      "text": "Show less repeated day-so-far text on the phone.",
+      "char_start": 329,
+      "char_end_exclusive": 377,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Inspect repeated day-so-far text on phone in the received page text. Screenshots show only part of the page and do not establish total length.",
+    "later_ask": {
+      "text": "Reduce the repeated day-so-far text on the phone.",
+      "char_start": 8700,
+      "char_end_exclusive": 8749,
+      "line_start": 92,
+      "line_end": 92
+    }
+  },
+  {
+    "id": "F-2715",
+    "who": "Rosa Alvarez",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Explain what trust changes and whether I can see how much remains.",
+      "char_start": 166,
+      "char_end_exclusive": 232,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Review Rosa’s question about what trust changes and whether its amount can be seen. She would return without the answer; do not infer a hidden quantity or prescribe a trust meter."
+  },
+  {
+    "id": "F-2716",
+    "who": "Rosa Alvarez",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Explain the choice labels together before the first choice, including “She wants to do it later.”",
+      "char_start": 236,
+      "char_end_exclusive": 333,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Review a clear explanation of choice labels before the first choice, including the later label Rosa did not reach. Preserve the meaning of each option and Dilan’s choice."
+  },
+  {
+    "id": "F-2717",
+    "who": "Rosa Alvarez",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Say how far “Skip ahead” will take me as well as saying it goes to the next event.",
+      "char_start": 337,
+      "char_end_exclusive": 419,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Review how far Skip advances in addition to its next-event description. Rosa used it but did not know the minutes in advance; do not promise a fixed duration."
+  },
+  {
+    "id": "F-2718",
+    "who": "Dunja Kovačević",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "dunja/report.md",
+    "primary": {
+      "text": "Give me more time to consider a choice, or an option to pause its countdown.",
+      "char_start": 205,
+      "char_end_exclusive": 281,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-10",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Review Dunja’s preference for more consideration time or a pause for the countdown. She found a 64-second choice hurried and neither ask blocked what she played. If any future clock retune is proposed, use C14 human-speed comparison first; no blanket retune is authorized."
+  },
+  {
+    "id": "F-2719",
+    "who": "Dunja Kovačević",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "dunja/report.md",
+    "primary": {
+      "text": "Explain the third-week options when they appear on the first screen.",
+      "char_start": 285,
+      "char_end_exclusive": 353,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-03",
+    "route": "fix:murmur",
+    "status": "open",
+    "editorial_route": "Review the third-week options explanation on the first screen for a cold player. Dunja’s fresh desktop followed her phone exposure and no earlier history is inferred."
+  }
+]

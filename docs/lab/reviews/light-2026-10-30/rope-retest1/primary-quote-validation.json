@@ -1,0 +1,5595 @@
+{
+  "ok": true,
+  "checks": 1117,
+  "failed": [],
+  "spanLocatorChecks": 190,
+  "canaryFailChecks": 190,
+  "note": "Spans, ledger regeneration, hashes, stops, pins, pids, ports, cleanup counts, reactions, source copies and forbidden-content scan. No game behaviour, population or acceptance is tested.",
+  "results": [
+    {
+      "check": "pavel report == report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa report == report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia report == report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa report == report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah report == report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "extraction has five testers",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel opening",
+      "ok": true,
+      "detail": "pavel line 1"
+    },
+    {
+      "check": "canary fails pavel opening",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel primaryReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel later return",
+      "ok": true,
+      "detail": "pavel line 111"
+    },
+    {
+      "check": "canary fails pavel later return",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel laterFullReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel opening and later return are different texts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel unranked clause keys and classification match the brief",
+      "ok": true,
+      "detail": "{}"
+    },
+    {
+      "check": "pavel three ranked asks from the report",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 1",
+      "ok": true,
+      "detail": "pavel line 4"
+    },
+    {
+      "check": "canary fails pavel ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 1 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 2",
+      "ok": true,
+      "detail": "pavel line 5"
+    },
+    {
+      "check": "canary fails pavel ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 2 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 3",
+      "ok": true,
+      "detail": "pavel line 6"
+    },
+    {
+      "check": "canary fails pavel ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 3 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel section 8 ask 1",
+      "ok": true,
+      "detail": "pavel line 114"
+    },
+    {
+      "check": "canary fails pavel section 8 ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel section 8 ask 1 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel section 8 ask 2",
+      "ok": true,
+      "detail": "pavel line 115"
+    },
+    {
+      "check": "canary fails pavel section 8 ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel section 8 ask 2 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel section 8 ask 3",
+      "ok": true,
+      "detail": "pavel line 116"
+    },
+    {
+      "check": "canary fails pavel section 8 ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel section 8 ask 3 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 1 later 0",
+      "ok": true,
+      "detail": "pavel line 114"
+    },
+    {
+      "check": "canary fails pavel ask 1 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 1 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 1 later 1",
+      "ok": true,
+      "detail": "pavel line 90"
+    },
+    {
+      "check": "canary fails pavel ask 1 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 1 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 1 later 2",
+      "ok": true,
+      "detail": "pavel line 91"
+    },
+    {
+      "check": "canary fails pavel ask 1 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 1 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 1 later 3",
+      "ok": true,
+      "detail": "pavel line 57"
+    },
+    {
+      "check": "canary fails pavel ask 1 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 1 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 1 later 4",
+      "ok": true,
+      "detail": "pavel line 122"
+    },
+    {
+      "check": "canary fails pavel ask 1 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 1 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 1 later 5",
+      "ok": true,
+      "detail": "pavel line 128"
+    },
+    {
+      "check": "canary fails pavel ask 1 later 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 1 later 5 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 2 later 0",
+      "ok": true,
+      "detail": "pavel line 115"
+    },
+    {
+      "check": "canary fails pavel ask 2 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 2 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 2 later 1",
+      "ok": true,
+      "detail": "pavel line 17"
+    },
+    {
+      "check": "canary fails pavel ask 2 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 2 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 2 later 2",
+      "ok": true,
+      "detail": "pavel line 92"
+    },
+    {
+      "check": "canary fails pavel ask 2 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 2 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 2 later 3",
+      "ok": true,
+      "detail": "pavel line 93"
+    },
+    {
+      "check": "canary fails pavel ask 2 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 2 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 2 later 4",
+      "ok": true,
+      "detail": "pavel line 123"
+    },
+    {
+      "check": "canary fails pavel ask 2 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 2 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 2 later 5",
+      "ok": true,
+      "detail": "pavel line 126"
+    },
+    {
+      "check": "canary fails pavel ask 2 later 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 2 later 5 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 2 later 6",
+      "ok": true,
+      "detail": "pavel line 127"
+    },
+    {
+      "check": "canary fails pavel ask 2 later 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 2 later 6 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 3 later 0",
+      "ok": true,
+      "detail": "pavel line 116"
+    },
+    {
+      "check": "canary fails pavel ask 3 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 3 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 3 later 1",
+      "ok": true,
+      "detail": "pavel line 94"
+    },
+    {
+      "check": "canary fails pavel ask 3 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 3 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span pavel ask 3 later 2",
+      "ok": true,
+      "detail": "pavel line 121"
+    },
+    {
+      "check": "canary fails pavel ask 3 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel ask 3 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa opening",
+      "ok": true,
+      "detail": "tessa line 1"
+    },
+    {
+      "check": "canary fails tessa opening",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa primaryReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa later return",
+      "ok": true,
+      "detail": "tessa line 124"
+    },
+    {
+      "check": "canary fails tessa later return",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa laterFullReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa opening and later return are different texts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa unranked clause keys and classification match the brief",
+      "ok": true,
+      "detail": "{}"
+    },
+    {
+      "check": "tessa three ranked asks from the report",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1",
+      "ok": true,
+      "detail": "tessa line 4"
+    },
+    {
+      "check": "canary fails tessa ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 2",
+      "ok": true,
+      "detail": "tessa line 5"
+    },
+    {
+      "check": "canary fails tessa ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 2 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 3",
+      "ok": true,
+      "detail": "tessa line 6"
+    },
+    {
+      "check": "canary fails tessa ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 3 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa section 8 ask 1",
+      "ok": true,
+      "detail": "tessa line 127"
+    },
+    {
+      "check": "canary fails tessa section 8 ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa section 8 ask 1 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa section 8 ask 2",
+      "ok": true,
+      "detail": "tessa line 128"
+    },
+    {
+      "check": "canary fails tessa section 8 ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa section 8 ask 2 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa section 8 ask 3",
+      "ok": true,
+      "detail": "tessa line 129"
+    },
+    {
+      "check": "canary fails tessa section 8 ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa section 8 ask 3 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1 later 0",
+      "ok": true,
+      "detail": "tessa line 127"
+    },
+    {
+      "check": "canary fails tessa ask 1 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1 later 1",
+      "ok": true,
+      "detail": "tessa line 45"
+    },
+    {
+      "check": "canary fails tessa ask 1 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1 later 2",
+      "ok": true,
+      "detail": "tessa line 79"
+    },
+    {
+      "check": "canary fails tessa ask 1 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1 later 3",
+      "ok": true,
+      "detail": "tessa line 80"
+    },
+    {
+      "check": "canary fails tessa ask 1 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1 later 4",
+      "ok": true,
+      "detail": "tessa line 81"
+    },
+    {
+      "check": "canary fails tessa ask 1 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1 later 5",
+      "ok": true,
+      "detail": "tessa line 101"
+    },
+    {
+      "check": "canary fails tessa ask 1 later 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 later 5 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1 later 6",
+      "ok": true,
+      "detail": "tessa line 102"
+    },
+    {
+      "check": "canary fails tessa ask 1 later 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 later 6 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 1 later 7",
+      "ok": true,
+      "detail": "tessa line 132"
+    },
+    {
+      "check": "canary fails tessa ask 1 later 7",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 1 later 7 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 2 later 0",
+      "ok": true,
+      "detail": "tessa line 128"
+    },
+    {
+      "check": "canary fails tessa ask 2 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 2 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 2 later 1",
+      "ok": true,
+      "detail": "tessa line 66"
+    },
+    {
+      "check": "canary fails tessa ask 2 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 2 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 2 later 2",
+      "ok": true,
+      "detail": "tessa line 83"
+    },
+    {
+      "check": "canary fails tessa ask 2 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 2 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 2 later 3",
+      "ok": true,
+      "detail": "tessa line 103"
+    },
+    {
+      "check": "canary fails tessa ask 2 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 2 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 2 later 4",
+      "ok": true,
+      "detail": "tessa line 138"
+    },
+    {
+      "check": "canary fails tessa ask 2 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 2 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 3 later 0",
+      "ok": true,
+      "detail": "tessa line 62"
+    },
+    {
+      "check": "canary fails tessa ask 3 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 3 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 3 later 1",
+      "ok": true,
+      "detail": "tessa line 110"
+    },
+    {
+      "check": "canary fails tessa ask 3 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 3 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 3 later 2",
+      "ok": true,
+      "detail": "tessa line 116"
+    },
+    {
+      "check": "canary fails tessa ask 3 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 3 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span tessa ask 3 later 3",
+      "ok": true,
+      "detail": "tessa line 116"
+    },
+    {
+      "check": "canary fails tessa ask 3 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa ask 3 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia opening",
+      "ok": true,
+      "detail": "nia line 1"
+    },
+    {
+      "check": "canary fails nia opening",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia primaryReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia literal wraps inner in quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia literal present on the opening line",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia later return",
+      "ok": true,
+      "detail": "nia line 127"
+    },
+    {
+      "check": "canary fails nia later return",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia laterFullReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia opening and later return are different texts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia later extra 0",
+      "ok": true,
+      "detail": "nia line 128"
+    },
+    {
+      "check": "canary fails nia later extra 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked clause keys and classification match the brief",
+      "ok": true,
+      "detail": "{'wants-to-wait-before-waiting': 'producer-new-blocker', 'going-down-speech-versus-actual-climb': 'producer-new-blocker', 'cannot-hear-greyed-buttons': 'producer-new-blocker'}"
+    },
+    {
+      "check": "nia three ranked asks from the report",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 1",
+      "ok": true,
+      "detail": "nia line 4"
+    },
+    {
+      "check": "canary fails nia ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 1 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 2",
+      "ok": true,
+      "detail": "nia line 5"
+    },
+    {
+      "check": "canary fails nia ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 2 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 3",
+      "ok": true,
+      "detail": "nia line 6"
+    },
+    {
+      "check": "canary fails nia ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 3 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia section 8 ask 1",
+      "ok": true,
+      "detail": "nia line 131"
+    },
+    {
+      "check": "canary fails nia section 8 ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia section 8 ask 1 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia section 8 ask 2",
+      "ok": true,
+      "detail": "nia line 132"
+    },
+    {
+      "check": "canary fails nia section 8 ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia section 8 ask 2 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia section 8 ask 3",
+      "ok": true,
+      "detail": "nia line 133"
+    },
+    {
+      "check": "canary fails nia section 8 ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia section 8 ask 3 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 1 later 0",
+      "ok": true,
+      "detail": "nia line 131"
+    },
+    {
+      "check": "canary fails nia ask 1 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 1 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 1 later 1",
+      "ok": true,
+      "detail": "nia line 37"
+    },
+    {
+      "check": "canary fails nia ask 1 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 1 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 1 later 2",
+      "ok": true,
+      "detail": "nia line 64"
+    },
+    {
+      "check": "canary fails nia ask 1 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 1 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 1 later 3",
+      "ok": true,
+      "detail": "nia line 89"
+    },
+    {
+      "check": "canary fails nia ask 1 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 1 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 1 later 4",
+      "ok": true,
+      "detail": "nia line 136"
+    },
+    {
+      "check": "canary fails nia ask 1 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 1 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 2 later 0",
+      "ok": true,
+      "detail": "nia line 132"
+    },
+    {
+      "check": "canary fails nia ask 2 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 2 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 2 later 1",
+      "ok": true,
+      "detail": "nia line 47"
+    },
+    {
+      "check": "canary fails nia ask 2 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 2 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 2 later 2",
+      "ok": true,
+      "detail": "nia line 90"
+    },
+    {
+      "check": "canary fails nia ask 2 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 2 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 2 later 3",
+      "ok": true,
+      "detail": "nia line 91"
+    },
+    {
+      "check": "canary fails nia ask 2 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 2 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 2 later 4",
+      "ok": true,
+      "detail": "nia line 93"
+    },
+    {
+      "check": "canary fails nia ask 2 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 2 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 2 later 5",
+      "ok": true,
+      "detail": "nia line 137"
+    },
+    {
+      "check": "canary fails nia ask 2 later 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 2 later 5 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 3 later 0",
+      "ok": true,
+      "detail": "nia line 133"
+    },
+    {
+      "check": "canary fails nia ask 3 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 3 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 3 later 1",
+      "ok": true,
+      "detail": "nia line 94"
+    },
+    {
+      "check": "canary fails nia ask 3 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 3 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 3 later 2",
+      "ok": true,
+      "detail": "nia line 138"
+    },
+    {
+      "check": "canary fails nia ask 3 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 3 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 3 later 3",
+      "ok": true,
+      "detail": "nia line 139"
+    },
+    {
+      "check": "canary fails nia ask 3 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 3 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 3 later 4",
+      "ok": true,
+      "detail": "nia line 140"
+    },
+    {
+      "check": "canary fails nia ask 3 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 3 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 3 later 5",
+      "ok": true,
+      "detail": "nia line 141"
+    },
+    {
+      "check": "canary fails nia ask 3 later 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 3 later 5 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia ask 3 later 6",
+      "ok": true,
+      "detail": "nia line 79"
+    },
+    {
+      "check": "canary fails nia ask 3 later 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia ask 3 later 6 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked wants-to-wait-before-waiting has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked wants-to-wait-before-waiting has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked wants-to-wait-before-waiting target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked wants-to-wait-before-waiting no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia unranked wants-to-wait-before-waiting 0",
+      "ok": true,
+      "detail": "nia line 148"
+    },
+    {
+      "check": "canary fails nia unranked wants-to-wait-before-waiting 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia unranked wants-to-wait-before-waiting 1",
+      "ok": true,
+      "detail": "nia line 106"
+    },
+    {
+      "check": "canary fails nia unranked wants-to-wait-before-waiting 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia unranked wants-to-wait-before-waiting 2",
+      "ok": true,
+      "detail": "nia line 43"
+    },
+    {
+      "check": "canary fails nia unranked wants-to-wait-before-waiting 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked going-down-speech-versus-actual-climb has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked going-down-speech-versus-actual-climb has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked going-down-speech-versus-actual-climb target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked going-down-speech-versus-actual-climb no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia unranked going-down-speech-versus-actual-climb 0",
+      "ok": true,
+      "detail": "nia line 149"
+    },
+    {
+      "check": "canary fails nia unranked going-down-speech-versus-actual-climb 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia unranked going-down-speech-versus-actual-climb 1",
+      "ok": true,
+      "detail": "nia line 107"
+    },
+    {
+      "check": "canary fails nia unranked going-down-speech-versus-actual-climb 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia unranked going-down-speech-versus-actual-climb 2",
+      "ok": true,
+      "detail": "nia line 92"
+    },
+    {
+      "check": "canary fails nia unranked going-down-speech-versus-actual-climb 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked cannot-hear-greyed-buttons has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked cannot-hear-greyed-buttons has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked cannot-hear-greyed-buttons target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia unranked cannot-hear-greyed-buttons no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span nia unranked cannot-hear-greyed-buttons 0",
+      "ok": true,
+      "detail": "nia line 147"
+    },
+    {
+      "check": "canary fails nia unranked cannot-hear-greyed-buttons 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa opening",
+      "ok": true,
+      "detail": "rosa line 3"
+    },
+    {
+      "check": "canary fails rosa opening",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa primaryReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa later return",
+      "ok": true,
+      "detail": "rosa line 176"
+    },
+    {
+      "check": "canary fails rosa later return",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa laterFullReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa opening and later return are different texts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked clause keys and classification match the brief",
+      "ok": true,
+      "detail": "{'reading-note-and-first-lead-on-uncertainty': 'producer-new-blocker', 'auto-filled-feedback-note': 'producer-new-blocker', 'desktop-path-under-right-panel': 'source-observation'}"
+    },
+    {
+      "check": "rosa three ranked asks from the report",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 1",
+      "ok": true,
+      "detail": "rosa line 6"
+    },
+    {
+      "check": "canary fails rosa ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 1 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 2",
+      "ok": true,
+      "detail": "rosa line 7"
+    },
+    {
+      "check": "canary fails rosa ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 2 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 3",
+      "ok": true,
+      "detail": "rosa line 8"
+    },
+    {
+      "check": "canary fails rosa ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 3 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa section 8 ask 1",
+      "ok": true,
+      "detail": "rosa line 179"
+    },
+    {
+      "check": "canary fails rosa section 8 ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa section 8 ask 1 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa section 8 ask 2",
+      "ok": true,
+      "detail": "rosa line 180"
+    },
+    {
+      "check": "canary fails rosa section 8 ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa section 8 ask 2 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa section 8 ask 3",
+      "ok": true,
+      "detail": "rosa line 181"
+    },
+    {
+      "check": "canary fails rosa section 8 ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa section 8 ask 3 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 1 later 0",
+      "ok": true,
+      "detail": "rosa line 179"
+    },
+    {
+      "check": "canary fails rosa ask 1 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 1 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 1 later 1",
+      "ok": true,
+      "detail": "rosa line 125"
+    },
+    {
+      "check": "canary fails rosa ask 1 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 1 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 1 later 2",
+      "ok": true,
+      "detail": "rosa line 106"
+    },
+    {
+      "check": "canary fails rosa ask 1 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 1 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 1 later 3",
+      "ok": true,
+      "detail": "rosa line 188"
+    },
+    {
+      "check": "canary fails rosa ask 1 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 1 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 1 later 4",
+      "ok": true,
+      "detail": "rosa line 188"
+    },
+    {
+      "check": "canary fails rosa ask 1 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 1 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 1 later 5",
+      "ok": true,
+      "detail": "rosa line 191"
+    },
+    {
+      "check": "canary fails rosa ask 1 later 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 1 later 5 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 1 later 6",
+      "ok": true,
+      "detail": "rosa line 164"
+    },
+    {
+      "check": "canary fails rosa ask 1 later 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 1 later 6 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 2 later 0",
+      "ok": true,
+      "detail": "rosa line 180"
+    },
+    {
+      "check": "canary fails rosa ask 2 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 2 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 2 later 1",
+      "ok": true,
+      "detail": "rosa line 124"
+    },
+    {
+      "check": "canary fails rosa ask 2 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 2 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 2 later 2",
+      "ok": true,
+      "detail": "rosa line 193"
+    },
+    {
+      "check": "canary fails rosa ask 2 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 2 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 2 later 3",
+      "ok": true,
+      "detail": "rosa line 76"
+    },
+    {
+      "check": "canary fails rosa ask 2 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 2 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 3 later 0",
+      "ok": true,
+      "detail": "rosa line 181"
+    },
+    {
+      "check": "canary fails rosa ask 3 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 3 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 3 later 1",
+      "ok": true,
+      "detail": "rosa line 105"
+    },
+    {
+      "check": "canary fails rosa ask 3 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 3 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 3 later 2",
+      "ok": true,
+      "detail": "rosa line 102"
+    },
+    {
+      "check": "canary fails rosa ask 3 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 3 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 3 later 3",
+      "ok": true,
+      "detail": "rosa line 188"
+    },
+    {
+      "check": "canary fails rosa ask 3 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 3 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa ask 3 later 4",
+      "ok": true,
+      "detail": "rosa line 63"
+    },
+    {
+      "check": "canary fails rosa ask 3 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ask 3 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked reading-note-and-first-lead-on-uncertainty has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked reading-note-and-first-lead-on-uncertainty has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked reading-note-and-first-lead-on-uncertainty target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked reading-note-and-first-lead-on-uncertainty no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa unranked reading-note-and-first-lead-on-uncertainty 0",
+      "ok": true,
+      "detail": "rosa line 192"
+    },
+    {
+      "check": "canary fails rosa unranked reading-note-and-first-lead-on-uncertainty 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa unranked reading-note-and-first-lead-on-uncertainty 1",
+      "ok": true,
+      "detail": "rosa line 126"
+    },
+    {
+      "check": "canary fails rosa unranked reading-note-and-first-lead-on-uncertainty 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa unranked reading-note-and-first-lead-on-uncertainty 2",
+      "ok": true,
+      "detail": "rosa line 107"
+    },
+    {
+      "check": "canary fails rosa unranked reading-note-and-first-lead-on-uncertainty 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa unranked reading-note-and-first-lead-on-uncertainty 3",
+      "ok": true,
+      "detail": "rosa line 82"
+    },
+    {
+      "check": "canary fails rosa unranked reading-note-and-first-lead-on-uncertainty 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked auto-filled-feedback-note has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked auto-filled-feedback-note has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked auto-filled-feedback-note target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked auto-filled-feedback-note no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa unranked auto-filled-feedback-note 0",
+      "ok": true,
+      "detail": "rosa line 194"
+    },
+    {
+      "check": "canary fails rosa unranked auto-filled-feedback-note 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa unranked auto-filled-feedback-note 1",
+      "ok": true,
+      "detail": "rosa line 128"
+    },
+    {
+      "check": "canary fails rosa unranked auto-filled-feedback-note 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked desktop-path-under-right-panel has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked desktop-path-under-right-panel has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked desktop-path-under-right-panel target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa unranked desktop-path-under-right-panel no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span rosa unranked desktop-path-under-right-panel 0",
+      "ok": true,
+      "detail": "rosa line 127"
+    },
+    {
+      "check": "canary fails rosa unranked desktop-path-under-right-panel 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah opening",
+      "ok": true,
+      "detail": "farah line 1"
+    },
+    {
+      "check": "canary fails farah opening",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah primaryReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah literal wraps inner in quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah literal present on the opening line",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah later return",
+      "ok": true,
+      "detail": "farah line 140"
+    },
+    {
+      "check": "canary fails farah later return",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah laterFullReturn equals locator span",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah opening and later return are different texts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah later extra 0",
+      "ok": true,
+      "detail": "farah line 142"
+    },
+    {
+      "check": "canary fails farah later extra 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked clause keys and classification match the brief",
+      "ok": true,
+      "detail": "{'collapsed-weather-heading': 'source-observation', 'wren-wants-to-wait-while-climbing': 'source-observation', 'people-shown-walking-up-before-asked': 'source-observation'}"
+    },
+    {
+      "check": "farah three ranked asks from the report",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 1",
+      "ok": true,
+      "detail": "farah line 4"
+    },
+    {
+      "check": "canary fails farah ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 1 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 2",
+      "ok": true,
+      "detail": "farah line 5"
+    },
+    {
+      "check": "canary fails farah ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 2 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 3",
+      "ok": true,
+      "detail": "farah line 6"
+    },
+    {
+      "check": "canary fails farah ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 3 prefix",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah section 8 ask 1",
+      "ok": true,
+      "detail": "farah line 145"
+    },
+    {
+      "check": "canary fails farah section 8 ask 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah section 8 ask 1 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah section 8 ask 2",
+      "ok": true,
+      "detail": "farah line 146"
+    },
+    {
+      "check": "canary fails farah section 8 ask 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah section 8 ask 2 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah section 8 ask 3",
+      "ok": true,
+      "detail": "farah line 147"
+    },
+    {
+      "check": "canary fails farah section 8 ask 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah section 8 ask 3 sameAsRankedAsk flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 1 later 0",
+      "ok": true,
+      "detail": "farah line 145"
+    },
+    {
+      "check": "canary fails farah ask 1 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 1 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 1 later 1",
+      "ok": true,
+      "detail": "farah line 112"
+    },
+    {
+      "check": "canary fails farah ask 1 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 1 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 1 later 2",
+      "ok": true,
+      "detail": "farah line 111"
+    },
+    {
+      "check": "canary fails farah ask 1 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 1 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 1 later 3",
+      "ok": true,
+      "detail": "farah line 109"
+    },
+    {
+      "check": "canary fails farah ask 1 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 1 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 1 later 4",
+      "ok": true,
+      "detail": "farah line 73"
+    },
+    {
+      "check": "canary fails farah ask 1 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 1 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 1 later 5",
+      "ok": true,
+      "detail": "farah line 52"
+    },
+    {
+      "check": "canary fails farah ask 1 later 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 1 later 5 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 1 later 6",
+      "ok": true,
+      "detail": "farah line 75"
+    },
+    {
+      "check": "canary fails farah ask 1 later 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 1 later 6 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 2 later 0",
+      "ok": true,
+      "detail": "farah line 146"
+    },
+    {
+      "check": "canary fails farah ask 2 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 2 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 2 later 1",
+      "ok": true,
+      "detail": "farah line 120"
+    },
+    {
+      "check": "canary fails farah ask 2 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 2 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 2 later 2",
+      "ok": true,
+      "detail": "farah line 122"
+    },
+    {
+      "check": "canary fails farah ask 2 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 2 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 2 later 3",
+      "ok": true,
+      "detail": "farah line 45"
+    },
+    {
+      "check": "canary fails farah ask 2 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 2 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 2 later 4",
+      "ok": true,
+      "detail": "farah line 129"
+    },
+    {
+      "check": "canary fails farah ask 2 later 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 2 later 4 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 2 later 5",
+      "ok": true,
+      "detail": "farah line 54"
+    },
+    {
+      "check": "canary fails farah ask 2 later 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 2 later 5 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 3 later 0",
+      "ok": true,
+      "detail": "farah line 147"
+    },
+    {
+      "check": "canary fails farah ask 3 later 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 3 later 0 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 3 later 1",
+      "ok": true,
+      "detail": "farah line 107"
+    },
+    {
+      "check": "canary fails farah ask 3 later 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 3 later 1 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 3 later 2",
+      "ok": true,
+      "detail": "farah line 66"
+    },
+    {
+      "check": "canary fails farah ask 3 later 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 3 later 2 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah ask 3 later 3",
+      "ok": true,
+      "detail": "farah line 42"
+    },
+    {
+      "check": "canary fails farah ask 3 later 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah ask 3 later 3 labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked collapsed-weather-heading has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked collapsed-weather-heading has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked collapsed-weather-heading target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked collapsed-weather-heading no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah unranked collapsed-weather-heading 0",
+      "ok": true,
+      "detail": "farah line 113"
+    },
+    {
+      "check": "canary fails farah unranked collapsed-weather-heading 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah unranked collapsed-weather-heading 1",
+      "ok": true,
+      "detail": "farah line 69"
+    },
+    {
+      "check": "canary fails farah unranked collapsed-weather-heading 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah unranked collapsed-weather-heading 2",
+      "ok": true,
+      "detail": "farah line 70"
+    },
+    {
+      "check": "canary fails farah unranked collapsed-weather-heading 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah unranked collapsed-weather-heading 3",
+      "ok": true,
+      "detail": "farah line 128"
+    },
+    {
+      "check": "canary fails farah unranked collapsed-weather-heading 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked wren-wants-to-wait-while-climbing has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked wren-wants-to-wait-while-climbing has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked wren-wants-to-wait-while-climbing target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked wren-wants-to-wait-while-climbing no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah unranked wren-wants-to-wait-while-climbing 0",
+      "ok": true,
+      "detail": "farah line 108"
+    },
+    {
+      "check": "canary fails farah unranked wren-wants-to-wait-while-climbing 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked people-shown-walking-up-before-asked has spans",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked people-shown-walking-up-before-asked has non-null target and route metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked people-shown-walking-up-before-asked target matches brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah unranked people-shown-walking-up-before-asked no semicolon or pipe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span farah unranked people-shown-walking-up-before-asked 0",
+      "ok": true,
+      "detail": "farah line 105"
+    },
+    {
+      "check": "canary fails farah unranked people-shown-walking-up-before-asked 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 0 Pavel history read complete, selected records not the whole archive",
+      "ok": true,
+      "detail": "pavel line 11"
+    },
+    {
+      "check": "canary fails supporting 0 Pavel history read complete, selected records not the whole archive",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 1 Pavel slow status messages not blamed on the game",
+      "ok": true,
+      "detail": "pavel line 17"
+    },
+    {
+      "check": "canary fails supporting 1 Pavel slow status messages not blamed on the game",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 2 Pavel typed nothing and pressed no Submit in Feedback",
+      "ok": true,
+      "detail": "pavel line 106"
+    },
+    {
+      "check": "canary fails supporting 2 Pavel typed nothing and pressed no Submit in Feedback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 3 Pavel phone drawing after the group moved higher is unseen",
+      "ok": true,
+      "detail": "pavel line 105"
+    },
+    {
+      "check": "canary fails supporting 3 Pavel phone drawing after the group moved higher is unseen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 4 Pavel both pulses at or after 180 s",
+      "ok": true,
+      "detail": "pavel line 77"
+    },
+    {
+      "check": "canary fails supporting 4 Pavel both pulses at or after 180 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 5 Pavel Stay-with cause is a guess",
+      "ok": true,
+      "detail": "pavel line 91"
+    },
+    {
+      "check": "canary fails supporting 5 Pavel Stay-with cause is a guess",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 6 Tessa driver speed not claimed to change an outcome",
+      "ok": true,
+      "detail": "tessa line 18"
+    },
+    {
+      "check": "canary fails supporting 6 Tessa driver speed not claimed to change an outcome",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 7 Tessa lead-on hint dependence is a guess",
+      "ok": true,
+      "detail": "tessa line 57"
+    },
+    {
+      "check": "canary fails supporting 7 Tessa lead-on hint dependence is a guess",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 8 Tessa did not scroll the phone log or open the Journal",
+      "ok": true,
+      "detail": "tessa line 117"
+    },
+    {
+      "check": "canary fails supporting 8 Tessa did not scroll the phone log or open the Journal",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 9 Tessa typed nothing and pressed no Submit in Feedback",
+      "ok": true,
+      "detail": "tessa line 122"
+    },
+    {
+      "check": "canary fails supporting 9 Tessa typed nothing and pressed no Submit in Feedback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 10 Nia diary is reconstructed, not word-for-word",
+      "ok": true,
+      "detail": "nia line 27"
+    },
+    {
+      "check": "canary fails supporting 10 Nia diary is reconstructed, not word-for-word",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 11 Nia earlier CONT input and excluded Warren body qualification",
+      "ok": true,
+      "detail": "nia line 14"
+    },
+    {
+      "check": "canary fails supporting 11 Nia earlier CONT input and excluded Warren body qualification",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 12 Nia 167 to 244 s wait discrepancy has no known cause",
+      "ok": true,
+      "detail": "nia line 79"
+    },
+    {
+      "check": "canary fails supporting 12 Nia 167 to 244 s wait discrepancy has no known cause",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 13 Nia one desktop tap error was a game state change",
+      "ok": true,
+      "detail": "nia line 118"
+    },
+    {
+      "check": "canary fails supporting 13 Nia one desktop tap error was a game state change",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 14 Nia typed nothing and pressed no Submit in Feedback",
+      "ok": true,
+      "detail": "nia line 126"
+    },
+    {
+      "check": "canary fails supporting 14 Nia typed nothing and pressed no Submit in Feedback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 15 Nia phone keyboard unseen",
+      "ok": true,
+      "detail": "nia line 120"
+    },
+    {
+      "check": "canary fails supporting 15 Nia phone keyboard unseen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 16 Rosa earlier CONT input qualification stands",
+      "ok": true,
+      "detail": "rosa line 15"
+    },
+    {
+      "check": "canary fails supporting 16 Rosa earlier CONT input qualification stands",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 17 Rosa Session B lines partly given as the reactions sent with driver ops",
+      "ok": true,
+      "detail": "rosa line 35"
+    },
+    {
+      "check": "canary fails supporting 17 Rosa Session B lines partly given as the reactions sent with driver ops",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 18 Rosa logged no want_quit",
+      "ok": true,
+      "detail": "rosa line 110"
+    },
+    {
+      "check": "canary fails supporting 18 Rosa logged no want_quit",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 19 Rosa panels and second mountain not reached",
+      "ok": true,
+      "detail": "rosa line 130"
+    },
+    {
+      "check": "canary fails supporting 19 Rosa panels and second mountain not reached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 20 Rosa unsure which Lead on tap worked",
+      "ok": true,
+      "detail": "rosa line 126"
+    },
+    {
+      "check": "canary fails supporting 20 Rosa unsure which Lead on tap worked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 21 Rosa typed nothing and pressed no Submit in Feedback",
+      "ok": true,
+      "detail": "rosa line 168"
+    },
+    {
+      "check": "canary fails supporting 21 Rosa typed nothing and pressed no Submit in Feedback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 22 Farah first no-picture thought",
+      "ok": true,
+      "detail": "farah line 33"
+    },
+    {
+      "check": "canary fails supporting 22 Farah first no-picture thought",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 23 Farah self-correction, there is a slope drawing",
+      "ok": true,
+      "detail": "farah line 40"
+    },
+    {
+      "check": "canary fails supporting 23 Farah self-correction, there is a slope drawing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 24 Farah supplied history was empty",
+      "ok": true,
+      "detail": "farah line 14"
+    },
+    {
+      "check": "canary fails supporting 24 Farah supplied history was empty",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 25 Farah missing item not diagnosed",
+      "ok": true,
+      "detail": "farah line 73"
+    },
+    {
+      "check": "canary fails supporting 25 Farah missing item not diagnosed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 26 Farah two missed taps were game state changes",
+      "ok": true,
+      "detail": "farah line 132"
+    },
+    {
+      "check": "canary fails supporting 26 Farah two missed taps were game state changes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 27 Farah Time slows for reading is not time stops",
+      "ok": true,
+      "detail": "farah line 110"
+    },
+    {
+      "check": "canary fails supporting 27 Farah Time slows for reading is not time stops",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 28 Farah phone Submit bar cut off at the bottom of the screen",
+      "ok": true,
+      "detail": "farah line 120"
+    },
+    {
+      "check": "canary fails supporting 28 Farah phone Submit bar cut off at the bottom of the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 29 Farah laptop Submit bar fully visible",
+      "ok": true,
+      "detail": "farah line 129"
+    },
+    {
+      "check": "canary fails supporting 29 Farah laptop Submit bar fully visible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "span supporting 30 Farah typed nothing and sent nothing in Feedback",
+      "ok": true,
+      "detail": "farah line 137"
+    },
+    {
+      "check": "canary fails supporting 30 Farah typed nothing and sent nothing in Feedback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 31 Pavel desktop Fast pace no visible difference (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 31",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 32 Pavel phone Stay-with cause unproven (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 32",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 33 Tessa laptop labels overlap near the hut (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 33",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 34 Nia desktop cannot hear me (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 34",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 35 Rosa desktop dismissed the reading note (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 35",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 36 Rosa desktop first Lead on uncertainty (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 36",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 37 Rosa phone Skip error op keeps a reaction (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 37",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 38 Rosa desktop Skip error op keeps a reaction (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 38",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 39 Farah phone Skip error op keeps a reaction (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 39",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 40 Farah laptop Nell label error op keeps a reaction (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 40",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 41 Farah laptop weather heading (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 41",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 42 Farah laptop Stay-with unknown effect (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 42",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "supporting raw 43 Farah phone first-minute no picture (raw reaction)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "canary raw 43",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "20 ledger rows",
+      "ok": true,
+      "detail": "20"
+    },
+    {
+      "check": "row 0 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2581 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 fix part contains each unranked clause in order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 row-date tail kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 1 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2582 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 fix part contains each unranked clause in order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 row-date tail kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 2 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2583 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 fix part contains each unranked clause in order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 row-date tail kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 3 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2584 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 fix part contains each unranked clause in order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 row-date tail kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 4 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2585 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 fix part contains each unranked clause in order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 row-date tail kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 5 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2586 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 6 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2587 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 first part target 2026-11-10 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 C14 only on 2587/2594",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 7 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2588 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 8 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2589 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 9 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2590 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 first part target 2026-11-10 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 10 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2591 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 11 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2592 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 12 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2593 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 13 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2594 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 first part target 2026-11-10 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 C14 only on 2587/2594",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 14 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2595 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 15 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2596 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 16 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2597 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 17 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2598 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 18 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2599 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "row 19 has 9 cells",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "check": "F-2600 id order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 words regenerated from extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 exactly one fix:rope",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 first part target 2026-11-03 open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 no C14 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 no blocker route type and no semicolon inside the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 every route part is an allowed vocabulary item",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 ask row has only the fix part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ids 2581..2600 contiguous",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no row F-2601..F-2610",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "20 fix:rope tokens total",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no fourth ranked ask text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 conditional C14 clause present, no calibration part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ask-ledger.json 15 rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ask-ledger.md equals ledger rows 6..20",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2586 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2587 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2588 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2589 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2590 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2591 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2592 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2593 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2594 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2595 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2596 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2597 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2598 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2599 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 json words",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 json in md row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2600 json target/C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "logical ledger 5 records",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 logical id/tester",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 returns equal extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 asks ids",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 unranked blockers in logical ledger carry classification and target",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 route equals ledger row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 in md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 desktop stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2581 phone stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 logical id/tester",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 returns equal extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 asks ids",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 unranked blockers in logical ledger carry classification and target",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 route equals ledger row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 in md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 phone stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2582 desktop stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 logical id/tester",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 returns equal extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 asks ids",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 unranked blockers in logical ledger carry classification and target",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 route equals ledger row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 in md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 phone stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2583 desktop stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 logical id/tester",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 returns equal extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 asks ids",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 unranked blockers in logical ledger carry classification and target",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 route equals ledger row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 in md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 phone stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2584 desktop stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 logical id/tester",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 returns equal extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 asks ids",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 unranked blockers in logical ledger carry classification and target",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 route equals ledger row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 in md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 phone stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2585 desktop stop == raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel history sha == freeze == dispatch",
+      "ok": true,
+      "detail": "c5fccb0ec605"
+    },
+    {
+      "check": "pavel brief sha == freeze == dispatch",
+      "ok": true,
+      "detail": "f0803346c1c8"
+    },
+    {
+      "check": "pavel preflight hashes agree",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel history lines 806",
+      "ok": true,
+      "detail": "806"
+    },
+    {
+      "check": "pavel history fully read, end marker on every successful read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel freeze characters == decoded history length",
+      "ok": true,
+      "detail": "128199 vs 128309"
+    },
+    {
+      "check": "pavel dispatch commit 99a42270",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel driver hashes identical across dispatches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel completion exit 0 and two clean pins",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel dispatch time before completion end",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel validation == final-driver-audit sessions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel no unexpected reads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel qualification file present only for nia/rosa",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone one stop 230.551 TASTE",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "pavel phone driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop one stop 271.27 BORED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "pavel desktop driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa history sha == freeze == dispatch",
+      "ok": true,
+      "detail": "92727f9103dd"
+    },
+    {
+      "check": "tessa brief sha == freeze == dispatch",
+      "ok": true,
+      "detail": "7f855fbb97fa"
+    },
+    {
+      "check": "tessa preflight hashes agree",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa history lines 756",
+      "ok": true,
+      "detail": "756"
+    },
+    {
+      "check": "tessa history fully read, end marker on every successful read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa freeze characters == decoded history length",
+      "ok": true,
+      "detail": "84530 vs 84593"
+    },
+    {
+      "check": "tessa dispatch commit 99a42270",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa driver hashes identical across dispatches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa completion exit 0 and two clean pins",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa dispatch time before completion end",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa validation == final-driver-audit sessions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa no unexpected reads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa qualification file present only for nia/rosa",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone one stop 190.697 BORED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "tessa phone driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop one stop 190.582 TASTE",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "tessa desktop driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia history sha == freeze == dispatch",
+      "ok": true,
+      "detail": "d894e8de4b96"
+    },
+    {
+      "check": "nia brief sha == freeze == dispatch",
+      "ok": true,
+      "detail": "3334931e4ed5"
+    },
+    {
+      "check": "nia preflight hashes agree",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia history lines 1097",
+      "ok": true,
+      "detail": "1097"
+    },
+    {
+      "check": "nia history fully read, end marker on every successful read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia freeze characters == decoded history length",
+      "ok": true,
+      "detail": "141840 vs 142082"
+    },
+    {
+      "check": "nia dispatch commit 99a42270",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia driver hashes identical across dispatches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia completion exit 0 and two clean pins",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia dispatch time before completion end",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia validation == final-driver-audit sessions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia no unexpected reads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia qualification file present only for nia/rosa",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone one stop 199.556 BORED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "nia phone driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop one stop 253.14 BORED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "nia desktop driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa history sha == freeze == dispatch",
+      "ok": true,
+      "detail": "46a72ac93bff"
+    },
+    {
+      "check": "rosa brief sha == freeze == dispatch",
+      "ok": true,
+      "detail": "b3e300f132b2"
+    },
+    {
+      "check": "rosa preflight hashes agree",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa history lines 1921",
+      "ok": true,
+      "detail": "1921"
+    },
+    {
+      "check": "rosa history fully read, end marker on every successful read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa freeze characters == decoded history length",
+      "ok": true,
+      "detail": "230569 vs 230965"
+    },
+    {
+      "check": "rosa dispatch commit 99a42270",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa driver hashes identical across dispatches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa completion exit 0 and two clean pins",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa dispatch time before completion end",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa validation == final-driver-audit sessions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa no unexpected reads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa qualification file present only for nia/rosa",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone one stop 195.581 BORED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "rosa phone driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop one stop 194.079 BORED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "rosa desktop driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah history sha == freeze == dispatch",
+      "ok": true,
+      "detail": "90262bed32a8"
+    },
+    {
+      "check": "farah brief sha == freeze == dispatch",
+      "ok": true,
+      "detail": "e2317ba66812"
+    },
+    {
+      "check": "farah preflight hashes agree",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah history lines 5",
+      "ok": true,
+      "detail": "5"
+    },
+    {
+      "check": "farah history fully read, end marker on every successful read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah freeze characters == decoded history length",
+      "ok": true,
+      "detail": "186 vs 186"
+    },
+    {
+      "check": "farah dispatch commit 99a42270",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah driver hashes identical across dispatches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah completion exit 0 and two clean pins",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah dispatch time before completion end",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah validation == final-driver-audit sessions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah no unexpected reads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah qualification file present only for nia/rosa",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone one stop 345.735 CONFUSED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "farah phone driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop one stop 324.278 CONFUSED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop stop == validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop stop within ceiling 1200 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop release-start commit 99a42270",
+      "ok": true,
+      "detail": "{\"app\": \"0.2.0\", \"framework\": \"4.15.0\", \"commit\": \"99a42270b014a54f490dc4b20b2c5f77b88b5dfb\", \"dirty"
+    },
+    {
+      "check": "farah desktop driver.out pid recorded, port == plan, driver v2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop no early first_minute/pulse by raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop validation early flags false",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop rows have t and elapsed_s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop every error row has a tool error string",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "plan device orders",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "15 recorded PIDs, all absent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "every driver.out pid is among them and distinct",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "late identities 13 + 11 absent",
+      "ok": true,
+      "detail": "[{\"tester\": \"rosa\", \"identities\": 13, \"allAbsent\": true}, {\"tester\": \"farah\", \"identities\": 11, \"allAbsent\": true}]"
+    },
+    {
+      "check": "10 ports all closed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ports match plan",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "command counts 361+4+3 = 368",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "round state closed, 5 reports, 10 stops, HOLD released",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "next round = last return + 15 min",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "last completion ended == last actual return",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "post-round release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "root delivery main pin and no browser",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ten reaction sessions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone reactions regenerate from raw",
+      "ok": true,
+      "detail": "16"
+    },
+    {
+      "check": "pavel phone raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel phone error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop reactions regenerate from raw",
+      "ok": true,
+      "detail": "15"
+    },
+    {
+      "check": "pavel desktop raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pavel desktop error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone reactions regenerate from raw",
+      "ok": true,
+      "detail": "18"
+    },
+    {
+      "check": "tessa phone raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa phone error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop reactions regenerate from raw",
+      "ok": true,
+      "detail": "14"
+    },
+    {
+      "check": "tessa desktop raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "tessa desktop error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone reactions regenerate from raw",
+      "ok": true,
+      "detail": "27"
+    },
+    {
+      "check": "nia phone raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia phone error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop reactions regenerate from raw",
+      "ok": true,
+      "detail": "21"
+    },
+    {
+      "check": "nia desktop raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia desktop error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone reactions regenerate from raw",
+      "ok": true,
+      "detail": "26"
+    },
+    {
+      "check": "rosa phone raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop reactions regenerate from raw",
+      "ok": true,
+      "detail": "21"
+    },
+    {
+      "check": "rosa desktop raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone reactions regenerate from raw",
+      "ok": true,
+      "detail": "27"
+    },
+    {
+      "check": "farah phone raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah phone error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop reactions regenerate from raw",
+      "ok": true,
+      "detail": "19"
+    },
+    {
+      "check": "farah desktop raw sha",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop backslash flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop not-in-report count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "farah desktop error rows w/o reaction counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "README per-session reaction table matches recomputed counts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "nia raw-driver-reactions.json equals wall-clock reaction rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "checkpoint tool errors recomputed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "35 screenshot entries",
+      "ok": true,
+      "detail": "35"
+    },
+    {
+      "check": "each device <= 6 captures and <= 5 manual",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "receipts per device equal manual shots",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "every manifest sha is 64 hex and no image in packet",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "image receipts total 25",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "source-map files exist byte-exact",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "source-map covers every non-generated file",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "source-map count = 5*(4+... ) dynamic",
+      "ok": true,
+      "detail": "85"
+    },
+    {
+      "check": "source-map absentAtSource lists exactly 3 absent qualification files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "source-map no hash of generated indexes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no index mentions a manifest hash",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no processes/stderr/transcript/png/provider files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "generated text names no provider key",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "briefs and histories only as .original.md.txt",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

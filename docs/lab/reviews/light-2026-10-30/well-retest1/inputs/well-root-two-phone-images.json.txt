@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-31T13:53:30.937731+00:00",
+  "by": "playtest root",
+  "scope": "Independent root view of existing retained PNGs; no new screenshot, browser or game action. Not evidence of producer perception.",
+  "files": [
+    {
+      "path": "well-codex/nia/phone/a-002.png",
+      "sha256": "8cc26c097c2465bd9fc822745391d5455bcca3037c0b9818a817b5d50866346d"
+    },
+    {
+      "path": "well-codex/emre/phone/b-002.png",
+      "sha256": "6b53b60cd92d2f9b5dd274443f36b131929993afca752391e53c7cb274d87c28"
+    }
+  ],
+  "observations": [
+    "Niaa002: Maryampersonpanel belowmap/suggestion showsactivity+chooseplaceprompt thenCurrentstoresandconstructionheading atbottom690edge; actionbuttonsnotvisibleinthisimage. Doesnotproveunreachableonscroll.",
+    "Emreb002: phone speechIacceptedtheadvice visibleinmapbottomleft withShowHumanvillagecontroloccupyingrightofsameverticalarea; actionplacebuttonsvisiblebelow. Staticimagealonecannotidentifyclickhitbox/occludercause orproveallphonecontrolsbroken. Actualtwoerrorrepliesseparatelybounded."
+  ],
+  "imagesViewed": 2
+}

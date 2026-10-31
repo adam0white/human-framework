@@ -1,0 +1,85 @@
+{
+  "scope": "Hash-bound aggregate only; no provider envelopes, tool commands, session paths or UUIDs. Retained responses do not establish attention or comprehension.",
+  "testers": [
+    {
+      "tester": "jonas",
+      "receiptSha256": "f518a97d641de46131ac20f26227e14aee7ff9ab8f67f8c4b7d7746291aa0e6b",
+      "receiptBytes": 3614,
+      "receiptMtimeNs": 1793460735004865493,
+      "historySha256": "ed3384b93d16771ad845e41a4483e8c73b9d51adba8ad81a8c61643ade41ab9a",
+      "historyLines": 2314,
+      "literalLinesMatched": 1122,
+      "unmatchedRanges": [
+        [
+          501,
+          1692
+        ]
+      ],
+      "imageCalls": 4,
+      "imageBlocks": 4,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    },
+    {
+      "tester": "aisha",
+      "receiptSha256": "991cf0989f4ebebbd114d1369a7341fb0040e896366c86064932b3b67d5e21ef",
+      "receiptBytes": 5418,
+      "receiptMtimeNs": 1793460735086383910,
+      "historySha256": "f6c1f82527bf9142548141b9a405bbad1b2aeb5e56dad1ce9e284303e0da19b2",
+      "historyLines": 1368,
+      "literalLinesMatched": 1368,
+      "unmatchedRanges": [],
+      "imageCalls": 3,
+      "imageBlocks": 3,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    },
+    {
+      "tester": "diego",
+      "receiptSha256": "845b08f30016bef165909990f9411996d918cfc8f8cc04a7c6894c87eee60682",
+      "receiptBytes": 4862,
+      "receiptMtimeNs": 1793461338208689184,
+      "historySha256": "3760c02047070a841cafb17547b3b2dd62767614e2fbf69b461e8c76a02ab619",
+      "historyLines": 1760,
+      "literalLinesMatched": 1760,
+      "unmatchedRanges": [],
+      "imageCalls": 6,
+      "imageBlocks": 6,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    },
+    {
+      "tester": "leila",
+      "receiptSha256": "1aaac38dca056214b80285170eb799cf74425d70fe520a11708cc683dff37a83",
+      "receiptBytes": 5922,
+      "receiptMtimeNs": 1793461338299195679,
+      "historySha256": "583d686932bb708491eba60728c729c0866ae78cc7be63b1be697e0bf9ebf4aa",
+      "historyLines": 1298,
+      "literalLinesMatched": 1298,
+      "unmatchedRanges": [],
+      "imageCalls": 4,
+      "imageBlocks": 4,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    },
+    {
+      "tester": "maelle",
+      "receiptSha256": "06c8eb8ff1f2d68a09f7fe57c72741696cc963df00735a74749da6a64d7ed5e9",
+      "receiptBytes": 2434,
+      "receiptMtimeNs": 1793461594433522656,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "historyLines": 5,
+      "literalLinesMatched": 5,
+      "unmatchedRanges": [],
+      "imageCalls": 4,
+      "imageBlocks": 4,
+      "matchesDispatchAndFreeze": true,
+      "matchesCompletionSessionHashAndBytes": true,
+      "scope": "Retained responses do not prove attention or comprehension."
+    }
+  ]
+}

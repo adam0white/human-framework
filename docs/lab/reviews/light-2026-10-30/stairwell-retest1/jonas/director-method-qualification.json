@@ -1,0 +1,66 @@
+{
+  "time": "2026-10-31T12:22:43.305767+00:00",
+  "status": "Qualified completion",
+  "reportSha256": "0419a419bb1d545e9ae1aed023b34dc021963b36bab3e86d353753ac434bcb71",
+  "historyRead": {
+    "lineCount": 1245,
+    "literalLinesCovered": 1245,
+    "unreadRanges": [],
+    "allLinesCovered": true
+  },
+  "commandCounts": {
+    "read": 14,
+    "curl": 69,
+    "malformed_shell_failure": 1
+  },
+  "commandExceptions": 1,
+  "actualTimedTags": {
+    "desktop": [
+      {
+        "op": "shot",
+        "kind": "first_minute",
+        "elapsed_s": 60.05,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "first_minute",
+        "elapsed_s": 65.483,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "stop",
+        "elapsed_s": 169.2,
+        "reason": "BORED"
+      }
+    ],
+    "phone": [
+      {
+        "op": "log",
+        "kind": "stop",
+        "elapsed_s": 53.765,
+        "reason": "BORED"
+      },
+      {
+        "op": "shot",
+        "kind": "first_minute",
+        "elapsed_s": 60.024,
+        "reason": null
+      }
+    ]
+  },
+  "qualifications": [
+    "Producer desktop169.201 vs raw169.200; preserve original report.",
+    "One note apostrophe shell failure beforecurl; corrected report/rawdifferentwording kept, no failure request or game fault inferred.",
+    "FirstGo-to-bakery input acknowledged without movement; retry moved. Nativeack!=outcome; no mechanism or gamebug established.",
+    "PartialFeedbacktext notpresent; currentexactname retryworked/pressed/Closefeedback. NoBack label, no note/Submit/consentchanges.",
+    "Current1245historylinesactuallyreturned; olderGoodHands599/939 and originalStairwellpremature175.492pulse remain historical limits.",
+    "Claims5manualimageviews, unsupportedview_imageeventschema meansindependentlyunverified. Sourceclippingclaims remain imageleads; separateMaya rootinspection is not proofJonasviewing.",
+    "Notebook0to1 afternewsgives reachedvisibleprogress; privatebiographystoryandfeelingstrustnotnotebookguarantees. Lemoncandylinevsreportedkindclaim is a sourcelead, not established fact/cause or authorization to expose hidden state.",
+    "OnlyMonday reached, noSundayvote/difficultyoutcome; deadlinesbatchincomplete, no need blanketretune.",
+    "Newblockersexplicitlynone; oldsameconversation/visibleconsequenceconditions remain. All3primaryrankedasks and3section8versions/fullreturnconditions preserved separately.",
+    "Both stops<180 no pulse; phone<60 nofirstminute log required. Automaticfirst-minute shot afterphonevoluntarystop is not continuedplay or a tester timedreaction."
+  ],
+  "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either."
+}

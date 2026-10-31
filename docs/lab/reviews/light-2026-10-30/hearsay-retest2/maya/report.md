@@ -1,0 +1,114 @@
+**Would you return voluntarily?** I would come back another evening only if the garden shows me that people react to what I did, for example someone changing how they treat Nermin after I praised her. I would not leave it running.
+
+**Ranked asks**
+1. Show a visible reaction to what I did. I praised Nermin to Derya and saw nothing happen, on the phone.
+2. Give a reason when someone cannot talk. Derya said "cannot talk now" and I never learned why or when.
+3. Show each line in the Garden record once. The Osman crates line appears in both the top block and the list.
+
+## 1. Session
+
+- **Persona:** Maya Chen. **Exposure:** retest, returning standing player. **Round and arm:** light-1031-hearsay-retest2, free stop (floor 0).
+- **Own history:** I read lines 1–1271 in three chunks. The last line read is 1271, "End of supplied own history". The unread range is none. Earlier method qualifications stay with the file. The retest1 report in it notes its own read reached lines 1–349 only. Other-game reports are only selected ones, not a full archive.
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, driver port 22900. It lasted about 108 s of driver time.
+- **Session B:** 1280x800 keyboard and mouse, light mode, driver port 22901. It lasted about 105 s of driver time.
+- **Cleanup:** I own no worktree or repo and started no process. `git worktree list` is not applicable.
+
+## 2. First impressions
+
+- **Phone, 2.5 s:** the same clean title as before. People appeared within seconds, with no lore wall.
+- **Phone, 7.1 s:** same opening. I tried Nermin this time instead of Rıza.
+- **Desktop, 2 s:** the title is a clean left-aligned column. At 5.6 s: "Aylin is someone I have not talked to yet in any visit."
+
+## 3. Verbatim diary
+
+**Session A (phone):**
+- 2.5 (shot a-001): "Same clean title as before. Beginning."
+- 7.1: "Same opening. Trying Nermin this time instead of Riza."
+- 13.2: "Nermin story is a real one. This time I keep it and help, since last time I betrayed one and wanted to see the other side."
+- 15.1: "Nermin drafted a correction because I helped. That is someone changing from my choice. Now Ece, whose refusals I remember."
+- 18.8: "Ece refusal shows in place again with a reason-ish line. Inviting her to talk instead."
+- 22.7: "Ece secret is new to me, a personal map of places to sit. Keeping it private. Still the game names the listener and claim before I tap, which I asked for earlier."
+- 32.3: "Praising Nermin honesty to Derya, since I helped her with the correction. The unusual reply is being kind in public."
+- 54.9: "This route let me choose both the person and the claim, which is what I asked for before. Waiting to see who reacts."
+- 57.1: "No visible reaction to my praise of Nermin; money just went up to 540. Now Derya quiet talk about her letter."
+- 62.0 first_minute (Day 1 07:24): "No lore wall; people within seconds. Nermin secret was new to me and helping her changed her next step (drafts a correction). I could pick the person and claim myself when talking about someone else. Derya says she cannot talk now but not why, and nobody reacted to my praise of Nermin that I could see."
+- 106.3 want_quit, TASTE: "Derya still cannot talk and nothing visibly reacted to my praise; I have seen the Day 1 loop again and want to try desktop."
+- 108.3 stop, TASTE, engagement 3 (Day 1 07:55): "I am stopping on the phone after about 105 seconds. Nermin and Ece gave new small secrets, helping Nermin changed what she did, and I could pick the person and claim myself. But Derya cannot talk with no reason, nobody visibly reacted to my praise, and I have seen the Day 1 loop. I want to try desktop."
+
+**Session B (desktop):**
+- 5.6 (reaction field): "Desktop, same evening. Aylin is someone I have not talked to yet in any visit."
+- 52.8 (Keep this private): "Aylin secret is a harmless dance class; keeping it private. New person for me."
+- 56.2 (opened the record): "Opening the record to see if it is shorter and whether the goal repeats."
+- 58.8 first_minute (Day 1 07:10): "No lore wall, people within seconds. Aylin is new to me and her secret was small and kind. The record is short on Day 1: the goal shows once, but the Osman crates line shows twice, once in the top part and once in the list." This was logged at 58.8 s, slightly before the 60 s mark.
+- 92.5 (wait 30): "Waiting to see if the garden changes or empties and whether anything new to do appears."
+- 95.5 (shot b-002): "Ece told Riza that Osman is not honest on her own at 7:19. So other people spread claims without me. That is a visible reaction in the world, which I missed on the phone."
+- 104.1 want_quit, TASTE: "I have seen the Day 1 opening three times now and want to stop here. Aylin was new and Ece spreading a claim on her own was the best moment."
+- 105.4 stop, TASTE, engagement 3 (Day 1 07:48): "I am stopping on desktop after about 100 seconds. Aylin gave a small new secret and Ece passed a claim to Riza on her own, which showed me the world moves without me. But I still could not tell whether my own choices change anything beyond Nermin, and I have seen this opening loop three times."
+
+## 4. Moments
+
+- **What held me:**
+  - Nermin drafted a correction because I helped her.
+  - Ece's refusal showed next to the buttons.
+  - Choosing both the person and the claim myself under "Talk about someone else".
+  - On desktop, Ece telling Rıza "Osman is not honest" without me.
+- **What lost me:**
+  - Derya said she could not talk and gave no reason.
+  - After I praised Nermin, nothing visible followed.
+  - I had now seen the Day 1 opening three times.
+- **Quit wishes:** both were TASTE. Neither passed, and I stopped each session.
+- **Pulses:** none. Both sessions ended before elapsed 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The Repeat button names the listener and the claim before I tap, including "It is not proof" and the risk to trust.
+  - The record was short on Day 1, with the goal shown once in the record.
+  - The status paragraph with the Day 13 goal is now at the top.
+- **Unclear:**
+  - Derya's "cannot talk now. You do not know when Derya will be free." stayed after about 30 s of waiting.
+  - The Osman crates line appears twice in the record on desktop.
+  - I could not tell whether money rising from 400 to 540 came from my choices or the normal tea trade.
+  - "Talk about someone else" is a collapsed group that I could only tap by its text.
+
+## 6. Device use
+
+- **Phone, a-001.png:** the title. A cream single column with "FOURTEEN DAYS IN THE NEIGHBOURHOOD", a large "Hearsay", the premise, a collapsed "How to play", and buttons Begin / Feedback / Fullscreen. Below those are two links, the Recording checkbox (checked), "Other ways to begin", a banner, Lab privacy and Debug. Nothing was clipped.
+- **Phone, a-002.png:** Derya's panel with her cannot-talk status, the Invite and Press buttons, and the open "Talk about someone else" group. It was readable and nothing was covered.
+- **Phone, a-003.png:** the Feedback sheet over the dimmed game. It was clean.
+- **Desktop, b-001.png:** the title, a left-aligned column with a large "Hearsay", the premise, collapsed "How to play", buttons Begin / Feedback / Fullscreen with the links, and a full-width banner. It was clean.
+- **Desktop, b-002.png:** the Aylin panel. The eight-person grid is on the left and the Aylin panel is on the right, with the record opened underneath. Nothing was clipped.
+- **Controls used:** on both devices I tapped people cards, Invite, Keep this private, Offer practical help, "Talk about someone else", Pour tea, the Garden record, Game menu, Feedback and Not now.
+- **Feedback on the phone:** "I'm stopping" would not match by name or text. A tap at screenshot point (102, 257) worked, then I pressed "Not now". I typed nothing, pressed no Submit and changed no consent.
+- **Feedback on desktop:** "I'm stopping" worked by name and showed [pressed]. Then I pressed "Not now", typed nothing and pressed no Submit.
+- **Automatic checkpoint:** not seen.
+- **Screenshots used:** phone 3 of 5, desktop 2 of 5.
+- **Unseen layout:** I did not view the phone at the Garden record.
+- **No trouble seen:** no layout trouble at either size.
+
+## 7. Stop and return
+
+- **Phone stop:** TASTE at about 108 s. In my own words: "I am stopping on the phone after about 105 seconds… I want to try desktop."
+- **Desktop stop:** TASTE at about 105 s. In my own words: "I am stopping on desktop after about 100 seconds… I have seen this opening loop three times."
+- **Return:** as above. I would come back another evening if I knew people react to my choices, and I would not leave it running while nothing visibly answers me.
+
+## 8. Changes I would want
+
+1. Show a visible reaction when I praise or accuse someone.
+2. Give a reason, or a time, when someone cannot talk.
+3. Show each Garden record line once.
+
+## 9. Compared with my last visit
+
+**First Hearsay report:**
+- **Choose who I repeat a secret to and what I say:** partly met. Under "Talk about someone else" I picked both the person and the claim. "Repeat this at another table" still names the listener and claim itself.
+- **Show refusals with a reason next to the button:** met for Ece, whose refusal showed in place ("Ece chooses to keep this private for now."). Derya's "cannot talk now" gave no reason.
+- **Shorten the Garden record and remove off-topic lines:** partly met. The Day 1 record on desktop was short. I did not see Day 4, and the Osman line appeared twice.
+
+**Retest1 report:**
+- **Something to do when everyone has left:** not seen. Everyone stayed at the garden in both sessions.
+- **Stop repeating the goal paragraph in the record:** met on Day 1 desktop. The goal showed once.
+- **Pick the listener myself on "Repeat this at another table":** did not meet it. The button still names the listener.
+
+**New blocking ask:** none. My two asks above come from what I reached this time: no visible reaction to praise, and no reason for Derya's refusal.

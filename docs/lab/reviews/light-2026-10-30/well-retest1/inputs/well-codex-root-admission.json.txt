@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-31T13:35:04.529696+00:00",
+  "by": "playtest root",
+  "admitted": true,
+  "game": "well",
+  "commit": "fee70f1da338ebe075cc630f9452c66f4d14bf17",
+  "runnerSha256": "b0f681784059e957858f274013e1f17352e944e45bf47cc44a7ac4d111aa2172",
+  "planSha256": "3b2bf25c52a6fc8f2ce728241a260d92e644e22de1b687458c40e45a055ace02",
+  "freezeSha256": "f8efa15c00437e1016822594c3f1bb050e2680700426a31ea9d1c5d984a9b21c",
+  "freshGatesSha256": "9ad7f70ee52cbb8298d9f437d34d4aa00b58583ae8384200ac6fdce406fb9d39",
+  "sourceCorrection": {
+    "kind": "signed squash, not two-parent merge",
+    "source": "3956e1805d1dad37e254031d4dd9237916748a22",
+    "tree": "9d5c9e9d784c9357391ebc75612de46a14095446",
+    "bothSignaturesVerified": true,
+    "freshMainCI": {
+      "conclusion": "success",
+      "headSha": "fee70f1da338ebe075cc630f9452c66f4d14bf17",
+      "status": "completed"
+    }
+  },
+  "projectProcessCorrection": {
+    "readOnlyCodexPromptFalsePositiveExcluded": 93111,
+    "currentProjectBrowserExecutables": [],
+    "currentDriverOrSuiteInvocations": [],
+    "ownerChromeUntouched": true
+  },
+  "centralC2": {
+    "actualExit": 1,
+    "returnSha256": "8eb28fee52cc1145cb1a5824f70b3e713329703025cd2133dd09be30087efe99",
+    "recordedIdentitiesRechecked": 67,
+    "technicalPass": false
+  },
+  "fullSuiteCleanupSha256": "1e9d01f21d560e1e066c9acd92aa20154c125349b2bdefe2891fe1d0a6c135dd",
+  "freshRelease": {
+    "app": "1.0.0",
+    "framework": "4.15.0",
+    "frameworkLibrary": "4.15.0",
+    "commit": "fee70f1da338ebe075cc630f9452c66f4d14bf17",
+    "dirty": false
+  },
+  "freeBytes": 49762402304,
+  "limits": "Ordinary fresh New game contexts only; no file import/owner profile/recording changes. No wider technical or player acceptance. Serial one tester/two contexts. Source deployment HOLD until actual closure. Codex Terra low during Claude brake.",
+  "reservedIds": "F2731\u20132760, unused globally on immediate source/coord check; allocate actual asks only"
+}

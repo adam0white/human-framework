@@ -664,3 +664,209 @@ The `first_minute` lines were logged at 61.6 s (desktop) and 63.3 s (phone), aft
 First visit to this game. I carried only my general habit from other HF games: I ask what a person needs first, and I dislike one obviously rewarded answer. In this game I found that answer in 30 seconds. Then I found the lie, which was better.
 
 I created no worktrees, servers or browsers and touched no repository.
+<!-- selected-continuity-key: light-1030:glance-retest2:samir:free -->
+## 2026-10-31 glance-retest2 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/glance-retest2/samir/report.md), [exact producer original](../reviews/light-2026-10-30/glance-retest2/samir/report.original.md.txt), original SHA256 `b9a9f7a4216fc9721474cee8f472fcd991566afcd5ba04086f9dc173c188b437`. Method qualification: [samir](../reviews/light-2026-10-30/glance-retest2/samir/director-method-qualification.json).
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+**Would you return voluntarily?** I might come back another evening, on desktop only, if I could answer Dai or learn who the town people are, and if the waiting cost much less. I would not leave it running. I would not come back on the phone tonight.
+
+**Ranked asks**
+1. Give me someone to talk to besides Dai: a way to ask him about himself or the town, and to meet Nerys and Wren.
+2. Cut the idle waiting. Both sessions were mostly half-minute waits with nothing for me to do.
+3. Make the first level reading appear sooner, or say why the tile starts as a dash.
+
+## 1. Session
+
+- Persona: Samir Haddad. Exposure: RETEST (second return). Round light-1031-glance-retest2, arm free stop (floor 0).
+- History: I read all 749 lines of own-history.md in three chunks, through the End marker. Nothing is unread. The other games in it (Warren, Voice, Watch, Pass, Valley, Commonstead, Lefthand, Word) I used only for how I tend to play.
+- URL: https://glance.adamwhite.work/?labRunSource=agent
+- Session A, phone 360x690, port 22802: about 82 s. Session B, desktop 1280x800, port 22803: about 98 s.
+- I started a new game in each. I did not scroll or drag.
+
+## 2. First impressions
+
+- Phone, 3 s: the title page is tidy, with a sample chart. The Start button covers the intro text.
+- Phone, 10 s: Dai is resting, and the level tile is a dash.
+- Phone, 11.7 s: after I called Dai, the tile showed 4.00 m with its read time. That is new.
+- Desktop, 1.6 s: the title chart is cropped at the bottom by the Start button.
+- Desktop, 7.8 s: the start level is 3.5 and Dai is resting. The two sessions started differently again.
+
+## 3. Verbatim diary (elapsed s)
+
+Phone:
+- 5.379: "Phone first. Title as before. Starting valley dam."
+- 11.736: "Same opening as before, shorter. Dai resting; I call him for a number."
+- 13.61: "Level tile now shows 4.00 m with read time, not a dash. That was my ask. Skipping."
+- 70.345 first_minute: "Phone: level tile now keeps 4.00 m with its read time and a was-line, my last ask. Opening short. Still only Dai, nothing to answer, nothing needs me."
+- 81.898 stop, BORED, engagement 3: "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me. Pressed Im stopping in Feedback, then Back, typed nothing."
+
+Desktop:
+- 3.514: "Desktop, other device same evening. Starting valley dam."
+- 10.015: "Desktop opening the same. I still want to know who Nerys and Wren are."
+- 64.595 first_minute: "Desktop: opening short, standing request saved, Dai reading on his own. Level tile still a dash because nobody has read tonight. Nerys and Wren still unexplained. Nothing to do but wait."
+- 98.002 stop, BORED, engagement 3: "Stopping desktop at about 96 seconds, Mon 23:38. Level tile now keeps 4.10 m with its age and a was-line, which I asked for. Standing request saved and Dai reads on his own. But still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained. Pressed Im stopping in Feedback, then Back, typed nothing."
+
+The first_minute lines were logged after 60 s (70.3 s phone, 64.6 s desktop). Both sessions ended before 180 s, so I logged no pulse. I logged no separate want_quit. The apostrophe in my stop lines was dropped ("Im stopping") because my first attempt at escaping failed.
+
+## 4. Moments
+
+- Held me:
+  - The level tile now keeps its last reading with its age and a "was" line.
+  - The lightning flash showing the dam wall.
+  - Dai saying "I'm sure of it" when he read 4.0. That makes his reading something I can doubt.
+- Lost me:
+  - Nothing needed me for half-minute stretches.
+  - I could not talk to anyone but Dai.
+  - Nerys and Wren are still unexplained.
+- Quit wishes: the BORED feeling was there from about 60 s on both devices. It did not pass.
+- Pulses: none, because both sessions ended before 180 s.
+
+## 5. Confusion and clarity
+
+- Clear: the level tile's age and "was" line. The standing-request wording ("He still decides whether he can do the work").
+- Confusing:
+  - Different start levels (4.0 on the phone, 3.5 on the desktop).
+  - "(as written)" on the readings, still unexplained.
+  - On desktop the level tile stayed a dash until about 23:13, because nobody had read it, even after I saved a request.
+- I never reached dawn or any gate opening.
+
+## 6. Device use
+
+- Phone: I viewed phone/b-001.png (title page). Sketch visible, Start button over the intro, recording banner below. I took no other phone shots.
+- Desktop: I viewed desktop/a-001.png (title page). The chart is readable, and its bottom (the bridge line) is cut by the Start button. I took no game-screen shots and no automatic checkpoint.
+- Controls used: Start game, Ask Dai to read the level, Skip, Watch arrangements, the gate-turns select, Save this request, Back, Game menu, Feedback, "I'm stopping", "← Back".
+- Layout trouble seen: only the cropped chart on both title pages. I saw no game-screen layout in a screenshot, so I cannot say whether the phone game screen fits this time.
+- Feedback: on both devices "I'm stopping" and "I'm confused" were offered. I pressed "I'm stopping" (the button showed pressed), then "← Back". I typed nothing, submitted nothing and changed no consent or recording setting.
+
+## 7. Stop and return
+
+- Phone stop (82 s, BORED): "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me."
+- Desktop stop (98 s, BORED): "Stopping desktop at about 96 seconds, Mon 23:38. … still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained."
+- Return: I might come back another evening on desktop, if I could answer Dai or learn who the town people are, and if each step cost much less waiting. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight, because I already know the loop from desktop.
+
+## 8. Changes I would want
+
+1. Let me talk to someone besides Dai, or ask him about himself and the town.
+2. Cut the idle waiting, or give me something to decide while Dai rests.
+3. Show or explain the first level reading earlier, and explain "(as written)".
+
+## 9. Compared with my last visit
+
+Round 1 and first-retest asks:
+- Answer Dai, or ask him about the town: did not meet it. I never saw the Morgan question this time, because both sessions ended early. I saw no reply control.
+- Cut the opening wall of text and introduce Nerys, Bilal and Wren one at a time: partly met. The opening is short and Bilal still has his one-line note. Nerys and Wren are still unexplained.
+- Phone: show the level and gauges, with the banner off them: not seen. I viewed only the title page on the phone.
+- Show the level tile's last reading with its age instead of "not read": met. Both devices showed it, e.g. "4.10 m, Dai · read 23:13, was 3.5, read 22:00". The tile was still a dash before the first reading on desktop.
+- Cut the waiting (about 30 real seconds per step): did not meet it. I waited 22 to 30 s at a time on both devices.
+- New blocking ask: none beyond the above.
+
+No repo touched; no worktree of mine remains.
+<!-- selected-continuity-key: light-1030:word-retest1:samir:free -->
+## 2026-10-31 word-retest1 — free stop
+
+Source: [exact inert own report](../reviews/light-2026-10-30/word-retest1/samir/report.md.txt), SHA256 `529ef7cf91c692731b8acf863af761fca9507047bc85dd19ac75d18cbe0c951d`. Method qualification: [samir](../reviews/light-2026-10-30/word-retest1/samir/director-method-qualification.json.txt). Codex history and image evidence has the limits stated in the packet and its method qualification; retained responses do not prove attention or perception. This cohort omitted mandatory Rosa coverage; see [protocol audit](../reviews/light-2026-10-30/rosa-light-protocol-audit.md). No Rosa visit or opinion is inferred.
+
+**Exact producer report follows in a text fence.**
+
+```text
+I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.
+
+**Ranked asks**
+
+1. Let me ask Halil and Rıza what Nuri actually said to each of them.
+2. Give me a longer meeting with more people and choices after the first agreement.
+3. Show the phone’s opening action without making me scroll past the whole introduction.
+
+## 1. Session
+
+I am Samir Haddad, returning to **His Word** for round **light-1031-word-retest1**, free-stop arm. I started a fresh, independent game on each device at https://word.adamwhite.work/?labRunSource=agent.
+
+I read all 851 lines of my supplied [own history](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md), including my earlier His Word report and the later diaries. The last line read was “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread ranges: none.** My earlier His Word report is the source of my memories of this game.
+
+- **Desktop:** 1280×800, keyboard and mouse, port 22605. Stop logged at **57.007 seconds**.
+- **Phone:** 360×690, touch, port 22604. Stop logged at **26.472 seconds**.
+
+Recording remained at its default. I read the cleanup rule. The coordinator owns the drivers and browsers.
+
+## 2. First impressions
+
+On desktop at **5.488 seconds**, the notebook and Nuri’s promises brought back Halil, Rıza and the lie they caught. I was fairly sure of the names. At **7.140 seconds**, the same clash appeared, now with 24 minutes and ₺100 for my journey home. I wanted to hear the people first.
+
+On the phone at **5.228 seconds**, the recording page fit. I knew the meeting from desktop and wanted to look at the private words. At **10.041 seconds**, the introduction filled the visible screen and the first action was below it, as on my earlier visit.
+
+## 3. Verbatim diary
+
+These are my reaction and log texts exactly as entered, in order. Times are driver `elapsed_s`.
+
+**Desktop**
+
+- **5.488, tap:** “The same notebook and Nuri promises. I remember Halil and Riza and the lie they caught; fairly sure of those names. Sitting down again.”
+- **7.140, tap:** “The same clashing promises, but now there are 24 minutes and money for my journey home. I want to hear them first.”
+- **20.265, note:** “Riza now offers his yard for morning work. I remember the paid break and cart at four, but not that yard; I am not sure whether it is new. It gives me a place to hold onto.”
+- **26.731, tap:** “Ferda needs to know whether late work pays. I will fetch it while Riza is away.”
+- **33.399, note:** “Now the honest late agreement costs 40 of my 100 home money. That makes me pause. The yard costs 60; I choose the late work and keep 60 for home.”
+- **44.266, note:** “They kept their word a month later, and I still have train money. The cost gave the decision weight, though everyone agreed readily again. I would like to read what I missed.”
+- **47.986, want_quit, FINISHED:** “The meeting is over and the notebook recounts what I did. I would stop here; I do not need another run tonight.”
+- **57.007, stop, FINISHED:** “I am stopping after the agreement. The 40 lira cost made me think, and the month-later account told me what happened. Everyone still agreed readily. I chose I am stopping and Not now, typed nothing and sent nothing.”
+
+**Phone**
+
+- **5.228, tap:** “Phone again, same evening. The recording page fits and I know the meeting now. I want to see the private words before making an agreement.”
+- **10.041, tap:** “The opening again fills the phone screen; the action is below what I can see. I know where to go from desktop.”
+- **13.261, note:** “The private words are right at the table now, as I wanted. They are still opposite claims that everyone agreed. I remember them comparing notes and catching me last time; fairly sure. I do not want to lie again.”
+- **18.276, want_quit, BORED:** “I have just settled this meeting on desktop and I remember the private lie. I would leave the phone here rather than repeat it tonight.”
+- **26.472, stop, BORED:** “I am stopping on the phone before an agreement. I have just played this meeting and do not want to repeat the lie tonight. The opening action is below the screen. I chose I am stopping and Not now, typed nothing and sent nothing.”
+
+Neither session reached 60 seconds, so I logged no first-minute note. Neither reached 180 seconds, so there were no pulses.
+
+## 4. Moments
+
+Rıza’s offer of his yard made the arrangement feel more grounded in a place. Ferda’s uncertainty sent me to the letter, and the choice between paying ₺40 for the late service and ₺60 for the yard made me pause. The ending then said the four kept their word a month later and that I had enough for the train.
+
+The agreement still came together readily once I had asked the four people and fetched the letter. The desktop quit wish came after the **AGREED** ending and did not pass. On the phone, I found the private promises at the table, remembered the previous lie and stopped before making an agreement. That quit wish did not pass either.
+
+## 5. Confusion and clarity
+
+The costs and timing were clear in the agreement list: writing took two game minutes, signatures one each, and the late-service agreement cost ₺40. The signing screen also stated how many minutes the remaining signatures needed. The ending confirmed the contribution and the train money.
+
+I was uncertain whether Rıza’s yard offer was new; my supplied earlier report does not establish that I saw it. I found no way in the conversations I reached to ask either man what Nuri actually said. I did not feel sufficiently confused to choose the confusion feedback label.
+
+## 6. Device use
+
+On desktop I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/desktop/a-001.png): a readable cream notebook card on a dark background, with the recording notice and **Take a seat** visible. I used the named controls to hear each person, fetch the letter, write the late-service agreement, collect signatures, read the notebook, and open Feedback. I did not view a desktop game-screen screenshot, so I cannot assess that layout visually.
+
+On the phone I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-001.png): the recording page fit, including **Take a seat**. I also viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-002.png): the opening story extended below the screen, and its first action was not visible. I used named taps to reach the table, inspect private words, return, and open Feedback. I did not scroll, so I cannot describe how the opening behaves during a real thumb scroll.
+
+On both devices, Feedback offered **“I’m stopping”** and **“I’m confused.”** I selected **“I’m stopping”** and the page opened a draft with that label prefilled in the note field. I pressed **Not now**. I typed and submitted nothing and changed no consent or recording setting. There were no driver errors.
+
+## 7. Stop and return
+
+Desktop stopped at **57.007 seconds**, **FINISHED**:
+
+> I am stopping after the agreement. The 40 lira cost made me think, and the month-later account told me what happened. Everyone still agreed readily. I chose I am stopping and Not now, typed nothing and sent nothing.
+
+Phone stopped at **26.472 seconds**, **BORED**, before an agreement:
+
+> I am stopping on the phone before an agreement. I have just played this meeting and do not want to repeat the lie tonight. The opening action is below the screen. I chose I am stopping and Not now, typed nothing and sent nothing.
+
+I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight. The cost made the honest choice more interesting, but I had just settled the meeting and did not want to repeat the private lie.
+
+## 8. Changes I would want
+
+1. Let me ask Halil and Rıza what Nuri actually said to each.
+2. Give me a longer meeting with more people and choices after the first agreement.
+3. Bring the phone’s opening action into view sooner.
+
+## 9. Compared with my last visit
+
+- **Make the honest route cost something:** **Met for the route I reached.** I paid ₺40 from the ₺100 journey fund, and the ending addressed what remained. Everyone still signed readily.
+- **Show the private-word lie earlier, or give the honest route private choices:** **Partly met.** “Speak to someone in private” was visible at the table before I wrote an agreement. I saw the two opposite promises there. I did not see an honest private choice.
+- **Let me ask more than what people need, including what Nuri really said:** **Did not meet it in the conversations I reached.** Halil and Rıza repeated their claims and explained their needs, but I saw no question about the original promises.
+
+**New blocking ask:** None from what I reached.
+
+No repo touched; no worktree of mine remains.
+```

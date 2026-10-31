@@ -1,0 +1,499 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/report.md",
+    "destination": "aisha/report.md",
+    "sha256": "084b69151ac5c637192bee581a458e6f31468020338d6e09d09c7f5a2b9f789a",
+    "bytes": 11151,
+    "mtime_ns": 1793451101836206543
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/brief.md",
+    "destination": "aisha/brief.md",
+    "sha256": "7e5221c477dc76a4a8f55e6961fab2ad3048334334b7f511f0a27ccbc2fa0e03",
+    "bytes": 15300,
+    "mtime_ns": 1793450174448446885
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/own-history.md",
+    "destination": "aisha/own-history.md",
+    "sha256": "a5314ca657db18ff276bf5e95e37062191b69fe4b6b9f35fac373516b6a15111",
+    "bytes": 165723,
+    "mtime_ns": 1793450174447485633
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/history-source-map.json",
+    "destination": "aisha/history-source-map.json",
+    "sha256": "e2e97dad69f2668a7b6ec79c079b0102aceea2afc2732abfd86b208af73e5cf9",
+    "bytes": 5506,
+    "mtime_ns": 1793450174447874426
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/dispatch.json",
+    "destination": "aisha/dispatch.json",
+    "sha256": "086d20402af62c06d350406b2045a3d7fd0c13a0378572edd288af73373a01a7",
+    "bytes": 2115,
+    "mtime_ns": 1793450884167923417
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/director-method-qualification.json",
+    "destination": "aisha/director-method-qualification.json",
+    "sha256": "5d854b2bf287c3f7e0535a9c04f0f2b0c5648530ef128499181c8029fae1f782",
+    "bytes": 2367,
+    "mtime_ns": 1793451191100933932
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/raw-reactions-companion.json",
+    "destination": "aisha/raw-reactions-companion.json",
+    "sha256": "4d2e8bd5479994ccb3ea365e4b5783d11199cca175c917a8fb81e10871af4a17",
+    "bytes": 4078,
+    "mtime_ns": 1793451191093101825
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/wall-clock.jsonl",
+    "destination": "aisha/phone/wall-clock.jsonl",
+    "sha256": "8098e499309ca4001ab0326dd16f310f3b66ed9e0b2543506f527def4a49b3b5",
+    "bytes": 4863,
+    "mtime_ns": 1793451099129795869
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/driver.out",
+    "destination": "aisha/phone/driver.out",
+    "sha256": "1a17f26a8d9b5e2f30f2900522361b4e62f337c04c306727c30205b0966df978",
+    "bytes": 84,
+    "mtime_ns": 1793450883561189042
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/phone/release-start.json",
+    "destination": "aisha/phone/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793450883155555193
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/wall-clock.jsonl",
+    "destination": "aisha/desktop/wall-clock.jsonl",
+    "sha256": "ca4ae722abf4b636df22166e3960ef2bd35e8ae234e5b1701e723a4bb4872a1e",
+    "bytes": 13321,
+    "mtime_ns": 1793451037748727707
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/driver.out",
+    "destination": "aisha/desktop/driver.out",
+    "sha256": "5e8bfbb97567e7222e5bc4c6d67118813edbeb4addae22766dbfce2fd4664ac3",
+    "bytes": 84,
+    "mtime_ns": 1793450883502160906
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/desktop/release-start.json",
+    "destination": "aisha/desktop/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793450883063580706
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/report.md",
+    "destination": "mei/report.md",
+    "sha256": "9632f013492f51e90b6e17116b9c9d6c68595613631bf17f3bef7e8a10d7e4b5",
+    "bytes": 12380,
+    "mtime_ns": 1793451529378799592
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/brief.md",
+    "destination": "mei/brief.md",
+    "sha256": "a347fe8deba360f135abc53665c51de82a7e16fd2da490e29349da7f2f76ee6e",
+    "bytes": 15230,
+    "mtime_ns": 1793450174523496123
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/own-history.md",
+    "destination": "mei/own-history.md",
+    "sha256": "689dbeffdc4a86d185e4aa1cba4e8c975674d9a3a77f39447466538de733102f",
+    "bytes": 142749,
+    "mtime_ns": 1793450174522659079
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/history-source-map.json",
+    "destination": "mei/history-source-map.json",
+    "sha256": "1644b21f735f59a135e58c25676412a44c2eebb41e60160da8c7c410efe61cca",
+    "bytes": 5108,
+    "mtime_ns": 1793450174522862788
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/dispatch.json",
+    "destination": "mei/dispatch.json",
+    "sha256": "a53ea08e14ff422e630a6ae58b17a59bde4ee0a0c7e211804a9ba04e566e6599",
+    "bytes": 2115,
+    "mtime_ns": 1793451105822935128
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/director-method-qualification.json",
+    "destination": "mei/director-method-qualification.json",
+    "sha256": "f6f4b7906ada43d8cc3dc11452968cda8c48d28750ca6cc65cbaba0622424fad",
+    "bytes": 3067,
+    "mtime_ns": 1793451627685358032
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/raw-reactions-companion.json",
+    "destination": "mei/raw-reactions-companion.json",
+    "sha256": "b95204eaa2003baa26f8de521af0b06773cb43c76825b9e0b73fb11a5919d032",
+    "bytes": 4662,
+    "mtime_ns": 1793451627675690664
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/phone/wall-clock.jsonl",
+    "destination": "mei/phone/wall-clock.jsonl",
+    "sha256": "145d823913559541b43deab5e1fe8fd34a8d22101eb6edb111c929104fbcc80b",
+    "bytes": 10199,
+    "mtime_ns": 1793451266868271674
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/phone/driver.out",
+    "destination": "mei/phone/driver.out",
+    "sha256": "ff03b4e254e5cc5521778e1d606edee588d28c66fbbbf5d7c9930cf200b42537",
+    "bytes": 85,
+    "mtime_ns": 1793451105081202346
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/phone/release-start.json",
+    "destination": "mei/phone/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793451104707181841
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/desktop/wall-clock.jsonl",
+    "destination": "mei/desktop/wall-clock.jsonl",
+    "sha256": "f79f435be4085178f8863dd0bbcf5044c535d7fca51cb8a14b670980362aca81",
+    "bytes": 11100,
+    "mtime_ns": 1793451502311104287
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/desktop/driver.out",
+    "destination": "mei/desktop/driver.out",
+    "sha256": "9e696de6d354bc9071a336aaae6a6e5a9be9bd535e811e5b881c1fb1e1e3e295",
+    "bytes": 85,
+    "mtime_ns": 1793451105170720616
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/desktop/release-start.json",
+    "destination": "mei/desktop/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793451104808664272
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/report.md",
+    "destination": "nia/report.md",
+    "sha256": "8ef5e97e4357b6fc67a268404a0a917db682ed10ee92cd761d9c3060bb8441e4",
+    "bytes": 10073,
+    "mtime_ns": 1793451741501840561
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/brief.md",
+    "destination": "nia/brief.md",
+    "sha256": "7c927eefb0940456bdd40950574188e5830f90d0d8a6d96fa90dd39d7c583a64",
+    "bytes": 15256,
+    "mtime_ns": 1793450174597719316
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/own-history.md",
+    "destination": "nia/own-history.md",
+    "sha256": "744b1b5eeb1828c1f01ef6511a87220cb3d00807cf3f439b308b50578c35a2a7",
+    "bytes": 163633,
+    "mtime_ns": 1793450174597004064
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/history-source-map.json",
+    "destination": "nia/history-source-map.json",
+    "sha256": "544eea55e5df427cadae67d7aa6b9f7c05e26d6bf4c4f507c97a52b930987846",
+    "bytes": 5681,
+    "mtime_ns": 1793450174597181773
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/dispatch.json",
+    "destination": "nia/dispatch.json",
+    "sha256": "9bfb8bba691e20ddde5d5479b66ea24ca4ad1b468eb62e55c4ca3ce90a57a1c6",
+    "bytes": 2115,
+    "mtime_ns": 1793451532777050457
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/director-method-qualification.json",
+    "destination": "nia/director-method-qualification.json",
+    "sha256": "798fb6da207af92d75462bdc7e5e06b7fab0ef95a88533d627ce996a734d96d0",
+    "bytes": 2148,
+    "mtime_ns": 1793451865936620573
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/raw-reactions-companion.json",
+    "destination": "nia/raw-reactions-companion.json",
+    "sha256": "ff3a881f681b31c4fa3538594bf9b8d9eda1a27ab1c7cef314c8ca36e517c22a",
+    "bytes": 4706,
+    "mtime_ns": 1793451865928139584
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/wall-clock.jsonl",
+    "destination": "nia/phone/wall-clock.jsonl",
+    "sha256": "451f498452d68f86f754cb5e8c5669b01386ab573e7b0bb24d3ddf556a2a0841",
+    "bytes": 6335,
+    "mtime_ns": 1793451719225269599
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/driver.out",
+    "destination": "nia/phone/driver.out",
+    "sha256": "9815ce1f9550f83fc906cb170eaff354d441f4dbea629209d77e950fdae9fd93",
+    "bytes": 85,
+    "mtime_ns": 1793451532130857261
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/release-start.json",
+    "destination": "nia/phone/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793451531760758281
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/wall-clock.jsonl",
+    "destination": "nia/desktop/wall-clock.jsonl",
+    "sha256": "38929a1cb35fd1bef4574f120c733f0394b50c76e6f42c2a559ea023b7c97156",
+    "bytes": 8142,
+    "mtime_ns": 1793451650762405083
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/driver.out",
+    "destination": "nia/desktop/driver.out",
+    "sha256": "d4dfebc8d1b8a728487d26f1bb10e480440796f78e1c181fb1d158720429bcda",
+    "bytes": 85,
+    "mtime_ns": 1793451532056007070
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/release-start.json",
+    "destination": "nia/desktop/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793451531657400487
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/report.md",
+    "destination": "rosa/report.md",
+    "sha256": "8683007f61035261bb9a3e778ca58a95530b25cb902d4c8ec8149b9fc3de6142",
+    "bytes": 12109,
+    "mtime_ns": 1793451924895141151
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/brief.md",
+    "destination": "rosa/brief.md",
+    "sha256": "ae7449199caf088690774de32000be5ff51e491d0c019c72f92bb9ace89dc52f",
+    "bytes": 16060,
+    "mtime_ns": 1793450174686020296
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/own-history.md",
+    "destination": "rosa/own-history.md",
+    "sha256": "4800c3606d8bdc83d63a8066f18e0348e46eb57dfdb784953fe53860080068c5",
+    "bytes": 308550,
+    "mtime_ns": 1793450174685189794
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/history-source-map.json",
+    "destination": "rosa/history-source-map.json",
+    "sha256": "33b73425c7281e6cf6cbde2fc2bb25940a83c602a6fe0ce5e1d2d649be0f0638",
+    "bytes": 10762,
+    "mtime_ns": 1793450174685387294
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/dispatch.json",
+    "destination": "rosa/dispatch.json",
+    "sha256": "c0db6602c4109630c0378372aabb9775e731e7ecd3cbd9b543a08d24cf559cb9",
+    "bytes": 2115,
+    "mtime_ns": 1793451744389069488
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/director-method-qualification.json",
+    "destination": "rosa/director-method-qualification.json",
+    "sha256": "d75fb2dd09f71fe5a44064cf11cb27339a055b9d40c2c5265214bc0f95c3531a",
+    "bytes": 2415,
+    "mtime_ns": 1793452133228799446
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/raw-reactions-companion.json",
+    "destination": "rosa/raw-reactions-companion.json",
+    "sha256": "ca8bb498375eb854293fe88f851f889bbf5a1cc1ccd9f7b379e899807cce3f84",
+    "bytes": 5163,
+    "mtime_ns": 1793452133221082668
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/phone/wall-clock.jsonl",
+    "destination": "rosa/phone/wall-clock.jsonl",
+    "sha256": "8067c9a86bd510d6d3e8325684adc651b07369b27c47b88b1c7c9a63cf44f24a",
+    "bytes": 8085,
+    "mtime_ns": 1793451841393380874
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/phone/driver.out",
+    "destination": "rosa/phone/driver.out",
+    "sha256": "3cb674d52401a55266d632ac14b46b492e7e265b7077edbe99cd09d3b21d2994",
+    "bytes": 85,
+    "mtime_ns": 1793451743709769420
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/phone/release-start.json",
+    "destination": "rosa/phone/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793451743280480501
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/desktop/wall-clock.jsonl",
+    "destination": "rosa/desktop/wall-clock.jsonl",
+    "sha256": "889bdb3aa31133e6908b57d81011e6fe03a85f6baa8f6f47d38fbc47936a7d1b",
+    "bytes": 5506,
+    "mtime_ns": 1793451903734219325
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/desktop/driver.out",
+    "destination": "rosa/desktop/driver.out",
+    "sha256": "fad4205ee769238ca081155e2108d24c55c6ef5ffc7a74b7bedf36f75f67693c",
+    "bytes": 85,
+    "mtime_ns": 1793451743742543912
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/rosa/desktop/release-start.json",
+    "destination": "rosa/desktop/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793451743377727184
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/report.md",
+    "destination": "dunja/report.md",
+    "sha256": "a9c08e5a4dc39ce3a8340295e99655e451916f567e8db75cefe29666e3df196a",
+    "bytes": 7623,
+    "mtime_ns": 1793452111190232600
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/brief.md",
+    "destination": "dunja/brief.md",
+    "sha256": "b7361aae34146218084cff2c7a43d715fe2033002b6d840f22047eef0fb6d46e",
+    "bytes": 14128,
+    "mtime_ns": 1793450174686576172
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/own-history.md",
+    "destination": "dunja/own-history.md",
+    "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+    "bytes": 186,
+    "mtime_ns": 1793450174686185130
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/history-source-map.json",
+    "destination": "dunja/history-source-map.json",
+    "sha256": "3f590b4b609c1f6c681e88e1e4c4a3e6ba044934e17677fb197096802be7f86c",
+    "bytes": 331,
+    "mtime_ns": 1793450174686256672
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/dispatch.json",
+    "destination": "dunja/dispatch.json",
+    "sha256": "c814eeff09f34b0f060cbf02a24f5106b9e2814f56f18718d54e25305d47f98f",
+    "bytes": 2115,
+    "mtime_ns": 1793451930910665164
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/director-method-qualification.json",
+    "destination": "dunja/director-method-qualification.json",
+    "sha256": "13bbb5ec7ff33b5de34de728e3bda0efc8e640e0d3b9c79fc996bb9a4f600c64",
+    "bytes": 2386,
+    "mtime_ns": 1793452247700616108
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/raw-reactions-companion.json",
+    "destination": "dunja/raw-reactions-companion.json",
+    "sha256": "21fce63e885de961188200ca5c8b446a20dc08e52b9921205f6be45be62ade79",
+    "bytes": 3196,
+    "mtime_ns": 1793452247693909375
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/phone/wall-clock.jsonl",
+    "destination": "dunja/phone/wall-clock.jsonl",
+    "sha256": "b12667a7cf3af20763f117b322c85267e6692cda4cb963da36fa191e2f95edf1",
+    "bytes": 8979,
+    "mtime_ns": 1793452027010222259
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/phone/driver.out",
+    "destination": "dunja/phone/driver.out",
+    "sha256": "62b40070ec100c8a682d25cf2028467d2a966fe8b6cd13866b7168e485805e54",
+    "bytes": 85,
+    "mtime_ns": 1793451930216206374
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/phone/release-start.json",
+    "destination": "dunja/phone/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793451929809519077
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/desktop/wall-clock.jsonl",
+    "destination": "dunja/desktop/wall-clock.jsonl",
+    "sha256": "85a7c773b33646628b6c7f6c630bc7098f909edef0b42830bb18a9ac09977ae7",
+    "bytes": 6941,
+    "mtime_ns": 1793452092860068133
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/desktop/driver.out",
+    "destination": "dunja/desktop/driver.out",
+    "sha256": "a48e56cfbbe29c768a8de1a55fa881121d585c4021827a9e015ca560651d1942",
+    "bytes": 85,
+    "mtime_ns": 1793451930261996747
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/dunja/desktop/release-start.json",
+    "destination": "dunja/desktop/release-start.json",
+    "sha256": "f32d86668f5bd0e580c3600a4e911eee9c13bd35e15bb428df4d066ab8fc5037",
+    "bytes": 119,
+    "mtime_ns": 1793451929897709853
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex-plan.json",
+    "destination": "inputs/murmur-retest-codex-plan.json",
+    "sha256": "d4b48d625587b9a344d1731fab0531870591cafaa406966c7eacfadf4989a251",
+    "bytes": 7240,
+    "mtime_ns": 1793450174686682089
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex-input-freeze.json",
+    "destination": "inputs/murmur-retest-codex-input-freeze.json",
+    "sha256": "00b8e667b18f66e035b4e411d3ed1b5c77e07943e04412c421beeef5b173b95a",
+    "bytes": 2293,
+    "mtime_ns": 1793450174686755589
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-codex-fresh-admission.json",
+    "destination": "inputs/murmur-codex-fresh-admission.json",
+    "sha256": "f16f03038af0518906071fd3ab207a14ac56bef7c5b9760f58499337e6290792",
+    "bytes": 1720,
+    "mtime_ns": 1793450858324343185
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex-round-state.json",
+    "destination": "inputs/murmur-retest-codex-round-state.json",
+    "sha256": "582abe0642cc0f74b94d63b21a1d0d7f6c6e10708d9b518a11c8bd52d0bef681",
+    "bytes": 1648,
+    "mtime_ns": 1793452279239259997
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex-cleanup.json",
+    "destination": "inputs/murmur-retest-codex-cleanup.json",
+    "sha256": "f4e3dc3b0ad3e7f86d602463ee3a1190374b41091b25ff6bfceee241b7abb09d",
+    "bytes": 2756,
+    "mtime_ns": 1793452279239015788
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex-final-release-after-round.json",
+    "destination": "inputs/murmur-retest-codex-final-release-after-round.json",
+    "sha256": "34fcde837100ef963b8f0b2bb735f8fac35746dfeb74bac3aef0d790595d4f6d",
+    "bytes": 191,
+    "mtime_ns": 1793452279239161413
+  }
+]

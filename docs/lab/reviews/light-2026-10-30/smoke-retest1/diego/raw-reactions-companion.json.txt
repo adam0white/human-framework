@@ -1,0 +1,159 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "e7be6d73cdf88da46eca4d8e695620e0b4e6986ecc88b969a37999e13ab400e9",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.488,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Same stairwell. Last time I could not see myself move and Hacer died without a clock I could read. Going in."
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "elapsed_s": 11.136,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Derya tap immediately says walking to landing 3, about nine seconds. That is the answer I was missing on the phone. Hacer is away tonight."
+    },
+    {
+      "device": "phone",
+      "row": 9,
+      "elapsed_s": 16.102,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I can see the YOU figure on the stairs now and the remaining walk time drops from nine to five. Much easier to trust the tap."
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "elapsed_s": 25.88,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Derya follows after torch and two clear answers. Burak is helping with the books without my order. The walk says 24 seconds in thick smoke; I know what I am waiting for."
+    },
+    {
+      "device": "phone",
+      "row": 17,
+      "elapsed_s": 47.167,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Derya and Burak are outside. Sevim has her bundle ready. I like that Burak helped without waiting for me; going back for her."
+    },
+    {
+      "device": "phone",
+      "row": 24,
+      "elapsed_s": 70.032,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The phone is much clearer: I see YOU and a walking estimate, and the torch and speech give immediate answers. Derya and Burak are outside; Sevim follows with her books. I have not seen a personal smoke deadline, but this cast gave me time to take one person at a time."
+    },
+    {
+      "device": "phone",
+      "row": 26,
+      "elapsed_s": 78.2,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone home is out. That was satisfying and much clearer than my first phone run. I would stop this run here."
+    },
+    {
+      "device": "phone",
+      "row": 30,
+      "elapsed_s": 88.268,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Stopping the phone after everyone home got out. The visible figure and walk estimates made this feel responsive; Burak helping Sevim was a good surprise. Feedback: I chose I am stopping and closed with Not now, without typing or sending."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 7.316,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Desktop, same evening and a new night. Hacer is home this time; I remember losing her before. I will go to her first."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 21.531,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The 4 key sends me toward Hacer and F lights the torch. The figure and walk estimate are clear. Smoke starts on landing 3 this time."
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "elapsed_s": 40.339,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Hacer follows. I am taking her straight out rather than collecting everyone as I did before. The 29 second estimate makes the cost of the trip legible."
+    },
+    {
+      "device": "desktop",
+      "row": 18,
+      "elapsed_s": 61.073,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Hacer is outside this time. That feels good after losing her before. Burak needs waking and Sevim still has her books, so I am going back."
+    },
+    {
+      "device": "desktop",
+      "row": 19,
+      "elapsed_s": 65.321,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Hacer is out because I took her directly to the street. The keyboard selection and torch are clear, and the walk estimate helps. I still do not see how long Burak or Sevim can breathe, so the choice of who waits remains a guess."
+    },
+    {
+      "device": "desktop",
+      "row": 23,
+      "elapsed_s": 82.39,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Burak now says smoke is making breathing difficult. That is a warning I can use, though it is not a time. He is checking the stair; I will get Sevim."
+    },
+    {
+      "device": "desktop",
+      "row": 28,
+      "elapsed_s": 102.857,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The log says the bundle is tied, but Sevim still says tying and the speech buttons are grey. I do not know whether to wait or act."
+    },
+    {
+      "device": "desktop",
+      "row": 35,
+      "elapsed_s": 125.734,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FRUSTRATED",
+      "reaction": "I am standing next to Sevim while the log says the bundle is tied and the controls still say wait. The clock runs and her breathing is difficult. I would leave here; I cannot see what else to do."
+    },
+    {
+      "device": "desktop",
+      "row": 39,
+      "elapsed_s": 136.181,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FRUSTRATED",
+      "reaction": "Stopping desktop with Sevim still inside. The log said the books were tied, but her status and disabled speech kept telling me to wait while smoke made breathing difficult. Hacer and Burak got out. I opened confusion and stopping feedback, typed nothing, and closed each with Not now."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "tester": "maya",
+    "device": "phone",
+    "source": "maya/phone/wall-clock.jsonl",
+    "line": 37,
+    "elapsed_s": 56.437,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone after the shop stayed shut. Riza explained his refusal and Halil leaving made changing the agreement costly. Ferda now distinguishes her old standing need from her answer to the letter. I selected I am stopping and Not now; I sent nothing.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "maya",
+    "device": "desktop",
+    "source": "maya/desktop/wall-clock.jsonl",
+    "line": 29,
+    "elapsed_s": 46.765,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on desktop after the late-work agreement succeeded. Asking each person changed the terms and the ending named what they kept. I enjoyed that, but the meeting was over quickly. I selected I am stopping and Not now without sending.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "mei",
+    "device": "phone",
+    "source": "mei/phone/wall-clock.jsonl",
+    "line": 17,
+    "elapsed_s": 31.993,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on the phone before writing. I liked seeing the private promises, but I would not make either and I have already played the meeting. I chose I am stopping and pressed Not now without typing or submitting.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "mei",
+    "device": "desktop",
+    "source": "mei/desktop/wall-clock.jsonl",
+    "line": 29,
+    "elapsed_s": 44.07,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping at the agreed ending. The morning arrangement kept a promise and left train money, and the remaining signature time was clear. I chose I am stopping and pressed Not now without typing or submitting.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "samir",
+    "device": "phone",
+    "source": "samir/phone/wall-clock.jsonl",
+    "line": 15,
+    "elapsed_s": 26.472,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone before an agreement. I have just played this meeting and do not want to repeat the lie tonight. The opening action is below the screen. I chose I am stopping and Not now, typed nothing and sent nothing.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "samir",
+    "device": "desktop",
+    "source": "samir/desktop/wall-clock.jsonl",
+    "line": 31,
+    "elapsed_s": 57.006,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping after the agreement. The 40 lira cost made me think, and the month-later account told me what happened. Everyone still agreed readily. I chose I am stopping and Not now, typed nothing and sent nothing.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "diego",
+    "device": "phone",
+    "source": "diego/phone/wall-clock.jsonl",
+    "line": 37,
+    "elapsed_s": 93.653,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping phone after the agreement. The separation window and my costly recall made the lie more interesting; I finished exactly on time and spent the whole fund. Feedback opened, I chose I am stopping and pressed Not now without typing or submitting.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "diego",
+    "device": "desktop",
+    "source": "diego/desktop/wall-clock.jsonl",
+    "line": 28,
+    "elapsed_s": 55.392,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping desktop after the free agreement. I used the delivery window to keep the men apart and the plan worked. It was satisfying to apply what the phone run taught me. Feedback: I chose I am stopping, pressed Not now, typed and submitted nothing.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "anika",
+    "device": "phone",
+    "source": "anika/phone/wall-clock.jsonl",
+    "line": 31,
+    "elapsed_s": 54.009,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I have seen the morning arrangement work too; I am ready to leave it there.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "anika",
+    "device": "desktop",
+    "source": "anika/desktop/wall-clock.jsonl",
+    "line": 35,
+    "elapsed_s": 59.683,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am content to leave after seeing the agreement kept and enough money for the train.",
+    "reason": "FINISHED"
+  }
+]

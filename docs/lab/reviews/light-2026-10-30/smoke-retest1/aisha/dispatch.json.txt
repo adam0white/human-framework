@@ -1,0 +1,36 @@
+{
+  "time": "2026-10-31T15:25:54.022942+00:00",
+  "who": "agent",
+  "linkedEnvelopeSource": {
+    "runSource": "agent"
+  },
+  "briefSha256": "ae47a6fcdc8246611143c166d9ddb99ad862fca315f19e5981f5eddc52640c52",
+  "ownHistorySha256": "f6c1f82527bf9142548141b9a405bbad1b2aeb5e56dad1ce9e284303e0da19b2",
+  "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+  "model": "gpt-6.1-terra",
+  "backend": "codex",
+  "driverPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-tap-v2/v2/lab-play.ts",
+  "driverInstrument": {
+    "time": "2026-10-31T02:50:55.021190+00:00",
+    "approved": true,
+    "instrumentRoot": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-tap-v2/v2",
+    "hashes": {
+      "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+      "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+      "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+    },
+    "review": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-tap-v2/review.md",
+    "reviewSha256": "09c70327aae9853316900f37947ce1d357fac2a49a373f44473d08663efb10ed",
+    "deltaReview": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-tap-v2/review-delta.md",
+    "deltaReviewSha256": "4cf13f81e73fb7390434c6e6f3a15e9041f489d67a061733891cb08484ed69e2",
+    "controls": "Final guarded source:18tap/44hold/strictTS pass;34unchangedhelper/texttests previously pass. V1 real31s stall reproduced locally/live.",
+    "scope": "scratch diagnostic panel input, no upstream approval or gamefix",
+    "limits": [
+      "Input status200 acknowledges native input, not intended game outcome; inspect visible result.",
+      "A moving/replaced target can be missed or compat-clicked on phone; no post-press confirmation.",
+      "Chromium only. No v2 live-game run yet; local real-input controls passed.",
+      "select/type and ambiguous boundingBox retain existing timeout limitations.",
+      "driver_check remains fork-unverified; deliberate scratch staleoverride paired with exact hash checks."
+    ]
+  }
+}

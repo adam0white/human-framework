@@ -1,0 +1,30 @@
+{
+  "source": "original three command-scope audit and recovery director-method qualifications",
+  "players": {
+    "maya": {
+      "shell_calls": 50,
+      "strict_assigned_curls": 49,
+      "shell_parse_failures_before_request": 1
+    },
+    "emre": {
+      "shell_calls": 66,
+      "strict_assigned_curls": 64,
+      "shell_parse_failures_before_request": 2
+    },
+    "diego": {
+      "shell_calls": 50,
+      "strict_assigned_curls": 49,
+      "shell_parse_failures_before_request": 1
+    },
+    "rosa": {
+      "read": 15,
+      "curl": 38,
+      "command_exceptions": 0
+    },
+    "boris": {
+      "read": 2,
+      "curl": 44,
+      "shell_parse_failures_before_request": 1
+    }
+  }
+}

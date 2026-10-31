@@ -1,0 +1,9 @@
+{
+  "time": "2026-10-31T11:01:46.276913+00:00",
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.8.1",
+    "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "dirty": false
+  }
+}

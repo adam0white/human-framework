@@ -1,0 +1,66 @@
+{
+  "time": "2026-10-31T12:36:14.686731+00:00",
+  "pin": "9e0dd19d89ea0e1c0f6dd38bec64b2d1679ddcc9",
+  "deliveryProof": "murmur-retest-root-delivery-verification.json",
+  "state": "Prepared only; fresh live/SDK/disk/browser-lease/cooldown gates remain. No dispatch from preparation.",
+  "players": [
+    {
+      "tester": "Aisha Rahman",
+      "first": "aisha",
+      "characters": 165537,
+      "lineCount": 1192,
+      "historySha256": "a5314ca657db18ff276bf5e95e37062191b69fe4b6b9f35fac373516b6a15111",
+      "briefSha256": "7e5221c477dc76a4a8f55e6961fab2ad3048334334b7f511f0a27ccbc2fa0e03",
+      "ownSourceCount": 16,
+      "otherTesterNameHitsForDirectorReview": [
+        "Jonas"
+      ]
+    },
+    {
+      "tester": "Mei Tan",
+      "first": "mei",
+      "characters": 142607,
+      "lineCount": 1167,
+      "historySha256": "689dbeffdc4a86d185e4aa1cba4e8c975674d9a3a77f39447466538de733102f",
+      "briefSha256": "a347fe8deba360f135abc53665c51de82a7e16fd2da490e29349da7f2f76ee6e",
+      "ownSourceCount": 15,
+      "otherTesterNameHitsForDirectorReview": []
+    },
+    {
+      "tester": "Nia Okafor",
+      "first": "nia",
+      "characters": 163364,
+      "lineCount": 1339,
+      "historySha256": "744b1b5eeb1828c1f01ef6511a87220cb3d00807cf3f439b308b50578c35a2a7",
+      "briefSha256": "7c927eefb0940456bdd40950574188e5830f90d0d8a6d96fa90dd39d7c583a64",
+      "ownSourceCount": 17,
+      "otherTesterNameHitsForDirectorReview": [
+        "Ivo"
+      ]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "first": "rosa",
+      "characters": 307747,
+      "lineCount": 3018,
+      "historySha256": "4800c3606d8bdc83d63a8066f18e0348e46eb57dfdb784953fe53860080068c5",
+      "briefSha256": "ae7449199caf088690774de32000be5ff51e491d0c019c72f92bb9ace89dc52f",
+      "ownSourceCount": 32,
+      "otherTesterNameHitsForDirectorReview": [
+        "Diego",
+        "Emre",
+        "Maya"
+      ]
+    },
+    {
+      "tester": "Dunja Kova\u010devi\u0107",
+      "first": "dunja",
+      "characters": 186,
+      "lineCount": 5,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "b7361aae34146218084cff2c7a43d715fe2033002b6d840f22047eef0fb6d46e",
+      "ownSourceCount": 0,
+      "otherTesterNameHitsForDirectorReview": []
+    }
+  ]
+}

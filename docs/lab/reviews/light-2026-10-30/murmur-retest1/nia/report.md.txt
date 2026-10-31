@@ -1,0 +1,102 @@
+I would not return voluntarily tonight; I might come back another evening on my phone if I could reach new scenes without replaying the familiar morning and Dilan’s replies varied when I pushed her.
+
+Ranked asks:
+
+1. Let me reach new scenes without replaying the same opening.
+2. Give Dilan more varied replies when I insist.
+3. Show less repeated day-so-far text on the phone.
+
+## 1. Session
+
+I’m Nia Okafor, 19, a Lagos design student and returning Murmur player. This was round **light-1031-murmur-retest**, free stop, floor 0. Each session was a fresh independent game at https://murmur.adamwhite.work/?labRunSource=agent.
+
+- **A:** desktop, 1280×800, mouse and keyboard, light mode. Stop at **96.037 elapsed seconds**.
+- **B:** phone, 360×690, touch, light mode, another visit the same evening. Stop at **66.942 elapsed seconds**.
+
+I read all 1,339 lines of my supplied history. The last line I read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread range: none.** The history is selected, not a complete archive. It says older records and independent continued alternatives were not supplied; the excluded independent Warren alternative bodies were absent. The Well excerpt did not include its older raw diary. The method qualification says a named tap stalled for about 31.5 seconds on my original Murmur phone visit, which materially qualifies some earlier Tuesday observations.
+
+Recording stayed at its default. I did not change consent, type feedback or submit it.
+
+## 2. First impressions
+
+**Desktop:** At 3.977 seconds I recognised Dilan and wanted to push her again. The alarm choice looked familiar. Insisting got her up before the second alarm, and I made the bus promise again. The Ece call also looked familiar, with high confidence.
+
+**Phone:** At 5.466 seconds I wanted to let her sleep. She slept through the second and third alarms, then watched kitchen videos. I tried the traffic excuse and liked that the successful lie felt worse to her.
+
+## 3. Verbatim diary
+
+These are the reaction texts as logged, in order, with driver elapsed seconds. The phone `first_minute` entry was **premature at 58.099 seconds**; it is not a valid 60-second checkpoint.
+
+**A — desktop**
+
+- **3.977 s, Start:** “Dilan again. I remember pushing her and her pushing back; I want to see what she does this time.”
+- **18.117 s, hold, Monday 06:41:** “Same alarm cue as before, fairly sure. I want to push her up and see her answer.”
+- **33.666 s, hold, Monday 07:16:** “She got up before the second alarm. Nice, that landed. I am making the bus promise again.”
+- **50.501 s, tap, Monday 10:41:** “Ece lost in the estate is familiar too, high confidence. I will send the map this time.”
+- **65.036 s, first_minute, Monday 12:41:** “The alarm and Ece call feel familiar, and my pushes made Dilan get up and promise tonight. Skip gets me to choices fairly quickly. I am curious what happens if she walks away from Murat.”
+- **68.025 s, hold, Monday 12:41:** “Going outside instead of laughing or defending Ece.”
+- **69.405 s, note, Monday 12:42:** “She says she is doing it because I pushed and does not like it. That bite is what I remember liking.”
+- **86.294 s, hold, Monday 15:21:** “Pigeons on the loading dock is a nice detail. Trying water instead of the coffee I remember carrying into Tuesday.”
+- **88.541 s, want_quit, BORED, Monday 15:22:** “The same fine I dislike it line twice, and the same Monday scenes. I got my experiment and would stop here.”
+- **96.037 s, stop, BORED, Monday 17:00:** “Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it.”
+
+**B — phone**
+
+- **5.466 s, Start:** “Phone now, same evening. I want to let her sleep this time.”
+- **21.885 s, tap, Mon 06:42:** “Let her sleep; I remember this made her late before, fairly sure.”
+- **39.058 s, tap, Mon 07:16:** “She slept through three alarms. Leaving the message this time; I already made the promise on desktop.”
+- **55.182 s, tap, Mon 08:26:** “Murat asks about traffic. I told the truth last time; trying the excuse.”
+- **58.099 s, premature first_minute, Mon 08:31:** “The lie worked and felt worse to her; I like that small reaction. Same opening scenes, but my sleep choice gave me a different conversation from desktop.”
+- **59.872 s, want_quit, BORED, Mon 08:31:** “I liked the lie feeling worse, but I have seen this morning before and do not want to replay the whole day tonight. I would stop.”
+- **66.942 s, stop, BORED, Mon 10:41:** “Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it.”
+
+## 4. Moments
+
+On desktop, Dilan’s objection to eating outside held me: she did it but said she disliked being pushed. Eating with the pigeons was a small detail I enjoyed. Then the water choice produced the same objection word for word, and the familiar sequence lost me. My quit wish at 88.541 seconds did not pass.
+
+On phone, sleeping in led to Murat asking about lateness. His accepting the excuse, followed by Dilan feeling worse, made the choice feel personal. I still did not want to replay the morning. My quit wish at 59.872 seconds did not pass.
+
+No pulse was due in either session; both ended before 180 seconds. Neither game ended.
+
+## 5. Confusion and clarity
+
+The choice labels made it clear which options Dilan was willing to take and which required insistence. The hold produced visible “You insisted” text, and later events showed what she did. Skip moved between choices fairly quickly in this visit.
+
+I was not sufficiently confused to open Feedback for confusion. The repeated day text remained noticeable in the driver’s visible text, though the desktop screenshot presented the history in a separate column.
+
+One desktop ten-second wait and two phone ten-second waits returned empty output. The following screenshot calls showed the current game state. I do not know why those replies were empty; I did not encounter a driver block.
+
+## 6. Device use
+
+**Desktop, 1280×800:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-001.png), the title page: a centred cream page, introduction, unchecked alternative starts and a red Start button. The recording strip crossed the area below “Other ways to begin.” I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/desktop/a-002.png): the day history was on the left and Ece’s scene and large choices were on the right. I saw no clipping in that image.
+
+I used Start, mouse clicks, 1.5-second holds, Skip, Game menu, Feedback, “I'm stopping” and Back. I used no keyboard key. I did not see the menu or Feedback as a picture.
+
+**Phone, 360×690:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-001.png), showing the title and introduction, the recording strip and alternative-start checkboxes. Start was below the visible edge. In [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-002.png), the alarm card and three choices were visible; the instruction paragraph was cut off after “If time” where the choice area began. [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/phone/b-003.png) showed the Aylin card and choices, with the lower choice and bottom of the page beyond the viewport.
+
+I used touch taps on Start, choices, Skip, Game menu, Feedback, “I'm stopping” and Back. I did not view the phone menu or Feedback as pictures, or inspect the page with a keyboard open.
+
+## 7. Stop and return
+
+- **Desktop, BORED:** “Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it.”
+- **Phone, BORED:** “Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it.”
+
+On both devices, Feedback offered “I'm stopping” and “I'm confused”. I chose “I'm stopping”; the driver showed it pressed. I pressed “← Back”, typed no note, changed no consent or recording setting, and pressed no Submit.
+
+I would not leave the game running. I would not come back tonight. I might return another evening on my phone if I could get to new scenes without replaying the familiar morning and Dilan’s replies to insistence varied. Her pushback and the emotional consequence of the lie still interest me.
+
+## 8. Changes I would want
+
+1. Let me get to new scenes without replaying the familiar opening.
+2. Vary Dilan’s replies to different instances of insistence.
+3. Reduce the repeated day-so-far text on the phone.
+
+## 9. Compared with my last visit
+
+- **Make days differ or let me skip scenes I have seen: partly met.** Skip moved time toward the next event, and sleeping in led to the lateness conversation. The alarm, Aylin message and Ece call were familiar. I did not reach Tuesday, so I cannot say whether its opening differs now.
+- **Shorten dead time between choices or give me something to do: partly met.** I used Skip and reached several choices in the desktop session. I still waited between them; I did not explore other pace settings.
+- **Show less repeated day text, especially on phone: did not meet it in the text I received.** Earlier events continued to appear above later ones. The phone screenshots show only parts of the page, so they do not establish its full length.
+
+**New blocking ask from this visit:** Give Dilan more varied replies to insistence. The same “Fine. I’m doing it because you pushed me. I don’t like it” appeared for both eating outside and drinking water, and that repetition contributed to my desktop stop.
+
+I created no worktree, branch, server, browser or helper and touched no Git resource. The coordinator owns the drivers and browser cleanup.

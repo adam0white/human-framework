@@ -1,0 +1,17 @@
+{
+  "time": "2026-10-31T12:16:25.176589+00:00",
+  "scope": "Root read full producer report; separate frozen PNG inspection, not independent evidence of tester viewing",
+  "rootViewed": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/phone/a-001.png",
+      "sha256": "6fbea3021756dfff7d4199ce2ac94732f16c19e52175795ada957c5be00bde8d",
+      "observation": "Phone360x690 title instructions continue beneath fixed Begin area: visible sentence ends after tea, lower continuation not visible in this image."
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/desktop/b-002.png",
+      "sha256": "927669223ee4702ad1d7c7dd74faab4d42695edf2357cc5b55e2b3a1a1fd79af",
+      "observation": "Desktop1280x800 gameplay top central status line clipped at upper image edge; rest of ferry text/right panel readable. Fixed screenshot only; no cause or allstate claim."
+    }
+  ],
+  "classification": "Unranked geometry source leads, not producer new blockers or a fourth ranked ask. Root screenshot inspection separate from self-reported Codex image viewing."
+}

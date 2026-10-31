@@ -1,0 +1,105 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "68b7fdfbbb2fdd25ab6530a95005cb2513324722ba253d7f31ba0357707405f8",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 4.93,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The familiar short recording page is readable. I remember Halil and Riza comparing my conflicting words, high confidence; I want the letter and late work this time."
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "elapsed_s": 13.561,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Ferda now answers the letter directly, and the old quote is explicitly labelled as her standing need from before it. That clears up what looked stale last time."
+    },
+    {
+      "device": "phone",
+      "row": 22,
+      "elapsed_s": 32.903,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Halil repeats my private word when I ask again, just as I saw on desktop last visit. I want to see what he does with the late-work agreement now."
+    },
+    {
+      "device": "phone",
+      "row": 28,
+      "elapsed_s": 42.784,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Letting Halil leave with his signed copy is new to me. The game says he cannot compare accounts with Riza now; I chose that knowing it could keep my word from being challenged."
+    },
+    {
+      "device": "phone",
+      "row": 30,
+      "elapsed_s": 45.943,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Riza refuses the overnight cart and tells me exactly what he needs. Sending Halil away now has a cost: changing the agreement calls him back and clears his signature, with only four minutes left."
+    },
+    {
+      "device": "phone",
+      "row": 32,
+      "elapsed_s": 49.53,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "The shop stayed shut because I ended the meeting. I like that Riza had a specific refusal and that sending Halil away had a visible cost. I would stop this phone run and try the other device."
+    },
+    {
+      "device": "phone",
+      "row": 37,
+      "elapsed_s": 56.437,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I am stopping on the phone after the shop stayed shut. Riza explained his refusal and Halil leaving made changing the agreement costly. Ferda now distinguishes her old standing need from her answer to the letter. I selected I am stopping and Not now; I sent nothing."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 4.825,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Same clean page on the wide screen. This time I want to ask Riza before writing, after his refusal on the phone."
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "elapsed_s": 24.022,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Asking Riza first changed the late agreement to cart home at four, and Halil gets the paid break. That is the readable consequence I wanted after the phone refusal."
+    },
+    {
+      "device": "desktop",
+      "row": 23,
+      "elapsed_s": 36.35,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "They kept the late agreement and Ferda calls the service her own choice. That is satisfying after the phone refusal. I would stop now; I have seen this path and both meetings were quick."
+    },
+    {
+      "device": "desktop",
+      "row": 29,
+      "elapsed_s": 46.765,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I am stopping on desktop after the late-work agreement succeeded. Asking each person changed the terms and the ending named what they kept. I enjoyed that, but the meeting was over quickly. I selected I am stopping and Not now without sending."
+    }
+  ]
+}

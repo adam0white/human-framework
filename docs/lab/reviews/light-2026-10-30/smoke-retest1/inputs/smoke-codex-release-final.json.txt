@@ -1,0 +1,6 @@
+{
+  "app": "smoke",
+  "framework": "4.8.0",
+  "commit": "701df5428899b2fe25b693bba4120caf3e806a7c",
+  "dirty": false
+}

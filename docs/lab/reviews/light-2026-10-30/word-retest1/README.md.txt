@@ -1,0 +1,7 @@
+# His Word first fixed-retest draft
+
+Private draft for independent review, not sealed, canonical, imported, finished or accepted. Five testers and ten actual ranked asks F-2791–F-2800; F-2801–F-2820 are unused. This is the first fixed retest. All five explicitly report no new blocker. The work is eligible for finishing after dated Deferred integration; no second retest is indicated.
+
+Ten voluntary stops comprise eight supported endings and two BORED stops. Original reports, entire return paragraphs and raw reactions preserve timing rounding, tap and shot events, post-stop automatic screenshots and unsent prefilled feedback drafts. Diego and Anika state their leave-running answer in their later return paragraphs, not their opening sentences. F-2797 concerns Samir’s phone opening action: no scroll was tried and a reachability defect is not established. F-2800 is Anika’s notebook wording inspection, not proof of a state defect.
+
+Retained current tool responses and image blocks are hash-bound; they do not establish attention or perception. Earlier selected histories, partial reads and separate CONT limits remain. Completion and audit summaries are safe hash-bound projections because originals include private session metadata. No native provider envelopes, UUIDs, session paths or command payloads are copied. Screenshot files are represented by hashes only. Controller exit zero, fifteen recorded PIDs absent, 72 observed identities gone and ten ports closed are point-in-time evidence, not a lifetime process journal.

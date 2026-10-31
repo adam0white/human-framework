@@ -1,0 +1,70 @@
+{
+  "time": "2026-10-31T12:32:34.280210+00:00",
+  "status": "Qualified completion",
+  "reportSha256": "085b5627c540f07aee9d4af7a90d4049647711d880d3b12f1292dc9426a38071",
+  "historyCommandOutputCoverage": {
+    "lineCount": 2801,
+    "literalLinesCovered": 2801,
+    "unreadRanges": [],
+    "allLinesCovered": true
+  },
+  "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+  "commandCounts": {
+    "read": 29,
+    "curl": 54
+  },
+  "commandExceptions": 0,
+  "actualTimedTags": {
+    "phone": [
+      {
+        "op": "shot",
+        "kind": "first_minute",
+        "elapsed_s": 60.021,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "first_minute",
+        "elapsed_s": 62.671,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "stop",
+        "elapsed_s": 76.684,
+        "reason": "TASTE"
+      }
+    ],
+    "desktop": [
+      {
+        "op": "shot",
+        "kind": "first_minute",
+        "elapsed_s": 60.056,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "first_minute",
+        "elapsed_s": 61.218,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "stop",
+        "elapsed_s": 71.785,
+        "reason": "TASTE"
+      }
+    ]
+  },
+  "qualifications": [
+    "Producerdesktop71.786 vs raw71.785; retain words/times separately.",
+    "Return is voluntary another evening on either device even without vote explanation. Do not turn vote preference into a condition for return.",
+    "Skip not reached, repeats historical ask, not current Skip failure. Newspaperprank warningpartlymet, upset consequence notyetseen andnot invented.",
+    "Phone5lira initiallyguessed then desktopjournalnamedtip; preserve device/time distinction.",
+    "Both stopsTASTE/shortvisit, not frustration or infrastructurecut. Original Hearsaycoordinatorcut remains separate in ownhistory.",
+    "Full2801lines presentincommandstdout andproducerfullreadclaim, not independentdeliveryofeverylinetomodel. Priorpartialread/CONT/selectionlimits remain.",
+    "Codeximageviews selfreported/unverifiable; clippingclaims notgeneralgeometryproof.",
+    "FeedbackClosefeedbackactualnotBack, no typednotes/Submit/consentchanges.",
+    "Newblockingasksexplicitnone; all3rankedasks/fullopening/laterreturn withunconditionalwillingness preserved."
+  ]
+}

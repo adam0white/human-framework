@@ -1,0 +1,7 @@
+# Warren second-cycle draft
+
+Private draft for root review, not sealed, canonical, imported, finished or accepted. Five people and fifteen ranked asks F-2761–F-2775; F-2776–F-2790 unused. All routes are dated Deferred for 2026-11-03. This is the second fix/retest cycle; no automatic third panel or new fix cycle. Exact reports and whole return paragraphs are retained without imposing a numbered report structure.
+
+Nia’s phone TOOL stop is one of the ten stops, with nine voluntary stops. Her first ask routes to fix:lab for bounded select-interaction investigation; the cause is unknown and no quiet-test request or game-source defect is established. Other asks route to fix:warren as source leads. Rosa’s 3,358 history lines were present in completed-command output, but 26 lines remain unverified in retained responses; that is not proof unread. Retained responses and image blocks do not prove attention or perception. Prior selected FREE, separate CONT and older method limits remain.
+
+Source files and raw reactions are preserved; completion records and retained audit evidence are hash-bound safe projections because originals contain private provider metadata. No provider envelopes, session paths, UUIDs or command payloads are included. Screenshots appear only in a hash manifest. Controller exit zero and cleanup are recorded as point-in-time evidence, not a lifetime process journal. No game ending or owner acceptance follows.

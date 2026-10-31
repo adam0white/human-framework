@@ -1,0 +1,52 @@
+I would come back another evening to see what the neighbours choose in a different night; I would not leave it running, and I have had enough for tonight.
+
+**Ranked asks**
+
+1. Keep the clear walking destination, estimated time and smoke slowdown messages. They gave me the confidence I lacked last time.
+2. When someone dies, acknowledge more of what I tried. I did not encounter a death this visit, so this remains my earlier ask rather than a new finding.
+
+I reached no new blocking ask.
+
+I am Aisha Rahman, a 45-year-old community pharmacist from Birmingham. This was my first fixed-build return to *Smoke on the Stairs*. I played the assigned URL with the agent query retained, in two fresh, independent games on the same evening. The desktop session used a 1280×800 keyboard-and-mouse context and ended at **132.921 seconds**. The 360×690 touch-phone session ended at **122.691 seconds**. Both ended because the game said everyone was out.
+
+I read the supplied history through line **1368**. The last line was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**. This was a selected history, not my complete archive. The two fresh games were unmatched, so the comparison describes what I saw, not proof that every difference came from the build.
+
+On desktop, the familiar title and Sevim’s books brought my previous visit back. At **8.021 seconds**, selecting her produced “Walking to landing 1 · about 5 s at this pace.” That was immediately reassuring. I helped her tie the books, showed her the stair and walked her out. Hacer’s “I could not have found the stair alone” still felt like a person recognising the help. Derya was in danger by the time I reached her, which gave the last walk some tension, but she got out.
+
+On the phone, the introduction was readable at **2.288 seconds**. Burak was home in this game. He checked the stair, offered to hold Sevim’s books while she tied them, and got out himself. I liked seeing him act for another neighbour without waiting for me. I then walked Hacer, Derya and Sevim out. The familiar speech sequence repeated, but Burak’s action made this night feel different.
+
+These are my logged diary lines, in order, with driver elapsed seconds:
+
+**Desktop**
+
+- **5.243, note:** “I remember Sevim and her books. I want to help her first again, and see whether walking is clearer.”
+- **9.368, note:** “Now it says walking to landing 1 and gives a time. I know the tap took; that is reassuring.”
+- **37.393, note:** “The street walk now says thick smoke slows me and gives an estimate. Sevim has her books; I am relieved to know we are moving.”
+- **59.552, first_minute:** “Sevim is outside with her books. The walking destination and smoke slowdown are now stated, so I feel less lost. I am going to Hacer, who cannot see the stair.” This was premature: it was before 60 seconds.
+- **62.161, first_minute:** “Sevim is outside with her books. Walking destination and smoke slowdown are stated, so I feel less lost. I am going to Hacer, who cannot see the stair.”
+- **126.655, want_quit, FINISHED:** “Everyone is out, including Derya. I feel relieved and would leave this night here.”
+- **132.921, stop, FINISHED:** “I am stopping with everyone out. Sevim kept her books and Hacer said she could not have found the stair alone. The walking status made this less confusing. I selected I am stopping and closed Feedback without sending.”
+
+**Phone**
+
+- **4.776, note:** “The phone introduction fits and is readable. Burak is home this time; I want to follow him.”
+- **18.912, note:** “Burak checked the stair and offers to hold the books without my telling him. I like that he acts for Sevim.”
+- **64.307, first_minute:** “Burak helped Sevim tie her books and got out himself; Hacer is outside with me. The phone tells me where I am walking, and I am now going to Derya. I feel more confident than last time.”
+- **116.672, want_quit, FINISHED:** “Everyone is out again. Burak helping Sevim made this night feel different, and I would stop here for the evening.”
+- **122.691, stop, FINISHED:** “I am stopping on the phone with everyone outside. Burak helped with the books and left on his own; Hacer and Derya got out with me. I selected I am stopping and closed Feedback without sending.”
+
+Neither session reached 180 seconds, so no pulse or engagement score was logged. The later pulse checkpoints were untested. There was one failed phone note command caused by my shell quoting; it did not reach the driver, and the 18.912-second line above is the successful replacement.
+
+The movement instructions were clearer in the play I reached. Both devices named my destination and estimated the remaining walk; thick smoke was explicitly described as slowing me. The estimate changed as the smoke changed, and I could see my reported location progress. I did not experience the old uncertainty about whether a walk tap had registered. One phone selection failed because Sevim’s full status changed between the displayed control list and my tap; I selected her new full name and the approach began. I did not treat that as a game failure.
+
+Compared with my three earlier Smoke asks:
+
+1. **Show when a walk tap registered and whether I am moving — met in the walks I reached.** The destination, location and estimated time appeared on both devices. I did not view a desktop gameplay screenshot, so my desktop assessment rests on the visible text returned during play.
+2. **Tell me when stalled in smoke, or let me retry or reselect without losing time — partly met.** I saw “Thick smoke slows you” and changing estimates, and the phone walk continued through smoke. I did not encounter the same apparent stall as before, so I cannot establish what happens in that situation or whether a retry costs time.
+3. **Say more when someone dies and acknowledge what I tried — not seen.** Nobody died in either game, so I cannot assess the death narration.
+
+I viewed [desktop/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/desktop/a-001.png): a cream introduction modal over the dark stairwell, with the instructions and recording notice readable. I viewed [phone/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/phone/b-001.png), where the introduction fit the narrow screen, and [phone/b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/phone/b-002.png), showing the building, neighbour controls, Street button and walking status. The phone game screen was readable in that view. I took no other manual screenshots.
+
+At each ending I opened **Tell us about this night**, selected **“I'm stopping”**, saw it marked pressed, and closed Feedback with **Not now**. I typed no note and did not submit. Recording, consent and owner settings remained at their defaults.
+
+I created no worktree, server, browser or helper. I touched no repository, so I have no `git worktree list` to report. The coordinator stops the two drivers.

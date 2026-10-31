@@ -1,0 +1,80 @@
+I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation.
+
+Ranked asks:
+
+1. In the notebook, distinguish Ferda’s earlier wording from her response after the letter as clearly as the meeting screen does.
+
+### 1. Session
+
+I played as Anika Perera, first visit and genuinely cold, in round `light-1031-word-retest1`, free-stop arm. The start URL was `https://word.adamwhite.work/?labRunSource=agent`.
+
+- **A:** 1280×800 desktop, keyboard and mouse, light mode. Stop logged at **59.684 seconds**.
+- **B:** 360×690 touch phone, light mode, fresh independent game. Stop logged at **54.009 seconds**. I remembered session A.
+
+I read all five lines of my supplied history. The last line read began “End of supplied own history” and identified that boundary as director metadata. Unread ranges: **none**.
+
+### 2. First impressions
+
+On desktop, at 5.108 seconds, the tailor’s notebook caught my eye, and I appreciated the recording explanation. At 8.193 seconds, the conflicting promises and journey money made the decision interesting.
+
+On phone, at 5.311 seconds, the recording page looked clear at the narrow size. I wanted to try the morning arrangement I had seen as an option on desktop.
+
+### 3. Verbatim diary
+
+**Session A**
+
+- **5.108 s — note:** “A tailor’s notebook catches my eye. I appreciate being told what is recorded before I begin.”
+- **8.193 s — note; 24 minutes before Osman leaves:** “The conflicting promises and the journey money make this feel like a real decision. I want to see the notebook first.”
+- **22.07 s — note; 20 minutes before Osman leaves:** “The yard sounds like a possible compromise. I like that each conversation costs time and gives me a concrete condition.”
+- **32.511 s — note; 10 minutes before Osman leaves:** “The notebook is useful for comparing what each person said. Ferda’s old wording beside her new statement is a little awkward, but the screen explained it.”
+- **50.867 s — want_quit; FINISHED; One month later:** “I am content to leave after seeing the agreement kept and enough money for the train.”
+- **59.684 s — stop; FINISHED; One month later:** “I am content to leave after seeing the agreement kept and enough money for the train.”
+
+**Session B**
+
+- **5.311 s — note:** “The phone page is narrow but the recording note and button fit clearly. I remember the shop and want to try the morning arrangement this time.”
+- **23.785 s — note; 18 minutes before Osman leaves:** “I see Halil’s acceptance is unknown, so I should ask him before committing. The terms tell me the cost clearly.”
+- **46.488 s — want_quit; FINISHED; One month later:** “I have seen the morning arrangement work too; I am ready to leave it there.”
+- **54.009 s — stop; FINISHED; One month later:** “I have seen the morning arrangement work too; I am ready to leave it there.”
+
+### 4. Moments
+
+The concrete costs held me: conversations used minutes, the letter cost six minutes to fetch, and the agreements showed what I would spend from the journey fund. I liked rereading the notebook before choosing.
+
+On desktop, I chose the late service and paid ₺40. On phone, I chose the morning arrangement using Rıza’s yard and paid ₺60. Both games showed all four people signing and a one-month-later outcome. My wish to stop came at each ending and did not pass. Neither session reached the first-minute or three-minute pulse checkpoint.
+
+### 5. Confusion and clarity
+
+The meeting screen explained that Ferda’s standing need used wording from before the letter, even beside her newer statement. That helped, though seeing the two statements together in the notebook felt awkward.
+
+The agreement screen clearly stated the time and money costs and identified Halil’s acceptance as unknown in the phone game. I went back to ask him before writing.
+
+On desktop, my first attempt to select the late-service agreement by its visible text produced this driver error, with the agreement page still visible and nothing tapped:
+
+> Use the clothing order for a smaller late service and trial lease. (2 minutes) is visible text and also the start of the control "Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, with a paid break. Rıza takes his cart home at four. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Terms follow your questions. Halil asked: paid break. Rıza asked: cart home at four. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses."; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)
+
+I selected the full control name next; the agreement appeared with eight game minutes remaining.
+
+### 6. Device use
+
+- **Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/desktop/a-001.png). It showed the recording notice on a centered notebook page, with the checked recording option and Take a seat visible. I used the notebook, conversation, letter, agreement, signature, menu and feedback controls. I did not view a later desktop screenshot, so I cannot describe later layout from an image.
+- **Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/b-001.png), where the recording note and Take a seat fit on screen, and [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/anika/phone/b-002.png), where the cutting-table choices extended below the viewport. I used conversation, agreement, signature, wait, menu and feedback controls. I saw no touch-control trouble; I did not view the later agreement layout in a screenshot.
+
+At each stop I opened Menu → Feedback, selected **I’m stopping**, then **Not now**. The label opened a draft with its text already filled in; I typed nothing and submitted nothing. Recording remained at its default. On desktop, my first feedback command failed locally with `zsh:1: unmatched "`; the corrected command opened the draft.
+
+### 7. Stop and return
+
+- **Desktop:** “I am content to leave after seeing the agreement kept and enough money for the train.” Reason: **FINISHED**.
+- **Phone:** “I have seen the morning arrangement work too; I am ready to leave it there.” Reason: **FINISHED**.
+
+I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation. I would not leave it running: both games had ended, and the choices advanced the game clock when I acted.
+
+### 8. Changes I would want
+
+The one ranked ask is stated at the start. I have no other request from what I reached.
+
+### 9. Comparison
+
+No earlier visit; no comparison. I have no blocking ask from what I reached.
+
+No repo touched; no worktree of mine remains.

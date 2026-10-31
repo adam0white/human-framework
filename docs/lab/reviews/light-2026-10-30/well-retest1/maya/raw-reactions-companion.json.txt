@@ -1,0 +1,123 @@
+{
+  "scope": "Literal raw reactions; unchanged producer report retained; raw timestamps control exact timing and producer rounding remains quoted.",
+  "reportSha256": "80062e01bfa35cb0a9c9531b7f420f32653abf64f7d82a84d5b6fe1e1e087cdd",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 6.075,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The title puts a clear goal in front of me. Yusuf is familiar from my earlier Well visit; I remember wanting to ask him about Zehra and the timber token, high confidence. I will keep the default words and begin."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 19.475,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The moving status names changed before I could tap Yusuf three times; I finally got his panel. There is a lot of construction detail before I find anything personal. He is already building, so I will look at About."
+    },
+    {
+      "device": "phone",
+      "row": 18,
+      "elapsed_s": 49.863,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I like seeing everyone moving to their own tasks. A cedar suggestion appeared on its own and explains the gain and injury risk; I will review it."
+    },
+    {
+      "device": "phone",
+      "row": 24,
+      "elapsed_s": 59.931,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The goal is clear and people work on their own. I discarded the cedar proposal because the injury risk was clear and Idris was already gathering timber. Classic Yusuf is recovering after a beam fell; Human Yusuf is still building. I have not heard the Zehra story yet."
+    },
+    {
+      "device": "phone",
+      "row": 29,
+      "elapsed_s": 88.186,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I would stop the phone visit here. I like that Maryam has a reason to refuse, but I am mostly watching stores and stages and have not found the conversation I came back for. I want to try the other device."
+    },
+    {
+      "device": "phone",
+      "row": 34,
+      "elapsed_s": 96.126,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I am stopping on the phone. The people working and the clear risk and refusal held me briefly, but I wanted a conversation with Yusuf and mostly found construction tables. I selected I am stopping, then Back; I typed and sent nothing."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.508,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The two villages are visible side by side here. Same Yusuf name and roof line as the phone, and I remember the old Well excerpt about his timber token and Zehra, high confidence. I will try the other opening words."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 13.053,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Choosing Slow because the phone status changed faster than I could select Yusuf. I want time to pick a person and see an answer."
+    },
+    {
+      "device": "desktop",
+      "row": 15,
+      "elapsed_s": 23.548,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I asked Yusuf for timber while he prayed. Classic agreed and walked there; Human said I adapted the advice and went to build. I can see the different result, but I want to know why he chose it in his own words."
+    },
+    {
+      "device": "desktop",
+      "row": 20,
+      "elapsed_s": 60.313,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I am waiting to see whether another personal moment appears. The two villages make the refusal easy to compare, but the answer itself is rather general."
+    },
+    {
+      "device": "desktop",
+      "row": 21,
+      "elapsed_s": 60.313,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The side-by-side maps make the two results visible. I asked Yusuf for timber; Classic agreed while Human went to build and said he adapted the advice. I want a more personal reason or conversation, and I have not heard the old Zehra thread."
+    },
+    {
+      "device": "desktop",
+      "row": 22,
+      "elapsed_s": 62.488,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I would stop here tonight. I saw the two versions answer my order differently, but Yusuf has not given me the personal thread I came for and I do not want to watch the stages alone."
+    },
+    {
+      "device": "desktop",
+      "row": 27,
+      "elapsed_s": 71.123,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I am stopping on desktop. The different responses to my order were visible, and Slow gave me more time, but I wanted to hear more from Yusuf than I adapted the advice. I selected I am stopping and went Back without typing or sending."
+    }
+  ]
+}

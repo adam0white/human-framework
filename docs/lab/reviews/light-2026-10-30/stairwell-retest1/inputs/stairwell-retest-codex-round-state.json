@@ -1,0 +1,14 @@
+{
+  "state": "collection closed, evidence qualified; source leads and dated dispositions pending",
+  "closed": "2026-10-31T12:32:28.673044+00:00",
+  "nextOrdinaryNotBefore": "2026-10-31T12:47:28.673044+00:00",
+  "fiveLogicalTesters": true,
+  "tenFinalStops": true,
+  "gameFixRetestIterations": 1,
+  "deploymentHoldReleased": true,
+  "newBlockingCandidates": [
+    "Ivo parcel destination/status clarity",
+    "Ivo selecting another order gave no visible change"
+  ],
+  "qualification": "Source investigation needed before defect claim; first4 producer newblocking wording preserved including Leila None beyond ranked asks. AllCodex fullread/imageview selfreported, complete history stdout coverage verified; direct model delivery not established."
+}

@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-31T15:10:34.370511+00:00",
+  "sealedForHandoff": true,
+  "canonicalImported": false,
+  "finished": false,
+  "manifestSha256": "3931b1afb2ba0996b6578d775ffff4d9c35fb3bfd52c0c2062afbbf58f5d8fa9",
+  "rootFullReadReports": 5,
+  "rootAllTenRoutesReviewed": true,
+  "packetTotalFiles": 93,
+  "payloadCount": 92,
+  "integrity": "word1-root-integrity.json",
+  "codeReview": "word1-packet-code-review.md",
+  "qualificationReview": "word1-packet-qualification-review.md",
+  "judgment": "All five explicitly report no new blocking ask. First fixed retest; no second panel indicated. Dated Deferred integration remains before finished source claim.",
+  "methods": "Eight supported endings and two voluntary BORED stops; no TOOL/restart cut. Unsent prefilled Feedback drafts and raw/report timing differences retained."
+}

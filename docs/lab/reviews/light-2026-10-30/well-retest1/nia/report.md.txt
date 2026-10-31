@@ -1,0 +1,104 @@
+I would not return voluntarily tonight or plan another evening as it is; I liked seeing people refuse and choose different work, but I do not want to manage the villages through the storm, and the replies I heard were less personal than I hoped.
+
+**Ranked asks**
+
+1. Give me more specific personal replies explaining a person’s choice. Danyal’s unavailable-option line and Samira’s “adapted the advice” sounded generic.
+2. Put the action choices ahead of the long construction inventories, especially on phone.
+3. Show me what insisting actually cost, if anything, after the answer.
+
+## 1. Session
+
+I’m Nia Okafor, 19, a Lagos design student. This was a **return** to Twice at the Well, round **light-1030**, free stop, floor 0 and ceiling 25 minutes. The URL was https://human.adamwhite.work/colony/?labRunSource=agent.
+
+My supplied Well history says I previously liked Maryam’s cooking refusal and string puzzle, but stopped because I did not want to manage two villages through the storm. It supplied my return answer and three asks, not my old raw diary. The rest of the supplied file contained selected records from other games. I read lines 1–1596; the last line was **“End of supplied own history. This reading boundary is director metadata, not an event you experienced.”** Unread ranges: **none**.
+
+- **A, phone:** 360×690, touch, light mode. Open at 0.397 seconds; stop at **81.992 seconds**.
+- **B, desktop:** 1280×800, mouse and keyboard, light mode, a separate fresh game the same evening. Open at 0.456 seconds; stop at **52.123 seconds**.
+
+Neither game imported an older save. I left recording and consent unchanged. Neither run reached the storm or ended.
+
+## 2. First impressions
+
+**Phone:** At 5.807 seconds, Maryam’s name reminded me of her earlier cooking refusal and string puzzle. I was fairly sure of that recognition and wanted another personal answer. At 17.042 seconds, the construction inventory already felt like an obstacle between me and her action choices.
+
+**Desktop:** At 10.310 seconds, seeing the two villages side by side made me want to try another person. At 30.465 seconds, Samira’s two versions were visibly doing different work, but her explanation felt generic.
+
+## 3. Verbatim diary
+
+These are the reaction texts as logged, in order, with the driver’s elapsed seconds.
+
+**Session A — phone**
+
+- **5.807 s, Begin the first morning:** “Maryam is here again; I remember her cooking refusal and string puzzle from my last visit, fairly sure. I want to hear her answer again.”
+- **9.480 s, attempted Maryam tap:** “Maryam first. I want a personal answer, not the roof bookkeeping.”
+- **17.042 s, note, Day 1 05:34:** “The person panel starts with a huge construction inventory again; the action choices are below the screen. I wanted Maryam, not two tables of timber.”
+- **18.894 s, order Maryam to House, Day 1 05:34:** “She says she will not build. Asking anyway to hear why.”
+- **32.543 s, Insist on it, Day 1 06:12:** “Duties to the others is a reason, but vague. Pushing once to see the consequence.”
+- **50.298 s, note, Day 1 07:06:** “She refused again after thinking it over and went back to cooking. I see the insist was sent and may cost trust, but no actual trust consequence yet. I like that she still said no.”
+- **54.861 s, Danyal:** “Danyal is cooking too. I want to see if he has his own reason.”
+- **56.691 s, order Danyal to Mosque, Day 1 07:45:** “He will not pray; asking to hear him.”
+- **65.968 s, first_minute, Day 1 08:02:** “Maryam refused my building order twice, even after insistence, and kept cooking. That is a choice I can see, though the trust cost is only a warning. Danyal says the prayer option is not available, which sounds like an error rather than a person. The long construction tables bury my choices on phone.”
+- **68.669 s, want_quit, TASTE, Day 1 08:02:** “I got two refusals, but I do not want to manage roof stages and meals through the storm. Danyal sounded like a system message. I would stop here.”
+- **81.992 s, stop, TASTE, Day 1 08:10:** “Stopping on the phone. I liked Maryam refusing again, but Danyal sounded like an error and I do not want to manage the roof and meals. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+**Session B — desktop**
+
+- **10.310 s, Begin the first morning:** “Second device, same evening. Two villages side by side; I want to try someone other than Maryam.”
+- **18.583 s, order Samira to House, Day 1 05:33:** “Samira says she will not build too. Asking her anyway to hear her reason.”
+- **32.530 s, note, Day 1 06:05:** “Samira says she adapted my advice and gathers grain instead of building. I can see the difference, but that sentence sounds generic and does not tell me why she chose grain.”
+- **38.935 s, want_quit, TASTE, Day 1 06:24:** “I can see the two Samiras doing different work, but the reply is generic and I have no appetite for the construction tables again. I would stop here.”
+- **52.123 s, stop, TASTE, Day 1 06:46:** “Stopping on desktop. Seeing Samira choose grain while her other self built was interesting, but her generic reply and the construction management do not pull me on. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+## 4. Moments
+
+Maryam held me briefly. Her Human-village version refused the house order, then refused again after I insisted; the Classic version agreed and built. I liked that my insistence did not force her to agree. I also liked seeing Samira gather grain while her Classic counterpart worked on the house.
+
+Danyal’s “That option is not available” and Samira’s “I adapted the advice after thinking it over” lost me. I wanted reasons that sounded like those people, not just a description of the decision. The roof stages, timber tables and meals made the longer game feel like management I did not want to do.
+
+My phone quit wish at 68.669 seconds and desktop quit wish at 38.935 seconds both persisted. No pulse was due: both sessions stopped before 180 seconds. The desktop session also ended before a first-minute note was due.
+
+## 5. Confusion and clarity
+
+The labels showing a likely answer helped me choose an experiment. The result then showed **Classic agreed / Human will not**, and the people’s activities made the different outcomes visible. The game also showed that my second Maryam order had **Insist on** and warned that asking again might cost trust.
+
+I did not see whether that insistence actually changed trust. Maryam’s refusal was clear, but “duties to the others” left me wanting a more specific reason. Danyal’s answer said the prayer option was unavailable without telling me why. I was not sufficiently confused to choose the confusion feedback label.
+
+The phone’s first named tap became stale as Maryam changed from waiting to cooking; I retried the current name successfully. On desktop, Samira changed activity twice before my named taps arrived, producing two stale-target errors; the third current name worked. Those replies said the page had changed. I did not encounter an enabled control that remained inoperable after a retry.
+
+One phone ten-second wait returned empty output. The following screenshot and visible text showed the later state; I do not know why that wait reply was empty.
+
+## 6. Device use
+
+**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-001.png), the opening page with the village map, title, two opening quotations and Begin button. The title was partly covered by the “Show Human village” control. I viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-002.png), where Maryam’s panel began below the map and the construction section started at the bottom edge; the action choices were below the visible screen. I viewed [a-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/phone/a-003.png), showing Maryam’s second refusal, the sent insistence and the construction section beneath it.
+
+I used touch taps on Begin, people, House, Insist on it, Back to people, Mosque, Game menu, Feedback, “I'm stopping”, Back and Close menu. I did not view the menu or Feedback as pictures.
+
+**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/desktop/b-001.png), showing the two villages side by side and the opening card on the right. I viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/desktop/b-002.png), showing the two Samiras on their respective maps and the action panel on the right. Its lower action row extended beyond the bottom of the viewport; I did not inspect the whole panel in that image.
+
+I used mouse clicks on Begin, Samira, House, Game menu, Feedback, “I'm stopping”, Back and Close menu. I used no keyboard keys. I did not view the desktop menu or Feedback as pictures.
+
+## 7. Stop and return
+
+**Phone — TASTE, 81.992 seconds:** “Stopping on the phone. I liked Maryam refusing again, but Danyal sounded like an error and I do not want to manage the roof and meals. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+**Desktop — TASTE, 52.123 seconds:** “Stopping on desktop. Seeing Samira choose grain while her other self built was interesting, but her generic reply and the construction management do not pull me on. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+On both devices I opened Game menu and Feedback, selected **“I'm stopping”**, saw it marked pressed, went Back and closed the menu. Both also offered **“I'm confused”**. I typed no note, changed no consent or recording setting, and pressed no Submit.
+
+I would close it rather than leave it running. I would not come back tonight, and I would not plan another evening with it as it is. More personal answers could interest me, but the prospect of managing both villages through the storm still puts me off.
+
+## 8. Changes I would want
+
+1. Give replies specific to the person and the choice they made.
+2. Keep action choices ahead of the repeated construction detail, especially on phone.
+3. Show the actual consequence of insisting when one occurs.
+
+## 9. Compared with my last visit
+
+- **More personal replies like Maryam’s cooking refusal and string puzzle — partly met.** Maryam gave a reason and maintained her refusal after insistence. I liked that choice, but her reason was vague to me, and Danyal’s and Samira’s replies sounded generic. I did not see another string puzzle.
+- **Keep action choices visible without pushing them beneath repeated status text — did not meet it in the phone view I reached.** The person panel placed long construction inventories before the choices. The phone screenshot showed the start of that section while the actions were below the visible edge. The desktop screenshot showed actions after the panel had moved down to them.
+- **Make the consequence of insisting clearer — partly met.** I saw that Insist was sent, that Maryam refused again, and that asking again may cost trust. I did not see an actual trust change or other cost from my insistence.
+
+These were fresh, unmatched games with different choices, so I cannot attribute the differences to a particular change. **New this time that would stop me returning:** Danyal’s system-like unavailable-option reply and Samira’s generic explanation made the personal reactions less compelling, alongside the construction management I already disliked.
+
+I created no browser, server, process or worktree. The coordinator owns the drivers and browser cleanup; no worktree listing applies.

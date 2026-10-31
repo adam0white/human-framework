@@ -1,0 +1,27 @@
+{
+  "well1-root-finalization.json": {
+    "publishedPath": "well1-root-finalization.json.txt",
+    "sha256": "7a07b987843d6ee250d4f0b98a1ce721e911468287c12546e320427a302f9364",
+    "scope": "exact external source-epoch receipt"
+  },
+  "murmur1-root-finalization.json": {
+    "publishedPath": "murmur1-root-finalization.json.txt",
+    "sha256": "11474b7cb5295b585449bb371e01c77e79b8df90a319905e29a6019c271d8436",
+    "scope": "exact external source-epoch receipt"
+  },
+  "warren2-root-finalization.json": {
+    "publishedPath": "warren2-root-finalization.json.txt",
+    "sha256": "18bcd0360d9887e233108417401d0bbd8ea0c488547248c13953a87d101ed4b3",
+    "scope": "exact external source-epoch receipt"
+  },
+  "word1-root-finalization.json": {
+    "publishedPath": "word1-root-finalization.json.txt",
+    "sha256": "441a4d92ce952f98ed45bc66b5cb3fc53cc97e733e86c2225e711e310815deae",
+    "scope": "exact external source-epoch receipt"
+  },
+  "smoke1-root-finalization.json": {
+    "publishedPath": "smoke1-root-finalization.json.txt",
+    "sha256": "36debae88ccaa269a389eb85f4879dafcc3a5e2717a341d8561559295152a476",
+    "scope": "exact external source-epoch receipt"
+  }
+}

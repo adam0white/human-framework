@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-31T13:40:38.410789+00:00",
+  "rootReadFullReport": true,
+  "commands": {
+    "read": 17,
+    "curl": 57
+  },
+  "commandReceipt": "well-maya-command-audit-1339.json",
+  "retainedToolsReceipt": "well-maya-retained-audit-1339.json",
+  "historyEvidence": "All1843literalhistorylines matched aggregatedstdout andseparatelycompletionhash-boundretainedtoolresponses. Initial450/200lineretrievalstruncated; subsequentsmallerreadsmatchedall. Repeatedidentical-linealignmentambiguous; attention/comprehensionnotproven. PriorselectedFREE/archivedCONT/historylimitsunchanged.",
+  "imageEvidence": "Fourassignedmanualimagecallsreturnedtypedhighdetailblocks:phonea001/a002desktopb001/b002, notperceptionproof. SixretainedPNGfiles inclautomatic2, notsixviewedimages.",
+  "stops": {
+    "phone": 96.126,
+    "desktop": 71.123
+  },
+  "producerRounding": "Phoneproducer96.127/raw96.126; phone49.864/raw49.863; desktop23.549/raw23.548; originalsunchanged.",
+  "timedLogs": "Phonefirstminute59.931premature0.069/no validphonecheckpoint. Desktop60.313validelapsed/suppliedclock05:39stalevsreply07:43. Both<180/no pulses/laterstormuntested.",
+  "driverQualification": "Sevenchanging-state/staletargeterrors, notenabledcontrolfailure; no parsedcommandexception orobservedJSerror/timeout. Threewaitcompletedresponsesnonempty. Desktopnoteproducerthenunknownacceptanceisactuallyloggedrow20/60.313+completednonemptyresponse; originaluncertaintypreserved. Nativeacknotgameoutcome.",
+  "exposure": "Freshnewgamephone/defaultwords thenindependentdesktopalternateopeningwords+Slow. No oldsave/seedmatch. OwnpriorWellreturn+3asks onlyexcerpts/oldrawdiarynotsupplied. All3priorasksNOTSEEN thisshortvisit; notprovenunfixed/absent.",
+  "producerNewBlockingAsk": "Conditionalreturnblock: genericadaptedtheadviceanswerandconstructiondetaildistancefrompersonalconversation. Storyfollowupnotreached, fullerpersonalreason/differentpresentationdesired, notscriptedassentorfaithchange.",
+  "returns": "No tonight/noleaveunattended; mightanother eveningifYusuftimbertoken/ZehrafollowupORmorepersonalreason; notforconstructionstagesalone.",
+  "feedback": "Bothlabelsavailable, localstopping/Backonly/no typednote/Submit/recordingorconsentchanges. Linkedproductionreceiptunverified.",
+  "cleanupRecordedPids": [
+    {
+      "pid": 97179,
+      "absent": true
+    },
+    {
+      "pid": 97156,
+      "absent": true
+    },
+    {
+      "pid": 97158,
+      "absent": true
+    }
+  ],
+  "descendantScope": "Observedpoint-in-timesnapshots only; finalroundcleanupstillrequired."
+}

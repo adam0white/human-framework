@@ -1,0 +1,78 @@
+{
+  "closed": "2026-10-31T15:43:39.335474+00:00",
+  "nextOrdinaryNotBefore": "2026-10-31T15:58:39.335474+00:00",
+  "fiveLogicalTesters": true,
+  "tenFinalStops": true,
+  "reportsRootRead": 5,
+  "reportsRootQualified": 5,
+  "controllerActualExit": 0,
+  "controllerExecSession": 64915,
+  "stops": [
+    {
+      "player": "jonas",
+      "device": "phone",
+      "elapsed_s": 123.872,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "jonas",
+      "device": "desktop",
+      "elapsed_s": 120.831,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "aisha",
+      "device": "phone",
+      "elapsed_s": 122.691,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "aisha",
+      "device": "desktop",
+      "elapsed_s": 132.921,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "diego",
+      "device": "phone",
+      "elapsed_s": 88.268,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "diego",
+      "device": "desktop",
+      "elapsed_s": 136.181,
+      "reason": "FRUSTRATED"
+    },
+    {
+      "player": "leila",
+      "device": "phone",
+      "elapsed_s": 119.755,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "leila",
+      "device": "desktop",
+      "elapsed_s": 72.009,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "maelle",
+      "device": "phone",
+      "elapsed_s": 135.247,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "maelle",
+      "device": "desktop",
+      "elapsed_s": 105.871,
+      "reason": "FRUSTRATED"
+    }
+  ],
+  "hold": false,
+  "iteration": 1,
+  "finished": false,
+  "newBlockingAsk": "Sevim tied-bundle journal versus status/action contradiction; Diego and cold Ma\u00eblle stopped frustrated. Cause unknown. Leila mismatch resolved; Ma\u00eblle prompt changed after pause.",
+  "methods": "Eight actual ending FINISHED stops and two voluntary unfinished FRUSTRATED stops. No restart cut or TOOL stop. Required Rosa coverage omitted, explicitly qualified.",
+  "packet": "Preparing; reserved F2821\u20132850, actual asks only."
+}

@@ -1,0 +1,195 @@
+{
+  "reportUnchanged": true,
+  "source": "Exact raw wallclock reactions",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "reaction": "A caretaker delivering supplies sounds concrete. The four-week choices and character history mean little to me, so I will leave them empty.",
+      "elapsed_s": 4.916,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "reaction": "I can see the building and a specific delivery. I will go to the bakery first.",
+      "elapsed_s": 13.93,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 13,
+      "reaction": "The order count dropped and he thanked me; that feels like a delivery. I like that time pauses for the conversation.",
+      "elapsed_s": 26.247,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 26,
+      "reaction": "Deliveries are easy to follow and the residents have distinct voices. I am curious what comes after the orders.",
+      "elapsed_s": 61.739,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 33,
+      "reaction": "All five orders are done, even though Derya was out. Hanging the bread on her door is a clear result. I will see what skip does.",
+      "elapsed_s": 78.825,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 46,
+      "reaction": "I am at flat 3 but the parcel is still an order and it says go to flat 3 again. I am unsure whether I should tap it again.",
+      "elapsed_s": 111.923,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 51,
+      "reaction": "Feedback let me select I am confused; Escape returned to the menu. I saw no Back button and sent nothing.",
+      "elapsed_s": 120.223,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 53,
+      "reaction": "Now it says I am waiting with a parcel. That explains why it remains, though the go button still looks odd.",
+      "elapsed_s": 123.817,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 57,
+      "reaction": "I tapped the table job but the parcel stayed selected. I do not know why I cannot switch to the other job.",
+      "elapsed_s": 132.695,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 61,
+      "reaction": "Tapping her flat let me do the table job. I am surprised it says the work is done while she is out, since she asked for help carrying it.",
+      "elapsed_s": 143.118,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 62,
+      "reaction": "The deliveries were pleasant, but I am starting to feel I am just waiting for the next small job. I would stop for now.",
+      "elapsed_s": 145.11,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "BORED"
+    },
+    {
+      "device": "phone",
+      "row": 67,
+      "reaction": "I am stopping for now; the small jobs have begun to feel repetitive.",
+      "elapsed_s": 153.69,
+      "op": "log",
+      "kind": "stop",
+      "reason": "BORED"
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "reaction": "The same introduction is much wider here, though the fixed start button covers the lower text. I will try a different approach to the people this time.",
+      "elapsed_s": 5.572,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 8,
+      "reaction": "I recognize the names and the same building: Tar\u0131k is in flat 7, as on the phone, and Sevim is in flat 2. I am confident because the labels match. The first order is Sevim rather than Tar\u0131k.",
+      "elapsed_s": 16.497,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "reaction": "Sevim says the same on-time line I remember from the phone, with the same name and flat; I am confident it is the same resident. Opening the gate got a witnessed action but no judgment yet.",
+      "elapsed_s": 33.165,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 19,
+      "reaction": "I like seeing the gate recorded as something I did. The notebook says a lemon candy detail after Sevim called Tar\u0131k kind; I am guessing that is the new line.",
+      "elapsed_s": 42.268,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 24,
+      "reaction": "Hacer says exactly the same thing about Tar\u0131k as Sevim. That takes some life out of the conversation for me.",
+      "elapsed_s": 53.024,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 28,
+      "reaction": "The larger building is easier to read. I am more interested in the residents than repeating the delivery route, but the repeated remark made them feel less distinct.",
+      "elapsed_s": 63.848,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 32,
+      "reaction": "I have seen enough for tonight. The same delivery start and another conversation ending much like Tar\u0131k\u2019s make me want to stop.",
+      "elapsed_s": 80.339,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "BORED"
+    },
+    {
+      "device": "desktop",
+      "row": 37,
+      "reaction": "I selected I am stopping in Feedback. There was no Back button, so Escape returned me to the menu; I typed and sent nothing.",
+      "elapsed_s": 91.094,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 38,
+      "reaction": "I am stopping tonight; I have had enough of the repeated start and similar conversations.",
+      "elapsed_s": 93.294,
+      "op": "log",
+      "kind": "stop",
+      "reason": "BORED"
+    }
+  ]
+}

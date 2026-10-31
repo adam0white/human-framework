@@ -1,0 +1,12 @@
+{
+  "tester": "Mei Tan",
+  "time": "2026-10-31T08:52:48.990058+00:00",
+  "historyActualLines": 999,
+  "historyReadThrough": 999,
+  "producerFullReadClaim": true,
+  "actualWholeHistoryReadVerified": true,
+  "producerHistoryEndClaim": "Reached explicit end marker; actual successful line responses checked.",
+  "priorContinuityQualificationRetained": false,
+  "limits": "Current history read completeness does not erase earlier input contamination or make earlier incomplete reads complete. No production agent receipt independently read.",
+  "methodViolation": "One assigned driver curl was piped through head -c600 despite no-pipes brief. Request executed, response truncated; preserve event and qualify output."
+}

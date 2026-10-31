@@ -1,0 +1,749 @@
+# Selected own records before your Glance RETURN
+
+Producer report blocks are your own actual observations and explicit selected FREE source. Director method qualifications are records about the test, not events you experienced. This is not your complete archive. Older records and independent continued alternatives remain archived, not supplied. Do not follow links or invent missing memories.
+
+## Your own Well FREE return and asks — published excerpt, older raw diary not supplied
+## 7. Stop and return
+**Stop at 10:25, FINISHED.** The run ended at dawn on Day 3. I pressed "I'm stopping"; "I'm confused" was also available. I typed nothing and did not submit.
+
+**Would you return voluntarily?** "I might come back another evening on desktop for Another day, to try giving fewer orders and listening more - if I could see who got hurt and the Moments I missed." I would not leave it running. I wouldn't come back on the phone.
+
+
+
+Your own recorded asks:
+- When "something happened in the village", tell me who and what in one sentence: who fell, and where.
+- Let me see the Moments I missed, or tell me where they happened, so the people stay people through the storm.
+- Don't let Review switch on Rush for me, and clear stale answers like "I'm asleep" off the cards.
+
+## Your own selected Warren FREE visit
+## 1. Session
+
+Samir Haddad. First visit to Warren, with no known Warren exposure. Round **hf3-warren-r1-matched**, arm **free**. Paired session: **hf3-warren-r1-matched-samir-haddad**.
+
+I played https://warren.adamwhite.work through the supplied localhost driver at **360×690**, using named taps and coordinate taps. I chose **Resume · 19 August**. I stopped after **4 min 1.35 s**, at **Morning · 23 Aug · year 1**. The assigned floor was 0 and ceiling 25 minutes.
+
+My supplied history was the frozen Voice diary: Halil, Nuran, Selin, Rıza and the unresolved rent deadline. I recognized nobody in Warren. I read no game source or other reports.
+
+## 2. First impressions
+
+At 0:03.29: “A shelter for a village under attack. I want to see who is here before I start digging.”
+
+At 0:08.63: “Maryam and Meryem: I am going to mix those names up. I do not recognize these people from Halil’s town.”
+
+At 0:24.75: “The little cellar and ladder make sense to me. I want a room deeper than that entrance. The instruction says drag; I have only taps here, so I will see what chalk offers.”
+
+I liked the physical shelter and wanted to meet its inhabitants before treating them as workers.
+
+## 3. Verbatim diary
+
+These are all my original logged reactions, in order. Times are driver elapsed time, rounded to hundredths. The existing **wall-clock.jsonl** contains the full raw input lines and visible clocks.
+
+- **0:03.29:** “A shelter for a village under attack. I want to see who is here before I start digging.”
+- **0:05.65:** “Six circles are people. Let me meet them.”
+- **0:08.63:** “Maryam and Meryem: I am going to mix those names up. I do not recognize these people from Halil’s town.”
+- **0:12.42:** “She needs nothing yet. All right, I should look at the hill.”
+- **0:24.75:** “The little cellar and ladder make sense to me. I want a room deeper than that entrance. The instruction says drag; I have only taps here, so I will see what chalk offers.”
+- **0:27.42:** “I am tapping stone just beside the cellar, hoping to mark one piece.”
+- **0:30.61:** “Too far. That is a useful answer; I will try immediately against the right wall.”
+- **0:36.28:** “Six sleeping places from one mark! But it is still exposed to riders. I like that depth and doors both matter.”
+- **1:04.73, wait response:** “I will give them time to choose. I do not want to ring an alarm just to make them work.”
+- **1:08.99, late first-minute note:** “Late first-minute note: I met Maryam, who needed nothing, and marked stone beside the cellar. Meryem has now broken through it, coughing dust. That small physical detail makes her feel present. A day went past while I waited; I had not expected that much time.”
+- **1:13.26:** “I am choosing Slow because a day passed during one short wait. I want time to read about the people.”
+- **1:20.74:** “I will put the grain in the space Meryem just opened.”
+- **1:26.45:** “Tapping works for a single square, even though the words say drag. Now I want to know what the others have been doing.”
+- **1:30.93:** “Kian has a sister Ada, but she was not in the six names I saw. I am curious about that household. The journal makes this feel like a village, rather than six workers.”
+- **1:41.17:** “There is no conversation here, only his task and needs. I hoped to ask about Ada.”
+- **1:51.51:** “I am marking below the cellar now, for somewhere to sleep away from the entrance.”
+- **2:27.02, wait response:** “I am waiting for that lower space and for someone to carry grain. I do not yet know whether they need something else from me.”
+- **2:30.56:** “The night did not move in thirty seconds. Earlier days passed in seconds. I cannot judge the pace yet.”
+- **2:34.64:** “Fresh air and light: perhaps the lower dig needs a lamp. I am guessing. The information does not tell me whether that is what stopped it.”
+- **2:45.16:** “A lamp in the cellar, near the lower dig.”
+- **3:11.45, pulse, engagement 3/5:** “I like these households and the physical shelter, but I am waiting on grain and digging without knowing why neither has moved.”
+- **3:18.39:** “Let me inspect the store itself.”
+- **3:22.84, want_quit, CONFUSED:** “I would leave now. The store tells me it is empty, which I already know, and I cannot ask anyone what is stopping them. I am starting to poke things rather than make a plan.”
+- **3:30.13:** “One last look at the lower mark, to see whether it gives a reason.”
+- **3:34.50:** “Oh, it is open. I was wrong about the digging being stuck. I did not see it happen. I will put beds there before I leave.”
+- **3:46.50:** “Three beds, still reachable. I have made something, but I still do not feel I understand the village’s choices. The wish to leave has eased a little, not gone.”
+- **3:57.39:** “There is no confused choice. I am selecting the stopping choice locally and leaving the note empty.”
+- **4:01.35, stop, CONFUSED:** “I am stopping here. I made a store, a lamp and three beds, but I cannot tell what the people need from me to bring grain down. I would not leave it running. I might return another evening on desktop to try building a proper shelter, because I like the place and these households; I would not return tonight.”
+
+## 4. Moments
+
+Meryem breaking through the wall “coughing dust” was the first moment that made someone feel present. The journal then gave me households, supervision, scouting and Kian caring for Ada. Those details interested me more than the resource symbols.
+
+My first coordinate tap marked unreachable stone. The game explained that I needed a path. The next tap beside the cellar succeeded. Marking a store also gave a clear answer: people could bring grain to its jars.
+
+My only quit wish came at **3:22.84, CONFUSED**. I continued by inspecting the lower space. Discovering it was already open corrected my assumption and persuaded me to place beds. That eased the wish without removing it.
+
+The only pulse was **3:11.45, engagement 3/5**. The first-minute note was late, at **1:08.99**, after a wait crossed the checkpoint. I did not reconstruct a note at 60 seconds.
+
+## 5. What confused me or became clear
+
+I learned that I mark space and people choose when to dig. Single taps could mark a square despite the instructions saying to drag. Furnishing open space produced immediate confirmations.
+
+I misunderstood the lower dig as stalled. Inspecting it later said, “This ground is open.” I had missed its completion.
+
+The grain remained unexplained to me. The prompt said people must bring the harvest down; inspecting the store only said it was empty. I could not tell whether I should wait or provide something else.
+
+I also struggled to judge time. One wait advanced about a day; another returned the same night; a later input showed a new date. Reading pauses were visible. I cannot establish a general timing rule or say that the harness froze time between commands.
+
+## 6. Actual device use
+
+I viewed **current.png**, captured at **0:17.74**, at **360×690**. I saw the narrow hill view, cellar, ladder, zoom controls and bottom toolbar. I did not view the automatic **first-minute.png**.
+
+I used Resume, The village, Maryam, Kian, Close controls, chalk, furnish/store/lamp/beds, look, Journal, Information, Slow, Game menu and Feedback. Coordinate taps selected stone or open ground near the cellar. I used documented waits of 25, 30 and 20 seconds.
+
+I changed **Steady → Slow at 1:13.26** because a day had passed during a short wait.
+
+The supplied operations offered taps but no drag operation. Taps worked; I encountered no driver block. I did not test dragging or physical touch.
+
+I stopped before five minutes. **1280×800 was not visited**, and the requested later layout check remains unmet. I make no claim about that layout.
+
+Feedback offered “I would stop here,” but no confused choice. I selected it locally. I typed nothing, submitted nothing and changed no consent or recording setting.
+
+## 7. Stop and return
+
+I stopped voluntarily at **4:01.35**, reason **CONFUSED**:
+
+> I am stopping here. I made a store, a lamp and three beds, but I cannot tell what the people need from me to bring grain down. I would not leave it running. I might return another evening on desktop to try building a proper shelter, because I like the place and these households; I would not return tonight.
+
+Would I return voluntarily? I might return another evening on desktop to try building a proper shelter, because I like the place and these households. I would not return tonight. I would not leave it running.
+
+The browser is no longer needed. The coordinator owns its cleanup. I created no workers, browsers, servers or worktrees and touched no repository.
+
+## 8. Changes I would want
+
+1. Let me learn why nobody is bringing grain to the empty store, preferably from a person.
+2. Make a completed dig noticeable enough that I do not keep waiting for it.
+3. Let me ask Kian about Ada. That was the thread I wanted to follow.
+
+
+
+## Your own actual later report — glance/samir/report.md
+**Would you return voluntarily?** I might come back another evening, on desktop only, if I could answer Dai (Morgan's question, who the town people are) and each step cost far less than half a minute of waiting. I would not leave it running.
+
+**Ranked asks**
+1. Let me answer Dai, or ask him about himself and the town.
+2. Cut the opening wall of text about Nerys, Bilal and Wren. Introduce the people one at a time.
+3. On the phone, show the level and gauges above the italic note. Stop the recording banner covering them.
+
+---
+
+## 1. Session
+- Persona: Samir Haddad. Exposure: first visit. Round light-1030, first panel round, arm free stop (floor 0).
+- Own history: /Users/abdul/code/.lab-scratch/playtest/light-1030/glance/samir/own-history.md. It holds other games and nothing about The Glance.
+- URL: https://glance.adamwhite.work/?labRunSource=agent
+- Session A: desktop 1280x800, port 21243, 207 s (3 min 27 s).
+- Session B: phone 360x690, port 21242, about 76 s.
+- I created no worktrees or servers. I read cleanup-rule.md. No `git worktree list` applies, because I touched no repository.
+
+## 2. First impressions
+- Desktop, 3–18 s: the title page showed a red water-level chart and a Start game button. In the game, a hand-drawn dam sketch and a "Nobody has read the level tonight" line were readable. I immediately got "a lot of text at once" and "too many names already" (Nerys, Bilal, Wren).
+- Phone, 2–10 s: the title page was tidy. In the game, the long italic note pushed the dam sketch and the level and gate tiles to the bottom edge, where the recording banner overlapped them.
+
+## 3. Verbatim diary lines (elapsed s)
+Desktop:
+- 3.41: "Opening the game; what is it?"
+- 12.589: "Night desk over a valley town, a dam. Who lives down there? Starting."
+- 17.934: "A lot of text at once; Dai is a keeper I ask by phone. Who is Nerys, Bilal, Wren? Too many names already."
+- 19.697: "Who are these people? Checking arrangements."
+- 22.12: "A standing request to Dai: requests, not promises. I like that he decides. Closing; I want to hear how he is first."
+- 23.488: "Dai is resting till 22:20; I will not wake him. Skipping."
+- 57.466: "He is resting but I need a number. Calling him."
+- 62.07 first_minute: "A dam and a keeper Dai I can only ask; he decides. I like that he has his own will. But the opening is a wall of text about Nerys, Bilal, Wren, none of whom I have met."
+- 63.555 and 84.957: wait notes. I only have the gist of them: "Dai said yes, I will do that. Waiting for his report." This is not verbatim.
+- 87.172: "Level rising 0.4 an hour. I will leave Dai a standing request so he can act while I cannot reach him."
+- 90.274: "Leaving the request: at 4.5 m, open 2 turns."
+- 91.658: "Closing the page to send it."
+- 125.518: "Level is an hour old. Choosing the gauge to ask again."
+- 127.407: "Readings can be wrong, and I can doubt them. Competing trust, I like it. Asking him again."
+- 161.375: "It reached 5.0 and he opened the gate two turns as I asked, on his own judgement. That felt good. Checking again."
+- 163.95 pulse, engagement 3: "The standing request working was satisfying, and doubt-a-reading is a nice idea. But Dai has no personality yet beyond kettle lines, and the first screen was a wall of names I have not met." This pulse was logged before 180 s, so it is premature.
+- 198.26: "Dai asks where Morgan has gone, twelve years at that desk. That is a person. But I have no way to answer him; no reply control."
+- 200.502: "Checking the menu and Feedback."
+- 207.146 stop, BORED, engagement 3: "Stopping at about 3.5 minutes, Monday 01:20. I liked the standing request and Dai deciding, and Morgan question. But I cannot answer Dai, I learned nothing of the town people, and each step is half a minute of waiting. Pressed Im stopping in Feedback, typed nothing."
+
+Phone:
+- 2.194: "Phone, second visit same evening. New game."
+- 5.485: "Phone title is tidy. Game began after a short pause, like on desktop."
+- 7.905: "Different from desktop: level 4.2, Dai is available. Asking him."
+- 10.052: "On the phone the sketch and gauges are pushed below the fold by the long italic note."
+- 69.761 first_minute: "Phone: same opening, but the start level is 4.2 and Dai is available, so the night differs. Text wall pushes the sketch and gauges below the fold; I only found them by scrolling. I know the loop from desktop, so the pull is lower."
+  - Correction: I did not scroll. The screenshot showed the tiles cut off at the bottom edge. I am leaving the line as logged.
+- 76.205 stop, BORED, engagement 2: "Stopping the phone at about 75 seconds, Mon 23:07. I have already seen the opening on desktop; here the long italic note pushes the dam and gauges off screen, and nothing needs me for half a minute at a time. Pressed Im stopping in Feedback, typed nothing."
+
+I logged no want_quit on either device. Stopping was my decision, with the reason word BORED on the stop line.
+
+## 4. Moments
+- What held me: a standing request to Dai ("requests, not promises"). At 00:12 he read 5.0, said he would consider the gate work, and opened it 2 turns, as I had asked, on his own judgement. The doubt-a-reading idea also pleased me. It gives competing trust, which I like.
+- What lost me:
+  - The opening names Nerys, Bilal and Wren before I have met anyone.
+  - Dai asked "Where has Morgan gone? He worked at that desk for twelve years", and I had no way to reply.
+  - Each step costs about 30 real seconds of waiting.
+- Quit wish: the BORED feeling appeared around 3 minutes on desktop and did not pass. On the phone it was there from the start, because I already knew the loop.
+- Pulse: one, on desktop, engagement 3 (premature, see section 3). No pulse on the phone, which ended before 180 s.
+- I did not see whether the gate opening mattered, or whether the readings were true. Both sessions ended before dawn.
+
+## 5. Confusion and clarity
+- Confusing:
+  - The optional-chapter note about Nerys, Bilal and Wren arrives before any introduction.
+  - "(as written)" appears next to readings with no explanation.
+  - It is unclear why the two sessions started differently. Desktop began at 3.5 m with Dai resting. The phone began at 4.2 m with Dai available.
+  - Dai's "Where has Morgan gone?" looks like a prompt, but there is no way to answer.
+- Clear: once I had used it, the standing-request loop made sense (keeper, trigger, action, Leave this request, Back). The page's wording matched what happened.
+
+## 6. Device use
+- Desktop screenshots viewed: a-001.png (title) and a-002.png (22:01 game screen, readable). a-003.png was saved at 198 s and I did not view it.
+- Phone screenshots viewed: b-001.png (title, tidy, intro text partly cut by the Start button) and b-002.png (22:00 game screen). In b-002 the level and gate tiles were cut off at the bottom edge by the recording banner.
+- Desktop controls used: Start game, Watch arrangements, the gate-turns select, Leave this request, Back, Close, Skip, gauge tap, "Ask Dai to read it" and "Ask Dai to read the level", Game menu, Feedback, I'm stopping.
+- Phone controls used: Start game, Ask Dai to read the level, Skip, Game menu, Feedback, I'm stopping, Close.
+- Trouble I saw: the phone layout above. Unseen: how the phone screen behaves when scrolled, because I never scrolled.
+- Feedback: on both devices I reached it through Game menu, then Feedback. "I'm stopping" and "I'm confused" were both offered. I pressed "I'm stopping" and typed nothing. I changed no consent or recording setting and did not submit. I closed the dialog on both devices.
+
+## 7. Stop and return
+- Desktop stop: "Stopping at about 3.5 minutes, Monday 01:20. I liked the standing request and Dai deciding, and Morgan question. But I cannot answer Dai, I learned nothing of the town people, and each step is half a minute of waiting. Pressed Im stopping in Feedback, typed nothing." Reason: BORED.
+- Phone stop: "Stopping the phone at about 75 seconds, Mon 23:07. I have already seen the opening on desktop; here the long italic note pushes the dam and gauges off screen, and nothing needs me for half a minute at a time. Pressed Im stopping in Feedback, typed nothing." Reason: BORED.
+- **Would you return voluntarily?** I might come back another evening, on desktop only. The conditions are that I can answer Dai and ask about the people in the town, and that each step costs far less than half a minute of waiting. Without those, I would not return. I would not leave the game running, because it needs me to act at each step. I would not return on the phone, since the layout hides the gauges.
+
+## 8. Changes I would want
+1. Let me answer Dai, or ask him about himself and the town.
+2. Cut the opening wall of text and introduce Nerys, Bilal and Wren one at a time.
+3. On the phone, show the level and gauges above the italic note, and keep the recording banner off them.
+
+## 9. Compared with my last visit
+First visit.
+
+**Screenshots for the coordinator:** desktop/a-002.png (22:01 game screen, readable, dam sketch and Ask Dai button visible) and phone/b-002.png (22:00 game screen, level and gate tiles cut off at the bottom edge).
+
+
+## Your own actual later report — glance-retest/samir/report.md
+**Would you return voluntarily?** I might come back another evening, on desktop only, if I could answer Dai about Morgan and learn who the town people are, and if each step cost far less than half a minute of waiting. I would not leave it running.
+
+**Ranked asks**
+1. Let me answer Dai, or ask him about himself, Morgan and the town. He asked about Morgan again and there is still no reply control.
+2. Show the level tile's last reading, with its age, instead of "— not read" all night while Dai reports 3.8 to 4.0.
+3. Cut the waiting. Each step is about 30 real seconds with nothing for me to do.
+
+## 1. Session
+- Persona: Samir Haddad. Exposure: RETURN, same-standing retest. Round light-1030-retest1, arm free stop (floor 0).
+- Own history: I read all 539 lines of own-history.md. My earlier Glance report is in it. Its method qualifications are kept: both earlier sessions ended before dawn, and one earlier pulse was logged before 180 s. The diary files for the earlier sessions were not supplied. The Warren, Voice, Watch, Pass, Valley, Commonstead and Lefthand records are other games. I used them only for how I tend to play.
+- URL: https://glance.adamwhite.work/?labRunSource=agent
+- Session A, phone 360x690, port 21902: about 75 s.
+- Session B, desktop 1280x800, port 21903: about 195 s.
+- I started a new game in each session. I created no worktrees, servers or files. I read cleanup-rule.md. No repository was touched, so there is no `git worktree list` to show.
+
+## 2. First impressions
+- Phone, 2.4 s: the title is tidy. A sample morning chart and a dam choice are new.
+- Phone, 9.7 s: in the game, Dai is resting, the level is not read, and the sketch and both gauge tiles are fully on screen. Last time they were cut off.
+- Phone, 11.7 s: the opening is shorter, but the "Optional chapter: Nerys, Bilal and Wren" line is still there.
+- Desktop, 1.7 s: the title and sample chart are readable.
+- Desktop, 8.4 s: the start level was 3.5 and Dai was resting. I opened Watch arrangements at 10.8 s. One line now explains Bilal as a visiting helper with no gate authority.
+
+## 3. Verbatim diary (elapsed s)
+
+**Phone (the first_minute line was logged at 66.971, after 60 s)**
+- 5.171 (on tap): "Phone first. Title has a sample morning and a dam choice now. Starting valley dam."
+- 11.711: "Phone: the opening text is shorter than last time, no wall of names above the fold; Dai is resting till 22:20. Optional chapter line still names Nerys, Bilal, Wren. Not sure yet if I recognise this setup."
+- 16.052 (on tap): "Different from last time: sketch and gauges are on screen, nothing cut off. That was my phone ask. Dai is resting but I want a number, so I call him."
+- 45.973 (on tap): "Level fell to 4.3. A lightning flash showed the wall, nice touch. Looking at the gate job."
+- 47.754 (on tap): "Level is falling, so I will not open the gate yet. Closing."
+- 66.971, first_minute: "Phone: sketch and gauges fit on screen now, my phone ask is met. Opening is much shorter. Dai answered in his own voice, level 4.3 and falling. But I know nobody but Dai, and there is nothing to do for minutes at a time."
+- 75.349, stop, BORED, engagement 3: "Stopping the phone at about 75 seconds. Layout fixed and short opening good, but this is the same loop I know and nothing needs me yet. Pressed I am stopping in Feedback, then Back, typed nothing."
+
+**Desktop**
+- 4.008 (on tap): "Desktop, my other device the same evening. Title is the sample morning and dam choice. Starting a new valley dam game."
+- 10.808 (on tap): "Start level 3.5 this time, Dai resting. I want to see who Nerys, Bilal and Wren are before anything else."
+- 13.22 (on select): "Bilal is explained in one line now, a visiting helper with no gate authority. Better. I know how this works: standing request at 4.5, open 2 turns."
+- 64.86, first_minute: "Desktop: opening is shorter and Bilal got a one-line explanation, which helps. Left a standing request and Dai is checking the level on his own. I like that he decides. Still waiting with nothing to do, and still no way to answer him or learn the town."
+- 100.854 (on tap): "Dai read 4.0 steady, but the level tile went back to a dash. I think it blanks when the reading is old. Guessing."
+- 186.011, pulse, engagement 3: "I recognise Dai asking where Morgan has gone, same line as last visit, at about 01:10. I am fairly sure. I still have no control to answer him. The standing request and shorter opening are nice, but the level tile reads not read all night while Dai says 3.8."
+- 186.835, want_quit, BORED: "Same Morgan question with nothing to answer it, and nothing needs me for half a minute at a time. I would leave here."
+- 194.92, stop, BORED, engagement 3: "Stopping desktop at about 3 minutes, Monday 01:36. I liked the shorter opening, Bilal explained, and Dai deciding on the standing request. But Dai again asks where Morgan went and I cannot answer, the level tile stays not read, and I wait half a minute per step. Pressed I am stopping in Feedback, then Back, typed nothing."
+
+## 4. Moments
+- Held me:
+  - The phone layout now showing the sketch and gauges.
+  - A shorter opening.
+  - Bilal explained in one line.
+  - The standing request. Dai took readings and decided on his own.
+  - The lightning flash showing the dam wall.
+- Lost me:
+  - Dai's Morgan question, with no way to reply.
+  - Long waits with nothing to do.
+  - The level tile that stayed "not read".
+- Quit wish: desktop, BORED, at about 187 s. It did not pass, and I stopped. Phone: I stopped at 75 s with no separate want_quit logged.
+- Pulse: one, on desktop at 186 s, engagement 3. The phone ended before 180 s.
+- The gate never opened on either device. Both sessions ended long before dawn.
+
+## 5. Confusion and clarity
+- Clear: how the standing request works. The text said what it would do and that Dai still decides. Bilal's one-line explanation also helped.
+- Confusing:
+  - On desktop the level tile showed "not read" all evening, even after Dai read 4.0 and then 3.8. I guessed it blanks once a reading is old. I do not know that.
+  - The two sessions started differently. The phone began at level 4.5 and the desktop at 3.5. I know this from earlier visits too. I do not know why.
+  - Dai's Morgan line looks like a prompt, but nothing lets me answer.
+
+## 6. Device use
+- Screenshots viewed: phone/b-001.png (title page), phone/b-002.png (game screen, 22:03), desktop/a-001.png (title page).
+  - b-001: the Start game button sat over the intro text at the bottom, and the recording banner sat below it.
+  - b-002: the sketch and gauge tiles were fully visible. The Skip button was at the bottom. This is not the cut-off tiles from last time.
+  - a-001: the full-width sample chart was readable. The bottom of the chart, including the bridge line, was cut off by the Start game button. The recording banner was visible.
+- I took no desktop game-screen screenshot. I used four of my five manual shots in total. I viewed no automatic checkpoint shot.
+- Phone controls: Start game, Ask Dai to read the level, Skip, a gauge tap, Close inspection, Game menu, Feedback, I'm stopping, Back.
+- Desktop controls: Start game, Watch arrangements, the gate-turns select, Save this request, Back, Skip, Game menu, Feedback, I'm stopping, Back.
+- I saw no layout trouble beyond the cropped chart on the desktop title page. I did not scroll or drag.
+- Feedback offered both "I'm stopping" and "I'm confused" on both devices. I pressed "I'm stopping", then Back, and typed and sent nothing. I changed no consent or recording setting.
+
+## 7. Stop and return
+- Phone stop: "Stopping the phone at about 75 seconds. Layout fixed and short opening good, but this is the same loop I know and nothing needs me yet." Reason: BORED.
+- Desktop stop: "Stopping desktop at about 3 minutes, Monday 01:36. … Dai again asks where Morgan went and I cannot answer, the level tile stays not read, and I wait half a minute per step." Reason: BORED.
+- **Would you return voluntarily?** I might come back another evening, on desktop only. My conditions: I can answer Dai about Morgan or ask about the town people, and each step costs far less than half a minute of waiting. Without those I would not return. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight. The layout is fixed, but I already know the loop from desktop.
+
+## 8. Changes I would want
+1. Let me answer Dai or ask him about himself and the town.
+2. Keep showing the level's last reading and its age on the tile.
+3. Cut the idle waiting, or give me something useful to decide while Dai rests.
+
+## 9. Compared with my last visit
+- Ask 1, answer Dai or ask him about the town: **did not meet it.** He asked about Morgan again and I found no reply control.
+- Ask 2, cut the opening wall of text and introduce Nerys, Bilal and Wren one at a time: **partly met.** The opening is shorter, Bilal now has a one-line explanation and the wall is gone. The "Optional chapter: Nerys, Bilal and Wren" line still names all three, and I met only Bilal's note, not Nerys or Wren.
+- Ask 3, on the phone show the level and gauges above the italic note and keep the recording banner off them: **met.** At 360x690 the sketch and both gauge tiles were fully on screen, and the banner did not cover them.
+- New, from what I reached:
+  - The level tile read "not read" all evening on desktop while Dai reported 4.0 and 3.8. This would not stop me returning alone, but it made me distrust the board.
+  - Waiting is still about 30 real seconds per step. That is the part most likely to stop me returning.
+
+
+## Your own actual later report — word/samir/report.md
+**Would you return voluntarily?** I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.
+
+**Ranked asks**
+1. Make the honest route cost something. One agreement satisfied everyone in 30 seconds. The game never showed me a hard case on that route.
+2. Show the private-word lie earlier, or give the honest route its own private choices. I found it only by poking after the easy win. It was the best part, because the men compared notes and caught me.
+3. Let me ask people more than what they need. I would like to ask Halil and Rıza what Nuri really said, since both claim a promise.
+
+## 1. Session
+- Persona: Samir Haddad. This was my first visit to His Word. I have played other HF games.
+- Round: light-1031-word1, panel round, free-stop arm (floor 0).
+- Own history: I read all 635 lines of own-history.md in chunks. It holds no His Word records.
+- I recognised the names Halil and Rıza from my Voice diary, plus Osman, and thought of Selin and Nuran there. These are different characters and a different setting. I am fairly sure of the names and not sure of anything else.
+- URL: https://word.adamwhite.work/?labRunSource=agent
+- Session A: desktop 1280x800, port 22405, about 95 s.
+- Session B: phone 360x690, port 22404, about 65 s.
+- Recording stayed at its default (on).
+
+## 2. First impressions
+- Desktop, 5.6 s: a notebook-styled page. The story gave two clashing promises, Halil for mornings and Rıza for cart space. I liked that.
+- Desktop, about 10 s: I could ask each person what they need. I did that first, as I usually do.
+- Desktop, 31 s: the game ended AGREED. I had made one agreement and everyone signed it. It felt like a single rewarded answer.
+- Phone, about 7 s: the title page fit. On the game screen the story filled the screen and the first button was below it.
+
+## 3. Verbatim
+
+Desktop (the `reaction` text I attached to actions, plus the log lines):
+- 5.559 (tap): "A tailor notebook. Nuri promises, my words. Sitting down."
+- 7.86 (tap): "Two promises clash: Halil mornings, Riza cart space. I like that. Halil, Riza, Osman ring a bell from my Voice diary, fairly sure but different setting here."
+- 9.157 (tap): "Asking what people need first, as I do."
+- 19.42 (tap): "Ferda says the letter may show if late work pays. Fetching it; Riza is back at 10 anyway."
+- 22.697 (tap): "This one matches what each person said: Halil paid late work, Riza cart home at four, Ferda small trial, Osman trial. Not obviously a trap, so I try it." This tap hit an ambiguous name and nothing was tapped. I resent it by full name.
+- 34.317 (tap): "Done in about 30 seconds. That was fast, and it felt like one answer fit everyone. Looking at what the notebook says I missed."
+- 43.413 (tap): "Everyone got what they asked for in half a minute. Feels like one rewarded answer. I want to see whether private talks hold a harder case."
+- 51.275 note: "Now this is the real choice: tell Halil the floor is reserved for mornings, tell Riza it is not, both as everyone agreed. That is a lie to one of them for a waived guarantee. I will not do it. It is the interesting part and I only found it by poking after the easy win."
+- 54.197 (tap): "I said I would not, but I want to see what the game does with a lie. Doing it once as a test."
+- 58.531 (tap): "Now both, opposite lies. Curious how it unravels."
+- 61.621 first_minute: "First run took 30 seconds and ended AGREED: one answer fit all four, no tension. Second run I found private words, where I can tell each man the opposite and both waive their guarantee. That is the part I like, but the easy path comes first and shows none of it."
+- 70.565 (tap): "The free one. It rests on my two opposite promises. Let us see who signs."
+- 82.188 note: "They compared notes and caught me: You promised each man the whole floor. Both withdrew. That felt earned and a bit shaming, which I like. And it offers a way back with a 40 lira deposit, so the lie is not a dead end."
+- 84.661 (tap): "I will see how failure reads rather than patch it. Letting Osman leave."
+- 92.929 want_quit, FINISHED: "Two endings seen, AGREED and NO AGREEMENT, in about 90 seconds total. I have seen what the game does; I would leave here."
+- 95.236 stop, FINISHED, engagement 3: "I am stopping at about 93 seconds, after two endings. I liked the clash of promises and being caught in my own lie. But the honest route finishes in 30 seconds with no tension and nobody needs me afterward. I pressed I am stopping in Feedback, then Not now, typed nothing."
+
+Phone:
+- 5.319 (tap): "Phone, same evening, new game. Title page fits fine. I know the meeting from desktop, so I go straight to the harder question."
+- 10.412 (tap): "On the phone the story fills the screen and the button is below the fold; I only know it is there from the list. A real thumb would scroll."
+- 20.536 (tap): "The list tells me beforehand who will refuse. I pick it anyway to see how a refusal reads on the phone."
+- 32.653 (tap): "I never asked Halil or Riza on this run, and the text now says without a paid break. I want to see who refuses."
+- 36.88 (tap): "Halil refused and said why: late work needs a paid break. That was clear. I now ask him, which I should have done first."
+- 44.236 (tap): "Riza still unasked and the text says cart inside overnight, but he said four. Maybe I deserve this one."
+- 51.052 (tap): "Riza refused too, and three minutes are not enough to ask him and rewrite. I skipped the asking and it cost me. Fair. Ending it."
+- 63.314 first_minute: "Phone, second visit. I skipped the asking this time and the game punished it plainly: Halil refused with his reason, Riza refused with his, and the clock ran out. The cause was clear each time. The opening story fills the screen and the first button sits below it, but the list let me tap it."
+- 65.404 stop, FINISHED, engagement 3: "I am stopping the phone at about 65 seconds. I have seen both endings on desktop and a failed one here. Refusals explain themselves, which I like. But the whole meeting is under a minute and the first honest run leaves nothing for me to come back to. Pressed I am stopping in Feedback, then Not now, typed nothing."
+
+The `first_minute` lines were logged at 61.6 s (desktop) and 63.3 s (phone), after the 60 s mark. I logged no pulse on either device, because both sessions ended before 180 s. The phone's "first_minute" says the screen filled and the button sat below it. That came from the screenshot and the control list. I did not scroll.
+
+## 4. Moments
+- **What held me:**
+  - Two promises that clash.
+  - Asking each person what they need before acting.
+  - The private-word choice. I told each man the opposite, and later they "compare what you told them" and catch me. It offers a way back with a ₺40 deposit.
+  - Refusals that say why: Halil "late work needs a paid break", Rıza "he can take the cart home at four, but that must be written down".
+- **What lost me:**
+  - The honest route ended in about 30 seconds.
+  - The agreement list tells me in advance who will refuse. That makes mistakes avoidable, which is easy but flat.
+  - On the first run, no one needed me afterward.
+- **Quit wish:** one `want_quit`, FINISHED, at 92.9 s on desktop, after both endings. It did not pass. I stopped.
+- **Pulses:** none, because both sessions were under three minutes.
+
+## 5. Confusion and clarity
+- **Clear:**
+  - What each person needs.
+  - Why a refusal happened.
+  - The 2-minute and 1-minute costs and the countdown.
+  - The ending text, which names who kept their word.
+- **Slightly confusing:**
+  - On desktop, my tap on the agreement name was ambiguous and nothing was tapped. I used the full name.
+  - The agreement text changed between my two runs. "Without a paid break" appeared when I had not asked Halil. I do not know if that is intended.
+  - "Begin again" asks "Start another meeting?" and warns that it replaces my place. That was clear.
+- I never saw why Halil and Rıza each claim a promise from Nuri. There is no way to ask them about it.
+
+## 6. Device use
+- **Screenshots viewed:**
+  - desktop/a-001.png: the recording-consent page on a cream notebook card on dark, with the "Take a seat" button visible. Readable.
+  - desktop/a-002.png: the AGREED ending screen. Readable, with the stamp. The buttons were below the fold at 800 px.
+  - phone/b-001.png: the consent page. It fit, nothing cut off.
+  - phone/b-002.png: the opening story. It fills the screen and the "Put the notebook on the table" button is below the fold.
+  - phone/b-003.png: the NO AGREEMENT ending. Readable. "Read the notebook" is at the bottom edge.
+- **Controls used, desktop:** named taps for Take a seat, the story and conversation buttons, agreement buttons, sign buttons, Read the notebook, Back, Begin again, Start new game, Menu, Feedback, I'm stopping, Not now.
+- **Controls used, phone:** the same kinds of named taps, plus Menu, Feedback, I'm stopping and Not now.
+- I viewed no automatic checkpoint screenshot. I did not scroll or touch-scroll. I never needed to, because the driver taps by name. What a thumb would do is unseen.
+- **Seen trouble:** on the phone the first action button is below the story text, so I could not see it. That is a layout fact from b-002.
+- **Feedback:** I chose "I'm stopping" on both devices and pressed Not now. A draft form appeared with "I'm stopping" prefilled in the note box. Nothing was sent. "I'm confused" was also offered.
+
+## 7. Stop and return
+- **Desktop stop:** "I am stopping at about 93 seconds, after two endings. I liked the clash of promises and being caught in my own lie. But the honest route finishes in 30 seconds with no tension and nobody needs me afterward. I pressed I am stopping in Feedback, then Not now, typed nothing." Reason: FINISHED.
+- **Phone stop:** "I am stopping the phone at about 65 seconds. I have seen both endings on desktop and a failed one here. Refusals explain themselves, which I like. But the whole meeting is under a minute and the first honest run leaves nothing for me to come back to. Pressed I am stopping in Feedback, then Not now, typed nothing." Reason: FINISHED.
+- **Would you return voluntarily?** I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.
+
+## 8. Changes I would want
+1. Make the honest route cost something, so one agreement cannot satisfy everyone.
+2. Show the private-word lie earlier, or give the honest route its own private choices.
+3. Let me ask people more than what they need, such as what Nuri really said.
+
+## 9. Compared with my last visit
+First visit to this game. I carried only my general habit from other HF games: I ask what a person needs first, and I dislike one obviously rewarded answer. In this game I found that answer in 30 seconds. Then I found the lie, which was better.
+
+I created no worktrees, servers or browsers and touched no repository.
+
+
+## Your own published report — human-framework/docs/games/voice-playtest-2026-10-27-retest.md
+### Samir Haddad
+
+**Would you return voluntarily?** I might come back one more evening on desktop to see whether the rent now gets a scene with Osman. I would not come back to replay the first day again, and I would not leave it running.
+
+**Ranked asks**
+1. Show the rent payment as a scene with Osman. I did not reach Ramadan 15 this time, so I cannot say it was fixed.
+2. Merge the two stacked "Continue" buttons into one, and stop the clock crawling while a "Continue" notice is on screen. Also add a money line to the day card, so I can see progress toward the 300 lira.
+3. Make the goals panel read clearly. "He chose something else the last time" sits next to "he did it" and I still stop to reread it.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry             | reason   | game clock      | words                                                                                                                                                                                                                                                                                                    |
+| --------- | ----------------- | -------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.8       | shot              |          |                 | Halil again, I remember him. Waiting for start.                                                                                                                                                                                                                                                          |
+| 7.6       | shot              |          |                 | I pressed New game and the title now offers Continue as well. Unsure whether it started.                                                                                                                                                                                                                 |
+| 9.8       | tap His goals     |          | Ramadan 1 04:20 | 600 owed to Osman now, not 300. That is different from my memory. Checking goals.                                                                                                                                                                                                                        |
+| 12.4      | first_minute      |          | Ramadan 1 04:37 | Familiar: Nuran at the table. Clock is running while I read, which is new to me (04:20 to 04:37 in a few seconds). Goals panel now says what he would choose without me, as guesses. 600 owed but 300 due by Ramadan 15. I want to speak to him and ask what is on his mind, then plan the shift.        |
+| 19.2      | key Escape        |          |                 | No work option at dawn, same as before. I leave him to rest and skip toward the afternoon.                                                                                                                                                                                                               |
+| 43.3      | tap Let time pass |          |                 | Clock stopped at 05:14 while he sleeps; the button is clear about it.                                                                                                                                                                                                                                    |
+| 70.6      | note              |          | Ramadan 1 08:08 | He answered in place on the scene page with my line above it. Better than last time, but it took a few seconds and the sheet closed first, so for a moment I thought nothing happened. Clock is skipping behind a Continue button I have not pressed.                                                    |
+| 72.8      | TOOL tap          |          |                 | Stopped at 09:34 again with the old 08:03 scene still showing, same as last time. I keep pressing Continue and Let time pass.                                                                                                                                                                            |
+| 100.8     | tap               |          |                 | Two Continue buttons are showing. I press the lower one by position.                                                                                                                                                                                                                                     |
+| 105.1     | tap               |          |                 | Pressing the answer-page Continue just snaps back to the old 08:00 scene, then there is another notice Continue. Two presses for one idea.                                                                                                                                                               |
+| 134.3     | wait              |          |                 | I urged the doctor, for his health, rather than the shift, since the shift is not offered at noon prayer.                                                                                                                                                                                                |
+| 139.1     | note              |          | Ramadan 1 12:26 | His answer came straight on the scene this time: I agree to do it. No snap back to an old scene. That was my third ask last time and it is better here. Doctor on day one, not day two.                                                                                                                  |
+| 164.5     | pulse 4           |          | Ramadan 1 12:46 | The game now tells me a plan is not a promise and stands until 15:45, and shows the rent arithmetic when the shift is offered. I feel I understand what I am doing. Still pressing Continue a lot.                                                                                                       |
+| 223.9     | tap Let time pass |          |                 | Same Hacer lines as last visit: less quiet with you at the door. Lovely once, I recognise it now.                                                                                                                                                                                                        |
+| 243.1     | pulse 3           |          | Ramadan 1 15:46 | Mention of the shift ended unused: the game told me why, with the shift hours in brackets. Fair and clear, but a gentle mention is again not enough, same lesson as last time. I want Selin called tonight and the shift urged tomorrow.                                                                 |
+| 311.8     | note              |          | Ramadan 1 17:13 | He went to the clinic on day one and the clinic scene appeared on screen. The game says plainly: He did what you suggested. That feels earned. The doctor lines are the same as before but on this visit I got there in one evening.                                                                     |
+| 336.8     | tap Continue      |          |                 | I think the clock crawls while the Continue notice sits there. I did not press it for 20 seconds and 5 game minutes passed.                                                                                                                                                                              |
+| 414.8     | pulse 4           |          | Ramadan 1 19:25 | The loop is clearer: mention, he postpones, it stands for a time window, I see the end. I am not lost. I still hope he eats his sunset meal before 19:31; he has been fasting all day and the screen says time is nearly up.                                                                             |
+| 438.2     | tap Say nothing   |          |                 | He is lighting a cigarette against the doctor. I could suggest the river walk but it is the obvious right answer; I say nothing and keep my word about Selin.                                                                                                                                            |
+| 461.6     | note              |          | Ramadan 1 20:08 | Selin call happened on day one, same words as last visit about the empty room. A new thing: before the cigarette the screen said the doctor told him to walk and stop smoking. That is a real choice with tension. I chose to say nothing and he called Selin instead.                                   |
+| 629.9     | pulse 4           |          | Ramadan 1 21:43 | Riza has his own lines now: how short are you really, it is good to have you beside me. Last time he copied Hacer word for word. That fixed what lost me. I want to see whether the rent now gets a scene with Osman.                                                                                    |
+| 689.8     | tap Let time pass |          |                 | Clock crawls again while I sit on the tea scene, about 8 game minutes in 30 real seconds. I am waiting, but for what?                                                                                                                                                                                    |
+| 726.2     | note              |          | Ramadan 1 over  | Day card is calm and clear: what I said, what he did, trust. I like that it names the three things he did after my words. It has no money line though; I still do not see progress toward 300.                                                                                                           |
+| 738.8     | stop              | FINISHED | Ramadan 2 00:00 | I am stopping here at Ramadan 2 00:00. I came back to see whether the answer comes in place, whether Riza has his own voice and whether the rent is clearer. Two yes, rent not reached. The game did not end; I chose to leave for the phone visit and do not feel pulled to run the second day tonight. |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry           | reason | game clock      | words                                                                                                                                                                                                                                                                                 |
+| --------- | --------------- | ------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 6.2       | shot            |        |                 | Phone, second visit the same evening. New game started.                                                                                                                                                                                                                               |
+| 9.7       | first_minute    |        | Ramadan 1 04:30 | Phone layout is tidy: three tabs under the clock, Speak and Skip at the bottom, nothing cut off. Same opening as desktop. I am skipping to the workshop to try asking, then urging the shift.                                                                                         |
+| 120.6     | tap             |        |                 | Two Continue buttons stacked again; the first one by name did nothing. I press the lower one by position, then the upper. It is the same clumsy pair as on desktop.                                                                                                                   |
+| 187.8     | tap             |        |                 | Phone planner works but the list of actions is squeezed into a small scrolling strip above the Mention/Urge/Insist switch. I can still read the likely reply, which is helpful. I urge the doctor.                                                                                    |
+| 211.2     | pulse 3         |        | Ramadan 1 12:31 | On the phone the same game reads fine and the standing-word line is readable. But it is the same first day I just played on desktop; I know what happens, so the pull is lower. I will urge the shift today to see whether urge gets it done.                                         |
+| 234.8     | tap Say nothing |        |                 | A memory of Nuran at the clinic scene now shows, the one I missed last time. The shift is offered but would replace my doctor word; one at a time. I keep the doctor.                                                                                                                 |
+| 261.4     | tap             |        |                 | On the phone the plan view is crowded: only one action row and a cut-off one are visible above the preview. The rent arithmetic is shown though, which I like. I urge the shift.                                                                                                      |
+| 331.5     | note            |        | Ramadan 1 14:15 | On the phone, doctor at 13:45 and the afternoon shift at 14:15, both on day one, the shift by urging. That is the better outcome and the game told me why at each step. The arithmetic (about 270 lira by day 15) while I chose made me feel I was working on the rent, not guessing. |
+| 336.4     | note            |        | Ramadan 1 14:15 | Goals panel says he would not take the doctor or the shift alone, right after he did both because I asked. I now read that as what he would do without me, so it is fair, but I still stop and reread it. Panel fits the phone and scrolls.                                           |
+| 366.6     | note            |        | Ramadan 1 14:31 | Confused: his shift started at 14:15 and by 14:19 he is at Hacer door talking about Osman being stingy. Did he leave the shift? The header still says standing word until 16:45. I cannot tell whether he worked. Same Hacer opening line as before.                                  |
+| 366.6     | want_quit       | BORED  | Ramadan 1 14:31 | I have now played the same first afternoon twice in one evening, once per device. The new things work, but the second time through I know every beat, and the rent is two weeks of the same loop away. I would leave here.                                                            |
+| 369.5     | stop            | BORED  | Ramadan 1 14:31 | I am stopping here on the phone at Ramadan 1 14:31. Same day twice in one evening; I understand the loop and do not want the second rent. I pressed I am stopping in Feedback, typed nothing, did not submit.                                                                         |
+
+
+
+
+
+## Your own published report — human-framework/docs/games/watch-playtest-2026-10-27-panel-retest.md
+### Samir Haddad
+
+**Would I return voluntarily?** Yes, I would come back another evening, but only if the stray lines and the repeated "nothing is wrong with me" gave way to something that tells me why Kian keeps leaving, and the phone dusk screen showed the wall. I would not leave it running, because the night asks for my input at midnight.
+
+**Ranked asks**
+1. Let me learn why Kian keeps leaving and what Ada needs. He gave "There is nothing wrong with me" three mornings in a row. I never found a way to ask about Ada.
+2. Fix the phone dusk screen. The wall map is a sliver of a couple of pixels under the header, and the scout message is hidden. This is unchanged since my last visit.
+3. Remove the stray extra lines that do not fit, and name every quote in the account. Examples: Tamar's "old signal" line and Samira's "paints" line. On the phone, Idris's quote in the account had no speaker name.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                 | reason   | game clock          | words                                                                                                                                                                                                                                                            |
+| --------- | --------------------- | -------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.6       | tap Go up to the wall |          |                     | Title: hopes are now one line, the two checkboxes still unexplained to me. Going up.                                                                                                                                                                             |
+| 8.6       | first_minute          |          | Dusk night 1        | Title hopes now one line, fine. Dusk: still six people but only three shown. Kian opened Ask/Urge/Insist again, liked it. Post list now says East wall tracks. I put Kian at Mill, Tamar Gate, Samira West; east wall empty. Dusk page looks readable.           |
+| 79.9      | note                  |          | Dawn night 1        | Night 1: Samira left for home early, east wall empty and a lot of grain was taken. Account says it plainly, fair. The waiting at Fast was about a minute with little to do. Now talking to Kian.                                                                 |
+| 91.4      | note                  |          | Dawn night 1        | Talks are clearer now: pick a person, pick a question. Samira asked about keeping the Gate; the reply says her name comes first at an autumn fair - a long promise, I like it. No refuge step this dawn.                                                         |
+| 106.9     | pulse 3               |          | Dusk night 2        | Eight people now and the dusk list says Idris and Danyal came through the gate - that answers my old question about six. Fiddly: my first map tap moved the lantern start to the east wall by accident because the layout shifted. Idris to East.                |
+| 167.6     | note                  |          | Dawn night 2        | Account matches what I saw this time: Samira went home early (too close, she said), Kian went home to sleep, Idris dozed. Lost a lot of grain, fair. Last visit the account contradicted the live view; here it agrees.                                          |
+| 174.5     | note                  |          | Dawn night 2        | I meant to ask Kian but the talk went to Tamar (the person selected seems to change). Her answer had a second line about an old signal being misunderstood and a gesture changed - I do not know what signal she means; it read like it came from another story. |
+| 200.7     | note                  |          | Night 3 midnight    | Meryem can barely keep her eyes open with thieves coming at the east wall. Let go / Urge (probably agree) / Ring and call by name (will stay) / say nothing. Good tension - Idris is also on the east wall so I let her go.                                      |
+| 229.3     | pulse 3               |          | Dawn night 3        | Wall held. Live view and account agreed this time (Kian and Meryem went home). But Kian gave the same line two mornings in a row: nothing is wrong with me. I still do not know why he keeps leaving. I want to learn about him and cannot get further.          |
+| 298.9     | note                  |          | Dawn night 4        | Kian showed a road map and the Very Small King inn line from Ada - I remember this inn line from last visit, it is the same. It is nice but I still have no way to ask him about Ada or why he leaves. Going to dusk.                                            |
+| 378.7     | pulse 3               |          | Dawn night 5        | Kian answered nothing is wrong with me a third time. The grain warning is blunt and clear: the very young may not live through spring. That raises the stakes but I have no lever left except posting. Still no Save or refuge step seen.                        |
+| 430.1     | note                  |          | Night 6             | Meryem looks back at the steps, thieves east, and I am low on grain. Good pressure; no answer clearly rewarded. I urge her to hold, then feel a bit mean.                                                                                                        |
+| 458.5     | note                  |          | Night 6             | Idris hears them near his two children. Options: let him go to his children, let him go and send Tamar to his post, ring and call him by name. This is the competing-loyalty choice I like. I send Tamar to the post.                                            |
+| 481.9     | note                  |          | Night 6             | Idris runs home and also falls asleep at the east wall in the same feed, then he is climbing down and I am asked again. Slightly muddled: did he sleep or run? I let him go.                                                                                     |
+| 514.4     | pulse 4               |          | Dawn night 6        | Last account ties things together: Meryem knocked flat, Idris got her down, she says I owe him. That fits what I saw (Idris ran, Meryem went to the hall). The live feed and the account agree well enough now. Going into the thaw.                             |
+| 521.6     | want_quit             | FINISHED | Early spring year 1 | The winter is over and a new part about who keeps the Gate begins. I would stop here for this sitting, as before.                                                                                                                                                |
+| 521.7     | stop                  | FINISHED | Early spring year 1 | I am stopping at the end of the first winter. This time the account agreed with what I saw, Samira promised a future at the Gate, and the choices about Meryem and Idris held me. I never found out why Kian keeps leaving, and I never met a refuge step.       |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry        | reason | game clock          | words                                                                                                                                                                                                                                                                                                     |
+| --------- | ------------ | ------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.1       | note         |        | title               | Phone visit on my other device. Same title. The two checkboxes still mean nothing to me. Going up.                                                                                                                                                                                                        |
+| 9.1       | note         |        | Dusk night 1        | Phone dusk: the wall map is a thin sliver cut off at the top of the screen. I cannot see posts or who is where; the scout message is not visible at all in the screenshot, only in text. Same problem as last time. I will use the list.                                                                  |
+| 15.4      | first_minute |        | Dusk night 1        | Phone: I posted Kian at Mill by tapping the list; tap targets are big. Still cannot see the map. Same flow as the desktop visit and the six-people line is the same.                                                                                                                                      |
+| 36.7      | note         |        | Midnight night 1    | Phone at night: map is a decent size and the message now sits above it, not over it. Tamar drove off a thief. Waiting at Fast.                                                                                                                                                                            |
+| 96.6      | pulse 3      |        | Dawn night 1        | Phone dawn reads well and is easy to tap. Samira answered with an extra line about leaving her paints at home and yellow changing as it dries; I did not know she paints, it came out of nowhere. No refuge step yet - On to dusk.                                                                        |
+| 106.9     | note         |        | Dusk night 2        | Phone dusk is still wrong for me: the wall map is a sliver of a couple of pixels under the header, the scout message is hidden, and I can see only the watcher list. I can play from the list but cannot see the wall. Not fixed since last visit.                                                        |
+| 164.2     | pulse 3      |        | Dawn night 2        | Lost grain: a wolf got over the east wall where only Idris stood, and the account says so plainly. Fair and it matches what I saw. I am repeating the first two nights I already played on desktop, which is a bit flat, but I want to see whether the Save step or the Ada talk shows up on this device. |
+| 218.4     | note         |        | Before dawn night 3 | Phone night view is good: little labels asleep and home under each person, Tamar asleep at the Gate, selected panel says she appears asleep and no reply comes. I ring the bell to wake her.                                                                                                              |
+| 243.1     | pulse 3      |        | Dawn night 3        | Account: Kian says Ring it for nothing again and nobody will run next time - a good callback to my bell. But Idris is gone from the talk list and his wounded line shows with no name above it, so I do not know who said it. Samira says she went to her two children.                                   |
+| 243.1     | want_quit    | BORED  | Dawn night 3        | Three nights in and I have seen these nights on desktop. The phone play was smooth and no Save step trapped me this time. I would stop here for this device.                                                                                                                                              |
+| 243.2     | stop         | BORED  | Dawn night 3        | I stop on the phone at dawn of night 3. No stall this time, but I have already seen this winter on desktop, and the dusk map is still a sliver I cannot read.                                                                                                                                             |
+
+
+
+
+
+## Your own published report — pass/docs/playtests/panel-2026-10-27.md
+### Samir Haddad
+
+**Would you return:** I might come back another evening for Rafi, the tip jar and Selim's remarks about Nevin, but not to run the nightly shift, and I would not leave it running.
+
+**Ranked asks:**
+1. Give me a real move during the stall when a cook is eating and a station is empty, or let the night run without a slow wait. Three nights the same 80-second crawl ended with nobody willing to cover.
+2. Show me whether my choices change the money. A night where I only changed break times earned the same 800 lira and 20 of 20 tables as a night where I talked to every cook.
+3. Let "About what you said" and "How are you doing?" answer with the person's own story, not a repeat of the refusal or "I am working at the grill".
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                                                                                        | reason | game clock            | words                                                                                                                                                                                                                                                                                                               |
+| --------- | -------------------------------------------------------------------------------------------- | ------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.8       | tap New game                                                                                 |        |                       | A restaurant, a bank deadline, cooks who can refuse. I like that they can refuse. New game.                                                                                                                                                                                                                         |
+| 7.3       | tap People                                                                                   |        |                       | Two cooks, Selim and Dilek. Before I optimise, I want to know what they need. Opening People.                                                                                                                                                                                                                       |
+| 10.9      | tap Dilek asks for ten quiet seconds to record a rattling sound in the kitchen. Ask her why. |        |                       | I want to know what Dilek needs. Asking why.                                                                                                                                                                                                                                                                        |
+| 13.4      | tap People                                                                                   |        |                       | The panel closed and nothing visibly answered. Did Dilek say anything? Reopening People.                                                                                                                                                                                                                            |
+| 16.2      | tap Selim offers to share Nevin’s notes on the grill station. Ask to read them with him.     |        |                       | Same offers are still listed. I cannot tell whether asking Dilek did anything. Trying Selim notes.                                                                                                                                                                                                                  |
+| 19.8      | tap People                                                                                   |        |                       | Two conversations taken, and no line appeared anywhere. Checking whether the offers changed.                                                                                                                                                                                                                        |
+| 25.1      | first_minute                                                                                 |        |                       | Two cooks, a bank debt of 5200 lira by Saturday. I tapped both People offers (ask Dilek why, read Selim notes); the panel just closed and I saw no reply, and the same offers are still listed. I am not sure whether anything happened. Not sure what I am supposed to be optimising yet. Going to open the doors. |
+| 30.0      | tap Open the doors                                                                           |        |                       | Opening the doors; I will see what service looks like.                                                                                                                                                                                                                                                              |
+| 33.4      | shot                                                                                         |        |                       | The conversations I took are written in Earlier conversations, with their secrets. So they did land, I just did not see it at the time. Dilek has a worried mother and a brother who asks for loans. Selim is divorced and rarely talks with his son. I like this.                                                  |
+| 37.5      | tap Selim grill                                                                              |        |                       | Tapping Selim to see what I can do.                                                                                                                                                                                                                                                                                 |
+| 41.9      | tap How are you doing?                                                                       |        |                       | Each job shows a likely answer before I ask. Useful. But first I ask Selim how he is.                                                                                                                                                                                                                               |
+| 75.9      | wait                                                                                         |        |                       | Money rises with no orders; I do not know where it comes from. Waiting to see what happens.                                                                                                                                                                                                                         |
+| 80.7      | pulse 3                                                                                      |        | Mon wk1 18:56         | Interested in the cooks lives, but no orders have come and the money rises on its own. I do not know what my job is during service yet.                                                                                                                                                                             |
+| 108.4     | tap Information                                                                              |        |                       | Money keeps rising but it says no orders are waiting. I do not understand what is happening. Opening Information.                                                                                                                                                                                                   |
+| 173.6     | wait                                                                                         |        |                       | Nothing for me to do this evening. I am waiting but I do not know for what.                                                                                                                                                                                                                                         |
+| 177.9     | shot                                                                                         |        |                       | Night over: 15 of 15 tables, 600 lira, I need 920 a night. But I never saw a single order and gave no job. Dilek says I made the right calls tonight; I made none. That felt odd. Also Selim missed prayer and Dilek smoked in the rush - those are the people things I care about.                                 |
+| 182.1     | TOOL tap                                                                                     |        |                       | Selim said he will step away before the rush for his sunset prayer. Let me see if I can plan his break for that.                                                                                                                                                                                                    |
+| 190.7     | tap Dilek                                                                                    |        |                       | Selim needs to step away for sunset prayer. I do not know when sunset is, which bothers me. I will ask Dilek to cover the grill while he eats and see what she says.                                                                                                                                                |
+| 204.9     | tap Ask them about the changes                                                               |        |                       | The plan has to be asked, people answer. That fits: they can refuse.                                                                                                                                                                                                                                                |
+| 208.6     | pulse 3                                                                                      |        | Tue wk1 17:30         | I like that the cooks refuse to cover each other and say so in their own words. I do not like that I cannot see when sunset is, and I still have not seen an order or done anything during service.                                                                                                                 |
+| 238.7     | tap Dilek cold side                                                                          |        |                       | Selim is at the staff table eating and the grill is empty: I can see my choice. Now talking to Dilek.                                                                                                                                                                                                               |
+| 242.3     | tap Grill I prefer my current job                                                            |        |                       | A table is waiting on the grill and Selim is eating. I ask Dilek to cover; she says she prefers her job, so I expect a no. Asking gently.                                                                                                                                                                           |
+| 253.8     | tap Close                                                                                    |        |                       | Dilek declined: ask someone else or ask later. Fine, I respect that. But the label at the bottom says Ask Dilek: Cold side, though I tapped Grill - I am not sure if that is a mislabel. Also the top strip overlaps and table cards are cut off (cold s). Closing.                                                 |
+| 285.3     | pulse 4                                                                                      |        | Tue wk1 18:48         | Now I have a real problem: cold side is empty, table 6 waits, time slowed and I can see Dilek eating. That is the tension I came for. I will ask Selim or Rafi.                                                                                                                                                     |
+| 289.1     | tap Rafi dishes                                                                              |        |                       | Selim says after I pray for everything: he is about to pray, and I will not hold him back. Checking Rafi.                                                                                                                                                                                                           |
+| 334.7     | tap Cold side after I pray                                                                   |        |                       | I will ask Selim to take the cold side. He says after I pray, so he is not refusing, just putting prayer first. I will not insist.                                                                                                                                                                                  |
+| 347.5     | tap Leave the station empty                                                                  |        |                       | The text says choose someone to take over, but the only choice shown is leave it empty. So that was my decision, really. Selim went to the storeroom, I think to pray. I let him.                                                                                                                                   |
+| 427.6     | pulse 3                                                                                      |        | Tue wk1 19:05         | Selim has been in the storeroom for 10 minutes and the game asks me again to pick someone, offering only Leave the station empty. The header text spills over the top of the screen. I feel like I am clicking the same dismiss button. Still curious what happens at closing.                                      |
+| 485.7     | tap Selim outside                                                                            |        |                       | Selim went outside, grill empty again. I want to ask him to come back instead of just leaving it empty.                                                                                                                                                                                                             |
+| 488.5     | tap Dilek cold side                                                                          |        |                       | The prompt says choose someone: trying Dilek as the person.                                                                                                                                                                                                                                                         |
+| 492.3     | tap Leave the station empty                                                                  |        |                       | Tapping a cook there did nothing useful; no job buttons, so the only real choice is Leave empty. The prompt says choose someone but offers nobody.                                                                                                                                                                  |
+| 557.0     | tap Close                                                                                    |        |                       | I left a cook panel open and time stayed slowed for a minute of real time while nothing moved. I did not realise an open panel keeps time slow.                                                                                                                                                                     |
+| 646.6     | pulse 4                                                                                      |        | Tue wk1 after closing | Selim said: You asked me about the cold side and accepted my no. That is how Nevin ran the kitchen. That landed; the game noticed how I treated him. Rafi took pastry home for his sister and Selim said it was fine - I want to know about that. Competing loyalties.                                              |
+| 652.7     | tap Rafi hesitates when he mentions a repair deposit. Offer to talk with him in private.     |        |                       | Rafi hesitates about a repair deposit. I want to know what he needs. Offering to talk.                                                                                                                                                                                                                              |
+| 663.4     | pulse 4                                                                                      |        | Wed wk1 17:25         | Rafi confessed a spent customer deposit and said it is separate from the tip jar. A real moral knot, no clean answer. I want to see where it goes.                                                                                                                                                                  |
+| 753.9     | tap About what you said                                                                      |        |                       | I cannot hold a button with my tool, so I cannot try insisting. I will ask Rafi about what he told me instead.                                                                                                                                                                                                      |
+| 911.6     | pulse 4                                                                                      |        | Wed wk1 after closing | Now a real choice about the tip jar that Rafi has been taking from: sit with him, move the jar, or leave it. No answer is obviously rewarded. Selim says again he missed sunset prayer - the same line as Monday - and I never saw him miss anything.                                                               |
+| 911.8     | tap Sit with Rafi on the back step                                                           |        |                       | I ask what a person needs before I fix things. Sitting with Rafi.                                                                                                                                                                                                                                                   |
+| 915.6     | note                                                                                         |        | Wed wk1 after closing | I sat with Rafi. The game wrote I did not say the word thief, and Rafi made himself a rule: scrub the trays when the jar tempts him. That is the best moment so far. It felt like something I chose, not a stat.                                                                                                    |
+| 1055.5    | want_quit                                                                                    | BORED  | Thu wk1 18:47         | Third night, same stall: Dilek eats, the cold side is empty, time crawls for about 80 real seconds and nobody will cover. I am waiting but I have no move. I would leave here, after the Rafi evening.                                                                                                              |
+| 1060.7    | tap I'm stopping                                                                             |        |                       | Pressing I am stopping. Typing nothing and not submitting.                                                                                                                                                                                                                                                          |
+| 1060.8    | stop                                                                                         | BORED  | Thu wk1 18:47         | I am stopping. I liked Selim noting that I accepted his no, and sitting with Rafi on the back step without saying thief. I do not like waiting about 80 seconds each night for a cook to come back from eating with nothing I can do. I would come back for the people, not the shift.                              |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry                     | reason | game clock            | words                                                                                                                                                                                                                                                                                                                                         |
+| --------- | ------------------------- | ------ | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.8       | shot                      |        |                       | Second visit, my phone this evening. Same title. New game again.                                                                                                                                                                                                                                                                              |
+| 3.3       | shot                      |        |                       | Phone: the plan screen. Seeing whether I can read the cooks and reach Open the doors.                                                                                                                                                                                                                                                         |
+| 5.9       | tap People                |        |                       | Header says Doors op... cut off on the phone. Opening People to talk to Selim this time.                                                                                                                                                                                                                                                      |
+| 14.1      | first_minute              |        |                       | Phone: I took Selim notes this time (the divorce and son line). The picture of the kitchen is tiny and its labels are very small, but the cook buttons and text are readable. I remember last time the orders were silent and I just waited; I know what this is now, but only because I played on the desktop first.                         |
+| 18.3      | tap How are you doing?    |        |                       | Phone: the job buttons are big enough to touch, and the likely answers show under each. That works at this size.                                                                                                                                                                                                                              |
+| 168.5     | tap Open on Tuesday       |        |                       | Same Monday lines as the desktop: Selim missed sunset prayer, Dilek smoked. Identical text on both devices, I assume it is the same seeded night.                                                                                                                                                                                             |
+| 173.6     | tap 18:35 during the rush |        |                       | I move Selim break to 18:35 hoping it sits closer to his sunset prayer. I am guessing sunset is not far off but the game does not tell me when.                                                                                                                                                                                               |
+| 348.4     | pulse 3                   |        | Tue wk1 after closing | I moved Selim break onto Dilek break time and did nothing else. Result: exactly 20 of 20 tables and 800 lira, same as the desktop night where I fussed with cooks. I wonder if my choices change the money at all. The words do change a little (Nevin used to run the pass the way you did. Almost).                                         |
+| 469.3     | tap Rafi dishes           |        |                       | Both Selim and Dilek are eating because I set it so; the cold side is empty and time crawls. I made this. Asking Rafi to cover the cold side. His card is cut off at the right edge of the phone.                                                                                                                                             |
+| 480.3     | note                      |        |                       | Rafi refused again with his usual line. The red notes say not now, Selim and Dilek stepped out - that is a clear explanation, I like it. But the little label beside the scene says Ask Rafi: Dishes even though I tapped Cold side; same mismatch as on desktop. Phone layout copes: the cook card row scrolls sideways and clips Rafi name. |
+| 480.3     | pulse 3                   |        | Wed wk1 18:45         | Same Wednesday stall again, and this time I caused it. The people are good, but my part in service is waiting and asking people who say no.                                                                                                                                                                                                   |
+| 483.5     | stop                      | BORED  | Wed wk1 18:45         | Stopping on the phone. It works fine at this size. It is the same nights as the desktop and the same dead wait while a cook eats. I would come back for Rafi and the tip jar, not for the shift.                                                                                                                                              |
+
+
+
+
+
+## Your own published report — valley/docs/playtests/2026-10-27-retest2.md
+### Samir Haddad
+
+**Would you return voluntarily?** I would come back another evening on desktop, because the days now pass fast enough to follow and my choices change the barley and the people. I would not leave it running, and I would not play it on a phone until the notebook shows Zehra's reply.
+
+**Ranked asks:**
+1. Fix the phone notebook. It is still about 190 px tall, so Zehra's reply and her insist button are cut off.
+2. Name the Tepe person or give a reason for the nameless reply. It still says "Someone from the Tepe house" and I cannot tell why.
+3. Make "Questions for Zehra" a real question I can ask. I did not pick it this time because I never found a way to ask last time.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 2.5 | tap New game |  |  | Last time Questions for Zehra gave me no way to ask. I will keep the default this time and see what visits offer. |
+| 4.8 | tap Call the hamlet to cut the landowner’s barley |  |  | Calling first; barley before rain. |
+| 5.0 | tap the Çoban house |  |  | Zehra lives here, I think. Going to see her. |
+| 35.8 | first_minute |  | 18 July 08:00 | Zehra answered: after I finish my own barley. The question "Who will feed my family" is shown. Still no ask-a-question control; only Hold to insist. Walk times are clear. |
+| 39.2 | tap Let them finish first |  |  | Zehra is about to give birth; I will not press her. Trying the let-them-finish option. |
+| 42.4 | tap the Tepe house |  |  | Tepe had a delayed reply last time and was nameless; checking again. |
+| 45.7 | note |  | 18 July 08:30 | Tepe still says Someone from the Tepe house, nameless, still cannot tell why. But Zehra now has a Let them finish first choice, which is something I can answer with. That is a real decision at last. |
+| 79.1 | TOOL tap |  |  | Six people with the same words are grouped; good. But which Let-them-finish? Several matched probably. |
+| 84.4 | pulse 3 |  | 18 July 12:00 | The game now tells me how the barley is likely to go (about half standing at rain) and groups people with the same words. I can read the situation. Real time to 12:00 is under 100 s, faster than I remembered. |
+| 84.6 | tap |  |  | Letting Dere and Tepe pair finish. |
+| 122.8 | note |  | 19 July 00:30 | A full game day passed in about 2 real minutes. Last visit it took far longer. The pace worry is mostly gone. Skip now says Runs time quickly to the next reply. |
+| 142.2 | tap Hold to insist with all 5 |  |  | Rain is near and half the barley stands. I weigh insisting on these five, not the pregnant woman. |
+| 174.9 | pulse 4 |  | 19 July 10:00 | Insisting is now tap-then-tap-again; my choice shows in the ledger within a minute (65, then 140 cut). A real tradeoff: let them finish their own barley or press them. Days run at a pace I can follow. |
+| 247.1 | tap Go |  |  | Zehra gave birth. I wanted exactly this kind of moment. Going. |
+| 271.8 | want_quit | FINISHED | 20 July 10:00 | Rain came with about 245 cut and 80 standing, Zehra's child was born and Yusuf said You came to see the child. That feels like a natural place to end an evening. Nothing wrong; I have seen what changed. |
+| 272.3 | stop | FINISHED | 20 July 10:00 | Stopping at about 4.5 minutes, 20 July 10:00, after the rain and the birth at Coban. I would come back another evening; I would not leave it running. |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 4.0 | tap the Çoban house |  |  | Same as on desktop: Zehra first. |
+| 27.5 | first_minute |  | 18 July 08:00 | Phone: notebook window is still short (about 190 px); I see only Zehra's news line, her own reply with the insist button sits below the fold. Map is a thin strip. |
+| 54.5 | want_quit | TASTE | 18 July 09:00 | The phone notebook still cuts off the reply and its button. I cannot see Zehra's reply without scrolling and my swipe-scroll op moves nothing. Maybe a real finger scrolls; I cannot tell. |
+| 58.8 | stop | TASTE | 18 July 09:00 | Stopping the phone visit at about 1 minute, 18 July 09:00. The phone notebook is still too short to show the reply and the insist button; I would play on desktop. |
+
+
+
+
+
+## Your own published report — commonstead/docs/games/commonstead-playtest-2026-10-27b.md
+### Samir Haddad
+
+**Would you return voluntarily?** I would come back another evening on desktop, because the endings now carry what each resident told me. I would not leave it running, and I would only come back for new content, such as new confessions or collaboration shapes, since I have now heard all eight.
+
+**Ranked asks:**
+1. Add more variety and more consequence. The conversations and endings are the same on every run (seeded), and the opening sentence of each closing line is still identical across the eight. Make the first sentence reflect what I actually did with each person.
+2. Make the choices more tense. Both runs were won without risk. The Eat and drink and hub-helper decisions are now clear but never pressing, because meals were never short.
+3. On the phone, give the thin map outside placement the same visibility the placement map now has. I did not test this on a stricter screen.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                   | reason   | game clock | words                                                                                                                                                                                                                                                             |
+| --------- | ----------------------- | -------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.7       | tap New game            |          |            | Retest. New game.                                                                                                                                                                                                                                                 |
+| 6.6       | first_minute            |          |            | Start screen now says why Storehouse is locked (boards 80 of 180, ballast 0 of 120) and warns Eating uses meals vs storm need 40. Both my earlier asks answered on screen. Assigning work now.                                                                    |
+| 66.4      | tap Invite conversation |          |            | Trying to talk to Dai                                                                                                                                                                                                                                             |
+| 72.0      | note                    |          |            | Dai admitted a list of checks he kept in his head and liked being needed. Requirement text is clear now, and shows the Storehouse unlock numbers.                                                                                                                 |
+| 113.2     | pulse 4                 |          | unknown    | All eight talked. Confessions and collaborations are in their own voice; I want to see if endings echo them.                                                                                                                                                      |
+| 214.0     | note                    |          |            | Storehouse unlocked at the moment the stocks hit 180/120, and the button label and not-ready line told me exactly what was missing. Placement easy on desktop.                                                                                                    |
+| 249.5     | tap Everyone rests      |          |            | Everyone is very tired already; resting everyone.                                                                                                                                                                                                                 |
+| 316.1     | pulse 3                 |          | 5:10       | Building went fast once they were all on it; the very-tired state is now visible and I rested everyone once. Waiting again, my interest is in the ending lines.                                                                                                   |
+| 614.4     | want_quit               | FINISHED |            | Ending: each resident now echoes what they admitted or did with me (easier grip back, game note says only what I tried, drafted note to the pupil unsent, accurate caption). Two shared sentences remain on top but the middle is personal. That was my main ask. |
+| 616.7     | stop                    | FINISHED |            | I am stopping. Won with dry supplies, and the closing lines now carry what each person told me. I chose I am stopping in Feedback and typed nothing, no submit.                                                                                                   |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry              | reason   | game clock | words                                                                                                                                                                          |
+| --------- | ------------------ | -------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 0.6       | tap New game       |          |            | Phone, same evening. New game.                                                                                                                                                 |
+| 5.2       | first_minute       |          |            | Phone: map is bigger than last time, I can see the whole field now with the hub. Names row scrolls sideways (Sevim cut off). Assigning meals, ballast, boards like on desktop. |
+| 62.4      | note               |          |            | My slip again: invited before 1:00; the page told me to wait N game seconds and it counted down correctly, so the message was clear.                                           |
+| 90.6      | pulse 4            |          | 1:30       | All eight talked on phone; same lines as desktop, so the conversations are fixed content. Now stocking ballast and boards.                                                     |
+| 185.1     | note               |          |            | Phone placement worked on the first tap again; the map is bigger and the unlock reason for Storehouse is written on screen.                                                    |
+| 278.2     | tap Everyone rests |          |            | Very tired again; resting everyone like on desktop.                                                                                                                            |
+| 370.7     | pulse 3            |          | 6:08       | Building at 71 percent, on track. Waiting again; the only choice that matters is resting.                                                                                      |
+| 639.6     | want_quit          | FINISHED |            | Won on phone. Closing lines carry each person admission plus a tiredness phrase that varies. Opening sentence is still the same for everybody.                                 |
+| 640.0     | stop               | FINISHED |            | I am stopping. Won with dry supplies. Chose I am stopping in Feedback, typed nothing, no submit.                                                                               |
+
+
+
+
+
+## Your own published report — lefthand/docs/games/lefthand-playtest-2026-10-27-panel-retest.md
+### Samir Haddad
+
+**Would you return voluntarily?** I might come back another evening on desktop, to try the not-tell route and the door route on different nights and see what Samira, Idris and Tariq say. I would not leave it running. I would not come back on the phone if each arrow tap keeps costing about 7 real seconds for me.
+
+**Ranked asks**
+1. Make phone walking cost less real time, or give more dawn seconds on the phone. I could not finish a night on the phone in any of three tries. I suspect my driver (about 6.5 s per tap).
+2. Make "Return home" say something when I am far from home. It still does nothing visible. The Explain and Keep quiet panel could also show how many steps remain to the door or well.
+3. Keep the Morning 3 lines different from Morning 1 even when my choices repeat. On the phone, Morning 3 repeated Morning 1 almost word for word, because I did the same thing both times.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 5.7 | shot |  | Evening 1 | Now the table text warns that an empty warmth bar means a neighbour carries me home. That was my last ask. Recording notice is visible. |
+| 41.4 | TOOL tap |  |  | This time I try the door, to see whether Samira really knows. |
+| 55.1 | first_minute |  | Night 1, 23s | New: Tariq now offers a third choice, ask him not to tell. The cold warning came before night one. The clock still waits for my answer. Engagement good. |
+| 62.6 | tap Ask him not to tell |  |  | A discreet middle option, costs 1 second, only once. I take it. |
+| 92.0 | note |  | Morning 1 | Morning 1: dawn came 4 steps from the door; it now tells me how many steps short I was. Good. Tariq line differs because I asked him not to tell. Probably my slow keys. Next evening, I will go quicker, door again. |
+| 117.3 | tap Keep quiet |  |  | The promise is used up and the panel says he will tell people regardless. Consistent with what he said. Keeping quiet. |
+| 148.3 | tap Return home |  |  | Trying Return home from far away, as I did last time, to see if it says something now. |
+| 178.6 | pulse 5 |  | Morning 2 | Morning 2 followed from what I did: I asked Tariq not to tell, then went out again, and Idris, Samira and Tariq all name that broken promise. That feels earned, and the accounts differ from before. Return home from far still did nothing visible. |
+| 184.7 | tap Their door · farther, Samira knows it was you |  |  | Last night: the door, since Samira wanted to meet Danyal alone. |
+| 196.6 | shot |  |  | New: Danyal stops me this time, not Tariq. |
+| 201.8 | tap Keep quiet |  |  | Danyal only tells what he saw; keeping quiet. |
+| 259.5 | note |  | Morning 3 | Morning 3 fits the door choice: Samira says she knows it was me and only her household knows. That was my second ask and it is met here. The lines differ from Morning 1. Dawn came just before I got in again, probably my slow keys. |
+| 282.6 | stop | FINISHED | After three nights | Finished the three nights, the ending named what each person felt and matched what I did. I opened Feedback and chose I am stopping; typed nothing and did not send. I would come back another evening to try the not-tell route with the door every night. Not leave it running. |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 0.7 | shot |  |  | Phone, same evening. Starting a new game. |
+| 15.7 | tap Well box · closer, Danyal must collect it before dawn |  |  | Phone: well box, since taps are slow for me. |
+| 49.7 | note |  |  | Each arrow tap still costs me about 6.5 real seconds through the driver, and the game clock drops with it; I cannot tell if that is the driver or the game. All four arrows and the map are on one screen now. |
+| 60.5 | first_minute |  |  | Danyal stops me on the phone too. The question panel fits on screen with the map. Taps are still slow for me; near dawn. |
+| 105.0 | note |  | Morning 1 | Morning 1 tells me I was 3 steps from the well. That helps; I can see I was just slow. Trying night 2 with the same route. |
+| 158.7 | tap Explain |  |  | This time I deliberately choose Explain, to see the faster well collection. |
+| 208.7 | pulse 3 |  | Morning 2 | Explain showed up in the morning accounts (Danyal and Tariq), which is a visible consequence even though I failed to deliver. My slow phone taps keep ending nights, I suspect the driver. |
+| 323.8 | want_quit | FRUSTRATED | Night 3 | Third phone night lost again: I need about 8 taps, each costing me roughly 7 real seconds, and the clock runs with them. I suspect my driver, but from my seat I cannot finish a night on the phone. The layout itself is better now. |
+| 360.5 | stop | FRUSTRATED | After three nights | Stopping on the phone: three nights, no envelope delivered, ending says the household needs more help. Fair verdict. I opened Feedback and chose I am confused, typed nothing, sent nothing. On a real thumb it may be fine, but from my seat I cannot finish a night here. |
+
+
+
+
+---
+End of supplied own history. This reading boundary is director metadata, not an event you experienced.

@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-31T14:39:23.695082+00:00",
+  "rootReadFullReport": true,
+  "exposure": "Two independent fresh games, same evening on other device, no imported save or matched seed. Selected own history is not whole archive; prior FREE/CONT and partial limits retained.",
+  "feedback": "Local labels/Back only; no typed note/Submit/recording/consent change found. Linked production receipt unverified.",
+  "cycleRule": "SECOND fix/retest cycle. Remaining asks go to dated Deferred; no third ordinary panel or automatic new gameplay fix cycle.",
+  "descendantScope": "Final round cleanup verified recorded PIDs absent, point-in-time observed identities gone, ten ports closed; not a whole-lifetime journal.",
+  "historyEvidence": "All 1473 literal history lines matched stdout and separately completion-bound retained responses. No unsupported relevant wrapper. This does not prove attention or comprehension.",
+  "imageEvidence": "Five retained high-detail image blocks: desktop a001\u2013a003 and phone b001/b002; not proof of perception.",
+  "timedLogs": "Desktop early first_minute actually54.413 invalid; later61.864 valid. Phone raw61.201/report61.202 valid. Desktop pulse208.159 valid though snapshot unavailable/acknowledged. Later checkpoints untested.",
+  "stops": {
+    "desktop": 230.533,
+    "phone": 75.823
+  },
+  "driverQualification": "Two zsh malformed commands exited1 before any request. No actual Script failed outputs. Pulse acknowledgment did not establish game outcome. Entire desktop digging wait cause unknown; immediate phone Meryem eating explains that moment only.",
+  "priorAskComparison": "Yusuf answer visible in main journal MET this instance; stopping line application NOT MET. Routine grouping partly met. No door, alarm, beds, riders or ending reached.",
+  "producerNewBlockingAsk": "Useful shelter decision while first marked room waits. No mandate to retune timing or force digging.",
+  "returnExact": "I would return voluntarily another evening on desktop if there were a useful shelter decision while the digging waits; I would not leave it running.",
+  "commandReceipt": "warren-emre-command-audit-1429.json",
+  "retainedToolsReceipt": "warren-emre-retained-audit-1429.json",
+  "cleanupRecordedPids": [
+    {
+      "player": "emre",
+      "pid": 50523,
+      "absent": true
+    },
+    {
+      "player": "emre",
+      "pid": 50465,
+      "absent": true
+    },
+    {
+      "player": "emre",
+      "pid": 50467,
+      "absent": true
+    }
+  ]
+}

@@ -1,0 +1,391 @@
+{
+  "schema": "sealed-source-publication-map/v1",
+  "packet": "smoke-retest1",
+  "scope": "Exact source-epoch bytes under inert .txt names. Paths are provenance, not runnable tools or public screenshot assets.",
+  "files": {
+    "README.md": {
+      "publishedPath": "README.md.txt",
+      "sha256": "9f4be17301a0d32c5e3e615ead1324b4ff5483548da71c82dbadf6a0644e5c56"
+    },
+    "actual-stops.json": {
+      "publishedPath": "actual-stops.json.txt",
+      "sha256": "3eba1cbbc4a7fe198ddb51c71ba2e1db230a92c89aebf86bc7b6f5d21a503bfc"
+    },
+    "aisha/brief.md": {
+      "publishedPath": "aisha/brief.md.txt",
+      "sha256": "ae47a6fcdc8246611143c166d9ddb99ad862fca315f19e5981f5eddc52640c52"
+    },
+    "aisha/completion.safe.json": {
+      "publishedPath": "aisha/completion.safe.json.txt",
+      "sha256": "d3125d24329f06a77cb5be21f679c338d1321f4091aeb3a4918bf5bd84dbe7ff"
+    },
+    "aisha/desktop/driver.out": {
+      "publishedPath": "aisha/desktop/driver.out.txt",
+      "sha256": "0d43a525d698d3747c4ddac01615848aa6375be7d6417e09b947931addcaa133"
+    },
+    "aisha/desktop/release-start.json": {
+      "publishedPath": "aisha/desktop/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "aisha/desktop/wall-clock.jsonl": {
+      "publishedPath": "aisha/desktop/wall-clock.jsonl.txt",
+      "sha256": "d36e14f9de436e2081d0a3322a1f96c97df8f413e33949bb5166e0ec67ae9d59"
+    },
+    "aisha/director-method-qualification.json": {
+      "publishedPath": "aisha/director-method-qualification.json.txt",
+      "sha256": "b8d755266aac74a9044d0c674662af19f8e99bb119cd6b60b75fffe24d5bbe0e"
+    },
+    "aisha/dispatch.json": {
+      "publishedPath": "aisha/dispatch.json.txt",
+      "sha256": "f84abb73136026a15e67121dd7d5134602b65624d80a9e2dc44f6dde35499714"
+    },
+    "aisha/history-source-map.json": {
+      "publishedPath": "aisha/history-source-map.json.txt",
+      "sha256": "dd646dc9ddf296f011c5f077f9f175faa8894cc144948f094ef4d40479b7dfa7"
+    },
+    "aisha/own-history.md": {
+      "publishedPath": "aisha/own-history.md.txt",
+      "sha256": "f6c1f82527bf9142548141b9a405bbad1b2aeb5e56dad1ce9e284303e0da19b2"
+    },
+    "aisha/phone/driver.out": {
+      "publishedPath": "aisha/phone/driver.out.txt",
+      "sha256": "bb2f899965c3aa96678646700b34c2eb60cf2f3ed7d00e07a12af50c1f6ba5a2"
+    },
+    "aisha/phone/release-start.json": {
+      "publishedPath": "aisha/phone/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "aisha/phone/wall-clock.jsonl": {
+      "publishedPath": "aisha/phone/wall-clock.jsonl.txt",
+      "sha256": "b34f2305f79e01dfb777620f16078466d5d856213797479aaca970ac5c9b244c"
+    },
+    "aisha/raw-reactions-companion.json": {
+      "publishedPath": "aisha/raw-reactions-companion.json.txt",
+      "sha256": "c0484b6e4405b893d0645cdcefb7f3492cbe8ce87e8d23f65618df370e482340"
+    },
+    "aisha/report.md": {
+      "publishedPath": "aisha/report.md.txt",
+      "sha256": "309f2e50d616db10bbdf18412e0a9c42700bad0fd9845f8ffba3b68c5ed140c2"
+    },
+    "all-driver-reactions.json": {
+      "publishedPath": "all-driver-reactions.json.txt",
+      "sha256": "9efa9c44051f63b29dd3c92fb58429e0393d7f611a7798d4b403b25379578ab1"
+    },
+    "build.py": {
+      "publishedPath": "build.py.txt",
+      "sha256": "77a6b1c5a4643a73e24ac0884d7d9580517aa1d986d22cca9f8f9adb932a9d2a"
+    },
+    "curated-parser-check.json": {
+      "publishedPath": "curated-parser-check.json.txt",
+      "sha256": "f278a71358761d99dcd7aa097996cbf7827f0e2ded857f3d8d343ba820685634"
+    },
+    "curated-parser-check.mjs": {
+      "publishedPath": "curated-parser-check.mjs.txt",
+      "sha256": "c696d5c03542a51d195bc4e49b2cc65124905c0c6e187170c7aeb3cc2b5d058c"
+    },
+    "diego/brief.md": {
+      "publishedPath": "diego/brief.md.txt",
+      "sha256": "a52986ef2f28ab834d6690df5f5ae304029ad615fd59134b9fb9b5aac3547bae"
+    },
+    "diego/completion.safe.json": {
+      "publishedPath": "diego/completion.safe.json.txt",
+      "sha256": "769b592cdb1b88910dc6f493f7b6df31e45281cc92f5ede2ae13a613be25968a"
+    },
+    "diego/desktop/driver.out": {
+      "publishedPath": "diego/desktop/driver.out.txt",
+      "sha256": "5d57435a07d99e8a97bd0811c030886c150beb83b3dd02c309f1cbb0a435eb31"
+    },
+    "diego/desktop/release-start.json": {
+      "publishedPath": "diego/desktop/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "diego/desktop/wall-clock.jsonl": {
+      "publishedPath": "diego/desktop/wall-clock.jsonl.txt",
+      "sha256": "00c83f2d1e478f1f4ae01d7b8ff590123edaaf9c6ce54afeb5c731faba119011"
+    },
+    "diego/director-method-qualification.json": {
+      "publishedPath": "diego/director-method-qualification.json.txt",
+      "sha256": "200d5931fe3aa8c7e3eb46e9cc52ba8721f946fa7931c8cf1e59440fb3066644"
+    },
+    "diego/dispatch.json": {
+      "publishedPath": "diego/dispatch.json.txt",
+      "sha256": "762930e8da2126be77204845395252c1b612ed6f12eb96540b983d30a80b7168"
+    },
+    "diego/history-source-map.json": {
+      "publishedPath": "diego/history-source-map.json.txt",
+      "sha256": "615e018398f0f18098c9b634b3916f42410da484bca60779d1194218559753e6"
+    },
+    "diego/own-history.md": {
+      "publishedPath": "diego/own-history.md.txt",
+      "sha256": "3760c02047070a841cafb17547b3b2dd62767614e2fbf69b461e8c76a02ab619"
+    },
+    "diego/phone/driver.out": {
+      "publishedPath": "diego/phone/driver.out.txt",
+      "sha256": "5452b099411077521fc8b3f277335fda2f40ca6fc1c685ff5d3a817801170a9d"
+    },
+    "diego/phone/release-start.json": {
+      "publishedPath": "diego/phone/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "diego/phone/wall-clock.jsonl": {
+      "publishedPath": "diego/phone/wall-clock.jsonl.txt",
+      "sha256": "1199ccec538ec5786101d6ccb63f9edd9873097ccff5ac59ecf72abfce29c6c4"
+    },
+    "diego/raw-reactions-companion.json": {
+      "publishedPath": "diego/raw-reactions-companion.json.txt",
+      "sha256": "93b2b6142d9c50533e2411cabf70bb96aa16867ea661643438f22d38fb5effa1"
+    },
+    "diego/report.md": {
+      "publishedPath": "diego/report.md.txt",
+      "sha256": "e7be6d73cdf88da46eca4d8e695620e0b4e6986ecc88b969a37999e13ab400e9"
+    },
+    "inputs/retained-evidence-safe-summary.json": {
+      "publishedPath": "inputs/retained-evidence-safe-summary.json.txt",
+      "sha256": "ae7e860d15b33c6957eeb53df8c2aa539694cabaa3cbb8a3130a898ec6f0668f"
+    },
+    "inputs/rosa-light-protocol-audit.json": {
+      "publishedPath": "inputs/rosa-light-protocol-audit.json.txt",
+      "sha256": "a9434465c2535fc3bb37325806e136c46b6920a91aba10a36ba760759b299e43"
+    },
+    "inputs/rosa-light-protocol-audit.md": {
+      "publishedPath": "inputs/rosa-light-protocol-audit.md.txt",
+      "sha256": "31947b2992485789ef01beafaa30d6e034225e8e7d8ff69fdfeae5f530f2809f"
+    },
+    "inputs/smoke-codex-cleanup.json": {
+      "publishedPath": "inputs/smoke-codex-cleanup.json.txt",
+      "sha256": "0eb558a06017771c1cca8d5058120fae7ff7c98f927022f5cc51ae97bf1ed770"
+    },
+    "inputs/smoke-codex-input-freeze-audit.json": {
+      "publishedPath": "inputs/smoke-codex-input-freeze-audit.json.txt",
+      "sha256": "79d1efd11f4fd67b51398dc525289a95dad2f07e32a3a8a8c5d7f92e652e7ff3"
+    },
+    "inputs/smoke-codex-input-freeze.json": {
+      "publishedPath": "inputs/smoke-codex-input-freeze.json.txt",
+      "sha256": "d0d8f7e8339e6c847223f8a05ab141f2bd27466391c47271ea084f2f5558c504"
+    },
+    "inputs/smoke-codex-plan.json": {
+      "publishedPath": "inputs/smoke-codex-plan.json.txt",
+      "sha256": "78f81d372ceb70a53f4aeada5a900ea4e5a7780655dd5dc889ed5e8c2e1ef114"
+    },
+    "inputs/smoke-codex-release-final.json": {
+      "publishedPath": "inputs/smoke-codex-release-final.json.txt",
+      "sha256": "979bcf246818b2fac9891fa6edf4b090a83b563966993d18ae677952cea2de06"
+    },
+    "inputs/smoke-codex-root-admission.json": {
+      "publishedPath": "inputs/smoke-codex-root-admission.json.txt",
+      "sha256": "26a3cd28675d533e44511074fd7aece44a0dd1824519d96086ae8536e6c35497"
+    },
+    "inputs/smoke-codex-round-state.json": {
+      "publishedPath": "inputs/smoke-codex-round-state.json.txt",
+      "sha256": "10126abfde7048b59e6d66c2ed44c32409f2f555997a1714f344f7de8b466928"
+    },
+    "inputs/smoke-qualification-order-correction.json": {
+      "publishedPath": "inputs/smoke-qualification-order-correction.json.txt",
+      "sha256": "31c8b2b54eb0db2720e1a6c000b6ec0ab4bdb9bd34f16e48298c8ad73c448e57"
+    },
+    "jonas/brief.md": {
+      "publishedPath": "jonas/brief.md.txt",
+      "sha256": "93acdc25d688b9367c98dc7fa71655c165973a9f73b8722012ed801b1ab860df"
+    },
+    "jonas/completion.safe.json": {
+      "publishedPath": "jonas/completion.safe.json.txt",
+      "sha256": "a2096b9e4a5f6cc7e1cfc6a036fc656efa324e0338af2c3d85769606e8ce4f3e"
+    },
+    "jonas/desktop/driver.out": {
+      "publishedPath": "jonas/desktop/driver.out.txt",
+      "sha256": "6166b7e6210208b0c9d3ee67a1a777326111b6fb608c1ea1a43f86c093f37c53"
+    },
+    "jonas/desktop/release-start.json": {
+      "publishedPath": "jonas/desktop/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "jonas/desktop/wall-clock.jsonl": {
+      "publishedPath": "jonas/desktop/wall-clock.jsonl.txt",
+      "sha256": "bf70602d42dd05e8e043d0d5f3a9531b191a5d53f6c73b63f98ea2480a342274"
+    },
+    "jonas/director-method-qualification.json": {
+      "publishedPath": "jonas/director-method-qualification.json.txt",
+      "sha256": "46b8e4ff35ca92bb0db5a12bbb4a4c9a094f51d700f8e9076ebad4b51218e56b"
+    },
+    "jonas/dispatch.json": {
+      "publishedPath": "jonas/dispatch.json.txt",
+      "sha256": "e8389776f1d7df6daaf2287fc29ab768a61ac653201ddd1facad77176f50b7ed"
+    },
+    "jonas/history-source-map.json": {
+      "publishedPath": "jonas/history-source-map.json.txt",
+      "sha256": "c59ff973b893e45b910868bc4323883d335df418fb79f9a4258ddb2d7d6c816a"
+    },
+    "jonas/own-history.md": {
+      "publishedPath": "jonas/own-history.md.txt",
+      "sha256": "ed3384b93d16771ad845e41a4483e8c73b9d51adba8ad81a8c61643ade41ab9a"
+    },
+    "jonas/phone/driver.out": {
+      "publishedPath": "jonas/phone/driver.out.txt",
+      "sha256": "da0c4a7b9f50cfe6d94d51fc49b8b04baaaabf62baf31f661bf8db44ff574e7a"
+    },
+    "jonas/phone/release-start.json": {
+      "publishedPath": "jonas/phone/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "jonas/phone/wall-clock.jsonl": {
+      "publishedPath": "jonas/phone/wall-clock.jsonl.txt",
+      "sha256": "297ac8beb8f8d41d6970c174619ded62b43a5d17f98d3739466fda3fcaa49409"
+    },
+    "jonas/raw-reactions-companion.json": {
+      "publishedPath": "jonas/raw-reactions-companion.json.txt",
+      "sha256": "d1e21d95f73d8bed12dd8fe9b424db48f646734627bb150cca9fa2d17b9d3737"
+    },
+    "jonas/report.md": {
+      "publishedPath": "jonas/report.md.txt",
+      "sha256": "ed71baf2d1b2a1448a44b1bce3334e17651bdb41d18fc6b4fe6c781a80bf8138"
+    },
+    "ledger-additions.md": {
+      "publishedPath": "ledger-additions.md.txt",
+      "sha256": "604805faf2d696e0880eaf6126aff813054adec0b49a3d79a287dc8d978c57d6"
+    },
+    "ledger-rows.json": {
+      "publishedPath": "ledger-rows.json.txt",
+      "sha256": "cd2f150f1b872df997583c761f7439c9656cdf53ba5859bced07837aa17619ed"
+    },
+    "leila/brief.md": {
+      "publishedPath": "leila/brief.md.txt",
+      "sha256": "5c8443a404aaf55b94bb6487be360c03676dac8512f3ac8ba67f3a0ee05537a0"
+    },
+    "leila/completion.safe.json": {
+      "publishedPath": "leila/completion.safe.json.txt",
+      "sha256": "ba1c306c40f171c646cf6ba732ca82b40063b37ff1d3ae061110af1f132bcc01"
+    },
+    "leila/desktop/driver.out": {
+      "publishedPath": "leila/desktop/driver.out.txt",
+      "sha256": "a6cc86bfaae33c0be068e6391fa67bb6cb83756b30a8849252d14113f6a5841e"
+    },
+    "leila/desktop/release-start.json": {
+      "publishedPath": "leila/desktop/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "leila/desktop/wall-clock.jsonl": {
+      "publishedPath": "leila/desktop/wall-clock.jsonl.txt",
+      "sha256": "dd9a2e5b739201105e5b8079faa1ebc8548dc732fdd8d3c8f12a473fa055fb08"
+    },
+    "leila/director-method-qualification.json": {
+      "publishedPath": "leila/director-method-qualification.json.txt",
+      "sha256": "ed1ed6fbec5a4243f206f75bddd3c0a990b2c8ddf8bac016f3e79658d1093501"
+    },
+    "leila/dispatch.json": {
+      "publishedPath": "leila/dispatch.json.txt",
+      "sha256": "3cbc49ea541478745cfe0fbc743f7a84b5c0b3182da27f47cad2412d1608fa20"
+    },
+    "leila/history-source-map.json": {
+      "publishedPath": "leila/history-source-map.json.txt",
+      "sha256": "cbcc1a2a435e2f5e7714a1ea070c766f2ebf1bcd1ebd9b7044eacad33c013940"
+    },
+    "leila/own-history.md": {
+      "publishedPath": "leila/own-history.md.txt",
+      "sha256": "583d686932bb708491eba60728c729c0866ae78cc7be63b1be697e0bf9ebf4aa"
+    },
+    "leila/phone/driver.out": {
+      "publishedPath": "leila/phone/driver.out.txt",
+      "sha256": "1c2175d4b494d10443c98cb61c007b3248018ee999d6ed3fcbe12a5b2d7392bc"
+    },
+    "leila/phone/release-start.json": {
+      "publishedPath": "leila/phone/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "leila/phone/wall-clock.jsonl": {
+      "publishedPath": "leila/phone/wall-clock.jsonl.txt",
+      "sha256": "9ae7c84d5ed5cd7cfa6d2c0742bf463a8f25925bb97c09c34fb70b8d497d4a3f"
+    },
+    "leila/raw-reactions-companion.json": {
+      "publishedPath": "leila/raw-reactions-companion.json.txt",
+      "sha256": "10efed786fb2fa865c974a60288a92eebd53795328dc9493a13e865f200910a5"
+    },
+    "leila/report.md": {
+      "publishedPath": "leila/report.md.txt",
+      "sha256": "025d88f96ffab1ec34481e38da7b6b4a407c02dc3623a44b67f86e54b7967404"
+    },
+    "maelle/brief.md": {
+      "publishedPath": "maelle/brief.md.txt",
+      "sha256": "5f986bda9f148b47a8c2a925f1106684b68a1829c2086c5964838a74277ff8aa"
+    },
+    "maelle/completion.safe.json": {
+      "publishedPath": "maelle/completion.safe.json.txt",
+      "sha256": "310f5c48b3a7d3b12a535ccd8dd5855691a52e82457e1d396045da3257b12fc2"
+    },
+    "maelle/desktop/driver.out": {
+      "publishedPath": "maelle/desktop/driver.out.txt",
+      "sha256": "c8a73371e1ac580869a414de4152e671b4bd518f64072b1f1626f8b2c1a98e7c"
+    },
+    "maelle/desktop/release-start.json": {
+      "publishedPath": "maelle/desktop/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "maelle/desktop/wall-clock.jsonl": {
+      "publishedPath": "maelle/desktop/wall-clock.jsonl.txt",
+      "sha256": "00e4c54f8e51029a7d1637f6d8bca947e3b679901026c129819f518d6300966e"
+    },
+    "maelle/director-method-qualification.json": {
+      "publishedPath": "maelle/director-method-qualification.json.txt",
+      "sha256": "1800478fc5884b2f9e975292b9d5eeaeb6c4982e9ef4807376bde135f1e15412"
+    },
+    "maelle/dispatch.json": {
+      "publishedPath": "maelle/dispatch.json.txt",
+      "sha256": "1d255200bc53b9902d0bbbf9996cb01e6a5a5b38f902249bc2c39b35c2e88c6b"
+    },
+    "maelle/history-source-map.json": {
+      "publishedPath": "maelle/history-source-map.json.txt",
+      "sha256": "ea147a1bda2728c5e4a05f433f114259a2624919bdeb63e984cfe9d6e130347f"
+    },
+    "maelle/own-history.md": {
+      "publishedPath": "maelle/own-history.md.txt",
+      "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9"
+    },
+    "maelle/phone/driver.out": {
+      "publishedPath": "maelle/phone/driver.out.txt",
+      "sha256": "728ee99835aa34d7c5aef4fb3707edf98f8f2cdfddbdbba6a77cffb4939efbb7"
+    },
+    "maelle/phone/release-start.json": {
+      "publishedPath": "maelle/phone/release-start.json.txt",
+      "sha256": "4092b56f8858568ec40d29c2b1a4d241946b0b8bead52ce29431322da065995a"
+    },
+    "maelle/phone/wall-clock.jsonl": {
+      "publishedPath": "maelle/phone/wall-clock.jsonl.txt",
+      "sha256": "e325a6be0463b544b8cc1b120d79065a6206a08e9af32365c3079408c66edcd9"
+    },
+    "maelle/raw-reactions-companion.json": {
+      "publishedPath": "maelle/raw-reactions-companion.json.txt",
+      "sha256": "29baad88705cc2db95990d8ba16c2e4e7d2d4fa37423de9faebc859bf67b5828"
+    },
+    "maelle/report.md": {
+      "publishedPath": "maelle/report.md.txt",
+      "sha256": "a78541278ec6234c931fc60023777316fe6da50b9081505de61cf4ed4553ac48"
+    },
+    "manifest.json": {
+      "publishedPath": "manifest.json.txt",
+      "sha256": "754dc912205f9e1f90c2ab4371b8bd4232bee75416d7e0097684b87cc0db4d2a"
+    },
+    "returns.json": {
+      "publishedPath": "returns.json.txt",
+      "sha256": "740ae36bcc1e0a8650d4fb707d23713ad9f509ec1edf015538e098f1d9973f72"
+    },
+    "routes-review.md": {
+      "publishedPath": "routes-review.md.txt",
+      "sha256": "525d1b507a0bd2a01ce9e63b7ea7490cee887243569fd78c40a3281e9df523c6"
+    },
+    "screenshots-manifest.json": {
+      "publishedPath": "screenshots-manifest.json.txt",
+      "sha256": "a755766980d8bb2ae4056da278eabd9835c1f438753cded7c7d59c99165c04f5"
+    },
+    "source-map.json": {
+      "publishedPath": "source-map.json.txt",
+      "sha256": "2dd61598fddc824ff54bac6eebda4b5d0d83dd733d65d31509a51c40333032a8"
+    },
+    "span-hash-check.json": {
+      "publishedPath": "span-hash-check.json.txt",
+      "sha256": "a105fedb38c879c168e4c32ceb572a3c2c48a27c90908b0d3ca690855c9bd3a8"
+    },
+    "verify.py": {
+      "publishedPath": "verify.py.txt",
+      "sha256": "9b88368ea7bfcc633633301871caffa037c1250154ee4f964ef9b57116ea73d8"
+    }
+  }
+}

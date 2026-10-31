@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-31T12:34:25.117427+00:00",
+  "recordedPids": [
+    37363, 37337, 37339, 62686, 62657, 62659, 2672, 2487, 2489, 21311, 21285, 21287, 55609, 55577, 55579
+  ],
+  "allRecordedPidsAbsent": true,
+  "observedDescendantIdentityCount": 24,
+  "allObservedIdentitiesAbsent": true,
+  "allTenPortsClosed": true,
+  "fullRoundDescendantJournal": false,
+  "scope": "Observed snapshots only, not complete descendant coverage"
+}

@@ -1,0 +1,193 @@
+[
+  {
+    "tester": "Maya Chen",
+    "source": "maya/report.md",
+    "opening": {
+      "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 213,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings; I would not return tonight or leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 213,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 8347,
+        "char_end_exclusive": 8368,
+        "line_start": 86,
+        "line_end": 86
+      },
+      {
+        "text": "I would come back voluntarily one more evening to try another combination of promises and signatures, if there is more for me to discover after these short meetings. I like the specific refusals, changed terms and people remembering words. I would not return tonight after these two meetings, and I would not leave it running.",
+        "char_start": 8958,
+        "char_end_exclusive": 9284,
+        "line_start": 91,
+        "line_end": 91
+      }
+    ]
+  },
+  {
+    "tester": "Mei Tan",
+    "source": "mei/report.md",
+    "opening": {
+      "text": "I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 186,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running.",
+        "char_start": 0,
+        "char_end_exclusive": 186,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I used Take a seat, Put the notebook on the table, Speak to someone in private, Return to the table, Write an agreement, Menu, Feedback, “I'm stopping” and Not now. I did not view the lower agreement list in a screenshot or write an agreement on the phone. I saw no layout trouble in the portions I viewed.",
+        "char_start": 6804,
+        "char_end_exclusive": 7110,
+        "line_start": 78,
+        "line_end": 78
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 7217,
+        "char_end_exclusive": 7238,
+        "line_start": 82,
+        "line_end": 82
+      },
+      {
+        "text": "I would return another evening on the laptop if there were a different meeting or a new situation to decide; I would not replay this same meeting again, and I would not leave it running. The alternative morning arrangement gave me a meaningful comparison this time, but the familiar meeting is still short. The menu said my place is kept in the browser when storage is available; I did not test returning to a saved place.",
+        "char_start": 7991,
+        "char_end_exclusive": 8413,
+        "line_start": 90,
+        "line_end": 90
+      }
+    ]
+  },
+  {
+    "tester": "Samir Haddad",
+    "source": "samir/report.md",
+    "opening": {
+      "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.",
+      "char_start": 0,
+      "char_end_exclusive": 191,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight.",
+        "char_start": 0,
+        "char_end_exclusive": 191,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "On the phone I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-001.png): the recording page fit, including **Take a seat**. I also viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/phone/b-002.png): the opening story extended below the screen, and its first action was not visible. I used named taps to reach the table, inspect private words, return, and open Feedback. I did not scroll, so I cannot describe how the opening behaves during a real thumb scroll.",
+        "char_start": 6268,
+        "char_end_exclusive": 6826,
+        "line_start": 67,
+        "line_end": 67
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 7136,
+        "char_end_exclusive": 7157,
+        "line_start": 71,
+        "line_end": 71
+      },
+      {
+        "text": "I might return another evening on desktop if there were a longer meeting with more people and more to learn about Nuri’s promises; I would not leave it running or return on the phone tonight. The cost made the honest choice more interesting, but I had just settled the meeting and did not want to repeat the private lie.",
+        "char_start": 7735,
+        "char_end_exclusive": 8055,
+        "line_start": 81,
+        "line_end": 81
+      }
+    ]
+  },
+  {
+    "tester": "Diego Silva",
+    "source": "diego/report.md",
+    "opening": {
+      "text": "**Would I return voluntarily?** I might come back another evening to try a different agreement or the letter, but I would not return again tonight; I have seen the two outcomes I came for.",
+      "char_start": 0,
+      "char_end_exclusive": 188,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "**Would I return voluntarily?** I might come back another evening to try a different agreement or the letter, but I would not return again tonight; I have seen the two outcomes I came for.",
+        "char_start": 0,
+        "char_end_exclusive": 188,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "I did not feel confused enough to open the confusion label. The game clearly stated when Rıza would leave and return, that a changed agreement clears signatures, and that calling Halil back costs two minutes. Ferda’s refusal said what she needed, and the screen counted the minutes needed for remaining signatures.",
+        "char_start": 6629,
+        "char_end_exclusive": 6943,
+        "line_start": 68,
+        "line_end": 68
+      },
+      {
+        "text": "## 7. Stop and return",
+        "char_start": 8444,
+        "char_end_exclusive": 8465,
+        "line_start": 90,
+        "line_end": 90
+      },
+      {
+        "text": "I might return voluntarily another evening to try a different agreement or the letter. I would not return again tonight: I got the exposed-lie outcome and then made the separation plan work. I would not leave it running; it is turn-based and nothing needs my attention while I am away.",
+        "char_start": 9106,
+        "char_end_exclusive": 9391,
+        "line_start": 98,
+        "line_end": 98
+      }
+    ]
+  },
+  {
+    "tester": "Anika Perera",
+    "source": "anika/report.md",
+    "opening": {
+      "text": "I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation.",
+      "char_start": 0,
+      "char_end_exclusive": 166,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "returnParagraphs": [
+      {
+        "text": "I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation.",
+        "char_start": 0,
+        "char_end_exclusive": 166,
+        "line_start": 1,
+        "line_end": 1
+      },
+      {
+        "text": "### 7. Stop and return",
+        "char_start": 6177,
+        "char_end_exclusive": 6199,
+        "line_start": 65,
+        "line_end": 65
+      },
+      {
+        "text": "I would return voluntarily to try another arrangement, but not immediately after these two endings; I would come back another evening if I wanted a short negotiation. I would not leave it running: both games had ended, and the choices advanced the game clock when I acted.",
+        "char_start": 6440,
+        "char_end_exclusive": 6712,
+        "line_start": 70,
+        "line_end": 70
+      }
+    ]
+  }
+]

@@ -1,0 +1,123 @@
+{
+  "time": "2026-10-31T15:05:21.044769+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "selection": "aisha-free complete return plus literal own asks only; excludes CONT and director method interpretation",
+      "selectedReturnAndAsksOnly": true,
+      "selectedSha256": "1aff403f175fcb2b098f1cdec6180822d70e80a320e6839204b32b4863cde3e0"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/hf3-warren-2026-10-25/aisha-free-matched.md",
+      "selection": "FREE only; independent CONT alternative excluded",
+      "selectedSha256": "e0d3742a8914dbfadcd1b50aa275e790ca70e2c6ad7b25795ca2530110f070c8"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands/aisha/report.md",
+      "sourceSha256": "4aec594d8e1ea1bc503d2082519ae8654dc445cf288950c2fe9ea38502c3c4da",
+      "selectedSha256": "3b365c71f1c0f7a231811a55e3fe2d83903a23965482c1077f5269400d5261a3"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur/aisha/report.md",
+      "sourceSha256": "b7d222edb240eaaea83c35039c2616bfaa9bb7292c7bd968411228c912cafae3",
+      "selectedSha256": "4dd5f52011336fec9b60a1809b1b75a5ec81030447058770ede795c81ef57e67"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-hold-return/aisha/report.md",
+      "sourceSha256": "2d5dd5c93b8f75bdc01f635c1ba3f5ca78b53faaee4f916c83a09ecdaf595bd5",
+      "selectedSha256": "3b93b757b0dba969e003d83861f9b597d230e78ba38d3ae5c591c55a0bba0ae7"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/aisha/report.md",
+      "sourceSha256": "7c2b1bd4a94339c66580471afad0ab8f59e9c7a82f5afc527dac258b1f839d00",
+      "selectedSha256": "ea31574365f3decccdfa55c8d8fec0a06666854fe44e6096f4e8fe3b9f2fa98d"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/aisha/report.md",
+      "sourceSha256": "fa05077017da688d86a9e0b8fe7d9496e0781ca7e3f2ba756ae331e3527f2883",
+      "selectedSha256": "2d915418cd393493fcf40fb43503b7d82421915b9073c239a6448ef0827b6948"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/aisha/director-method-qualification.json",
+      "sourceSha256": "8c1cbb7f862b19421757b29be16650cefb8628a9f186bf726be42feb297c56c0",
+      "directorMetadataOnly": true,
+      "selectedSha256": "9d97e2b32a195acfa2f13fb4a4e824a45506dd3fa43b8bd9c4ff6bf261166346"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/report.md",
+      "sourceSha256": "7fd01bd9efaa665254ea869d084e1365f3033869eac776b2f40bd7ef4f6db7b4",
+      "selectedSha256": "ad3446573eed8a5608a154bf8c2d1993a8b213eb91dd28a5cae8d09ba8215606"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/director-method-qualification.json",
+      "sourceSha256": "1bef8b4b195b68ba23ca3d5dc912b5ac65c115a4bd4ce0a38186cc7e0e7e22ea",
+      "directorMetadataOnly": true,
+      "selectedSha256": "dd233dc36d4b17ced0a44f419ce34982f28e0893049a5e5366cbf6ba05c07f65"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/report.md",
+      "sourceSha256": "084b69151ac5c637192bee581a458e6f31468020338d6e09d09c7f5a2b9f789a",
+      "selectedSha256": "25cd1ab82167aaa03fd26d791dc92c2a1c124e5b2b0886f34303a7d669bd2d08"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/director-method-qualification.json",
+      "sourceSha256": "5d854b2bf287c3f7e0535a9c04f0f2b0c5648530ef128499181c8029fae1f782",
+      "directorMetadataOnly": true,
+      "selectedSha256": "7a0cd0bc04b72d872c617e34586e51d73bbda4cd6a3d9a5559ce41f8c628020b"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/voice-playtest-2026-10-27-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "58977425242eae9d77b8b0419a4c435de1ab35aef1eb1800b254f1d770a0292f"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "1bf3c3b21bb9c790d164b46fbd0f18786d04cf0c4556132a9fdec1de75e1de54"
+    },
+    {
+      "repo": "pass",
+      "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+      "path": "docs/playtests/panel-2026-10-27.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "7273edff2667806e05594f986ad7af3ab0d35028f129e0b1660ff1787dff9317"
+    },
+    {
+      "repo": "valley",
+      "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+      "path": "docs/playtests/2026-10-27-retest2.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "009ebc80336d6bb7a1b887447372d285b2c5ce6d6ee094c60df6956efad5582b"
+    },
+    {
+      "repo": "commonstead",
+      "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+      "path": "docs/games/commonstead-playtest-2026-10-27b.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "8f888e9afa4339ad152d623952760189967e19587075eca50039dbbb1b73f2bf"
+    },
+    {
+      "repo": "lefthand",
+      "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+      "path": "docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "9b7789da4e9bdedfface949a7c1e8daca8193505f668dd3bfd552bea4c5b3a7a"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/codex-history-evidence-clarification.json",
+      "sourceSha256": "244dba99e92a9a72f3cdb9001ac7c0a326a2992f8b0280765c681aa016f20bf0",
+      "directorMetadataOnly": true,
+      "selectedSha256": "6822c1b5f8ce642174a1091b92dbcb869e045d0ef62df7dc00b4cad1e4a68d15"
+    }
+  ],
+  "historySha256": "f6c1f82527bf9142548141b9a405bbad1b2aeb5e56dad1ce9e284303e0da19b2"
+}

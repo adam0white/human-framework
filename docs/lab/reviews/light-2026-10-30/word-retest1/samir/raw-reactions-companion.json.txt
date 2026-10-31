@@ -1,0 +1,123 @@
+{
+  "scope": "Literal raw reactions, including reactions attached to taps; original producer report unchanged.",
+  "reportSha256": "529ef7cf91c692731b8acf863af761fca9507047bc85dd19ac75d18cbe0c951d",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.487,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "The same notebook and Nuri promises. I remember Halil and Riza and the lie they caught; fairly sure of those names. Sitting down again."
+    },
+    {
+      "device": "desktop",
+      "row": 5,
+      "elapsed_s": 7.139,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "The same clashing promises, but now there are 24 minutes and money for my journey home. I want to hear them first."
+    },
+    {
+      "device": "desktop",
+      "row": 10,
+      "elapsed_s": 20.265,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Riza now offers his yard for morning work. I remember the paid break and cart at four, but not that yard; I am not sure whether it is new. It gives me a place to hold onto."
+    },
+    {
+      "device": "desktop",
+      "row": 13,
+      "elapsed_s": 26.731,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Ferda needs to know whether late work pays. I will fetch it while Riza is away."
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "elapsed_s": 33.399,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Now the honest late agreement costs 40 of my 100 home money. That makes me pause. The yard costs 60; I choose the late work and keep 60 for home."
+    },
+    {
+      "device": "desktop",
+      "row": 23,
+      "elapsed_s": 44.266,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "They kept their word a month later, and I still have train money. The cost gave the decision weight, though everyone agreed readily again. I would like to read what I missed."
+    },
+    {
+      "device": "desktop",
+      "row": 25,
+      "elapsed_s": 47.986,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "The meeting is over and the notebook recounts what I did. I would stop here; I do not need another run tonight."
+    },
+    {
+      "device": "desktop",
+      "row": 31,
+      "elapsed_s": 57.006,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I am stopping after the agreement. The 40 lira cost made me think, and the month-later account told me what happened. Everyone still agreed readily. I chose I am stopping and Not now, typed nothing and sent nothing."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 5.227,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Phone again, same evening. The recording page fits and I know the meeting now. I want to see the private words before making an agreement."
+    },
+    {
+      "device": "phone",
+      "row": 6,
+      "elapsed_s": 10.04,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "The opening again fills the phone screen; the action is below what I can see. I know where to go from desktop."
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "elapsed_s": 13.261,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The private words are right at the table now, as I wanted. They are still opposite claims that everyone agreed. I remember them comparing notes and catching me last time; fairly sure. I do not want to lie again."
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "elapsed_s": 18.276,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I have just settled this meeting on desktop and I remember the private lie. I would leave the phone here rather than repeat it tonight."
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "elapsed_s": 26.472,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I am stopping on the phone before an agreement. I have just played this meeting and do not want to repeat the lie tonight. The opening action is below the screen. I chose I am stopping and Not now, typed nothing and sent nothing."
+    }
+  ]
+}

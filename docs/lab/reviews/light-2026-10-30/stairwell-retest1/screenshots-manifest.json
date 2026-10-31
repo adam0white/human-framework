@@ -1,0 +1,188 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/phone/first-minute.png",
+    "sha256": "233b9f3a79d55850adf2a0526fe826c64e3a61ab71b14065c84d5ffb51317949",
+    "bytes": 64904,
+    "mtime_ns": 1793448798906116294
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/phone/a-002.png",
+    "sha256": "2dec2fd6d858fa8a8e10a2f15802749bff796585b0ac58e6d5aca72b1e00a52f",
+    "bytes": 64520,
+    "mtime_ns": 1793448815388390268
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/phone/a-001.png",
+    "sha256": "6fbea3021756dfff7d4199ce2ac94732f16c19e52175795ada957c5be00bde8d",
+    "bytes": 86367,
+    "mtime_ns": 1793448740714414891
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/desktop/b-001.png",
+    "sha256": "50febdc3dd6671a3cc44384ca8574c3321ba00719c941611168276d233f3be10",
+    "bytes": 136342,
+    "mtime_ns": 1793448833994990661
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/desktop/first-minute.png",
+    "sha256": "713fc3728f29e54155665d73c43193291a286ab38b55fb7127f5af2ec8668220",
+    "bytes": 148841,
+    "mtime_ns": 1793448891065496127
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/desktop/b-002.png",
+    "sha256": "927669223ee4702ad1d7c7dd74faab4d42695edf2357cc5b55e2b3a1a1fd79af",
+    "bytes": 148566,
+    "mtime_ns": 1793448866345045380
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-001.png",
+    "sha256": "6fbea3021756dfff7d4199ce2ac94732f16c19e52175795ada957c5be00bde8d",
+    "bytes": 86367,
+    "mtime_ns": 1793449141515818094
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/first-minute.png",
+    "sha256": "5c7c8543f405427a21b3e0a37bf13a032d0b538297ff95fcdf34c6225d4300d1",
+    "bytes": 36867,
+    "mtime_ns": 1793449199327669865
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-002.png",
+    "sha256": "2e09b3d224bcdd2199854b28952b6b76ec84068646cb87e1e8dc3128714b5980",
+    "bytes": 61315,
+    "mtime_ns": 1793449153281493919
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-003.png",
+    "sha256": "2ba7c1c5aefccadb8b850e847603f81ec9069dab4872d17f4d8982ca9a6a8e75",
+    "bytes": 64900,
+    "mtime_ns": 1793449176830968018
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/first-minute.png",
+    "sha256": "8af4ceb52fc3cfd145e78d09efa190f1c1aa7cfd902a45b4158e5f821bc67851",
+    "bytes": 143713,
+    "mtime_ns": 1793449028409110190
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-002.png",
+    "sha256": "b9f0d0f0960256276b32d8c89f498f8e490315db5a6cb2a2009abac344da4437",
+    "bytes": 230185,
+    "mtime_ns": 1793449055378120502
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-001.png",
+    "sha256": "50febdc3dd6671a3cc44384ca8574c3321ba00719c941611168276d233f3be10",
+    "bytes": 136342,
+    "mtime_ns": 1793448970553441195
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/phone/first-minute.png",
+    "sha256": "8afbc36760e6117ac010a8dd6215280887365d145be5dbc553a7da3f2f93b318",
+    "bytes": 63299,
+    "mtime_ns": 1793449302746963192
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/phone/a-002.png",
+    "sha256": "64f0f7d1dfe361d6bedf8521423f7ad164a06d6121d3f035f063b5405003dabe",
+    "bytes": 76030,
+    "mtime_ns": 1793449295897500936
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/phone/a-001.png",
+    "sha256": "6fbea3021756dfff7d4199ce2ac94732f16c19e52175795ada957c5be00bde8d",
+    "bytes": 86367,
+    "mtime_ns": 1793449244650060262
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/desktop/b-001.png",
+    "sha256": "50febdc3dd6671a3cc44384ca8574c3321ba00719c941611168276d233f3be10",
+    "bytes": 136342,
+    "mtime_ns": 1793449333185973509
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/desktop/first-minute.png",
+    "sha256": "c6d110b2786d880b5c0ecfc7346eaf08fe9be63ca1b6a3b39feec58f10ffdaff",
+    "bytes": 195373,
+    "mtime_ns": 1793449391104597853
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/desktop/b-002.png",
+    "sha256": "24dcdeab66a1388e4c9cfe14af69ee6c05ad3792e81c6815d2119b3f630017ca",
+    "bytes": 204901,
+    "mtime_ns": 1793449363989808402
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/first-minute.png",
+    "sha256": "f1c968c7d797ff842478ec974541ab96c6cd5192011a6bce5377272144b6a81f",
+    "bytes": 63572,
+    "mtime_ns": 1793449543303241824
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/a-002.png",
+    "sha256": "e71a63b322c0010cbb20bccd0ce1a56a79dc0f0a0b8b41f78459c81f7d15a800",
+    "bytes": 59292,
+    "mtime_ns": 1793449547819858337
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/a-001.png",
+    "sha256": "6fbea3021756dfff7d4199ce2ac94732f16c19e52175795ada957c5be00bde8d",
+    "bytes": 86367,
+    "mtime_ns": 1793449485140456261
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/b-001.png",
+    "sha256": "50febdc3dd6671a3cc44384ca8574c3321ba00719c941611168276d233f3be10",
+    "bytes": 136342,
+    "mtime_ns": 1793449565813692826
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/first-minute.png",
+    "sha256": "3ecf2cfa8c1471d27f17ffe289e8b0fdc06eeb8434f0d092bdad4b9b169d9e32",
+    "bytes": 195447,
+    "mtime_ns": 1793449621336001888
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/b-002.png",
+    "sha256": "e02437aa68f49f09718382d71c97325b7b7998dca04f34c953984d2692131c17",
+    "bytes": 127632,
+    "mtime_ns": 1793449574379937802
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/first-minute.png",
+    "sha256": "a13831d5040bcaa1c74cde33aaed1deb981c90be7f09b10e327c3b789148b9c3",
+    "bytes": 60445,
+    "mtime_ns": 1793449733904139230
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/a-002.png",
+    "sha256": "4852f7a8cf50edb62c6d1313a5f2e5685d310bc1b076bab70237f268e2127e48",
+    "bytes": 60954,
+    "mtime_ns": 1793449684681879200
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/a-001.png",
+    "sha256": "6fbea3021756dfff7d4199ce2ac94732f16c19e52175795ada957c5be00bde8d",
+    "bytes": 86367,
+    "mtime_ns": 1793449675533901625
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/b-001.png",
+    "sha256": "50febdc3dd6671a3cc44384ca8574c3321ba00719c941611168276d233f3be10",
+    "bytes": 136342,
+    "mtime_ns": 1793449831609990572
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/first-minute.png",
+    "sha256": "022f6c6b5fb98a49092eb36f23276dbf285a71411a33df65be94795ef067b8eb",
+    "bytes": 185459,
+    "mtime_ns": 1793449889526933954
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/b-002.png",
+    "sha256": "a71cbdb4d25f2aaf5618a51a8e741cd0b91aaaa0effbe00f5b5740da15ebcbbf",
+    "bytes": 127796,
+    "mtime_ns": 1793449841975948069
+  }
+]

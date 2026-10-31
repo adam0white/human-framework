@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-31T15:51:09.208935+00:00",
+  "players": [
+    "diego",
+    "leila",
+    "maelle"
+  ],
+  "correction": "Director metadata desktop-first -> actual phone-first; original raw and reports unchanged. Before copies retained. Packet must regenerate and receive SAME successor reviews."
+}

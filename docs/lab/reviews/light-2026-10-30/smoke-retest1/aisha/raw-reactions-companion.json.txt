@@ -1,0 +1,114 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "309f2e50d616db10bbdf18412e0a9c42700bad0fd9845f8ffba3b68c5ed140c2",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.243,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I remember Sevim and her books. I want to help her first again, and see whether walking is clearer."
+    },
+    {
+      "device": "desktop",
+      "row": 7,
+      "elapsed_s": 9.367,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Now it says walking to landing 1 and gives a time. I know the tap took; that is reassuring."
+    },
+    {
+      "device": "desktop",
+      "row": 16,
+      "elapsed_s": 37.393,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The street walk now says thick smoke slows me and gives an estimate. Sevim has her books; I am relieved to know we are moving."
+    },
+    {
+      "device": "desktop",
+      "row": 20,
+      "elapsed_s": 59.552,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Sevim is outside with her books. The walking destination and smoke slowdown are now stated, so I feel less lost. I am going to Hacer, who cannot see the stair."
+    },
+    {
+      "device": "desktop",
+      "row": 22,
+      "elapsed_s": 62.16,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Sevim is outside with her books. Walking destination and smoke slowdown are stated, so I feel less lost. I am going to Hacer, who cannot see the stair."
+    },
+    {
+      "device": "desktop",
+      "row": 36,
+      "elapsed_s": 126.655,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone is out, including Derya. I feel relieved and would leave this night here."
+    },
+    {
+      "device": "desktop",
+      "row": 40,
+      "elapsed_s": 132.921,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I am stopping with everyone out. Sevim kept her books and Hacer said she could not have found the stair alone. The walking status made this less confusing. I selected I am stopping and closed Feedback without sending."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 4.776,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The phone introduction fits and is readable. Burak is home this time; I want to follow him."
+    },
+    {
+      "device": "phone",
+      "row": 9,
+      "elapsed_s": 18.912,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Burak checked the stair and offers to hold the books without my telling him. I like that he acts for Sevim."
+    },
+    {
+      "device": "phone",
+      "row": 21,
+      "elapsed_s": 64.307,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "Burak helped Sevim tie her books and got out himself; Hacer is outside with me. The phone tells me where I am walking, and I am now going to Derya. I feel more confident than last time."
+    },
+    {
+      "device": "phone",
+      "row": 36,
+      "elapsed_s": 116.672,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Everyone is out again. Burak helping Sevim made this night feel different, and I would stop here for the evening."
+    },
+    {
+      "device": "phone",
+      "row": 40,
+      "elapsed_s": 122.691,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I am stopping on the phone with everyone outside. Burak helped with the books and left on his own; Hacer and Derya got out with me. I selected I am stopping and closed Feedback without sending."
+    }
+  ]
+}

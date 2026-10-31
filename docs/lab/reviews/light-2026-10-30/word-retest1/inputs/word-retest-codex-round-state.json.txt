@@ -1,0 +1,79 @@
+{
+  "closed": "2026-10-31T15:04:37.439655+00:00",
+  "nextOrdinaryNotBefore": "2026-10-31T15:19:37.439655+00:00",
+  "fiveLogicalTesters": true,
+  "tenFinalStops": true,
+  "reportsRootRead": 5,
+  "reportsRootQualified": 5,
+  "controllerActualExit": 0,
+  "controllerExecSession": 26099,
+  "stops": [
+    {
+      "player": "maya",
+      "device": "phone",
+      "elapsed_s": 56.437,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "maya",
+      "device": "desktop",
+      "elapsed_s": 46.765,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "mei",
+      "device": "desktop",
+      "elapsed_s": 44.07,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "mei",
+      "device": "phone",
+      "elapsed_s": 31.993,
+      "reason": "BORED"
+    },
+    {
+      "player": "samir",
+      "device": "desktop",
+      "elapsed_s": 57.006,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "samir",
+      "device": "phone",
+      "elapsed_s": 26.472,
+      "reason": "BORED"
+    },
+    {
+      "player": "diego",
+      "device": "phone",
+      "elapsed_s": 93.653,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "diego",
+      "device": "desktop",
+      "elapsed_s": 55.392,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "anika",
+      "device": "desktop",
+      "elapsed_s": 59.683,
+      "reason": "FINISHED"
+    },
+    {
+      "player": "anika",
+      "device": "phone",
+      "elapsed_s": 54.009,
+      "reason": "FINISHED"
+    }
+  ],
+  "hold": false,
+  "iteration": 1,
+  "finished": false,
+  "noNewBlockingAskInAllFive": true,
+  "methods": "Eight actual ending stops and two voluntary BORED stops. No TOOL or restart cut.",
+  "packet": "Ten ranked asks for dated Deferred integration preparing.",
+  "reservedIds": "F2791\u20132820; expected actual F2791\u20132800, no filler."
+}

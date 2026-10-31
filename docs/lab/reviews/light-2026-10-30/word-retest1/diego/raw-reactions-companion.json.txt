@@ -1,0 +1,213 @@
+{
+  "scope": "Literal raw reactions from tap, shot and log operations; original producer report unchanged.",
+  "reportSha256": "edc20e9666ecb762593ac5d6c052ebba6c1ad7d85c51b50318c1768d567e61b6",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 6.133,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Same notebook and recording page. I remember lying to Halil and R\u0131za and having them compare words; high confidence from their names and the title. Sitting down again."
+    },
+    {
+      "device": "phone",
+      "row": 5,
+      "elapsed_s": 8.478,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "R\u0131za now has a delivery round and returns at ten minutes. I do not remember that constraint from last time. I want to see what it changes."
+    },
+    {
+      "device": "phone",
+      "row": 6,
+      "elapsed_s": 10.17,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "The private lie was the good part last time. Going there first."
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "elapsed_s": 13.424,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Now it says the private promise may waive a \u20ba40 guarantee before I make it. That is clearer. Lying to Halil."
+    },
+    {
+      "device": "phone",
+      "row": 9,
+      "elapsed_s": 19.017,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Opposite promise again. I want the comparison to bite."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 25.395,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "R\u0131za left at 18 as promised. I want to see the agreement while he is away."
+    },
+    {
+      "device": "phone",
+      "row": 13,
+      "elapsed_s": 27.273,
+      "kind": "input",
+      "op": "shot",
+      "reason": null,
+      "reaction": "The titles are shorter but the buttons still carry long explanations. I like the unknown acceptance warning; it gives the gamble a shape."
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "elapsed_s": 31.638,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Trying the free agreement while R\u0131za is away, despite unknown acceptance."
+    },
+    {
+      "device": "phone",
+      "row": 16,
+      "elapsed_s": 36.179,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Halil signed after reading, and I can let him leave with it. That feels like an actual tactical choice. Sending him away."
+    },
+    {
+      "device": "phone",
+      "row": 19,
+      "elapsed_s": 41.878,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Ferda refused the same gamble as before, but now calling Halil back costs two minutes and clears signatures. That is a sharper cost."
+    },
+    {
+      "device": "phone",
+      "row": 22,
+      "elapsed_s": 49.32,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Nine minutes left, both men back. Trying the corrected free trial even though they can compare now."
+    },
+    {
+      "device": "phone",
+      "row": 24,
+      "elapsed_s": 54.763,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "There is the exposure again, earned. My attempt to keep them apart failed because I had to call Halil back. Six minutes is exactly enough to write and get four signatures, I think."
+    },
+    {
+      "device": "phone",
+      "row": 28,
+      "elapsed_s": 72.434,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "The delivery round gives me a window to separate the men. I sent Halil away after he signed, but Ferda refused my full lease and changing it brought him back. They compared my lies and the deposit took the last of my fund. I like that chain. The agreement choices still read like a lot of form."
+    },
+    {
+      "device": "phone",
+      "row": 31,
+      "elapsed_s": 80.836,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "One minute and one signature. This is tight enough to hold me."
+    },
+    {
+      "device": "phone",
+      "row": 32,
+      "elapsed_s": 82.717,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "That was a good tight finish. I spent the whole journey fund and they now require everything in writing. I would stop this run here."
+    },
+    {
+      "device": "phone",
+      "row": 37,
+      "elapsed_s": 93.653,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Stopping phone after the agreement. The separation window and my costly recall made the lie more interesting; I finished exactly on time and spent the whole fund. Feedback opened, I chose I am stopping and pressed Not now without typing or submitting."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 6.938,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Same notebook on desktop, same evening. I remember the delivery window from the phone a minute ago; high confidence. This time I want to make the separation work."
+    },
+    {
+      "device": "desktop",
+      "row": 6,
+      "elapsed_s": 11.223,
+      "kind": "input",
+      "op": "shot",
+      "reason": null,
+      "reaction": "Checking whether the desktop controls fit now."
+    },
+    {
+      "device": "desktop",
+      "row": 7,
+      "elapsed_s": 14.522,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "The table controls all fit in this desktop view. Lying again, but I will ask Ferda and Osman before writing."
+    },
+    {
+      "device": "desktop",
+      "row": 15,
+      "elapsed_s": 31.708,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "I know the trial terms now. Trying to get Halil signed and out before R\u0131za returns."
+    },
+    {
+      "device": "desktop",
+      "row": 21,
+      "elapsed_s": 42.941,
+      "kind": "input",
+      "op": "tap",
+      "reason": null,
+      "reaction": "Three signed, Halil gone, R\u0131za due. The timing plan is working so far."
+    },
+    {
+      "device": "desktop",
+      "row": 23,
+      "elapsed_s": 46.584,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "I kept them apart and got the free agreement. The timing plan worked, and that is satisfying, but I have seen both outcomes I came for tonight. I would stop."
+    },
+    {
+      "device": "desktop",
+      "row": 28,
+      "elapsed_s": 55.392,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Stopping desktop after the free agreement. I used the delivery window to keep the men apart and the plan worked. It was satisfying to apply what the phone run taught me. Feedback: I chose I am stopping, pressed Not now, typed and submitted nothing."
+    }
+  ]
+}

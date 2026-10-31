@@ -1,0 +1,112 @@
+[
+  {
+    "tester": "aisha",
+    "device": "phone",
+    "source": "aisha/phone/wall-clock.jsonl",
+    "line": 17,
+    "elapsed_s": 38.742,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping the phone at Aylin's message. Getting Dilan up worked, but I have just played this opening and do not want to repeat it tonight.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "aisha",
+    "device": "desktop",
+    "source": "aisha/desktop/wall-clock.jsonl",
+    "line": 49,
+    "elapsed_s": 130.053,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping at Tuesday morning. I liked that Dilan told the truth and helped Ece, and that she told me my pushing hurt. Murat asking the same question again makes me want to leave for tonight.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "mei",
+    "device": "phone",
+    "source": "mei/phone/wall-clock.jsonl",
+    "line": 37,
+    "elapsed_s": 134.379,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on Monday evening after Dilan called Mum. The choices and consequences held me, but I have played this Monday before. I chose I am stopping and pressed Back without typing or submitting.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "mei",
+    "device": "desktop",
+    "source": "mei/desktop/wall-clock.jsonl",
+    "line": 38,
+    "elapsed_s": 233.877,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on Monday of the second week after Mum finished her story. I liked supporting a commitment without insisting, but I could not see the tenancy terms or deadline before deciding. I chose I am confused and pressed Back without typing or submitting.",
+    "reason": "CONFUSED"
+  },
+  {
+    "tester": "nia",
+    "device": "phone",
+    "source": "nia/phone/wall-clock.jsonl",
+    "line": 23,
+    "elapsed_s": 66.942,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on the phone. The lie had a nice emotional answer, but I do not want another run through this familiar morning. I would close it.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "nia",
+    "device": "desktop",
+    "source": "nia/desktop/wall-clock.jsonl",
+    "line": 28,
+    "elapsed_s": 96.037,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping on Monday. I liked her pushback and the pigeons, but the same scenes and repeated reply lose me. I would close it.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "rosa",
+    "device": "phone",
+    "source": "rosa/phone/wall-clock.jsonl",
+    "line": 27,
+    "elapsed_s": 70.297,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I stop on the phone. I liked helping Ece and seeing Dilan answer me, but I have seen this part of Monday again. I would close it for now.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "rosa",
+    "device": "desktop",
+    "source": "rosa/desktop/wall-clock.jsonl",
+    "line": 19,
+    "elapsed_s": 55.576,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I stop on the big screen. I liked that Murat accepted the truth, but I have seen this morning before and would return another evening for more.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "dunja",
+    "device": "phone",
+    "source": "dunja/phone/wall-clock.jsonl",
+    "line": 34,
+    "elapsed_s": 89.809,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I have had enough for now; I would put the phone down.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "dunja",
+    "device": "desktop",
+    "source": "dunja/desktop/wall-clock.jsonl",
+    "line": 26,
+    "elapsed_s": 63.298,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I would close this now; I have had my look at the different choices.",
+    "reason": "TASTE"
+  }
+]

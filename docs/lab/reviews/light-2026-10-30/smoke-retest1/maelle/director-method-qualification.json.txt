@@ -1,0 +1,26 @@
+{
+  "cohortCoverage": "The LIGHT initial and retest cohorts omit required Rosa coverage. See external rosa-light-protocol-audit.md/json. Individual reports remain observations; they do not establish full persona-protocol compliance. No Rosa visit or opinion is inferred.",
+  "feedback": "Stopping quick labels were selected locally and Not now closed Feedback. No typed note, Submit, recording or consent change was found. No production receipt inferred.",
+  "exposure": "Two fresh independent games, phone then desktop on the same evening. No old save or matched seed; differences are not attributable solely to the build.",
+  "cycleRule": "FIRST fixed-build retest. Producer no-new-blocker statements are individual findings; remaining reports and the cohort qualification remain separate.",
+  "descendantScope": "Three recorded PIDs absent per completed tester below. Final round observed-identity and port checks remain required.",
+  "at": "2026-10-31T15:48:03.948252+00:00",
+  "rootReadFullReport": true,
+  "commandReceipt": "smoke-maelle-command-audit-1546.json",
+  "retainedToolsReceipt": "smoke-maelle-retained-audit-1546.json",
+  "historyEvidence": "First target visit and no HF exposure. Allfive empty-history lines matched stdout and retained outputs, dispatch/freeze/completion hashes matched. No earlier visit inferred. Retention is not attention or comprehension.",
+  "imageEvidence": "Four high-detail input-image blocks, two per device including active desktop conflict. Blocks do not establish perception.",
+  "stops": {
+    "phone": 135.247,
+    "desktop": 105.871
+  },
+  "timedLogs": "Phone ending121.746, FINISHED raw135.247/report135.248. Desktop unfinished FRUSTRATED105.871. First-minute raw65.844/report65.845 and63.469 valid. Auto60.030/60.044 before stops, no180-second pulse.",
+  "driverQualification": "Two permitted reads/80 curls incl7 keys. One unmatched quote before request; invalid initial note reason corrected; two stale full-name taps. No forbidden parsed action. Confusion and desktop stopping labels prefilled drafts; phone ending optional note empty. Not now; no typing or Submit.",
+  "priorAskComparison": "Cold tester: no prior target asks. Phone Everyone is out, desktop stopped unfinished. Fresh phone/desktop different choices are not a controlled build/device comparison.",
+  "producerNewBlockingAsk": "Tied journal and tying/wait status visible96.360 and want-quit98.235. Pause/menu99.692 then showed Choose Show the stair. Stop105.871 repeats earlier words; full report explicitly distinguishes later visible prompt. Phone prompt also changed after pause. Cause and later desktop outcome unknown. Ranked asks: synchronize Sevim instructions/actions and follower movement/wait clarity.",
+  "returnExact": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+  "orderCorrection": {
+    "at": "2026-10-31T15:51:09.208935+00:00",
+    "reason": "Root copied the shared desktop-first metadata incorrectly. Actual plan and producer reports are phone then desktop. Original report unchanged."
+  }
+}

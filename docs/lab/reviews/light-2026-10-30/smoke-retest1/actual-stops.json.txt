@@ -1,0 +1,112 @@
+[
+  {
+    "tester": "jonas",
+    "device": "phone",
+    "source": "jonas/phone/wall-clock.jsonl",
+    "line": 39,
+    "elapsed_s": 123.872,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Everyone is out. Derya stopped and I recovered her; the phone Street control worked. I selected stopping in Feedback and closed it without sending.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "jonas",
+    "device": "desktop",
+    "source": "jonas/desktop/wall-clock.jsonl",
+    "line": 37,
+    "elapsed_s": 120.831,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Everyone reached the street. I am stopping at the ending; Street moved me and the followers arrived. I selected stopping in Feedback and closed it without sending.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "aisha",
+    "device": "phone",
+    "source": "aisha/phone/wall-clock.jsonl",
+    "line": 40,
+    "elapsed_s": 122.691,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone with everyone outside. Burak helped with the books and left on his own; Hacer and Derya got out with me. I selected I am stopping and closed Feedback without sending.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "aisha",
+    "device": "desktop",
+    "source": "aisha/desktop/wall-clock.jsonl",
+    "line": 40,
+    "elapsed_s": 132.921,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping with everyone out. Sevim kept her books and Hacer said she could not have found the stair alone. The walking status made this less confusing. I selected I am stopping and closed Feedback without sending.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "diego",
+    "device": "phone",
+    "source": "diego/phone/wall-clock.jsonl",
+    "line": 30,
+    "elapsed_s": 88.268,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping the phone after everyone home got out. The visible figure and walk estimates made this feel responsive; Burak helping Sevim was a good surprise. Feedback: I chose I am stopping and closed with Not now, without typing or sending.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "diego",
+    "device": "desktop",
+    "source": "diego/desktop/wall-clock.jsonl",
+    "line": 39,
+    "elapsed_s": 136.181,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping desktop with Sevim still inside. The log said the books were tied, but her status and disabled speech kept telling me to wait while smoke made breathing difficult. Hacer and Burak got out. I opened confusion and stopping feedback, typed nothing, and closed each with Not now.",
+    "reason": "FRUSTRATED"
+  },
+  {
+    "tester": "leila",
+    "device": "phone",
+    "source": "leila/phone/wall-clock.jsonl",
+    "line": 40,
+    "elapsed_s": 119.755,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping the phone run after everyone got out. The walking status made my commands legible and I felt relief rather than cheated. I would try another order another evening.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "leila",
+    "device": "desktop",
+    "source": "leila/desktop/wall-clock.jsonl",
+    "line": 26,
+    "elapsed_s": 72.009,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping desktop after everyone home got out. The keyboard worked and the walk was visible. I enjoyed the phone rescue more because the second sequence was familiar; I would not leave it running.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "maelle",
+    "device": "phone",
+    "source": "maelle/phone/wall-clock.jsonl",
+    "line": 45,
+    "elapsed_s": 135.247,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Everyone is out. I am relieved and satisfied with one night; I do not feel a need to repeat it now.",
+    "reason": "FINISHED"
+  },
+  {
+    "tester": "maelle",
+    "device": "desktop",
+    "source": "maelle/desktop/wall-clock.jsonl",
+    "line": 39,
+    "elapsed_s": 105.871,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I came back for Sevim, but I am still told to wait after she said the bundle was tied. I do not want to watch her suffer while I cannot tell what to do. I would stop here.",
+    "reason": "FRUSTRATED"
+  }
+]

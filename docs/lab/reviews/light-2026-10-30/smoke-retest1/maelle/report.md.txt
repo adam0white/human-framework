@@ -1,0 +1,40 @@
+I would not voluntarily return tonight; I would leave the desktop game paused, not running.
+
+My ranked asks are:
+
+1. Make Sevim’s current instruction and available actions match her statement that the bundle is tied.
+2. Make it easier to see whether a follower is moving with me and whether I should wait.
+
+I played as Maëlle in two fresh sessions on the same evening: first on a 360×690 touch phone in the sitting room, then on a 1280×800 laptop using the trackpad and keyboard at the kitchen table. This was my first visit. The supplied diary was empty, with no prior Human Framework exposure. I read all five supplied history lines; the last line was “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: **none**.
+
+The opening made the situation clear: smoke was filling an Istanbul stairwell, and I needed to get the neighbours outside. It was alarming, but the neighbours’ ordinary concerns—especially Sevim’s exercise books—gave me a reason to care. The initial instructions were readable on the phone, though there was a lot to remember. The larger laptop screen was easier to read. The game’s prompts generally made the next action clear, but the running clock made reading feel hurried.
+
+On the phone, I approached Sevim, helped with her books, used the torch and led her out. Burak checked the stair and escaped alone. I then gathered Derya and Hacer; both reached the street. The ending said **“Everyone is out.”** I felt relieved and satisfied, with no immediate desire to replay. The session stopped at **135.248 seconds**, after the game ended; the three-minute pulse was not reached.
+
+On the laptop, I tried the upper neighbours first. The F, R, T and B keys produced visible changes, and gathering people on the way down made sense to me. Derya and Hacer reached the street. Sevim’s log said her bundle was tied, while her highlighted status and instruction continued to say she was tying it and I should wait. I returned after taking the others outside and still saw that instruction while smoke made her breathing difficult. I wanted to quit. When I opened the pause menu at 99.692 seconds, the underlying prompt changed to “Choose Show the stair,” so the earlier stop diary words describe what I had seen immediately before pausing, not the final visible state. I still stopped, frustrated, at **105.871 seconds**. The game had not ended; its outcome and the three-minute pulse were untested.
+
+The phone’s confusion resolved quickly: after I opened the pause menu, the prompt changed to turn on the torch and show the stair. On the desktop, the conflicting message lasted long enough for me to take the other two outside and return. I cannot tell from these observations why the displayed instruction lagged.
+
+I opened Feedback when confused on each device. The **“I’m confused”** menu action opened the draft and automatically populated the note with that phrase; I did not type it. I selected **“I’d keep playing”** and used **“Not now.”** At the phone ending I selected **“I’d stop here”** and closed the draft. On desktop, I opened **“I’m stopping,”** which automatically populated that phrase, selected **“I’d stop here,”** and closed with **“Not now.”** I submitted nothing. Recording and consent remained at their defaults.
+
+The screenshots I actually viewed were the [phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/phone/a-001.png), [phone ending](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/phone/a-002.png), [desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/desktop/a-001.png), and [desktop during the wait](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/maelle/desktop/a-002.png). The desktop play image showed the stairwell, neighbour statuses and the contradictory tied-bundle log and wait instruction together.
+
+The diary entries below are unedited, in order within each session. Engagement is the number I recorded with each entry.
+
+**Phone**
+
+- **6.669 s, note, engagement 4:** “The situation is clear and alarming. I like that the instructions tell me how to lead people down, though there is quite a lot to remember.”
+- **24.485 s, note, engagement 3:** “She says the bundle is tied, but the instruction still says to wait and the stair button is unavailable. I do not know whether it has finished.”
+- **65.845 s, first minute, engagement 4:** “Getting Sevim and her books outside felt worthwhile. The prompts now tell me what to do, although the clock makes reading feel hurried.”
+- **129.721 s, want quit, FINISHED, engagement 4:** “Everyone is out. I am relieved and satisfied with one night; I do not feel a need to repeat it now.”
+- **135.248 s, stop, FINISHED, engagement 4:** “Everyone is out. I am relieved and satisfied with one night; I do not feel a need to repeat it now.”
+
+**Desktop**
+
+- **5.009 s, note, engagement 4:** “I recognise the instructions from the phone, and the larger screen is easier to read. I want to see whether I can reach the upper neighbours first.”
+- **63.469 s, first minute, engagement 4:** “The letter keys work and collecting people on the way down makes sense to me. I am anxious about making them wait while Sevim ties her books.”
+- **69.661 s, note, engagement 3:** “Again she says the bundle is tied, but the highlighted instruction still says wait. Hacer is having trouble breathing, so I am worried about waiting here.”
+- **98.235 s, want quit, FRUSTRATED, engagement 2:** “I came back for Sevim, but I am still told to wait after she said the bundle was tied. I do not want to watch her suffer while I cannot tell what to do. I would stop here.”
+- **105.871 s, stop, FRUSTRATED, engagement 2:** “I came back for Sevim, but I am still told to wait after she said the bundle was tied. I do not want to watch her suffer while I cannot tell what to do. I would stop here.”
+
+No worktree, server, browser or process was owned by me; the coordinator stops the drivers. The assignment’s allowed-command boundary did not permit running `git worktree list`.

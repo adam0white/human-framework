@@ -1,0 +1,74 @@
+import json,pathlib,shutil,hashlib,re
+R=pathlib.Path('/Users/abdul/code/.lab-scratch/playtest/light-1030'); P=pathlib.Path(__file__).parent; plan=json.loads((R/'murmur-retest-codex-plan.json').read_text()); sources=[]; shots=[]; rows=[]; reactions=[]; stops=[]; audits=[]
+def digest(b): return hashlib.sha256(b).hexdigest()
+def copy(src,dst):
+ dst.parent.mkdir(parents=True,exist_ok=True); b=src.read_bytes(); dst.write_bytes(b); st=src.stat(); sources.append(dict(source=str(src),destination=str(dst.relative_to(P)),sha256=digest(b),bytes=len(b),mtime_ns=st.st_mtime_ns))
+def span(s,a,b): return dict(text=s[a:b],char_start=a,char_end_exclusive=b,line_start=s.count('\n',0,a)+1,line_end=s.count('\n',0,b)+1)
+def sec(s,n,nxt):
+ a=s.index('## '+str(n)+'.');b=s.find('\n## '+str(nxt)+'.',a);return span(s,a,b if b>=0 else len(s))
+routes=[
+'Aisha would return another evening if days responded more distinctly to prior events and she could tell when pressure was too much, not tonight or unattended. She reached Tuesday on desktop and saw a coffee memory as well as a repeated question. No new blocker was reported.',
+'Mei would return to the second week on laptop if she could see tenancy terms and deadline before deciding and also wants remaining trust information. The unsigned tenancy question is her new blocker. A saved place is a preference, not an established defect.',
+'Nia might return another evening on phone only for new scenes without replaying the opening and varied replies to insistence, not tonight or unattended. She explicitly identifies repeated insistence replies as a new blocker; Monday was reached, not Tuesday.',
+'Rosa would return another evening on either device even while her trust question remains open and would close the game now. Trust explanation is a wish, not a condition of return; she reports no new blocker.',
+'Dunja would return another evening if she could continue in short stretches and would not leave it unattended. Her assigned fresh desktop visit does not prove the absence of saving or that continuation works. She reports no blocker and exactly two ranked asks.',
+'Inspect Tuesday’s repeated traffic question in the context of Monday’s disclosed oversleep and remembered coffee. Do not claim all prior events are ignored or invent a response.',
+'Inspect how the player understands the risk of pressing Dilan. A general warning and her later objection were observed; do not expose hidden trust quantities, add a forecast or force agreement.',
+'Inspect the phone first-choice explanation visibility, including whether scrolling reveals the covered text. The producer did not test scrolling and no broad layout claim follows.',
+'Inspect what tenancy terms and deadline are visible after Dilan reads the letter and before the signing decision. Mei identifies this as a new blocker; the letter remained unsigned and no legal terms or cause may be invented.',
+'Review Mei’s request to know remaining trust before insisting. Existing warning and later objection are visible; no hidden quantity or guaranteed insistence outcome is established.',
+'Review Mei’s preference to continue from a saved place. Her desktop began at the public second-week start with week one played for her, not by her; this visit does not establish a save defect.',
+'Review Nia’s return condition for reaching new scenes without repeating the opening. She used Skip and did not reach Tuesday; do not claim later scenes repeat.',
+'Inspect the same insistence reply after the two reached choices. Nia explicitly names varied replies as a new blocking ask; preserve Dilan’s agency and do not force agreement or infer hidden trust.',
+'Inspect repeated day-so-far text on phone in the received page text. Screenshots show only part of the page and do not establish total length.',
+'Review Rosa’s question about what trust changes and whether its amount can be seen. She would return without the answer; do not infer a hidden quantity or prescribe a trust meter.',
+'Review a clear explanation of choice labels before the first choice, including the later label Rosa did not reach. Preserve the meaning of each option and Dilan’s choice.',
+'Review how far Skip advances in addition to its next-event description. Rosa used it but did not know the minutes in advance; do not promise a fixed duration.',
+'Review Dunja’s preference for more consideration time or a pause for the countdown. She found a 64-second choice hurried and neither ask blocked what she played. If any future clock retune is proposed, use C14 human-speed comparison first; no blanket retune is authorized.',
+'Review the third-week options explanation on the first screen for a cold player. Dunja’s fresh desktop followed her phone exposure and no earlier history is inferred.'
+]
+nextask=2706
+for i,p in enumerate(plan):
+ name=p['first'];src=pathlib.Path(p['dir']);d=P/name;d.mkdir(exist_ok=True)
+ for f in ['report.md','brief.md','own-history.md','history-source-map.json','dispatch.json','director-method-qualification.json','raw-reactions-companion.json']:
+  if (src/f).exists():copy(src/f,d/f)
+ # Completion metadata includes private session path and UUID: retain a hash-bound safe projection.
+ c=src/'completion.json'; v=json.loads(c.read_text()); (d/'completion.safe.json').write_text(json.dumps({'sourceSha256':digest(c.read_bytes()),'sourceBytes':c.stat().st_size,'sourceMtimeNs':c.stat().st_mtime_ns,'exit':v.get('exit'),'pins':v.get('pins'),'ended':v.get('ended'),'scope':'Private session metadata excluded.'},indent=2)+'\n')
+ for dev in ['phone','desktop']:
+  for f in ['wall-clock.jsonl','driver.out','release-start.json']:
+   if (src/dev/f).exists():copy(src/dev/f,d/dev/f)
+  for x in (src/dev).glob('*.png'):
+   b=x.read_bytes();shots.append(dict(source=str(x),sha256=digest(b),bytes=len(b),mtime_ns=x.stat().st_mtime_ns))
+  for n,line in enumerate((src/dev/'wall-clock.jsonl').read_text().splitlines(),1):
+   v=json.loads(line)
+   if v.get('reaction') is not None:
+    x=dict(tester=name,device=dev,source=f'{name}/{dev}/wall-clock.jsonl',line=n,elapsed_s=v.get('elapsed_s'),kind=v.get('kind'),op=v.get('op'),reaction=v['reaction'],reason=v.get('reason'));reactions.append(x)
+    if v.get('kind')=='stop':stops.append(x)
+ s=(src/'report.md').read_text(); opening=span(s,0,s.index('\n')); pre=s[:s.index('## 1.')]; matches=list(re.finditer(r'^([123])\. (.+)$',pre,re.M)); assert len(matches)==(2 if name=='dunja' else 3)
+ unranked=[dict(label='unranked clarity and observations',**sec(s,5,6)),dict(label='unranked device observations',**sec(s,6,7)),dict(label='prior comparison and producer classification',**sec(s,9,10))]
+ rows.append(dict(id=f'F-{2701+i}',who=p['tester'],type='return',source=f'{name}/report.md',opening=opening,later=sec(s,7,8),unranked=unranked,target='2026-11-03',route='fix:murmur',status='open',editorial_route=routes[i]))
+ s8=sec(s,8,9); parts=list(re.finditer(r'^([123])\. (.+)$',s8['text'],re.M))
+ for j,m in enumerate(matches):
+  ix=nextask;nextask+=1; target='2026-11-10' if ix in [2711,2718] else '2026-11-03'; row=dict(id=f'F-{ix}',who=p['tester'],type='ranked ask',rank=j+1,source=f'{name}/report.md',primary=span(s,m.start(2),m.end(2)),target=target,route='fix:murmur',status='open',editorial_route=routes[ix-2701]);
+  if len(parts)==len(matches): row['later_ask']=span(s,s8['char_start']+parts[j].start(2),s8['char_start']+parts[j].end(2))
+  rows.append(row)
+ receipt=R/('murmur-'+name+'-retained-tools-'+('successor' if name in ['rosa','dunja'] else 'complete')+'.json'); raw=receipt.read_bytes(); z=json.loads(raw); audits.append(dict(tester=name,receiptKind='successor' if name in ['rosa','dunja'] else 'original complete',receiptSha256=digest(raw),receiptBytes=len(raw),receiptMtimeNs=receipt.stat().st_mtime_ns,historySha256=z['historySha256'],historyLines=z['historyLines'],literalLinesMatched=z['literalLinesMatched'],unmatchedRanges=z['unmatchedRanges'],imageCalls=len(z['imageCalls']),imageBlocks=sum(x.get('imageBlocks',0) for x in z['imageCalls']),matchesDispatchAndFreeze=z['matchesDispatchAndFreeze'],matchesCompletionSessionHashAndBytes=z['matchesCompletionSessionHashAndBytes'],scope='Retained tool responses and hash-bound receipts; attention and comprehension not established.'))
+rows.sort(key=lambda x:int(x['id'][2:]));assert nextask==2720 and len(stops)==10
+for f in ['murmur-retest-codex-plan.json','murmur-retest-codex-input-freeze.json','murmur-codex-fresh-admission.json','murmur-retest-codex-round-state.json','murmur-retest-codex-cleanup.json','murmur-retest-codex-final-release-after-round.json']:
+ if (R/f).exists():copy(R/f,P/'inputs'/f)
+(P/'inputs'/'retained-evidence-safe-summary.json').write_text(json.dumps({'scope':'Hash-bound aggregate only. Private native receipts, provider envelopes, session paths and UUIDs excluded. The original strict-parser unsupported cases are not evidence of unread lines.','testers':audits},indent=2)+'\n')
+(P/'ledger-rows.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n');(P/'all-driver-reactions.json').write_text(json.dumps(reactions,ensure_ascii=False,indent=2)+'\n');(P/'actual-stops.json').write_text(json.dumps(stops,ensure_ascii=False,indent=2)+'\n');(P/'source-map.json').write_text(json.dumps(sources,indent=2)+'\n');(P/'screenshots-manifest.json').write_text(json.dumps(shots,indent=2)+'\n')
+def fmt(r,x,label):return f'{label} [{r["source"]}:{x["line_start"]} chars {x["char_start"]}–{x["char_end_exclusive"]}]: '+x['text'].replace('|','&#124;').replace('\n','<br>')
+lines=['Draft only. First fixed retest; five logical returns and fourteen ranked asks. Dunja gave only two. F-2720–F-2730 unused.','', '| id | date | game | kind | who | words | verdict | routes | source |','| --- | --- | --- | --- | --- | --- | --- | --- | --- |']
+for r in rows:
+ if r['type']=='return':
+  words=fmt(r,r['opening'],'Opening')+' '+fmt(r,r['later'],'Later return and stops')
+  for x in r['unranked']: words+=' '+fmt(r,x,'Unranked source context: '+x['label'])
+ else:
+  words=fmt(r,r['primary'],f'Ranked ask {r["rank"]}')
+  if r.get('later_ask'):words+=' '+fmt(r,r['later_ask'],'Section 8 version')
+ route='fix:murmur '+r['editorial_route'].replace(';',',')+' target'+r['target']+' (open)'; verdict='keep' if r['id']=='F-2704' else 'mixed'
+ lines.append('| '+' | '.join([r['id'],'2026-10-31','murmur','playtester','Fictional LIGHT panel: '+r['who'],words,verdict,route,'docs/lab/reviews/light-2026-10-30/murmur-retest1/'+r['source']])+' |')
+(P/'ledger-additions.md').write_text('\n'.join(lines)+'\n')
+(P/'README.md').write_text('''# Murmur first fixed retest draft\n\nDraft for independent review. Not sealed, canonical, imported, complete or accepted. First fixed retest on 9e0dd19d89ea0e1c0f6dd38bec64b2d1679ddcc9 and HF 4.9.0. Five testers, ten final stops and nineteen rows: five whole returns and fourteen ranked asks. Dunja gave two asks; F-2720–F-2730 are unused. Mei and Nia explicitly named new blockers; Aisha, Rosa and Dunja did not. Rosa would return even with the trust question open. Dunja’s short-stretch condition does not establish the absence of a save.\n\nRetained current tool responses, bound by private receipt hashes, cover all assigned history lines and returned image blocks. This establishes neither attention nor comprehension. For Rosa and Dunja successor receipts resolve strict-parser unsupported cases; the original parser limitation is not proof of unread material. Earlier ephemeral history and image limits remain. The safe aggregate excludes native receipts, provider envelopes, commands, session paths and UUIDs. Completion records are hash-bound safe projections because the originals contain private session metadata. Screenshots are hash-manifest only.\n\nThe 15 recorded PIDs were absent, ten ports closed, and 13 observed identities absent; these are snapshots, not a full lifetime process journal. Source investigation and dated disposition remain. Raw reactions and stop logs are preserved, including timed-tag distinctions and report/driver rounding differences. Routes are editorial and quoted report spans use one-based lines and zero-based character offsets. No hidden-trust, agreement, save, clock or causality claim follows.\n''')
+print('copies',len(sources),'spans pending','reactions',len(reactions),'stops',len(stops),'shots',len(shots))

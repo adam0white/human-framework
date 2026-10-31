@@ -1,0 +1,87 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "055fd136469f7861e3184393cb469c0e9a7df17a247c983b15318a7ebb235e7a",
+  "rows": [
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 5.258,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The recording page looks familiar. I remember Nuri and the meeting, and solving it quickly; I am confident of that. I will see what is different."
+    },
+    {
+      "device": "desktop",
+      "row": 9,
+      "elapsed_s": 11.986,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "R\u0131za and his cart are familiar. His yard offer gives me something to compare with the morning work. I remember the letter helped last time, but I do not remember every term."
+    },
+    {
+      "device": "desktop",
+      "row": 18,
+      "elapsed_s": 26.075,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The terms now say they follow my questions. I see a morning trial using the yard as well as the late service I used before. I prefer to preserve the morning promise, though it costs more."
+    },
+    {
+      "device": "desktop",
+      "row": 24,
+      "elapsed_s": 35.845,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "They kept the morning agreement and I had enough for the train. I like that this was a different acceptable arrangement, but the meeting is over and I would stop here."
+    },
+    {
+      "device": "desktop",
+      "row": 29,
+      "elapsed_s": 44.07,
+      "kind": "stop",
+      "op": "log",
+      "reason": "FINISHED",
+      "reaction": "Stopping at the agreed ending. The morning arrangement kept a promise and left train money, and the remaining signature time was clear. I chose I am stopping and pressed Not now without typing or submitting."
+    },
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 4.997,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Same recording page on the phone, readable. I have just seen the morning agreement on the laptop; I would like to see what the private conversations offer."
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "elapsed_s": 11.273,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Those private statements contradict each other and say everyone agreed when they have not. I do not want to promise either. That is a more uncomfortable choice than the agreement I just signed."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 23.13,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "I have seen the meeting twice now and do not want to repeat the conversations tonight. The private promises interest me, but I do not want to make either one."
+    },
+    {
+      "device": "phone",
+      "row": 17,
+      "elapsed_s": 31.993,
+      "kind": "stop",
+      "op": "log",
+      "reason": "BORED",
+      "reaction": "Stopping on the phone before writing. I liked seeing the private promises, but I would not make either and I have already played the meeting. I chose I am stopping and pressed Not now without typing or submitting."
+    }
+  ]
+}

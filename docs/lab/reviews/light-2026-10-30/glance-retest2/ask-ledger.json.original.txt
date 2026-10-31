@@ -1,0 +1,539 @@
+{
+ "note": "Fifteen ranked ask rows, generated from exact-quote-extraction.json. Same words and routes as ask-ledger.md and ledger-additions.md. Targets equal the parent dates in inputs/glance-retest2-director-method-notes.json. calibrationC14 is true on F-2560, F-2563 and F-2569 only: clock skip and speed retune only after the C14 human-speed comparison.",
+ "rows": [
+  {
+   "id": "F-2556",
+   "rank": 1,
+   "tester": "Mei Tan",
+   "testerKey": "mei",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Tell me at the start when nothing needs deciding. The phone gave me nothing to decide in 80 s.\" Later wording (section 8): \"A plain line at the start when nothing needs deciding yet.\" Later wording (section 9): \"Partly met. The laptop gave me a decision at 4.5 m within about 100 s, which is quicker than last time. The phone gave me nothing in 80 s. I saw no statement that none is needed.\"",
+   "rankedAsk": "Tell me at the start when nothing needs deciding. The phone gave me nothing to decide in 80 s.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 124,
+     "mode": "inline",
+     "span": "A plain line at the start when nothing needs deciding yet."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 129,
+     "mode": "inline",
+     "span": "Partly met. The laptop gave me a decision at 4.5 m within about 100 s, which is quicker than last time. The phone gave me nothing in 80 s. I saw no statement that none is needed."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Mei wants a plain line at the start that nothing needs deciding yet, plain opening context, the phone gave nothing to decide in 80 s and the laptop decision came at 4.5 m within about 100 s so first-hours facts vary by device, no promise of earlier or more decisions, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/mei/report.md"
+  },
+  {
+   "id": "F-2557",
+   "rank": 2,
+   "tester": "Mei Tan",
+   "testerKey": "mei",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Show what the gate is doing to the level after I set it, without a second call to Dai. This visit the sheet said \"may not show what the gate has done since. Ask for a new reading.\" That is a warning, not a new reading.\" Later wording (section 8): \"Show the gate's effect on the level after I set it, without a second call.\" Later wording (section 5): \"After I set 2 turns, the level on the board stayed at 4.50 m (read 23:31) until I asked again at 00:30. The sheet explains why, but I still had to ask.\" Later wording (section 9): \"Partly met, on the laptop. The level sheet now warns that the reading may not show what the gate has done since. It does not show the effect. I still had to ask Dai again to see 3.4 m.\"",
+   "rankedAsk": "Show what the gate is doing to the level after I set it, without a second call to Dai. This visit the sheet said \"may not show what the gate has done since. Ask for a new reading.\" That is a warning, not a new reading.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 125,
+     "mode": "inline",
+     "span": "Show the gate's effect on the level after I set it, without a second call."
+    },
+    {
+     "label": "Later wording (section 5)",
+     "line": 78,
+     "mode": "inline",
+     "span": "After I set 2 turns, the level on the board stayed at 4.50 m (read 23:31) until I asked again at 00:30. The sheet explains why, but I still had to ask."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 131,
+     "mode": "inline",
+     "span": "Partly met, on the laptop. The level sheet now warns that the reading may not show what the gate has done since. It does not show the effect. I still had to ask Dai again to see 3.4 m."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Mei wants the gate effect shown on the level after she sets it without a second call to Dai, measurement preference, the observation-age warning is a warning and not a new reading, no omniscient level readout and no forced reading, preserve uncertainty and the written reading times, target2026-11-10 (open)",
+   "target": "2026-11-10",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/mei/report.md"
+  },
+  {
+   "id": "F-2558",
+   "rank": 3,
+   "tester": "Mei Tan",
+   "testerKey": "mei",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Show me how much of the level change is the gate and how much is the rain easing.\" Later wording (section 8): \"Separate the gate's effect from the rain easing.\" Later wording (section 5): \"I still cannot separate the gate's effect from the rain easing.\" Later wording (section 5) guess: \"I assumed the fall from 4.5 to 3.4 m was mostly the gate. I did not verify it.\"",
+   "rankedAsk": "Show me how much of the level change is the gate and how much is the rain easing.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 126,
+     "mode": "inline",
+     "span": "Separate the gate's effect from the rain easing."
+    },
+    {
+     "label": "Later wording (section 5)",
+     "line": 79,
+     "mode": "inline",
+     "span": "I still cannot separate the gate's effect from the rain easing."
+    },
+    {
+     "label": "Later wording (section 5) guess",
+     "line": 82,
+     "mode": "inline",
+     "span": "I assumed the fall from 4.5 to 3.4 m was mostly the gate. I did not verify it."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Mei wants to see how much of the level change is the gate and how much is the rain easing, causality preference, her belief that the fall was mostly the gate is an unverified guess, no omniscient attribution and no forced reading, target2026-11-10 (open)",
+   "target": "2026-11-10",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/mei/report.md"
+  },
+  {
+   "id": "F-2559",
+   "rank": 1,
+   "tester": "Samir Haddad",
+   "testerKey": "samir",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Give me someone to talk to besides Dai: a way to ask him about himself or the town, and to meet Nerys and Wren.\" Later wording (section 8): \"Let me talk to someone besides Dai, or ask him about himself and the town.\" Later wording (section 9): \"did not meet it. I never saw the Morgan question this time, because both sessions ended early. I saw no reply control.\" Later wording (section 9) Nerys and Wren: \"partly met. The opening is short and Bilal still has his one-line note. Nerys and Wren are still unexplained.\"",
+   "rankedAsk": "Give me someone to talk to besides Dai: a way to ask him about himself or the town, and to meet Nerys and Wren.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 71,
+     "mode": "inline",
+     "span": "Let me talk to someone besides Dai, or ask him about himself and the town."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 77,
+     "mode": "inline",
+     "span": "did not meet it. I never saw the Morgan question this time, because both sessions ended early. I saw no reply control."
+    },
+    {
+     "label": "Later wording (section 9) Nerys and Wren",
+     "line": 78,
+     "mode": "inline",
+     "span": "partly met. The opening is short and Bilal still has his one-line note. Nerys and Wren are still unexplained."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Samir wants someone to talk to besides Dai and to learn who Nerys and Wren are, richer people preference, the Morgan question was not reached this time and no reply control was seen, no automatic new conversation system and no forced reply, target2026-11-10 (open)",
+   "target": "2026-11-10",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/samir/report.md"
+  },
+  {
+   "id": "F-2560",
+   "rank": 2,
+   "tester": "Samir Haddad",
+   "testerKey": "samir",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Cut the idle waiting. Both sessions were mostly half-minute waits with nothing for me to do.\" Later wording (section 8): \"Cut the idle waiting, or give me something to decide while Dai rests.\" Later wording (section 9): \"did not meet it. I waited 22 to 30 s at a time on both devices.\"",
+   "rankedAsk": "Cut the idle waiting. Both sessions were mostly half-minute waits with nothing for me to do.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 72,
+     "mode": "inline",
+     "span": "Cut the idle waiting, or give me something to decide while Dai rests."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 81,
+     "mode": "inline",
+     "span": "did not meet it. I waited 22 to 30 s at a time on both devices."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Samir wants the idle half-minute waiting cut or something to decide while Dai rests, waits of 22 to 30 s at a time were model and tool time and are not proof of a human-speed defect, clock skip and speed retune only after the C14 human-speed comparison, keep difficulty and faith-quiet agency and refusal, target2026-11-10 (open); calibration:C14",
+   "target": "2026-11-10",
+   "calibrationC14": true,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/samir/report.md"
+  },
+  {
+   "id": "F-2561",
+   "rank": 3,
+   "tester": "Samir Haddad",
+   "testerKey": "samir",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Make the first level reading appear sooner, or say why the tile starts as a dash.\" Later wording (section 8): \"Show or explain the first level reading earlier, and explain \"(as written)\".\" Later wording (section 5): \"On desktop the level tile stayed a dash until about 23:13, because nobody had read it, even after I saved a request.\" Later wording (section 5) (as written): \"\"(as written)\" on the readings, still unexplained.\"",
+   "rankedAsk": "Make the first level reading appear sooner, or say why the tile starts as a dash.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 73,
+     "mode": "inline",
+     "span": "Show or explain the first level reading earlier, and explain \"(as written)\"."
+    },
+    {
+     "label": "Later wording (section 5)",
+     "line": 55,
+     "mode": "inline",
+     "span": "On desktop the level tile stayed a dash until about 23:13, because nobody had read it, even after I saved a request."
+    },
+    {
+     "label": "Later wording (section 5) (as written)",
+     "line": 54,
+     "mode": "inline",
+     "span": "\"(as written)\" on the readings, still unexplained."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Samir wants the first level reading to appear sooner or the dash tile explained and the (as written) wording explained, first-reading clarity, the tile now keeps the last reading with its age and a was-line which he asked for, phone game screen was never viewed so no phone geometry claim, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/samir/report.md"
+  },
+  {
+   "id": "F-2562",
+   "rank": 1,
+   "tester": "Leila Mansour",
+   "testerKey": "leila",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Give me more to decide each night. I made about 4 choices on desktop and about 3 on phone, then waited.\" Later wording (section 8): \"More to decide each night, such as a town gauge or a second job.\" Later wording (section 9): \"not met. I made about four choices on desktop and three on phone.\"",
+   "rankedAsk": "Give me more to decide each night. I made about 4 choices on desktop and about 3 on phone, then waited.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 102,
+     "mode": "inline",
+     "span": "More to decide each night, such as a town gauge or a second job."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 107,
+     "mode": "inline",
+     "span": "not met. I made about four choices on desktop and three on phone."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Leila wants more to decide each night, about four choices on desktop and about three on phone before waiting, more-decisions preference, not a request for a harder game and no automatic extra jobs, target2026-11-10 (open)",
+   "target": "2026-11-10",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/leila/report.md"
+  },
+  {
+   "id": "F-2563",
+   "rank": 2,
+   "tester": "Leila Mansour",
+   "testerKey": "leila",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Stop the clock, or slow it much more, while I read an inspection panel. The panel still says \"Time continues slowly while this inspection is open. It does not stop.\" and the clock still moved.\" Later wording (section 8): \"A clock that stops, or slows far more, while I read a panel.\" Later wording (section 5): \"the panel says time continues slowly. The clock moved from 22:26 to 22:31 across a few taps in the level panel.\" Later wording (section 9): \"did not meet. The panel still says time continues slowly, and the clock still moved across my taps.\"",
+   "rankedAsk": "Stop the clock, or slow it much more, while I read an inspection panel. The panel still says \"Time continues slowly while this inspection is open. It does not stop.\" and the clock still moved.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 103,
+     "mode": "inline",
+     "span": "A clock that stops, or slows far more, while I read a panel."
+    },
+    {
+     "label": "Later wording (section 5)",
+     "line": 75,
+     "mode": "inline",
+     "span": "the panel says time continues slowly. The clock moved from 22:26 to 22:31 across a few taps in the level panel."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 111,
+     "mode": "inline",
+     "span": "did not meet. The panel still says time continues slowly, and the clock still moved across my taps."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Leila wants the clock stopped or slowed much more while she reads an inspection panel, the panel still says time continues slowly and the clock moved from 22:26 to 22:31 across a few taps, clock retune only after the C14 human-speed comparison, stale controls and live clock time during model latency do not prove a product timing defect, target2026-11-10 (open); calibration:C14",
+   "target": "2026-11-10",
+   "calibrationC14": true,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/leila/report.md"
+  },
+  {
+   "id": "F-2564",
+   "rank": 3,
+   "tester": "Leila Mansour",
+   "testerKey": "leila",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Explain \"He cannot do it\" on the level request. The phone showed it while Dai was only resting by the stove. After I held the button, a blank sat where the status text had been.\" Later wording (section 8): \"Say why the level request reads \"He cannot do it\" when Dai is only resting, and fill the blank status.\" Later wording (section 5) phone label: \"the level request showed this at 22:31 while Dai was only \"resting by the stove\". It had been \"He agrees.\" on desktop in the same state. I held it and he did the job.\" Later wording (section 5) blank status: \"at 23:00 on the phone the level request read \"· ~5 min · If you hold: Call and wait for an answer.\" with nothing where \"He agrees.\" belongs.\" Later wording (section 9): \"The \"He cannot do it\" label with no reason is the one new confusion.\"",
+   "rankedAsk": "Explain \"He cannot do it\" on the level request. The phone showed it while Dai was only resting by the stove. After I held the button, a blank sat where the status text had been.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 104,
+     "mode": "inline",
+     "span": "Say why the level request reads \"He cannot do it\" when Dai is only resting, and fill the blank status."
+    },
+    {
+     "label": "Later wording (section 5) phone label",
+     "line": 73,
+     "mode": "inline",
+     "span": "the level request showed this at 22:31 while Dai was only \"resting by the stove\". It had been \"He agrees.\" on desktop in the same state. I held it and he did the job."
+    },
+    {
+     "label": "Later wording (section 5) blank status",
+     "line": 74,
+     "mode": "inline",
+     "span": "at 23:00 on the phone the level request read \"· ~5 min · If you hold: Call and wait for an answer.\" with nothing where \"He agrees.\" belongs."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 114,
+     "mode": "inline",
+     "span": "The \"He cannot do it\" label with no reason is the one new confusion."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Leila wants the He cannot do it label explained when Dai is only resting and the blank status text filled, new cannot-do and blank-status source lead seen on the phone only and on desktop while Dai was also visibly resting it read He agrees, private actor state was not established equal, a held press worked so there is no rule that an actor must always obey and no forced compliance, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/leila/report.md"
+  },
+  {
+   "id": "F-2565",
+   "rank": 1,
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Say in one plain sentence what happens to my earlier request when I call Dai again. Cover \"A new call replaces it\" and \"it starts again and its report can come later\".\" Later wording (section 8): \"One plain sentence on what a new call does to my earlier request, covering \"A new call replaces it\" and \"its report can come later\".\" Later wording (section 4) lost me: \"On desktop, \"A new call replaces it.\" I did not know whether it replaces my level question or the gate request.\" Later wording (section 9) retest 1 ask: \"Partly met. It appears once, not on six buttons. It still cost me two rereads on each device, and the desktop added \"A new call replaces it\".\" Later wording (section 9) new blocking ask: \"\"A new call replaces it\" does not say what is replaced. I reached this on desktop.\"",
+   "rankedAsk": "Say in one plain sentence what happens to my earlier request when I call Dai again. Cover \"A new call replaces it\" and \"it starts again and its report can come later\".",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 97,
+     "mode": "inline",
+     "span": "One plain sentence on what a new call does to my earlier request, covering \"A new call replaces it\" and \"its report can come later\"."
+    },
+    {
+     "label": "Later wording (section 4) lost me",
+     "line": 49,
+     "mode": "inline",
+     "span": "On desktop, \"A new call replaces it.\" I did not know whether it replaces my level question or the gate request."
+    },
+    {
+     "label": "Later wording (section 9) retest 1 ask",
+     "line": 112,
+     "mode": "inline",
+     "span": "Partly met. It appears once, not on six buttons. It still cost me two rereads on each device, and the desktop added \"A new call replaces it\"."
+    },
+    {
+     "label": "Later wording (section 9) new blocking ask",
+     "line": 116,
+     "mode": "inline",
+     "span": "\"A new call replaces it\" does not say what is replaced. I reached this on desktop."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Rosa wants one plain sentence on what happens to her earlier request when Dai is called again covering A new call replaces it and its report can come later, new-call reference, the sentence now appears once and still cost two rereads on each device, desktop added A new call replaces it without saying what is replaced, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2566",
+   "rank": 2,
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Say what \"Hold it to insist\" does and how to do it, or remove it from the first gate view.\" Later wording (section 9) retest 1 ask: \"Not met for insist. Partly met for the tired line, which was only reworded.\" Later wording (section 9) round 1 ask: \"\"Hold it to insist\" is still there.\"",
+   "rankedAsk": "Say what \"Hold it to insist\" does and how to do it, or remove it from the first gate view.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 9) retest 1 ask",
+     "line": 113,
+     "mode": "inline",
+     "span": "Not met for insist. Partly met for the tired line, which was only reworded."
+    },
+    {
+     "label": "Later wording (section 9) round 1 ask",
+     "line": 107,
+     "mode": "inline",
+     "span": "\"Hold it to insist\" is still there."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Rosa wants Hold it to insist explained with how to do it or removed from the first gate view, insist meaning, still present in the panel, keep refusal and agency and the trust cost, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2567",
+   "rank": 3,
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Give the desktop turn boxes more width, and tell me what to do next once Dai agrees.\" Later wording (section 8): \"Wider turn boxes on desktop, and a clear \"what next\" after Dai agrees.\" Later wording (section 6) desktop gate panel: \"The Gate panel is at right, with six narrow turn boxes and the help text. Part of the lower text was cut at the bottom of the screen, and I did not scroll to read it.\" Later wording (section 9) not seen: \"the lower desktop gate text, lightning, dawn and the end of the night.\"",
+   "rankedAsk": "Give the desktop turn boxes more width, and tell me what to do next once Dai agrees.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 99,
+     "mode": "inline",
+     "span": "Wider turn boxes on desktop, and a clear \"what next\" after Dai agrees."
+    },
+    {
+     "label": "Later wording (section 6) desktop gate panel",
+     "line": 74,
+     "mode": "inline",
+     "span": "The Gate panel is at right, with six narrow turn boxes and the help text. Part of the lower text was cut at the bottom of the screen, and I did not scroll to read it."
+    },
+    {
+     "label": "Later wording (section 9) not seen",
+     "line": 118,
+     "mode": "inline",
+     "span": "the lower desktop gate text, lightning, dawn and the end of the night."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Rosa wants wider desktop turn boxes and a clear next job once Dai agrees, width and next-job lead, the lower desktop gate panel was not scrolled so the cut-off text is unverified and not proven unreachable, no geometry conclusion beyond the narrow turn boxes she saw, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2568",
+   "rank": 1,
+   "tester": "Eszter Fekete",
+   "testerKey": "eszter",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Make Fast pace (or a pace choice) visible at the start of the game. I found it in the menu only when I was leaving the phone session.\" Later wording (section 8): \"Show the pace choice before or at the start of the first night.\" Later wording (section 3) phone diary: \"Oh, there is a Fast pace here in the menu. I never saw it during play. Too late for tonight.\" Later wording (section 6) phone: \"Unseen layout: I never saw Fast pace during play; I found it only in the menu as I was leaving.\"",
+   "rankedAsk": "Make Fast pace (or a pace choice) visible at the start of the game. I found it in the menu only when I was leaving the phone session.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 174,
+     "mode": "inline",
+     "span": "Show the pace choice before or at the start of the first night."
+    },
+    {
+     "label": "Later wording (section 3) phone diary",
+     "line": 66,
+     "mode": "inline",
+     "span": "Oh, there is a Fast pace here in the menu. I never saw it during play. Too late for tonight."
+    },
+    {
+     "label": "Later wording (section 6) phone",
+     "line": 152,
+     "mode": "inline",
+     "span": "Unseen layout: I never saw Fast pace during play; I found it only in the menu as I was leaving."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Eszter wants the pace choice visible before or at the start of the first night, pace visibility, she found Fast in the menu only while leaving the phone session and chose it at once on the desktop, the better desktop visit cannot isolate pace from device and order and learning, no actual speed change, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/eszter/report.md"
+  },
+  {
+   "id": "F-2569",
+   "rank": 2,
+   "tester": "Eszter Fekete",
+   "testerKey": "eszter",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Cut the dead stretches when Skip is grey and says \"No report is on its way\". Even on Fast I sat and watched the clock.\" Later wording (section 8): \"Remove or shorten the stretches where Skip is grey and \"No report is on its way\".\" Later wording (section 4) lost me: \"Long stretches with Skip greyed out (\"No report is on its way\") while Dai was not answering.\" Later wording (section 5) stray window: \"Session A: a \"This week's mornings\" window opened that I did not mean to open (around 461–465). Afterwards Skip was reported as covered. I closed the window with Back.\" Later wording (section 9) blocking ask: \"The nearest thing was the grey Skip on both devices, which stalled time and nearly made me stop.\"",
+   "rankedAsk": "Cut the dead stretches when Skip is grey and says \"No report is on its way\". Even on Fast I sat and watched the clock.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 175,
+     "mode": "inline",
+     "span": "Remove or shorten the stretches where Skip is grey and \"No report is on its way\"."
+    },
+    {
+     "label": "Later wording (section 4) lost me",
+     "line": 110,
+     "mode": "inline",
+     "span": "Long stretches with Skip greyed out (\"No report is on its way\") while Dai was not answering."
+    },
+    {
+     "label": "Later wording (section 5) stray window",
+     "line": 132,
+     "mode": "inline",
+     "span": "Session A: a \"This week's mornings\" window opened that I did not mean to open (around 461–465). Afterwards Skip was reported as covered. I closed the window with Back."
+    },
+    {
+     "label": "Later wording (section 9) blocking ask",
+     "line": 181,
+     "mode": "inline",
+     "span": "The nearest thing was the grey Skip on both devices, which stalled time and nearly made me stop."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Eszter wants the dead stretches where Skip is grey and says No report is on its way cut or shortened, waiting preference, the stray This week mornings window and the covered Skip are separate moving-target qualifications with cause unproven, they do not erase the ordinary disabled-Skip waiting report, clock skip and speed retune only after the C14 human-speed comparison, keep difficulty and faith-quiet agency and refusal, target2026-11-10 (open); calibration:C14",
+   "target": "2026-11-10",
+   "calibrationC14": true,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/eszter/report.md"
+  },
+  {
+   "id": "F-2570",
+   "rank": 3,
+   "tester": "Eszter Fekete",
+   "testerKey": "eszter",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "words": "\"Make each new night feel different from the last. On Tuesday the same note from M, the same Nerys hello and the same gate, level and skip steps made it feel like a form I had already filled in.\" Later wording (section 8): \"Give each new night different openings and different decisions, so it is not the same form again.\" Later wording (section 4) lost me: \"On the desktop Tuesday, the same opening lines word for word, and the same sequence of steps as before.\" Later wording (section 3) desktop diary: \"Nerys again says hello after her report, word for word like the phone. Here it starts to feel like the same script, not a new evening.\"",
+   "rankedAsk": "Make each new night feel different from the last. On Tuesday the same note from M, the same Nerys hello and the same gate, level and skip steps made it feel like a form I had already filled in.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 176,
+     "mode": "inline",
+     "span": "Give each new night different openings and different decisions, so it is not the same form again."
+    },
+    {
+     "label": "Later wording (section 4) lost me",
+     "line": 112,
+     "mode": "inline",
+     "span": "On the desktop Tuesday, the same opening lines word for word, and the same sequence of steps as before."
+    },
+    {
+     "label": "Later wording (section 3) desktop diary",
+     "line": 94,
+     "mode": "inline",
+     "span": "Nerys again says hello after her report, word for word like the phone. Here it starts to feel like the same script, not a new evening."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:glance Eszter wants each new night to open differently and ask different decisions so Tuesday is not the same form again, night variety preference, she reached Tuesday on both devices only partially, no automatic authoring and no easier game, target2026-11-10 (open)",
+   "target": "2026-11-10",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/eszter/report.md"
+  }
+ ]
+}

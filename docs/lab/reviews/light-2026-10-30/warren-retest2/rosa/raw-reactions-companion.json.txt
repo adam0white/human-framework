@@ -1,0 +1,105 @@
+{
+  "scope": "Literal raw reactions; original producer report unchanged.",
+  "reportSha256": "2d20b98966e2a27936754dc2ebd888fd03702cad236603076d9936ecd81d14e2",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 5,
+      "elapsed_s": 8.694,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "I know the goal and remember marking beside the cellar. I want to see whether another mark now tells me what changed."
+    },
+    {
+      "device": "phone",
+      "row": 7,
+      "elapsed_s": 12.741,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The arrow now tells me the cellar is the lit room and open ground is already dug out. That is clear and answers two old questions. I can tap one square."
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "elapsed_s": 24.168,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "One square marked is clear. I like knowing nobody is digging yet and that meals and rest come first. I do not know what spoil means but I can continue."
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "elapsed_s": 27.762,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Oh, I touched the same square and removed it. It says so at once. I will mark it again."
+    },
+    {
+      "device": "phone",
+      "row": 16,
+      "elapsed_s": 32.717,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Now it says chalk unchanged and the plan is marked. I thought I removed it, so I am unsure which square remains. Still, unchanged is an answer I did not get last time."
+    },
+    {
+      "device": "phone",
+      "row": 23,
+      "elapsed_s": 46.23,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I marked a lower square and got a clear answer. I like the people having meals and rest, but I have seen the beginning for tonight. I would stop and try the large screen."
+    },
+    {
+      "device": "phone",
+      "row": 28,
+      "elapsed_s": 54.73,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I stop on the phone for tonight. The cellar and open ground are explained and my marks get answers. I am still unsure which square remains after removal, but I enjoyed the people having their own duties. I would close it and try the big screen."
+    },
+    {
+      "device": "desktop",
+      "row": 5,
+      "elapsed_s": 8.082,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The same clear goal on the large screen. I want to see the hill and learn whether a second mark is reported."
+    },
+    {
+      "device": "desktop",
+      "row": 10,
+      "elapsed_s": 18.81,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The big picture is comfortable. The message says chalk unchanged twice, though I touched two places. I cannot tell which mark is there. I like reading that Maryam cooked for her household."
+    },
+    {
+      "device": "desktop",
+      "row": 15,
+      "elapsed_s": 28.977,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "CONFUSED",
+      "reaction": "I like the bigger picture and the household details. But two touches say unchanged and I cannot tell where the plan is. I would stop for tonight."
+    },
+    {
+      "device": "desktop",
+      "row": 16,
+      "elapsed_s": 31.523,
+      "kind": "stop",
+      "op": "log",
+      "reason": "CONFUSED",
+      "reaction": "I stop on the big screen. The picture is comfortable and the people have ordinary work, but I cannot tell where my chalk plan is after two unchanged answers. I would close it for tonight."
+    }
+  ]
+}

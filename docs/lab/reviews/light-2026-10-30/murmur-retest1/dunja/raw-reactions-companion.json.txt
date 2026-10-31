@@ -1,0 +1,113 @@
+{
+  "scope": "Literal raw reaction rows including invalid initialnote attempt, producer report unchanged",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "elapsed_s": 4.994,
+      "kind": "tool",
+      "op": "log",
+      "reason": null,
+      "reaction": "The people and their work interest me. I do not know why I would choose a third week before starting."
+    },
+    {
+      "device": "phone",
+      "row": 5,
+      "elapsed_s": 6.378,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "The people and their work interest me. I do not know why I would choose a third week before starting."
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "elapsed_s": 26.593,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "She slept much longer than five minutes. I like seeing that consequence, but the seconds make me hurry."
+    },
+    {
+      "device": "phone",
+      "row": 22,
+      "elapsed_s": 63.77,
+      "kind": "first_minute",
+      "op": "log",
+      "reason": null,
+      "reaction": "I want to see how standing up for Ece goes. The choices are clear, though I still feel rushed."
+    },
+    {
+      "device": "phone",
+      "row": 24,
+      "elapsed_s": 68.328,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "She resents being pushed. I want to know whether I have damaged her trust."
+    },
+    {
+      "device": "phone",
+      "row": 29,
+      "elapsed_s": 80.955,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I have enjoyed the small decisions, but I have had enough for now."
+    },
+    {
+      "device": "phone",
+      "row": 34,
+      "elapsed_s": 89.809,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I have had enough for now; I would put the phone down."
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "elapsed_s": 6.015,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "It is the same introduction, and I am curious whether I can make different choices this time."
+    },
+    {
+      "device": "desktop",
+      "row": 10,
+      "elapsed_s": 27.179,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Getting her up changed the morning. I would rather she answer her sister this time."
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "elapsed_s": 39.851,
+      "kind": "note",
+      "op": "log",
+      "reason": null,
+      "reaction": "Ece is lost in her van again, as on my phone. I remember helping her and the deliveries being late; I am confident this is the same situation."
+    },
+    {
+      "device": "desktop",
+      "row": 20,
+      "elapsed_s": 53.185,
+      "kind": "want_quit",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I have seen enough of this morning again, and I would leave it here."
+    },
+    {
+      "device": "desktop",
+      "row": 26,
+      "elapsed_s": 63.298,
+      "kind": "stop",
+      "op": "log",
+      "reason": "TASTE",
+      "reaction": "I would close this now; I have had my look at the different choices."
+    }
+  ]
+}

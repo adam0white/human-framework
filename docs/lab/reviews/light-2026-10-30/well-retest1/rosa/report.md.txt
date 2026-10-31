@@ -1,0 +1,129 @@
+I would return voluntarily another evening if someone explained when cooking starts filling the storm reserve; I would close the game now and not leave it running.
+
+**Ranked asks**
+
+1. Tell me in one short sentence when cooking changes from ordinary meals to the storm reserve.
+2. Explain why “An incomplete stage does not establish why work is delayed” appears beside a person who is cooking, or leave it out there.
+3. Keep the roof and meal totals on separate short lines.
+
+## 1. Session
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla and a busy reader of English as a second language. This was a **return visit** to *Twice at the Well*, round **light-1030**, free-stop arm, with a zero-minute floor and a 25-minute ceiling.
+
+I read the supplied `own-history.md` in explicit ranges before play. It is selected history, not my full archive. The last line read was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” **Unread ranges: none.** My older raw Well diary was not supplied. The Well excerpt says I previously stopped confused about ordinary meals and the storm reserve; it contains three asks, compared below.
+
+I played the supplied live URL, https://human.adamwhite.work/colony/?labRunSource=agent, in two fresh, independent games:
+
+- **A:** 360×690 touch phone, light mode. Stop logged at **24.975 seconds**.
+- **B:** 1280×800 keyboard and mouse, light mode, later the same evening. Stop logged at **23.395 seconds**. I used mouse actions.
+
+No older save was imported and the two games were not matched. I left recording and consent unchanged, typed no feedback note and pressed no Submit.
+
+## 2. First impressions
+
+On the phone, the goal was clear: build a roof, store 12 meals and keep six villagers alive. Maryam’s name reminded me that she had agreed to cook in my supplied earlier Well record. I was confident of that memory, but remembered no further details beyond the excerpt.
+
+On desktop, seeing both villages side by side helped me understand the comparison. Yusuf’s opening words about putting the roof first made me curious about his work.
+
+## 3. Verbatim diary
+
+These are the reaction strings I sent, in order, with the driver’s elapsed seconds. Actions without reactions are omitted.
+
+### A — phone
+
+- **5.544, Begin:** “I remember Maryam agreeing to cook and my question about the storm reserve. Her name is the cue; I am confident of that much. The goal is clear, and I begin.”
+- **7.911, tap Maryam Waiting.:** “I choose Maryam because I remember she cooked before. I want to see what she can do here.”
+- **9.757, tap Maryam Cooking.:** “She has already begun cooking. I look at her.”
+- **11.613, note, Day 1 05:31:** “Reread 1: An incomplete stage does not establish why work is delayed. I do not know why this is here beside Maryam cooking. The separate roof and meal lines help.”
+- **13.885, want_quit, CONFUSED, Day 1 05:31:** “Reread 2: “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. I see there are two stores but still do not know when cooking fills the storm reserve. Two sentences need rereading, so I would quit under my rule. I will try asking her to cook once.”
+- **15.636, order Maryam to Kitchen:** “I ask her to cook, though she is already cooking. I want to see what the order says.”
+- **17.437, Game menu:** “The order is waiting and the classic count rose to four. I still cannot tell when the human reserve fills. I stop and check feedback.”
+- **20.984, Feedback choice:** “Both labels are offered. I choose confused and send nothing.”
+- **24.975, stop, CONFUSED, Day 1 05:38:** “I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve.”
+
+### B — desktop
+
+- **5.153, Begin:** “Same title this evening, and I can see both villages on the large screen. I start a fresh morning.”
+- **6.841, tap Yusuf Waiting.:** “Yusuf said the roof comes first, so I look at his work.”
+- **8.959, tap Yusuf Walking to the mosque.:** “He is going to prayer now. I look without hurrying him.”
+- **10.861, tap Yusuf Walking to the house.:** “He has moved again; I select the current line.”
+- **12.841, want_quit, TASTE, Day 1 05:33:** “The same long construction and cooking explanation is here. Yusuf is already going to the house. I have seen enough for tonight and would stop.”
+- **19.394, Feedback choice:** “Both labels are here. I choose stopping and send nothing.”
+- **23.395, stop, TASTE, Day 1 05:36:** “I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals.”
+
+## 4. Moments
+
+Maryam’s agreement held me briefly. My order first showed both villages waiting; when I opened the menu, both showed agreed and Maryam said, “I accepted the advice.” The Classic meal count had risen to four while the Human count remained at zero. I cannot tell from that short observation what caused the difference or when the Human reserve would fill.
+
+On the phone, I wanted to reread two sentences:
+
+1. “An incomplete stage does not establish why work is delayed.” I could not see why it was beside Maryam’s cooking activity.
+2. “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. I understood there was a distinction, but still wanted to know when cooking would fill the reserve.
+
+The second reread triggered my **CONFUSED** quit wish under the standing rule. I continued long enough to ask Maryam to cook, then stopped. On desktop I recognised the same explanation from the phone and did not log another reread; I stopped for **TASTE** after a short second visit.
+
+Neither session reached 60 seconds or 180 seconds. The first-minute and pulse checkpoints were untested.
+
+### Exact-sentence concept table
+
+These are my counts of the concepts presented on the screens I reached, including settings and lab topics. The running count is per device; repeated concepts on later screens are not counted again. A “yes” means I understood the quoted sentence on first reading, not that I mastered every control on that screen.
+
+| Screen and step | Exact sentence from screen | Concepts presented | Running count | Understood first reading? |
+|---|---|---|---:|---|
+| A title | “Two villages hear every order you give. One obeys. One decides.” | Two villages; shared orders; obedience; independent decisions | 4 | Yes |
+| A title | “Build a roof and store 12 meals before the storm.” | Roof; 12 stored meals; storm deadline | 7 | Yes |
+| A title | “Keep all six villagers alive.” | Six villagers; survival | 9 | Yes |
+| A title | “We record and link play across games on this device.” | Recording; linked play; device; All games; Information; Game menu; choice of words by the well; Begin; Lab privacy; Debug; map and locations | 20 | Yes |
+| A village | “Each order goes to both villages.” | Day and clock; time until storm; Classic and Human; roof progress; meal progress; alive count; map selection; six named people and activities; All orders; village mood; elders watching signs | 31 | Yes |
+| A Maryam | “An incomplete stage does not establish why work is delayed.” | Construction stages; incomplete work; uncertainty about delay; current activity; timber in store; timber per stage; workers travelling or working; remaining-stage table; beam | 40 | **No** |
+| A Maryam | “Next order: Rush off · Insist off.” | Next-order settings; Rush; hunger cost; Insist; trust cost; refusal or waiting; Appeal; About; place choices and predicted answers | 49 | Yes |
+| A Maryam | “A building order requests a short task or stage, not a finished roof.” | Short building task; later independent work; continuation not guaranteed | 52 | Yes |
+| A Maryam | “Villagers cook for ordinary meals before storm preparations.” | Ordinary meals; storm preparations; cooking order | 55 | Yes |
+| A Maryam | “Enough food stored” can mean enough for ordinary meals, below the separate twelve-meal storm reserve. | Meaning of “enough food stored”; separate storm reserve; grain; field; water; well; ingredients; meal duties; weather affecting cooking | 64 | **No** |
+| A order result | “Waiting for an answer to this order.” | Active order; order identifier and issue time; pending answer; sent modifiers; appeal status; Cancel; later assent | 71 | Yes |
+| A menu | “The game is paused while this menu is open.” | Pause; automatic saving/menu status; pace choices; Feedback; full screen; New game; Recording; People across games; Resume; release record | 81 | Yes |
+| A Feedback | “Your play and saved games are recorded automatically.” | Saved-game recording; stopping/confused labels; keep-playing verdict; feedback box; optional name; Submit; Back | 88 | Yes |
+| B title | “Two villages hear every order you give. One obeys. One decides.” | Two villages; shared orders; obedience; independent decisions; roof and meals; six lives; storm; opening words; recording; navigation and lab links | 14 | Yes |
+| B title and village | “They are getting to know you.” | Classic and Human comparisons; meals; house progress; injuries; alive count; morale; trust; prayers not tracked in Classic; map controls; day and storm clocks; deadlines; named people and activities; orders; elder signs; suggestion | 29 | Yes |
+| B Yusuf | “Choose a place. Each order goes to both villages.” | Person and place selection; current stores; stages; timber; workers’ tasks; remaining requirements; Rush; Insist; hunger; trust; refusal; Appeal; building-order limit; ordinary meals; storm reserve; ingredients; location choices | 46 | Yes |
+| B menu | “The game is paused while this menu is open.” | Pause; pace choices; Feedback; full screen; New game; Recording; People across games; Resume; release record | 55 | Yes |
+| B Feedback | “Your play and saved games are recorded automatically.” | Saved-game recording; stopping/confused labels; keep-playing verdict; feedback box; optional name; Submit; Back | 62 | Yes |
+
+## 5. Confusion and clarity
+
+The main goal and Maryam’s acceptance were clear. The separate lines for roof stages and meals helped me read the numbers.
+
+The cooking explanation partly answered my old question: ordinary meals come before storm preparations, and “enough food stored” may refer to ordinary meals. I still did not learn when the storm reserve begins to fill. The construction sentence about an incomplete stage felt disconnected from Maryam’s cooking, and I did not know why I needed it there.
+
+The visible person labels changed while I selected them. On the phone, **Maryam Waiting.** had become **Maryam Cooking.** before the tap. On desktop, **Yusuf Waiting.** became **Yusuf Walking to the mosque.**, and then **Yusuf Walking to the house.** Both replies explicitly said the page had changed and listed current controls. I selected the current label; these were stale targets, not reported driver failures.
+
+## 6. Device use
+
+**Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/phone/a-001.png) immediately after opening. It showed the title and goal, a partial village map behind the title area, the two opening-word choices, a large Begin button and the recording notice. The text was readable. I used Begin, Maryam’s person control, Order Maryam to Kitchen, Game menu, Feedback, “I'm confused” and Back.
+
+**Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/rosa/desktop/b-001.png) immediately after opening. It showed the Classic and Human village maps side by side, their totals above them, and the title and Begin button in a right-hand panel. I could see both villages together. I used Begin, Yusuf’s person control, Game menu, Feedback, “I'm stopping” and Back.
+
+I viewed only the title layouts in screenshots. I cannot assess the layout of the later person panels from these images. I took one manual screenshot per device, within the limit.
+
+On both devices, Feedback offered **“I'm stopping”** and **“I'm confused.”** The chosen label showed as pressed, and Back returned to the menu. I typed nothing and did not submit.
+
+## 7. Stop and return
+
+- **Phone, CONFUSED, 24.975 seconds:** “I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve.”
+- **Desktop, TASTE, 23.395 seconds:** “I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals.”
+
+I would return voluntarily another evening if someone explained when cooking begins to fill the storm reserve. I like that Maryam can answer and that the people have their own work, but I would not choose another evening alone with the same unanswered meal question yet. I would close it now and **not leave it running**.
+
+## 8. Changes I would want
+
+The ranked asks are at the top. The storm-meal explanation matters most to whether I return.
+
+## 9. Compared with my last visit
+
+1. **Tell me when cooking is for ordinary meals and when it fills the storm reserve — partly met.** This visit explicitly said villagers cook for ordinary meals before storm preparations and distinguished ordinary food from the twelve-meal reserve. I still could not tell when cooking starts filling that reserve.
+2. **Put roof progress and meal total in separate short lines — met on the person panels I reached.** Each village had a roof line followed by a separate meal-total line. I did not inspect every later screen.
+3. **Make it clear whose order Send will send while I am looking at someone else — not seen.** I did not reach that situation or a Send control. Maryam’s Kitchen order was named for her, but I did not test switching to another person while an order was pending.
+
+**New this time that would stop me returning:** the incomplete-stage sentence beside Maryam’s cooking made me reread without helping me understand her task. The storm-reserve question remains the larger reason I would hesitate.
+
+I made no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; `git worktree list` is not applicable to my work.

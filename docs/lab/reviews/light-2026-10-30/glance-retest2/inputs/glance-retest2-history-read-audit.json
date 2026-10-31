@@ -1,0 +1,215 @@
+[
+  {
+    "tester": "Mei Tan",
+    "actualHistoryLines": 999,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/own-history.md",
+          "limit": 250
+        },
+        "renderedFirst": 1,
+        "renderedLast": 250,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/own-history.md",
+          "offset": 250,
+          "limit": 250
+        },
+        "renderedFirst": 250,
+        "renderedLast": 499,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/own-history.md",
+          "offset": 500,
+          "limit": 250
+        },
+        "renderedFirst": 500,
+        "renderedLast": 749,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/own-history.md",
+          "offset": 750,
+          "limit": 250
+        },
+        "renderedFirst": 750,
+        "renderedLast": 999,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ],
+    "limits": "Actual successful tool responses checked; reading record is not an event experienced in the game. Any prior input contamination qualifications remain."
+  },
+  {
+    "tester": "Samir Haddad",
+    "actualHistoryLines": 749,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/own-history.md",
+          "limit": 250
+        },
+        "renderedFirst": 1,
+        "renderedLast": 250,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/own-history.md",
+          "offset": 251,
+          "limit": 250
+        },
+        "renderedFirst": 251,
+        "renderedLast": 500,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/own-history.md",
+          "offset": 501,
+          "limit": 250
+        },
+        "renderedFirst": 501,
+        "renderedLast": 750,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ],
+    "limits": "Actual successful tool responses checked; reading record is not an event experienced in the game. Any prior input contamination qualifications remain."
+  },
+  {
+    "tester": "Leila Mansour",
+    "actualHistoryLines": 948,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/own-history.md",
+          "limit": 320
+        },
+        "renderedFirst": 1,
+        "renderedLast": 320,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/own-history.md",
+          "offset": 320,
+          "limit": 320
+        },
+        "renderedFirst": 320,
+        "renderedLast": 639,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/own-history.md",
+          "offset": 640,
+          "limit": 320
+        },
+        "renderedFirst": 640,
+        "renderedLast": 949,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ],
+    "limits": "Actual successful tool responses checked; reading record is not an event experienced in the game. Any prior input contamination qualifications remain."
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "actualHistoryLines": 1811,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/own-history.md",
+          "limit": 600
+        },
+        "renderedFirst": 1,
+        "renderedLast": 600,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/own-history.md",
+          "offset": 601,
+          "limit": 600
+        },
+        "renderedFirst": 601,
+        "renderedLast": 1200,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/own-history.md",
+          "offset": 1201,
+          "limit": 620
+        },
+        "renderedFirst": null,
+        "renderedLast": null,
+        "success": false,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/own-history.md",
+          "offset": 1201,
+          "limit": 310
+        },
+        "renderedFirst": 1201,
+        "renderedLast": 1510,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/own-history.md",
+          "offset": 1511,
+          "limit": 310
+        },
+        "renderedFirst": 1511,
+        "renderedLast": 1812,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ],
+    "limits": "Actual successful tool responses checked; reading record is not an event experienced in the game. Any prior input contamination qualifications remain."
+  },
+  {
+    "tester": "Eszter Fekete",
+    "actualHistoryLines": 5,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/own-history.md"
+        },
+        "renderedFirst": 1,
+        "renderedLast": 6,
+        "endMarkerSeen": true
+      }
+    ]
+  }
+]

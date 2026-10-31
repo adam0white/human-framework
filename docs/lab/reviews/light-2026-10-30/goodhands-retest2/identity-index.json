@@ -1,0 +1,90 @@
+{
+  "note": "Per tester identity of the supplied inputs. input-preflight was absent at the source; predispatch players and input-freeze are used instead.",
+  "testers": [
+    {
+      "id": "goodhands-retest2-jonas",
+      "tester": "Jonas Berg",
+      "kind": "standing",
+      "exposure": "return",
+      "model": "sonnet",
+      "deviceOrder": ["desktop", "phone"],
+      "ports": {
+        "phone": 22800,
+        "desktop": 22801
+      },
+      "historyLines": 1062,
+      "historyCharactersPerFreeze": 169733,
+      "ownSourceCount": 12,
+      "briefSha256": "835829b3e2213ee3472070e0fe81a5ba0834403e8f461db670d8d37a6770c26b",
+      "historySha256": "e10ab0cef3e4fe5dfb6294d46bae93bf2a8f3e415a99242d0f402143046fd37f"
+    },
+    {
+      "id": "goodhands-retest2-aisha",
+      "tester": "Aisha Rahman",
+      "kind": "standing",
+      "exposure": "return",
+      "model": "sonnet",
+      "deviceOrder": ["desktop", "phone"],
+      "ports": {
+        "phone": 22802,
+        "desktop": 22803
+      },
+      "historyLines": 980,
+      "historyCharactersPerFreeze": 146793,
+      "ownSourceCount": 13,
+      "briefSha256": "d0511164ac6c691311d2e8aca90393df4fe20aa289f0fdc13a567e62fab9d910",
+      "historySha256": "3df1aa82f4b39ad15a1d4fb69876573858548b6a974a7fbfecb88d44b6cdfdc2"
+    },
+    {
+      "id": "goodhands-retest2-diego",
+      "tester": "Diego Silva",
+      "kind": "standing",
+      "exposure": "return",
+      "model": "sonnet",
+      "deviceOrder": ["desktop", "phone"],
+      "ports": {
+        "phone": 22804,
+        "desktop": 22805
+      },
+      "historyLines": 1237,
+      "historyCharactersPerFreeze": 140901,
+      "ownSourceCount": 14,
+      "briefSha256": "5a523afcba57911a50ac4f2071ebc9c5fdc8cf90b73acf93ffaf2535b6cbb90f",
+      "historySha256": "74056e034abe05cfa0a0fa90e609692943ebb213d5e26f95160921b211585c9c"
+    },
+    {
+      "id": "goodhands-retest2-rosa",
+      "tester": "Rosa Alvarez",
+      "kind": "standing",
+      "exposure": "return",
+      "model": "sonnet",
+      "deviceOrder": ["phone", "desktop"],
+      "ports": {
+        "phone": 22806,
+        "desktop": 22807
+      },
+      "historyLines": 2122,
+      "historyCharactersPerFreeze": 248240,
+      "ownSourceCount": 20,
+      "briefSha256": "8ea7d0b2c6b4eb4b34d4852187931c51622aea5fd5e2be0a3f71e67a52b2d1aa",
+      "historySha256": "694c7b865dc6beafe8559faf750b7fba6130dd42d5a18ce4cdde0b4c93037cdb"
+    },
+    {
+      "id": "goodhands-retest2-elena",
+      "tester": "Elena Dimitrova",
+      "kind": "cold",
+      "exposure": "first",
+      "model": "opus",
+      "deviceOrder": ["phone", "desktop"],
+      "ports": {
+        "phone": 22808,
+        "desktop": 22809
+      },
+      "historyLines": 5,
+      "historyCharactersPerFreeze": 186,
+      "ownSourceCount": 0,
+      "briefSha256": "9f232ad360ddf2fbc0648109f7e5dac38f4899b31cd91529f0fd837c54bb5c70",
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9"
+    }
+  ]
+}
