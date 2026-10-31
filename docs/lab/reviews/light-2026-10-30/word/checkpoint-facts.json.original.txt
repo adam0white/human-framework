@@ -1,0 +1,819 @@
+{
+ "note": "Computed from copied wall-clock.jsonl, completion.json, dispatch.json, release-start.json and the stop-and-capture audit by build-word-packet.py. A first_minute line with op shot is an automatic driver capture with no tester words. A first_minute tag before 60 s or a pulse before 180 s is premature. Every stop was under 180 s so no pulse is due. Manual screenshots are the named a-/b- files. The automatic capture is first-minute.png. Counts are from the actual files and the audit receipts, max 5 manual plus 1 automatic is 6 per device.",
+ "build": {
+  "commit": "349cd3a9bc8292b1a379a97442720813a6b93253",
+  "dirty": false,
+  "framework": "4.0.0",
+  "app": "0.1.0",
+  "builtAt": "2026-10-31T05:35:14.586Z",
+  "checkedIn": "every completion.json pin (10), every release-start.json (10) and the post-round release file (inputs/word-release-after-round.json)"
+ },
+ "driver": {
+  "name": "native-tap-v2",
+  "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+  "hashesAll": {
+   "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+   "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+   "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "sameInstrumentInAllFiveDispatchFiles": true,
+  "driver_check": "fork-unverified",
+  "limits": [
+   "Input status200 acknowledges native input, not intended game outcome; inspect visible result.",
+   "A moving/replaced target can be missed or compat-clicked on phone; no post-press confirmation.",
+   "Chromium only. No v2 live-game run yet; local real-input controls passed.",
+   "select/type and ambiguous boundingBox retain existing timeout limitations.",
+   "driver_check remains fork-unverified; deliberate scratch staleoverride paired with exact hash checks."
+  ]
+ },
+ "runSource": "agent via labRunSource=agent in the URL (dispatch.json linkedEnvelopeSource), production receipt unverified",
+ "histories": {
+  "maya": {
+   "historySha256": "747437a89e9220845efbcc55f86d9c714bceb7375489f5ec6071dcdd1b747703",
+   "briefSha256": "718fc604db79e298c24e5158460b80d7709c73f63336c564b17e5b302f87a934",
+   "matchesInputFreeze": true
+  },
+  "mei": {
+   "historySha256": "888adeab1e5d5b493617a654c422c78165af488dc3f3e4139feba1c5633e40e4",
+   "briefSha256": "8d78cd5b297aa60ebb877eb1a215ab6b6c5dd0fb12a6527d3d95d3bff66c2380",
+   "matchesInputFreeze": true
+  },
+  "samir": {
+   "historySha256": "050d8f309d5847492e11198e57ae3e62a060bf87cda63df915c2197b1191588f",
+   "briefSha256": "c063141dc0bdad102f318a39df088f163b494e59e6f73895680936e62c4cd279",
+   "matchesInputFreeze": true
+  },
+  "diego": {
+   "historySha256": "76151b61d965fb69e5196b9f0ef2d8cf81b9415af34faf655c94e3da7a16d608",
+   "briefSha256": "2674daf3b14bb354abcb28a9c92953b5910ab0b4cdb10b123271483ca63c942a",
+   "matchesInputFreeze": true
+  },
+  "mina": {
+   "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+   "briefSha256": "5d1201a9c0691a89bfed992fec19e26bf32d6c4b6e932801018eb7ec26d99f70",
+   "matchesInputFreeze": true
+  }
+ },
+ "minaCrossDevice": {
+  "desktopStopT": "2026-10-31T05:51:30.810Z",
+  "phoneOpenT": "2026-10-31T05:51:32.893Z",
+  "gap_s": 2.083,
+  "note": "Mina's phone line says she played the laptop an hour ago. Raw times give a 2.083 s gap between the desktop stop and the phone open. Her wording is hers. No hour or rest claim is made."
+ },
+ "testers": {
+  "maya": {
+   "tester": "Maya Chen",
+   "model": "sonnet",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.529,
+     "openT": "2026-10-31T05:38:03.564Z",
+     "wallClockStartT": "2026-10-31T05:37:54.383Z",
+     "stopT": "2026-10-31T05:39:20.702Z",
+     "stopElapsed_s": 77.667,
+     "stopReason": "TASTE",
+     "stopGameClock": "13 minutes before Osman leaves",
+     "stopEngagement": 3,
+     "stopReaction": "I am stopping on the phone after about 75 seconds. Talking changed what the agreement options said, and Halil refused with a clear reason, which I liked. But the first run ended in 39 seconds and nobody reacted to my small lie to Halil. I have seen the loop; I want to try the desktop.",
+     "wantQuit": [],
+     "maxElapsed_s": 77.667,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.018,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 64.432,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "16 minutes before Osman leaves"
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 77.667,
+       "reason": "TASTE",
+       "engagement": 3,
+       "authored": true,
+       "game_clock": "13 minutes before Osman leaves"
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      64.432
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 1,
+     "longestWait_ms": 5107,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 46
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 0.466,
+     "openT": "2026-10-31T05:39:22.265Z",
+     "wallClockStartT": "2026-10-31T05:37:54.383Z",
+     "stopT": "2026-10-31T05:40:33.051Z",
+     "stopElapsed_s": 71.252,
+     "stopReason": "TASTE",
+     "stopGameClock": "One month later",
+     "stopEngagement": 3,
+     "stopReaction": "I am stopping on desktop after about 70 seconds. The lie coming back on me, Riza saying he will rely on what is written, and the coach home in the ending were exactly what I like. But a whole run takes under a minute, and I have now seen both a clean and a lying ending. I would try the letter and late work another evening.",
+     "wantQuit": [],
+     "maxElapsed_s": 71.252,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.036,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 64.155,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "One month later"
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 71.252,
+       "reason": "TASTE",
+       "engagement": 3,
+       "authored": true,
+       "game_clock": "One month later"
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      64.155
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 1,
+     "longestWait_ms": 12106,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 39
+    }
+   }
+  },
+  "mei": {
+   "tester": "Mei Tan",
+   "model": "sonnet",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.493,
+     "openT": "2026-10-31T05:42:28.920Z",
+     "wallClockStartT": "2026-10-31T05:41:05.692Z",
+     "stopT": "2026-10-31T05:43:47.188Z",
+     "stopElapsed_s": 78.761,
+     "stopReason": "FINISHED",
+     "stopGameClock": "One month later, NO AGREEMENT",
+     "stopEngagement": null,
+     "stopReaction": "Stopping on the phone after the NO AGREEMENT ending, about 80 seconds. Readable at 360 wide, nothing broke. I picked I'm stopping in Feedback, pressed Not now, submitted nothing.",
+     "wantQuit": [
+      {
+       "elapsed_s": 77.714,
+       "reason": "FINISHED",
+       "reaction": "The meeting ended with NO AGREEMENT. I understand why. I know the loop from the laptop and would stop."
+      }
+     ],
+     "maxElapsed_s": 78.761,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.042,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 65.655,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "7 minutes before Osman leaves"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 77.714,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "One month later, NO AGREEMENT"
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 78.761,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "One month later, NO AGREEMENT"
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      65.655
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 1,
+     "longestWait_ms": 24109,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 32
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 0.446,
+     "openT": "2026-10-31T05:41:15.287Z",
+     "wallClockStartT": "2026-10-31T05:41:05.617Z",
+     "stopT": "2026-10-31T05:42:27.231Z",
+     "stopElapsed_s": 72.39,
+     "stopReason": "FINISHED",
+     "stopGameClock": "One month later, AGREED",
+     "stopEngagement": null,
+     "stopReaction": "Stopping after the AGREED ending, about 70 seconds in. Clear, readable, minute costs I could compare. Too easy: the letter plus the four talks pointed straight at one agreement. I picked I'm stopping in Feedback, pressed Not now, submitted nothing.",
+     "wantQuit": [
+      {
+       "elapsed_s": 70.929,
+       "reason": "FINISHED",
+       "reaction": "I solved it first try in 33 seconds and the game ended. I do not see anything left to decide here."
+      }
+     ],
+     "maxElapsed_s": 72.39,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.066,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 61.498,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": "One month later, AGREED"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 70.929,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "One month later, AGREED"
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 72.39,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": "One month later, AGREED"
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      61.498
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 1,
+     "longestWait_ms": 22113,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 2,
+     "manualShots": 1,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "a-001.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 31
+    }
+   }
+  },
+  "samir": {
+   "tester": "Samir Haddad",
+   "model": "sonnet",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.418,
+     "openT": "2026-10-31T05:45:54.151Z",
+     "wallClockStartT": "2026-10-31T05:44:07.179Z",
+     "stopT": "2026-10-31T05:46:59.137Z",
+     "stopElapsed_s": 65.404,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopEngagement": 3,
+     "stopReaction": "I am stopping the phone at about 65 seconds. I have seen both endings on desktop and a failed one here. Refusals explain themselves, which I like. But the whole meeting is under a minute and the first honest run leaves nothing for me to come back to. Pressed I am stopping in Feedback, then Not now, typed nothing.",
+     "wantQuit": [],
+     "maxElapsed_s": 65.404,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.038,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 63.313,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 65.404,
+       "reason": "FINISHED",
+       "engagement": 3,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      63.313
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 0,
+     "longestWait_ms": 0,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 4,
+     "manualShots": 3,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 31
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 0.448,
+     "openT": "2026-10-31T05:44:17.533Z",
+     "wallClockStartT": "2026-10-31T05:44:07.090Z",
+     "stopT": "2026-10-31T05:45:52.320Z",
+     "stopElapsed_s": 95.235,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopEngagement": 3,
+     "stopReaction": "I am stopping at about 93 seconds, after two endings. I liked the clash of promises and being caught in my own lie. But the honest route finishes in 30 seconds with no tension and nobody needs me afterward. I pressed I am stopping in Feedback, then Not now, typed nothing.",
+     "wantQuit": [
+      {
+       "elapsed_s": 92.929,
+       "reason": "FINISHED",
+       "reaction": "Two endings seen, AGREED and NO AGREEMENT, in about 90 seconds total. I have seen what the game does; I would leave here."
+      }
+     ],
+     "maxElapsed_s": 95.235,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.062,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 61.621,
+       "reason": null,
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 92.929,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 95.235,
+       "reason": "FINISHED",
+       "engagement": 3,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      61.621
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 0,
+     "longestWait_ms": 0,
+     "rawErrors": [
+      {
+       "elapsed_s": 22.697,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "text": "Use the clothing order for a smaller late service and trial lease. (2 minutes)"
+       },
+       "error": "Use the clothing order for a smaller late service and trial lease. (2 minutes) is visible text and also the start of the control \"Use the clothing order for a smaller late service and trial lease. (2 minutes) Halil works from five to nine in the evening on the clothing order, with a paid break. Rıza takes his cart home at four. You pay ₺40 for the first collection. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺40. Writing takes 2 minutes, even if someone then refuses.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)"
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 51
+    }
+   }
+  },
+  "diego": {
+   "tester": "Diego Silva",
+   "model": "sonnet",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.452,
+     "openT": "2026-10-31T05:47:37.569Z",
+     "wallClockStartT": "2026-10-31T05:47:28.687Z",
+     "stopT": "2026-10-31T05:49:07.405Z",
+     "stopElapsed_s": 90.288,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopEngagement": null,
+     "stopReaction": "Stopping phone. Won in 32 s, then lied on purpose and lost: the lie got exposed and cost a deposit, the shop stayed shut. That consequence was good. Feedback I am stopping chosen, closed with Not now, nothing typed.",
+     "wantQuit": [
+      {
+       "elapsed_s": 83.196,
+       "reason": "FINISHED",
+       "reaction": "Lost it on purpose and got exactly what I deserved: lies exposed, shop shut. I have seen the shape of both endings. I would stop here for now."
+      }
+     ],
+     "maxElapsed_s": 90.288,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.039,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 61.257,
+       "reason": null,
+       "engagement": 3,
+       "authored": true,
+       "game_clock": "13 min before Osman leaves"
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 83.196,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 90.288,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      61.257
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 0,
+     "longestWait_ms": 0,
+     "rawErrors": [
+      {
+       "elapsed_s": 24.04,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "text": "Morning work. Smaller service and trial lease. Use Rıza’s yard. (2 minutes)"
+       },
+       "error": "Morning work. Smaller service and trial lease. Use Rıza’s yard. (2 minutes) is visible text and also the start of the control \"Morning work. Smaller service and trial lease. Use Rıza’s yard. (2 minutes) Halil works mornings on a clear floor. Rıza stores his cart in his own yard. You cover the rent gap. Ferda takes a smaller service on a one-month trial lease. Total from your fund: ₺60. Writing takes 2 minutes, even if someone then refuses.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)"
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 2,
+     "manualShots": 1,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "a-001.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 55
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 0.531,
+     "openT": "2026-10-31T05:49:09.092Z",
+     "wallClockStartT": "2026-10-31T05:47:28.816Z",
+     "stopT": "2026-10-31T05:49:33.313Z",
+     "stopElapsed_s": 24.752,
+     "stopReason": "BORED",
+     "stopGameClock": null,
+     "stopEngagement": null,
+     "stopReaction": "Stopping desktop at 23 s. Same scenario as phone, I already know the rule: ask, then write. The late-work blind gamble got refused by Halil. Feedback I am stopping chosen, closed with Not now, nothing typed.",
+     "wantQuit": [
+      {
+       "elapsed_s": 17.792,
+       "reason": "BORED",
+       "reaction": "Same game as the phone, same refusals. I know the trick now: ask first, then write. Nothing new on this device."
+      }
+     ],
+     "maxElapsed_s": 24.752,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "want_quit",
+       "elapsed_s": 17.792,
+       "reason": "BORED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 24.752,
+       "reason": "BORED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 0,
+     "longestWait_ms": 0,
+     "rawErrors": [],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 2,
+     "manualShots": 2,
+     "automaticFirstMinuteShot": false,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 16
+    }
+   }
+  },
+  "mina": {
+   "tester": "Mina Georgiou",
+   "model": "opus",
+   "exit": 0,
+   "devices": {
+    "phone": {
+     "firstOpenElapsed_s": 0.451,
+     "openT": "2026-10-31T05:51:32.893Z",
+     "wallClockStartT": "2026-10-31T05:50:00.332Z",
+     "stopT": "2026-10-31T05:52:35.730Z",
+     "stopElapsed_s": 63.288,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopEngagement": null,
+     "stopReaction": "Feedback offered I'm stopping again; same note box, I pressed Not now. I'm stopping: two honest endings seen, the third road is lying and I won't take it.",
+     "wantQuit": [
+      {
+       "elapsed_s": 54.334,
+       "reason": "FINISHED",
+       "reaction": "Second ending reached. The only other road is lying to Halil and Rıza, and I do not want to play that. I am finished for tonight."
+      }
+     ],
+     "maxElapsed_s": 63.288,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "want_quit",
+       "elapsed_s": 54.334,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.03,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 61.689,
+       "reason": null,
+       "engagement": 3,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 63.288,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      61.689
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 0,
+     "longestWait_ms": 0,
+     "rawErrors": [
+      {
+       "elapsed_s": 43.166,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Ask the next person to sign. (1 minute)"
+       },
+       "error": "Ask the next person to sign. (1 minute) is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 4,
+     "manualShots": 3,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 35
+    },
+    "desktop": {
+     "firstOpenElapsed_s": 0.48,
+     "openT": "2026-10-31T05:50:07.060Z",
+     "wallClockStartT": "2026-10-31T05:50:00.218Z",
+     "stopT": "2026-10-31T05:51:30.810Z",
+     "stopElapsed_s": 84.23,
+     "stopReason": "FINISHED",
+     "stopGameClock": null,
+     "stopEngagement": null,
+     "stopReaction": "Feedback offered I'm stopping; it put those words in a note box with Submit and Not now. I pressed Not now. I'm done: the shop opened, everyone signed, I kept 60 lira. Neat little puzzle, over quickly.",
+     "wantQuit": [
+      {
+       "elapsed_s": 69.893,
+       "reason": "FINISHED",
+       "reaction": "The shop opened and everyone kept their word. That is a full story for me. I dont feel I need to begin again right now."
+      }
+     ],
+     "maxElapsed_s": 84.23,
+     "autoLineAfterStop": false,
+     "checkpoints": [
+      {
+       "kind": "first_minute:shot",
+       "elapsed_s": 60.064,
+       "reason": null,
+       "engagement": null,
+       "authored": false,
+       "game_clock": null
+      },
+      {
+       "kind": "first_minute",
+       "elapsed_s": 65.058,
+       "reason": null,
+       "engagement": 4,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 69.893,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 84.23,
+       "reason": "FINISHED",
+       "engagement": null,
+       "authored": true,
+       "game_clock": null
+      }
+     ],
+     "authoredFirstMinuteTags": [
+      65.058
+     ],
+     "prematureFirstMinuteTags": [],
+     "prematurePulses": [],
+     "pulsesLogged": 0,
+     "waitOps": 1,
+     "longestWait_ms": 15107,
+     "rawErrors": [
+      {
+       "elapsed_s": 77.805,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "text": "stopping"
+       },
+       "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "rawTimeoutErrors": [],
+     "retainedPngCount": 3,
+     "manualShots": 2,
+     "automaticFirstMinuteShot": true,
+     "retainedPngNames": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ],
+     "withinSixPerDevice": true,
+     "rowCount": 33
+    }
+   }
+  }
+ }
+}

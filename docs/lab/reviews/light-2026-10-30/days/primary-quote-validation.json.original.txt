@@ -1,0 +1,533 @@
+{
+ "failures": 0,
+ "checks": [
+  {
+   "label": "emre primaryReturn",
+   "file": "emre/report.md",
+   "span": "I would come back another evening on desktop to try a third path, for example paying the bill myself and telling Selin everything, but only because each run is short, and not tonight. I would not leave it running. It does not run in real time, so there is nothing to leave running.",
+   "exact": true
+  },
+  {
+   "label": "emre primaryReturn",
+   "file": "emre/report.original.md.txt",
+   "span": "I would come back another evening on desktop to try a third path, for example paying the bill myself and telling Selin everything, but only because each run is short, and not tonight. I would not leave it running. It does not run in real time, so there is nothing to leave running.",
+   "exact": true
+  },
+  {
+   "label": "emre laterFullReturn",
+   "file": "emre/report.md",
+   "span": "Yes, another evening on desktop for a third path, on the condition that the choices are different enough to be worth a second look. Because it is short, I would not leave it running; it does not seem to need me to.",
+   "exact": true
+  },
+  {
+   "label": "emre laterFullReturn",
+   "file": "emre/report.original.md.txt",
+   "span": "Yes, another evening on desktop for a third path, on the condition that the choices are different enough to be worth a second look. Because it is short, I would not leave it running; it does not seem to need me to.",
+   "exact": true
+  },
+  {
+   "label": "emre ask 1",
+   "file": "emre/report.md",
+   "span": "Show a number for savings. After I paid from savings the text said only \"Her savings are smaller\" on the phone run. I could not price that tradeoff.",
+   "exact": true
+  },
+  {
+   "label": "emre ask 1",
+   "file": "emre/report.original.md.txt",
+   "span": "Show a number for savings. After I paid from savings the text said only \"Her savings are smaller\" on the phone run. I could not price that tradeoff.",
+   "exact": true
+  },
+  {
+   "label": "emre ask 2",
+   "file": "emre/report.md",
+   "span": "Say why I could not see a choice or its cost in advance when it changed. On the phone run the visit cost 3 hours instead of 2 because Selin refused cover. I worked it out from the card text, but a one-line reason on the changed card would help.",
+   "exact": true
+  },
+  {
+   "label": "emre ask 2",
+   "file": "emre/report.original.md.txt",
+   "span": "Say why I could not see a choice or its cost in advance when it changed. On the phone run the visit cost 3 hours instead of 2 because Selin refused cover. I worked it out from the card text, but a one-line reason on the changed card would help.",
+   "exact": true
+  },
+  {
+   "label": "emre ask 3",
+   "file": "emre/report.md",
+   "span": "Let me see the choice cards on the phone without scrolling past the story. I did not test the phone's scroll fully, and this ask rests on the screenshot alone.",
+   "exact": true
+  },
+  {
+   "label": "emre ask 3",
+   "file": "emre/report.original.md.txt",
+   "span": "Let me see the choice cards on the phone without scrolling past the story. I did not test the phone's scroll fully, and this ask rests on the screenshot alone.",
+   "exact": true
+  },
+  {
+   "label": "emre later ask 2",
+   "file": "emre/report.md",
+   "span": "Put a one-line reason on any card whose cost has changed from a first visit.",
+   "exact": true
+  },
+  {
+   "label": "emre later ask 3",
+   "file": "emre/report.md",
+   "span": "On the phone, keep the choice cards on screen with the story text.",
+   "exact": true
+  },
+  {
+   "label": "pavel primaryReturn",
+   "file": "pavel/report.md",
+   "span": "Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently, but I would not leave it running. Each run took about a minute and a half, and I want a reason to play it a third time.",
+   "exact": true
+  },
+  {
+   "label": "pavel primaryReturn",
+   "file": "pavel/report.original.md.txt",
+   "span": "Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently, but I would not leave it running. Each run took about a minute and a half, and I want a reason to play it a third time.",
+   "exact": true
+  },
+  {
+   "label": "pavel laterFullReturn",
+   "file": "pavel/report.md",
+   "span": "Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently. I would not leave it running, because nothing in it runs by itself.",
+   "exact": true
+  },
+  {
+   "label": "pavel laterFullReturn",
+   "file": "pavel/report.original.md.txt",
+   "span": "Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently. I would not leave it running, because nothing in it runs by itself.",
+   "exact": true
+  },
+  {
+   "label": "pavel ask 1",
+   "file": "pavel/report.md",
+   "span": "Grey out or explain a choice I cannot afford before I press it. On desktop I pressed \"Make the journey yourself, if there is time\". It took one tap, said \"2 hours; 1 remains\", and moved the story on. I could not retry, and the game ended with my promised visit unkept and an hour unused.",
+   "exact": true
+  },
+  {
+   "label": "pavel ask 1",
+   "file": "pavel/report.original.md.txt",
+   "span": "Grey out or explain a choice I cannot afford before I press it. On desktop I pressed \"Make the journey yourself, if there is time\". It took one tap, said \"2 hours; 1 remains\", and moved the story on. I could not retry, and the game ended with my promised visit unkept and an hour unused.",
+   "exact": true
+  },
+  {
+   "label": "pavel ask 2",
+   "file": "pavel/report.md",
+   "span": "Tell me the hour budget early. The visit needs 2 hours, but nothing warned me on day 1 or 2 that I must keep them. On the phone I kept the visit only because I happened to have 2 hours.",
+   "exact": true
+  },
+  {
+   "label": "pavel ask 2",
+   "file": "pavel/report.original.md.txt",
+   "span": "Tell me the hour budget early. The visit needs 2 hours, but nothing warned me on day 1 or 2 that I must keep them. On the phone I kept the visit only because I happened to have 2 hours.",
+   "exact": true
+  },
+  {
+   "label": "pavel ask 3",
+   "file": "pavel/report.md",
+   "span": "Give me something to read over time. Each run was about 75 seconds of choices with no clock, so it felt short and I could not compare one day with the next.",
+   "exact": true
+  },
+  {
+   "label": "pavel ask 3",
+   "file": "pavel/report.original.md.txt",
+   "span": "Give me something to read over time. Each run was about 75 seconds of choices with no clock, so it felt short and I could not compare one day with the next.",
+   "exact": true
+  },
+  {
+   "label": "tessa primaryReturn",
+   "file": "tessa/report.md",
+   "span": "Not tonight. I might come back another evening on my laptop only if the three days had more than two choices per screen, or a way to say something of my own, and I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "tessa primaryReturn",
+   "file": "tessa/report.original.md.txt",
+   "span": "Not tonight. I might come back another evening on my laptop only if the three days had more than two choices per screen, or a way to say something of my own, and I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "tessa laterFullReturn",
+   "file": "tessa/report.md",
+   "span": "No, not tonight. I would come back another evening on my laptop only if there were more than two choices per screen, or a way to say something of my own. I did like seeing my choices named in the ending, and I might try a third run for a different ending. I would not leave it running, because it has no clock and just waits for a tap. I would not come back for the same three days I have now seen twice.",
+   "exact": true
+  },
+  {
+   "label": "tessa laterFullReturn",
+   "file": "tessa/report.original.md.txt",
+   "span": "No, not tonight. I would come back another evening on my laptop only if there were more than two choices per screen, or a way to say something of my own. I did like seeing my choices named in the ending, and I might try a third run for a different ending. I would not leave it running, because it has no clock and just waits for a tap. I would not come back for the same three days I have now seen twice.",
+   "exact": true
+  },
+  {
+   "label": "tessa ask 1",
+   "file": "tessa/report.md",
+   "span": "Give me more than two buttons per moment, or let me say something of my own to Hacer, Burak or Selin. I only ever picked between two set lines.",
+   "exact": true
+  },
+  {
+   "label": "tessa ask 1",
+   "file": "tessa/report.original.md.txt",
+   "span": "Give me more than two buttons per moment, or let me say something of my own to Hacer, Burak or Selin. I only ever picked between two set lines.",
+   "exact": true
+  },
+  {
+   "label": "tessa ask 2",
+   "file": "tessa/report.md",
+   "span": "Make the run longer or add a reason to play it again. Both of my runs finished in about 75 seconds.",
+   "exact": true
+  },
+  {
+   "label": "tessa ask 2",
+   "file": "tessa/report.original.md.txt",
+   "span": "Make the run longer or add a reason to play it again. Both of my runs finished in about 75 seconds.",
+   "exact": true
+  },
+  {
+   "label": "tessa ask 3",
+   "file": "tessa/report.md",
+   "span": "Show the phone room picture and its objects properly. On the phone I read only the text and never saw the picture's objects.",
+   "exact": true
+  },
+  {
+   "label": "tessa ask 3",
+   "file": "tessa/report.original.md.txt",
+   "span": "Show the phone room picture and its objects properly. On the phone I read only the text and never saw the picture's objects.",
+   "exact": true
+  },
+  {
+   "label": "tessa later ask 2",
+   "file": "tessa/report.md",
+   "span": "Make a run longer, or give me a reason to replay beyond swapping which of two buttons I press.",
+   "exact": true
+  },
+  {
+   "label": "tessa later ask 3",
+   "file": "tessa/report.md",
+   "span": "Show the room picture and its objects properly on the phone, as the laptop does.",
+   "exact": true
+  },
+  {
+   "label": "nia primaryReturn",
+   "file": "nia/report.md",
+   "span": "Not tonight, and I would not leave it running. I might come back another evening, but only if a second run gave me something new. Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up.",
+   "exact": true
+  },
+  {
+   "label": "nia primaryReturn",
+   "file": "nia/report.original.md.txt",
+   "span": "Not tonight, and I would not leave it running. I might come back another evening, but only if a second run gave me something new. Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up.",
+   "exact": true
+  },
+  {
+   "label": "nia laterFullReturn",
+   "file": "nia/report.md",
+   "span": "Not tonight. I might come back another evening, but only if the game gave me a different story or a character who answered back. I would not leave it running, because there is nothing to wait for.",
+   "exact": true
+  },
+  {
+   "label": "nia laterFullReturn",
+   "file": "nia/report.original.md.txt",
+   "span": "Not tonight. I might come back another evening, but only if the game gave me a different story or a character who answered back. I would not leave it running, because there is nothing to wait for.",
+   "exact": true
+  },
+  {
+   "label": "nia ask 1",
+   "file": "nia/report.md",
+   "span": "Make the game longer or make later runs differ. I finished all three days in about 27 s on my phone and about 25 s on desktop. After that I only had \"Play another three days\".",
+   "exact": true
+  },
+  {
+   "label": "nia ask 1",
+   "file": "nia/report.original.md.txt",
+   "span": "Make the game longer or make later runs differ. I finished all three days in about 27 s on my phone and about 25 s on desktop. After that I only had \"Play another three days\".",
+   "exact": true
+  },
+  {
+   "label": "nia ask 2",
+   "file": "nia/report.md",
+   "span": "Give me a reply from the people I'm affecting. After I read the private page aloud, or told Selin about my marriage, I got narration but no answer from the person I affected.",
+   "exact": true
+  },
+  {
+   "label": "nia ask 2",
+   "file": "nia/report.original.md.txt",
+   "span": "Give me a reply from the people I'm affecting. After I read the private page aloud, or told Selin about my marriage, I got narration but no answer from the person I affected.",
+   "exact": true
+  },
+  {
+   "label": "nia ask 3",
+   "file": "nia/report.md",
+   "span": "Tell me up front how much is at stake. The story texts said grief was not settled but never said what I had won or lost. I had to guess whether my choices mattered.",
+   "exact": true
+  },
+  {
+   "label": "nia ask 3",
+   "file": "nia/report.original.md.txt",
+   "span": "Tell me up front how much is at stake. The story texts said grief was not settled but never said what I had won or lost. I had to guess whether my choices mattered.",
+   "exact": true
+  },
+  {
+   "label": "nia later ask 1",
+   "file": "nia/report.md",
+   "span": "Make the game longer, or make a second run open on different scenes.",
+   "exact": true
+  },
+  {
+   "label": "nia later ask 2",
+   "file": "nia/report.md",
+   "span": "Let the people I affect answer me in their own words.",
+   "exact": true
+  },
+  {
+   "label": "nia later ask 3",
+   "file": "nia/report.md",
+   "span": "Say what is at stake before I choose, so I know my choices matter.",
+   "exact": true
+  },
+  {
+   "label": "miles primaryReturn",
+   "file": "miles/report.md",
+   "span": "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford.",
+   "exact": true
+  },
+  {
+   "label": "miles primaryReturn",
+   "file": "miles/report.original.md.txt",
+   "span": "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford.",
+   "exact": true
+  },
+  {
+   "label": "miles laterFullReturn",
+   "file": "miles/report.md",
+   "span": "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford. The story is gentle and honest, and I liked doing the sums. But each run takes under a minute, and after two runs I can already see most of the shape.",
+   "exact": true
+  },
+  {
+   "label": "miles laterFullReturn",
+   "file": "miles/report.original.md.txt",
+   "span": "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford. The story is gentle and honest, and I liked doing the sums. But each run takes under a minute, and after two runs I can already see most of the shape.",
+   "exact": true
+  },
+  {
+   "label": "miles Leave-it-running answer",
+   "file": "miles/report.md",
+   "span": "No, there is nothing to leave running. It is something I would come back to another evening, briefly.",
+   "exact": true
+  },
+  {
+   "label": "miles ask 1",
+   "file": "miles/report.md",
+   "span": "Do not offer \"Make the journey yourself\" when the hours left are fewer than the visit needs. On the phone it took my last turn, and the delivery choice was gone afterwards.",
+   "exact": true
+  },
+  {
+   "label": "miles ask 1",
+   "file": "miles/report.original.md.txt",
+   "span": "Do not offer \"Make the journey yourself\" when the hours left are fewer than the visit needs. On the phone it took my last turn, and the delivery choice was gone afterwards.",
+   "exact": true
+  },
+  {
+   "label": "miles ask 2",
+   "file": "miles/report.md",
+   "span": "Introduce Selin before she appears. On the desktop she \"has the receipt\" before anyone says who she is.",
+   "exact": true
+  },
+  {
+   "label": "miles ask 2",
+   "file": "miles/report.original.md.txt",
+   "span": "Introduce Selin before she appears. On the desktop she \"has the receipt\" before anyone says who she is.",
+   "exact": true
+  },
+  {
+   "label": "miles ask 3",
+   "file": "miles/report.md",
+   "span": "Make the tiredness and hour wording match what happens. \"Saves an hour\" left my hours unchanged. \"Obtain the original\" appeared after I already had the receipt in hand.",
+   "exact": true
+  },
+  {
+   "label": "miles ask 3",
+   "file": "miles/report.original.md.txt",
+   "span": "Make the tiredness and hour wording match what happens. \"Saves an hour\" left my hours unchanged. \"Obtain the original\" appeared after I already had the receipt in hand.",
+   "exact": true
+  },
+  {
+   "label": "miles later ask 1",
+   "file": "miles/report.md",
+   "span": "Hide or disable a visit I cannot afford, or keep the delivery choice open after a failed attempt.",
+   "exact": true
+  },
+  {
+   "label": "Emre report: phone scroll untested, ask 3 rests on the screenshot alone",
+   "file": "emre/report.md",
+   "span": "I did not test the phone's scroll fully, and this ask rests on the screenshot alone.",
+   "exact": true
+  },
+  {
+   "label": "Emre phone: savings never shown as a number",
+   "file": "emre/phone/wall-clock.jsonl",
+   "span": "Savings are never shown as a number, only smaller.",
+   "exact": true
+  },
+  {
+   "label": "Emre phone: visit cost 3 hours without cover",
+   "file": "emre/phone/wall-clock.jsonl",
+   "span": "Visit without cover is now 3 hours. Cover is worth asking for.",
+   "exact": true
+  },
+  {
+   "label": "Emre report: Feedback prefill, Back, no Submit and no consent change",
+   "file": "emre/report.md",
+   "span": "I pressed Back and did not press Submit. I typed nothing and changed no consent or recording setting.",
+   "exact": true
+  },
+  {
+   "label": "Pavel desktop: offered visit failed with 2 needed and 1 remaining",
+   "file": "pavel/desktop/wall-clock.jsonl",
+   "span": "The visit button was offered but did not work; it said 2 needed, 1 remains, and moved the story on.",
+   "exact": true
+  },
+  {
+   "label": "Pavel report: desktop refusal text and no retry",
+   "file": "pavel/report.md",
+   "span": "The page said \"The visit needs 2 hours; 1 remains.\" It then moved on, and I could not retry.",
+   "exact": true
+  },
+  {
+   "label": "Pavel phone: the same visit worked with 2 hours",
+   "file": "pavel/phone/wall-clock.jsonl",
+   "span": "The visit worked. So on the desktop I simply lacked an hour; the game let me press a button I could not afford.",
+   "exact": true
+  },
+  {
+   "label": "Pavel desktop: receipt contradiction wording",
+   "file": "pavel/desktop/wall-clock.jsonl",
+   "span": "Odd: the page says obtain the original, but Burak has just brought it. Small contradiction; I compare anyway.",
+   "exact": true
+  },
+  {
+   "label": "Pavel report: receipt owner and Selin difference, cause unknown",
+   "file": "pavel/report.md",
+   "span": "I do not know if that is a seed or my choices. I am guessing.",
+   "exact": true
+  },
+  {
+   "label": "Pavel report: one scroll, no screenshot after it",
+   "file": "pavel/report.md",
+   "span": "I used `scroll` once. It did not visibly change what the driver reported, and I did not look at a screenshot after scrolling.",
+   "exact": true
+  },
+  {
+   "label": "Pavel report: phone layout below the fold unseen",
+   "file": "pavel/report.md",
+   "span": "Layout I did not see: whether a phone user can see the choice buttons without scrolling. This is unseen. I used the driver's named taps.",
+   "exact": true
+  },
+  {
+   "label": "Tessa laptop: liked being allowed to fail",
+   "file": "tessa/desktop/wall-clock.jsonl",
+   "span": "I kind of liked being allowed to fail.",
+   "exact": true
+  },
+  {
+   "label": "Tessa laptop stop: failing the visit was honest",
+   "file": "tessa/desktop/wall-clock.jsonl",
+   "span": "failing the visit was honest and told me why.",
+   "exact": true
+  },
+  {
+   "label": "Tessa report: did not scroll the phone",
+   "file": "tessa/report.md",
+   "span": "I did not scroll the phone.",
+   "exact": true
+  },
+  {
+   "label": "Tessa report: phone picture unseen beyond the strip",
+   "file": "tessa/report.md",
+   "span": "I did not scroll the phone to find the room picture, so I only saw the squashed strip.",
+   "exact": true
+  },
+  {
+   "label": "Tessa phone first_minute: picture squashed at the bottom",
+   "file": "tessa/phone/wall-clock.jsonl",
+   "span": "Room picture is squashed at the bottom of the phone.",
+   "exact": true
+  },
+  {
+   "label": "Tessa report: longer opening and Very tired start, cause unknown",
+   "file": "tessa/report.md",
+   "span": "I cannot tell from what I saw.",
+   "exact": true
+  },
+  {
+   "label": "Nia report: opening claim that both runs ended the same way",
+   "file": "nia/report.md",
+   "span": "Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up.",
+   "exact": true
+  },
+  {
+   "label": "Nia desktop stop: ending text changed",
+   "file": "nia/desktop/wall-clock.jsonl",
+   "span": "ending text changed (private page stayed private, delivery not yet happened).",
+   "exact": true
+  },
+  {
+   "label": "Nia report: phone ending line",
+   "file": "nia/report.md",
+   "span": "A private page was read aloud. The agreement to limit its spread does not undo that harm.",
+   "exact": true
+  },
+  {
+   "label": "Nia report: no claim about phone story layout",
+   "file": "nia/report.md",
+   "span": "I did not take or view a phone screenshot of the story page itself. I make no claim about its layout.",
+   "exact": true
+  },
+  {
+   "label": "Nia report: no authored first_minute or pulse",
+   "file": "nia/report.md",
+   "span": "I logged no first_minute or pulse line in either session.",
+   "exact": true
+  },
+  {
+   "label": "Miles phone: unaffordable visit button offered",
+   "file": "miles/phone/wall-clock.jsonl",
+   "span": "The button lets me try a 2 hour visit with 1 hour left. Why offer it? I press it to learn.",
+   "exact": true
+  },
+  {
+   "label": "Miles phone: delivery choice gone after the attempt",
+   "file": "miles/phone/wall-clock.jsonl",
+   "span": "That stings. The game let me press a visit it knew I could not make, and now the delivery choice is gone.",
+   "exact": true
+  },
+  {
+   "label": "Miles phone: deliberate probe knowing the visit would likely break",
+   "file": "miles/phone/wall-clock.jsonl",
+   "span": "I know this probably breaks the visit. I want to see it.",
+   "exact": true
+  },
+  {
+   "label": "Miles desktop: Selin not introduced",
+   "file": "miles/desktop/wall-clock.jsonl",
+   "span": "Who is Selin? She has the receipt but nobody introduced her.",
+   "exact": true
+  },
+  {
+   "label": "Miles desktop: saves an hour wording and obtain the original",
+   "file": "miles/desktop/wall-clock.jsonl",
+   "span": "Small confusion: it says I saved an hour, but I still have 4 like before.",
+   "exact": true
+  },
+  {
+   "label": "Miles report: 500 px scroll, no layout trouble beyond the scroll",
+   "file": "miles/report.md",
+   "span": "I scrolled 500 px. I saw no layout trouble beyond needing that scroll.",
+   "exact": true
+  },
+  {
+   "label": "Miles report: two ambiguous taps were driver ambiguities",
+   "file": "miles/report.md",
+   "span": "Two prefix taps were ambiguous and I resent them by full name. Those were driver ambiguities, not game faults.",
+   "exact": true
+  }
+ ]
+}

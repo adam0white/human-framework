@@ -1,0 +1,2894 @@
+{
+  "time": "2026-10-31T04:45:36.686128+00:00",
+  "note": "Exact surviving reactions; not a reconstructed producer diary. Report memories/estimates remain separate.",
+  "sessions": [
+    {
+      "tester": "Jonas Berg",
+      "device": "desktop",
+      "source": "smoke/jonas/desktop/wall-clock.jsonl",
+      "rawSha256": "4108e26cef93a1fef955b20083fd073b54f947e4185aec143103ee7b294e476c",
+      "reactions": [
+        {
+          "t": "2026-10-31T03:55:16.760Z",
+          "elapsed_s": 6.923,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Timer ran behind the title card: stair closes in 151s already. Entering.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 183,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:18.658Z",
+          "elapsed_s": 8.821,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "1 Sevim Stopped \u00b7 was asleep. Approach and speak."
+          },
+          "reaction": "Sevim is first; approach her. Hypothesis: speak, then Come now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 157,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:20.858Z",
+          "elapsed_s": 11.021,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 1"
+          },
+          "reaction": "Speech needs me nearby; I do not know where Sevim is, guessing landing 1.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:22.873Z",
+          "elapsed_s": 13.036,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "The books B"
+          },
+          "reaction": "Prompt says books help tie the bundle. Trying it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 156,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:28.446Z",
+          "elapsed_s": 18.609,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 4
+          },
+          "reaction": "Waiting for the bundle; Derya and Hacer are both catching breath.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:55:30.574Z",
+          "elapsed_s": 20.737,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Torch F"
+          },
+          "reaction": "Show the stair is disabled; the torch might be the way to show the stair.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:32.707Z",
+          "elapsed_s": 22.87,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Show the stair R"
+          },
+          "reaction": "Log says bundle is tied but the buttons still say wait. Trying Show the stair.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 158,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:34.908Z",
+          "elapsed_s": 25.071,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk with me T"
+          },
+          "reaction": "The helper line said wait after the bundle was already tied; it lags the log. Now Walk with me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:37.437Z",
+          "elapsed_s": 27.6,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": "Sevim follows now. Fetch Derya and Hacer before going down, to batch the trip.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "3 Derya Stopped \u00b7 needs to see the stair is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T03:55:39.941Z",
+          "elapsed_s": 30.104,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 catching my breath"
+          },
+          "reaction": "Button names change with each state, so my tap missed. Retrying.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 157,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:41.940Z",
+          "elapsed_s": 32.103,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 2"
+          },
+          "reaction": "Guessing Derya is on landing 2; I have no map reading yet.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 145,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:43.589Z",
+          "elapsed_s": 33.752,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 3"
+          },
+          "reaction": "Still no speech; Derya is further up. Landing 3.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 156,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:55:45.403Z",
+          "elapsed_s": 35.566,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-002.png"
+          },
+          "reaction": "I am walking blind; looking at the picture.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:55:55.253Z",
+          "elapsed_s": 45.416,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 6
+          },
+          "reaction": "Map shows thick smoke; I am between landings. Waiting for it to thin.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6113,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:55:57.073Z",
+          "elapsed_s": 47.236,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Show the stair R"
+          },
+          "reaction": "Next to Derya. Showing the stair.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:56:00.605Z",
+          "elapsed_s": 50.768,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 4"
+          },
+          "reaction": "Two following. Hacer is on the top landing. Going up for her.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 139,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:56:15.337Z",
+          "elapsed_s": 65.5,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Clear: get everyone to the street before the stair closes; approach, speak, show the stair, Walk with me, then Street. Smoke comes in waves. Unclear: helper line sometimes says wait after the task is done; button names change with state; I walked blind to landings. Two followers, Hacer next. I like the countdown; I do not yet know what smoke costs.",
+          "game_clock": "06:10, stair closes in 97s",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:56:20.918Z",
+          "elapsed_s": 71.081,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "4"
+          },
+          "reaction": "The name of the Hacer button flips every few seconds, so named taps keep missing. Using the keyboard 4.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 120,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:56:23.007Z",
+          "elapsed_s": 73.17,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 4"
+          },
+          "reaction": "Not near Hacer yet; walking up again.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 155,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:56:31.055Z",
+          "elapsed_s": 81.218,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 6
+          },
+          "reaction": "New clue: Derya breathing difficult in thick smoke. So smoke costs followers, not just me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6107,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:56:35.953Z",
+          "elapsed_s": 86.116,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Three following. Leading down.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 141,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:56:50.121Z",
+          "elapsed_s": 100.284,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Derya says smoke may kill her. Maybe my Street tap earlier did not start the walk; trying again in the thin phase.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 147,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:56:52.688Z",
+          "elapsed_s": 102.851,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to the street"
+          },
+          "reaction": "The Street button seems to only mean lead; I think I must also walk myself. Trying the landing walker.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 157,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:57:03.557Z",
+          "elapsed_s": 113.72,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 8
+          },
+          "reaction": "Street button did nothing visible; walking myself leads them. Cost me about 15 seconds while Derya worsened.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8106,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:57:06.905Z",
+          "elapsed_s": 117.068,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Try this night again"
+          },
+          "reaction": "All out, three of three, Burak was away. Easy once learned. Repeating to see whether conditions differ.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 153,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:57:17.703Z",
+          "elapsed_s": 127.866,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 1"
+          },
+          "reaction": "Still not close enough for speech; walking again.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:57:20.185Z",
+          "elapsed_s": 130.348,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "1 Sevim Stopped \u00b7 was asleep. Approach and speak."
+          },
+          "reaction": "The helper says tap Sevim to approach; I will tap her name instead of the landing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:57:26.371Z",
+          "elapsed_s": 136.534,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 4
+          },
+          "reaction": "Thick smoke slows my walking; waiting for thin.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:57:28.272Z",
+          "elapsed_s": 138.435,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "e"
+          },
+          "reaction": "Testing shortcut: Come now with no books and no torch.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 109,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:57:35.723Z",
+          "elapsed_s": 145.886,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Not now"
+          },
+          "reaction": "No Back button; Not now closes the draft. Note box was prefilled by the choice; I typed nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 167,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:57:38.721Z",
+          "elapsed_s": 148.884,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping at 146 s. First run: all three home reached the street at about 114 s. Second run: tested Come now shortcut and Sevim refused without her books, so no free skip. I understand the loop. One wish: I want to know what happens if smoke kills someone, and whether Burak ever matters. I would come back another evening to see whether order or speed changes who chooses to follow. Would not leave it running. Selected I am stopping in Feedback; typed nothing, submitted nothing.",
+          "game_clock": "06:10, second run, stair closes in 127s",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Jonas Berg",
+      "device": "phone",
+      "source": "smoke/jonas/phone/wall-clock.jsonl",
+      "rawSha256": "449790c094d850bb962826c1d46094ae628265d65717d9fd01d82c628e6ed193",
+      "reactions": [
+        {
+          "t": "2026-10-31T03:57:46.729Z",
+          "elapsed_s": 6.541,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Different cast on phone: Hacer away, Burak home. So the night varies. I know the order now: books, torch, walk.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 185,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:57:48.961Z",
+          "elapsed_s": 8.773,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 1"
+          },
+          "reaction": "Burak acts on his own and says wait for his word. New. Smoke starts on landing 3 here, not 1. Going to Sevim.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 154,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:58:49.527Z",
+          "elapsed_s": 69.339,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 1"
+          },
+          "reaction": "Walking to Sevim so her books button unlocks.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 164,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:58:52.100Z",
+          "elapsed_s": 71.912,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Burak tied the books and reached the street on his own while I was slow. I still do not know where I am on the map. Stair closes in 92s.",
+          "game_clock": "92s left",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:58:54.809Z",
+          "elapsed_s": 74.621,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "b-002.png"
+          },
+          "reaction": "Checking where I am on the map.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 135,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:58:59.242Z",
+          "elapsed_s": 79.054,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "x": 137,
+            "y": 214
+          },
+          "reaction": "Tapping Sevim on the map to approach her.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 141,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:59:01.341Z",
+          "elapsed_s": 81.153,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 2"
+          },
+          "reaction": "Sevim may be on landing 2, not 1. Trying that.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 156,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:03.092Z",
+          "elapsed_s": 82.904,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Torch F"
+          },
+          "reaction": "Torch first, as the hint says.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 158,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:08.209Z",
+          "elapsed_s": 88.021,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 3"
+          },
+          "reaction": "Sevim follows. Now going for Derya.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 169,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:19.723Z",
+          "elapsed_s": 99.535,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "b-003.png"
+          },
+          "reaction": "Derya says smoke may kill her. I cannot tell where she is relative to me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 133,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:59:24.135Z",
+          "elapsed_s": 103.947,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "r"
+          },
+          "reaction": "Tapping the figure on the map worked better than the landing buttons.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 116,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:59:27.309Z",
+          "elapsed_s": 107.121,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Walk to the street"
+          },
+          "reaction": "Both following. Leading them out.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 34,
+          "error": "Cannot tap Walk to the street: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:29.839Z",
+          "elapsed_s": 109.651,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Walk to the street is off screen on the phone; the hint says tap Street.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 164,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:32.040Z",
+          "elapsed_s": 111.852,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "x": 181,
+            "y": 248
+          },
+          "reaction": "Street button seems to do nothing; tapping the front door on the map.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 149,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:59:42.224Z",
+          "elapsed_s": 122.036,
+          "kind": "input",
+          "op": "scroll",
+          "input": {
+            "dy": 400
+          },
+          "reaction": "The Walk to the street control is off screen; scrolling to find it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 325,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:59:44.950Z",
+          "elapsed_s": 124.762,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Derya died. I tapped Street and the front door and nothing moved for about 10 seconds while she said smoke may kill me. I think I stood still because the walk control was off screen and Street did nothing. That felt unfair and I am annoyed.",
+          "game_clock": "40s left",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T03:59:47.574Z",
+          "elapsed_s": 127.386,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 1"
+          },
+          "reaction": "Trying to lead Sevim down by the landing buttons instead.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 162,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:50.444Z",
+          "elapsed_s": 130.256,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Pause and open menu"
+          },
+          "reaction": "Two of three out, one dead. I understand it now, but that cost a neighbour. Opening the menu to find Feedback.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 170,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:54.485Z",
+          "elapsed_s": 134.297,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Not now"
+          },
+          "reaction": "Feedback draft opened with I am confused prefilled. Typing nothing, sending nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 178,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:56.553Z",
+          "elapsed_s": 136.365,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Two of three home, Derya dead from smoke while I tried a dead Street button. I have seen what this version does and I am stopping here.",
+          "game_clock": "31s left",
+          "engagement": 3,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Aisha Rahman",
+      "device": "desktop",
+      "source": "smoke/aisha/desktop/wall-clock.jsonl",
+      "rawSha256": "b92ad2e9cbf4c28abe2a6225f7f72089c60f256578f44c43f2a5d25525bc700b",
+      "reactions": [
+        {
+          "t": "2026-10-31T04:00:37.110Z",
+          "elapsed_s": 6.087,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "A fire in a block of flats; a night with real stakes. Entering.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 177,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:00:37.741Z",
+          "elapsed_s": 6.718,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": "Derya needs to see the stair; I follow her first.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 145,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:00:41.875Z",
+          "elapsed_s": 10.852,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 3"
+          },
+          "reaction": "Guessing Derya is on landing 3; I walk there.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:00:47.122Z",
+          "elapsed_s": 16.099,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "x": 579,
+            "y": 186
+          },
+          "reaction": "Tapping Derya in the picture to approach.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 123,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:00:48.839Z",
+          "elapsed_s": 17.816,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Torch F"
+          },
+          "reaction": "Torch on, then show her the stair.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 161,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:00:51.677Z",
+          "elapsed_s": 20.654,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk with me T"
+          },
+          "reaction": "She can see; asking her to walk with me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 188,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:00:53.757Z",
+          "elapsed_s": 22.734,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Derya first, then back for Hacer.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 139,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:01:01.853Z",
+          "elapsed_s": 30.83,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 5
+          },
+          "reaction": "Not sure if I am walking down; waiting a moment.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5113,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:01:04.785Z",
+          "elapsed_s": 33.762,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "ArrowDown"
+          },
+          "reaction": "My taps on Street did nothing visible; trying keyboard.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 124,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:01:07.140Z",
+          "elapsed_s": 36.117,
+          "kind": "first_minute",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 was asleep. Approach and speak."
+          },
+          "reaction": "Real clock, short stakes. Derya is out; Hacer next. Walking is slow, I did not know my taps had registered.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 150,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:01:20.322Z",
+          "elapsed_s": 49.299,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Show the stair R"
+          },
+          "reaction": "She was asleep and groggy; showing her the stair rather than shouting come now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:01:38.357Z",
+          "elapsed_s": 67.334,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "ArrowDown"
+          },
+          "reaction": "Walk-to-street taps seem not to move me; the arrow key worked last time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 117,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:01:51.913Z",
+          "elapsed_s": 80.89,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "I understand: find each neighbour, show the stair, ask them to walk, lead them down before the stair closes. Derya was cared for and is out. I cannot tell if I am walking or stuck; Hacer is coughing in smoke now and I feel a bit anxious.",
+          "game_clock": "06:10, stair closes in ~85s",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:02:09.735Z",
+          "elapsed_s": 98.712,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk with me T"
+          },
+          "reaction": "She asked me to come back for her. I am here, asking again.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 149,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:02:34.605Z",
+          "elapsed_s": 123.582,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-003.png"
+          },
+          "reaction": "Everyone out. Burak went alone, which I did not choose; Derya and Hacer I walked out.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 155,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:02:36.483Z",
+          "elapsed_s": 125.46,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell us about this night"
+          },
+          "reaction": "Looking for Feedback; this ending button seems to be it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 164,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:02:41.845Z",
+          "elapsed_s": 130.822,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping after about two minutes; everyone is out. I liked Hacer saying she could not have found the stair alone. I would try a different order another evening, but I do not need it tonight. Pressed I am stopping, typed nothing, Not now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Aisha Rahman",
+      "device": "phone",
+      "source": "smoke/aisha/phone/wall-clock.jsonl",
+      "rawSha256": "27feeb7f9d68d14b66c47495f4476eac6befcb5ceb7f24bd5d48857f626666c9",
+      "reactions": [
+        {
+          "t": "2026-10-31T04:02:48.983Z",
+          "elapsed_s": 5.829,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Different people this time: Sevim is home with her exercise books, Burak away. Starting with Sevim.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 185,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:02:56.250Z",
+          "elapsed_s": 13.096,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 1"
+          },
+          "reaction": "Sevim looks to be on the lowest landing, beside me already. Layout fits well on the phone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 161,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:02:57.899Z",
+          "elapsed_s": 14.745,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "The books B"
+          },
+          "reaction": "I will help her tie the bundle; her books matter to her, and shouting come now would ignore that.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 167,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:03:27.998Z",
+          "elapsed_s": 44.844,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 catching my breath"
+          },
+          "reaction": "Sevim is out with her books. Hacer is up top and struggling to breathe; she is next. Notice the roles differ from the laptop: here Hacer cannot see the stair, Derya is the sleeper.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:03:51.491Z",
+          "elapsed_s": 68.337,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Second visit, phone. Sevim and her books worked well: I helped tie the bundle and she said so. Now climbing through smoke to Hacer. Different people in different states than the laptop, which I did not expect. The slow walk makes me wait with nothing to do.",
+          "game_clock": "06:10, stair closes ~95s",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:05:11.159Z",
+          "elapsed_s": 148.005,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "I tapped Walk to landing 4 and nothing visibly changes; I cannot tell if I am climbing or stuck. Stair closes soon.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:05:13.558Z",
+          "elapsed_s": 150.404,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Derya died and I never reached her; I did not know my walk taps were not moving me. That felt unfair, not a lesson.",
+          "game_clock": "stair closes ~15s",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:05:19.597Z",
+          "elapsed_s": 156.443,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Not now"
+          },
+          "reaction": "Feedback opened from the menu; the note box came pre-filled with my choice. I typed nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 205,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:05:20.259Z",
+          "elapsed_s": 157.105,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping at about 2.7 minutes. Derya died and Hacer was still stuck; I could not tell whether my walk taps were moving me. Sevim and her books was the best part. I would not need it again tonight.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Diego Silva",
+      "device": "phone",
+      "source": "smoke/diego/phone/wall-clock.jsonl",
+      "rawSha256": "efc247410d74877aeaeebdd89f889bd3dfa0ecdafbec454daa764286666e6a59",
+      "reactions": [
+        {
+          "t": "2026-10-31T04:06:00.527Z",
+          "elapsed_s": 6.302,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Fire in a block of flats, get people out. Clock already running behind the card. Going in.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 205,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:06:02.653Z",
+          "elapsed_s": 8.428,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": "Hacer needs to see the stair, I have a torch. Approaching her.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 227,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:06:04.436Z",
+          "elapsed_s": 10.211,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": "Selecting did not move me. Tapping her again to approach.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:06:09.420Z",
+          "elapsed_s": 15.195,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 4"
+          },
+          "reaction": "The drawing is nice but selecting a neighbour does not walk me. Walking to her landing by hand.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 156,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:06:19.021Z",
+          "elapsed_s": 24.796,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 4"
+          },
+          "reaction": "Smoke is thin now; I waited, so trying the walk again. I cannot tell where I am or whether I moved.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:06:30.770Z",
+          "elapsed_s": 36.545,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "ArrowUp"
+          },
+          "reaction": "Burak made it out alone. My taps on neighbours and landings have not visibly moved me. Trying a key.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 114,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:06:32.322Z",
+          "elapsed_s": 38.097,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 3"
+          },
+          "reaction": "Derya is nearer; trying her landing instead.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 19,
+          "error": "Cannot tap Walk to landing 3: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:06:34.852Z",
+          "elapsed_s": 40.627,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "x": 200,
+            "y": 112
+          },
+          "reaction": "The named landing buttons are off screen. Tapping the drawn top landing by coordinates.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 135,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:06:40.285Z",
+          "elapsed_s": 46.06,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "x": 185,
+            "y": 160
+          },
+          "reaction": "I am at the bottom of the stair, apparently. Walking up one landing at a time by tapping the drawing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 146,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:06:42.534Z",
+          "elapsed_s": 48.309,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Nice drawn stairwell, but I cannot tell if my taps move me. Burak left by himself; Hacer and Derya still wait. Waiting to see if I walk.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:07:01.277Z",
+          "elapsed_s": 67.052,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "A minute in and nothing I did visibly worked. Pretty drawing, clear goal, but my taps on neighbours and landings gave no movement I could see. Burak walked out on his own while I stood there. Clock ticking and I do not know what my figure is doing. Frustrated, not gone yet.",
+          "game_clock": "stair closes in 103s",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:07:03.835Z",
+          "elapsed_s": 69.61,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 was asleep. Approach and speak."
+          },
+          "reaction": "Trying Derya, the nearer person.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 150,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:07:17.918Z",
+          "elapsed_s": 83.693,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Come now E"
+          },
+          "reaction": "Speech buttons woke up, so I was walking, just slowly and silently. Asking Derya to come.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 149,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:07:19.468Z",
+          "elapsed_s": 85.243,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Derya is following. Leading her down.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:07:35.150Z",
+          "elapsed_s": 100.925,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Torch F"
+          },
+          "reaction": "Now there is a real problem: Derya lost me in the smoke. Torch on, then show her the stair.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 155,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:07:54.718Z",
+          "elapsed_s": 120.493,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 6
+          },
+          "reaction": "Hacer now says smoke may kill her. That landed. But I still crawl toward Derya and cannot hurry.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6107,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:07:57.802Z",
+          "elapsed_s": 123.577,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk with me T"
+          },
+          "reaction": "The torch worked: she sees the stair. Walk with me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 164,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:08:17.193Z",
+          "elapsed_s": 142.968,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Hacer died from smoke while I led Derya out. That hit. I picked Derya because she was close, and I never knew the clock for Hacer was that short. Real cost, but I did not get to choose it knowing.",
+          "game_clock": "stair closes in 26s",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:08:25.210Z",
+          "elapsed_s": 150.985,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the phone session at about 150 seconds. Two out, one dead, one away. The first minute was me tapping and not knowing if I moved; from the torch moment on it was good and the death landed. I did not wait for the end card. Feedback: I picked I am stopping, typed nothing, pressed Not now.",
+          "game_clock": "stair closes in 22s",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Diego Silva",
+      "device": "desktop",
+      "source": "smoke/diego/desktop/wall-clock.jsonl",
+      "rawSha256": "15e977f105721c3be0ba0346d11667d3918294990349f17afe6a9a6608de0f95",
+      "reactions": [
+        {
+          "t": "2026-10-31T04:08:31.936Z",
+          "elapsed_s": 4.958,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Same game, different cast: Sevim is home this time with her books. This time I know to wait for the walk. Going in.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 203,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:08:34.159Z",
+          "elapsed_s": 7.181,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "4"
+          },
+          "reaction": "Last time Hacer died. Going for her first with the keyboard.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 119,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:08:50.542Z",
+          "elapsed_s": 23.564,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 8
+          },
+          "reaction": "On desktop I can see my figure climbing with a torch cone. Much clearer than the phone. Waiting to reach Hacer.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8107,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:08:57.025Z",
+          "elapsed_s": 30.047,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 3"
+          },
+          "reaction": "Hacer follows. Derya is on the landing below; I will collect her on the way down instead of making a second trip.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:09:18.573Z",
+          "elapsed_s": 51.595,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 2"
+          },
+          "reaction": "Two followers. Burak is the next landing down; collecting him before heading for the street.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 165,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:09:30.840Z",
+          "elapsed_s": 63.862,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Desktop is far clearer: I can see my figure and the torch cone, keys E/B/T/R/F and 1-4 work, and I picked up Hacer and Derya as followers on the way. The different cast this time (Sevim and her books) means it is not the same night. I like that Burak can just go down himself. The walking is slow and I am waiting on it, but now I know what I am waiting for.",
+          "game_clock": "stair closes in 100s",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:10:22.818Z",
+          "elapsed_s": 115.84,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 8
+          },
+          "reaction": "Walking down to Sevim with two followers behind me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8112,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:10:28.453Z",
+          "elapsed_s": 121.475,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Three followers-ish: Sevim and Derya following, Hacer stopped behind. Leading down now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 165,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:10:45.152Z",
+          "elapsed_s": 138.174,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 15
+          },
+          "reaction": "Waiting for the walk to the street.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 15109,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:10:49.744Z",
+          "elapsed_s": 142.766,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Both followers died while I walked slowly down with Sevim. I collected them early, and the smoke clock ran out on them while I waited for the slow walk. I did not see their clocks coming.",
+          "game_clock": "stair closes in 22s",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:10:58.110Z",
+          "elapsed_s": 151.132,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the desktop session at about 150 seconds. Sevim and Burak out, Derya and Hacer dead. Desktop controls were clear and fast, but I collected two followers early and they died while I fetched the others, with no visible warning of how long they had. Feedback: I picked I am stopping, typed nothing, pressed Not now.",
+          "game_clock": "stair closes in 16s",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Leila Mansour",
+      "device": "phone",
+      "source": "smoke/leila/phone/wall-clock.jsonl",
+      "rawSha256": "9ac364e66c70366d648488ec9666159a6eee0488bc98e2d1cc01f7393d2e70b8",
+      "reactions": [
+        {
+          "t": "2026-10-31T04:11:42.148Z",
+          "elapsed_s": 5.799,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Clear job: get everyone to the street. Timer says stair closes in 153s. Entering.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 169,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:11:43.779Z",
+          "elapsed_s": 7.43,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 1"
+          },
+          "reaction": "Going to Sevim, she needs help with books.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 157,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:11:53.146Z",
+          "elapsed_s": 16.797,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "1 Sevim Stopped \u00b7 needs help with the books"
+          },
+          "reaction": "Speech still disabled. Tapping Sevim to approach, as the hint says.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 156,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:11:58.146Z",
+          "elapsed_s": 21.797,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Come now E"
+          },
+          "reaction": "Picture is clear: building, smoke bands, people on floors. It is dark-themed though I asked light. Trying Come now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 156,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:11:59.779Z",
+          "elapsed_s": 23.43,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Torch F"
+          },
+          "reaction": "Good: the hint says exactly what to do. Torch on.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 160,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:12:02.746Z",
+          "elapsed_s": 26.397,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk with me T"
+          },
+          "reaction": "She answers what I do; consequential, clear next-step hints.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 151,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:12:04.528Z",
+          "elapsed_s": 28.179,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Sevim follows. Leading her to the street.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:12:15.144Z",
+          "elapsed_s": 38.795,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 catching my breath"
+          },
+          "reaction": "Sevim made it, a clear win. Going to Derya.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "3 Derya Stopped \u00b7 catching my breath is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T04:12:34.874Z",
+          "elapsed_s": 58.525,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Walking to Derya takes a long time and I cannot tell where I am; speech still greyed after 15 seconds. Waiting out thick smoke, I guess.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:12:39.230Z",
+          "elapsed_s": 62.881,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Reason to act: get four neighbours out before the stair closes. Tappable: neighbours, speech buttons, landings, Street, Torch. Got Sevim out in about 35s: Come now, Torch, Show the stair, Walk with me, Street. The grey hint line always told me the next step, which I like. Walking to Derya takes long and I cannot see my own position well. Picture is dark though I asked for light.",
+          "game_clock": "stair closes 98s",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:12:56.807Z",
+          "elapsed_s": 80.458,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 3"
+          },
+          "reaction": "Picture shows me still at the street door; the banner says MOVE. My earlier walk taps seem to have done nothing. Trying again during the MOVE window.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 144,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:13:19.476Z",
+          "elapsed_s": 103.127,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "ArrowUp"
+          },
+          "reaction": "Landing taps do nothing visible after four tries; trying ArrowUp from the title instructions.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 115,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:13:21.874Z",
+          "elapsed_s": 105.525,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Hacer died and I never got off the street. I tapped Walk to landing 3 five times and nothing visibly moved me; I cannot tell whether the walk needs a thin-smoke window, or the first taps were ignored. I am guessing at the rule, not making choices.",
+          "game_clock": "stair closes 55s",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:13:23.992Z",
+          "elapsed_s": 107.643,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "x": 150,
+            "y": 150
+          },
+          "reaction": "Last try: tapping the landing in the picture directly.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 134,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:13:28.920Z",
+          "elapsed_s": 112.571,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Not now"
+          },
+          "reaction": "Feedback opened with the note box already holding the words I am confused; no Back button, only Not now. Pressing Not now, sending nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 186,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:13:30.852Z",
+          "elapsed_s": 114.503,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the phone session at under two minutes. Talking to Sevim worked well and the hints were precise, but I could not make myself move to the other floors, Hacer died, and I do not know why. I would not leave it running.",
+          "game_clock": "stair closes 50s",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Leila Mansour",
+      "device": "desktop",
+      "source": "smoke/leila/desktop/wall-clock.jsonl",
+      "rawSha256": "7720b27e8566ec4760db7c942de7ef7c2ea8892a6daeff8a42202a2fe71f1281",
+      "reactions": [
+        {
+          "t": "2026-10-31T04:13:37.704Z",
+          "elapsed_s": 5.671,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Second visit, desktop. Different start: Burak away, Sevim asleep, clock 06:10. The seed differs. This time I will use WASD to move.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 185,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:13:51.281Z",
+          "elapsed_s": 19.248,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "w"
+          },
+          "reaction": "Trying W while MOVE window is up.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 120,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:13:56.036Z",
+          "elapsed_s": 24.003,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 1",
+            "duration_ms": 2000
+          },
+          "reaction": "Guess: maybe walking needs a held press.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 2160,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:14:09.533Z",
+          "elapsed_s": 37.5,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "1 Sevim Stopped \u00b7 was asleep. Approach and speak."
+          },
+          "reaction": "Tapping Sevim to approach, as the hint says.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 166,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:14:30.917Z",
+          "elapsed_s": 58.884,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Come now E"
+          },
+          "reaction": "I think I see it: one walk tap needs about 12 s of leaving it alone; my extra taps probably restarted the walk. The game never says so.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 158,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:14:35.935Z",
+          "elapsed_s": 63.902,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Reason to act: get the people home to the street before the stair closes. Tappable: neighbours, speech buttons, landings, Street, Torch, menu. Different start from my phone: Burak away, Sevim asleep. I lost about 45 s because walking takes about 12 s after one tap and nothing shows that; my extra taps seemed to restart it. Once near, Sevim answered in character and the grey hint line named her need, the books. Good prose; slow, silent walking.",
+          "game_clock": "stair closes 103s",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:14:37.368Z",
+          "elapsed_s": 65.335,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "b"
+          },
+          "reaction": "Using the keyboard B for the books.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 124,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:15:29.127Z",
+          "elapsed_s": 117.094,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "t"
+          },
+          "reaction": "Walk with me, then street. Time is short.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 348,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:15:35.389Z",
+          "elapsed_s": 123.356,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to the street"
+          },
+          "reaction": "Street did nothing visible; one walk tap then I wait.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 671,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:15:50.232Z",
+          "elapsed_s": 138.199,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 catching my breath \u00b7 Smoke may kill me. Get me outside."
+          },
+          "reaction": "Sevim out. 27 seconds left, trying Derya.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 158,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:16:08.680Z",
+          "elapsed_s": 156.647,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "Derya and Hacer died while I waited for a walk that never showed progress. Only Sevim got out. I lost 45 seconds at the start learning the walk rule, and then the clock beat me. It feels unfair because the rule was never shown.",
+          "game_clock": "stair closes in 9s",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:16:16.021Z",
+          "elapsed_s": 163.988,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping at under three minutes. Sevim got out, Derya and Hacer died. Talking to people is precise and good. The silent walk delay cost me the run. Feedback opened with I am confused already in the note; I pressed Not now and sent nothing.",
+          "game_clock": "stair closes in 5s",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Marta Kowalska",
+      "device": "desktop",
+      "source": "smoke/marta/desktop/wall-clock.jsonl",
+      "rawSha256": "d2674eaf2165abd2ac4a3b6a999238ff7481e4538501767d004a9a7ced1a7dd5",
+      "reactions": [
+        {
+          "t": "2026-10-31T04:17:00.843Z",
+          "elapsed_s": 7.901,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Short intro card, I can read it once. Smoke, get people to street. One big button. Fine, going in.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 225,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:17:03.213Z",
+          "elapsed_s": 10.271,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "1 Sevim Stopped \u00b7 was asleep. Approach and speak."
+          },
+          "reaction": "It says tap Sevim to approach. Most obvious thing. Trying it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 164,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:17:05.625Z",
+          "elapsed_s": 12.683,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-002.png"
+          },
+          "reaction": "I tapped Sevim and the text is the same. Did I walk? Not sure.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 146,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:17:09.646Z",
+          "elapsed_s": 16.704,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "The books B"
+          },
+          "reaction": "OK my little figure walked to Sevim on landing 1. Hint says choose The books. Doing that.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 158,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:17:16.262Z",
+          "elapsed_s": 23.32,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 4
+          },
+          "reaction": "Told to wait while she ties books. Waiting, clock is ticking though.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:17:19.296Z",
+          "elapsed_s": 26.354,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Torch F"
+          },
+          "reaction": "Log says bundle tied, show me the stair. But Show the stair is greyed out and the hint still says wait. Guessing torch must come first.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 166,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:17:21.580Z",
+          "elapsed_s": 28.638,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Show the stair R"
+          },
+          "reaction": "Torch on, now Show the stair lit up. Good guess.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 160,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:17:24.145Z",
+          "elapsed_s": 31.203,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk with me T"
+          },
+          "reaction": "Burak just walked out by himself, nice. Sevim says walk with me.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 162,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:17:27.228Z",
+          "elapsed_s": 34.286,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Sevim is following. She is on the lowest floor so I take her down first, then go up for Hacer.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 158,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:17:36.611Z",
+          "elapsed_s": 43.669,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to the street"
+          },
+          "reaction": "I pressed Street and 6 seconds later nothing says we moved. Hint still says tap Street. Did it not take? Trying the street on the picture instead.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 152,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:17:40.328Z",
+          "elapsed_s": 47.386,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": "Sevim is out. I cannot tell if the first Street press worked slowly in the thick smoke or my second press did it. Now up for Hacer, top floor.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "4 Hacer Stopped \u00b7 needs to see the stair is not on the page now; it was listed 4 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T04:17:44.739Z",
+          "elapsed_s": 51.797,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "4"
+          },
+          "reaction": "Her button text keeps changing so my click missed. Using the 4 key.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 118,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:17:49.829Z",
+          "elapsed_s": 56.887,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 4"
+          },
+          "reaction": "Missed Hacer again, her status keeps flipping between two texts. Walking to landing 4 instead.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:18:01.167Z",
+          "elapsed_s": 68.225,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "First minute: the order is clear from the hints (approach, torch, show stair, walk with me, street). Two people out already. But I keep not knowing if my press did anything - Street, and now Hacer. Names change text while I aim.",
+          "game_clock": null,
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:18:06.224Z",
+          "elapsed_s": 73.282,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "r"
+          },
+          "reaction": "Took a long climb, about 15 s. Now I am next to Hacer. Using R key since the buttons are labelled with keys.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 137,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:18:10.644Z",
+          "elapsed_s": 77.702,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Street"
+          },
+          "reaction": "Hacer follows. Street, once, and this time I will just wait and watch.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 159,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:18:29.128Z",
+          "elapsed_s": 96.186,
+          "kind": "input",
+          "op": "shot",
+          "input": {
+            "file": "a-004.png"
+          },
+          "reaction": "Everyone is out, about a minute and a half. That was quick. I barely had to time anything - I never really dealt with the thick smoke, I just waited.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 160,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:18:35.171Z",
+          "elapsed_s": 102.229,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Try this night again"
+          },
+          "reaction": "It says try another order. I want to see what happens if I skip the books and just say Come now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 179,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:18:42.306Z",
+          "elapsed_s": 109.364,
+          "kind": "input",
+          "op": "key",
+          "input": {
+            "key": "e"
+          },
+          "reaction": "Ignoring the books hint on purpose. Come now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 115,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:18:45.891Z",
+          "elapsed_s": 112.949,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "She just says not without the books. So the other order is the same steps again. I already understood this, I do not want to repeat it on this computer. Stopping here.",
+          "game_clock": null,
+          "engagement": 2,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:18:57.611Z",
+          "elapsed_s": 124.669,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Not now"
+          },
+          "reaction": "Feedback opened with I am stopping already typed in the note box. No Back button, I press Not now instead. Sending nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 174,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:19:00.552Z",
+          "elapsed_s": 127.61,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I got everyone out once. The retry asks me to do the same steps again, so I stop here on the computer.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Marta Kowalska",
+      "device": "phone",
+      "source": "smoke/marta/phone/wall-clock.jsonl",
+      "rawSha256": "9e3d005a1d7500b402a1cac04fbf5c3c239b8cacdc2dc9ac57b9add67b07d66c",
+      "reactions": [
+        {
+          "t": "2026-10-31T04:19:11.059Z",
+          "elapsed_s": 8.48,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Enter the stairwell \u2192"
+          },
+          "reaction": "Same card, fits on the phone screen. Behind it I can read the names changed: Burak is away now and Derya is home. So not the same night.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 325,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:19:14.059Z",
+          "elapsed_s": 11.48,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "1 Sevim Stopped \u00b7 needs help with the books"
+          },
+          "reaction": "I recognise Sevim and her books from the computer an hour ago, sure of it. Going to her first, I know she wants the books.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 389,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:19:21.279Z",
+          "elapsed_s": 18.7,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "The books B"
+          },
+          "reaction": "Everything fits on one phone screen, nice. Buttons are about thumb size. Speech buttons still show E, B, T letters which mean nothing on a phone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 401,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:19:24.440Z",
+          "elapsed_s": 21.861,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Torch F"
+          },
+          "reaction": "Last time Show the stair needed the torch on. Switching it on now while she ties.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 503,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:19:36.894Z",
+          "elapsed_s": 34.315,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 3
+          },
+          "reaction": "She says the bundle is tied, but her name still says tying and Show the stair is grey. Torch is already on. Same stuck feeling as on the computer.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3108,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:19:40.344Z",
+          "elapsed_s": 37.765,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Show the stair R"
+          },
+          "reaction": "Ah, it just unlocked by itself a few seconds after she said tied. So on the computer the torch was maybe not the reason. The words came before the button.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 388,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:19:46.724Z",
+          "elapsed_s": 44.145,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 was asleep. Approach and speak."
+          },
+          "reaction": "This time I try something different: take Sevim with me up to Derya, then everybody down together. Guessing she keeps following.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 229,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:19:49.791Z",
+          "elapsed_s": 47.212,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 was asleep. Approach and speak."
+          },
+          "reaction": "First tap only picked her, it says tap Derya to approach. So a second tap on the same name. I did not expect two taps.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 223,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:20:02.523Z",
+          "elapsed_s": 59.944,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk with me T"
+          },
+          "reaction": "Derya, same steps as the others. Show stair, walk with me. Now it feels like a routine.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 204,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:20:05.223Z",
+          "elapsed_s": 62.644,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "First minute on the phone: I already know the routine from before, so it went fast. Two followers behind me. Going up to Hacer with both of them.",
+          "game_clock": null,
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:20:32.183Z",
+          "elapsed_s": 89.604,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 8
+          },
+          "reaction": "The picture says THICK SMOKE WAIT 5s and my little group is standing low down by the stairs. I thought Derya was on landing 3, now her name is down at landing 1. Confusing. Waiting for the smoke.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8150,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:20:36.940Z",
+          "elapsed_s": 94.361,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Walk to landing 4"
+          },
+          "reaction": "Wait - Sevim and Derya are outside? I never tapped Street. I tapped landing 4 and we went DOWN instead. I do not understand what happened, but fine. Hacer is struggling to breathe, 72 s left. Going up for real now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 320,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:20:59.606Z",
+          "elapsed_s": 117.027,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "4 Hacer"
+          },
+          "reaction": "I am still standing at the street door. My landing 4 tap did nothing that I can see. Hacer says smoke may kill me. Tapping her name directly.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 18,
+          "error": "4 Hacer is visible text and also the start of the control \"4 Hacer Stopped \u00b7 needs to see the stair \u00b7 Smoke may kill me. Get me outside.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:21:05.039Z",
+          "elapsed_s": 122.46,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "x": 305,
+            "y": 505
+          },
+          "reaction": "Selected. Second tap to approach, again the two-tap thing. Smoke is thin now, go go.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 355,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:21:20.169Z",
+          "elapsed_s": 137.59,
+          "kind": "note",
+          "op": "log",
+          "input": null,
+          "reaction": "Hacer died. That hit me. Part is my fault, I waited around and tried to carry two people up the stairs. But I also lost time because my landing 4 tap did not move me and my group went down instead, and Hacer needed two taps. I never saw her die on the picture, only a line of text.",
+          "game_clock": null,
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:21:53.070Z",
+          "elapsed_s": 170.491,
+          "kind": "input",
+          "op": "wait",
+          "input": {
+            "s": 30
+          },
+          "reaction": "No end screen yet. I think I am at the street. Waiting for the stair to close to see what it says.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 30148,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:21:57.603Z",
+          "elapsed_s": 175.024,
+          "kind": "want_quit",
+          "op": "log",
+          "input": null,
+          "reaction": "2 walked out, Hacer died. I would try again if I knew why my landing 4 tap took us down to the street instead of up. I do not, so another try is just guessing. I stop here.",
+          "game_clock": null,
+          "engagement": 2,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:22:04.191Z",
+          "elapsed_s": 181.612,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Tell us about this night"
+          },
+          "reaction": "The menu button is covered by the end card, so I use Tell us about this night to reach feedback.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 417,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:22:50.075Z",
+          "elapsed_s": 227.496,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "reaction": "Feedback opened from the end card. Choosing I am confused.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 314,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:22:53.439Z",
+          "elapsed_s": 230.86,
+          "kind": "input",
+          "op": "tap",
+          "input": {
+            "name": "Not now"
+          },
+          "reaction": "I am confused is marked, note box stays empty this time. No Back button again, pressing Not now. Sending nothing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 239,
+          "error": null,
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T04:22:55.909Z",
+          "elapsed_s": 233.33,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Hacer dying got to me, but I cannot say what my landing 4 tap did, so I have nothing to practise next time.",
+          "game_clock": null,
+          "engagement": 2,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T04:22:57.055Z",
+          "elapsed_s": 234.476,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop on the phone. Hacer died and I do not know why my tap took us down instead of up. Trying again would be guessing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    }
+  ]
+}

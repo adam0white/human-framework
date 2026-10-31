@@ -1,0 +1,87 @@
+{
+  "tester": "Emre Kaya",
+  "validationTime": "2026-10-31T05:16:04.144989+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T04:50:03.622Z",
+        "elapsed_s": 82.995,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Finished in about 80 seconds. A clear ledger of hours with costs shown first; I could explain every setback. But it is short, and I never saw what the other choices would have changed. I would replay once to try the other path, not tonight.",
+        "game_clock": "leave ended",
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 78.752,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T04:51:26.383Z",
+        "elapsed_s": 81.418,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Done on the phone in about 80 seconds. Second path, different costs and a different ending, all traceable. I would come back one more evening for a third path, not tonight.",
+        "game_clock": "leave ended",
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 78.032,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,103 @@
+**Would you return voluntarily?** Yes, but only on another evening and only if walking gave clearer feedback. I would not leave it running. I would not come back tonight.
+
+**Ranked asks**
+1. Show clearly when a walk tap has registered and whether I am moving. Show my figure moving or give a "walking to landing 4" line. This was the main cause of both my confusion and my loss on the phone.
+2. Tell me when I am stalled in smoke, or let me retry or reselect without losing time. On the phone I never reached Derya or Hacer. Derya died while I could not tell whether I was climbing.
+3. When someone dies, say more than one line. I want the narration to acknowledge what I tried, without scolding.
+
+## 1. Session
+- **Persona:** Aisha Rahman, 45, Birmingham community pharmacist.
+- **Exposure:** first visit to this game. I have played other HF games.
+- **Round and arm:** light-1031-smoke1, free stop (floor 0).
+- **Own history:** read in full, 769 lines, nothing unread.
+- **URL:** https://smoke.adamwhite.work/?labRunSource=agent
+- **Session A:** desktop 1280x800 keyboard and mouse, light mode. About 131 s.
+- **Session B:** phone 360x690 touch, light mode. About 157 s.
+- **Cleanup:** I touched no repo and started no servers, helpers or extra browsers. I wrote no files except the driver's screenshots.
+
+## 2. First impressions
+- **Desktop, ~6 s:** "A fire in a block of flats; a night with real stakes." The cream modal and the recording notice were clear.
+- **Phone, ~6 s:** the people were different (Sevim at home with exercise books, Burak away). The layout fit on one screen.
+
+## 3. Verbatim diary
+Elapsed seconds are approximate. I did not keep exact values for every line.
+
+**Session A (desktop)**
+- ~6: "A fire in a block of flats; a night with real stakes. Entering."
+- ~6.7: "Derya needs to see the stair; I follow her first."
+- ~10.9: "Guessing Derya is on landing 3; I walk there."
+- ~16: "Tapping Derya in the picture to approach."
+- ~17.8: "Torch on, then show her the stair."
+- ~20.7: "She can see; asking her to walk with me."
+- ~22.7: "Derya first, then back for Hacer."
+- ~30.8: "Not sure if I am walking down; waiting a moment."
+- ~33.8: "My taps on Street did nothing visible; trying keyboard."
+- 36.1: a tap carried kind=first_minute, which was premature and probably not recorded. "Real clock, short stakes. Derya is out; Hacer next. Walking is slow, I did not know my taps had registered."
+- ~49.3: "She was asleep and groggy; showing her the stair rather than shouting come now."
+- ~67.3: "Walk-to-street taps seem not to move me; the arrow key worked last time."
+- 80.891, first_minute: "I understand: find each neighbour, show the stair, ask them to walk, lead them down before the stair closes. Derya was cared for and is out. I cannot tell if I am walking or stuck; Hacer is coughing in smoke now and I feel a bit anxious."
+- ~98.7: "She asked me to come back for her. I am here, asking again."
+- ~123.6: "Everyone out. Burak went alone, which I did not choose; Derya and Hacer I walked out."
+- ~125.5: "Looking for Feedback; this ending button seems to be it."
+- 130.822, stop (FINISHED): "Stopping after about two minutes; everyone is out. I liked Hacer saying she could not have found the stair alone. I would try a different order another evening, but I do not need it tonight. Pressed I am stopping, typed nothing, Not now."
+
+**Session B (phone)**
+- ~5.8: "Different people this time: Sevim is home with her exercise books, Burak away. Starting with Sevim."
+- ~9: "The layout fits well."
+- ~14.7: "I will help her tie the bundle; her books matter to her, and shouting come now would ignore that."
+- ~44.8: "Sevim is out with her books. Hacer is up top and struggling to breathe; she is next. Notice the roles differ from the laptop: here Hacer cannot see the stair, Derya is the sleeper."
+- 68.337, first_minute: "Second visit, phone. Sevim and her books worked well: I helped tie the bundle and she said so. Now climbing through smoke to Hacer. Different people in different states than the laptop, which I did not expect. The slow walk makes me wait with nothing to do."
+- ~148, reaction attached to a wait op: "I tapped Walk to landing 4 and nothing visibly changes; I cannot tell if I am climbing or stuck. Stair closes soon."
+- 150.404, want_quit (FRUSTRATED): "Derya died and I never reached her; I did not know my walk taps were not moving me. That felt unfair, not a lesson."
+- ~156.4, reaction attached to a tap: "Feedback opened from the menu; the note box came pre-filled with my choice. I typed nothing."
+- 157.105, stop (FRUSTRATED): "Stopping at about 2.7 minutes. Derya died and Hacer was still stuck; I could not tell whether my walk taps were moving me. Sevim and her books was the best part. I would not need it again tonight."
+
+I logged no pulse in either session. Both ended before 180 s.
+
+## 4. Moments
+- **What held me:**
+  - Sevim's books. I helped tie the bundle rather than shouting "come now", and she answered in kind.
+  - Hacer saying she could not have found the stair alone.
+  - Burak leaving alone. He read as a person, not an errand.
+- **What lost me:**
+  - Walk and Street taps gave no visible acknowledgement, so I did not know whether I was moving.
+  - On the phone I stalled, and Derya died while I waited.
+- **Quit wishes:**
+  - Desktop: none. It ended with everyone out.
+  - Phone: one want_quit (FRUSTRATED) at 150 s. It did not pass, and I stopped.
+
+## 5. Confusion and clarity
+- **Clear:** the loop of find a neighbour, show the stair, ask them to walk, lead them down. The countdown and the thin/thick smoke timer were readable.
+- **Unclear:** whether a walk was in progress. The only signs were the followers arriving and the arrow key, which seemed to coincide with progress. I am guessing, not sure.
+- **Different between sessions:**
+  - Cast and roles changed. I had not expected that, though it was interesting.
+  - Desktop: Sevim away, Burak the one who leaves alone, Derya needing to see the stair.
+  - Phone: Burak away, Sevim with her books, Derya asleep, Hacer unable to see the stair.
+
+## 6. Device use
+- **Screenshots viewed:**
+  - desktop/a-001.png: dark page, cream modal "Smoke on the Stairs.", "Enter the stairwell →" button, recording notice.
+  - desktop/a-002.png: gameplay with the building cutaway, "MOVE · THICK IN 2s", and the tabs and buttons below.
+  - phone/b-001.png: the modal fits at 360 wide and is readable.
+  - phone/b-002.png: the whole game fits one screen. The cutaway, tabs and buttons are readable.
+- **Not viewed:** desktop/a-003.png (taken at the end card). I did not open it with Read.
+- **Controls used:** neighbour buttons, speech buttons (Come now, The books, Walk with me, Show the stair, Torch), Walk to landing, Street, ArrowDown, a tap on a figure at x/y, and wait.
+- **Seen trouble:** walk taps with no visible effect on both sizes.
+- **Unseen:** I took no phone screenshot of the end state.
+
+## 7. Stop and return
+- **Session A stop (FINISHED):** "Stopping after about two minutes; everyone is out. I liked Hacer saying she could not have found the stair alone. I would try a different order another evening, but I do not need it tonight."
+- **Session B stop (FRUSTRATED):** "Stopping at about 2.7 minutes. Derya died and Hacer was still stuck; I could not tell whether my walk taps were moving me. Sevim and her books was the best part. I would not need it again tonight."
+- **Feedback:**
+  - Desktop: opened through "Tell us about this night" on the end card. I chose "I'm stopping", then "Not now".
+  - Phone: opened through ≡ menu → "I'm confused", then "Not now". The note box came pre-filled with "I'm confused". I typed nothing and pressed no Submit.
+  - Because of the desktop route, I did not follow the brief's menu → Feedback step literally in session A.
+- **Return:** the "would you return" sentence is at the top. I would not leave it running, and I would not come back tonight.
+
+## 8. Changes
+The three ranked asks are at the top.
+
+## 9. Compared with my last visit
+This was my first visit to this game, so there is nothing to compare.
+
+`git worktree list`: I touched no repo, so none of my worktrees exist.

@@ -1,0 +1,36 @@
+{
+  "time": "2026-10-31T04:45:36.686128+00:00",
+  "checks": [
+    {
+      "tester": "Jonas Berg",
+      "pids": [99453, 99430, 99432],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    },
+    {
+      "tester": "Aisha Rahman",
+      "pids": [2951, 2925, 2927],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    },
+    {
+      "tester": "Diego Silva",
+      "pids": [7330, 7307, 7309],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    },
+    {
+      "tester": "Leila Mansour",
+      "pids": [9073, 9050, 9052],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    },
+    {
+      "tester": "Marta Kowalska",
+      "pids": [15973, 15946, 15948],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    }
+  ],
+  "noKillNeeded": true
+}

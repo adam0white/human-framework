@@ -1,0 +1,103 @@
+**Would you return voluntarily?** Not tonight, and I would not leave it running. I might come back another evening, but only if a second run gave me something new. Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up.
+
+**Ranked asks**
+1. Make the game longer or make later runs differ. I finished all three days in about 27 s on my phone and about 25 s on desktop. After that I only had "Play another three days".
+2. Give me a reply from the people I'm affecting. After I read the private page aloud, or told Selin about my marriage, I got narration but no answer from the person I affected.
+3. Tell me up front how much is at stake. The story texts said grief was not settled but never said what I had won or lost. I had to guess whether my choices mattered.
+
+## 1. Session
+
+- Persona: Nia Okafor, 19. First visit to Days. I have played other HF games.
+- Round: light-1031-days1, free stop, floor 0, ceiling 20 min.
+- Own history: I read all 867 lines of own-history.md. It contains nothing about this game. I recognised nothing from it.
+- URL: https://days.adamwhite.work/?labRunSource=agent (draft build HF4.8.1)
+- Phone: 360x690 touch, light, port 22206. About 36 s real time.
+- Desktop: 1280x800 keyboard and mouse, light, port 22207, new game. About 33 s real time.
+- The two stops are short because the game ended. I did not reach the 60 s and 180 s checkpoints in either session.
+
+## 2. First impressions
+
+- **Phone, 0–5 s:** a content warning, then "Begin the three days" and "Begin with Recording off". I chose the first and left Recording on.
+- **Phone, about 7 s:** a first choice, soup or the front door, with the cost written on each button.
+- **Phone, about 9 s:** I paid the first claim to see who reacted. The story moved on straight away.
+- **Phone, about 11 s:** I read the private notebook page aloud. The room reacted and a disclosure cost appeared.
+- **Desktop, about 2 s:** the same opening on a wide layout, with the room drawn on the right.
+
+## 3. Verbatim diary lines
+
+Elapsed seconds are the driver's.
+
+**Session A (phone)**
+- 5.3 s: "A funeral story. Quick choice is soup or door. Starting."
+- 7.4 s: "Soup first, plausible action."
+- 9.3 s: "Impatient: pay now, see who reacts."
+- 11.2 s: "Expressive: read it aloud and see who reacts."
+- 12.9 s: "Ask her to stay, she may refuse - I want to see that."
+- 15.1 s: "Skipping the meal, impatient."
+- 20.4 s: "I read it aloud, so apologise. Feels right."
+- 23.7 s: "Go myself - the promised visit."
+- 25.4 s: "Say it. This is the moment."
+- 29.4 s: "That was over fast. Checking menu for Feedback."
+- 36.0 s, stop, FINISHED: "Finished all three days in under 30 seconds. Quick, readable, costs shown on buttons. I liked the Selin choice but it was over before I got hooked. I would close it."
+
+**Session B (desktop)**
+- 4.2 s: "Second device; start again, try different choices this time."
+- 9.5 s: "This time keep it private, to see the other side."
+- 16.9 s: "Try the later-delivery path this time."
+- 23.6 s: "Silence this time, to compare."
+- 32.8 s, stop, FINISHED: "Done again in about 30 seconds with different choices; ending text changed (private page stayed private, delivery not yet happened). Wide layout is nice. Too short to hook me. Would close it."
+
+I logged no first_minute or pulse line in either session. The game ended before elapsed_s reached 60.
+
+## 4. Moments
+
+- **What held me:**
+  - The cost written on every button, which let me act quickly.
+  - Reading the page aloud and seeing the room react straight away.
+  - The Selin "ask her to stay, she may refuse" choice. She agreed, which was a mild surprise.
+  - The ending line: "A private page was read aloud. The agreement to limit its spread does not undo that harm."
+- **What lost me:**
+  - Each choice gave a long paragraph and then moved on at once. I never felt anyone pushed back on me.
+  - Both runs ended in about 30 seconds.
+- **Quit wishes:** none. I stopped because the game ended (FINISHED), not because I wanted to leave.
+- **Pulses:** none. The sessions ended before 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The costs on every button (hours, tiredness, savings).
+  - The status line with free hours, tiredness and door cover.
+- **Confusing:**
+  - Both final screens showed only "Play another three days". I could not tell whether other endings exist.
+  - "Door cover agreed" and "No door cover agreed" in the status line meant little to me until I had chosen Selin's shift.
+  - I never saw a sign that I could do anything except pick one of the two buttons.
+- **Feedback:** I opened the menu and Feedback on both devices. It offered "I'm stopping" and "I'm confused". I pressed "I'm stopping" on both, and the note box pre-filled with "I'm stopping". I typed nothing, changed no consent or recording setting, and pressed no Submit. I closed it with Back.
+
+## 6. Device use
+
+- **Phone, 360x690:**
+  - Screenshot viewed: `a-001.png`. It showed the content-warning card over the story page, with "How recording works", "Begin the three days" and "Begin with Recording off". Nothing was clipped.
+  - Controls used: Begin the three days, the two object buttons at each step, Menu, Feedback, I'm stopping, Back.
+  - I did not take or view a phone screenshot of the story page itself. I make no claim about its layout.
+- **Desktop, 1280x800:**
+  - Screenshot viewed: `b-001.png`. It showed the same card over a two-column page. The story text was on the left and a drawn room, with a clock, a front door and a chair, was on the right.
+  - Controls used: the same set as on the phone.
+  - I did not view a desktop story screen after the card closed. I used no keyboard keys.
+
+## 7. Stop and return
+
+- **Session A stop, FINISHED, 36 s:** "Finished all three days in under 30 seconds. Quick, readable, costs shown on buttons. I liked the Selin choice but it was over before I got hooked. I would close it."
+- **Session B stop, FINISHED, 32.8 s:** "Done again in about 30 seconds with different choices; ending text changed (private page stayed private, delivery not yet happened). Wide layout is nice. Too short to hook me. Would close it."
+- **Would I return voluntarily?** Not tonight. I might come back another evening, but only if the game gave me a different story or a character who answered back. I would not leave it running, because there is nothing to wait for.
+
+## 8. Changes I would want
+
+1. Make the game longer, or make a second run open on different scenes.
+2. Let the people I affect answer me in their own words.
+3. Say what is at stake before I choose, so I know my choices matter.
+
+## 9. Compared with my last visit
+
+First visit to this game.
+
+Cleanup: I created no worktree, server or browser, and wrote no files except the two screenshots through the driver. I touched no repository, so no `git worktree list` applies.

@@ -1,0 +1,490 @@
+{
+  "emre": {
+    "tester": "Emre Kaya",
+    "validationTime": "2026-10-31T05:16:04.144989+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T04:50:03.622Z",
+          "elapsed_s": 82.995,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Finished in about 80 seconds. A clear ledger of hours with costs shown first; I could explain every setback. But it is short, and I never saw what the other choices would have changed. I would replay once to try the other path, not tonight.",
+          "game_clock": "leave ended",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 78.752,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T04:51:26.383Z",
+          "elapsed_s": 81.418,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Done on the phone in about 80 seconds. Second path, different costs and a different ending, all traceable. I would come back one more evening for a third path, not tonight.",
+          "game_clock": "leave ended",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 78.032,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "pavel": {
+    "tester": "Pavel Novak",
+    "validationTime": "2026-10-31T05:16:04.151011+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T04:53:28.258Z",
+          "elapsed_s": 86.663,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop at the end of the three days, about 85 seconds. The leave ended with my promised visit to Sukru not kept and an hour unused, and I could not see how to keep it. I chose Im stopping in Feedback, typed nothing, submitted nothing.",
+          "game_clock": "Leave ended",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 83.61,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T04:54:52.722Z",
+          "elapsed_s": 83.343,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop at the end of the three days, about 82 seconds, with the visit kept and the notebook lent to Burak. Chose Im stopping in Feedback, typed nothing, submitted nothing.",
+          "game_clock": "Leave ended",
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 80.436,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "tessa": {
+    "tester": "Tessa Williams",
+    "validationTime": "2026-10-31T05:16:04.157894+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T04:56:56.626Z",
+          "elapsed_s": 83.799,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone. It finished fast, the ending named what I did, but I only ever picked between two set buttons and the story was over before I felt like I made it mine.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 80.54,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T04:58:21.859Z",
+          "elapsed_s": 84.26,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the laptop. Nicer than the phone, and failing the visit was honest and told me why. But it is one short pass of two-button choices and I have seen what changes. I would not come back for the same three days.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 80.269,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "nia": {
+    "tester": "Nia Okafor",
+    "validationTime": "2026-10-31T05:16:04.162449+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T04:59:36.321Z",
+          "elapsed_s": 36.04,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Finished all three days in under 30 seconds. Quick, readable, costs shown on buttons. I liked the Selin choice but it was over before I got hooked. I would close it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 32.541,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T05:00:10.622Z",
+          "elapsed_s": 32.8,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Done again in about 30 seconds with different choices; ending text changed (private page stayed private, delivery not yet happened). Wide layout is nice. Too short to hook me. Would close it.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 29.378,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "miles": {
+    "tester": "Miles Osei",
+    "validationTime": "2026-10-31T05:16:04.168127+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T05:01:57.519Z",
+          "elapsed_s": 79.161,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "The three days are over and Leyla went home with things in order. I stop here. Good, but it was over before I settled in.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 74.259,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T05:01:01.354Z",
+            "elapsed_s": 22.996,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "Stay at the door and skip the meal."
+            },
+            "reaction": "I am already Rested, so eating again feels wasted. But \"can add\" an hour is vague. I need 2 for the visit and some for checking. Gamble on the door.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 2,
+            "error": "Stay at the door and skip the meal. is visible text and also the start of the control \"Stay at the door and skip the meal. Save the hour; become more tired, which can add a checking or travel hour.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+            "requested_control_present_before": true
+          },
+          {
+            "t": "2026-10-31T05:01:21.125Z",
+            "elapsed_s": 42.767,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "Tell Selin what you wished you could say."
+            },
+            "reaction": "The hours fit exactly. Relief. Selin did not ask for the story, only stays. I let Leyla say it. This line touched me.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 3,
+            "error": "Tell Selin what you wished you could say. is visible text and also the start of the control \"Tell Selin what you wished you could say. Ask Selin to stay and listen; the conversation tires you.\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+            "requested_control_present_before": true
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T05:03:12.001Z",
+          "elapsed_s": 73.849,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Two leaves, two endings. I know the sums now. I stop for tonight.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FINISHED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 71.003,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [
+      {
+        "type": "system",
+        "subtype": "permission_denied",
+        "messageType": "str",
+        "tool": "Bash",
+        "decisionReason": "mode"
+      },
+      {
+        "type": "system",
+        "subtype": "permission_denied",
+        "messageType": "str",
+        "tool": "Bash",
+        "decisionReason": "mode"
+      }
+    ],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  }
+}

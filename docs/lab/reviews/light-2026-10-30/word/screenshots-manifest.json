@@ -1,0 +1,292 @@
+[
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "privatePath": "word/maya/phone/a-001.png",
+    "bytes": 97448,
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "privatePath": "word/maya/phone/a-002.png",
+    "bytes": 193993,
+    "sha256": "f71d1bf418fa8a7dadea9a4a2fe436d8925f2d512bd1a341228900c6587f9b8d",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "phone",
+    "privatePath": "word/maya/phone/first-minute.png",
+    "bytes": 112413,
+    "sha256": "b07470cb2869eef590142c6f49834b667db66ee8658467f572340a509ecbdcb7",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "privatePath": "word/maya/desktop/b-001.png",
+    "bytes": 270673,
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "privatePath": "word/maya/desktop/b-002.png",
+    "bytes": 231234,
+    "sha256": "cc0f18f08d69a83e9261c7e32ad9f6e420818adef88ed4832d05b8e1fdb4d87b",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Maya Chen",
+    "device": "desktop",
+    "privatePath": "word/maya/desktop/first-minute.png",
+    "bytes": 231234,
+    "sha256": "cc0f18f08d69a83e9261c7e32ad9f6e420818adef88ed4832d05b8e1fdb4d87b",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "phone",
+    "privatePath": "word/mei/phone/b-001.png",
+    "bytes": 97448,
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "phone",
+    "privatePath": "word/mei/phone/b-002.png",
+    "bytes": 131200,
+    "sha256": "15e6070f9f7a5b38576e3dbc87d4bf472306d12e5cda519adf80c27315097aa4",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "phone",
+    "privatePath": "word/mei/phone/first-minute.png",
+    "bytes": 120443,
+    "sha256": "0594fa07729809167e2e085b24173e5582e0294627e25bb1ffdc183749171fdf",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "desktop",
+    "privatePath": "word/mei/desktop/a-001.png",
+    "bytes": 270673,
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "desktop",
+    "privatePath": "word/mei/desktop/first-minute.png",
+    "bytes": 227873,
+    "sha256": "1aae4faed2c4c03c9c798e16424503e0c2f4e1af04764e40a2edcd1f0ab648e8",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "phone",
+    "privatePath": "word/samir/phone/b-001.png",
+    "bytes": 97448,
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "phone",
+    "privatePath": "word/samir/phone/b-002.png",
+    "bytes": 123445,
+    "sha256": "4c1a6fcd7ccb97c9a87711b2a29b93cfaee6dd74cb1fa33f77be1f7e0357d62f",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "phone",
+    "privatePath": "word/samir/phone/b-003.png",
+    "bytes": 168475,
+    "sha256": "3e160369f347fe0b74e6cc7df33fb92ca2d21d11235c5546ab66b4ab19b66276",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "phone",
+    "privatePath": "word/samir/phone/first-minute.png",
+    "bytes": 46073,
+    "sha256": "cc768188d97965768c3b178fb6d9544537fbd51eebf1709a070c2667808373ae",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "desktop",
+    "privatePath": "word/samir/desktop/a-001.png",
+    "bytes": 270673,
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "desktop",
+    "privatePath": "word/samir/desktop/a-002.png",
+    "bytes": 353580,
+    "sha256": "0a6cef3362bf845d0c856fcad42f5421702d7aaf5c1a7b4aaafabeb940f9c880",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "desktop",
+    "privatePath": "word/samir/desktop/first-minute.png",
+    "bytes": 212568,
+    "sha256": "0552d137de7518f9fa420b0fd96722d5fb4203e7d579db2b58971a5d6b948318",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "privatePath": "word/diego/phone/a-001.png",
+    "bytes": 97448,
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "phone",
+    "privatePath": "word/diego/phone/first-minute.png",
+    "bytes": 199500,
+    "sha256": "b0209f98f20de26ab2913c3464b1c1d5293b0349f3e50f7f9662b4403ee92387",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "desktop",
+    "privatePath": "word/diego/desktop/b-001.png",
+    "bytes": 270673,
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Diego Silva",
+    "device": "desktop",
+    "privatePath": "word/diego/desktop/b-002.png",
+    "bytes": 249761,
+    "sha256": "11ad3296299dce4af3d4a70afe86863392e302ca4efef35ae1a418863c6123c8",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mina Georgiou",
+    "device": "phone",
+    "privatePath": "word/mina/phone/b-001.png",
+    "bytes": 97448,
+    "sha256": "9b7da927024878fe454b943e5a4405eeaed8a85e9ae0fba0a440d7ee58a88c51",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mina Georgiou",
+    "device": "phone",
+    "privatePath": "word/mina/phone/b-002.png",
+    "bytes": 101203,
+    "sha256": "b63ec7daeb91d1e5dfc9fc660c4c21b3b6f0a9c1c3c688413e3dfa8e5380cfd4",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mina Georgiou",
+    "device": "phone",
+    "privatePath": "word/mina/phone/b-003.png",
+    "bytes": 193993,
+    "sha256": "f71d1bf418fa8a7dadea9a4a2fe436d8925f2d512bd1a341228900c6587f9b8d",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mina Georgiou",
+    "device": "phone",
+    "privatePath": "word/mina/phone/first-minute.png",
+    "bytes": 72708,
+    "sha256": "324f8dfc00df46971ea569741940049fc776f5ae2199ff028a700ff41aa47a3e",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mina Georgiou",
+    "device": "desktop",
+    "privatePath": "word/mina/desktop/a-001.png",
+    "bytes": 270673,
+    "sha256": "3954836b290c2d1ea3d7e18375bb67dcedf19a38d1478a9c43dbfb9d2b5a71e1",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mina Georgiou",
+    "device": "desktop",
+    "privatePath": "word/mina/desktop/a-002.png",
+    "bytes": 272505,
+    "sha256": "40ec2779aab7f9d80aaba1b4bbdab771bb7846c6f3f1494396433410e076e9d8",
+    "testerImageReadReceipt": true,
+    "reportNamesFileAsViewed": true,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  },
+  {
+    "tester": "Mina Georgiou",
+    "device": "desktop",
+    "privatePath": "word/mina/desktop/first-minute.png",
+    "bytes": 227854,
+    "sha256": "8b57bd5caba3b7ee98fba0abda3b0414344b6947a64576fff4171ce2d5d3368d",
+    "testerImageReadReceipt": false,
+    "reportNamesFileAsViewed": false,
+    "note": "hash only; receipt from validation.json imageReads (one image block, success). No receipt means automatic capture or unviewed. No image was opened by the preparer."
+  }
+]

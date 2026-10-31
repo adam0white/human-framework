@@ -1,0 +1,431 @@
+{
+ "failures": 0,
+ "checks": [
+  {
+   "label": "jonas primaryReturn",
+   "file": "jonas/report.md",
+   "span": "Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "jonas primaryReturn",
+   "file": "jonas/report.original.md.txt",
+   "span": "Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running.",
+   "exact": true
+  },
+  {
+   "label": "jonas laterFullReturn",
+   "file": "jonas/report.md",
+   "span": "Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running. It needs my attention every few seconds.",
+   "exact": true
+  },
+  {
+   "label": "jonas laterFullReturn",
+   "file": "jonas/report.original.md.txt",
+   "span": "Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running. It needs my attention every few seconds.",
+   "exact": true
+  },
+  {
+   "label": "jonas ask 1",
+   "file": "jonas/report.md",
+   "span": "Make the phone walk controls reliable. \"Walk to the street\" was reported covered or off screen, and \"Street\" did nothing visible. I stood still while Derya died.",
+   "exact": true
+  },
+  {
+   "label": "jonas ask 1",
+   "file": "jonas/report.original.md.txt",
+   "span": "Make the phone walk controls reliable. \"Walk to the street\" was reported covered or off screen, and \"Street\" did nothing visible. I stood still while Derya died.",
+   "exact": true
+  },
+  {
+   "label": "jonas ask 2",
+   "file": "jonas/report.md",
+   "span": "Show on the map where each neighbour is relative to me, and keep the neighbour button names stable. Their labels change with state, so my named taps kept failing.",
+   "exact": true
+  },
+  {
+   "label": "jonas ask 2",
+   "file": "jonas/report.original.md.txt",
+   "span": "Show on the map where each neighbour is relative to me, and keep the neighbour button names stable. Their labels change with state, so my named taps kept failing.",
+   "exact": true
+  },
+  {
+   "label": "jonas ask 3",
+   "file": "jonas/report.md",
+   "span": "Say plainly what \"Street\" does, or remove it. Its hint says \"tap Street to lead followers down\", but nothing happened.",
+   "exact": true
+  },
+  {
+   "label": "jonas ask 3",
+   "file": "jonas/report.original.md.txt",
+   "span": "Say plainly what \"Street\" does, or remove it. Its hint says \"tap Street to lead followers down\", but nothing happened.",
+   "exact": true
+  },
+  {
+   "label": "aisha primaryReturn",
+   "file": "aisha/report.md",
+   "span": "Yes, but only on another evening and only if walking gave clearer feedback. I would not leave it running. I would not come back tonight.",
+   "exact": true
+  },
+  {
+   "label": "aisha primaryReturn",
+   "file": "aisha/report.original.md.txt",
+   "span": "Yes, but only on another evening and only if walking gave clearer feedback. I would not leave it running. I would not come back tonight.",
+   "exact": true
+  },
+  {
+   "label": "aisha laterFullReturn",
+   "file": "aisha/report.md",
+   "span": "the \"would you return\" sentence is at the top. I would not leave it running, and I would not come back tonight.",
+   "exact": true
+  },
+  {
+   "label": "aisha laterFullReturn",
+   "file": "aisha/report.original.md.txt",
+   "span": "the \"would you return\" sentence is at the top. I would not leave it running, and I would not come back tonight.",
+   "exact": true
+  },
+  {
+   "label": "aisha ask 1",
+   "file": "aisha/report.md",
+   "span": "Show clearly when a walk tap has registered and whether I am moving. Show my figure moving or give a \"walking to landing 4\" line. This was the main cause of both my confusion and my loss on the phone.",
+   "exact": true
+  },
+  {
+   "label": "aisha ask 1",
+   "file": "aisha/report.original.md.txt",
+   "span": "Show clearly when a walk tap has registered and whether I am moving. Show my figure moving or give a \"walking to landing 4\" line. This was the main cause of both my confusion and my loss on the phone.",
+   "exact": true
+  },
+  {
+   "label": "aisha ask 2",
+   "file": "aisha/report.md",
+   "span": "Tell me when I am stalled in smoke, or let me retry or reselect without losing time. On the phone I never reached Derya or Hacer. Derya died while I could not tell whether I was climbing.",
+   "exact": true
+  },
+  {
+   "label": "aisha ask 2",
+   "file": "aisha/report.original.md.txt",
+   "span": "Tell me when I am stalled in smoke, or let me retry or reselect without losing time. On the phone I never reached Derya or Hacer. Derya died while I could not tell whether I was climbing.",
+   "exact": true
+  },
+  {
+   "label": "aisha ask 3",
+   "file": "aisha/report.md",
+   "span": "When someone dies, say more than one line. I want the narration to acknowledge what I tried, without scolding.",
+   "exact": true
+  },
+  {
+   "label": "aisha ask 3",
+   "file": "aisha/report.original.md.txt",
+   "span": "When someone dies, say more than one line. I want the narration to acknowledge what I tried, without scolding.",
+   "exact": true
+  },
+  {
+   "label": "diego primaryReturn",
+   "file": "diego/report.md",
+   "span": "I might come back another evening, but only if the game showed me how long each neighbour has before the smoke gets them, and only if the phone showed where my figure is. I would not leave it running. Both times I stopped at about 150 seconds with two of the four neighbours dead.",
+   "exact": true
+  },
+  {
+   "label": "diego primaryReturn",
+   "file": "diego/report.original.md.txt",
+   "span": "I might come back another evening, but only if the game showed me how long each neighbour has before the smoke gets them, and only if the phone showed where my figure is. I would not leave it running. Both times I stopped at about 150 seconds with two of the four neighbours dead.",
+   "exact": true
+  },
+  {
+   "label": "diego laterFullReturn",
+   "file": "diego/report.md",
+   "span": "Conditions as at the top. Another evening: yes, maybe, with the conditions above. Leave it running: no.",
+   "exact": true
+  },
+  {
+   "label": "diego laterFullReturn",
+   "file": "diego/report.original.md.txt",
+   "span": "Conditions as at the top. Another evening: yes, maybe, with the conditions above. Leave it running: no.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 1",
+   "file": "diego/report.md",
+   "span": "Show each neighbour's smoke clock before I commit to them. Hacer died unseen on the phone, and Derya and Hacer died together on the desktop.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 1",
+   "file": "diego/report.original.md.txt",
+   "span": "Show each neighbour's smoke clock before I commit to them. Hacer died unseen on the phone, and Derya and Hacer died together on the desktop.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 2",
+   "file": "diego/report.md",
+   "span": "On the phone, show my figure and give a visible reaction to a tap. The named landing buttons were covered or off screen, and for the first minute I could not tell if I was moving.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 2",
+   "file": "diego/report.original.md.txt",
+   "span": "On the phone, show my figure and give a visible reaction to a tap. The named landing buttons were covered or off screen, and for the first minute I could not tell if I was moving.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 3",
+   "file": "diego/report.md",
+   "span": "Make the walk to a neighbour or the street feel faster, or show progress. I spent a lot of the run waiting on it.",
+   "exact": true
+  },
+  {
+   "label": "diego ask 3",
+   "file": "diego/report.original.md.txt",
+   "span": "Make the walk to a neighbour or the street feel faster, or show progress. I spent a lot of the run waiting on it.",
+   "exact": true
+  },
+  {
+   "label": "leila primaryReturn",
+   "file": "leila/report.md",
+   "span": "I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now.",
+   "exact": true
+  },
+  {
+   "label": "leila primaryReturn",
+   "file": "leila/report.original.md.txt",
+   "span": "I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now.",
+   "exact": true
+  },
+  {
+   "label": "leila laterFullReturn",
+   "file": "leila/report.md",
+   "span": "I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now. The conditions: show walking progress and tell me extra taps restart the walk. Without that, I would repeat the same silent 12 s waits.",
+   "exact": true
+  },
+  {
+   "label": "leila laterFullReturn",
+   "file": "leila/report.original.md.txt",
+   "span": "I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now. The conditions: show walking progress and tell me extra taps restart the walk. Without that, I would repeat the same silent 12 s waits.",
+   "exact": true
+  },
+  {
+   "label": "leila ask 1",
+   "file": "leila/report.md",
+   "span": "Show walking. After one landing tap, show a \"walking, N s\" marker or my figure moving. Say that extra taps restart the walk.",
+   "exact": true
+  },
+  {
+   "label": "leila ask 1",
+   "file": "leila/report.original.md.txt",
+   "span": "Show walking. After one landing tap, show a \"walking, N s\" marker or my figure moving. Say that extra taps restart the walk.",
+   "exact": true
+  },
+  {
+   "label": "leila ask 2",
+   "file": "leila/report.md",
+   "span": "Warn before a neighbour dies. The status text said \"Smoke may kill me\" and then they were dead, with no time shown for them.",
+   "exact": true
+  },
+  {
+   "label": "leila ask 2",
+   "file": "leila/report.original.md.txt",
+   "span": "Warn before a neighbour dies. The status text said \"Smoke may kill me\" and then they were dead, with no time shown for them.",
+   "exact": true
+  },
+  {
+   "label": "leila ask 3",
+   "file": "leila/report.md",
+   "span": "Start the Feedback note box empty. It opens pre-filled with \"I'm confused\", so a stray Submit would send words I did not choose.",
+   "exact": true
+  },
+  {
+   "label": "leila ask 3",
+   "file": "leila/report.original.md.txt",
+   "span": "Start the Feedback note box empty. It opens pre-filled with \"I'm confused\", so a stray Submit would send words I did not choose.",
+   "exact": true
+  },
+  {
+   "label": "leila later ask 2",
+   "file": "leila/report.md",
+   "span": "Show each neighbour's time left before smoke kills them.",
+   "exact": true
+  },
+  {
+   "label": "leila later ask 3",
+   "file": "leila/report.md",
+   "span": "Start the Feedback note empty, and add a Back button next to \"Not now\".",
+   "exact": true
+  },
+  {
+   "label": "marta primaryReturn",
+   "file": "marta/report.md",
+   "span": "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why.",
+   "exact": true
+  },
+  {
+   "label": "marta primaryReturn",
+   "file": "marta/report.original.md.txt",
+   "span": "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why.",
+   "exact": true
+  },
+  {
+   "label": "marta laterFullReturn",
+   "file": "marta/report.md",
+   "span": "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why. I like that a night takes two minutes and that the people have small wants, like Sevim and her books. But I return to things where I can get better at the timing. Here I could not tell whether I had timed anything at all. If the game showed me where my tap sends me, and let me approach someone in one tap, I would try the phone night again in a short break to save Hacer.",
+   "exact": true
+  },
+  {
+   "label": "marta laterFullReturn",
+   "file": "marta/report.original.md.txt",
+   "span": "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why. I like that a night takes two minutes and that the people have small wants, like Sevim and her books. But I return to things where I can get better at the timing. Here I could not tell whether I had timed anything at all. If the game showed me where my tap sends me, and let me approach someone in one tap, I would try the phone night again in a short break to save Hacer.",
+   "exact": true
+  },
+  {
+   "label": "marta Another-evening answer",
+   "file": "marta/report.md",
+   "span": "Maybe, under the condition above. I would not come back as it is now.",
+   "exact": true
+  },
+  {
+   "label": "marta Leave-it-running answer",
+   "file": "marta/report.md",
+   "span": "No.",
+   "exact": true
+  },
+  {
+   "label": "marta ask 1",
+   "file": "marta/report.md",
+   "span": "Show clearly where a tap sends me. On the phone I tapped \"Walk to landing 4\", and my group went down to the street instead of up. Nothing on screen explained it.",
+   "exact": true
+  },
+  {
+   "label": "marta ask 1",
+   "file": "marta/report.original.md.txt",
+   "span": "Show clearly where a tap sends me. On the phone I tapped \"Walk to landing 4\", and my group went down to the street instead of up. Nothing on screen explained it.",
+   "exact": true
+  },
+  {
+   "label": "marta ask 2",
+   "file": "marta/report.md",
+   "span": "Let me approach a neighbour with one tap, and keep the name buttons steady while I aim. Hacer's status kept changing (\"needs to see the stair\" / \"catching my breath\"), so my clicks missed her twice on desktop. On the phone, every name needed two taps.",
+   "exact": true
+  },
+  {
+   "label": "marta ask 2",
+   "file": "marta/report.original.md.txt",
+   "span": "Let me approach a neighbour with one tap, and keep the name buttons steady while I aim. Hacer's status kept changing (\"needs to see the stair\" / \"catching my breath\"), so my clicks missed her twice on desktop. On the phone, every name needed two taps.",
+   "exact": true
+  },
+  {
+   "label": "marta ask 3",
+   "file": "marta/report.md",
+   "span": "Unlock \"Show the stair\" at the same moment the neighbour says she is ready. On the phone, hide the E/B/T/R/F key letters, because they mean nothing there.",
+   "exact": true
+  },
+  {
+   "label": "marta ask 3",
+   "file": "marta/report.original.md.txt",
+   "span": "Unlock \"Show the stair\" at the same moment the neighbour says she is ready. On the phone, hide the E/B/T/R/F key letters, because they mean nothing there.",
+   "exact": true
+  },
+  {
+   "label": "marta later ask 1",
+   "file": "marta/report.md",
+   "span": "Show clearly where a tap on a landing sends me, and show it when my followers go somewhere else without me.",
+   "exact": true
+  },
+  {
+   "label": "Jonas report: desktop length was an estimate",
+   "file": "jonas/report.md",
+   "span": "Ran about 15 real minutes (my estimate).",
+   "exact": true
+  },
+  {
+   "label": "Jonas report: context compaction and omitted desktop diary",
+   "file": "jonas/report.md",
+   "span": "my context was compacted after the desktop session. I do not have the desktop's raw diary lines or elapsed_s values.",
+   "exact": true
+  },
+  {
+   "label": "Jonas desktop raw stop at 148.884 s",
+   "file": "jonas/desktop/wall-clock.jsonl",
+   "span": "Stopping at 146 s. First run: all three home reached the street at about 114 s.",
+   "exact": true
+  },
+  {
+   "label": "Jonas phone personal stop wording",
+   "file": "jonas/phone/wall-clock.jsonl",
+   "span": "I have seen what this version does and I am stopping here.",
+   "exact": true
+  },
+  {
+   "label": "Aisha desktop first_minute tag at 36.117 s (premature)",
+   "file": "aisha/desktop/wall-clock.jsonl",
+   "span": "Real clock, short stakes. Derya is out; Hacer next. Walking is slow, I did not know my taps had registered.",
+   "exact": true
+  },
+  {
+   "label": "Aisha desktop valid first_minute log at about 80.9 s",
+   "file": "aisha/desktop/wall-clock.jsonl",
+   "span": "I understand: find each neighbour, show the stair, ask them to walk, lead them down before the stair closes.",
+   "exact": true
+  },
+  {
+   "label": "Aisha report: end-card feedback route on desktop",
+   "file": "aisha/report.md",
+   "span": "Desktop: opened through \"Tell us about this night\" on the end card.",
+   "exact": true
+  },
+  {
+   "label": "Diego report: phone FINISHED label is inaccurate",
+   "file": "diego/report.md",
+   "span": "That reason is inaccurate: no end card appeared.",
+   "exact": true
+  },
+  {
+   "label": "Diego phone stop at about 150 s",
+   "file": "diego/phone/wall-clock.jsonl",
+   "span": "I did not wait for the end card.",
+   "exact": true
+  },
+  {
+   "label": "Leila report: dark art despite light request",
+   "file": "leila/report.md",
+   "span": "the game was dark-themed on both devices although I asked for light.",
+   "exact": true
+  },
+  {
+   "label": "Leila desktop feedback draft prefill and Not now",
+   "file": "leila/desktop/wall-clock.jsonl",
+   "span": "Feedback opened with I am confused already in the note; I pressed Not now and sent nothing.",
+   "exact": true
+  },
+  {
+   "label": "Leila phone feedback draft prefill",
+   "file": "leila/phone/wall-clock.jsonl",
+   "span": "Feedback opened with the note box already holding the words I am confused; no Back button, only Not now.",
+   "exact": true
+  },
+  {
+   "label": "Marta report: hour-ago estimate",
+   "file": "marta/report.md",
+   "span": "I remembered her from the computer about an hour earlier and was sure of it.",
+   "exact": true
+  },
+  {
+   "label": "Marta phone: menu covered by end card, alternate feedback path",
+   "file": "marta/phone/wall-clock.jsonl",
+   "span": "The menu button is covered by the end card, so I use Tell us about this night to reach feedback.",
+   "exact": true
+  },
+  {
+   "label": "Marta phone: followers walked out while she stayed",
+   "file": "marta/report.md",
+   "span": "My guess, unconfirmed, is that followers walked to the street on their own while I was slowed in the smoke.",
+   "exact": true
+  },
+  {
+   "label": "Marta report: two-tap approach on phone",
+   "file": "marta/report.md",
+   "span": "First tap only picked her, it says tap Derya to approach.",
+   "exact": true
+  }
+ ]
+}

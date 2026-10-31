@@ -1,0 +1,11 @@
+# Logical tester ledger — Word
+
+One row per tester. Verdict words are each tester's own conditions. They are not votes and not a population estimate. Primary return is the opening answer. The later full return is the separate section 7 answer. Both are literal spans in `exact-quote-extraction.json`. The session labels are the producers' own labels and are not five independent game completions.
+
+| id     | tester        | exposure                          | verdict | stops                                              | asks          |
+| ------ | ------------- | --------------------------------- | ------- | -------------------------------------------------- | ------------- |
+| F-2431 | Maya Chen     | standing player, first Word visit | mixed   | phone 77.667 s TASTE, desktop 71.252 s TASTE       | F-2436–F-2438 |
+| F-2432 | Mei Tan       | standing player, first Word visit | mixed   | desktop 72.39 s FINISHED, phone 78.761 s FINISHED  | F-2439–F-2441 |
+| F-2433 | Samir Haddad  | standing player, first Word visit | mixed   | desktop 95.235 s FINISHED, phone 65.404 s FINISHED | F-2442–F-2444 |
+| F-2434 | Diego Silva   | standing player, first Word visit | mixed   | phone 90.288 s FINISHED, desktop 24.752 s BORED    | F-2445–F-2447 |
+| F-2435 | Mina Georgiou | new cold person, empty history    | mixed   | desktop 84.23 s FINISHED, phone 63.288 s FINISHED  | F-2448–F-2450 |

@@ -1,0 +1,117 @@
+[
+  {
+    "game": "days",
+    "title": "Days",
+    "url": "https://days.adamwhite.work/?labRunSource=agent",
+    "commit": "2741f06a0e4c96ffdec26e2e5b6b8874765dc126",
+    "ceiling": 20,
+    "tester": "Emre Kaya",
+    "first": "emre",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days/emre",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 37. T\u00fcrkiye; Ankara electrical technician and parent. Strategy games and football management are his familiar leisure.\n- HF temperament: patient; high conscientiousness, moderate openness, low emotionality.\n- Likes: planning with visible tradeoffs, recovering from a bad decision.\n- Dislikes: busywork, unexplained resource losses.\n- Play habits: Uses desktop keyboard and mouse. Looks for a practical objective, pursues it, and accepts a setback if he can explain it.\n- Personal diary: [panel/emre-kaya.md](panel/emre-kaya.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual other-game HF history supplied by the director later; first target visit",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22200,
+      "desktop": 22201
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "days",
+    "title": "Days",
+    "url": "https://days.adamwhite.work/?labRunSource=agent",
+    "commit": "2741f06a0e4c96ffdec26e2e5b6b8874765dc126",
+    "ceiling": 20,
+    "tester": "Pavel Novak",
+    "first": "pavel",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days/pavel",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 70. Czechia; Brno retired tram driver. Plays chess, transport simulations and an occasional detective game.\n- HF temperament: patient; high conscientiousness, moderate agreeableness, low openness.\n- Likes: routes, routines with small changes, noticing a contradiction.\n- Dislikes: constant tutorial interruptions, unclear timing.\n- Play habits: Uses desktop with mouse. Watches before acting, compares today with the last visit, and may persist with a mistaken interpretation until the page challenges it.\n- Personal diary: [panel/pavel-novak.md](panel/pavel-novak.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual other-game HF history supplied by the director later; first target visit",
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22202,
+      "desktop": 22203
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "days",
+    "title": "Days",
+    "url": "https://days.adamwhite.work/?labRunSource=agent",
+    "commit": "2741f06a0e4c96ffdec26e2e5b6b8874765dc126",
+    "ceiling": 20,
+    "tester": "Tessa Williams",
+    "first": "tessa",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days/tessa",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 17. Australia; Adelaide secondary student. Plays sandbox building games and cooperative horror with friends.\n- HF temperament: curious; high openness and extraversion, low conscientiousness.\n- Likes: making something her own, harmless mischief, unexpected responses.\n- Dislikes: invisible boundaries, identical replies to different acts.\n- Play habits: Uses phone and laptop. Tries a playful alternative when the expected action feels settled. Does not deliberately destroy a run unless the fiction gives her a reason.\n- Personal diary: [panel/tessa-williams.md](panel/tessa-williams.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual other-game HF history supplied by the director later; first target visit",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22204,
+      "desktop": 22205
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "days",
+    "title": "Days",
+    "url": "https://days.adamwhite.work/?labRunSource=agent",
+    "commit": "2741f06a0e4c96ffdec26e2e5b6b8874765dc126",
+    "ceiling": 20,
+    "tester": "Nia Okafor",
+    "first": "nia",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days/nia",
+    "kind": "standing",
+    "exposure": "first",
+    "persona": "- Age and background: 19. Nigeria; Lagos design student who plays rhythm games and social deduction with friends.\n- HF temperament: impatient; high openness and extraversion, low conscientiousness, moderate emotionality.\n- Likes: quick experiments, expressive choices, surprising reactions.\n- Dislikes: long inert openings, dialogue that ignores her reply.\n- Play habits: Uses a touch phone. Taps a plausible action before reading every option, but will settle into a mystery that answers her curiosity.\n- Personal diary: [panel/nia-okafor.md](panel/nia-okafor.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual other-game HF history supplied by the director later; first target visit",
+    "order": [
+      "phone",
+      "desktop"
+    ],
+    "ports": {
+      "phone": 22206,
+      "desktop": 22207
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "days",
+    "title": "Days",
+    "url": "https://days.adamwhite.work/?labRunSource=agent",
+    "commit": "2741f06a0e4c96ffdec26e2e5b6b8874765dc126",
+    "ceiling": 20,
+    "tester": "Miles Osei",
+    "first": "miles",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days/miles",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 33. Ghana; Kumasi community radio editor. Plays chess weekly with a friend and occasional mobile puzzles; little video-game experience.\n- HF temperament: no HF exposure and no recorded temperament. Treat him as a person who weighs concrete likes against concrete limits, and who says what he saw in play in his own words.\n- Likes: seeing what each move changes before he commits to the next, thinking time that nothing interrupts, ordering and trimming material until it fits, plain sentences that say what an action does.\n- Dislikes: pressure to act before he has read the screen, buttons whose result he cannot predict, game jargon that is not explained where it appears, being asked for accounts or permissions without a visible reason.\n- Play habits: Plays chess with a friend once a week, on a board or a phone, and mobile puzzles in spare minutes. Edits audio at a desktop at work. Reads the whole screen, thinks, then makes one move and checks the result. Says plainly when something does not suit him.\n- Personal diary: empty. No play history of any kind. Only observed sessions can add history.",
+    "prior_src": null,
+    "order": [
+      "desktop",
+      "phone"
+    ],
+    "ports": {
+      "phone": 22208,
+      "desktop": 22209
+    },
+    "model": "opus"
+  }
+]

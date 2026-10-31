@@ -1,0 +1,187 @@
+[
+ {
+  "id": "F-2401",
+  "tester": "Emre Kaya",
+  "game": "days",
+  "date": "2026-10-31",
+  "exposure": "standing player, first Days visit",
+  "deviceOrder": [
+   "desktop",
+   "phone"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "desktop": {
+    "elapsed_s": 82.995,
+    "reason": "FINISHED",
+    "game_clock": "leave ended"
+   },
+   "phone": {
+    "elapsed_s": 81.418,
+    "reason": "FINISHED",
+    "game_clock": "leave ended"
+   }
+  },
+  "primaryReturn": "I would come back another evening on desktop to try a third path, for example paying the bill myself and telling Selin everything, but only because each run is short, and not tonight. I would not leave it running. It does not run in real time, so there is nothing to leave running.",
+  "laterFullReturn": "Yes, another evening on desktop for a third path, on the condition that the choices are different enough to be worth a second look. Because it is short, I would not leave it running; it does not seem to need me to.",
+  "verdict": "mixed",
+  "verdictReason": "Conditional: another evening on desktop for a third path, not tonight, only because each run is short and only if the choices differ enough. Plain evidence supports mixed.",
+  "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+  "phoneFoldEvidence": "Did not fully test the phone scroll; the choices-below-the-fold ask rests on the screenshot alone.",
+  "askIds": [
+   "F-2406",
+   "F-2407",
+   "F-2408"
+  ],
+  "returnSource": "docs/lab/reviews/light-2026-10-30/days/emre/report.original.md.txt",
+  "validation": "docs/lab/reviews/light-2026-10-30/days/emre/validation.json"
+ },
+ {
+  "id": "F-2402",
+  "tester": "Pavel Novak",
+  "game": "days",
+  "date": "2026-10-31",
+  "exposure": "standing player, first Days visit",
+  "deviceOrder": [
+   "desktop",
+   "phone"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "desktop": {
+    "elapsed_s": 86.663,
+    "reason": "FINISHED",
+    "game_clock": "Leave ended"
+   },
+   "phone": {
+    "elapsed_s": 83.343,
+    "reason": "FINISHED",
+    "game_clock": "Leave ended"
+   }
+  },
+  "primaryReturn": "Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently, but I would not leave it running. Each run took about a minute and a half, and I want a reason to play it a third time.",
+  "laterFullReturn": "Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently. I would not leave it running, because nothing in it runs by itself.",
+  "verdict": "mixed",
+  "verdictReason": "Conditional: not tonight, maybe another evening on desktop to see whether the visit can be kept with different hours, and he wants a reason for a third play. Plain evidence supports mixed.",
+  "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+  "phoneFoldEvidence": "Phone: used scroll once and took no screenshot after it; layout beyond that unseen; named driver taps worked.",
+  "askIds": [
+   "F-2409",
+   "F-2410",
+   "F-2411"
+  ],
+  "returnSource": "docs/lab/reviews/light-2026-10-30/days/pavel/report.original.md.txt",
+  "validation": "docs/lab/reviews/light-2026-10-30/days/pavel/validation.json"
+ },
+ {
+  "id": "F-2403",
+  "tester": "Tessa Williams",
+  "game": "days",
+  "date": "2026-10-31",
+  "exposure": "standing player, first Days visit",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 83.799,
+    "reason": "FINISHED",
+    "game_clock": null
+   },
+   "desktop": {
+    "elapsed_s": 84.26,
+    "reason": "FINISHED",
+    "game_clock": null
+   }
+  },
+  "primaryReturn": "Not tonight. I might come back another evening on my laptop only if the three days had more than two choices per screen, or a way to say something of my own, and I would not leave it running.",
+  "laterFullReturn": "No, not tonight. I would come back another evening on my laptop only if there were more than two choices per screen, or a way to say something of my own. I did like seeing my choices named in the ending, and I might try a third run for a different ending. I would not leave it running, because it has no clock and just waits for a tap. I would not come back for the same three days I have now seen twice.",
+  "verdict": "mixed",
+  "verdictReason": "Conditional: not tonight, another evening on the laptop only with more than two choices or words of her own. Plain evidence supports mixed.",
+  "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+  "phoneFoldEvidence": "Did not scroll the phone; saw only the squashed picture strip.",
+  "askIds": [
+   "F-2412",
+   "F-2413",
+   "F-2414"
+  ],
+  "returnSource": "docs/lab/reviews/light-2026-10-30/days/tessa/report.original.md.txt",
+  "validation": "docs/lab/reviews/light-2026-10-30/days/tessa/validation.json"
+ },
+ {
+  "id": "F-2404",
+  "tester": "Nia Okafor",
+  "game": "days",
+  "date": "2026-10-31",
+  "exposure": "standing player, first Days visit",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 36.04,
+    "reason": "FINISHED",
+    "game_clock": null
+   },
+   "desktop": {
+    "elapsed_s": 32.8,
+    "reason": "FINISHED",
+    "game_clock": null
+   }
+  },
+  "primaryReturn": "Not tonight, and I would not leave it running. I might come back another evening, but only if a second run gave me something new. Both of my runs took about 30 seconds each and ended the same way, so the whole game felt used up.",
+  "laterFullReturn": "Not tonight. I might come back another evening, but only if the game gave me a different story or a character who answered back. I would not leave it running, because there is nothing to wait for.",
+  "verdict": "mixed",
+  "verdictReason": "Conditional: not tonight, maybe another evening only if a second run is new or a character answers back. Plain evidence supports mixed.",
+  "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+  "phoneFoldEvidence": "Viewed only the phone intro image; makes no story-layout claim.",
+  "askIds": [
+   "F-2415",
+   "F-2416",
+   "F-2417"
+  ],
+  "returnSource": "docs/lab/reviews/light-2026-10-30/days/nia/report.original.md.txt",
+  "validation": "docs/lab/reviews/light-2026-10-30/days/nia/validation.json"
+ },
+ {
+  "id": "F-2405",
+  "tester": "Miles Osei",
+  "game": "days",
+  "date": "2026-10-31",
+  "exposure": "new cold person, empty history",
+  "deviceOrder": [
+   "desktop",
+   "phone"
+  ],
+  "model": "opus",
+  "voluntaryStops": {
+   "desktop": {
+    "elapsed_s": 79.161,
+    "reason": "FINISHED",
+    "game_clock": null
+   },
+   "phone": {
+    "elapsed_s": 73.849,
+    "reason": "FINISHED",
+    "game_clock": null
+   }
+  },
+  "primaryReturn": "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford.",
+  "laterFullReturn": "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford. The story is gentle and honest, and I liked doing the sums. But each run takes under a minute, and after two runs I can already see most of the shape.",
+  "verdict": "mixed",
+  "verdictReason": "Conditional: one more leave on another evening, only once, only if the visit button stops letting him spend a turn he cannot afford. Plain evidence supports mixed.",
+  "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+  "phoneFoldEvidence": "Scrolled 500 px on the phone, found the choices, reports no problem beyond the scroll.",
+  "askIds": [
+   "F-2418",
+   "F-2419",
+   "F-2420"
+  ],
+  "returnSource": "docs/lab/reviews/light-2026-10-30/days/miles/report.original.md.txt",
+  "validation": "docs/lab/reviews/light-2026-10-30/days/miles/validation.json"
+ }
+]

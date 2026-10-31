@@ -1,0 +1,41 @@
+{
+  "reason": "Actual ROUTE accepts only calibration:C14 with no qualifier; qualifier preserved in a separate fix:smoke route. No words/other cells changed. Preparers original ledgers preserved separately.",
+  "changes": [
+    {
+      "file": "ledger-additions.md",
+      "id": "F-2380",
+      "beforeRoute": "fix:smoke Nov3 why the player is waiting or stalled in smoke, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14 human-speed before any timing defect or speed retune, retry without lost time is not an automatic difficulty change, target2026-11-10 (open)",
+      "afterRoute": "fix:smoke Nov3 why the player is waiting or stalled in smoke, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14; fix:smoke human-speed before any timing defect or speed retune, retry without lost time is not an automatic difficulty change, target2026-11-10 (open)"
+    },
+    {
+      "file": "ledger-additions.md",
+      "id": "F-2384",
+      "beforeRoute": "fix:smoke Nov3 walk progress display, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14 human-speed before timing defect or speed retune, faster walk and longer stake are preferences, not an automatic difficulty change, target2026-11-10 (open)",
+      "afterRoute": "fix:smoke Nov3 walk progress display, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14; fix:smoke human-speed before timing defect or speed retune, faster walk and longer stake are preferences, not an automatic difficulty change, target2026-11-10 (open)"
+    },
+    {
+      "file": "ledger-additions.md",
+      "id": "F-2385",
+      "beforeRoute": "fix:smoke Nov3 walk progress and what repeated taps do, her 12 s rule is her own inference and unproved, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14 human-speed before timing defect or speed retune, target2026-11-10 (open)",
+      "afterRoute": "fix:smoke Nov3 walk progress and what repeated taps do, her 12 s rule is her own inference and unproved, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14; fix:smoke human-speed before timing defect or speed retune, target2026-11-10 (open)"
+    },
+    {
+      "file": "ask-ledger.md",
+      "id": "F-2380",
+      "beforeRoute": "fix:smoke Nov3 why the player is waiting or stalled in smoke, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14 human-speed before any timing defect or speed retune, retry without lost time is not an automatic difficulty change, target2026-11-10 (open)",
+      "afterRoute": "fix:smoke Nov3 why the player is waiting or stalled in smoke, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14; fix:smoke human-speed before any timing defect or speed retune, retry without lost time is not an automatic difficulty change, target2026-11-10 (open)"
+    },
+    {
+      "file": "ask-ledger.md",
+      "id": "F-2384",
+      "beforeRoute": "fix:smoke Nov3 walk progress display, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14 human-speed before timing defect or speed retune, faster walk and longer stake are preferences, not an automatic difficulty change, target2026-11-10 (open)",
+      "afterRoute": "fix:smoke Nov3 walk progress display, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14; fix:smoke human-speed before timing defect or speed retune, faster walk and longer stake are preferences, not an automatic difficulty change, target2026-11-10 (open)"
+    },
+    {
+      "file": "ask-ledger.md",
+      "id": "F-2385",
+      "beforeRoute": "fix:smoke Nov3 walk progress and what repeated taps do, her 12 s rule is her own inference and unproved, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14 human-speed before timing defect or speed retune, target2026-11-10 (open)",
+      "afterRoute": "fix:smoke Nov3 walk progress and what repeated taps do, her 12 s rule is her own inference and unproved, actual pointer or native public-map reprobe before any defect, offscreen named landing buttons may be screen-reader-only controls, dynamic full accessible labels can fail while the human point target stays constant, not all touch or game keys broken, causal death not proved, target2026-11-03 (open); calibration:C14; fix:smoke human-speed before timing defect or speed retune, target2026-11-10 (open)"
+    }
+  ]
+}

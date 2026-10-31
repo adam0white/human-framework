@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T04:46:46.535024+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Days274 sourceactualquietlabels draftonly and agentSDKchecked; no dispatch, freshlive/disk/pause/slots remain.",
+  "players": [
+    {
+      "tester": "Emre Kaya",
+      "characters": 105021,
+      "historySha256": "c0c9538eb74cff356b53094f8e7a8d56452dda0b46c96c4e26567db98718cb42",
+      "briefSha256": "2575ababa6c7819e43079db6609da0cd887a1249ac66629c1fb54d3993a0f051",
+      "ownSourceCount": 10
+    },
+    {
+      "tester": "Pavel Novak",
+      "characters": 115218,
+      "historySha256": "f9f4324ed1257437a55b7c238a396665f2b2c17a6ce1cb1cf799208034df09b7",
+      "briefSha256": "06929f9e91c48df16e28d411f8aa2ec80a2112f1020095524c59d81b6e9152bf",
+      "ownSourceCount": 9
+    },
+    {
+      "tester": "Tessa Williams",
+      "characters": 74175,
+      "historySha256": "1599d170791f9dada0bf7630b02f6666a2c673b198e20d8e6f83e5ec167e7223",
+      "briefSha256": "711433064db467cb46c0dfce936ce984a4ddef232c742a3ab178907bba1ebff9",
+      "ownSourceCount": 9
+    },
+    {
+      "tester": "Nia Okafor",
+      "characters": 120064,
+      "historySha256": "c9fb3dad57ee23f61e0ec73d6db0eceab049c661cda5255b99a838dd70ccb739",
+      "briefSha256": "4179de8eac0fe007a1b699edbeb1d35fbc4154b8e7d1e30cda60f8934ee51dd0",
+      "ownSourceCount": 11
+    },
+    {
+      "tester": "Miles Osei",
+      "characters": 77,
+      "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "briefSha256": "b24d517b85a2abb566456ecf6b0c57d99ad4eb5b7ec495051c05d43a6d641577",
+      "ownSourceCount": 0
+    }
+  ]
+}

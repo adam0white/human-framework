@@ -632,3 +632,120 @@ First visit.
 ## Cleanup
 
 I created no worktrees or branches, so no worktrees of mine remain. Screenshots kept: desktop `a-001.png` and `a-002.png`; phone `b-001.png` and `b-002.png`.
+
+<!-- selected-continuity-key: light-1030:smoke:jonas:free -->
+## 2026-10-31 Smoke on the Stairs LIGHT first visit — free stop
+
+Source: exact producer original [report.original.md.txt](../reviews/light-2026-10-30/smoke/jonas/report.original.md.txt), original SHA256 `feddce0256517b4ae1b36114b8cc489453b80290bf6403862a40bdc340477e7c`; the packet [report.md](../reviews/light-2026-10-30/smoke/jonas/report.md) is a readable view of the report under a separate qualified director header, whose exact header-epoch bytes are [report.md.original.txt](../reviews/light-2026-10-30/smoke/jonas/report.md.original.txt). Build 7070afb11b2262ffc5fef8997189f749238ef653/HF4.8.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order desktop then phone; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- Context loss: Jonas's context was compacted after his desktop session, so his report omits the desktop diary and its "about 15 real minutes" is inaccurate against the raw desktop stop at 148.884 s. The producer report embedded below is a readable view of the exact producer original; [report.md](../reviews/light-2026-10-30/smoke/jonas/report.md) is a readable view of the same text under a separate qualified director header, and the exact header-epoch bytes are [report.md.original.txt](../reviews/light-2026-10-30/smoke/jonas/report.md.original.txt) (SHA256 `9638a3534d5f497624a2397c9e00239993907a2229a7530e02e2c05ad9658e70`). The raw desktop reactions survive in [all-driver-reactions.json](../reviews/light-2026-10-30/smoke/all-driver-reactions.json) and are not copied or reconstructed into this diary.
+- His desktop session included a successful first run, a retry and then a personal stop. His phone FINISHED (136.365 s) is the producer label; his words are a personal stop after seeing the shape of it, not proof that the whole game ended. [smoke-jonas-memory-qualification.json](../reviews/light-2026-10-30/smoke/inputs/smoke-jonas-memory-qualification.json).
+- One shell quote failed before any request was made. Phone refusals in the raw log include a disabled books button (10.174 s) and "Walk to the street" covered or offscreen (107.121 s); they are tool refusals, not accepted actions.
+- Movement and death claims in this report are qualified: dynamic accessible names, offscreen "covered" landing controls (which may be screen-reader-only) and model/tool latency leave the cause of walking confusion and of any death unknown. A native public-pointer reprobe comes before any defect, and the clock or difficulty is not retuned without the C14 human-speed comparison. Character agency, Sevim's books refusal, the short clock, smoke and deaths are preserved design.
+- The driver is native-tap-v2 (status 200 acknowledges input only; driver_check fork-unverified; the fork is hash-bound and not upstream approved). Feedback: the quick label was selected and the draft prefilled; no note was typed or submitted and no consent setting changed. No production agent receipt for the run-source marker was independently read.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would you return voluntarily?** Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running.
+
+**Ranked asks**
+1. Make the phone walk controls reliable. "Walk to the street" was reported covered or off screen, and "Street" did nothing visible. I stood still while Derya died.
+2. Show on the map where each neighbour is relative to me, and keep the neighbour button names stable. Their labels change with state, so my named taps kept failing.
+3. Say plainly what "Street" does, or remove it. Its hint says "tap Street to lead followers down", but nothing happened.
+
+## 1. Session
+
+- **Persona:** Jonas Berg, 31, Malmö warehouse planner. He tests one hypothesis at a time and dislikes consequences without visible clues.
+- **Exposure:** first visit to this game. I have played other HF games.
+- **Round and arm:** light-1031-smoke1, free stop, floor 0.
+- **Own history:** I read all 844 lines of own-history.md. Nothing is unread.
+- **URL:** https://smoke.adamwhite.work/?labRunSource=agent
+- **Desktop session:** 1280x800, keyboard and mouse, light mode. Ran about 15 real minutes (my estimate).
+- **Phone session:** 360x690 touch, light mode. Ran 136 s by driver elapsed_s. I stopped early, before the 180 s pulse point, so that checkpoint is untested.
+- **Honesty note:** my context was compacted after the desktop session. I do not have the desktop's raw diary lines or elapsed_s values. Section 3 gives only the phone lines I can still see.
+
+## 2. First impressions
+
+- **Desktop:** the title card was clear. The building cross-section had smoke clouds. The banner read "THICK SMOKE · WAIT ON A LANDING THINS IN 6 SECONDS". I was curious but did not know the order of actions.
+- **Phone, about 10 s:** a different night, with Hacer away and Burak acting on his own. The title card fit one 360px column. I tried "The books" too early and it was disabled.
+
+## 3. Verbatim diary
+
+**Desktop:** not preserved (see the honesty note in section 1).
+
+**Phone, lines I can reproduce, with elapsed_s:**
+- 71.9 first_minute: "Burak tied the books and reached the street on his own while I was slow. I still do not know where I am on the map. Stair closes in 92s."
+- 74.6 note: "Checking where I am on the map."
+- 79.1 note: "Tapping Sevim on the map to approach her."
+- 81.2 note: "Sevim may be on landing 2, not 1. Trying that."
+- 82.9 note: "Torch first, as the hint says."
+- 88.0 note: "Sevim follows. Now going for Derya."
+- 99.5 note: "Derya says smoke may kill her. I cannot tell where she is relative to me."
+- 103.9 note: "Tapping the figure on the map worked better than the landing buttons."
+- 107.1 note: "Both following. Leading them out."
+- 109.7 note: "Walk to the street is off screen on the phone; the hint says tap Street."
+- 111.9 note: "Street button seems to do nothing; tapping the front door on the map."
+- 122.0 note: "The Walk to the street control is off screen; scrolling to find it."
+- 124.8 note: "Derya died. I tapped Street and the front door and nothing moved for about 10 seconds while she said smoke may kill me. I think I stood still because the walk control was off screen and Street did nothing. That felt unfair and I am annoyed."
+- 127.4 note: "Trying to lead Sevim down by the landing buttons instead."
+- 130.3 note: "Two of three out, one dead. I understand it now, but that cost a neighbour. Opening the menu to find Feedback."
+- 134.3 note: "Feedback draft opened with I am confused prefilled. Typing nothing, sending nothing."
+- 136.4 stop, reason FINISHED, engagement 3: "Two of three home, Derya dead from smoke while I tried a dead Street button. I have seen what this version does and I am stopping here."
+
+## 4. Moments
+
+**What held me**
+- Each neighbour has a different need: Sevim wants her books, Derya needs to see the stair, Burak acts alone.
+- The tools have a clear order: torch, then Show the stair, then Walk with me.
+- On desktop, "Come now" without the books was refused with a reason ("Not without the books. Stay and help me bundle them."). That stopped it being a dominant skip, and I liked it.
+- On desktop all three neighbours reached the street in run 1, at about 114 s. Burak was away that night.
+
+**What lost me**
+- On the phone I could not tell where each neighbour was relative to me.
+- Derya's death felt avoidable, but the cause was the controls, not the smoke.
+- My want_quit logging: I did not log a separate want_quit on the phone. I did not feel like leaving until after the death, and I stopped at 136 s. The desktop's want_quit lines are not preserved.
+
+**Pulses:** none on the phone (stopped before 180 s). The stop line carries engagement 3.
+
+## 5. Confusion and clarity, from actual play
+
+- **Confusing:**
+  - "Street" gave no visible effect, though its hint says it leads followers down.
+  - The "Walk to the street" button was reported covered or off screen on the phone.
+  - Neighbour button names change with state, so named taps failed repeatedly. Keys 1–4 worked better.
+  - "Walk to landing N" did not match my sense of where a neighbour was. Tapping the figure on the map worked better.
+  - The helper line lags behind the state. After I was next to Sevim it still said "Tap Sevim to approach".
+- **Clear:**
+  - The thin and thick smoke countdown.
+  - The refusal message when I skipped the books.
+  - The death message: "Derya died from smoke inside before firefighters arrived."
+
+## 6. Device use
+
+- **Desktop screenshots viewed:** a-001.png (title card) and a-002.png (the building cross-section with smoke clouds, labelled Hacer at the top, Derya and Sevim lower down, and the banner above). The page was dark-themed.
+- **Desktop controls:** keys E, B, T, R, F and 1–4, plus mouse taps on landings.
+- **Phone screenshots viewed:** b-001.png (title card, readable in one column), b-002.png and b-003.png (the map with figures; I could see Derya on my floor and Sevim near me). Three manual shots used, no automatic checkpoint.
+- **Phone controls:** taps on neighbour buttons, action buttons, map figures and landing buttons, plus the keys 1, 3, r and t sent through the driver.
+- **Seen trouble, phone:** "Walk to the street" reported as "covered or off screen". "Street" had no visible effect. A scroll did not reveal a street control.
+- **Unseen:** I did not check whether a page scroll position hid the street control. I am guessing that is the cause.
+- **Differences between devices:** the phone gave a different cast and night, as the brief predicted. The phone had no hover or keyboard hints, which cost me the quick key route until I used the driver's key op.
+
+## 7. Stop and return
+
+- **Feedback (phone):** I opened the menu ("Pause and open menu"), chose "I'm confused", saw the Feedback dialog open with "I'm confused" prefilled, then pressed "Not now". I typed nothing, sent nothing and changed no consent or recording setting.
+- **Phone stop words:** "Two of three home, Derya dead from smoke while I tried a dead Street button. I have seen what this version does and I am stopping here." Reason: FINISHED. In truth I stopped because I had seen the shape of it, and the death was caused partly by controls I could not use.
+- **Desktop stop:** the exact words are not preserved. The run was complete, with the Feedback step done.
+- **Would I return?** Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running. It needs my attention every few seconds.
+
+## 8. Changes I would want
+
+1. Make the phone walk controls reliable and visible. A dead or hidden "Street" button cost a neighbour.
+2. Show each neighbour's position relative to me, and keep button names stable.
+3. Say plainly what "Street" does, or remove it.
+
+## 9. Compared with my last visit
+
+First visit to this game.
+
+`git worktree list`: I touched no repo. No worktree of mine remains.

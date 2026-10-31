@@ -1,0 +1,113 @@
+{
+  "tester": "Leila Mansour",
+  "validationTime": "2026-10-31T04:36:11.422092+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T04:13:30.852Z",
+        "elapsed_s": 114.503,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the phone session at under two minutes. Talking to Sevim worked well and the hints were precise, but I could not make myself move to the other floors, Hacer died, and I do not know why. I would not leave it running.",
+        "game_clock": "stair closes 50s",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 110.344,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T04:12:15.144Z",
+          "elapsed_s": 38.795,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 catching my breath"
+          },
+          "reaction": "Sevim made it, a clear win. Going to Derya.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "3 Derya Stopped \u00b7 catching my breath is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T04:16:16.021Z",
+        "elapsed_s": 163.988,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping at under three minutes. Sevim got out, Derya and Hacer died. Talking to people is precise and good. The silent walk delay cost me the run. Feedback opened with I am confused already in the note; I pressed Not now and sent nothing.",
+        "game_clock": "stair closes in 5s",
+        "engagement": null,
+        "reason": "FRUSTRATED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 159.539,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

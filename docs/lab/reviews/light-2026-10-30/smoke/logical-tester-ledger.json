@@ -1,0 +1,137 @@
+[
+  {
+    "id": "F-2371",
+    "tester": "Jonas Berg",
+    "game": "smoke",
+    "date": "2026-10-31",
+    "exposure": "standing player, first Smoke visit",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 148.884,
+        "reason": "FINISHED"
+      },
+      "phone": {
+        "elapsed_s": 136.365,
+        "reason": "FINISHED"
+      }
+    },
+    "primaryReturn": "Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running.",
+    "laterFullReturn": "Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running. It needs my attention every few seconds.",
+    "verdict": "keep",
+    "verdictReason": "Keep: Yes, another evening, with no stated condition that blocks a return. Plain evidence supports keep for this tester only.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2376", "F-2377", "F-2378"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/smoke/jonas/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/smoke/jonas/validation.json"
+  },
+  {
+    "id": "F-2372",
+    "tester": "Aisha Rahman",
+    "game": "smoke",
+    "date": "2026-10-31",
+    "exposure": "standing player, first Smoke visit",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 130.822,
+        "reason": "FINISHED"
+      },
+      "phone": {
+        "elapsed_s": 157.105,
+        "reason": "FRUSTRATED"
+      }
+    },
+    "primaryReturn": "Yes, but only on another evening and only if walking gave clearer feedback. I would not leave it running. I would not come back tonight.",
+    "laterFullReturn": "the \"would you return\" sentence is at the top. I would not leave it running, and I would not come back tonight.",
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening only if walking gives clearer feedback, not tonight. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2379", "F-2380", "F-2381"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/smoke/aisha/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/smoke/aisha/validation.json"
+  },
+  {
+    "id": "F-2373",
+    "tester": "Diego Silva",
+    "game": "smoke",
+    "date": "2026-10-31",
+    "exposure": "standing player, first Smoke visit",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 150.985,
+        "reason": "FINISHED"
+      },
+      "desktop": {
+        "elapsed_s": 151.132,
+        "reason": "FRUSTRATED"
+      }
+    },
+    "primaryReturn": "I might come back another evening, but only if the game showed me how long each neighbour has before the smoke gets them, and only if the phone showed where my figure is. I would not leave it running. Both times I stopped at about 150 seconds with two of the four neighbours dead.",
+    "laterFullReturn": "Conditions as at the top. Another evening: yes, maybe, with the conditions above. Leave it running: no.",
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening only if neighbour smoke clocks and the phone figure are visible. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2382", "F-2383", "F-2384"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/smoke/diego/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/smoke/diego/validation.json"
+  },
+  {
+    "id": "F-2374",
+    "tester": "Leila Mansour",
+    "game": "smoke",
+    "date": "2026-10-31",
+    "exposure": "standing player, first Smoke visit",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 114.503,
+        "reason": "CONFUSED"
+      },
+      "desktop": {
+        "elapsed_s": 163.988,
+        "reason": "FRUSTRATED"
+      }
+    },
+    "primaryReturn": "I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now.",
+    "laterFullReturn": "I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now. The conditions: show walking progress and tell me extra taps restart the walk. Without that, I would repeat the same silent 12 s waits.",
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening only if someone explains walking, and not as the game stands now. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2385", "F-2386", "F-2387"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/smoke/leila/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/smoke/leila/validation.json"
+  },
+  {
+    "id": "F-2375",
+    "tester": "Marta Kowalska",
+    "game": "smoke",
+    "date": "2026-10-31",
+    "exposure": "new cold person",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "opus",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 127.61,
+        "reason": "BORED"
+      },
+      "phone": {
+        "elapsed_s": 234.476,
+        "reason": "CONFUSED"
+      }
+    },
+    "primaryReturn": "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why.",
+    "laterFullReturn": "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why. I like that a night takes two minutes and that the people have small wants, like Sevim and her books. But I return to things where I can get better at the timing. Here I could not tell whether I had timed anything at all. If the game showed me where my tap sends me, and let me approach someone in one tap, I would try the phone night again in a short break to save Hacer.",
+    "verdict": "mixed",
+    "verdictReason": "Conditional: one short desktop try only if a landing tap clearly moves her to the tapped place, and not as it is now. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2388", "F-2389", "F-2390"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/smoke/marta/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/smoke/marta/validation.json"
+  }
+]

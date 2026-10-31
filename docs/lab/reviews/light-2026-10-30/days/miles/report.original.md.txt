@@ -1,0 +1,111 @@
+Both sessions are finished. Here is the report.
+
+# Report: Miles Osei, Days ("Three Days"), light-1031-days1
+
+**Would you return?** "I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford."
+
+**Ranked asks**
+1. Do not offer "Make the journey yourself" when the hours left are fewer than the visit needs. On the phone it took my last turn, and the delivery choice was gone afterwards.
+2. Introduce Selin before she appears. On the desktop she "has the receipt" before anyone says who she is.
+3. Make the tiredness and hour wording match what happens. "Saves an hour" left my hours unchanged. "Obtain the original" appeared after I already had the receipt in hand.
+
+## 1. Session
+- Persona: Miles Osei, 33, Kumasi radio editor, weekly chess player.
+- Exposure: first visit.
+- Round and arm: light-1031-days1, free stop (floor 0).
+- Own history: read in full. It was one line saying there is no prior exposure and no sessions. Nothing was left unread.
+- URL: https://days.adamwhite.work/?labRunSource=agent
+- Session A: desktop 1280x800, about 79 s real time (driver elapsed_s 79.2 at the stop log).
+- Session B: phone 360x690, about 74 s real time (driver elapsed_s 73.8 at the stop log).
+
+## 2. First impressions
+- **Session A, 5.7 s:** a quiet story about a dead father, and the recording notice was plain. Every choice showed its cost in hours, and I liked that immediately.
+- **Session B, 6.4 s:** same house, but Leyla started "Very tired" instead of "Tired". The opening text was shorter. It introduced Hacer, Burak and Şükrü in one line, and the rest sat behind a "How Leyla came home" group.
+
+## 3. Verbatim diary (reaction text exactly as sent)
+**Session A (desktop)**
+- 5.7 s: A quiet story about a father dying. Recording is explained plainly, fine. I begin.
+- 8.6 s: I like that each choice says its cost. Tired already, so I accept the soup. One hour of six.
+- 11.8 s: Who is Selin? She has the receipt but nobody introduced her. Still, check before paying, like any editor would.
+- 17.2 s: Reading aloud saves 1 hour then costs 1 hour to contain. That is zero gain plus harm. Keep it closed. I like that the arithmetic is shown.
+- 19.9 s: "She may refuse" - I cannot predict that one and the cost of a refusal is not said. Two known hours is better than a guess. Let her go.
+- ~23 s (this tap was ambiguous and nothing was tapped; I resent it by full name at 25.1 s without a reaction): I am already Rested, so eating again feels wasted. But "can add" an hour is vague. I need 2 for the visit and some for checking. Gamble on the door.
+- 28.4 s: Small confusion: it says I saved an hour, but I still have 4 like before. And the button says obtain the original, but Selin just brought it. I go with 1 hour, private.
+- 33.1 s: The father kept saying he would come and never did. I will not repeat that. 3 hours, visit needs 2, maybe 3 if tiredness adds one. Tight but I go.
+- 35.6 s: I need my hours for the visit. Burak admitted his mistake earlier, so I trust him. The page stays closed. Lend it.
+- 38.3 s: Worry: 1 hour here leaves 2, and tiredness might make the visit 3. The game hints I need not pay. I trust the hint and write it down.
+- 40.7 s: Exactly 2 hours left, visit says 2. If tiredness adds one I will learn the price of skipping that meal. I go.
+- ~42.8 s (this tap was ambiguous; I resent it by full name at 44.7 s): The hours fit exactly. Relief. Selin did not ask for the story, only stays. I let Leyla say it. This line touched me.
+- 49.3 s: Ended already? All goals met. It was short. I feel I barely sat in the house.
+- 66.8 s first_minute: In one minute I played all three days. Every choice told me its cost in hours, which I liked. But it went so fast I hardly felt the house. The ending was calm and honest.
+- 70.0 s want_quit FINISHED: The story is told and it ended well enough. I am curious what skipping the visit would do, but not tonight on this machine.
+- 76.3 s: Choosing I am stopping just filled the text box with those words. Nothing sent. Back.
+- 79.2 s stop FINISHED: The three days are over and Leyla went home with things in order. I stop here. Good, but it was over before I settled in.
+
+**Session B (phone)**
+- 6.4 s: Same house as on the computer. But here Leyla starts Very tired, not just Tired, and the opening text is cut short. This time I will try the other paths to see what changes.
+- 9.4 s: Already Very tired. What is more tired than very tired? I want to see. Keep the door.
+- 12.1 s: Exhausted, and now the game says plainly: checking and travel each need an extra hour. That is clear. Here Burak holds the receipt, not Selin. Check before paying again.
+- 14.4 s: Same notebook choice, same sum: save 1, lose 1, plus harm. I keep it closed again.
+- 17.1 s: Visit alone now costs 3 hours because I am exhausted. Last time I avoided asking Selin. Now I try it, to learn what "may refuse" means.
+- 20.2 s: She refused, and it cost me nothing but the hope. Fair. Now Leyla must eat; exhausted makes everything cost more.
+- 23.7 s: One hour of rest took her from Exhausted straight to Rested. Bigger jump than I expected. Now I am in nearly the same place as on the computer.
+- 27.4 s: On the phone the choices are below the screen. I have to scroll past the story to find them. Not bad, I would read anyway.
+- 30.0 s: Different path: let Burak phone, 2 hours, Leyla rests. Leaves 2, and the visit is 2 if she stays rested.
+- 33.6 s: Only 2 hours. Last time I still needed an hour for writing the account on day three. I may not fit both. I commit anyway and see what the game does when I fall short.
+- 36.2 s: I keep the father notebook this time, 1 hour. I know this probably breaks the visit. I want to see it.
+- 39.0 s: 1 hour left. The only way to keep it is pay from savings. Even then the visit needs 2. I pay and watch.
+- 41.3 s: The button lets me try a 2 hour visit with 1 hour left. Why offer it? I press it to learn.
+- 44.4 s: That stings. The game let me press a visit it knew I could not make, and now the delivery choice is gone. Şükrü waits, like with Kemal. I should not have been offered it. This time Leyla keeps quiet.
+- 63.0 s: Ended with Şükrü still waiting. I left the same mistake as the father. That landed, even if I walked into it on purpose.
+- 65.6 s first_minute: A full second run in under a minute. On the phone I tried the other branches and learned the arithmetic. The one thing that felt unfair: a visit button I could not afford, which ate my last turn.
+- 66.8 s want_quit FINISHED: Two endings seen. I understand how it works now. Enough for this evening.
+- 73.8 s stop FINISHED: Two leaves, two endings. I know the sums now. I stop for tonight.
+
+## 4. Moments
+- **What held me:** the cost line on each button. Doing the hours sum before I commit is exactly how I like to play. The writing also held me: Selin saying "I won't ask that of you", and the ending line "without pretending they are answered."
+- **What lost me:** both runs were very short, about 45 seconds of choices each, and I hardly felt I sat in the house. On the phone the visit button let me attempt a 2-hour trip with 1 hour left. That used my last turn, and the delivery choice did not come back.
+- **Quit wishes:** one per session, both FINISHED because the story ended. I acted on both.
+- **Pulses:** none logged. Both sessions ended before 180 s, so that checkpoint is untested.
+
+## 5. Confusion and clarity
+- **Confused:**
+  - Selin was not introduced before she appeared on the desktop.
+  - "Saves an hour" left my hour count unchanged.
+  - The receipts button said "obtain the original" after I already had it.
+  - "Can add a checking or travel hour" is vague about when.
+  - One hour of rest jumped Leyla from Exhausted to Rested.
+- **Clear:**
+  - The hour costs were always shown.
+  - "Exhausted: checking and travel each need an extra hour" was a plain sentence.
+  - Selin's refusal had no hidden cost.
+  - The game said plainly that I did not have to pay.
+
+## 6. Device use
+- **Desktop:** I viewed a-001.png, the start dialog over a dimmed room with Begin buttons, and a-002.png, the ending: story text on the left, room picture on the right, a "Play another three days" button. I tapped named buttons. Two prefix taps were ambiguous and I resent them by full name. Those were driver ambiguities, not game faults.
+- **Phone:** I viewed b-001.png, the same dialog fitted to the narrow screen, and b-002.png. On b-002 the story fills the screen and the status bar sits at the bottom; the choice buttons are off-screen below. I scrolled 500 px. I saw no layout trouble beyond needing that scroll.
+- **What differed on the phone:**
+  - It started at "Very tired".
+  - The opening text was shorter.
+  - Burak, not Selin, held the receipt.
+  - The visit without cover cost 3 hours.
+
+  None of these got in my way.
+- **Feedback, both devices:** the Menu dialog ("The door can wait") had a Feedback button. Feedback offered "I'm stopping" and "I'm confused". Tapping "I'm stopping" only put those words in the text box. I pressed Back and sent nothing.
+
+## 7. Stop and return
+- **Session A:** stopped for FINISHED. My words: "The three days are over and Leyla went home with things in order. I stop here. Good, but it was over before I settled in."
+- **Session B:** stopped for FINISHED. My words: "Two leaves, two endings. I know the sums now. I stop for tonight."
+- **Would I return?** I would come back another evening for one more leave, to try the paid delivery and see if the hours can fit everything. I would come back only once, and only if the visit button stops letting me spend a turn I cannot afford. The story is gentle and honest, and I liked doing the sums. But each run takes under a minute, and after two runs I can already see most of the shape.
+- **Leave it running?** No, there is nothing to leave running. It is something I would come back to another evening, briefly.
+
+## 8. Changes I would want
+1. Hide or disable a visit I cannot afford, or keep the delivery choice open after a failed attempt.
+2. Introduce Selin before she holds the receipt.
+3. Make the tiredness and hour wording match what actually changes.
+
+## 9. Compared with my last visit
+First visit. No earlier session to compare.
+
+**Screenshots:** desktop/a-001.png and a-002.png; phone/b-001.png and b-002.png. All four viewed. That is two manual shots per device, within the limit of five.
+**Cleanup:** I created no worktrees, servers or helper processes, so there is nothing to remove.

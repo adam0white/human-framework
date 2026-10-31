@@ -1,0 +1,178 @@
+{
+  "tester": "Jonas Berg",
+  "validationTime": "2026-10-31T04:36:11.401779+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T03:57:38.721Z",
+        "elapsed_s": 148.884,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping at 146 s. First run: all three home reached the street at about 114 s. Second run: tested Come now shortcut and Sevim refused without her books, so no free skip. I understand the loop. One wish: I want to know what happens if smoke kills someone, and whether Burak ever matters. I would come back another evening to see whether order or speed changes who chooses to follow. Would not leave it running. Selected I am stopping in Feedback; typed nothing, submitted nothing.",
+        "game_clock": "06:10, second run, stair closes in 127s",
+        "engagement": null,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 143.078,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T03:55:37.437Z",
+          "elapsed_s": 27.6,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "3 Derya Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": "Sevim follows now. Fetch Derya and Hacer before going down, to batch the trip.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "3 Derya Stopped \u00b7 needs to see the stair is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T03:56:16.891Z",
+          "elapsed_s": 67.054,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 catching my breath"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3,
+          "error": "4 Hacer Stopped \u00b7 catching my breath is not on the page now; it was listed 7 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T03:56:18.386Z",
+          "elapsed_s": 68.549,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "4 Hacer Stopped \u00b7 needs to see the stair"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 2,
+          "error": "4 Hacer Stopped \u00b7 needs to see the stair is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T03:59:56.553Z",
+        "elapsed_s": 136.365,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Two of three home, Derya dead from smoke while I tried a dead Street button. I have seen what this version does and I am stopping here.",
+        "game_clock": "31s left",
+        "engagement": 3,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 132.07,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T03:57:50.362Z",
+          "elapsed_s": 10.174,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "The books B"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 16,
+          "error": "The books B is shown but disabled right now (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T03:59:27.309Z",
+          "elapsed_s": 107.121,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Walk to the street"
+          },
+          "reaction": "Both following. Leading them out.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 34,
+          "error": "Cannot tap Walk to the street: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

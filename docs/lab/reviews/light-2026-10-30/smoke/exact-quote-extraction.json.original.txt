@@ -1,0 +1,167 @@
+{
+ "note": "Every string is an exact substring of the named copied raw file (report text or a wall-clock.jsonl reaction field). Nothing paraphrased, no quote substitution, no word replacement, no pipes, no newlines. primaryReturn is the opening return answer in report.md. laterFullReturn is the separate section 7 answer. rankedAsks are the top three asks of report.md. laterAskSpans are materially different section 8 wording, labelled separately. Marta wrapped her opening answer in producer quote marks, which are not part of the span. Aisha laterFullReturn begins lowercase because the span follows the bold label Return: in section 7; its internal double quotes are original.",
+ "testers": {
+  "jonas": {
+   "tester": "Jonas Berg",
+   "primaryReturn": "Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running.",
+   "laterFullReturn": "Yes, another evening, to see whether order or speed changes who chooses to follow and what smoke does to someone I leave waiting. I would not leave it running. It needs my attention every few seconds.",
+   "rankedAsks": [
+    "Make the phone walk controls reliable. \"Walk to the street\" was reported covered or off screen, and \"Street\" did nothing visible. I stood still while Derya died.",
+    "Show on the map where each neighbour is relative to me, and keep the neighbour button names stable. Their labels change with state, so my named taps kept failing.",
+    "Say plainly what \"Street\" does, or remove it. Its hint says \"tap Street to lead followers down\", but nothing happened."
+   ],
+   "laterAskSpans": {}
+  },
+  "aisha": {
+   "tester": "Aisha Rahman",
+   "primaryReturn": "Yes, but only on another evening and only if walking gave clearer feedback. I would not leave it running. I would not come back tonight.",
+   "laterFullReturn": "the \"would you return\" sentence is at the top. I would not leave it running, and I would not come back tonight.",
+   "rankedAsks": [
+    "Show clearly when a walk tap has registered and whether I am moving. Show my figure moving or give a \"walking to landing 4\" line. This was the main cause of both my confusion and my loss on the phone.",
+    "Tell me when I am stalled in smoke, or let me retry or reselect without losing time. On the phone I never reached Derya or Hacer. Derya died while I could not tell whether I was climbing.",
+    "When someone dies, say more than one line. I want the narration to acknowledge what I tried, without scolding."
+   ],
+   "laterAskSpans": {}
+  },
+  "diego": {
+   "tester": "Diego Silva",
+   "primaryReturn": "I might come back another evening, but only if the game showed me how long each neighbour has before the smoke gets them, and only if the phone showed where my figure is. I would not leave it running. Both times I stopped at about 150 seconds with two of the four neighbours dead.",
+   "laterFullReturn": "Conditions as at the top. Another evening: yes, maybe, with the conditions above. Leave it running: no.",
+   "rankedAsks": [
+    "Show each neighbour's smoke clock before I commit to them. Hacer died unseen on the phone, and Derya and Hacer died together on the desktop.",
+    "On the phone, show my figure and give a visible reaction to a tap. The named landing buttons were covered or off screen, and for the first minute I could not tell if I was moving.",
+    "Make the walk to a neighbour or the street feel faster, or show progress. I spent a lot of the run waiting on it."
+   ],
+   "laterAskSpans": {}
+  },
+  "leila": {
+   "tester": "Leila Mansour",
+   "primaryReturn": "I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now.",
+   "laterFullReturn": "I might come back another evening if someone told me how walking works. I would not leave it running, and I would not come back as the game stands now. The conditions: show walking progress and tell me extra taps restart the walk. Without that, I would repeat the same silent 12 s waits.",
+   "rankedAsks": [
+    "Show walking. After one landing tap, show a \"walking, N s\" marker or my figure moving. Say that extra taps restart the walk.",
+    "Warn before a neighbour dies. The status text said \"Smoke may kill me\" and then they were dead, with no time shown for them.",
+    "Start the Feedback note box empty. It opens pre-filled with \"I'm confused\", so a stray Submit would send words I did not choose."
+   ],
+   "laterAskSpans": {
+    "2": "Show each neighbour's time left before smoke kills them.",
+    "3": "Start the Feedback note empty, and add a Back button next to \"Not now\"."
+   }
+  },
+  "marta": {
+   "tester": "Marta Kowalska",
+   "primaryReturn": "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why.",
+   "laterFullReturn": "I would come back for one short try on the computer only if tapping a landing clearly moved me to the place I tapped. As it is, I got it in one go on the computer, and on the phone I lost Hacer without knowing why. I like that a night takes two minutes and that the people have small wants, like Sevim and her books. But I return to things where I can get better at the timing. Here I could not tell whether I had timed anything at all. If the game showed me where my tap sends me, and let me approach someone in one tap, I would try the phone night again in a short break to save Hacer.",
+   "laterExtraReturnSpans": {
+    "Another-evening answer": "Maybe, under the condition above. I would not come back as it is now.",
+    "Leave-it-running answer": "No."
+   },
+   "rankedAsks": [
+    "Show clearly where a tap sends me. On the phone I tapped \"Walk to landing 4\", and my group went down to the street instead of up. Nothing on screen explained it.",
+    "Let me approach a neighbour with one tap, and keep the name buttons steady while I aim. Hacer's status kept changing (\"needs to see the stair\" / \"catching my breath\"), so my clicks missed her twice on desktop. On the phone, every name needed two taps.",
+    "Unlock \"Show the stair\" at the same moment the neighbour says she is ready. On the phone, hide the E/B/T/R/F key letters, because they mean nothing there."
+   ],
+   "laterAskSpans": {
+    "1": "Show clearly where a tap on a landing sends me, and show it when my followers go somewhere else without me."
+   }
+  }
+ },
+ "supportingSpans": [
+  {
+   "label": "Jonas report: desktop length was an estimate",
+   "tester": "jonas",
+   "file": "jonas/report.md",
+   "span": "Ran about 15 real minutes (my estimate)."
+  },
+  {
+   "label": "Jonas report: context compaction and omitted desktop diary",
+   "tester": "jonas",
+   "file": "jonas/report.md",
+   "span": "my context was compacted after the desktop session. I do not have the desktop's raw diary lines or elapsed_s values."
+  },
+  {
+   "label": "Jonas desktop raw stop at 148.884 s",
+   "tester": "jonas",
+   "file": "jonas/desktop/wall-clock.jsonl",
+   "span": "Stopping at 146 s. First run: all three home reached the street at about 114 s."
+  },
+  {
+   "label": "Jonas phone personal stop wording",
+   "tester": "jonas",
+   "file": "jonas/phone/wall-clock.jsonl",
+   "span": "I have seen what this version does and I am stopping here."
+  },
+  {
+   "label": "Aisha desktop first_minute tag at 36.117 s (premature)",
+   "tester": "aisha",
+   "file": "aisha/desktop/wall-clock.jsonl",
+   "span": "Real clock, short stakes. Derya is out; Hacer next. Walking is slow, I did not know my taps had registered."
+  },
+  {
+   "label": "Aisha desktop valid first_minute log at about 80.9 s",
+   "tester": "aisha",
+   "file": "aisha/desktop/wall-clock.jsonl",
+   "span": "I understand: find each neighbour, show the stair, ask them to walk, lead them down before the stair closes."
+  },
+  {
+   "label": "Aisha report: end-card feedback route on desktop",
+   "tester": "aisha",
+   "file": "aisha/report.md",
+   "span": "Desktop: opened through \"Tell us about this night\" on the end card."
+  },
+  {
+   "label": "Diego report: phone FINISHED label is inaccurate",
+   "tester": "diego",
+   "file": "diego/report.md",
+   "span": "That reason is inaccurate: no end card appeared."
+  },
+  {
+   "label": "Diego phone stop at about 150 s",
+   "tester": "diego",
+   "file": "diego/phone/wall-clock.jsonl",
+   "span": "I did not wait for the end card."
+  },
+  {
+   "label": "Leila report: dark art despite light request",
+   "tester": "leila",
+   "file": "leila/report.md",
+   "span": "the game was dark-themed on both devices although I asked for light."
+  },
+  {
+   "label": "Leila desktop feedback draft prefill and Not now",
+   "tester": "leila",
+   "file": "leila/desktop/wall-clock.jsonl",
+   "span": "Feedback opened with I am confused already in the note; I pressed Not now and sent nothing."
+  },
+  {
+   "label": "Leila phone feedback draft prefill",
+   "tester": "leila",
+   "file": "leila/phone/wall-clock.jsonl",
+   "span": "Feedback opened with the note box already holding the words I am confused; no Back button, only Not now."
+  },
+  {
+   "label": "Marta report: hour-ago estimate",
+   "tester": "marta",
+   "file": "marta/report.md",
+   "span": "I remembered her from the computer about an hour earlier and was sure of it."
+  },
+  {
+   "label": "Marta phone: menu covered by end card, alternate feedback path",
+   "tester": "marta",
+   "file": "marta/phone/wall-clock.jsonl",
+   "span": "The menu button is covered by the end card, so I use Tell us about this night to reach feedback."
+  },
+  {
+   "label": "Marta phone: followers walked out while she stayed",
+   "tester": "marta",
+   "file": "marta/report.md",
+   "span": "My guess, unconfirmed, is that followers walked to the street on their own while I was slowed in the smoke."
+  },
+  {
+   "label": "Marta report: two-tap approach on phone",
+   "tester": "marta",
+   "file": "marta/report.md",
+   "span": "First tap only picked her, it says tap Derya to approach."
+  }
+ ]
+}

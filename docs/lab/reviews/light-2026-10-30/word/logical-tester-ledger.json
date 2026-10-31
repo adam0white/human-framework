@@ -1,0 +1,161 @@
+[
+  {
+    "id": "F-2431",
+    "tester": "Maya Chen",
+    "game": "word",
+    "date": "2026-10-31",
+    "exposure": "standing player, first Word visit",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 77.667,
+        "reason": "TASTE",
+        "game_clock": "13 minutes before Osman leaves"
+      },
+      "desktop": {
+        "elapsed_s": 71.252,
+        "reason": "TASTE",
+        "game_clock": "One month later"
+      }
+    },
+    "primaryReturn": "Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running.",
+    "laterFullReturn": "Yes, one more evening, to run the letter and late-work path, which I skipped on desktop. That holds only if a run lasts longer than a minute, and the people keep reacting to what I told them. I would not leave it running. I would not come back tonight, only another evening.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening for the letter and late-work path only if a run lasts longer than a minute and the people keep reacting to what she told them, not tonight. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "viewEvidence": "Viewed a-001 and a-002 on phone, b-001 and b-002 on desktop. Never viewed a phone mid-game image. Desktop b-002 card runs off the bottom with the stamp cut at the edge, her words.",
+    "askIds": ["F-2436", "F-2437", "F-2438"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/word/maya/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/word/maya/validation.json"
+  },
+  {
+    "id": "F-2432",
+    "tester": "Mei Tan",
+    "game": "word",
+    "date": "2026-10-31",
+    "exposure": "standing player, first Word visit",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 78.761,
+        "reason": "FINISHED",
+        "game_clock": "One month later, NO AGREEMENT"
+      },
+      "desktop": {
+        "elapsed_s": 72.39,
+        "reason": "FINISHED",
+        "game_clock": "One month later, AGREED"
+      }
+    },
+    "primaryReturn": "I would come back another evening on the laptop, but only if the meeting could end in a way I could not see coming. I solved it on my first try in 33 seconds, so I would not replay the same one. I would not leave it running.",
+    "laterFullReturn": "I would come back another evening on the laptop, but only if the next meeting could end in a way I could not see coming. I would not replay the same one. I would not leave it running.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening on the laptop only if the next meeting can end in a way she cannot see coming. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "viewEvidence": "Viewed desktop a-001 and phone b-001, b-002. Did not scroll the phone's lower buttons in a screenshot. Buttons below the fold in b-002, her words.",
+    "askIds": ["F-2439", "F-2440", "F-2441"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/word/mei/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/word/mei/validation.json"
+  },
+  {
+    "id": "F-2433",
+    "tester": "Samir Haddad",
+    "game": "word",
+    "date": "2026-10-31",
+    "exposure": "standing player, first Word visit",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 65.404,
+        "reason": "FINISHED",
+        "game_clock": null
+      },
+      "desktop": {
+        "elapsed_s": 95.235,
+        "reason": "FINISHED",
+        "game_clock": null
+      }
+    },
+    "primaryReturn": "I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.",
+    "laterFullReturn": "I might come back another evening on desktop, if there were a longer meeting with more people, and if the easy honest agreement did not finish the game in 30 seconds. I would not leave it running, and I would not come back on the phone tonight.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening on desktop only with a longer meeting with more people and an honest agreement that does not finish the game in 30 seconds. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "viewEvidence": "Viewed desktop a-001, a-002 and phone b-001, b-002, b-003. Did not scroll or touch-scroll. The first phone action button sits below the story text in b-002, his words.",
+    "askIds": ["F-2442", "F-2443", "F-2444"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/word/samir/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/word/samir/validation.json"
+  },
+  {
+    "id": "F-2434",
+    "tester": "Diego Silva",
+    "game": "word",
+    "date": "2026-10-31",
+    "exposure": "standing player, first Word visit",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 90.288,
+        "reason": "FINISHED",
+        "game_clock": null
+      },
+      "desktop": {
+        "elapsed_s": 24.752,
+        "reason": "BORED",
+        "game_clock": null
+      }
+    },
+    "primaryReturn": "I might come back on another evening to lie to Halil and Rıza again and see the exposure. I would not come back tonight, and I would not leave it running. It is turn-based and nothing happens while I'm away.",
+    "laterFullReturn": "Another evening, maybe, to lie again and see the exposure. Not tonight. It is turn-based, so I wouldn't leave it running: nothing happens while I'm away.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: maybe another evening to lie again and see the exposure, not tonight. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "viewEvidence": "Viewed phone a-001 and desktop b-001, b-002. Phone mid-play and endings unseen. Desktop b-002 shows only the first three controls on screen, scroll not tested.",
+    "askIds": ["F-2445", "F-2446", "F-2447"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/word/diego/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/word/diego/validation.json"
+  },
+  {
+    "id": "F-2435",
+    "tester": "Mina Georgiou",
+    "game": "word",
+    "date": "2026-10-31",
+    "exposure": "new cold person, empty history",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "opus",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 63.288,
+        "reason": "FINISHED",
+        "game_clock": null
+      },
+      "desktop": {
+        "elapsed_s": 84.23,
+        "reason": "FINISHED",
+        "game_clock": null
+      }
+    },
+    "primaryReturn": "I would come back once, maybe on a Thursday with my friend, to compare which agreement each of us wrote. I would not come back alone, because I have seen both honest endings and the only other road is lying to Halil and Rıza.",
+    "laterFullReturn": "I would come back once, maybe on a Thursday with my friend, to compare which agreement each of us wrote. I would not come back alone, because I have seen both honest endings and the only other road is lying to Halil and Rıza.",
+    "laterExtraReturnSpans": {
+      "Later added newness condition": "Conditions: only with a friend to compare notes, and only if it offered something new beyond the endings I have seen. I would not play the lying road for its own sake.",
+      "Later leave-it-running answer": "No. It is a one-sitting puzzle.",
+      "Later another-evening answer": "Only for that compare-notes evening, and probably just once."
+    },
+    "verdict": "mixed",
+    "verdictReason": "Conditional: once with her friend to compare agreements, not alone, and later only if it offers something new beyond the endings seen. Plain evidence supports mixed.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "viewEvidence": "Viewed desktop a-001, a-002 and phone b-001, b-002, b-003. Did not view the six-option agreement list on phone as a picture.",
+    "askIds": ["F-2448", "F-2449", "F-2450"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/word/mina/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/word/mina/validation.json"
+  }
+]
