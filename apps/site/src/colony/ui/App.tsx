@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CastLifeNote, CastMenu, CastStartGate } from '../../shared/CastMenu.tsx';
 import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
+import { Decoration } from '../../shared/Decoration.tsx';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { GameVersion } from '../../shared/GameVersion.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
@@ -45,7 +46,7 @@ import {
 } from './parts.tsx';
 import { suggestionChoice, suggestionInput } from './suggestion-choice.ts';
 import { useColony } from './useColony.ts';
-import { VILLAGE_WORDS } from './village-words.ts';
+import { preparationWords, VILLAGE_WORDS } from './village-words.ts';
 import { wellWords as settingWords } from './words.ts';
 import './layout.css';
 
@@ -115,6 +116,7 @@ export function App() {
     [flash, setFlash] = useState(''),
     [moment, setMoment] = useState<MomentRecord | null>(null),
     [newsReturn, setNewsReturn] = useState<{ id: VillagerId | null; side: 'human' | 'classic' } | null>(null);
+  const [selectedInjury, setSelectedInjury] = useState<HurtNews | null>(null);
   const cancelFileSelection = useCallback(() => {
     if (!fileSession) return;
     fileRead.current++;
@@ -181,6 +183,8 @@ export function App() {
     setLoadPage(true);
     saveSequence.current += 1;
     setSheet('people');
+    setSelectedInjury(null);
+    setNewsReturn(null);
     setPerson(null);
     setFollowing(null);
     setEndOpen(true);
@@ -252,6 +256,8 @@ export function App() {
     return card?.human.state === 'willNot' ? card.order.placeId : outline;
   };
   const pick = (id: VillagerId) => {
+    setSelectedInjury(null);
+    setNewsReturn(null);
     const destination = refusedDestination();
     setPerson(id);
     setFollowing(id);
@@ -264,12 +270,15 @@ export function App() {
   const backPeople = () => {
     const destination = refusedDestination();
     setSheet('people');
+    setSelectedInjury(null);
+    setNewsReturn(null);
     setPerson(null);
     resetHow();
     setOutline(destination);
   };
   const send = useCallback(
     (input: OrderInput, id?: string) => {
+      if (selectedInjury?.personId !== input.personId) setSelectedInjury(null);
       actions.order(input, id);
       setDraft(null);
       setPerson(input.personId);
@@ -290,7 +299,7 @@ export function App() {
       flashTimer.current = window.setTimeout(() => setFlash(''), 2200);
       saveRef.current();
     },
-    [actions],
+    [actions, selectedInjury],
   );
   const inputFor = (placeId: PlaceId): OrderInput | null =>
     person
@@ -432,6 +441,8 @@ export function App() {
     const id = person ?? following;
     if (id) setVillageReturn({ id, side: mapSide });
     setMapSide(side);
+    setSelectedInjury(null);
+    setNewsReturn(null);
     setPerson(null);
     setFollowing(null);
     setOutline(null);
@@ -448,8 +459,10 @@ export function App() {
     }
   };
   const showNews = (news: HurtNews) => {
-    setNewsReturn({ id: person ?? following, side: mapSide });
+    const previous = { id: person ?? following, side: mapSide };
     pick(news.personId);
+    setNewsReturn(previous);
+    setSelectedInjury({ ...news });
     setMapSide(news.side);
     setOutline(villagerById(news.personId)?.home ?? 'home-yusuf');
   };
@@ -462,6 +475,8 @@ export function App() {
     setNewConfirm(false);
     setEndOpen(true);
     setSheet('people');
+    setSelectedInjury(null);
+    setNewsReturn(null);
     setPerson(null);
     setFollowing(null);
     resetHow();
@@ -731,7 +746,7 @@ export function App() {
           aria-expanded={menu}
           onClick={() => (menu ? closeFileMenu() : openMenu())}
         >
-          ≡
+          <Decoration kind="menu" />
         </button>
       </header>
       {!fileSession && (
@@ -781,6 +796,7 @@ export function App() {
                       <span>
                         {VILLAGE_WORDS[v].choice}
                         <small>{VILLAGE_WORDS[v].reply}</small>
+                        <small>{preparationWords(v)}</small>
                       </span>
                     </label>
                   ))}
@@ -887,7 +903,11 @@ export function App() {
                         )}
                       </small>
                       {frame && !choice?.underway && (
-                        <TaskContext job={inferredJob(frame, nudge.order.placeId)} compact />
+                        <TaskContext
+                          job={inferredJob(frame, nudge.order.placeId)}
+                          village={frame.village}
+                          compact
+                        />
                       )}
                     </button>
                     <button
@@ -1031,6 +1051,7 @@ export function App() {
                       <PersonSheet
                         frame={frame}
                         id={person}
+                        injuryNotice={selectedInjury}
                         rush={rush}
                         insist={insist}
                         appeal={appeal}

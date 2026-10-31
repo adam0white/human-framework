@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Decoration } from '../shared/Decoration.tsx';
 import '../home/home.css';
 import { GAMES } from '../games.ts';
 import { GameList } from '../shared/GameList.tsx';
@@ -14,7 +15,7 @@ function Collection() {
     <div className="page">
       <header className="top">
         <a className="mark" href="/">
-          <span aria-hidden="true">◇</span> human framework
+          <Decoration kind="diamond" /> human framework
         </a>
       </header>
       <main>
@@ -41,7 +42,7 @@ function Collection() {
       </main>
       <footer className="foot">
         <span>
-          <span aria-hidden="true">◇</span> human framework v{__HF_LIBRARY_VERSION__}
+          <Decoration kind="diamond" /> human framework v{__HF_LIBRARY_VERSION__}
         </span>
         <a href="/">about HF</a>
       </footer>

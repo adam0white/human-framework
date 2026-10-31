@@ -1,6 +1,7 @@
 import { PEOPLE_ACROSS_GAMES } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
+import { Decoration } from '../../shared/Decoration.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { GameVersion } from '../../shared/GameVersion.tsx';
 import { MODEL_NOTES, type Pace } from '../protocol.ts';
@@ -158,7 +159,7 @@ export function MenuPanel({
           </fieldset>
         }
         <button ref={first} type="button" onClick={onSendWord}>
-          Feedback <span>▸</span>
+          Feedback <Decoration kind="chevron" />
         </button>
         {
           <label>

@@ -1,4 +1,5 @@
 import { CastOffer } from '../../shared/CastOffer.tsx';
+import { Decoration } from '../../shared/Decoration.tsx';
 import { EndTally } from '../../shared/EndTally.tsx';
 import { watchTally } from './end-tally.ts';
 import { RunSecondaries } from './exporting.tsx';
@@ -117,7 +118,7 @@ export function People({
   return (
     <>
       <button type="button" className="w-menu-row" onClick={() => setOpen(true)}>
-        The village <span aria-hidden="true">▸</span>
+        The village <Decoration kind="chevron" />
       </button>
       {open ? (
         <div className="w-overlay w-sub-sheet" role="dialog" aria-label="The village">

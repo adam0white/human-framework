@@ -1,8 +1,10 @@
 /** Current HF4 files round-trip and continue; historical fixtures are refusal controls.
  * The full two-day input-log replay lives in hf4-control.test.ts. */
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, test, vi } from 'vitest';
+import { canCheckpoint, localCastAuthority, validateCastRecord } from '../../shared/cast-authority.ts';
 import { importedFileRecord } from '../../shared/file-record.ts';
 import {
   FRAMEWORK_PACKAGE_VERSION as ENGINE_VERSION,
@@ -200,36 +202,49 @@ test('file worker round-trips and continues a full Well import; cancellation ret
     send({ type: 'fileSession' });
     const pb = recordRun(1);
     const original = await pb.playtestFile(ENGINE_VERSION, true);
-    const { canonicalPersona, createPersona } = await import('@adam0white/lab-client');
-    const source = structuredClone(
-      (original.snapshot as { human: { community: { run: Record<string, unknown> } } }).human.community.run,
-    );
-    const digest = Array.from(
-      new Uint8Array(
-        await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(source))),
-      ),
-      (byte) => byte.toString(16).padStart(2, '0'),
-    ).join('');
+    // Shared-origin denial fixture, not a positive ownership/admission claim.
+    const { castForGame } = await import('@adam0white/lab-client');
     const id = 'hf.cast.yusuf.well';
-    const head = await createPersona({
-      format: 'hf-persona/1',
-      castId: id,
-      castRevision: '1',
-      branchId: 'synthetic-source',
-      parentRevision: null,
-      source: { game: 'well', engine: ENGINE_VERSION, build: 'synthetic', rules: 'cast-1' },
-      transfer: { checkpoint: { sha256: digest } },
-      limitations: [],
-    });
     const file = {
       ...original,
       build: 'synthetic-original-host',
       runId: 'synthetic-source-run',
-      castOwnership: { [id]: head },
-      castSources: { [id]: source },
+      castAuthority: {
+        format: 'site-cast-authority/1',
+        mode: 'shared',
+        expectedHeads: Object.fromEntries(
+          castForGame('well').map((p) => [p.castId, p.castId === id ? 'a'.repeat(64) : null]),
+        ),
+        denied: [id],
+      },
+      castOwnership: {},
+      castSources: {},
+      castLocalOnly: false,
+      castSkipped: [id],
     };
-    const sourceText = JSON.stringify(file);
+    const nativeRecords = new Map([
+      ['hf-colony-save', JSON.stringify(original)],
+      ['hf-cast-source:well', JSON.stringify({ retained: 'native source journal' })],
+      ['hf-cast-heads:well', JSON.stringify({ retained: 'native heads' })],
+    ]);
+    const beforeNative = [...nativeRecords];
+    const storage = {
+      getItem: vi.fn((key: string) => nativeRecords.get(key) ?? null),
+      setItem: vi.fn((key: string, value: string) => nativeRecords.set(key, value)),
+      removeItem: vi.fn((key: string) => nativeRecords.delete(key)),
+    };
+    vi.stubGlobal('localStorage', storage);
+    const selected = structuredClone(file);
+    const canonical = {
+      castAuthority: localCastAuthority(),
+      castOwnership: {},
+      castSources: {},
+      castLocalOnly: true,
+      castSkipped: [],
+    };
+    const sourceText = JSON.stringify(file, null, 2) + '\n';
     const fileImport = await importedFileRecord(file, sourceText);
+    expect(fileImport.sourceHash).toBe(createHash('sha256').update(sourceText).digest('hex'));
     send({ type: 'loadPlaytest', gen: 1, text: sourceText });
     await vi.waitFor(() => expect(replies.some((r) => r.type === 'replayed' && r.gen === 1)).toBe(true));
     send({ type: 'exportPlaytest', requestId: 1, full: true });
@@ -249,8 +264,8 @@ test('file worker round-trips and continues a full Well import; cancellation ret
     expect(exported.file.snapshot).toEqual(file.snapshot);
     expect(exported.file.hash).toBe(file.hash);
     expect(exported.file.build).toBe(file.build);
-    expect(exported.file.castOwnership).toEqual(file.castOwnership);
-    expect((exported.file as typeof file).castSources).toEqual(file.castSources);
+    expect(exported.file).toMatchObject(canonical);
+    expect(exported.file.castChapter).toEqual(original.castChapter);
     const holdValidation = () => {
       const digest = crypto.subtle.digest.bind(crypto.subtle);
       let release!: () => void;
@@ -280,6 +295,8 @@ test('file worker round-trips and continues a full Well import; cancellation ret
     );
     expect(requireValue(replies.findLast((reply) => reply.type === 'playtest')).gen).toBe(1);
     expect(requireValue(replies.findLast((reply) => reply.type === 'playtest')).file).toEqual(exported.file);
+    const input = { personId: 'maryam', placeId: 'kitchen' };
+    send({ type: 'order', input });
     send({ type: 'resume' });
     for (let i = 0; i < 8; i++) send({ type: 'tick', dtMs: 250 });
     send({ type: 'exportPlaytest', requestId: 4, full: true });
@@ -293,8 +310,57 @@ test('file worker round-trips and continues a full Well import; cancellation ret
     replay.load(JSON.stringify(continued), ENGINE_VERSION);
     expect((await replay.playtestFile(ENGINE_VERSION, true)).snapshot).toEqual(continued.snapshot);
     expect(continued.build).toBe(file.build);
-    expect(continued.castOwnership).toEqual(file.castOwnership);
-    expect((continued as typeof file).castSources).toEqual(file.castSources);
+    expect(continued).toMatchObject(canonical);
+    expect(continued.log.slice(0, file.log.length)).toEqual(file.log);
+    expect(continued.log.slice(file.log.length)).toEqual([{ minute: file.minute, kind: 'order', input }]);
+    expect(continued.castChapter).toEqual(original.castChapter);
+    // Reimport through the actual file worker, then export again.
+    const nextText = JSON.stringify(continued);
+    send({ type: 'loadPlaytest', gen: 5, text: nextText });
+    await vi.waitFor(() => expect(replies.some((r) => r.type === 'replayed' && r.gen === 5)).toBe(true));
+    send({ type: 'exportPlaytest', requestId: 5 });
+    await vi.waitFor(() =>
+      expect(replies.some((r) => r.type === 'playtest' && r.requestId === 5)).toBe(true),
+    );
+    const reimported = requireValue(replies.findLast((r) => r.type === 'playtest')).file;
+    expect(reimported).toMatchObject(canonical);
+    expect(reimported.log).toEqual(continued.log);
+    expect(reimported.snapshot).toEqual(continued.snapshot);
+    expect(reimported.hash).toBe(continued.hash);
+    expect(reimported).toMatchObject({
+      fileImport: await importedFileRecord(continued as unknown as Record<string, unknown>, nextText),
+    });
+    // Current complete archive, native Playback and file worker receive the same next public input/ticks.
+    const nextInput = { personId: 'idris' as const, placeId: 'well' as const };
+    replay.handle({ type: 'order', input: nextInput });
+    send({ type: 'order', input: nextInput });
+    replay.handle({ type: 'resume' });
+    send({ type: 'resume' });
+    for (let i = 0; i < 8; i++) {
+      replay.handle({ type: 'tick', dtMs: 250 });
+      send({ type: 'tick', dtMs: 250 });
+    }
+    send({ type: 'exportPlaytest', requestId: 6 });
+    await vi.waitFor(() =>
+      expect(replies.some((r) => r.type === 'playtest' && r.requestId === 6)).toBe(true),
+    );
+    const nextFile = requireValue(replies.findLast((r) => r.type === 'playtest')).file;
+    const nextNative = await replay.playtestFile(ENGINE_VERSION, true);
+    expect(nextFile).toMatchObject(canonical);
+    expect(nextFile.log).toEqual(nextNative.log);
+    expect(nextFile.snapshot).toEqual(nextNative.snapshot);
+    expect(nextFile.hash).toBe(nextNative.hash);
+    const checked = await validateCastRecord('well', reimported as unknown as Record<string, unknown>);
+    expect(canCheckpoint(checked.authority, id, checked.heads)).toBe(false);
+    const errorsBefore = replies.filter((r) => r.type === 'error').length;
+    for (const type of ['init', 'castOwnership', 'castPreflight', 'castCheckpoint']) send({ type });
+    expect(replies.filter((r) => r.type === 'error')).toHaveLength(errorsBefore + 4);
+    expect([...nativeRecords]).toEqual(beforeNative);
+    expect(storage.setItem).not.toHaveBeenCalled();
+    expect(storage.removeItem).not.toHaveBeenCalled();
+    expect(file).toEqual(selected);
+    expect(JSON.stringify(file, null, 2) + '\n').toBe(sourceText);
+    expect(replies.some((r) => r.type === 'castReady')).toBe(false);
   } finally {
     vi.unstubAllGlobals();
   }

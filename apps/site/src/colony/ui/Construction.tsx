@@ -41,12 +41,14 @@ export function ConstructionReadout({
   personId,
   activity,
   stockTarget,
+  summaryOnly = false,
 }: {
   world: WorldView;
   side: 'Classic' | 'Human';
   personId?: VillagerId;
   activity?: string;
   stockTarget?: number;
+  summaryOnly?: boolean;
 }) {
   const project = world.project,
     facts = world.construction;
@@ -62,14 +64,13 @@ export function ConstructionReadout({
         {world.resources.meals}
         {stockTarget === undefined ? '' : ` of ${stockTarget}`} meals currently in store.
       </p>
-      {activity && personId && (
+      {!summaryOnly && activity && personId && (
         <p>
-          Current activity for {shortName(personId)}: {activity}. An incomplete stage does not establish why
-          work is delayed.
+          Current activity for {shortName(personId)}: {activity}.
         </p>
       )}
-      {!facts && open ? <p>The cause of the remaining delay is unknown.</p> : null}
-      {facts && (
+      {!summaryOnly && !facts && open ? <p>The cause of the remaining delay is unknown.</p> : null}
+      {!summaryOnly && facts && (
         <div className="well-building-details">
           <p>
             Timber in store: {facts.stockTimber}.

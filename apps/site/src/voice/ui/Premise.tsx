@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Decoration } from '../../shared/Decoration.tsx';
 import { voiceWords as settingWords } from './words.ts';
 export function Premise({
   ready,
@@ -32,7 +33,7 @@ export function Premise({
         </p>
         {onOtherWays && (
           <button type="button" className="v-shelf-row" onClick={onOtherWays}>
-            Other ways in <span>▸</span>
+            Other ways in <Decoration kind="chevron" />
           </button>
         )}
       </div>

@@ -12,7 +12,7 @@ it('explains the first building and cooking controls before any answer exists', 
   const noop = () => {};
   for (const [job, placeId, expected] of [
     ['build', 'site', 'not a finished roof'],
-    ['cook', 'kitchen', 'separate twelve-meal storm reserve'],
+    ['cook', 'kitchen', 'same meal store'],
   ] as const) {
     const node = document.createElement('div');
     node.innerHTML = renderToStaticMarkup(

@@ -8,6 +8,7 @@ import { RequestTranslator } from '../../free-text/RequestTranslator.tsx';
 import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
 import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
+import { Decoration } from '../../shared/Decoration.tsx';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
@@ -317,7 +318,7 @@ export function App() {
                     setPanelOpen((open) => (tab === t.id ? !open : true));
                   }}
                 >
-                  {settingWords(t.label)} ▸
+                  {settingWords(t.label)} <Decoration kind="chevron" />
                 </button>
               ))}
           </nav>
