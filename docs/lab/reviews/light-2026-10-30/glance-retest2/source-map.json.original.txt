@@ -1,0 +1,845 @@
+{
+ "note": "Packet path to original absolute path for every byte-exact copy. Hashes are of the bytes, equal on both sides. sourceMtimeNs is the source file mtime when it was copied. Generated files are not listed. This map contains no hash of any index, manifest or sha256 file.",
+ "files": [
+  {
+   "packet": "mei/report.md",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/report.md",
+   "role": "producer report, readable copy",
+   "sha256": "f634275975e7de2164c507baacf1ec2bc7481d8557d2563d13e89cc6f82ce8c3",
+   "bytes": 10230,
+   "sourceMtimeNs": 1793435955495564003,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "mei/report.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/report.md",
+   "role": "producer report, byte-identical .txt copy",
+   "sha256": "f634275975e7de2164c507baacf1ec2bc7481d8557d2563d13e89cc6f82ce8c3",
+   "bytes": 10230,
+   "sourceMtimeNs": 1793435955495564003,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "mei/brief.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/brief.md",
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "sha256": "82c4a83c98d327cf7fe9749a070169d8941b7b7db4b75e45bf833b055a958eb0",
+   "bytes": 13842,
+   "sourceMtimeNs": 1793435474462255845,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "mei/own-history.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/own-history.md",
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "sha256": "78d553322ef680f09549c8901d4bfccabecd940038a1599d6b98a219b5b4a446",
+   "bytes": 130730,
+   "sourceMtimeNs": 1793435474461694177,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "mei/history-source-map.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/history-source-map.json",
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "sha256": "b049e8458bf145797e3f4cad344e8348409ab1cc05a9d0d106175f78a86c8448",
+   "bytes": 4254,
+   "sourceMtimeNs": 1793435474462095220,
+   "sourceEpoch": "2026-10-31T08:31:14.461743+00:00",
+   "epochNote": "recorded time in file"
+  },
+  {
+   "packet": "mei/completion.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/completion.json",
+   "role": "driver completion pins",
+   "sha256": "6144180c81bd02646ce8cd6a25dace6ddffdedcdd92897661d33c722b22edfd1",
+   "bytes": 368,
+   "sourceMtimeNs": 1793435955496576047,
+   "sourceEpoch": "2026-10-31T08:39:15.496452+00:00",
+   "epochNote": "recorded ended"
+  },
+  {
+   "packet": "mei/dispatch.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/dispatch.json",
+   "role": "dispatch record",
+   "sha256": "d4e754ca056746418e5af514e04666430b05f5b84419c9807161125234fb3a68",
+   "bytes": 2086,
+   "sourceMtimeNs": 1793435619971442855,
+   "sourceEpoch": "2026-10-31T08:33:39.970351+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "mei/validation.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/validation.json",
+   "role": "director validation of stops, image reads and inputs",
+   "sha256": "fd9772bb31396194d46a40373b09fd8dac2c30964ae36d8ecfd6b55d30304bd2",
+   "bytes": 4178,
+   "sourceMtimeNs": 1793437808002513368,
+   "sourceEpoch": "2026-10-31T09:10:08.002278+00:00",
+   "epochNote": "recorded validationTime"
+  },
+  {
+   "packet": "mei/director-method-qualification.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/director-method-qualification.json",
+   "role": "director history and method qualification (copied mechanically)",
+   "sha256": "122620a30d3ba6e5d1ff236709dd79524f4ee00a0ed595687356dbd6081b2779",
+   "bytes": 715,
+   "sourceMtimeNs": 1793436768990314668,
+   "sourceEpoch": "2026-10-31T08:52:48.990058+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "mei/phone/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/phone/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "c943fec8672cc6ba4052b3e0ccb95447af64434c9f3ba7033f171874353adac7",
+   "bytes": 5504,
+   "sourceMtimeNs": 1793435930556261383,
+   "sourceEpoch": "2026-10-31T08:38:50.556Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "mei/phone/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/phone/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793435618957927617,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "mei/phone/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/phone/driver.out",
+   "role": "driver start line",
+   "sha256": "53ee3d912c0102a95ca01205be5e3b472a7414eb763654b10d4c69f81d986ce2",
+   "bytes": 85,
+   "sourceMtimeNs": 1793435619335129143,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "mei/desktop/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/desktop/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "071e76c425ed0dd8983e01d43c6370bc6e6c0668ae1f930d7d81b8d108663205",
+   "bytes": 9739,
+   "sourceMtimeNs": 1793435847664971359,
+   "sourceEpoch": "2026-10-31T08:37:27.664Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "mei/desktop/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/desktop/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793435618888210882,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "mei/desktop/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei/desktop/driver.out",
+   "role": "driver start line",
+   "sha256": "e925bf303919cfac944ef5e7a245bd5c913f46d5207cd6116d3fee4bfdc8882f",
+   "bytes": 85,
+   "sourceMtimeNs": 1793435619272320882,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "samir/report.md",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/report.md",
+   "role": "producer report, readable copy",
+   "sha256": "b9a9f7a4216fc9721474cee8f472fcd991566afcd5ba04086f9dc173c188b437",
+   "bytes": 7284,
+   "sourceMtimeNs": 1793436167077600017,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "samir/report.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/report.md",
+   "role": "producer report, byte-identical .txt copy",
+   "sha256": "b9a9f7a4216fc9721474cee8f472fcd991566afcd5ba04086f9dc173c188b437",
+   "bytes": 7284,
+   "sourceMtimeNs": 1793436167077600017,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "samir/brief.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/brief.md",
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "sha256": "e45b1c949f0484560ab691a7adbfaef42921995d77ea4d1a7ca72b26f440b923",
+   "bytes": 13850,
+   "sourceMtimeNs": 1793435474516345096,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "samir/own-history.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/own-history.md",
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "sha256": "9d87ba7e4dfabbcc9748dcdfb1e61d8c6f8b86df726ec1e98ba8d16abbe87c55",
+   "bytes": 111233,
+   "sourceMtimeNs": 1793435474515938011,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "samir/history-source-map.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/history-source-map.json",
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "sha256": "03d58dd61a66ab0e0bc2b429075bc6311d7ece97a73203fdac62f7737c5d35fc",
+   "bytes": 3664,
+   "sourceMtimeNs": 1793435474516183970,
+   "sourceEpoch": "2026-10-31T08:31:14.515993+00:00",
+   "epochNote": "recorded time in file"
+  },
+  {
+   "packet": "samir/completion.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/completion.json",
+   "role": "driver completion pins",
+   "sha256": "9e29311d395a8478780def9daa1617366ddf746adecbada46686498c34c17e36",
+   "bytes": 368,
+   "sourceMtimeNs": 1793436167078552311,
+   "sourceEpoch": "2026-10-31T08:42:47.078437+00:00",
+   "epochNote": "recorded ended"
+  },
+  {
+   "packet": "samir/dispatch.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/dispatch.json",
+   "role": "dispatch record",
+   "sha256": "bb73b5966f856b26d6392110c472cbaa5f19655018a9b06f43dbf1914bb83864",
+   "bytes": 2086,
+   "sourceMtimeNs": 1793435956738744426,
+   "sourceEpoch": "2026-10-31T08:39:16.737552+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "samir/validation.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/validation.json",
+   "role": "director validation of stops, image reads and inputs",
+   "sha256": "a53cd8b8209650897762373b66a38d13379bf6dded049e1ba912a89f09ccf820",
+   "bytes": 3489,
+   "sourceMtimeNs": 1793437808007147254,
+   "sourceEpoch": "2026-10-31T09:10:08.007027+00:00",
+   "epochNote": "recorded validationTime"
+  },
+  {
+   "packet": "samir/director-method-qualification.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/director-method-qualification.json",
+   "role": "director history and method qualification (copied mechanically)",
+   "sha256": "d0f5ce05103858bad90c1d369a6e80ff4cc0fe67ef94d33706be67cdf7f1b224",
+   "bytes": 545,
+   "sourceMtimeNs": 1793436768990485711,
+   "sourceEpoch": "2026-10-31T08:52:48.990408+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "samir/phone/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/phone/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "fd90dd53123f50fe91c3756f4f4a8d0dd2628ee90c975d3ea6ebbb0b7984e160",
+   "bytes": 4873,
+   "sourceMtimeNs": 1793436046455875380,
+   "sourceEpoch": "2026-10-31T08:40:46.455Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "samir/phone/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/phone/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793435955616434226,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "samir/phone/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/phone/driver.out",
+   "role": "driver start line",
+   "sha256": "0ba88ca455f454fcd07b8f015a3b13dc7bbddea8b37d5d0f4f44ace8a977b048",
+   "bytes": 85,
+   "sourceMtimeNs": 1793435955997502183,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "samir/desktop/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/desktop/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "c74b687f868e01ea380419ea286368686395a0ef14c0e858072c33d3b0788e0f",
+   "bytes": 5439,
+   "sourceMtimeNs": 1793436145746307661,
+   "sourceEpoch": "2026-10-31T08:42:25.746Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "samir/desktop/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/desktop/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793435955724244628,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "samir/desktop/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir/desktop/driver.out",
+   "role": "driver start line",
+   "sha256": "81b8dc3d53c3bee2af22dfc6cfd8d60c045c3056fe638406bff3aad6bc37cbc5",
+   "bytes": 85,
+   "sourceMtimeNs": 1793435956084313164,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "leila/report.md",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/report.md",
+   "role": "producer report, readable copy",
+   "sha256": "7ef298f4f21bbb37fa1cc20435ae95b842f89111b77f883f6f96e72cbdc66fb7",
+   "bytes": 12397,
+   "sourceMtimeNs": 1793436458816606769,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "leila/report.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/report.md",
+   "role": "producer report, byte-identical .txt copy",
+   "sha256": "7ef298f4f21bbb37fa1cc20435ae95b842f89111b77f883f6f96e72cbdc66fb7",
+   "bytes": 12397,
+   "sourceMtimeNs": 1793436458816606769,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "leila/brief.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/brief.md",
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "sha256": "f75079532f0f9c1f122328e1163b7e7516e168b5ddd7a56b4a842dd406eb956b",
+   "bytes": 13885,
+   "sourceMtimeNs": 1793435474571993641,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "leila/own-history.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/own-history.md",
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "sha256": "f9357ae1958f95e14e66980bf670dd4e7219d90d8138affe3959e7e48385f1ea",
+   "bytes": 129686,
+   "sourceMtimeNs": 1793435474571568765,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "leila/history-source-map.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/history-source-map.json",
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "sha256": "2065b5329242f7f40a5d7502c6990c734c50bf05bbb14ee07a7e54c0b1f08156",
+   "bytes": 3964,
+   "sourceMtimeNs": 1793435474571831683,
+   "sourceEpoch": "2026-10-31T08:31:14.571635+00:00",
+   "epochNote": "recorded time in file"
+  },
+  {
+   "packet": "leila/completion.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/completion.json",
+   "role": "driver completion pins",
+   "sha256": "1d024225b21062d9147f8fd1fed653732d01bb83668c528bc1d714f1ac25b4c9",
+   "bytes": 368,
+   "sourceMtimeNs": 1793436458817496604,
+   "sourceEpoch": "2026-10-31T08:47:38.817391+00:00",
+   "epochNote": "recorded ended"
+  },
+  {
+   "packet": "leila/dispatch.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/dispatch.json",
+   "role": "dispatch record",
+   "sha256": "806fe52404e208a2bc7f4c8465f63640c5d799adf8e44bf4033763228df6963f",
+   "bytes": 2086,
+   "sourceMtimeNs": 1793436168357351270,
+   "sourceEpoch": "2026-10-31T08:42:48.356714+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "leila/validation.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/validation.json",
+   "role": "director validation of stops, image reads and inputs",
+   "sha256": "012fe8dd7aeee0c8411dc7a99d4e7f0f47c11129fecd8f6e2d6b871d048791c7",
+   "bytes": 3526,
+   "sourceMtimeNs": 1793437808012747892,
+   "sourceEpoch": "2026-10-31T09:10:08.012517+00:00",
+   "epochNote": "recorded validationTime"
+  },
+  {
+   "packet": "leila/director-method-qualification.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/director-method-qualification.json",
+   "role": "director history and method qualification (copied mechanically)",
+   "sha256": "5822b3833aa25e45d674523477080729373962d88022cf82e0b9c6e61255cbcd",
+   "bytes": 546,
+   "sourceMtimeNs": 1793436768990612379,
+   "sourceEpoch": "2026-10-31T08:52:48.990542+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "leila/phone/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/phone/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "a29d436fc8345802cf44d93160c7958cc6a9f1347e60381972d738b9a405a96c",
+   "bytes": 6862,
+   "sourceMtimeNs": 1793436427230188486,
+   "sourceEpoch": "2026-10-31T08:47:07.230Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "leila/phone/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/phone/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793436167343915182,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "leila/phone/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/phone/driver.out",
+   "role": "driver start line",
+   "sha256": "ee1d02304b57aa5a2228c66907a442d20e14cc1013c487670d2068483d7a0570",
+   "bytes": 85,
+   "sourceMtimeNs": 1793436167735397745,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "leila/desktop/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/desktop/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "8d289e9e14ee5a3a44c194fa76b22727705e933e083e51c7cfb6722f4b005b5c",
+   "bytes": 8635,
+   "sourceMtimeNs": 1793436334860071643,
+   "sourceEpoch": "2026-10-31T08:45:34.859Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "leila/desktop/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/desktop/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793436167256819742,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "leila/desktop/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/desktop/driver.out",
+   "role": "driver start line",
+   "sha256": "f79474b562df12bce7646fcecbed4e497a3dd82ee90ba0375832e20540e2e94b",
+   "bytes": 85,
+   "sourceMtimeNs": 1793436167657553658,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "rosa/report.md",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/report.md",
+   "role": "producer report, readable copy",
+   "sha256": "c1fc7b438c1d7ba884b0d05d0c13e0f17101f0ddf4a58aca2d54cb05e84ac2a0",
+   "bytes": 11295,
+   "sourceMtimeNs": 1793436615299275230,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "rosa/report.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/report.md",
+   "role": "producer report, byte-identical .txt copy",
+   "sha256": "c1fc7b438c1d7ba884b0d05d0c13e0f17101f0ddf4a58aca2d54cb05e84ac2a0",
+   "bytes": 11295,
+   "sourceMtimeNs": 1793436615299275230,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "rosa/brief.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/brief.md",
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "sha256": "d6445c8b0bd734334450478f4f7a0844dae7906978c5db17c4e0df5c20cc93d3",
+   "bytes": 14668,
+   "sourceMtimeNs": 1793435474624443180,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "rosa/own-history.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/own-history.md",
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "sha256": "0b31da3ee125f7d873d62056887ae274b967234b241b1e40c25421f9a4893e97",
+   "bytes": 220016,
+   "sourceMtimeNs": 1793435474623981220,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "rosa/history-source-map.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/history-source-map.json",
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "sha256": "bb4d107599eabe452a37b7def79765b4d70897af3dd519485b9851208b126dd7",
+   "bytes": 6350,
+   "sourceMtimeNs": 1793435474624288971,
+   "sourceEpoch": "2026-10-31T08:31:14.624021+00:00",
+   "epochNote": "recorded time in file"
+  },
+  {
+   "packet": "rosa/completion.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/completion.json",
+   "role": "driver completion pins",
+   "sha256": "02b3cd23f11ceda204d8a01b5f8d05e2d3b9eb413c9bfe0a2ffbf8ab272392d8",
+   "bytes": 368,
+   "sourceMtimeNs": 1793436615300607149,
+   "sourceEpoch": "2026-10-31T08:50:15.300385+00:00",
+   "epochNote": "recorded ended"
+  },
+  {
+   "packet": "rosa/dispatch.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/dispatch.json",
+   "role": "dispatch record",
+   "sha256": "138e8afc1a42d50e5dcc562bc618e7003cb08af887bffb518a34ece49ec7aa45",
+   "bytes": 2086,
+   "sourceMtimeNs": 1793436460039535314,
+   "sourceEpoch": "2026-10-31T08:47:40.038934+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "rosa/validation.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/validation.json",
+   "role": "director validation of stops, image reads and inputs",
+   "sha256": "8a1aa93dbf1f27fb4f4895e3ea614138e64e8e8d125ec9ee9fd2cb531f7fc26f",
+   "bytes": 4314,
+   "sourceMtimeNs": 1793437808020307244,
+   "sourceEpoch": "2026-10-31T09:10:08.020230+00:00",
+   "epochNote": "recorded validationTime"
+  },
+  {
+   "packet": "rosa/director-method-qualification.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/director-method-qualification.json",
+   "role": "director history and method qualification (copied mechanically)",
+   "sha256": "a7c19d67dbb76b9b3b320b80c32902299792ca3ca7a2a95ee52aa32c41a733b2",
+   "bytes": 688,
+   "sourceMtimeNs": 1793436768990740547,
+   "sourceEpoch": "2026-10-31T08:52:48.990663+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "rosa/phone/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/phone/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "c4512b494e2cbc0db6f870188fd756d0ff2a42290233690c46befee3514fcd31",
+   "bytes": 5156,
+   "sourceMtimeNs": 1793436540564444216,
+   "sourceEpoch": "2026-10-31T08:49:00.564Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "rosa/phone/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/phone/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793436458932418147,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "rosa/phone/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/phone/driver.out",
+   "role": "driver start line",
+   "sha256": "4f6a101efef324db2901c674076db387d6e6ec492fe61dfc6b9be4fc8a07e313",
+   "bytes": 85,
+   "sourceMtimeNs": 1793436459324442086,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "rosa/desktop/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/desktop/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "d21c59816db8ef1bfcc6c0399849c72215ea1a98e94493f5c723fc907fac577b",
+   "bytes": 4939,
+   "sourceMtimeNs": 1793436574617798092,
+   "sourceEpoch": "2026-10-31T08:49:34.617Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "rosa/desktop/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/desktop/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793436459026787770,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "rosa/desktop/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa/desktop/driver.out",
+   "role": "driver start line",
+   "sha256": "a219161380aa1206651e3001c697c07ba06a1a08074e761314d42f4a3e0b5e87",
+   "bytes": 85,
+   "sourceMtimeNs": 1793436459420673922,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "eszter/report.md",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/report.md",
+   "role": "producer report, readable copy",
+   "sha256": "3db2ad3fb98db869128a0fa88cebd9ada2e2bc5eb804956162a26043949f356e",
+   "bytes": 19735,
+   "sourceMtimeNs": 1793437773247614519,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "eszter/report.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/report.md",
+   "role": "producer report, byte-identical .txt copy",
+   "sha256": "3db2ad3fb98db869128a0fa88cebd9ada2e2bc5eb804956162a26043949f356e",
+   "bytes": 19735,
+   "sourceMtimeNs": 1793437773247614519,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "eszter/brief.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/brief.md",
+   "role": "brief as supplied to tester (copied mechanically, not read)",
+   "sha256": "c718a15bf6ffb0b76270808e5f9c73b76274a84311b59f4481f676dc3dce24fd",
+   "bytes": 13701,
+   "sourceMtimeNs": 1793435474624882806,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "eszter/own-history.original.md.txt",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/own-history.md",
+   "role": "history as supplied to tester (copied mechanically, not read)",
+   "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+   "bytes": 186,
+   "sourceMtimeNs": 1793435474624700180,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "input freeze time"
+  },
+  {
+   "packet": "eszter/history-source-map.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/history-source-map.json",
+   "role": "director map of which sources fed the supplied history (copied mechanically)",
+   "sha256": "ecd79136d8bbfde876bf719e6bc28a48874cc26073e397cdf9f555b1d2a75e75",
+   "bytes": 281,
+   "sourceMtimeNs": 1793435474624770306,
+   "sourceEpoch": "2026-10-31T08:31:14.624714+00:00",
+   "epochNote": "recorded time in file"
+  },
+  {
+   "packet": "eszter/completion.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/completion.json",
+   "role": "driver completion pins",
+   "sha256": "f428f8e6ed5249cace1c5724d435492268c5208b5fc3da47b89bac2223fe4169",
+   "bytes": 368,
+   "sourceMtimeNs": 1793437773248242104,
+   "sourceEpoch": "2026-10-31T09:09:33.248155+00:00",
+   "epochNote": "recorded ended"
+  },
+  {
+   "packet": "eszter/dispatch.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/dispatch.json",
+   "role": "dispatch record",
+   "sha256": "1ef279faca53778ac36ac9e7f14d7fbf31fbf597e007fce57ae3def4b97fe200",
+   "bytes": 2084,
+   "sourceMtimeNs": 1793436616485244027,
+   "sourceEpoch": "2026-10-31T08:50:16.483981+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "eszter/validation.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/validation.json",
+   "role": "director validation of stops, image reads and inputs",
+   "sha256": "408aefec3d5043496b19a0d0a100e3397f057414b83395e219c4ea6051574816",
+   "bytes": 4843,
+   "sourceMtimeNs": 1793437808030126267,
+   "sourceEpoch": "2026-10-31T09:10:08.030016+00:00",
+   "epochNote": "recorded validationTime"
+  },
+  {
+   "packet": "eszter/director-method-qualification.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/director-method-qualification.json",
+   "role": "director history and method qualification (copied mechanically)",
+   "sha256": "e92fb5a8b3f6dee9d38185f90388279b292b31b19ea3fe0ba888556c4ff2ca2a",
+   "bytes": 1229,
+   "sourceMtimeNs": 1793437906298816614,
+   "sourceEpoch": "2026-10-31T09:11:46.288070+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "eszter/phone/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/phone/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "a106d8005678674b369a1e47684ec806dc813b082f29361b27622b680ab9c7d0",
+   "bytes": 25382,
+   "sourceMtimeNs": 1793437279246283424,
+   "sourceEpoch": "2026-10-31T09:01:19.246Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "eszter/phone/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/phone/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793436615404638876,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "eszter/phone/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/phone/driver.out",
+   "role": "driver start line",
+   "sha256": "5ba244fd15d0b0c0e05dca74e1a3eec71b77aa895863f55bd4d2c648587f7867",
+   "bytes": 85,
+   "sourceMtimeNs": 1793436615784613705,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "eszter/desktop/wall-clock.jsonl",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/desktop/wall-clock.jsonl",
+   "role": "raw driver rows",
+   "sha256": "973f383b439c0bf0a7622c4a41ae188abb15e611578786b070aefea186d8df53",
+   "bytes": 20704,
+   "sourceMtimeNs": 1793437709588993262,
+   "sourceEpoch": "2026-10-31T09:08:29.588Z",
+   "epochNote": "last row t"
+  },
+  {
+   "packet": "eszter/desktop/release-start.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/desktop/release-start.json",
+   "role": "release pin at session start",
+   "sha256": "7c171c3dc4b55948bfb009205cf7677dd0759754231d2a320abcbafeb1e47fce",
+   "bytes": 119,
+   "sourceMtimeNs": 1793436615470411812,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "eszter/desktop/driver.out",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter/desktop/driver.out",
+   "role": "driver start line",
+   "sha256": "1622ea1a81c7502abaac3db60b31469269cd7db2c144ed75a5a57ea3fdf792b4",
+   "bytes": 85,
+   "sourceMtimeNs": 1793436615831705641,
+   "sourceEpoch": null,
+   "epochNote": null
+  },
+  {
+   "packet": "inputs/glance-retest2-plan.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-plan.json",
+   "role": "dispatch plan",
+   "sha256": "dbd1492eb26c7e3e56d66b2d26a533c78d2c74da8bf903ac91a5fd5e9185439e",
+   "bytes": 6844,
+   "sourceMtimeNs": 1793435474624975056,
+   "sourceEpoch": null,
+   "epochNote": "no timestamp in source"
+  },
+  {
+   "packet": "inputs/glance-retest2-predispatch.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-predispatch.json",
+   "role": "predispatch gate record",
+   "sha256": "21a95d2a453d53f647e7218e6e793ea8c68b1dee2f8de1cfc518cb848bbee809",
+   "bytes": 3347,
+   "sourceMtimeNs": 1793435618736151220,
+   "sourceEpoch": "2026-10-31T08:33:37.787039+00:00",
+   "epochNote": "recorded admittedAt"
+  },
+  {
+   "packet": "inputs/glance-retest2-input-freeze.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-input-freeze.json",
+   "role": "input freeze with brief and history hashes",
+   "sha256": "44d7fbd0db6ebe841283d7d156583be41486c69aae5c26e6736797655836d768",
+   "bytes": 1624,
+   "sourceMtimeNs": 1793435474625042764,
+   "sourceEpoch": "2026-10-31T08:31:14.624987+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "inputs/glance-retest2-final-driver-audit.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-final-driver-audit.json",
+   "role": "final driver audit (director validation of stops, image reads and inputs)",
+   "sha256": "f821904da709c86db31d84aedb021b7ab72f8ff9190c859b9aa180d43ec4f12c",
+   "bytes": 21695,
+   "sourceMtimeNs": 1793437808138394439,
+   "sourceEpoch": null,
+   "epochNote": "no top-level timestamp in source"
+  },
+  {
+   "packet": "inputs/glance-retest2-final-release-after-round.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-final-release-after-round.json",
+   "role": "post-round release pin",
+   "sha256": "6a8a6a62b551858c0f8e7e42a18405bd0cf2c0a67aaeb9f08172026f6fb20fee",
+   "bytes": 193,
+   "sourceMtimeNs": 1793437808138068355,
+   "sourceEpoch": "2026-10-31T09:10:08.137839+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "inputs/glance-retest2-stop-and-capture-audit.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-stop-and-capture-audit.json",
+   "role": "stop and capture-count audit",
+   "sha256": "75eb1c545ce29248846a217039499ffd5a474a2ca68443ffc7461db6352461ac",
+   "bytes": 15274,
+   "sourceMtimeNs": 1793437823687949235,
+   "sourceEpoch": "2026-10-31T09:10:23.687431+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "inputs/glance-retest2-cleanup.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-cleanup.json",
+   "role": "process cleanup readback",
+   "sha256": "931ae7c0e35c2dbfc534338ab4535d5df58005d2b42f3e27b43becc0491d5136",
+   "bytes": 2134,
+   "sourceMtimeNs": 1793437823687753693,
+   "sourceEpoch": "2026-10-31T09:10:23.687431+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "inputs/glance-retest2-director-method-notes.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-director-method-notes.json",
+   "role": "director method notes, counts, qualifications and parent target dates",
+   "sha256": "c2618d48413c2dffdffb9df12eb3fbe1573c7f8373562588fe27e522464fdafd",
+   "bytes": 2508,
+   "sourceMtimeNs": 1793437906298908072,
+   "sourceEpoch": "2026-10-31T09:11:46.288070+00:00",
+   "epochNote": "recorded time"
+  },
+  {
+   "packet": "inputs/glance-retest2-history-read-audit.json",
+   "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2-history-read-audit.json",
+   "role": "actual history Read audit",
+   "sha256": "a50ed9f5cde4359dee3fe3bcedc4b6ba661e9753ffe7c3a2333ca1bdcf8b0d37",
+   "bytes": 6372,
+   "sourceMtimeNs": 1793437906298691989,
+   "sourceEpoch": null,
+   "epochNote": "no timestamp in source"
+  }
+ ]
+}

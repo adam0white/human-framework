@@ -1,0 +1,9 @@
+{
+  "time": "2026-10-31T11:46:50.224355+00:00",
+  "originalHistory": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/own-history.md",
+  "originalSha256": "21cabc191388e26dacd966dba5e6b83c0365027de04e4d1bf4a9384843c53066",
+  "additionalSource": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/partial-driver-reactions.json",
+  "sourceType": "Explicit selected original ownhistory unchanged plus own raw coordinator-cut reactions; no CONT added",
+  "modelChange": "Claude to Codex dueownerbrake, notsameinstrument/game-onlycause",
+  "historySha256": "9a6bd4793158951a30d66e9771e815c090bb55ce6c7eccad618deb17a4565ef9"
+}

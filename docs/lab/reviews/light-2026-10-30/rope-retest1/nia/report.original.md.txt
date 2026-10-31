@@ -1,0 +1,151 @@
+**Would you return? "I would come back another evening, but only if the first reply to a question stopped being the generic line and the clock moved at a pace where something happens within a minute; I would not leave it running."**
+
+**Ranked asks:**
+1. Make the first reply to a question or request specific. Today the generic line ("I agree. Let's do it." / "I will do as you ask.") comes first and the real answer arrives 20–30 s later.
+2. Make refusals sound like people every time. Oskar's "I can't make that happen. I do not have what I need for that." still reads like an error message. Stop several people giving the identical line.
+3. Make the clock move at a pace where something happens in a minute. On Automatic pace it was 05:30 after about 3 minutes.
+
+---
+
+## 1. Session
+- **Persona:** Nia Okafor, 19, Lagos design student. Returning player.
+- **Round and arm:** light-1030-retest1, first same-standing retest of The Rope, free stop (floor 0).
+- **URL:** https://rope.adamwhite.work/?labRunSource=agent
+- **Supplied history:** I read own-history.md in full, through the End marker. My earlier Rope report is at lines 296–418. The earlier CONT input qualification and the excluded Warren alternative body were not supplied as text. I keep those observations with that continuity qualification.
+- **Session A:** 360x690 touch phone, light, port 22004. About 200 s.
+- **Session B:** 1280x800 keyboard and mouse, light, port 22005. About 253 s.
+- Both sessions were new games with no save, and I stopped each by choice before the 20-minute ceiling.
+
+## 2. First impressions
+- **A, 6 s:** Same title page as before, three peaks, "They can say no."
+- **A, 8 s:** Same promise screen. I picked the earliest, 12:00.
+- **A, 10 s:** A refusal came, with reasons ("Ask me after I eat something."). Last time the first refusal took 117 s.
+- **B, 4–6 s:** Same evening on my other device. I chose "We'll see" this time, so there was no agreement screen.
+- **B, 36 s:** Tamar gave a real answer about turn-back (she once blamed weather when she had lost confidence). I wanted exactly that last time.
+
+## 3. Verbatim diary lines (elapsed s)
+I did not keep the raw log text. These are reproduced from my session notes, in order, and not word-for-word.
+
+**Session A (phone)**
+- 6.0: "Same title page as before, three peaks, They can say no. Tapping New game."
+- 8.2: "Same promise screen. Picking the earliest this time."
+- 10.5: "Five yeses again, Tamar and Wren same words. Skipping straight to asking everyone to rest, hoping for a refusal."
+- 13.1: "Refusal at 10 seconds this time, with reasons: Ask me after I eat. Much earlier than last visit. Now poking Nell to try a topic question."
+- 14.6: "Looking for the topic question to Nell."
+- 16.6: "Same topic question as last visit. Hoping for a real answer."
+- 38.5: "Same I agree lets do it as last visit, ignoring my question. But it says what she says goes in the journal. Waiting to see."
+- 40.5 (note, 05:08): "Nell answered my question a bit later: The Sunny Chair is a wet hollow, maps of what people say. That is a real answer to mountain names. Last time I only got I agree. The first line is still the generic one though."
+- 42.1: "Now Wren, who said ask me after I eat."
+- 44.1: "Asking Wren to turn back at the hut, same silly request as my desktop run last time, to compare the refusal voice."
+- 46.0: "Three levels now: ask gently, urge, insist. Going straight to insist to see the refusal voice."
+- 48.1: "Wren says I want to go down, who will come with me. That sounds like a person, not an error. Opening it."
+- 50.3: "A real choice: who goes down with her. I want to test pressure, so asking her to wait."
+- 62.5: "Wren wants to wait before waiting is an odd sentence, like a template. But Eat something then we can talk is a person line."
+- 66.6 (first_minute, 05:11): "A refusal came at 10 seconds, not 117 like last time, and Wren asked me who goes down with her, which is a real choice. Nell answered my mountain question in the end. Clock barely moved though, 05:11. Interested, and the pressure levels ask gently, urge, insist are clear."
+- 68.5: "Back to Wren going down. Sending Oskar with her, he is the one who stalled."
+- 101.8: "Oskar gave the same line and the game itself says these are the same words as at 05:01. Honest, but still the same line. Waiting to see what Wren does."
+- 103.9 (note, 05:17): "Oskar refused with I cannot make that happen, I do not have what I need for that. That is the same error-message voice I complained about last time. It came after a wait, and it is not a person talking."
+- 107.4: "Trying we all turn, the dramatic one."
+- 139.7: "Tamar, Nell and Bilal all said the identical line, I want to go down, who will come with me. It is a stir but samey. Watching."
+- 171.9: "Clock only went 05:19 to 05:20 in 30 real seconds. Very slow again."
+- 174.4: "Everyone is now above me walking up even though they all said I want to go down. They said it and did the opposite. Opening Tamar thread."
+- 186.0: "Nell is now walking down to meet Tamar. Something is actually moving."
+- 187.8 (pulse, engagement 3, 05:28): "Refusals came early and people started asking each other who goes down, which is new and good. But three people said the identical line, Oskar gave the error-message refusal again, and the clock crawls: 05:28 after three minutes."
+- 191.6 (want_quit, BORED, 05:29): "Three minutes in and the clock is 05:29 of a day to 12:00. People talk about going down but I just wait. I would stop here."
+- 194.9: "Menu has a Pace setting auto slow normal fast, which I had not seen before. Opening Feedback."
+- 199.6 (stop, BORED, 05:30): "Stopping on the phone at 05:30. Refusals and Wren asking who goes down were better than last time, and Nell finally answered my question. But repeated lines, the error-style refusal from Oskar, and a crawling clock. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit."
+
+**Session B (desktop)**
+- 4.0: "Second device, same evening. New game."
+- 5.9: "Trying the non-promise this time."
+- 7.5: "Going to Tamar for a topic question like last time."
+- 11.0: "Same Tamar question that got a generic answer last time. Seeing if the real answer follows."
+- 32.8: "Generic I will do as you ask again, same as last visit, but now it says the talk is not finished and goes to the journal. Waiting."
+- 36.6 (note, 05:06): "Tamar answered my turn-back question for real: she once blamed weather when she had lost confidence. That is exactly what I wanted last time. The first line I will do as you ask is still generic and it comes first, but the real answer follows within seconds."
+- 43.2: "Insisting on rest with Wren to see whether the disagree line from last time shows up."
+- 59.9: "Recognised: Wren I will do it, but I disagree, the exact line I liked last visit, seen at 43 s, fairly sure it is the same line. Now reaching it in 43 seconds, not 124."
+- 62.1 (first_minute, 05:15): "Desktop is calm and wide. In a minute I got a real answer from Tamar about turn-back, a delay from Wren, and the I will do it but I disagree line. The reply I will do as you ask still comes first and is generic. The Skip button appeared by itself after a wait."
+- 97.5: "Oskar gave the exact same climb the hut path line as on the phone. Same sentence at same time until 06:39. Waiting for something to happen."
+- 99.2: "Skip is back, using it."
+- 101.5: "The clock crawls. Menu had a Pace setting on the phone, trying fast."
+- 106.8: "Time has stopped and they cannot hear me. Walking up myself."
+- 133.4: "Fast pace set, watching how far the clock goes in 25 real seconds."
+- 167.4 (wait 30): "Everyone has walked out of earshot, I am alone at the hut with disabled buttons. Waiting a bit more."
+- 244.2 (wait 15): "b-002 showed everyone far above me and my buttons greyed. At fast pace the clock is 06:21 but nothing has happened."
+- 245.6 (pulse, engagement 3, 07:00): "Fast pace makes the clock move and a sunlight line appeared, but Oskar still shows the same old eat reply and nothing I asked has happened."
+- 247.2 (want_quit, BORED, 07:00): "Four minutes in, my requests mostly got deferred and I am just watching dots walk. I would stop here."
+- 253.1 (stop, BORED, 07:06): "Stopping on desktop at 07:06. Real topic answer from Tamar and the I will do it but I disagree line came fast, but Oskar kept the same deferral line, my requests stalled, and I ended up watching dots. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit."
+
+The wait 167→244 s step reported a longer elapsed time than the 15 s I asked for. I do not know why.
+
+## 4. Moments
+- **What held me:**
+  - Refusals came at 10 s instead of 117 s.
+  - The refusals carried reasons.
+  - Wren asked who goes down with her, which felt like a person and gave me a choice.
+  - The topic answers (Nell's mountain names, Tamar's turn-back confession) were what I wanted last time.
+  - The game admitted a repeated line: "These are the same words as at 05:01."
+- **What lost me:**
+  - The generic first line still comes first.
+  - Oskar gave the same deferral line on both devices.
+  - Three people said the identical "I want to go down. Who will come with me?"
+  - They then all walked up anyway.
+  - Oskar's error-voice refusal came back.
+  - The clock was slow on Automatic.
+  - On desktop, people left earshot and my buttons greyed out.
+- **Quit wishes:** want_quit BORED at 191.6 s on the phone and at 247.2 s on desktop. Neither passed, and I stopped both times.
+- **Pulses:** phone 3 at 187.8 s, desktop 3 at 245.6 s.
+- **Recognition:** Wren's "I will do it, but I disagree" at 43.2 s on desktop. I am fairly sure it is the same line I liked last visit. The title page, promise screen and insist warning also recurred.
+
+## 5. Confusion and clarity
+- **Clear:**
+  - The three pressure levels (ask gently, urge, insist) with the "can harm trust" warning.
+  - The "He cannot hear you. Walk closer." text on greyed buttons.
+  - The "Wren wants to go down. Who goes with her?" choice.
+- **Confusing:**
+  - "Wren wants to wait before waiting" reads like a template.
+  - On both devices everyone said "I want to go down" and then walked up, with no explanation.
+  - On desktop at 06:21, Skip said nothing new had happened, yet my requests were still unanswered.
+
+## 6. Device use
+- **Screenshots viewed:**
+  - phone/a-001.png: the title page. It has a cream background, "THE ROPE", three labelled peaks and a red New game button. The record strip at the bottom edge overlaps the screen edge.
+  - phone/a-002.png (05:29): the header wraps to two lines. "more requests" wraps to "more request s". Oskar's button is greyed. I did not try to scroll the cut-off bottom row.
+  - desktop/b-001.png: the title page centred in a wide layout, with a wide red New game bar.
+  - desktop/b-002.png (05:41): the map on the left and the people and requests on the right. Oskar, Nell and Bilal are greyed with "cannot hear you", and Skip is stopped.
+- **Controls used on the phone:** touch taps on New game, the promise, people, requests, "more requests", insist, send Oskar, send Nell, Menu, Feedback, I'm stopping, Back, and waits.
+- **Controls used on desktop:** clicks on the same kinds of controls, plus Skip, the Pace setting set to fast, and lead on.
+- **Driver:** one tap error on desktop at 34 s ("Skip to the next event" no longer on the page). The game had changed state. It was not a driver block.
+- **Layout trouble I saw:** the wrapped header and the wrapped "more requests" label on the phone.
+- **Unseen:** I did not look at the phone with the on-screen keyboard.
+
+## 7. Stop and return
+- **Stop words:**
+  - Phone, BORED, 05:30: "I would close it, not leave it running."
+  - Desktop, BORED, 07:06: "I would close it, not leave it running."
+- **Feedback on both devices:** it offered I'm stopping, I'm confused, I'd keep playing, I am not sure and I'd stop here. I chose "I'm stopping". It pre-filled the note "I'm stopping". I typed nothing, pressed no Submit, changed no consent, and pressed ← Back.
+- **Would I return voluntarily?** Yes, but only on these conditions. The first reply has to answer what I asked instead of "I will do as you ask." Refusals have to sound like a person every time. Several people must stop saying the same line. And something has to happen within about a minute, which means a faster clock without me hunting for the Pace setting.
+- **Leave it running or come back another evening?** I would not leave it running. I would come back another evening if those conditions were met.
+
+## 8. Changes I would want
+1. Make the first reply specific to my question, with no generic line first.
+2. Give every refusal a person's voice and stop identical lines from several people.
+3. Make the default clock fast enough that something happens within a minute.
+
+## 9. Compared with my last visit
+- **Ask 1, answers that respond to the specific question: partly met.** Real topic answers came (Nell on mountain names, Tamar on turn-back). They arrived 20–30 s after a generic first line.
+- **Ask 2, varied early disagreement in a person's voice: partly met.** Refusals came at 10 s and were varied: "Ask me after I eat something", "First I will eat something, then we can talk", and "I will do it, but I disagree" again. Oskar's "I can't make that happen. I do not have what I need for that." is still error-style. Three people also said the same line.
+- **Ask 3, a faster climb: did not meet it on the phone.**
+  - On the phone's Automatic pace the clock read 05:30 after about 3 minutes.
+  - On desktop with Pace set to fast it moved about 11 game minutes in 25 s.
+  - I never reached turn-back time on either device.
+- **Earlier minor items (not part of the three asks):**
+  - "Climb on" vs "lead on" confusion: not seen.
+  - Two "more ▾" buttons: still there.
+  - Feedback offering both "I'm stopping" and "I'm confused": still there.
+- **New blocking asks:**
+  - The "He cannot hear you. Walk closer." state on desktop. It greyed all my request buttons, and I could only walk up or wait.
+  - The odd "wants to wait before waiting" wording.
+  - Everyone saying "I want to go down" and then walking up.
+
+I created no worktree, server or browser. I wrote no files except driver screenshots and touched no repository, so no `git worktree list` applies.

@@ -1,0 +1,20 @@
+{
+  "parser": "apps/site/src/lab/ledger.ts buildCurated and parseLedger from the read-only batch4-preparation baseline",
+  "node": "v26.12.0",
+  "baselineRows": 1333,
+  "baselineProblems": [],
+  "appendedLines": 20,
+  "rowsAfter": 1353,
+  "newRowsParsed": 20,
+  "routeKinds": {
+    "fix": 20,
+    "calibration": 2
+  },
+  "rowsWithMoreThanOneFix": [],
+  "calibrationRows": [
+    "F-2587",
+    "F-2594"
+  ],
+  "problems": [],
+  "scope": "Preview only: baseline docs read, the 20 rows appended in memory, nothing written outside this json."
+}

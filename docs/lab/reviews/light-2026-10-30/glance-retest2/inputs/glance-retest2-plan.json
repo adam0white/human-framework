@@ -1,0 +1,102 @@
+[
+  {
+    "game": "glance",
+    "title": "Glance",
+    "url": "https://glance.adamwhite.work/?labRunSource=agent",
+    "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+    "ceiling": 20,
+    "tester": "Mei Tan",
+    "first": "mei",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/mei",
+    "kind": "standing",
+    "exposure": "retest",
+    "persona": "- Age and background: 53. Singapore; accountant caring for an older parent. Plays turn-based tactics and word games.\n- HF temperament: patient; high conscientiousness, low extraversion, moderate openness.\n- Likes: keeping commitments, legible deadlines, constrained recovery.\n- Dislikes: dates she cannot compare, hidden selection changes.\n- Play habits: Uses laptop. Reads the current situation before committing, checks progress after an action, and prefers a durable save to restarting.\n- Personal diary: [panel/mei-tan.md](panel/mei-tan.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual earlier Glance round-1 and first-retest own reports plus latest own cross-game reports, supplied by the director later",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22800,
+      "desktop": 22801
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "glance",
+    "title": "Glance",
+    "url": "https://glance.adamwhite.work/?labRunSource=agent",
+    "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+    "ceiling": 20,
+    "tester": "Samir Haddad",
+    "first": "samir",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/samir",
+    "kind": "standing",
+    "exposure": "retest",
+    "persona": "- Age and background: 34. Jordan; Amman civil engineer. Enjoys grand strategy and tabletop roleplaying; often takes the supporting role.\n- HF temperament: curious; high openness and agreeableness, moderate conscientiousness.\n- Likes: place, relationships, competing loyalties.\n- Dislikes: a moral choice with one obviously rewarded answer.\n- Play habits: Uses desktop. Asks what a person needs before optimizing. Remembers names, but confuses similar names and admits uncertainty.\n- Personal diary: [panel/samir-haddad.md](panel/samir-haddad.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual earlier Glance round-1 and first-retest own reports plus latest own cross-game reports, supplied by the director later",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22802,
+      "desktop": 22803
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "glance",
+    "title": "Glance",
+    "url": "https://glance.adamwhite.work/?labRunSource=agent",
+    "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+    "ceiling": 20,
+    "tester": "Leila Mansour",
+    "first": "leila",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila",
+    "kind": "standing",
+    "exposure": "retest",
+    "persona": "- Age and background: 26. Egypt; Alexandria translator. Plays interactive fiction and tactical roguelikes in English.\n- HF temperament: impatient; high openness, moderate emotionality, low agreeableness.\n- Likes: precise prose, consequential conversation, hard but fair situations.\n- Dislikes: vague verbs, necessary unexplained local terms.\n- Play habits: Uses a phone. Reads closely when the wording matters, experiments when it does not, and distinguishes a difficult choice from not understanding the controls.\n- Personal diary: [panel/leila-mansour.md](panel/leila-mansour.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual earlier Glance round-1 and first-retest own reports plus latest own cross-game reports, supplied by the director later",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22804,
+      "desktop": 22805
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "glance",
+    "title": "Glance",
+    "url": "https://glance.adamwhite.work/?labRunSource=agent",
+    "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+    "ceiling": 20,
+    "tester": "Rosa Alvarez",
+    "first": "rosa",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/rosa",
+    "kind": "standing",
+    "exposure": "retest",
+    "persona": "- Age and background: 62. Mexico; Puebla retired school administrator. Enjoys crosswords, family card games and occasional phone mysteries.\n- HF temperament: patient; high conscientiousness and agreeableness, moderate openness.\n- Likes: ordinary people with understandable obligations, clear language.\n- Dislikes: tiny text, specialist gaming vocabulary, being hurried while reading.\n- Play habits: Uses a tablet or a large phone with deliberate taps. Reads help when it answers a concrete question. Does not assume familiar game conventions.\n- Personal diary: [panel/rosa-alvarez.md](panel/rosa-alvarez.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: actual earlier Glance round-1 and first-retest own reports plus latest own cross-game reports, supplied by the director later",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22806,
+      "desktop": 22807
+    },
+    "model": "sonnet"
+  },
+  {
+    "game": "glance",
+    "title": "Glance",
+    "url": "https://glance.adamwhite.work/?labRunSource=agent",
+    "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+    "ceiling": 20,
+    "tester": "Eszter Fekete",
+    "first": "eszter",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/eszter",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 36. Hungary; Szeged museum ticket clerk. She does occasional logic puzzles and weekend nature photography.\n- HF temperament: no HF exposure and no recorded temperament. Treat her as one individual, not a demographic representative and not a targeted-dislike probe, who weighs concrete likes against concrete limits and says what she saw in play in her own words.\n- Likes: exploring a place through choices, knowing what action she just took, people who remember a prior decision, short evening sessions after work.\n- Dislikes: being asked to guess a rule without seeing an example, repeating the same form.\n- Play habits: Plays on a phone first. Reads a screen, tries one action, then checks the response. Can leave when she is no longer interested, and says so plainly.\n- Personal diary: empty. No play history of any kind. Only observed sessions can add history.",
+    "prior_src": null,
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22808,
+      "desktop": 22809
+    },
+    "model": "opus"
+  }
+]

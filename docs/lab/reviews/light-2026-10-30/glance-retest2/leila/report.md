@@ -1,0 +1,125 @@
+**Would you return voluntarily?** Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. I would not leave it running.
+
+**Ranked asks**
+1. Give me more to decide each night. I made about 4 choices on desktop and about 3 on phone, then waited.
+2. Stop the clock, or slow it much more, while I read an inspection panel. The panel still says "Time continues slowly while this inspection is open. It does not stop." and the clock still moved.
+3. Explain "He cannot do it" on the level request. The phone showed it while Dai was only resting by the stove. After I held the button, a blank sat where the status text had been.
+
+## 1. Session
+
+- **Persona:** Leila Mansour, 26, Alexandria translator. Impatient, and I read wording closely.
+- **Exposure:** second retest of Glance. I read my whole own history before play. All 948 lines were read, through the End marker, with nothing unread.
+- **Round and arm:** light-1031-glance-retest2, free stop (floor 0, ceiling 20 min).
+- **URL:** https://glance.adamwhite.work/?labRunSource=agent
+- **Session A:** 1280x800 keyboard and mouse, light mode, driver 22805. It lasted 153.9 s of driver time.
+- **Session B:** 360x690 touch phone, light mode, driver 22804. It lasted 91.2 s.
+- **Fresh games:** both were new games on the Valley dam. The starting level was 3.7 m on desktop and 3.8 m on phone. Both sessions were run one after the other, so session B was not a separate evening.
+- **Not reached:** the 3-minute pulse. Neither session got there, so I logged no pulse. I did not log one early.
+- **Not seen:** Tuesday, the Bridge Inn river reports, the town side, and the Slow, Steady and Fast pace buttons. I used Automatic throughout.
+
+## 2. First impressions
+
+- **Desktop, 1.8 s:** the title page looked the same as before, with a sample morning button, a dam chart and a recording notice. I viewed a-001.png.
+- **Desktop, 8 s:** the game started on Monday 22:01 with the level at 3.7 and the gate shut.
+- **Desktop, 11.5 s:** the gate panel gave each option's chance and cost ("He agrees. · ~15m").
+- **Desktop, 13.8 s:** the Doubt button now says what it does: "At dawn, compare it with the known outcome."
+- **Phone, 1.6 s:** the title page fit at 360 wide, and the chart showed the bridge line. I viewed b-001.png.
+- **Phone, 7.6 s:** the game started at 22:01 with the level at 3.8.
+
+## 3. Verbatim
+
+**Session A (desktop)**
+- 4.13 s, tap Start game: "Second retest, desktop. Title looks as I remember it; sample morning button still there."
+- 9.889 s, tap Ask Dai: "Level 3.7, gate shut, rain. Asking Dai to read it; I know this loop."
+- 11.53 s, tap gate: "Gate is shut with rain. Opening the gate panel."
+- 13.839 s, tap 3 turns: "New: Doubt now says it is compared with the known outcome at dawn - that answers my old no-mark complaint in words. Asking 3 turns."
+- 40.323 s, wait: "Waiting for Dai to finish."
+- 42.412 s, tap level: "Gate now 3 as asked, visibly confirmed. Level reading is 26 minutes old; opening the level panel."
+- 43.89 s, tap Ask Dai: "Asking for a fresh level."
+- 67.327 s, first_minute, Mon 22:43: "Reason to act: keep dam below crest. Tappable: gauges, Ask Dai, Skip, arrangements. Asked 3 turns and it showed on the gate gauge at 22:24; asked a fresh level, got 4.3 rising from 3.7. The Doubt panel now says it is compared with the known outcome at dawn, which answers my old no-mark complaint in words. The optional chapter is still one folded line. Inspection still says time continues slowly."
+- 70.711 s, tap Doubt this reading: "Trying Doubt to see whether it leaves a mark now."
+- 97.768 s, wait: "New: Doubt mark waiting shows on the level gauge and in the status line. That is the visible mark I asked for."
+- 101.972 s, tap Ask Dai: "Reading is 55 minutes old and rain continues. Asking for a fresh one; panel also offers Remove this doubt mark, so the mark is reversible."
+- 133.472 s, want_quit, BORED, Mon 23:51: "Level 4.0 and falling, gate 3, nothing left to decide; I am only waiting for the night to pass. I have seen this loop three times now."
+- 153.919 s, stop, BORED, Mon 23:56: "Stopping desktop at about two and a half minutes. The Doubt mark now shows (Doubt mark waiting, then Marked for another check) and my gate request was confirmed, which I asked for. But I still make about four choices and wait the rest. I would not leave it running."
+
+**Session B (phone)**
+- 3.309 s, tap Start game: "Phone, same evening. Starting."
+- 9.83 s, tap gate: "Start level 3.8 here, 3.7 on desktop. Same layout, nothing clipped yet. Opening the gate panel."
+- 13.461 s, held tap 2 turns: "Holding this one to see what insisting looks like on the phone."
+- 40.474 s, wait: "Held press gave I will follow the order. That is an order. The optional chapter paragraph is open in the log now; I may have expanded it by accident."
+- 46.107 s, held tap level request: "The label says He cannot do it, though he is just resting. Holding to call him anyway; I do not understand why he cannot."
+- 74.869 s, first_minute, Mon 22:50: "Reason to act: keep dam below crest. Tappable: gauges, Ask Dai, Skip, arrangements. Held 2 turns and Dai said that is an order; gate showed 2/6 by 22:18. Held the level read, got 3.9 at 22:39. The level button said He cannot do it while he was only resting, which I still do not understand. Optional chapter appeared open for a while, then folded. Few choices again."
+- 81.876 s, tap Doubt this reading: "The Ask Dai button now has a blank where He agrees or He cannot do it should be. Doubting this reading."
+- 83.889 s, want_quit, BORED, Mon 23:00: "Level steady at 3.9, gate 2, nothing to decide. The doubt mark showed up this time, which helps, but I am just waiting for the night."
+- 91.168 s, stop, BORED, Mon 23:04: "Stopping phone at about a minute and a half. The doubt mark now shows Marked for another check and the gate request was confirmed, which I asked for. But the level is steady, I have about three choices, and the rest is waiting. I would not leave it running."
+
+Two notes on the phone:
+- The phone first_minute log went out at 74.9 s, after the 60 s mark, so it was on time.
+- Desktop first_minute went out at 67.3 s, also on time.
+
+## 4. Moments
+
+- **What held me:**
+  - Doubt now shows. The level gauge says "Doubt mark waiting", then "Marked for another check", and the status line says "Recorded: this reading is marked for another check". The panel also offers "Remove this doubt mark".
+  - My gate requests are confirmed on the gauge, with the read time.
+  - The saved lightning image panel is still clear: "This image does not show the water now."
+- **What lost me:** too little to decide. Desktop was about four choices in 2.5 minutes. Phone was about three in 1.5 minutes. After that the level was steady and I waited.
+- **Quit wishes:** BORED on desktop at 133 s and on phone at 84 s. Neither passed, and I stopped each session.
+- **Pulses:** none. Both sessions ended before 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - What each gate turn costs ("He agrees. · ~15m").
+  - Doubt now leaves a mark. This was the main confusion last time.
+  - A reading is old when the gauge says "read 22:00".
+- **Confusing:**
+  - **"He cannot do it" on the phone:** the level request showed this at 22:31 while Dai was only "resting by the stove". It had been "He agrees." on desktop in the same state. I held it and he did the job.
+  - **Blank status text:** at 23:00 on the phone the level request read "· ~5 min · If you hold: Call and wait for an answer." with nothing where "He agrees." belongs.
+  - **Clock during inspection:** the panel says time continues slowly. The clock moved from 22:26 to 22:31 across a few taps in the level panel.
+  - **Optional chapter on phone:** at about 22:03 to 22:28 the full "authored arrangements" paragraph showed in the log, then it folded again. I do not know what opened it. I held a button just before it appeared, so I guess I triggered it, but I am not sure.
+  - **Insist wording:** Dai said "That is an order." to my held request on phone. I did not make a plain tap request on this visit, so I could not compare tap and hold.
+- **Control name:** the driver's "I'm stopping" tap failed. My apostrophe escape reached the driver as a literal backslash-u0027 string. I tapped it by text ("m stopping") and it worked. That is a driver quoting limit, not a game fault.
+- **Unseen:** the town side, Tuesday, and any second night.
+
+## 6. Device use
+
+- **Desktop, 1280x800:**
+  - I viewed a-001.png. It showed the title page, a dam chart (crest, lip, 4.0, gate, square, Mill Lane), a red Start game button and the recording notice at the bottom.
+  - I used a-001.png only as a screenshot. I took no desktop screenshot in play. Desktop playing layout is seen only through text.
+  - Controls: Start game, Ask Dai, the gate and level gauges, the gate options, Doubt this reading, Game menu, Feedback, "I'm stopping" (by text), Back.
+- **Phone, 360x690:**
+  - I viewed b-001.png and b-002.png. b-001.png was the title page, fitting at 360 wide with the bridge line on the chart.
+  - b-002.png (Mon 22:55) showed the header, "Watch arrangements" and the Dai strip, with the Dai strip clipped to "He is expected to…". The dam drawing, the two gauge cards (level 3.90 m, gate 2 / 6), the log and Skip all fit. The log sits in a compressed band.
+  - Controls: Start game, the gate and level gauges, held taps on gate options and the level request, Doubt this reading, Game menu, Feedback, "I'm stopping" (by text), Back.
+- **Screenshots:** 1 on desktop, 2 on phone. I saw no automatic checkpoint.
+- **Unseen:** desktop gameplay layout (cut-off gauges seen on my first visit), and phone landscape.
+
+## 7. Stop and return
+
+- **Desktop stop, 153.9 s, Mon 23:56, BORED:** "Stopping desktop at about two and a half minutes. The Doubt mark now shows (Doubt mark waiting, then Marked for another check) and my gate request was confirmed, which I asked for. But I still make about four choices and wait the rest. I would not leave it running."
+- **Phone stop, 91.2 s, Mon 23:04, BORED:** "Stopping phone at about a minute and a half. The doubt mark now shows Marked for another check and the gate request was confirmed, which I asked for. But the level is steady, I have about three choices, and the rest is waiting. I would not leave it running."
+- **Feedback:** the Game menu offered Feedback on both devices. Both "I'm stopping" and "I'm confused" were present, with "I'd keep playing / Not sure / I'd stop here" under the verdict. I chose "I'm stopping" only. I typed nothing, pressed no Submit, changed no consent, and pressed Back. Recording stayed checked.
+- **Would I return voluntarily?** Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. The idea of a keeper whose number may be old is still the best part, and Doubt now does something I can see. I have seen the Monday loop four times and it is still ask, set the gate, wait. I would not leave it running.
+- **Leave it running?** No.
+- **Another evening?** Possibly, on the condition above.
+
+## 8. Changes I would want
+
+1. More to decide each night, such as a town gauge or a second job.
+2. A clock that stops, or slows far more, while I read a panel.
+3. Say why the level request reads "He cannot do it" when Dai is only resting, and fill the blank status.
+
+## 9. Compared with my last visit
+
+- **Ask 1 (retest 1), more decisions per night:** not met. I made about four choices on desktop and three on phone.
+- **Ask 2 (retest 1), a visible result when I act:**
+  - Doubt: met. It now leaves a mark on the gauge and a recorded line, and can be removed.
+  - A request Dai did not do: not seen. All my gate requests were done, and I made no request that vanished.
+- **Ask 3 (retest 1), stop the clock while I read an inspection:** did not meet. The panel still says time continues slowly, and the clock still moved across my taps.
+- **Round 1 ask (cut the repeated optional-chapter paragraph):** mostly met. It is a folded line on desktop. On phone the full paragraph appeared open for a while and then folded again.
+- **Round 1 ask (more to decide):** same as retest ask 1, not met.
+- **New blocking asks from what I reached:** none beyond the three above. The "He cannot do it" label with no reason is the one new confusion.
+
+No repo touched; no worktree of mine remains.

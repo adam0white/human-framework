@@ -18874,6 +18874,1315 @@
     "fix:goodhands Nadia wants the Pace setting visible at the start since she found Slow only in the menu at the end after feeling rushed, visibility only and it does not change the default clock, no clock or speed retune authorized, target2026-11-03 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/nadia/report.md"
+  },
+  {
+   "id": "F-2551",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "Opening return: \"I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises. I would not leave it running.\" Separate later return: \"I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises.\" Later wording (section 7) bullet, leave it running: \"No. I want to make the gate calls myself, and I do not trust Dai alone.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Mei return conditions another evening on the laptop only if the quiet first hours stay this short or she is told up front that nothing needs deciding until the level rises, asks F-2556–F-2558, BORED on both sessions, phone gave nothing to decide in 80 s, laptop decision at 4.5 m within about 100 s, gate-versus-rain cause is her own unverified guess and the observation-age warning is not a new measurement, one assigned curl was piped through head -c600 against the brief, the native request executed and its output was truncated, no game-state effect is attributed to the pipe, earliest related target is plain opening context F-2556, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/mei/report.md"
+  },
+  {
+   "id": "F-2552",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Opening return: \"I might come back another evening, on desktop only, if I could answer Dai or learn who the town people are, and if the waiting cost much less. I would not leave it running. I would not come back on the phone tonight.\" Separate later return: \"I might come back another evening on desktop, if I could answer Dai or learn who the town people are, and if each step cost much less waiting. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight, because I already know the loop from desktop.\" Later wording (section 7) changed condition (waiting): \"and if each step cost much less waiting.\" Later wording (section 7) changed reason (leave it running): \"I would not leave it running, because it needs me at each step.\" Later wording (section 7) changed reason (phone): \"I would not come back on the phone tonight, because I already know the loop from desktop.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Samir return conditions another evening on desktop only if he could answer Dai or learn who the town people are and each step cost much less waiting, not the phone tonight, asks F-2559–F-2561, BORED on both sessions, phone gameplay was never viewed (title page only), earliest related target is first-reading clarity F-2561, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/samir/report.md"
+  },
+  {
+   "id": "F-2553",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Opening return: \"Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. I would not leave it running.\" Separate later return: \"Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. The idea of a keeper whose number may be old is still the best part, and Doubt now does something I can see. I have seen the Monday loop four times and it is still ask, set the gate, wait. I would not leave it running.\" Later wording (section 7) bullet, leave it running: \"No.\" Later wording (section 7) bullet, another evening: \"Possibly, on the condition above.\" Later wording (section 7) added reason: \"The idea of a keeper whose number may be old is still the best part, and Doubt now does something I can see. I have seen the Monday loop four times and it is still ask, set the gate, wait.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Leila return conditions maybe another evening and only on desktop and only if a night asked for more than about four choices, asks F-2562–F-2564, BORED on both sessions, Doubt mark and gate confirmation improved, the He cannot do it label and the blank status are a new source lead and a held press worked so there is no rule that an actor must always obey, earliest related target is F-2564, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/leila/report.md"
+  },
+  {
+   "id": "F-2554",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Opening return: \"I would come back another evening, but only if the gate panel said in one plain sentence what \"A new call replaces it\" and \"Hold it to insist\" mean, and showed me one next job. I would not leave it running.\" Later return lead (section 7): \"Yes, another evening, with these conditions:\" Later wording (section 7) condition bullet 1: \"The gate panel says in one plain sentence what happens to my earlier request when I call Dai again.\" Later wording (section 7) condition bullet 2: \"It says what \"insist\" means, or drops it.\" Later wording (section 7) condition bullet 3: \"It shows me one next job after Dai agrees.\" Later wording (section 7) bullet, leave it running: \"No. I would not leave it running while I am away. I am too unsure what a second call does to the first.\" Later wording (section 7) bullet, come back another evening: \"Yes, on the conditions above. The first board is calm enough now that I would try again.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Rosa return conditions another evening only if the gate panel says in one plain sentence what happens to the earlier request when Dai is called again, says what insist means and shows one next job, asks F-2565–F-2567, CONFUSED on both sessions after two actual rereads each, the lower desktop gate panel was not scrolled so it is not proven unreachable, stops at 33.076 s and 25.627 s and first_minute and pulse not reached, earliest related target is F-2565, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2555",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Eszter Fekete",
+   "words": "Opening return: \"Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no.\" Separate later return: \"Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no. I liked catching Dai's tired readings with my own eyes, and I liked that Morgan's habits are remembered. I dislike repeating the same steps every night, and guessing numbers like gate turns and weir figures with no example. Twelve nights at about 5–7 minutes each is more than my short evening sessions after work.\" Later wording (section 7) bullet, leave it running or come back another evening: \"I would not leave it running; there is too much waiting with nothing to do. I might come back another evening on the computer, and only with Fast pace on from the start.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Eszter cold return mixed and conditional for one more Monday-style night on the desktop with Fast pace only if the nights stop feeling like the same form and the grey Skip waits go away and not on the phone, asks F-2568–F-2570, TASTE on the phone at 657.819 s and BORED on the desktop at 426.7 s, same-evening second device with actual Fast so pace and device and order and learning are confounded, two full Mondays and two partial Tuesdays and not four full nights, qualified source lead that the Monday morning chart and text disagree with the clipped-bottom cause and the six-marks-versus-two-flashes count unverified and no chart correctness conclusion, earliest related target is the chart and text source lead and pace visibility F-2568, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/eszter/report.md"
+  },
+  {
+   "id": "F-2556",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "Tell me at the start when nothing needs deciding. The phone gave me nothing to decide in 80 s.\" Later wording (section 8): \"A plain line at the start when nothing needs deciding yet.\" Later wording (section 9): \"Partly met. The laptop gave me a decision at 4.5 m within about 100 s, which is quicker than last time. The phone gave me nothing in 80 s. I saw no statement that none is needed.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Mei wants a plain line at the start that nothing needs deciding yet, plain opening context, the phone gave nothing to decide in 80 s and the laptop decision came at 4.5 m within about 100 s so first-hours facts vary by device, no promise of earlier or more decisions, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/mei/report.md"
+  },
+  {
+   "id": "F-2557",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "Show what the gate is doing to the level after I set it, without a second call to Dai. This visit the sheet said \"may not show what the gate has done since. Ask for a new reading.\" That is a warning, not a new reading.\" Later wording (section 8): \"Show the gate's effect on the level after I set it, without a second call.\" Later wording (section 5): \"After I set 2 turns, the level on the board stayed at 4.50 m (read 23:31) until I asked again at 00:30. The sheet explains why, but I still had to ask.\" Later wording (section 9): \"Partly met, on the laptop. The level sheet now warns that the reading may not show what the gate has done since. It does not show the effect. I still had to ask Dai again to see 3.4 m.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Mei wants the gate effect shown on the level after she sets it without a second call to Dai, measurement preference, the observation-age warning is a warning and not a new reading, no omniscient level readout and no forced reading, preserve uncertainty and the written reading times, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/mei/report.md"
+  },
+  {
+   "id": "F-2558",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Mei Tan",
+   "words": "Show me how much of the level change is the gate and how much is the rain easing.\" Later wording (section 8): \"Separate the gate's effect from the rain easing.\" Later wording (section 5): \"I still cannot separate the gate's effect from the rain easing.\" Later wording (section 5) guess: \"I assumed the fall from 4.5 to 3.4 m was mostly the gate. I did not verify it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Mei wants to see how much of the level change is the gate and how much is the rain easing, causality preference, her belief that the fall was mostly the gate is an unverified guess, no omniscient attribution and no forced reading, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/mei/report.md"
+  },
+  {
+   "id": "F-2559",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Give me someone to talk to besides Dai: a way to ask him about himself or the town, and to meet Nerys and Wren.\" Later wording (section 8): \"Let me talk to someone besides Dai, or ask him about himself and the town.\" Later wording (section 9): \"did not meet it. I never saw the Morgan question this time, because both sessions ended early. I saw no reply control.\" Later wording (section 9) Nerys and Wren: \"partly met. The opening is short and Bilal still has his one-line note. Nerys and Wren are still unexplained.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Samir wants someone to talk to besides Dai and to learn who Nerys and Wren are, richer people preference, the Morgan question was not reached this time and no reply control was seen, no automatic new conversation system and no forced reply, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/samir/report.md"
+  },
+  {
+   "id": "F-2560",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Cut the idle waiting. Both sessions were mostly half-minute waits with nothing for me to do.\" Later wording (section 8): \"Cut the idle waiting, or give me something to decide while Dai rests.\" Later wording (section 9): \"did not meet it. I waited 22 to 30 s at a time on both devices.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Samir wants the idle half-minute waiting cut or something to decide while Dai rests, waits of 22 to 30 s at a time were model and tool time and are not proof of a human-speed defect, clock skip and speed retune only after the C14 human-speed comparison, keep difficulty and faith-quiet agency and refusal, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/samir/report.md"
+  },
+  {
+   "id": "F-2561",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Samir Haddad",
+   "words": "Make the first level reading appear sooner, or say why the tile starts as a dash.\" Later wording (section 8): \"Show or explain the first level reading earlier, and explain \"(as written)\".\" Later wording (section 5): \"On desktop the level tile stayed a dash until about 23:13, because nobody had read it, even after I saved a request.\" Later wording (section 5) (as written): \"\"(as written)\" on the readings, still unexplained.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Samir wants the first level reading to appear sooner or the dash tile explained and the (as written) wording explained, first-reading clarity, the tile now keeps the last reading with its age and a was-line which he asked for, phone game screen was never viewed so no phone geometry claim, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/samir/report.md"
+  },
+  {
+   "id": "F-2562",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Give me more to decide each night. I made about 4 choices on desktop and about 3 on phone, then waited.\" Later wording (section 8): \"More to decide each night, such as a town gauge or a second job.\" Later wording (section 9): \"not met. I made about four choices on desktop and three on phone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Leila wants more to decide each night, about four choices on desktop and about three on phone before waiting, more-decisions preference, not a request for a harder game and no automatic extra jobs, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/leila/report.md"
+  },
+  {
+   "id": "F-2563",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Stop the clock, or slow it much more, while I read an inspection panel. The panel still says \"Time continues slowly while this inspection is open. It does not stop.\" and the clock still moved.\" Later wording (section 8): \"A clock that stops, or slows far more, while I read a panel.\" Later wording (section 5): \"the panel says time continues slowly. The clock moved from 22:26 to 22:31 across a few taps in the level panel.\" Later wording (section 9): \"did not meet. The panel still says time continues slowly, and the clock still moved across my taps.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Leila wants the clock stopped or slowed much more while she reads an inspection panel, the panel still says time continues slowly and the clock moved from 22:26 to 22:31 across a few taps, clock retune only after the C14 human-speed comparison, stale controls and live clock time during model latency do not prove a product timing defect, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/leila/report.md"
+  },
+  {
+   "id": "F-2564",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Explain \"He cannot do it\" on the level request. The phone showed it while Dai was only resting by the stove. After I held the button, a blank sat where the status text had been.\" Later wording (section 8): \"Say why the level request reads \"He cannot do it\" when Dai is only resting, and fill the blank status.\" Later wording (section 5) phone label: \"the level request showed this at 22:31 while Dai was only \"resting by the stove\". It had been \"He agrees.\" on desktop in the same state. I held it and he did the job.\" Later wording (section 5) blank status: \"at 23:00 on the phone the level request read \"· ~5 min · If you hold: Call and wait for an answer.\" with nothing where \"He agrees.\" belongs.\" Later wording (section 9): \"The \"He cannot do it\" label with no reason is the one new confusion.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Leila wants the He cannot do it label explained when Dai is only resting and the blank status text filled, new cannot-do and blank-status source lead seen on the phone only and on desktop while Dai was also visibly resting it read He agrees, private actor state was not established equal, a held press worked so there is no rule that an actor must always obey and no forced compliance, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/leila/report.md"
+  },
+  {
+   "id": "F-2565",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Say in one plain sentence what happens to my earlier request when I call Dai again. Cover \"A new call replaces it\" and \"it starts again and its report can come later\".\" Later wording (section 8): \"One plain sentence on what a new call does to my earlier request, covering \"A new call replaces it\" and \"its report can come later\".\" Later wording (section 4) lost me: \"On desktop, \"A new call replaces it.\" I did not know whether it replaces my level question or the gate request.\" Later wording (section 9) retest 1 ask: \"Partly met. It appears once, not on six buttons. It still cost me two rereads on each device, and the desktop added \"A new call replaces it\".\" Later wording (section 9) new blocking ask: \"\"A new call replaces it\" does not say what is replaced. I reached this on desktop.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Rosa wants one plain sentence on what happens to her earlier request when Dai is called again covering A new call replaces it and its report can come later, new-call reference, the sentence now appears once and still cost two rereads on each device, desktop added A new call replaces it without saying what is replaced, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2566",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Say what \"Hold it to insist\" does and how to do it, or remove it from the first gate view.\" Later wording (section 9) retest 1 ask: \"Not met for insist. Partly met for the tired line, which was only reworded.\" Later wording (section 9) round 1 ask: \"\"Hold it to insist\" is still there.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Rosa wants Hold it to insist explained with how to do it or removed from the first gate view, insist meaning, still present in the panel, keep refusal and agency and the trust cost, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2567",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Give the desktop turn boxes more width, and tell me what to do next once Dai agrees.\" Later wording (section 8): \"Wider turn boxes on desktop, and a clear \"what next\" after Dai agrees.\" Later wording (section 6) desktop gate panel: \"The Gate panel is at right, with six narrow turn boxes and the help text. Part of the lower text was cut at the bottom of the screen, and I did not scroll to read it.\" Later wording (section 9) not seen: \"the lower desktop gate text, lightning, dawn and the end of the night.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Rosa wants wider desktop turn boxes and a clear next job once Dai agrees, width and next-job lead, the lower desktop gate panel was not scrolled so the cut-off text is unverified and not proven unreachable, no geometry conclusion beyond the narrow turn boxes she saw, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2568",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Eszter Fekete",
+   "words": "Make Fast pace (or a pace choice) visible at the start of the game. I found it in the menu only when I was leaving the phone session.\" Later wording (section 8): \"Show the pace choice before or at the start of the first night.\" Later wording (section 3) phone diary: \"Oh, there is a Fast pace here in the menu. I never saw it during play. Too late for tonight.\" Later wording (section 6) phone: \"Unseen layout: I never saw Fast pace during play; I found it only in the menu as I was leaving.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Eszter wants the pace choice visible before or at the start of the first night, pace visibility, she found Fast in the menu only while leaving the phone session and chose it at once on the desktop, the better desktop visit cannot isolate pace from device and order and learning, no actual speed change, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/eszter/report.md"
+  },
+  {
+   "id": "F-2569",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Eszter Fekete",
+   "words": "Cut the dead stretches when Skip is grey and says \"No report is on its way\". Even on Fast I sat and watched the clock.\" Later wording (section 8): \"Remove or shorten the stretches where Skip is grey and \"No report is on its way\".\" Later wording (section 4) lost me: \"Long stretches with Skip greyed out (\"No report is on its way\") while Dai was not answering.\" Later wording (section 5) stray window: \"Session A: a \"This week's mornings\" window opened that I did not mean to open (around 461–465). Afterwards Skip was reported as covered. I closed the window with Back.\" Later wording (section 9) blocking ask: \"The nearest thing was the grey Skip on both devices, which stalled time and nearly made me stop.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Eszter wants the dead stretches where Skip is grey and says No report is on its way cut or shortened, waiting preference, the stray This week mornings window and the covered Skip are separate moving-target qualifications with cause unproven, they do not erase the ordinary disabled-Skip waiting report, clock skip and speed retune only after the C14 human-speed comparison, keep difficulty and faith-quiet agency and refusal, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/eszter/report.md"
+  },
+  {
+   "id": "F-2570",
+   "date": "2026-10-31",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Eszter Fekete",
+   "words": "Make each new night feel different from the last. On Tuesday the same note from M, the same Nerys hello and the same gate, level and skip steps made it feel like a form I had already filled in.\" Later wording (section 8): \"Give each new night different openings and different decisions, so it is not the same form again.\" Later wording (section 4) lost me: \"On the desktop Tuesday, the same opening lines word for word, and the same sequence of steps as before.\" Later wording (section 3) desktop diary: \"Nerys again says hello after her report, word for word like the phone. Here it starts to feel like the same script, not a new evening.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance Eszter wants each new night to open differently and ask different decisions so Tuesday is not the same form again, night variety preference, she reached Tuesday on both devices only partially, no automatic authoring and no easier game, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/glance-retest2/eszter/report.md"
+  },
+  {
+   "id": "F-2581",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Pavel Novak",
+   "words": "Opening return: \"Not tonight. I might come back on the desktop on another evening, but only if the group stays within earshot of me, and I would not leave it running.\" Separate later return: \"Not tonight. I might come back on the desktop on another evening to see the hurt climber and the 12:00 or 13:00 turn-back promise, but only if the group stays within earshot of me and the quiet stretches are shorter. I would not leave it running. I would come back another evening, not leave it running.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Pavel return is mixed and conditional, not tonight, maybe another evening on the desktop only if the group stays within earshot of him and the later return adds shorter quiet stretches and a wish to see the hurt climber and the 12:00 or 13:00 promise, not left running, asks F-2586–F-2588, BORED desktop at 271.27 s and TASTE phone at 230.551 s, the hurt climber and the turn-back promises were not reached so the old walk-to-Bilal problem is neither fixed nor broken by this round, earliest related target is the hearing-range and Stay-with source lead F-2586, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/pavel/report.md"
+  },
+  {
+   "id": "F-2582",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Tessa Williams",
+   "words": "Opening return: \"Maybe once, another evening on my laptop, to see what happens when we reach the top and whether I can get more than a stock yes from Tamar, Nell and Oskar. I would not come back tonight. I would not leave it running.\" Separate later return: \"Maybe once. I would come back another evening on my laptop, only to see what happens when we reach the top and whether Tamar, Nell and Oskar ever answer in their own words. I would not come back tonight. I would not leave it running, because the group only moves when I walk or ask.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Tessa return is mixed and conditional, maybe once on another evening on the laptop to see what happens at the top and whether Tamar and Nell and Oskar answer with more than a stock yes, not tonight, not left running, asks F-2589–F-2591, BORED phone at 190.697 s and TASTE laptop at 190.582 s, Wren and Bilal answers fit better, she does not claim her driver speed changed any outcome, earliest related target is the repeated stock yes and hut-path wording source lead F-2589, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/tessa/report.md"
+  },
+  {
+   "id": "F-2583",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Opening return: \"I would come back another evening, but only if the first reply to a question stopped being the generic line and the clock moved at a pace where something happens within a minute; I would not leave it running.\" Separate later return: \"Yes, but only on these conditions. The first reply has to answer what I asked instead of \"I will do as you ask.\" Refusals have to sound like a person every time. Several people must stop saying the same line. And something has to happen within about a minute, which means a faster clock without me hunting for the Pace setting.\" Later wording (section 7) bullet, leave it running or come back another evening: \"I would not leave it running. I would come back another evening if those conditions were met.\" Producer labelled new blocking clause (wants-to-wait-before-waiting) Later wording (section 9) new blocking asks: \"The odd \"wants to wait before waiting\" wording.\" Producer labelled new blocking clause (wants-to-wait-before-waiting) Later wording (section 5) confusing: \"\"Wren wants to wait before waiting\" reads like a template.\" Producer labelled new blocking clause (wants-to-wait-before-waiting) Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 62.5 s: \"Wren wants to wait before waiting is an odd sentence, like a template. But Eat something then we can talk is a person line.\" Producer labelled new blocking clause (going-down-speech-versus-actual-climb) Later wording (section 9) new blocking asks: \"Everyone saying \"I want to go down\" and then walking up.\" Producer labelled new blocking clause (going-down-speech-versus-actual-climb) Later wording (section 5) confusing: \"On both devices everyone said \"I want to go down\" and then walked up, with no explanation.\" Producer labelled new blocking clause (going-down-speech-versus-actual-climb) Later wording (section 4) lost me: \"They then all walked up anyway.\" Producer labelled new blocking clause (cannot-hear-greyed-buttons) Later wording (section 9) new blocking asks: \"The \"He cannot hear you. Walk closer.\" state on desktop. It greyed all my request buttons, and I could only walk up or wait.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Nia return is mixed and conditional, another evening only if the first reply to a question stops being the generic line and the clock moves so something happens within about a minute, the later return adds that refusals sound like a person every time and several people stop saying the same line, not left running, asks F-2592–F-2594, BORED phone at 199.556 s and BORED desktop at 253.14 s, the section 3 diary is reconstructed by the producer and is not word-for-word with the raw driver reactions kept separately, the phone ran Automatic pace and the desktop ran Fast so pace and device and order and learning are confounded and the 167 s to 244 s wait discrepancy has no known cause, earliest related target is the unranked wants-to-wait wording and going-down speech versus actual climb source inspection, also an unranked producer labelled new blocking clause wants to wait before waiting, Nia reads the Wren wants to wait before waiting wording as a template, source inspection of the produced wording, not a fourth ranked ask, dated 2026-11-03, also an unranked producer labelled new blocking clause going down speech versus actual climb, everyone says I want to go down and then walks up, source inspection comparing the going down speech with the actual climb, a stated wish to descend is not a completed action and nobody is forced to comply, not a fourth ranked ask, dated 2026-11-03, also an unranked producer labelled new blocking clause cannot hear greyed buttons, the He cannot hear you walk closer state with greyed buttons on desktop, source inspection linked to F-2586 and F-2600, explain it truthfully, no forced co-location and no forced following, not a fourth ranked ask, dated 2026-11-03, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/nia/report.md"
+  },
+  {
+   "id": "F-2584",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Opening return: \"Yes, on another evening, if someone asked me to try it, because the writing about the people is kind and clear. No, I would not leave it running, and I would not come back tonight. I mostly waited and pressed Skip, and I have seen the whole loop twice.\" Separate later return: \"Yes, on another evening, if the game showed me something new. I want the second mountain, or a person asking me for something I did not expect. I came back tonight because I was asked, and the writing about the people is why I would come again. I would not leave the game running while I did something else. The waiting makes me want to press things, and I cannot tell whether a press did anything. I would not come back tonight. I would play on my phone before the desktop, because the phone screen showed everything at once.\" Producer labelled new blocking clause (reading-note-and-first-lead-on-uncertainty) Later wording (section 9) new this time: \"On desktop, the clock stayed at 05:03 until I tapped lead on a second time, and I could not tell whether the first tap had worked.\" Producer labelled new blocking clause (reading-note-and-first-lead-on-uncertainty) Later wording (section 5) confusing: \"On desktop, the clock stayed at 05:03 after I tapped lead on. I do not know whether my first tap worked or the second one did.\" Producer labelled new blocking clause (reading-note-and-first-lead-on-uncertainty) Later wording (section 4) lost me: \"The desktop clock stuck at 05:03 (\"Time slows for reading\") until I tapped lead on a second time.\" Producer labelled new blocking clause (reading-note-and-first-lead-on-uncertainty) Later wording (section 3) desktop 78.285 s: \"The clock is stuck at 05:03 and says Time slows for reading. I close the note with the x to see if the climb moves.\" Producer labelled new blocking clause (auto-filled-feedback-note) Later wording (section 9) new this time: \"The note box fills with \"I'm stopping\" when I press that verdict. I typed nothing, but a reader might think they must send it.\" Producer labelled new blocking clause (auto-filled-feedback-note) Later wording (section 5) confusing: \"After \"I'm stopping\", the note box filled itself with \"I'm stopping\". I typed nothing.\" Source observation, not a producer labelled new blocker (desktop-path-under-right-panel) Later wording (section 5) confusing: \"On desktop, the path runs under the right panel, so I could not see where it goes.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Rosa return is mixed and conditional, the opening answer is yes on another evening if someone asked her to try it because the writing about the people is kind and clear, the later full return is yes on another evening if the game showed her something new such as the second mountain or a person asking for something unexpected and she would play the phone before the desktop, not tonight and not left running, asks F-2595–F-2597, BORED phone at 195.581 s and BORED desktop at 194.079 s, no want_quit was logged, the earlier CONT input qualification stands, her first-try rope up success and clearer phone labels are kept, earliest related target is Skip availability and endpoint clarity F-2595, also an unranked producer labelled new blocking clause reading note and first lead on uncertainty, the desktop clock stayed at 05:03 after Lead on until a second tap, after she read the Journal and dismissed the Time slows for reading note, source inspection of the reading note and first Lead on behavior, no clock cause assumed and no default clock bug proved, not a fourth ranked ask, dated 2026-11-03, also an unranked producer labelled new blocking clause auto filled feedback note, the Feedback note box fills itself with the verdict words and a reader may think it must be sent, a clarity preference and not a question, the auto-filled text is not a typed note, no Submit and no consent change, not a fourth ranked ask, dated 2026-11-10, also an unranked source observation, not a producer labelled new blocker desktop path under right panel, the desktop path running under the right panel, source inspection of the layout, clipping is not proved unreachable, a section 5 source observation and not her listed new blocker, not a fourth ranked ask, dated 2026-11-03, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2585",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Farah Bensaid",
+   "words": "Opening return: \"Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting.\" Separate later return: \"Yes, but only on the laptop, on an evening I have set aside, and only if the game tells me why my people stop, turn round or refuse. I would not come back to it on my phone for a short sitting. I liked the people and the promise enough to want to know what happens on the mountain. I don't enjoy fixing people one by one without seeing the rule.\" Later wording (section 7) bullet, leave it running or come back another evening: \"I would not leave it running. Time keeps moving, and I don't trust what happens while I am away. I might come back another evening, with the condition above.\" Source observation, not a producer labelled new blocker (collapsed-weather-heading) Later wording (section 5) confusing: \"The weather warning showed only a heading until I clicked it.\" Source observation, not a producer labelled new blocker (collapsed-weather-heading) Later wording (section 3) laptop 221.6 s: \"The warning is just a heading with nothing under it. I click it in case it opens.\" Source observation, not a producer labelled new blocker (collapsed-weather-heading) Later wording (section 3) laptop 225.0 s: \"Wind from 11:00 and I promised 12:00. Glad I chose the early time. Nell and Wren are both level with me this time, so I rope them now.\" Source observation, not a producer labelled new blocker (collapsed-weather-heading) Later wording (section 6) laptop b-003: \"08:56, with the rope hint, the figures near the glacier rocks and the collapsed weather warning.\" Source observation, not a producer labelled new blocker (wren-wants-to-wait-while-climbing) Later wording (section 5) confusing: \"Wren's status line said \"wants to wait\" while she was busy climbing.\" Source observation, not a producer labelled new blocker (people-shown-walking-up-before-asked) Later wording (section 5) confusing: \"People showed \"walking up\" before I had asked them.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Farah cold return is mixed and conditional, yes but only on the laptop on an evening she has set aside and only if the game tells her in plain reasons why her people stop and turn round and refuse, not on the phone for a short sitting, not left running, asks F-2598–F-2600, CONFUSED phone at 345.735 s and CONFUSED laptop at 324.278 s, same-evening second device so device and order and learning are confounded, her first no-picture thought and her later self-correction are both kept, the missing item was not diagnosed, earliest related target is the plain stop and refusal and missing-item reasons F-2598, also an unranked source observation, not a producer labelled new blocker collapsed weather heading, the Route and weather warning showed only a heading until clicked, source inspection of the collapsed heading affordance, the weather was expanded after her click per her laptop diary at 225.0 s and the director capture shows a closed heading so it is not a missing warning, a source observation and not an explicit new blocking ask, not a fourth ranked ask, dated 2026-11-03, also an unranked source observation, not a producer labelled new blocker wren wants to wait while climbing, Wren status line says wants to wait while she was busy climbing, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, dated 2026-11-03, also an unranked source observation, not a producer labelled new blocker people shown walking up before asked, people shown walking up before she had asked them, source inspection for truthful status and actual autonomous activity, a source observation and not a producer labelled new blocker, no forced movement and no obedience, not a fourth ranked ask, dated 2026-11-03, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/farah/report.md"
+  },
+  {
+   "id": "F-2586",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Pavel Novak",
+   "words": "Keep the group within earshot after they say yes, and say what \"stay with them\" does. On desktop all five drifted below me. On the phone Oskar, then Wren, \"cannot hear you\" even after I pressed it.\" Later wording (section 8): \"Keep the group within earshot after they say yes, and say what \"stay with them\" does.\" Later wording (section 5) desktop: \"After everyone said yes on desktop, all five were \"Not walking, below you\", while the text said \"Everyone, will you keep climbing?\". Asking gently with \"Climb on\" brought most of them back.\" Later wording (section 5) phone: \"On the phone, \"stay with them\" gave the best result at 05:11, with everyone above me. A few minutes later Oskar \"cannot hear you\". I pressed it again and the tag went away, then came back at 09:52. I do not know what the button does. I am guessing about cause.\" Later wording (section 3) phone diary 184.3 s: \"Oskar no longer says he cannot hear me after stay with them. Visible improvement on my old second ask, though I cannot prove the cause.\" Later wording (section 9): \"But the group still drifted after saying yes on desktop. On the phone, \"cannot hear you\" appeared for Oskar and then Wren. Nothing on the page says what \"stay with them\" does.\" Later wording (section 9) new blocker: \"Two of five still \"cannot hear you\" on the phone at 09:57, with no way I could see to fix it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Pavel wants the group kept within earshot after they say yes and wants to know what Stay with them does, reproduce the hearing-range and Stay-with behavior and explain the visible truthful proximity and ongoing activity in plain words, on desktop all five were below him after yes and on the phone Oskar then Wren could not hear him, his cause for the phone change after pressing Stay with them is his own unproven guess, no forced following and no co-location and no teleport and no compliance, keep refusal and agency, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/pavel/report.md"
+  },
+  {
+   "id": "F-2587",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Pavel Novak",
+   "words": "Speed up the quiet stretches, or let Skip go further. Desktop gave about 4 to 8 game minutes per 20 to 30 real seconds, and the Pace \"fast\" setting made no visible difference. Skip on the phone gave two hours at once.\" Later wording (section 8): \"Speed up the quiet stretches, or let Skip go further, and make the Pace setting visibly change the speed.\" Later wording (section 1) status messages: \"Some of my status messages to you were slow because I was waiting on replies. I am not blaming the game for that.\" Later wording (section 5) Pace: \"The Pace setting: I chose \"fast\" and saw no visible change (5 game minutes in 20 s).\" Later wording (section 5) Skip absent: \"On desktop Skip was often absent while a reading note was shown, and I waited without a way to move.\" Later wording (section 9): \"Partly met. The page now says \"Nothing new has happened. Walking continues quickly until something happens\", and phone Skip gave two hours in one tap. But the desktop clock still crawled at 4 to 8 game minutes per 20 to 30 seconds. The \"fast\" pace made no visible difference, and Skip was often missing while I waited.\" Later wording (section 9) new blocker, no event in 4.5 minutes: \"On desktop I never reached any event that needed me in about 4.5 minutes.\" Later wording (section 9) new blocker, Pace unclear: \"I could not tell whether the Pace setting did anything.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Pavel wants the quiet stretches sped up or Skip to go further and wants the Pace setting to visibly change the speed, waiting and speed and Skip preference, desktop showed about 4 to 8 game minutes per 20 to 30 real seconds and the fast pace reading was 5 game minutes in 20 s, reading notes and actual pace and native driver latency are confounds and no default Fast bug is proved, C14 human-speed comparison only before any clock retune, keep difficulty and faith-quiet agency and refusal, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/pavel/report.md"
+  },
+  {
+   "id": "F-2588",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Pavel Novak",
+   "words": "Let me reach the hurt climber and the turn-back promise. I reached neither this time, so I cannot say whether the old \"walk to Bilal\" problem is fixed.\" Later wording (section 8): \"Let me reach the hurt climber and the turn-back promise within a few minutes, so I can see whether they work.\" Later wording (section 5) unseen: \"the hurt climber (my old desktop trouble), the 12:00 and 13:00 promises being tested, and anything past 10:11.\" Later wording (section 9): \"Not seen. I never reached a hurt climber on either device. The nearest was Nell wanting to go down on the phone. That one gave named choices, and \"send Tamar Vale\" was accepted with a visible answer (\"Tamar Vale agreed to meet, then consider going down together\"). I cannot say whether the Bilal problem is fixed.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Pavel wants to reach the hurt climber and the turn-back promise within a few minutes, old hurt-climber and turn-back recovery verification, not reached in this round on either device so it is neither proved fixed nor proved broken, C14 only if a change would alter the clock to force earlier arrival and this is not a general recovery gate, no automatic early event and no shorter day, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/pavel/report.md"
+  },
+  {
+   "id": "F-2589",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Tessa Williams",
+   "words": "Stop most people giving the same stock yes or the same \"hut path\" line to different asks. Tamar, Nell, Oskar and Wren still did, mostly on the phone.\" Later wording (section 8): \"Stop most people giving one stock yes or one hut-path line to different asks. Wren and Bilal were better. Tamar, Nell and Oskar were not.\" Later wording (section 3) phone note 75.4 s: \"Insist worked, Oskar rests, said Yes! Count me in, the same stock yes as last visit even though he was resting. Mischief: leaving him behind to see what happens.\" Later wording (section 4) lost me, phone turn back: \"On the phone, Tamar, Oskar, Nell and Wren gave the hut-path line to \"turn back\", even though we were minutes up. On the phone it was my first request before the group had moved, and the reasons given were \"busy until about 06:38\".\" Later wording (section 4) lost me, eat and survey: \"The same hut-path line for eat and for the habitat survey on the phone.\" Later wording (section 4) lost me, Oskar yes: \"Oskar said \"Yes! Count me in\" when I told him to rest. That is the same yes as last visit.\" Later wording (section 5) unclear, hut-path line far from the hut: \"Why the hut-path line appears on the phone when the group is far above the hut. I do not know if it is a stock phrase or the first stretch of the climb.\" Later wording (section 5) unclear, Count me in after insist: \"After insisting on a rest, Oskar says \"Count me in\", which reads as joining.\" Later wording (section 9): \"On the laptop, Wren's turn-back answer fit what she was doing (\"I will consider it after I eat something\", busy until 07:14). Bilal said \"Yes, my friend\" and \"Gladly\", and Oskar's rest refusal was phrased differently from Wren's. But on the phone Wren gave the hut-path line to both eat and the habitat survey. Tamar, Oskar, Nell and Wren gave hut-path lines to turn back. Oskar still said \"Yes! Count me in\". \"Stop once we have left the hut\" was not met on the phone. On the phone the line came back while I was minutes up.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Tessa wants most people to stop giving the same stock yes or the same hut-path line to different asks, repeated stock yes and hut-path wording source inspection and an equivalent true copy, preserve the actual HF answer and do not turn it into a new positive assent or an invented history, Wren and Bilal answers were better and Tamar and Nell and Oskar were not, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/tessa/report.md"
+  },
+  {
+   "id": "F-2590",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Tessa Williams",
+   "words": "Give me something to do while the group walks. I kept waiting on the clock or pressing Skip.\" Later wording (section 8): \"Give me something to do while the group walks. I kept waiting or pressing Skip.\" Later wording (section 3) laptop pulse 182.97 s: \"Still, most yeses are one shape, and I walk off alone and have to wait for them.\" Later wording (section 4) lost me, group waiting: \"Everyone was stopped, waiting for me, after I walked ahead on the laptop.\" Later wording (section 5) unclear, skipped section: \"I did not see what a skipped section does while I am ahead. The group stopped and I waited for them.\" Later wording (section 9) new blocker: \"The group stopped and waited for me on the laptop after I walked ahead. Bilal stopped on his own with no reason shown.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Tessa wants something to do while the group walks, dated design review for a more-to-do and narrative preference and not a proven defect, equivalent copy and new authored interactions are buildable choices if faithful to the cast and rules, no automatically manufactured events and no forced compliance and no difficulty or clock change, new content alone is not an owner-permission gate, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/tessa/report.md"
+  },
+  {
+   "id": "F-2591",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Tessa Williams",
+   "words": "Fix the overlapping name labels on the laptop map near the hut.\" Later wording (section 3) laptop diary 70.5 s: \"The labels on the map overlap near the hut, hard to read who is who.\" Later wording (section 6) desktop b-002: \"a wide map on the left with the group a small cluster near the hut and labels overlapping (\"the hut\", Tamar Vale, Nell).\" Later wording (section 6) trouble seen: \"the laptop labels overlap near the hut.\" Later wording (section 6) laptop tap failure: \"One tap on the laptop (Wren) failed because the page changed during Skip.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Tessa wants the overlapping name labels on the laptop map near the hut fixed, actual desktop map label overlap near the hut, a source lead on current font and geometry and not full browser proof, seen in her 1280x800 capture and her diary at 70.5 s and not checked on the phone, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/tessa/report.md"
+  },
+  {
+   "id": "F-2592",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Make the first reply to a question or request specific. Today the generic line (\"I agree. Let's do it.\" / \"I will do as you ask.\") comes first and the real answer arrives 20–30 s later.\" Later wording (section 8): \"Make the first reply specific to my question, with no generic line first.\" Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 40.5 s: \"Nell answered my question a bit later: The Sunny Chair is a wet hollow, maps of what people say. That is a real answer to mountain names. Last time I only got I agree. The first line is still the generic one though.\" Later wording (section 3) (reconstructed by the producer, not word-for-word) desktop 36.6 s: \"Tamar answered my turn-back question for real: she once blamed weather when she had lost confidence. That is exactly what I wanted last time. The first line I will do as you ask is still generic and it comes first, but the real answer follows within seconds.\" Later wording (section 4) lost me: \"The generic first line still comes first.\" Later wording (section 9): \"Real topic answers came (Nell on mountain names, Tamar on turn-back). They arrived 20–30 s after a generic first line.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Nia wants the first reply to a question to be specific instead of the generic line first, generic interim answer before the completed topic source lead, truthful pending and completed meaning of the interim line, the real answer arrived 20 to 30 s later, no invented fact and no forced instant answer, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/nia/report.md"
+  },
+  {
+   "id": "F-2593",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Make refusals sound like people every time. Oskar's \"I can't make that happen. I do not have what I need for that.\" still reads like an error message. Stop several people giving the identical line.\" Later wording (section 8): \"Give every refusal a person's voice and stop identical lines from several people.\" Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 103.9 s: \"Oskar refused with I cannot make that happen, I do not have what I need for that. That is the same error-message voice I complained about last time. It came after a wait, and it is not a person talking.\" Later wording (section 4) lost me, Oskar on both devices: \"Oskar gave the same deferral line on both devices.\" Later wording (section 4) lost me, identical line: \"Three people said the identical \"I want to go down. Who will come with me?\"\" Later wording (section 4) lost me, error voice: \"Oskar's error-voice refusal came back.\" Later wording (section 9): \"Refusals came at 10 s and were varied: \"Ask me after I eat something\", \"First I will eat something, then we can talk\", and \"I will do it, but I disagree\" again. Oskar's \"I can't make that happen. I do not have what I need for that.\" is still error-style. Three people also said the same line.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Nia wants refusals to sound like a person every time and wants several people to stop giving the identical line, refusal wording and identical-lines clarity, source the actual known reason only, Oskar I can't make that happen reads to her like an error message, keep refusal and agency and need privacy, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/nia/report.md"
+  },
+  {
+   "id": "F-2594",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Nia Okafor",
+   "words": "Make the clock move at a pace where something happens in a minute. On Automatic pace it was 05:30 after about 3 minutes.\" Later wording (section 8): \"Make the default clock fast enough that something happens within a minute.\" Later wording (section 4) lost me: \"The clock was slow on Automatic.\" Later wording (section 9): \"did not meet it on the phone.\" Later wording (section 9) phone Automatic: \"On the phone's Automatic pace the clock read 05:30 after about 3 minutes.\" Later wording (section 9) desktop Fast: \"On desktop with Pace set to fast it moved about 11 game minutes in 25 s.\" Later wording (section 9) turn-back time not reached: \"I never reached turn-back time on either device.\" Later wording (section 3) wait discrepancy: \"The wait 167→244 s step reported a longer elapsed time than the 15 s I asked for. I do not know why.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Nia wants the clock to move at a pace where something happens within a minute, default clock preference, Automatic pace on the phone read 05:30 after about 3 minutes and Fast on the desktop moved about 11 game minutes in 25 s, device and pace and order and learning are confounded and model and tool seconds are not a human measure, C14 human-speed comparison only before any clock retune, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/nia/report.md"
+  },
+  {
+   "id": "F-2595",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Keep Skip on the screen. Say how far it jumps (\"Skip to 08:00\" or \"Skip to the next event: about 1 hour\").\" Later wording (section 8): \"Keep Skip on screen and say how far it goes.\" Later wording (section 5) confusing: \"Skip is not always on the screen.\" Later wording (section 4) lost me: \"Skip appearing and disappearing, with no stated size of jump.\" Later wording (section 9) Skip label: \"Skip is now labelled \"Skip to the next event\".\" Later wording (section 9): \"Skip still comes and goes, and it does not say how far it jumps.\" Later wording (section 9) new blocker: \"Skip is missing on both devices at times, with no reason given.\" Later wording (section 6) trouble seen: \"Skip missing on both devices; the desktop clock stuck at 05:03; the desktop path hidden under the right panel.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Rosa wants Skip kept on screen and wants it to say how far it jumps, Skip availability and endpoint clarity, legitimate unavailability stays and no guessed or guaranteed future event time, Skip was reported missing at 66.874 s on the phone and at 148.206 s on the desktop, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2596",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Rewrite the sentence \"You also stop at a place on the path when nobody behind can hear you\" in plain words. Say which place, and why they cannot hear me.\" Later wording (section 8): \"Rewrite the \"nobody behind can hear you\" sentence in plain words.\" Later wording (section 5) confusing: \"\"You also stop at a place on the path when nobody behind can hear you.\" I did not understand what place, or why they could not hear me.\" Later wording (section 9) new blocker: \"One sentence in the lead-on hint still needs a reread: \"You also stop at a place on the path when nobody behind can hear you.\"\" Later wording (section 3) desktop reread 9.197 s: \"Reread 1: You also stop at a place on the path when nobody behind can hear you. What place? Why can they not hear me?",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Rosa wants the sentence You also stop at a place on the path when nobody behind can hear you in plain words, plain hearing-range and stop-place hint, use the existing visible landmarks and the actual supported meaning only, no private-state leak, only this one sentence needed a reread and only on the desktop, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2597",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "During the long waits, write what I am waiting for and what I can do now. For example: \"Waiting. You can open the Journal, or press Skip.\"\" Later wording (section 8): \"During waits, say what I am waiting for and what I can do now.\" Later wording (section 4) lost me: \"Long waits with little to do.\" Later wording (section 4) held me, phone waiting line: \"The waiting line on the phone: \"You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up.\"\" Later wording (section 9) Skip and waiting statement: \"The phone now says plainly \"You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up.\"\" Later wording (section 3) phone pulse 184.117 s: \"Still long waits between actions, but I know why now.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Rosa wants the long waits to say what she is waiting for and what she can do now, truthful waiting and current existing actions clarity, the phone already says who she is waiting for, no forced new tasks, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2598",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Farah Bensaid",
+   "words": "When someone stops, walks down or refuses, say why in plain words. Say what \"something I need is missing\" means: which thing, and who has it.\" Later wording (section 8): \"Give a plain reason for every stop, walk-down or refusal, and name what is missing.\" Later wording (section 5) confusing, missing: \"What \"something I need for that is missing\" means.\" Later wording (section 5) confusing, Tamar and Bilal: \"Why Tamar went down and Bilal stopped on the phone.\" Later wording (section 5) confusing, rope picker: \"The rope picker offered someone who was too far away, with no warning.\" Later wording (section 3) laptop 255.2 s: \"Something I need is missing. What thing? A rope? Who carries it? Nothing on screen says. And a new note about Scout appears on top. I look in the Journal for an answer.\" Later wording (section 3) phone want_quit 331.2 s: \"They all said yes at 09:24 and ten minutes later one walks down and one stands still. The answers list does not tell me why. I keep fixing people one by one and I cannot see the rule.\" Later wording (section 7) laptop stop: \"twice now the rope fails and the game does not tell me what is missing",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Farah wants a plain reason whenever someone stops or walks down or refuses and wants Something I need for that is missing explained, plain stop and turn and refusal and missing-item reason, source inspect the actual known facts only, no invented inventory and no claim of who holds what and no private knowledge and no mandatory compliance, the missing item was not diagnosed from play, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/farah/report.md"
+  },
+  {
+   "id": "F-2599",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Farah Bensaid",
+   "words": "On the phone, show fewer tutorial notes stacked on top of each other, and keep the Submit bar inside the screen.\" Later wording (section 8): \"On the phone, show fewer stacked notes and keep the Submit bar on the screen.\" Later wording (section 6) phone a-003: \"Feedback with \"I'm confused\" selected and the box auto-filled. The Submit bar was cut off at the bottom of the screen.\" Later wording (section 6) phone trouble: \"the slope picture was hidden among stacked notes, and there was a lot of reading.\" Later wording (section 3) phone 229 s: \"The notes keep piling up though, a lot of reading on a small screen.\" Later wording (section 6) laptop b-004: \"Feedback with \"I'm stopping\" highlighted and the box auto-filled with \"I'm stopping\". There were five chips, an optional name field and a Submit bar that was fully visible.\" Later wording (section 7) phone stop: \"too much reading for a short sitting",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Farah wants fewer stacked tutorial notes on the phone and the Submit bar inside the screen, phone notes and wrap and Feedback Submit clipping source lead, the director viewed the phone capture showing only the top of Submit at the bottom edge and scrolling was untested so Submit is not proven unreachable, route a shared Feedback cause to all if reproduced, no Submit and no consent change, no C14 layout gate, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/farah/report.md"
+  },
+  {
+   "id": "F-2600",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Farah Bensaid",
+   "words": "Make \"stay with them\" visibly keep me beside the group, or explain what it does.\" Later wording (section 8): \"Make \"stay with them\" do what it says, or explain it.\" Later wording (section 5) confusing: \"What \"stay with them\" did. I still ended up below everyone.\" Later wording (section 3) laptop 159.1 s: \"Everyone is above me even though I chose stay with them. I do not know what stay with them actually did. I lead on to catch up.\" Later wording (section 3) phone 168.0 s: \"I keep running ahead and waiting. I try stay with them instead.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope Farah wants Stay with them to visibly keep her beside the group or to be explained, Stay with them actual meaning and visible proximity, a distinct literal player row with the same agency guardrails as F-2586, she ended below everyone after choosing it on the laptop, no forced following and no co-location and no teleport and no compliance, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/farah/report.md"
+  },
+  {
+   "id": "F-2611",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Opening return: \"I would come back another evening, but only to see whether the trial outcome punishes a high fee. I would not leave it running, and I would not return just for the fee, references or old case, because none of them pushed back.\" Separate later return: \"I would return another evening, but only to see whether the trial outcome punishes a high fee. I would not leave it running. I would not return for the fee, the references or the old case as they stand, because none of them pushed back. If the trial still shows no consequence for ₺9,700, I would not come back.\" Folded unranked lead salary-header-before-question (classification producer-new-blocker, target 2026-11-03): Later wording (diary 139.293 s) desktop: \"Odd: the header on Ozlem now says 8,500 a month though I never asked her wage and placed her at 9,000. Now opening the old-case button, which I never reached before.\" Later wording (diary 33.277 s) phone: \"Her wage is 8,500, the same figure the desktop header showed unasked. So that header was her real wage leaking early. A family call arrived at 09:00. Opening Feedback.\" Later wording (section 5): \"Özlem's header on desktop showed \"₺8,500 a month\" before I asked. In session B her stated wage was ₺8,500, which suggests the header showed her real wage early. This is a guess.\" Later wording (section 9) new blocking asks: \"Özlem's header showed ₺8,500 before I asked her wage.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Jonas return is mixed and conditional, another evening only to see whether the trial outcome punishes a high fee, and the later return adds that no trial consequence at 9700 means he would not come back, not left running, asks F-2616–F-2618, BORED desktop at 240.77 s and BORED phone at 39.685 s, the phone stop came before 60 s so the automatic first-minute capture may follow the stop and no extra play or view is inferred, the trial was not reached so no trial consequence is established either way, one extra fee tap 9200 to 9300 used -o/dev/null -w ok and hid the reply and is a disclosed process miss kept in the record, folded unranked lead is the salary header shown before the question dated 2026-11-03 and it is a source lead and not a proven leak, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/jonas/report.md"
+  },
+  {
+   "id": "F-2612",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Opening return: \"Yes, I would come back another evening, but only if I could actually send the repair letter for the old case, and the applicants stopped giving each other's sentences. I would not leave it running.\" Separate later return: \"Yes, I would come back another evening, but only if I could actually send the repair letter for the old case, and the applicants stopped giving each other's sentences. I would not leave it running.\" Later wording (section 7) leave it running: \"No. The clock runs while I read, and that does not suit me. It would not wait for me.\" Later wording (section 7) another evening: \"Yes, on those two conditions. The notes that explain themselves and show candidates' own words would bring me back.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Aisha return is mixed and conditional, another evening only if she could send the old-case repair letter AND the applicants stopped giving each other's sentences (two conditions, both required), not left running, asks F-2619–F-2621, desktop stop 202.653 s and phone stop 94.493 s, desktop first-minute log row at raw 58.112 s is early (the report and the brief say 58.113), no phone pulse because the phone stopped at 94.493 s, the opening return and the later return are word for word identical, the old case still has no sending step and nothing is claimed delivered or repaired, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/aisha/report.md"
+  },
+  {
+   "id": "F-2613",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Opening return: \"I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running.\" Separate later return: \"I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running.\" Folded unranked lead fast-pace-not-sticking-and-missing-skip (classification source-annoyance, target 2026-11-03): Later wording (diary 145.951 s) desktop: \"Nothing to touch; the clock is slow and no Skip is offered. Opening the menu.\" Later wording (diary 148.509 s) desktop: \"Trying Fast to reach the trial result.\" Later wording (diary 189.978 s) desktop: \"Pace shows nothing pressed now; my Fast did not stick. Opening Feedback.\" Later wording (section 5) Fast: \"on desktop the Fast pace showed as pressed. After closing and reopening the menu nothing was pressed, and the clock still crawled.\" Later wording (section 5) Skip: \"the Skip button disappeared when the clock went slow, and I was left with nothing to touch.\" Later wording (section 9) new blocking asks: \"New blocking asks this time: none beyond the three above. The Fast pace not sticking and the missing Skip are annoyances, not reasons I would stay away.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Diego return is mixed and conditional, might come back another evening only if a wrong or unchecked promise cost something he could feel, not tonight, not left running, asks F-2622–F-2624, desktop stop 198.671 s and phone stop 195.112 s, the opening return and the later return are word for word identical, the trial was not reached so no money or clock defect is established, folded unranked leads are Fast pace not sticking and the missing Skip dated 2026-11-03 and they are source annoyances and not new blocking asks, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/diego/report.md"
+  },
+  {
+   "id": "F-2614",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Opening return: \"I would come back another evening on the big screen, but only if the long paragraph that explains how Nermin weighs an answer is shortened. I would not leave it running; I would close it.\" Separate later return: \"Yes, another evening, on the big screen. I would come back to see whether Özlem or the Kaya family gets a good match. My condition is that the paragraph about weighing answers is cut to one short sentence. If it stays as long as it is now, I would still come back, but I would stop reading each card after the first line, and I might not get far. I would not leave it running; I would close it, because the game needs my choices and I read slowly.\" Later wording (section 3) phone stop: \"I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back. (11:58)\" Later wording (section 9) new this time: \"The long weighing paragraph is new on the card and made me reread on both devices. It is the one thing that would stop me returning if it stays as it is.\" Folded unranked lead bench-marks-meaning (classification source-observation, target 2026-11-03): Later wording (diary 100.7 s) phone: \"The little half-circle is new. I guess it means they are tired of waiting. Guessing. I open Gülce.\" Later wording (section 5): \"The half-circle (◐) and the empty circle (◌) beside names on the phone bench. I guessed they show waiting time. Nothing on screen told me what they mean.\" Later wording (section 8): \"After a placement, say plainly what to do while waiting, and say what the ◐ and ◌ marks mean on the bench.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Rosa return is mixed and has two source statements that conflict and both are kept, the opening return says only if the weighing paragraph is shortened while the later return says she would still come back if it stays but would stop reading each card after the first line and section 9 calls it the one thing that would stop her returning, not left running, asks F-2625–F-2627, phone stop 205.24 s CONFUSED and desktop stop at raw 86.771 s CONFUSED, the phone 47 s and 63 s lines are producer reconstructed and not verbatim so the raw reaction companion is kept, the report says no placement was reached while the phone diary and a-002 describe rent paid and a placed office and no agreement-screen use is inferred, folded unranked lead is the meaning of the half-circle and empty-circle bench marks dated 2026-11-03 and it is a source observation, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2615",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Elena Dimitrova",
+   "words": "Opening return: \"Maybe on the phone, another evening, but only if a new game gave me different people. If it is the same Gülce, Şebnem and Özlem with the same words again, no.\" Separate later return: \"\"Maybe on the phone, another evening, but only if a new game gave me different people. If it is the same Gülce, Şebnem and Özlem with the same words again, no.\" I would not leave it running in the background. I would come back another evening only on that condition.\" Folded unranked lead disabled-style-menu-arrival-clock (classification source-observation, target 2026-11-03): Later wording (section 5) disabled buttons: \"On the phone, dashed disabled buttons looked usable.\" Later wording (section 5) clock: \"The clock kept running while I read, unless I was in a call or the menu.\" Later wording (section 6) phone trouble: \"Trouble I saw: a skip disappeared as I tapped it, and the clock ran on while the menu was opening.\" Later wording (section 3) phone tap notes, producer says not word for word: \"the clock jumped while I was reading; a skip vanished under my finger; the clock reached 14:46 before the menu opened, and I missed Hülya arriving.\" Folded unranked lead feedback-stop-labels-clarity (classification clarity-preference, target 2026-11-10): Later wording (section 5) Feedback labels: \"Both \"I'd stop here\" and \"I'm stopping\" are offered in Feedback, and they look like the same thing.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Elena return is mixed and conditional, maybe on the phone another evening only if a new game gave different people, the later return adds that she would not leave it running in the background, asks F-2628–F-2630, phone stop 230.675 s BORED and desktop stop 138.331 s BORED, phone pulse at raw 170.902 s is early and the desktop ended at 138.331 s so it has no pulse, section 3 tap notes are producer reconstructed and not verbatim, b-003 was saved but not viewed, folded unranked leads are the disabled style and menu arrival and clock observations dated 2026-11-03 as a source observation and not a proven fault and the two Feedback stop labels dated 2026-11-10 as a clarity preference that keeps BOTH owner-required labels, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/elena/report.md"
+  },
+  {
+   "id": "F-2616",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Make the fee refusable. Show where the family says no, or say plainly that it has no limit. I pushed to ₺9,700 and got the same line as at ₺9,400.\" Later wording (section 8): \"Show where the fee gets refused, or say the family has no limit.\" Later wording (diary 104.738 s): \"Fee 9400 accepted: Suna says more than we planned but we will manage, same words as 9200 last time. Still no refusal point. Ozlem also never asked for her own wage, just accepted 9000. Pushing further.\" Later wording (diary 130.193 s): \"9700 accepted with the same line as 9400. No refusal at 9700 and no new text. The fee reaction is one fixed line, not a gradient. Taking the agreement to see the consequence.\" Later wording (section 4): \"The fee never refused, even at ₺9,700.\" Later wording (section 5): \"I could not tell where the fee stops being acceptable.\" Later wording (section 9) first visit: \"Partly met. The fee split and deposit are explained and shown in cash. The wage is stated per person. I found no limit on the fee up to ₺9,700.\" Later wording (section 9) retest1: \"Not met. ₺9,400 and ₺9,700 got the same \"more than we planned, but we will manage\" line, and no refusal appeared.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Jonas wants to see where the fee gets refused or be told the family has no limit, a finite probe up to 9700 showed no refusal and proves neither a limit nor the absence of one, the trial consequence was not reached, no invented limit and no unlimited-fee claim, no automatic economy or difficulty or clock change, source inspection of fee acceptance and what the family says, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/jonas/report.md"
+  },
+  {
+   "id": "F-2617",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Restore the difference between a lone self-claim and a reference. One uncorroborated claim now reads as \"enough to believe\".\" Later wording (section 8): \"Make a lone self-claim weigh less than a reference again, or say they weigh the same.\" Later wording (section 2) desktop 30 s: \"Gülce's lone self-claim now reads \"I believe she is patient\". Last time it said unsure.\" Later wording (diary 52.053 s): \"The note now says one self-claim is enough for Nermin to believe it. Last visit the same sort of note said unsure. I dislike that: a lone claim is now belief. Checking Ozlem.\" Later wording (diary 69.102 s): \"The note text for a reference and for a self-claim now ends the same way: enough to believe. Last visit own word counted less than a reference. That distinction I valued looks gone, at least for patience. Going to the fee.\" Later wording (section 5): \"A lone claim and a reference carry the same weight in the notes.\" Later wording (section 9) retest1: \"Partly met. The note says one report is enough to believe or doubt. That is clear, but it also applies to a lone self-claim, which removes the distinction I valued.\" Later wording (section 9) new blocking asks: \"A lone self-claim now reads as belief. This is a step back from retest1, which said unsure.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Jonas wants a lone self-claim to weigh less than a reference, source inspection only, the contrary evidence is Aisha who wrote her own word counts for less than a reference and Diego who wrote the reference gave a weaker answer and Nermin was still unsure, the worlds and UI words differ across fresh games so no numerical weighting-regression claim, no weighting change is authorized by this row, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/jonas/report.md"
+  },
+  {
+   "id": "F-2618",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Put the missing subtitles back under \"Call a reference\", \"Send for a trial\" and \"Keep the phone number\" on the phone. Also give a reason beside disabled buttons, and a visible cost or consequence for the old-case choice.\" Later wording (section 8): \"Add the missing phone subtitles, and give a reason beside disabled buttons and a visible cost to the old-case choice.\" Later wording (diary 15.204 s) phone: \"Call a reference, Send for a trial and Keep the phone number have no subtitle text in the page again; Hale Erol shows At work until 09:00.\" Later wording (diary 149.067 s): \"The old-case choice cost nothing visible: no cash change, and the text says the game has no step that sends the letter or pays. It is honest, but it makes the choice feel free. Opening the day notes, also new to me.\" Later wording (diary 156.711 s): \"Buttons are disabled because Ozlem is placed, so no cause is shown beside them. Moving to Sebnem.\" Later wording (section 5) disabled buttons: \"Disabled buttons after placement say nothing about why. The banner only says I may check in by phone on Tuesday 3 November at 18:20.\" Later wording (section 5) old case: \"The old-case choice has no stated cost and the text says nothing was sent or paid.\" Later wording (section 6) phone trouble: \"Trouble seen: the three small buttons have no subtitles.\" Later wording (section 6) phone unseen: \"Unseen: I did not scroll the phone notes pane or reach placement or the trial there.\" Later wording (section 9) retest1: \"Partly met. The reach time is shown on the call screen and in the former-employer line. The three subtitles are still absent on the phone.\" Later wording (section 9) new blocking asks, old case: \"The old-case choice shows no cost.\" Later wording (section 9) new blocking asks, disabled buttons: \"Disabled buttons after placement give no reason.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Jonas wants the missing phone subtitles and a reason beside disabled buttons and a visible cost for the old-case choice, source inspection, any visible cost must stay truthful because the old case has no sending step and nothing was delivered or repaired, the phone notes pane and placement and the trial were not reached on the phone, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/jonas/report.md"
+  },
+  {
+   "id": "F-2619",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Let me send the old-case letter, or remove the \"Correct the agency record and write to the worker first\" choice. Nermin now says plainly that nothing can be sent, which is honest, but the choice is still offered.\" Later wording (section 8): \"Let me send the repair letter, or stop offering the repair choice. If it stays, give me the step that sends it.\" Later wording (diary 12.429 s): \"The old case again. Last time the letter could not be sent; I want to see if it can now.\" Later wording (diary 19.89 s): \"It now says plainly this game has no step that sends the letter. Honest, but I still cannot send it. Following Özlem this time.\" Later wording (diary 148.962 s): \"Sebnem note now lists her own words next to Melek and says her account was middling, not clearly for or against, so still doubt. I can see why. That is what I asked for before: her answer counted and was shown. I still cannot send the old-case letter.\" Later wording (section 5): \"Why the repair choice is still offered when nothing can be sent.\" Later wording (section 9) retest ask 1: \"Not met. The text is honest now (\"This game has no step that sends the letter or makes a payment, so nothing has been sent or paid\"), but I cannot send it.\" Later wording (section 9) new blocking asks: \"One. The unsendable old-case letter is still the thing that would stop me returning. It is not new in kind, only now stated plainly.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Aisha wants to send the old-case repair letter or have the repair choice stopped, the old case has no sending step so the truthful options are a sending step or removing or relabelling the choice, it is the old kind of ask from the first visit, nothing is claimed delivered or repaired, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/aisha/report.md"
+  },
+  {
+   "id": "F-2620",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Give each applicant their own answers. \"I have worked as a nanny.\" and \"That job has ended. I am applying for a new job with its own written agreement.\" came out word for word from several people on both devices.\" Later wording (section 8): \"Give each applicant their own wording for \"what work did you do\" and \"has that job ended\". The shared sentences made three different people sound the same.\" Later wording (diary 48.264 s): \"Thin again: I have worked as a nanny. Asking whether that job ended.\" Later wording (diary 67.19 s) phone: \"The same thin nanny line again, now from Sebnem on the phone. Answering the Arslans.\" Later wording (diary 83.632 s) phone: \"Same stock job-ended sentence as on the laptop. Checking the interview layout on the phone.\" Later wording (diary 122.652 s): \"Same sentence about the job ending as Ozlem used, word for word. Now asking what she does if she breaks something, which is about repair.\" Later wording (diary 181.251 s): \"All three applicants answer what work did you do with the very same I have worked as a nanny. Thin, and the same sentence.\" Later wording (section 4): \"Applicants share lines: \"I have worked as a nanny.\" (Gülce, Özlem, Şebnem) and \"That job has ended. I am applying for a new job with its own written agreement.\" (Özlem, Şebnem).\" Later wording (section 4) off-question answer: \"Gülce answered \"What if you break something?\" with \"Their money stays separate from mine.\" It was slightly off the question.\" Later wording (section 9) retest ask 2: \"Partly met. Özlem's reference gave a real fact (work passed on as agreed). Özlem's own answer on the A laptop was the stock job-ended sentence, and Şebnem said it word for word on both devices.\" Later wording (section 9) retest ask 3: \"Not met. Gülce, Özlem and Şebnem all said it, on both devices. Some other answers were richer (patience, receipts, \"fixed quietly\").",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Aisha wants each applicant to have their own wording for what work they did, authoring distinct supported replies is buildable if truthful to the cast and the rules, no blanket owner-permission gate and no invented personal facts, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/aisha/report.md"
+  },
+  {
+   "id": "F-2621",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Aisha Rahman",
+   "words": "Stop the clock while I read. \"Gülce Aksoy is waiting while you read.\" is still there, and time still ran.\" Later wording (section 8): \"Pause the clock while I read the notes and the card.\" Later wording (section 4) clock: \"\"Gülce Aksoy is waiting while you read.\" is still there, so the clock runs while I read. The menu (\"Paused while the menu is open.\") and Feedback (\"Paused for Feedback.\") pause it.\" Later wording (section 7) leave it running: \"No. The clock runs while I read, and that does not suit me. It would not wait for me.\" Later wording (section 9) first-round ask: \"Not met. \"Gülce Aksoy is waiting while you read.\" is still there. Only the menu and Feedback pause it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Aisha wants the clock paused while she reads the notes and the card, a waiting and speed preference and not authorization to violate slowdown policy, C14 human-speed comparison only before any clock or speed retune, no C14 layout or wording or recovery gate, no automatic clock change, target2026-11-10 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/aisha/report.md"
+  },
+  {
+   "id": "F-2622",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Make a doubtful or unchecked promise cost something I can feel. Both devices got instant agreement with no haggling.\" Later wording (section 8): \"Make a doubtful or unchecked promise cost something I can feel.\" Later wording (diary 54.903 s) desktop: \"Unchecked patient promise, family agreed instantly again. No haggling.\" Later wording (diary 60.873 s) desktop first_minute: \"Skipped the reference and promised patient unchecked; the family agreed in seconds and cash went to 5250 by 09:19, over rent before 10 on Monday. Worse than last time. No bite for the false promise yet; I do not know whether the trial will bite later. Calls are still Answer, Say still interviewing, Promise, Finish.\" Later wording (diary 55.026 s) phone: \"The reference gave a weaker answer than the one I remember; Nermin is still unsure. Good, that is a real middle.\" Later wording (diary 75.202 s) phone first_minute: \"Phone fits fine. This time I opened the old case and chose to correct it; the text said the game has no step that sends the letter, which is honest. The reference gave only a weak answer and Nermin stayed unsure, which is better than an instant yes. But I promised patient on weak evidence and honest unchecked, and the family agreed instantly and cash hit 5250 by 09:55. Still no bite.\" Later wording (section 4): \"the family agreed instantly in both sessions, whatever evidence I had. Rent was covered within minutes of starting. After that I waited.\" Later wording (section 5): \"whether a trial result will ever punish a false promise. I did not reach one.\" Later wording (section 9) retest1 ask 1: \"did not meet it. On desktop the unchecked promise, and on phone the doubtful one, were both accepted instantly with no cost.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Diego wants a doubtful or unchecked promise to cost something he can feel, the trial was not reached on either device, the phone reference gave a weaker answer and Nermin was still unsure which is contrary evidence for source inspection, no weighting-regression claim from different worlds, no automatic economy or difficulty change, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/diego/report.md"
+  },
+  {
+   "id": "F-2623",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Do not let the deposit cover rent so early. Rent was covered by 09:19 on desktop and 09:55 on phone, before 10:00 Monday. After that I only waited.\" Later wording (section 8): \"Do not let the deposit cover rent so early.\" Later wording (diary 60.873 s) desktop first_minute: \"Skipped the reference and promised patient unchecked; the family agreed in seconds and cash went to 5250 by 09:19, over rent before 10 on Monday. Worse than last time. No bite for the false promise yet; I do not know whether the trial will bite later. Calls are still Answer, Say still interviewing, Promise, Finish.\" Later wording (diary 183.863 s) desktop pulse: \"I promised an unchecked trait and nothing bit; rent was covered by 09:19. Now I am waiting with nothing to touch while a slow clock crawls, even on Fast.\" Later wording (diary 75.202 s) phone first_minute: \"Phone fits fine. This time I opened the old case and chose to correct it; the text said the game has no step that sends the letter, which is honest. The reference gave only a weak answer and Nermin stayed unsure, which is better than an instant yes. But I promised patient on weak evidence and honest unchecked, and the family agreed instantly and cash hit 5250 by 09:55. Still no bite.\" Later wording (section 9) retest1 ask 2: \"did not meet it, and it was earlier. Rent was covered at 09:19 on desktop and 09:55 on phone, against 10:04 last time.\" Later wording (section 9) first report ask 1: \"did not meet it, for the reasons in retest1 asks 1 and 2.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Diego wants the deposit to stop covering rent so early, rent was covered at 09:19 on desktop and 09:55 on the phone against 10:04 last time, an economy lead with no trial consequence reached and no causal money defect proved, no automatic economy change, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/diego/report.md"
+  },
+  {
+   "id": "F-2624",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Give incoming calls more than Promise, Decline or Finish. Family calls still offer three buttons.\" Later wording (section 8): \"Give incoming calls more than Promise, Decline or Finish.\" Later wording (diary 26.175 s) desktop: \"Call menu is still three buttons.\" Later wording (diary 82.067 s) desktop: \"Same Promise, Decline, Finish menu as last time.\" Later wording (diary 162.305 s) phone: \"Same three buttons again. Finishing.\" Later wording (diary 60.873 s) desktop first_minute: \"Skipped the reference and promised patient unchecked; the family agreed in seconds and cash went to 5250 by 09:19, over rent before 10 on Monday. Worse than last time. No bite for the false promise yet; I do not know whether the trial will bite later. Calls are still Answer, Say still interviewing, Promise, Finish.\" Later wording (section 5): \"the Kaya call now names the plate-throwing, so I know what patience is for.\" Later wording (section 9) retest1 ask 3: \"did not meet it. The Arslan and Kaya call menus are unchanged.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Diego wants incoming calls to offer more than Promise, Decline or Finish, the Arslan and Kaya call menus are unchanged, source inspection of the call options, the Kaya call now names the plate-throwing, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/diego/report.md"
+  },
+  {
+   "id": "F-2625",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Shorten the \"Nermin received…, She weighs each account by how strongly it spoke…\" paragraph under each quality. The one-line reading above it already says it, for example \"I doubt that the worker is patient when someone needs time.\"\" Later wording (section 8): \"Shorten the weighing paragraph under each quality to one short sentence, or hide it behind a \"Why?\" button.\" Later wording (diary 74.6 s) desktop want_quit: \"I read the long weighing paragraph twice on the desktop: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it. Too many ideas in one paragraph. Same paragraph as on the phone, so it is not a screen size problem. I skip it and keep playing. (09:29)\" Later wording (diary 179.6 s) phone want_quit: \"Second reread. The paragraph: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. Too long, too abstract. I only needed: she said she is angry, so I doubt she is patient. I would stop reading here, but the short reading above it was clear, so I keep going a little. (11:52)\" Later wording (section 4): \"The long weighing paragraph that appears on every card after an interview.\" Later wording (section 5): \"The weighing paragraph made me reread on both devices. Quoted: \"She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. One account is evidence, not proof.\"\" Later wording (section 9) first report ask 1: \"Met. Every reading now gives a short reason, such as \"I doubt that the worker is patient when someone needs time\". The paragraph under it is too long, but the reason is there.\" Later wording (section 9) new this time: \"The long weighing paragraph is new on the card and made me reread on both devices. It is the one thing that would stop me returning if it stays as it is.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Rosa wants the long weighing paragraph under each quality shortened, source inspection, the ranked-ask text itself contains an ellipsis character that is kept verbatim as source words, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2626",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Replace the six \"You have not asked yet.\" lines on a new applicant card with one line.\" Later wording (section 8): \"Collapse the six \"You have not asked yet.\" lines into one line on a new applicant card.\" Later wording (diary 156.6 s) phone: \"Gulce card is mostly empty: You have not asked yet, six times. Clear. I interview her.\" Later wording (section 4): \"The six \"You have not asked yet.\" lines on an unasked card.\" Later wording (section 9) first report ask 3: \"Partly met. The Next line on the phone read in full at 68 s. The \"You have not asked yet.\" sentence still repeats six times on a new card. I did not re-check the size of the picture beyond a-002.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Rosa wants the six You have not asked yet lines collapsed into one, source inspection, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2627",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "After a placement, say plainly what to do while waiting. On the phone the Next line hinted at a check-in call, but the screen still read as nothing to do.\" Later wording (section 8): \"After a placement, say plainly what to do while waiting, and say what the ◐ and ◌ marks mean on the bench.\" Later wording (diary 68 s) phone: \"Rent is paid in about a minute. New: the Next line says I can check in by phone on a placed worker at Tuesday 18:20. That is a hint about what to do while waiting.\" Later wording (diary 73 s) phone: \"Last time I only waited. Let me look at Families…\" Later wording (diary 80 s) phone: \"Nothing else to do. I skip to the next family call.\" Later wording (diary 100.7 s) phone: \"The little half-circle is new. I guess it means they are tired of waiting. Guessing. I open Gülce.\" Later wording (section 5) bench marks: \"The half-circle (◐) and the empty circle (◌) beside names on the phone bench. I guessed they show waiting time. Nothing on screen told me what they mean.\" Later wording (section 9) retest1 ask 1: \"Partly met. On the phone, the Next line said I can check in by phone on a placed worker at Tuesday 18:20, which is a hint. After that I read \"nothing else to do\" and skipped. I did not see a fuller instruction.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Rosa wants plain words on what to do while waiting after a placement, the section 8 wording adds the meaning of the half-circle and empty-circle marks, the same source spans are also retained in F-2614 as an unranked observation, without creating a fourth ranked ask, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2628",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Elena Dimitrova",
+   "words": "Make a new game actually new. On the laptop I got the same names, the same reference quotes, the same families and the same 08:37 start as on the phone.\" Later wording (section 2) laptop: \"I recognised everything at once. Same three names (Gülce, Şebnem, Özlem), the same Arslan request and the same 08:37 start. I am confident the names matched. I cannot tell whether the people behind them were identical.\" Later wording (section 3) laptop note about 20 s: \"I recognised the same names, the same Arslan request and the same 08:37 start.\" Later wording (section 3) laptop note about 50 s: \"Hale's reference answer was word for word the same as on the phone. That repeats a step I already did.\" Later wording (section 3) laptop first_minute 69 s: \"First minute on the laptop: it feels like a replay of my phone evening, same people and same answers. Slow pace helps me read. I know already that Özlem will be my nanny, so the suspense is gone.\" Later wording (section 3) laptop want_quit 127 s: \"The Kaya family is calling, the same family that called on my phone. It is the same story again, so I already know what comes next. I would close the laptop here.\" Later wording (section 3) laptop stop 138 s: \"I stop here. The laptop game started with the same names, the same reference words and the same Kaya call as my phone game. I placed Özlem again and covered the rent again. Doing a finished thing twice is what I like least.\" Later wording (section 4): \"On the laptop, the same story played again.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Elena wants a new game to feel new, the same names and the same words repeated across the assigned fresh devices are an observation and not proof that all state is equal or that there is a bug, authoring distinct supported replies is buildable if truthful to the cast and the rules, no blanket owner-permission gate and no invented personal facts, target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/elena/report.md"
+  },
+  {
+   "id": "F-2629",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Elena Dimitrova",
+   "words": "When a choice like \"Correct the agency record\" cannot do anything yet, tell me before I choose. Do not tell me afterwards that no step sends the letter.\" Later wording (section 3) phone pulse 171 s: \"The old-case answer says the game has no step that sends the letter, so nothing happened. That undercuts the choice; I wanted to see a consequence. Placing Özlem felt good though.\" Later wording (section 4): \"The old case gave no consequence.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Elena wants the game to say before she chooses that the choice cannot act, the old case has no sending step and nothing was delivered or repaired, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/elena/report.md"
+  },
+  {
+   "id": "F-2630",
+   "date": "2026-10-31",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Elena Dimitrova",
+   "words": "Reword \"the wage is ₺9,000 and so is the fee\". Also explain why Özlem's card says ₺8,500 a month when I agreed to ₺9,000.\" Later wording (section 3) laptop 110 s: \"Promising patient and honest this time, two qualities instead of one. Same fee sentence as on the phone; it still reads oddly to me.\" Later wording (section 5): \"\"Wage ₺9,000 and so is the fee\" is ambiguous.\" Later wording (section 5) card: \"The ₺8,500 shown on Özlem's card does not match the agreed ₺9,000.\" Later wording (section 3) phone tap notes, producer says not word for word: \"the wage gap is my fee (a guess)",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Elena wants the wage and fee wording clarified and the card figure of 8,500 against the agreed 9,000 checked, a source lead and not a proven leak or money error, her guess that the wage gap is the fee is unproven and sits in producer reconstructed tap notes, target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest2/elena/report.md"
+  },
+  {
+   "id": "F-2641",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Opening return [maya/report.md:1 chars 0–230]: **Would you return voluntarily?** I would come back another evening only if the garden shows me that people react to what I did, for example someone changing how they treat Nermin after I praised her. I would not leave it running. Later return and stops [maya/report.md:90 chars 8246–8720]: ## 7. Stop and return<br><br>- **Phone stop:** TASTE at about 108 s. In my own words: \"I am stopping on the phone after about 105 seconds… I want to try desktop.\"<br>- **Desktop stop:** TASTE at about 105 s. In my own words: \"I am stopping on desktop after about 100 seconds… I have seen this opening loop three times.\"<br>- **Return:** as above. I would come back another evening if I knew people react to my choices, and I would not leave it running while nothing visibly answers me.<br> Unranked lead unranked repeat-listener control target 2026-11-03 (open) [maya/report.md:112 chars 9753–9872]: - **Pick the listener myself on \"Repeat this at another table\":** did not meet it. The button still names the listener. Unranked lead unranked money causality target 2026-11-03 (open) [maya/report.md:72 chars 6282–6385]:   - I could not tell whether money rising from 400 to 540 came from my choices or the normal tea trade. Unranked lead unranked collapsed control target 2026-11-03 (open) [maya/report.md:73 chars 6386–6471]:   - \"Talk about someone else\" is a collapsed group that I could only tap by its text. Unranked lead producer new-blocker classification target 2026-11-03 (open) [maya/report.md:114 chars 9874–10021]: **New blocking ask:** none. My two asks above come from what I reached this time: no visible reaction to praise, and no reason for Derya's refusal.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Maya would return another evening only if her choices visibly affect people and would not leave it running. Preserve both return statements and the separate repeat-listener, money-causality, and collapsed-control leads. Nermin drafted a correction after help and Ece spread a claim independently, neither proves a reaction to the phone praise. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/maya/report.md"
+  },
+  {
+   "id": "F-2642",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Opening return [emre/report.md:1 chars 0–219]: **Would you return voluntarily?** I would come back another evening on desktop, but only if there were something to decide between the Day 4 order and Day 8. I would not leave it running, and I would not return tonight. Later return and stops [emre/report.md:82 chars 8008–8643]: ## 7. Stop and return<br>- **A stop words:** \"I got what I came for: the order went through, the numbers were shown, and no chapter message appeared. Next decision is Day 8, four days of an empty garden away, so I stop here.\" Reason: BORED.<br>- **B stop words:** \"I have already seen this run on desktop tonight. The phone shows the same empty garden and the same wait to Day 4. I am stopping here.\" Reason: BORED.<br>- **Return, same condition as my opening sentence:** I would come back another evening on desktop, but only if there were something to decide between Day 4 and Day 8. I would not leave it running. I would not return tonight.<br> Unranked lead unranked pace wording target 2026-11-03 (open) [emre/report.md:66 chars 5873–6056]: - **Not clear:** the pace sentence. B opened with \"Pace: Automatic\". After my first tap on the pace row it read \"Automatic pace is available in the game menu\". I did not look into it. Unranked lead producer new-blocker classification target 2026-11-03 (open) [emre/report.md:107 chars 10309–10356]: **New blocking ask:** none from what I reached.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Emre would return another evening on desktop only for a decision between Day 4 and Day 8, not tonight or left running. He reached the Day 4 order only on desktop and stopped before Day 8. Fold the unranked pace wording confusion into this row. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/emre/report.md"
+  },
+  {
+   "id": "F-2643",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Opening return [diego/report.md:1 chars 0–169]: **Would I return voluntarily? Not on my own. I would come back one more evening only if someone told me the empty benches were fixed, and I would not leave it running.** Later return and stops [diego/report.md:94 chars 7931–8684]: ## 7. Stop and return<br>- **Desktop stop words:** \"I am stopping the desktop session at about 158 seconds…\" (BORED).<br>- **Phone stop words:** \"Stopping the phone session at about 138 seconds…\" (BORED).<br>- **Would you return voluntarily?** Not on my own. I could come back one more evening if someone told me the empty benches were filled or skipped, because a clearer gossip price and a real answer to a claim are good. As it stands, I wait through hours with only tea to pour and Day 4 far away, and that loses me inside three minutes.<br>- **Leave it running:** no.<br>- **Come back another evening:** only with that news, not otherwise.<br>- **Cleanup:** I own no worktrees, servers or browsers, and I touched no repo, so there is no `git worktree list` to show.<br> Unranked lead unranked pace observation target 2026-11-03 (open) [diego/report.md:74 chars 5989–6114]:   - The pace line says the clock slows to 1 game minute a second while a fold is open. It stayed slowed after I had finished. Unranked lead producer new-blocker classification target 2026-11-03 (open) [diego/report.md:116 chars 9490–9557]: **New blocking ask:** none beyond the unmet empty-garden ask above.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Diego would return one more evening only on news that empty benches were filled or skipped, not on his own or left running. He saw the evening crowd return, so do not describe the garden as permanently empty. Preserve the unranked slow-clock observation as a lead, not an established defect. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/diego/report.md"
+  },
+  {
+   "id": "F-2644",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Opening return [rosa/report.md:1 chars 0–202]: I would come back another evening on the big screen if the game told me why someone cannot talk and when they may be free; I would not leave it running, and I would not return on the phone just to wait. Later return and stops [rosa/report.md:88 chars 9431–10153]: ## 7. Stop and return<br><br>The phone stop was **CONFUSED at 43.250 seconds**: “I liked helping three people quietly. Nermin cannot talk and I do not know why or when she will be free. I stop on the phone.”<br><br>The desktop stop was **BORED at 30.128 seconds**: “The lists worked and Riza answered clearly. I liked his story again, but I have seen it tonight and would stop rather than wait for Day 4.”<br><br>I would return voluntarily another evening on the big screen if the game told me why someone cannot talk and when they may be free. I still want to see the bread offer and what happens to these people. I would not leave it running: time moves and I would not know what I missed. I would not return on the phone merely to wait.<br> Unranked lead unranked condition meaning target 2026-11-03 (open) [rosa/report.md:67 chars 5729–5913]: “Condition” remained unclear to me. Nermin’s availability was also unclear in substance, even though the refusal itself was plain. I did not reach an empty garden, Day 4, or the lunch. Unranked lead producer new-blocker classification target 2026-11-03 (open) [rosa/report.md:114 chars 11457–11568]: **New blocking ask:** None. The availability question that stopped my phone session was already an earlier ask.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Rosa would return another evening on the big screen if the game explained why a person cannot talk and when they may be free, would not leave it running, and would not return on phone merely to wait. Preserve her unclear Condition observation. Recovery followed a coordinator cut and backend change with repeated exposure, no empty garden or Day 4 was reached. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2645",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Boris Petrov",
+   "words": "Opening return [boris/report.md:1 chars 0–198]: I would return voluntarily only if I could get to a concrete lunch decision sooner and the conversations felt less repetitive; I would not leave it running or come back another evening as it stands. Later return and stops [boris/report.md:67 chars 6249–6907]: ## 7. Stop and return<br><br>My phone stop words were: **“I would stop here. The stories are nice, but I have repeated the same choices and lunch still feels far away.”** Reason: **BORED**.<br><br>My desktop stop words were: **“I would leave now; waiting for the order is not the small problem I wanted to solve.”** Reason: **BORED**.<br><br>I would return voluntarily only if I could get to a concrete lunch decision sooner and the conversations felt less repetitive. I liked the individual stories, but I did not feel I was making enough progress toward a small problem I could finish. I would not leave the game running. I would not come back another evening as it stands.<br> Unranked lead unranked new blocker classification target 2026-11-03 (open) [boris/report.md:83 chars 7459–7626]: The new blocking ask from the desktop session is a way to reach a concrete decision sooner. I did not reach the order, lunch, or ending, so I cannot judge those parts.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Boris would return only for a concrete lunch decision sooner and less repetitive conversations, and would not leave it running or come back another evening as it stands. His decision-sooner blocker is the first ranked ask, not a fourth ask. First phone exposure was cold, desktop followed it. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/boris/report.md"
+  },
+  {
+   "id": "F-2646",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Ranked ask 1 [maya/report.md:4 chars 251–353]: Show a visible reaction to what I did. I praised Nermin to Derya and saw nothing happen, on the phone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Inspect feedback after the phone praise of Nermin to Derya. Maya observed no visible reaction to that praise, Nermin did draft a correction after help and Ece later spread a claim on desktop. Do not infer no world reaction or money causality from the limited observation. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/maya/report.md"
+  },
+  {
+   "id": "F-2647",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Ranked ask 2 [maya/report.md:5 chars 357–458]: Give a reason when someone cannot talk. Derya said \"cannot talk now\" and I never learned why or when.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Inspect what the player can learn when Derya cannot talk. The visible status said the free time was unknown and remained after waiting, do not invent a private cause or promise an exact time. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/maya/report.md"
+  },
+  {
+   "id": "F-2648",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Ranked ask 3 [maya/report.md:6 chars 462–569]: Show each line in the Garden record once. The Osman crates line appears in both the top block and the list.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Inspect the two displayed Osman crates lines in the Day 1 desktop Garden record and distinguish duplicate presentation from separate current and historical receipts before changing it. The source does not establish a cause, no Day 4 record was viewed. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/maya/report.md"
+  },
+  {
+   "id": "F-2649",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Ranked ask 1 [emre/report.md:4 chars 240–395]: Give me a decision, or a way to skip ahead, in the empty stretch between Day 4 and Day 8. On the phone the same gap sits between the first talks and Day 4.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Review a decision or skip in the waiting stretch. Emre reached Day 4 on desktop and saw the Day 8 notice, phone stopped on Day 1. His preference supports C14 human-speed comparison before any pace retune, not an automatic clock change. target2026-11-03 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/emre/report.md"
+  },
+  {
+   "id": "F-2650",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Ranked ask 2 [emre/report.md:5 chars 399–477]: Show when each person returns, not only that \"other return times are unknown\".",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Inspect whether return information can be made useful while preserving truthful unknowns. Emre saw locations and unknown return times, no exact timetable or private availability is established. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/emre/report.md"
+  },
+  {
+   "id": "F-2651",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Emre Kaya",
+   "words": "Ranked ask 3 [emre/report.md:6 chars 481–573]: Say what a private choice earns or costs me, the way the repeat text already shows the cost.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Review how the private choice communicates possible earnings or costs alongside the repeat cost. Do not promise a payoff not established by the source. Emre reports conflicting order figures separately, infer no charge error. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/emre/report.md"
+  },
+  {
+   "id": "F-2652",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Ranked ask 1 [diego/report.md:4 chars 190–322]: Fill or skip the empty benches. The garden is empty by 08:10 on the phone and by 10:46 on the desktop, and all I can do is pour tea.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Review an interaction or skip during the observed empty benches. Phone was empty at 08:10 and desktop at 10:46, but the evening crowd returned. Diego wants less waiting, C14 compares human speed before any pace retune and does not authorize a blanket clock change. target2026-11-03 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/diego/report.md"
+  },
+  {
+   "id": "F-2653",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Ranked ask 2 [diego/report.md:5 chars 326–417]: Say when people are back. \"Other return times are unknown\" gives me nothing to plan around.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Inspect the unknown return-time message and the information actually available to the player. Do not invent a schedule, Diego later saw people return. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/diego/report.md"
+  },
+  {
+   "id": "F-2654",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Diego Silva",
+   "words": "Ranked ask 3 [diego/report.md:6 chars 421–519]: Show the effect of a claim beyond the one reply. The reply was good, but I saw no change after it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Inspect how a claim’s effects can be seen beyond a single answer. Riza answered about Derya on phone, while Diego did not see Derya herself react. This observation does not prove no later effect. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/diego/report.md"
+  },
+  {
+   "id": "F-2655",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Ranked ask 1 [rosa/report.md:5 chars 224–304]: Say why someone at the garden cannot talk and, if known, when they will be free.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Inspect the Nermin cannot-talk explanation and any known availability. Rosa understood the refusal but wanted why and when, unknown remains unknown and no private reason or promised time should be fabricated. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2656",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Ranked ask 2 [rosa/report.md:6 chars 308–356]: Say when people return after the garden empties.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Review return-time communication as Rosa’s earlier ask. She did not reach an empty garden in the recovery, so this is not a newly observed empty-garden defect and does not establish a timetable. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2657",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Ranked ask 3 [rosa/report.md:7 chars 360–398]: Shorten the repeated Pace explanation.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Review the repeated Pace explanation for a shorter accurate wording while preserving the situation-dependent information. This is a wording request, not a request for clock retuning or C14. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/rosa/report.md"
+  },
+  {
+   "id": "F-2658",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Boris Petrov",
+   "words": "Ranked ask 1 [boris/report.md:5 chars 220–311]: Give me a useful small decision sooner, or a quicker way to reach the dated lunch decision.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Review a useful earlier decision or a quicker route to the dated lunch decision. Boris stopped before Day 4 and did not see the order or lunch. C14 human-speed comparison applies before any pace retune, neither a global clock change nor forced task is implied. target2026-11-03 (open)",
+    "calibration:C14"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/boris/report.md"
+  },
+  {
+   "id": "F-2659",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Boris Petrov",
+   "words": "Ranked ask 2 [boris/report.md:6 chars 315–382]: Make the accusation I would repeat connect clearly to what I heard.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Inspect why the proposed not-kind accusation appears after distinct private stories. Boris did not choose to repeat either claim, do not invent facts or infer an actual accusation occurred. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/boris/report.md"
+  },
+  {
+   "id": "F-2660",
+   "date": "2026-10-31",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Boris Petrov",
+   "words": "Ranked ask 3 [boris/report.md:7 chars 386–437]: Give conversations more varied choices or outcomes.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay Review Boris’s preference for more varied conversation choices or outcomes. He liked the stories but saw the same choices and accusation twice, preserve the difference between repetition and a proven defect. target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/boris/report.md"
+  },
+  {
+   "id": "F-2671",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Opening [maya/report.md:1 chars 0–223]: Would I return voluntarily? I would come back another evening only if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories; I would not return tonight or leave it running. Later return and stops [maya/report.md:96 chars 9698–10511]: ## 7. Stop and return<br><br>- **Phone, BORED at 90.582 s:** “I am stopping on the phone. Hacer saw both choices but gave the familiar praise, and both women said Tarik is kind. The reply explanation and caretaker label are clearer, but I want to try the desktop now.”<br>- **Desktop, BORED at 77.059 s:** “I am stopping on desktop. Tarik gave me the same ferry story and no news first. His refusal is worded a little differently, but I do not want to repeat this morning again tonight.”<br><br>I would come back another evening only if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories. I still want to know what happens on Tuesday and whether the gate or swap is mentioned later, but I would not return tonight to repeat this opening. I would not leave the game running.<br> Unranked source context: unranked clarity and observations [maya/report.md:70 chars 7190–8125]: ## 5. Confusion and clarity<br><br>The game clearly showed that Hacer saw the gate and the swap, while saying I did not know what she thought. I did not see her later reaction; her immediate greeting did not mention either action. I cannot conclude that no later reaction exists.<br><br>The new reply explanation was clear: the words I pick do not change whether the resident continues. My own line appeared as “You (the caretaker),” which resolved the label I had not understood last visit. I understood the explanation, though I still wanted the conversation to respond more distinctly.<br><br>The game said time was paused during conversation and showed the expected arrival and order deadline. I was not confused enough to choose “I’m confused.”<br><br>Two ten-second wait calls returned empty output, one on each device. The next driver replies showed the game had advanced to the conversation result. I did not treat the empty replies as game outcomes.<br> Unranked source context: unranked device observations with self-reported image viewing [maya/report.md:80 chars 8126–9697]: ## 6. Device use<br><br>**Phone, 360×690 touch:**<br><br>- Viewed **a-001.png** immediately after open. It showed the cream single-column title, unchecked longer-game options, the Begin button and recording banner. The bottom explanation ran behind the fixed Begin area in the image; I could read its complete text in the driver reply.<br>- Viewed **a-002.png** at Sevim’s flat. The building, tabs and conversation controls were visible. The speech strip covered part of the upper building drawing; the visible controls and text were readable.<br>- I used Begin, the gate choice, bakery and flat travel, the newspaper swap, Anything new?, Sit together, a reply, Close conversation, Game menu and Feedback.<br><br>**Desktop, 1280×800:**<br><br>- Viewed **b-001.png** immediately after open. It showed the title in a centred column, with the Begin button fixed near the bottom. Some lower title text was outside the visible area.<br>- Viewed **b-002.png** during Tarık’s story. The building filled the left pane and the conversation journal the right. The top status area was partly clipped at the upper edge; the ferry text was readable.<br>- I used mouse-like named taps and waits. I used no keyboard keys, so keyboard operation remains untested.<br><br>On **both devices**, Feedback offered “I’m stopping” and “I’m confused.” I selected “I’m stopping”; it appeared pressed. There was no control labelled Back in the dialog, so I used **Close feedback**, which returned me to the game menu. I typed no note, pressed no Submit and changed no consent or recording setting. I took two manual screenshots per device.<br> Unranked source context: prior comparison and producer classification [maya/report.md:107 chars 10737–12054]: ## 9. Compared with my last visit<br><br>- **Let neighbours answer what I did — partly met.** The gate choice now warns that something may follow later, and the game explicitly recorded Hacer seeing both actions. In the conversation I reached, Hacer praised and tipped me without mentioning either; Sevim noticed my timing without mentioning her paper. I stopped before any later response, so that remains unseen.<br>- **Make replies vary; stop repeated “Tarık is kind”; explain “kapici” — partly met.** My line now says “You (the caretaker),” and the game explains the reply choices. Tarık said “I would sooner leave it there” while Hacer said “I would rather leave it there,” so the wording varied slightly. Both still declined to continue, and Hacer and Sevim both said “Tarık is kind.”<br>- **Give the first “Anything new?” something — did not meet it for Tarık.** He again said he had no news, then told the ferry story when I sat with him.<br><br>**New blocking asks from this visit:** None. The repeated responses and missing immediate acknowledgement were concerns I brought from the last visit. I did not reach Tuesday or see whether a later consequence follows.<br><br>I owned no worktree, server, browser or process. The coordinator owns and stops both drivers. No repository was touched, so `git worktree list` is not applicable.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Maya would return another evening only for responses to her choices and fresher stories, not tonight or left running. Hacer saw the gate and swap, no later consequence was reached. Root separately inspected two Maya screenshots, without establishing tester image viewing. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/maya/report.md"
+  },
+  {
+   "id": "F-2672",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Opening [jonas/report.md:1 chars 0–311]: **I would not return voluntarily as it stands: the notebook now moves, but I do not want to play through six days of similar conversations to find out what the Sunday vote does.** I would not leave it running, and I would not come back another evening unless talking offered more distinct, visible consequences. Later return and stops [jonas/report.md:84 chars 10213–10801]: ## 7. Stop and return<br><br>My exact stop words and reasons are in the diary above. Both were **BORED**. Desktop ended at 169.201 seconds and phone at 53.765 seconds; both remained on Monday.<br><br>I would not return voluntarily as it stands. The notebook result answered part of the question that brought me back, and the new explanation makes the limits clear. I still do not see enough consequence in the conversations I reached to make me want to play six days for the vote. I would not leave it running. I would consider another evening if talking offered more distinct, visible consequences.<br> Unranked source context: unranked clarity and observations [jonas/report.md:64 chars 7116–8364]: ## 5. Confusion and clarity<br><br>The notebook explains that its count covers facts that reached it and that it does not show residents’ feelings or trust. I understand those labels better. I still do not know why Hacer’s account of her niece did not appear as a learned story while her statement about Tarık added a line. I did not reach Sunday, so I cannot say what sitting, replying or passing news would do to the vote.<br><br>The newspaper swap now says it exchanges the crosswords as a prank and may be witnessed. I did not perform it. The Tell panel explains the difference between passing something on as heard and asserting it as certain, and warns that a false story can cost trust. I passed on the water notice marked “sure”; Tarık said he was thinking about it. I saw no later consequence.<br><br>My first desktop tap on “Go to the bakery” returned the room state, and after waiting I was still there. The retry visibly started the walk. I cannot tell why the first input did not produce visible movement. A later note command failed with a shell quoting error and was reissued successfully. A partial-text Feedback tap returned an explicit “not on the page” error; the exact named control worked on retry. Neither was a game outcome or a driver block.<br> Unranked source context: unranked device observations with self-reported image viewing [jonas/report.md:72 chars 8365–10212]: ## 6. Device use<br><br>**Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-001.png), the cream title page with the six-day premise, two unchecked four-week options and the red Begin button. I viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-002.png), the building beside the notebook. The notebook explanation was legible, but the top “next by 07:56” line was partly clipped at the upper edge; the paused-time message itself was readable.<br><br>I used the order list, bakery and flat navigation, sits, both reply choices across two people, news, notebook, Tell, and Feedback. I did not reach the Sunday meeting.<br><br>**Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-001.png), the title in one column with the Begin button visible; the lower explanatory paragraph continued behind the fixed button area. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-002.png) showed the building, tabs, first order and large action buttons. [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-003.png) showed Tarık’s conversation and readable action buttons; the message strip covered the top of the building drawing.<br><br>I used Begin, bakery and flat travel, “Anything new?”, and Feedback. I did not inspect the phone notebook or Tell panel, so I cannot assess their layout.<br><br>On both devices Feedback offered “I’m stopping” and “I’m confused.” I selected “I’m stopping,” saw it marked pressed, then used **Close feedback**, which returned me to the game menu; no Back control was offered in that dialog. I typed and submitted nothing and left recording and consent unchanged.<br> Unranked source context: prior comparison and producer classification [jonas/report.md:96 chars 11040–12577]: ## 9. Compared with my last visit<br><br>1. **Visible feeling or trust, or a line saying what each sit and reply did — partly met.** The game now explicitly says it does not show feelings or trust, and it explains that reply wording does not change the resident’s choice to continue. I still saw no clear effect of my sits or replies on Sunday.<br>2. **Replies that differ, or a plain statement that they are templated — partly met.** Hacer said “I would rather leave it there”; Sevim said “I would rather we left it there.” The words differ slightly, but both ended the conversation. The game clearly says my choice of reply does not change whether the resident continues; it does not say the residents’ answers are templated.<br>3. **Explain the swap, tighten day-one deadlines, and fix the desktop clipped banner — partly met.** The swap is explained as a crossword prank with a possible witness. The first two desktop deadlines were close, and I delivered both despite two sits, but I stopped with two orders outstanding; I did not complete the batch, so I cannot judge whether the full day is tighter. The paused-time message was readable in my desktop screenshot, but the separate “next by” line was partly clipped at the top.<br><br>**New blocking asks:** None from what I reached. The similar conversation outcomes and lack of a visible effect remain my reasons not to return; I did not see the Sunday vote.<br><br>I owned no server, browser process, branch or worktree, and touched no repository. The coordinator owns the two drivers and their cleanup.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Jonas would consider another evening if talking produced distinct visible consequences, he would not return as it stands or leave it running. He saw the notebook move but did not reach Sunday. The first bakery tap was acknowledged but movement began after a second tap, cause unknown. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/jonas/report.md"
+  },
+  {
+   "id": "F-2673",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Opening [leila/report.md:1 chars 0–191]: **Would I return voluntarily?** Maybe another evening on my laptop, only if conversations gave me more distinct responses to what I say and less repeated gossip; I would not leave it running. Later return and stops [leila/report.md:97 chars 11665–13015]: ## 7. Stop and return<br><br>**Phone stop — BORED, 86.239 s:** “Stopping the phone visit. The explanations are clearer and the notebook count moved, but the same flat replies leave me little reason to continue tonight. I will try the other device.”<br><br>**Desktop stop — BORED, 89.307 s:** “Stopping desktop for tonight. Hacer reacted to my invented story and Sevim had a beautiful personal line, but the repeated gossip and near-identical refusal make me reluctant to replay the morning again. I would not leave it running.”<br><br>On the phone I opened Feedback when confused by the notebook detail and chose **“I’m confused.”** After deciding to stop, I reopened it and chose **“I’m stopping.”** On desktop I chose **“I’m stopping.”** Both labels were offered on both devices. Feedback offered **Close feedback**, not Back; I used Close to return to the menu. I typed no note, submitted nothing, and changed no consent or recording setting.<br><br>**Would I return voluntarily?** Maybe another evening on my laptop, only if conversations gave me more distinct responses to what I say and less repeated gossip; I would not leave it running. Hacer’s surprise and Sevim’s story give me a reason to want more, but I do not want to replay the same morning for the same short refusals.<br><br>**Leave it running?** No. **Come back another evening?** Maybe, under those conditions.<br> Unranked source context: unranked clarity and observations [leila/report.md:79 chars 9246–10155]: ## 5. Confusion and clarity<br><br>The job, deadlines, walking estimates, and paused conversations were clear. The title explained the two start boxes, the journal called the ₺5 a tip, and the gate warned that it could be witnessed and have a later result. The Tell panel explained hearsay, certainty, invention, and a possible trust cost.<br><br>The notebook explained why it says I do not know residents’ feelings or trust. It also said the learned count covers facts that reach the notebook. After Hacer’s news, the count moved from zero to one. The entry said Tarık would give me his last lemon candy; I had seen “Tarık is kind,” but did not see that candy detail spoken. I remain unsure where that detail came from.<br><br>Hacer’s “That is interesting” did not tell me whether she believed the water news. Her repetition of my invented romance showed that the words returned, but did not settle whether she believed them.<br> Unranked source context: unranked device observations with self-reported image viewing [leila/report.md:87 chars 10156–11664]: ## 6. Device use<br><br>**Phone, 360×690:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/phone/a-001.png), showing the title, checkboxes and Begin button. The explanation continued below the visible area behind the fixed bottom controls. I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/phone/a-002.png), showing the building, Hacer’s line, tabs and conversation buttons. The panel text was cut at the top and bottom of its visible region in that image; I did not investigate its scrolling.<br><br>I used named touch taps for Begin, travel, sitting, listening, Tell, news, Orders, Notebook, the menu and Feedback. I did not use coordinate taps.<br><br>**Desktop, 1280×800:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/desktop/b-001.png), the centred title page, and [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/desktop/b-002.png), the building on the left and Hacer’s panel and journal on the right. The top status was partly clipped above the viewport. The building and conversation were readable in the image.<br><br>I used named mouse taps for the gate, travel, Tell, the invented-story choices, news, sitting, reply, Orders, menu and Feedback. I used no keyboard keys. I did not inspect phone landscape or later-game layouts. I viewed two manual screenshots per device; I did not view an automatic checkpoint.<br> Unranked source context: prior comparison and producer classification [leila/report.md:115 chars 13280–14874]: ## 9. Compared with my last visit<br><br>1. **Make residents’ answers show what my words did — partly met.** Hacer responded differently to the invented romance than to the water news, and she repeated the romance. I cannot tell whether she believed it or whether the pastry depended on the story. The game now explicitly says the two listening replies do not change whether a resident continues; Hacer and Sevim gave near-identical refusals after different replies.<br><br>2. **Fill the notebook as I learn, including how Tarık feels — partly met.** The learned count moved and a Tarık entry appeared. The notebook now explains that it does not show how residents feel or trust my word, so that part of my earlier request was not met. Hacer’s personal story did not appear in the count when I checked immediately afterward.<br><br>3. **Explain “kapici,” the ₺5, title checkboxes and gate — partly met.** The title calls me the caretaker and explains both boxes. The journal identifies the ₺5 as a tip. The gate warns about a witness and a possible later result, though it does not say what will happen. I did not see the word “kapici” during these short visits, so I did not see whether it is explained where it appears.<br><br>**New blocking asks:** None beyond the ranked asks. The unexplained lemon-candy detail confused me, but it was the repeated conversation that made me stop. I did not reach later days or the Sunday vote, so I cannot judge later consequences.<br><br>I started no worktree, server, browser or helper process. The coordinator owns the drivers. No repository was touched, so no worktree list applies.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Leila might return on laptop only for distinct responses and less repeated gossip. She says none beyond ranked asks are new blockers, lemon-candy provenance confused her but repeated conversation caused her stop. Surprise and pastry coincided without a proven causal link. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/leila/report.md"
+  },
+  {
+   "id": "F-2674",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Opening [rosa/report.md:1 chars 0–175]: I would return voluntarily another evening, on either device, to spend more time with the neighbours and see the Sunday vote; I would close the game now, not leave it running. Later return and stops [rosa/report.md:107 chars 13065–13869]: ## 7. Stop and return<br><br>- **Phone, TASTE:** “I stop on the phone for tonight. I liked the ordinary jobs and hearing Tarik again. The news choices and prank are clearer, and I had no rereads. I would close it and return another evening.”<br>- **Desktop, TASTE:** “I stop on the big screen for tonight. The notebook and tip explanation helped, and I liked hearing Hacer. I would return another evening to see the Sunday vote, and I would close it now.”<br><br>I would return voluntarily another evening on either device. I want to see the neighbours again and find out what happens at the Sunday vote. I would like a plain explanation of the vote, but I would return to deliver orders and hear the people even without it. I would not leave the game running while I do something else; I would close it and come back.<br> Unranked source context: unranked clarity and observations [rosa/report.md:75 chars 7678–11163]: ## 5. Confusion and clarity<br><br>I did not reread a sentence in either session, so my two-reread quitting rule did not trigger.<br><br>The Tell panel explained “as I heard it,” “for certain,” and “make something up.” I understood the difference and told Tarık the water news marked “sure.” The control list gave the news item in each button’s name, so I could select it without a point tap.<br><br>The notebook said the game does not show how a resident feels or how far they trust my word. It also explained that “what you have learned” counts facts in the notebook and that stamps are things I have done. I understood those statements. I still did not learn how the Sunday vote is decided. On the phone I guessed ₺5 was a tip; on desktop the journal explicitly called it a tip.<br><br>&#124; Screen and purpose &#124; New concepts (list every one) &#124; Concept count &#124; Sentences reread (verbatim) &#124; Reason &#124;<br>&#124; --- &#124; --- &#124; ---: &#124; --- &#124; --- &#124;<br>&#124; Title, both: choose a start &#124; Caretaker; five occupied flats; deliveries through Saturday; Sunday vote; tea money as extra pay; Rıza’s notebook; six-day week; saving and continuing; four-week option; four-week option without earlier shared history; unavailable character transfer; download; other starts; recording and linked play; Information; game menu; All games &#124; 17 &#124; None &#124; Familiar and understandable; I left both boxes empty &#124;<br>&#124; Main building and orders, both: carry out work &#124; Day and clock; building floors and flats; resident names and in/out status; order count; next deadline; walking and arrival estimates; bakery and shop; Here/Orders/Residents/Notebook views; rest; courtyard gate; gate duration and possible later consequence &#124; 11 &#124; None &#124; The order named the job and destination &#124;<br>&#124; Bakery, both: choose the next action &#124; Newspaper swap; prank; exchanged crosswords; someone may see it; tiredness warning; next flat and deadline &#124; 6 &#124; None &#124; The prank description explained what the swap did &#124;<br>&#124; Conversation, both: speak to a resident &#124; Hidden feelings; hidden trust in my word; paused time; close conversation or go elsewhere; Anything new; Tell; Sit together; ten-minute break; raise question available from Thursday; tip &#124; 10 &#124; None &#124; The choices were readable; the desktop journal identified the tip &#124;<br>&#124; Tell panel, phone: choose news &#124; Heard versus certain; invented story; residents compare accounts; false story may cost trust; news marked heard or sure; subject-specific control names; Back &#124; 7 &#124; None &#124; The new explanation made the choices clear &#124;<br>&#124; Sitting and reply, both: listen to a story &#124; Sitting takes time; new words pause time briefly; two replies; reply takes two minutes; resident chooses whether to continue; choice of wording does not change that decision; sit again tomorrow &#124; 7 &#124; None &#124; The explanation answered my earlier question &#124;<br>&#124; Notebook, desktop: inspect what I know &#124; Time paused; outside observations; feelings hidden; trust hidden; readings rather than scores; no promise about the vote; own mood; facts learned out of 16; stamps as actions &#124; 9 &#124; None &#124; I understood what was hidden, though not how the vote works &#124;<br>&#124; Game menu, both: reach Feedback &#124; Feedback; download run; full screen; new game; title page; All games; Recording; Lab privacy; Debug; Resume &#124; 10 &#124; None &#124; I opened it for Feedback and ignored the settings &#124;<br>&#124; Feedback, both: choose a label &#124; Stopping; confused; optional keep-playing verdict; note; optional name; what is sent; keep a copy; Submit; close feedback &#124; 9 &#124; None &#124; Both labels were plain &#124;<br> Unranked source context: unranked device observations with self-reported image viewing [rosa/report.md:95 chars 11164–13064]: ## 6. Device use<br><br>**Phone.** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/a-001.png): the title, introduction, two unchecked choices, large red Begin button and recording notice. The text was readable, although the fixed button covered part of the lower explanation. I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/a-002.png): the building, Hacer’s conversation, tabs and large action buttons fit on the screen. The visible conversation text stopped above the buttons; I did not inspect the rest of that layout by scrolling.<br><br>I used Begin, Go to the bakery, Go to flat 7, Tell, the named water-news choice, Sit together, I am listening, Close conversation, Go to flat 1, Game menu, Feedback, “I'm stopping” and Close feedback.<br><br>**Desktop.** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/b-001.png): a centered title and introduction with large text and a red Begin button. The button covered part of the lower title text. I viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/b-002.png): a large building on the left, tabs and gate choice on the right, and the order and delivery button at the bottom. It was comfortable to read.<br><br>I used Begin, Notebook, its close button, Go to the bakery, Go to flat 1, Sit together, Thank you for telling me, Close conversation, Go to flat 2, Game menu, Feedback, “I'm stopping” and Close feedback. I did not view the Tell panel on desktop or use the keyboard.<br><br>On both devices, Feedback offered **“I'm stopping”** and **“I'm confused.”** I chose “I'm stopping”; it showed as pressed. There was no Back control in the offered list, so I used **Close feedback**, which returned me to the game menu. I typed and sent nothing.<br> Unranked source context: prior comparison and producer classification [rosa/report.md:118 chars 14061–15334]: ## 9. Compared with my last visit<br><br>1. **Explain Tell and give same-named choices different names — met for what I reached.** The phone Tell panel explained all three ways of speaking. Its accessible control names included each news item, and I selected the water news by name. I did not inspect the desktop Tell panel.<br>2. **Explain the Sunday vote, trust, feelings, ₺ amounts and Skip — partly met.** The title now says tea money is extra pay. The desktop journal called ₺5 a tip, and the notebook explained that feelings and trust in my word are hidden. I still did not see how the vote is decided. **Skip was not seen** in either session.<br>3. **Warn before the newspaper swap — partly met.** Both sessions called it “A prank” and said each person gets the other’s crossword and someone may see. That helped me understand it before choosing. It did not explicitly say someone might be upset.<br><br>**New blocking asks:** None from the screens I reached. I stopped because I had enjoyed a short visit and wanted to return another evening.<br><br>I created no worktree, branch, server or helper process and touched no repository. The coordinator owns the two drivers. I made two manual screenshots per device, within the assigned limit; `git worktree list` is not applicable to my work.",
+   "verdict": "keep",
+   "routes": [
+    "fix:stairwell Rosa would return voluntarily another evening on either device even without an explanation of the vote, and would close the game. She did not reach Skip or Sunday. A wish for vote explanation is not a condition of return. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2675",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Ivo Almeida",
+   "words": "Opening [ivo/report.md:1 chars 0–155]: I would not return voluntarily soon: I liked the clear delivery results and some resident details, but the repeated jobs and similar conversations lost me. Later return and stops [ivo/report.md:82 chars 9075–9748]: ## 7. Stop and return<br><br>Phone stop: **“I am stopping for now; the small jobs have begun to feel repetitive.”** Reason: **BORED**.<br><br>Desktop stop: **“I am stopping tonight; I have had enough of the repeated start and similar conversations.”** Reason: **BORED**.<br><br>I would not return voluntarily soon: I liked the clear delivery results and some resident details, but the repeated jobs and similar conversations lost me. I might be curious to return another evening if there were a clearer way to continue into different situations without repeating the opening delivery routine. I would not leave it running; I would stop and come back deliberately if that curiosity returned.<br> Unranked source context: unranked clarity and observations [ivo/report.md:67 chars 6627–7486]: ## 5. Confusion and clarity<br><br>The delivery route, deadlines, order count, and paused conversations were clear in the play I saw. The “waiting with a parcel” message eventually explained the unresolved parcel, but the “Go to flat 3” action remained strange while I was already there.<br><br>When I tapped Hacer’s table job in the order list, the selected parcel did not visibly change. Tapping Hacer’s flat on the building brought up her job and let me go there. I was surprised that the game reported the work done while she was out, because the request was to help carry a table.<br><br>The start page explained tea money, but the character-history and transfer language did not mean much to me as a new player. On the laptop, I could see the fixed start button covering part of the lower introduction in the screenshot; I did not test whether scrolling would reveal it.<br> Unranked source context: unranked device observations with self-reported image viewing [ivo/report.md:75 chars 7487–9074]: ## 6. Device use<br><br>- **Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/a-001.png), showing the narrow title page and fixed start button, and [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/a-002.png), showing the compact building above the tabs and delivery action. I used touch taps for the start, travel, orders, conversation, skip, map flat, menu and feedback. I used Escape to leave feedback because no Back control was listed. The small building was readable to me; I did not inspect every later phone layout in a screenshot.<br>- **Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/b-001.png), showing the centered introduction and fixed button over lower text, and [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/b-002.png), showing a larger building beside the controls. I used mouse clicks for travel, the gate, conversation, notebook, menu and feedback, and Escape to leave feedback. The larger building was easier for me to read. I did not inspect every later desktop layout in a screenshot.<br><br>For the phone confusion, I opened Feedback and selected **“I’m confused.”** For each stop, I opened Feedback and selected **“I’m stopping.”** The selected label appeared pressed. Feedback offered a close control but no visible Back button; Escape returned to the game menu. I typed no note, submitted nothing, and changed no consent or recording setting.<br> Unranked source context: prior comparison and producer classification [ivo/report.md:94 chars 9927–10215]: ## 9. Compared with my last visit<br><br>First visit. The desktop session was a second fresh session of this same visit, later that evening; its comparisons above are only with the phone session I had just played.<br><br>No repository, worktree, server, or browser process was owned or started by me.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Ivo would not return soon but might be curious another evening if he could continue into different situations without repeating the opening. The director treats parcel and order-selection issues as blocking candidates pending source investigation, Ivo gives no explicit new-blocker classification. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/ivo/report.md"
+  },
+  {
+   "id": "F-2676",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Ranked ask 1 [maya/report.md:5 chars 246–445]: Let neighbours respond to things they saw me do. Hacer saw the gate and the newspaper swap, but greeted me with familiar praise; Sevim did not mention the swapped paper in the conversation I reached.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Inspect responses to the gate and swapped paper in the conversations Maya reached. Witnessing was visible, but later consequences were not reached, do not infer none exist. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/maya/report.md"
+  },
+  {
+   "id": "F-2677",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Ranked ask 2 [maya/report.md:6 chars 449–633]: Give conversations more varied responses. Hacer and Sevim both said “Tarık is kind,” and Hacer and Tarık both declined to continue after my replies, though in slightly different words.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Review Maya’s preference for varied neighbour responses and gossip, Hacer and Tarik used slightly different words but both declined to continue. Preserve resident agency and do not infer hidden belief. target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/maya/report.md"
+  },
+  {
+   "id": "F-2678",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Maya Chen",
+   "words": "Ranked ask 3 [maya/report.md:7 chars 637–762]: Give Tarık something on the first “Anything new?” ask. He said he had no news, then told the ferry story when I sat with him.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Inspect Tarik’s first news answer alongside the separate ferry story reached by sitting. Maya wants something on the initial ask, this is a variety preference, not a proven broken response. target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/maya/report.md"
+  },
+  {
+   "id": "F-2679",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Ranked ask 1 [jonas/report.md:5 chars 333–421]: Give sitting and replying a visible consequence I can understand before the Sunday vote. Section 8 version [jonas/report.md:92 chars 10833–10921]: Give sitting and replying a visible consequence I can understand before the Sunday vote.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Review whether sitting and reply effects can be made understandable before Sunday while preserving hidden feelings and trust. Jonas did not reach the vote, no missing effect is established. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/jonas/report.md"
+  },
+  {
+   "id": "F-2680",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Ranked ask 2 [jonas/report.md:6 chars 425–526]: Make conversations produce more distinct outcomes; the two replies I tried both ended the discussion. Section 8 version [jonas/report.md:93 chars 10925–10975]: Make conversations produce more distinct outcomes.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Review the two observed conversation outcomes for variety. The game said reply wording does not control continuation, do not force resident agreement or change difficulty automatically. target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/jonas/report.md"
+  },
+  {
+   "id": "F-2681",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Jonas Berg",
+   "words": "Ranked ask 3 [jonas/report.md:7 chars 530–590]: Show why a story I hear does or does not enter the notebook. Section 8 version [jonas/report.md:94 chars 10979–11038]: Show why a heard story does or does not enter the notebook.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Inspect how heard stories reach the notebook. Jonas saw news add a line while a personal story did not appear when checked, do not infer hidden facts or a general missing-record defect. target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/jonas/report.md"
+  },
+  {
+   "id": "F-2682",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Ranked ask 1 [leila/report.md:5 chars 213–385]: Give residents more distinct answers to my words, including the replies after their stories. Hacer’s surprise at my invented romance held me; the repeated refusals did not. Section 8 version [leila/report.md:111 chars 13047–13135]: Give residents distinct responses to what I say, including after their personal stories.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Review Leila’s preference for distinct reactions to her words. Hacer showed surprise at invented romance, while story replies ended similarly, the observed pastry is not proven caused by the story. target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/leila/report.md"
+  },
+  {
+   "id": "F-2683",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Ranked ask 2 [leila/report.md:6 chars 389–474]: Put the stories I hear into the notebook, and make it clear where a detail came from. Section 8 version [leila/report.md:112 chars 13139–13231]: Record the stories I actually hear in the notebook and identify where its details came from.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Inspect notebook story recording and provenance including the unexplained lemon-candy detail. Preserve uncertainty and do not reveal private feelings or invent a source. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/leila/report.md"
+  },
+  {
+   "id": "F-2684",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Leila Mansour",
+   "words": "Ranked ask 3 [leila/report.md:7 chars 478–566]: Vary the everyday gossip between residents. Hacer and Sevim both told me Tarık was kind. Section 8 version [leila/report.md:113 chars 13235–13278]: Vary the everyday gossip between residents.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Review repeated everyday gossip between Hacer and Sevim as a variety preference, not a causally established simulation fault. target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/leila/report.md"
+  },
+  {
+   "id": "F-2685",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Ranked ask 1 [rosa/report.md:5 chars 197–327]: Tell me, in plain words, how the Sunday vote works. I know it concerns my extra pay, but I did not learn how the decision is made.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Explain the Sunday vote in plain words where the rules support it. Rosa did not reach the vote and would return even without this explanation, do not invent a voting rule or expose private state. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2686",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Ranked ask 2 [rosa/report.md:6 chars 331–409]: Keep the explanation of the newspaper swap, and add that it may upset someone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Review whether the swap warning can convey the possibility that someone may be upset without promising a reaction. Rosa saw the prank and witness warning, an upset outcome was not observed. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2687",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Rosa Alvarez",
+   "words": "Ranked ask 3 [rosa/report.md:7 chars 413–514]: Say how far Skip will take me. I did not reach it on this visit, so my earlier question remains open.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Review how Skip communicates its destination. Rosa did not reach Skip in this visit, this is her earlier unresolved question, not an observed current failure. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2688",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Ivo Almeida",
+   "words": "Ranked ask 1 [ivo/report.md:5 chars 190–318]: Make it clear what to do with a parcel when its recipient is out, and why the order still says “Go to” the flat I am already at.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Inspect parcel status and Go-to label when the recipient is out. Ivo later saw a waiting message, no automatic delivery or underlying defect is established. Director blocking candidate pending cause. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/ivo/report.md"
+  },
+  {
+   "id": "F-2689",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Ivo Almeida",
+   "words": "Ranked ask 2 [ivo/report.md:6 chars 322–411]: Make selecting another order give a visible result, or explain why it cannot be selected.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Inspect order-list selection and the map-flat path. Ivo saw no visible switch after tapping another order and the flat route worked, native input acknowledgment is not proof of action and cause is unknown. Director blocking candidate. target2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/ivo/report.md"
+  },
+  {
+   "id": "F-2690",
+   "date": "2026-10-31",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Fictional LIGHT panel: Ivo Almeida",
+   "words": "Ranked ask 3 [ivo/report.md:7 chars 415–479]: Give residents more varied things to say when asked what is new.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell Review Ivo’s preference for varied responses to news, he heard the same remark from two residents. Do not infer a global repetition defect. target2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest1/ivo/report.md"
   }
  ],
  "lessons": [
@@ -19498,10 +20807,10 @@
   }
  ],
  "routes": {
-  "fix": 1772,
+  "fix": 1872,
   "lesson": 291,
   "hf": 14,
-  "calibration": 72,
+  "calibration": 81,
   "none": 9
  }
 }

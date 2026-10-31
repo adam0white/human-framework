@@ -1,0 +1,74 @@
+{
+  "time": "2026-10-31T11:41:44.355320+00:00",
+  "ownerInstructionAt": "2026-10-31T11:38Z",
+  "untilUTC": "2026-11-03T08:00:00Z",
+  "state": "CLAUDE BRAKE; Rosa coordinator-cut, notvoluntarystop",
+  "coordinatorReportedKilled": [
+    33238,
+    56805
+  ],
+  "rootSignals": [
+    {
+      "pid": 56782,
+      "signal": "SIGTERM",
+      "identityMatched": true
+    },
+    {
+      "pid": 56784,
+      "signal": "SIGTERM",
+      "identityMatched": true
+    }
+  ],
+  "all10ObservedOwnedDriverBrowserIdentitiesAbsent": true,
+  "ports": [
+    {
+      "port": 22900,
+      "closed": true
+    },
+    {
+      "port": 22901,
+      "closed": true
+    },
+    {
+      "port": 22902,
+      "closed": true
+    },
+    {
+      "port": 22903,
+      "closed": true
+    },
+    {
+      "port": 22904,
+      "closed": true
+    },
+    {
+      "port": 22905,
+      "closed": true
+    },
+    {
+      "port": 22906,
+      "closed": true
+    },
+    {
+      "port": 22907,
+      "closed": true
+    },
+    {
+      "port": 22908,
+      "closed": true
+    },
+    {
+      "port": 22909,
+      "closed": true
+    }
+  ],
+  "completedBeforeCut": [
+    "maya",
+    "emre",
+    "diego"
+  ],
+  "partial": "rosa phoneopened through60.268s, no voluntary stop; desktopcontextstartedbutnotopened",
+  "unstarted": "boris, noexposure",
+  "roundHOLD": "retained pendingactual allowed-backend recovery or round decision",
+  "noClaudeLaunchAuthorized": true
+}

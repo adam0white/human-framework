@@ -1,0 +1,196 @@
+# The Rope: Rosa Alvarez, return-visit report (round light-1030-retest1)
+
+**Would I return voluntarily?** Yes, on another evening, if someone asked me to try it, because the writing about the people is kind and clear. No, I would not leave it running, and I would not come back tonight. I mostly waited and pressed Skip, and I have seen the whole loop twice.
+
+**Ranked asks**
+1. Keep Skip on the screen. Say how far it jumps ("Skip to 08:00" or "Skip to the next event: about 1 hour").
+2. Rewrite the sentence "You also stop at a place on the path when nobody behind can hear you" in plain words. Say which place, and why they cannot hear me.
+3. During the long waits, write what I am waiting for and what I can do now. For example: "Waiting. You can open the Journal, or press Skip."
+
+---
+
+## 1. Session
+- **Persona and exposure:** Rosa Alvarez, 62. Retired school administrator from Puebla, reads English as a second language, busy. RETURNING player, same-standing retest. Round light-1030-retest1, free-stop arm (floor 0, ceiling 20 min).
+- **Own history supplied:** own-history.md, 1921 lines. I read all of it in chunks, through the End marker. It holds my earlier Rope report (line 505) and my reports on other games.
+- **Qualification kept:** In the earlier Rope visit, the CONT input worked differently from a real person's. That qualification stands. The earlier method notes still apply.
+- **Not supplied:** other testers' reports, game source, cast notes. I also did not read brief.md, dispatch.json, history-source-map.json, processes.json, tester.stderr or transcript.jsonl.
+- **URL:** https://rope.adamwhite.work/?labRunSource=agent. Fresh game each session. There is no matched seed.
+- **Devices:**
+  - Session A, 360x690 touch phone, light mode, about 196 s real time.
+  - Session B, 1280x800 keyboard and mouse, light mode, about 194 s real time.
+- Neither session reached the 20-minute ceiling. I stopped both myself.
+
+## 2. First impressions
+**Session A (phone)**
+- 1.9 s: I saw the title page. "Same title as last time; I know it."
+- 11.99 s: the lead-on hint now says that lead on moves only me and climb on asks the others. That was my question last time.
+- 65.7 s: no reread yet. I understood the loop.
+
+**Session B (desktop)**
+- 1.5 s: the first picture is now a filled title page. Last time it was an empty frame.
+- 9.2 s: first reread, about the place "where nobody behind can hear you".
+- 74.4 s: the Journal is warm and clear. The clock was stuck at 05:03.
+
+## 3. Verbatim diary lines
+Session A and the first Session B lines are kept as logged. The Session B lines from 14.9 s onward are given as the reactions I sent with each driver op, plus the logs.
+
+**Session A (phone, port 22006)**
+- 0.423 open
+- 1.927 shot a-001 (viewed)
+- 8.393 tap New game: "Same title as last time; I know it. New game."
+- 10.056 tap We turn at 13:00: "Turn-back question is sensible; I remember it. I pick the middle one."
+- 11.988 tap lead on: "The hint now says lead on moves only me and climb on asks the others. That is the thing I could not tell last time. A long sentence but I read it once. I lead on."
+- 33.779 wait: "Walking now; I watch what happens."
+- 35.577 tap climb on: "Skip now has a label Skip to the next event; that was my old question. Now I ask everyone to climb on."
+- 37.454 tap ask gently: "Gentle; they can say no. insist is greyed with the words after a refusal, which tells me when it is allowed."
+- 63.67 wait: "Everyone agreed. Waiting for the climb to move."
+- 65.733 first_minute (engagement 3, Hollin Crag 05:16): "I understand the loop: promise a turn-back time, ask them gently, lead on, wait. Better than last time: the hint now says lead on moves only me and climb on asks the others. Hints still come one at a time. No reread yet."
+- 66.874 tap Skip (error: not on the page): "Slow. I press Skip, which now says what it does."
+- 93.37 wait: "Skip was not on the page now; it comes and goes. I wait."
+- 94.521 tap Skip: "Skip is back. I press it."
+- 110.651 wait: "Skipping."
+- 112.509 shot a-002 (viewed): "Now the game says plainly I am waiting for all five to catch up. That is clearer than last time."
+- 115.485 tap stay with them: "The picture is clear: I am ahead, they are below. The two more buttons now have different names, more requests and more moves. I stay with them so nobody is left."
+- 141.99 wait: "Waiting for the group; I stay with them."
+- 143.17 tap Skip: "Skip again."
+- 169.248 wait (no reaction)
+- 171.086 tap Tamar Vale: "Steeper ground. The hint says pick someone, open more actions, then Rope up. I pick Tamar."
+- 172.254 tap More requests: "Open more requests."
+- 173.885 tap rope up: "Rope up is enabled for Tamar. Disabled buttons now say Walk to her first, which is a clear reason. I try rope up."
+- 175.619 tap Bilal: "Who should tie a rope to Tamar: Bilal is also below, so probably near her. I choose Bilal."
+- 176.835 tap ask gently: "I ask gently."
+- 182.552 wait: "Tamar and Bilal agreed to rope up, first try. No missing-thing message this time."
+- 184.117 pulse (engagement 3, Hollin Crag 08:59): "Clearer and calmer than last time: Skip says what it does, the two more buttons have different names, and rope up worked first try. Still long waits between actions, but I know why now."
+- 187.337 Game menu: "I have seen the loop and no reread yet. I open the menu to check Feedback."
+- 188.402 Feedback (no reaction)
+- 190.008 shot a-003 (viewed)
+- 192.517 tap (47,203): "I press I am stopping by position. I type nothing."
+- 193.617 Back
+- 195.581 stop (BORED, engagement 3, Hollin Crag 09:00): "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit."
+
+**Session B (desktop, port 22007)**
+- 0.365 open
+- 1.466 shot b-001 (viewed)
+- 4.615 tap New game: "Second visit tonight, big screen. This time the first picture has the title; last time it was an empty frame. New game."
+- 6.181 tap We turn at 12:00: "Last time on desktop I chose the earlier time to be safe. I do it again."
+- 9.197 tap lead on: "Reread 1: You also stop at a place on the path when nobody behind can hear you. What place? Why can they not hear me? The first sentences about lead on and climb on are clear now. I go on."
+- 11.028 tap climb on: "Ask everyone to climb on, as I now know."
+- 13.361 tap ask gently: "Gentle again. insist is greyed with after a refusal."
+- 14.928 tap Journal: "I want to see the Journal again; it was my favourite part."
+- 70.94 tap Back: "The Journal is plain and readable. It tells the people as small stories: Tamar checked boots, Nell promised her mother a call. This is still the part I like. Back to the hill."
+- 74.418 first_minute (engagement 3, Hollin Crag 05:03): "I know the loop from the phone: promise a turn-back time, ask gently, lead on, wait. One reread so far: the sentence about stopping where nobody behind can hear me. The Journal is warm and clear. The clock has not moved, so I am waiting for the climb."
+- 78.285 tap Dismiss this note: "The clock is stuck at 05:03 and says Time slows for reading. I close the note with the x to see if the climb moves."
+- 81.536 tap lead on: "Nothing moves. I am not sure my first lead on worked. I press it again."
+- 109.784 wait: "The clock moves now, 05:05. Hint text changed to a new one about pack and food. I wait."
+- 112.621 shot b-002 (viewed): "Clock 05:20 now. A line says Nell borrowed her crampons, spikes for walking on ice. I like that the game explains the word."
+- 146.489 wait: "The picture is clear: the five are in a line, I am the red one at the front. The path runs off under the right panel, so I cannot see where it goes. I wait."
+- 148.206 tap Skip (error: not on the page): "Twenty minutes of game time in thirty real seconds. I try Skip."
+- 180.287 wait: "Skip is not on the page, same as on the phone. It comes and goes and I do not know why. I wait."
+- 182.616 pulse (engagement 3, Hollin Crag 06:00): "Calm and readable. One reread only (nobody behind can hear you). The people are now below me and I mostly wait. The Journal and the small stories still hold me; the waiting does not."
+- 184.207 tap Game menu: "I have seen the loop again. I open the menu to find Feedback."
+- 185.97 tap Feedback: "Skip came back behind the menu, as the clock stopped. I open Feedback."
+- 187.505 shot b-003 (viewed)
+- 189.611 tap (389,226): "I press I am stopping by position. I type nothing and press no Submit."
+- 191.479 tap Back: "Back. The note box filled itself with the verdict words; I typed nothing."
+- 194.079 stop (BORED, engagement 3, Hollin Crag 06:01): "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit."
+
+## 4. Moments
+**What held me**
+- The Journal. Small stories about the people: Tamar checking boots, Nell and her mother's call, Bilal and the stove.
+- Words explained as they appear: "crampons, spikes for walking on ice".
+- Rope up worked the first time (phone), and disabled buttons gave reasons.
+- The waiting line on the phone: "You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up."
+
+**What lost me**
+- Long waits with little to do.
+- Skip appearing and disappearing, with no stated size of jump.
+- The desktop clock stuck at 05:03 ("Time slows for reading") until I tapped lead on a second time.
+
+**Quit wishes**
+- I logged no `want_quit`. I reached only one reread (desktop), so my second-reread rule never fired.
+- I stopped both sessions as BORED, after about 3 minutes each.
+
+**Pulses:** both at engagement 3 (A at 184.1 s, B at 182.6 s).
+
+## 5. Confusion and clarity (actual play only)
+
+**Clear this time**
+- The lead on / climb on difference, which was my main question last time.
+- The Skip label.
+- The two "more" buttons having different names.
+- "after a refusal" on insist.
+
+**Confusing**
+- "You also stop at a place on the path when nobody behind can hear you." I did not understand what place, or why they could not hear me.
+- Skip is not always on the screen.
+- On desktop, the clock stayed at 05:03 after I tapped lead on. I do not know whether my first tap worked or the second one did.
+- On desktop, the path runs under the right panel, so I could not see where it goes.
+- After "I'm stopping", the note box filled itself with "I'm stopping". I typed nothing.
+
+**Not reached:** the "All 5 answers" panel, the "i" Information button, Close up, and any second mountain.
+
+**Concept table**
+These counts are my own tallies from the screens I actually visited.
+
+| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |
+| --- | --- | --- | --- | --- |
+| Title page: start | Journal, i, Game menu, All games, recording notice, five people, three mountains, "they can say no", New game | 9 | none | Plain |
+| Turn-back question: pick a time | turn-back time, a promise they remember, Saving / Time paused | 3 | none | Plain |
+| Hill screen: main play | Speak to everyone, named people, level / below / above, climb on, turn back, rest, eat, wait, more requests, lead on, go down, stop, stay with them, more moves, All 5 answers, time slows for reading | 16 | "You also stop at a place on the path when nobody behind can hear you." (desktop only) | Which place? Why can they not hear me? |
+| Steep-ground hint and rope up (phone) | rope up, partner, pick someone, more actions, walk to her first, take pack, share food, a partner may stop a fall | 8 | none | Plain |
+| Pressure choice | ask gently, urge, insist (after a refusal), trust | 4 | none | Plain |
+| Journal (desktop) | journal entries as small stories, a turn-back note, Back | 3 | none | Plain |
+| Game menu | Feedback, Full screen, Recording, Pace, auto / slow / normal / fast, Download this run, Open a run file, Title page, Lab privacy, Debug, Resume, People across games | 12 | none | Plain, mostly ignored |
+| Feedback screen | five verdict buttons, note, name, what is sent, Submit, Back | 9 | none | Plain |
+
+I did not inspect the "i" screen, the "All 5 answers" panel or Close up. I give no counts for them.
+
+## 6. Device use
+
+**Screenshots viewed**
+- Phone:
+  - `phone/a-001.png`: title page.
+  - `phone/a-002.png`: hill screen at 06:47, with picture, time bar, speak buttons and bottom action bar all on one screen.
+  - `phone/a-003.png`: Feedback with five verdict buttons, an empty note box, Name box and Submit.
+- Desktop:
+  - `desktop/b-001.png`: filled title page. "THE ROPE", subtitle, three mountain line drawings, "Lead them up and bring them home. They can say no.", a wide red New game button, Journal / i / Menu at top right, recording notice at bottom left.
+  - `desktop/b-002.png`: hill at 05:20. Five stick figures in a line with names, me in red at the front, the hut behind. The path runs off under the right panel. The line "Nell had borrowed her crampons…" sits at the top.
+  - `desktop/b-003.png`: Feedback panel over the game, with Back, five verdict buttons, empty note box, Name box and a red Submit at the bottom. A red band shows at the bottom.
+
+**Controls used**
+- Phone, by touch: New game, turn-back choice, lead on, climb on, ask gently, Skip, stay with them, Tamar Vale, more requests, rope up, Bilal, Game menu, Feedback, "I'm stopping" (by x,y), Back.
+- Desktop, mouse: New game, turn-back choice, lead on, climb on, ask gently, Journal, Back, Dismiss this note, Skip (absent), Game menu, Feedback, "I'm stopping" (by x,y), Back.
+
+**Trouble I saw:** Skip missing on both devices; the desktop clock stuck at 05:03; the desktop path hidden under the right panel.
+
+**Unseen layout:** I did not check phone landscape or other sizes.
+
+**Feedback evidence:** on both devices I pressed "I'm stopping" and then Back. I typed nothing and pressed no Submit. "I'm confused" was available but I did not need it.
+
+## 7. Stop and return
+**Stop words**
+- Phone: "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running." Reason: BORED.
+- Desktop: "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running." Reason: BORED.
+
+**Would I return voluntarily?**
+Yes, on another evening, if the game showed me something new. I want the second mountain, or a person asking me for something I did not expect. I came back tonight because I was asked, and the writing about the people is why I would come again. I would not leave the game running while I did something else. The waiting makes me want to press things, and I cannot tell whether a press did anything. I would not come back tonight. I would play on my phone before the desktop, because the phone screen showed everything at once.
+
+## 8. Changes I would want
+1. Keep Skip on screen and say how far it goes.
+2. Rewrite the "nobody behind can hear you" sentence in plain words.
+3. During waits, say what I am waiting for and what I can do now.
+
+## 9. Compared with my last visit
+
+**Earlier asks**
+1. **Plain rope words.** Partly met. Rope up worked at once with Bilal on the phone, and disabled buttons said why ("Walk to her first."). I did not reach "Close up" or "Something I need for that is missing", so I cannot say about those.
+2. **Phone buttons and the two "more" labels.** Met. On the phone, the two buttons now read "more requests" and "more moves", and a-002 shows the picture, time bar, speak buttons and action bar on one screen.
+3. **"A call needs attention" and Skip.** Partly met. The phone now says plainly "You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up." Skip is now labelled "Skip to the next event". I did not see "A call needs attention" this time. Skip still comes and goes, and it does not say how far it jumps.
+
+**New this time that would stop me returning**
+- Skip is missing on both devices at times, with no reason given.
+- On desktop, the clock stayed at 05:03 until I tapped lead on a second time, and I could not tell whether the first tap had worked.
+- One sentence in the lead-on hint still needs a reread: "You also stop at a place on the path when nobody behind can hear you."
+- The note box fills with "I'm stopping" when I press that verdict. I typed nothing, but a reader might think they must send it.
+
+`git worktree list`: not applicable. I created no repo, worktree, branch or server. I wrote no files except the driver screenshots: phone a-001 to a-003 and desktop b-001 to b-003. That is within the limit of five manual shots plus one automatic shot per device.

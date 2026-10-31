@@ -1,0 +1,294 @@
+{
+  "reportUnchanged": true,
+  "source": "Exact wall-clock reaction strings, not reconstruction",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "reaction": "I remember the tea money vote and the blank notebook. The title now explains the boxes and caretaker; leaving the defaults.",
+      "elapsed_s": 5.077,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 6,
+      "reaction": "The gate now warns that neighbours may see and something may follow. I remember Tar\u0131k witnessing it last time, with high confidence. First I will deliver.",
+      "elapsed_s": 12.205,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "reaction": "The swap now says it is a prank and may be witnessed. I remember Hacer saw my swap last visit, confidently; I will leave the papers alone.",
+      "elapsed_s": 17.304,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "reaction": "Hacer asks me to sit and I can actually do it. The five lira still sits in parentheses; I cannot tell what it represents.",
+      "elapsed_s": 22.422,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 11,
+      "reaction": "The journal spells it out: a five lira tip for me. That answers my old question. Hacer mentions family paperwork; I want to hear more.",
+      "elapsed_s": 24.555,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 13,
+      "reaction": "Now it says plainly the two replies do not change whether she goes on. Honest, though I wanted my words to matter. Listening.",
+      "elapsed_s": 33.887,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "reaction": "I remember that exact refusal from Tar\u0131k and Burak last time, high confidence. Checking whether the notebook learned about Hacer.",
+      "elapsed_s": 42.292,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 16,
+      "reaction": "The notebook now says it cannot show feelings or trust and explains the learned count. Honest, but I heard a story and it still says zero. I wanted what I learn to appear.",
+      "elapsed_s": 44.411,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 19,
+      "reaction": "The Tell panel now explains truth, hearsay and falsehood costs. I will tell Hacer the water news for certain.",
+      "elapsed_s": 49.788,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 20,
+      "reaction": "That is interesting again, exactly as I remember Hacer answering my hearsay last time, high confidence. I still cannot read her belief from it.",
+      "elapsed_s": 51.855,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 25,
+      "reaction": "The job and deadlines are clear; talk and notebook pause time. The title boxes, tip and gate now have explanations. Hacer gave the same refusal and That is interesting I remember, but the game now admits my two listening replies do not change her choice. The journal says a new notebook line was added after news.",
+      "elapsed_s": 60.228,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 27,
+      "reaction": "Sevim noticed my punctuality again, as last visit; high confidence. I like that she notices an action. Checking the new line.",
+      "elapsed_s": 67.14,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 28,
+      "reaction": "One of sixteen now, with a lemon candy detail for Tar\u0131k. I did not hear that detail in the visible line, only that he is kind. Still, the count moved.",
+      "elapsed_s": 69.049,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 31,
+      "reaction": "I am confused by the lemon candy detail appearing without my hearing it. Selecting confused, sending nothing.",
+      "elapsed_s": 74.054,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 33,
+      "reaction": "The same flat answers have returned, and the game says my listening words do not change her choice. I would leave this phone visit now.",
+      "elapsed_s": 78.989,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "BORED"
+    },
+    {
+      "device": "phone",
+      "row": 36,
+      "reaction": "No Back is offered; Close feedback returns to the menu. I typed and sent nothing.",
+      "elapsed_s": 84.352,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 37,
+      "reaction": "Stopping the phone visit. The explanations are clearer and the notebook count moved, but the same flat replies leave me little reason to continue tonight. I will try the other device.",
+      "elapsed_s": 86.239,
+      "op": "log",
+      "kind": "stop",
+      "reason": "BORED"
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "reaction": "Second visit tonight, desktop and a fresh Monday. The title explanation is welcome. I want to try a made-up story this time.",
+      "elapsed_s": 5.689,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 6,
+      "reaction": "This time I will open the gate knowingly: the warning says someone may see and something may follow.",
+      "elapsed_s": 11.152,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 7,
+      "reaction": "Hacer saw it. Last visit Tar\u0131k saw the gate, high confidence; a different witness this time. I like knowing somebody noticed.",
+      "elapsed_s": 12.953,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 11,
+      "reaction": "The cat line rings a bell from the first visit, high confidence; it is a little funny. I will try the lie.",
+      "elapsed_s": 23.652,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "reaction": "The same romance invention I told Tar\u0131k last time, high confidence. I want to see Hacer respond.",
+      "elapsed_s": 28.501,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 15,
+      "reaction": "Well! I would never have expected that. That is a different answer from the water news, and the pastry is a visible response. I like that she sounds surprised.",
+      "elapsed_s": 31.103,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "reaction": "The desktop picture is readable; the top status is partly cut off above the viewport. Asking what she knows after my story.",
+      "elapsed_s": 36.833,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 18,
+      "reaction": "She repeats my invented romance back as a fact immediately. That is visible uptake, though I cannot tell whether she believes it or is just repeating me.",
+      "elapsed_s": 38.852,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 22,
+      "reaction": "Sevim says for once; that is sharper than her punctuality line on the phone. Curious whether the rumour reached her.",
+      "elapsed_s": 50.533,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 23,
+      "reaction": "Tar\u0131k is kind again, from both Hacer and Sevim. I remember the same repeated gossip last time, high confidence; it is already wearing thin.",
+      "elapsed_s": 53.033,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 25,
+      "reaction": "Her line about children reading aloud is lovely and particular. I want to see if she continues.",
+      "elapsed_s": 60.47,
+      "op": "wait",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 26,
+      "reaction": "A fresh Monday with different order quantities. Hacer saw my gate, reacted with surprise to my invented romance and gave pastry, then repeated it. That holds me more than the phone answer. Sevim and Hacer both say Tar\u0131k is kind again, but Sevim has a lovely individual story about children reading.",
+      "elapsed_s": 63.208,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 30,
+      "reaction": "Sevim closes with nearly the same refusal as Hacer. The rumour reaction was better, but I have seen the morning again and I would stop for tonight.",
+      "elapsed_s": 78.826,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "BORED"
+    },
+    {
+      "device": "desktop",
+      "row": 34,
+      "reaction": "Again no Back button; Close feedback returns to the menu. No note or submission.",
+      "elapsed_s": 86.918,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 35,
+      "reaction": "Stopping desktop for tonight. Hacer reacted to my invented story and Sevim had a beautiful personal line, but the repeated gossip and near-identical refusal make me reluctant to replay the morning again. I would not leave it running.",
+      "elapsed_s": 89.307,
+      "op": "log",
+      "kind": "stop",
+      "reason": "BORED"
+    }
+  ]
+}

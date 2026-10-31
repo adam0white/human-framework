@@ -1,0 +1,158 @@
+{
+  "tester": "Maya Chen",
+  "validationTime": "2026-10-31T11:50:04.075016+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T11:18:17.019Z",
+        "elapsed_s": 108.271,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone after about 105 seconds. Nermin and Ece gave new small secrets, helping Nermin changed what she did, and I could pick the person and claim myself. But Derya cannot talk with no reason, nobody visibly reacted to my praise, and I have seen the Day 1 loop. I want to try desktop.",
+        "game_clock": "Day 1 07:55",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 96.416,
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 98.236,
+          "op": "tap",
+          "input": {
+            "text": "stopping",
+            "role": "button"
+          },
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T11:16:54.675Z",
+          "elapsed_s": 25.927,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Talk about someone else"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Talk about someone else is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T11:18:05.164Z",
+          "elapsed_s": 96.416,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T11:18:06.984Z",
+          "elapsed_s": 98.236,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "stopping",
+            "role": "button"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T11:20:03.704Z",
+        "elapsed_s": 105.354,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on desktop after about 100 seconds. Aylin gave a small new secret and Ece passed a claim to Riza on her own, which showed me the world moves without me. But I still could not tell whether my own choices change anything beyond Nermin, and I have seen this opening loop three times.",
+        "game_clock": "Day 1 07:48",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 100.991,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [
+        58.832
+      ],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

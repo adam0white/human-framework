@@ -1,0 +1,13 @@
+{
+  "state": "collection closed, audit-qualified; dated Deferred integration pending",
+  "closed": "2026-10-31T11:56:15.518252+00:00",
+  "nextOrdinaryNotBefore": "2026-10-31T12:11:15.518252+00:00",
+  "fiveLogicalTesters": true,
+  "tenVoluntaryFinalAttemptStops": true,
+  "originalRosaCoordinatorCutSeparate": true,
+  "sameSecondRetest": true,
+  "deploymentHoldReleased": true,
+  "sourceGameFixIterations": 2,
+  "newBlocker": "Boris concrete decision sooner, routed dated Deferred by two-iteration cap",
+  "imageViews": "Original3 verified; recovered2 self-reported but independent evidence unavailable in Codex JSONL"
+}

@@ -1,0 +1,162 @@
+**Would you return?** Yes, I would come back another evening, but only if I could actually send the repair letter for the old case, and the applicants stopped giving each other's sentences. I would not leave it running.
+
+**Ranked asks**
+1. Let me send the old-case letter, or remove the "Correct the agency record and write to the worker first" choice. Nermin now says plainly that nothing can be sent, which is honest, but the choice is still offered.
+2. Give each applicant their own answers. "I have worked as a nanny." and "That job has ended. I am applying for a new job with its own written agreement." came out word for word from several people on both devices.
+3. Stop the clock while I read. "Gülce Aksoy is waiting while you read." is still there, and time still ran.
+
+---
+
+## 1. Session
+
+- Persona: Aisha Rahman, 45, a Birmingham community pharmacist.
+- Exposure: returning player. Round light-1031-goodhands-retest2, free-stop arm (floor 0, ceiling 20 minutes). The coordinator adds the release commit.
+- Own history: I read `own-history.md` completely, through line 980, "End of supplied own history". Nothing was left unread. It holds my earlier Good Hands reports (first round, then the retest) plus cross-game records, not a complete archive.
+- URL: https://goodhands.adamwhite.work/?labRunSource=agent
+- Session A: 1280×800 keyboard and mouse, light mode, about 202 s (3.4 min).
+- Session B: 360×690 touch phone, light mode, about 94 s (1.6 min).
+- Each session was a fresh game. The map, people and events differed from last time.
+
+## 2. First impressions
+
+- **A:**
+  - Same cream title page, red "Open the office" button, and recording notice bottom-left. "I know this place."
+  - The office opened as a sketched office on the left and an interview panel on the right.
+  - The old-case card was still there. I went straight to it, looking for a send button.
+- **B:**
+  - The title page fits at 360 wide. The red button runs across the bottom and the recording notice sits over the footer, still readable.
+  - The office stacks vertically: sketch, bench, then the card. It is readable, and the card is cut by the notice bar.
+
+## 3. Verbatim diary lines (elapsed seconds, as logged)
+
+**Session A**
+- 2.552: Same cream title page; I know this place.
+- 4.898: Opening the office.
+- 12.429: The old case again. Last time the letter could not be sent; I want to see if it can now.
+- 15.918: Repairing. Looking for a send button this time.
+- 19.89: It now says plainly this game has no step that sends the letter. Honest, but I still cannot send it. Following Özlem this time.
+- 23.426: Interview her first; I want to hear her own words.
+- 26.599: I want a patience question, and the reason a job ended.
+- 30.307: A patience question, to hear how she thinks.
+- 34.239: Özlem sounds patient and the note matches. Family call at 09:07 again; answering.
+- 37.655: I will not promise what I cannot yet keep.
+- 44.985: Same apology to the candidate as before; still considerate. Asking about her past work.
+- 48.264: Thin again: I have worked as a nanny. Asking whether that job ended.
+- 56.051: A real answer on why the job ended this time, with no bad fact thrown in. Last question.
+- 58.113 first_minute (Mon 2 Nov 09:40): I know the loop: interview, family call, reference, trial. New: Nermin says plainly the letter cannot be sent in this game; the family call came at 09:07; Ozlem answered a patience question with a real line and her reading matched. Same apology to her after the call. Same leave and be called back after 11:28.
+- 62.169: My first_minute above was logged at 58 s, a little early.
+- 65.997: The note now explains how one account is weighed, one account is evidence not proof. That is careful. Calling Hale Erol.
+- 76.633: Reference confirms patience and the reading holds. Now money and honesty.
+- 80.567: Honest-about-money reading follows what I heard. Now the reason the job ended; this was my old complaint.
+- 89.052: The notes now show who said what and say her own word counts for less than a reference. I follow Şebnem to see if her own account moves her note.
+- 103.4: Missing change again: unable to account for it. Not the same as taking it. I want to put this to her.
+- 110.613: Putting the reference claim to her so she can answer in her own words.
+- 115.018: She deflects: we need to compare the receipts. Fair that the note stays doubtful, but it is not an account. Looking for why the job ended.
+- 122.652: Same sentence about the job ending as Ozlem used, word for word. Now asking what she does if she breaks something, which is about repair.
+- 130.668: A small mistake is better fixed quietly: that fits the doubt, and it is her own voice. And a different family, Kaya, is calling; that is new to me.
+- 134.498: A day later than the Arslans. A promise to look, not to deliver, is one I can keep.
+- 148.962 note (Mon 2 Nov 11:16): Sebnem note now lists her own words next to Melek and says her account was middling, not clearly for or against, so still doubt. I can see why. That is what I asked for before: her answer counted and was shown. I still cannot send the old-case letter.
+- 152.691: Gülce has waited three hours, apparently. I will hear her now.
+- 166.854: I asked what happens if she breaks something and she answered about money staying separate. A bit off the question, but I can see the sense.
+- 181.251: All three applicants answer what work did you do with the very same I have worked as a nanny. Thin, and the same sentence.
+- 183.471 pulse, engagement 4 (Mon 2 Nov 11:38): The notes now show who said what and how it was weighed, and Sebnem own words are in her note; that held me. Less good: the three applicants share lines like I have worked as a nanny and That job has ended, and the old-case letter still cannot be sent.
+- 188.563 want_quit, BORED: I have seen what changed: the notes explain themselves and show candidate words, and the letter honestly says it cannot be sent. The interview lines still repeat across applicants. I would stop here on the laptop.
+- 202.653 stop, BORED (Mon 2 Nov 11:38): Stopping the laptop after about 3.4 minutes. The notes now show who said what and why they weigh as they do, and Sebnem own words are in her note. I liked that. The old-case letter still cannot be sent, and the applicants share lines. I pressed I am stopping in Feedback, typed nothing, no Submit.
+
+**Session B**
+- 1.994: Same title page on the phone.
+- 9.961: Did the office open? Checking the phone layout.
+- 56.624: Phone office is readable; the sketch and bench fit. Following Sebnem this time.
+- 59.672: Interviewing Sebnem first on the phone.
+- 61.262 first_minute (Mon 2 Nov 10:13): Phone feels the same as the laptop: office sketch, bench, old-case card, and an interview opened with Sebnem. The text fits at 360 wide and nothing is cut off. I am still reading the same loop I know.
+- 63.612: Asking about her past work.
+- 67.19: The same thin nanny line again, now from Sebnem on the phone. Answering the Arslans.
+- 70.034: I will say I am still interviewing; no promise I cannot keep.
+- 72.934: Polite reply from the family. Back to Sebnem.
+- 76.113: Wage next.
+- 78.84: I want the why-did-the-job-end question; looking in the longer list.
+- 81.794: Asking whether the job ended.
+- 83.632: Same stock job-ended sentence as on the laptop. Checking the interview layout on the phone.
+- 86.886 want_quit, BORED (Mon 2 Nov 10:44): The phone shows the same game as the laptop: same nanny line, same job-ended sentence, same apology after the call. The layout is fine. I have nothing new to learn on this device, so I would stop here.
+- 94.493 stop, BORED (Mon 2 Nov 10:44): Stopping the phone visit after about 1.5 minutes. Same loop and same stock lines as the laptop; layout was clear. I pressed I am stopping in Feedback, typed nothing, no Submit, then Back.
+
+Flags on the timed tags and the logs:
+- My Session A first_minute was logged at 58.113 s, under the 60 s threshold. I noted this in the next line. Treat it as premature.
+- The phone first_minute was logged at 61.262 s, which is valid.
+- The phone has no pulse, because I stopped before 180 s. That checkpoint is untested.
+- The phone stop line says "about 1.5 minutes". The driver's elapsed time was 94 s.
+
+## 4. Moments
+
+- **What held me**
+  - The notes now say whose account counts for what. For example, "Özlem Koç's own answer counts for less than Hale Erol's report."
+  - Şebnem's own words appear in her note, next to the reference's. Her note says her account "was middling, not clearly for or against".
+  - Özlem answered a patience question with a real line ("I take a breath before I answer"). Hale Erol, her reference, gave real answers: patience confirmed, the change returned with receipts, work passed on as agreed.
+  - Nermin's "Sorry. Where were we?" to the candidate after a call is still considerate.
+  - A second family, the Kayas, called at 11:03 for a carer by Wed 4 Nov. I chose "Promise to look". That is new to me.
+- **What lost me**
+  - The old-case letter still cannot be sent.
+  - Applicants share lines: "I have worked as a nanny." (Gülce, Özlem, Şebnem) and "That job has ended. I am applying for a new job with its own written agreement." (Özlem, Şebnem).
+  - Gülce answered "What if you break something?" with "Their money stays separate from mine." It was slightly off the question.
+- **Quit wishes:** One per session, both BORED. Both were "I have seen what changed", and both passed into a stop. I did not keep playing after either.
+- **Pulse:** A at 183 s, engagement 4.
+- **Clock:** "Gülce Aksoy is waiting while you read." is still there, so the clock runs while I read. The menu ("Paused while the menu is open.") and Feedback ("Paused for Feedback.") pause it.
+
+## 5. Confusion and clarity
+
+- **Clear:** The notes' explanation of how accounts are weighed. The plain statement that no step sends the letter or takes payment ("so nothing has been sent or paid"). The tab layout (Bench, Families, Placed).
+- **Unclear:**
+  - Why the repair choice is still offered when nothing can be sent.
+  - The Gülce "money stays separate" answer to a question about breaking something.
+- I was never confused enough to choose "I'm confused".
+- I did not open "What happens to these people next".
+- I did not call a reference or reach a trial on the phone.
+
+## 6. Device use
+
+- **Session A, desktop:**
+  - Screenshots viewed: a-001.png (cream title page, "GH placement agency" sign, red "Open the office" button, recording notice bottom-left) and a-002.png (two panes: sketched office with a stick figure at the bench, a "City" button and a "Good Hands" sign on the left; Gülce's lines in handwriting font with question buttons on the right). Layout was clear. No trouble seen.
+  - Controls used: tap by name, wait, log.
+  - There were no driver timeouts. Taps took about 2 s each.
+- **Session B, phone:**
+  - Screenshots viewed: b-001.png (title page fits at 360 wide, red button across the bottom), b-002.png (office at 08:39: sketch, "City" button, task line, "Skip ⏩ 11:00 · A family is due to call", Bench/Families/Placed, three applicants, and the old-case card, cut at the bottom by the recording notice bar) and b-003.png (interview: handwriting-font lines, two question buttons side by side, "More questions · 7" full width, then wait/send-home buttons; all readable).
+  - Controls used: tap by name, wait, log, shot, and menu → Feedback → "I'm stopping" → Back. Typing nothing, no Submit, no consent or Recording changes.
+  - There was no trouble seen. The notice bar covers the bottom of the old-case card on the phone. I judge that minor.
+- **Not seen:** The phone view of the notes panel, the Families and Placed tabs, a reference call, and a trial.
+- That is 3 manual shots on the phone and 2 on the desktop, and no automatic checkpoint shot beyond them.
+
+## 7. Stop and return
+
+- **Stop words:**
+  - A (BORED): "Stopping the laptop after about 3.4 minutes…"
+  - B (BORED): "Stopping the phone visit after about 1.5 minutes…"
+  - I pressed "I'm stopping" in Feedback on both devices (it showed pressed), typed nothing, pressed no Submit, and pressed Back.
+- **Would you return voluntarily?** Yes, I would come back another evening, but only if I could actually send the repair letter for the old case, and the applicants stopped giving each other's sentences. I would not leave it running.
+- **Leave it running?** No. The clock runs while I read, and that does not suit me. It would not wait for me.
+- **Another evening?** Yes, on those two conditions. The notes that explain themselves and show candidates' own words would bring me back.
+
+## 8. Changes I would want
+
+1. Let me send the repair letter, or stop offering the repair choice. If it stays, give me the step that sends it.
+2. Give each applicant their own wording for "what work did you do" and "has that job ended". The shared sentences made three different people sound the same.
+3. Pause the clock while I read the notes and the card.
+
+## 9. Compared with my last visit
+
+Asks from my earlier Good Hands reports:
+- **Retest ask 1: send the letter after "Correct the agency record and write to the worker first".**
+  - Not met. The text is honest now ("This game has no step that sends the letter or makes a payment, so nothing has been sent or paid"), but I cannot send it.
+- **Retest ask 2: when I ask why a job ended, give a reason in the person's own words, not another bad fact.**
+  - Partly met. Özlem's reference gave a real fact (work passed on as agreed). Özlem's own answer on the A laptop was the stock job-ended sentence, and Şebnem said it word for word on both devices.
+  - I did not see Şebnem's reference answer to "Ask how the job ended" this time.
+- **Retest ask 3: a second candidate's interview answers should say more than "I have worked as a nanny."**
+  - Not met. Gülce, Özlem and Şebnem all said it, on both devices. Some other answers were richer (patience, receipts, "fixed quietly").
+- **First-round ask: update the notes when someone gives their own account.**
+  - Mostly met. Şebnem's words are listed beside the reference's and weighed in the reading.
+- **First-round ask: pause the clock while I read.**
+  - Not met. "Gülce Aksoy is waiting while you read." is still there. Only the menu and Feedback pause it.
+- **First-round ask: show whether a tap registered, or stop the 30 s timeouts.**
+  - Met. I saw no timeouts. Each tap showed its result on both devices.
+- **New blocking asks:** One. The unsendable old-case letter is still the thing that would stop me returning. It is not new in kind, only now stated plainly.
+
+Repos touched: none. `git worktree list` for any repo: I have no worktrees, branches or processes of mine to clean up.

@@ -1,0 +1,11 @@
+# Logical tester ledger — Rope retest 1
+
+One row per tester. Verdict words are each tester's own conditions, bounded inference, not votes and not a population estimate. The stop labels are the producers' own session labels, not five independent game completions. Elapsed values are the raw timed stop rows. Full raw stop words are in `logical-tester-ledger.json` and `all-driver-reactions.json`.
+
+| id | tester | exposure | verdict | stops | asks | target |
+| --- | --- | --- | --- | --- | --- | --- |
+| F-2581 | Pavel Novak | standing player, first fixed-build retest | mixed | desktop 271.27 s BORED, phone 230.551 s TASTE | F-2586–F-2588 | 2026-11-03 |
+| F-2582 | Tessa Williams | standing player, first fixed-build retest | mixed | phone 190.697 s BORED, desktop 190.582 s TASTE | F-2589–F-2591 | 2026-11-03 |
+| F-2583 | Nia Okafor | standing player, first fixed-build retest | mixed | phone 199.556 s BORED, desktop 253.14 s BORED | F-2592–F-2594 | 2026-11-03 |
+| F-2584 | Rosa Alvarez | standing player, first fixed-build retest | mixed | phone 195.581 s BORED, desktop 194.079 s BORED | F-2595–F-2597 | 2026-11-03 |
+| F-2585 | Farah Bensaid | new cold person, empty history, first Rope visit | mixed | phone 345.735 s CONFUSED, desktop 324.278 s CONFUSED | F-2598–F-2600 | 2026-11-03 |

@@ -1,0 +1,620 @@
+{
+  "pavel": {
+    "tester": "Pavel Novak",
+    "validationTime": "2026-10-31T10:10:35.957657+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T09:30:12.666Z",
+          "elapsed_s": 271.27,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop at 07:29 on desktop. The notes explain more than before and Wren's refusal was explained, but I still wait for the group at a slow clock and never reached the hurt climber. Chose I'm stopping in Feedback, typed nothing, submitted nothing.",
+          "game_clock": "07:29",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 1,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 267.937,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T09:26:49.077Z",
+            "elapsed_s": 67.681,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Skip to the next event"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T09:34:03.568Z",
+          "elapsed_s": 230.551,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop at 10:11 on the phone. Skip and the weather warning now explain themselves and Nell asked to go down with named choices. But two of five still cannot hear me and the clock still crawls. Chose I am stopping in Feedback, typed nothing, submitted nothing.",
+          "game_clock": "10:11",
+          "engagement": null,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 222.162,
+            "op": "tap",
+            "input": {
+              "name": "send Tamar Vale"
+            },
+            "error": null
+          },
+          {
+            "elapsed_s": 227.836,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "tessa": {
+    "tester": "Tessa Williams",
+    "validationTime": "2026-10-31T10:10:35.963867+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T09:38:07.901Z",
+          "elapsed_s": 190.697,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone. This time I got up the mountain, saw the map and the hint, and people had busy-until reasons. But most of them still say the hut-path line to different asks, so I have seen what poking does.",
+          "game_clock": "Hollin Crag 05:53",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 152.958,
+            "op": "tap",
+            "input": {
+              "name": "send Tamar Vale"
+            },
+            "error": null
+          },
+          {
+            "elapsed_s": 188.522,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T09:41:19.490Z",
+          "elapsed_s": 190.582,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the laptop. Replies fit better this time, Wren gave a reason that matched what she was doing and Bilal sounded like himself. But most yeses are one shape and I have not found my own kind of trouble beyond splitting the group.",
+          "game_clock": "Hollin Crag 07:09",
+          "engagement": null,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 188.468,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T09:39:20.854Z",
+            "elapsed_s": 71.946,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Wren: Walking up, level with you."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 6,
+            "error": "Wren: Walking up, level with you. is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "nia": {
+    "tester": "Nia Okafor",
+    "validationTime": "2026-10-31T10:10:35.971799+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T09:45:32.563Z",
+          "elapsed_s": 199.556,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on the phone at 05:30. Refusals and Wren asking who goes down were better than last time, and Nell finally answered my question. But repeated lines, the error-style refusal from Oskar, and a crawling clock. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+          "game_clock": "05:30",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 69.789,
+            "op": "tap",
+            "input": {
+              "name": "send Oskar"
+            },
+            "error": null
+          },
+          {
+            "elapsed_s": 176.204,
+            "op": "tap",
+            "input": {
+              "name": "send Nell"
+            },
+            "error": null
+          },
+          {
+            "elapsed_s": 196.251,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T09:49:46.961Z",
+          "elapsed_s": 253.14,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on desktop at 07:06. Real topic answer from Tamar and the I will do it but I disagree line came fast, but Oskar kept the same deferral line, my requests stalled, and I ended up watching dots. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+          "game_clock": "07:06",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 250.283,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T09:46:07.947Z",
+            "elapsed_s": 34.126,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Skip to the next event"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 9,
+            "error": "Skip to the next event is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "rosa": {
+    "tester": "Rosa Alvarez",
+    "validationTime": "2026-10-31T10:10:35.979379+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T09:53:56.417Z",
+          "elapsed_s": 195.581,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+          "game_clock": "Hollin Crag 09:00",
+          "engagement": 3,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T09:51:47.710Z",
+            "elapsed_s": 66.874,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Skip to the next event"
+            },
+            "reaction": "Slow. I press Skip, which now says what it does.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 4,
+            "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T09:57:11.578Z",
+          "elapsed_s": 194.079,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+          "game_clock": "Hollin Crag 06:01",
+          "engagement": 3,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T09:56:25.705Z",
+            "elapsed_s": 148.206,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "Skip"
+            },
+            "reaction": "Twenty minutes of game time in thirty real seconds. I try Skip.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 18,
+            "error": "Skip is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "farah": {
+    "tester": "Farah Bensaid",
+    "validationTime": "2026-10-31T10:10:35.986525+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T10:03:47.696Z",
+          "elapsed_s": 345.735,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop here on the phone. I liked the promise and the people asking for a drink, but I spend my time pulling people back into line without knowing why they left it. On a small screen that is too much reading for a short sitting. I will try the laptop tonight.",
+          "game_clock": "09:35",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 337.616,
+            "op": "tap",
+            "input": {
+              "name": "I'm confused"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T09:59:19.579Z",
+            "elapsed_s": 77.618,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Skip to the next event"
+            },
+            "reaction": "There is a Skip. Good, I set my own pace. I skip to the next thing.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "Skip to the next event is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T10:09:13.666Z",
+          "elapsed_s": 324.278,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop here. On the laptop it is calmer and the people are good company, Tamar and the journal especially. But twice now the rope fails and the game does not tell me what is missing. I pressed I am stopping, it filled the box, I sent nothing and went back.",
+          "game_clock": "09:07",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-004.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 265.748,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T10:07:34.352Z",
+            "elapsed_s": 224.964,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Nell: Not walking, level with you."
+            },
+            "reaction": "Wind from 11:00 and I promised 12:00. Glad I chose the early time. Nell and Wren are both level with me this time, so I rope them now.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 12,
+            "error": "Nell: Not walking, level with you. is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  }
+}

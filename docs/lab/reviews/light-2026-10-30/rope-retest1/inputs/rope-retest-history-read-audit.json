@@ -1,0 +1,190 @@
+[
+  {
+    "tester": "pavel",
+    "actualHistoryLines": 806,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/pavel/own-history.md",
+          "limit": 300
+        },
+        "renderedFirst": 1,
+        "renderedLast": 300,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/pavel/own-history.md",
+          "offset": 301,
+          "limit": 250
+        },
+        "renderedFirst": 301,
+        "renderedLast": 550,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/pavel/own-history.md",
+          "offset": 551,
+          "limit": 260
+        },
+        "renderedFirst": 551,
+        "renderedLast": 807,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "tessa",
+    "actualHistoryLines": 756,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/tessa/own-history.md",
+          "limit": 260
+        },
+        "renderedFirst": 1,
+        "renderedLast": 260,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/tessa/own-history.md",
+          "offset": 261,
+          "limit": 250
+        },
+        "renderedFirst": 261,
+        "renderedLast": 510,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/tessa/own-history.md",
+          "offset": 511,
+          "limit": 250
+        },
+        "renderedFirst": 511,
+        "renderedLast": 757,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "nia",
+    "actualHistoryLines": 1097,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/nia/own-history.md",
+          "limit": 300
+        },
+        "renderedFirst": 1,
+        "renderedLast": 300,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/nia/own-history.md",
+          "offset": 301,
+          "limit": 400
+        },
+        "renderedFirst": 301,
+        "renderedLast": 700,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/nia/own-history.md",
+          "offset": 701,
+          "limit": 400
+        },
+        "renderedFirst": 701,
+        "renderedLast": 1098,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "rosa",
+    "actualHistoryLines": 1921,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/rosa/own-history.md",
+          "limit": 500
+        },
+        "renderedFirst": 1,
+        "renderedLast": 500,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/rosa/own-history.md",
+          "offset": 501,
+          "limit": 500
+        },
+        "renderedFirst": 501,
+        "renderedLast": 1000,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/rosa/own-history.md",
+          "offset": 1001,
+          "limit": 500
+        },
+        "renderedFirst": 1001,
+        "renderedLast": 1500,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/rosa/own-history.md",
+          "offset": 1501,
+          "limit": 500
+        },
+        "renderedFirst": 1501,
+        "renderedLast": 1922,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "farah",
+    "actualHistoryLines": 5,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/farah/own-history.md"
+        },
+        "renderedFirst": 1,
+        "renderedLast": 6,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  }
+]

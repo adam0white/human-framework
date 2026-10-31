@@ -885,3 +885,251 @@ My earlier Good Hands asks, in order:
 **New blocking ask:** none. Nothing I reached blocked play.
 
 No repo touched; no worktree of mine remains.
+<!-- selected-continuity-key: light-1030:goodhands-retest2:jonas:free -->
+## 2026-10-31 goodhands-retest2 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/goodhands-retest2/jonas/report.md), [exact producer original](../reviews/light-2026-10-30/goodhands-retest2/jonas/report.original.md.txt), original SHA256 `e00138d6ef386aa263581a6e7267c7a228a23acf54e4a976d175cd477f6c87ae`. Method qualification: [jonas](../reviews/light-2026-10-30/goodhands-retest2/jonas/director-method-qualification.json).
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+I would come back another evening, but only to see whether the trial outcome punishes a high fee. I would not leave it running, and I would not return just for the fee, references or old case, because none of them pushed back.
+
+**Ranked asks**
+1. Make the fee refusable. Show where the family says no, or say plainly that it has no limit. I pushed to ₺9,700 and got the same line as at ₺9,400.
+2. Restore the difference between a lone self-claim and a reference. One uncorroborated claim now reads as "enough to believe".
+3. Put the missing subtitles back under "Call a reference", "Send for a trial" and "Keep the phone number" on the phone. Also give a reason beside disabled buttons, and a visible cost or consequence for the old-case choice.
+
+## 1. Session
+
+- **Persona and round:** Jonas Berg, returning player, round light-1031-goodhands-retest2, free stop (floor 0), ceiling 20 minutes.
+- **History:** I read my own-history.md through line 1062, the "End of supplied own history" line. Nothing was unread. It holds my first-visit and retest1 Good Hands reports. Qualifications that carry over: my earlier claim of a full history read was false for retest1, where I reached 599 of 939 lines. The `\u0027` escaping problem was my own mistake.
+- **URL and devices:** https://goodhands.adamwhite.work/?labRunSource=agent.
+  - Session A: desktop 1280x800, port 22801, about 241 s.
+  - Session B: phone 360x690, port 22800, about 40 s.
+- **Process note:** One call used `-o /dev/null -w 'ok'` instead of the exact curl form. It sent an extra "Increase agency fee" tap (9200 to 9300) and hid that reply. Every other call used the exact form. No driver block (TOOL) occurred.
+- **Cleanup:** I touched no repo, worktree, server or browser. No `git worktree list` applies.
+
+## 2. First impressions
+
+- **A, 6.6 s:** "Back again, third visit. Title looks the same; I remember references before promises, and the fee asks."
+- **A, 14.5 s:** The rent bar and pace line are back. New: an old case is on my mind, with a button to look again at an earlier decision.
+- **A, 30 s:** Gülce's lone self-claim now reads "I believe she is patient". Last time it said unsure.
+- **B, 5 s:** The phone title page fits cleanly and the button is reachable.
+- **B, 15 s:** The task banner is fully readable now. Hale Erol is "At work until 09:00".
+
+## 3. Verbatim diary
+
+Elapsed seconds come from the driver replies. Reactions were attached to ops, so a few driver timestamps sit slightly off the op that carried them.
+
+**Session A (desktop)**
+- 6.608: "Back again, third visit. Title looks the same; I remember references before promises, and the fee asks."
+- 14.548: "Rent bar and pace line are back. New: a note that an old case is on my mind, with a button to look again at an earlier decision. I want to check the fee refusal point this time."
+- 18.439: "Ayten Aydin, a reference for Gulce, is shown at work until 14:00 - so a availability time is stated. Interviewing."
+- 25.669: "Same patience probe as before; checking whether answers still differ per person."
+- 30.063: "Reading now says I believe she is patient, from her word alone. Last time it said unsure. Odd; I will check with a reference. Answering the family call."
+- 52.053: "The note now says one self-claim is enough for Nermin to believe it. Last visit the same sort of note said unsure. I dislike that: a lone claim is now belief. Checking Ozlem."
+- 62.731: "Elapsed about 60s: first minute. I have interviewed one, benched her, and called a reference for another."
+- 65.29 (first_minute, engagement 3, Mon 09:28): "Interviewed Gulce (patience, wage 8000), benched her, called Hale Erol for Ozlem: she listened when instructions were repeated. Clear: nanny needs patience, pay 9000, rent 5000 Friday. New since last time: a lone self-claim now reads as I believe she is patient, where it said unsure before; the note says one account is enough to believe. Unclear: what the fee does."
+- 69.102: "The note text for a reference and for a self-claim now ends the same way: enough to believe. Last visit own word counted less than a reference. That distinction I valued looks gone, at least for patience. Going to the fee."
+- 84.007: "Everyone agrees at the usual terms again. Going to push the fee well past 9200 to find a refusal point, as I asked last time."
+- 104.738 (note, Mon 09:44): "Fee 9400 accepted: Suna says more than we planned but we will manage, same words as 9200 last time. Still no refusal point. Ozlem also never asked for her own wage, just accepted 9000. Pushing further."
+- 115.03: "Holding the plus to see whether it repeats, to save taps."
+- 130.193: "9700 accepted with the same line as 9400. No refusal at 9700 and no new text. The fee reaction is one fixed line, not a gradient. Taking the agreement to see the consequence."
+- 139.293: "Odd: the header on Ozlem now says 8,500 a month though I never asked her wage and placed her at 9,000. Now opening the old-case button, which I never reached before."
+- 144.361: "A real choice with no price shown: correct the record and write to the worker, or leave the file closed. I will take the correction and watch what it costs."
+- 149.067: "The old-case choice cost nothing visible: no cash change, and the text says the game has no step that sends the letter or pays. It is honest, but it makes the choice feel free. Opening the day notes, also new to me."
+- 156.711: "Buttons are disabled because Ozlem is placed, so no cause is shown beside them. Moving to Sebnem."
+- 171.913: "A reference can now make me doubt: Melek says Sebnem argued, so the reading is I doubt. That is a real check. Asking about honesty."
+- 183.197 (pulse, engagement 3, Mon 10:43): "The reference check is a real test again: Melek made me doubt Sebnem on two traits. But a lone self-claim now counts as enough to believe, the fee still gets accepted up to 9700, and the old-case choice cost nothing. Fewer levers than I hoped. The notes pane is short on the desktop; I scroll for the reasons."
+- 230.646: "Skip landed on a call from the Kaya family at 10:50. I have seen the fee, references and old case; little new to act on. Opening the menu for Feedback."
+- 234.258: "Choosing I am stopping; nothing typed."
+- 238.313 (want_quit, BORED, Mon 11:00): "Fee never refuses, a lone claim counts as belief, old-case choice is free. Little left to test on this world."
+- 240.771 (stop, BORED, Mon 11:00): "Stopping desktop at about 4 minutes. I tested fee, reference and old case; nothing pushes back. I chose I am stopping in Feedback, pressed Back, typed nothing."
+
+**Session B (phone)**
+- 5.248: "Phone title page fits cleanly; button reachable at the bottom. Starting a new game."
+- 12.635: "Phone: new world, Arslan family. Opening Ozlem to look at the action buttons and subtitles."
+- 15.204: "Call a reference, Send for a trial and Keep the phone number have no subtitle text in the page again; Hale Erol shows At work until 09:00."
+- 19.239: "Banner is now fully readable on the phone. Trying to call Hale, who is at work until 09:00, to see what the game says."
+- 22.766: "The call screen shows the disabled call with At work until 09:00, so reachability is stated here. Good. Going back to interview."
+- 29.541: "Asking wage this time, since last visit I never did for Ozlem."
+- 33.277: "Her wage is 8,500, the same figure the desktop header showed unasked. So that header was her real wage leaking early. A family call arrived at 09:00. Opening Feedback."
+- 38.341 (want_quit, BORED, Mon 09:00): "On the phone I confirmed what I came to check: banner legible, call screen shows At work until 09:00, subtitles still absent. Same loop as desktop; I stop here."
+- 39.685 (stop, BORED, Mon 09:00): "Stopping phone at under a minute. Chose I am stopping in Feedback, pressed Back, typed nothing."
+
+## 4. Moments
+
+- **What held me:** On desktop, Melek Yıldız's report made me doubt Şebnem on patience and on honesty. That is a real check, and I spent the most attention there.
+- **What lost me:**
+  - The fee never refused, even at ₺9,700.
+  - A single self-claim counted as belief.
+  - The old-case choice cost nothing visible.
+- **Quit wishes:** Both sessions ended in BORED, and neither wish passed. Desktop stopped at about 4 minutes and phone at about 40 seconds. Each had run out of new levers.
+- **Pulse:** One pulse at 183 s, engagement 3. The phone session was too short for any timed tag. A later first_minute and pulse there are untested.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The nanny need, the ₺5,000 rent, the quarter-on-agreement fee split, and the deposit added to cash.
+  - Reachability: "At work until 14:00" and "Reachable now", and on the phone "At work until 09:00" on a disabled call button.
+  - The phrase "enough to believe or doubt" in the notes.
+- **Confusing:**
+  - I could not tell where the fee stops being acceptable.
+  - A lone claim and a reference carry the same weight in the notes.
+  - Disabled buttons after placement say nothing about why. The banner only says I may check in by phone on Tuesday 3 November at 18:20.
+  - Özlem's header on desktop showed "₺8,500 a month" before I asked. In session B her stated wage was ₺8,500, which suggests the header showed her real wage early. This is a guess.
+  - The old-case choice has no stated cost and the text says nothing was sent or paid.
+
+## 6. Device use
+
+- **Desktop 1280x800**
+  - Shots viewed: a-001.png and a-002.png. a-001 showed the cream title page with the "G H" logo, "Good Hands", the premise and a red "Open the office" button. a-002 showed the bench scene, tabs, a two-column action grid, a Skip button and a fully legible task banner. The notes pane is short with an internal scroll, so I saw about 7 lines at a time.
+  - Controls used: mouse taps, a 3000 ms hold on the fee "+" (no auto-repeat), Menu, Feedback, Back.
+- **Phone 360x690**
+  - Shots viewed: b-001.png and b-002.png. b-001 showed the title page fitting cleanly with the red button reachable. b-002 showed the banner fully legible and the three small action buttons at the bottom with no subtitle text.
+  - Controls used: taps on Özlem, Call a reference, Back, Interview, Menu, Feedback.
+  - Trouble seen: the three small buttons have no subtitles.
+  - Unseen: I did not scroll the phone notes pane or reach placement or the trial there.
+- **Feedback on both:** The menu offered "I'm stopping" and "I'm confused". I pressed "I'm stopping" on both, then Back, and typed and submitted nothing.
+
+## 7. Stop and return
+
+- **A stop words:** "Stopping desktop at about 4 minutes. I tested fee, reference and old case; nothing pushes back..." Reason BORED.
+- **B stop words:** "Stopping phone at under a minute. Chose I am stopping in Feedback, pressed Back, typed nothing." Reason BORED.
+- **Would you return voluntarily?** I would return another evening, but only to see whether the trial outcome punishes a high fee. I would not leave it running. I would not return for the fee, the references or the old case as they stand, because none of them pushed back. If the trial still shows no consequence for ₺9,700, I would not come back.
+
+## 8. Changes I would want
+
+1. Show where the fee gets refused, or say the family has no limit.
+2. Make a lone self-claim weigh less than a reference again, or say they weigh the same.
+3. Add the missing phone subtitles, and give a reason beside disabled buttons and a visible cost to the old-case choice.
+
+## 9. Compared with my last visit
+
+**First visit asks**
+- **Show what the fee and wage do, with a visible limit at negotiation:** Partly met. The fee split and deposit are explained and shown in cash. The wage is stated per person. I found no limit on the fee up to ₺9,700.
+- **Make the patience question tell candidates apart, or say answers are templated:** Seen once this visit, and Gülce's and Özlem's answers differed. Partly met.
+- **Fix the clipped phone banner and show when a candidate can next be called:** Met. The banner is fully legible on the phone. The call screen shows "At work until 09:00".
+
+**Retest1 asks**
+- **Show where the fee gets refused, or say the family has no limit:** Not met. ₺9,400 and ₺9,700 got the same "more than we planned, but we will manage" line, and no refusal appeared.
+- **Show when a candidate can next be reached, and add the missing phone subtitles under "Call a reference", "Send for a trial" and "Keep the phone number":** Partly met. The reach time is shown on the call screen and in the former-employer line. The three subtitles are still absent on the phone.
+- **Say what a reference needs to say to settle a trait:** Partly met. The note says one report is enough to believe or doubt. That is clear, but it also applies to a lone self-claim, which removes the distinction I valued.
+
+**New blocking asks**
+- A lone self-claim now reads as belief. This is a step back from retest1, which said unsure.
+- The old-case choice shows no cost.
+- Disabled buttons after placement give no reason.
+- Özlem's header showed ₺8,500 before I asked her wage.
+
+<!-- selected-continuity-key: light-1030:stairwell-retest1:jonas:free -->
+## 2026-10-31 stairwell-retest1 — free stop
+
+Source: [readable report view](../reviews/light-2026-10-30/stairwell-retest1/jonas/report.md), [exact producer original](../reviews/light-2026-10-30/stairwell-retest1/jonas/report.original.md.txt), original SHA256 `0419a419bb1d545e9ae1aed023b34dc021963b36bab3e86d353753ac434bcb71`. Method qualification: [jonas](../reviews/light-2026-10-30/stairwell-retest1/jonas/director-method-qualification.json). Codex producer reports a full history read; complete command stdout coverage is verified, but delivery to the model and comprehension are not verified. Image viewing is self-reported and unverified.
+
+**Readable view of the producer report follows. The linked original preserves the exact bytes.**
+
+**I would not return voluntarily as it stands: the notebook now moves, but I do not want to play through six days of similar conversations to find out what the Sunday vote does.** I would not leave it running, and I would not come back another evening unless talking offered more distinct, visible consequences.
+
+**Ranked asks**
+
+1. Give sitting and replying a visible consequence I can understand before the Sunday vote.
+2. Make conversations produce more distinct outcomes; the two replies I tried both ended the discussion.
+3. Show why a story I hear does or does not enter the notebook.
+
+## 1. Session
+
+I am Jonas Berg, 31, a warehouse planner from Malmö. This was a return visit to The Stairwell, round `light-1031-stairwell-retest1`, free stop, floor zero. I started a fresh game in each independent session; there was no matched seed.
+
+- URL: https://stairwell.adamwhite.work/?labRunSource=agent
+- Desktop: 1280×800, keyboard and mouse, light mode. Stop log at **169.201 seconds**, Monday 08:07.
+- Phone: 360×690, touch, light mode. Stop log at **53.765 seconds**, Monday 07:29.
+
+I read all 1,245 supplied history lines before play. The last line was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” No supplied lines were unread. The history was selected rather than my complete archive: older records and independent continued alternatives were not supplied, and the older raw diary for the Well excerpt was not supplied. My earlier Good Hands retest1 claimed a complete history read, but its documented read reached only lines 1–599 of 939. The supplied Stairwell report was complete; its desktop pulse at 175.492 seconds was premature under that visit’s timing rule.
+
+## 2. First impressions
+
+On desktop, the six-day premise and five orders were familiar. At 10.922 seconds I remembered batching the bakery orders and wanted to compare deadlines. At 34.658 seconds I was unsure whether my first bakery tap had started a walk; the second press visibly did.
+
+On the phone, I arrived with the desktop result in mind: asking for news had moved the notebook. The building and order fit the screen. Tarık had the first deadline in this fresh game, unlike the desktop game.
+
+## 3. Verbatim diary
+
+These are my reactions as logged, including reactions attached to actions. Times are driver `elapsed_s`.
+
+**Desktop**
+
+- **5.406, tap:** “Back to the six-day week. I want to see whether talking leaves a trace this time.”
+- **10.922, tap:** “Five orders again; I remember batching them last time and want to see the deadlines.”
+- **34.658, note, Monday 07:14:** “I pressed Go to the bakery and waited; I still appear in my room. I do not know whether the walk started.”
+- **45.455, note, Monday 07:24:** “Second press started the walk. The swap now says it is a prank with exchanged crosswords and a possible witness. That answers what it is; I will deliver properly.”
+- **55.266, tap:** “Hacer is familiar from last visit: flat 1 and the newspaper order. Confident it is the same named neighbour, not necessarily the same circumstances. The panel now says I do not know her feeling or trust.”
+- **65.483, first_minute, Monday 07:40:** “Five bakery orders with close first deadlines. Hacer received hers; I chose to sit and heard about her niece. Her panel says I do not know her feeling or trust. The swap now explains the prank. I want to see whether sitting changes what I can learn.”
+- **73.719, tap:** “It now explicitly says the reply wording does not change her choice. That answers my old question, though it makes the two replies less of a decision.”
+- **82.639, tap:** “Same leave-it-there answer as before. Checking whether the notebook moved.”
+- **90.806, note, Monday 07:48:** “The notebook explains 0 of 16 counts facts that reached it, and explicitly says it does not show feelings or trust. I heard a story but the count is still zero. I do not know what makes a story reach it.”
+- **96.364, note, Monday 07:48:** “Anything new gave a specific claim about Tarik and says I added a notebook line. That is a visible result. I want to check it.”
+- **102.606, note, Monday 07:48:** “Now 1 of 16: the notebook says Tarik would give me his last lemon candy. The count moved, though Hacer only said he is kind. I can see a result, but not what the story or reply did for Sunday.”
+- **115.217, tap:** “Sevim at flat 2 is familiar from the previous newspaper order; confident in the name, not the new run. Testing a second sit.”
+- **138.814, note, Monday 08:02:** “Sevim says she would rather we left it there: slightly different words, same outcome as Hacer. The game told me my reply wording would not change her choice, so I believe that explanation.”
+- **153.668, tap:** “The tell buttons now identify each item and explain that false certainty can cost trust. I will pass on the water notice marked sure.”
+- **156.853, want_quit, BORED, Monday 08:07:** “I have answered my return question enough for tonight: the notebook moves for news, but two sits ended similarly and feelings stay unknown. I do not want to work through six days for the vote now.”
+- **169.201, stop, BORED, Monday 08:07:** “Stopping desktop at Monday 08:07. The notebook moved after news, but I do not want six days of similar replies to reach the vote tonight. I selected stopping in Feedback and closed it without typing or submitting.”
+
+**Phone**
+
+- **6.367, tap:** “Second device, fresh week. I know the notebook can move from asking for news now.”
+- **17.629, tap:** “Phone building and order fit. Tarik is first due here, unlike desktop; I will try his route.”
+- **34.067, note, Monday 07:29:** “Tarik has no news today, unlike Hacer on desktop. A repeat of the question is not automatically another notebook fact.”
+- **42.452, want_quit, BORED, Monday 07:29:** “Same evening and the phone repeats the route I just learned. Tarik has no news; I do not want to repeat the week here.”
+- **53.765, stop, BORED, Monday 07:29:** “Stopping phone at Monday 07:29. I know the loop from desktop and do not want to repeat it tonight. I selected stopping in Feedback and closed it without typing or submitting.”
+
+## 4. Moments
+
+The useful moment was asking Hacer “Anything new?” She said Tarık was kind, the game said a notebook line had been added, and the count changed from 0 to 1 of 16. That was a visible result I had not seen on my earlier visit. Tarık later had no news on the phone, so the same question did not always give me another fact.
+
+The two sits held me long enough to compare them. Hacer and Sevim told different stories, but both declined to continue after my replies. The game now says the wording I choose does not change whether the resident continues. That is clear, but it leaves me with less reason to choose between the two replies.
+
+Both quit wishes remained. I stopped desktop because I did not want to work through the week for the vote; I stopped phone because I had just played the loop on desktop. Neither session reached 180 seconds, so no pulse was due or tested. The phone stopped before 60 seconds, so its first-minute checkpoint was untested.
+
+## 5. Confusion and clarity
+
+The notebook explains that its count covers facts that reached it and that it does not show residents’ feelings or trust. I understand those labels better. I still do not know why Hacer’s account of her niece did not appear as a learned story while her statement about Tarık added a line. I did not reach Sunday, so I cannot say what sitting, replying or passing news would do to the vote.
+
+The newspaper swap now says it exchanges the crosswords as a prank and may be witnessed. I did not perform it. The Tell panel explains the difference between passing something on as heard and asserting it as certain, and warns that a false story can cost trust. I passed on the water notice marked “sure”; Tarık said he was thinking about it. I saw no later consequence.
+
+My first desktop tap on “Go to the bakery” returned the room state, and after waiting I was still there. The retry visibly started the walk. I cannot tell why the first input did not produce visible movement. A later note command failed with a shell quoting error and was reissued successfully. A partial-text Feedback tap returned an explicit “not on the page” error; the exact named control worked on retry. Neither was a game outcome or a driver block.
+
+## 6. Device use
+
+**Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-001.png), the cream title page with the six-day premise, two unchecked four-week options and the red Begin button. I viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-002.png), the building beside the notebook. The notebook explanation was legible, but the top “next by 07:56” line was partly clipped at the upper edge; the paused-time message itself was readable.
+
+I used the order list, bakery and flat navigation, sits, both reply choices across two people, news, notebook, Tell, and Feedback. I did not reach the Sunday meeting.
+
+**Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-001.png), the title in one column with the Begin button visible; the lower explanatory paragraph continued behind the fixed button area. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-002.png) showed the building, tabs, first order and large action buttons. [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-003.png) showed Tarık’s conversation and readable action buttons; the message strip covered the top of the building drawing.
+
+I used Begin, bakery and flat travel, “Anything new?”, and Feedback. I did not inspect the phone notebook or Tell panel, so I cannot assess their layout.
+
+On both devices Feedback offered “I’m stopping” and “I’m confused.” I selected “I’m stopping,” saw it marked pressed, then used **Close feedback**, which returned me to the game menu; no Back control was offered in that dialog. I typed and submitted nothing and left recording and consent unchanged.
+
+## 7. Stop and return
+
+My exact stop words and reasons are in the diary above. Both were **BORED**. Desktop ended at 169.201 seconds and phone at 53.765 seconds; both remained on Monday.
+
+I would not return voluntarily as it stands. The notebook result answered part of the question that brought me back, and the new explanation makes the limits clear. I still do not see enough consequence in the conversations I reached to make me want to play six days for the vote. I would not leave it running. I would consider another evening if talking offered more distinct, visible consequences.
+
+## 8. Changes I would want
+
+1. Give sitting and replying a visible consequence I can understand before the Sunday vote.
+2. Make conversations produce more distinct outcomes.
+3. Show why a heard story does or does not enter the notebook.
+
+## 9. Compared with my last visit
+
+1. **Visible feeling or trust, or a line saying what each sit and reply did — partly met.** The game now explicitly says it does not show feelings or trust, and it explains that reply wording does not change the resident’s choice to continue. I still saw no clear effect of my sits or replies on Sunday.
+2. **Replies that differ, or a plain statement that they are templated — partly met.** Hacer said “I would rather leave it there”; Sevim said “I would rather we left it there.” The words differ slightly, but both ended the conversation. The game clearly says my choice of reply does not change whether the resident continues; it does not say the residents’ answers are templated.
+3. **Explain the swap, tighten day-one deadlines, and fix the desktop clipped banner — partly met.** The swap is explained as a crossword prank with a possible witness. The first two desktop deadlines were close, and I delivered both despite two sits, but I stopped with two orders outstanding; I did not complete the batch, so I cannot judge whether the full day is tighter. The paused-time message was readable in my desktop screenshot, but the separate “next by” line was partly clipped at the top.
+
+**New blocking asks:** None from what I reached. The similar conversation outcomes and lack of a visible effect remain my reasons not to return; I did not see the Sunday vote.
+
+I owned no server, browser process, branch or worktree, and touched no repository. The coordinator owns the two drivers and their cleanup.

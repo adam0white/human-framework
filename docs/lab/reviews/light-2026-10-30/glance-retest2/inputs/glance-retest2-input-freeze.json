@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T08:31:14.624987+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Current c112 manifest observed, full root delivery gate pending. No dispatch.",
+  "players": [
+    {
+      "tester": "Mei Tan",
+      "characters": 130600,
+      "historySha256": "78d553322ef680f09549c8901d4bfccabecd940038a1599d6b98a219b5b4a446",
+      "briefSha256": "82c4a83c98d327cf7fe9749a070169d8941b7b7db4b75e45bf833b055a958eb0",
+      "ownSourceCount": 13
+    },
+    {
+      "tester": "Samir Haddad",
+      "characters": 111039,
+      "historySha256": "9d87ba7e4dfabbcc9748dcdfb1e61d8c6f8b86df726ec1e98ba8d16abbe87c55",
+      "briefSha256": "e45b1c949f0484560ab691a7adbfaef42921995d77ea4d1a7ca72b26f440b923",
+      "ownSourceCount": 11
+    },
+    {
+      "tester": "Leila Mansour",
+      "characters": 129570,
+      "historySha256": "f9357ae1958f95e14e66980bf670dd4e7219d90d8138affe3959e7e48385f1ea",
+      "briefSha256": "f75079532f0f9c1f122328e1163b7e7516e168b5ddd7a56b4a842dd406eb956b",
+      "ownSourceCount": 12
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "characters": 219632,
+      "historySha256": "0b31da3ee125f7d873d62056887ae274b967234b241b1e40c25421f9a4893e97",
+      "briefSha256": "d6445c8b0bd734334450478f4f7a0844dae7906978c5db17c4e0df5c20cc93d3",
+      "ownSourceCount": 20
+    },
+    {
+      "tester": "Eszter Fekete",
+      "characters": 186,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "c718a15bf6ffb0b76270808e5f9c73b76274a84311b59f4481f676dc3dce24fd",
+      "ownSourceCount": 0
+    }
+  ]
+}

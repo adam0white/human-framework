@@ -1,0 +1,2275 @@
+{
+ "time": "built by build-packet.py from the copied raw wall-clock.jsonl files",
+ "note": "Exact surviving reaction rows from all five testers and ten sessions, kept literally, not a reconstructed producer diary. Every raw reaction is kept, including ones the report omits, shortens or respells, and ones with an escaped or dropped apostrophe. Rows with no reaction text (opens, automatic shots, some waits) are counted in rows but not listed. Failed driver taps keep their error text in the raw copy. reactionsNotLiterallyInReport counts reactions whose exact text is not a substring of that tester's report.md. containsBackslash flags a reaction that holds a literal backslash. Report memories and estimates stay separate; a report line is not substituted for a raw row.",
+ "sessions": [
+  {
+   "tester": "Mei Tan",
+   "testerKey": "mei",
+   "device": "phone",
+   "source": "mei/phone/wall-clock.jsonl",
+   "rawSha256": "c943fec8672cc6ba4052b3e0ccb95447af64434c9f3ba7033f171874353adac7",
+   "rows": 19,
+   "reactionRows": 6,
+   "reactionsNotLiterallyInReport": 3,
+   "notLiterallyInReportElapsedS": [
+    5.154,
+    8.788,
+    77.476
+   ],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:37:34.577Z",
+     "elapsed_s": 5.154,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Second visit on my phone the same evening; starting a new game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 139,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:37:38.211Z",
+     "elapsed_s": 8.788,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+     },
+     "reaction": "Skip is greyed with a reason: no report is on its way. Clear. I ask Dai to read.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 163,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:38:39.838Z",
+     "elapsed_s": 70.415,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Phone fits well. The Dai strip now wraps and ends in dots instead of being cut at the edge, and both gauges are fully visible. Level 3.9 and falling, nothing to decide yet. Skip greyed out earlier with the reason no report is on its way, which I liked.",
+     "game_clock": "Mon 23:04",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:38:42.052Z",
+     "elapsed_s": 72.629,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I have seen this quiet opening on the laptop and nothing to decide has come on the phone; I would stop here.",
+     "game_clock": "Mon 23:04",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:38:46.899Z",
+     "elapsed_s": 77.476,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "m stopping"
+     },
+     "reaction": "Choosing I am stopping; typing nothing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 127,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "I'm stopping",
+      "matched_by": "substring"
+     },
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:38:50.556Z",
+     "elapsed_s": 81.133,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping on the phone at Monday 23:14 after a quiet opening with no decision. Readable at 360 wide, and the Dai strip is no longer cut off. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+     "game_clock": "Mon 23:14",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Mei Tan",
+   "testerKey": "mei",
+   "device": "desktop",
+   "source": "mei/desktop/wall-clock.jsonl",
+   "rawSha256": "071e76c425ed0dd8983e01d43c6370bc6e6c0668ae1f930d7d81b8d108663205",
+   "rows": 33,
+   "reactionRows": 14,
+   "reactionsNotLiterallyInReport": 10,
+   "notLiterallyInReportElapsedS": [
+    6.418,
+    13.306,
+    15.079,
+    43.277,
+    104.128,
+    106.474,
+    137.261,
+    139.491,
+    159.515,
+    206.039
+   ],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:34:00.352Z",
+     "elapsed_s": 6.418,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Third visit. Same title page; starting the valley dam.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 157,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:34:07.240Z",
+     "elapsed_s": 13.306,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+     },
+     "reaction": "Asking for a fresh reading; opening text is now shorter, I think.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 153,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:34:09.013Z",
+     "elapsed_s": 15.079,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Skipping to hear Dai.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 143,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:34:37.211Z",
+     "elapsed_s": 43.277,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Level 4.0 and falling again; quiet start.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 136,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:35:02.965Z",
+     "elapsed_s": 69.031,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Same night desk, goal and deadline clear. Level 4.0 read 22:12, falling with gate shut. Opening text is shorter than before and the log no longer repeats it. Still nothing to decide yet.",
+     "game_clock": "Mon 23:06",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:35:38.062Z",
+     "elapsed_s": 104.128,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 0 / 6, Dai · read 22:00 (as written)"
+     },
+     "reaction": "Level rose to 4.5. I look at gate choices; no decision forced yet.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:35:40.408Z",
+     "elapsed_s": 106.474,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "2 turns He agrees. · ~15m"
+     },
+     "reaction": "4.5 and rising toward lip 5.0; I open a modest 2 turns early.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 161,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:36:11.195Z",
+     "elapsed_s": 137.261,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "level, 4.50 m, Dai · read 23:31 (as written), was 4.0, read 22:12 (as written)"
+     },
+     "reaction": "Gate is open 2 turns but the level is 55 minutes old; again I must ask to see the effect.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 144,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:36:13.425Z",
+     "elapsed_s": 139.491,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read it He agrees. · ~10 min · If you hold: Call and wait for an answer."
+     },
+     "reaction": "New: the sheet itself says the level may not show what the gate has done since. That helps.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 162,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:36:33.449Z",
+     "elapsed_s": 159.515,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "Level fell to 3.4 after two turns; I see the effect now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 163,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:37:01.174Z",
+     "elapsed_s": 187.24,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "A decision came at 4.5 within about 100 s, which is better than my last two visits. The gate worked and the sheet warned me the level reading was older than the gate. I am still waiting between decisions.",
+     "game_clock": "Tue 01:27",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:37:03.327Z",
+     "elapsed_s": 189.393,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I know this loop now: a long wait, then one gate call. The first night went better this time, but I would stop here for the evening.",
+     "game_clock": "Tue 01:27",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:37:19.973Z",
+     "elapsed_s": 206.039,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "m stopping"
+     },
+     "reaction": "Choosing I am stopping; typing nothing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "tapped": {
+      "name": "I'm stopping",
+      "matched_by": "substring"
+     },
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:37:27.664Z",
+     "elapsed_s": 213.73,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping on Tuesday 01:36 with the gate at 2 of 6 and the level back to 3.4 m. This visit gave me a real decision at 4.5 m within about 100 s, and the sheet told me my level reading was older than the gate. Long waits between decisions still lose me. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+     "game_clock": "Tue 01:36",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Samir Haddad",
+   "testerKey": "samir",
+   "device": "phone",
+   "source": "samir/phone/wall-clock.jsonl",
+   "rawSha256": "fd90dd53123f50fe91c3756f4f4a8d0dd2628ee90c975d3ea6ebbb0b7984e160",
+   "rows": 17,
+   "reactionRows": 5,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:39:29.936Z",
+     "elapsed_s": 5.379,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Phone first. Title as before. Starting valley dam.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 134,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:39:36.292Z",
+     "elapsed_s": 11.735,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+     },
+     "reaction": "Same opening as before, shorter. Dai resting; I call him for a number.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:39:38.167Z",
+     "elapsed_s": 13.61,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Level tile now shows 4.00 m with read time, not a dash. That was my ask. Skipping.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 147,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:40:34.902Z",
+     "elapsed_s": 70.345,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Phone: level tile now keeps 4.00 m with its read time and a was-line, my last ask. Opening short. Still only Dai, nothing to answer, nothing needs me.",
+     "game_clock": "Mon 23:14",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:40:46.455Z",
+     "elapsed_s": 81.898,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me. Pressed Im stopping in Feedback, then Back, typed nothing.",
+     "game_clock": "Mon 23:18",
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Samir Haddad",
+   "testerKey": "samir",
+   "device": "desktop",
+   "source": "samir/desktop/wall-clock.jsonl",
+   "rawSha256": "c74b687f868e01ea380419ea286368686395a0ef14c0e858072c33d3b0788e0f",
+   "rows": 20,
+   "reactionRows": 4,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:40:51.257Z",
+     "elapsed_s": 3.513,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Desktop, other device same evening. Starting valley dam.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 148,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:40:57.759Z",
+     "elapsed_s": 10.015,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Watch arrangements"
+     },
+     "reaction": "Desktop opening the same. I still want to know who Nerys and Wren are.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:41:52.339Z",
+     "elapsed_s": 64.595,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Desktop: opening short, standing request saved, Dai reading on his own. Level tile still a dash because nobody has read tonight. Nerys and Wren still unexplained. Nothing to do but wait.",
+     "game_clock": "Mon 23:10",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:42:25.746Z",
+     "elapsed_s": 98.002,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping desktop at about 96 seconds, Mon 23:38. Level tile now keeps 4.10 m with its age and a was-line, which I asked for. Standing request saved and Dai reads on his own. But still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained. Pressed Im stopping in Feedback, then Back, typed nothing.",
+     "game_clock": "Mon 23:38",
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Leila Mansour",
+   "testerKey": "leila",
+   "device": "phone",
+   "source": "leila/phone/wall-clock.jsonl",
+   "rawSha256": "a29d436fc8345802cf44d93160c7958cc6a9f1347e60381972d738b9a405a96c",
+   "rows": 22,
+   "reactionRows": 9,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:45:39.371Z",
+     "elapsed_s": 3.309,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Phone, same evening. Starting.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 136,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:45:45.891Z",
+     "elapsed_s": 9.829,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 0 / 6, Dai · read 22:00 (as written)"
+     },
+     "reaction": "Start level 3.8 here, 3.7 on desktop. Same layout, nothing clipped yet. Opening the gate panel.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 141,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:45:49.522Z",
+     "elapsed_s": 13.46,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "2 turns He agrees. · ~15m",
+      "duration_ms": 1500
+     },
+     "reaction": "Holding this one to see what insisting looks like on the phone.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1684,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:46:16.535Z",
+     "elapsed_s": 40.473,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "Held press gave I will follow the order. That is an order. The optional chapter paragraph is open in the log now; I may have expanded it by accident.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25108,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:46:22.169Z",
+     "elapsed_s": 46.107,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read it He cannot do it. · ~5 min · If you hold: Call and wait for an answer.",
+      "duration_ms": 1500
+     },
+     "reaction": "The label says He cannot do it, though he is just resting. Holding to call him anyway; I do not understand why he cannot.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 1676,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:46:50.931Z",
+     "elapsed_s": 74.869,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Reason to act: keep dam below crest. Tappable: gauges, Ask Dai, Skip, arrangements. Held 2 turns and Dai said that is an order; gate showed 2/6 by 22:18. Held the level read, got 3.9 at 22:39. The level button said He cannot do it while he was only resting, which I still do not understand. Optional chapter appeared open for a while, then folded. Few choices again.",
+     "game_clock": "Mon 22:50",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:46:57.938Z",
+     "elapsed_s": 81.876,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Doubt this reading"
+     },
+     "reaction": "The Ask Dai button now has a blank where He agrees or He cannot do it should be. Doubting this reading.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 144,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:46:59.951Z",
+     "elapsed_s": 83.889,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Level steady at 3.9, gate 2, nothing to decide. The doubt mark showed up this time, which helps, but I am just waiting for the night.",
+     "game_clock": "Mon 23:00",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:47:07.230Z",
+     "elapsed_s": 91.168,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping phone at about a minute and a half. The doubt mark now shows Marked for another check and the gate request was confirmed, which I asked for. But the level is steady, I have about three choices, and the rest is waiting. I would not leave it running.",
+     "game_clock": "Mon 23:04",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Leila Mansour",
+   "testerKey": "leila",
+   "device": "desktop",
+   "source": "leila/desktop/wall-clock.jsonl",
+   "rawSha256": "8d289e9e14ee5a3a44c194fa76b22727705e933e083e51c7cfb6722f4b005b5c",
+   "rows": 27,
+   "reactionRows": 13,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:43:05.071Z",
+     "elapsed_s": 4.13,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Second retest, desktop. Title looks as I remember it; sample morning button still there.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:43:10.829Z",
+     "elapsed_s": 9.888,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+     },
+     "reaction": "Level 3.7, gate shut, rain. Asking Dai to read it; I know this loop.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 163,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:43:12.471Z",
+     "elapsed_s": 11.53,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 0 / 6, Dai · read 22:00 (as written)"
+     },
+     "reaction": "Gate is shut with rain. Opening the gate panel.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 145,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:43:14.780Z",
+     "elapsed_s": 13.839,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "3 turns He agrees. · ~20m"
+     },
+     "reaction": "New: Doubt now says it is compared with the known outcome at dawn - that answers my old no-mark complaint in words. Asking 3 turns.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 164,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:43:41.264Z",
+     "elapsed_s": 40.323,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "Waiting for Dai to finish.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25107,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:43:43.352Z",
+     "elapsed_s": 42.411,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "level, 3.70 m, Dai · read 22:00 (as written)"
+     },
+     "reaction": "Gate now 3 as asked, visibly confirmed. Level reading is 26 minutes old; opening the level panel.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 156,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:43:44.831Z",
+     "elapsed_s": 43.89,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read it He agrees. · ~5 min · If you hold: Call and wait for an answer."
+     },
+     "reaction": "Asking for a fresh level.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 159,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:44:08.267Z",
+     "elapsed_s": 67.326,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Reason to act: keep dam below crest. Tappable: gauges, Ask Dai, Skip, arrangements. Asked 3 turns and it showed on the gate gauge at 22:24; asked a fresh level, got 4.3 rising from 3.7. The Doubt panel now says it is compared with the known outcome at dawn, which answers my old no-mark complaint in words. The optional chapter is still one folded line. Inspection still says time continues slowly.",
+     "game_clock": "Mon 22:43",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:44:11.652Z",
+     "elapsed_s": 70.711,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Doubt this reading"
+     },
+     "reaction": "Trying Doubt to see whether it leaves a mark now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 158,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:44:38.709Z",
+     "elapsed_s": 97.768,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "New: Doubt mark waiting shows on the level gauge and in the status line. That is the visible mark I asked for.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25109,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:44:42.912Z",
+     "elapsed_s": 101.971,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read it He agrees. · ~10 min · If you hold: Call and wait for an answer."
+     },
+     "reaction": "Reading is 55 minutes old and rain continues. Asking for a fresh one; panel also offers Remove this doubt mark, so the mark is reversible.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 160,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:45:14.413Z",
+     "elapsed_s": 133.472,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Level 4.0 and falling, gate 3, nothing left to decide; I am only waiting for the night to pass. I have seen this loop three times now.",
+     "game_clock": "Mon 23:51",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:45:34.859Z",
+     "elapsed_s": 153.918,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping desktop at about two and a half minutes. The Doubt mark now shows (Doubt mark waiting, then Marked for another check) and my gate request was confirmed, which I asked for. But I still make about four choices and wait the rest. I would not leave it running.",
+     "game_clock": "Mon 23:56",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "device": "phone",
+   "source": "rosa/phone/wall-clock.jsonl",
+   "rawSha256": "c4512b494e2cbc0db6f870188fd756d0ff2a42290233690c46befee3514fcd31",
+   "rows": 17,
+   "reactionRows": 7,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:48:03.250Z",
+     "elapsed_s": 2.72,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-001.png"
+     },
+     "reaction": "I know this title from before.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 115,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:48:05.584Z",
+     "elapsed_s": 5.054,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Same title as last time. I start.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 135,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:48:11.404Z",
+     "elapsed_s": 10.874,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+     },
+     "reaction": "Level is not read. I ask Dai, as before. The Optional chapter is only a small line, good.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 158,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:48:12.694Z",
+     "elapsed_s": 12.164,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 0 / 6, Dai · read 22:00 (as written)"
+     },
+     "reaction": "Level 4.50. Now I try the gate to see the panel.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 146,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:48:15.721Z",
+     "elapsed_s": 15.191,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Reread 1: A call interrupts what Dai is doing now, even if he does not agree. Reread 2: If he takes up that job again afterwards, it starts again and its report can come later. It is now said once, not on six buttons, which is better. But who starts again, and what report later? Also Hold it to insist is still here. I will try one turn button before I decide.",
+     "game_clock": "Mon 22:02",
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:48:16.870Z",
+     "elapsed_s": 16.34,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "2 turns He agrees. · ~15m"
+     },
+     "reaction": "I try two turns, gently.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 161,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:48:33.606Z",
+     "elapsed_s": 33.076,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "The call sentence is now said once, which helps a lot, and the Optional chapter is a small line. But A call interrupts... If he takes up that job again afterwards, it starts again... still cost me two rereads, and Hold it to insist is still there. I stop on the phone.",
+     "game_clock": "Mon 22:04",
+     "engagement": 3,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "device": "desktop",
+   "source": "rosa/desktop/wall-clock.jsonl",
+   "rawSha256": "d21c59816db8ef1bfcc6c0399849c72215ea1a98e94493f5c723fc907fac577b",
+   "rows": 17,
+   "reactionRows": 4,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:48:37.693Z",
+     "elapsed_s": 3.136,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Second visit tonight, big screen. I start.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 148,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:48:43.384Z",
+     "elapsed_s": 8.827,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+     },
+     "reaction": "Level is 3.4 here, 4.5 on the phone. I ask Dai.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 167,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:48:47.550Z",
+     "elapsed_s": 12.993,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Reread 1: Your earlier call to Dai is still waiting. A new call replaces it. Reread 2: Tap a button to ask. Hold it to insist. He may still refuse, and insisting can reduce his trust. A new call replaces what: my level question or this gate request? And insist is still here. Better than last time, shorter, but I still reread twice.",
+     "game_clock": "Mon 22:01",
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:49:00.184Z",
+     "elapsed_s": 25.627,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "On the big screen the dam picture helps me. The call sentence is now short and in one place. But A new call replaces it appeared before I tapped, and then the other sentence, and Hold it to insist is still here. I stop for tonight.",
+     "game_clock": "Mon 22:02",
+     "engagement": 3,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Eszter Fekete",
+   "testerKey": "eszter",
+   "device": "phone",
+   "source": "eszter/phone/wall-clock.jsonl",
+   "rawSha256": "a106d8005678674b369a1e47684ec806dc813b082f29361b27622b680ab9c7d0",
+   "rows": 82,
+   "reactionRows": 38,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T08:50:26.882Z",
+     "elapsed_s": 5.455,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "A night desk above a valley town, a dam. The sample chart is pretty but I do not read it yet. Valley dam is already chosen, I start.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 133,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:50:33.181Z",
+     "elapsed_s": 11.754,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "Dai just told me the level is three point nine, but the box says level not read. Which one do I believe?",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:50:37.221Z",
+     "elapsed_s": 15.794,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read the level Call and wait for an answer. · ~10 min"
+     },
+     "reaction": "The drawing shows 3.9 as written, crest 6.0. I guess the box wants a fresh reading. I ask Dai.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:50:39.857Z",
+     "elapsed_s": 18.43,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Now the box shows 3.90 from 22:00, before my call was even answered. Fine. Dai is resting, so I skip ahead to his answer.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 142,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:50:51.559Z",
+     "elapsed_s": 30.132,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Tonight’s forecast and desk notes. Read them."
+     },
+     "reaction": "Same 3.9, looks fine. I know what I did and what came back, good. But I have no idea what to do with the gate. I open the forecast.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:50:54.026Z",
+     "elapsed_s": 32.599,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 0 / 6, Dai · read 22:00 (as written)"
+     },
+     "reaction": "The note says tap a gauge to choose a job. Rain is coming, so I tap the gate.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 159,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:50:56.787Z",
+     "elapsed_s": 35.36,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "2 turns He agrees. · ~15m"
+     },
+     "reaction": "Lots of text: turns, trust, tiredness, doubt marks, caught. The sample said open the gate early, so I go with 2 turns, a middle guess. I do not know how many turns is right.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 166,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:51:23.586Z",
+     "elapsed_s": 62.159,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 5
+     },
+     "reaction": "Lightning showed the wall on a camera, but the board still says 3.90. Did the lightning show me anything? I do not see a picture of it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 5114,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:51:26.297Z",
+     "elapsed_s": 64.87,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Gate is open two turns, Dai confirmed. I like that each request comes back as a line with a time, I know what I did. I still do not know if two was a good number; nothing tells me yet.",
+     "game_clock": "Mon 22:50",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:51:28.726Z",
+     "elapsed_s": 67.299,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "level, 3.90 m, Dai · read 22:17 (as written), was 3.9, read 22:00 (as written)"
+     },
+     "reaction": "I want to see if the level fell. I tap the level gauge.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:51:35.073Z",
+     "elapsed_s": 73.646,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read it He agrees. · ~5 min · If you hold: Call and wait for an answer."
+     },
+     "reaction": "The lightning line looks about the same as 3.9 in the small drawing; hard to tell on the phone. The panel tells me to ask for a new reading, so I do.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 160,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:51:54.306Z",
+     "elapsed_s": 92.879,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "3.9 to 3.5 after two turns. That is my action showing up, I like it. Now I let time run and see what the rain does.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 148,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:52:13.089Z",
+     "elapsed_s": 111.662,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Kettle is heating. Nice small detail. Nothing to do, I skip.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 144,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:52:48.033Z",
+     "elapsed_s": 146.606,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 6
+     },
+     "reaction": "Rain heavier. Dai is reading the level by himself, I did not ask. Good, he takes initiative.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 6120,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:52:50.587Z",
+     "elapsed_s": 149.16,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "3.1 now, still falling even with heavier rain. I leave the gate. Skip.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:53:26.740Z",
+     "elapsed_s": 185.313,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Dai asks where Morgan went; I want to answer but there is no reply button. Level falls gently, I am mostly waiting now.",
+     "game_clock": "Mon 01:22",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:54:04.984Z",
+     "elapsed_s": 223.557,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Dai · He is not answering."
+     },
+     "reaction": "Dai is not answering, and Skip is grey: No report is on its way. Is he asleep? Is something wrong? I tap his card.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 142,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:54:07.691Z",
+     "elapsed_s": 226.264,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Read the level Call and wait for his answer."
+     },
+     "reaction": "The game says outright it has no answer about Morgan. That broke the spell a bit. Heavy rain until dawn now, so I ask for a level reading.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 172,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:54:22.352Z",
+     "elapsed_s": 240.925,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 2 / 6, Dai · read 22:46 (as written)"
+     },
+     "reaction": "3.1 up to 3.7, and he says I am sure of it, which makes me a little suspicious. Rain until dawn. I will open the gate more.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 164,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:54:24.807Z",
+     "elapsed_s": 243.38,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "4 turns He agrees. · ~15m"
+     },
+     "reaction": "Four turns. The river through town rises later, but tonight I cannot see the river at all. So I just guess.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 164,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:55:35.199Z",
+     "elapsed_s": 313.772,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "level, 3.70 m, Dai · read 02:21 (as written), was 3.1, read 00:26 (as written)"
+     },
+     "reaction": "Again Dai not answering and skip is greyed. When nothing is on its way I just sit and watch the clock. I ask for a reading to make something happen.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 147,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:55:54.499Z",
+     "elapsed_s": 333.072,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Holding at 3.7 with four turns. Good enough. I want to reach the morning and see if it was a good morning.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:56:57.309Z",
+     "elapsed_s": 395.882,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Waiting for dawn with nothing to do. Skip is grey again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30118,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:57:32.038Z",
+     "elapsed_s": 430.611,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-004.png"
+     },
+     "reaction": "Mill Lane stayed dry, good. But wow: three of Dai readings were wrong, he was tired and fell asleep three times. So the falling level I was pleased about was not real. I feel a bit fooled, but also curious now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 115,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:57:37.437Z",
+     "elapsed_s": 436.01,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tuesday night"
+     },
+     "reaction": "The chart makes it clear: the real water barely moved, my dots dropped below it. Dai said Morgan did that, which is nice. Now I know to doubt a tired keeper. I try Tuesday.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 118,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:57:44.360Z",
+     "elapsed_s": 442.933,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Nerys · She is available."
+     },
+     "reaction": "Four gauges now and a second keeper, Nerys. A note from M says Dai reads too low after three. Morgan, I guess. I like that the log remembers. Dai is not answering, so I try Nerys.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 142,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:57:46.502Z",
+     "elapsed_s": 445.075,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Call Nerys Ask how high the river is."
+     },
+     "reaction": "Nerys is at the inn by the river stairs, five steps, Mill Lane floods at step 5. Clear. I call her.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 172,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:58:00.409Z",
+     "elapsed_s": 458.982,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Dai · He is not answering."
+     },
+     "reaction": "Funny order: Nerys gives the step first, then says hello, are you the new person. River at step 1. Now the dam: nobody there and Dai silent. I try to call Dai.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 138,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:58:06.909Z",
+     "elapsed_s": 465.482,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Back"
+     },
+     "reaction": "A This week mornings window popped up that I did not mean to open. Maybe my tap on Read the level landed on it after the panel closed? I close it with Back.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 129,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:58:28.811Z",
+     "elapsed_s": 487.384,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "The Monday morning report hooked me a little: now I read 3.2 and think, is he tired again? But a night is long and much of it is waiting with a grey Skip.",
+     "game_clock": "Tue 22:34",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:58:32.775Z",
+     "elapsed_s": 491.348,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Doubt this reading"
+     },
+     "reaction": "Yesterday he said 3.x and the truth was higher. I mark this one as doubted.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 154,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:58:37.659Z",
+     "elapsed_s": 496.232,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, —, not read"
+     },
+     "reaction": "Doubt mark waiting? Waiting for what, I just pressed it. Anyway. Gate was left on one turn by the day keeper; rain is coming, I open more.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:58:40.205Z",
+     "elapsed_s": 498.778,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "3 turns He agrees. · ~15m"
+     },
+     "reaction": "Recorded now. 3 turns: he agrees. 4 and up just say call and wait, maybe he is too tired. I take 3.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 173,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:59:16.507Z",
+     "elapsed_s": 535.08,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Nerys · She is available."
+     },
+     "reaction": "Gate at three. The river should rise later, so I check the stairs with Nerys.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 147,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T08:59:36.074Z",
+     "elapsed_s": 554.647,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Step 2, brown water. So my three turns at the dam push water to the town. Now I see the real choice: dam or Mill Lane. That is a nice puzzle.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 148,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:00:12.180Z",
+     "elapsed_s": 590.753,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Dai tells me Morgan called at one for the level, a nice hint. But one night took me about seven minutes, there are twelve, and half of it is waiting with the Skip greyed out. On the phone this is enough for tonight.",
+     "game_clock": "Tue 00:36",
+     "engagement": 3,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:00:16.841Z",
+     "elapsed_s": 595.414,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Feedback"
+     },
+     "reaction": "Oh, there is a Fast pace here in the menu. I never saw it during play. Too late for tonight.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 139,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:01:19.246Z",
+     "elapsed_s": 657.819,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Feedback took I am stopping and Back brought me to the menu. I stop here for tonight on the phone: I like the dam and river choice and the Morgan notes, but a night is long and too much of it is waiting with a grey Skip.",
+     "game_clock": "Tue 00:46",
+     "engagement": 3,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  },
+  {
+   "tester": "Eszter Fekete",
+   "testerKey": "eszter",
+   "device": "desktop",
+   "source": "eszter/desktop/wall-clock.jsonl",
+   "rawSha256": "973f383b439c0bf0a7622c4a41ae188abb15e611578786b070aefea186d8df53",
+   "rows": 66,
+   "reactionRows": 28,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "reactions": [
+    {
+     "t": "2026-10-31T09:01:29.591Z",
+     "elapsed_s": 6.703,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Start game"
+     },
+     "reaction": "Same title page as on my phone earlier tonight (session A, the chart with crest, lip, Mill Lane; sure). Now I know what the chart means: red is the water. Bigger screen, so I start again with the valley dam.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 137,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:01:36.355Z",
+     "elapsed_s": 13.467,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 0 / 6, Dai · read 22:00 (as written)"
+     },
+     "reaction": "Different numbers this time: 4.1 and the gate shut. From the phone (session A) I learned the gate matters early, so I go to the gate first instead of reading everything.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:01:38.981Z",
+     "elapsed_s": 16.093,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "3 turns He agrees. · ~20m"
+     },
+     "reaction": "Last time 4 turns held the dam on Monday. The level starts higher here, 4.1, so I go 3 now and adjust after a reading.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 166,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:01:43.134Z",
+     "elapsed_s": 20.246,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Fast"
+     },
+     "reaction": "On the phone I found Fast only when I was leaving. This time I set it right away, I do not want to sit through the waiting again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:01:58.784Z",
+     "elapsed_s": 35.896,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "level, 4.10 m, Dai · read 22:00 (as written)"
+     },
+     "reaction": "Gate at three, confirmed at 22:24. On Fast the skip went quickly. I ask for a level.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 145,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:02:01.279Z",
+     "elapsed_s": 38.391,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Dai to read it He agrees. · ~5 min · If you hold: Call and wait for an answer."
+     },
+     "reaction": "If you hold? I did not notice that on the phone. I just click normally.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:02:16.235Z",
+     "elapsed_s": 53.347,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "level, 3.70 m, Dai · read 22:41 (as written), was 4.1, read 22:00 (as written)"
+     },
+     "reaction": "3.7, it looks fine he says. After the phone I do not trust it fine. Lightning came at 22:34, so this time I look at the picture properly on the big screen.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 180,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:02:23.645Z",
+     "elapsed_s": 60.757,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "On the big screen the lightning picture is finally clear: red dashed line a little above Dai blue line. But the flash was at 22:34 and his reading 22:41, and the panel says they can be different times. So is it a catch or not? I am guessing again. Still, I see the picture now, which I never did on the phone.",
+     "game_clock": "Mon 23:05",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:02:25.620Z",
+     "elapsed_s": 62.732,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Doubt this reading"
+     },
+     "reaction": "I mark it anyway. At dawn I will see if I was right.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 154,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:02:46.148Z",
+     "elapsed_s": 83.26,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Kettle again, same as the phone (session A). Fast pace really helps, the night moves while I read.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 148,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:03:11.915Z",
+     "elapsed_s": 109.027,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "3.4 and I am sure of it. On the phone the I am sure of it line came with a wrong reading, I think. I keep the gate and let the night run.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 141,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:03:42.067Z",
+     "elapsed_s": 139.179,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "level, 3.40 m, Dai · read 00:00 (as written), was 3.7, read 22:41 (as written)"
+     },
+     "reaction": "Same Morgan question as on the phone, same grey Skip with No report is on its way. Even on Fast this wall is here. I already know there is no answer for Morgan, so I ask for a level to move things.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:04:15.415Z",
+     "elapsed_s": 172.527,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "level, 2.50 m, Dai · read 01:23 (as written), was 3.4, read 00:00 (as written)"
+     },
+     "reaction": "2.5?! Nearly a metre down in heavy rain with only three turns. That smells wrong. I want to doubt this one.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:04:21.282Z",
+     "elapsed_s": 178.394,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Doubt this reading"
+     },
+     "reaction": "This time the lightning was at 01:19, only four minutes before his reading, and the red dashed line is clearly higher than his 2.5. That I can read. Doubt. I like this: a real clue, not just a hunch.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:04:23.617Z",
+     "elapsed_s": 180.729,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Better than the phone: Fast pace, a clear lightning picture, and I caught a suspicious reading with my own eyes. I want to see dawn.",
+     "game_clock": "Mon 02:05",
+     "engagement": 4,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:04:28.230Z",
+     "elapsed_s": 185.342,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 3 / 6, Dai · read 22:24 (as written)"
+     },
+     "reaction": "Heavy rain until dawn, same as the phone night. Then I went to four. I do it again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:04:30.713Z",
+     "elapsed_s": 187.825,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "4 turns He agrees. · ~10m"
+     },
+     "reaction": "Now I see it written: tap to ask, hold to insist, insisting can reduce trust. That explains the If you hold earlier. Nice to finally get the rule. I just tap.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 163,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:05:35.796Z",
+     "elapsed_s": 252.908,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Grey Skip again, Dai not answering. On Fast I just let the clock run instead of poking.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30111,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:06:43.044Z",
+     "elapsed_s": 320.156,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-004.png"
+     },
+     "reaction": "Two of three caught! Both doubt marks were right. Last time on the phone I caught one. That feels earned. And again Morgan did that.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 121,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:06:50.347Z",
+     "elapsed_s": 327.459,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Something odd on the chart: the text says 2.5 against a true 3.3, but the dots at 01:30 and 02:30 sit right on the red line, and the red line goes flat along the bottom for hours. Is the chart cut off at the bottom? I trust the text more than the picture here. Also six lightning marks on top, but I only saw two flashes in my log.",
+     "game_clock": "Mon first light",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:06:52.939Z",
+     "elapsed_s": 330.051,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tuesday night"
+     },
+     "reaction": "On the phone I stopped in Tuesday. Here it went faster, so I try Tuesday with Nerys again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 119,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:06:59.857Z",
+     "elapsed_s": 336.969,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "weir, —, not read"
+     },
+     "reaction": "Same pencil note from M as on the phone. This time Dai is here and talking. I never touched the weir last time, so I try it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:07:02.430Z",
+     "elapsed_s": 339.542,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Send Dai to the weir He agrees. · ~15 min · If you hold: Call and wait for an answer."
+     },
+     "reaction": "Nothing marks a safe or dangerous weir figure. So I get a number but no sense of what is high. I send him anyway, then I will compare.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 167,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:07:07.246Z",
+     "elapsed_s": 344.358,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Call Nerys Ask how high the river is."
+     },
+     "reaction": "Warn Mill Lane is a hold button here. I did not see that on the phone. Good that warning needs a hold, so I cannot do it by accident. I just call Nerys.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 165,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:07:27.289Z",
+     "elapsed_s": 364.401,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Nerys again says hello after her report, word for word like the phone. Here it starts to feel like the same script, not a new evening.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:07:40.525Z",
+     "elapsed_s": 377.637,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "gate, 1 / 6, Dai · read 22:00 (as written)"
+     },
+     "reaction": "Weir 0.43 of 1.6. Low, I guess, but nothing tells me what is a lot. River at step 1. I open the gate to 3 like on the phone.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 205,
+     "error": null,
+     "requested_control_present_before": true,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:08:18.983Z",
+     "elapsed_s": 416.095,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Monday on the big screen was good, I caught two wrong readings myself. But Tuesday is the same form again: same note from M, same Nerys hello, set gate, ask level, skip, wait. I have now done this four nights in total tonight across two devices. I know the shape. Enough for this evening.",
+     "game_clock": "Tue 23:41",
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    },
+    {
+     "t": "2026-10-31T09:08:29.588Z",
+     "elapsed_s": 426.7,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I pressed I am stopping and Back took me to the menu. I stop here. The Monday night on the computer with Fast pace and the lightning picture was the best part of my evening. Tuesday felt like the same evening again, and I do not want to repeat the same form.",
+     "game_clock": "Tue 00:00",
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "containsBackslash": false
+    }
+   ]
+  }
+ ]
+}

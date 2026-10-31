@@ -1,0 +1,72 @@
+{
+  "time": "2026-10-31T12:34:25.117427+00:00",
+  "status": "Qualified completion",
+  "reportSha256": "421168b8dcda052acb6163db2d329e9f4474916e0a4ddf1f08371c618af3f849",
+  "historyCommandOutputCoverage": {
+    "lineCount": 5,
+    "literalLinesCovered": 5,
+    "unreadRanges": [],
+    "allLinesCovered": true
+  },
+  "historyEvidenceScope": "Fullreadselfreported/completecommandstdoutcoverage; directmodeldeliverynotindependentlyshown",
+  "commandCounts": {
+    "read": 2,
+    "curl": 101
+  },
+  "commandExceptions": 0,
+  "actualTimedTags": {
+    "phone": [
+      {
+        "op": "shot",
+        "kind": "first_minute",
+        "elapsed_s": 60.029,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "first_minute",
+        "elapsed_s": 61.739,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "stop",
+        "elapsed_s": 153.69,
+        "reason": "BORED"
+      }
+    ],
+    "desktop": [
+      {
+        "op": "shot",
+        "kind": "first_minute",
+        "elapsed_s": 60.053,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "first_minute",
+        "elapsed_s": 63.848,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "stop",
+        "elapsed_s": 93.294,
+        "reason": "BORED"
+      }
+    ]
+  },
+  "qualifications": [
+    "Genuinelycoldphonefirstvisit; desktoprecognition onlyphoneexposure.",
+    "No explicit producer Newblockingasks sentence; director triages parcel/order selection as blocking candidates pending actualmechanism. Do not invent a producerclassification.",
+    "Recipientout: breadhungonDeryadoorcompleted5earlyorders; parcelremainedpendingwithwaitingmessageeventuallyseen. RepeatedGo label sourceclaritylead notautomaticdeliveryguarantee.",
+    "Orderlisttaps no visible selectionthenmapflatworked; nativeinputack!=actionoutcome, actualcauseunknown.",
+    "TablecarryingworkmarkedcompletewhileHacerout sourcefiction/actionlead; no cause/physicalbug established.",
+    "Skip reachedmidday12:30/Monday, no laterdays/vote; no needforcedcompletion orclockretune.",
+    "Lemoncandynotebookdetail producerisguessingorigin; keepnotebooksourceprovenanceleadwithoutinventedfact.",
+    "EscapeclosedFeedbackinsteadabsentBack; labelsselected/pressed, no typednotes/Submit/consentchanges.",
+    "Codexreports4manualviews, unverifiedeventstream; frozenPNGrootinspectionseparate.",
+    "BothstopsBORED<180/no pulse; actualfirstminute logs>=60, auto shots distinguish fromlogs.",
+    "Keepwholeopeningandlaterconditionalcuriosityreturn/all3rankedasks verbatim."
+  ]
+}

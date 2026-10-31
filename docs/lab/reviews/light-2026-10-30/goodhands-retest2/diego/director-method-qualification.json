@@ -1,0 +1,44 @@
+{
+  "time": "2026-10-31T10:57:45.544351+00:00",
+  "note": "85 Bash:80 strict assigned curls,1 executed assigned-directory names-only listing,4 shell-quote failures before curl. Trial consequence not reached; no causal money/clock defect or retune is established. Report explicitly labels Fast and missing Skip annoyances, no new blocking ask. Phone map time cause unknown.",
+  "historyAudit": {
+    "tester": "diego",
+    "actualHistoryLines": 1237,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/own-history.md",
+          "limit": 400
+        },
+        "renderedFirst": 1,
+        "renderedLast": 400,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/own-history.md",
+          "offset": 401,
+          "limit": 420
+        },
+        "renderedFirst": 401,
+        "renderedLast": 820,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/own-history.md",
+          "offset": 821,
+          "limit": 420
+        },
+        "renderedFirst": 821,
+        "renderedLast": 1238,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  }
+}

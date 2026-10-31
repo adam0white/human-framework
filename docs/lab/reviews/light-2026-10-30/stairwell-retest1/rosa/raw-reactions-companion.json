@@ -1,0 +1,258 @@
+{
+  "reportUnchanged": true,
+  "source": "Exact wall-clock reaction strings, not reconstruction",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "reaction": "I remember this title and the Sunday vote. Tea money now says extra pay, which helps. I begin the short week.",
+      "elapsed_s": 4.832,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 6,
+      "reaction": "Tarik again: I remember his frozen ferry story from the name, fairly confidently. Two loaves and a paper is a clear job.",
+      "elapsed_s": 10.538,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 8,
+      "reaction": "The swap now says it is a prank and what happens to the crosswords. That tells me more; I leave their papers alone and deliver.",
+      "elapsed_s": 16.919,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 10,
+      "reaction": "He thanks me kindly. I remember not understanding Tell, so I look again.",
+      "elapsed_s": 24.324,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 11,
+      "reaction": "Now the three choices are explained plainly. I know the water is marked sure, so I tell him for certain.",
+      "elapsed_s": 26.152,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "reaction": "I want to hear his story again, if he has time.",
+      "elapsed_s": 27.904,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 13,
+      "reaction": "Yes, the ferry froze in 1974: that is the story I remembered. I am confident now. I like hearing him again.",
+      "elapsed_s": 29.497,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 15,
+      "reaction": "The reply explanation is clearer now: he chooses whether to continue. I listen.",
+      "elapsed_s": 38.337,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 18,
+      "reaction": "He wants to leave it there; I respect that and go back to work.",
+      "elapsed_s": 55.155,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 19,
+      "reaction": "Hacer next. I remember her shop story and the swap last time, fairly confidently.",
+      "elapsed_s": 57.002,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 22,
+      "reaction": "I have delivered two orders and heard Tarik again. The news choices and the prank are clearer than last time. I have not needed to reread a sentence. I still guess the five lira is a tip.",
+      "elapsed_s": 62.671,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 24,
+      "reaction": "I have enjoyed seeing Tarik again and the clearer choices. I would stop for tonight and try the larger screen.",
+      "elapsed_s": 68.374,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "TASTE"
+    },
+    {
+      "device": "phone",
+      "row": 27,
+      "reaction": "Both labels are offered. I choose stopping and send nothing.",
+      "elapsed_s": 73.118,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 29,
+      "reaction": "I stop on the phone for tonight. I liked the ordinary jobs and hearing Tarik again. The news choices and prank are clearer, and I had no rereads. I would close it and return another evening.",
+      "elapsed_s": 76.684,
+      "op": "log",
+      "kind": "stop",
+      "reason": "TASTE"
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "reaction": "Same title on the big screen, and the same short week. I start fresh.",
+      "elapsed_s": 7.495,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 7,
+      "reaction": "Hacer is first this time. The building is large and clear. I look in the notebook for the vote.",
+      "elapsed_s": 16.041,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 8,
+      "reaction": "The notebook now explains what I learned and says feelings and trust are hidden. I understand that, though I still do not know how the vote is decided.",
+      "elapsed_s": 17.91,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 10,
+      "reaction": "I fetch Hacer bread. Her name reminds me of her shop work and last visit, fairly confidently.",
+      "elapsed_s": 21.153,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 12,
+      "reaction": "The prank is named here too. I leave it alone and bring her order.",
+      "elapsed_s": 27.389,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 14,
+      "reaction": "It says a five lira tip for you in the journal. That answers my guess. Hacer asks me to sit, so I do.",
+      "elapsed_s": 33.603,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 15,
+      "reaction": "Her shop counter confirms the person I remembered. I am confident. The family paperwork is an ordinary detail I like.",
+      "elapsed_s": 35.614,
+      "op": "log",
+      "kind": "note",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 17,
+      "reaction": "I thank her. I understand she decides whether to continue.",
+      "elapsed_s": 44.452,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 19,
+      "reaction": "She chooses to leave it there. I know what happened and go back to work.",
+      "elapsed_s": 52.571,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 20,
+      "reaction": "Sevim next, a short walk. I remember her name and the crosswords but not a story.",
+      "elapsed_s": 54.169,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 23,
+      "reaction": "The large building picture and the ordinary jobs are easy to follow. I heard Hacer shop story again. The notebook explains hidden trust and the journal names the tip. No rereads so far.",
+      "elapsed_s": 61.218,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 24,
+      "reaction": "I have heard two familiar neighbours tonight and the larger screen is comfortable. I would stop for the evening and come back for the vote another day.",
+      "elapsed_s": 63.284,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "TASTE"
+    },
+    {
+      "device": "desktop",
+      "row": 27,
+      "reaction": "Both labels are here. I choose stopping; I type and send nothing.",
+      "elapsed_s": 68.02,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 29,
+      "reaction": "I stop on the big screen for tonight. The notebook and tip explanation helped, and I liked hearing Hacer. I would return another evening to see the Sunday vote, and I would close it now.",
+      "elapsed_s": 71.785,
+      "op": "log",
+      "kind": "stop",
+      "reason": "TASTE"
+    }
+  ]
+}

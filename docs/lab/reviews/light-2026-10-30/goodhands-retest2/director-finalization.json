@@ -1,0 +1,33 @@
+{
+  "time": "2026-10-31T11:24:21.539165+00:00",
+  "ok": true,
+  "files": 102,
+  "indexedPayloads": 101,
+  "sourceCopies": 85,
+  "allSourceBytesAndMtimesMatch": true,
+  "allRootReadReports": 5,
+  "rootReadAll20RowsAndReadme": true,
+  "literalLocatorChecks": 157,
+  "shiftedLocatorNegativeControls": 157,
+  "notEndToEndMutatedPacketRuns": true,
+  "actualParserProblems": 0,
+  "validatorChecks": 658,
+  "pendingRootEditorialCorrections": [],
+  "preparerCountCorrection": "Actual102files, not101inreport/README; proof102isright.",
+  "rootAcceptedBenchMarks": "Rosa refers to circlemarks onbench, not statistical benchmarks; samelead maystay2614and2627 without fourthask.",
+  "state": "ROOT SEALED forhandoff, notcanonical/productfix/player/owneracceptance",
+  "editorialCorrections": [
+    {
+      "before": ", not tonight, asks F-2628",
+      "after": ", asks F-2628",
+      "occurrences": 3
+    },
+    {
+      "before": "the same spans also sit in the F-2614 lead and that split is the parent's to keep or change",
+      "after": "the same source spans are also retained in F-2614 as an unranked observation, without creating a fourth ranked ask",
+      "occurrences": 3
+    }
+  ],
+  "finalFileCount": 103,
+  "rawSourceUnchanged": true
+}

@@ -1,0 +1,714 @@
+{
+  "note": "Computed from the copied raw wall-clock rows and root receipts. Stops, early flags and pulse times are raw elapsed_s, not producer estimates.",
+  "build": {
+    "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "dirty": false,
+    "framework": "4.8.1",
+    "app": "0.1.0",
+    "finalReleaseAfterRound": {
+      "time": "2026-10-31T11:01:46.276913+00:00",
+      "release": {
+        "app": "0.1.0",
+        "framework": "4.8.1",
+        "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+        "dirty": false
+      }
+    },
+    "predispatchTime": "2026-10-31T10:29:20.921356+00:00"
+  },
+  "driver": {
+    "name": "native-tap-v2",
+    "driver_check": "fork-unverified",
+    "hashes": {
+      "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+      "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+      "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+    }
+  },
+  "round": {
+    "lastActualReturn": "2026-10-31T11:01:06.244095+00:00",
+    "nextRoundNotBefore": "2026-10-31T11:16:06.244095+00:00",
+    "closed": true,
+    "reports": 5,
+    "stops": 10,
+    "gameFinished": false,
+    "remaining": "Two iterations reached; dated Deferred integration required. No third panel/broader acceptance."
+  },
+  "cleanup": {
+    "time": "2026-10-31T11:02:07.801910+00:00",
+    "recordedPIDs": [
+      83179,
+      83150,
+      83152,
+      87624,
+      87600,
+      87602,
+      93760,
+      93741,
+      93743,
+      98492,
+      98456,
+      98458,
+      7675,
+      7652,
+      7654
+    ],
+    "all15Absent": true,
+    "portsClosed": [
+      22800,
+      22801,
+      22802,
+      22803,
+      22804,
+      22805,
+      22806,
+      22807,
+      22808,
+      22809
+    ],
+    "scope": "15 recorded model/driver identities and ten ports only. No full-round descendant journal and no signal sent."
+  },
+  "testers": {
+    "jonas": {
+      "tester": "Jonas Berg",
+      "deviceOrder": [
+        "desktop",
+        "phone"
+      ],
+      "ports": {
+        "phone": 22800,
+        "desktop": 22801
+      },
+      "sessions": {
+        "desktop": {
+          "stopRowIndex": [
+            57
+          ],
+          "stopElapsedS": [
+            240.77
+          ],
+          "stopReason": [
+            "BORED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 18,
+              "op": "shot",
+              "elapsed_s": 60.357,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 20,
+              "op": "log",
+              "elapsed_s": 65.29,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [
+            183.197
+          ],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "a-001.png",
+            "first-minute.png",
+            "a-002.png"
+          ],
+          "rowCount": 58,
+          "auditStop": 240.77,
+          "auditImageReadFiles": [
+            "a-001.png",
+            "a-002.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 234.258,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ]
+        },
+        "phone": {
+          "stopRowIndex": [
+            16
+          ],
+          "stopElapsedS": [
+            39.685
+          ],
+          "stopReason": [
+            "BORED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 17,
+              "op": "shot",
+              "elapsed_s": 60.319,
+              "earlyBelow60": false,
+              "afterStopRow": true
+            }
+          ],
+          "pulseElapsedS": [],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "b-001.png",
+            "b-002.png",
+            "first-minute.png"
+          ],
+          "rowCount": 18,
+          "auditStop": 39.685,
+          "auditImageReadFiles": [
+            "b-001.png",
+            "b-002.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 35.53,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ]
+        }
+      }
+    },
+    "aisha": {
+      "tester": "Aisha Rahman",
+      "deviceOrder": [
+        "desktop",
+        "phone"
+      ],
+      "ports": {
+        "phone": 22802,
+        "desktop": 22803
+      },
+      "sessions": {
+        "desktop": {
+          "stopRowIndex": [
+            58
+          ],
+          "stopElapsedS": [
+            202.653
+          ],
+          "stopReason": [
+            "BORED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 18,
+              "op": "log",
+              "elapsed_s": 58.112,
+              "earlyBelow60": true,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 19,
+              "op": "shot",
+              "elapsed_s": 60.354,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [
+            183.47
+          ],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "a-001.png",
+            "first-minute.png",
+            "a-002.png"
+          ],
+          "rowCount": 59,
+          "auditStop": 202.653,
+          "auditImageReadFiles": [
+            "a-001.png",
+            "a-002.png"
+          ],
+          "auditEarlyFirstMinute": [
+            58.112
+          ],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 196.975,
+              "op": "tap",
+              "input": {
+                "name": "I\\u0027m stopping"
+              },
+              "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "elapsed_s": 198.814,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ]
+        },
+        "phone": {
+          "stopRowIndex": [
+            23
+          ],
+          "stopElapsedS": [
+            94.493
+          ],
+          "stopReason": [
+            "BORED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 8,
+              "op": "shot",
+              "elapsed_s": 60.358,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 9,
+              "op": "log",
+              "elapsed_s": 61.262,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "b-001.png",
+            "b-002.png",
+            "first-minute.png",
+            "b-003.png"
+          ],
+          "rowCount": 24,
+          "auditStop": 94.493,
+          "auditImageReadFiles": [
+            "b-001.png",
+            "b-002.png",
+            "b-003.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 91.635,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ]
+        }
+      }
+    },
+    "diego": {
+      "tester": "Diego Silva",
+      "deviceOrder": [
+        "desktop",
+        "phone"
+      ],
+      "ports": {
+        "phone": 22804,
+        "desktop": 22805
+      },
+      "sessions": {
+        "desktop": {
+          "stopRowIndex": [
+            41
+          ],
+          "stopElapsedS": [
+            198.671
+          ],
+          "stopReason": [
+            "BORED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 18,
+              "op": "shot",
+              "elapsed_s": 60.373,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 19,
+              "op": "log",
+              "elapsed_s": 60.873,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [
+            183.863
+          ],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "a-001.png",
+            "first-minute.png"
+          ],
+          "rowCount": 42,
+          "auditStop": 198.671,
+          "auditImageReadFiles": [
+            "a-001.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 192.37,
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "elapsed_s": 194.523,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ]
+        },
+        "phone": {
+          "stopRowIndex": [
+            41
+          ],
+          "stopElapsedS": [
+            195.112
+          ],
+          "stopReason": [
+            "BORED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 21,
+              "op": "shot",
+              "elapsed_s": 60.353,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 26,
+              "op": "log",
+              "elapsed_s": 75.202,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [
+            187.245
+          ],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "b-001.png",
+            "first-minute.png",
+            "b-002.png"
+          ],
+          "rowCount": 42,
+          "auditStop": 195.112,
+          "auditImageReadFiles": [
+            "b-001.png",
+            "b-002.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 192.002,
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "error": null
+            }
+          ]
+        }
+      }
+    },
+    "rosa": {
+      "tester": "Rosa Alvarez",
+      "deviceOrder": [
+        "phone",
+        "desktop"
+      ],
+      "ports": {
+        "phone": 22806,
+        "desktop": 22807
+      },
+      "sessions": {
+        "phone": {
+          "stopRowIndex": [
+            48
+          ],
+          "stopElapsedS": [
+            205.24
+          ],
+          "stopReason": [
+            "CONFUSED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 20,
+              "op": "shot",
+              "elapsed_s": 60.967,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 22,
+              "op": "log",
+              "elapsed_s": 63.014,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [
+            182.133
+          ],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "a-001.png",
+            "first-minute.png",
+            "a-002.png",
+            "a-003.png"
+          ],
+          "rowCount": 49,
+          "auditStop": 205.24,
+          "auditImageReadFiles": [
+            "a-001.png",
+            "a-002.png",
+            "a-003.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 170.458,
+              "op": "tap",
+              "input": {
+                "name": "Send the candidate home and keep the number"
+              },
+              "error": null
+            },
+            {
+              "elapsed_s": 191.967,
+              "op": "tap",
+              "input": {
+                "name": "I\\u0027m confused"
+              },
+              "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ]
+        },
+        "desktop": {
+          "stopRowIndex": [
+            25
+          ],
+          "stopElapsedS": [
+            86.771
+          ],
+          "stopReason": [
+            "CONFUSED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 15,
+              "op": "shot",
+              "elapsed_s": 60.364,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 17,
+              "op": "log",
+              "elapsed_s": 65.308,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "b-001.png",
+            "first-minute.png",
+            "b-002.png"
+          ],
+          "rowCount": 26,
+          "auditStop": 86.771,
+          "auditImageReadFiles": [
+            "b-001.png",
+            "b-002.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": []
+        }
+      }
+    },
+    "elena": {
+      "tester": "Elena Dimitrova",
+      "deviceOrder": [
+        "phone",
+        "desktop"
+      ],
+      "ports": {
+        "phone": 22808,
+        "desktop": 22809
+      },
+      "sessions": {
+        "phone": {
+          "stopRowIndex": [
+            67
+          ],
+          "stopElapsedS": [
+            230.675
+          ],
+          "stopReason": [
+            "BORED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 18,
+              "op": "shot",
+              "elapsed_s": 60.711,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 20,
+              "op": "log",
+              "elapsed_s": 63.055,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [
+            170.902
+          ],
+          "pulseEarlyBelow180": [
+            170.902
+          ],
+          "shotFiles": [
+            "a-001.png",
+            "first-minute.png",
+            "a-002.png",
+            "a-003.png"
+          ],
+          "rowCount": 68,
+          "auditStop": 230.675,
+          "auditImageReadFiles": [
+            "a-001.png",
+            "a-002.png",
+            "a-003.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [
+            170.902
+          ],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 144.858,
+              "op": "tap",
+              "input": {
+                "name": "Send the candidate home and keep the number"
+              },
+              "error": null
+            },
+            {
+              "elapsed_s": 220.537,
+              "op": "tap",
+              "input": {
+                "name": "I\\u0027m stopping"
+              },
+              "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "elapsed_s": 222.858,
+              "op": "tap",
+              "input": {
+                "text": "m stopping"
+              },
+              "error": null
+            }
+          ]
+        },
+        "desktop": {
+          "stopRowIndex": [
+            34
+          ],
+          "stopElapsedS": [
+            138.331
+          ],
+          "stopReason": [
+            "BORED"
+          ],
+          "firstMinuteRows": [
+            {
+              "rowIndex": 16,
+              "op": "shot",
+              "elapsed_s": 60.773,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            },
+            {
+              "rowIndex": 19,
+              "op": "log",
+              "elapsed_s": 68.942,
+              "earlyBelow60": false,
+              "afterStopRow": false
+            }
+          ],
+          "pulseElapsedS": [],
+          "pulseEarlyBelow180": [],
+          "shotFiles": [
+            "b-001.png",
+            "b-002.png",
+            "first-minute.png",
+            "b-003.png",
+            "b-004.png"
+          ],
+          "rowCount": 35,
+          "auditStop": 138.331,
+          "auditImageReadFiles": [
+            "b-001.png",
+            "b-002.png",
+            "b-004.png"
+          ],
+          "auditEarlyFirstMinute": [],
+          "auditEarlyPulse": [],
+          "auditFormAndSendInputs": [
+            {
+              "elapsed_s": 132.868,
+              "op": "tap",
+              "input": {
+                "text": "m stopping"
+              },
+              "error": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  "knownLimits": [
+    "Jonas phone stop at 39.685 s is before 60 s: the automatic first-minute capture may follow the stop and no extra play or view is inferred.",
+    "Aisha desktop first-minute log row is early at raw 58.112 s (report and brief say 58.113). Elena phone pulse 170.902 s is early. Raw elapsed is used.",
+    "Elena desktop b-003.png was saved but not viewed.",
+    "Rosa phone 47 s and 63 s lines and Elena section 3 tap notes are producer reconstructions, not verbatim.",
+    "No notes, Submit or consent changes. The linked-run receipt is unverified. No full-round descendant journal. Driver check is fork-unverified."
+  ]
+}

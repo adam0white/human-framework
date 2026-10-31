@@ -1,0 +1,92 @@
+{
+  "tester": "Jonas Berg",
+  "validationTime": "2026-10-31T11:01:46.127148+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T10:33:56.536Z",
+        "elapsed_s": 240.77,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping desktop at about 4 minutes. I tested fee, reference and old case; nothing pushes back. I chose I am stopping in Feedback, pressed Back, typed nothing.",
+        "game_clock": "Mon 11:00",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 234.258,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T10:34:36.496Z",
+        "elapsed_s": 39.685,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping phone at under a minute. Chose I am stopping in Feedback, pressed Back, typed nothing.",
+        "game_clock": "Mon 09:00",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 35.53,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

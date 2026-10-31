@@ -1,0 +1,113 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-31T11:01:46.150607+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T10:52:07.301Z",
+        "elapsed_s": 205.24,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back.",
+        "game_clock": "Mon 2 Nov 11:58",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 170.458,
+          "op": "tap",
+          "input": {
+            "name": "Send the candidate home and keep the number"
+          },
+          "error": null
+        },
+        {
+          "elapsed_s": 191.967,
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m confused"
+          },
+          "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T10:51:54.028Z",
+          "elapsed_s": 191.967,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m confused"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 2,
+          "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T10:53:35.273Z",
+        "elapsed_s": 86.771,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop on the desktop after about 85 seconds. The long weighing paragraph again tires me and I have seen the same loop as on the phone. I did not reach a placement here.",
+        "game_clock": "Mon 2 Nov 09:34",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

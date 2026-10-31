@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Maya Chen",
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya",
+    "model": "sonnet",
+    "exposure": "return",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d"
+  },
+  {
+    "name": "Emre Kaya",
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre",
+    "model": "sonnet",
+    "exposure": "return",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d"
+  },
+  {
+    "name": "Diego Silva",
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego",
+    "model": "sonnet",
+    "exposure": "return",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d"
+  },
+  {
+    "name": "Rosa Alvarez",
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa",
+    "model": "gpt-6.1-terra",
+    "exposure": "return",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d"
+  },
+  {
+    "name": "Boris Petrov",
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris",
+    "model": "gpt-6.1-terra",
+    "exposure": "first",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d"
+  }
+]

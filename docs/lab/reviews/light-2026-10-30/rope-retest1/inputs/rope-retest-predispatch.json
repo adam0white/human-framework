@@ -1,0 +1,109 @@
+{
+  "time": "2026-10-31T09:25:27.426332+00:00",
+  "release": {
+    "app": "0.2.0",
+    "framework": "4.15.0",
+    "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+    "dirty": false
+  },
+  "mainCI": {
+    "conclusion": "success",
+    "headSha": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+    "status": "completed"
+  },
+  "freshAssets": [
+    {
+      "path": "assets/main-LCDYYwi8.js",
+      "sha256": "4c6aff6314c54adb4c1a47d0db0b2a2422720fbdddc7f7fcdab3880fe3bc02df",
+      "bytes": 1348
+    },
+    {
+      "path": "assets/WebGPURenderer-CQa_rQkm.js",
+      "sha256": "9e2ec48700bd71ff12705a0e9e3db38a5bb895afb608f7e2d05e14309e0358ad",
+      "bytes": 52
+    },
+    {
+      "path": "assets/boot-D5s3T82O.js",
+      "sha256": "0d20aede06767a00b3a204785f869d5827b08a96dc55f62b750f8630af15f52b",
+      "bytes": 1441545
+    },
+    {
+      "path": "assets/preload-helper-BLdHbfdN.js",
+      "sha256": "8aec9ff75ffa86a03d51268b63126abadb3754aa5a6b6c5bb16e4e2446a63dee",
+      "bytes": 1519
+    },
+    {
+      "path": "assets/Geometry-l1mt9z4G.js",
+      "sha256": "640ddb300092cc1855d99cd04e4a6ce7ee8b9644b54790546734d22f5ca3f792",
+      "bytes": 113028
+    },
+    {
+      "path": "assets/getTexelRangeRects-lmkfmzIv.js",
+      "sha256": "03be96194f28460d291df1cb6786ceac4de2d767bd952cfcfea04cbb1743f7b9",
+      "bytes": 11317
+    },
+    {
+      "path": "assets/RenderTargetSystem-CA8AxxmD.js",
+      "sha256": "b422b6e7c2b9b5849199ee7e6a04431f8a31919f51e22132941aef01c178d077",
+      "bytes": 78113
+    },
+    {
+      "path": "assets/webworkerAll-CbT9suPf.js",
+      "sha256": "3ec6cb3e519e0850a97e35e5c59db4887155e636218a6f7cd167828f2805b207",
+      "bytes": 54
+    },
+    {
+      "path": "assets/CanvasRenderer-DY-QyxgX.js",
+      "sha256": "dceaba694e63dede6fed4d97540eeb44e8e461576918d17030ecd937a01f5c78",
+      "bytes": 52
+    },
+    {
+      "path": "assets/WebGLRenderer-BOVPyYki.js",
+      "sha256": "84cbc2dc4e977910c11c8929363816dc0427cd8fa156af5cf48d5289c3bcf443",
+      "bytes": 51
+    },
+    {
+      "path": "assets/dist-ClOtYBEC.js",
+      "sha256": "b2a9ccd67671a82ddd772978da7faa23bae7abc48093e7c49a55dbb9bb29680d",
+      "bytes": 52
+    },
+    {
+      "path": "assets/debrief.worker-ChhexoGb.js",
+      "sha256": "981dbd061c1a2b7169de9adfcae6d8502607b84813be99127ed095ac2bde1e40",
+      "bytes": 950790
+    },
+    {
+      "path": "assets/canvasUtils-Hs9ooiuQ.js",
+      "sha256": "6e6d2beb63ed6a535b4144bc73d10fa612491916eb13d21f830bde5dd2a065c4",
+      "bytes": 6011
+    },
+    {
+      "path": "assets/init-C094zPdN.js",
+      "sha256": "f84cdeabe318336bd0d0d6379a7ef2e56a5f20bf20a4c92142ad7aa72ee8fc50",
+      "bytes": 14813
+    },
+    {
+      "path": "assets/main-DRl4NGcS.css",
+      "sha256": "ec0944d1c43b7943eedea77175d452218bb6e901a6845106b7859265f5226b17",
+      "bytes": 24254
+    },
+    {
+      "path": "assets/getTextureBatchBindGroup-D3MNb5d9.js",
+      "sha256": "2a51cf7269a3ac1ff3382f005ca424ff0ae4c7c17ccb9e07c4326cbc17ed048d",
+      "bytes": 342
+    },
+    {
+      "path": "assets/browserAll-GGoXYzO1.js",
+      "sha256": "68ba0fe9d31c725d934b6813caadd0af3078900fb66a66a907bf1ea78bcacd6a",
+      "bytes": 43480
+    }
+  ],
+  "driverHashesMatch": true,
+  "inputsMatch": true,
+  "previousReturn": "Glance09:09:33.248155",
+  "actualCooldownSeconds": 953.01387,
+  "C7SlotReturnedVerified": true,
+  "diskFreeBytes": 53709832192,
+  "GDOrdinaryCustodyReturned": "2026-10-31T08:56:19.026376Z",
+  "round": "First fixed-build retest; samePavel/Tessa/Nia/Rosa plusnewFarah; serial1tester/twofreshdevicecontexts. BroaderQAseparate."
+}

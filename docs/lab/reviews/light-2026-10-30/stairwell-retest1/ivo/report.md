@@ -1,0 +1,98 @@
+I would not return voluntarily soon: I liked the clear delivery results and some resident details, but the repeated jobs and similar conversations lost me.
+
+Ranked changes I would want:
+
+1. Make it clear what to do with a parcel when its recipient is out, and why the order still says “Go to” the flat I am already at.
+2. Make selecting another order give a visible result, or explain why it cannot be selected.
+3. Give residents more varied things to say when asked what is new.
+
+## 1. Session
+
+I played as **Ivo Almeida**, 27, a bicycle courier from Coimbra who occasionally plays short puzzle games. This was my first visit to The Stairwell and my first exposure to any game from this lab. The supplied own history was empty. I read all five lines; the last line was “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” Unread ranges: none.
+
+Round: **light-1031-stairwell-retest1**, free-stop arm, floor 0. Start URL: https://stairwell.adamwhite.work/?labRunSource=agent.
+
+- **Session A:** 360 × 690 touch phone, light mode, fresh game. Stop log at **153.690 seconds**.
+- **Session B:** 1280 × 800 keyboard and mouse, light mode, separate fresh game. Stop log at **93.294 seconds**.
+
+I left the start choices empty in both sessions. I left recording at its default. Neither session reached the three-minute pulse checkpoint.
+
+## 2. First impressions
+
+On the phone, at **4.917 seconds**, the caretaker’s delivery job sounded concrete. I did not understand the relevance of the four-week character-history choices, so I left them empty. At **13.930 seconds**, the building and a specific delivery gave me an obvious first action.
+
+On the laptop, at **5.572 seconds**, I noticed the wider introduction and the fixed start button covering lower text. I wanted to try talking to people more. At **16.497 seconds**, I recognized the same names and flat labels from the phone, although Sevim was the first order this time.
+
+## 3. Verbatim diary
+
+Times below are driver elapsed seconds. The reaction text is unchanged from the log calls.
+
+### Session A — phone
+
+- **4.917 — note:** “A caretaker delivering supplies sounds concrete. The four-week choices and character history mean little to me, so I will leave them empty.”
+- **13.930 — note, Monday 07:02:** “I can see the building and a specific delivery. I will go to the bakery first.”
+- **26.247 — note, Monday 07:27:** “The order count dropped and he thanked me; that feels like a delivery. I like that time pauses for the conversation.”
+- **61.739 — first_minute, Monday 07:44:** “Deliveries are easy to follow and the residents have distinct voices. I am curious what comes after the orders.”
+- **78.825 — note, Monday 07:47:** “All five orders are done, even though Derya was out. Hanging the bread on her door is a clear result. I will see what skip does.”
+- **111.923 — note, Monday 12:30:** “I am at flat 3 but the parcel is still an order and it says go to flat 3 again. I am unsure whether I should tap it again.”
+- **120.224 — note, Monday 12:38:** “Feedback let me select I am confused; Escape returned to the menu. I saw no Back button and sent nothing.”
+- **123.817 — note, Monday 12:38:** “Now it says I am waiting with a parcel. That explains why it remains, though the go button still looks odd.”
+- **132.695 — note, Monday 12:57:** “I tapped the table job but the parcel stayed selected. I do not know why I cannot switch to the other job.”
+- **143.118 — note, Monday 13:10:** “Tapping her flat let me do the table job. I am surprised it says the work is done while she is out, since she asked for help carrying it.”
+- **145.111 — want_quit, BORED, Monday 13:10:** “The deliveries were pleasant, but I am starting to feel I am just waiting for the next small job. I would stop for now.”
+- **153.690 — stop, BORED, Monday 13:12:** “I am stopping for now; the small jobs have begun to feel repetitive.”
+
+### Session B — desktop
+
+- **5.572 — note:** “The same introduction is much wider here, though the fixed start button covers the lower text. I will try a different approach to the people this time.”
+- **16.497 — note, Monday 07:03:** “I recognize the names and the same building: Tarık is in flat 7, as on the phone, and Sevim is in flat 2. I am confident because the labels match. The first order is Sevim rather than Tarık.”
+- **33.165 — note, Monday 07:23:** “Sevim says the same on-time line I remember from the phone, with the same name and flat; I am confident it is the same resident. Opening the gate got a witnessed action but no judgment yet.”
+- **42.269 — note, Monday 07:23:** “I like seeing the gate recorded as something I did. The notebook says a lemon candy detail after Sevim called Tarık kind; I am guessing that is the new line.”
+- **53.025 — note, Monday 07:24:** “Hacer says exactly the same thing about Tarık as Sevim. That takes some life out of the conversation for me.”
+- **63.848 — first_minute, Monday 07:28:** “The larger building is easier to read. I am more interested in the residents than repeating the delivery route, but the repeated remark made them feel less distinct.”
+- **80.340 — want_quit, BORED, Monday 07:36:** “I have seen enough for tonight. The same delivery start and another conversation ending much like Tarık’s make me want to stop.”
+- **91.094 — note, Monday 07:36:** “I selected I am stopping in Feedback. There was no Back button, so Escape returned me to the menu; I typed and sent nothing.”
+- **93.294 — stop, BORED, Monday 07:36:** “I am stopping tonight; I have had enough of the repeated start and similar conversations.”
+
+## 4. Moments
+
+The phone’s first delivery held me: I went to the bakery, went to Tarık, saw the order count drop, and heard him thank me. Sitting with him produced a particular story about a frozen harbour. Derya’s bread being hung on her door was another satisfying, visible result.
+
+Skip moved time forward and brought new jobs, including a dripping tap and a parcel. The parcel made me pause: Burak was out, and I was already at his flat while the button still offered to take me there. The later message that I was waiting with a parcel helped. I continued after that confusion, but my wish to quit at 145.111 seconds did not pass; I stopped.
+
+On the laptop, opening the gate and seeing it recorded in the notebook interested me. Asking Sevim and Hacer for news produced the identical “Tarık is kind” remark. Hacer’s personal story was different, but her conversation ended similarly to Tarık’s on the phone. My quit wish at 80.340 seconds did not pass.
+
+There were no pulse logs: both sessions ended before 180 seconds.
+
+## 5. Confusion and clarity
+
+The delivery route, deadlines, order count, and paused conversations were clear in the play I saw. The “waiting with a parcel” message eventually explained the unresolved parcel, but the “Go to flat 3” action remained strange while I was already there.
+
+When I tapped Hacer’s table job in the order list, the selected parcel did not visibly change. Tapping Hacer’s flat on the building brought up her job and let me go there. I was surprised that the game reported the work done while she was out, because the request was to help carry a table.
+
+The start page explained tea money, but the character-history and transfer language did not mean much to me as a new player. On the laptop, I could see the fixed start button covering part of the lower introduction in the screenshot; I did not test whether scrolling would reveal it.
+
+## 6. Device use
+
+- **Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/a-001.png), showing the narrow title page and fixed start button, and [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/a-002.png), showing the compact building above the tabs and delivery action. I used touch taps for the start, travel, orders, conversation, skip, map flat, menu and feedback. I used Escape to leave feedback because no Back control was listed. The small building was readable to me; I did not inspect every later phone layout in a screenshot.
+- **Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/b-001.png), showing the centered introduction and fixed button over lower text, and [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/b-002.png), showing a larger building beside the controls. I used mouse clicks for travel, the gate, conversation, notebook, menu and feedback, and Escape to leave feedback. The larger building was easier for me to read. I did not inspect every later desktop layout in a screenshot.
+
+For the phone confusion, I opened Feedback and selected **“I’m confused.”** For each stop, I opened Feedback and selected **“I’m stopping.”** The selected label appeared pressed. Feedback offered a close control but no visible Back button; Escape returned to the game menu. I typed no note, submitted nothing, and changed no consent or recording setting.
+
+## 7. Stop and return
+
+Phone stop: **“I am stopping for now; the small jobs have begun to feel repetitive.”** Reason: **BORED**.
+
+Desktop stop: **“I am stopping tonight; I have had enough of the repeated start and similar conversations.”** Reason: **BORED**.
+
+I would not return voluntarily soon: I liked the clear delivery results and some resident details, but the repeated jobs and similar conversations lost me. I might be curious to return another evening if there were a clearer way to continue into different situations without repeating the opening delivery routine. I would not leave it running; I would stop and come back deliberately if that curiosity returned.
+
+## 8. Changes
+
+The ranked asks are at the start of this report. They come from the parcel and order-selection confusion and the repeated resident remark I actually encountered.
+
+## 9. Compared with my last visit
+
+First visit. The desktop session was a second fresh session of this same visit, later that evening; its comparisons above are only with the phone session I had just played.
+
+No repository, worktree, server, or browser process was owned or started by me.

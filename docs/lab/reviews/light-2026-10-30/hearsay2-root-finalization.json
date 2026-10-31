@@ -1,0 +1,22 @@
+{
+  "sealed": "2026-10-31T12:04:17.164406+00:00",
+  "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-packet-preparation/ready",
+  "destination": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/hearsay-retest2",
+  "fileCount": 102,
+  "indexedPayloads": 101,
+  "exactMappedSources": 88,
+  "literalSpans": 36,
+  "logicalTesters": 5,
+  "rankedAsks": 15,
+  "ledgerRows": 20,
+  "feedbackRange": "F2641\u20132660;2661\u201370unused",
+  "rootAllFiveReportsAndTwentyRoutesRead": true,
+  "allOriginalBytesHashesMtimesAndCopiesVerified": true,
+  "realHFParserProblems": 0,
+  "codeReview": "hearsay2-packet-code-review.json CLEAR",
+  "qualificationReview": "hearsay2-qualification-review.json CLEAR",
+  "preparedManifestSha256": "155220974afe1cfdc747ace4962bf28de71a63a5b2344af6d9e516a4538bf52c",
+  "scope": "Frozen source packet only, not canonical/imported or game/player/owner acceptance. Prepared README status is pre-seal history; this root receipt controls frozen-source custody.",
+  "currentLoop": "Two iterations collected; dated game Deferred integration pending; exactOpus mergegate remains heldduringbrake. No thirdpanel.",
+  "evidenceClarification": "codex-history-evidence-clarification.json: Codex full reading is producer-reported; complete command stdout coverage is verified, direct model-facing delivery is not. Original3Claude actual Read-response coverage remains verified."
+}

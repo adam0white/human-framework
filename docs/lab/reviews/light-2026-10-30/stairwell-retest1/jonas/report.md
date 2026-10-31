@@ -1,0 +1,104 @@
+**I would not return voluntarily as it stands: the notebook now moves, but I do not want to play through six days of similar conversations to find out what the Sunday vote does.** I would not leave it running, and I would not come back another evening unless talking offered more distinct, visible consequences.
+
+**Ranked asks**
+
+1. Give sitting and replying a visible consequence I can understand before the Sunday vote.
+2. Make conversations produce more distinct outcomes; the two replies I tried both ended the discussion.
+3. Show why a story I hear does or does not enter the notebook.
+
+## 1. Session
+
+I am Jonas Berg, 31, a warehouse planner from Malmö. This was a return visit to The Stairwell, round `light-1031-stairwell-retest1`, free stop, floor zero. I started a fresh game in each independent session; there was no matched seed.
+
+- URL: https://stairwell.adamwhite.work/?labRunSource=agent
+- Desktop: 1280×800, keyboard and mouse, light mode. Stop log at **169.201 seconds**, Monday 08:07.
+- Phone: 360×690, touch, light mode. Stop log at **53.765 seconds**, Monday 07:29.
+
+I read all 1,245 supplied history lines before play. The last line was: “End of supplied own history. This reading boundary is director metadata, not an event you experienced.” No supplied lines were unread. The history was selected rather than my complete archive: older records and independent continued alternatives were not supplied, and the older raw diary for the Well excerpt was not supplied. My earlier Good Hands retest1 claimed a complete history read, but its documented read reached only lines 1–599 of 939. The supplied Stairwell report was complete; its desktop pulse at 175.492 seconds was premature under that visit’s timing rule.
+
+## 2. First impressions
+
+On desktop, the six-day premise and five orders were familiar. At 10.922 seconds I remembered batching the bakery orders and wanted to compare deadlines. At 34.658 seconds I was unsure whether my first bakery tap had started a walk; the second press visibly did.
+
+On the phone, I arrived with the desktop result in mind: asking for news had moved the notebook. The building and order fit the screen. Tarık had the first deadline in this fresh game, unlike the desktop game.
+
+## 3. Verbatim diary
+
+These are my reactions as logged, including reactions attached to actions. Times are driver `elapsed_s`.
+
+**Desktop**
+
+- **5.406, tap:** “Back to the six-day week. I want to see whether talking leaves a trace this time.”
+- **10.922, tap:** “Five orders again; I remember batching them last time and want to see the deadlines.”
+- **34.658, note, Monday 07:14:** “I pressed Go to the bakery and waited; I still appear in my room. I do not know whether the walk started.”
+- **45.455, note, Monday 07:24:** “Second press started the walk. The swap now says it is a prank with exchanged crosswords and a possible witness. That answers what it is; I will deliver properly.”
+- **55.266, tap:** “Hacer is familiar from last visit: flat 1 and the newspaper order. Confident it is the same named neighbour, not necessarily the same circumstances. The panel now says I do not know her feeling or trust.”
+- **65.483, first_minute, Monday 07:40:** “Five bakery orders with close first deadlines. Hacer received hers; I chose to sit and heard about her niece. Her panel says I do not know her feeling or trust. The swap now explains the prank. I want to see whether sitting changes what I can learn.”
+- **73.719, tap:** “It now explicitly says the reply wording does not change her choice. That answers my old question, though it makes the two replies less of a decision.”
+- **82.639, tap:** “Same leave-it-there answer as before. Checking whether the notebook moved.”
+- **90.806, note, Monday 07:48:** “The notebook explains 0 of 16 counts facts that reached it, and explicitly says it does not show feelings or trust. I heard a story but the count is still zero. I do not know what makes a story reach it.”
+- **96.364, note, Monday 07:48:** “Anything new gave a specific claim about Tarik and says I added a notebook line. That is a visible result. I want to check it.”
+- **102.606, note, Monday 07:48:** “Now 1 of 16: the notebook says Tarik would give me his last lemon candy. The count moved, though Hacer only said he is kind. I can see a result, but not what the story or reply did for Sunday.”
+- **115.217, tap:** “Sevim at flat 2 is familiar from the previous newspaper order; confident in the name, not the new run. Testing a second sit.”
+- **138.814, note, Monday 08:02:** “Sevim says she would rather we left it there: slightly different words, same outcome as Hacer. The game told me my reply wording would not change her choice, so I believe that explanation.”
+- **153.668, tap:** “The tell buttons now identify each item and explain that false certainty can cost trust. I will pass on the water notice marked sure.”
+- **156.853, want_quit, BORED, Monday 08:07:** “I have answered my return question enough for tonight: the notebook moves for news, but two sits ended similarly and feelings stay unknown. I do not want to work through six days for the vote now.”
+- **169.201, stop, BORED, Monday 08:07:** “Stopping desktop at Monday 08:07. The notebook moved after news, but I do not want six days of similar replies to reach the vote tonight. I selected stopping in Feedback and closed it without typing or submitting.”
+
+**Phone**
+
+- **6.367, tap:** “Second device, fresh week. I know the notebook can move from asking for news now.”
+- **17.629, tap:** “Phone building and order fit. Tarik is first due here, unlike desktop; I will try his route.”
+- **34.067, note, Monday 07:29:** “Tarik has no news today, unlike Hacer on desktop. A repeat of the question is not automatically another notebook fact.”
+- **42.452, want_quit, BORED, Monday 07:29:** “Same evening and the phone repeats the route I just learned. Tarik has no news; I do not want to repeat the week here.”
+- **53.765, stop, BORED, Monday 07:29:** “Stopping phone at Monday 07:29. I know the loop from desktop and do not want to repeat it tonight. I selected stopping in Feedback and closed it without typing or submitting.”
+
+## 4. Moments
+
+The useful moment was asking Hacer “Anything new?” She said Tarık was kind, the game said a notebook line had been added, and the count changed from 0 to 1 of 16. That was a visible result I had not seen on my earlier visit. Tarık later had no news on the phone, so the same question did not always give me another fact.
+
+The two sits held me long enough to compare them. Hacer and Sevim told different stories, but both declined to continue after my replies. The game now says the wording I choose does not change whether the resident continues. That is clear, but it leaves me with less reason to choose between the two replies.
+
+Both quit wishes remained. I stopped desktop because I did not want to work through the week for the vote; I stopped phone because I had just played the loop on desktop. Neither session reached 180 seconds, so no pulse was due or tested. The phone stopped before 60 seconds, so its first-minute checkpoint was untested.
+
+## 5. Confusion and clarity
+
+The notebook explains that its count covers facts that reached it and that it does not show residents’ feelings or trust. I understand those labels better. I still do not know why Hacer’s account of her niece did not appear as a learned story while her statement about Tarık added a line. I did not reach Sunday, so I cannot say what sitting, replying or passing news would do to the vote.
+
+The newspaper swap now says it exchanges the crosswords as a prank and may be witnessed. I did not perform it. The Tell panel explains the difference between passing something on as heard and asserting it as certain, and warns that a false story can cost trust. I passed on the water notice marked “sure”; Tarık said he was thinking about it. I saw no later consequence.
+
+My first desktop tap on “Go to the bakery” returned the room state, and after waiting I was still there. The retry visibly started the walk. I cannot tell why the first input did not produce visible movement. A later note command failed with a shell quoting error and was reissued successfully. A partial-text Feedback tap returned an explicit “not on the page” error; the exact named control worked on retry. Neither was a game outcome or a driver block.
+
+## 6. Device use
+
+**Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-001.png), the cream title page with the six-day premise, two unchecked four-week options and the red Begin button. I viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-002.png), the building beside the notebook. The notebook explanation was legible, but the top “next by 07:56” line was partly clipped at the upper edge; the paused-time message itself was readable.
+
+I used the order list, bakery and flat navigation, sits, both reply choices across two people, news, notebook, Tell, and Feedback. I did not reach the Sunday meeting.
+
+**Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-001.png), the title in one column with the Begin button visible; the lower explanatory paragraph continued behind the fixed button area. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-002.png) showed the building, tabs, first order and large action buttons. [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-003.png) showed Tarık’s conversation and readable action buttons; the message strip covered the top of the building drawing.
+
+I used Begin, bakery and flat travel, “Anything new?”, and Feedback. I did not inspect the phone notebook or Tell panel, so I cannot assess their layout.
+
+On both devices Feedback offered “I’m stopping” and “I’m confused.” I selected “I’m stopping,” saw it marked pressed, then used **Close feedback**, which returned me to the game menu; no Back control was offered in that dialog. I typed and submitted nothing and left recording and consent unchanged.
+
+## 7. Stop and return
+
+My exact stop words and reasons are in the diary above. Both were **BORED**. Desktop ended at 169.201 seconds and phone at 53.765 seconds; both remained on Monday.
+
+I would not return voluntarily as it stands. The notebook result answered part of the question that brought me back, and the new explanation makes the limits clear. I still do not see enough consequence in the conversations I reached to make me want to play six days for the vote. I would not leave it running. I would consider another evening if talking offered more distinct, visible consequences.
+
+## 8. Changes I would want
+
+1. Give sitting and replying a visible consequence I can understand before the Sunday vote.
+2. Make conversations produce more distinct outcomes.
+3. Show why a heard story does or does not enter the notebook.
+
+## 9. Compared with my last visit
+
+1. **Visible feeling or trust, or a line saying what each sit and reply did — partly met.** The game now explicitly says it does not show feelings or trust, and it explains that reply wording does not change the resident’s choice to continue. I still saw no clear effect of my sits or replies on Sunday.
+2. **Replies that differ, or a plain statement that they are templated — partly met.** Hacer said “I would rather leave it there”; Sevim said “I would rather we left it there.” The words differ slightly, but both ended the conversation. The game clearly says my choice of reply does not change whether the resident continues; it does not say the residents’ answers are templated.
+3. **Explain the swap, tighten day-one deadlines, and fix the desktop clipped banner — partly met.** The swap is explained as a crossword prank with a possible witness. The first two desktop deadlines were close, and I delivered both despite two sits, but I stopped with two orders outstanding; I did not complete the batch, so I cannot judge whether the full day is tighter. The paused-time message was readable in my desktop screenshot, but the separate “next by” line was partly clipped at the top.
+
+**New blocking asks:** None from what I reached. The similar conversation outcomes and lack of a visible effect remain my reasons not to return; I did not see the Sunday vote.
+
+I owned no server, browser process, branch or worktree, and touched no repository. The coordinator owns the two drivers and their cleanup.

@@ -1,0 +1,66 @@
+{
+  "time": "2026-10-31T11:02:07.801910+00:00",
+  "recordedPIDs": [
+    83179,
+    83150,
+    83152,
+    87624,
+    87600,
+    87602,
+    93760,
+    93741,
+    93743,
+    98492,
+    98456,
+    98458,
+    7675,
+    7652,
+    7654
+  ],
+  "all15RecordedPIDsAbsent": true,
+  "ports": [
+    {
+      "port": 22800,
+      "closed": true
+    },
+    {
+      "port": 22801,
+      "closed": true
+    },
+    {
+      "port": 22802,
+      "closed": true
+    },
+    {
+      "port": 22803,
+      "closed": true
+    },
+    {
+      "port": 22804,
+      "closed": true
+    },
+    {
+      "port": 22805,
+      "closed": true
+    },
+    {
+      "port": 22806,
+      "closed": true
+    },
+    {
+      "port": 22807,
+      "closed": true
+    },
+    {
+      "port": 22808,
+      "closed": true
+    },
+    {
+      "port": 22809,
+      "closed": true
+    }
+  ],
+  "lastActualReturn": "2026-10-31T11:01:06.244095+00:00",
+  "nextRoundNotBefore": "2026-10-31T11:16:06.244095+00:00",
+  "scope": "15 recorded model/driver identities and ten ports only. No full-round descendant journal and no signal sent."
+}

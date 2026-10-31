@@ -1,0 +1,112 @@
+[
+  {
+    "tester": "maya",
+    "device": "phone",
+    "source": "maya/phone/wall-clock.jsonl",
+    "line": 30,
+    "elapsed_s": 90.582,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on the phone. Hacer saw both choices but gave the familiar praise, and both women said Tarik is kind. The reply explanation and caretaker label are clearer, but I want to try the desktop now.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "maya",
+    "device": "desktop",
+    "source": "maya/desktop/wall-clock.jsonl",
+    "line": 24,
+    "elapsed_s": 77.058,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping on desktop. Tarik gave me the same ferry story and no news first. His refusal is worded a little differently, but I do not want to repeat this morning again tonight.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "jonas",
+    "device": "phone",
+    "source": "jonas/phone/wall-clock.jsonl",
+    "line": 19,
+    "elapsed_s": 53.765,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping phone at Monday 07:29. I know the loop from desktop and do not want to repeat it tonight. I selected stopping in Feedback and closed it without typing or submitting.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "jonas",
+    "device": "desktop",
+    "source": "jonas/desktop/wall-clock.jsonl",
+    "line": 53,
+    "elapsed_s": 169.2,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping desktop at Monday 08:07. The notebook moved after news, but I do not want six days of similar replies to reach the vote tonight. I selected stopping in Feedback and closed it without typing or submitting.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "leila",
+    "device": "phone",
+    "source": "leila/phone/wall-clock.jsonl",
+    "line": 37,
+    "elapsed_s": 86.239,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping the phone visit. The explanations are clearer and the notebook count moved, but the same flat replies leave me little reason to continue tonight. I will try the other device.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "leila",
+    "device": "desktop",
+    "source": "leila/desktop/wall-clock.jsonl",
+    "line": 35,
+    "elapsed_s": 89.307,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "Stopping desktop for tonight. Hacer reacted to my invented story and Sevim had a beautiful personal line, but the repeated gossip and near-identical refusal make me reluctant to replay the morning again. I would not leave it running.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "rosa",
+    "device": "phone",
+    "source": "rosa/phone/wall-clock.jsonl",
+    "line": 29,
+    "elapsed_s": 76.684,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I stop on the phone for tonight. I liked the ordinary jobs and hearing Tarik again. The news choices and prank are clearer, and I had no rereads. I would close it and return another evening.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "rosa",
+    "device": "desktop",
+    "source": "rosa/desktop/wall-clock.jsonl",
+    "line": 29,
+    "elapsed_s": 71.785,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I stop on the big screen for tonight. The notebook and tip explanation helped, and I liked hearing Hacer. I would return another evening to see the Sunday vote, and I would close it now.",
+    "reason": "TASTE"
+  },
+  {
+    "tester": "ivo",
+    "device": "phone",
+    "source": "ivo/phone/wall-clock.jsonl",
+    "line": 67,
+    "elapsed_s": 153.69,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping for now; the small jobs have begun to feel repetitive.",
+    "reason": "BORED"
+  },
+  {
+    "tester": "ivo",
+    "device": "desktop",
+    "source": "ivo/desktop/wall-clock.jsonl",
+    "line": 38,
+    "elapsed_s": 93.294,
+    "kind": "stop",
+    "op": "log",
+    "reaction": "I am stopping tonight; I have had enough of the repeated start and similar conversations.",
+    "reason": "BORED"
+  }
+]

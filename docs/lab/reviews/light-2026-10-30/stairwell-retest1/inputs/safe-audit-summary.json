@@ -1,0 +1,250 @@
+{
+  "source": "per-tester copied director-method qualifications",
+  "testers": {
+    "maya": {
+      "commandCounts": {
+        "read": 11,
+        "curl": 50
+      },
+      "commandExceptions": 0,
+      "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+      "actualTimedTags": {
+        "phone": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.024,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 63.077,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 90.582,
+            "reason": "BORED"
+          }
+        ],
+        "desktop": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.058,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 64.835,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 77.058,
+            "reason": "BORED"
+          }
+        ]
+      }
+    },
+    "jonas": {
+      "commandCounts": {
+        "read": 14,
+        "curl": 69,
+        "malformed_shell_failure": 1
+      },
+      "commandExceptions": 1,
+      "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+      "actualTimedTags": {
+        "desktop": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.05,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 65.483,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 169.2,
+            "reason": "BORED"
+          }
+        ],
+        "phone": [
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 53.765,
+            "reason": "BORED"
+          },
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.024,
+            "reason": null
+          }
+        ]
+      }
+    },
+    "leila": {
+      "commandCounts": {
+        "read": 14,
+        "curl": 68
+      },
+      "commandExceptions": 0,
+      "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+      "actualTimedTags": {
+        "phone": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.022,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 60.228,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 86.239,
+            "reason": "BORED"
+          }
+        ],
+        "desktop": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.033,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 63.208,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 89.307,
+            "reason": "BORED"
+          }
+        ]
+      }
+    },
+    "rosa": {
+      "commandCounts": {
+        "read": 29,
+        "curl": 54
+      },
+      "commandExceptions": 0,
+      "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+      "actualTimedTags": {
+        "phone": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.021,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 62.671,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 76.684,
+            "reason": "TASTE"
+          }
+        ],
+        "desktop": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.056,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 61.218,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 71.785,
+            "reason": "TASTE"
+          }
+        ]
+      }
+    },
+    "ivo": {
+      "commandCounts": {
+        "read": 2,
+        "curl": 101
+      },
+      "commandExceptions": 0,
+      "historyEvidenceScope": "Fullreadselfreported/completecommandstdoutcoverage; directmodeldeliverynotindependentlyshown",
+      "actualTimedTags": {
+        "phone": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.029,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 61.739,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 153.69,
+            "reason": "BORED"
+          }
+        ],
+        "desktop": [
+          {
+            "op": "shot",
+            "kind": "first_minute",
+            "elapsed_s": 60.053,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "first_minute",
+            "elapsed_s": 63.848,
+            "reason": null
+          },
+          {
+            "op": "log",
+            "kind": "stop",
+            "elapsed_s": 93.294,
+            "reason": "BORED"
+          }
+        ]
+      }
+    }
+  }
+}

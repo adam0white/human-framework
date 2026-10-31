@@ -1,0 +1,29 @@
+{
+  "time": "2026-10-31T11:57:10.341168+00:00",
+  "status": "Qualified completion; image-view evidence unverified",
+  "historyRead": {
+    "lineCount": 5,
+    "literalLinesCovered": 5,
+    "unreadRanges": [],
+    "allLinesCovered": true
+  },
+  "commandCounts": {
+    "read": 2,
+    "curl": 44,
+    "malformed_shell_failure": 1
+  },
+  "rawStops": {
+    "phone": 45.872,
+    "desktop": 86.007
+  },
+  "qualifications": [
+    "One phone Feedback apostrophe shell failure before curl, corrected and actual pressed/Notnow replies retained; not a game failure.",
+    "Reports all4manual title/gameplay images viewed, but Codex JSONL has no supported view_image schema. Do not independently claim viewing or general layout proof.",
+    "Phone automatic checkpoint after45.872stop is not continued play or first-minute reaction.",
+    "Desktop wait/shot/note commands overlapped in event timestamps. Agent/tool ordering and speed qualify pace observations; supplied gameclock for Fast note is historical, not current.",
+    "Neither session reached Day4order/Day13lunch; Derya/others returned later, not permanently empty garden.",
+    "Claim not-kind connection/repetition are player source leads; no invented character facts, automatic safe choices, difficulty or global clock retune.",
+    "Boris was genuinely cold on first phone session; desktop recognition is first-phone exposure, not prior lab history.",
+    "New blocking ask concrete decision sooner kept with all3rankedasks/fullconditionalreturn; after2iterations date open, no thirdpanel."
+  ]
+}

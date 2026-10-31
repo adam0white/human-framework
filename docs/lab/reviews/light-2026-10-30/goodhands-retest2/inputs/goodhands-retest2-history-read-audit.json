@@ -1,0 +1,191 @@
+[
+  {
+    "tester": "jonas",
+    "actualHistoryLines": 1062,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/own-history.md",
+          "limit": 300
+        },
+        "renderedFirst": 1,
+        "renderedLast": 300,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/own-history.md",
+          "offset": 301,
+          "limit": 380
+        },
+        "renderedFirst": 301,
+        "renderedLast": 680,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/own-history.md",
+          "offset": 681,
+          "limit": 400
+        },
+        "renderedFirst": 681,
+        "renderedLast": 1063,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "aisha",
+    "actualHistoryLines": 980,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/own-history.md",
+          "limit": 330
+        },
+        "renderedFirst": 1,
+        "renderedLast": 330,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/own-history.md",
+          "offset": 331,
+          "limit": 330
+        },
+        "renderedFirst": 331,
+        "renderedLast": 660,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/own-history.md",
+          "offset": 661,
+          "limit": 330
+        },
+        "renderedFirst": 661,
+        "renderedLast": 981,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "diego",
+    "actualHistoryLines": 1237,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/own-history.md",
+          "limit": 400
+        },
+        "renderedFirst": 1,
+        "renderedLast": 400,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/own-history.md",
+          "offset": 401,
+          "limit": 420
+        },
+        "renderedFirst": 401,
+        "renderedLast": 820,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/own-history.md",
+          "offset": 821,
+          "limit": 420
+        },
+        "renderedFirst": 821,
+        "renderedLast": 1238,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "rosa",
+    "actualHistoryLines": 2122,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+          "offset": 1,
+          "limit": 500
+        },
+        "renderedFirst": 1,
+        "renderedLast": 500,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+          "offset": 501,
+          "limit": 600
+        },
+        "renderedFirst": 501,
+        "renderedLast": 1100,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+          "offset": 1101,
+          "limit": 600
+        },
+        "renderedFirst": 1101,
+        "renderedLast": 1700,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+          "offset": 1701,
+          "limit": 450
+        },
+        "renderedFirst": 1701,
+        "renderedLast": 2123,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "elena",
+    "actualHistoryLines": 5,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/own-history.md"
+        },
+        "renderedFirst": 1,
+        "renderedLast": 6,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  }
+]

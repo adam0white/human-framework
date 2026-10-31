@@ -1,0 +1,1094 @@
+{
+  "note": "Every span is an exact substring of the named copied report at the given 1-based line and 0-based charStart. Labels and tags are editorial. Spans never contain | or a newline.",
+  "testers": {
+    "jonas": {
+      "tester": "Jonas Berg",
+      "report": "jonas/report.md",
+      "primaryReturnLocator": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 0,
+        "span": "I would come back another evening, but only to see whether the trial outcome punishes a high fee. I would not leave it running, and I would not return just for the fee, references or old case, because none of them pushed back."
+      },
+      "laterFullReturnLocator": {
+        "label": "later full return",
+        "line": 98,
+        "charStart": 36,
+        "span": "I would return another evening, but only to see whether the trial outcome punishes a high fee. I would not leave it running. I would not return for the fee, the references or the old case as they stand, because none of them pushed back. If the trial still shows no consequence for ₺9,700, I would not come back."
+      },
+      "laterExtraReturnSpans": [],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Make the fee refusable. Show where the family says no, or say plainly that it has no limit. I pushed to ₺9,700 and got the same line as at ₺9,400."
+        },
+        {
+          "line": 5,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "Restore the difference between a lone self-claim and a reference. One uncorroborated claim now reads as \"enough to believe\"."
+        },
+        {
+          "line": 6,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "Put the missing subtitles back under \"Call a reference\", \"Send for a trial\" and \"Keep the phone number\" on the phone. Also give a reason beside disabled buttons, and a visible cost or consequence for the old-case choice."
+        }
+      ],
+      "sectionEightAsks": [
+        {
+          "line": 101,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Show where the fee gets refused, or say the family has no limit."
+        },
+        {
+          "line": 102,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "Make a lone self-claim weigh less than a reference again, or say they weigh the same."
+        },
+        {
+          "line": 103,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "Add the missing phone subtitles, and give a reason beside disabled buttons and a visible cost to the old-case choice."
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "line": 101,
+            "charStart": 3,
+            "prefix": "1. ",
+            "span": "Show where the fee gets refused, or say the family has no limit.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 104.738 s)",
+            "line": 38,
+            "charStart": 30,
+            "span": "Fee 9400 accepted: Suna says more than we planned but we will manage, same words as 9200 last time. Still no refusal point. Ozlem also never asked for her own wage, just accepted 9000. Pushing further."
+          },
+          {
+            "label": "Later wording (diary 130.193 s)",
+            "line": 40,
+            "charStart": 12,
+            "span": "9700 accepted with the same line as 9400. No refusal at 9700 and no new text. The fee reaction is one fixed line, not a gradient. Taking the agreement to see the consequence."
+          },
+          {
+            "label": "Later wording (section 4)",
+            "line": 66,
+            "charStart": 4,
+            "span": "The fee never refused, even at ₺9,700."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 78,
+            "charStart": 4,
+            "span": "I could not tell where the fee stops being acceptable."
+          },
+          {
+            "label": "Later wording (section 9) first visit",
+            "line": 108,
+            "charStart": 74,
+            "span": "Partly met. The fee split and deposit are explained and shown in cash. The wage is stated per person. I found no limit on the fee up to ₺9,700."
+          },
+          {
+            "label": "Later wording (section 9) retest1",
+            "line": 113,
+            "charStart": 71,
+            "span": "Not met. ₺9,400 and ₺9,700 got the same \"more than we planned, but we will manage\" line, and no refusal appeared."
+          }
+        ],
+        "2": [
+          {
+            "line": 102,
+            "charStart": 3,
+            "prefix": "2. ",
+            "span": "Make a lone self-claim weigh less than a reference again, or say they weigh the same.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (section 2) desktop 30 s",
+            "line": 20,
+            "charStart": 15,
+            "span": "Gülce's lone self-claim now reads \"I believe she is patient\". Last time it said unsure."
+          },
+          {
+            "label": "Later wording (diary 52.053 s)",
+            "line": 33,
+            "charStart": 11,
+            "span": "The note now says one self-claim is enough for Nermin to believe it. Last visit the same sort of note said unsure. I dislike that: a lone claim is now belief. Checking Ozlem."
+          },
+          {
+            "label": "Later wording (diary 69.102 s)",
+            "line": 36,
+            "charStart": 11,
+            "span": "The note text for a reference and for a self-claim now ends the same way: enough to believe. Last visit own word counted less than a reference. That distinction I valued looks gone, at least for patience. Going to the fee."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 79,
+            "charStart": 4,
+            "span": "A lone claim and a reference carry the same weight in the notes."
+          },
+          {
+            "label": "Later wording (section 9) retest1",
+            "line": 115,
+            "charStart": 59,
+            "span": "Partly met. The note says one report is enough to believe or doubt. That is clear, but it also applies to a lone self-claim, which removes the distinction I valued."
+          },
+          {
+            "label": "Later wording (section 9) new blocking asks",
+            "line": 118,
+            "charStart": 2,
+            "span": "A lone self-claim now reads as belief. This is a step back from retest1, which said unsure."
+          }
+        ],
+        "3": [
+          {
+            "line": 103,
+            "charStart": 3,
+            "prefix": "3. ",
+            "span": "Add the missing phone subtitles, and give a reason beside disabled buttons and a visible cost to the old-case choice.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 15.204 s) phone",
+            "line": 55,
+            "charStart": 11,
+            "span": "Call a reference, Send for a trial and Keep the phone number have no subtitle text in the page again; Hale Erol shows At work until 09:00."
+          },
+          {
+            "label": "Later wording (diary 149.067 s)",
+            "line": 43,
+            "charStart": 12,
+            "span": "The old-case choice cost nothing visible: no cash change, and the text says the game has no step that sends the letter or pays. It is honest, but it makes the choice feel free. Opening the day notes, also new to me."
+          },
+          {
+            "label": "Later wording (diary 156.711 s)",
+            "line": 44,
+            "charStart": 12,
+            "span": "Buttons are disabled because Ozlem is placed, so no cause is shown beside them. Moving to Sebnem."
+          },
+          {
+            "label": "Later wording (section 5) disabled buttons",
+            "line": 80,
+            "charStart": 4,
+            "span": "Disabled buttons after placement say nothing about why. The banner only says I may check in by phone on Tuesday 3 November at 18:20."
+          },
+          {
+            "label": "Later wording (section 5) old case",
+            "line": 82,
+            "charStart": 4,
+            "span": "The old-case choice has no stated cost and the text says nothing was sent or paid."
+          },
+          {
+            "label": "Later wording (section 6) phone trouble",
+            "line": 91,
+            "charStart": 4,
+            "span": "Trouble seen: the three small buttons have no subtitles."
+          },
+          {
+            "label": "Later wording (section 6) phone unseen",
+            "line": 92,
+            "charStart": 4,
+            "span": "Unseen: I did not scroll the phone notes pane or reach placement or the trial there."
+          },
+          {
+            "label": "Later wording (section 9) retest1",
+            "line": 114,
+            "charStart": 159,
+            "span": "Partly met. The reach time is shown on the call screen and in the former-employer line. The three subtitles are still absent on the phone."
+          },
+          {
+            "label": "Later wording (section 9) new blocking asks, old case",
+            "line": 119,
+            "charStart": 2,
+            "span": "The old-case choice shows no cost."
+          },
+          {
+            "label": "Later wording (section 9) new blocking asks, disabled buttons",
+            "line": 120,
+            "charStart": 2,
+            "span": "Disabled buttons after placement give no reason."
+          }
+        ]
+      },
+      "unrankedLeads": [
+        {
+          "key": "salary-header-before-question",
+          "classification": "producer-new-blocker",
+          "target": "2026-11-03",
+          "spans": [
+            {
+              "label": "Later wording (diary 139.293 s) desktop",
+              "line": 41,
+              "charStart": 12,
+              "span": "Odd: the header on Ozlem now says 8,500 a month though I never asked her wage and placed her at 9,000. Now opening the old-case button, which I never reached before."
+            },
+            {
+              "label": "Later wording (diary 33.277 s) phone",
+              "line": 59,
+              "charStart": 11,
+              "span": "Her wage is 8,500, the same figure the desktop header showed unasked. So that header was her real wage leaking early. A family call arrived at 09:00. Opening Feedback."
+            },
+            {
+              "label": "Later wording (section 5)",
+              "line": 81,
+              "charStart": 4,
+              "span": "Özlem's header on desktop showed \"₺8,500 a month\" before I asked. In session B her stated wage was ₺8,500, which suggests the header showed her real wage early. This is a guess."
+            },
+            {
+              "label": "Later wording (section 9) new blocking asks",
+              "line": 121,
+              "charStart": 2,
+              "span": "Özlem's header showed ₺8,500 before I asked her wage."
+            }
+          ]
+        }
+      ],
+      "openingEqualsLater": false
+    },
+    "aisha": {
+      "tester": "Aisha Rahman",
+      "report": "aisha/report.md",
+      "primaryReturnLocator": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 22,
+        "span": "Yes, I would come back another evening, but only if I could actually send the repair letter for the old case, and the applicants stopped giving each other's sentences. I would not leave it running."
+      },
+      "laterFullReturnLocator": {
+        "label": "later full return",
+        "line": 128,
+        "charStart": 36,
+        "span": "Yes, I would come back another evening, but only if I could actually send the repair letter for the old case, and the applicants stopped giving each other's sentences. I would not leave it running."
+      },
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 7) leave it running",
+          "line": 129,
+          "charStart": 24,
+          "span": "No. The clock runs while I read, and that does not suit me. It would not wait for me."
+        },
+        {
+          "label": "Later wording (section 7) another evening",
+          "line": 130,
+          "charStart": 23,
+          "span": "Yes, on those two conditions. The notes that explain themselves and show candidates' own words would bring me back."
+        }
+      ],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Let me send the old-case letter, or remove the \"Correct the agency record and write to the worker first\" choice. Nermin now says plainly that nothing can be sent, which is honest, but the choice is still offered."
+        },
+        {
+          "line": 5,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "Give each applicant their own answers. \"I have worked as a nanny.\" and \"That job has ended. I am applying for a new job with its own written agreement.\" came out word for word from several people on both devices."
+        },
+        {
+          "line": 6,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "Stop the clock while I read. \"Gülce Aksoy is waiting while you read.\" is still there, and time still ran."
+        }
+      ],
+      "sectionEightAsks": [
+        {
+          "line": 133,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Let me send the repair letter, or stop offering the repair choice. If it stays, give me the step that sends it."
+        },
+        {
+          "line": 134,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "Give each applicant their own wording for \"what work did you do\" and \"has that job ended\". The shared sentences made three different people sound the same."
+        },
+        {
+          "line": 135,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "Pause the clock while I read the notes and the card."
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "line": 133,
+            "charStart": 3,
+            "prefix": "1. ",
+            "span": "Let me send the repair letter, or stop offering the repair choice. If it stays, give me the step that sends it.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 12.429 s)",
+            "line": 33,
+            "charStart": 10,
+            "span": "The old case again. Last time the letter could not be sent; I want to see if it can now."
+          },
+          {
+            "label": "Later wording (diary 19.89 s)",
+            "line": 35,
+            "charStart": 9,
+            "span": "It now says plainly this game has no step that sends the letter. Honest, but I still cannot send it. Following Özlem this time."
+          },
+          {
+            "label": "Later wording (diary 148.962 s)",
+            "line": 56,
+            "charStart": 34,
+            "span": "Sebnem note now lists her own words next to Melek and says her account was middling, not clearly for or against, so still doubt. I can see why. That is what I asked for before: her answer counted and was shown. I still cannot send the old-case letter."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 105,
+            "charStart": 4,
+            "span": "Why the repair choice is still offered when nothing can be sent."
+          },
+          {
+            "label": "Later wording (section 9) retest ask 1",
+            "line": 140,
+            "charStart": 4,
+            "span": "Not met. The text is honest now (\"This game has no step that sends the letter or makes a payment, so nothing has been sent or paid\"), but I cannot send it."
+          },
+          {
+            "label": "Later wording (section 9) new blocking asks",
+            "line": 152,
+            "charStart": 25,
+            "span": "One. The unsendable old-case letter is still the thing that would stop me returning. It is not new in kind, only now stated plainly."
+          }
+        ],
+        "2": [
+          {
+            "line": 134,
+            "charStart": 3,
+            "prefix": "2. ",
+            "span": "Give each applicant their own wording for \"what work did you do\" and \"has that job ended\". The shared sentences made three different people sound the same.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 48.264 s)",
+            "line": 42,
+            "charStart": 10,
+            "span": "Thin again: I have worked as a nanny. Asking whether that job ended."
+          },
+          {
+            "label": "Later wording (diary 67.19 s) phone",
+            "line": 71,
+            "charStart": 9,
+            "span": "The same thin nanny line again, now from Sebnem on the phone. Answering the Arslans."
+          },
+          {
+            "label": "Later wording (diary 83.632 s) phone",
+            "line": 77,
+            "charStart": 10,
+            "span": "Same stock job-ended sentence as on the laptop. Checking the interview layout on the phone."
+          },
+          {
+            "label": "Later wording (diary 122.652 s)",
+            "line": 53,
+            "charStart": 11,
+            "span": "Same sentence about the job ending as Ozlem used, word for word. Now asking what she does if she breaks something, which is about repair."
+          },
+          {
+            "label": "Later wording (diary 181.251 s)",
+            "line": 59,
+            "charStart": 11,
+            "span": "All three applicants answer what work did you do with the very same I have worked as a nanny. Thin, and the same sentence."
+          },
+          {
+            "label": "Later wording (section 4)",
+            "line": 96,
+            "charStart": 4,
+            "span": "Applicants share lines: \"I have worked as a nanny.\" (Gülce, Özlem, Şebnem) and \"That job has ended. I am applying for a new job with its own written agreement.\" (Özlem, Şebnem)."
+          },
+          {
+            "label": "Later wording (section 4) off-question answer",
+            "line": 97,
+            "charStart": 4,
+            "span": "Gülce answered \"What if you break something?\" with \"Their money stays separate from mine.\" It was slightly off the question."
+          },
+          {
+            "label": "Later wording (section 9) retest ask 2",
+            "line": 142,
+            "charStart": 4,
+            "span": "Partly met. Özlem's reference gave a real fact (work passed on as agreed). Özlem's own answer on the A laptop was the stock job-ended sentence, and Şebnem said it word for word on both devices."
+          },
+          {
+            "label": "Later wording (section 9) retest ask 3",
+            "line": 145,
+            "charStart": 4,
+            "span": "Not met. Gülce, Özlem and Şebnem all said it, on both devices. Some other answers were richer (patience, receipts, \"fixed quietly\")."
+          }
+        ],
+        "3": [
+          {
+            "line": 135,
+            "charStart": 3,
+            "prefix": "3. ",
+            "span": "Pause the clock while I read the notes and the card.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (section 4) clock",
+            "line": 100,
+            "charStart": 13,
+            "span": "\"Gülce Aksoy is waiting while you read.\" is still there, so the clock runs while I read. The menu (\"Paused while the menu is open.\") and Feedback (\"Paused for Feedback.\") pause it."
+          },
+          {
+            "label": "Later wording (section 7) leave it running",
+            "line": 129,
+            "charStart": 24,
+            "span": "No. The clock runs while I read, and that does not suit me. It would not wait for me."
+          },
+          {
+            "label": "Later wording (section 9) first-round ask",
+            "line": 149,
+            "charStart": 4,
+            "span": "Not met. \"Gülce Aksoy is waiting while you read.\" is still there. Only the menu and Feedback pause it."
+          }
+        ]
+      },
+      "unrankedLeads": [],
+      "openingEqualsLater": true
+    },
+    "diego": {
+      "tester": "Diego Silva",
+      "report": "diego/report.md",
+      "primaryReturnLocator": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 34,
+        "span": "I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running."
+      },
+      "laterFullReturnLocator": {
+        "label": "later full return",
+        "line": 94,
+        "charStart": 34,
+        "span": "I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running."
+      },
+      "laterExtraReturnSpans": [],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Make a doubtful or unchecked promise cost something I can feel. Both devices got instant agreement with no haggling."
+        },
+        {
+          "line": 5,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "Do not let the deposit cover rent so early. Rent was covered by 09:19 on desktop and 09:55 on phone, before 10:00 Monday. After that I only waited."
+        },
+        {
+          "line": 6,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "Give incoming calls more than Promise, Decline or Finish. Family calls still offer three buttons."
+        }
+      ],
+      "sectionEightAsks": [
+        {
+          "line": 97,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Make a doubtful or unchecked promise cost something I can feel."
+        },
+        {
+          "line": 98,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "Do not let the deposit cover rent so early."
+        },
+        {
+          "line": 99,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "Give incoming calls more than Promise, Decline or Finish."
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "line": 97,
+            "charStart": 3,
+            "prefix": "1. ",
+            "span": "Make a doubtful or unchecked promise cost something I can feel.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 54.903 s) desktop",
+            "line": 31,
+            "charStart": 11,
+            "span": "Unchecked patient promise, family agreed instantly again. No haggling."
+          },
+          {
+            "label": "Later wording (diary 60.873 s) desktop first_minute",
+            "line": 32,
+            "charStart": 42,
+            "span": "Skipped the reference and promised patient unchecked; the family agreed in seconds and cash went to 5250 by 09:19, over rent before 10 on Monday. Worse than last time. No bite for the false promise yet; I do not know whether the trial will bite later. Calls are still Answer, Say still interviewing, Promise, Finish."
+          },
+          {
+            "label": "Later wording (diary 55.026 s) phone",
+            "line": 52,
+            "charStart": 11,
+            "span": "The reference gave a weaker answer than the one I remember; Nermin is still unsure. Good, that is a real middle."
+          },
+          {
+            "label": "Later wording (diary 75.202 s) phone first_minute",
+            "line": 55,
+            "charStart": 32,
+            "span": "Phone fits fine. This time I opened the old case and chose to correct it; the text said the game has no step that sends the letter, which is honest. The reference gave only a weak answer and Nermin stayed unsure, which is better than an instant yes. But I promised patient on weak evidence and honest unchecked, and the family agreed instantly and cash hit 5250 by 09:55. Still no bite."
+          },
+          {
+            "label": "Later wording (section 4)",
+            "line": 68,
+            "charStart": 20,
+            "span": "the family agreed instantly in both sessions, whatever evidence I had. Rent was covered within minutes of starting. After that I waited."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 78,
+            "charStart": 15,
+            "span": "whether a trial result will ever punish a false promise. I did not reach one."
+          },
+          {
+            "label": "Later wording (section 9) retest1 ask 1",
+            "line": 103,
+            "charStart": 49,
+            "span": "did not meet it. On desktop the unchecked promise, and on phone the doubtful one, were both accepted instantly with no cost."
+          }
+        ],
+        "2": [
+          {
+            "line": 98,
+            "charStart": 3,
+            "prefix": "2. ",
+            "span": "Do not let the deposit cover rent so early.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 60.873 s) desktop first_minute",
+            "line": 32,
+            "charStart": 42,
+            "span": "Skipped the reference and promised patient unchecked; the family agreed in seconds and cash went to 5250 by 09:19, over rent before 10 on Monday. Worse than last time. No bite for the false promise yet; I do not know whether the trial will bite later. Calls are still Answer, Say still interviewing, Promise, Finish."
+          },
+          {
+            "label": "Later wording (diary 183.863 s) desktop pulse",
+            "line": 40,
+            "charStart": 40,
+            "span": "I promised an unchecked trait and nothing bit; rent was covered by 09:19. Now I am waiting with nothing to touch while a slow clock crawls, even on Fast."
+          },
+          {
+            "label": "Later wording (diary 75.202 s) phone first_minute",
+            "line": 55,
+            "charStart": 32,
+            "span": "Phone fits fine. This time I opened the old case and chose to correct it; the text said the game has no step that sends the letter, which is honest. The reference gave only a weak answer and Nermin stayed unsure, which is better than an instant yes. But I promised patient on weak evidence and honest unchecked, and the family agreed instantly and cash hit 5250 by 09:55. Still no bite."
+          },
+          {
+            "label": "Later wording (section 9) retest1 ask 2",
+            "line": 104,
+            "charStart": 60,
+            "span": "did not meet it, and it was earlier. Rent was covered at 09:19 on desktop and 09:55 on phone, against 10:04 last time."
+          },
+          {
+            "label": "Later wording (section 9) first report ask 1",
+            "line": 108,
+            "charStart": 89,
+            "span": "did not meet it, for the reasons in retest1 asks 1 and 2."
+          }
+        ],
+        "3": [
+          {
+            "line": 99,
+            "charStart": 3,
+            "prefix": "3. ",
+            "span": "Give incoming calls more than Promise, Decline or Finish.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 26.175 s) desktop",
+            "line": 27,
+            "charStart": 11,
+            "span": "Call menu is still three buttons."
+          },
+          {
+            "label": "Later wording (diary 82.067 s) desktop",
+            "line": 35,
+            "charStart": 11,
+            "span": "Same Promise, Decline, Finish menu as last time."
+          },
+          {
+            "label": "Later wording (diary 162.305 s) phone",
+            "line": 61,
+            "charStart": 12,
+            "span": "Same three buttons again. Finishing."
+          },
+          {
+            "label": "Later wording (diary 60.873 s) desktop first_minute",
+            "line": 32,
+            "charStart": 42,
+            "span": "Skipped the reference and promised patient unchecked; the family agreed in seconds and cash went to 5250 by 09:19, over rent before 10 on Monday. Worse than last time. No bite for the false promise yet; I do not know whether the trial will bite later. Calls are still Answer, Say still interviewing, Promise, Finish."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 75,
+            "charStart": 13,
+            "span": "the Kaya call now names the plate-throwing, so I know what patience is for."
+          },
+          {
+            "label": "Later wording (section 9) retest1 ask 3",
+            "line": 105,
+            "charStart": 65,
+            "span": "did not meet it. The Arslan and Kaya call menus are unchanged."
+          }
+        ]
+      },
+      "unrankedLeads": [
+        {
+          "key": "fast-pace-not-sticking-and-missing-skip",
+          "classification": "source-annoyance",
+          "target": "2026-11-03",
+          "spans": [
+            {
+              "label": "Later wording (diary 145.951 s) desktop",
+              "line": 38,
+              "charStart": 12,
+              "span": "Nothing to touch; the clock is slow and no Skip is offered. Opening the menu."
+            },
+            {
+              "label": "Later wording (diary 148.509 s) desktop",
+              "line": 39,
+              "charStart": 12,
+              "span": "Trying Fast to reach the trial result."
+            },
+            {
+              "label": "Later wording (diary 189.978 s) desktop",
+              "line": 42,
+              "charStart": 12,
+              "span": "Pace shows nothing pressed now; my Fast did not stick. Opening Feedback."
+            },
+            {
+              "label": "Later wording (section 5) Fast",
+              "line": 76,
+              "charStart": 17,
+              "span": "on desktop the Fast pace showed as pressed. After closing and reopening the menu nothing was pressed, and the clock still crawled."
+            },
+            {
+              "label": "Later wording (section 5) Skip",
+              "line": 77,
+              "charStart": 17,
+              "span": "the Skip button disappeared when the clock went slow, and I was left with nothing to touch."
+            },
+            {
+              "label": "Later wording (section 9) new blocking asks",
+              "line": 114,
+              "charStart": 0,
+              "span": "New blocking asks this time: none beyond the three above. The Fast pace not sticking and the missing Skip are annoyances, not reasons I would stay away."
+            }
+          ]
+        }
+      ],
+      "openingEqualsLater": true
+    },
+    "rosa": {
+      "tester": "Rosa Alvarez",
+      "report": "rosa/report.md",
+      "primaryReturnLocator": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 34,
+        "span": "I would come back another evening on the big screen, but only if the long paragraph that explains how Nermin weighs an answer is shortened. I would not leave it running; I would close it."
+      },
+      "laterFullReturnLocator": {
+        "label": "later full return",
+        "line": 139,
+        "charStart": 34,
+        "span": "Yes, another evening, on the big screen. I would come back to see whether Özlem or the Kaya family gets a good match. My condition is that the paragraph about weighing answers is cut to one short sentence. If it stays as long as it is now, I would still come back, but I would stop reading each card after the first line, and I might not get far. I would not leave it running; I would close it, because the game needs my choices and I read slowly."
+      },
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 3) phone stop",
+          "line": 57,
+          "charStart": 26,
+          "span": "I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back. (11:58)"
+        },
+        {
+          "label": "Later wording (section 9) new this time",
+          "line": 160,
+          "charStart": 2,
+          "span": "The long weighing paragraph is new on the card and made me reread on both devices. It is the one thing that would stop me returning if it stays as it is."
+        }
+      ],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Shorten the \"Nermin received…, She weighs each account by how strongly it spoke…\" paragraph under each quality. The one-line reading above it already says it, for example \"I doubt that the worker is patient when someone needs time.\""
+        },
+        {
+          "line": 5,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "Replace the six \"You have not asked yet.\" lines on a new applicant card with one line."
+        },
+        {
+          "line": 6,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "After a placement, say plainly what to do while waiting. On the phone the Next line hinted at a check-in call, but the screen still read as nothing to do."
+        }
+      ],
+      "sectionEightAsks": [
+        {
+          "line": 143,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Shorten the weighing paragraph under each quality to one short sentence, or hide it behind a \"Why?\" button."
+        },
+        {
+          "line": 144,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "Collapse the six \"You have not asked yet.\" lines into one line on a new applicant card."
+        },
+        {
+          "line": 145,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "After a placement, say plainly what to do while waiting, and say what the ◐ and ◌ marks mean on the bench."
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "line": 143,
+            "charStart": 3,
+            "prefix": "1. ",
+            "span": "Shorten the weighing paragraph under each quality to one short sentence, or hide it behind a \"Why?\" button.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 74.6 s) desktop want_quit",
+            "line": 67,
+            "charStart": 30,
+            "span": "I read the long weighing paragraph twice on the desktop: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it. Too many ideas in one paragraph. Same paragraph as on the phone, so it is not a screen size problem. I skip it and keep playing. (09:29)"
+          },
+          {
+            "label": "Later wording (diary 179.6 s) phone want_quit",
+            "line": 54,
+            "charStart": 31,
+            "span": "Second reread. The paragraph: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. Too long, too abstract. I only needed: she said she is angry, so I doubt she is patient. I would stop reading here, but the short reading above it was clear, so I keep going a little. (11:52)"
+          },
+          {
+            "label": "Later wording (section 4)",
+            "line": 82,
+            "charStart": 2,
+            "span": "The long weighing paragraph that appears on every card after an interview."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 102,
+            "charStart": 2,
+            "span": "The weighing paragraph made me reread on both devices. Quoted: \"She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. One account is evidence, not proof.\""
+          },
+          {
+            "label": "Later wording (section 9) first report ask 1",
+            "line": 150,
+            "charStart": 46,
+            "span": "Met. Every reading now gives a short reason, such as \"I doubt that the worker is patient when someone needs time\". The paragraph under it is too long, but the reason is there."
+          },
+          {
+            "label": "Later wording (section 9) new this time",
+            "line": 160,
+            "charStart": 2,
+            "span": "The long weighing paragraph is new on the card and made me reread on both devices. It is the one thing that would stop me returning if it stays as it is."
+          }
+        ],
+        "2": [
+          {
+            "line": 144,
+            "charStart": 3,
+            "prefix": "2. ",
+            "span": "Collapse the six \"You have not asked yet.\" lines into one line on a new applicant card.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 156.6 s) phone",
+            "line": 52,
+            "charStart": 9,
+            "span": "Gulce card is mostly empty: You have not asked yet, six times. Clear. I interview her."
+          },
+          {
+            "label": "Later wording (section 4)",
+            "line": 83,
+            "charStart": 2,
+            "span": "The six \"You have not asked yet.\" lines on an unasked card."
+          },
+          {
+            "label": "Later wording (section 9) first report ask 3",
+            "line": 152,
+            "charStart": 134,
+            "span": "Partly met. The Next line on the phone read in full at 68 s. The \"You have not asked yet.\" sentence still repeats six times on a new card. I did not re-check the size of the picture beyond a-002."
+          }
+        ],
+        "3": [
+          {
+            "line": 145,
+            "charStart": 3,
+            "prefix": "3. ",
+            "span": "After a placement, say plainly what to do while waiting, and say what the ◐ and ◌ marks mean on the bench.",
+            "label": "Later wording (section 8)"
+          },
+          {
+            "label": "Later wording (diary 68 s) phone",
+            "line": 45,
+            "charStart": 6,
+            "span": "Rent is paid in about a minute. New: the Next line says I can check in by phone on a placed worker at Tuesday 18:20. That is a hint about what to do while waiting."
+          },
+          {
+            "label": "Later wording (diary 73 s) phone",
+            "line": 46,
+            "charStart": 6,
+            "span": "Last time I only waited. Let me look at Families…"
+          },
+          {
+            "label": "Later wording (diary 80 s) phone",
+            "line": 47,
+            "charStart": 6,
+            "span": "Nothing else to do. I skip to the next family call."
+          },
+          {
+            "label": "Later wording (diary 100.7 s) phone",
+            "line": 51,
+            "charStart": 9,
+            "span": "The little half-circle is new. I guess it means they are tired of waiting. Guessing. I open Gülce."
+          },
+          {
+            "label": "Later wording (section 5) bench marks",
+            "line": 103,
+            "charStart": 2,
+            "span": "The half-circle (◐) and the empty circle (◌) beside names on the phone bench. I guessed they show waiting time. Nothing on screen told me what they mean."
+          },
+          {
+            "label": "Later wording (section 9) retest1 ask 1",
+            "line": 155,
+            "charStart": 64,
+            "span": "Partly met. On the phone, the Next line said I can check in by phone on a placed worker at Tuesday 18:20, which is a hint. After that I read \"nothing else to do\" and skipped. I did not see a fuller instruction."
+          }
+        ]
+      },
+      "unrankedLeads": [
+        {
+          "key": "bench-marks-meaning",
+          "classification": "source-observation",
+          "target": "2026-11-03",
+          "spans": [
+            {
+              "label": "Later wording (diary 100.7 s) phone",
+              "line": 51,
+              "charStart": 9,
+              "span": "The little half-circle is new. I guess it means they are tired of waiting. Guessing. I open Gülce."
+            },
+            {
+              "label": "Later wording (section 5)",
+              "line": 103,
+              "charStart": 2,
+              "span": "The half-circle (◐) and the empty circle (◌) beside names on the phone bench. I guessed they show waiting time. Nothing on screen told me what they mean."
+            },
+            {
+              "label": "Later wording (section 8)",
+              "line": 145,
+              "charStart": 3,
+              "span": "After a placement, say plainly what to do while waiting, and say what the ◐ and ◌ marks mean on the bench."
+            }
+          ]
+        }
+      ],
+      "openingEqualsLater": false
+    },
+    "elena": {
+      "tester": "Elena Dimitrova",
+      "report": "elena/report.md",
+      "primaryReturnLocator": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 35,
+        "span": "Maybe on the phone, another evening, but only if a new game gave me different people. If it is the same Gülce, Şebnem and Özlem with the same words again, no."
+      },
+      "laterFullReturnLocator": {
+        "label": "later full return",
+        "line": 82,
+        "charStart": 14,
+        "span": "\"Maybe on the phone, another evening, but only if a new game gave me different people. If it is the same Gülce, Şebnem and Özlem with the same words again, no.\" I would not leave it running in the background. I would come back another evening only on that condition."
+      },
+      "laterExtraReturnSpans": [],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "charStart": 3,
+          "prefix": "1. ",
+          "span": "Make a new game actually new. On the laptop I got the same names, the same reference quotes, the same families and the same 08:37 start as on the phone."
+        },
+        {
+          "line": 5,
+          "charStart": 3,
+          "prefix": "2. ",
+          "span": "When a choice like \"Correct the agency record\" cannot do anything yet, tell me before I choose. Do not tell me afterwards that no step sends the letter."
+        },
+        {
+          "line": 6,
+          "charStart": 3,
+          "prefix": "3. ",
+          "span": "Reword \"the wage is ₺9,000 and so is the fee\". Also explain why Özlem's card says ₺8,500 a month when I agreed to ₺9,000."
+        }
+      ],
+      "sectionEightAsks": [],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 2) laptop",
+            "line": 20,
+            "charStart": 29,
+            "span": "I recognised everything at once. Same three names (Gülce, Şebnem, Özlem), the same Arslan request and the same 08:37 start. I am confident the names matched. I cannot tell whether the people behind them were identical."
+          },
+          {
+            "label": "Later wording (section 3) laptop note about 20 s",
+            "line": 31,
+            "charStart": 20,
+            "span": "I recognised the same names, the same Arslan request and the same 08:37 start."
+          },
+          {
+            "label": "Later wording (section 3) laptop note about 50 s",
+            "line": 32,
+            "charStart": 20,
+            "span": "Hale's reference answer was word for word the same as on the phone. That repeats a step I already did."
+          },
+          {
+            "label": "Later wording (section 3) laptop first_minute 69 s",
+            "line": 33,
+            "charStart": 23,
+            "span": "First minute on the laptop: it feels like a replay of my phone evening, same people and same answers. Slow pace helps me read. I know already that Özlem will be my nanny, so the suspense is gone."
+          },
+          {
+            "label": "Later wording (section 3) laptop want_quit 127 s",
+            "line": 37,
+            "charStart": 27,
+            "span": "The Kaya family is calling, the same family that called on my phone. It is the same story again, so I already know what comes next. I would close the laptop here."
+          },
+          {
+            "label": "Later wording (section 3) laptop stop 138 s",
+            "line": 38,
+            "charStart": 22,
+            "span": "I stop here. The laptop game started with the same names, the same reference words and the same Kaya call as my phone game. I placed Özlem again and covered the rent again. Doing a finished thing twice is what I like least."
+          },
+          {
+            "label": "Later wording (section 4)",
+            "line": 49,
+            "charStart": 4,
+            "span": "On the laptop, the same story played again."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 3) phone pulse 171 s",
+            "line": 25,
+            "charStart": 19,
+            "span": "The old-case answer says the game has no step that sends the letter, so nothing happened. That undercuts the choice; I wanted to see a consequence. Placing Özlem felt good though."
+          },
+          {
+            "label": "Later wording (section 4)",
+            "line": 47,
+            "charStart": 4,
+            "span": "The old case gave no consequence."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 3) laptop 110 s",
+            "line": 34,
+            "charStart": 10,
+            "span": "Promising patient and honest this time, two qualities instead of one. Same fee sentence as on the phone; it still reads oddly to me."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 59,
+            "charStart": 4,
+            "span": "\"Wage ₺9,000 and so is the fee\" is ambiguous."
+          },
+          {
+            "label": "Later wording (section 5) card",
+            "line": 60,
+            "charStart": 4,
+            "span": "The ₺8,500 shown on Özlem's card does not match the agreed ₺9,000."
+          },
+          {
+            "label": "Later wording (section 3) phone tap notes, producer says not word for word",
+            "line": 28,
+            "charStart": 58,
+            "span": "the wage gap is my fee (a guess)"
+          }
+        ]
+      },
+      "unrankedLeads": [
+        {
+          "key": "disabled-style-menu-arrival-clock",
+          "classification": "source-observation",
+          "target": "2026-11-03",
+          "spans": [
+            {
+              "label": "Later wording (section 5) disabled buttons",
+              "line": 62,
+              "charStart": 4,
+              "span": "On the phone, dashed disabled buttons looked usable."
+            },
+            {
+              "label": "Later wording (section 5) clock",
+              "line": 63,
+              "charStart": 4,
+              "span": "The clock kept running while I read, unless I was in a call or the menu."
+            },
+            {
+              "label": "Later wording (section 6) phone trouble",
+              "line": 70,
+              "charStart": 85,
+              "span": "Trouble I saw: a skip disappeared as I tapped it, and the clock ran on while the menu was opening."
+            },
+            {
+              "label": "Later wording (section 3) phone tap notes, producer says not word for word",
+              "line": 28,
+              "charStart": 230,
+              "span": "the clock jumped while I was reading; a skip vanished under my finger; the clock reached 14:46 before the menu opened, and I missed Hülya arriving."
+            }
+          ]
+        },
+        {
+          "key": "feedback-stop-labels-clarity",
+          "classification": "clarity-preference",
+          "target": "2026-11-10",
+          "spans": [
+            {
+              "label": "Later wording (section 5) Feedback labels",
+              "line": 61,
+              "charStart": 4,
+              "span": "Both \"I'd stop here\" and \"I'm stopping\" are offered in Feedback, and they look like the same thing."
+            }
+          ]
+        }
+      ],
+      "openingEqualsLater": false
+    }
+  }
+}

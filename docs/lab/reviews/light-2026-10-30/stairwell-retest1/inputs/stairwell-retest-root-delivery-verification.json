@@ -1,0 +1,96 @@
+{
+  "time": "2026-10-31T09:51:11.811183+00:00",
+  "source": "afa4bdfdb5f7638633662c744b5f324121adb837",
+  "main": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+  "identities": [
+    {
+      "sha": "afa4bdfdb5f7638633662c744b5f324121adb837",
+      "signatureVerified": true,
+      "tree": "b65defc7d99f366b1ee7aaf2955331a3c3bc87be",
+      "trailer": true
+    },
+    {
+      "sha": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+      "signatureVerified": true,
+      "tree": "b65defc7d99f366b1ee7aaf2955331a3c3bc87be",
+      "trailer": true
+    }
+  ],
+  "fetchQualification": "Initial Python urllib release request returned HTTP403 before asset checks. Curl used for fresh verification; no game/browser conclusion from that client rejection.",
+  "release": {
+    "app": "0.1.0",
+    "framework": "4.14.0",
+    "commit": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+    "dirty": false
+  },
+  "assets": [
+    {
+      "path": "assets/main-CJjIAQ6N.css",
+      "sha256": "74f060ecdeed31fa711f05f8e131ef0b5504f684c1ac26b74f4b8f8755b9e298",
+      "bytes": 22853
+    },
+    {
+      "path": "assets/main-Cwzjp80S.js",
+      "sha256": "cd8a31785d02d17dfa3710c178453bb474f2f84629b21b5df5dd68ba9565e069",
+      "bytes": 1176188
+    },
+    {
+      "path": "assets/native-owner.worker-8A1TMOXS.js",
+      "sha256": "65abea2556567c11b8c0a7eabba8a1ae5b4b928dce4deec49e1bc7387182f85d",
+      "bytes": 1031538
+    },
+    {
+      "path": "assets/native-storage.worker-C_jzLg0k.js",
+      "sha256": "29981013aab2c4dd1711355cb0f7f717f86c728c82321859b828dbdd3a42df9e",
+      "bytes": 846369
+    }
+  ],
+  "sourceCI": [
+    {
+      "conclusion": "success",
+      "databaseId": 41165549616,
+      "headSha": "afa4bdfdb5f7638633662c744b5f324121adb837",
+      "status": "completed"
+    }
+  ],
+  "mainCI": [
+    {
+      "conclusion": "success",
+      "databaseId": 41168193698,
+      "headSha": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+      "status": "completed"
+    }
+  ],
+  "scope": "Fresh ordinary retest source/live identity gate only; broader browser/native/file/font proof and player acceptance remain separate. No dispatch.",
+  "reviewedBodies": [
+    {
+      "path": "HANDOFF.md",
+      "sha256": "e3c91dc597bb354a2edea543fb7d76a643891e340c997f5b21a7fd86853b47c2"
+    },
+    {
+      "path": "docs/design.md",
+      "sha256": "ba3e2510d20c496e011e468d2e8f794dbfe6fbb58a932ffbaebc66deb1473878"
+    },
+    {
+      "path": "src/sim/hf-game.ts",
+      "sha256": "3b71a81af182ea0f8e76f708cb997bc8eed4664ab10848ac42df05ee64769bff"
+    },
+    {
+      "path": "src/ui/app.ts",
+      "sha256": "d7621caf6733daa10f1123771412aa008e4e5ddf14a0f6a2ad0bbdaafec1baa0"
+    },
+    {
+      "path": "src/ui/plain-guidance.ts",
+      "sha256": "526f21dad6f82fce2efb958660058116d26d17d52e77015fb24d5380963dd39d"
+    },
+    {
+      "path": "src/ui/style.css",
+      "sha256": "a9cb271faa74cc5fcaccfab87045eaba6eee4683a751f264a3a2e254d6efc849"
+    },
+    {
+      "path": "test/plain-guidance.test.ts",
+      "sha256": "c3ccc84461dbe57c87e0d2aed5ff9c6a0e7b83c80368e074bb2fcaef38ab4b8a"
+    }
+  ],
+  "reviewScope": "Full exact Code policy CLEAR and prior187 FIX, exact Opus source CLEAR and direct full-five-report player addendum read by root. Earlier unauthorized Opus subreader/partial read failure retained; addendum supplies separate direct read. Review headers with Oct30 date remain as producer wrote them, not root clock evidence."
+}
