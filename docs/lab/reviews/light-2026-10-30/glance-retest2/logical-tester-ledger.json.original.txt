@@ -1,0 +1,318 @@
+[
+ {
+  "id": "F-2551",
+  "tester": "Mei Tan",
+  "game": "glance",
+  "date": "2026-10-31",
+  "exposure": "standing player, second retest after fixes",
+  "deviceOrder": [
+   "desktop",
+   "phone"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "desktop": {
+    "elapsed_s": 213.73,
+    "reason": "BORED",
+    "game_clock": "Tue 01:36",
+    "rawStopReaction": "Stopping on Tuesday 01:36 with the gate at 2 of 6 and the level back to 3.4 m. This visit gave me a real decision at 4.5 m within about 100 s, and the sheet told me my level reading was older than the gate. Long waits between decisions still lose me. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "phone": {
+    "elapsed_s": 81.133,
+    "reason": "BORED",
+    "game_clock": "Mon 23:14",
+    "rawStopReaction": "Stopping on the phone at Monday 23:14 after a quiet opening with no decision. Readable at 360 wide, and the Dai strip is no longer cut off. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises. I would not leave it running.",
+  "laterFullReturn": "I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises.",
+  "laterConditionSpans": [],
+  "laterExtraReturnSpans": [
+   {
+    "label": "Later wording (section 7) bullet, leave it running",
+    "line": 121,
+    "mode": "after-label",
+    "span": "No. I want to make the gate calls myself, and I do not trust Dai alone.",
+    "prefix": "**Would I leave it running?** "
+   }
+  ],
+  "verdict": "mixed",
+  "verdictReason": "Conditional on her own words: another evening on the laptop only if the quiet first hours stay this short or she is told up front that nothing needs deciding until the level rises. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2556",
+   "F-2557",
+   "F-2558"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:glance Mei return conditions another evening on the laptop only if the quiet first hours stay this short or she is told up front that nothing needs deciding until the level rises, asks F-2556–F-2558, BORED on both sessions, phone gave nothing to decide in 80 s, laptop decision at 4.5 m within about 100 s, gate-versus-rain cause is her own unverified guess and the observation-age warning is not a new measurement, one assigned curl was piped through head -c600 against the brief, the native request executed and its output was truncated, no game-state effect is attributed to the pipe, earliest related target is plain opening context F-2556, target2026-11-03 (open)",
+  "historyQualification": "All 999 actual history lines were read in four successful Reads through the End marker (director-verified from actual tool responses). Her round 1 and first-retest Glance reports are in the supplied history. The earlier-round continuity qualification is not retained for her current read, but a complete current read does not erase earlier input contamination.",
+  "viewEvidence": "Viewed desktop a-001 and a-002 and phone b-001 and b-002 by actual image Read receipt. Both first-minute captures are automatic and carry no receipt. She did not scroll the phone, set the gate on it or play a night on it."
+ },
+ {
+  "id": "F-2552",
+  "tester": "Samir Haddad",
+  "game": "glance",
+  "date": "2026-10-31",
+  "exposure": "standing player, second retest after fixes",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 81.898,
+    "reason": "BORED",
+    "game_clock": "Mon 23:18",
+    "rawStopReaction": "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me. Pressed Im stopping in Feedback, then Back, typed nothing.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "desktop": {
+    "elapsed_s": 98.002,
+    "reason": "BORED",
+    "game_clock": "Mon 23:38",
+    "rawStopReaction": "Stopping desktop at about 96 seconds, Mon 23:38. Level tile now keeps 4.10 m with its age and a was-line, which I asked for. Standing request saved and Dai reads on his own. But still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained. Pressed Im stopping in Feedback, then Back, typed nothing.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "I might come back another evening, on desktop only, if I could answer Dai or learn who the town people are, and if the waiting cost much less. I would not leave it running. I would not come back on the phone tonight.",
+  "laterFullReturn": "I might come back another evening on desktop, if I could answer Dai or learn who the town people are, and if each step cost much less waiting. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight, because I already know the loop from desktop.",
+  "laterConditionSpans": [],
+  "laterExtraReturnSpans": [
+   {
+    "label": "Later wording (section 7) changed condition (waiting)",
+    "line": 68,
+    "mode": "inline",
+    "span": "and if each step cost much less waiting."
+   },
+   {
+    "label": "Later wording (section 7) changed reason (leave it running)",
+    "line": 68,
+    "mode": "inline",
+    "span": "I would not leave it running, because it needs me at each step."
+   },
+   {
+    "label": "Later wording (section 7) changed reason (phone)",
+    "line": 68,
+    "mode": "inline",
+    "span": "I would not come back on the phone tonight, because I already know the loop from desktop."
+   }
+  ],
+  "verdict": "mixed",
+  "verdictReason": "Conditional on his own words: another evening on desktop only if he could answer Dai or learn who the town people are and each step cost much less waiting. Not the phone tonight. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2559",
+   "F-2560",
+   "F-2561"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:glance Samir return conditions another evening on desktop only if he could answer Dai or learn who the town people are and each step cost much less waiting, not the phone tonight, asks F-2559–F-2561, BORED on both sessions, phone gameplay was never viewed (title page only), earliest related target is first-reading clarity F-2561, target2026-11-03 (open)",
+  "historyQualification": "All 749 actual history lines were read in three successful Reads through the End marker (director-verified). A complete current read does not erase earlier input contamination.",
+  "viewEvidence": "Viewed phone b-001 and desktop a-001 only, both title pages. No game screen was viewed in an image, so no phone gameplay geometry claim is possible."
+ },
+ {
+  "id": "F-2553",
+  "tester": "Leila Mansour",
+  "game": "glance",
+  "date": "2026-10-31",
+  "exposure": "standing player, second retest after fixes",
+  "deviceOrder": [
+   "desktop",
+   "phone"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "desktop": {
+    "elapsed_s": 153.918,
+    "reason": "BORED",
+    "game_clock": "Mon 23:56",
+    "rawStopReaction": "Stopping desktop at about two and a half minutes. The Doubt mark now shows (Doubt mark waiting, then Marked for another check) and my gate request was confirmed, which I asked for. But I still make about four choices and wait the rest. I would not leave it running.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "phone": {
+    "elapsed_s": 91.168,
+    "reason": "BORED",
+    "game_clock": "Mon 23:04",
+    "rawStopReaction": "Stopping phone at about a minute and a half. The doubt mark now shows Marked for another check and the gate request was confirmed, which I asked for. But the level is steady, I have about three choices, and the rest is waiting. I would not leave it running.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. I would not leave it running.",
+  "laterFullReturn": "Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. The idea of a keeper whose number may be old is still the best part, and Doubt now does something I can see. I have seen the Monday loop four times and it is still ask, set the gate, wait. I would not leave it running.",
+  "laterConditionSpans": [],
+  "laterExtraReturnSpans": [
+   {
+    "label": "Later wording (section 7) bullet, leave it running",
+    "line": 98,
+    "mode": "after-label",
+    "span": "No.",
+    "prefix": "- **Leave it running?** "
+   },
+   {
+    "label": "Later wording (section 7) bullet, another evening",
+    "line": 99,
+    "mode": "after-label",
+    "span": "Possibly, on the condition above.",
+    "prefix": "- **Another evening?** "
+   },
+   {
+    "label": "Later wording (section 7) added reason",
+    "line": 97,
+    "mode": "inline",
+    "span": "The idea of a keeper whose number may be old is still the best part, and Doubt now does something I can see. I have seen the Monday loop four times and it is still ask, set the gate, wait."
+   }
+  ],
+  "verdict": "mixed",
+  "verdictReason": "Conditional on her own words: maybe another evening and only on desktop and only if a night asked for more than about four choices. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2562",
+   "F-2563",
+   "F-2564"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:glance Leila return conditions maybe another evening and only on desktop and only if a night asked for more than about four choices, asks F-2562–F-2564, BORED on both sessions, Doubt mark and gate confirmation improved, the He cannot do it label and the blank status are a new source lead and a held press worked so there is no rule that an actor must always obey, earliest related target is F-2564, target2026-11-03 (open)",
+  "historyQualification": "All 948 actual history lines were read in three successful Reads through the End marker (director-verified). A complete current read does not erase earlier input contamination.",
+  "viewEvidence": "Viewed desktop a-001 (title) and phone b-001 and b-002 by receipt. Desktop gameplay layout is seen only through text. b-002 shows the Dai strip clipped to \"He is expected to…\" on the phone."
+ },
+ {
+  "id": "F-2554",
+  "tester": "Rosa Alvarez",
+  "game": "glance",
+  "date": "2026-10-31",
+  "exposure": "standing player, second retest after fixes",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "sonnet",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 33.076,
+    "reason": "CONFUSED",
+    "game_clock": "Mon 22:04",
+    "rawStopReaction": "The call sentence is now said once, which helps a lot, and the Optional chapter is a small line. But A call interrupts... If he takes up that job again afterwards, it starts again... still cost me two rereads, and Hold it to insist is still there. I stop on the phone.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "desktop": {
+    "elapsed_s": 25.627,
+    "reason": "CONFUSED",
+    "game_clock": "Mon 22:02",
+    "rawStopReaction": "On the big screen the dam picture helps me. The call sentence is now short and in one place. But A new call replaces it appeared before I tapped, and then the other sentence, and Hold it to insist is still here. I stop for tonight.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "I would come back another evening, but only if the gate panel said in one plain sentence what \"A new call replaces it\" and \"Hold it to insist\" mean, and showed me one next job. I would not leave it running.",
+  "laterFullReturn": null,
+  "laterConditionSpans": [
+   {
+    "label": "Later wording (section 7) condition bullet 1",
+    "line": 90,
+    "mode": "after-label",
+    "span": "The gate panel says in one plain sentence what happens to my earlier request when I call Dai again.",
+    "prefix": "  - "
+   },
+   {
+    "label": "Later wording (section 7) condition bullet 2",
+    "line": 91,
+    "mode": "after-label",
+    "span": "It says what \"insist\" means, or drops it.",
+    "prefix": "  - "
+   },
+   {
+    "label": "Later wording (section 7) condition bullet 3",
+    "line": 92,
+    "mode": "after-label",
+    "span": "It shows me one next job after Dai agrees.",
+    "prefix": "  - "
+   }
+  ],
+  "laterExtraReturnSpans": [
+   {
+    "label": "Later wording (section 7) bullet, leave it running",
+    "line": 93,
+    "mode": "after-label",
+    "span": "No. I would not leave it running while I am away. I am too unsure what a second call does to the first.",
+    "prefix": "- **Leave it running?** "
+   },
+   {
+    "label": "Later wording (section 7) bullet, come back another evening",
+    "line": 94,
+    "mode": "after-label",
+    "span": "Yes, on the conditions above. The first board is calm enough now that I would try again.",
+    "prefix": "- **Come back another evening?** "
+   }
+  ],
+  "verdict": "mixed",
+  "verdictReason": "Conditional on her own words: another evening if the gate panel says in one plain sentence what happens to her earlier request, says what insist means and shows one next job. Not left running. Her section 7 answer is a lead plus three bullets, not one sentence.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2565",
+   "F-2566",
+   "F-2567"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:glance Rosa return conditions another evening only if the gate panel says in one plain sentence what happens to the earlier request when Dai is called again, says what insist means and shows one next job, asks F-2565–F-2567, CONFUSED on both sessions after two actual rereads each, the lower desktop gate panel was not scrolled so it is not proven unreachable, stops at 33.076 s and 25.627 s and first_minute and pulse not reached, earliest related target is F-2565, target2026-11-03 (open)",
+  "historyQualification": "All 1811 actual history lines were read through the End marker (director-verified). One tail Read of 620 lines was refused by the tool for context size and the retries of 310 lines each succeeded. The prior Rosa CONT and exposure qualification remains.",
+  "viewEvidence": "Viewed phone a-001 and a-002 and desktop b-001, b-002 and b-003 by receipt. Part of the lower desktop gate panel was cut at the screen bottom and she did not scroll to read it.",
+  "laterReturnLead": "Yes, another evening, with these conditions:",
+  "laterReturnNote": "Section 7 answer is a lead plus three bullet conditions; no joined sentence is invented."
+ },
+ {
+  "id": "F-2555",
+  "tester": "Eszter Fekete",
+  "game": "glance",
+  "date": "2026-10-31",
+  "exposure": "new cold person, empty history, first Glance visit",
+  "deviceOrder": [
+   "phone",
+   "desktop"
+  ],
+  "model": "opus",
+  "voluntaryStops": {
+   "phone": {
+    "elapsed_s": 657.819,
+    "reason": "TASTE",
+    "game_clock": "Tue 00:46",
+    "rawStopReaction": "Feedback took I am stopping and Back brought me to the menu. I stop here for tonight on the phone: I like the dam and river choice and the Morgan notes, but a night is long and too much of it is waiting with a grey Skip.",
+    "rawStopReactionLiterallyInReport": true
+   },
+   "desktop": {
+    "elapsed_s": 426.7,
+    "reason": "BORED",
+    "game_clock": "Tue 00:00",
+    "rawStopReaction": "I pressed I am stopping and Back took me to the menu. I stop here. The Monday night on the computer with Fast pace and the lightning picture was the best part of my evening. Tuesday felt like the same evening again, and I do not want to repeat the same form.",
+    "rawStopReactionLiterallyInReport": true
+   }
+  },
+  "primaryReturn": "Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no.",
+  "laterFullReturn": "Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no. I liked catching Dai's tired readings with my own eyes, and I liked that Morgan's habits are remembered. I dislike repeating the same steps every night, and guessing numbers like gate turns and weir figures with no example. Twelve nights at about 5–7 minutes each is more than my short evening sessions after work.",
+  "laterConditionSpans": [],
+  "laterExtraReturnSpans": [
+   {
+    "label": "Later wording (section 7) bullet, leave it running or come back another evening",
+    "line": 171,
+    "mode": "after-label",
+    "span": "I would not leave it running; there is too much waiting with nothing to do. I might come back another evening on the computer, and only with Fast pace on from the start.",
+    "prefix": "**Leave it running, or come back another evening?** "
+   }
+  ],
+  "verdict": "mixed",
+  "verdictReason": "Mixed and conditional on her own words: one more Monday-style night on the computer with Fast pace only if the nights stop feeling like the same form and the grey Skip waits go away. On the phone, no. Not left running.",
+  "verdictMeaning": "The tester's own stated conditions, bounded inference only. Not a vote and not a population estimate.",
+  "askIds": [
+   "F-2568",
+   "F-2569",
+   "F-2570"
+  ],
+  "target": "2026-11-03",
+  "route": "fix:glance Eszter cold return mixed and conditional for one more Monday-style night on the desktop with Fast pace only if the nights stop feeling like the same form and the grey Skip waits go away and not on the phone, asks F-2568–F-2570, TASTE on the phone at 657.819 s and BORED on the desktop at 426.7 s, same-evening second device with actual Fast so pace and device and order and learning are confounded, two full Mondays and two partial Tuesdays and not four full nights, qualified source lead that the Monday morning chart and text disagree with the clipped-bottom cause and the six-marks-versus-two-flashes count unverified and no chart correctness conclusion, earliest related target is the chart and text source lead and pace visibility F-2568, target2026-11-03 (open)",
+  "historyQualification": "Cold person. The supplied history is five lines, with no prior exposure and no observed sessions; all five were read (director-verified).",
+  "viewEvidence": "Viewed phone a-001 to a-004 and desktop b-001 to b-004 by receipt (4 of the 5 manual slots per device). The Monday morning chart (a-004, b-004) is an image she reached; the clipped-bottom cause is her guess and unverified.",
+  "primaryReturnAfterLabelLiteral": "\"Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no.\""
+ }
+]

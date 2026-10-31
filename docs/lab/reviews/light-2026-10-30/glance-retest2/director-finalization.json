@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-31T09:30:31.071202+00:00",
+  "mappedCopiesVerified": 84,
+  "literalQuoteCellsUnchanged": true,
+  "targetDatesAccepted": true,
+  "routeClarifications": ["F-2551", "F-2557", "F-2563", "F-2564", "F-2569"],
+  "automaticAfterStop": "Rosa phone60.034/desktop60.06 after33.076/25.627 stops, not extra play",
+  "historyAuditQualification": "Eszter omitted success field in original safe audit; actual successful five-line Read/end marker independently checked by parent.",
+  "preparerCoverage": "Root read all five full reports and final preparer report. Preparer source copying and locator checks do not establish game correctness.",
+  "loopFinished": false,
+  "remaining": "Integrate dated game Deferred; two iterations reached, no third panel or broad acceptance."
+}

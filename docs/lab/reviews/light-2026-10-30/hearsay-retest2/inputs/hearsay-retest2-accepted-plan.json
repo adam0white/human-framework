@@ -1,0 +1,104 @@
+[
+  {
+    "game": "hearsay",
+    "tester": "Maya Chen",
+    "first": "maya",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 24. Canada; Vancouver library assistant, raised in a multilingual household. She plays narrative adventures and cooperative puzzles with her sister.\n- HF temperament: curious; high openness, moderate conscientiousness and agreeableness, low extraversion.\n- Likes: small discoveries, people who remember a choice, puzzles with readable consequences.\n- Dislikes: mandatory lore before action, repeated exposition.\n- Play habits: Reads a scene twice when interested, tries the unusual reply, then checks who reacted. Usually plays on a phone at home.\n- Personal diary: [panel/maya-chen.md](panel/maya-chen.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: selected own actual earlier Hearsay reports and selected cross-game records; not complete archive",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22900,
+      "desktop": 22901
+    },
+    "url": "https://hearsay.adamwhite.work/?labRunSource=agent",
+    "title": "Hearsay",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+    "ceiling": 20,
+    "model": "sonnet"
+  },
+  {
+    "game": "hearsay",
+    "tester": "Emre Kaya",
+    "first": "emre",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 37. Türkiye; Ankara electrical technician and parent. Strategy games and football management are his familiar leisure.\n- HF temperament: patient; high conscientiousness, moderate openness, low emotionality.\n- Likes: planning with visible tradeoffs, recovering from a bad decision.\n- Dislikes: busywork, unexplained resource losses.\n- Play habits: Uses desktop keyboard and mouse. Looks for a practical objective, pursues it, and accepts a setback if he can explain it.\n- Personal diary: [panel/emre-kaya.md](panel/emre-kaya.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: selected own actual earlier Hearsay reports and selected cross-game records; not complete archive",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22902,
+      "desktop": 22903
+    },
+    "url": "https://hearsay.adamwhite.work/?labRunSource=agent",
+    "title": "Hearsay",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+    "ceiling": 20,
+    "model": "sonnet"
+  },
+  {
+    "game": "hearsay",
+    "tester": "Diego Silva",
+    "first": "diego",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 28. Brazil; Recife sound editor. Plays fighting games competitively and short experimental games between projects.\n- HF temperament: impatient; high openness, low agreeableness, moderate conscientiousness.\n- Likes: responsive controls, learnable risk, a distinctive mood.\n- Dislikes: unresponsive input, forms for simple acts.\n- Play habits: Uses desktop and occasionally phone. Tries the obvious physical verb first. Can enjoy quiet play when it gives him something consequential to attend to.\n- Personal diary: [panel/diego-silva.md](panel/diego-silva.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: selected own actual earlier Hearsay reports and selected cross-game records; not complete archive",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22904,
+      "desktop": 22905
+    },
+    "url": "https://hearsay.adamwhite.work/?labRunSource=agent",
+    "title": "Hearsay",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+    "ceiling": 20,
+    "model": "sonnet"
+  },
+  {
+    "game": "hearsay",
+    "tester": "Rosa Alvarez",
+    "first": "rosa",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 62. Mexico; Puebla retired school administrator. Enjoys crosswords, family card games and occasional phone mysteries.\n- HF temperament: patient; high conscientiousness and agreeableness, moderate openness.\n- Likes: ordinary people with understandable obligations, clear language.\n- Dislikes: tiny text, specialist gaming vocabulary, being hurried while reading.\n- Play habits: Uses a tablet or a large phone with deliberate taps. Reads help when it answers a concrete question. Does not assume familiar game conventions.\n- Personal diary: [panel/rosa-alvarez.md](panel/rosa-alvarez.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: selected own actual earlier Hearsay reports and selected cross-game records; not complete archive",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22906,
+      "desktop": 22907
+    },
+    "url": "https://hearsay.adamwhite.work/?labRunSource=agent",
+    "title": "Hearsay",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex"
+  },
+  {
+    "game": "hearsay",
+    "tester": "Boris Petrov",
+    "first": "boris",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 38. Bulgaria; Ruse office clerk. He plays occasional short puzzle games.\n- HF temperament: no HF exposure and no recorded temperament. Treat him as a person who weighs concrete tastes against concrete limits and reports what he observes, including uncertainty.\n- Likes: knowing what follows a choice, small problems he can finish.\n- Dislikes: status with no date, repeating the same form.\n- Play habits: Plays on a phone in short sittings; uses a laptop when one is free. Reads before tapping, but will tap to find out what a control does. Says plainly when something does not suit him.\n- Personal diary: empty. No play history of any kind. Only observed sessions can add history.",
+    "prior_src": null,
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22908,
+      "desktop": 22909
+    },
+    "url": "https://hearsay.adamwhite.work/?labRunSource=agent",
+    "title": "Hearsay",
+    "commit": "f4eb8438463f122cd7a6228a5348e2ce4ca9a48d",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex"
+  }
+]

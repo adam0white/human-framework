@@ -1,0 +1,175 @@
+{
+ "note": "Per tester identity of the supplied inputs and the driver. Hashes of the copied histories and briefs are compared with the input freeze, the input preflight and dispatch files by validate-quotes.py. This index does not hash the packet indexes or manifests. History and brief were copied mechanically and not read; the counts below are byte and newline counts, compared with the actual-Read audit.",
+ "testers": [
+  {
+   "id": "rope-retest1-pavel",
+   "tester": "Pavel Novak",
+   "kind": "standing",
+   "exposure": "return",
+   "model": "sonnet",
+   "deviceOrder": [
+    "desktop",
+    "phone"
+   ],
+   "ports": {
+    "phone": 22000,
+    "desktop": 22001
+   },
+   "historyBytes": 128309,
+   "historyNewlines": 806,
+   "historyLines": 806,
+   "historyCharactersPerFreeze": 128199,
+   "historySha256": "c5fccb0ec605c8ab203d8a47fc16906c12b39cf781216c899e73145a03efaeb1",
+   "briefSha256": "f0803346c1c82531663aaa2d821c53e6cdab5315bbabec5c45ea11148a31ce10",
+   "ownSourceCount": 10,
+   "preflightHistoryLines": 806,
+   "auditActualHistoryLines": 806,
+   "auditAllActualLinesRead": true,
+   "auditReads": 3,
+   "directorMethodQualificationPresent": false,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T09:25:28.629021+00:00",
+   "note": "Hashes compared with rope-retest-input-freeze.json, rope-retest-input-preflight.json and dispatch.json by validate-quotes.py."
+  },
+  {
+   "id": "rope-retest1-tessa",
+   "tester": "Tessa Williams",
+   "kind": "standing",
+   "exposure": "return",
+   "model": "sonnet",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22002,
+    "desktop": 22003
+   },
+   "historyBytes": 84593,
+   "historyNewlines": 756,
+   "historyLines": 756,
+   "historyCharactersPerFreeze": 84530,
+   "historySha256": "92727f9103dd5af010d4a8ba3906a6db22307816b904d8df34008b6e74528cd3",
+   "briefSha256": "7f855fbb97fa371b05a969fe0504ae627e40a68e999e896fd0775ed426a8e2a8",
+   "ownSourceCount": 10,
+   "preflightHistoryLines": 756,
+   "auditActualHistoryLines": 756,
+   "auditAllActualLinesRead": true,
+   "auditReads": 3,
+   "directorMethodQualificationPresent": false,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T09:34:45.636364+00:00",
+   "note": "Hashes compared with rope-retest-input-freeze.json, rope-retest-input-preflight.json and dispatch.json by validate-quotes.py."
+  },
+  {
+   "id": "rope-retest1-nia",
+   "tester": "Nia Okafor",
+   "kind": "standing",
+   "exposure": "return",
+   "model": "sonnet",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22004,
+    "desktop": 22005
+   },
+   "historyBytes": 142082,
+   "historyNewlines": 1097,
+   "historyLines": 1097,
+   "historyCharactersPerFreeze": 141840,
+   "historySha256": "d894e8de4b963032764ff54de510b7fbc6d2314f4bebf520625dbbcceabccda7",
+   "briefSha256": "3334931e4ed5c231a2e8fd0fde265aa25508fb0e78f4d84a128f5b0bb73e3e8e",
+   "ownSourceCount": 13,
+   "preflightHistoryLines": 1097,
+   "auditActualHistoryLines": 1097,
+   "auditAllActualLinesRead": true,
+   "auditReads": 3,
+   "directorMethodQualificationPresent": true,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T09:41:57.478650+00:00",
+   "note": "Hashes compared with rope-retest-input-freeze.json, rope-retest-input-preflight.json and dispatch.json by validate-quotes.py."
+  },
+  {
+   "id": "rope-retest1-rosa",
+   "tester": "Rosa Alvarez",
+   "kind": "standing",
+   "exposure": "return",
+   "model": "sonnet",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22006,
+    "desktop": 22007
+   },
+   "historyBytes": 230965,
+   "historyNewlines": 1921,
+   "historyLines": 1921,
+   "historyCharactersPerFreeze": 230569,
+   "historySha256": "46a72ac93bffda2c6b3fe0166a639de298fffa762f4367e0473db51f71091c29",
+   "briefSha256": "b3e300f132b208bcad6e3ab36c9c66c27ab61bbb3380916242b52504e3334c9e",
+   "ownSourceCount": 19,
+   "preflightHistoryLines": 1921,
+   "auditActualHistoryLines": 1921,
+   "auditAllActualLinesRead": true,
+   "auditReads": 4,
+   "directorMethodQualificationPresent": true,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T09:50:24.422011+00:00",
+   "note": "Hashes compared with rope-retest-input-freeze.json, rope-retest-input-preflight.json and dispatch.json by validate-quotes.py."
+  },
+  {
+   "id": "rope-retest1-farah",
+   "tester": "Farah Bensaid",
+   "kind": "cold",
+   "exposure": "first",
+   "model": "opus",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22008,
+    "desktop": 22009
+   },
+   "historyBytes": 186,
+   "historyNewlines": 5,
+   "historyLines": 5,
+   "historyCharactersPerFreeze": 186,
+   "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+   "briefSha256": "e2317ba668129ec92b97b89ef80b847a383397d5a96c38958d3ab010f0194507",
+   "ownSourceCount": 0,
+   "preflightHistoryLines": 5,
+   "auditActualHistoryLines": 5,
+   "auditAllActualLinesRead": true,
+   "auditReads": 1,
+   "directorMethodQualificationPresent": false,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T09:57:56.377231+00:00",
+   "note": "Hashes compared with rope-retest-input-freeze.json, rope-retest-input-preflight.json and dispatch.json by validate-quotes.py."
+  }
+ ]
+}

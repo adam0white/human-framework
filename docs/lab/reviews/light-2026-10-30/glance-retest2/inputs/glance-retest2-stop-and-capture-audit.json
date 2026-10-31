@@ -1,0 +1,407 @@
+{
+  "time": "2026-10-31T09:10:23.687431+00:00",
+  "stops": [
+    {
+      "tester": "Mei Tan",
+      "device": "desktop",
+      "stop": {
+        "t": "2026-10-31T08:37:27.664Z",
+        "elapsed_s": 213.73,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Tuesday 01:36 with the gate at 2 of 6 and the level back to 3.4 m. This visit gave me a real decision at 4.5 m within about 100 s, and the sheet told me my level reading was older than the gate. Long waits between decisions still lose me. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+        "game_clock": "Tue 01:36",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [
+        {
+          "t": "2026-10-31T08:35:02.965Z",
+          "elapsed_s": 69.031,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Same night desk, goal and deadline clear. Level 4.0 read 22:12, falling with gate shut. Opening text is shorter than before and the log no longer repeats it. Still nothing to decide yet.",
+          "game_clock": "Mon 23:06",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "pulses": [
+        {
+          "t": "2026-10-31T08:37:01.174Z",
+          "elapsed_s": 187.24,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "A decision came at 4.5 within about 100 s, which is better than my last two visits. The gate worked and the sheet warned me the level reading was older than the gate. I am still waiting between decisions.",
+          "game_clock": "Tue 01:27",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "phone",
+      "stop": {
+        "t": "2026-10-31T08:38:50.556Z",
+        "elapsed_s": 81.133,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on the phone at Monday 23:14 after a quiet opening with no decision. Readable at 360 wide, and the Dai strip is no longer cut off. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+        "game_clock": "Mon 23:14",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [
+        {
+          "t": "2026-10-31T08:38:39.838Z",
+          "elapsed_s": 70.415,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Phone fits well. The Dai strip now wraps and ends in dots instead of being cut at the edge, and both gauges are fully visible. Level 3.9 and falling, nothing to decide yet. Skip greyed out earlier with the reason no report is on its way, which I liked.",
+          "game_clock": "Mon 23:04",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "pulses": []
+    },
+    {
+      "tester": "Samir Haddad",
+      "device": "phone",
+      "stop": {
+        "t": "2026-10-31T08:40:46.455Z",
+        "elapsed_s": 81.898,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me. Pressed Im stopping in Feedback, then Back, typed nothing.",
+        "game_clock": "Mon 23:18",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [
+        {
+          "t": "2026-10-31T08:40:34.902Z",
+          "elapsed_s": 70.345,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Phone: level tile now keeps 4.00 m with its read time and a was-line, my last ask. Opening short. Still only Dai, nothing to answer, nothing needs me.",
+          "game_clock": "Mon 23:14",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "pulses": []
+    },
+    {
+      "tester": "Samir Haddad",
+      "device": "desktop",
+      "stop": {
+        "t": "2026-10-31T08:42:25.746Z",
+        "elapsed_s": 98.002,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping desktop at about 96 seconds, Mon 23:38. Level tile now keeps 4.10 m with its age and a was-line, which I asked for. Standing request saved and Dai reads on his own. But still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained. Pressed Im stopping in Feedback, then Back, typed nothing.",
+        "game_clock": "Mon 23:38",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [
+        {
+          "t": "2026-10-31T08:41:52.339Z",
+          "elapsed_s": 64.595,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Desktop: opening short, standing request saved, Dai reading on his own. Level tile still a dash because nobody has read tonight. Nerys and Wren still unexplained. Nothing to do but wait.",
+          "game_clock": "Mon 23:10",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "pulses": []
+    },
+    {
+      "tester": "Leila Mansour",
+      "device": "desktop",
+      "stop": {
+        "t": "2026-10-31T08:45:34.859Z",
+        "elapsed_s": 153.918,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping desktop at about two and a half minutes. The Doubt mark now shows (Doubt mark waiting, then Marked for another check) and my gate request was confirmed, which I asked for. But I still make about four choices and wait the rest. I would not leave it running.",
+        "game_clock": "Mon 23:56",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [
+        {
+          "t": "2026-10-31T08:44:08.267Z",
+          "elapsed_s": 67.326,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Reason to act: keep dam below crest. Tappable: gauges, Ask Dai, Skip, arrangements. Asked 3 turns and it showed on the gate gauge at 22:24; asked a fresh level, got 4.3 rising from 3.7. The Doubt panel now says it is compared with the known outcome at dawn, which answers my old no-mark complaint in words. The optional chapter is still one folded line. Inspection still says time continues slowly.",
+          "game_clock": "Mon 22:43",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "pulses": []
+    },
+    {
+      "tester": "Leila Mansour",
+      "device": "phone",
+      "stop": {
+        "t": "2026-10-31T08:47:07.230Z",
+        "elapsed_s": 91.168,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping phone at about a minute and a half. The doubt mark now shows Marked for another check and the gate request was confirmed, which I asked for. But the level is steady, I have about three choices, and the rest is waiting. I would not leave it running.",
+        "game_clock": "Mon 23:04",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [
+        {
+          "t": "2026-10-31T08:46:50.931Z",
+          "elapsed_s": 74.869,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Reason to act: keep dam below crest. Tappable: gauges, Ask Dai, Skip, arrangements. Held 2 turns and Dai said that is an order; gate showed 2/6 by 22:18. Held the level read, got 3.9 at 22:39. The level button said He cannot do it while he was only resting, which I still do not understand. Optional chapter appeared open for a while, then folded. Few choices again.",
+          "game_clock": "Mon 22:50",
+          "engagement": null,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "pulses": []
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "phone",
+      "stop": {
+        "t": "2026-10-31T08:48:33.606Z",
+        "elapsed_s": 33.076,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "The call sentence is now said once, which helps a lot, and the Optional chapter is a small line. But A call interrupts... If he takes up that job again afterwards, it starts again... still cost me two rereads, and Hold it to insist is still there. I stop on the phone.",
+        "game_clock": "Mon 22:04",
+        "engagement": 3,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [],
+      "pulses": []
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "desktop",
+      "stop": {
+        "t": "2026-10-31T08:49:00.184Z",
+        "elapsed_s": 25.627,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "On the big screen the dam picture helps me. The call sentence is now short and in one place. But A new call replaces it appeared before I tapped, and then the other sentence, and Hold it to insist is still here. I stop for tonight.",
+        "game_clock": "Mon 22:02",
+        "engagement": 3,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [],
+      "pulses": []
+    },
+    {
+      "tester": "Eszter Fekete",
+      "device": "phone",
+      "stop": {
+        "t": "2026-10-31T09:01:19.246Z",
+        "elapsed_s": 657.819,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Feedback took I am stopping and Back brought me to the menu. I stop here for tonight on the phone: I like the dam and river choice and the Morgan notes, but a night is long and too much of it is waiting with a grey Skip.",
+        "game_clock": "Tue 00:46",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [
+        {
+          "t": "2026-10-31T08:51:26.297Z",
+          "elapsed_s": 64.87,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "Gate is open two turns, Dai confirmed. I like that each request comes back as a line with a time, I know what I did. I still do not know if two was a good number; nothing tells me yet.",
+          "game_clock": "Mon 22:50",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "pulses": [
+        {
+          "t": "2026-10-31T08:53:26.740Z",
+          "elapsed_s": 185.313,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Dai asks where Morgan went; I want to answer but there is no reply button. Level falls gently, I am mostly waiting now.",
+          "game_clock": "Mon 01:22",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-31T08:58:28.811Z",
+          "elapsed_s": 487.384,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "The Monday morning report hooked me a little: now I read 3.2 and think, is he tired again? But a night is long and much of it is waiting with a grey Skip.",
+          "game_clock": "Tue 22:34",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    {
+      "tester": "Eszter Fekete",
+      "device": "desktop",
+      "stop": {
+        "t": "2026-10-31T09:08:29.588Z",
+        "elapsed_s": 426.7,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I pressed I am stopping and Back took me to the menu. I stop here. The Monday night on the computer with Fast pace and the lightning picture was the best part of my evening. Tuesday felt like the same evening again, and I do not want to repeat the same form.",
+        "game_clock": "Tue 00:00",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "firstMinutes": [
+        {
+          "t": "2026-10-31T09:02:23.645Z",
+          "elapsed_s": 60.757,
+          "kind": "first_minute",
+          "op": "log",
+          "input": null,
+          "reaction": "On the big screen the lightning picture is finally clear: red dashed line a little above Dai blue line. But the flash was at 22:34 and his reading 22:41, and the panel says they can be different times. So is it a catch or not? I am guessing again. Still, I see the picture now, which I never did on the phone.",
+          "game_clock": "Mon 23:05",
+          "engagement": 3,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ],
+      "pulses": [
+        {
+          "t": "2026-10-31T09:04:23.617Z",
+          "elapsed_s": 180.729,
+          "kind": "pulse",
+          "op": "log",
+          "input": null,
+          "reaction": "Better than the phone: Fast pace, a clear lightning picture, and I caught a suspicious reading with my own eyes. I want to see dawn.",
+          "game_clock": "Mon 02:05",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        }
+      ]
+    }
+  ],
+  "captureCounts": {
+    "mei": {
+      "desktop": 3,
+      "phone": 3
+    },
+    "samir": {
+      "phone": 2,
+      "desktop": 2
+    },
+    "leila": {
+      "desktop": 2,
+      "phone": 3
+    },
+    "rosa": {
+      "phone": 3,
+      "desktop": 4
+    },
+    "eszter": {
+      "phone": 5,
+      "desktop": 5
+    }
+  },
+  "allCapsPass": true
+}

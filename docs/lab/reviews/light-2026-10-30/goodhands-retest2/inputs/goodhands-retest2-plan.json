@@ -1,0 +1,102 @@
+[
+  {
+    "game": "goodhands",
+    "tester": "Jonas Berg",
+    "first": "jonas",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 31. Sweden; Malm\u00f6 warehouse planner. Plays factory builders and demanding survival games.\n- HF temperament: patient; high conscientiousness, low agreeableness, moderate openness.\n- Likes: systems he can learn, difficult choices, efficient routines.\n- Dislikes: a dominant repeatable move, consequences without visible clues.\n- Play habits: Uses desktop. Tests one hypothesis at a time and repeats a successful action to see whether conditions matter. Wants challenge to survive understanding.\n- Personal diary: [panel/jonas-berg.md](panel/jonas-berg.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: selected own actual earlier Good Hands reports and selected cross-game records; not complete archive",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22800,
+      "desktop": 22801
+    },
+    "url": "https://goodhands.adamwhite.work/?labRunSource=agent",
+    "title": "Good Hands",
+    "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "ceiling": 20,
+    "model": "sonnet"
+  },
+  {
+    "game": "goodhands",
+    "tester": "Aisha Rahman",
+    "first": "aisha",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 45. United Kingdom; Birmingham community pharmacist. Plays historical adventures and gentle management games.\n- HF temperament: curious; high agreeableness and conscientiousness, moderate emotionality and openness.\n- Likes: social context, careful promises, room to repair a mistake.\n- Dislikes: characters reduced to errands, scolding narration.\n- Play habits: Plays on a laptop after setting time aside. Follows one person\u2019s problem before exploring the map. Notices whether dialogue respects what happened.\n- Personal diary: [panel/aisha-rahman.md](panel/aisha-rahman.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: selected own actual earlier Good Hands reports and selected cross-game records; not complete archive",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22802,
+      "desktop": 22803
+    },
+    "url": "https://goodhands.adamwhite.work/?labRunSource=agent",
+    "title": "Good Hands",
+    "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "ceiling": 20,
+    "model": "sonnet"
+  },
+  {
+    "game": "goodhands",
+    "tester": "Diego Silva",
+    "first": "diego",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 28. Brazil; Recife sound editor. Plays fighting games competitively and short experimental games between projects.\n- HF temperament: impatient; high openness, low agreeableness, moderate conscientiousness.\n- Likes: responsive controls, learnable risk, a distinctive mood.\n- Dislikes: unresponsive input, forms for simple acts.\n- Play habits: Uses desktop and occasionally phone. Tries the obvious physical verb first. Can enjoy quiet play when it gives him something consequential to attend to.\n- Personal diary: [panel/diego-silva.md](panel/diego-silva.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: selected own actual earlier Good Hands reports and selected cross-game records; not complete archive",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22804,
+      "desktop": 22805
+    },
+    "url": "https://goodhands.adamwhite.work/?labRunSource=agent",
+    "title": "Good Hands",
+    "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "ceiling": 20,
+    "model": "sonnet"
+  },
+  {
+    "game": "goodhands",
+    "tester": "Rosa Alvarez",
+    "first": "rosa",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 62. Mexico; Puebla retired school administrator. Enjoys crosswords, family card games and occasional phone mysteries.\n- HF temperament: patient; high conscientiousness and agreeableness, moderate openness.\n- Likes: ordinary people with understandable obligations, clear language.\n- Dislikes: tiny text, specialist gaming vocabulary, being hurried while reading.\n- Play habits: Uses a tablet or a large phone with deliberate taps. Reads help when it answers a concrete question. Does not assume familiar game conventions.\n- Personal diary: [panel/rosa-alvarez.md](panel/rosa-alvarez.md). Start with no play history. Only observed sessions can add history.",
+    "prior_src": "own-history.md: selected own actual earlier Good Hands reports and selected cross-game records; not complete archive",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22806,
+      "desktop": 22807
+    },
+    "url": "https://goodhands.adamwhite.work/?labRunSource=agent",
+    "title": "Good Hands",
+    "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "ceiling": 20,
+    "model": "sonnet"
+  },
+  {
+    "game": "goodhands",
+    "tester": "Elena Dimitrova",
+    "first": "elena",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 45. Bulgaria; Plovdiv proofreader. She plays occasional word puzzles.\n- HF temperament: no HF exposure and no recorded temperament. Treat her as a person who weighs concrete tastes against concrete limits and reports what she observes, including uncertainty.\n- Likes: seeing visible consequences, knowing what a choice refers to.\n- Dislikes: repeating a step already completed, ambiguous terms.\n- Play habits: Plays on a phone in short sittings; uses a laptop when one is free. Reads before tapping, but will tap to find out what a control does. Says plainly when something does not suit her. Makes no assumption about faith or belief.\n- Personal diary: empty. No play history of any kind. Only observed sessions can add history.",
+    "prior_src": null,
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22808,
+      "desktop": 22809
+    },
+    "url": "https://goodhands.adamwhite.work/?labRunSource=agent",
+    "title": "Good Hands",
+    "commit": "d9dd8e0f27f8efee2abeda2fc32e9b8bdd7c0884",
+    "ceiling": 20,
+    "model": "opus"
+  }
+]

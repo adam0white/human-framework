@@ -1,0 +1,794 @@
+{
+ "note": "Fifteen ranked ask rows, generated from exact-quote-extraction.json. Same words and routes as ask-ledger.md and ledger-additions.md. Targets are the parent dates from the preparation brief. calibrationC14 is true on F-2587 and F-2594 only. F-2588 carries a conditional C14 clause in its route text (only if a change would force earlier arrival by altering the clock) and is not a general recovery gate.",
+ "rows": [
+  {
+   "id": "F-2586",
+   "rank": 1,
+   "tester": "Pavel Novak",
+   "testerKey": "pavel",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Keep the group within earshot after they say yes, and say what \"stay with them\" does. On desktop all five drifted below me. On the phone Oskar, then Wren, \"cannot hear you\" even after I pressed it.\" Later wording (section 8): \"Keep the group within earshot after they say yes, and say what \"stay with them\" does.\" Later wording (section 5) desktop: \"After everyone said yes on desktop, all five were \"Not walking, below you\", while the text said \"Everyone, will you keep climbing?\". Asking gently with \"Climb on\" brought most of them back.\" Later wording (section 5) phone: \"On the phone, \"stay with them\" gave the best result at 05:11, with everyone above me. A few minutes later Oskar \"cannot hear you\". I pressed it again and the tag went away, then came back at 09:52. I do not know what the button does. I am guessing about cause.\" Later wording (section 3) phone diary 184.3 s: \"Oskar no longer says he cannot hear me after stay with them. Visible improvement on my old second ask, though I cannot prove the cause.\" Later wording (section 9): \"But the group still drifted after saying yes on desktop. On the phone, \"cannot hear you\" appeared for Oskar and then Wren. Nothing on the page says what \"stay with them\" does.\" Later wording (section 9) new blocker: \"Two of five still \"cannot hear you\" on the phone at 09:57, with no way I could see to fix it.\"",
+   "rankedAsk": "Keep the group within earshot after they say yes, and say what \"stay with them\" does. On desktop all five drifted below me. On the phone Oskar, then Wren, \"cannot hear you\" even after I pressed it.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 114,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Keep the group within earshot after they say yes, and say what \"stay with them\" does."
+    },
+    {
+     "label": "Later wording (section 5) desktop",
+     "line": 90,
+     "mode": "inline",
+     "span": "After everyone said yes on desktop, all five were \"Not walking, below you\", while the text said \"Everyone, will you keep climbing?\". Asking gently with \"Climb on\" brought most of them back."
+    },
+    {
+     "label": "Later wording (section 5) phone",
+     "line": 91,
+     "mode": "inline",
+     "span": "On the phone, \"stay with them\" gave the best result at 05:11, with everyone above me. A few minutes later Oskar \"cannot hear you\". I pressed it again and the tag went away, then came back at 09:52. I do not know what the button does. I am guessing about cause."
+    },
+    {
+     "label": "Later wording (section 3) phone diary 184.3 s",
+     "line": 57,
+     "mode": "inline",
+     "span": "Oskar no longer says he cannot hear me after stay with them. Visible improvement on my old second ask, though I cannot prove the cause."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 122,
+     "mode": "inline",
+     "span": "But the group still drifted after saying yes on desktop. On the phone, \"cannot hear you\" appeared for Oskar and then Wren. Nothing on the page says what \"stay with them\" does."
+    },
+    {
+     "label": "Later wording (section 9) new blocker",
+     "line": 128,
+     "mode": "after-label",
+     "prefix": "- ",
+     "span": "Two of five still \"cannot hear you\" on the phone at 09:57, with no way I could see to fix it."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Pavel wants the group kept within earshot after they say yes and wants to know what Stay with them does, reproduce the hearing-range and Stay-with behavior and explain the visible truthful proximity and ongoing activity in plain words, on desktop all five were below him after yes and on the phone Oskar then Wren could not hear him, his cause for the phone change after pressing Stay with them is his own unproven guess, no forced following and no co-location and no teleport and no compliance, keep refusal and agency, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/pavel/report.md"
+  },
+  {
+   "id": "F-2587",
+   "rank": 2,
+   "tester": "Pavel Novak",
+   "testerKey": "pavel",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Speed up the quiet stretches, or let Skip go further. Desktop gave about 4 to 8 game minutes per 20 to 30 real seconds, and the Pace \"fast\" setting made no visible difference. Skip on the phone gave two hours at once.\" Later wording (section 8): \"Speed up the quiet stretches, or let Skip go further, and make the Pace setting visibly change the speed.\" Later wording (section 1) status messages: \"Some of my status messages to you were slow because I was waiting on replies. I am not blaming the game for that.\" Later wording (section 5) Pace: \"The Pace setting: I chose \"fast\" and saw no visible change (5 game minutes in 20 s).\" Later wording (section 5) Skip absent: \"On desktop Skip was often absent while a reading note was shown, and I waited without a way to move.\" Later wording (section 9): \"Partly met. The page now says \"Nothing new has happened. Walking continues quickly until something happens\", and phone Skip gave two hours in one tap. But the desktop clock still crawled at 4 to 8 game minutes per 20 to 30 seconds. The \"fast\" pace made no visible difference, and Skip was often missing while I waited.\" Later wording (section 9) new blocker, no event in 4.5 minutes: \"On desktop I never reached any event that needed me in about 4.5 minutes.\" Later wording (section 9) new blocker, Pace unclear: \"I could not tell whether the Pace setting did anything.\"",
+   "rankedAsk": "Speed up the quiet stretches, or let Skip go further. Desktop gave about 4 to 8 game minutes per 20 to 30 real seconds, and the Pace \"fast\" setting made no visible difference. Skip on the phone gave two hours at once.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 115,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Speed up the quiet stretches, or let Skip go further, and make the Pace setting visibly change the speed."
+    },
+    {
+     "label": "Later wording (section 1) status messages",
+     "line": 17,
+     "mode": "inline",
+     "span": "Some of my status messages to you were slow because I was waiting on replies. I am not blaming the game for that."
+    },
+    {
+     "label": "Later wording (section 5) Pace",
+     "line": 92,
+     "mode": "inline",
+     "span": "The Pace setting: I chose \"fast\" and saw no visible change (5 game minutes in 20 s)."
+    },
+    {
+     "label": "Later wording (section 5) Skip absent",
+     "line": 93,
+     "mode": "inline",
+     "span": "On desktop Skip was often absent while a reading note was shown, and I waited without a way to move."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 123,
+     "mode": "inline",
+     "span": "Partly met. The page now says \"Nothing new has happened. Walking continues quickly until something happens\", and phone Skip gave two hours in one tap. But the desktop clock still crawled at 4 to 8 game minutes per 20 to 30 seconds. The \"fast\" pace made no visible difference, and Skip was often missing while I waited."
+    },
+    {
+     "label": "Later wording (section 9) new blocker, no event in 4.5 minutes",
+     "line": 126,
+     "mode": "inline",
+     "span": "On desktop I never reached any event that needed me in about 4.5 minutes."
+    },
+    {
+     "label": "Later wording (section 9) new blocker, Pace unclear",
+     "line": 127,
+     "mode": "inline",
+     "span": "I could not tell whether the Pace setting did anything."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Pavel wants the quiet stretches sped up or Skip to go further and wants the Pace setting to visibly change the speed, waiting and speed and Skip preference, desktop showed about 4 to 8 game minutes per 20 to 30 real seconds and the fast pace reading was 5 game minutes in 20 s, reading notes and actual pace and native driver latency are confounds and no default Fast bug is proved, C14 human-speed comparison only before any clock retune, keep difficulty and faith-quiet agency and refusal, target2026-11-10 (open); calibration:C14",
+   "target": "2026-11-10",
+   "calibrationC14": true,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/pavel/report.md"
+  },
+  {
+   "id": "F-2588",
+   "rank": 3,
+   "tester": "Pavel Novak",
+   "testerKey": "pavel",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Let me reach the hurt climber and the turn-back promise. I reached neither this time, so I cannot say whether the old \"walk to Bilal\" problem is fixed.\" Later wording (section 8): \"Let me reach the hurt climber and the turn-back promise within a few minutes, so I can see whether they work.\" Later wording (section 5) unseen: \"the hurt climber (my old desktop trouble), the 12:00 and 13:00 promises being tested, and anything past 10:11.\" Later wording (section 9): \"Not seen. I never reached a hurt climber on either device. The nearest was Nell wanting to go down on the phone. That one gave named choices, and \"send Tamar Vale\" was accepted with a visible answer (\"Tamar Vale agreed to meet, then consider going down together\"). I cannot say whether the Bilal problem is fixed.\"",
+   "rankedAsk": "Let me reach the hurt climber and the turn-back promise. I reached neither this time, so I cannot say whether the old \"walk to Bilal\" problem is fixed.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 116,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Let me reach the hurt climber and the turn-back promise within a few minutes, so I can see whether they work."
+    },
+    {
+     "label": "Later wording (section 5) unseen",
+     "line": 94,
+     "mode": "inline",
+     "span": "the hurt climber (my old desktop trouble), the 12:00 and 13:00 promises being tested, and anything past 10:11."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 121,
+     "mode": "inline",
+     "span": "Not seen. I never reached a hurt climber on either device. The nearest was Nell wanting to go down on the phone. That one gave named choices, and \"send Tamar Vale\" was accepted with a visible answer (\"Tamar Vale agreed to meet, then consider going down together\"). I cannot say whether the Bilal problem is fixed."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Pavel wants to reach the hurt climber and the turn-back promise within a few minutes, old hurt-climber and turn-back recovery verification, not reached in this round on either device so it is neither proved fixed nor proved broken, C14 only if a change would alter the clock to force earlier arrival and this is not a general recovery gate, no automatic early event and no shorter day, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/pavel/report.md"
+  },
+  {
+   "id": "F-2589",
+   "rank": 1,
+   "tester": "Tessa Williams",
+   "testerKey": "tessa",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Stop most people giving the same stock yes or the same \"hut path\" line to different asks. Tamar, Nell, Oskar and Wren still did, mostly on the phone.\" Later wording (section 8): \"Stop most people giving one stock yes or one hut-path line to different asks. Wren and Bilal were better. Tamar, Nell and Oskar were not.\" Later wording (section 3) phone note 75.4 s: \"Insist worked, Oskar rests, said Yes! Count me in, the same stock yes as last visit even though he was resting. Mischief: leaving him behind to see what happens.\" Later wording (section 4) lost me, phone turn back: \"On the phone, Tamar, Oskar, Nell and Wren gave the hut-path line to \"turn back\", even though we were minutes up. On the phone it was my first request before the group had moved, and the reasons given were \"busy until about 06:38\".\" Later wording (section 4) lost me, eat and survey: \"The same hut-path line for eat and for the habitat survey on the phone.\" Later wording (section 4) lost me, Oskar yes: \"Oskar said \"Yes! Count me in\" when I told him to rest. That is the same yes as last visit.\" Later wording (section 5) unclear, hut-path line far from the hut: \"Why the hut-path line appears on the phone when the group is far above the hut. I do not know if it is a stock phrase or the first stretch of the climb.\" Later wording (section 5) unclear, Count me in after insist: \"After insisting on a rest, Oskar says \"Count me in\", which reads as joining.\" Later wording (section 9): \"On the laptop, Wren's turn-back answer fit what she was doing (\"I will consider it after I eat something\", busy until 07:14). Bilal said \"Yes, my friend\" and \"Gladly\", and Oskar's rest refusal was phrased differently from Wren's. But on the phone Wren gave the hut-path line to both eat and the habitat survey. Tamar, Oskar, Nell and Wren gave hut-path lines to turn back. Oskar still said \"Yes! Count me in\". \"Stop once we have left the hut\" was not met on the phone. On the phone the line came back while I was minutes up.\"",
+   "rankedAsk": "Stop most people giving the same stock yes or the same \"hut path\" line to different asks. Tamar, Nell, Oskar and Wren still did, mostly on the phone.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 127,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Stop most people giving one stock yes or one hut-path line to different asks. Wren and Bilal were better. Tamar, Nell and Oskar were not."
+    },
+    {
+     "label": "Later wording (section 3) phone note 75.4 s",
+     "line": 45,
+     "mode": "inline",
+     "span": "Insist worked, Oskar rests, said Yes! Count me in, the same stock yes as last visit even though he was resting. Mischief: leaving him behind to see what happens."
+    },
+    {
+     "label": "Later wording (section 4) lost me, phone turn back",
+     "line": 79,
+     "mode": "inline",
+     "span": "On the phone, Tamar, Oskar, Nell and Wren gave the hut-path line to \"turn back\", even though we were minutes up. On the phone it was my first request before the group had moved, and the reasons given were \"busy until about 06:38\"."
+    },
+    {
+     "label": "Later wording (section 4) lost me, eat and survey",
+     "line": 80,
+     "mode": "inline",
+     "span": "The same hut-path line for eat and for the habitat survey on the phone."
+    },
+    {
+     "label": "Later wording (section 4) lost me, Oskar yes",
+     "line": 81,
+     "mode": "inline",
+     "span": "Oskar said \"Yes! Count me in\" when I told him to rest. That is the same yes as last visit."
+    },
+    {
+     "label": "Later wording (section 5) unclear, hut-path line far from the hut",
+     "line": 101,
+     "mode": "inline",
+     "span": "Why the hut-path line appears on the phone when the group is far above the hut. I do not know if it is a stock phrase or the first stretch of the climb."
+    },
+    {
+     "label": "Later wording (section 5) unclear, Count me in after insist",
+     "line": 102,
+     "mode": "inline",
+     "span": "After insisting on a rest, Oskar says \"Count me in\", which reads as joining."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 132,
+     "mode": "inline",
+     "span": "On the laptop, Wren's turn-back answer fit what she was doing (\"I will consider it after I eat something\", busy until 07:14). Bilal said \"Yes, my friend\" and \"Gladly\", and Oskar's rest refusal was phrased differently from Wren's. But on the phone Wren gave the hut-path line to both eat and the habitat survey. Tamar, Oskar, Nell and Wren gave hut-path lines to turn back. Oskar still said \"Yes! Count me in\". \"Stop once we have left the hut\" was not met on the phone. On the phone the line came back while I was minutes up."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Tessa wants most people to stop giving the same stock yes or the same hut-path line to different asks, repeated stock yes and hut-path wording source inspection and an equivalent true copy, preserve the actual HF answer and do not turn it into a new positive assent or an invented history, Wren and Bilal answers were better and Tamar and Nell and Oskar were not, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/tessa/report.md"
+  },
+  {
+   "id": "F-2590",
+   "rank": 2,
+   "tester": "Tessa Williams",
+   "testerKey": "tessa",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Give me something to do while the group walks. I kept waiting on the clock or pressing Skip.\" Later wording (section 8): \"Give me something to do while the group walks. I kept waiting or pressing Skip.\" Later wording (section 3) laptop pulse 182.97 s: \"Still, most yeses are one shape, and I walk off alone and have to wait for them.\" Later wording (section 4) lost me, group waiting: \"Everyone was stopped, waiting for me, after I walked ahead on the laptop.\" Later wording (section 5) unclear, skipped section: \"I did not see what a skipped section does while I am ahead. The group stopped and I waited for them.\" Later wording (section 9) new blocker: \"The group stopped and waited for me on the laptop after I walked ahead. Bilal stopped on his own with no reason shown.\"",
+   "rankedAsk": "Give me something to do while the group walks. I kept waiting on the clock or pressing Skip.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 128,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Give me something to do while the group walks. I kept waiting or pressing Skip."
+    },
+    {
+     "label": "Later wording (section 3) laptop pulse 182.97 s",
+     "line": 66,
+     "mode": "inline",
+     "span": "Still, most yeses are one shape, and I walk off alone and have to wait for them."
+    },
+    {
+     "label": "Later wording (section 4) lost me, group waiting",
+     "line": 83,
+     "mode": "inline",
+     "span": "Everyone was stopped, waiting for me, after I walked ahead on the laptop."
+    },
+    {
+     "label": "Later wording (section 5) unclear, skipped section",
+     "line": 103,
+     "mode": "inline",
+     "span": "I did not see what a skipped section does while I am ahead. The group stopped and I waited for them."
+    },
+    {
+     "label": "Later wording (section 9) new blocker",
+     "line": 138,
+     "mode": "inline",
+     "span": "The group stopped and waited for me on the laptop after I walked ahead. Bilal stopped on his own with no reason shown."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Tessa wants something to do while the group walks, dated design review for a more-to-do and narrative preference and not a proven defect, equivalent copy and new authored interactions are buildable choices if faithful to the cast and rules, no automatically manufactured events and no forced compliance and no difficulty or clock change, new content alone is not an owner-permission gate, target2026-11-10 (open)",
+   "target": "2026-11-10",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/tessa/report.md"
+  },
+  {
+   "id": "F-2591",
+   "rank": 3,
+   "tester": "Tessa Williams",
+   "testerKey": "tessa",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Fix the overlapping name labels on the laptop map near the hut.\" Later wording (section 3) laptop diary 70.5 s: \"The labels on the map overlap near the hut, hard to read who is who.\" Later wording (section 6) desktop b-002: \"a wide map on the left with the group a small cluster near the hut and labels overlapping (\"the hut\", Tamar Vale, Nell).\" Later wording (section 6) trouble seen: \"the laptop labels overlap near the hut.\" Later wording (section 6) laptop tap failure: \"One tap on the laptop (Wren) failed because the page changed during Skip.\"",
+   "rankedAsk": "Fix the overlapping name labels on the laptop map near the hut.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 3) laptop diary 70.5 s",
+     "line": 62,
+     "mode": "inline",
+     "span": "The labels on the map overlap near the hut, hard to read who is who."
+    },
+    {
+     "label": "Later wording (section 6) desktop b-002",
+     "line": 110,
+     "mode": "inline",
+     "span": "a wide map on the left with the group a small cluster near the hut and labels overlapping (\"the hut\", Tamar Vale, Nell)."
+    },
+    {
+     "label": "Later wording (section 6) trouble seen",
+     "line": 116,
+     "mode": "inline",
+     "span": "the laptop labels overlap near the hut."
+    },
+    {
+     "label": "Later wording (section 6) laptop tap failure",
+     "line": 116,
+     "mode": "inline",
+     "span": "One tap on the laptop (Wren) failed because the page changed during Skip."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Tessa wants the overlapping name labels on the laptop map near the hut fixed, actual desktop map label overlap near the hut, a source lead on current font and geometry and not full browser proof, seen in her 1280x800 capture and her diary at 70.5 s and not checked on the phone, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/tessa/report.md"
+  },
+  {
+   "id": "F-2592",
+   "rank": 1,
+   "tester": "Nia Okafor",
+   "testerKey": "nia",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Make the first reply to a question or request specific. Today the generic line (\"I agree. Let's do it.\" / \"I will do as you ask.\") comes first and the real answer arrives 20–30 s later.\" Later wording (section 8): \"Make the first reply specific to my question, with no generic line first.\" Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 40.5 s: \"Nell answered my question a bit later: The Sunny Chair is a wet hollow, maps of what people say. That is a real answer to mountain names. Last time I only got I agree. The first line is still the generic one though.\" Later wording (section 3) (reconstructed by the producer, not word-for-word) desktop 36.6 s: \"Tamar answered my turn-back question for real: she once blamed weather when she had lost confidence. That is exactly what I wanted last time. The first line I will do as you ask is still generic and it comes first, but the real answer follows within seconds.\" Later wording (section 4) lost me: \"The generic first line still comes first.\" Later wording (section 9): \"Real topic answers came (Nell on mountain names, Tamar on turn-back). They arrived 20–30 s after a generic first line.\"",
+   "rankedAsk": "Make the first reply to a question or request specific. Today the generic line (\"I agree. Let's do it.\" / \"I will do as you ask.\") comes first and the real answer arrives 20–30 s later.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 131,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Make the first reply specific to my question, with no generic line first."
+    },
+    {
+     "label": "Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 40.5 s",
+     "line": 37,
+     "mode": "inline",
+     "span": "Nell answered my question a bit later: The Sunny Chair is a wet hollow, maps of what people say. That is a real answer to mountain names. Last time I only got I agree. The first line is still the generic one though."
+    },
+    {
+     "label": "Later wording (section 3) (reconstructed by the producer, not word-for-word) desktop 36.6 s",
+     "line": 64,
+     "mode": "inline",
+     "span": "Tamar answered my turn-back question for real: she once blamed weather when she had lost confidence. That is exactly what I wanted last time. The first line I will do as you ask is still generic and it comes first, but the real answer follows within seconds."
+    },
+    {
+     "label": "Later wording (section 4) lost me",
+     "line": 89,
+     "mode": "inline",
+     "span": "The generic first line still comes first."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 136,
+     "mode": "inline",
+     "span": "Real topic answers came (Nell on mountain names, Tamar on turn-back). They arrived 20–30 s after a generic first line."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Nia wants the first reply to a question to be specific instead of the generic line first, generic interim answer before the completed topic source lead, truthful pending and completed meaning of the interim line, the real answer arrived 20 to 30 s later, no invented fact and no forced instant answer, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/nia/report.md"
+  },
+  {
+   "id": "F-2593",
+   "rank": 2,
+   "tester": "Nia Okafor",
+   "testerKey": "nia",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Make refusals sound like people every time. Oskar's \"I can't make that happen. I do not have what I need for that.\" still reads like an error message. Stop several people giving the identical line.\" Later wording (section 8): \"Give every refusal a person's voice and stop identical lines from several people.\" Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 103.9 s: \"Oskar refused with I cannot make that happen, I do not have what I need for that. That is the same error-message voice I complained about last time. It came after a wait, and it is not a person talking.\" Later wording (section 4) lost me, Oskar on both devices: \"Oskar gave the same deferral line on both devices.\" Later wording (section 4) lost me, identical line: \"Three people said the identical \"I want to go down. Who will come with me?\"\" Later wording (section 4) lost me, error voice: \"Oskar's error-voice refusal came back.\" Later wording (section 9): \"Refusals came at 10 s and were varied: \"Ask me after I eat something\", \"First I will eat something, then we can talk\", and \"I will do it, but I disagree\" again. Oskar's \"I can't make that happen. I do not have what I need for that.\" is still error-style. Three people also said the same line.\"",
+   "rankedAsk": "Make refusals sound like people every time. Oskar's \"I can't make that happen. I do not have what I need for that.\" still reads like an error message. Stop several people giving the identical line.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 132,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Give every refusal a person's voice and stop identical lines from several people."
+    },
+    {
+     "label": "Later wording (section 3) (reconstructed by the producer, not word-for-word) phone 103.9 s",
+     "line": 47,
+     "mode": "inline",
+     "span": "Oskar refused with I cannot make that happen, I do not have what I need for that. That is the same error-message voice I complained about last time. It came after a wait, and it is not a person talking."
+    },
+    {
+     "label": "Later wording (section 4) lost me, Oskar on both devices",
+     "line": 90,
+     "mode": "inline",
+     "span": "Oskar gave the same deferral line on both devices."
+    },
+    {
+     "label": "Later wording (section 4) lost me, identical line",
+     "line": 91,
+     "mode": "inline",
+     "span": "Three people said the identical \"I want to go down. Who will come with me?\""
+    },
+    {
+     "label": "Later wording (section 4) lost me, error voice",
+     "line": 93,
+     "mode": "inline",
+     "span": "Oskar's error-voice refusal came back."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 137,
+     "mode": "inline",
+     "span": "Refusals came at 10 s and were varied: \"Ask me after I eat something\", \"First I will eat something, then we can talk\", and \"I will do it, but I disagree\" again. Oskar's \"I can't make that happen. I do not have what I need for that.\" is still error-style. Three people also said the same line."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Nia wants refusals to sound like a person every time and wants several people to stop giving the identical line, refusal wording and identical-lines clarity, source the actual known reason only, Oskar I can't make that happen reads to her like an error message, keep refusal and agency and need privacy, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/nia/report.md"
+  },
+  {
+   "id": "F-2594",
+   "rank": 3,
+   "tester": "Nia Okafor",
+   "testerKey": "nia",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Make the clock move at a pace where something happens in a minute. On Automatic pace it was 05:30 after about 3 minutes.\" Later wording (section 8): \"Make the default clock fast enough that something happens within a minute.\" Later wording (section 4) lost me: \"The clock was slow on Automatic.\" Later wording (section 9): \"did not meet it on the phone.\" Later wording (section 9) phone Automatic: \"On the phone's Automatic pace the clock read 05:30 after about 3 minutes.\" Later wording (section 9) desktop Fast: \"On desktop with Pace set to fast it moved about 11 game minutes in 25 s.\" Later wording (section 9) turn-back time not reached: \"I never reached turn-back time on either device.\" Later wording (section 3) wait discrepancy: \"The wait 167→244 s step reported a longer elapsed time than the 15 s I asked for. I do not know why.\"",
+   "rankedAsk": "Make the clock move at a pace where something happens in a minute. On Automatic pace it was 05:30 after about 3 minutes.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 133,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Make the default clock fast enough that something happens within a minute."
+    },
+    {
+     "label": "Later wording (section 4) lost me",
+     "line": 94,
+     "mode": "inline",
+     "span": "The clock was slow on Automatic."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 138,
+     "mode": "inline",
+     "span": "did not meet it on the phone."
+    },
+    {
+     "label": "Later wording (section 9) phone Automatic",
+     "line": 139,
+     "mode": "inline",
+     "span": "On the phone's Automatic pace the clock read 05:30 after about 3 minutes."
+    },
+    {
+     "label": "Later wording (section 9) desktop Fast",
+     "line": 140,
+     "mode": "inline",
+     "span": "On desktop with Pace set to fast it moved about 11 game minutes in 25 s."
+    },
+    {
+     "label": "Later wording (section 9) turn-back time not reached",
+     "line": 141,
+     "mode": "inline",
+     "span": "I never reached turn-back time on either device."
+    },
+    {
+     "label": "Later wording (section 3) wait discrepancy",
+     "line": 79,
+     "mode": "inline",
+     "span": "The wait 167→244 s step reported a longer elapsed time than the 15 s I asked for. I do not know why."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Nia wants the clock to move at a pace where something happens within a minute, default clock preference, Automatic pace on the phone read 05:30 after about 3 minutes and Fast on the desktop moved about 11 game minutes in 25 s, device and pace and order and learning are confounded and model and tool seconds are not a human measure, C14 human-speed comparison only before any clock retune, target2026-11-10 (open); calibration:C14",
+   "target": "2026-11-10",
+   "calibrationC14": true,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/nia/report.md"
+  },
+  {
+   "id": "F-2595",
+   "rank": 1,
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Keep Skip on the screen. Say how far it jumps (\"Skip to 08:00\" or \"Skip to the next event: about 1 hour\").\" Later wording (section 8): \"Keep Skip on screen and say how far it goes.\" Later wording (section 5) confusing: \"Skip is not always on the screen.\" Later wording (section 4) lost me: \"Skip appearing and disappearing, with no stated size of jump.\" Later wording (section 9) Skip label: \"Skip is now labelled \"Skip to the next event\".\" Later wording (section 9): \"Skip still comes and goes, and it does not say how far it jumps.\" Later wording (section 9) new blocker: \"Skip is missing on both devices at times, with no reason given.\" Later wording (section 6) trouble seen: \"Skip missing on both devices; the desktop clock stuck at 05:03; the desktop path hidden under the right panel.\"",
+   "rankedAsk": "Keep Skip on the screen. Say how far it jumps (\"Skip to 08:00\" or \"Skip to the next event: about 1 hour\").",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 179,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Keep Skip on screen and say how far it goes."
+    },
+    {
+     "label": "Later wording (section 5) confusing",
+     "line": 125,
+     "mode": "inline",
+     "span": "Skip is not always on the screen."
+    },
+    {
+     "label": "Later wording (section 4) lost me",
+     "line": 106,
+     "mode": "inline",
+     "span": "Skip appearing and disappearing, with no stated size of jump."
+    },
+    {
+     "label": "Later wording (section 9) Skip label",
+     "line": 188,
+     "mode": "inline",
+     "span": "Skip is now labelled \"Skip to the next event\"."
+    },
+    {
+     "label": "Later wording (section 9)",
+     "line": 188,
+     "mode": "inline",
+     "span": "Skip still comes and goes, and it does not say how far it jumps."
+    },
+    {
+     "label": "Later wording (section 9) new blocker",
+     "line": 191,
+     "mode": "inline",
+     "span": "Skip is missing on both devices at times, with no reason given."
+    },
+    {
+     "label": "Later wording (section 6) trouble seen",
+     "line": 164,
+     "mode": "inline",
+     "span": "Skip missing on both devices; the desktop clock stuck at 05:03; the desktop path hidden under the right panel."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Rosa wants Skip kept on screen and wants it to say how far it jumps, Skip availability and endpoint clarity, legitimate unavailability stays and no guessed or guaranteed future event time, Skip was reported missing at 66.874 s on the phone and at 148.206 s on the desktop, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2596",
+   "rank": 2,
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Rewrite the sentence \"You also stop at a place on the path when nobody behind can hear you\" in plain words. Say which place, and why they cannot hear me.\" Later wording (section 8): \"Rewrite the \"nobody behind can hear you\" sentence in plain words.\" Later wording (section 5) confusing: \"\"You also stop at a place on the path when nobody behind can hear you.\" I did not understand what place, or why they could not hear me.\" Later wording (section 9) new blocker: \"One sentence in the lead-on hint still needs a reread: \"You also stop at a place on the path when nobody behind can hear you.\"\" Later wording (section 3) desktop reread 9.197 s: \"Reread 1: You also stop at a place on the path when nobody behind can hear you. What place? Why can they not hear me?\"",
+   "rankedAsk": "Rewrite the sentence \"You also stop at a place on the path when nobody behind can hear you\" in plain words. Say which place, and why they cannot hear me.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 180,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "Rewrite the \"nobody behind can hear you\" sentence in plain words."
+    },
+    {
+     "label": "Later wording (section 5) confusing",
+     "line": 124,
+     "mode": "inline",
+     "span": "\"You also stop at a place on the path when nobody behind can hear you.\" I did not understand what place, or why they could not hear me."
+    },
+    {
+     "label": "Later wording (section 9) new blocker",
+     "line": 193,
+     "mode": "inline",
+     "span": "One sentence in the lead-on hint still needs a reread: \"You also stop at a place on the path when nobody behind can hear you.\""
+    },
+    {
+     "label": "Later wording (section 3) desktop reread 9.197 s",
+     "line": 76,
+     "mode": "inline",
+     "span": "Reread 1: You also stop at a place on the path when nobody behind can hear you. What place? Why can they not hear me?"
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Rosa wants the sentence You also stop at a place on the path when nobody behind can hear you in plain words, plain hearing-range and stop-place hint, use the existing visible landmarks and the actual supported meaning only, no private-state leak, only this one sentence needed a reread and only on the desktop, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2597",
+   "rank": 3,
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"During the long waits, write what I am waiting for and what I can do now. For example: \"Waiting. You can open the Journal, or press Skip.\"\" Later wording (section 8): \"During waits, say what I am waiting for and what I can do now.\" Later wording (section 4) lost me: \"Long waits with little to do.\" Later wording (section 4) held me, phone waiting line: \"The waiting line on the phone: \"You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up.\"\" Later wording (section 9) Skip and waiting statement: \"The phone now says plainly \"You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up.\"\" Later wording (section 3) phone pulse 184.117 s: \"Still long waits between actions, but I know why now.\"",
+   "rankedAsk": "During the long waits, write what I am waiting for and what I can do now. For example: \"Waiting. You can open the Journal, or press Skip.\"",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 181,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "During waits, say what I am waiting for and what I can do now."
+    },
+    {
+     "label": "Later wording (section 4) lost me",
+     "line": 105,
+     "mode": "inline",
+     "span": "Long waits with little to do."
+    },
+    {
+     "label": "Later wording (section 4) held me, phone waiting line",
+     "line": 102,
+     "mode": "inline",
+     "span": "The waiting line on the phone: \"You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up.\""
+    },
+    {
+     "label": "Later wording (section 9) Skip and waiting statement",
+     "line": 188,
+     "mode": "inline",
+     "span": "The phone now says plainly \"You are waiting for Tamar Vale, Oskar, Nell, Bilal and Wren to catch up.\""
+    },
+    {
+     "label": "Later wording (section 3) phone pulse 184.117 s",
+     "line": 63,
+     "mode": "inline",
+     "span": "Still long waits between actions, but I know why now."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Rosa wants the long waits to say what she is waiting for and what she can do now, truthful waiting and current existing actions clarity, the phone already says who she is waiting for, no forced new tasks, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/rosa/report.md"
+  },
+  {
+   "id": "F-2598",
+   "rank": 1,
+   "tester": "Farah Bensaid",
+   "testerKey": "farah",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"When someone stops, walks down or refuses, say why in plain words. Say what \"something I need is missing\" means: which thing, and who has it.\" Later wording (section 8): \"Give a plain reason for every stop, walk-down or refusal, and name what is missing.\" Later wording (section 5) confusing, missing: \"What \"something I need for that is missing\" means.\" Later wording (section 5) confusing, Tamar and Bilal: \"Why Tamar went down and Bilal stopped on the phone.\" Later wording (section 5) confusing, rope picker: \"The rope picker offered someone who was too far away, with no warning.\" Later wording (section 3) laptop 255.2 s: \"Something I need is missing. What thing? A rope? Who carries it? Nothing on screen says. And a new note about Scout appears on top. I look in the Journal for an answer.\" Later wording (section 3) phone want_quit 331.2 s: \"They all said yes at 09:24 and ten minutes later one walks down and one stands still. The answers list does not tell me why. I keep fixing people one by one and I cannot see the rule.\" Later wording (section 7) laptop stop: \"twice now the rope fails and the game does not tell me what is missing\"",
+   "rankedAsk": "When someone stops, walks down or refuses, say why in plain words. Say what \"something I need is missing\" means: which thing, and who has it.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 145,
+     "mode": "after-label",
+     "prefix": "1. ",
+     "span": "Give a plain reason for every stop, walk-down or refusal, and name what is missing."
+    },
+    {
+     "label": "Later wording (section 5) confusing, missing",
+     "line": 112,
+     "mode": "inline",
+     "span": "What \"something I need for that is missing\" means."
+    },
+    {
+     "label": "Later wording (section 5) confusing, Tamar and Bilal",
+     "line": 111,
+     "mode": "inline",
+     "span": "Why Tamar went down and Bilal stopped on the phone."
+    },
+    {
+     "label": "Later wording (section 5) confusing, rope picker",
+     "line": 109,
+     "mode": "inline",
+     "span": "The rope picker offered someone who was too far away, with no warning."
+    },
+    {
+     "label": "Later wording (section 3) laptop 255.2 s",
+     "line": 73,
+     "mode": "inline",
+     "span": "Something I need is missing. What thing? A rope? Who carries it? Nothing on screen says. And a new note about Scout appears on top. I look in the Journal for an answer."
+    },
+    {
+     "label": "Later wording (section 3) phone want_quit 331.2 s",
+     "line": 52,
+     "mode": "inline",
+     "span": "They all said yes at 09:24 and ten minutes later one walks down and one stands still. The answers list does not tell me why. I keep fixing people one by one and I cannot see the rule."
+    },
+    {
+     "label": "Later wording (section 7) laptop stop",
+     "line": 75,
+     "mode": "inline",
+     "span": "twice now the rope fails and the game does not tell me what is missing"
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Farah wants a plain reason whenever someone stops or walks down or refuses and wants Something I need for that is missing explained, plain stop and turn and refusal and missing-item reason, source inspect the actual known facts only, no invented inventory and no claim of who holds what and no private knowledge and no mandatory compliance, the missing item was not diagnosed from play, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/farah/report.md"
+  },
+  {
+   "id": "F-2599",
+   "rank": 2,
+   "tester": "Farah Bensaid",
+   "testerKey": "farah",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"On the phone, show fewer tutorial notes stacked on top of each other, and keep the Submit bar inside the screen.\" Later wording (section 8): \"On the phone, show fewer stacked notes and keep the Submit bar on the screen.\" Later wording (section 6) phone a-003: \"Feedback with \"I'm confused\" selected and the box auto-filled. The Submit bar was cut off at the bottom of the screen.\" Later wording (section 6) phone trouble: \"the slope picture was hidden among stacked notes, and there was a lot of reading.\" Later wording (section 3) phone 229 s: \"The notes keep piling up though, a lot of reading on a small screen.\" Later wording (section 6) laptop b-004: \"Feedback with \"I'm stopping\" highlighted and the box auto-filled with \"I'm stopping\". There were five chips, an optional name field and a Submit bar that was fully visible.\" Later wording (section 7) phone stop: \"too much reading for a short sitting\"",
+   "rankedAsk": "On the phone, show fewer tutorial notes stacked on top of each other, and keep the Submit bar inside the screen.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 146,
+     "mode": "after-label",
+     "prefix": "2. ",
+     "span": "On the phone, show fewer stacked notes and keep the Submit bar on the screen."
+    },
+    {
+     "label": "Later wording (section 6) phone a-003",
+     "line": 120,
+     "mode": "inline",
+     "span": "Feedback with \"I'm confused\" selected and the box auto-filled. The Submit bar was cut off at the bottom of the screen."
+    },
+    {
+     "label": "Later wording (section 6) phone trouble",
+     "line": 122,
+     "mode": "inline",
+     "span": "the slope picture was hidden among stacked notes, and there was a lot of reading."
+    },
+    {
+     "label": "Later wording (section 3) phone 229 s",
+     "line": 45,
+     "mode": "inline",
+     "span": "The notes keep piling up though, a lot of reading on a small screen."
+    },
+    {
+     "label": "Later wording (section 6) laptop b-004",
+     "line": 129,
+     "mode": "inline",
+     "span": "Feedback with \"I'm stopping\" highlighted and the box auto-filled with \"I'm stopping\". There were five chips, an optional name field and a Submit bar that was fully visible."
+    },
+    {
+     "label": "Later wording (section 7) phone stop",
+     "line": 54,
+     "mode": "inline",
+     "span": "too much reading for a short sitting"
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Farah wants fewer stacked tutorial notes on the phone and the Submit bar inside the screen, phone notes and wrap and Feedback Submit clipping source lead, the director viewed the phone capture showing only the top of Submit at the bottom edge and scrolling was untested so Submit is not proven unreachable, route a shared Feedback cause to all if reproduced, no Submit and no consent change, no C14 layout gate, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/farah/report.md"
+  },
+  {
+   "id": "F-2600",
+   "rank": 3,
+   "tester": "Farah Bensaid",
+   "testerKey": "farah",
+   "date": "2026-10-31",
+   "game": "rope",
+   "kind": "playtester",
+   "words": "\"Make \"stay with them\" visibly keep me beside the group, or explain what it does.\" Later wording (section 8): \"Make \"stay with them\" do what it says, or explain it.\" Later wording (section 5) confusing: \"What \"stay with them\" did. I still ended up below everyone.\" Later wording (section 3) laptop 159.1 s: \"Everyone is above me even though I chose stay with them. I do not know what stay with them actually did. I lead on to catch up.\" Later wording (section 3) phone 168.0 s: \"I keep running ahead and waiting. I try stay with them instead.\"",
+   "rankedAsk": "Make \"stay with them\" visibly keep me beside the group, or explain what it does.",
+   "laterAskSpans": [
+    {
+     "label": "Later wording (section 8)",
+     "line": 147,
+     "mode": "after-label",
+     "prefix": "3. ",
+     "span": "Make \"stay with them\" do what it says, or explain it."
+    },
+    {
+     "label": "Later wording (section 5) confusing",
+     "line": 107,
+     "mode": "inline",
+     "span": "What \"stay with them\" did. I still ended up below everyone."
+    },
+    {
+     "label": "Later wording (section 3) laptop 159.1 s",
+     "line": 66,
+     "mode": "inline",
+     "span": "Everyone is above me even though I chose stay with them. I do not know what stay with them actually did. I lead on to catch up."
+    },
+    {
+     "label": "Later wording (section 3) phone 168.0 s",
+     "line": 42,
+     "mode": "inline",
+     "span": "I keep running ahead and waiting. I try stay with them instead."
+    }
+   ],
+   "verdict": "mixed",
+   "route": "fix:rope Farah wants Stay with them to visibly keep her beside the group or to be explained, Stay with them actual meaning and visible proximity, a distinct literal player row with the same agency guardrails as F-2586, she ended below everyone after choosing it on the laptop, no forced following and no co-location and no teleport and no compliance, target2026-11-03 (open)",
+   "target": "2026-11-03",
+   "calibrationC14": false,
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest1/farah/report.md"
+  }
+ ]
+}

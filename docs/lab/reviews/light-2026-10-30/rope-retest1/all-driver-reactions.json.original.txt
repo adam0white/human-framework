@@ -1,0 +1,5568 @@
+{
+ "time": "built by build-packet.py from the copied raw wall-clock.jsonl files",
+ "note": "Exact surviving reaction rows from all five testers and ten sessions, kept literally, not a reconstructed producer diary. Every raw reaction is kept, including ones the report omits, shortens or respells, ones with an escaped or dropped apostrophe, and ones attached to a failed (error) tap. Each row keeps every original key plus rowIndex (1-based line of wall-clock.jsonl), containsBackslash and contextBefore (the previous raw row). Rows with no reaction text (opens, automatic shots, some waits) are counted in rows but not listed. reactionsNotLiterallyInReport counts reactions whose exact text is not a substring of that tester's report.md. Nia's report section 3 is a reconstruction by the producer: her original reactions are only in these rows and in nia/raw-driver-reactions.json, never promoted into the report diary. Report memories and estimates stay separate; a report line is not substituted for a raw row.",
+ "sessions": [
+  {
+   "tester": "Pavel Novak",
+   "testerKey": "pavel",
+   "device": "phone",
+   "source": "pavel/phone/wall-clock.jsonl",
+   "rawSha256": "e6937bf48ea7eccbab011c5efd251b778a499f28bb563f2770bd635216de3687",
+   "rows": 29,
+   "reactionRows": 16,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "errorRowsWithReaction": 0,
+   "errorRowsWithoutReaction": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:30:16.504Z",
+     "elapsed_s": 3.487,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Phone, second visit. Same title. New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 592,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 1.448,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:30:17.963Z",
+     "elapsed_s": 4.946,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We turn at 12:00"
+     },
+     "reaction": "12:00 this time, as on my last phone visit.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 296,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 3.487,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:30:19.482Z",
+     "elapsed_s": 6.465,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "stay with them"
+     },
+     "reaction": "Last time stay with them confused me. This time I press it first, to see what it does.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 183,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 4.946,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We turn at 12:00"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:30:50.662Z",
+     "elapsed_s": 37.645,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "I wait to see whether staying with them keeps the group together.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30112,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 7,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 6.465,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "stay with them"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:30:52.568Z",
+     "elapsed_s": 39.551,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "This time all five are above me. Pressing stay with them first kept me with them; or it is chance, I am guessing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 153,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 37.645,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:31:26.613Z",
+     "elapsed_s": 73.596,
+     "kind": "first_minute",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "One minute on the phone: the group is above me and I am following them, which is better than last time. Clock still slow, 12 game minutes in 30 seconds. Skip.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 162,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 11,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 71.927,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:31:59.412Z",
+     "elapsed_s": 106.395,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Skip took me two hours in 30 seconds. Better. Again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 158,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 13,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 104.624,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:32:32.346Z",
+     "elapsed_s": 139.329,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Route and weather warning"
+     },
+     "reaction": "New: Skip says plainly why it stopped, Oskar can no longer hear me. Last time I could not open the Route and weather warning; I try again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 153,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 15,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 137.473,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:32:34.191Z",
+     "elapsed_s": 141.174,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "stay with them"
+     },
+     "reaction": "The warning opens now and says the wind is an estimate, not a deadline. That answers my old puzzle. Oskar cannot hear me, so I press stay with them.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 231,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 16,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 139.329,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "text": "Route and weather warning"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:33:17.289Z",
+     "elapsed_s": 184.272,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 10
+     },
+     "reaction": "Oskar no longer says he cannot hear me after stay with them. Visible improvement on my old second ask, though I cannot prove the cause.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 10110,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 18,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 172.161,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:33:18.975Z",
+     "elapsed_s": 185.958,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Clearer than last visit: Skip says why it stopped and the weather warning opens. But Oskar again cannot hear me after stay with them, and the group spreads out; I am still mostly waiting.",
+     "game_clock": "09:52",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 19,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 184.272,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 10
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:33:20.624Z",
+     "elapsed_s": 187.607,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "I skip on to see whether 12:00 ever comes.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 151,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 185.958,
+      "kind": "pulse",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:33:53.175Z",
+     "elapsed_s": 220.158,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Nell wants to go down ▸"
+     },
+     "reaction": "Finally something needs me: Nell wants to go down. A new event I did not reach last time. I open it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 187,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 22,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 218.62,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:33:55.179Z",
+     "elapsed_s": 222.162,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "send Tamar Vale"
+     },
+     "reaction": "Clear choices with names. Nobody should go down alone; I send Tamar Vale with Nell.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 277,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 23,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 220.158,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Nell wants to go down ▸"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:33:57.285Z",
+     "elapsed_s": 224.268,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I have seen the new things I came to check: the Nell choice has named options and the Skip stop has a reason. Two of five cannot hear me and I am still waiting a lot. I would stop for the evening.",
+     "game_clock": "10:11",
+     "engagement": null,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 24,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 222.162,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "send Tamar Vale"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:34:03.568Z",
+     "elapsed_s": 230.551,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop at 10:11 on the phone. Skip and the weather warning now explain themselves and Nell asked to go down with named choices. But two of five still cannot hear me and the clock still crawls. Chose I am stopping in Feedback, typed nothing, submitted nothing.",
+     "game_clock": "10:11",
+     "engagement": null,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 29,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 228.905,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Pavel Novak",
+   "testerKey": "pavel",
+   "device": "desktop",
+   "source": "pavel/desktop/wall-clock.jsonl",
+   "rawSha256": "d72f710b333a2302cd7cc70916daf084701d155bde4eaab45eccbe9427a33237",
+   "rows": 33,
+   "reactionRows": 15,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "errorRowsWithReaction": 0,
+   "errorRowsWithoutReaction": 1,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:25:47.764Z",
+     "elapsed_s": 6.368,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same title page as before. Journal link is new. Starting new game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 576,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 2.855,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:25:49.310Z",
+     "elapsed_s": 7.914,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We turn at 13:00"
+     },
+     "reaction": "Same timetable question. I keep 13:00 as before.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 410,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 6.368,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:25:51.080Z",
+     "elapsed_s": 9.684,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "New: everyone already walking up, and the note says plainly what Lead on does. That was part of my old confusion. I lead on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 206,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 7.914,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We turn at 13:00"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:26:18.957Z",
+     "elapsed_s": 37.561,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Clock still crawls: 8 game minutes in 25 real seconds, same as last visit. Skip.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 282,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 35.699,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:26:41.927Z",
+     "elapsed_s": 60.531,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "climb on"
+     },
+     "reaction": "Same as last time: all said yes, yet all five are now Not walking, below me. The page now says plainly I am waiting for them. I ask them climb on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 11,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 60.102,
+      "kind": "first_minute",
+      "op": "shot",
+      "input": {
+       "file": "first-minute.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:26:43.769Z",
+     "elapsed_s": 62.373,
+     "kind": "first_minute",
+     "op": "tap",
+     "input": {
+      "name": "ask gently"
+     },
+     "reaction": "One minute: I know the controls now, the notes explain them. Clock still slow, and the group still drifts off after saying yes. Asking gently.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 520,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 12,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 60.531,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "climb on"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:26:46.142Z",
+     "elapsed_s": 64.746,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "New: Wren says plainly she needs food and is busy until 08:45. That explains one refusal. I lead on with the other four.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 577,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 13,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 62.373,
+      "kind": "first_minute",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:27:15.469Z",
+     "elapsed_s": 94.073,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "Skip is not on the page right now while the reading note is up. I wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25112,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 16,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 67.681,
+      "kind": "tool",
+      "op": "tap",
+      "input": {
+       "name": "Skip to the next event"
+      },
+      "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+     }
+    },
+    {
+     "t": "2026-10-31T09:27:47.088Z",
+     "elapsed_s": 125.692,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "They are walking up now and I wait for them: 6 game minutes per 25 seconds.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30118,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 17,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 94.073,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:28:18.685Z",
+     "elapsed_s": 157.289,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Slower still: 5 game minutes in 30 seconds while I wait for them. No Skip button offered.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30112,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 18,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 125.692,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:28:46.215Z",
+     "elapsed_s": 184.819,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Better explained than before, the page says who I am waiting for. But the clock still crawls: 4 game minutes per 25 seconds and no Skip offered while I wait.",
+     "game_clock": "07:10",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 183.277,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:29:39.172Z",
+     "elapsed_s": 237.776,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "New line says Nothing new has happened, walking continues quickly until something happens. That is the explanation I asked for, but I am still only waiting: 07:21 after four minutes real time, and the hurt climber is not reached. I would stop for the evening.",
+     "game_clock": "07:21",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 24,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 234.085,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 15
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:29:43.003Z",
+     "elapsed_s": 241.607,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "fast"
+     },
+     "reaction": "New: a Pace setting in the menu, auto slow normal fast. I wanted this last time. I try fast.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 170,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 26,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 238.952,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Game menu"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:30:07.085Z",
+     "elapsed_s": 265.689,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Game menu"
+     },
+     "reaction": "Fast pace made no visible difference: 5 game minutes in 20 seconds. I stop and open Feedback.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 166,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 29,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 264.007,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 20
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:30:12.666Z",
+     "elapsed_s": 271.27,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop at 07:29 on desktop. The notes explain more than before and Wren's refusal was explained, but I still wait for the group at a slow clock and never reached the hurt climber. Chose I'm stopping in Feedback, typed nothing, submitted nothing.",
+     "game_clock": "07:29",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 1,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 33,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 269.105,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Tessa Williams",
+   "testerKey": "tessa",
+   "device": "phone",
+   "source": "tessa/phone/wall-clock.jsonl",
+   "rawSha256": "05c4b58ba70670936c14313c7ca87d2a39757a3e406688da0472ba8bb485b89e",
+   "rows": 39,
+   "reactionRows": 18,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "errorRowsWithReaction": 0,
+   "errorRowsWithoutReaction": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:35:03.003Z",
+     "elapsed_s": 5.799,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same cream title page as before. New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 503,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 2.446,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:35:04.621Z",
+     "elapsed_s": 7.417,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We turn at 14:00"
+     },
+     "reaction": "This time I know to ask them to climb on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 280,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 5.799,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:35:06.479Z",
+     "elapsed_s": 9.275,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "The hint about Lead on only moving me now shows on the phone, and everyone is already walking up. Different from last time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 7.417,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We turn at 14:00"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:35:09.013Z",
+     "elapsed_s": 11.809,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "eat"
+     },
+     "reaction": "Telling Wren to eat while walking, silly. Watching if the reply is her own.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 158,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 10.514,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Wren: Walking up, level with you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:35:11.033Z",
+     "elapsed_s": 13.829,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More requests to people"
+     },
+     "reaction": "Same hut-path line for eat, but now it says she is busy until about 06:38. That is a reason, at least. Looking for sillier asks.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 158,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 9,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 11.809,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "eat"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:35:14.145Z",
+     "elapsed_s": 16.941,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Wren says the hut-path line for eat and for habitat survey. Same words, different asks. But now it says she is busy until 06:38, which is a reason. Still feels stock.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 11,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 15.209,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Ask Wren about the habitat survey"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:36:04.528Z",
+     "elapsed_s": 67.324,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "This time everyone walked up straight after I promised a turn time and tapped Lead on, and the hint was on the phone. Clock moves and Skip is shown. Wren still gives a hut-path line to different asks, but with a busy-until reason. Nell crampons line is nice.",
+     "game_clock": "Hollin Crag 05:20",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 15,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 63.801,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 20
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:36:07.265Z",
+     "elapsed_s": 70.061,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "rest"
+     },
+     "reaction": "Telling Oskar to rest, only a few minutes up.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 174,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 17,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 68.776,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Oskar: Walking up, level with you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:36:08.932Z",
+     "elapsed_s": 71.728,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask more firmly…"
+     },
+     "reaction": "Oskar worded it differently from Wren, his own phrasing. Trying the firmer ask.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 18,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 70.061,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "rest"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:36:10.134Z",
+     "elapsed_s": 72.93,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "insist can harm trust"
+     },
+     "reaction": "Insisting on a rest for mischief.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 199,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 19,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 71.728,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Ask more firmly…"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:36:12.586Z",
+     "elapsed_s": 75.382,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Insist worked, Oskar rests, said Yes! Count me in, the same stock yes as last visit even though he was resting. Mischief: leaving him behind to see what happens.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 72.93,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "insist can harm trust"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:36:16.222Z",
+     "elapsed_s": 79.018,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "Leaving Oskar resting and walking on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 157,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 22,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 75.933,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-002.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:36:48.895Z",
+     "elapsed_s": 111.691,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More moves for you"
+     },
+     "reaction": "Looking for a sillier move for me.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 24,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 110.031,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:36:53.861Z",
+     "elapsed_s": 116.657,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "turn back"
+     },
+     "reaction": "Everyone turn back at 5:40, long before my promised 14:00. Breaking my own word on purpose.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 139,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 27,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 114.841,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "everyone"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:37:30.162Z",
+     "elapsed_s": 152.958,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "send Tamar Vale"
+     },
+     "reaction": "Sending the oldest-sounding one, Tamar, down with Bilal. Let us see if she minds.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 215,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 31,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 150.974,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Bilal wants to go down ▸"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:38:00.904Z",
+     "elapsed_s": 183.7,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Better than last time: I left the hut, the map shows on the phone, and Bilal and Tamar reacted for themselves. But four people still give a hut-path line to a turn-back request even well up the path, and Tamar is now waiting for Bilal who is still walking up.",
+     "game_clock": "Hollin Crag 05:52",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 33,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 181.964,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 28
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:38:02.565Z",
+     "elapsed_s": 185.361,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I have seen the new things: the phone hint, the map, busy-until reasons. Still the same hut-path line for most asks. I would leave soon.",
+     "game_clock": "Hollin Crag 05:52",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 34,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 183.7,
+      "kind": "pulse",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:38:07.901Z",
+     "elapsed_s": 190.697,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping the phone. This time I got up the mountain, saw the map and the hint, and people had busy-until reasons. But most of them still say the hut-path line to different asks, so I have seen what poking does.",
+     "game_clock": "Hollin Crag 05:53",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 39,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 189.622,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Tessa Williams",
+   "testerKey": "tessa",
+   "device": "desktop",
+   "source": "tessa/desktop/wall-clock.jsonl",
+   "rawSha256": "6674debf1f7320ea8fe57c67c5d80003d4a9d9aca6f9c08d6dd52da66b419f90",
+   "rows": 40,
+   "reactionRows": 14,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "errorRowsWithReaction": 0,
+   "errorRowsWithoutReaction": 1,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:38:12.950Z",
+     "elapsed_s": 4.042,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Laptop, same evening. Same title page. This time I will try something sillier than before: no promise.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 585,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 1.444,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:38:14.538Z",
+     "elapsed_s": 5.63,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We'll see"
+     },
+     "reaction": "Taking We will see to check whether the hint still shows without a promised time (I wondered about that last time).",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 174,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 4.042,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:38:17.136Z",
+     "elapsed_s": 8.228,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "No Lead-on hint note this time after We will see. On the phone with 14:00 the note showed. So I think the hint depends on that choice, but I am guessing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 304,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 5.63,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We'll see"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:38:20.852Z",
+     "elapsed_s": 11.944,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "wait"
+     },
+     "reaction": "Asking Bilal, who carries the stove, to wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 218,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 10.574,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Bilal: Walking up, level with you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:38:23.952Z",
+     "elapsed_s": 15.044,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "eat"
+     },
+     "reaction": "Nell, eat something, same silly ask I gave Wren on the phone.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 224,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 10,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 13.489,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Nell: Walking up, level with you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:38:54.803Z",
+     "elapsed_s": 45.895,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "take pack"
+     },
+     "reaction": "Taking Tamar pack. Harmless mischief. Does she answer in her own words?",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 187,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 14,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 44.537,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "More requests to people"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:39:14.879Z",
+     "elapsed_s": 65.971,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "I split the group: told Bilal to wait, Nell to eat, took Tamar pack. They all agreed with short yes lines, and then Nell and Bilal rejoined by themselves, walking up again. Bilal said Yes, my friend, which sounds like him. This is more playful than last time because they all answered, but every yes is the same shape.",
+     "game_clock": "Hollin Crag 05:14",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 18,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 63.992,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 15
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:39:19.435Z",
+     "elapsed_s": 70.527,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Skipping to see what the game throws at us. The labels on the map overlap near the hut, hard to read who is who.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 208,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 66.606,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-002.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:40:09.879Z",
+     "elapsed_s": 120.971,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Bilal: Not walking, below you."
+     },
+     "reaction": "Bilal stopped by himself even though he agreed to climb on. Wondering why.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 27,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 119.105,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:40:12.096Z",
+     "elapsed_s": 123.188,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "eat"
+     },
+     "reaction": "Asking Bilal to eat since he stopped, maybe he wants tea.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 236,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 28,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 120.971,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Bilal: Not walking, below you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:40:46.978Z",
+     "elapsed_s": 158.07,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "turn back"
+     },
+     "reaction": "Asking Wren to turn back well up the mountain, early, to see if she gives the hut-path line now that we are far from the hut.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 31,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 156.535,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Wren: Walking up, below you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:41:11.873Z",
+     "elapsed_s": 182.965,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Wren answered turn-back with I will consider it after I eat something and busy until 07:14, which fits what she was doing. Bilal says Gladly, different from the others. That is the own-words thing I asked for. Still, most yeses are one shape, and I walk off alone and have to wait for them.",
+     "game_clock": "Hollin Crag 07:08",
+     "engagement": 4,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 34,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 180.985,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 20
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:41:14.554Z",
+     "elapsed_s": 185.646,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "I got what I wanted to check: replies fit better and Wren gave a fitting reason. I have not found my own kind of trouble beyond splitting the group, and I would leave now rather than climb all day.",
+     "game_clock": "Hollin Crag 07:08",
+     "engagement": null,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 35,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 182.965,
+      "kind": "pulse",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:41:19.490Z",
+     "elapsed_s": 190.582,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping the laptop. Replies fit better this time, Wren gave a reason that matched what she was doing and Bilal sounded like himself. But most yeses are one shape and I have not found my own kind of trouble beyond splitting the group.",
+     "game_clock": "Hollin Crag 07:09",
+     "engagement": null,
+     "reason": "TASTE",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 40,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 189.685,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Nia Okafor",
+   "testerKey": "nia",
+   "device": "phone",
+   "source": "nia/phone/wall-clock.jsonl",
+   "rawSha256": "3bbf68bf72dcb84b7acba5eb0855c1df1a77c36967d45e17107f6445d2524ec5",
+   "rows": 38,
+   "reactionRows": 27,
+   "reactionsNotLiterallyInReport": 1,
+   "notLiterallyInReportElapsedS": [
+    50.281
+   ],
+   "errorRowsWithReaction": 0,
+   "errorRowsWithoutReaction": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:42:19.024Z",
+     "elapsed_s": 6.017,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same title page as before, three peaks, They can say no. Tapping New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 524,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 2.728,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:21.180Z",
+     "elapsed_s": 8.173,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We turn at 12:00"
+     },
+     "reaction": "Same promise screen. Picking the earliest this time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 285,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 6.017,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:23.506Z",
+     "elapsed_s": 10.499,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "rest"
+     },
+     "reaction": "Five yeses again, Tamar and Wren same words. Skipping straight to asking everyone to rest, hoping for a refusal.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 284,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 8.173,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We turn at 12:00"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:26.101Z",
+     "elapsed_s": 13.094,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Nell: Not walking, level with you."
+     },
+     "reaction": "Refusal at 10 seconds this time, with reasons: Ask me after I eat. Much earlier than last visit. Now poking Nell to try a topic question.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 161,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 7,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 10.499,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "rest"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:27.635Z",
+     "elapsed_s": 14.628,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More requests to people"
+     },
+     "reaction": "Looking for the topic question to Nell.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 13.094,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Nell: Not walking, level with you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:29.598Z",
+     "elapsed_s": 16.591,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Nell about local mountain names"
+     },
+     "reaction": "Same topic question as last visit. Hoping for a real answer.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 215,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 9,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 14.628,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "More requests to people"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:51.486Z",
+     "elapsed_s": 38.479,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 20
+     },
+     "reaction": "Same I agree lets do it as last visit, ignoring my question. But it says what she says goes in the journal. Waiting to see.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 20108,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 10,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 16.591,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Ask Nell about local mountain names"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:53.501Z",
+     "elapsed_s": 40.494,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Nell answered my question a bit later: The Sunny Chair is a wet hollow, maps of what people say. That is a real answer to mountain names. Last time I only got I agree. The first line is still the generic one though.",
+     "game_clock": "05:08",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 11,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 38.479,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 20
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:55.149Z",
+     "elapsed_s": 42.142,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Wren: Not walking, level with you."
+     },
+     "reaction": "Now Wren, who said ask me after I eat.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 153,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 12,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 40.494,
+      "kind": "note",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:57.099Z",
+     "elapsed_s": 44.092,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "turn back"
+     },
+     "reaction": "Asking Wren to turn back at the hut, same silly request as my desktop run last time, to compare the refusal voice.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 13,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 42.142,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Wren: Not walking, level with you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:42:59.053Z",
+     "elapsed_s": 46.046,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "insist can harm trust"
+     },
+     "reaction": "Three levels now: ask gently, urge, insist. Going straight to insist to see the refusal voice.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 221,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 14,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 44.092,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "turn back"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:43:01.099Z",
+     "elapsed_s": 48.092,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Wren wants to go down ▸"
+     },
+     "reaction": "Wren says I want to go down, who will come with me. That sounds like a person, not an error. Opening it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 15,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 46.046,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "insist can harm trust"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:43:03.288Z",
+     "elapsed_s": 50.281,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "ask to wait"
+     },
+     "reaction": "A real choice: who goes down with her. I want to test pushback, so asking her to wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 189,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 16,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 48.092,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Wren wants to go down ▸"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:43:15.484Z",
+     "elapsed_s": 62.477,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 10
+     },
+     "reaction": "Wren wants to wait before waiting is an odd sentence, like a template. But Eat something then we can talk is a person line.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 10107,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 18,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 60.064,
+      "kind": "first_minute",
+      "op": "shot",
+      "input": {
+       "file": "first-minute.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:43:19.577Z",
+     "elapsed_s": 66.57,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "A refusal came at 10 seconds, not 117 like last time, and Wren asked me who goes down with her, which is a real choice. Nell answered my mountain question in the end. Clock barely moved though, 05:11. Interested, and the pressure levels ask gently, urge, insist are clear.",
+     "game_clock": "05:11",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 19,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 62.477,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 10
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:43:21.497Z",
+     "elapsed_s": 68.49,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Wren wants to go down ▸"
+     },
+     "reaction": "Back to Wren going down. Sending Oskar with her, he is the one who stalled.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 66.57,
+      "kind": "first_minute",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:43:54.848Z",
+     "elapsed_s": 101.841,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Oskar gave the same line and the game itself says these are the same words as at 05:01. Honest, but still the same line. Waiting to see what Wren does.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30107,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 22,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 69.789,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "send Oskar"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:43:56.916Z",
+     "elapsed_s": 103.909,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Oskar refused with I cannot make that happen, I do not have what I need for that. That is the same error-message voice I complained about last time. It came after a wait, and it is not a person talking.",
+     "game_clock": "05:17",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 23,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 101.841,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:44:00.433Z",
+     "elapsed_s": 107.426,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "we all turn"
+     },
+     "reaction": "Trying we all turn, the dramatic one.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 298,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 25,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 105.872,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Wren wants to go down ▸"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:44:32.712Z",
+     "elapsed_s": 139.705,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Tamar, Nell and Bilal all said the identical line, I want to go down, who will come with me. It is a stir but samey. Watching.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30108,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 26,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 107.426,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "we all turn"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:04.915Z",
+     "elapsed_s": 171.908,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Clock only went 05:19 to 05:20 in 30 real seconds. Very slow again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30108,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 27,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 139.705,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:07.359Z",
+     "elapsed_s": 174.352,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tamar Vale wants to go down ▸"
+     },
+     "reaction": "Everyone is now above me walking up even though they all said I want to go down. They said it and did the opposite. Opening Tamar thread.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 28,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 171.908,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:18.996Z",
+     "elapsed_s": 185.989,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 8
+     },
+     "reaction": "Nell is now walking down to meet Tamar. Something is actually moving.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 8107,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 30,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 176.204,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "send Nell"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:20.822Z",
+     "elapsed_s": 187.815,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Refusals came early and people started asking each other who goes down, which is new and good. But three people said the identical line, Oskar gave the error-message refusal again, and the clock crawls: 05:28 after three minutes.",
+     "game_clock": "05:28",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 31,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 185.989,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 8
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:24.631Z",
+     "elapsed_s": 191.624,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Three minutes in and the clock is 05:29 of a day to 12:00. People talk about going down but I just wait. I would stop here.",
+     "game_clock": "05:29",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 33,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 189.324,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-002.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:27.926Z",
+     "elapsed_s": 194.919,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Feedback"
+     },
+     "reaction": "Menu has a Pace setting auto slow normal fast, which I had not seen before. Opening Feedback.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 155,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 35,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 193.055,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Game menu"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:32.563Z",
+     "elapsed_s": 199.556,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping on the phone at 05:30. Refusals and Wren asking who goes down were better than last time, and Nell finally answered my question. But repeated lines, the error-style refusal from Oskar, and a crawling clock. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+     "game_clock": "05:30",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 38,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 197.517,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Nia Okafor",
+   "testerKey": "nia",
+   "device": "desktop",
+   "source": "nia/desktop/wall-clock.jsonl",
+   "rawSha256": "aec816560f0e4b0b6e170d7d9788c24989f579bae63b87c89639b3100216f32e",
+   "rows": 37,
+   "reactionRows": 21,
+   "reactionsNotLiterallyInReport": 2,
+   "notLiterallyInReportElapsedS": [
+    39.958,
+    65.628
+   ],
+   "errorRowsWithReaction": 0,
+   "errorRowsWithoutReaction": 1,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:45:37.845Z",
+     "elapsed_s": 4.024,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Second device, same evening. New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 578,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 1.683,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:39.716Z",
+     "elapsed_s": 5.895,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We'll see"
+     },
+     "reaction": "Trying the non-promise this time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 183,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 4.024,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:41.350Z",
+     "elapsed_s": 7.529,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tamar Vale: Not walking, level with you."
+     },
+     "reaction": "Going to Tamar for a topic question like last time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 190,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 5.895,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We'll see"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:45:44.814Z",
+     "elapsed_s": 10.993,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Tamar Vale about teaching people when to turn back"
+     },
+     "reaction": "Same Tamar question that got a generic answer last time. Seeing if the real answer follows.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 340,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 8.94,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "More requests to people"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:46:06.578Z",
+     "elapsed_s": 32.757,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 20
+     },
+     "reaction": "Generic I will do as you ask again, same as last visit, but now it says the talk is not finished and goes to the journal. Waiting.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 20116,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 9,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 10.993,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Ask Tamar Vale about teaching people when to turn back"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:46:10.447Z",
+     "elapsed_s": 36.626,
+     "kind": "note",
+     "op": "log",
+     "input": null,
+     "reaction": "Tamar answered my turn-back question for real: she once blamed weather when she had lost confidence. That is exactly what I wanted last time. The first line I will do as you ask is still generic and it comes first, but the real answer follows within seconds.",
+     "game_clock": "05:06",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 11,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 34.126,
+      "kind": "tool",
+      "op": "tap",
+      "input": {
+       "name": "Skip to the next event"
+      },
+      "error": "Skip to the next event is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+     }
+    },
+    {
+     "t": "2026-10-31T09:46:13.779Z",
+     "elapsed_s": 39.958,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "rest"
+     },
+     "reaction": "Asking Wren to rest while everybody is walking, to provoke a refusal.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 208,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 13,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 38.34,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Wren: Walking up, level with you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:46:17.049Z",
+     "elapsed_s": 43.228,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "insist can harm trust"
+     },
+     "reaction": "Insisting on rest with Wren to see whether the disagree line from last time shows up.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 236,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 15,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 41.523,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Ask more firmly…"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:46:33.743Z",
+     "elapsed_s": 59.922,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 14
+     },
+     "reaction": "Recognised: Wren I will do it, but I disagree, the exact line I liked last visit, seen at 43 s, fairly sure it is the same line. Now reaching it in 43 seconds, not 124.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 14111,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 16,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 43.228,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "insist can harm trust"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:46:35.887Z",
+     "elapsed_s": 62.066,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Desktop is calm and wide. In a minute I got a real answer from Tamar about turn-back, a delay from Wren, and the I will do it but I disagree line. The reply I will do as you ask still comes first and is generic. The Skip button appeared by itself after a wait.",
+     "game_clock": "05:15",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 18,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 60.071,
+      "kind": "first_minute",
+      "op": "shot",
+      "input": {
+       "file": "first-minute.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:46:39.449Z",
+     "elapsed_s": 65.628,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "eat"
+     },
+     "reaction": "Asking Oskar to eat now, he is far above.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 262,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 63.988,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Oskar: Walking up, above you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:47:11.327Z",
+     "elapsed_s": 97.506,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Oskar gave the exact same climb the hut path line as on the phone. Same sentence at same time until 06:39. Waiting for something to happen.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30111,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 21,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 65.628,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "eat"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:47:13.012Z",
+     "elapsed_s": 99.191,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Skip is back, using it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 263,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 22,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 97.506,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:47:15.315Z",
+     "elapsed_s": 101.494,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Game menu"
+     },
+     "reaction": "The clock crawls. Menu had a Pace setting on the phone, trying fast.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 180,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 23,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 99.191,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Skip to the next event"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:47:20.579Z",
+     "elapsed_s": 106.758,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "Time has stopped and they cannot hear me. Walking up myself.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 219,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 26,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 104.608,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Resume"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:47:47.175Z",
+     "elapsed_s": 133.354,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "Fast pace set, watching how far the clock goes in 25 real seconds.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25115,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 27,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 106.758,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "lead on"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:48:21.252Z",
+     "elapsed_s": 167.431,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Everyone has walked out of earshot, I am alone at the hut with disabled buttons. Waiting a bit more.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30109,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 29,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 135.336,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-002.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:49:37.990Z",
+     "elapsed_s": 244.169,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 15
+     },
+     "reaction": "b-002 showed everyone far above me and my buttons greyed. At fast pace the clock is 06:21 but nothing has happened.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 15109,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 30,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 167.431,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:49:39.455Z",
+     "elapsed_s": 245.634,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Fast pace makes the clock move and a sunlight line appeared, but Oskar still shows the same old eat reply and nothing I asked has happened.",
+     "game_clock": "07:00",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 31,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 244.169,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 15
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:49:41.005Z",
+     "elapsed_s": 247.184,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "Four minutes in, my requests mostly got deferred and I am just watching dots walk. I would stop here.",
+     "game_clock": "07:00",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 32,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 245.634,
+      "kind": "pulse",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:49:46.961Z",
+     "elapsed_s": 253.14,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "Stopping on desktop at 07:06. Real topic answer from Tamar and the I will do it but I disagree line came fast, but Oskar kept the same deferral line, my requests stalled, and I ended up watching dots. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+     "game_clock": "07:06",
+     "engagement": null,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 37,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 251.4,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "device": "phone",
+   "source": "rosa/phone/wall-clock.jsonl",
+   "rawSha256": "45aadce26612078485dff9231645073c3088e7319706df28d61558bada083735",
+   "rows": 34,
+   "reactionRows": 26,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "errorRowsWithReaction": 1,
+   "errorRowsWithoutReaction": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:50:49.229Z",
+     "elapsed_s": 8.393,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same title as last time; I know it. New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 518,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 1.927,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:50:50.892Z",
+     "elapsed_s": 10.056,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We turn at 13:00"
+     },
+     "reaction": "Turn-back question is sensible; I remember it. I pick the middle one.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 281,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 8.393,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:50:52.823Z",
+     "elapsed_s": 11.987,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "The hint now says lead on moves only me and climb on asks the others. That is the thing I could not tell last time. A long sentence but I read it once. I lead on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 146,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 10.056,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We turn at 13:00"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:51:14.614Z",
+     "elapsed_s": 33.778,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 20
+     },
+     "reaction": "Walking now; I watch what happens.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 20107,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 7,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 11.987,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "lead on"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:51:16.413Z",
+     "elapsed_s": 35.577,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "climb on"
+     },
+     "reaction": "Skip now has a label Skip to the next event; that was my old question. Now I ask everyone to climb on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 137,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 33.778,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 20
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:51:18.289Z",
+     "elapsed_s": 37.453,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "ask gently"
+     },
+     "reaction": "Gentle; they can say no. insist is greyed with the words after a refusal, which tells me when it is allowed.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 524,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 9,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 35.577,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "climb on"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:51:44.506Z",
+     "elapsed_s": 63.67,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "Everyone agreed. Waiting for the climb to move.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25111,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 11,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 60.054,
+      "kind": "first_minute",
+      "op": "shot",
+      "input": {
+       "file": "first-minute.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:51:46.569Z",
+     "elapsed_s": 65.733,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "I understand the loop: promise a turn-back time, ask them gently, lead on, wait. Better than last time: the hint now says lead on moves only me and climb on asks the others. Hints still come one at a time. No reread yet.",
+     "game_clock": "Hollin Crag 05:16",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 12,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 63.67,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:51:47.710Z",
+     "elapsed_s": 66.874,
+     "kind": "tool",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Slow. I press Skip, which now says what it does.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 4,
+     "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+     "requested_control_present_before": false,
+     "rowIndex": 13,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 65.733,
+      "kind": "first_minute",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:52:14.206Z",
+     "elapsed_s": 93.37,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "Skip was not on the page now; it comes and goes. I wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25107,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 14,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 66.874,
+      "kind": "tool",
+      "op": "tap",
+      "input": {
+       "name": "Skip to the next event"
+      },
+      "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+     }
+    },
+    {
+     "t": "2026-10-31T09:52:15.356Z",
+     "elapsed_s": 94.52,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Skip is back. I press it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 146,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 15,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 93.37,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:52:31.486Z",
+     "elapsed_s": 110.65,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 15
+     },
+     "reaction": "Skipping.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 15106,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 16,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 94.52,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Skip to the next event"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:52:33.345Z",
+     "elapsed_s": 112.509,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "Now the game says plainly I am waiting for all five to catch up. That is clearer than last time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 17,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 110.65,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 15
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:52:36.321Z",
+     "elapsed_s": 115.485,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "stay with them"
+     },
+     "reaction": "The picture is clear: I am ahead, they are below. The two more buttons now have different names, more requests and more moves. I stay with them so nobody is left.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 136,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 18,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 112.509,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-002.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:02.826Z",
+     "elapsed_s": 141.99,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "Waiting for the group; I stay with them.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25107,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 19,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 115.485,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "stay with them"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:04.006Z",
+     "elapsed_s": 143.17,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "Skip again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 150,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 141.99,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:31.922Z",
+     "elapsed_s": 171.086,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tamar Vale: Walking up, below you."
+     },
+     "reaction": "Steeper ground. The hint says pick someone, open more actions, then Rope up. I pick Tamar.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 145,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 22,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 169.248,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:33.089Z",
+     "elapsed_s": 172.253,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More requests to people"
+     },
+     "reaction": "Open more requests.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 23,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 171.086,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Tamar Vale: Walking up, below you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:34.721Z",
+     "elapsed_s": 173.885,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "rope up"
+     },
+     "reaction": "Rope up is enabled for Tamar. Disabled buttons now say Walk to her first, which is a clear reason. I try rope up.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 153,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 24,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 172.253,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "More requests to people"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:36.455Z",
+     "elapsed_s": 175.619,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Bilal: Walking up, below you."
+     },
+     "reaction": "Who should tie a rope to Tamar: Bilal is also below, so probably near her. I choose Bilal.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 148,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 25,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 173.885,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "rope up"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:37.671Z",
+     "elapsed_s": 176.835,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "ask gently"
+     },
+     "reaction": "I ask gently.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 220,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 26,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 175.619,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Bilal: Walking up, below you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:43.388Z",
+     "elapsed_s": 182.552,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 4
+     },
+     "reaction": "Tamar and Bilal agreed to rope up, first try. No missing-thing message this time.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 4107,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 27,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 176.835,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:44.953Z",
+     "elapsed_s": 184.117,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Clearer and calmer than last time: Skip says what it does, the two more buttons have different names, and rope up worked first try. Still long waits between actions, but I know why now.",
+     "game_clock": "Hollin Crag 08:59",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 28,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 182.552,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 4
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:48.173Z",
+     "elapsed_s": 187.337,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Game menu"
+     },
+     "reaction": "I have seen the loop and no reread yet. I open the menu to check Feedback.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 147,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 29,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 184.117,
+      "kind": "pulse",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:53.353Z",
+     "elapsed_s": 192.517,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "x": 47,
+      "y": 203
+     },
+     "reaction": "I press I am stopping by position. I type nothing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 122,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 32,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 190.007,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-003.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:53:56.417Z",
+     "elapsed_s": 195.581,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+     "game_clock": "Hollin Crag 09:00",
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 34,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 193.617,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Rosa Alvarez",
+   "testerKey": "rosa",
+   "device": "desktop",
+   "source": "rosa/desktop/wall-clock.jsonl",
+   "rawSha256": "2bfdf184183077b4c80759e2835eaaa7ec9a5f7bb03b3daaf44de4b40e534638",
+   "rows": 26,
+   "reactionRows": 21,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "errorRowsWithReaction": 1,
+   "errorRowsWithoutReaction": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:54:02.113Z",
+     "elapsed_s": 4.614,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Second visit tonight, big screen. This time the first picture has the title; last time it was an empty frame. New game.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 593,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 1.465,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:54:03.679Z",
+     "elapsed_s": 6.18,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We turn at 12:00"
+     },
+     "reaction": "Last time on desktop I chose the earlier time to be safe. I do it again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 354,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 4.614,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:54:06.695Z",
+     "elapsed_s": 9.196,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "Reread 1: You also stop at a place on the path when nobody behind can hear you. What place? Why can they not hear me? The first sentences about lead on and climb on are clear now. I go on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 197,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 6.18,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We turn at 12:00"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:54:08.526Z",
+     "elapsed_s": 11.027,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "climb on"
+     },
+     "reaction": "Ask everyone to climb on, as I now know.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 196,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 7,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 9.196,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "lead on"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:54:10.860Z",
+     "elapsed_s": 13.361,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "ask gently"
+     },
+     "reaction": "Gentle again. insist is greyed with after a refusal.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 585,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 11.027,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "climb on"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:54:12.427Z",
+     "elapsed_s": 14.928,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Journal"
+     },
+     "reaction": "I want to see the Journal again; it was my favourite part.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 195,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 9,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 13.361,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:55:08.439Z",
+     "elapsed_s": 70.94,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "← Back"
+     },
+     "reaction": "The Journal is plain and readable. It tells the people as small stories: Tamar checked boots, Nell promised her mother a call. This is still the part I like. Back to the hill.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 194,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 11,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 60.064,
+      "kind": "first_minute",
+      "op": "shot",
+      "input": {
+       "file": "first-minute.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:55:11.916Z",
+     "elapsed_s": 74.417,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "I know the loop from the phone: promise a turn-back time, ask gently, lead on, wait. One reread so far: the sentence about stopping where nobody behind can hear me. The Journal is warm and clear. The clock has not moved, so I am waiting for the climb.",
+     "game_clock": "Hollin Crag 05:03",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 12,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 70.94,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:55:15.784Z",
+     "elapsed_s": 78.285,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Dismiss this note"
+     },
+     "reaction": "The clock is stuck at 05:03 and says Time slows for reading. I close the note with the x to see if the climb moves.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 746,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 13,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 74.417,
+      "kind": "first_minute",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:55:19.032Z",
+     "elapsed_s": 81.533,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "Nothing moves. I am not sure my first lead on worked. I press it again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 841,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 14,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 78.285,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Dismiss this note"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:55:47.282Z",
+     "elapsed_s": 109.783,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "The clock moves now, 05:05. Hint text changed to a new one about pack and food. I wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25115,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 15,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 81.533,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "lead on"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:55:50.120Z",
+     "elapsed_s": 112.621,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "Clock 05:20 now. A line says Nell borrowed her crampons, spikes for walking on ice. I like that the game explains the word.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 157,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 16,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 109.783,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:56:23.985Z",
+     "elapsed_s": 146.486,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "The picture is clear: the five are in a line, I am the red one at the front. The path runs off under the right panel, so I cannot see where it goes. I wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30118,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 17,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 112.621,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-002.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:56:25.705Z",
+     "elapsed_s": 148.206,
+     "kind": "tool",
+     "op": "tap",
+     "input": {
+      "text": "Skip"
+     },
+     "reaction": "Twenty minutes of game time in thirty real seconds. I try Skip.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 18,
+     "error": "Skip is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+     "requested_control_present_before": false,
+     "rowIndex": 18,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 146.486,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:56:57.785Z",
+     "elapsed_s": 180.286,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Skip is not on the page, same as on the phone. It comes and goes and I do not know why. I wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30108,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 19,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 148.206,
+      "kind": "tool",
+      "op": "tap",
+      "input": {
+       "text": "Skip"
+      },
+      "error": "Skip is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+     }
+    },
+    {
+     "t": "2026-10-31T09:57:00.115Z",
+     "elapsed_s": 182.616,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Calm and readable. One reread only (nobody behind can hear you). The people are now below me and I mostly wait. The Journal and the small stories still hold me; the waiting does not.",
+     "game_clock": "Hollin Crag 06:00",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 180.286,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:57:01.706Z",
+     "elapsed_s": 184.207,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Game menu"
+     },
+     "reaction": "I have seen the loop again. I open the menu to find Feedback.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 189,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 21,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 182.616,
+      "kind": "pulse",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:57:03.469Z",
+     "elapsed_s": 185.97,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Feedback"
+     },
+     "reaction": "Skip came back behind the menu, as the clock stopped. I open Feedback.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 169,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 22,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 184.207,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Game menu"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:57:07.110Z",
+     "elapsed_s": 189.611,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "x": 389,
+      "y": 226
+     },
+     "reaction": "I press I am stopping by position. I type nothing and press no Submit.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 233,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 24,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 187.504,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-003.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:57:08.978Z",
+     "elapsed_s": 191.479,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "← Back"
+     },
+     "reaction": "Back. The note box filled itself with the verdict words; I typed nothing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 179,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 25,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 189.611,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "x": 389,
+       "y": 226
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:57:11.578Z",
+     "elapsed_s": 194.079,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+     "game_clock": "Hollin Crag 06:01",
+     "engagement": 3,
+     "reason": "BORED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 26,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 191.479,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Farah Bensaid",
+   "testerKey": "farah",
+   "device": "phone",
+   "source": "farah/phone/wall-clock.jsonl",
+   "rawSha256": "176dfaca4d29b7f4208f3b58f87e7300cda6e42fb9a676d4429665c9f1a524a1",
+   "rows": 56,
+   "reactionRows": 27,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "errorRowsWithReaction": 1,
+   "errorRowsWithoutReaction": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T09:58:07.813Z",
+     "elapsed_s": 5.852,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Short and clean. Three mountains, five people. I like that it does not make me read a page first.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 517,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 1.981,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:58:10.646Z",
+     "elapsed_s": 8.685,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "We turn at 13:00"
+     },
+     "reaction": "A promise up front. I pick the middle one, 13:00, I want room but I want to keep my word.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 280,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 5,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 5.852,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "New game"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:58:12.855Z",
+     "elapsed_s": 10.894,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "Two rows of buttons, one for them, one for me. The note explains it but I read it twice. They already say walking up, so I will lead on.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 145,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 8.685,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We turn at 13:00"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:58:36.645Z",
+     "elapsed_s": 34.684,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "climb on"
+     },
+     "reaction": "They already said walking up, but the note says ask with Climb on. Fine, I ask. A bit confusing that they look like they are walking already.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 133,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 8,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 32.558,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 20
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:58:39.757Z",
+     "elapsed_s": 37.796,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "ask gently"
+     },
+     "reaction": "Ask gently. I like that the tone is a choice.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 506,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 9,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 34.684,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "climb on"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:59:10.158Z",
+     "elapsed_s": 68.197,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "I set a turn-back time and everyone agreed. Now the clock moves slowly and I am not sure what I am supposed to watch. No picture of the mountain, just names and arrows.",
+     "game_clock": "05:17",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 12,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 64.211,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:59:12.554Z",
+     "elapsed_s": 70.593,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tamar Vale: Walking up, level with you."
+     },
+     "reaction": "The hint points at Tamar. Is something wrong with her pack? I tap her.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 13,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 68.197,
+      "kind": "first_minute",
+      "op": "log",
+      "input": null,
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:59:14.802Z",
+     "elapsed_s": 72.841,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More requests to people"
+     },
+     "reaction": "Nothing tells me why I would take her pack. She looks fine. I open more requests to see.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 142,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 14,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 70.593,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Tamar Vale: Walking up, level with you."
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:59:16.956Z",
+     "elapsed_s": 74.995,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Back to requests"
+     },
+     "reaction": "Taking a pack from someone who is fine feels like a test I do not understand. I go back and let them walk.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 151,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 15,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 72.841,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "More requests to people"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:59:19.579Z",
+     "elapsed_s": 77.618,
+     "kind": "tool",
+     "op": "tap",
+     "input": {
+      "name": "Skip to the next event"
+     },
+     "reaction": "There is a Skip. Good, I set my own pace. I skip to the next thing.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 5,
+     "error": "Skip to the next event is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+     "requested_control_present_before": false,
+     "rowIndex": 16,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 74.995,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Back to requests"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T09:59:46.782Z",
+     "elapsed_s": 104.821,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "The Skip disappeared just as a little story line about Nell came in. Nice line. I let time run.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25110,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 17,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 77.618,
+      "kind": "tool",
+      "op": "tap",
+      "input": {
+       "name": "Skip to the next event"
+      },
+      "error": "Skip to the next event is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+     }
+    },
+    {
+     "t": "2026-10-31T10:00:08.007Z",
+     "elapsed_s": 126.046,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "a-002.png"
+     },
+     "reaction": "Wait. They all said yes, but now every one of them is Not walking, below you, and I am waiting for them. Why did they stop? I do not see a reason.",
+     "game_clock": "06:46",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 123.215,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 15
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:00:12.218Z",
+     "elapsed_s": 130.257,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "everyone"
+     },
+     "reaction": "Oh, there is a drawing of the slope. I was wrong, there is a picture. They stopped at the meadow and I went on ahead. Maybe their yes only lasted to the meadow. I ask everyone again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 143,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 21,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 126.046,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-002.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:00:47.213Z",
+     "elapsed_s": 165.252,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 30
+     },
+     "reaction": "Walking again. So I have to ask again at each stop place. That is a rhythm I can learn.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 30111,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 24,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 133.006,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:00:49.947Z",
+     "elapsed_s": 167.986,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "stay with them"
+     },
+     "reaction": "I keep running ahead and waiting. I try stay with them instead. And 30 seconds was only 6 minutes on the mountain, this is slow.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 167,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 25,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 165.252,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:01:23.789Z",
+     "elapsed_s": 201.828,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Together now and walking. Calm, I like setting my own pace, but I am mostly watching and skipping, not deciding much.",
+     "game_clock": "07:08",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 27,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 199.633,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:01:45.231Z",
+     "elapsed_s": 223.27,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Nell: Not walking, above you."
+     },
+     "reaction": "Skip jumped me to 09:00. Nell has stopped above me. The one with borrowed crampons. I tap her.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 30,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 220.485,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 15
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:02:01.392Z",
+     "elapsed_s": 239.431,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 10
+     },
+     "reaction": "She just wants a drink. Fair. I will not insist, I wait a minute. The notes keep piling up though, a lot of reading on a small screen.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 10109,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 33,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 226.723,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:02:04.383Z",
+     "elapsed_s": 242.422,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "More requests to people"
+     },
+     "reaction": "Waiting worked, she agreed after her drink. That felt fair. Now the earlier note said rope up on steep ground. Let me find it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 158,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 34,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 239.431,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 10
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:02:08.298Z",
+     "elapsed_s": 246.337,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Wren: Walking up, above you."
+     },
+     "reaction": "I pair Nell with Wren, both above me. Guessing that someone close is best.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 144,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 36,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 244.171,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "rope up"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:02:14.153Z",
+     "elapsed_s": 252.192,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Close up: Nell + Wren"
+     },
+     "reaction": "Refused, too far apart. The picker offered Wren without telling me she was too far. And now Nell has stopped walking again. There is a Close up button, I try it.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 291,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 38,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 248.435,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:02:45.363Z",
+     "elapsed_s": 283.402,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "rope up"
+     },
+     "reaction": "Wren already walking up again in the two seconds I took. I try quickly.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 147,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 41,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 281.036,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "More requests to people"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:02:51.612Z",
+     "elapsed_s": 289.651,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "everyone"
+     },
+     "reaction": "Roped up, finally. That took four steps for one small thing. Now they are standing still, so I ask everyone to climb again.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 140,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 44,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 286.278,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:03:30.043Z",
+     "elapsed_s": 328.082,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "All 5 answers ▸"
+     },
+     "reaction": "Now Tamar is walking DOWN and Bilal stopped. Nobody said why. I look at the answers.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 149,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 49,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 324.997,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 30
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:03:33.147Z",
+     "elapsed_s": 331.186,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "They all said yes at 09:24 and ten minutes later one walks down and one stands still. The answers list does not tell me why. I keep fixing people one by one and I cannot see the rule.",
+     "game_clock": "09:35",
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 50,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 328.082,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "All 5 answers ▸"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:03:44.747Z",
+     "elapsed_s": 342.786,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "← Back"
+     },
+     "reaction": "Tapping I am confused put those words into the note box by itself. I did not send. Back.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 144,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 55,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 338.439,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "a-003.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:03:47.696Z",
+     "elapsed_s": 345.735,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop here on the phone. I liked the promise and the people asking for a drink, but I spend my time pulling people back into line without knowing why they left it. On a small screen that is too much reading for a short sitting. I will try the laptop tonight.",
+     "game_clock": "09:35",
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 56,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 342.786,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  },
+  {
+   "tester": "Farah Bensaid",
+   "testerKey": "farah",
+   "device": "desktop",
+   "source": "farah/desktop/wall-clock.jsonl",
+   "rawSha256": "2fd72485b5de65c94f280897bf7af1e12206d5a82422b6d4986c51a5a3d3f677",
+   "rows": 49,
+   "reactionRows": 19,
+   "reactionsNotLiterallyInReport": 0,
+   "notLiterallyInReportElapsedS": [],
+   "errorRowsWithReaction": 1,
+   "errorRowsWithoutReaction": 0,
+   "reactions": [
+    {
+     "t": "2026-10-31T10:03:55.848Z",
+     "elapsed_s": 6.46,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "New game"
+     },
+     "reaction": "Same title page as on my phone, the same three mountains. No sign it knows me, so I start fresh. This time I pick 12:00, the careful one.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 589,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 4,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 2.01,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-001.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:04:00.764Z",
+     "elapsed_s": 11.376,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "stay with them"
+     },
+     "reaction": "Different from the phone already: Wren wants to eat first. On the phone everyone said yes at once. I learned last time that running ahead makes me wait, so I stay with them.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 239,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 6,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 8.51,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "We turn at 12:00"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:04:48.847Z",
+     "elapsed_s": 59.459,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 25
+     },
+     "reaction": "Eating until 05:10. I will wait. On the laptop the clock crawls, 15 seconds gave me one minute.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 25302,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 11,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 32.173,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:04:52.256Z",
+     "elapsed_s": 62.868,
+     "kind": "first_minute",
+     "op": "log",
+     "input": null,
+     "reaction": "Wren finished eating and is walking with me. The line under her still says she wants to wait, but she is busy with climb the hut path. Two messages that disagree. The bigger screen is calmer to read.",
+     "game_clock": "05:11",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 13,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 60.112,
+      "kind": "first_minute",
+      "op": "shot",
+      "input": {
+       "file": "first-minute.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:04:56.692Z",
+     "elapsed_s": 67.304,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Tamar Vale: Walking up, above you."
+     },
+     "reaction": "The same Tamar pack hint as on the phone. This evening I have time, so I follow it and see what happens.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 198,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 15,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 63.858,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "everyone"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:05:00.094Z",
+     "elapsed_s": 70.706,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Ask Tamar Vale about teaching people when to turn back"
+     },
+     "reaction": "Take pack is greyed, walk to her first. Instead I ask her about teaching when to turn back, that sounds like it could explain the rules to me.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 274,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 17,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 68.103,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "More requests to people"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:05:30.155Z",
+     "elapsed_s": 100.767,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-002.png"
+     },
+     "reaction": "Tamar told a small honest story about hiding her lack of confidence behind the weather. That I liked, it felt like a real person. And the Nell crampons line again, same as on the phone at 05:20. I recognise it, sure of it.",
+     "game_clock": "05:20",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 180,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 19,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 97.753,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:05:35.008Z",
+     "elapsed_s": 105.62,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "everyone"
+     },
+     "reaction": "On the laptop I see the mountain and the panel side by side. Much easier than the phone, where the picture hid between notes.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 232,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 20,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 100.767,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-002.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:06:24.985Z",
+     "elapsed_s": 155.597,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "climb on"
+     },
+     "reaction": "Nell and Bilal stopped again. I think I learned on the phone that they stop at a marked place and need asking again. I ask everyone.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 165,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 25,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 152.783,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 20
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:06:28.524Z",
+     "elapsed_s": 159.136,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "lead on"
+     },
+     "reaction": "Everyone is above me even though I chose stay with them. I do not know what stay with them actually did. I lead on to catch up.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 169,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 27,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 156.57,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:06:56.703Z",
+     "elapsed_s": 187.315,
+     "kind": "pulse",
+     "op": "log",
+     "input": null,
+     "reaction": "Calmer than on the phone and Tamar story was good, but most of my time is still waiting and asking them again to walk, and I am always below them.",
+     "game_clock": "08:03",
+     "engagement": 3,
+     "reason": null,
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 29,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 184.835,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:07:26.786Z",
+     "elapsed_s": 217.398,
+     "kind": "input",
+     "op": "shot",
+     "input": {
+      "file": "b-003.png"
+     },
+     "reaction": "A Route and weather warning box appeared. That I want to read.",
+     "game_clock": "08:56",
+     "engagement": null,
+     "reason": null,
+     "op_ms": 153,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 32,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 215.029,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 25
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:07:30.939Z",
+     "elapsed_s": 221.551,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "text": "Route and weather warning"
+     },
+     "reaction": "The warning is just a heading with nothing under it. I click it in case it opens.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 232,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 33,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 217.398,
+      "kind": "input",
+      "op": "shot",
+      "input": {
+       "file": "b-003.png"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:07:34.352Z",
+     "elapsed_s": 224.964,
+     "kind": "tool",
+     "op": "tap",
+     "input": {
+      "name": "Nell: Not walking, level with you."
+     },
+     "reaction": "Wind from 11:00 and I promised 12:00. Glad I chose the early time. Nell and Wren are both level with me this time, so I rope them now.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 12,
+     "error": "Nell: Not walking, level with you. is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+     "requested_control_present_before": false,
+     "rowIndex": 34,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 221.551,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "text": "Route and weather warning"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:07:38.204Z",
+     "elapsed_s": 228.816,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Nell: Not walking, below you."
+     },
+     "reaction": "While I read the warning, time kept going and Nell went from level to below me, so my click missed. Time slows for reading is not time stops.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 152,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 36,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 225.917,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "More requests to people"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:07:58.938Z",
+     "elapsed_s": 249.55,
+     "kind": "input",
+     "op": "wait",
+     "input": {
+      "s": 15
+     },
+     "reaction": "Wren needs the toilet behind the rocks. Ha. Very human. I wait.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 15107,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 40,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 232.534,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "ask gently"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:08:04.635Z",
+     "elapsed_s": 255.247,
+     "kind": "input",
+     "op": "tap",
+     "input": {
+      "name": "Journal"
+     },
+     "reaction": "Something I need is missing. What thing? A rope? Who carries it? Nothing on screen says. And a new note about Scout appears on top. I look in the Journal for an answer.",
+     "game_clock": null,
+     "engagement": null,
+     "reason": null,
+     "op_ms": 184,
+     "error": null,
+     "requested_control_present_before": true,
+     "rowIndex": 41,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 249.55,
+      "kind": "input",
+      "op": "wait",
+      "input": {
+       "s": 15
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:08:09.287Z",
+     "elapsed_s": 259.899,
+     "kind": "want_quit",
+     "op": "log",
+     "input": null,
+     "reaction": "The journal is lovely, cowbells, the marmot, Bilal carrying the tea. I would read that like a book. But it does not tell me what Wren is missing. Second evening, second time the rope fails, and I still do not know the rule. I will stop.",
+     "game_clock": "09:06",
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 42,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 255.247,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "Journal"
+      },
+      "error": null
+     }
+    },
+    {
+     "t": "2026-10-31T10:09:13.666Z",
+     "elapsed_s": 324.278,
+     "kind": "stop",
+     "op": "log",
+     "input": null,
+     "reaction": "I stop here. On the laptop it is calmer and the people are good company, Tamar and the journal especially. But twice now the rope fails and the game does not tell me what is missing. I pressed I am stopping, it filled the box, I sent nothing and went back.",
+     "game_clock": "09:07",
+     "engagement": null,
+     "reason": "CONFUSED",
+     "op_ms": 0,
+     "error": null,
+     "requested_control_present_before": null,
+     "rowIndex": 49,
+     "containsBackslash": false,
+     "contextBefore": {
+      "elapsed_s": 321.629,
+      "kind": "input",
+      "op": "tap",
+      "input": {
+       "name": "← Back"
+      },
+      "error": null
+     }
+    }
+   ]
+  }
+ ]
+}

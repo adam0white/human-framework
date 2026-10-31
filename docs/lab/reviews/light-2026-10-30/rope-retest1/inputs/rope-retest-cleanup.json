@@ -1,0 +1,64 @@
+{
+  "time": "2026-10-31T10:10:36.165111+00:00",
+  "all15RecordedPIDsAbsent": true,
+  "recordedPIDs": [
+    3988, 3966, 3968, 15153, 15130, 15133, 18826, 18804, 18806, 30973, 30950, 30953, 38555, 38515, 38517
+  ],
+  "lastActualReturn": "2026-10-31T10:09:57.416798+00:00",
+  "nextRoundNotBefore": "2026-10-31T10:24:57.416798+00:00",
+  "lateObserved": [
+    {
+      "tester": "rosa",
+      "identities": 13,
+      "allAbsent": true
+    },
+    {
+      "tester": "farah",
+      "identities": 11,
+      "allAbsent": true
+    }
+  ],
+  "ports": [
+    {
+      "port": 22000,
+      "closed": true
+    },
+    {
+      "port": 22001,
+      "closed": true
+    },
+    {
+      "port": 22002,
+      "closed": true
+    },
+    {
+      "port": 22003,
+      "closed": true
+    },
+    {
+      "port": 22004,
+      "closed": true
+    },
+    {
+      "port": 22005,
+      "closed": true
+    },
+    {
+      "port": 22006,
+      "closed": true
+    },
+    {
+      "port": 22007,
+      "closed": true
+    },
+    {
+      "port": 22008,
+      "closed": true
+    },
+    {
+      "port": 22009,
+      "closed": true
+    }
+  ],
+  "scope": "Recorded model/driver PIDs and late Rosa/Farah observed descendants only, not a full-round browser journal. No signals sent."
+}

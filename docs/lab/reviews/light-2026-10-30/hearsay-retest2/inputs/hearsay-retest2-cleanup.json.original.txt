@@ -1,0 +1,28 @@
+{
+  "time": "2026-10-31T11:57:10.341168+00:00",
+  "recordedPids": [
+    33243,
+    33245,
+    33266,
+    38446,
+    38480,
+    38538,
+    49500,
+    49502,
+    49523,
+    56782,
+    56784,
+    56805,
+    61021,
+    61023,
+    61044,
+    64162,
+    64164,
+    64185
+  ],
+  "allRecordedPidsAbsent": true,
+  "allTenPortsClosed": true,
+  "fullRoundDescendantJournal": false,
+  "originalRosa": "CUT BY COORDINATOR, no voluntary stop; exact observed orphan10identity cleanup separately verified",
+  "recoveryDescendantSnapshot": "After return:0present; not a full-round descendant journal"
+}

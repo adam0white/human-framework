@@ -1,0 +1,112 @@
+[
+  {
+    "game": "stairwell",
+    "tester": "Maya Chen",
+    "first": "maya",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 24. Canada; Vancouver library assistant, raised in a multilingual household. She plays narrative adventures and cooperative puzzles with her sister.\n- HF temperament: curious; high openness, moderate conscientiousness and agreeableness, low extraversion.\n- Likes: small discoveries, people who remember a choice, puzzles with readable consequences.\n- Dislikes: mandatory lore before action, repeated exposition.\n- Play habits: Reads a scene twice when interested, tries the unusual reply, then checks who reacted. Usually plays on a phone at home.",
+    "prior_src": "own-history.md: selected own actual earlier Stairwell report and selected cross-game records; not complete archive",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22700,
+      "desktop": 22701
+    },
+    "url": "https://stairwell.adamwhite.work/?labRunSource=agent",
+    "title": "The Stairwell",
+    "commit": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "stairwell",
+    "tester": "Jonas Berg",
+    "first": "jonas",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 31. Sweden; Malm\u00f6 warehouse planner. Plays factory builders and demanding survival games.\n- HF temperament: patient; high conscientiousness, low agreeableness, moderate openness.\n- Likes: systems he can learn, difficult choices, efficient routines.\n- Dislikes: a dominant repeatable move, consequences without visible clues.\n- Play habits: Uses desktop. Tests one hypothesis at a time and repeats a successful action to see whether conditions matter. Wants challenge to survive understanding.",
+    "prior_src": "own-history.md: selected own actual earlier Stairwell report and selected cross-game records; not complete archive",
+    "order": ["desktop", "phone"],
+    "ports": {
+      "phone": 22702,
+      "desktop": 22703
+    },
+    "url": "https://stairwell.adamwhite.work/?labRunSource=agent",
+    "title": "The Stairwell",
+    "commit": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "stairwell",
+    "tester": "Leila Mansour",
+    "first": "leila",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 26. Egypt; Alexandria translator. Plays interactive fiction and tactical roguelikes in English.\n- HF temperament: impatient; high openness, moderate emotionality, low agreeableness.\n- Likes: precise prose, consequential conversation, hard but fair situations.\n- Dislikes: vague verbs, necessary unexplained local terms.\n- Play habits: Uses a phone. Reads closely when the wording matters, experiments when it does not, and distinguishes a difficult choice from not understanding the controls.",
+    "prior_src": "own-history.md: selected own actual earlier Stairwell report and selected cross-game records; not complete archive",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22704,
+      "desktop": 22705
+    },
+    "url": "https://stairwell.adamwhite.work/?labRunSource=agent",
+    "title": "The Stairwell",
+    "commit": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "stairwell",
+    "tester": "Rosa Alvarez",
+    "first": "rosa",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa",
+    "kind": "standing",
+    "exposure": "return",
+    "persona": "- Age and background: 62. Mexico; Puebla retired school administrator. Enjoys crosswords, family card games and occasional phone mysteries.\n- HF temperament: patient; high conscientiousness and agreeableness, moderate openness.\n- Likes: ordinary people with understandable obligations, clear language.\n- Dislikes: tiny text, specialist gaming vocabulary, being hurried while reading.\n- Play habits: Uses a tablet or a large phone with deliberate taps. Reads help when it answers a concrete question. Does not assume familiar game conventions.",
+    "prior_src": "own-history.md: selected own actual earlier Stairwell report and selected cross-game records; not complete archive",
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22706,
+      "desktop": 22707
+    },
+    "url": "https://stairwell.adamwhite.work/?labRunSource=agent",
+    "title": "The Stairwell",
+    "commit": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  },
+  {
+    "game": "stairwell",
+    "tester": "Ivo Almeida",
+    "first": "ivo",
+    "dir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo",
+    "kind": "cold",
+    "exposure": "first",
+    "persona": "- Age and background: 27. Portugal; Coimbra bicycle courier. Plays an occasional short puzzle game.\n- HF temperament: no HF exposure and no recorded temperament. Treat Ivo as a person who weighs concrete tastes against concrete limits and reports what is observed, including uncertainty.\n- Likes: seeing a visible consequence of an action, having something useful to try, being able to stop.\n- Dislikes: redoing steps already completed, terms that are not explained.\n- Play habits: Plays on a phone in short sittings; uses a laptop when one is free. Reads before tapping, but will tap to find out what a control does. Says plainly when something does not suit. Makes no assumption about faith or belief.\n- Personal diary: empty. No play history of any kind. Only observed sessions can add history.",
+    "prior_src": null,
+    "order": ["phone", "desktop"],
+    "ports": {
+      "phone": 22708,
+      "desktop": 22709
+    },
+    "url": "https://stairwell.adamwhite.work/?labRunSource=agent",
+    "title": "The Stairwell",
+    "commit": "292a4eef45ae8b1f5e62a2b4a6df2edbdc4c6cde",
+    "ceiling": 20,
+    "model": "gpt-6.1-terra",
+    "backend": "codex",
+    "effort": "low"
+  }
+]

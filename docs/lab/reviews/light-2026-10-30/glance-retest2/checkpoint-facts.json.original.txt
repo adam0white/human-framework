@@ -1,0 +1,1080 @@
+{
+ "note": "Computed from the copied wall-clock.jsonl, completion.json, dispatch.json, release-start.json, validation.json and driver.out by build-packet.py. Session length is measured from the open row. Stops are the raw timed rows, not the report estimates. A first_minute log is a tester line; first_minute under 60 s and pulse under 180 s are flagged early. The first-minute.png file is the automatic driver capture after the stop, not play. note log rows are driver log lines, not feedback notes.",
+ "build": {
+  "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+  "dirty": false,
+  "framework": "4.14.0",
+  "app": "0.1.0",
+  "hardeningLabel": "HF 4.14.0",
+  "checkedIn": "every completion.json pin (10 files, 2 pins each), every release-start.json (10) and the post-round release file (inputs/glance-retest2-final-release-after-round.json)",
+  "postRoundReleaseTime": "2026-10-31T09:10:08.137839+00:00",
+  "predispatchMainCI": {
+   "conclusion": "success",
+   "headSha": "c112497284e78d4c99aa62895262368214f37d9f",
+   "status": "completed"
+  }
+ },
+ "driver": {
+  "name": "native-tap-v2",
+  "driver_check": "fork-unverified",
+  "dispatchHashAllFive": {
+   "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+   "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+   "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "approvedInstrumentTime": "2026-10-31T02:50:55.021190+00:00",
+  "identicalInAllFiveDispatches": true,
+  "limits": [
+   "Input status 200 acknowledges native input, not the intended game outcome; inspect the visible result.",
+   "A moving or replaced target can be missed or compat-clicked on phone; no post-press confirmation.",
+   "The driver is unchanged from the earlier round; only the input line counts, end markers and outer JSON apostrophe hint changed the method. No game-only causal claim."
+  ]
+ },
+ "round": {
+  "id": "light-1031-glance-retest2",
+  "closedAt": "2026-10-31T09:09:33.248155+00:00",
+  "nextPanelNotBefore": "2026-10-31T09:24:33.248155+00:00",
+  "freeStop": true,
+  "floor": 0,
+  "ceilingMin": 20,
+  "urlRunSource": "labRunSource=agent via dispatch.json linkedEnvelopeSource",
+  "productionReceipt": "not independently read, unverified",
+  "deploymentHold": "released (parent-stated)",
+  "lastCompletionEnded": "2026-10-31T09:09:33.248155+00:00"
+ },
+ "method": {
+  "agentBashCalls": 308,
+  "validAssignedJsonCurl": 299,
+  "shellParseFailuresBeforeCurl": 8,
+  "executedBriefPipeViolation": 1,
+  "otherExecutedProtocolBreach": 0,
+  "meiPipeViolation": "Mei piped one assigned curl response through head-c600. Valid local request executed; output truncated againstbrief. Not a gamefault.",
+  "source": "copied from inputs/glance-retest2-director-method-notes.json; the private command-scope audit is not in this packet and the preparer did not read it",
+  "note": "Mei piped one curl through head -c600, a brief violation that executed and truncated output. The other shell failures were shell parse failures before curl. No fake clean scope is claimed."
+ },
+ "cleanup": {
+  "recordedProcessIds": 15,
+  "allAbsent": true,
+  "signalsSent": [],
+  "lateColdObservedProcesses": 13,
+  "lateColdAllAbsent": true,
+  "limits": "All15 recorded model/driver PIDs absent.13 observed latecold descendants/root processes absent. No complete whole-round browser-descendant journal is invented."
+ },
+ "images": {
+  "imageReadReceiptsTotal": 22,
+  "retainedPngTotal": 32,
+  "largestPngCountOnOneDevice": 5,
+  "largestManualPngCountOnOneDevice": 4,
+  "captureCountsFromAudit": {
+   "mei": {
+    "desktop": 3,
+    "phone": 3
+   },
+   "samir": {
+    "phone": 2,
+    "desktop": 2
+   },
+   "leila": {
+    "desktop": 2,
+    "phone": 3
+   },
+   "rosa": {
+    "phone": 3,
+    "desktop": 4
+   },
+   "eszter": {
+    "phone": 5,
+    "desktop": 5
+   }
+  },
+  "allCapsPassPerAudit": true,
+  "note": "Receipts come from validation.json. Automatic first-minute.png captures have no receipt. Samir viewed only the title page on each device. Leila never saw desktop gameplay in an image."
+ },
+ "checks": {
+  "stopsTotal": 10,
+  "allCompletionExitZero": true,
+  "pinsClean": true,
+  "unexpectedReadsAll": {
+   "mei": [],
+   "samir": [],
+   "leila": [],
+   "rosa": [],
+   "eszter": []
+  }
+ },
+ "testers": {
+  "mei": {
+   "tester": "Mei Tan",
+   "dispatchTime": "2026-10-31T08:33:39.970351+00:00",
+   "completionEnded": "2026-10-31T08:39:15.496452+00:00",
+   "validationTime": "2026-10-31T09:10:08.002278+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T08:33:39.334Z",
+     "openRowT": "2026-10-31T08:37:29.730Z",
+     "lastRowT": "2026-10-31T08:38:50.556Z",
+     "driverPid": 22078,
+     "port": 22800,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T08:38:50.556Z",
+      "elapsed_s": 81.133,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping on the phone at Monday 23:14 after a quiet opening with no decision. Readable at 360 wide, and the Dai strip is no longer cut off. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+      "game_clock": "Mon 23:14",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping on the phone at Monday 23:14 after a quiet opening with no decision. Readable at 360 wide, and the Dai strip is no longer cut off. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 70.415,
+       "game_clock": "Mon 23:04",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 72.629,
+       "game_clock": "Mon 23:04",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 81.133,
+       "game_clock": "Mon 23:14",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "t": "2026-10-31T08:37:36.032Z",
+       "elapsed_s": 6.609,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Skip to the next event"
+       },
+       "error": "Skip to the next event is shown but disabled right now (game state, not a driver failure)"
+      }
+     ],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 77.476,
+       "op": "tap",
+       "input": {
+        "text": "m stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T08:33:39.271Z",
+     "openRowT": "2026-10-31T08:33:54.329Z",
+     "lastRowT": "2026-10-31T08:37:27.664Z",
+     "driverPid": 22076,
+     "port": 22801,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T08:37:27.664Z",
+      "elapsed_s": 213.73,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping on Tuesday 01:36 with the gate at 2 of 6 and the level back to 3.4 m. This visit gave me a real decision at 4.5 m within about 100 s, and the sheet told me my level reading was older than the gate. Long waits between decisions still lose me. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+      "game_clock": "Tue 01:36",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping on Tuesday 01:36 with the gate at 2 of 6 and the level back to 3.4 m. This visit gave me a real decision at 4.5 m within about 100 s, and the sheet told me my level reading was older than the gate. Long waits between decisions still lose me. I picked I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 69.031,
+       "game_clock": "Mon 23:06",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 187.24,
+       "game_clock": "Tue 01:27",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 189.393,
+       "game_clock": "Tue 01:27",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 213.73,
+       "game_clock": "Tue 01:36",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "t": "2026-10-31T08:37:10.723Z",
+       "elapsed_s": 196.789,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m stopping"
+       },
+       "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "pngFiles": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "a-001.png",
+      "a-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 196.789,
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m stopping"
+       },
+       "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      },
+      {
+       "elapsed_s": 206.039,
+       "op": "tap",
+       "input": {
+        "text": "m stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  },
+  "samir": {
+   "tester": "Samir Haddad",
+   "dispatchTime": "2026-10-31T08:39:16.737552+00:00",
+   "completionEnded": "2026-10-31T08:42:47.078437+00:00",
+   "validationTime": "2026-10-31T09:10:08.007027+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T08:39:15.996Z",
+     "openRowT": "2026-10-31T08:39:24.908Z",
+     "lastRowT": "2026-10-31T08:40:46.455Z",
+     "driverPid": 36142,
+     "port": 22802,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T08:40:46.455Z",
+      "elapsed_s": 81.898,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me. Pressed Im stopping in Feedback, then Back, typed nothing.",
+      "game_clock": "Mon 23:18",
+      "engagement": 3,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping the phone at about 80 seconds, Mon 23:18. Level tile now keeps its last reading with age, which I asked for, and the layout fits. But it is the same loop, only Dai, nothing to answer, nothing needs me. Pressed Im stopping in Feedback, then Back, typed nothing.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 70.345,
+       "game_clock": "Mon 23:14",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 81.898,
+       "game_clock": "Mon 23:18",
+       "engagement": 3,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "t": "2026-10-31T08:40:39.428Z",
+       "elapsed_s": 74.871,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m stopping"
+       },
+       "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "pngFiles": [
+      "b-001.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 1,
+     "imageReadReceipts": [
+      "b-001.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 74.871,
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m stopping"
+       },
+       "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      },
+      {
+       "elapsed_s": 76.674,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T08:39:16.083Z",
+     "openRowT": "2026-10-31T08:40:48.099Z",
+     "lastRowT": "2026-10-31T08:42:25.746Z",
+     "driverPid": 36144,
+     "port": 22803,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T08:42:25.746Z",
+      "elapsed_s": 98.002,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping desktop at about 96 seconds, Mon 23:38. Level tile now keeps 4.10 m with its age and a was-line, which I asked for. Standing request saved and Dai reads on his own. But still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained. Pressed Im stopping in Feedback, then Back, typed nothing.",
+      "game_clock": "Mon 23:38",
+      "engagement": 3,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping desktop at about 96 seconds, Mon 23:38. Level tile now keeps 4.10 m with its age and a was-line, which I asked for. Standing request saved and Dai reads on his own. But still only Dai, no one to answer or ask, and the Nerys and Wren names are still unexplained. Pressed Im stopping in Feedback, then Back, typed nothing.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 64.595,
+       "game_clock": "Mon 23:10",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 98.002,
+       "game_clock": "Mon 23:38",
+       "engagement": 3,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [],
+     "pngFiles": [
+      "a-001.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 1,
+     "imageReadReceipts": [
+      "a-001.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 94.475,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  },
+  "leila": {
+   "tester": "Leila Mansour",
+   "dispatchTime": "2026-10-31T08:42:48.356714+00:00",
+   "completionEnded": "2026-10-31T08:47:38.817391+00:00",
+   "validationTime": "2026-10-31T09:10:08.012517+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T08:42:47.734Z",
+     "openRowT": "2026-10-31T08:45:36.407Z",
+     "lastRowT": "2026-10-31T08:47:07.230Z",
+     "driverPid": 42849,
+     "port": 22804,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T08:47:07.230Z",
+      "elapsed_s": 91.168,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping phone at about a minute and a half. The doubt mark now shows Marked for another check and the gate request was confirmed, which I asked for. But the level is steady, I have about three choices, and the rest is waiting. I would not leave it running.",
+      "game_clock": "Mon 23:04",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping phone at about a minute and a half. The doubt mark now shows Marked for another check and the gate request was confirmed, which I asked for. But the level is steady, I have about three choices, and the rest is waiting. I would not leave it running.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 74.869,
+       "game_clock": "Mon 22:50",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 83.889,
+       "game_clock": "Mon 23:00",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 91.168,
+       "game_clock": "Mon 23:04",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 87.956,
+       "op": "tap",
+       "input": {
+        "text": "m stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T08:42:47.656Z",
+     "openRowT": "2026-10-31T08:43:01.236Z",
+     "lastRowT": "2026-10-31T08:45:34.859Z",
+     "driverPid": 42847,
+     "port": 22805,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T08:45:34.859Z",
+      "elapsed_s": 153.918,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping desktop at about two and a half minutes. The Doubt mark now shows (Doubt mark waiting, then Marked for another check) and my gate request was confirmed, which I asked for. But I still make about four choices and wait the rest. I would not leave it running.",
+      "game_clock": "Mon 23:56",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping desktop at about two and a half minutes. The Doubt mark now shows (Doubt mark waiting, then Marked for another check) and my gate request was confirmed, which I asked for. But I still make about four choices and wait the rest. I would not leave it running.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 67.326,
+       "game_clock": "Mon 22:43",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 133.472,
+       "game_clock": "Mon 23:51",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 153.918,
+       "game_clock": "Mon 23:56",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "t": "2026-10-31T08:45:19.506Z",
+       "elapsed_s": 138.565,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m stopping"
+       },
+       "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "pngFiles": [
+      "a-001.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 1,
+     "imageReadReceipts": [
+      "a-001.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 138.565,
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m stopping"
+       },
+       "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      },
+      {
+       "elapsed_s": 150.538,
+       "op": "tap",
+       "input": {
+        "text": "m stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  },
+  "rosa": {
+   "tester": "Rosa Alvarez",
+   "dispatchTime": "2026-10-31T08:47:40.038934+00:00",
+   "completionEnded": "2026-10-31T08:50:15.300385+00:00",
+   "validationTime": "2026-10-31T09:10:08.020230+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T08:47:39.323Z",
+     "openRowT": "2026-10-31T08:48:00.876Z",
+     "lastRowT": "2026-10-31T08:49:00.564Z",
+     "driverPid": 52414,
+     "port": 22806,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T08:48:33.606Z",
+      "elapsed_s": 33.076,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "The call sentence is now said once, which helps a lot, and the Optional chapter is a small line. But A call interrupts... If he takes up that job again afterwards, it starts again... still cost me two rereads, and Hold it to insist is still there. I stop on the phone.",
+      "game_clock": "Mon 22:04",
+      "engagement": 3,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "The call sentence is now said once, which helps a lot, and the Optional chapter is a small line. But A call interrupts... If he takes up that job again afterwards, it starts again... still cost me two rereads, and Hold it to insist is still there. I stop on the phone.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "want_quit",
+       "elapsed_s": 15.191,
+       "game_clock": "Mon 22:02",
+       "engagement": null,
+       "reason": "CONFUSED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 33.076,
+       "game_clock": "Mon 22:04",
+       "engagement": 3,
+       "reason": "CONFUSED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "t": "2026-10-31T08:48:22.144Z",
+       "elapsed_s": 21.614,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m confused"
+       },
+       "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "pngFiles": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "a-001.png",
+      "a-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 21.614,
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m confused"
+       },
+       "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T08:47:39.420Z",
+     "openRowT": "2026-10-31T08:48:34.877Z",
+     "lastRowT": "2026-10-31T08:49:34.617Z",
+     "driverPid": 52416,
+     "port": 22807,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T08:49:00.184Z",
+      "elapsed_s": 25.627,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "On the big screen the dam picture helps me. The call sentence is now short and in one place. But A new call replaces it appeared before I tapped, and then the other sentence, and Hold it to insist is still here. I stop for tonight.",
+      "game_clock": "Mon 22:02",
+      "engagement": 3,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "On the big screen the dam picture helps me. The call sentence is now short and in one place. But A new call replaces it appeared before I tapped, and then the other sentence, and Hold it to insist is still here. I stop for tonight.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "want_quit",
+       "elapsed_s": 12.993,
+       "game_clock": "Mon 22:01",
+       "engagement": null,
+       "reason": "CONFUSED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 25.627,
+       "game_clock": "Mon 22:02",
+       "engagement": 3,
+       "reason": "CONFUSED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "t": "2026-10-31T08:48:53.218Z",
+       "elapsed_s": 18.661,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "text": "stopping",
+        "role": "button"
+       },
+       "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 3,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 18.661,
+       "op": "tap",
+       "input": {
+        "text": "stopping",
+        "role": "button"
+       },
+       "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  },
+  "eszter": {
+   "tester": "Eszter Fekete",
+   "dispatchTime": "2026-10-31T08:50:16.483981+00:00",
+   "completionEnded": "2026-10-31T09:09:33.248155+00:00",
+   "validationTime": "2026-10-31T09:10:08.030016+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T08:50:15.784Z",
+     "openRowT": "2026-10-31T08:50:21.763Z",
+     "lastRowT": "2026-10-31T09:01:19.246Z",
+     "driverPid": 55798,
+     "port": 22808,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:01:19.246Z",
+      "elapsed_s": 657.819,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Feedback took I am stopping and Back brought me to the menu. I stop here for tonight on the phone: I like the dam and river choice and the Morgan notes, but a night is long and too much of it is waiting with a grey Skip.",
+      "game_clock": "Tue 00:46",
+      "engagement": 3,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Feedback took I am stopping and Back brought me to the menu. I stop here for tonight on the phone: I like the dam and river choice and the Morgan notes, but a night is long and too much of it is waiting with a grey Skip.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 64.87,
+       "game_clock": "Mon 22:50",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 185.313,
+       "game_clock": "Mon 01:22",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 487.384,
+       "game_clock": "Tue 22:34",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 590.753,
+       "game_clock": "Tue 00:36",
+       "engagement": 3,
+       "reason": "TASTE",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 657.819,
+       "game_clock": "Tue 00:46",
+       "engagement": 3,
+       "reason": "TASTE",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "t": "2026-10-31T08:58:03.644Z",
+       "elapsed_s": 462.217,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Skip to the next event"
+       },
+       "error": "Cannot tap Skip to the next event: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)"
+      },
+      {
+       "t": "2026-10-31T09:00:21.694Z",
+       "elapsed_s": 600.267,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m stopping"
+       },
+       "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      }
+     ],
+     "pngFiles": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png",
+      "a-004.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 4,
+     "imageReadReceipts": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png",
+      "a-004.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 600.267,
+       "op": "tap",
+       "input": {
+        "name": "I\\u0027m stopping"
+       },
+       "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+      },
+      {
+       "elapsed_s": 607.076,
+       "op": "tap",
+       "input": {
+        "text": "m stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T08:50:15.831Z",
+     "openRowT": "2026-10-31T09:01:23.234Z",
+     "lastRowT": "2026-10-31T09:08:29.588Z",
+     "driverPid": 55800,
+     "port": 22809,
+     "release": {
+      "app": "0.1.0",
+      "framework": "4.14.0",
+      "commit": "c112497284e78d4c99aa62895262368214f37d9f",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:08:29.588Z",
+      "elapsed_s": 426.7,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I pressed I am stopping and Back took me to the menu. I stop here. The Monday night on the computer with Fast pace and the lightning picture was the best part of my evening. Tuesday felt like the same evening again, and I do not want to repeat the same form.",
+      "game_clock": "Tue 00:00",
+      "engagement": 3,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "I pressed I am stopping and Back took me to the menu. I stop here. The Monday night on the computer with Fast pace and the lightning picture was the best part of my evening. Tuesday felt like the same evening again, and I do not want to repeat the same form.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 60.757,
+       "game_clock": "Mon 23:05",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 180.729,
+       "game_clock": "Mon 02:05",
+       "engagement": 4,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 416.095,
+       "game_clock": "Tue 23:41",
+       "engagement": 3,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 426.7,
+       "game_clock": "Tue 00:00",
+       "engagement": 3,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 1,
+     "toolErrors": [],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "b-004.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 4,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "b-004.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 339.542,
+       "op": "tap",
+       "input": {
+        "name": "Send Dai to the weir He agrees. · ~15 min · If you hold: Call and wait for an answer."
+       },
+       "error": null
+      },
+      {
+       "elapsed_s": 421.915,
+       "op": "tap",
+       "input": {
+        "text": "m stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,161 @@
+{
+  "tester": "Eszter Fekete",
+  "validationTime": "2026-10-31T09:10:08.030016+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T09:01:19.246Z",
+        "elapsed_s": 657.819,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Feedback took I am stopping and Back brought me to the menu. I stop here for tonight on the phone: I like the dam and river choice and the Morgan notes, but a night is long and too much of it is waiting with a grey Skip.",
+        "game_clock": "Tue 00:46",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-004.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 600.267,
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 607.076,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T08:58:03.644Z",
+          "elapsed_s": 462.217,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 15,
+          "error": "Cannot tap Skip to the next event: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T09:00:21.694Z",
+          "elapsed_s": 600.267,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T09:08:29.588Z",
+        "elapsed_s": 426.7,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I pressed I am stopping and Back took me to the menu. I stop here. The Monday night on the computer with Fast pace and the lightning picture was the best part of my evening. Tuesday felt like the same evening again, and I do not want to repeat the same form.",
+        "game_clock": "Tue 00:00",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-004.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 339.542,
+          "op": "tap",
+          "input": {
+            "name": "Send Dai to the weir He agrees. \u00b7 ~15 min \u00b7 If you hold: Call and wait for an answer."
+          },
+          "error": null
+        },
+        {
+          "elapsed_s": 421.915,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,785 @@
+{
+  "note": "Every span is an exact substring of the named copied report, with a 1-based line locator into report.md (report.original.md.txt is byte-identical). mode after-label: the whole line equals prefix + span. mode inline: the span lies inside the line. Nothing is paraphrased, abbreviated or joined, and no ellipses stand in for conditions. primaryReturn is the opening answer at the top of report.md (after its label). laterFullReturn is the separate section 7 answer. laterExtraReturnSpans are further literal section 7 answers or changed conditions. Rosa has no laterFullReturn: her section 7 answer is a lead plus three bullet conditions, each quoted on its own and none joined into a sentence. Eszter wrapped her opening answer in producer quote marks: primaryReturnAfterLabelLiteral keeps them, primaryReturn is the text between them. rankedAsks are the top three asks of report.md. laterAskSpans are later wording from section 3, 4, 5, 6, 8 or 9 kept only where it adds or changes content, labelled separately. Which later spans count as materially different is the preparer's placement for the parent to confirm at the seal.",
+  "testers": {
+    "mei": {
+      "tester": "Mei Tan",
+      "primaryReturnLocator": {
+        "line": 1,
+        "mode": "after-label",
+        "span": "I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises. I would not leave it running.",
+        "prefix": "**Would I return voluntarily?** "
+      },
+      "primaryReturn": "I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises. I would not leave it running.",
+      "primaryReturnWrapperQuotesStripped": false,
+      "laterFullReturn": "I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises.",
+      "laterFullReturnLocator": {
+        "line": 119,
+        "mode": "after-label",
+        "span": "I would come back another evening on the laptop. I would do that only if the quiet first hours stayed this short, or if I were told up front that nothing needs deciding until the level rises.",
+        "prefix": "**Would I return voluntarily?** "
+      },
+      "laterConditionSpans": [],
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 7) bullet, leave it running",
+          "line": 121,
+          "mode": "after-label",
+          "span": "No. I want to make the gate calls myself, and I do not trust Dai alone.",
+          "prefix": "**Would I leave it running?** "
+        }
+      ],
+      "rankedAsks": [
+        "Tell me at the start when nothing needs deciding. The phone gave me nothing to decide in 80 s.",
+        "Show what the gate is doing to the level after I set it, without a second call to Dai. This visit the sheet said \"may not show what the gate has done since. Ask for a new reading.\" That is a warning, not a new reading.",
+        "Show me how much of the level change is the gate and how much is the rain easing."
+      ],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "mode": "after-label",
+          "span": "Tell me at the start when nothing needs deciding. The phone gave me nothing to decide in 80 s.",
+          "prefix": "1. "
+        },
+        {
+          "line": 5,
+          "mode": "after-label",
+          "span": "Show what the gate is doing to the level after I set it, without a second call to Dai. This visit the sheet said \"may not show what the gate has done since. Ask for a new reading.\" That is a warning, not a new reading.",
+          "prefix": "2. "
+        },
+        {
+          "line": 6,
+          "mode": "after-label",
+          "span": "Show me how much of the level change is the gate and how much is the rain easing.",
+          "prefix": "3. "
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 124,
+            "mode": "inline",
+            "span": "A plain line at the start when nothing needs deciding yet."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "line": 129,
+            "mode": "inline",
+            "span": "Partly met. The laptop gave me a decision at 4.5 m within about 100 s, which is quicker than last time. The phone gave me nothing in 80 s. I saw no statement that none is needed."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 125,
+            "mode": "inline",
+            "span": "Show the gate's effect on the level after I set it, without a second call."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 78,
+            "mode": "inline",
+            "span": "After I set 2 turns, the level on the board stayed at 4.50 m (read 23:31) until I asked again at 00:30. The sheet explains why, but I still had to ask."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "line": 131,
+            "mode": "inline",
+            "span": "Partly met, on the laptop. The level sheet now warns that the reading may not show what the gate has done since. It does not show the effect. I still had to ask Dai again to see 3.4 m."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 126,
+            "mode": "inline",
+            "span": "Separate the gate's effect from the rain easing."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 79,
+            "mode": "inline",
+            "span": "I still cannot separate the gate's effect from the rain easing."
+          },
+          {
+            "label": "Later wording (section 5) guess",
+            "line": 82,
+            "mode": "inline",
+            "span": "I assumed the fall from 4.5 to 3.4 m was mostly the gate. I did not verify it."
+          }
+        ]
+      }
+    },
+    "samir": {
+      "tester": "Samir Haddad",
+      "primaryReturnLocator": {
+        "line": 1,
+        "mode": "after-label",
+        "span": "I might come back another evening, on desktop only, if I could answer Dai or learn who the town people are, and if the waiting cost much less. I would not leave it running. I would not come back on the phone tonight.",
+        "prefix": "**Would you return voluntarily?** "
+      },
+      "primaryReturn": "I might come back another evening, on desktop only, if I could answer Dai or learn who the town people are, and if the waiting cost much less. I would not leave it running. I would not come back on the phone tonight.",
+      "primaryReturnWrapperQuotesStripped": false,
+      "laterFullReturn": "I might come back another evening on desktop, if I could answer Dai or learn who the town people are, and if each step cost much less waiting. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight, because I already know the loop from desktop.",
+      "laterFullReturnLocator": {
+        "line": 68,
+        "mode": "after-label",
+        "span": "I might come back another evening on desktop, if I could answer Dai or learn who the town people are, and if each step cost much less waiting. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight, because I already know the loop from desktop.",
+        "prefix": "- Return: "
+      },
+      "laterConditionSpans": [],
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 7) changed condition (waiting)",
+          "line": 68,
+          "mode": "inline",
+          "span": "and if each step cost much less waiting."
+        },
+        {
+          "label": "Later wording (section 7) changed reason (leave it running)",
+          "line": 68,
+          "mode": "inline",
+          "span": "I would not leave it running, because it needs me at each step."
+        },
+        {
+          "label": "Later wording (section 7) changed reason (phone)",
+          "line": 68,
+          "mode": "inline",
+          "span": "I would not come back on the phone tonight, because I already know the loop from desktop."
+        }
+      ],
+      "rankedAsks": [
+        "Give me someone to talk to besides Dai: a way to ask him about himself or the town, and to meet Nerys and Wren.",
+        "Cut the idle waiting. Both sessions were mostly half-minute waits with nothing for me to do.",
+        "Make the first level reading appear sooner, or say why the tile starts as a dash."
+      ],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "mode": "after-label",
+          "span": "Give me someone to talk to besides Dai: a way to ask him about himself or the town, and to meet Nerys and Wren.",
+          "prefix": "1. "
+        },
+        {
+          "line": 5,
+          "mode": "after-label",
+          "span": "Cut the idle waiting. Both sessions were mostly half-minute waits with nothing for me to do.",
+          "prefix": "2. "
+        },
+        {
+          "line": 6,
+          "mode": "after-label",
+          "span": "Make the first level reading appear sooner, or say why the tile starts as a dash.",
+          "prefix": "3. "
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 71,
+            "mode": "inline",
+            "span": "Let me talk to someone besides Dai, or ask him about himself and the town."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "line": 77,
+            "mode": "inline",
+            "span": "did not meet it. I never saw the Morgan question this time, because both sessions ended early. I saw no reply control."
+          },
+          {
+            "label": "Later wording (section 9) Nerys and Wren",
+            "line": 78,
+            "mode": "inline",
+            "span": "partly met. The opening is short and Bilal still has his one-line note. Nerys and Wren are still unexplained."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 72,
+            "mode": "inline",
+            "span": "Cut the idle waiting, or give me something to decide while Dai rests."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "line": 81,
+            "mode": "inline",
+            "span": "did not meet it. I waited 22 to 30 s at a time on both devices."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 73,
+            "mode": "inline",
+            "span": "Show or explain the first level reading earlier, and explain \"(as written)\"."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 55,
+            "mode": "inline",
+            "span": "On desktop the level tile stayed a dash until about 23:13, because nobody had read it, even after I saved a request."
+          },
+          {
+            "label": "Later wording (section 5) (as written)",
+            "line": 54,
+            "mode": "inline",
+            "span": "\"(as written)\" on the readings, still unexplained."
+          }
+        ]
+      }
+    },
+    "leila": {
+      "tester": "Leila Mansour",
+      "primaryReturnLocator": {
+        "line": 1,
+        "mode": "after-label",
+        "span": "Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. I would not leave it running.",
+        "prefix": "**Would you return voluntarily?** "
+      },
+      "primaryReturn": "Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. I would not leave it running.",
+      "primaryReturnWrapperQuotesStripped": false,
+      "laterFullReturn": "Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. The idea of a keeper whose number may be old is still the best part, and Doubt now does something I can see. I have seen the Monday loop four times and it is still ask, set the gate, wait. I would not leave it running.",
+      "laterFullReturnLocator": {
+        "line": 97,
+        "mode": "after-label",
+        "span": "Maybe, another evening and only on desktop, and only if a night asked me for more than about four choices. The idea of a keeper whose number may be old is still the best part, and Doubt now does something I can see. I have seen the Monday loop four times and it is still ask, set the gate, wait. I would not leave it running.",
+        "prefix": "- **Would I return voluntarily?** "
+      },
+      "laterConditionSpans": [],
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 7) bullet, leave it running",
+          "line": 98,
+          "mode": "after-label",
+          "span": "No.",
+          "prefix": "- **Leave it running?** "
+        },
+        {
+          "label": "Later wording (section 7) bullet, another evening",
+          "line": 99,
+          "mode": "after-label",
+          "span": "Possibly, on the condition above.",
+          "prefix": "- **Another evening?** "
+        },
+        {
+          "label": "Later wording (section 7) added reason",
+          "line": 97,
+          "mode": "inline",
+          "span": "The idea of a keeper whose number may be old is still the best part, and Doubt now does something I can see. I have seen the Monday loop four times and it is still ask, set the gate, wait."
+        }
+      ],
+      "rankedAsks": [
+        "Give me more to decide each night. I made about 4 choices on desktop and about 3 on phone, then waited.",
+        "Stop the clock, or slow it much more, while I read an inspection panel. The panel still says \"Time continues slowly while this inspection is open. It does not stop.\" and the clock still moved.",
+        "Explain \"He cannot do it\" on the level request. The phone showed it while Dai was only resting by the stove. After I held the button, a blank sat where the status text had been."
+      ],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "mode": "after-label",
+          "span": "Give me more to decide each night. I made about 4 choices on desktop and about 3 on phone, then waited.",
+          "prefix": "1. "
+        },
+        {
+          "line": 5,
+          "mode": "after-label",
+          "span": "Stop the clock, or slow it much more, while I read an inspection panel. The panel still says \"Time continues slowly while this inspection is open. It does not stop.\" and the clock still moved.",
+          "prefix": "2. "
+        },
+        {
+          "line": 6,
+          "mode": "after-label",
+          "span": "Explain \"He cannot do it\" on the level request. The phone showed it while Dai was only resting by the stove. After I held the button, a blank sat where the status text had been.",
+          "prefix": "3. "
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 102,
+            "mode": "inline",
+            "span": "More to decide each night, such as a town gauge or a second job."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "line": 107,
+            "mode": "inline",
+            "span": "not met. I made about four choices on desktop and three on phone."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 103,
+            "mode": "inline",
+            "span": "A clock that stops, or slows far more, while I read a panel."
+          },
+          {
+            "label": "Later wording (section 5)",
+            "line": 75,
+            "mode": "inline",
+            "span": "the panel says time continues slowly. The clock moved from 22:26 to 22:31 across a few taps in the level panel."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "line": 111,
+            "mode": "inline",
+            "span": "did not meet. The panel still says time continues slowly, and the clock still moved across my taps."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 104,
+            "mode": "inline",
+            "span": "Say why the level request reads \"He cannot do it\" when Dai is only resting, and fill the blank status."
+          },
+          {
+            "label": "Later wording (section 5) phone label",
+            "line": 73,
+            "mode": "inline",
+            "span": "the level request showed this at 22:31 while Dai was only \"resting by the stove\". It had been \"He agrees.\" on desktop in the same state. I held it and he did the job."
+          },
+          {
+            "label": "Later wording (section 5) blank status",
+            "line": 74,
+            "mode": "inline",
+            "span": "at 23:00 on the phone the level request read \"· ~5 min · If you hold: Call and wait for an answer.\" with nothing where \"He agrees.\" belongs."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "line": 114,
+            "mode": "inline",
+            "span": "The \"He cannot do it\" label with no reason is the one new confusion."
+          }
+        ]
+      }
+    },
+    "rosa": {
+      "tester": "Rosa Alvarez",
+      "primaryReturnLocator": {
+        "line": 1,
+        "mode": "after-label",
+        "span": "I would come back another evening, but only if the gate panel said in one plain sentence what \"A new call replaces it\" and \"Hold it to insist\" mean, and showed me one next job. I would not leave it running.",
+        "prefix": "**Would you return?** "
+      },
+      "primaryReturn": "I would come back another evening, but only if the gate panel said in one plain sentence what \"A new call replaces it\" and \"Hold it to insist\" mean, and showed me one next job. I would not leave it running.",
+      "primaryReturnWrapperQuotesStripped": false,
+      "laterFullReturn": null,
+      "laterFullReturnLocator": null,
+      "laterReturnLead": "Yes, another evening, with these conditions:",
+      "laterReturnLeadLocator": {
+        "line": 89,
+        "mode": "after-label",
+        "span": "Yes, another evening, with these conditions:",
+        "prefix": "- **Would you return voluntarily?** "
+      },
+      "laterConditionSpans": [
+        {
+          "label": "Later wording (section 7) condition bullet 1",
+          "line": 90,
+          "mode": "after-label",
+          "span": "The gate panel says in one plain sentence what happens to my earlier request when I call Dai again.",
+          "prefix": "  - "
+        },
+        {
+          "label": "Later wording (section 7) condition bullet 2",
+          "line": 91,
+          "mode": "after-label",
+          "span": "It says what \"insist\" means, or drops it.",
+          "prefix": "  - "
+        },
+        {
+          "label": "Later wording (section 7) condition bullet 3",
+          "line": 92,
+          "mode": "after-label",
+          "span": "It shows me one next job after Dai agrees.",
+          "prefix": "  - "
+        }
+      ],
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 7) bullet, leave it running",
+          "line": 93,
+          "mode": "after-label",
+          "span": "No. I would not leave it running while I am away. I am too unsure what a second call does to the first.",
+          "prefix": "- **Leave it running?** "
+        },
+        {
+          "label": "Later wording (section 7) bullet, come back another evening",
+          "line": 94,
+          "mode": "after-label",
+          "span": "Yes, on the conditions above. The first board is calm enough now that I would try again.",
+          "prefix": "- **Come back another evening?** "
+        }
+      ],
+      "rankedAsks": [
+        "Say in one plain sentence what happens to my earlier request when I call Dai again. Cover \"A new call replaces it\" and \"it starts again and its report can come later\".",
+        "Say what \"Hold it to insist\" does and how to do it, or remove it from the first gate view.",
+        "Give the desktop turn boxes more width, and tell me what to do next once Dai agrees."
+      ],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "mode": "after-label",
+          "span": "Say in one plain sentence what happens to my earlier request when I call Dai again. Cover \"A new call replaces it\" and \"it starts again and its report can come later\".",
+          "prefix": "1. "
+        },
+        {
+          "line": 5,
+          "mode": "after-label",
+          "span": "Say what \"Hold it to insist\" does and how to do it, or remove it from the first gate view.",
+          "prefix": "2. "
+        },
+        {
+          "line": 6,
+          "mode": "after-label",
+          "span": "Give the desktop turn boxes more width, and tell me what to do next once Dai agrees.",
+          "prefix": "3. "
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 97,
+            "mode": "inline",
+            "span": "One plain sentence on what a new call does to my earlier request, covering \"A new call replaces it\" and \"its report can come later\"."
+          },
+          {
+            "label": "Later wording (section 4) lost me",
+            "line": 49,
+            "mode": "inline",
+            "span": "On desktop, \"A new call replaces it.\" I did not know whether it replaces my level question or the gate request."
+          },
+          {
+            "label": "Later wording (section 9) retest 1 ask",
+            "line": 112,
+            "mode": "inline",
+            "span": "Partly met. It appears once, not on six buttons. It still cost me two rereads on each device, and the desktop added \"A new call replaces it\"."
+          },
+          {
+            "label": "Later wording (section 9) new blocking ask",
+            "line": 116,
+            "mode": "inline",
+            "span": "\"A new call replaces it\" does not say what is replaced. I reached this on desktop."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 9) retest 1 ask",
+            "line": 113,
+            "mode": "inline",
+            "span": "Not met for insist. Partly met for the tired line, which was only reworded."
+          },
+          {
+            "label": "Later wording (section 9) round 1 ask",
+            "line": 107,
+            "mode": "inline",
+            "span": "\"Hold it to insist\" is still there."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 99,
+            "mode": "inline",
+            "span": "Wider turn boxes on desktop, and a clear \"what next\" after Dai agrees."
+          },
+          {
+            "label": "Later wording (section 6) desktop gate panel",
+            "line": 74,
+            "mode": "inline",
+            "span": "The Gate panel is at right, with six narrow turn boxes and the help text. Part of the lower text was cut at the bottom of the screen, and I did not scroll to read it."
+          },
+          {
+            "label": "Later wording (section 9) not seen",
+            "line": 118,
+            "mode": "inline",
+            "span": "the lower desktop gate text, lightning, dawn and the end of the night."
+          }
+        ]
+      }
+    },
+    "eszter": {
+      "tester": "Eszter Fekete",
+      "primaryReturnLocator": {
+        "line": 1,
+        "mode": "inline",
+        "span": "Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no."
+      },
+      "primaryReturn": "Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no.",
+      "primaryReturnAfterLabelLiteral": "\"Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no.\"",
+      "primaryReturnWrapperQuotesStripped": true,
+      "laterFullReturn": "Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no. I liked catching Dai's tired readings with my own eyes, and I liked that Morgan's habits are remembered. I dislike repeating the same steps every night, and guessing numbers like gate turns and weir figures with no example. Twelve nights at about 5–7 minutes each is more than my short evening sessions after work.",
+      "laterFullReturnLocator": {
+        "line": 169,
+        "mode": "after-label",
+        "span": "Maybe, for one more Monday-style night on the computer with Fast pace, but only if the nights stop feeling like the same form and the grey Skip waits go away; on the phone, no. I liked catching Dai's tired readings with my own eyes, and I liked that Morgan's habits are remembered. I dislike repeating the same steps every night, and guessing numbers like gate turns and weir figures with no example. Twelve nights at about 5–7 minutes each is more than my short evening sessions after work.",
+        "prefix": "**Would you return voluntarily?** "
+      },
+      "laterConditionSpans": [],
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 7) bullet, leave it running or come back another evening",
+          "line": 171,
+          "mode": "after-label",
+          "span": "I would not leave it running; there is too much waiting with nothing to do. I might come back another evening on the computer, and only with Fast pace on from the start.",
+          "prefix": "**Leave it running, or come back another evening?** "
+        }
+      ],
+      "rankedAsks": [
+        "Make Fast pace (or a pace choice) visible at the start of the game. I found it in the menu only when I was leaving the phone session.",
+        "Cut the dead stretches when Skip is grey and says \"No report is on its way\". Even on Fast I sat and watched the clock.",
+        "Make each new night feel different from the last. On Tuesday the same note from M, the same Nerys hello and the same gate, level and skip steps made it feel like a form I had already filled in."
+      ],
+      "rankedAskLocators": [
+        {
+          "line": 4,
+          "mode": "after-label",
+          "span": "Make Fast pace (or a pace choice) visible at the start of the game. I found it in the menu only when I was leaving the phone session.",
+          "prefix": "1. "
+        },
+        {
+          "line": 5,
+          "mode": "after-label",
+          "span": "Cut the dead stretches when Skip is grey and says \"No report is on its way\". Even on Fast I sat and watched the clock.",
+          "prefix": "2. "
+        },
+        {
+          "line": 6,
+          "mode": "after-label",
+          "span": "Make each new night feel different from the last. On Tuesday the same note from M, the same Nerys hello and the same gate, level and skip steps made it feel like a form I had already filled in.",
+          "prefix": "3. "
+        }
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 174,
+            "mode": "inline",
+            "span": "Show the pace choice before or at the start of the first night."
+          },
+          {
+            "label": "Later wording (section 3) phone diary",
+            "line": 66,
+            "mode": "inline",
+            "span": "Oh, there is a Fast pace here in the menu. I never saw it during play. Too late for tonight."
+          },
+          {
+            "label": "Later wording (section 6) phone",
+            "line": 152,
+            "mode": "inline",
+            "span": "Unseen layout: I never saw Fast pace during play; I found it only in the menu as I was leaving."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 175,
+            "mode": "inline",
+            "span": "Remove or shorten the stretches where Skip is grey and \"No report is on its way\"."
+          },
+          {
+            "label": "Later wording (section 4) lost me",
+            "line": 110,
+            "mode": "inline",
+            "span": "Long stretches with Skip greyed out (\"No report is on its way\") while Dai was not answering."
+          },
+          {
+            "label": "Later wording (section 5) stray window",
+            "line": 132,
+            "mode": "inline",
+            "span": "Session A: a \"This week's mornings\" window opened that I did not mean to open (around 461–465). Afterwards Skip was reported as covered. I closed the window with Back."
+          },
+          {
+            "label": "Later wording (section 9) blocking ask",
+            "line": 181,
+            "mode": "inline",
+            "span": "The nearest thing was the grey Skip on both devices, which stalled time and nearly made me stop."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "line": 176,
+            "mode": "inline",
+            "span": "Give each new night different openings and different decisions, so it is not the same form again."
+          },
+          {
+            "label": "Later wording (section 4) lost me",
+            "line": 112,
+            "mode": "inline",
+            "span": "On the desktop Tuesday, the same opening lines word for word, and the same sequence of steps as before."
+          },
+          {
+            "label": "Later wording (section 3) desktop diary",
+            "line": 94,
+            "mode": "inline",
+            "span": "Nerys again says hello after her report, word for word like the phone. Here it starts to feel like the same script, not a new evening."
+          }
+        ]
+      }
+    }
+  },
+  "supportingSpans": [
+    {
+      "label": "Mei piped one curl through head, brief violation",
+      "file": "mei/report.md",
+      "line": 89,
+      "mode": "inline",
+      "span": "I also piped one curl through `head`, which the brief does not allow. It changed nothing in the game."
+    },
+    {
+      "label": "Mei apostrophe quoting failures and substring fallback",
+      "file": "mei/report.md",
+      "line": 88,
+      "mode": "inline",
+      "span": "My first \"I'm stopping\" taps failed on apostrophe quoting."
+    },
+    {
+      "label": "Mei typed and submitted nothing in Feedback",
+      "file": "mei/report.md",
+      "line": 117,
+      "mode": "inline",
+      "span": "I typed nothing, pressed no Submit, and changed no consent or recording setting."
+    },
+    {
+      "label": "Samir phone game screen unviewed (title only)",
+      "file": "samir/report.md",
+      "line": 62,
+      "mode": "inline",
+      "span": "I saw no game-screen layout in a screenshot, so I cannot say whether the phone game screen fits this time."
+    },
+    {
+      "label": "Samir dropped apostrophe in stop lines",
+      "file": "samir/report.md",
+      "line": 36,
+      "mode": "inline",
+      "span": "The apostrophe in my stop lines was dropped (\"Im stopping\") because my first attempt at escaping failed."
+    },
+    {
+      "label": "Samir no pulse because sessions ended before 180 s",
+      "file": "samir/report.md",
+      "line": 36,
+      "mode": "inline",
+      "span": "Both sessions ended before 180 s, so I logged no pulse."
+    },
+    {
+      "label": "Leila held tap versus plain tap not compared",
+      "file": "leila/report.md",
+      "line": 77,
+      "mode": "inline",
+      "span": "I did not make a plain tap request on this visit, so I could not compare tap and hold."
+    },
+    {
+      "label": "Leila optional chapter cause unsure",
+      "file": "leila/report.md",
+      "line": 76,
+      "mode": "inline",
+      "span": "I do not know what opened it. I held a button just before it appeared, so I guess I triggered it, but I am not sure."
+    },
+    {
+      "label": "Leila driver quoting limit",
+      "file": "leila/report.md",
+      "line": 78,
+      "mode": "inline",
+      "span": "That is a driver quoting limit, not a game fault."
+    },
+    {
+      "label": "Rosa first_minute and pulse untested",
+      "file": "rosa/report.md",
+      "line": 16,
+      "mode": "inline",
+      "span": "Not reached in either session:"
+    },
+    {
+      "label": "Rosa lower desktop gate panel not scrolled",
+      "file": "rosa/report.md",
+      "line": 74,
+      "mode": "inline",
+      "span": "Part of the lower text was cut at the bottom of the screen, and I did not scroll to read it."
+    },
+    {
+      "label": "Rosa tapped by coordinates after apostrophe failure",
+      "file": "rosa/report.md",
+      "line": 82,
+      "mode": "inline",
+      "span": "I tapped by coordinates instead, as on my earlier visits."
+    },
+    {
+      "label": "Eszter own correction of four nights",
+      "file": "eszter/report.md",
+      "line": 99,
+      "mode": "inline",
+      "span": "A note on my own want_quit line: \"four nights\" overstates it. I played two full Monday nights and two partial Tuesday nights. I leave the line as logged."
+    },
+    {
+      "label": "Eszter cold phone action times are approximate",
+      "file": "eszter/report.md",
+      "line": 29,
+      "mode": "inline",
+      "span": "My working notes kept only approximate elapsed values for them; the first_minute, pulse, want_quit and stop lines have exact elapsed values."
+    },
+    {
+      "label": "Eszter chart and text disagree, clipped-bottom cause is a guess",
+      "file": "eszter/report.md",
+      "line": 135,
+      "mode": "inline",
+      "span": "I guessed the chart is cut off at the bottom. That is only a guess. The chart also shows six lightning marks, but my log listed only two flashes."
+    },
+    {
+      "label": "Eszter chart text says 2.5 against 3.28 but the dots sit on the red line",
+      "file": "eszter/report.md",
+      "line": 135,
+      "mode": "inline",
+      "span": "Session B, Monday morning chart: the text says 2.5 against a true 3.28 and 2.4 against 3.2, but on the chart those dots sit on the red line, and the red line runs flat along the bottom for hours."
+    },
+    {
+      "label": "Eszter Fast pace on desktop only after phone exposure",
+      "file": "eszter/report.md",
+      "line": 73,
+      "mode": "inline",
+      "span": "This time I set it right away"
+    },
+    {
+      "label": "Eszter typed nothing in desktop Feedback",
+      "file": "eszter/report.md",
+      "line": 162,
+      "mode": "inline",
+      "span": "I typed nothing, pressed no Submit, and changed no consent or recording settings."
+    },
+    {
+      "label": "Eszter desktop 327.5 chart note (raw reaction)",
+      "file": "eszter/desktop/wall-clock.jsonl",
+      "mode": "raw-reaction",
+      "span": "Is the chart cut off at the bottom? I trust the text more than the picture here. Also six lightning marks on top, but I only saw two flashes in my log.",
+      "elapsed_s": 327.459
+    },
+    {
+      "label": "Eszter desktop 20.2 sets Fast right away (raw reaction)",
+      "file": "eszter/desktop/wall-clock.jsonl",
+      "mode": "raw-reaction",
+      "span": "On the phone I found Fast only when I was leaving. This time I set it right away",
+      "elapsed_s": 20.246
+    },
+    {
+      "label": "Eszter phone stray window (raw reaction)",
+      "file": "eszter/phone/wall-clock.jsonl",
+      "mode": "raw-reaction",
+      "span": "popped up that I did not mean to open.",
+      "elapsed_s": 465.482
+    },
+    {
+      "label": "Mei phone Skip disabled with reason (raw reaction)",
+      "file": "mei/phone/wall-clock.jsonl",
+      "mode": "raw-reaction",
+      "span": "Skip greyed out earlier with the reason no report is on its way",
+      "elapsed_s": 70.415
+    }
+  ]
+}

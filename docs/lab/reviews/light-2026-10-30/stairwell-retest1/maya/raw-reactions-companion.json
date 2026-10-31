@@ -1,0 +1,195 @@
+{
+  "reportUnchanged": true,
+  "source": "Exact wall-clock reaction strings, not reconstruction",
+  "rows": [
+    {
+      "device": "phone",
+      "row": 4,
+      "reaction": "Same familiar title and bread round ahead. I am leaving the longer options alone.",
+      "elapsed_s": 5.204,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 6,
+      "reaction": "Hacer is first this time. The gate now says someone may see and something may follow later; I remember her seeing it without mentioning it last time, high confidence.",
+      "elapsed_s": 10.493,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 9,
+      "reaction": "The same prank I tried before. I want to see whether either woman answers it this time.",
+      "elapsed_s": 18.51,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 12,
+      "reaction": "Hacer praises and tips me again without mentioning the gate or papers. I remember this same response from last visit, high confidence.",
+      "elapsed_s": 28.841,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 13,
+      "reaction": "Tarik is kind again, the familiar line. Sitting with Hacer for her story.",
+      "elapsed_s": 30.407,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 14,
+      "reaction": "Shop counter and niece paperwork again, same as last visit, high confidence. I still like the detail but I know the line.",
+      "elapsed_s": 36.239,
+      "op": "wait",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 16,
+      "reaction": "New explanation says my reply words do not change whether she goes on. At least I know before choosing.",
+      "elapsed_s": 48.59,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 19,
+      "reaction": "Hacer saw the gate and swapped papers but greeted me with the same praise. Her shop story and Tarik gossip are familiar. The reply now says caretaker and explains that my words do not change whether she continues.",
+      "elapsed_s": 63.077,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 20,
+      "reaction": "She still says I would rather leave it there. The explanation is honest, but I wanted a different answer.",
+      "elapsed_s": 65.626,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 23,
+      "reaction": "Sevim noticed I was on time, as on desktop last visit; no mention of the swapped crossword yet.",
+      "elapsed_s": 74.787,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 25,
+      "reaction": "Both Hacer and Sevim say Tarik is kind again, and neither mentions the papers. I would stop this phone visit and try the other device.",
+      "elapsed_s": 80.304,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "BORED"
+    },
+    {
+      "device": "phone",
+      "row": 29,
+      "reaction": "I am stopping became pressed. I saw no Back button, so I closed Feedback without typing or submitting.",
+      "elapsed_s": 88.34,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "phone",
+      "row": 30,
+      "reaction": "I am stopping on the phone. Hacer saw both choices but gave the familiar praise, and both women said Tarik is kind. The reply explanation and caretaker label are clearer, but I want to try the desktop now.",
+      "elapsed_s": 90.582,
+      "op": "log",
+      "kind": "stop",
+      "reason": "BORED"
+    },
+    {
+      "device": "desktop",
+      "row": 4,
+      "reaction": "Same evening on desktop, fresh Monday. I want to find Tarik and ask for news.",
+      "elapsed_s": 7.747,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 10,
+      "reaction": "Tarik is first here. I remember his frozen ferry story and the first no-news answer from last visit, high confidence.",
+      "elapsed_s": 30.06,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 11,
+      "reaction": "Still no news on the first ask. Sitting with him.",
+      "elapsed_s": 33.192,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 12,
+      "reaction": "The frozen ferry in 1974 is exactly the story I remember; high confidence. I like it, but it is the same visit again.",
+      "elapsed_s": 35.444,
+      "op": "shot",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 18,
+      "reaction": "Tarik first said no news, then told the familiar frozen ferry story when I sat. His answer to thanks is now I would sooner leave it there, slightly different wording from Hacer but the same refusal. The caretaker label is clear.",
+      "elapsed_s": 64.835,
+      "op": "log",
+      "kind": "first_minute",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 19,
+      "reaction": "I have heard the ferry again and the same sort of refusal. I would stop rather than repeat the morning tonight.",
+      "elapsed_s": 66.979,
+      "op": "log",
+      "kind": "want_quit",
+      "reason": "BORED"
+    },
+    {
+      "device": "desktop",
+      "row": 23,
+      "reaction": "I am stopping is pressed. There is no Back label here; Close feedback returns to the menu. I typed and sent nothing.",
+      "elapsed_s": 74.909,
+      "op": "tap",
+      "kind": "input",
+      "reason": null
+    },
+    {
+      "device": "desktop",
+      "row": 24,
+      "reaction": "I am stopping on desktop. Tarik gave me the same ferry story and no news first. His refusal is worded a little differently, but I do not want to repeat this morning again tonight.",
+      "elapsed_s": 77.058,
+      "op": "log",
+      "kind": "stop",
+      "reason": "BORED"
+    }
+  ]
+}

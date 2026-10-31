@@ -1,0 +1,56 @@
+{
+  "time": "2026-10-31T10:57:45.544726+00:00",
+  "note": "74 Bash:71 strict assigned curls,1 executed assigned-directory names-only listing,2 shell-quote failures before curl. Producer explicitly reconstructs phone47/63s lines, not verbatim. Opening condition is qualified by later full return: she says she would still return if paragraph stays long but stop reading after first line. Preserve both rather than reducing to conditional yes/no. Report says no placement reached but phone diary describes rent paid and placed-office image; preserve internal inconsistency, not inferred agreement-screen use. Automatic capture count claims need actual audit, no additional play inferred.",
+  "historyAudit": {
+    "tester": "rosa",
+    "actualHistoryLines": 2122,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+          "offset": 1,
+          "limit": 500
+        },
+        "renderedFirst": 1,
+        "renderedLast": 500,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+          "offset": 501,
+          "limit": 600
+        },
+        "renderedFirst": 501,
+        "renderedLast": 1100,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+          "offset": 1101,
+          "limit": 600
+        },
+        "renderedFirst": 1101,
+        "renderedLast": 1700,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+          "offset": 1701,
+          "limit": 450
+        },
+        "renderedFirst": 1701,
+        "renderedLast": 2123,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  }
+}

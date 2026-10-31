@@ -1,0 +1,145 @@
+{
+  "tester": "Diego Silva",
+  "validationTime": "2026-10-31T11:01:46.143011+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T10:44:29.502Z",
+        "elapsed_s": 198.671,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the desktop session at about 196 seconds. Unchecked promise cost nothing again, rent was covered by 09:19 Monday, and then I only waited. Feedback: I am stopping chosen, Back pressed, nothing typed.",
+        "game_clock": "Mon 2 Nov 12:16",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 192.37,
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 194.523,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T10:41:50.393Z",
+          "elapsed_s": 39.562,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "Skip \u23e9"
+          },
+          "reaction": "Skip to the reference time.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 292,
+          "error": "Skip \u23e9 is visible text and also the start of the control \"Skip to 09:00 \u00b7 \u00d6zlem Ko\u00e7's reference, Hale Erol, can be reached from 09:00\"; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T10:44:23.201Z",
+          "elapsed_s": 192.37,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3,
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T10:47:45.866Z",
+        "elapsed_s": 195.112,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the phone session at about 194 seconds. The honest route paid the same as the careless one: instant agreement, rent covered by 09:55, no cost for a doubtful promise, then waiting. Feedback: I am stopping chosen, Back pressed, nothing typed.",
+        "game_clock": "Mon 2 Nov 11:14",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 192.002,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T10:44:36.387Z",
+          "elapsed_s": 5.633,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Select \u015eebnem Eren on the bench"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 300,
+          "error": "Select \u015eebnem Eren on the bench is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

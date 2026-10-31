@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T11:57:25.767958+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Stairwell292a ordinary-entry source/live verified, final fresh gates and cooldown remain; wider proof separate. No dispatch from preparation.",
+  "players": [
+    {
+      "tester": "Maya Chen",
+      "characters": 196708,
+      "historySha256": "a29a01a9756bb8ac90d906ebdac6793895ae6cf508ee6ea0154974fdcf893e86",
+      "briefSha256": "17fe6667df478b356f0c5ac38ab14d8e06741c94031da3a690f239e358488617",
+      "ownSourceCount": 17
+    },
+    {
+      "tester": "Jonas Berg",
+      "characters": 185865,
+      "historySha256": "66c7494a76e5ca75ba80da10faa752af79aeb95d4ee2d92b875d37a0638f7942",
+      "briefSha256": "f821f0b88d125591451ac2d0228249e70b5e64771805bbde42a8ed298854bc1a",
+      "ownSourceCount": 15
+    },
+    {
+      "tester": "Leila Mansour",
+      "characters": 142662,
+      "historySha256": "d0d5f8aab09ce23501661d854796c11836c8e95acccda4849aba84a69d44619e",
+      "briefSha256": "93c29c5e7ad2e0b8d52438090d2a618a477a24fa599826093132dffafafdf547",
+      "ownSourceCount": 14
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "characters": 288707,
+      "historySha256": "ce03f4a49eb09e3b5887568afe870742e887712a7a79b83865990a7e9d3f0221",
+      "briefSha256": "3f27ee76d2fa801fbc75bee6acca035c8310dd8779fa20dcb12701107661baf9",
+      "ownSourceCount": 29
+    },
+    {
+      "tester": "Ivo Almeida",
+      "characters": 186,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "406199350538a77acd31aa2a8beb1e8d74c521a59ad3d87cf536bb3b6d786ce2",
+      "ownSourceCount": 0
+    }
+  ]
+}

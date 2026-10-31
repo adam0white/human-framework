@@ -1,0 +1,129 @@
+{
+  "tester": "Diego Silva",
+  "validationTime": "2026-10-31T11:50:04.086139+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T11:33:55.544Z",
+        "elapsed_s": 160.909,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the desktop session at about 158 seconds. Gossip price is clear and the Derya cannot talk now line is plain, but the garden is empty again by 10:46 and 19:08, Day 4 is far and I can only pour tea. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+        "game_clock": "Day 1 20:19",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 156.448,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T11:33:07.402Z",
+          "elapsed_s": 112.767,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Dilan at the garden"
+          },
+          "reaction": "Evening crowd is back, the garden is busier at 18:38 than at midday. Dilan.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6,
+          "error": "Dilan at the garden is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T11:36:15.843Z",
+        "elapsed_s": 139.911,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone session at about 138 seconds. Garden empty at 08:10 on Day 1, only pour tea, Day 4 far off. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+        "game_clock": "Day 1 08:15",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 133.203,
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 135.895,
+          "op": "tap",
+          "input": {
+            "text": "m stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T11:36:09.135Z",
+          "elapsed_s": 133.203,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

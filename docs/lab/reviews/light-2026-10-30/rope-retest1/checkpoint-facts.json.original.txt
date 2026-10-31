@@ -1,0 +1,1162 @@
+{
+ "note": "Computed from the copied wall-clock.jsonl, completion.json, dispatch.json, release-start.json, validation.json and driver.out by build-packet.py. Session length is measured from the open row. Stops are the raw timed rows, not the report estimates. A first_minute log is a tester line; first_minute under 60 s and pulse under 180 s are flagged early. The first-minute.png file is the automatic driver capture after the stop, not play. note log rows are driver log lines, not feedback notes.",
+ "build": {
+  "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+  "dirty": false,
+  "framework": "4.15.0",
+  "app": "0.2.0",
+  "hardeningLabel": "HF 4.15.0",
+  "checkedIn": "every completion.json pin (10 pins in 5 files), every release-start.json (10) and the post-round release file (inputs/rope-retest-final-release-after-round.json)",
+  "postRoundReleaseTime": "2026-10-31T10:10:36.075250+00:00",
+  "predispatchTime": "2026-10-31T09:25:27.426332+00:00",
+  "predispatchMainCI": {
+   "conclusion": "success",
+   "headSha": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+   "status": "completed"
+  },
+  "rootDeliveryVerification": {
+   "source": "53d3c519b55e7c8b8a592896345a56a3b4e38804",
+   "main": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+   "ci": [
+    {
+     "run": 41169472959,
+     "conclusion": "success",
+     "headSha": "53d3c519b55e7c8b8a592896345a56a3b4e38804",
+     "status": "completed"
+    },
+    {
+     "run": 41170165111,
+     "conclusion": "success",
+     "headSha": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+     "status": "completed"
+    }
+   ],
+   "normalTests": {
+    "files": 49,
+    "tests": 266
+   },
+   "browserUsed": false,
+   "clearanceScope": "Final note source only, prior gamefix/source iteration retained. Ordinary fresh-entry player retest gate; broader font/two-engine/four-size/geometry/native-file QA remains separate and unrun or failed. GD ordinary custody handback pending."
+  }
+ },
+ "driver": {
+  "name": "native-tap-v2",
+  "driver_check": "fork-unverified",
+  "dispatchHashAllFive": {
+   "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+   "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+   "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "approvedInstrumentTime": "2026-10-31T02:50:55.021190+00:00",
+  "identicalInAllFiveDispatches": true,
+  "driverPathInAllFiveCurrentDispatches": true,
+  "limits": [
+   "Input status200 acknowledges native input, not intended game outcome; inspect visible result.",
+   "A moving/replaced target can be missed or compat-clicked on phone; no post-press confirmation.",
+   "Chromium only. No v2 live-game run yet; local real-input controls passed.",
+   "select/type and ambiguous boundingBox retain existing timeout limitations.",
+   "driver_check remains fork-unverified; deliberate scratch staleoverride paired with exact hash checks.",
+   "Parent-stated: the original round-1 dispatch lacks driverPath and hashes, so no identical-instrument and no game-only causal claim is made across rounds. This packet did not read the round-1 dispatch.",
+   "Input acknowledgement is not game outcome. Dynamic labels, reading notes, Fast pace and driver wait latency qualify timing."
+  ]
+ },
+ "round": {
+  "id": "light-1030-retest1",
+  "idSource": "named in the producer reports",
+  "lastActualReturn": "2026-10-31T10:09:57.416798+00:00",
+  "nextRoundNotBefore": "2026-10-31T10:24:57.416798+00:00",
+  "hold": "released after root full report/audit/cleanup read",
+  "freeStop": true,
+  "floor": 0,
+  "ceilingMin": 20,
+  "urlRunSource": "labRunSource=agent via dispatch.json linkedEnvelopeSource",
+  "productionReceipt": "not independently read, unverified",
+  "sourcePacketState": "pending",
+  "lastCompletionEnded": "2026-10-31T10:09:57.416798+00:00"
+ },
+ "method": {
+  "agentBashCalls": 368,
+  "strictAssignedCurl": 361,
+  "executedDirectoryListingsOutsideBrief": 4,
+  "failedShellParsingBeforeRequest": 3,
+  "source": "copied from inputs/rope-retest-director-method-notes.json; the private command-scope audits and process files are not in this packet and the preparer did not read them",
+  "scope": "All four ls calls listed only their assigned session directory filenames; these are executed curl-only-brief violations, not forbidden file content Reads. Allowed Read audit separately passed. All three malformed curl strings show unmatched quote shell errors before request. Preserve full private command audit and producer reports; do not publish provider envelopes.",
+  "timing": "Reading notes, pace selection/device/order and native wait/target delays qualify clock claims. C14 before any retune; do not assert generic Fast/default-clock failure.",
+  "history": "All five actual supplied histories fully Read806/756/1097/1921/5lines with endmarkers. Older partial-read/CONT exposure limitations remain separate.",
+  "literalPreservation": "Nia explicitly reconstructed diary wording. Original driver reactions preserved as separate raw objects, no reconstructed lines labelled verbatim.",
+  "cold": "Farah all101 commands strict assigned curl, entire5line empty history Read verified. Same source/per-device order, no new command-scope exception."
+ },
+ "cleanup": {
+  "recordedProcessIds": 15,
+  "all15RecordedPIDsAbsent": true,
+  "lateObserved": [
+   {
+    "tester": "rosa",
+    "identities": 13,
+    "allAbsent": true
+   },
+   {
+    "tester": "farah",
+    "identities": 11,
+    "allAbsent": true
+   }
+  ],
+  "lateObservedIdentities": 24,
+  "portsClosed": 10,
+  "ports": 10,
+  "scope": "Recorded model/driver PIDs and late Rosa/Farah observed descendants only, not a full-round browser journal. No signals sent."
+ },
+ "images": {
+  "imageReadReceiptsTotal": 25,
+  "retainedPngTotal": 35,
+  "largestPngCountOnOneDevice": 5,
+  "largestManualPngCountOnOneDevice": 4,
+  "directorViewedCaptures": [
+   {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/farah/phone/a-003.png",
+    "sha256": "18e0f1ef5d3de2442970df4aac5babb201f52aa65bf584f08dbe74588142e850",
+    "directorViewed": true
+   },
+   {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/farah/desktop/b-003.png",
+    "sha256": "e802fbeb6e90b7ce518af88ffbc337abe4085c5d4a694703a61ae902696c4362",
+    "directorViewed": true
+   }
+  ],
+  "directorObservations": {
+   "phone": "At360x690 actual Feedback capture shows both quick labels and auto-filled text, Lab privacy link, with only top of red Submit control at bottom edge. Farah did not test scrolling, so no unreachable Submit conclusion. No submission performed.",
+   "desktop": "At1280x800 actual08:56 capture shows route/weather heading without expanded body, reading slowdown label, group positions and top/bottom controls. It does not prove weather absent or unexpandable.",
+   "limits": "Two existing captures read only. No new screenshots/browser/session. No scroll/reach/font-load/two-engine/four-size proof; no game state changed."
+  },
+  "note": "Receipts come from validation.json. Automatic first-minute.png captures have no receipt. The director also viewed two existing Farah captures; scrolling and reach were not tested."
+ },
+ "niaRawReactionsFile": {
+  "sameAsWallClockReactionRows": {
+   "phone": true,
+   "desktop": true
+  },
+  "note": "nia/raw-driver-reactions.json compared row for row with the reaction rows of nia wall-clock.jsonl by build-packet.py"
+ },
+ "checks": {
+  "stopsTotal": 10,
+  "allCompletionExitZero": true,
+  "pinsClean": true,
+  "unexpectedReadsAll": {
+   "pavel": [],
+   "tessa": [],
+   "nia": [],
+   "rosa": [],
+   "farah": []
+  }
+ },
+ "testers": {
+  "pavel": {
+   "tester": "Pavel Novak",
+   "model": "sonnet",
+   "dispatchTime": "2026-10-31T09:25:28.629021+00:00",
+   "completionEnded": "2026-10-31T09:34:44.377242+00:00",
+   "validationTime": "2026-10-31T10:10:35.957657+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T09:25:28.178Z",
+     "openRowT": "2026-10-31T09:30:13.404Z",
+     "lastRowT": "2026-10-31T09:34:03.568Z",
+     "driverPid": 3968,
+     "port": 22000,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:34:03.568Z",
+      "elapsed_s": 230.551,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stop at 10:11 on the phone. Skip and the weather warning now explain themselves and Nell asked to go down with named choices. But two of five still cannot hear me and the clock still crawls. Chose I am stopping in Feedback, typed nothing, submitted nothing.",
+      "game_clock": "10:11",
+      "engagement": null,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "I stop at 10:11 on the phone. Skip and the weather warning now explain themselves and Nell asked to go down with named choices. But two of five still cannot hear me and the clock still crawls. Chose I am stopping in Feedback, typed nothing, submitted nothing.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "pulse",
+       "elapsed_s": 185.958,
+       "game_clock": "09:52",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 224.268,
+       "game_clock": "10:11",
+       "engagement": null,
+       "reason": "TASTE",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 230.551,
+       "game_clock": "10:11",
+       "engagement": null,
+       "reason": "TASTE",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 222.162,
+       "op": "tap",
+       "input": {
+        "name": "send Tamar Vale"
+       },
+       "error": null
+      },
+      {
+       "elapsed_s": 227.836,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T09:25:28.178Z",
+     "openRowT": "2026-10-31T09:25:41.947Z",
+     "lastRowT": "2026-10-31T09:30:12.666Z",
+     "driverPid": 3966,
+     "port": 22001,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:30:12.666Z",
+      "elapsed_s": 271.27,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stop at 07:29 on desktop. The notes explain more than before and Wren's refusal was explained, but I still wait for the group at a slow clock and never reached the hurt climber. Chose I'm stopping in Feedback, typed nothing, submitted nothing.",
+      "game_clock": "07:29",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 1,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "I stop at 07:29 on desktop. The notes explain more than before and Wren's refusal was explained, but I still wait for the group at a slow clock and never reached the hurt climber. Chose I'm stopping in Feedback, typed nothing, submitted nothing.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "pulse",
+       "elapsed_s": 184.819,
+       "game_clock": "07:10",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 237.776,
+       "game_clock": "07:21",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 271.27,
+       "game_clock": "07:29",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "rowIndex": 15,
+       "t": "2026-10-31T09:26:49.077Z",
+       "elapsed_s": 67.681,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Skip to the next event"
+       },
+       "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+       "reaction": null
+      }
+     ],
+     "pngFiles": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "a-001.png",
+      "a-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 267.937,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  },
+  "tessa": {
+   "tester": "Tessa Williams",
+   "model": "sonnet",
+   "dispatchTime": "2026-10-31T09:34:45.636364+00:00",
+   "completionEnded": "2026-10-31T09:41:56.237219+00:00",
+   "validationTime": "2026-10-31T10:10:35.963867+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T09:34:45.060Z",
+     "openRowT": "2026-10-31T09:34:57.573Z",
+     "lastRowT": "2026-10-31T09:38:07.901Z",
+     "driverPid": 15130,
+     "port": 22002,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:38:07.901Z",
+      "elapsed_s": 190.697,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping the phone. This time I got up the mountain, saw the map and the hint, and people had busy-until reasons. But most of them still say the hut-path line to different asks, so I have seen what poking does.",
+      "game_clock": "Hollin Crag 05:53",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping the phone. This time I got up the mountain, saw the map and the hint, and people had busy-until reasons. But most of them still say the hut-path line to different asks, so I have seen what poking does.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 67.324,
+       "game_clock": "Hollin Crag 05:20",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 183.7,
+       "game_clock": "Hollin Crag 05:52",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 185.361,
+       "game_clock": "Hollin Crag 05:52",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 190.697,
+       "game_clock": "Hollin Crag 05:53",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 2,
+     "toolErrors": [],
+     "pngFiles": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "a-001.png",
+      "a-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 152.958,
+       "op": "tap",
+       "input": {
+        "name": "send Tamar Vale"
+       },
+       "error": null
+      },
+      {
+       "elapsed_s": 188.522,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T09:34:45.060Z",
+     "openRowT": "2026-10-31T09:38:09.227Z",
+     "lastRowT": "2026-10-31T09:41:19.490Z",
+     "driverPid": 15133,
+     "port": 22003,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:41:19.490Z",
+      "elapsed_s": 190.582,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping the laptop. Replies fit better this time, Wren gave a reason that matched what she was doing and Bilal sounded like himself. But most yeses are one shape and I have not found my own kind of trouble beyond splitting the group.",
+      "game_clock": "Hollin Crag 07:09",
+      "engagement": null,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping the laptop. Replies fit better this time, Wren gave a reason that matched what she was doing and Bilal sounded like himself. But most yeses are one shape and I have not found my own kind of trouble beyond splitting the group.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 65.971,
+       "game_clock": "Hollin Crag 05:14",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 182.965,
+       "game_clock": "Hollin Crag 07:08",
+       "engagement": 4,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 185.646,
+       "game_clock": "Hollin Crag 07:08",
+       "engagement": null,
+       "reason": "TASTE",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 190.582,
+       "game_clock": "Hollin Crag 07:09",
+       "engagement": null,
+       "reason": "TASTE",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "rowIndex": 21,
+       "t": "2026-10-31T09:39:20.854Z",
+       "elapsed_s": 71.946,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Wren: Walking up, level with you."
+       },
+       "error": "Wren: Walking up, level with you. is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "reaction": null
+      }
+     ],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 188.468,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  },
+  "nia": {
+   "tester": "Nia Okafor",
+   "model": "sonnet",
+   "dispatchTime": "2026-10-31T09:41:57.478650+00:00",
+   "completionEnded": "2026-10-31T09:50:23.180664+00:00",
+   "validationTime": "2026-10-31T10:10:35.971799+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T09:41:56.792Z",
+     "openRowT": "2026-10-31T09:42:13.340Z",
+     "lastRowT": "2026-10-31T09:45:32.563Z",
+     "driverPid": 18804,
+     "port": 22004,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:45:32.563Z",
+      "elapsed_s": 199.556,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping on the phone at 05:30. Refusals and Wren asking who goes down were better than last time, and Nell finally answered my question. But repeated lines, the error-style refusal from Oskar, and a crawling clock. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+      "game_clock": "05:30",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping on the phone at 05:30. Refusals and Wren asking who goes down were better than last time, and Nell finally answered my question. But repeated lines, the error-style refusal from Oskar, and a crawling clock. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 66.57,
+       "game_clock": "05:11",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 187.815,
+       "game_clock": "05:28",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 191.624,
+       "game_clock": "05:29",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 199.556,
+       "game_clock": "05:30",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 2,
+     "toolErrors": [],
+     "pngFiles": [
+      "a-001.png",
+      "a-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "a-001.png",
+      "a-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 69.789,
+       "op": "tap",
+       "input": {
+        "name": "send Oskar"
+       },
+       "error": null
+      },
+      {
+       "elapsed_s": 176.204,
+       "op": "tap",
+       "input": {
+        "name": "send Nell"
+       },
+       "error": null
+      },
+      {
+       "elapsed_s": 196.251,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T09:41:56.860Z",
+     "openRowT": "2026-10-31T09:45:34.148Z",
+     "lastRowT": "2026-10-31T09:49:46.961Z",
+     "driverPid": 18806,
+     "port": 22005,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:49:46.961Z",
+      "elapsed_s": 253.14,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping on desktop at 07:06. Real topic answer from Tamar and the I will do it but I disagree line came fast, but Oskar kept the same deferral line, my requests stalled, and I ended up watching dots. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+      "game_clock": "07:06",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "Stopping on desktop at 07:06. Real topic answer from Tamar and the I will do it but I disagree line came fast, but Oskar kept the same deferral line, my requests stalled, and I ended up watching dots. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 62.066,
+       "game_clock": "05:15",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 245.634,
+       "game_clock": "07:00",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 247.184,
+       "game_clock": "07:00",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 253.14,
+       "game_clock": "07:06",
+       "engagement": null,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 1,
+     "toolErrors": [
+      {
+       "rowIndex": 10,
+       "t": "2026-10-31T09:46:07.947Z",
+       "elapsed_s": 34.126,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Skip to the next event"
+       },
+       "error": "Skip to the next event is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "reaction": null
+      }
+     ],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 2,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 250.283,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  },
+  "rosa": {
+   "tester": "Rosa Alvarez",
+   "model": "sonnet",
+   "dispatchTime": "2026-10-31T09:50:24.422011+00:00",
+   "completionEnded": "2026-10-31T09:57:55.075245+00:00",
+   "validationTime": "2026-10-31T10:10:35.979379+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T09:50:23.835Z",
+     "openRowT": "2026-10-31T09:50:41.259Z",
+     "lastRowT": "2026-10-31T09:53:56.417Z",
+     "driverPid": 30950,
+     "port": 22006,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:53:56.417Z",
+      "elapsed_s": 195.581,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+      "game_clock": "Hollin Crag 09:00",
+      "engagement": 3,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "I stop the phone here for tonight. No sentence needed a reread this time, and the rope worked first try. But I mostly waited and pressed Skip, and I have seen the loop. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 65.733,
+       "game_clock": "Hollin Crag 05:16",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 184.117,
+       "game_clock": "Hollin Crag 08:59",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 195.581,
+       "game_clock": "Hollin Crag 09:00",
+       "engagement": 3,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "rowIndex": 13,
+       "t": "2026-10-31T09:51:47.710Z",
+       "elapsed_s": 66.874,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Skip to the next event"
+       },
+       "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+       "reaction": "Slow. I press Skip, which now says what it does."
+      }
+     ],
+     "pngFiles": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 3,
+     "imageReadReceipts": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png"
+     ],
+     "formAndSendInputs": [],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T09:50:23.835Z",
+     "openRowT": "2026-10-31T09:53:57.862Z",
+     "lastRowT": "2026-10-31T09:57:11.578Z",
+     "driverPid": 30953,
+     "port": 22007,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T09:57:11.578Z",
+      "elapsed_s": 194.079,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+      "game_clock": "Hollin Crag 06:01",
+      "engagement": 3,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "I stop the desktop here. Only one sentence needed a reread, so I did not hit my quit rule. But I have seen the same loop twice tonight: ask, lead on, wait for the clock, and Skip comes and goes. I would close it, not leave it running. In Feedback I pressed I am stopping, typed nothing, no Submit.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 74.417,
+       "game_clock": "Hollin Crag 05:03",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 182.616,
+       "game_clock": "Hollin Crag 06:00",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 194.079,
+       "game_clock": "Hollin Crag 06:01",
+       "engagement": 3,
+       "reason": "BORED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "rowIndex": 18,
+       "t": "2026-10-31T09:56:25.705Z",
+       "elapsed_s": 148.206,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "text": "Skip"
+       },
+       "error": "Skip is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+       "reaction": "Twenty minutes of game time in thirty real seconds. I try Skip."
+      }
+     ],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 3,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png"
+     ],
+     "formAndSendInputs": [],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  },
+  "farah": {
+   "tester": "Farah Bensaid",
+   "model": "opus",
+   "dispatchTime": "2026-10-31T09:57:56.377231+00:00",
+   "completionEnded": "2026-10-31T10:09:57.416798+00:00",
+   "validationTime": "2026-10-31T10:10:35.986525+00:00",
+   "sessions": {
+    "phone": {
+     "startRowT": "2026-10-31T09:57:55.694Z",
+     "openRowT": "2026-10-31T09:58:02.281Z",
+     "lastRowT": "2026-10-31T10:03:47.696Z",
+     "driverPid": 38515,
+     "port": 22008,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T10:03:47.696Z",
+      "elapsed_s": 345.735,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stop here on the phone. I liked the promise and the people asking for a drink, but I spend my time pulling people back into line without knowing why they left it. On a small screen that is too much reading for a short sitting. I will try the laptop tonight.",
+      "game_clock": "09:35",
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "I stop here on the phone. I liked the promise and the people asking for a drink, but I spend my time pulling people back into line without knowing why they left it. On a small screen that is too much reading for a short sitting. I will try the laptop tonight.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 68.197,
+       "game_clock": "05:17",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 201.828,
+       "game_clock": "07:08",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 331.186,
+       "game_clock": "09:35",
+       "engagement": null,
+       "reason": "CONFUSED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 345.735,
+       "game_clock": "09:35",
+       "engagement": null,
+       "reason": "CONFUSED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "rowIndex": 16,
+       "t": "2026-10-31T09:59:19.579Z",
+       "elapsed_s": 77.618,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Skip to the next event"
+       },
+       "error": "Skip to the next event is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "reaction": "There is a Skip. Good, I set my own pace. I skip to the next thing."
+      }
+     ],
+     "pngFiles": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 3,
+     "imageReadReceipts": [
+      "a-001.png",
+      "a-002.png",
+      "a-003.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 337.616,
+       "op": "tap",
+       "input": {
+        "name": "I'm confused"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    },
+    "desktop": {
+     "startRowT": "2026-10-31T09:57:55.768Z",
+     "openRowT": "2026-10-31T10:03:49.759Z",
+     "lastRowT": "2026-10-31T10:09:13.666Z",
+     "driverPid": 38517,
+     "port": 22009,
+     "release": {
+      "app": "0.2.0",
+      "framework": "4.15.0",
+      "commit": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+      "dirty": false
+     },
+     "stop": {
+      "t": "2026-10-31T10:09:13.666Z",
+      "elapsed_s": 324.278,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stop here. On the laptop it is calmer and the people are good company, Tamar and the journal especially. But twice now the rope fails and the game does not tell me what is missing. I pressed I am stopping, it filled the box, I sent nothing and went back.",
+      "game_clock": "09:07",
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+     },
+     "rawStopReaction": "I stop here. On the laptop it is calmer and the people are good company, Tamar and the journal especially. But twice now the rope fails and the game does not tell me what is missing. I pressed I am stopping, it filled the box, I sent nothing and went back.",
+     "rawStopReactionLiterallyInReport": true,
+     "checkpoints": [
+      {
+       "kind": "first_minute",
+       "elapsed_s": 62.868,
+       "game_clock": "05:11",
+       "engagement": null,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "pulse",
+       "elapsed_s": 187.315,
+       "game_clock": "08:03",
+       "engagement": 3,
+       "reason": null,
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "want_quit",
+       "elapsed_s": 259.899,
+       "game_clock": "09:06",
+       "engagement": null,
+       "reason": "CONFUSED",
+       "earlyByRawElapsed": false
+      },
+      {
+       "kind": "stop",
+       "elapsed_s": 324.278,
+       "game_clock": "09:07",
+       "engagement": null,
+       "reason": "CONFUSED",
+       "earlyByRawElapsed": false
+      }
+     ],
+     "noteLogRows": 0,
+     "toolErrors": [
+      {
+       "rowIndex": 34,
+       "t": "2026-10-31T10:07:34.352Z",
+       "elapsed_s": 224.964,
+       "kind": "tool",
+       "op": "tap",
+       "input": {
+        "name": "Nell: Not walking, level with you."
+       },
+       "error": "Nell: Not walking, level with you. is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+       "reaction": "Wind from 11:00 and I promised 12:00. Glad I chose the early time. Nell and Wren are both level with me this time, so I rope them now."
+      }
+     ],
+     "pngFiles": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "b-004.png",
+      "first-minute.png"
+     ],
+     "firstMinutePngPresent": true,
+     "manualPngCount": 4,
+     "imageReadReceipts": [
+      "b-001.png",
+      "b-002.png",
+      "b-003.png",
+      "b-004.png"
+     ],
+     "formAndSendInputs": [
+      {
+       "elapsed_s": 265.748,
+       "op": "tap",
+       "input": {
+        "name": "I'm stopping"
+       },
+       "error": null
+      }
+     ],
+     "earlyFirstMinute": [],
+     "earlyPulse": []
+    }
+   }
+  }
+ }
+}

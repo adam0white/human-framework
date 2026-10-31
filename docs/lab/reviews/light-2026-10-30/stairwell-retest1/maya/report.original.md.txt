@@ -1,0 +1,115 @@
+Would I return voluntarily? I would come back another evening only if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories; I would not return tonight or leave it running.
+
+**Ranked asks:**
+
+1. Let neighbours respond to things they saw me do. Hacer saw the gate and the newspaper swap, but greeted me with familiar praise; Sevim did not mention the swapped paper in the conversation I reached.
+2. Give conversations more varied responses. Hacer and Sevim both said “Tarık is kind,” and Hacer and Tarık both declined to continue after my replies, though in slightly different words.
+3. Give Tarık something on the first “Anything new?” ask. He said he had no news, then told the ferry story when I sat with him.
+
+## 1. Session
+
+I am Maya Chen, 24, a Vancouver library assistant who likes small discoveries and people who remember choices. This was a returning-player retest of The Stairwell, round `light-1031-stairwell-retest1`, free-stop arm, with a zero-minute floor and 20-minute ceiling per session.
+
+I read all 1,487 lines of the supplied `own-history.md`, including my earlier Stairwell report. The last line I read was:
+
+> End of supplied own history. This reading boundary is director metadata, not an event you experienced.
+
+There were **no unread ranges in this supplied file**. It is a selection, not my complete archive: older records and independent continued alternatives were not supplied, nor was the older raw diary for the Well excerpt. The supplied Warren report is a coordinator recovery, not an original player-authored final report. The earlier Hearsay retest1 report retains its own history-read limit of lines 1–349; that limit does not apply to my reading today.
+
+- **URL:** https://stairwell.adamwhite.work/?labRunSource=agent
+- **Session A:** fresh phone game, 360×690 touch, light mode, driver port 22700. Open at 0.575 s; stop at 90.582 s. Game clock reached Monday 07:35.
+- **Session B:** fresh desktop game, 1280×800 keyboard and mouse, light mode, driver port 22701. Open at 0.505 s; stop at 77.059 s. Game clock reached Monday 07:39.
+
+The sessions had no shared save or matched seed. I left recording on and changed no consent setting. Neither game ended.
+
+## 2. First impressions
+
+**Phone:** The title was familiar and easy to read. At 8.508 s, Hacer was first on the bread round. The gate choice now said a neighbour might see and something might follow later. Hacer did see both the gate and the swapped newspapers, but her first greeting was the praise I remembered.
+
+**Desktop:** The same title appeared in a centred column. At 12.375 s, Tarık was the first order. I wanted to ask him for news because I remembered his frozen ferry story and his earlier “no news” answer.
+
+## 3. Verbatim diary
+
+These are the reaction and log words I sent, unchanged. Times are the driver’s `elapsed_s`; reactions attached to an action are identified as such.
+
+### Session A — phone
+
+- **5.204 s, tap reaction:** “Same familiar title and bread round ahead. I am leaving the longer options alone.”
+- **10.494 s, tap reaction:** “Hacer is first this time. The gate now says someone may see and something may follow later; I remember her seeing it without mentioning it last time, high confidence.”
+- **18.510 s, tap reaction:** “The same prank I tried before. I want to see whether either woman answers it this time.”
+- **28.841 s, tap reaction:** “Hacer praises and tips me again without mentioning the gate or papers. I remember this same response from last visit, high confidence.”
+- **30.407 s, tap reaction:** “Tarik is kind again, the familiar line. Sitting with Hacer for her story.”
+- **36.240 s, wait reaction:** “Shop counter and niece paperwork again, same as last visit, high confidence. I still like the detail but I know the line.”
+- **48.590 s, tap reaction:** “New explanation says my reply words do not change whether she goes on. At least I know before choosing.”
+- **63.077 s, first_minute, Monday 07:32:** “Hacer saw the gate and swapped papers but greeted me with the same praise. Her shop story and Tarik gossip are familiar. The reply now says caretaker and explains that my words do not change whether she continues.”
+- **65.626 s, tap reaction:** “She still says I would rather leave it there. The explanation is honest, but I wanted a different answer.”
+- **74.787 s, tap reaction:** “Sevim noticed I was on time, as on desktop last visit; no mention of the swapped crossword yet.”
+- **80.304 s, want_quit, BORED, Monday 07:35:** “Both Hacer and Sevim say Tarik is kind again, and neither mentions the papers. I would stop this phone visit and try the other device.”
+- **88.340 s, tap reaction:** “I am stopping became pressed. I saw no Back button, so I closed Feedback without typing or submitting.”
+- **90.582 s, stop, BORED, Monday 07:35:** “I am stopping on the phone. Hacer saw both choices but gave the familiar praise, and both women said Tarik is kind. The reply explanation and caretaker label are clearer, but I want to try the desktop now.”
+
+### Session B — desktop
+
+- **7.748 s, tap reaction:** “Same evening on desktop, fresh Monday. I want to find Tarik and ask for news.”
+- **30.060 s, tap reaction:** “Tarik is first here. I remember his frozen ferry story and the first no-news answer from last visit, high confidence.”
+- **33.192 s, tap reaction:** “Still no news on the first ask. Sitting with him.”
+- **35.444 s, screenshot reaction:** “The frozen ferry in 1974 is exactly the story I remember; high confidence. I like it, but it is the same visit again.”
+- **64.835 s, first_minute, Monday 07:39:** “Tarik first said no news, then told the familiar frozen ferry story when I sat. His answer to thanks is now I would sooner leave it there, slightly different wording from Hacer but the same refusal. The caretaker label is clear.”
+- **66.979 s, want_quit, BORED, Monday 07:39:** “I have heard the ferry again and the same sort of refusal. I would stop rather than repeat the morning tonight.”
+- **74.909 s, tap reaction:** “I am stopping is pressed. There is no Back label here; Close feedback returns to the menu. I typed and sent nothing.”
+- **77.059 s, stop, BORED, Monday 07:39:** “I am stopping on desktop. Tarik gave me the same ferry story and no news first. His refusal is worded a little differently, but I do not want to repeat this morning again tonight.”
+
+## 4. Moments
+
+The gate’s description held my attention because it offered a possible later consequence. I liked that Sevim noticed I arrived on time, and I still like Hacer’s shop-counter detail and Tarık’s ferry story as character details.
+
+I lost interest when the two women gave the same “Tarık is kind” news and neither mentioned the papers during the conversations I reached. On desktop, Tarık’s familiar story followed the same initial “no news” answer. His “I would sooner leave it there” differed in wording from Hacer’s “I would rather leave it there,” but both closed the exchange.
+
+My quit wishes at 80.304 s and 66.979 s did not pass; I stopped each session. Both sessions ended before 180 s, so the pulse checkpoint was untested. First-minute notes were logged after 60 s on both devices.
+
+## 5. Confusion and clarity
+
+The game clearly showed that Hacer saw the gate and the swap, while saying I did not know what she thought. I did not see her later reaction; her immediate greeting did not mention either action. I cannot conclude that no later reaction exists.
+
+The new reply explanation was clear: the words I pick do not change whether the resident continues. My own line appeared as “You (the caretaker),” which resolved the label I had not understood last visit. I understood the explanation, though I still wanted the conversation to respond more distinctly.
+
+The game said time was paused during conversation and showed the expected arrival and order deadline. I was not confused enough to choose “I’m confused.”
+
+Two ten-second wait calls returned empty output, one on each device. The next driver replies showed the game had advanced to the conversation result. I did not treat the empty replies as game outcomes.
+
+## 6. Device use
+
+**Phone, 360×690 touch:**
+
+- Viewed **a-001.png** immediately after open. It showed the cream single-column title, unchecked longer-game options, the Begin button and recording banner. The bottom explanation ran behind the fixed Begin area in the image; I could read its complete text in the driver reply.
+- Viewed **a-002.png** at Sevim’s flat. The building, tabs and conversation controls were visible. The speech strip covered part of the upper building drawing; the visible controls and text were readable.
+- I used Begin, the gate choice, bakery and flat travel, the newspaper swap, Anything new?, Sit together, a reply, Close conversation, Game menu and Feedback.
+
+**Desktop, 1280×800:**
+
+- Viewed **b-001.png** immediately after open. It showed the title in a centred column, with the Begin button fixed near the bottom. Some lower title text was outside the visible area.
+- Viewed **b-002.png** during Tarık’s story. The building filled the left pane and the conversation journal the right. The top status area was partly clipped at the upper edge; the ferry text was readable.
+- I used mouse-like named taps and waits. I used no keyboard keys, so keyboard operation remains untested.
+
+On **both devices**, Feedback offered “I’m stopping” and “I’m confused.” I selected “I’m stopping”; it appeared pressed. There was no control labelled Back in the dialog, so I used **Close feedback**, which returned me to the game menu. I typed no note, pressed no Submit and changed no consent or recording setting. I took two manual screenshots per device.
+
+## 7. Stop and return
+
+- **Phone, BORED at 90.582 s:** “I am stopping on the phone. Hacer saw both choices but gave the familiar praise, and both women said Tarik is kind. The reply explanation and caretaker label are clearer, but I want to try the desktop now.”
+- **Desktop, BORED at 77.059 s:** “I am stopping on desktop. Tarik gave me the same ferry story and no news first. His refusal is worded a little differently, but I do not want to repeat this morning again tonight.”
+
+I would come back another evening only if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories. I still want to know what happens on Tuesday and whether the gate or swap is mentioned later, but I would not return tonight to repeat this opening. I would not leave the game running.
+
+## 8. Changes I would want
+
+My three ranked asks are at the top. The reply explanation is useful, but knowing that my words do not affect whether someone continues does not make the repeated refusals more interesting to me.
+
+## 9. Compared with my last visit
+
+- **Let neighbours answer what I did — partly met.** The gate choice now warns that something may follow later, and the game explicitly recorded Hacer seeing both actions. In the conversation I reached, Hacer praised and tipped me without mentioning either; Sevim noticed my timing without mentioning her paper. I stopped before any later response, so that remains unseen.
+- **Make replies vary; stop repeated “Tarık is kind”; explain “kapici” — partly met.** My line now says “You (the caretaker),” and the game explains the reply choices. Tarık said “I would sooner leave it there” while Hacer said “I would rather leave it there,” so the wording varied slightly. Both still declined to continue, and Hacer and Sevim both said “Tarık is kind.”
+- **Give the first “Anything new?” something — did not meet it for Tarık.** He again said he had no news, then told the ferry story when I sat with him.
+
+**New blocking asks from this visit:** None. The repeated responses and missing immediate acknowledgement were concerns I brought from the last visit. I did not reach Tuesday or see whether a later consequence follows.
+
+I owned no worktree, server, browser or process. The coordinator owns and stops both drivers. No repository was touched, so `git worktree list` is not applicable.

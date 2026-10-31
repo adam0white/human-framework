@@ -1,0 +1,515 @@
+{
+ "note": "Every payload except manifest and hash index; source copies unchanged. Root seal adds only README header and director-finalization.json.",
+ "files": [
+  {
+   "path": "README.md",
+   "bytes": 10876,
+   "sha256": "0e3df9db91e6c831147382428f49c6ca6e02f080eb46a191118037c993e15d36"
+  },
+  {
+   "path": "all-driver-reactions.json",
+   "bytes": 146814,
+   "sha256": "f3c4c6b74818840d3cf8c7af81f42772e66dab9c4fb9c8ec0d3aa8227a3c72c7"
+  },
+  {
+   "path": "ask-ledger.json",
+   "bytes": 50017,
+   "sha256": "e7890d893044d8a79e752bd4f41dcbbce9356db9875e7cdb5591ae7d0ef50dc6"
+  },
+  {
+   "path": "ask-ledger.md",
+   "bytes": 23447,
+   "sha256": "af678a6badd5bd7759a5a4a89d4ff5d112ef653efdd9ed99d6c588d3a16f06da"
+  },
+  {
+   "path": "checkpoint-facts.json",
+   "bytes": 38111,
+   "sha256": "cd749bbf5f03ce54925229035312660a99d3ffd4d6c5216d29718b0f78b153d0"
+  },
+  {
+   "path": "curated-parser-check.json",
+   "bytes": 540,
+   "sha256": "fdc608a82aa470172847bd9db16f543d1c0cb9bcf8e8d3137950edb1e131d224"
+  },
+  {
+   "path": "curated-parser-check.mjs",
+   "bytes": 2872,
+   "sha256": "513b673dddab3a5a6a342c6173e3bf396fd676c094c60ad65f85640ee9e94636"
+  },
+  {
+   "path": "director-finalization.json",
+   "bytes": 527,
+   "sha256": "fe1d9a3982212b2ba12aefbf71571803b22fb5c12629557339810411f37138a4"
+  },
+  {
+   "path": "exact-quote-extraction.json",
+   "bytes": 64734,
+   "sha256": "0b941070b9a88a70a73aa22e42943430b63f8887641df4157118c2e30c8af521"
+  },
+  {
+   "path": "farah/brief.original.md.txt",
+   "bytes": 10773,
+   "sha256": "e2317ba668129ec92b97b89ef80b847a383397d5a96c38958d3ab010f0194507"
+  },
+  {
+   "path": "farah/completion.json",
+   "bytes": 368,
+   "sha256": "509397bc62339042013a17f513950caa0bf38d69a1fa3ea6bd165847e2a9e02a"
+  },
+  {
+   "path": "farah/desktop/driver.out",
+   "bytes": 85,
+   "sha256": "ca4260755960d9f7f8044d3c2103e22af2eede51949311e15ecf965a5bedf71c"
+  },
+  {
+   "path": "farah/desktop/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "farah/desktop/wall-clock.jsonl",
+   "bytes": 14743,
+   "sha256": "2fd72485b5de65c94f280897bf7af1e12206d5a82422b6d4986c51a5a3d3f677"
+  },
+  {
+   "path": "farah/dispatch.json",
+   "bytes": 2084,
+   "sha256": "e73ea2562968918ce52c332e32ab94447af33628c1254ddb0d70936633ea447c"
+  },
+  {
+   "path": "farah/history-source-map.json",
+   "bytes": 281,
+   "sha256": "9806508c7ea9ed174726457ae874bbffb73ebe1852b908f72414e2e16bbd6cd4"
+  },
+  {
+   "path": "farah/own-history.original.md.txt",
+   "bytes": 186,
+   "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9"
+  },
+  {
+   "path": "farah/phone/driver.out",
+   "bytes": 85,
+   "sha256": "c23cb7533eed6c332400017721ac514ca7d1fc8803da285d5e9da5670a2f1518"
+  },
+  {
+   "path": "farah/phone/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "farah/phone/wall-clock.jsonl",
+   "bytes": 16755,
+   "sha256": "176dfaca4d29b7f4208f3b58f87e7300cda6e42fb9a676d4429665c9f1a524a1"
+  },
+  {
+   "path": "farah/report.md",
+   "bytes": 14451,
+   "sha256": "2979460be1c9e063bb3ce0b9baad525fdd39c4a92d68f92505e080f7c7b7638a"
+  },
+  {
+   "path": "farah/report.original.md.txt",
+   "bytes": 14451,
+   "sha256": "2979460be1c9e063bb3ce0b9baad525fdd39c4a92d68f92505e080f7c7b7638a"
+  },
+  {
+   "path": "farah/validation.json",
+   "bytes": 4486,
+   "sha256": "fbdf5392f3d1cdda21b908c3900136a5883848e204835ea7f29601911e2201fc"
+  },
+  {
+   "path": "identity-index.json",
+   "bytes": 6563,
+   "sha256": "2db607fa4f94523ee59b6fa4e3c043d6181364583f3e6b6a510c7af1bd340c86"
+  },
+  {
+   "path": "inputs/rope-retest-cleanup.json",
+   "bytes": 1289,
+   "sha256": "e49480295ee76853dcbd7f4782d43610d671905503ee849c7b64cb498577c723"
+  },
+  {
+   "path": "inputs/rope-retest-director-image-observations.json",
+   "bytes": 1155,
+   "sha256": "56463927ff41060a72c655a2769abb86f3bb417f692a814c29fc9b03f148a52f"
+  },
+  {
+   "path": "inputs/rope-retest-director-method-notes.json",
+   "bytes": 1278,
+   "sha256": "242aceab6631855582e6f02173c0317352a57291b81582b1c1fc2a575651e380"
+  },
+  {
+   "path": "inputs/rope-retest-final-driver-audit.json",
+   "bytes": 20357,
+   "sha256": "fa1ab7504166fe281a7f12b3eb1721bb23d579442773d94e1118e1cab5038796"
+  },
+  {
+   "path": "inputs/rope-retest-final-release-after-round.json",
+   "bytes": 193,
+   "sha256": "7f053cc0780f902caa94f4363fabf0376c18880846fc2cc2b61ea7e503e1325e"
+  },
+  {
+   "path": "inputs/rope-retest-history-read-audit.json",
+   "bytes": 5002,
+   "sha256": "cdbae29efe4931419c1eefd5cae9ef8f5605185b33500713c00f3bbb2bbdb1ea"
+  },
+  {
+   "path": "inputs/rope-retest-input-freeze.json",
+   "bytes": 1682,
+   "sha256": "a8f8f31fbf2653aa3ae97c00092a3c8ff4367bea25ef6a2c2ed9e1ef60ea345b"
+  },
+  {
+   "path": "inputs/rope-retest-input-preflight.json",
+   "bytes": 1990,
+   "sha256": "d3c612f98ea8a5ca67db33d407ed6320a9080afbb2f25644b01af2e87bbbff7b"
+  },
+  {
+   "path": "inputs/rope-retest-plan.json",
+   "bytes": 6967,
+   "sha256": "219d056e3ff7d841bc8856ac272ef57f24cbabad76ac41faf088b504a6e06b8a"
+  },
+  {
+   "path": "inputs/rope-retest-predispatch.json",
+   "bytes": 3558,
+   "sha256": "cbfe2c5b8c7ddc9c1787ec63ce2290a45e6e637bd68dcb6b0f4c3b0fdff8760b"
+  },
+  {
+   "path": "inputs/rope-retest-root-delivery-verification.json",
+   "bytes": 4918,
+   "sha256": "4bd19631984dc6336fa1feb868b75777cbf3ffaf25f38b73d2552aa29c65023b"
+  },
+  {
+   "path": "inputs/rope-retest-round-state.json",
+   "bytes": 316,
+   "sha256": "a079336f70f44d87b838960e29b07366ceae299c497a06e3de315ae92a7aaa90"
+  },
+  {
+   "path": "ledger-additions.md",
+   "bytes": 40220,
+   "sha256": "827348ea9716575d46472f85ffae1ba35166b36b72af730cd34a62eecc5e938a"
+  },
+  {
+   "path": "logical-tester-ledger.json",
+   "bytes": 34211,
+   "sha256": "1ad6bd64750ec9036c8182b28ec75af3ef8452489ea7c3f56c65e7ff316d7b62"
+  },
+  {
+   "path": "logical-tester-ledger.md",
+   "bytes": 1305,
+   "sha256": "89579f621a5ac6534e00bdfbc4b7fe798c4424ec50a6754960456d72494213cb"
+  },
+  {
+   "path": "nia/brief.original.md.txt",
+   "bytes": 11214,
+   "sha256": "3334931e4ed5c231a2e8fd0fde265aa25508fb0e78f4d84a128f5b0bb73e3e8e"
+  },
+  {
+   "path": "nia/completion.json",
+   "bytes": 368,
+   "sha256": "54c51a898c0129b6cc5104108b8e52fed56355dee4ae3a007091f6188d11e7e3"
+  },
+  {
+   "path": "nia/desktop/driver.out",
+   "bytes": 85,
+   "sha256": "94556c50d4f6ed7e95e8b56fa97262823b6efc39c546c4bc40fa50f0c9ef7e18"
+  },
+  {
+   "path": "nia/desktop/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "nia/desktop/wall-clock.jsonl",
+   "bytes": 11354,
+   "sha256": "aec816560f0e4b0b6e170d7d9788c24989f579bae63b87c89639b3100216f32e"
+  },
+  {
+   "path": "nia/director-method-qualification.json",
+   "bytes": 1194,
+   "sha256": "3946ca99d7f367d5484eaa068a624845faa0f9070b063278105b13083487a009"
+  },
+  {
+   "path": "nia/dispatch.json",
+   "bytes": 2086,
+   "sha256": "5f9baea3e55b2ce76b4d24a5eb2c30ec5cdf8de9e679144ef3e3c3d83b360a49"
+  },
+  {
+   "path": "nia/history-source-map.json",
+   "bytes": 4237,
+   "sha256": "5ee64b811868dce9285e90f822ed03f93d011ecd242fe59b667987c1ed0d7ee2"
+  },
+  {
+   "path": "nia/own-history.original.md.txt",
+   "bytes": 142082,
+   "sha256": "d894e8de4b963032764ff54de510b7fbc6d2314f4bebf520625dbbcceabccda7"
+  },
+  {
+   "path": "nia/phone/driver.out",
+   "bytes": 85,
+   "sha256": "3f4b51ea2494e6a94a2292c42cc056414c8bc6cf47da5b9922345713f0d3ef57"
+  },
+  {
+   "path": "nia/phone/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "nia/phone/wall-clock.jsonl",
+   "bytes": 12347,
+   "sha256": "3bbf68bf72dcb84b7acba5eb0855c1df1a77c36967d45e17107f6445d2524ec5"
+  },
+  {
+   "path": "nia/raw-driver-reactions.json",
+   "bytes": 22690,
+   "sha256": "59750f32d24e1eab3d747a7a5bad2f9947c03ff572af59eb2fee8c8fa7308dc6"
+  },
+  {
+   "path": "nia/report.md",
+   "bytes": 14375,
+   "sha256": "33491cf4fba8ca3b366f56e7cd6177f018a0aaccdeccdc3c445dfaa2959d199c"
+  },
+  {
+   "path": "nia/report.original.md.txt",
+   "bytes": 14375,
+   "sha256": "33491cf4fba8ca3b366f56e7cd6177f018a0aaccdeccdc3c445dfaa2959d199c"
+  },
+  {
+   "path": "nia/validation.json",
+   "bytes": 3748,
+   "sha256": "e2e876f67ce992e6d101b4e15967a21c5a65c5e6c772cd7c33bcfbb97a09b292"
+  },
+  {
+   "path": "pavel/brief.original.md.txt",
+   "bytes": 11147,
+   "sha256": "f0803346c1c82531663aaa2d821c53e6cdab5315bbabec5c45ea11148a31ce10"
+  },
+  {
+   "path": "pavel/completion.json",
+   "bytes": 368,
+   "sha256": "08281cb4c9d3109548610d7e0fd97666a61f7041862e3a50d580a1ae1d9631cd"
+  },
+  {
+   "path": "pavel/desktop/driver.out",
+   "bytes": 84,
+   "sha256": "f4fd5fa2b733e9a086c5902e59d443b3c72b26db913088bef10375c611903940"
+  },
+  {
+   "path": "pavel/desktop/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "pavel/desktop/wall-clock.jsonl",
+   "bytes": 9753,
+   "sha256": "d72f710b333a2302cd7cc70916daf084701d155bde4eaab45eccbe9427a33237"
+  },
+  {
+   "path": "pavel/dispatch.json",
+   "bytes": 2086,
+   "sha256": "2a849e5824f6d149e7ebe044f3c0f6431a29c2664600a1d5541064e2324a4a4e"
+  },
+  {
+   "path": "pavel/history-source-map.json",
+   "bytes": 3359,
+   "sha256": "1bc38508357f27fcbc5571c9d71842e64374c19cb62d7f5de87d858e0a28f7b5"
+  },
+  {
+   "path": "pavel/own-history.original.md.txt",
+   "bytes": 128309,
+   "sha256": "c5fccb0ec605c8ab203d8a47fc16906c12b39cf781216c899e73145a03efaeb1"
+  },
+  {
+   "path": "pavel/phone/driver.out",
+   "bytes": 84,
+   "sha256": "1d268b3f1f5639e974a57287c1b3178abcf64367c1f1e9fe1c0077b68b39b366"
+  },
+  {
+   "path": "pavel/phone/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "pavel/phone/wall-clock.jsonl",
+   "bytes": 8764,
+   "sha256": "e6937bf48ea7eccbab011c5efd251b778a499f28bb563f2770bd635216de3687"
+  },
+  {
+   "path": "pavel/report.md",
+   "bytes": 15003,
+   "sha256": "f9945cc22f7b4a3226ebc2988f9ee468d28029064ce88d8e712869fb3d92b675"
+  },
+  {
+   "path": "pavel/report.original.md.txt",
+   "bytes": 15003,
+   "sha256": "f9945cc22f7b4a3226ebc2988f9ee468d28029064ce88d8e712869fb3d92b675"
+  },
+  {
+   "path": "pavel/validation.json",
+   "bytes": 3461,
+   "sha256": "da9c8c325fdfeccb970762ada610fc874468b28c219a4ec68f2f04fb5f1b199d"
+  },
+  {
+   "path": "primary-quote-validation.json",
+   "bytes": 107082,
+   "sha256": "dae71905cc264fc4466ff5e2df72749c5ff0f6de7897dc3619bc806b6f8b29bb"
+  },
+  {
+   "path": "rosa/brief.original.md.txt",
+   "bytes": 12014,
+   "sha256": "b3e300f132b208bcad6e3ab36c9c66c27ab61bbb3380916242b52504e3334c9e"
+  },
+  {
+   "path": "rosa/completion.json",
+   "bytes": 368,
+   "sha256": "d60359ca77798d958d4c661823256e6372148fff251ee1566e74e2d1521b76ef"
+  },
+  {
+   "path": "rosa/desktop/driver.out",
+   "bytes": 85,
+   "sha256": "085358953a7f1df791128190e49889154a1a5abdde017418a3211eb6f27c25ac"
+  },
+  {
+   "path": "rosa/desktop/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "rosa/desktop/wall-clock.jsonl",
+   "bytes": 8703,
+   "sha256": "2bfdf184183077b4c80759e2835eaaa7ec9a5f7bb03b3daaf44de4b40e534638"
+  },
+  {
+   "path": "rosa/director-method-qualification.json",
+   "bytes": 1042,
+   "sha256": "cd14f3b684262737f209f9dc2eb667f728c579969f002b5d194d0301bed5f44f"
+  },
+  {
+   "path": "rosa/dispatch.json",
+   "bytes": 2086,
+   "sha256": "33667947a05bc4aea49b4ec832bdaba3f30b03ce7508310ae7056b407e7f7057"
+  },
+  {
+   "path": "rosa/history-source-map.json",
+   "bytes": 6083,
+   "sha256": "c5bd96abf2bc5c28fef6a950db45b6ed87ef4fef721953775a2c14365ae51237"
+  },
+  {
+   "path": "rosa/own-history.original.md.txt",
+   "bytes": 230965,
+   "sha256": "46a72ac93bffda2c6b3fe0166a639de298fffa762f4367e0473db51f71091c29"
+  },
+  {
+   "path": "rosa/phone/driver.out",
+   "bytes": 85,
+   "sha256": "6c8551e33e37666fc14ca4c81b55232ef580ade034d78de8874efa654d98f38d"
+  },
+  {
+   "path": "rosa/phone/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "rosa/phone/wall-clock.jsonl",
+   "bytes": 10487,
+   "sha256": "45aadce26612078485dff9231645073c3088e7319706df28d61558bada083735"
+  },
+  {
+   "path": "rosa/report.md",
+   "bytes": 17024,
+   "sha256": "688ba7e9d5e0855cce4474d62952fd83c8b86057ec5647544d1599fde8d0d2bf"
+  },
+  {
+   "path": "rosa/report.original.md.txt",
+   "bytes": 17024,
+   "sha256": "688ba7e9d5e0855cce4474d62952fd83c8b86057ec5647544d1599fde8d0d2bf"
+  },
+  {
+   "path": "rosa/validation.json",
+   "bytes": 3906,
+   "sha256": "28a4ec72fdf8b7afc0531a9920d89e9c7d8c417944e05dfde0c85df138a61ee8"
+  },
+  {
+   "path": "screenshots-manifest.json",
+   "bytes": 18494,
+   "sha256": "c17a818ffd69ebf74ac8590ee3aac5350f1b830f6b577128ffa2997d32e13693"
+  },
+  {
+   "path": "source-map.json",
+   "bytes": 36108,
+   "sha256": "ef84e2aa103059cb29291c06eba551bd11f6bc1b486f100b6b6f5e15c40a6fdb"
+  },
+  {
+   "path": "tessa/brief.original.md.txt",
+   "bytes": 11169,
+   "sha256": "7f855fbb97fa371b05a969fe0504ae627e40a68e999e896fd0775ed426a8e2a8"
+  },
+  {
+   "path": "tessa/completion.json",
+   "bytes": 368,
+   "sha256": "53f03704b9060e29ca3eda62e7eff65982c1a3f692aa2c04b7bf93f9b7eb5d6f"
+  },
+  {
+   "path": "tessa/desktop/driver.out",
+   "bytes": 85,
+   "sha256": "55e3b3bc8bf22a80fbd10f61fa174dcc02fbf3657b44f92c4ba876c56262188d"
+  },
+  {
+   "path": "tessa/desktop/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "tessa/desktop/wall-clock.jsonl",
+   "bytes": 11782,
+   "sha256": "6674debf1f7320ea8fe57c67c5d80003d4a9d9aca6f9c08d6dd52da66b419f90"
+  },
+  {
+   "path": "tessa/dispatch.json",
+   "bytes": 2086,
+   "sha256": "8cc86b694acc439c1a7460d5ef6be9491059b18aa7854dfaae853ad3eda2a0d8"
+  },
+  {
+   "path": "tessa/history-source-map.json",
+   "bytes": 3359,
+   "sha256": "516a343a9820e0f864251c56fb3138116038fc0e0319c50f1dc11cda4e85fc4a"
+  },
+  {
+   "path": "tessa/own-history.original.md.txt",
+   "bytes": 84593,
+   "sha256": "92727f9103dd5af010d4a8ba3906a6db22307816b904d8df34008b6e74528cd3"
+  },
+  {
+   "path": "tessa/phone/driver.out",
+   "bytes": 85,
+   "sha256": "233c3feae60de055dae61e50ec0e598de5c8f8c75a84e9b308dcbf210da2fb4c"
+  },
+  {
+   "path": "tessa/phone/release-start.json",
+   "bytes": 119,
+   "sha256": "7ee0ad4a5383fa9809b644daac6f24434694c704bc862c3611e3467ba06d702e"
+  },
+  {
+   "path": "tessa/phone/wall-clock.jsonl",
+   "bytes": 11347,
+   "sha256": "05c4b58ba70670936c14313c7ca87d2a39757a3e406688da0472ba8bb485b89e"
+  },
+  {
+   "path": "tessa/report.md",
+   "bytes": 13395,
+   "sha256": "e726f02e42819d773069f989ddc24c13af0a5397d774657b7c20265b20238c42"
+  },
+  {
+   "path": "tessa/report.original.md.txt",
+   "bytes": 13395,
+   "sha256": "e726f02e42819d773069f989ddc24c13af0a5397d774657b7c20265b20238c42"
+  },
+  {
+   "path": "tessa/validation.json",
+   "bytes": 3470,
+   "sha256": "b4a2fec5169fc74009879bf11892255a9a20e7a297ae175518b5acb16aac9360"
+  },
+  {
+   "path": "validate-quotes.py",
+   "bytes": 24733,
+   "sha256": "4e8b6f3cf6c86031e3d63d4e92e2b3a68bcb1017a67c1fef9cfccef79b4f653d"
+  }
+ ]
+}

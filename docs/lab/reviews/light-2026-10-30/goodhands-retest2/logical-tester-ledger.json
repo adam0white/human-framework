@@ -1,0 +1,180 @@
+{
+  "note": "Five logical testers. Not votes, not a population.",
+  "testers": [
+    {
+      "id": "F-2611",
+      "tester": "Jonas Berg",
+      "game": "goodhands",
+      "date": "2026-10-31",
+      "exposure": "return",
+      "verdict": "mixed",
+      "primaryReturn": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 0,
+        "span": "I would come back another evening, but only to see whether the trial outcome punishes a high fee. I would not leave it running, and I would not return just for the fee, references or old case, because none of them pushed back."
+      },
+      "laterFullReturn": {
+        "label": "later full return",
+        "line": 98,
+        "charStart": 36,
+        "span": "I would return another evening, but only to see whether the trial outcome punishes a high fee. I would not leave it running. I would not return for the fee, the references or the old case as they stand, because none of them pushed back. If the trial still shows no consequence for ₺9,700, I would not come back."
+      },
+      "laterExtraReturnSpans": [],
+      "openingEqualsLater": false,
+      "rankedAskIds": ["F-2616", "F-2617", "F-2618"],
+      "unrankedLeads": [
+        {
+          "key": "salary-header-before-question",
+          "classification": "producer-new-blocker",
+          "target": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "id": "F-2612",
+      "tester": "Aisha Rahman",
+      "game": "goodhands",
+      "date": "2026-10-31",
+      "exposure": "return",
+      "verdict": "mixed",
+      "primaryReturn": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 22,
+        "span": "Yes, I would come back another evening, but only if I could actually send the repair letter for the old case, and the applicants stopped giving each other's sentences. I would not leave it running."
+      },
+      "laterFullReturn": {
+        "label": "later full return",
+        "line": 128,
+        "charStart": 36,
+        "span": "Yes, I would come back another evening, but only if I could actually send the repair letter for the old case, and the applicants stopped giving each other's sentences. I would not leave it running."
+      },
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 7) leave it running",
+          "line": 129,
+          "charStart": 24,
+          "span": "No. The clock runs while I read, and that does not suit me. It would not wait for me."
+        },
+        {
+          "label": "Later wording (section 7) another evening",
+          "line": 130,
+          "charStart": 23,
+          "span": "Yes, on those two conditions. The notes that explain themselves and show candidates' own words would bring me back."
+        }
+      ],
+      "openingEqualsLater": true,
+      "rankedAskIds": ["F-2619", "F-2620", "F-2621"],
+      "unrankedLeads": []
+    },
+    {
+      "id": "F-2613",
+      "tester": "Diego Silva",
+      "game": "goodhands",
+      "date": "2026-10-31",
+      "exposure": "return",
+      "verdict": "mixed",
+      "primaryReturn": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 34,
+        "span": "I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running."
+      },
+      "laterFullReturn": {
+        "label": "later full return",
+        "line": 94,
+        "charStart": 34,
+        "span": "I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running."
+      },
+      "laterExtraReturnSpans": [],
+      "openingEqualsLater": true,
+      "rankedAskIds": ["F-2622", "F-2623", "F-2624"],
+      "unrankedLeads": [
+        {
+          "key": "fast-pace-not-sticking-and-missing-skip",
+          "classification": "source-annoyance",
+          "target": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "id": "F-2614",
+      "tester": "Rosa Alvarez",
+      "game": "goodhands",
+      "date": "2026-10-31",
+      "exposure": "return",
+      "verdict": "mixed",
+      "primaryReturn": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 34,
+        "span": "I would come back another evening on the big screen, but only if the long paragraph that explains how Nermin weighs an answer is shortened. I would not leave it running; I would close it."
+      },
+      "laterFullReturn": {
+        "label": "later full return",
+        "line": 139,
+        "charStart": 34,
+        "span": "Yes, another evening, on the big screen. I would come back to see whether Özlem or the Kaya family gets a good match. My condition is that the paragraph about weighing answers is cut to one short sentence. If it stays as long as it is now, I would still come back, but I would stop reading each card after the first line, and I might not get far. I would not leave it running; I would close it, because the game needs my choices and I read slowly."
+      },
+      "laterExtraReturnSpans": [
+        {
+          "label": "Later wording (section 3) phone stop",
+          "line": 57,
+          "charStart": 26,
+          "span": "I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back. (11:58)"
+        },
+        {
+          "label": "Later wording (section 9) new this time",
+          "line": 160,
+          "charStart": 2,
+          "span": "The long weighing paragraph is new on the card and made me reread on both devices. It is the one thing that would stop me returning if it stays as it is."
+        }
+      ],
+      "openingEqualsLater": false,
+      "rankedAskIds": ["F-2625", "F-2626", "F-2627"],
+      "unrankedLeads": [
+        {
+          "key": "bench-marks-meaning",
+          "classification": "source-observation",
+          "target": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "id": "F-2615",
+      "tester": "Elena Dimitrova",
+      "game": "goodhands",
+      "date": "2026-10-31",
+      "exposure": "return",
+      "verdict": "mixed",
+      "primaryReturn": {
+        "label": "opening return",
+        "line": 1,
+        "charStart": 35,
+        "span": "Maybe on the phone, another evening, but only if a new game gave me different people. If it is the same Gülce, Şebnem and Özlem with the same words again, no."
+      },
+      "laterFullReturn": {
+        "label": "later full return",
+        "line": 82,
+        "charStart": 14,
+        "span": "\"Maybe on the phone, another evening, but only if a new game gave me different people. If it is the same Gülce, Şebnem and Özlem with the same words again, no.\" I would not leave it running in the background. I would come back another evening only on that condition."
+      },
+      "laterExtraReturnSpans": [],
+      "openingEqualsLater": false,
+      "rankedAskIds": ["F-2628", "F-2629", "F-2630"],
+      "unrankedLeads": [
+        {
+          "key": "disabled-style-menu-arrival-clock",
+          "classification": "source-observation",
+          "target": "2026-11-03"
+        },
+        {
+          "key": "feedback-stop-labels-clarity",
+          "classification": "clarity-preference",
+          "target": "2026-11-10"
+        }
+      ]
+    }
+  ]
+}

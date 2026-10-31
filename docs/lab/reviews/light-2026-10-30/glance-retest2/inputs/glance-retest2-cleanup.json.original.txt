@@ -1,0 +1,103 @@
+{
+  "time": "2026-10-31T09:10:23.687431+00:00",
+  "recordedPids": [
+    22076,
+    22078,
+    22197,
+    36142,
+    36144,
+    36165,
+    42847,
+    42849,
+    42871,
+    52414,
+    52416,
+    52437,
+    55798,
+    55800,
+    55823
+  ],
+  "allAbsent": true,
+  "signalsSent": [],
+  "lateColdObservedProcessChecks": [
+    {
+      "pid": 55798,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55800,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55815,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55816,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55817,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55818,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55820,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55821,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55822,
+      "originalStart": "Sat Oct 31 03:50:15 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 55823,
+      "originalStart": "Sat Oct 31 03:50:16 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 56257,
+      "originalStart": "Sat Oct 31 03:50:21 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 58610,
+      "originalStart": "Sat Oct 31 03:53:30 2026",
+      "current": "",
+      "absent": true
+    },
+    {
+      "pid": 58611,
+      "originalStart": "Sat Oct 31 03:53:30 2026",
+      "current": "",
+      "absent": true
+    }
+  ],
+  "limits": "All15 recorded model/driver PIDs absent.13 observed latecold descendants/root processes absent. No complete whole-round browser-descendant journal is invented."
+}

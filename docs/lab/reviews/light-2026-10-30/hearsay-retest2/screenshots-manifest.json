@@ -1,0 +1,178 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/phone/first-minute.png",
+    "sha256": "80b5aad4ccc30d8d6dfdf1ef6de46ca37de2f41f28e8147c07d0aeea7d5ab167",
+    "bytes": 51318,
+    "mtime_ns": 1793445448774102484
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/phone/a-002.png",
+    "sha256": "80b5aad4ccc30d8d6dfdf1ef6de46ca37de2f41f28e8147c07d0aeea7d5ab167",
+    "bytes": 51318,
+    "mtime_ns": 1793445448000650212
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/phone/a-003.png",
+    "sha256": "20302f5c9406f1b6627c5e3bceb0d83d3368c35eeaef172df3305d92361a2f21",
+    "bytes": 44121,
+    "mtime_ns": 1793445489385613707
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/phone/a-001.png",
+    "sha256": "5526e81dfc02633766ac9ec829bf20d6d3769e8f24be89d8b54d18bdef75601f",
+    "bytes": 50940,
+    "mtime_ns": 1793445391154052751
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/desktop/b-001.png",
+    "sha256": "13be7b15824ed2859f63039934c6a50f96e18c5578dd5ab1edcfbaaa9c9e9353",
+    "bytes": 79431,
+    "mtime_ns": 1793445500242239813
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/desktop/first-minute.png",
+    "sha256": "468295ee090c6e670b75bfef93bfeca5b4f98c13095d1350f5af8515c9417add",
+    "bytes": 143986,
+    "mtime_ns": 1793445558388508744
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/desktop/b-002.png",
+    "sha256": "468295ee090c6e670b75bfef93bfeca5b4f98c13095d1350f5af8515c9417add",
+    "bytes": 143986,
+    "mtime_ns": 1793445593694075549
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/phone/b-001.png",
+    "sha256": "5526e81dfc02633766ac9ec829bf20d6d3769e8f24be89d8b54d18bdef75601f",
+    "bytes": 50940,
+    "mtime_ns": 1793446138246371615
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/phone/first-minute.png",
+    "sha256": "ddaec5696f7db7af22cb1b1de5f118869e3db3e4bf6e1c65c9a56ed244538c84",
+    "bytes": 59174,
+    "mtime_ns": 1793446196867583415
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/phone/b-002.png",
+    "sha256": "0bcf2e3e56791e436797a36f9e0bc8a7893735464d24172edb8420777819c358",
+    "bytes": 42176,
+    "mtime_ns": 1793446221296350650
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/desktop/first-minute.png",
+    "sha256": "8cdebb4801d9f50092428b5046fd717ae686a2b326a11f1aa80a431e56163209",
+    "bytes": 173575,
+    "mtime_ns": 1793445708276753293
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/desktop/a-002.png",
+    "sha256": "5efd89f5c7c4c67370e9798f54bb1a779d2762a9ee275c8f573f4daad1c8b584",
+    "bytes": 128624,
+    "mtime_ns": 1793446091676200308
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/desktop/a-001.png",
+    "sha256": "13be7b15824ed2859f63039934c6a50f96e18c5578dd5ab1edcfbaaa9c9e9353",
+    "bytes": 79431,
+    "mtime_ns": 1793445650651003365
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/phone/b-001.png",
+    "sha256": "5526e81dfc02633766ac9ec829bf20d6d3769e8f24be89d8b54d18bdef75601f",
+    "bytes": 50940,
+    "mtime_ns": 1793446437864375857
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/phone/first-minute.png",
+    "sha256": "dd4cedcde2045af76ac7e70323f198084ae7df2e81ef45bdafd54295576dba7b",
+    "bytes": 53772,
+    "mtime_ns": 1793446495970645912
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/phone/b-002.png",
+    "sha256": "783ff28991179445e7f4366343216775dcd162f46f28da94ab53212a04ae6979",
+    "bytes": 84864,
+    "mtime_ns": 1793446454098943417
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/desktop/first-minute.png",
+    "sha256": "cffb185cd61019daee9bd96ec76127d31f13107acc44490521410bd700bfe779",
+    "bytes": 211706,
+    "mtime_ns": 1793446334706450102
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/desktop/a-001.png",
+    "sha256": "13be7b15824ed2859f63039934c6a50f96e18c5578dd5ab1edcfbaaa9c9e9353",
+    "bytes": 79431,
+    "mtime_ns": 1793446275264760150
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/phone/first-minute.png",
+    "sha256": "06ada7700007344369c6f548ae8be9798b2c675a1d37a07f090d384aa8872fc0",
+    "bytes": 40815,
+    "mtime_ns": 1793447577206599445
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/phone/a-001.png",
+    "sha256": "5526e81dfc02633766ac9ec829bf20d6d3769e8f24be89d8b54d18bdef75601f",
+    "bytes": 50940,
+    "mtime_ns": 1793447519166446949
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/desktop/b-001.png",
+    "sha256": "13be7b15824ed2859f63039934c6a50f96e18c5578dd5ab1edcfbaaa9c9e9353",
+    "bytes": 79431,
+    "mtime_ns": 1793447564041222980
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/phone/first-minute.png",
+    "sha256": "4d77857e4ef4cb8d032dd8e5b182b66c0b4a8340c6331d6bf280e92a9ed9a9e7",
+    "bytes": 38699,
+    "mtime_ns": 1793447685463845957
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/phone/a-002.png",
+    "sha256": "16941f14844138f66a00e8b83d282e3aab333b479ba30c1451c118ee8d918ac3",
+    "bytes": 61715,
+    "mtime_ns": 1793447658982925955
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/phone/a-001.png",
+    "sha256": "5526e81dfc02633766ac9ec829bf20d6d3769e8f24be89d8b54d18bdef75601f",
+    "bytes": 50940,
+    "mtime_ns": 1793447627216317344
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/desktop/b-001.png",
+    "sha256": "13be7b15824ed2859f63039934c6a50f96e18c5578dd5ab1edcfbaaa9c9e9353",
+    "bytes": 79431,
+    "mtime_ns": 1793447676050248255
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/desktop/first-minute.png",
+    "sha256": "b9e779144898884376e6f87f332c6a4f4a07b576909bd9cf856902822268e19a",
+    "bytes": 177788,
+    "mtime_ns": 1793447733044143821
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/desktop/b-002.png",
+    "sha256": "8dc8abae0cf65c7cb166ab97ad5c72dc01f0937caa62177f2438615d1023ed3e",
+    "bytes": 188560,
+    "mtime_ns": 1793447716990770343
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/phone/first-minute.png",
+    "sha256": "9993143aa86c73a5c0aa81b78c91274d23968da83e68ace9e942db7e85daa2ae",
+    "bytes": 53839,
+    "mtime_ns": 1793446680671077615,
+    "qualification": "coordinator-cut attempt"
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/phone/a-001.png",
+    "sha256": "5526e81dfc02633766ac9ec829bf20d6d3769e8f24be89d8b54d18bdef75601f",
+    "bytes": 50940,
+    "mtime_ns": 1793446623303059241,
+    "qualification": "coordinator-cut attempt"
+  }
+]

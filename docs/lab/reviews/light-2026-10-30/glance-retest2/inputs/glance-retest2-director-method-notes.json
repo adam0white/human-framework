@@ -1,0 +1,49 @@
+{
+  "time": "2026-10-31T09:11:46.288070+00:00",
+  "closedAt": "2026-10-31T09:09:33.248155+00:00",
+  "nextPanelNotBefore": "2026-10-31T09:24:33.248155+00:00",
+  "build": "c112497284e78d4c99aa62895262368214f37d9f",
+  "framework": "4.14.0",
+  "reportsReadInFull": 5,
+  "stops": 10,
+  "bothDeviceImageReadsAndCapsVerified": true,
+  "recordedPidsAbsent": 15,
+  "lateColdObservedProcessesAbsent": 13,
+  "history": "All5actualwhole suppliedhistoryreads verified. PriorRosaCONT/exposurequalificationretained. Endmarker/linecounts/outerJSONhint changed method, not driver.",
+  "commandCounts": {
+    "BashCalls": 308,
+    "validAssignedJSONCurls": 299,
+    "failedShellParseBeforeCurl": 8,
+    "executedBriefPipeViolation": 1,
+    "otherExecutedProtocolBreach": 0
+  },
+  "pipeViolation": "Mei piped one assigned curl response through head-c600. Valid local request executed; output truncated againstbrief. Not a gamefault.",
+  "qualifications": [
+    "Mei gate-versus-rain cause is her guess; observationagewarning is not newmeasurement.",
+    "Samir viewed titleonly phone/desktop, not currentphonegameplaygeometry; startreadings varyfreshseed.",
+    "Leila doubtmark andgateconfirmation improved; newcannotdo/blanktextsourcelead, no actorforcedcompliance.",
+    "Rosa actual2rereadseachdevice, newcallreplacesitblockingreference; lowerdesktopgatepanelunscrolledso notprovedunreachable.",
+    "Eszter reachedMondaymorningtwice/partialTuesday; actualFastimprovedherdesktopvisit, conditionallywouldreturndesktoponly. Chartsuspectedclippingunverified; nobank/totalgame/correctnessclaim.",
+    "Feedbackbothlabelsseen, chosenstopping/confused/textorpointfallbacksactual, no notes/Submit/consent.",
+    "No independentlyreadproductionagentreceipt. Nativev2privatehashboundfork; inputacknotgameoutcome."
+  ],
+  "loop": "Twoiterationsachieved; finishafterdatedgameDeferredintegration. Remainingasks not fixed, no thirdpanel/broadQA/player/owneracceptance.",
+  "targets": {
+    "2556": "2026-11-03",
+    "2557": "2026-11-10",
+    "2558": "2026-11-10",
+    "2559": "2026-11-10",
+    "2560": "2026-11-10",
+    "2561": "2026-11-03",
+    "2562": "2026-11-10",
+    "2563": "2026-11-10",
+    "2564": "2026-11-03",
+    "2565": "2026-11-03",
+    "2566": "2026-11-03",
+    "2567": "2026-11-03",
+    "2568": "2026-11-03",
+    "2569": "2026-11-10",
+    "2570": "2026-11-10"
+  },
+  "unrankedSourceLead": "F2555 return route can retain chart/text mismatch forNov3 sourceinspection with clippingcauseguess; no inventedfourthrankedask."
+}

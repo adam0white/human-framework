@@ -1,0 +1,148 @@
+{
+  "tester": "Emre Kaya",
+  "validationTime": "2026-10-31T11:50:04.080808+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T11:28:55.773Z",
+        "elapsed_s": 487.551,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I got what I came for: the order went through, the numbers were shown, and no chapter message appeared. Next decision is Day 8, four days of an empty garden away, so I stop here.",
+        "game_clock": "Day 4 12:03",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 436.711,
+          "op": "tap",
+          "input": {
+            "text": "I\\u0027m stopping"
+          },
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 438.524,
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 440.707,
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T11:28:04.933Z",
+          "elapsed_s": 436.711,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "I\\u0027m stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6,
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T11:28:06.746Z",
+          "elapsed_s": 438.524,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T11:28:08.929Z",
+          "elapsed_s": 440.707,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T11:30:26.145Z",
+        "elapsed_s": 89.336,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I have already seen this run on desktop tonight. The phone shows the same empty garden and the same wait to Day 4. I am stopping here.",
+        "game_clock": "Day 1 17:32",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

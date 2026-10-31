@@ -1,0 +1,122 @@
+[
+  {
+    "tester": "maya",
+    "actualHistoryLines": 1271,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/own-history.md",
+          "limit": 400
+        },
+        "renderedFirst": 1,
+        "renderedLast": 400,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/own-history.md",
+          "offset": 401,
+          "limit": 400
+        },
+        "renderedFirst": 401,
+        "renderedLast": 800,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/own-history.md",
+          "offset": 801,
+          "limit": 480
+        },
+        "renderedFirst": 801,
+        "renderedLast": 1272,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "emre",
+    "actualHistoryLines": 1039,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/own-history.md",
+          "limit": 300
+        },
+        "renderedFirst": 1,
+        "renderedLast": 300,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/own-history.md",
+          "offset": 301,
+          "limit": 370
+        },
+        "renderedFirst": 301,
+        "renderedLast": 670,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/own-history.md",
+          "offset": 671,
+          "limit": 370
+        },
+        "renderedFirst": 671,
+        "renderedLast": 1040,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  },
+  {
+    "tester": "diego",
+    "actualHistoryLines": 1356,
+    "allActualLinesRead": true,
+    "unreadLines": [],
+    "reads": [
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/own-history.md",
+          "limit": 400
+        },
+        "renderedFirst": 1,
+        "renderedLast": 400,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/own-history.md",
+          "offset": 401,
+          "limit": 480
+        },
+        "renderedFirst": 401,
+        "renderedLast": 880,
+        "success": true,
+        "endMarkerSeen": false
+      },
+      {
+        "input": {
+          "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/own-history.md",
+          "offset": 881,
+          "limit": 480
+        },
+        "renderedFirst": 881,
+        "renderedLast": 1357,
+        "success": true,
+        "endMarkerSeen": true
+      }
+    ]
+  }
+]

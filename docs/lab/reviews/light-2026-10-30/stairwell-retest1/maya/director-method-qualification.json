@@ -1,0 +1,71 @@
+{
+  "time": "2026-10-31T12:17:45.516792+00:00",
+  "status": "Qualified completion",
+  "reportSha256": "bb25a4241e623c8222a3e1d58ca873e5d41f82feb812f738b65c588b9669df2b",
+  "historyRead": {
+    "lineCount": 1487,
+    "literalLinesCovered": 1487,
+    "unreadRanges": [],
+    "allLinesCovered": true
+  },
+  "commandCounts": {
+    "read": 11,
+    "curl": 50
+  },
+  "commandExceptions": 0,
+  "actualTimedTags": {
+    "phone": [
+      {
+        "op": "shot",
+        "kind": "first_minute",
+        "elapsed_s": 60.024,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "first_minute",
+        "elapsed_s": 63.077,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "stop",
+        "elapsed_s": 90.582,
+        "reason": "BORED"
+      }
+    ],
+    "desktop": [
+      {
+        "op": "shot",
+        "kind": "first_minute",
+        "elapsed_s": 60.058,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "first_minute",
+        "elapsed_s": 64.835,
+        "reason": null
+      },
+      {
+        "op": "log",
+        "kind": "stop",
+        "elapsed_s": 77.058,
+        "reason": "BORED"
+      }
+    ]
+  },
+  "qualifications": [
+    "Producer desktopstop77.059 vs raw77.058; original report unchanged.",
+    "Codex JSONL no supported image-view events: producer claims4views, independentlyunverified. Root separatelyviewed phonea001+desktopb002; distinct inspection receipt, not proof of tester viewing.",
+    "Producer says two10secondwaits returnedempty; retained completed command events show nonempty JSON replies/exit0 for both. Initial tool-yield presentation is not established; no game failure or absent outcome inferred.",
+    "OnlyMondayearlygame reached; noTuesday/widerlaterreaction proof. Hacer sawchoices but no immediateacknowledgment: no global no-reaction claim or inventedlaterconsequence.",
+    "Reply explanation/caretaker label clear, producer still dislikes repeatedrefusals; preserveclarityvsplayerinterest distinction.",
+    "NoBack inFeedback; Closefeedbackactualbutton worked, no typednotes/Submit/consentchange. This actual label differs frombrief; not a gameblock.",
+    "New blocking asks explicitly none; all3oldrankedasks/fullopeningandlaterconditionalreturn retained.",
+    "Root screenshotclipping observations are unranked geometrysourceleads, not fourthrankedask/playerblockingclassification.",
+    "Both stops<180; no pulse, first_minute actual>=60; no forcedminimum.",
+    "Automatic first-minute shot rows at60.024/60.058 are not tester log reactions; tester first_minute logs are63.077/64.835."
+  ],
+  "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either."
+}

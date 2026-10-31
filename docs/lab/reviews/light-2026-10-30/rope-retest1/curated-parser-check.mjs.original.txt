@@ -1,0 +1,37 @@
+// Runs the existing HF buildCurated parser (read-only baseline copy) on the baseline ledger with the 20 Rope retest 1 rows appended in memory.
+// Run: /opt/homebrew/opt/node@26/bin/node curated-parser-check.mjs   (writes curated-parser-check.json next to this file; no baseline or canonical write)
+import {readFileSync, writeFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {dirname, join} from 'node:path';
+const here = dirname(fileURLToPath(import.meta.url));
+const base = '/Users/abdul/code/.lab-scratch/playtest/light-1030/batch4-preparation/baseline/';
+const {buildCurated, parseLedger} = await import(base + 'apps/site/src/lab/ledger.ts');
+const read = (p) => readFileSync(p, 'utf8');
+const ledgerText = read(base + 'docs/lab/feedback-ledger.md');
+const lines = ledgerText.split('\n');
+let end = lines.findIndex((x) => x.trim() === '## Ledger');
+while (!lines[end]?.trim().startsWith('|')) end++;
+end += 2;
+while (lines[end]?.trim().startsWith('|')) end++;
+const add = read(join(here, 'ledger-additions.md')).split('\n').filter((x) => /^\| F-\d/.test(x));
+const lessons = read(base + 'docs/lab/lessons.md'), asks = read(base + 'docs/lab/testing-asks.md');
+const before = buildCurated({ledger: ledgerText, lessons, asks});
+lines.splice(end, 0, ...add);
+const merged = lines.join('\n');
+const {curated, problems} = buildCurated({ledger: merged, lessons, asks});
+const parsed = parseLedger(merged).rows;
+const mine = parsed.filter((r) => { const n = Number(r.id.slice(2)); return n >= 2581 && n <= 2600; });
+const out = {
+  parser: 'apps/site/src/lab/ledger.ts buildCurated and parseLedger from the read-only batch4-preparation baseline',
+  node: process.version,
+  baselineRows: before.curated.ledger.length, baselineProblems: before.problems,
+  appendedLines: add.length, rowsAfter: curated.ledger.length, newRowsParsed: mine.length,
+  routeKinds: Object.fromEntries(['fix', 'calibration'].map((k) => [k, mine.reduce((n, r) => n + r.routes.filter((x) => x.startsWith(k + ':')).length, 0)])),
+  rowsWithMoreThanOneFix: mine.filter((r) => r.routes.filter((x) => x.startsWith('fix:')).length !== 1).map((r) => r.id),
+  calibrationRows: mine.filter((r) => r.routes.some((x) => x.startsWith('calibration:'))).map((r) => r.id),
+  problems,
+  scope: 'Preview only: baseline docs read, the 20 rows appended in memory, nothing written outside this json.',
+};
+writeFileSync(join(here, 'curated-parser-check.json'), JSON.stringify(out, null, 2) + '\n');
+console.log(JSON.stringify({rowsAfter: out.rowsAfter, newRowsParsed: out.newRowsParsed, problems: problems.length, baselineProblems: out.baselineProblems.length, routeKinds: out.routeKinds, calibrationRows: out.calibrationRows}));
+if (problems.length || mine.length !== 20 || add.length !== 20 || out.rowsWithMoreThanOneFix.length || out.calibrationRows.join() !== 'F-2587,F-2594') process.exit(1);

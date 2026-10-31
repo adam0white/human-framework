@@ -1,0 +1,44 @@
+{
+  "time": "2026-10-31T09:21:11.786209+00:00",
+  "standingIdentityAndOrders": "Same Pavel/Tessa/Nia/Rosa as first round; Farah newcold. Private finalizer asserts exactstandingpersonaidentity.",
+  "players": [
+    {
+      "tester": "Pavel Novak",
+      "historyLines": 806,
+      "historySha256": "c5fccb0ec605c8ab203d8a47fc16906c12b39cf781216c899e73145a03efaeb1",
+      "briefSha256": "f0803346c1c82531663aaa2d821c53e6cdab5315bbabec5c45ea11148a31ce10",
+      "portsFree": [22000, 22001]
+    },
+    {
+      "tester": "Tessa Williams",
+      "historyLines": 756,
+      "historySha256": "92727f9103dd5af010d4a8ba3906a6db22307816b904d8df34008b6e74528cd3",
+      "briefSha256": "7f855fbb97fa371b05a969fe0504ae627e40a68e999e896fd0775ed426a8e2a8",
+      "portsFree": [22002, 22003]
+    },
+    {
+      "tester": "Nia Okafor",
+      "historyLines": 1097,
+      "historySha256": "d894e8de4b963032764ff54de510b7fbc6d2314f4bebf520625dbbcceabccda7",
+      "briefSha256": "3334931e4ed5c231a2e8fd0fde265aa25508fb0e78f4d84a128f5b0bb73e3e8e",
+      "portsFree": [22004, 22005]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "historyLines": 1921,
+      "historySha256": "46a72ac93bffda2c6b3fe0166a639de298fffa762f4367e0473db51f71091c29",
+      "briefSha256": "b3e300f132b208bcad6e3ab36c9c66c27ab61bbb3380916242b52504e3334c9e",
+      "portsFree": [22006, 22007]
+    },
+    {
+      "tester": "Farah Bensaid",
+      "historyLines": 5,
+      "historySha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "briefSha256": "e2317ba668129ec92b97b89ef80b847a383397d5a96c38958d3ab010f0194507",
+      "portsFree": [22008, 22009]
+    }
+  ],
+  "driverHashesMatch": true,
+  "diskFreeBytes": 53780324352,
+  "remainingGates": "Actual C7 rootreturn/cleanup, fullcooldown and freshlive/mainCI/servedasset refresh immediately beforeadmission. No dispatch from this file."
+}

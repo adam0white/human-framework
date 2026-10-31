@@ -1,0 +1,744 @@
+{
+  "note": "Packet path to original absolute path for every byte-exact source copy. It hashes source copies only and lists no generated file or hash index.",
+  "absentAtSource": [
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-input-preflight.json",
+      "existsAtSource": false,
+      "note": "named in the brief, absent at the source. Not invented. Identity cross-check uses predispatch players (lines, brief and history hashes) and input-freeze (characters)."
+    }
+  ],
+  "excludedNotCopied": [
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-native-preflight.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-partial1-driver-audit.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-partial2-driver-audit.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-partial4-driver-audit.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-partial1-release-after-round.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-partial2-release-after-round.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-partial4-release-after-round.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-main-ci.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-source-ci.json",
+      "existsAtSource": true,
+      "reason": "not copied: superseded or not needed for this packet"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-command-scope-audit.json",
+      "existsAtSource": true,
+      "reason": "not copied: forbidden to copy (full commands and provider metadata); only safe counts used"
+    }
+  ],
+  "files": [
+    {
+      "packet": "jonas/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/report.md",
+      "role": "producer report",
+      "sha256": "e00138d6ef386aa263581a6e7267c7a228a23acf54e4a976d175cd477f6c87ae",
+      "bytes": 13024,
+      "sourceMtimeNs": 1793442908615316603
+    },
+    {
+      "packet": "jonas/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/report.md",
+      "role": "producer report, byte-identical original copy",
+      "sha256": "e00138d6ef386aa263581a6e7267c7a228a23acf54e4a976d175cd477f6c87ae",
+      "bytes": 13024,
+      "sourceMtimeNs": 1793442908615316603
+    },
+    {
+      "packet": "jonas/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/brief.md",
+      "role": "tester brief, copied without reading",
+      "sha256": "835829b3e2213ee3472070e0fe81a5ba0834403e8f461db670d8d37a6770c26b",
+      "bytes": 11827,
+      "sourceMtimeNs": 1793442392469619825
+    },
+    {
+      "packet": "jonas/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/own-history.md",
+      "role": "tester own history, copied without reading",
+      "sha256": "e10ab0cef3e4fe5dfb6294d46bae93bf2a8f3e415a99242d0f402143046fd37f",
+      "bytes": 170112,
+      "sourceMtimeNs": 1793442392468946741
+    },
+    {
+      "packet": "jonas/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/history-source-map.json",
+      "role": "root receipt",
+      "sha256": "3ab78d07c91fb672024efbed163946e02f6831f2797b342a4d341f3e0d733e9f",
+      "bytes": 3970,
+      "sourceMtimeNs": 1793442392469367741
+    },
+    {
+      "packet": "jonas/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/completion.json",
+      "role": "root receipt",
+      "sha256": "394866f08827d286b2e005a1257872af983ac646fe90d2f563d13e2fd1ef73e3",
+      "bytes": 366,
+      "sourceMtimeNs": 1793442908615767808
+    },
+    {
+      "packet": "jonas/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/dispatch.json",
+      "role": "root receipt",
+      "sha256": "180321d892f31f20028ac8bb4e5a714b68f91bf688432836492cc8a7823d2c16",
+      "bytes": 2086,
+      "sourceMtimeNs": 1793442583066656414
+    },
+    {
+      "packet": "jonas/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/validation.json",
+      "role": "root receipt",
+      "sha256": "54d24dd65655bd0031136f31bc4453e82573f91f7803d8276a0ae111999b613e",
+      "bytes": 2445,
+      "sourceMtimeNs": 1793444506127536638
+    },
+    {
+      "packet": "jonas/director-method-qualification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/director-method-qualification.json",
+      "role": "root receipt",
+      "sha256": "8d24e40f78d89d675c2da5359d8e295a49aa0af883d2a5e32f96d5abb5af200a",
+      "bytes": 1377,
+      "sourceMtimeNs": 1793443304755620942
+    },
+    {
+      "packet": "jonas/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/phone/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "d6424f7d16b1fbc988bb1a3caabd8c4485613f7424f4cfe9a008be0c3cddfb34",
+      "bytes": 5371,
+      "sourceMtimeNs": 1793442897130887779
+    },
+    {
+      "packet": "jonas/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/phone/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793442582061612381
+    },
+    {
+      "packet": "jonas/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/phone/driver.out",
+      "role": "raw driver output",
+      "sha256": "b84f3a96f12420cf7ff8c2786bc8ed9085b3d0f67a6487363279b3c254520cd3",
+      "bytes": 85,
+      "sourceMtimeNs": 1793442582718182322
+    },
+    {
+      "packet": "jonas/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/desktop/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "2c44d5855de060e1985cf516e179912e6296ea41d025dcc1b4fdcb834428c1a5",
+      "bytes": 18131,
+      "sourceMtimeNs": 1793442836537092102
+    },
+    {
+      "packet": "jonas/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/desktop/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793442581971592304
+    },
+    {
+      "packet": "jonas/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/jonas/desktop/driver.out",
+      "role": "raw driver output",
+      "sha256": "c6e2703e6ecf77602146f7bdeccf6d291e8deb7d0ad686e4796d7341d3108b98",
+      "bytes": 85,
+      "sourceMtimeNs": 1793442582718167863
+    },
+    {
+      "packet": "aisha/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/report.md",
+      "role": "producer report",
+      "sha256": "7fd01bd9efaa665254ea869d084e1365f3033869eac776b2f40bd7ef4f6db7b4",
+      "bytes": 14749,
+      "sourceMtimeNs": 1793443255483714889
+    },
+    {
+      "packet": "aisha/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/report.md",
+      "role": "producer report, byte-identical original copy",
+      "sha256": "7fd01bd9efaa665254ea869d084e1365f3033869eac776b2f40bd7ef4f6db7b4",
+      "bytes": 14749,
+      "sourceMtimeNs": 1793443255483714889
+    },
+    {
+      "packet": "aisha/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/brief.md",
+      "role": "tester brief, copied without reading",
+      "sha256": "d0511164ac6c691311d2e8aca90393df4fe20aa289f0fdc13a567e62fab9d910",
+      "bytes": 11850,
+      "sourceMtimeNs": 1793442392531797420
+    },
+    {
+      "packet": "aisha/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/own-history.md",
+      "role": "tester own history, copied without reading",
+      "sha256": "3df1aa82f4b39ad15a1d4fb69876573858548b6a974a7fbfecb88d44b6cdfdc2",
+      "bytes": 146934,
+      "sourceMtimeNs": 1793442392531185836
+    },
+    {
+      "packet": "aisha/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/history-source-map.json",
+      "role": "root receipt",
+      "sha256": "fc127c809b3afac8046f25b61d0808feb15eda2354b907ebd8585c4e3c55fe47",
+      "bytes": 4275,
+      "sourceMtimeNs": 1793442392531474295
+    },
+    {
+      "packet": "aisha/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/completion.json",
+      "role": "root receipt",
+      "sha256": "063ace54e8fa9e0b001977177010613d9dfa9cb5325a46b5901b15ab2bfa1ad6",
+      "bytes": 366,
+      "sourceMtimeNs": 1793443255484575015
+    },
+    {
+      "packet": "aisha/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/dispatch.json",
+      "role": "root receipt",
+      "sha256": "aa14ac22c59b7cebfc3bba2b27db80fa60661ef9b434494671537350a1c09ce1",
+      "bytes": 2086,
+      "sourceMtimeNs": 1793442909869664492
+    },
+    {
+      "packet": "aisha/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/validation.json",
+      "role": "root receipt",
+      "sha256": "4599539318be6178381df74fbd4ac8d0491443e1ebdbbc14f90a6fd10f137098",
+      "bytes": 3737,
+      "sourceMtimeNs": 1793444506136574513
+    },
+    {
+      "packet": "aisha/director-method-qualification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/director-method-qualification.json",
+      "role": "root receipt",
+      "sha256": "1bef8b4b195b68ba23ca3d5dc912b5ac65c115a4bd4ce0a38186cc7e0e7e22ea",
+      "bytes": 1456,
+      "sourceMtimeNs": 1793443603521455239
+    },
+    {
+      "packet": "aisha/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/phone/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "1f76f085a1565b5c91320c92a1d7b3c8953d973590467bdf6079994ed314f268",
+      "bytes": 7078,
+      "sourceMtimeNs": 1793443219014471718
+    },
+    {
+      "packet": "aisha/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/phone/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793442908855256775
+    },
+    {
+      "packet": "aisha/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/phone/driver.out",
+      "role": "raw driver output",
+      "sha256": "a825d50f4d48d2e33d361befd9ee90780d5f348d5b1fd7e6bc746ab312fdced8",
+      "bytes": 85,
+      "sourceMtimeNs": 1793442909232389476
+    },
+    {
+      "packet": "aisha/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/desktop/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "a568508e6ff1d2af72c5ae5574fcd3e8238fd3fb2b7ea72e17225caa1b7f28ce",
+      "bytes": 18679,
+      "sourceMtimeNs": 1793443124137458903
+    },
+    {
+      "packet": "aisha/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/desktop/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793442908735567122
+    },
+    {
+      "packet": "aisha/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/aisha/desktop/driver.out",
+      "role": "raw driver output",
+      "sha256": "8c811ea21f6279a33ab46136b5646c7dc77d813474b4bc13b01d4b66f7750384",
+      "bytes": 85,
+      "sourceMtimeNs": 1793442909149436800
+    },
+    {
+      "packet": "diego/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/report.md",
+      "role": "producer report",
+      "sha256": "c9df8ca01b833ce5e6b50bba95c2bddd89c790018a69d1d341287b48010727f7",
+      "bytes": 10158,
+      "sourceMtimeNs": 1793443692460831839
+    },
+    {
+      "packet": "diego/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/report.md",
+      "role": "producer report, byte-identical original copy",
+      "sha256": "c9df8ca01b833ce5e6b50bba95c2bddd89c790018a69d1d341287b48010727f7",
+      "bytes": 10158,
+      "sourceMtimeNs": 1793443692460831839
+    },
+    {
+      "packet": "diego/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/brief.md",
+      "role": "tester brief, copied without reading",
+      "sha256": "5a523afcba57911a50ac4f2071ebc9c5fdc8cf90b73acf93ffaf2535b6cbb90f",
+      "bytes": 11831,
+      "sourceMtimeNs": 1793442392598255978
+    },
+    {
+      "packet": "diego/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/own-history.md",
+      "role": "tester own history, copied without reading",
+      "sha256": "74056e034abe05cfa0a0fa90e609692943ebb213d5e26f95160921b211585c9c",
+      "bytes": 141128,
+      "sourceMtimeNs": 1793442392597778477
+    },
+    {
+      "packet": "diego/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/history-source-map.json",
+      "role": "root receipt",
+      "sha256": "9adcfa3b2957e4523a0a34ef0ea4248ad78d46a48a1523febded8e64ad79d66e",
+      "bytes": 4566,
+      "sourceMtimeNs": 1793442392598038227
+    },
+    {
+      "packet": "diego/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/completion.json",
+      "role": "root receipt",
+      "sha256": "52666786db30905cdb9e62e24350c5fc0a3ff09e5edef6d59538688fd8d01d61",
+      "bytes": 366,
+      "sourceMtimeNs": 1793443692461820381
+    },
+    {
+      "packet": "diego/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/dispatch.json",
+      "role": "root receipt",
+      "sha256": "94dfdad1aedd37288e439cd06ffa2c5cd174962c7858cbadb4c713b96a18f0cd",
+      "bytes": 2086,
+      "sourceMtimeNs": 1793443256714482573
+    },
+    {
+      "packet": "diego/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/validation.json",
+      "role": "root receipt",
+      "sha256": "7197b9c83ba401df5c2cf430244af27a6dd6f04db44940f3f4936bfae5ad260a",
+      "bytes": 4804,
+      "sourceMtimeNs": 1793444506143144763
+    },
+    {
+      "packet": "diego/director-method-qualification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/director-method-qualification.json",
+      "role": "root receipt",
+      "sha256": "2bdd7be9af7155a27e2552b41efaf2e55f31e5a715b0c6fd90a03378773ce08f",
+      "bytes": 1482,
+      "sourceMtimeNs": 1793444265544710741
+    },
+    {
+      "packet": "diego/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/phone/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "63e5b74392a4d75b6d3c0f859b29e5f6825603e5cfbe75b0005113a326566bfc",
+      "bytes": 12519,
+      "sourceMtimeNs": 1793443665866934269
+    },
+    {
+      "packet": "diego/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/phone/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793443255699460174
+    },
+    {
+      "packet": "diego/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/phone/driver.out",
+      "role": "raw driver output",
+      "sha256": "5fd39955c6f636b59c4f5e61d747f1b4a183ab5d0a0a5cbf98dc51ed9d13e39e",
+      "bytes": 85,
+      "sourceMtimeNs": 1793443256071776096
+    },
+    {
+      "packet": "diego/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/desktop/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "871fc6eb8809b935470dd184d0937011e5ef227d44e09c7a5cb68d1ecdf2e8b6",
+      "bytes": 12490,
+      "sourceMtimeNs": 1793443469502336686
+    },
+    {
+      "packet": "diego/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/desktop/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793443255615745394
+    },
+    {
+      "packet": "diego/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/diego/desktop/driver.out",
+      "role": "raw driver output",
+      "sha256": "b6c87e1bac4f25d41d61caa75ed6557c0c1aa9c280332607f446e2a3c59edee8",
+      "bytes": 85,
+      "sourceMtimeNs": 1793443256008580532
+    },
+    {
+      "packet": "rosa/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/report.md",
+      "role": "producer report",
+      "sha256": "e5cab6578b172514e0ff8dd4f9258e11d510e7c9feff32b7dc12b795455b0248",
+      "bytes": 14858,
+      "sourceMtimeNs": 1793444059257988250
+    },
+    {
+      "packet": "rosa/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/report.md",
+      "role": "producer report, byte-identical original copy",
+      "sha256": "e5cab6578b172514e0ff8dd4f9258e11d510e7c9feff32b7dc12b795455b0248",
+      "bytes": 14858,
+      "sourceMtimeNs": 1793444059257988250
+    },
+    {
+      "packet": "rosa/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/brief.md",
+      "role": "tester brief, copied without reading",
+      "sha256": "8ea7d0b2c6b4eb4b34d4852187931c51622aea5fd5e2be0a3f71e67a52b2d1aa",
+      "bytes": 12611,
+      "sourceMtimeNs": 1793442392654841110
+    },
+    {
+      "packet": "rosa/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/own-history.md",
+      "role": "tester own history, copied without reading",
+      "sha256": "694c7b865dc6beafe8559faf750b7fba6130dd42d5a18ce4cdde0b4c93037cdb",
+      "bytes": 248640,
+      "sourceMtimeNs": 1793442392654159609
+    },
+    {
+      "packet": "rosa/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/history-source-map.json",
+      "role": "root receipt",
+      "sha256": "b31f5b943eb3c0242c1757a94bbc8ef0ab883a37b11d5439a5c6491be9f41abb",
+      "bytes": 6383,
+      "sourceMtimeNs": 1793442392654530235
+    },
+    {
+      "packet": "rosa/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/completion.json",
+      "role": "root receipt",
+      "sha256": "8211e3e8c584abdbd62a909d47dc41267669e57e83a1cf336a67e8ec2227e716",
+      "bytes": 366,
+      "sourceMtimeNs": 1793444059258943001
+    },
+    {
+      "packet": "rosa/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/dispatch.json",
+      "role": "root receipt",
+      "sha256": "14f31e7800e061f982d154ead1f45debc8ab8c086ad6bedc225a7494a6a9d4f5",
+      "bytes": 2086,
+      "sourceMtimeNs": 1793443693694963481
+    },
+    {
+      "packet": "rosa/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/validation.json",
+      "role": "root receipt",
+      "sha256": "33dd3f75961c5d01746e5306f23606c639fc8cd3924904ccca9ecc82f359415a",
+      "bytes": 3397,
+      "sourceMtimeNs": 1793444506150710971
+    },
+    {
+      "packet": "rosa/director-method-qualification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/director-method-qualification.json",
+      "role": "root receipt",
+      "sha256": "0188e8cd3a059559620259e741cafa773d5830088a8b4b948d640f6e86561937",
+      "bytes": 2145,
+      "sourceMtimeNs": 1793444265544791241
+    },
+    {
+      "packet": "rosa/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/phone/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "5fb35770f142410dc42d2e2424fbf04fecd3023338db0e309447745497f2c8f4",
+      "bytes": 15258,
+      "sourceMtimeNs": 1793443927301243591
+    },
+    {
+      "packet": "rosa/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/phone/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793443692602598847
+    },
+    {
+      "packet": "rosa/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/phone/driver.out",
+      "role": "raw driver output",
+      "sha256": "b03120ed1ca5f90505de95e759100c94344a8f621cc02b7e06fb5b4d0ebbd1b4",
+      "bytes": 85,
+      "sourceMtimeNs": 1793443693030578998
+    },
+    {
+      "packet": "rosa/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/desktop/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "8ca2be9aae82f0f508805d34a0bea44b6e540d841097cf8ab48117f711bd1100",
+      "bytes": 7614,
+      "sourceMtimeNs": 1793444015273546850
+    },
+    {
+      "packet": "rosa/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/desktop/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793443692682132125
+    },
+    {
+      "packet": "rosa/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/rosa/desktop/driver.out",
+      "role": "raw driver output",
+      "sha256": "4c51be09bcb4bed1dcbeccd3062cabfd48f5e9a15ed74360f220152bb0a5522a",
+      "bytes": 85,
+      "sourceMtimeNs": 1793443693088022268
+    },
+    {
+      "packet": "elena/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/report.md",
+      "role": "producer report",
+      "sha256": "4fc55db878f718a2974318dea2565c640506464c22be68c6c1944eeff246ac04",
+      "bytes": 7117,
+      "sourceMtimeNs": 1793444466243612635
+    },
+    {
+      "packet": "elena/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/report.md",
+      "role": "producer report, byte-identical original copy",
+      "sha256": "4fc55db878f718a2974318dea2565c640506464c22be68c6c1944eeff246ac04",
+      "bytes": 7117,
+      "sourceMtimeNs": 1793444466243612635
+    },
+    {
+      "packet": "elena/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/brief.md",
+      "role": "tester brief, copied without reading",
+      "sha256": "9f232ad360ddf2fbc0648109f7e5dac38f4899b31cd91529f0fd837c54bb5c70",
+      "bytes": 11141,
+      "sourceMtimeNs": 1793442392655525152
+    },
+    {
+      "packet": "elena/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/own-history.md",
+      "role": "tester own history, copied without reading",
+      "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+      "bytes": 186,
+      "sourceMtimeNs": 1793442392655198902
+    },
+    {
+      "packet": "elena/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/history-source-map.json",
+      "role": "root receipt",
+      "sha256": "ea7429407f3c06fb8ae72afc69c302be37d157776bf1215354482dbfbf9f206a",
+      "bytes": 281,
+      "sourceMtimeNs": 1793442392655280360
+    },
+    {
+      "packet": "elena/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/completion.json",
+      "role": "root receipt",
+      "sha256": "91838717ed8179439122162e5e2ef899a275e27c4a58eb07f2263d91095ccfd4",
+      "bytes": 366,
+      "sourceMtimeNs": 1793444466244180177
+    },
+    {
+      "packet": "elena/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/dispatch.json",
+      "role": "root receipt",
+      "sha256": "813d714e7888b8d68f281a0e79ec4bfc0aeff9808636a86b7b346278047176a3",
+      "bytes": 2084,
+      "sourceMtimeNs": 1793444060548546621
+    },
+    {
+      "packet": "elena/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/validation.json",
+      "role": "root receipt",
+      "sha256": "9a06eccf41ad6f3e012348daa45f451b14ad5c8536f94f043d28bc0a3cff21e9",
+      "bytes": 4752,
+      "sourceMtimeNs": 1793444506157818846
+    },
+    {
+      "packet": "elena/director-method-qualification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/director-method-qualification.json",
+      "role": "root receipt",
+      "sha256": "6c184c8b70362aa1614737b75f8a2d2038ad245a01711c99a916c7288250288b",
+      "bytes": 989,
+      "sourceMtimeNs": 1793444569836182037
+    },
+    {
+      "packet": "elena/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/phone/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "038ec5f982633453269adceae120db4fc608d06aea40beb9e2a9b29f12c99153",
+      "bytes": 21405,
+      "sourceMtimeNs": 1793444296678817238
+    },
+    {
+      "packet": "elena/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/phone/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793444059452345777
+    },
+    {
+      "packet": "elena/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/phone/driver.out",
+      "role": "raw driver output",
+      "sha256": "e8ecf68ac7d7c5b0c8aee698d7836121d2190218e907c4fbe33a690285be3ed6",
+      "bytes": 84,
+      "sourceMtimeNs": 1793444059893383307
+    },
+    {
+      "packet": "elena/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/desktop/wall-clock.jsonl",
+      "role": "raw driver output",
+      "sha256": "ca1cd2ad6ee5155af1d5e0380ce60c8f6e024fd55ad66d620c6925985f1bf66f",
+      "bytes": 10875,
+      "sourceMtimeNs": 1793444436643481185
+    },
+    {
+      "packet": "elena/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/desktop/release-start.json",
+      "role": "release receipt",
+      "sha256": "5c8ac73e1bd80f586abd8d2014b1362bf61d5f06c30324afb244658385c6af63",
+      "bytes": 118,
+      "sourceMtimeNs": 1793444059540531642
+    },
+    {
+      "packet": "elena/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2/elena/desktop/driver.out",
+      "role": "raw driver output",
+      "sha256": "5ed5f3c820481811cbdb7fdfb4c417ffaa10b2156d991a358283e4f41e5fc825",
+      "bytes": 84,
+      "sourceMtimeNs": 1793444059962570707
+    },
+    {
+      "packet": "inputs/rope-retest1-ledger-additions.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/rope-retest1/ledger-additions.md",
+      "role": "rope retest 1 ledger rows, for the id non-collision preview only",
+      "sha256": "827348ea9716575d46472f85ffae1ba35166b36b72af730cd34a62eecc5e938a",
+      "bytes": 40220,
+      "sourceMtimeNs": 1793443964188764826
+    },
+    {
+      "packet": "inputs/goodhands-retest2-cleanup.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-cleanup.json",
+      "role": "root receipt",
+      "sha256": "1b29df3c93adc3428c187a922fa05bcca25e0c67a5a3737cbfe3003d1bb2e381",
+      "bytes": 1078,
+      "sourceMtimeNs": 1793444527802538953
+    },
+    {
+      "packet": "inputs/goodhands-retest2-final-driver-audit.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-final-driver-audit.json",
+      "role": "root receipt",
+      "sha256": "93cea946ba74448cfcc42e45d0ca3b53b1e91237e4ec1925259aafad56ac3526",
+      "bytes": 20441,
+      "sourceMtimeNs": 1793444506277348096
+    },
+    {
+      "packet": "inputs/goodhands-retest2-final-release-after-round.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-final-release-after-round.json",
+      "role": "root receipt",
+      "sha256": "776f4c787f497c305d45a255688122d530fa38b2769349b1a2a9a57a4a3cc774",
+      "bytes": 192,
+      "sourceMtimeNs": 1793444506277115013
+    },
+    {
+      "packet": "inputs/goodhands-retest2-history-read-audit.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-history-read-audit.json",
+      "role": "root receipt",
+      "sha256": "8ed0e3a6fe4cec537a6b1ae8e532f2a670535f86c517a5bfe980d2225bf20e31",
+      "bytes": 5119,
+      "sourceMtimeNs": 1793444569835854662
+    },
+    {
+      "packet": "inputs/goodhands-retest2-input-freeze.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-input-freeze.json",
+      "role": "root receipt",
+      "sha256": "9925d316bfc4d5e884f46d1b07d10f079722fc45b68d77db9280d947a71b4bc2",
+      "bytes": 1711,
+      "sourceMtimeNs": 1793442392655699402
+    },
+    {
+      "packet": "inputs/goodhands-retest2-predispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-predispatch.json",
+      "role": "root receipt",
+      "sha256": "655335dab8967be687569681fe888df9bccaf126c0d80b3001f62101190d17f4",
+      "bytes": 2078,
+      "sourceMtimeNs": 1793442561054990194
+    },
+    {
+      "packet": "inputs/goodhands-retest2-root-delivery-verification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-root-delivery-verification.json",
+      "role": "root receipt",
+      "sha256": "2054b8db35c205f2e6b68dd183956c24edb5c08949cff9241f19f726fb385d8f",
+      "bytes": 4508,
+      "sourceMtimeNs": 1793442392371093365
+    },
+    {
+      "packet": "inputs/goodhands-retest2-round-state.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-round-state.json",
+      "role": "root receipt",
+      "sha256": "5d0a286d542487e6d3e6bec43621927c2170b6aaae27000f63b6f4a4554dc731",
+      "bytes": 459,
+      "sourceMtimeNs": 1793444527802709620
+    },
+    {
+      "packet": "inputs/goodhands-retest2-plan.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest2-plan.json",
+      "role": "root receipt",
+      "sha256": "9c81dee4301f9989ec17b188a6ad200f388ed52e0bbdee42ecfa58b1294eb2ac",
+      "bytes": 6769,
+      "sourceMtimeNs": 1793442392655621527
+    }
+  ]
+}

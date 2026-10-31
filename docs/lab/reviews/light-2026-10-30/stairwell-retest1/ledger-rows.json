@@ -1,0 +1,564 @@
+[
+  {
+    "id": "F-2671",
+    "who": "Maya Chen",
+    "type": "return",
+    "source": "maya/report.md",
+    "opening": {
+      "text": "Would I return voluntarily? I would come back another evening only if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories; I would not return tonight or leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 223,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\n- **Phone, BORED at 90.582 s:** “I am stopping on the phone. Hacer saw both choices but gave the familiar praise, and both women said Tarik is kind. The reply explanation and caretaker label are clearer, but I want to try the desktop now.”\n- **Desktop, BORED at 77.059 s:** “I am stopping on desktop. Tarik gave me the same ferry story and no news first. His refusal is worded a little differently, but I do not want to repeat this morning again tonight.”\n\nI would come back another evening only if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories. I still want to know what happens on Tuesday and whether the gate or swap is mentioned later, but I would not return tonight to repeat this opening. I would not leave the game running.\n",
+      "char_start": 9698,
+      "char_end_exclusive": 10511,
+      "line_start": 96,
+      "line_end": 102
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nThe game clearly showed that Hacer saw the gate and the swap, while saying I did not know what she thought. I did not see her later reaction; her immediate greeting did not mention either action. I cannot conclude that no later reaction exists.\n\nThe new reply explanation was clear: the words I pick do not change whether the resident continues. My own line appeared as “You (the caretaker),” which resolved the label I had not understood last visit. I understood the explanation, though I still wanted the conversation to respond more distinctly.\n\nThe game said time was paused during conversation and showed the expected arrival and order deadline. I was not confused enough to choose “I’m confused.”\n\nTwo ten-second wait calls returned empty output, one on each device. The next driver replies showed the game had advanced to the conversation result. I did not treat the empty replies as game outcomes.\n",
+        "char_start": 7190,
+        "char_end_exclusive": 8125,
+        "line_start": 70,
+        "line_end": 79
+      },
+      {
+        "label": "unranked device observations with self-reported image viewing",
+        "text": "## 6. Device use\n\n**Phone, 360×690 touch:**\n\n- Viewed **a-001.png** immediately after open. It showed the cream single-column title, unchecked longer-game options, the Begin button and recording banner. The bottom explanation ran behind the fixed Begin area in the image; I could read its complete text in the driver reply.\n- Viewed **a-002.png** at Sevim’s flat. The building, tabs and conversation controls were visible. The speech strip covered part of the upper building drawing; the visible controls and text were readable.\n- I used Begin, the gate choice, bakery and flat travel, the newspaper swap, Anything new?, Sit together, a reply, Close conversation, Game menu and Feedback.\n\n**Desktop, 1280×800:**\n\n- Viewed **b-001.png** immediately after open. It showed the title in a centred column, with the Begin button fixed near the bottom. Some lower title text was outside the visible area.\n- Viewed **b-002.png** during Tarık’s story. The building filled the left pane and the conversation journal the right. The top status area was partly clipped at the upper edge; the ferry text was readable.\n- I used mouse-like named taps and waits. I used no keyboard keys, so keyboard operation remains untested.\n\nOn **both devices**, Feedback offered “I’m stopping” and “I’m confused.” I selected “I’m stopping”; it appeared pressed. There was no control labelled Back in the dialog, so I used **Close feedback**, which returned me to the game menu. I typed no note, pressed no Submit and changed no consent or recording setting. I took two manual screenshots per device.\n",
+        "char_start": 8126,
+        "char_end_exclusive": 9697,
+        "line_start": 80,
+        "line_end": 95
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\n- **Let neighbours answer what I did — partly met.** The gate choice now warns that something may follow later, and the game explicitly recorded Hacer seeing both actions. In the conversation I reached, Hacer praised and tipped me without mentioning either; Sevim noticed my timing without mentioning her paper. I stopped before any later response, so that remains unseen.\n- **Make replies vary; stop repeated “Tarık is kind”; explain “kapici” — partly met.** My line now says “You (the caretaker),” and the game explains the reply choices. Tarık said “I would sooner leave it there” while Hacer said “I would rather leave it there,” so the wording varied slightly. Both still declined to continue, and Hacer and Sevim both said “Tarık is kind.”\n- **Give the first “Anything new?” something — did not meet it for Tarık.** He again said he had no news, then told the ferry story when I sat with him.\n\n**New blocking asks from this visit:** None. The repeated responses and missing immediate acknowledgement were concerns I brought from the last visit. I did not reach Tuesday or see whether a later consequence follows.\n\nI owned no worktree, server, browser or process. The coordinator owns and stops both drivers. No repository was touched, so `git worktree list` is not applicable.",
+        "char_start": 10737,
+        "char_end_exclusive": 12054,
+        "line_start": 107,
+        "line_end": 115
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Maya would return another evening only for responses to her choices and fresher stories, not tonight or left running. Hacer saw the gate and swap; no later consequence was reached. Root separately inspected two Maya screenshots, without establishing tester image viewing."
+  },
+  {
+    "id": "F-2672",
+    "who": "Jonas Berg",
+    "type": "return",
+    "source": "jonas/report.md",
+    "opening": {
+      "text": "**I would not return voluntarily as it stands: the notebook now moves, but I do not want to play through six days of similar conversations to find out what the Sunday vote does.** I would not leave it running, and I would not come back another evening unless talking offered more distinct, visible consequences.",
+      "char_start": 0,
+      "char_end_exclusive": 311,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\nMy exact stop words and reasons are in the diary above. Both were **BORED**. Desktop ended at 169.201 seconds and phone at 53.765 seconds; both remained on Monday.\n\nI would not return voluntarily as it stands. The notebook result answered part of the question that brought me back, and the new explanation makes the limits clear. I still do not see enough consequence in the conversations I reached to make me want to play six days for the vote. I would not leave it running. I would consider another evening if talking offered more distinct, visible consequences.\n",
+      "char_start": 10213,
+      "char_end_exclusive": 10801,
+      "line_start": 84,
+      "line_end": 89
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nThe notebook explains that its count covers facts that reached it and that it does not show residents’ feelings or trust. I understand those labels better. I still do not know why Hacer’s account of her niece did not appear as a learned story while her statement about Tarık added a line. I did not reach Sunday, so I cannot say what sitting, replying or passing news would do to the vote.\n\nThe newspaper swap now says it exchanges the crosswords as a prank and may be witnessed. I did not perform it. The Tell panel explains the difference between passing something on as heard and asserting it as certain, and warns that a false story can cost trust. I passed on the water notice marked “sure”; Tarık said he was thinking about it. I saw no later consequence.\n\nMy first desktop tap on “Go to the bakery” returned the room state, and after waiting I was still there. The retry visibly started the walk. I cannot tell why the first input did not produce visible movement. A later note command failed with a shell quoting error and was reissued successfully. A partial-text Feedback tap returned an explicit “not on the page” error; the exact named control worked on retry. Neither was a game outcome or a driver block.\n",
+        "char_start": 7116,
+        "char_end_exclusive": 8364,
+        "line_start": 64,
+        "line_end": 71
+      },
+      {
+        "label": "unranked device observations with self-reported image viewing",
+        "text": "## 6. Device use\n\n**Desktop:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-001.png), the cream title page with the six-day premise, two unchecked four-week options and the red Begin button. I viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/desktop/a-002.png), the building beside the notebook. The notebook explanation was legible, but the top “next by 07:56” line was partly clipped at the upper edge; the paused-time message itself was readable.\n\nI used the order list, bakery and flat navigation, sits, both reply choices across two people, news, notebook, Tell, and Feedback. I did not reach the Sunday meeting.\n\n**Phone:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-001.png), the title in one column with the Begin button visible; the lower explanatory paragraph continued behind the fixed button area. [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-002.png) showed the building, tabs, first order and large action buttons. [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/jonas/phone/b-003.png) showed Tarık’s conversation and readable action buttons; the message strip covered the top of the building drawing.\n\nI used Begin, bakery and flat travel, “Anything new?”, and Feedback. I did not inspect the phone notebook or Tell panel, so I cannot assess their layout.\n\nOn both devices Feedback offered “I’m stopping” and “I’m confused.” I selected “I’m stopping,” saw it marked pressed, then used **Close feedback**, which returned me to the game menu; no Back control was offered in that dialog. I typed and submitted nothing and left recording and consent unchanged.\n",
+        "char_start": 8365,
+        "char_end_exclusive": 10212,
+        "line_start": 72,
+        "line_end": 83
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\n1. **Visible feeling or trust, or a line saying what each sit and reply did — partly met.** The game now explicitly says it does not show feelings or trust, and it explains that reply wording does not change the resident’s choice to continue. I still saw no clear effect of my sits or replies on Sunday.\n2. **Replies that differ, or a plain statement that they are templated — partly met.** Hacer said “I would rather leave it there”; Sevim said “I would rather we left it there.” The words differ slightly, but both ended the conversation. The game clearly says my choice of reply does not change whether the resident continues; it does not say the residents’ answers are templated.\n3. **Explain the swap, tighten day-one deadlines, and fix the desktop clipped banner — partly met.** The swap is explained as a crossword prank with a possible witness. The first two desktop deadlines were close, and I delivered both despite two sits, but I stopped with two orders outstanding; I did not complete the batch, so I cannot judge whether the full day is tighter. The paused-time message was readable in my desktop screenshot, but the separate “next by” line was partly clipped at the top.\n\n**New blocking asks:** None from what I reached. The similar conversation outcomes and lack of a visible effect remain my reasons not to return; I did not see the Sunday vote.\n\nI owned no server, browser process, branch or worktree, and touched no repository. The coordinator owns the two drivers and their cleanup.",
+        "char_start": 11040,
+        "char_end_exclusive": 12577,
+        "line_start": 96,
+        "line_end": 104
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Jonas would consider another evening if talking produced distinct visible consequences; he would not return as it stands or leave it running. He saw the notebook move but did not reach Sunday. The first bakery tap was acknowledged but movement began after a second tap; cause unknown."
+  },
+  {
+    "id": "F-2673",
+    "who": "Leila Mansour",
+    "type": "return",
+    "source": "leila/report.md",
+    "opening": {
+      "text": "**Would I return voluntarily?** Maybe another evening on my laptop, only if conversations gave me more distinct responses to what I say and less repeated gossip; I would not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 191,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\n**Phone stop — BORED, 86.239 s:** “Stopping the phone visit. The explanations are clearer and the notebook count moved, but the same flat replies leave me little reason to continue tonight. I will try the other device.”\n\n**Desktop stop — BORED, 89.307 s:** “Stopping desktop for tonight. Hacer reacted to my invented story and Sevim had a beautiful personal line, but the repeated gossip and near-identical refusal make me reluctant to replay the morning again. I would not leave it running.”\n\nOn the phone I opened Feedback when confused by the notebook detail and chose **“I’m confused.”** After deciding to stop, I reopened it and chose **“I’m stopping.”** On desktop I chose **“I’m stopping.”** Both labels were offered on both devices. Feedback offered **Close feedback**, not Back; I used Close to return to the menu. I typed no note, submitted nothing, and changed no consent or recording setting.\n\n**Would I return voluntarily?** Maybe another evening on my laptop, only if conversations gave me more distinct responses to what I say and less repeated gossip; I would not leave it running. Hacer’s surprise and Sevim’s story give me a reason to want more, but I do not want to replay the same morning for the same short refusals.\n\n**Leave it running?** No. **Come back another evening?** Maybe, under those conditions.\n",
+      "char_start": 11665,
+      "char_end_exclusive": 13015,
+      "line_start": 97,
+      "line_end": 108
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nThe job, deadlines, walking estimates, and paused conversations were clear. The title explained the two start boxes, the journal called the ₺5 a tip, and the gate warned that it could be witnessed and have a later result. The Tell panel explained hearsay, certainty, invention, and a possible trust cost.\n\nThe notebook explained why it says I do not know residents’ feelings or trust. It also said the learned count covers facts that reach the notebook. After Hacer’s news, the count moved from zero to one. The entry said Tarık would give me his last lemon candy; I had seen “Tarık is kind,” but did not see that candy detail spoken. I remain unsure where that detail came from.\n\nHacer’s “That is interesting” did not tell me whether she believed the water news. Her repetition of my invented romance showed that the words returned, but did not settle whether she believed them.\n",
+        "char_start": 9246,
+        "char_end_exclusive": 10155,
+        "line_start": 79,
+        "line_end": 86
+      },
+      {
+        "label": "unranked device observations with self-reported image viewing",
+        "text": "## 6. Device use\n\n**Phone, 360×690:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/phone/a-001.png), showing the title, checkboxes and Begin button. The explanation continued below the visible area behind the fixed bottom controls. I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/phone/a-002.png), showing the building, Hacer’s line, tabs and conversation buttons. The panel text was cut at the top and bottom of its visible region in that image; I did not investigate its scrolling.\n\nI used named touch taps for Begin, travel, sitting, listening, Tell, news, Orders, Notebook, the menu and Feedback. I did not use coordinate taps.\n\n**Desktop, 1280×800:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/desktop/b-001.png), the centred title page, and [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/desktop/b-002.png), the building on the left and Hacer’s panel and journal on the right. The top status was partly clipped above the viewport. The building and conversation were readable in the image.\n\nI used named mouse taps for the gate, travel, Tell, the invented-story choices, news, sitting, reply, Orders, menu and Feedback. I used no keyboard keys. I did not inspect phone landscape or later-game layouts. I viewed two manual screenshots per device; I did not view an automatic checkpoint.\n",
+        "char_start": 10156,
+        "char_end_exclusive": 11664,
+        "line_start": 87,
+        "line_end": 96
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\n1. **Make residents’ answers show what my words did — partly met.** Hacer responded differently to the invented romance than to the water news, and she repeated the romance. I cannot tell whether she believed it or whether the pastry depended on the story. The game now explicitly says the two listening replies do not change whether a resident continues; Hacer and Sevim gave near-identical refusals after different replies.\n\n2. **Fill the notebook as I learn, including how Tarık feels — partly met.** The learned count moved and a Tarık entry appeared. The notebook now explains that it does not show how residents feel or trust my word, so that part of my earlier request was not met. Hacer’s personal story did not appear in the count when I checked immediately afterward.\n\n3. **Explain “kapici,” the ₺5, title checkboxes and gate — partly met.** The title calls me the caretaker and explains both boxes. The journal identifies the ₺5 as a tip. The gate warns about a witness and a possible later result, though it does not say what will happen. I did not see the word “kapici” during these short visits, so I did not see whether it is explained where it appears.\n\n**New blocking asks:** None beyond the ranked asks. The unexplained lemon-candy detail confused me, but it was the repeated conversation that made me stop. I did not reach later days or the Sunday vote, so I cannot judge later consequences.\n\nI started no worktree, server, browser or helper process. The coordinator owns the drivers. No repository was touched, so no worktree list applies.",
+        "char_start": 13280,
+        "char_end_exclusive": 14874,
+        "line_start": 115,
+        "line_end": 125
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Leila might return on laptop only for distinct responses and less repeated gossip. She says none beyond ranked asks are new blockers; lemon-candy provenance confused her but repeated conversation caused her stop. Surprise and pastry coincided without a proven causal link."
+  },
+  {
+    "id": "F-2674",
+    "who": "Rosa Alvarez",
+    "type": "return",
+    "source": "rosa/report.md",
+    "opening": {
+      "text": "I would return voluntarily another evening, on either device, to spend more time with the neighbours and see the Sunday vote; I would close the game now, not leave it running.",
+      "char_start": 0,
+      "char_end_exclusive": 175,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\n- **Phone, TASTE:** “I stop on the phone for tonight. I liked the ordinary jobs and hearing Tarik again. The news choices and prank are clearer, and I had no rereads. I would close it and return another evening.”\n- **Desktop, TASTE:** “I stop on the big screen for tonight. The notebook and tip explanation helped, and I liked hearing Hacer. I would return another evening to see the Sunday vote, and I would close it now.”\n\nI would return voluntarily another evening on either device. I want to see the neighbours again and find out what happens at the Sunday vote. I would like a plain explanation of the vote, but I would return to deliver orders and hear the people even without it. I would not leave the game running while I do something else; I would close it and come back.\n",
+      "char_start": 13065,
+      "char_end_exclusive": 13869,
+      "line_start": 107,
+      "line_end": 113
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nI did not reread a sentence in either session, so my two-reread quitting rule did not trigger.\n\nThe Tell panel explained “as I heard it,” “for certain,” and “make something up.” I understood the difference and told Tarık the water news marked “sure.” The control list gave the news item in each button’s name, so I could select it without a point tap.\n\nThe notebook said the game does not show how a resident feels or how far they trust my word. It also explained that “what you have learned” counts facts in the notebook and that stamps are things I have done. I understood those statements. I still did not learn how the Sunday vote is decided. On the phone I guessed ₺5 was a tip; on desktop the journal explicitly called it a tip.\n\n| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |\n| --- | --- | ---: | --- | --- |\n| Title, both: choose a start | Caretaker; five occupied flats; deliveries through Saturday; Sunday vote; tea money as extra pay; Rıza’s notebook; six-day week; saving and continuing; four-week option; four-week option without earlier shared history; unavailable character transfer; download; other starts; recording and linked play; Information; game menu; All games | 17 | None | Familiar and understandable; I left both boxes empty |\n| Main building and orders, both: carry out work | Day and clock; building floors and flats; resident names and in/out status; order count; next deadline; walking and arrival estimates; bakery and shop; Here/Orders/Residents/Notebook views; rest; courtyard gate; gate duration and possible later consequence | 11 | None | The order named the job and destination |\n| Bakery, both: choose the next action | Newspaper swap; prank; exchanged crosswords; someone may see it; tiredness warning; next flat and deadline | 6 | None | The prank description explained what the swap did |\n| Conversation, both: speak to a resident | Hidden feelings; hidden trust in my word; paused time; close conversation or go elsewhere; Anything new; Tell; Sit together; ten-minute break; raise question available from Thursday; tip | 10 | None | The choices were readable; the desktop journal identified the tip |\n| Tell panel, phone: choose news | Heard versus certain; invented story; residents compare accounts; false story may cost trust; news marked heard or sure; subject-specific control names; Back | 7 | None | The new explanation made the choices clear |\n| Sitting and reply, both: listen to a story | Sitting takes time; new words pause time briefly; two replies; reply takes two minutes; resident chooses whether to continue; choice of wording does not change that decision; sit again tomorrow | 7 | None | The explanation answered my earlier question |\n| Notebook, desktop: inspect what I know | Time paused; outside observations; feelings hidden; trust hidden; readings rather than scores; no promise about the vote; own mood; facts learned out of 16; stamps as actions | 9 | None | I understood what was hidden, though not how the vote works |\n| Game menu, both: reach Feedback | Feedback; download run; full screen; new game; title page; All games; Recording; Lab privacy; Debug; Resume | 10 | None | I opened it for Feedback and ignored the settings |\n| Feedback, both: choose a label | Stopping; confused; optional keep-playing verdict; note; optional name; what is sent; keep a copy; Submit; close feedback | 9 | None | Both labels were plain |\n",
+        "char_start": 7678,
+        "char_end_exclusive": 11163,
+        "line_start": 75,
+        "line_end": 94
+      },
+      {
+        "label": "unranked device observations with self-reported image viewing",
+        "text": "## 6. Device use\n\n**Phone.** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/a-001.png): the title, introduction, two unchecked choices, large red Begin button and recording notice. The text was readable, although the fixed button covered part of the lower explanation. I also viewed [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/phone/a-002.png): the building, Hacer’s conversation, tabs and large action buttons fit on the screen. The visible conversation text stopped above the buttons; I did not inspect the rest of that layout by scrolling.\n\nI used Begin, Go to the bakery, Go to flat 7, Tell, the named water-news choice, Sit together, I am listening, Close conversation, Go to flat 1, Game menu, Feedback, “I'm stopping” and Close feedback.\n\n**Desktop.** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/b-001.png): a centered title and introduction with large text and a red Begin button. The button covered part of the lower title text. I viewed [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/rosa/desktop/b-002.png): a large building on the left, tabs and gate choice on the right, and the order and delivery button at the bottom. It was comfortable to read.\n\nI used Begin, Notebook, its close button, Go to the bakery, Go to flat 1, Sit together, Thank you for telling me, Close conversation, Go to flat 2, Game menu, Feedback, “I'm stopping” and Close feedback. I did not view the Tell panel on desktop or use the keyboard.\n\nOn both devices, Feedback offered **“I'm stopping”** and **“I'm confused.”** I chose “I'm stopping”; it showed as pressed. There was no Back control in the offered list, so I used **Close feedback**, which returned me to the game menu. I typed and sent nothing.\n",
+        "char_start": 11164,
+        "char_end_exclusive": 13064,
+        "line_start": 95,
+        "line_end": 106
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\n1. **Explain Tell and give same-named choices different names — met for what I reached.** The phone Tell panel explained all three ways of speaking. Its accessible control names included each news item, and I selected the water news by name. I did not inspect the desktop Tell panel.\n2. **Explain the Sunday vote, trust, feelings, ₺ amounts and Skip — partly met.** The title now says tea money is extra pay. The desktop journal called ₺5 a tip, and the notebook explained that feelings and trust in my word are hidden. I still did not see how the vote is decided. **Skip was not seen** in either session.\n3. **Warn before the newspaper swap — partly met.** Both sessions called it “A prank” and said each person gets the other’s crossword and someone may see. That helped me understand it before choosing. It did not explicitly say someone might be upset.\n\n**New blocking asks:** None from the screens I reached. I stopped because I had enjoyed a short visit and wanted to return another evening.\n\nI created no worktree, branch, server or helper process and touched no repository. The coordinator owns the two drivers. I made two manual screenshots per device, within the assigned limit; `git worktree list` is not applicable to my work.",
+        "char_start": 14061,
+        "char_end_exclusive": 15334,
+        "line_start": 118,
+        "line_end": 126
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Rosa would return voluntarily another evening on either device even without an explanation of the vote, and would close the game. She did not reach Skip or Sunday. A wish for vote explanation is not a condition of return."
+  },
+  {
+    "id": "F-2675",
+    "who": "Ivo Almeida",
+    "type": "return",
+    "source": "ivo/report.md",
+    "opening": {
+      "text": "I would not return voluntarily soon: I liked the clear delivery results and some resident details, but the repeated jobs and similar conversations lost me.",
+      "char_start": 0,
+      "char_end_exclusive": 155,
+      "line_start": 1,
+      "line_end": 1
+    },
+    "later": {
+      "text": "## 7. Stop and return\n\nPhone stop: **“I am stopping for now; the small jobs have begun to feel repetitive.”** Reason: **BORED**.\n\nDesktop stop: **“I am stopping tonight; I have had enough of the repeated start and similar conversations.”** Reason: **BORED**.\n\nI would not return voluntarily soon: I liked the clear delivery results and some resident details, but the repeated jobs and similar conversations lost me. I might be curious to return another evening if there were a clearer way to continue into different situations without repeating the opening delivery routine. I would not leave it running; I would stop and come back deliberately if that curiosity returned.\n",
+      "char_start": 9075,
+      "char_end_exclusive": 9748,
+      "line_start": 82,
+      "line_end": 89
+    },
+    "unranked": [
+      {
+        "label": "unranked clarity and observations",
+        "text": "## 5. Confusion and clarity\n\nThe delivery route, deadlines, order count, and paused conversations were clear in the play I saw. The “waiting with a parcel” message eventually explained the unresolved parcel, but the “Go to flat 3” action remained strange while I was already there.\n\nWhen I tapped Hacer’s table job in the order list, the selected parcel did not visibly change. Tapping Hacer’s flat on the building brought up her job and let me go there. I was surprised that the game reported the work done while she was out, because the request was to help carry a table.\n\nThe start page explained tea money, but the character-history and transfer language did not mean much to me as a new player. On the laptop, I could see the fixed start button covering part of the lower introduction in the screenshot; I did not test whether scrolling would reveal it.\n",
+        "char_start": 6627,
+        "char_end_exclusive": 7486,
+        "line_start": 67,
+        "line_end": 74
+      },
+      {
+        "label": "unranked device observations with self-reported image viewing",
+        "text": "## 6. Device use\n\n- **Phone:** I viewed [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/a-001.png), showing the narrow title page and fixed start button, and [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/phone/a-002.png), showing the compact building above the tabs and delivery action. I used touch taps for the start, travel, orders, conversation, skip, map flat, menu and feedback. I used Escape to leave feedback because no Back control was listed. The small building was readable to me; I did not inspect every later phone layout in a screenshot.\n- **Desktop:** I viewed [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/b-001.png), showing the centered introduction and fixed button over lower text, and [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/ivo/desktop/b-002.png), showing a larger building beside the controls. I used mouse clicks for travel, the gate, conversation, notebook, menu and feedback, and Escape to leave feedback. The larger building was easier for me to read. I did not inspect every later desktop layout in a screenshot.\n\nFor the phone confusion, I opened Feedback and selected **“I’m confused.”** For each stop, I opened Feedback and selected **“I’m stopping.”** The selected label appeared pressed. Feedback offered a close control but no visible Back button; Escape returned to the game menu. I typed no note, submitted nothing, and changed no consent or recording setting.\n",
+        "char_start": 7487,
+        "char_end_exclusive": 9074,
+        "line_start": 75,
+        "line_end": 81
+      },
+      {
+        "label": "prior comparison and producer classification",
+        "text": "## 9. Compared with my last visit\n\nFirst visit. The desktop session was a second fresh session of this same visit, later that evening; its comparisons above are only with the phone session I had just played.\n\nNo repository, worktree, server, or browser process was owned or started by me.",
+        "char_start": 9927,
+        "char_end_exclusive": 10215,
+        "line_start": 94,
+        "line_end": 98
+      }
+    ],
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Ivo would not return soon but might be curious another evening if he could continue into different situations without repeating the opening. The director treats parcel and order-selection issues as blocking candidates pending source investigation; Ivo gives no explicit new-blocker classification."
+  },
+  {
+    "id": "F-2676",
+    "who": "Maya Chen",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Let neighbours respond to things they saw me do. Hacer saw the gate and the newspaper swap, but greeted me with familiar praise; Sevim did not mention the swapped paper in the conversation I reached.",
+      "char_start": 246,
+      "char_end_exclusive": 445,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Inspect responses to the gate and swapped paper in the conversations Maya reached. Witnessing was visible, but later consequences were not reached; do not infer none exist."
+  },
+  {
+    "id": "F-2677",
+    "who": "Maya Chen",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Give conversations more varied responses. Hacer and Sevim both said “Tarık is kind,” and Hacer and Tarık both declined to continue after my replies, though in slightly different words.",
+      "char_start": 449,
+      "char_end_exclusive": 633,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-10",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Review Maya’s preference for varied neighbour responses and gossip; Hacer and Tarik used slightly different words but both declined to continue. Preserve resident agency and do not infer hidden belief."
+  },
+  {
+    "id": "F-2678",
+    "who": "Maya Chen",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "maya/report.md",
+    "primary": {
+      "text": "Give Tarık something on the first “Anything new?” ask. He said he had no news, then told the ferry story when I sat with him.",
+      "char_start": 637,
+      "char_end_exclusive": 762,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-10",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Inspect Tarik’s first news answer alongside the separate ferry story reached by sitting. Maya wants something on the initial ask; this is a variety preference, not a proven broken response."
+  },
+  {
+    "id": "F-2679",
+    "who": "Jonas Berg",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "jonas/report.md",
+    "primary": {
+      "text": "Give sitting and replying a visible consequence I can understand before the Sunday vote.",
+      "char_start": 333,
+      "char_end_exclusive": 421,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Review whether sitting and reply effects can be made understandable before Sunday while preserving hidden feelings and trust. Jonas did not reach the vote; no missing effect is established.",
+    "later_ask": {
+      "text": "Give sitting and replying a visible consequence I can understand before the Sunday vote.",
+      "char_start": 10833,
+      "char_end_exclusive": 10921,
+      "line_start": 92,
+      "line_end": 92
+    }
+  },
+  {
+    "id": "F-2680",
+    "who": "Jonas Berg",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "jonas/report.md",
+    "primary": {
+      "text": "Make conversations produce more distinct outcomes; the two replies I tried both ended the discussion.",
+      "char_start": 425,
+      "char_end_exclusive": 526,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-10",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Review the two observed conversation outcomes for variety. The game said reply wording does not control continuation; do not force resident agreement or change difficulty automatically.",
+    "later_ask": {
+      "text": "Make conversations produce more distinct outcomes.",
+      "char_start": 10925,
+      "char_end_exclusive": 10975,
+      "line_start": 93,
+      "line_end": 93
+    }
+  },
+  {
+    "id": "F-2681",
+    "who": "Jonas Berg",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "jonas/report.md",
+    "primary": {
+      "text": "Show why a story I hear does or does not enter the notebook.",
+      "char_start": 530,
+      "char_end_exclusive": 590,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-10",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Inspect how heard stories reach the notebook. Jonas saw news add a line while a personal story did not appear when checked; do not infer hidden facts or a general missing-record defect.",
+    "later_ask": {
+      "text": "Show why a heard story does or does not enter the notebook.",
+      "char_start": 10979,
+      "char_end_exclusive": 11038,
+      "line_start": 94,
+      "line_end": 94
+    }
+  },
+  {
+    "id": "F-2682",
+    "who": "Leila Mansour",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "leila/report.md",
+    "primary": {
+      "text": "Give residents more distinct answers to my words, including the replies after their stories. Hacer’s surprise at my invented romance held me; the repeated refusals did not.",
+      "char_start": 213,
+      "char_end_exclusive": 385,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-10",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Review Leila’s preference for distinct reactions to her words. Hacer showed surprise at invented romance, while story replies ended similarly; the observed pastry is not proven caused by the story.",
+    "later_ask": {
+      "text": "Give residents distinct responses to what I say, including after their personal stories.",
+      "char_start": 13047,
+      "char_end_exclusive": 13135,
+      "line_start": 111,
+      "line_end": 111
+    }
+  },
+  {
+    "id": "F-2683",
+    "who": "Leila Mansour",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "leila/report.md",
+    "primary": {
+      "text": "Put the stories I hear into the notebook, and make it clear where a detail came from.",
+      "char_start": 389,
+      "char_end_exclusive": 474,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Inspect notebook story recording and provenance including the unexplained lemon-candy detail. Preserve uncertainty and do not reveal private feelings or invent a source.",
+    "later_ask": {
+      "text": "Record the stories I actually hear in the notebook and identify where its details came from.",
+      "char_start": 13139,
+      "char_end_exclusive": 13231,
+      "line_start": 112,
+      "line_end": 112
+    }
+  },
+  {
+    "id": "F-2684",
+    "who": "Leila Mansour",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "leila/report.md",
+    "primary": {
+      "text": "Vary the everyday gossip between residents. Hacer and Sevim both told me Tarık was kind.",
+      "char_start": 478,
+      "char_end_exclusive": 566,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-10",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Review repeated everyday gossip between Hacer and Sevim as a variety preference, not a causally established simulation fault.",
+    "later_ask": {
+      "text": "Vary the everyday gossip between residents.",
+      "char_start": 13235,
+      "char_end_exclusive": 13278,
+      "line_start": 113,
+      "line_end": 113
+    }
+  },
+  {
+    "id": "F-2685",
+    "who": "Rosa Alvarez",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Tell me, in plain words, how the Sunday vote works. I know it concerns my extra pay, but I did not learn how the decision is made.",
+      "char_start": 197,
+      "char_end_exclusive": 327,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Explain the Sunday vote in plain words where the rules support it. Rosa did not reach the vote and would return even without this explanation; do not invent a voting rule or expose private state."
+  },
+  {
+    "id": "F-2686",
+    "who": "Rosa Alvarez",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Keep the explanation of the newspaper swap, and add that it may upset someone.",
+      "char_start": 331,
+      "char_end_exclusive": 409,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Review whether the swap warning can convey the possibility that someone may be upset without promising a reaction. Rosa saw the prank and witness warning; an upset outcome was not observed."
+  },
+  {
+    "id": "F-2687",
+    "who": "Rosa Alvarez",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "rosa/report.md",
+    "primary": {
+      "text": "Say how far Skip will take me. I did not reach it on this visit, so my earlier question remains open.",
+      "char_start": 413,
+      "char_end_exclusive": 514,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Review how Skip communicates its destination. Rosa did not reach Skip in this visit; this is her earlier unresolved question, not an observed current failure."
+  },
+  {
+    "id": "F-2688",
+    "who": "Ivo Almeida",
+    "type": "ranked ask",
+    "rank": 1,
+    "source": "ivo/report.md",
+    "primary": {
+      "text": "Make it clear what to do with a parcel when its recipient is out, and why the order still says “Go to” the flat I am already at.",
+      "char_start": 190,
+      "char_end_exclusive": 318,
+      "line_start": 5,
+      "line_end": 5
+    },
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Inspect parcel status and Go-to label when the recipient is out. Ivo later saw a waiting message; no automatic delivery or underlying defect is established. Director blocking candidate pending cause."
+  },
+  {
+    "id": "F-2689",
+    "who": "Ivo Almeida",
+    "type": "ranked ask",
+    "rank": 2,
+    "source": "ivo/report.md",
+    "primary": {
+      "text": "Make selecting another order give a visible result, or explain why it cannot be selected.",
+      "char_start": 322,
+      "char_end_exclusive": 411,
+      "line_start": 6,
+      "line_end": 6
+    },
+    "target": "2026-11-03",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Inspect order-list selection and the map-flat path. Ivo saw no visible switch after tapping another order and the flat route worked; native input acknowledgment is not proof of action and cause is unknown. Director blocking candidate."
+  },
+  {
+    "id": "F-2690",
+    "who": "Ivo Almeida",
+    "type": "ranked ask",
+    "rank": 3,
+    "source": "ivo/report.md",
+    "primary": {
+      "text": "Give residents more varied things to say when asked what is new.",
+      "char_start": 415,
+      "char_end_exclusive": 479,
+      "line_start": 7,
+      "line_end": 7
+    },
+    "target": "2026-11-10",
+    "route": "fix:stairwell",
+    "status": "open",
+    "editorial_route": "Review Ivo’s preference for varied responses to news; he heard the same remark from two residents. Do not infer a global repetition defect."
+  }
+]

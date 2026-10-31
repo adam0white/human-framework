@@ -1,0 +1,18 @@
+{
+  "time": "2026-10-31T10:15:07.237817+00:00",
+  "images": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/farah/phone/a-003.png",
+      "sha256": "18e0f1ef5d3de2442970df4aac5babb201f52aa65bf584f08dbe74588142e850",
+      "directorViewed": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/farah/desktop/b-003.png",
+      "sha256": "e802fbeb6e90b7ce518af88ffbc337abe4085c5d4a694703a61ae902696c4362",
+      "directorViewed": true
+    }
+  ],
+  "phone": "At360x690 actual Feedback capture shows both quick labels and auto-filled text, Lab privacy link, with only top of red Submit control at bottom edge. Farah did not test scrolling, so no unreachable Submit conclusion. No submission performed.",
+  "desktop": "At1280x800 actual08:56 capture shows route/weather heading without expanded body, reading slowdown label, group positions and top/bottom controls. It does not prove weather absent or unexpandable.",
+  "limits": "Two existing captures read only. No new screenshots/browser/session. No scroll/reach/font-load/two-engine/four-size proof; no game state changed."
+}

@@ -1,0 +1,618 @@
+[
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/report.md",
+    "destination": "maya/report.md",
+    "sha256": "7bebda3bb0b027b4390ffc490de30064da8f12f21f71a2024581837261eeaa36",
+    "bytes": 10031,
+    "mtime_ns": 1793445632771188493
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/brief.md",
+    "destination": "maya/brief.md",
+    "sha256": "43c5fee89292fca07610acea71cc14377734252d3542ae415e76b32a26dc389b",
+    "bytes": 14491,
+    "mtime_ns": 1793444569988342121
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/own-history.md",
+    "destination": "maya/own-history.md",
+    "sha256": "9fe8b5d9e9d276ea567ab23f1c71f81da56e990a807ecd6143a57e8310c5e3de",
+    "bytes": 179924,
+    "mtime_ns": 1793444569987610787
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/history-source-map.json",
+    "destination": "maya/history-source-map.json",
+    "sha256": "e6bfa3a592ceafe5adf4786234f4d262e5a1d761b6a05b5efa6ea8256d8b3f94",
+    "bytes": 4553,
+    "mtime_ns": 1793444569988055496
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/dispatch.json",
+    "destination": "maya/dispatch.json",
+    "sha256": "619ee900875f5c3068c90caa6a5167f9d657d2cc364011e112797928360f8aaf",
+    "bytes": 2086,
+    "mtime_ns": 1793445377360295321
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/completion.json",
+    "destination": "maya/completion.json",
+    "sha256": "5fc0021e783256e8207845664ed937e8099b87fd25c147c7d414a69a935df8d1",
+    "bytes": 368,
+    "mtime_ns": 1793445632771981243
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/validation.json",
+    "destination": "maya/validation.json",
+    "sha256": "411b1ba1ee12fda5479b0d1e666e815d750cadb472276422d39ea61c5d29f318",
+    "bytes": 5188,
+    "mtime_ns": 1793447404075242636
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/director-method-qualification.json",
+    "destination": "maya/director-method-qualification.json",
+    "sha256": "f0ecdea063aa62de1c49b8f09d51b7a8d33b394aa2a2310217ceb09662b33039",
+    "bytes": 1144,
+    "mtime_ns": 1793446027292640614
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/phone/wall-clock.jsonl",
+    "destination": "maya/phone/wall-clock.jsonl",
+    "sha256": "dfdf193a6d4e39ee397919fd0b3fb72096de798eba1824cf90b30c1694c99bb6",
+    "bytes": 10449,
+    "mtime_ns": 1793445497019213594
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/phone/driver.out",
+    "destination": "maya/phone/driver.out",
+    "sha256": "cdb48ec23642397bd53d80d02997e6e68425e28760fe22fe993636f303a9301d",
+    "bytes": 85,
+    "mtime_ns": 1793445376923714599
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/phone/release-start.json",
+    "destination": "maya/phone/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793445376268461955
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/desktop/wall-clock.jsonl",
+    "destination": "maya/desktop/wall-clock.jsonl",
+    "sha256": "4b37f8f35d9e60f50437b77400119c1f058051f18fad5ee53bd80f2e1bf9d89e",
+    "bytes": 5767,
+    "mtime_ns": 1793445603705095696
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/desktop/driver.out",
+    "destination": "maya/desktop/driver.out",
+    "sha256": "afc72eef79bc0bbcc2c0a3c15cf14bfa466532a614e0b110c95162daef1c06fd",
+    "bytes": 85,
+    "mtime_ns": 1793445376920521387
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/maya/desktop/release-start.json",
+    "destination": "maya/desktop/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793445376347713295
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/report.md",
+    "destination": "emre/report.md",
+    "sha256": "27041fef2d5a4a68b188f3f1d90935dd3338aafa1147dd8e3cd7d3fc6670ba14",
+    "bytes": 10360,
+    "mtime_ns": 1793446259905029253
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/brief.md",
+    "destination": "emre/brief.md",
+    "sha256": "51091f2d8c7f0c57e899a3a064d70aae435e94197d3fefa0ba11cc0199251acd",
+    "bytes": 14413,
+    "mtime_ns": 1793444570047522287
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/own-history.md",
+    "destination": "emre/own-history.md",
+    "sha256": "e92fff8a41dd22338067a883bba83edf9a96d2ca48c6b527174e576973af8fa7",
+    "bytes": 139679,
+    "mtime_ns": 1793444570046898079
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/history-source-map.json",
+    "destination": "emre/history-source-map.json",
+    "sha256": "284722c1180762467b2be92e3226982d8a9bddfdbaff46b748802a3c2de921df",
+    "bytes": 4255,
+    "mtime_ns": 1793444570047198246
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/dispatch.json",
+    "destination": "emre/dispatch.json",
+    "sha256": "056001b30cc3fa22f933efd9ac268723617bd0db1f56a6c5950f0f35ceaceeaa",
+    "bytes": 2086,
+    "mtime_ns": 1793445633987768903
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/completion.json",
+    "destination": "emre/completion.json",
+    "sha256": "99955b855ff70d80a0d61a3b1ee354acf007b2164a052f02e21994e432698cec",
+    "bytes": 368,
+    "mtime_ns": 1793446259906810879
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/validation.json",
+    "destination": "emre/validation.json",
+    "sha256": "2beecc4b3cd23ed01cd1d736f4313025d147325fb933c857b118b4e3bb8954f3",
+    "bytes": 4867,
+    "mtime_ns": 1793447404080927890
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/director-method-qualification.json",
+    "destination": "emre/director-method-qualification.json",
+    "sha256": "962390ae8f21cfee28f5aa57bac23c6a148f05ccdc18520d73d1300eb474691e",
+    "bytes": 1592,
+    "mtime_ns": 1793446642039320373
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/phone/wall-clock.jsonl",
+    "destination": "emre/phone/wall-clock.jsonl",
+    "sha256": "c5c738f154c2dea83e9dec0570ade03794893720d3073fd02207c906d70f3c05",
+    "bytes": 6325,
+    "mtime_ns": 1793446226145859079
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/phone/driver.out",
+    "destination": "emre/phone/driver.out",
+    "sha256": "7f4994f67d791f771b4f8fbddfe8b1bb4b1ec4bb7f8e80c67ecea6dbc1e4ba3f",
+    "bytes": 85,
+    "mtime_ns": 1793445633362909674
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/phone/release-start.json",
+    "destination": "emre/phone/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793445632974690082
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/desktop/wall-clock.jsonl",
+    "destination": "emre/desktop/wall-clock.jsonl",
+    "sha256": "a84a77b5122b8c053fe3ff3aa3f98231621f206deebe48bac537cf387a824458",
+    "bytes": 12534,
+    "mtime_ns": 1793446135773785659
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/desktop/driver.out",
+    "destination": "emre/desktop/driver.out",
+    "sha256": "d782a988dc30585c04a846a0ae04d6faeaa354e0e7a25add606853c6333f4058",
+    "bytes": 85,
+    "mtime_ns": 1793445633297792908
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/emre/desktop/release-start.json",
+    "destination": "emre/desktop/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793445632900427940
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/report.md",
+    "destination": "diego/report.md",
+    "sha256": "7d33c64e7bea346e7b2b726023c7e8ba789e72a7777d7e253a4f97f65ff05fdc",
+    "bytes": 9573,
+    "mtime_ns": 1793446601698165372
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/brief.md",
+    "destination": "diego/brief.md",
+    "sha256": "b5038d66cab8f7022458727b507a6b6712c0d942b424d8c5cba26a7a2ad285ae",
+    "bytes": 14447,
+    "mtime_ns": 1793444570107228954
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/own-history.md",
+    "destination": "diego/own-history.md",
+    "sha256": "2ee3bb7fc892a56c25b792b068450098beed89b904bec2e139d4a2c3ff3229fe",
+    "bytes": 151356,
+    "mtime_ns": 1793444570106556537
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/history-source-map.json",
+    "destination": "diego/history-source-map.json",
+    "sha256": "c246d551b1800d73f1f50dc81c5c9bd9ecbd5d5870d27e8adf001474fa6736cb",
+    "bytes": 4873,
+    "mtime_ns": 1793444570106876038
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/dispatch.json",
+    "destination": "diego/dispatch.json",
+    "sha256": "ac2f6d40f1eb7ebc1229e405c228ed459ebf2d3b0cd765e1cf2e90310e9dad5e",
+    "bytes": 2086,
+    "mtime_ns": 1793446261151142796
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/completion.json",
+    "destination": "diego/completion.json",
+    "sha256": "2c95f6c80eddaea172bb0a70c79cc4a9a5f2ac3a272e93744288b0de75ef3232",
+    "bytes": 368,
+    "mtime_ns": 1793446601698687666
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/validation.json",
+    "destination": "diego/validation.json",
+    "sha256": "5e8ae8e8d8339a09cc8e9187fc65ddbfa7f0e022ab5ebc0d854ed14c9da1032d",
+    "bytes": 4143,
+    "mtime_ns": 1793447404086280561
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/director-method-qualification.json",
+    "destination": "diego/director-method-qualification.json",
+    "sha256": "759323e5578f225312e2d289a3cf44f851f52a684d7ca7f092c98ef251144be2",
+    "bytes": 1208,
+    "mtime_ns": 1793447422515035158
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/phone/wall-clock.jsonl",
+    "destination": "diego/phone/wall-clock.jsonl",
+    "sha256": "f59aad219bd04622bf262f38009e9fae9f5c116da219465068aec004f0d2ec6c",
+    "bytes": 6903,
+    "mtime_ns": 1793446575843956507
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/phone/driver.out",
+    "destination": "diego/phone/driver.out",
+    "sha256": "f06f1a4e1b11ad8824add9ff34fb3c8276c66fecc5f41ec2edfbbe589a18f850",
+    "bytes": 85,
+    "mtime_ns": 1793446260534826943
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/phone/release-start.json",
+    "destination": "diego/phone/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793446260135659724
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/desktop/wall-clock.jsonl",
+    "destination": "diego/desktop/wall-clock.jsonl",
+    "sha256": "8bfd2af46bb3302c9e5b0798b24b5e0ec54dfc973b1517908b47d00c06e4fd8c",
+    "bytes": 9127,
+    "mtime_ns": 1793446435544350271
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/desktop/driver.out",
+    "destination": "diego/desktop/driver.out",
+    "sha256": "884a806e110b25631541a8f707219cacabfaafa217cc98c4a58d851b07c55ac9",
+    "bytes": 85,
+    "mtime_ns": 1793446260534801443
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/diego/desktop/release-start.json",
+    "destination": "diego/desktop/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793446260038432493
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/report.md",
+    "destination": "rosa/report.md",
+    "sha256": "b02bd0040ae814211bd7d7b99b68fcb7d373ecc6ab02de41c9a269e5db9e5a51",
+    "bytes": 11808,
+    "mtime_ns": 1793447616708103383
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/brief.md",
+    "destination": "rosa/brief.md",
+    "sha256": "9171eb5bbf02111824d9992fedf1096092f93eb12282f9af4028954b3911603a",
+    "bytes": 15854,
+    "mtime_ns": 1793447449150011321
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/own-history.md",
+    "destination": "rosa/own-history.md",
+    "sha256": "9a6bd4793158951a30d66e9771e815c090bb55ce6c7eccad618deb17a4565ef9",
+    "bytes": 265570,
+    "mtime_ns": 1793447210223832007
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/history-source-map.json",
+    "destination": "rosa/history-source-map.json",
+    "sha256": "c9851400ba1679d53e11e34c22f04d9d554926739e7f6a2a58cd45c292bf5310",
+    "bytes": 667,
+    "mtime_ns": 1793447210224931508
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/history-source-map.original.json",
+    "destination": "rosa/history-source-map.original.json",
+    "sha256": "de2614cca8b9bb4686d01668886530b4fe792077881ff1b30bc740e51c6c4498",
+    "bytes": 6689,
+    "mtime_ns": 1793444570162617038
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/dispatch.json",
+    "destination": "rosa/dispatch.json",
+    "sha256": "b5cf6842d4155f1b3a1037ba67ea0d3bcf580b3e5a0bc145fb8f1cf808f2d673",
+    "bytes": 2115,
+    "mtime_ns": 1793447488743403163
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/completion.json",
+    "destination": "rosa/completion.json",
+    "sha256": "7fd4d140b7b7b9504575bc00699234289f5a1fef4fc115fa7a57f613c14e4335",
+    "bytes": 368,
+    "mtime_ns": 1793447618959780991
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/director-method-qualification.json",
+    "destination": "rosa/director-method-qualification.json",
+    "sha256": "fca63893abab998aee34dca216ecf4e15bade51d730740135240749c840abdb5",
+    "bytes": 1370,
+    "mtime_ns": 1793447672585637006
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/phone/wall-clock.jsonl",
+    "destination": "rosa/phone/wall-clock.jsonl",
+    "sha256": "d9ef5b3ed2ee55a2a138068325836eccc5aa7062cc07ff92ddedcc7d51fbf255",
+    "bytes": 6944,
+    "mtime_ns": 1793447577207038570
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/phone/driver.out",
+    "destination": "rosa/phone/driver.out",
+    "sha256": "2402bbc89502f6375e3aad9aafba749c263d40d94e6a51dd35d00a8329e1e3b1",
+    "bytes": 85,
+    "mtime_ns": 1793447488042109040
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/phone/release-start.json",
+    "destination": "rosa/phone/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793447487652836699
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/desktop/wall-clock.jsonl",
+    "destination": "rosa/desktop/wall-clock.jsonl",
+    "sha256": "25c7c8e7259a2e775490cd8859663f8bc0387f18389c36edfc08db1defc37c96",
+    "bytes": 4800,
+    "mtime_ns": 1793447592355044143
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/desktop/driver.out",
+    "destination": "rosa/desktop/driver.out",
+    "sha256": "e47783412c3437b8c1557f288d91004bf23a7cc95f515914a855346f301cfd89",
+    "bytes": 85,
+    "mtime_ns": 1793447488088034576
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/rosa/desktop/release-start.json",
+    "destination": "rosa/desktop/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793447487729191632
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/report.md",
+    "destination": "boris/report.md",
+    "sha256": "dd0e1d8a06bbad77974859ffb426a95d32faae0a51b14587db989382ae852283",
+    "bytes": 7739,
+    "mtime_ns": 1793447775398262121
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/brief.md",
+    "destination": "boris/brief.md",
+    "sha256": "6d6148b992af9b180a0f4d9826dd96f9e5a059ff628c9a343e737b1c43bca7ed",
+    "bytes": 13670,
+    "mtime_ns": 1793447449150152363
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/own-history.md",
+    "destination": "boris/own-history.md",
+    "sha256": "90262bed32a8e054f9cf7ef46ee482c38c031c19065213e2f12f1e241dd6bcf9",
+    "bytes": 186,
+    "mtime_ns": 1793447210225808134
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/history-source-map.json",
+    "destination": "boris/history-source-map.json",
+    "sha256": "881e845aae64ae79adcab5d3f92ecefe1511a97c7a457e5cf33391853bf50527",
+    "bytes": 569,
+    "mtime_ns": 1793447210226202759
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/history-source-map.original.json",
+    "destination": "boris/history-source-map.original.json",
+    "sha256": "27a126785e4122c9263d06a8efa25053ee6105b01436be992f3140b662b58f69",
+    "bytes": 281,
+    "mtime_ns": 1793444570163367121
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/dispatch.json",
+    "destination": "boris/dispatch.json",
+    "sha256": "04c2e560ca9868dab0d698abc74c9ced1ae3c24a05c119a4629d4ecd030eb5ed",
+    "bytes": 2115,
+    "mtime_ns": 1793447620243732604
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/completion.json",
+    "destination": "boris/completion.json",
+    "sha256": "23a3fb21f1b3f826d279ec7219921c81d0a1e5fed5babade1171e75a2463c4d5",
+    "bytes": 368,
+    "mtime_ns": 1793447775518389421
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/director-method-qualification.json",
+    "destination": "boris/director-method-qualification.json",
+    "sha256": "32ddf54026a20fefd3dac6820c8a668364cceb9757f64954c1823db60df773b5",
+    "bytes": 1549,
+    "mtime_ns": 1793447830498876750
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/phone/wall-clock.jsonl",
+    "destination": "boris/phone/wall-clock.jsonl",
+    "sha256": "8103fafb8677b8f25cbccd242f6084467ac33627de4fecd79930363b03b2d8fa",
+    "bytes": 7351,
+    "mtime_ns": 1793447685464216457
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/phone/driver.out",
+    "destination": "boris/phone/driver.out",
+    "sha256": "b07dbe8be7e8eb578e847f8c4caeea55afa6ad6399327db29737ec01601887fa",
+    "bytes": 85,
+    "mtime_ns": 1793447619512290332
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/phone/release-start.json",
+    "destination": "boris/phone/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793447619124698951
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/desktop/wall-clock.jsonl",
+    "destination": "boris/desktop/wall-clock.jsonl",
+    "sha256": "f67a9e310f330e14833941c1adee12acc9d4e845f97e68ab09486f9cd405890d",
+    "bytes": 5437,
+    "mtime_ns": 1793447759010650677
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/desktop/driver.out",
+    "destination": "boris/desktop/driver.out",
+    "sha256": "b2dc7c39b0baa5ec220bf88cc40202fa24a0fe2ef9c5c2c11b612c91a41f93e4",
+    "bytes": 85,
+    "mtime_ns": 1793447619589981642
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-codex/boris/desktop/release-start.json",
+    "destination": "boris/desktop/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793447619230804908
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-accepted-plan.json",
+    "destination": "inputs/hearsay-retest2-accepted-plan.json",
+    "sha256": "33afc94f802eb58ceb8350f999909a9ba3db52ef19997d395834a837ddd8c32c",
+    "bytes": 6725,
+    "mtime_ns": 1793447210226749926
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-input-freeze.json",
+    "destination": "inputs/hearsay-retest2-input-freeze.json",
+    "sha256": "1f9f5ebe08c61e73e8ca348d19fb6d72b2f28cb5f11f0fdb1dc4a003c3a09cbb",
+    "bytes": 1701,
+    "mtime_ns": 1793444570164023163
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-predispatch.json",
+    "destination": "inputs/hearsay-retest2-predispatch.json",
+    "sha256": "33fcfa2e35f098e67b9a4b8252a67119f8fdeb7598a2d4303002c9e364adcf83",
+    "bytes": 2153,
+    "mtime_ns": 1793445376092140921
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-history-read-audit.json",
+    "destination": "inputs/hearsay-retest2-history-read-audit.json",
+    "sha256": "6817825e4d0aa99d0c04bc11ee3eab156957efb81ada2a8a6d23c4e6737c46d8",
+    "bytes": 3247,
+    "mtime_ns": 1793447404633427731
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-round-state.json",
+    "destination": "inputs/hearsay-retest2-round-state.json",
+    "sha256": "ce81577a6aa2cf9b56bfb390d2dede433999f2839ca1a2d0bb3665d2784c9545",
+    "bytes": 620,
+    "mtime_ns": 1793447830498620870
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-cleanup.json",
+    "destination": "inputs/hearsay-retest2-cleanup.json",
+    "sha256": "d0d25b77ac61eefb1f11d8d2b92c86ca9a5bc56ba124c8a91777433346e3a6ac",
+    "bytes": 586,
+    "mtime_ns": 1793447830498523744
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-final-release-after-round.json",
+    "destination": "inputs/hearsay-retest2-final-release-after-round.json",
+    "sha256": "eb047e1fbf59a8ab2eda9add3ccf41c663fca63f5ecdbf2bd9796d0a11064b56",
+    "bytes": 193,
+    "mtime_ns": 1793447830498352908
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-root-delivery-verification.json",
+    "destination": "inputs/hearsay-retest2-root-delivery-verification.json",
+    "sha256": "40aea48edcfe803eb7d43a1bd8f35f15b80ee46f1ba33b4703a4baf54aa470d5",
+    "bytes": 2817,
+    "mtime_ns": 1793442939226585389
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/coordinator-cut.json",
+    "destination": "coordinator-cut-rosa/coordinator-cut.json",
+    "sha256": "4a68c8690ec93125a45fb9e9e6352b42d6fd590e226547fdcd458446710a8fe3",
+    "bytes": 1412,
+    "mtime_ns": 1793446904355771757
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/partial-driver-reactions.json",
+    "destination": "coordinator-cut-rosa/partial-driver-reactions.json",
+    "sha256": "167256d89e941ddf488821defd659e7e91c0026c9c2e6d6e62e8e8492ec18cb5",
+    "bytes": 5389,
+    "mtime_ns": 1793447210222946257
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/dispatch.json",
+    "destination": "coordinator-cut-rosa/dispatch.json",
+    "sha256": "2eddef1cfbcd6a55416c65a293189fb27ff5573ae28dda08acfce71afb137882",
+    "bytes": 2086,
+    "mtime_ns": 1793446602952098182
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/phone/wall-clock.jsonl",
+    "destination": "coordinator-cut-rosa/phone/wall-clock.jsonl",
+    "sha256": "5396f00d54433915051562642e12ac8ab30c2d320e7cf3127c8f0b8eae963045",
+    "bytes": 6668,
+    "mtime_ns": 1793446680908010595
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/phone/driver.out",
+    "destination": "coordinator-cut-rosa/phone/driver.out",
+    "sha256": "105c7f33d5977307d4497a290bfcd3e6e412591ffc20de4e5338eb1d826c4a6f",
+    "bytes": 85,
+    "mtime_ns": 1793446602226046305
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/phone/release-start.json",
+    "destination": "coordinator-cut-rosa/phone/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793446601846932664
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/desktop/wall-clock.jsonl",
+    "destination": "coordinator-cut-rosa/desktop/wall-clock.jsonl",
+    "sha256": "079341c45baa31747436bab9730a4bd72672118591428b0a72483885c90aec83",
+    "bytes": 275,
+    "mtime_ns": 1793446602296364640
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/desktop/driver.out",
+    "destination": "coordinator-cut-rosa/desktop/driver.out",
+    "sha256": "a3cb5d1a99639e2da1b3b8ea8ed241bcdf65c0957da52a4d58ed5eda07d1a5ff",
+    "bytes": 85,
+    "mtime_ns": 1793446602296503391
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2/rosa/desktop/release-start.json",
+    "destination": "coordinator-cut-rosa/desktop/release-start.json",
+    "sha256": "df12c5a679f8e142cc2498f5934b8ac9bb7bcca8be603674c6f1472bfad97632",
+    "bytes": 119,
+    "mtime_ns": 1793446601936214048
+  },
+  {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest2-partial3-driver-audit.json",
+    "destination": "inputs/hearsay-retest2-partial3-driver-audit.json",
+    "sha256": "83e27ec6fc4ea52d4ec353e6ca2cdd022bf8882f0cfe5f89a109451cc50ab15b",
+    "bytes": 15099,
+    "mtime_ns": 1793447404219490288
+  }
+]

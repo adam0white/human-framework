@@ -1,0 +1,10 @@
+{
+  "closed": true,
+  "lastActualReturn": "2026-10-31T10:09:57.416798+00:00",
+  "nextRoundNotBefore": "2026-10-31T10:24:57.416798+00:00",
+  "pin": "99a42270b014a54f490dc4b20b2c5f77b88b5dfb",
+  "reports": 5,
+  "stops": 10,
+  "HOLD": "released after root full report/audit/cleanup read",
+  "sourcePacket": "pending"
+}

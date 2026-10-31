@@ -1,0 +1,141 @@
+{
+  "tester": "Farah Bensaid",
+  "validationTime": "2026-10-31T10:10:35.986525+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T10:03:47.696Z",
+        "elapsed_s": 345.735,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here on the phone. I liked the promise and the people asking for a drink, but I spend my time pulling people back into line without knowing why they left it. On a small screen that is too much reading for a short sitting. I will try the laptop tonight.",
+        "game_clock": "09:35",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 337.616,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T09:59:19.579Z",
+          "elapsed_s": 77.618,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "There is a Skip. Good, I set my own pace. I skip to the next thing.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Skip to the next event is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T10:09:13.666Z",
+        "elapsed_s": 324.278,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here. On the laptop it is calmer and the people are good company, Tamar and the journal especially. But twice now the rope fails and the game does not tell me what is missing. I pressed I am stopping, it filled the box, I sent nothing and went back.",
+        "game_clock": "09:07",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-004.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 265.748,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T10:07:34.352Z",
+          "elapsed_s": 224.964,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Nell: Not walking, level with you."
+          },
+          "reaction": "Wind from 11:00 and I promised 12:00. Glad I chose the early time. Nell and Wren are both level with me this time, so I rope them now.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 12,
+          "error": "Nell: Not walking, level with you. is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

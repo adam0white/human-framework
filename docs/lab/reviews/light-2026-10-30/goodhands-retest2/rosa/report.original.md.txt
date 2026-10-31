@@ -1,0 +1,162 @@
+**Would you return voluntarily?** I would come back another evening on the big screen, but only if the long paragraph that explains how Nermin weighs an answer is shortened. I would not leave it running; I would close it.
+
+**Ranked asks**
+1. Shorten the "Nermin received…, She weighs each account by how strongly it spoke…" paragraph under each quality. The one-line reading above it already says it, for example "I doubt that the worker is patient when someone needs time."
+2. Replace the six "You have not asked yet." lines on a new applicant card with one line.
+3. After a placement, say plainly what to do while waiting. On the phone the Next line hinted at a check-in call, but the screen still read as nothing to do.
+
+## 1. Session
+
+- **Persona and round:** Rosa Alvarez, 62, returning player. Round light-1031-goodhands-retest2, free-stop arm (floor 0, ceiling 20 minutes). Standing role: busy second-language reader.
+- **History read:** own-history.md was read in full, 2122 lines, to the last line "End of supplied own history". Nothing was left unread.
+- **Method qualifications kept:**
+  - Warren was played with single taps rather than drags.
+  - The Hearsay desktop TOOL stop was not shown to be a game fault.
+  - The earlier history-read limits (Hearsay retest1 read 826 of 1419; Good Hands retest1 read 468 of 1682) are director metadata.
+  - The Warren alternative body is absent, and no alternative visits are merged.
+- **Earlier Good Hands reports:** the first report and the retest1 report are both in that history.
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, driver port 22806. It ran 205 s of driver time. The ceiling was not reached.
+- **Session B:** 1280x800 keyboard and mouse, light mode, driver port 22807. It ran 87 s. The ceiling was not reached.
+- **Both sessions were fresh games.** In both, I stopped by choice.
+- **Git:** I touched no repo, so there is no `git worktree list` to show.
+
+## 2. First impressions
+
+**Session A, phone**
+- At 3 s: "I know this title from before. Aim, family, rent: clear."
+- At 13 s: I recognised Özlem from before. My confidence is fairly high, because I saw her name on the bench and remembered the carer story.
+- At 68 s: a new Next line suggested checking in by phone on a placed worker.
+- At 88 s I recognised the Kaya family when they called. My confidence is fairly high.
+
+**Session B, desktop**
+- At 1.9 s: the same title and the same three names (Gülce, Şebnem, Özlem). The type is comfortable on the big screen.
+- This time the family was the Arslans, not the Kaya family. It was a fresh game, so I expected that.
+
+## 3. Verbatim diary
+
+I used no apostrophes in my own words. Where text appears below, it is as logged.
+
+**Session A, phone (elapsed seconds)**
+- 3.0: I know this title from before. Aim, family, rent: clear.
+- 13: I remember Özlem from before…
+- 47.0 (note): Reread 1. The wording is not preserved verbatim. It was the long evidence sentence on the applicant card.
+- 63.0 (first_minute): the wording was not preserved verbatim.
+- 68: Rent is paid in about a minute. New: the Next line says I can check in by phone on a placed worker at Tuesday 18:20. That is a hint about what to do while waiting.
+- 73: Last time I only waited. Let me look at Families…
+- 80: Nothing else to do. I skip to the next family call.
+- 88: Kaya family, I remember them. I answer.
+- 92: A carer for someone who throws a plate. Patient again. I promise to look.
+- 97: Back to the bench. Gülce has waited three hours; I should see her.
+- 100.7: The little half-circle is new. I guess it means they are tired of waiting. Guessing. I open Gülce.
+- 156.6: Gulce card is mostly empty: You have not asked yet, six times. Clear. I interview her.
+- 168.3 (note): Gulce says she speaks angrily. Nermin reading says why: I doubt she is patient. Clear, one reading. Not for the Kaya family. I send her home. (game clock Mon 2 Nov 11:52)
+- 179.6 (want_quit, CONFUSED): Second reread. The paragraph: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. Too long, too abstract. I only needed: she said she is angry, so I doubt she is patient. I would stop reading here, but the short reading above it was clear, so I keep going a little. (11:52)
+- 182.1 (pulse, engagement 3): I still follow the story, but the long reading paragraph tires me. One more candidate, then I check Feedback and stop. (11:52)
+- 202.2: Both I am stopping and I am confused are here on the phone. I press confused.
+- 205.2 (stop, CONFUSED): I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back. (11:58)
+
+**Session B, desktop**
+- 1.9: Same title as the phone. Aim, family, rent: clear on the big screen.
+- 4.7: I open the office. This is a fresh game, so I expect new people.
+- 13.1: Same three names as the phone: Gulce, Sebnem, Ozlem. I remember Ozlem and choose her first. (08:37)
+- 23.5: A call from the family. I answer.
+- 27.4: The family needs a patient person. Same need as before. I say I am still interviewing.
+- 41.97: Ozlem answer is unsure, not a yes or no. Short reading, one sentence, clear. I ask hours.
+- 65.3 (first_minute): I understand the aim and the steps: interview, patient, wage 8,500 against family 9,000. The big screen text is easy to read. Ozlem left after four questions and told me when to call back. Clear. No reread yet on this screen. (09:28)
+- 74.6 (want_quit, CONFUSED): I read the long weighing paragraph twice on the desktop: She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it. Too many ideas in one paragraph. Same paragraph as on the phone, so it is not a screen size problem. I skip it and keep playing. (09:29)
+- 83.6: Both I am stopping and I am confused are here on the desktop too. I press stopping.
+- 86.8 (stop, CONFUSED): I stop on the desktop after about 85 seconds. The long weighing paragraph again tires me and I have seen the same loop as on the phone. I did not reach a placement here. (09:34)
+
+One logging attempt on the desktop failed at the shell and sent nothing. I retyped it shorter, and that is the want_quit line above. I wrote the 47 s and 63 s phone entries from memory, so their wording is not exact.
+
+## 4. Moments
+
+**What held me**
+- The family request is clear, and it asks for patience in plain words.
+- Applicants answer in ordinary speech and then leave when their time is up. Özlem left after four questions and told me when to call back.
+- "Nermin's reading" gives a short reason in one sentence. That was my first-report ask, and it is met.
+- The Kaya call on the phone brought back a story I remembered.
+
+**What lost me**
+- The long weighing paragraph that appears on every card after an interview.
+- The six "You have not asked yet." lines on an unasked card.
+
+**Quit wishes**
+- **Phone:** I logged one want_quit (CONFUSED) at 179.6 s. It passed briefly while I used Feedback, then I stopped at 205 s.
+- **Desktop:** I logged one want_quit (CONFUSED) at 74.6 s. It did not pass, and I stopped at 86.8 s.
+
+**Pulses**
+- **Phone:** one pulse, engagement 3 at 182 s.
+- **Desktop:** no pulse. I stopped at 87 s, so the 180 s check was not tested.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The rent, the family and the wage figures are clear.
+- The interview shows "4 questions remain" and "Each question takes 8–12 minutes".
+- The one-line readings are clear. Examples: "I doubt that the worker is patient when someone needs time." and "I am still unsure whether the worker is patient when someone needs time."
+- Özlem says when to call back: "Call after Monday 2 November, 11:18".
+
+**Unclear**
+- The weighing paragraph made me reread on both devices. Quoted: "She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time. One account is evidence, not proof."
+- The half-circle (◐) and the empty circle (◌) beside names on the phone bench. I guessed they show waiting time. Nothing on screen told me what they mean.
+- "Call in to the office / The journey takes time." I understood it only after reading Özlem's and Gülce's own lines.
+
+**Per-screen table (concepts include settings and lab topics visible on the screen)**
+
+| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |
+| --- | --- | --- | --- | --- |
+| Title (both devices): start the game | Good Hands agency; Nermin; one month; family needs nanny; applicants on bench; rent ₺5,000 to Mr Hüsnü; Friday; recording notice; Menu; Information | 10 | none | clear |
+| Office, bench and task (phone and desktop): choose whom to see | clock; cash ₺3,000 or ₺5,250; rent progress; Pace Automatic ("Slow is in the Game menu"); Skip; Bench, Families, Placed tabs; task line; waiting status; ◐ and ◌ marks (phone) | 11 | none | clear |
+| Applicant card: read before interviewing | application form; Nermin's notes; six qualities; Experience; Former employers; reference; trial; Keep the phone number; "old case from before this month" | 9 | none | clear but long |
+| Interview and More questions: ask up to four | 4 questions before deciding; 8–12 minutes per question; More questions (10–12 listed); wait on the bench; send home and keep number | 5 | none | clear |
+| Reading after an interview (card, phone and desktop): see what I learned | Nermin's reading; "Only X says so"; "Nobody else has confirmed it"; weighing by strength and trust; "One account is evidence, not proof"; "middling" | 6 | "She weighs each account by how strongly it spoke and by how much she trusted the speaker when she heard it, for one quality of one person at a time." | Too many ideas in one sentence and too abstract for a second-language reader |
+| Family call (both): answer a request | Answer; Say you are still interviewing; Promise an answer today; Finish; call pauses clock | 5 | none | clear |
+| Game menu: change settings | Feedback; Download this run; Full screen; All games; People across games; New game; The day's notes; What happens to these people next; Colours System/Light/Dark; Pace Automatic/Slow/Steady/Fast; To the title page; Recording; Lab privacy; Debug; Open a saved month | 20 | none | opened only to reach Feedback; I did not read each item |
+| Feedback: report how I feel | I'd keep playing; Not sure; I'd stop here; I'm stopping; I'm confused; Your note; Add a name; What is sent; Keep a copy of this run; Submit | 10 | none | clear |
+
+I did not reach the agreement, Families, Placed or Negotiate screens in these sessions, so I did not count them.
+
+## 6. Device use
+
+**Phone (360x690, touch)**
+- I tapped named controls. Four screenshots were taken: a-001 (title), a-002 (the placed office at 09:45), and a-003, which I looked at on the Feedback panel. I viewed all three; the third automatic shot is a-003.
+- On a-003 the Feedback buttons are large, readable and easy to hit with a finger.
+- Typing the name "I'm confused" failed in the shell, so I tapped by coordinates (271, 184) from the screenshot. That is my quoting problem, not a game fault.
+
+**Desktop (1280x800, keyboard and mouse)**
+- Two shots viewed: b-001 (title: centred column, large type, red "Open the office" button) and b-002 (Feedback panel).
+- On b-002 the panel opens over the office picture, and the picture is cut off behind it. The panel is readable. I tapped "I'm stopping" by coordinates (505, 207).
+- I saw no trouble with layout at either size beyond the cut-off picture behind the panel. I did not inspect other layouts on the phone beyond those three shots.
+
+## 7. Stop and return
+
+**Phone stop:** "I stop here for tonight on the phone. The long weighing paragraph made me reread twice. The story is still clear and I would come back." Reason: CONFUSED. Before it, I opened Game menu → Feedback, chose "I'm confused", pressed Back and sent nothing.
+
+**Desktop stop:** "I stop on the desktop after about 85 seconds. The long weighing paragraph again tires me and I have seen the same loop as on the phone. I did not reach a placement here." Reason: CONFUSED. Before it, I opened Game menu → Feedback, chose "I'm stopping", pressed Back and sent nothing. Both labels were present on both devices.
+
+**Would you return voluntarily?** Yes, another evening, on the big screen. I would come back to see whether Özlem or the Kaya family gets a good match. My condition is that the paragraph about weighing answers is cut to one short sentence. If it stays as long as it is now, I would still come back, but I would stop reading each card after the first line, and I might not get far. I would not leave it running; I would close it, because the game needs my choices and I read slowly.
+
+## 8. Changes I would want
+
+1. Shorten the weighing paragraph under each quality to one short sentence, or hide it behind a "Why?" button.
+2. Collapse the six "You have not asked yet." lines into one line on a new applicant card.
+3. After a placement, say plainly what to do while waiting, and say what the ◐ and ◌ marks mean on the bench.
+
+## 9. Compared with my last visit
+
+**First Good Hands report**
+- **Ask 1, make "Nermin's reading" say why:** Met. Every reading now gives a short reason, such as "I doubt that the worker is patient when someone needs time". The paragraph under it is too long, but the reason is there.
+- **Ask 2, rewrite the fee and deposit paragraph with real numbers:** Not seen. I never reached Negotiate in either session.
+- **Ask 3, one short line instead of the same sentence in five boxes; fix the cut-off Next line and the large picture on the phone:** Partly met. The Next line on the phone read in full at 68 s. The "You have not asked yet." sentence still repeats six times on a new card. I did not re-check the size of the picture beyond a-002.
+
+**Retest1 report**
+- **Ask 1, tell me what to do while I wait after a placement:** Partly met. On the phone, the Next line said I can check in by phone on a placed worker at Tuesday 18:20, which is a hint. After that I read "nothing else to do" and skipped. I did not see a fuller instruction.
+- **Ask 2, say each wage and fee once on the agreement screen:** Not seen. I did not reach the agreement.
+- **Ask 3, keep "I'm stopping" and "I'm confused" in Feedback on both devices:** Met. Both buttons were there on both devices.
+
+**New this time**
+- The long weighing paragraph is new on the card and made me reread on both devices. It is the one thing that would stop me returning if it stays as it is.
+
+Files saved this visit: phone/a-001.png, phone/a-002.png, phone/a-003.png, desktop/b-001.png, desktop/b-002.png. Both drivers are left for the coordinator to stop.

@@ -1,0 +1,27 @@
+{
+ "note": "Deterministic result of validate-quotes.py. It does not depend on manifest.json or sha256.json. Counts are checks that ran and passed; there is no growing list.",
+ "result": "pass",
+ "counts": {
+  "askJsonRowsChecked": 15,
+  "canariesRejected": 100,
+  "captureCapsChecked": 10,
+  "cleanupChecks": 3,
+  "completionPinsChecked": 10,
+  "fileNamesScanned": 98,
+  "filesKeyScanned": 87,
+  "historyHashesChecked": 5,
+  "ledgerRowsChecked": 20,
+  "logicalRecords": 5,
+  "noCycleChecks": 2,
+  "rankedAsks": 15,
+  "rawReactionSpansChecked": 4,
+  "reactionRowsChecked": 128,
+  "releaseStartPinsChecked": 10,
+  "reportPairsByteIdentical": 5,
+  "requiredPhrasesChecked": 36,
+  "sourceMapCopiesHashed": 84,
+  "spanLocatorsChecked": 100,
+  "stopsChecked": 10
+ },
+ "sourceEpochNote": "Source files were copied once, byte-exact, before anything derived was written; source-map.json records each source mtime."
+}

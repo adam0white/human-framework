@@ -1,0 +1,3271 @@
+{
+  "validator": "validate-quotes.py",
+  "locatorsChecked": 157,
+  "mutationCanariesRun": 157,
+  "checks": 652,
+  "failed": [],
+  "passed": 652,
+  "note": "Checks listed by name are in the checks array. Recomputed from the copied sources inside this packet. Parent seal pending. Not a canonical, game-fix or acceptance claim.",
+  "all": [
+    {
+      "check": "packet copy hash jonas/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash jonas/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash jonas/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash aisha/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash aisha/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash diego/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash diego/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash rosa/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash rosa/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/report.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/brief.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/own-history.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/history-source-map.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/completion.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/dispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/validation.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/director-method-qualification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/phone/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/phone/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/phone/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/desktop/wall-clock.jsonl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/desktop/release-start.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash elena/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash elena/desktop/driver.out",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/rope-retest1-ledger-additions.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/rope-retest1-ledger-additions.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-cleanup.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-cleanup.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-final-driver-audit.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-final-driver-audit.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-final-release-after-round.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-final-release-after-round.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-history-read-audit.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-history-read-audit.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-input-freeze.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-input-freeze.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-predispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-predispatch.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-root-delivery-verification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-root-delivery-verification.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-round-state.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-round-state.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "packet copy hash inputs/goodhands-retest2-plan.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "original source hash inputs/goodhands-retest2-plan.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "source-map lists no generated or index file",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "input-preflight absent at source and not invented",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "command-scope-audit not copied",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no transcript, processes, stderr, png or envelope in ready",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas report.md byte-identical to report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha report.md byte-identical to report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego report.md byte-identical to report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa report.md byte-identical to report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena report.md byte-identical to report.original.md.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator opening line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator later line 98",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ranked 1 line 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ranked 2 line 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ranked 3 line 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator sec8 1 line 101",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator sec8 2 line 102",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator sec8 3 line 103",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 1 Later wording (section 8) line 101",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 1 Later wording (diary 104.738 s) line 38",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 1 Later wording (diary 130.193 s) line 40",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 1 Later wording (section 4) line 66",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 1 Later wording (section 5) line 78",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 1 Later wording (section 9) first visit line 108",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 1 Later wording (section 9) retest1 line 113",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 2 Later wording (section 8) line 102",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 2 Later wording (section 2) desktop 30 s line 20",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 2 Later wording (diary 52.053 s) line 33",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 2 Later wording (diary 69.102 s) line 36",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 2 Later wording (section 5) line 79",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 2 Later wording (section 9) retest1 line 115",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 2 Later wording (section 9) new blocking asks line 118",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (section 8) line 103",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (diary 15.204 s) phone line 55",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (diary 149.067 s) line 43",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (diary 156.711 s) line 44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (section 5) disabled buttons line 80",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (section 5) old case line 82",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (section 6) phone trouble line 91",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (section 6) phone unseen line 92",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (section 9) retest1 line 114",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (section 9) new blocking asks, old case line 119",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator ask 3 Later wording (section 9) new blocking asks, disabled buttons line 120",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator unranked salary-header-before-question Later wording (diary 139.293 s) desktop line 41",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator unranked salary-header-before-question Later wording (diary 33.277 s) phone line 59",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator unranked salary-header-before-question Later wording (section 5) line 81",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas locator unranked salary-header-before-question Later wording (section 9) new blocking asks line 121",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas opening on report line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas ranked asks are report lines 4 to 6 numbered 1 2 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas section 8 asks sit after the section 8 heading",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas opening==later flag matches the text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator opening line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator later line 128",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator Later wording (section 7) leave it running line 129",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator Later wording (section 7) another evening line 130",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ranked 1 line 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ranked 2 line 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ranked 3 line 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator sec8 1 line 133",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator sec8 2 line 134",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator sec8 3 line 135",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 1 Later wording (section 8) line 133",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 1 Later wording (diary 12.429 s) line 33",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 1 Later wording (diary 19.89 s) line 35",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 1 Later wording (diary 148.962 s) line 56",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 1 Later wording (section 5) line 105",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 1 Later wording (section 9) retest ask 1 line 140",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 1 Later wording (section 9) new blocking asks line 152",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (section 8) line 134",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (diary 48.264 s) line 42",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (diary 67.19 s) phone line 71",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (diary 83.632 s) phone line 77",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (diary 122.652 s) line 53",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (diary 181.251 s) line 59",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (section 4) line 96",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (section 4) off-question answer line 97",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (section 9) retest ask 2 line 142",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 2 Later wording (section 9) retest ask 3 line 145",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 3 Later wording (section 8) line 135",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 3 Later wording (section 4) clock line 100",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 3 Later wording (section 7) leave it running line 129",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha locator ask 3 Later wording (section 9) first-round ask line 149",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha opening on report line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha ranked asks are report lines 4 to 6 numbered 1 2 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha section 8 asks sit after the section 8 heading",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha opening==later flag matches the text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator opening line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator later line 94",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ranked 1 line 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ranked 2 line 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ranked 3 line 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator sec8 1 line 97",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator sec8 2 line 98",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator sec8 3 line 99",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 1 Later wording (section 8) line 97",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 1 Later wording (diary 54.903 s) desktop line 31",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 1 Later wording (diary 60.873 s) desktop first_minute line 32",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 1 Later wording (diary 55.026 s) phone line 52",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 1 Later wording (diary 75.202 s) phone first_minute line 55",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 1 Later wording (section 4) line 68",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 1 Later wording (section 5) line 78",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 1 Later wording (section 9) retest1 ask 1 line 103",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 2 Later wording (section 8) line 98",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 2 Later wording (diary 60.873 s) desktop first_minute line 32",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 2 Later wording (diary 183.863 s) desktop pulse line 40",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 2 Later wording (diary 75.202 s) phone first_minute line 55",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 2 Later wording (section 9) retest1 ask 2 line 104",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 2 Later wording (section 9) first report ask 1 line 108",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 3 Later wording (section 8) line 99",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 3 Later wording (diary 26.175 s) desktop line 27",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 3 Later wording (diary 82.067 s) desktop line 35",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 3 Later wording (diary 162.305 s) phone line 61",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 3 Later wording (diary 60.873 s) desktop first_minute line 32",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 3 Later wording (section 5) line 75",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator ask 3 Later wording (section 9) retest1 ask 3 line 105",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator unranked fast-pace-not-sticking-and-missing-skip Later wording (diary 145.951 s) desktop line 38",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator unranked fast-pace-not-sticking-and-missing-skip Later wording (diary 148.509 s) desktop line 39",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator unranked fast-pace-not-sticking-and-missing-skip Later wording (diary 189.978 s) desktop line 42",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator unranked fast-pace-not-sticking-and-missing-skip Later wording (section 5) Fast line 76",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator unranked fast-pace-not-sticking-and-missing-skip Later wording (section 5) Skip line 77",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego locator unranked fast-pace-not-sticking-and-missing-skip Later wording (section 9) new blocking asks line 114",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego opening on report line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego ranked asks are report lines 4 to 6 numbered 1 2 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego section 8 asks sit after the section 8 heading",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego opening==later flag matches the text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator opening line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator later line 139",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator Later wording (section 3) phone stop line 57",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator Later wording (section 9) new this time line 160",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ranked 1 line 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ranked 2 line 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ranked 3 line 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator sec8 1 line 143",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator sec8 2 line 144",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator sec8 3 line 145",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 1 Later wording (section 8) line 143",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 1 Later wording (diary 74.6 s) desktop want_quit line 67",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 1 Later wording (diary 179.6 s) phone want_quit line 54",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 1 Later wording (section 4) line 82",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 1 Later wording (section 5) line 102",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 1 Later wording (section 9) first report ask 1 line 150",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 1 Later wording (section 9) new this time line 160",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 2 Later wording (section 8) line 144",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 2 Later wording (diary 156.6 s) phone line 52",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 2 Later wording (section 4) line 83",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 2 Later wording (section 9) first report ask 3 line 152",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 3 Later wording (section 8) line 145",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 3 Later wording (diary 68 s) phone line 45",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 3 Later wording (diary 73 s) phone line 46",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 3 Later wording (diary 80 s) phone line 47",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 3 Later wording (diary 100.7 s) phone line 51",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 3 Later wording (section 5) bench marks line 103",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator ask 3 Later wording (section 9) retest1 ask 1 line 155",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator unranked bench-marks-meaning Later wording (diary 100.7 s) phone line 51",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator unranked bench-marks-meaning Later wording (section 5) line 103",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa locator unranked bench-marks-meaning Later wording (section 8) line 145",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa opening on report line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa ranked asks are report lines 4 to 6 numbered 1 2 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa section 8 asks sit after the section 8 heading",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa opening==later flag matches the text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator opening line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator later line 82",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ranked 1 line 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ranked 2 line 5",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ranked 3 line 6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 1 Later wording (section 2) laptop line 20",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 1 Later wording (section 3) laptop note about 20 s line 31",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 1 Later wording (section 3) laptop note about 50 s line 32",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 1 Later wording (section 3) laptop first_minute 69 s line 33",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 1 Later wording (section 3) laptop want_quit 127 s line 37",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 1 Later wording (section 3) laptop stop 138 s line 38",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 1 Later wording (section 4) line 49",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 2 Later wording (section 3) phone pulse 171 s line 25",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 2 Later wording (section 4) line 47",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 3 Later wording (section 3) laptop 110 s line 34",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 3 Later wording (section 5) line 59",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 3 Later wording (section 5) card line 60",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator ask 3 Later wording (section 3) phone tap notes, producer says not word for word line 28",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator unranked disabled-style-menu-arrival-clock Later wording (section 5) disabled buttons line 62",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator unranked disabled-style-menu-arrival-clock Later wording (section 5) clock line 63",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator unranked disabled-style-menu-arrival-clock Later wording (section 6) phone trouble line 70",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator unranked disabled-style-menu-arrival-clock Later wording (section 3) phone tap notes, producer says not word for word line 28",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena locator unranked feedback-stop-labels-clarity Later wording (section 5) Feedback labels line 61",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena opening on report line 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena ranked asks are report lines 4 to 6 numbered 1 2 3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena section 8 asks sit after the section 8 heading",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena opening==later flag matches the text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Aisha and Diego opening and later are identical (recorded, not asserted different)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Jonas, Rosa and Elena opening and later differ",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Elena has no section 8 asks and the report says see the ranked asks",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exactly 20 table rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ids F-2611 to F-2630 in order, F-2631 to F-2640 unused",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2613 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2613 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2613 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2613 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2613 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2613 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2613 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2614 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2614 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2614 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2614 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2614 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2614 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2614 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2615 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2615 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2615 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2615 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2615 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2615 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2615 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2616 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2616 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2616 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2616 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2616 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2616 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2616 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2617 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2617 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2617 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2617 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2617 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2617 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2617 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2618 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2618 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2618 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2618 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2618 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2618 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2618 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2619 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2619 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2619 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2619 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2619 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2619 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2619 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2620 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2620 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2620 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2620 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2620 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2620 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2620 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2621 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2621 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2621 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2621 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2621 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2621 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2621 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2622 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2622 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2622 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2622 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2622 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2622 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2622 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2623 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2623 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2623 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2623 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2623 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2623 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2623 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2624 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2624 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2624 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2624 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2624 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2624 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2624 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2625 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2625 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2625 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2625 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2625 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2625 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2625 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2626 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2626 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2626 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2626 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2626 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2626 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2626 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2627 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2627 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2627 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2627 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2627 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2627 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2627 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2628 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2628 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2628 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2628 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2628 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2628 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2628 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2629 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2629 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2629 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2629 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2629 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2629 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2629 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2630 tester order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2630 words regenerate exactly from the extraction",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2630 rendered row matches json and table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2630 route vocabulary",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2630 row ends with the source path column",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2630 every extracted span appears in the row inside double quotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2630 no truncation marker added by the preparer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "only F-2621 carries calibration:C14",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Nov 10 targets are exactly F-2621 F-2623 F-2624 F-2628",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 route states ['9700', 'not left running', 'process miss']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 route states ['AND', 'no sending step', 'identical']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2613 route states ['identical', 'not reached']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2614 route states ['only if the weighing paragraph is shortened', 'would still come back', 'both are kept']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2615 route states ['not leave it running in the background', 'b-003 was saved but not viewed', 'BOTH owner-required labels']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2616 route states ['no invented limit', 'no unlimited-fee claim']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2617 route states ['no numerical weighting-regression claim']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2621 route states ['not authorization to violate slowdown policy', 'no C14 layout or wording or recovery gate']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2620 route states ['no blanket owner-permission gate', 'no invented personal facts']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2628 route states ['not proof that all state is equal', 'no blanket owner-permission gate']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2630 route states ['not a proven leak or money error']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2619 route states ['no sending step', 'nothing is claimed delivered or repaired']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2629 route states ['nothing was delivered or repaired']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2622 route states ['contrary evidence']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2623 route states ['no causal money defect']",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2611 route does not claim a trial consequence",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "F-2612 and F-2613 openings: Aisha two conditions in the quoted text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Rosa opening quote has only if and later quote has would still",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Elena later quote states the condition and the extra quotes cover no background running",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "unranked leads present with class and date",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Elena feedback-stop-label span contains both stop labels",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no ledger text claims the letter was delivered or repaired",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas desktop reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas desktop exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas desktop early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas desktop release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas desktop driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas desktop audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas phone reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas phone exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas phone early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas phone release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas phone driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas phone audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha desktop reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha desktop exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha desktop early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha desktop release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha desktop driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha desktop audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha phone reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha phone exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha phone early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha phone release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha phone driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha phone audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego desktop reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego desktop exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego desktop early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego desktop release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego desktop driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego desktop audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego phone reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego phone exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego phone early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego phone release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego phone driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego phone audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa phone audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa desktop audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena phone reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena phone exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena phone early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena phone release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena phone driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena phone audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena desktop reactions regenerate from raw rows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena desktop exactly one stop row, equal to the audit stop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena desktop early flags recomputed from raw elapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena desktop release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena desktop driver.out port equals plan port",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena desktop audit imageReads are shots the tester made",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "reaction totals present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Jonas phone stop is before 60 s",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Aisha desktop first-minute raw 58.112 is early",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Elena phone pulse 170.902 is early and desktop has no pulse",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "stops match the brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "command counts reconcile",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas qualification names 71 other strict commands and one disclosed extra fee-tap curl (72 total comes from the brief safe counts)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha qualification text mentions its Bash and strict curl counts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego qualification text mentions its Bash and strict curl counts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa qualification text mentions its Bash and strict curl counts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena qualification text mentions its Bash and strict curl counts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas identity lines, brief hash and history hash",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas dispatch pin and driver hashes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "jonas history read audit all lines read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha identity lines, brief hash and history hash",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha dispatch pin and driver hashes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "aisha history read audit all lines read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego identity lines, brief hash and history hash",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego dispatch pin and driver hashes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "diego history read audit all lines read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa identity lines, brief hash and history hash",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa dispatch pin and driver hashes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rosa history read audit all lines read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena identity lines, brief hash and history hash",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena dispatch pin and driver hashes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elena history read audit all lines read",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "cleanup: 15 PIDs absent, ports 22800 to 22809 closed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "round state: closed, 5 reports, 10 stops, game not finished",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "final release pin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "34 screenshot hashes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash jonas desktop a-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash jonas desktop a-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash jonas desktop first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash jonas phone b-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash jonas phone b-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash jonas phone first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash aisha desktop a-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash aisha desktop a-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash aisha desktop first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash aisha phone b-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash aisha phone b-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash aisha phone b-003.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash aisha phone first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash diego desktop a-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash diego desktop first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash diego phone b-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash diego phone b-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash diego phone first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash rosa phone a-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash rosa phone a-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash rosa phone a-003.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash rosa phone first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash rosa desktop b-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash rosa desktop b-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash rosa desktop first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena phone a-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena phone a-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena phone a-003.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena phone first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena desktop b-001.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena desktop b-002.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena desktop b-003.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena desktop b-004.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "png hash elena desktop first-minute.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Elena desktop b-003 saved but not viewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "image-read receipts equal the audit",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "first-minute captures flagged as automatic",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"spans": 36, "copiedSources": 88, "rawReactions": 102, "finalStops": 10, "parserRows": 20, "parserProblems": 0}

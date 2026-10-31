@@ -1,0 +1,14 @@
+{
+  "time": "2026-10-31T10:56:51.094144+00:00",
+  "ok": true,
+  "all103FilesIndexed": true,
+  "indexedPayloads": 102,
+  "exactSourceCopies": 85,
+  "allSourceMtimesUnchanged": true,
+  "realParserRun": true,
+  "independentRoutesDatesIDs": true,
+  "reviewedFullReportsEarlier": true,
+  "reviewedCorrectedReadmeAnd20Rows": true,
+  "spanChecks": 190,
+  "note": "190 low-level mutated-span checks, not end-to-end packet mutations. Root accepted later literal placement and unranked routing; no game behavior or acceptance proved."
+}

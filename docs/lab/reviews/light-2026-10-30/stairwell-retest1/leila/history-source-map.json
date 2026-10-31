@@ -1,0 +1,95 @@
+{
+  "time": "2026-10-31T11:57:25.704246+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [
+    {
+      "repo": "human-framework",
+      "commit": "74c090fb63c85e7132e662bfba1abebd26c87683",
+      "path": "docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "selection": "leila-free complete return plus literal own asks only; excludes CONT and director method interpretation",
+      "selectedReturnAndAsksOnly": true,
+      "selectedSha256": "12ae58092c1bb64762299f6519d3157f58a3e6e033a84a5b30bc46e5e7a14e56"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "74c090fb63c85e7132e662bfba1abebd26c87683",
+      "path": "docs/lab/reviews/hf3-warren-2026-10-25/leila-free-matched.md",
+      "selection": "FREE only; independent CONT alternative excluded",
+      "selectedSha256": "9f3e0bfbbef523cdc1d9d647d64fcaea519f45079c6498c00a99f50a6443d397"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance/leila/report.md",
+      "sourceSha256": "16ed17c16868be51a5f4e2e29bb1bb1dcb93f668a3ed12ea80329edb02ed346c",
+      "selectedSha256": "957741e5129d18007ede269d5c65f320be13e50756bcffa2e4bb404e94cc1af1"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell/leila/report.md",
+      "sourceSha256": "8c0b8d24628a27b3a007b77fb7bca59ca1564e36fb5ca79e1053365237cfc634",
+      "selectedSha256": "b0073ecabc6bfb9a0081cfce3176e73f9863ccdf48a12da6752531d95c911796"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest/leila/report.md",
+      "sourceSha256": "027abb82eb2167f78074eb2b92f7b1237ac19cb8e2f5fddb173ef5fa44b5fb1f",
+      "selectedSha256": "4126cd5d994672c2c4074ad83a9c434392b954acd87c377026d8921e32f31972"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/leila/report.md",
+      "sourceSha256": "9f2699b1969c98665c20381fe93c49a6df484ec81f92c1de62452f978ebbd591",
+      "selectedSha256": "2d29d602c0977c3de750c033a58d333a326a172b4aa02fb19c6297e6654afef0"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/report.md",
+      "sourceSha256": "7ef298f4f21bbb37fa1cc20435ae95b842f89111b77f883f6f96e72cbdc66fb7",
+      "selectedSha256": "241c11c2d1d0ecd16c578fd57852200087d0aac37b19065a6438252cec42ec0c"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest2/leila/director-method-qualification.json",
+      "sourceSha256": "5822b3833aa25e45d674523477080729373962d88022cf82e0b9c6e61255cbcd",
+      "directorMetadataOnly": true,
+      "selectedSha256": "824d29f14363589e53200467c1e3a31ac142f9050d669b437dbc148c597fa0c3"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "74c090fb63c85e7132e662bfba1abebd26c87683",
+      "path": "docs/games/voice-playtest-2026-10-27-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "a2b2903ee3d7c15b47ccd18d11a839487f7bcf7fc94efd141ec4fcf19725231d"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "74c090fb63c85e7132e662bfba1abebd26c87683",
+      "path": "docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "e90ee9016f3b43023b818d1d5105345939b8ef0314fcdea6c81b7976a8555e69"
+    },
+    {
+      "repo": "pass",
+      "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+      "path": "docs/playtests/panel-2026-10-27.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "bd1d785e26679eae90cd9627b724fac0c5ee405591defc48b6b9990c09665620"
+    },
+    {
+      "repo": "valley",
+      "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+      "path": "docs/playtests/2026-10-27-retest2.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "7f1407e9882c475a4b9c754fcdc420a9630ee533ad950fba6f08f1a1b5b1ed3b"
+    },
+    {
+      "repo": "commonstead",
+      "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+      "path": "docs/games/commonstead-playtest-2026-10-27b.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "dc0c1d3ef604f021ec570bed32f79265e20e30087aa84f085d58b645817bd526"
+    },
+    {
+      "repo": "lefthand",
+      "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+      "path": "docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "8abfe52ffed6a67d2c102650966699a3ea28e5ece1a4df02ddf96637746f4de8"
+    }
+  ],
+  "historySha256": "d0d5f8aab09ce23501661d854796c11836c8e95acccda4849aba84a69d44619e"
+}

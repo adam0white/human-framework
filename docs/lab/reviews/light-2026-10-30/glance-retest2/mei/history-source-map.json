@@ -1,0 +1,89 @@
+{
+  "time": "2026-10-31T08:31:14.461743+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [
+    {
+      "repo": "human-framework",
+      "commit": "74c090fb63c85e7132e662bfba1abebd26c87683",
+      "path": "docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "selection": "mei-free complete return plus literal own asks only; excludes CONT and director method interpretation",
+      "selectedReturnAndAsksOnly": true,
+      "selectedSha256": "44946fd36bf137e06db2843324ae8f3335a4ac63f37c44b4cda34dfe7c4a22d8"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "74c090fb63c85e7132e662bfba1abebd26c87683",
+      "path": "docs/lab/reviews/hf3-warren-2026-10-25/mei-free-matched.md",
+      "selection": "FREE only; independent CONT alternative excluded",
+      "selectedSha256": "21e5e5678532e7da533f87b3c00c6fc5f287cd6c99285c7d594652285cf8a6be"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance/mei/report.md",
+      "sourceSha256": "5c58486c3761a4df3ca62f93171ee6a8105011d3e37d1d40cede64f094014763",
+      "selectedSha256": "e8d6ea3e9dd0a7559f778f3239ba8e05fc7c8e4b6d02fa0568281e9203d71646"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur/mei/report.md",
+      "sourceSha256": "c037d5a7a58d38d39a33ef00e5c0d78033906344f90a6bf8388f5de221a9ef08",
+      "selectedSha256": "406f02eb205abea122690a0c91bf35979161b0b5f775d4e9e9c02df31de910d9"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-hold-return/mei/report.md",
+      "sourceSha256": "d22c0bd8246332db55a7b807a872706246119a9fade6ad29598f55d66394970c",
+      "selectedSha256": "ea3c80f26f5ddb81c220502f1be18f6cb60eb77a85110fd0cdf7f0f3e5c2e887"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest/mei/report.md",
+      "sourceSha256": "fe9e74b20fe9ac4c6661bf334b4b29ce0452fb9c66a87d17d4ee73b42d46182a",
+      "selectedSha256": "9cfe65d0990669e41fec1ce890f65b1391e8a394f0f52ca219d08f5b551beebb"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word/mei/report.md",
+      "sourceSha256": "785b910ca846b2c76856ddf5839df4ab791d156695202486f2175d865e2de32d",
+      "selectedSha256": "ffdfcf986d6474259dad4c91f488c0cdc205ed12fc8362cef270518f34eb3d52"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "74c090fb63c85e7132e662bfba1abebd26c87683",
+      "path": "docs/games/voice-playtest-2026-10-27-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "ad199ba23afae7b052fe3017bb798cc1527a02fb07921655a4521527bae3b383"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "74c090fb63c85e7132e662bfba1abebd26c87683",
+      "path": "docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "76f0d78617a15e20061ac8df9909ec11ca8ae644f199d7d6c548ec022db75520"
+    },
+    {
+      "repo": "pass",
+      "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+      "path": "docs/playtests/panel-2026-10-27.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "0f806127ede09c865567321e1a2fdee6936d25ab80ffe77ecb1f69bb30c8dd6c"
+    },
+    {
+      "repo": "valley",
+      "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+      "path": "docs/playtests/2026-10-27-retest2.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "2bacbdf570476739fd593f2af18e509e163591b1e6482f7dd713dce9b07f65c1"
+    },
+    {
+      "repo": "commonstead",
+      "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+      "path": "docs/games/commonstead-playtest-2026-10-27b.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "1623fd3be4ec4aae428c59060312d9636259c4f1f33d2c3f241b0b6431c16842"
+    },
+    {
+      "repo": "lefthand",
+      "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+      "path": "docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "6e3d47042b3d0708553ae711b95801fb976ce5cd337368daedc6804883a6f80e"
+    }
+  ],
+  "historySha256": "78d553322ef680f09549c8901d4bfccabecd940038a1599d6b98a219b5b4a446"
+}

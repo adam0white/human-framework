@@ -1,0 +1,24 @@
+{
+  "time": "2026-10-31T11:54:32.585335+00:00",
+  "status": "Qualified completion; image-view evidence unverified",
+  "fullHistoryActualReturnedLines": 2311,
+  "commandCounts": {
+    "read": 15,
+    "curl": 38
+  },
+  "commandExceptions": 0,
+  "rawStops": {
+    "phone": 43.25,
+    "desktop": 30.127
+  },
+  "qualifications": [
+    "Producer desktop30.128 differs by1ms from raw30.127; keep original report unchanged.",
+    "Producer reports both title images viewed, but Codex JSONL does not expose supported view_image events; do not claim independently verified viewing or gameplay layout.",
+    "Phone automatic screenshot at60.038 occurred after voluntary43.25stop while desktop active; not a tester pulse/first-minute observation or continued play.",
+    "Both actual stop logs before60; no firstminute/pulses required.",
+    "Original current-build Rosa attempt cut BY COORDINATOR atphone60.268/desktopunopened; separate fresh-game Codex recovery, repeated exposure and backend qualify comparisons.",
+    "Nermin unknown availability is visible uncertainty, not proof game owes private cause or exact timetable.",
+    "Supplies notice seen; orderDay4 not reached. Fold/list worked desktop; no proof phone geometry or layout.",
+    "All3rankedasks plus earlier unpaidavailability/emptybenches/Pace kept. Newblocking explicitly none; twoiterationscap remains."
+  ]
+}
