@@ -1,0 +1,80 @@
+{
+  "purpose": "The packet ledger-additions.md is a byte copy of the private source. Its routes cell on these rows separates qualifiers from routes with semicolons, which apps/site/src/lab/ledger.ts parseLedger rejects (each semicolon piece must be a route). The canonical feedback-ledger.md rows therefore join each non-route qualifier to the preceding route with a comma in the routes cell ONLY. Words, ids, dates, who, verdict and source cells are byte-identical to ledger-additions.md.",
+  "changes": [
+    {
+      "id": "F-2251",
+      "sourceRoutes": "fix:hearsay asks F-2256–2265; instrument limits retained, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay asks F-2256–2265, instrument limits retained, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2252",
+      "sourceRoutes": "fix:hearsay asks F-2256–2265; instrument limits retained, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay asks F-2256–2265, instrument limits retained, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2253",
+      "sourceRoutes": "fix:hearsay asks F-2256–2265; instrument limits retained, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay asks F-2256–2265, instrument limits retained, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2254",
+      "sourceRoutes": "fix:hearsay asks F-2256–2265; instrument limits retained, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay asks F-2256–2265, instrument limits retained, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2255",
+      "sourceRoutes": "fix:hearsay asks F-2256–2265; instrument limits retained, target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay asks F-2256–2265, instrument limits retained, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2256",
+      "sourceRoutes": "fix:hearsay inspect actual recipient/claim choice and preview for repeat-secret path; blocking return condition; do not infer choice absent from uninspected alternate paths; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay inspect actual recipient/claim choice and preview for repeat-secret path, blocking return condition, do not infer choice absent from uninspected alternate paths, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2257",
+      "sourceRoutes": "fix:hearsay truthful immediate refusal/private-keeping result and actual reason beside action; corroborated Emre/Luz; blocking; preserve privacy/refusal/cost and unknown return times; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay truthful immediate refusal/private-keeping result and actual reason beside action, corroborated Emre/Luz, blocking, preserve privacy/refusal/cost and unknown return times, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2258",
+      "sourceRoutes": "fix:hearsay inspect supported decisions/wait controls and actual absence/known return cues; blocking return condition; no blanket speed or forced NPC availability; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay inspect supported decisions/wait controls and actual absence/known return cues, blocking return condition, no blanket speed or forced NPC availability, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2259",
+      "sourceRoutes": "fix:hearsay make actual supplies timing/control and choice costs legible; blocking return condition; Day4 not reached and order absence unproved; keep Day4/8/13 lunch goal; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay make actual supplies timing/control and choice costs legible, blocking return condition, Day4 not reached and order absence unproved, keep Day4/8/13 lunch goal, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2260",
+      "sourceRoutes": "fix:hearsay record organization/readability taste; preserve goal-relevant Day4 supplies despite producer off-topic interpretation; target2026-11-10 (open)",
+      "canonicalRoutes": "fix:hearsay record organization/readability taste, preserve goal-relevant Day4 supplies despite producer off-topic interpretation, target2026-11-10 (open)"
+    },
+    {
+      "id": "F-2261",
+      "sourceRoutes": "fix:hearsay visible claim result candidate only; lab/game-label interoperability must be resolved before selector usability retest; both devices instrument-impaired; not proof functional selectors broken; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay visible claim result candidate only, lab/game-label interoperability must be resolved before selector usability retest, both devices instrument-impaired, not proof functional selectors broken, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2262",
+      "sourceRoutes": "fix:hearsay inspect Osman private-details action/result/cost in supported facts; candidate only, instrument-impaired exposure; no invented consequence or removed secrecy; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay inspect Osman private-details action/result/cost in supported facts, candidate only, instrument-impaired exposure, no invented consequence or removed secrecy, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2263",
+      "sourceRoutes": "fix:hearsay semantic Who/What label and fold affordance; fix:lab exact-label resolver interoperability, native role control passes; desktop TOOL; blocking instrument prerequisite before retest; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay semantic Who/What label and fold affordance; fix:lab exact-label resolver interoperability, native role control passes, desktop TOOL, blocking instrument prerequisite before retest, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2264",
+      "sourceRoutes": "fix:hearsay make supported help and goal/crate information discoverable; taste candidate, both sessions TOOL; do not promise exact menu relocation without design inspection; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay make supported help and goal/crate information discoverable, taste candidate, both sessions TOOL, do not promise exact menu relocation without design inspection, target2026-11-03 (open)"
+    },
+    {
+      "id": "F-2265",
+      "sourceRoutes": "fix:hearsay phone selected-person/claim-control proximity preference; producer says selected panel position unseen, no confirmed layout defect; both sessions TOOL; target2026-11-03 (open)",
+      "canonicalRoutes": "fix:hearsay phone selected-person/claim-control proximity preference, producer says selected panel position unseen, no confirmed layout defect, both sessions TOOL, target2026-11-03 (open)"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+# Report: The Stairwell, Jonas Berg
+
+**Would you return voluntarily?** Yes, one more evening, but only to see whether the notebook's "0 of 16" or the Sunday vote ever shows a visible effect of sitting, replying or gossiping. I would not leave it running. I would stop for good if replies stay identical and nothing in the notebook moves.
+
+**Ranked asks**
+1. Show a visible measure of feeling or trust, or say what each sit and reply does.
+2. Make replies produce different answers. Every reply ended with "I would rather leave it there."
+3. Explain the "Swap Hacer's and Sevim's newspapers" offer. Make day one tighter so batching is not a free routine. Fix the clipped "Time is paus…" banner on desktop.
+
+## 1. Session
+
+- Persona: Jonas Berg. Exposure: first visit. Round: light-1030, first panel round, arm free stop (floor 0).
+- My own history (`own-history.md`) was read in full. It contains nothing about this game.
+- URL: https://stairwell.adamwhite.work/?labRunSource=agent
+- Session A: 1280x800 desktop, light mode, driver port 21503, about 245 s real time.
+- Session B: 360x690 touch phone, light mode, driver port 21502, about 22 s real time. New game started.
+
+## 2. First impressions
+
+**A (desktop)**
+- 2.2 s: the title page was clear about the task: deliver supplies, Sunday vote on tea money.
+- About 10 s: five orders with deadlines looked like a warehouse-planning loop, which I liked.
+- The clock label lagged a few seconds behind the state at times.
+
+**B (phone)**
+- 3 s: same title page as desktop; it fits in one column.
+- 6 s: Monday 07:01, five orders.
+- The building drawing and the two buttons were readable at 360 px.
+
+## 3. Verbatim diary
+
+Session A, elapsed seconds from the driver. First, the typed log lines:
+- 62.253 first_minute, Mon 07:34: "Clear: carry all orders from the bakery, deliver by deadline, walking costs minutes, sitting costs 10 min once per day per person, Sunday vote on my tea money. Unclear: what a conversation reply earns me, and what the swap-newspapers offer was. Cost-of-time is visible, which I like."
+- 123.954 note, Mon 08:27: "Two sits and two replies, notebook still says 0 of 16 learned and no stamps. I get a story line and no visible progress or number. A consequence with no clue yet, which I dislike; I will see whether it pays later."
+- 175.492 pulse, engagement 3, Mon 09:38: "Day one routine is easy: batch from the bakery, deliver, and deadlines had big slack. The part with a hook is the gossip and the Sunday vote, but I get no number on feelings or trust (0 of 16 learned, no stamps). Only the sweep paying 20 versus 5 for bread is a visible lever. I want a meter."
+  - **Premature timed tag.** The driver accepted this pulse at 175.5 s, under the 180 s minimum. That is my breach.
+- 196.624 want_quit, CONFUSED, Mon 09:54: "I want to stop here for now: I cannot see what any of my talking does. Notebook says 0 of 16, replies all end in the same line, and the Sunday vote is days off with no gauge. The world does move on its own (Hacer and Tarik talked on the step), which is interesting, but I have no lever I can measure."
+- 245.057 stop, CONFUSED, Mon 09:54: "Stopping session A at about 4 minutes, Mon 09:54. Chose I am confused in Feedback, typed nothing, submitted nothing, closed it. I cannot measure what talking does."
+
+Reactions attached to other ops, with elapsed seconds:
+- 10.4: "Caretaker game, five orders, deadlines. Warehouse planning flavour. Looking at all orders first."
+- 12.5: hypothesis: batch everything in one trip.
+- 21.8: deliver in deadline order, ignore the swap-newspapers offer.
+- 27.4: not chatting while orders are waiting.
+- 33.2: testing the cost of sitting.
+- 43.7 and 46.2: sitting costs 10 min, once per person per day.
+- 71.6: "A visible clue before a consequence; good." (about the tiredness warning).
+- 85.5: all five delivered by 07:46, day one easy.
+- 90.5: time passes while I read.
+- 121.2: both replies gave the same line.
+- 129.8: gossip has certainty levels.
+- 131.9: three buttons share the same name.
+- 144.8: sweep paid 20 versus 5.
+- 190.6: third resident, third identical line.
+
+Session B, elapsed seconds from the driver:
+- 2.989 tap reaction: "Same title page as desktop. New game on phone."
+- 7.918 tap reaction: "Phone layout fits one column. Same loop, going to bakery."
+- 13.59 shot reaction: "At the bakery on phone; checking layout."
+- 20.38 want_quit, BORED, Mon 07:12: "Second visit same evening. I already know the loop: batch orders, deliver by deadline, and I could not see what talking does. Not repeating it on a phone for nothing measurable."
+- 21.744 stop, BORED, Mon 07:12: "Stopping phone session at about 20 seconds, Mon 07:12. Chose I am stopping in Feedback, typed nothing, submitted nothing, closed it. Game menu still open."
+- No first_minute or pulse was logged on the phone because the session ended at 22 s. Those checkpoints are untested.
+
+## 4. Moments
+
+**What held me**
+- Batching with visible walk times and deadlines.
+- The tiredness warning before a consequence.
+- The world moving on its own (Hacer and Tarık talked on the step; Derya came off a night shift).
+- The gossip certainty options ("as I heard it", "for certain").
+- Sweeping paying ₺20 against ₺5 for bread.
+
+**What lost me**
+- Replies were identical. "I would rather leave it there" came from Hacer, Sevim and Tarık.
+- The notebook stayed at "0 of 16" with no stamps after four sits.
+- Day one was easy: all five delivered by 07:46 with large slack. That is a dominant routine.
+- The newspaper-swap offer was never explained.
+
+**Quit wish:** A at 196.6 s (CONFUSED, mild). B at 20.4 s (BORED). Neither passed.
+
+**Pulse:** one, engagement 3, premature (see section 3).
+
+## 5. Confusion and clarity
+
+**Clear**
+- The order loop.
+- Time cost of walking and sitting.
+- Sit once per person per day.
+- The Sunday vote exists.
+- The clock runs while moving or idle and stops while reading.
+
+**Unclear**
+- What a sit, a reply or gossip earns.
+- What the notebook's "0 of 16" counts.
+- What the newspaper swap does.
+- Whether the vote can be influenced at all.
+- There is no gauge for relationship or trust.
+- Several gossip buttons share one name, so I could only tap them by coordinates.
+
+## 6. Device use
+
+**Desktop**
+- Screenshots viewed: `desktop/a-001.png` (title page: cream background, two unchecked checkboxes, red "Begin on Monday", recording notice) and `desktop/a-002.png` (building cross-section with the Tell list; banner "Time is paus…" clipped).
+- Controls used: mouse taps by name, one tap by x,y, key and wait ops, and the menu with Feedback.
+- Trouble seen: the clipped banner; the driver's nth field is unsupported, so I tapped identically named buttons by coordinates.
+
+**Phone**
+- Screenshots viewed: `phone/b-001.png` (title page in one column, readable) and `phone/b-002.png` (building drawing, tabs Here/Orders/Residents/Notebook, the swap button, and the "Go to flat 2" and "Take a ten-minute break" buttons; nothing clipped).
+- Controls used: Begin, Go to the bakery, Game menu, Feedback, "I'm stopping", Close feedback.
+- Unseen: the conversation panel, the Tell list and the notebook at phone size.
+- The Feedback dialog offered both "I'm stopping" and "I'm confused" on both devices.
+
+## 7. Stop and return
+
+**Stop words:**
+- Desktop: "Stopping session A at about 4 minutes, Mon 09:54. Chose I am confused in Feedback, typed nothing, submitted nothing, closed it. I cannot measure what talking does." (reason CONFUSED)
+- Phone: "Stopping phone session at about 20 seconds, Mon 07:12. Chose I am stopping in Feedback, typed nothing, submitted nothing, closed it. Game menu still open." (reason BORED)
+- On the desktop I pressed "I'm confused" and left the radios, text box and Submit untouched. On the phone I did the same with "I'm stopping".
+- Recording and consent were left unchanged.
+
+**Would you return voluntarily?** Yes, another evening, but only to check whether the notebook's "0 of 16" and the Sunday vote ever show a visible consequence of sitting, replying and gossiping. I would not leave it running. I would stop for good if replies stay identical and nothing in the notebook moves.
+
+## 8. Changes I would want
+
+1. A visible measure of feeling or trust, or at least a line saying what each sit and reply did.
+2. Replies that differ, or a plain statement that they are templated.
+3. An explanation of the swap offer, tighter day-one deadlines so batching is not a free routine, and a fix for the clipped banner.
+
+## 9. Compared with my last visit
+
+First visit.
+
+## Cleanup
+
+I created no worktrees or branches, so no worktrees of mine remain. Screenshots kept: desktop `a-001.png` and `a-002.png`; phone `b-001.png` and `b-002.png`.

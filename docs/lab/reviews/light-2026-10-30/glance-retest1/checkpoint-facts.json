@@ -1,0 +1,466 @@
+{
+  "note": "Computed from the copied wall-clock.jsonl and completion.json by build-glance-retest-packet.py. first_minute:shot and stop:ceiling lines are automatic driver lines (reaction null), not tester words. pulse before 180 s and first_minute tester tags before 60 s would be premature.",
+  "allPinsClean": "commit 2e3fd995fb3ed855b4fe75eaa8e449fe2914cc7f, framework 4.14.0, dirty false in every completion.json pin and release-start.json",
+  "testers": {
+    "mei": {
+      "exit": 0,
+      "devices": {
+        "desktop": {
+          "voluntaryStopElapsed_s": 198.217,
+          "voluntaryStopReason": "BORED",
+          "checkpoints": [
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.073,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            },
+            {
+              "kind": "first_minute",
+              "elapsed_s": 66.965,
+              "reason": null,
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 190.346,
+              "reason": null,
+              "engagement": 3,
+              "authored": true
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 192.165,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 198.217,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            }
+          ],
+          "waitOps": 7,
+          "longestWait_ms": 30121,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        },
+        "phone": {
+          "voluntaryStopElapsed_s": 195.824,
+          "voluntaryStopReason": "BORED",
+          "checkpoints": [
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.018,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            },
+            {
+              "kind": "first_minute",
+              "elapsed_s": 65.898,
+              "reason": null,
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 187.405,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 191.449,
+              "reason": null,
+              "engagement": 3,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 195.824,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            }
+          ],
+          "waitOps": 7,
+          "longestWait_ms": 30118,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        }
+      }
+    },
+    "samir": {
+      "exit": 0,
+      "devices": {
+        "phone": {
+          "voluntaryStopElapsed_s": 75.348,
+          "voluntaryStopReason": "BORED",
+          "checkpoints": [
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.037,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            },
+            {
+              "kind": "first_minute",
+              "elapsed_s": 66.971,
+              "reason": null,
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 75.348,
+              "reason": "BORED",
+              "engagement": 3,
+              "authored": true
+            }
+          ],
+          "waitOps": 3,
+          "longestWait_ms": 25109,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        },
+        "desktop": {
+          "voluntaryStopElapsed_s": 194.919,
+          "voluntaryStopReason": "BORED",
+          "checkpoints": [
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.054,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            },
+            {
+              "kind": "first_minute",
+              "elapsed_s": 64.857,
+              "reason": null,
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 186.01,
+              "reason": null,
+              "engagement": 3,
+              "authored": true
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 186.834,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 194.919,
+              "reason": "BORED",
+              "engagement": 3,
+              "authored": true
+            }
+          ],
+          "waitOps": 7,
+          "longestWait_ms": 30119,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        }
+      }
+    },
+    "leila": {
+      "exit": 0,
+      "devices": {
+        "desktop": {
+          "voluntaryStopElapsed_s": 209.957,
+          "voluntaryStopReason": "BORED",
+          "checkpoints": [
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.072,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            },
+            {
+              "kind": "first_minute",
+              "elapsed_s": 66.204,
+              "reason": null,
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 172.387,
+              "reason": null,
+              "engagement": 3,
+              "authored": true
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 202.75,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 209.957,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            }
+          ],
+          "waitOps": 7,
+          "longestWait_ms": 30117,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        },
+        "phone": {
+          "voluntaryStopElapsed_s": 236.858,
+          "voluntaryStopReason": "BORED",
+          "checkpoints": [
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.04,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            },
+            {
+              "kind": "first_minute",
+              "elapsed_s": 63.074,
+              "reason": null,
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 184.378,
+              "reason": null,
+              "engagement": 3,
+              "authored": true
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 186.121,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 236.858,
+              "reason": "BORED",
+              "engagement": null,
+              "authored": true
+            }
+          ],
+          "waitOps": 7,
+          "longestWait_ms": 30138,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        }
+      }
+    },
+    "rosa": {
+      "exit": 0,
+      "devices": {
+        "phone": {
+          "voluntaryStopElapsed_s": 26.074,
+          "voluntaryStopReason": "CONFUSED",
+          "checkpoints": [
+            {
+              "kind": "want_quit",
+              "elapsed_s": 18.166,
+              "reason": "CONFUSED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 26.074,
+              "reason": "CONFUSED",
+              "engagement": 2,
+              "authored": true
+            },
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.034,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            }
+          ],
+          "waitOps": 1,
+          "longestWait_ms": 3117,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        },
+        "desktop": {
+          "voluntaryStopElapsed_s": 19.767,
+          "voluntaryStopReason": "CONFUSED",
+          "checkpoints": [
+            {
+              "kind": "want_quit",
+              "elapsed_s": 13.663,
+              "reason": "CONFUSED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 19.767,
+              "reason": "CONFUSED",
+              "engagement": 2,
+              "authored": true
+            }
+          ],
+          "waitOps": 1,
+          "longestWait_ms": 3116,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        }
+      }
+    },
+    "ida": {
+      "exit": 0,
+      "devices": {
+        "phone": {
+          "voluntaryStopElapsed_s": 542.2,
+          "voluntaryStopReason": "CONFUSED",
+          "checkpoints": [
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.048,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            },
+            {
+              "kind": "first_minute",
+              "elapsed_s": 61.259,
+              "reason": null,
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 185.424,
+              "reason": null,
+              "engagement": 3,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 393.376,
+              "reason": null,
+              "engagement": 3,
+              "authored": true
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 532.346,
+              "reason": "CONFUSED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 542.2,
+              "reason": "CONFUSED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop:ceiling",
+              "elapsed_s": 1200.006,
+              "reason": "BUDGET",
+              "engagement": null,
+              "authored": false
+            }
+          ],
+          "waitOps": 21,
+          "longestWait_ms": 30121,
+          "rawErrors": [],
+          "rawTimeoutErrors": []
+        },
+        "desktop": {
+          "voluntaryStopElapsed_s": 615.796,
+          "voluntaryStopReason": "CONFUSED",
+          "checkpoints": [
+            {
+              "kind": "first_minute:shot",
+              "elapsed_s": 60.08,
+              "reason": null,
+              "engagement": null,
+              "authored": false
+            },
+            {
+              "kind": "first_minute",
+              "elapsed_s": 70.493,
+              "reason": null,
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 183.674,
+              "reason": null,
+              "engagement": 4,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 384.741,
+              "reason": null,
+              "engagement": 4,
+              "authored": true
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 575.189,
+              "reason": null,
+              "engagement": 3,
+              "authored": true
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 606.676,
+              "reason": "CONFUSED",
+              "engagement": null,
+              "authored": true
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 615.796,
+              "reason": "CONFUSED",
+              "engagement": null,
+              "authored": true
+            }
+          ],
+          "waitOps": 17,
+          "longestWait_ms": 30172,
+          "rawErrors": [
+            {
+              "elapsed_s": 227.577,
+              "op": "tap",
+              "error": "level 2.50 m D a i · r e a d 0 1 : 3 4 (as written) was 3.5, read 00:05 (as written) is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            }
+          ],
+          "rawTimeoutErrors": []
+        }
+      }
+    }
+  }
+}

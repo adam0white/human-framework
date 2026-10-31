@@ -1,0 +1,146 @@
+{
+  "tester": "Tessa Williams",
+  "validationTime": "2026-10-30T23:11:13.556142+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T22:39:32.917Z",
+        "elapsed_s": 192.335,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone. Fun to poke people one at a time and insist, but I stayed at the hut for three minutes, replies repeated, and I could not tell how to actually get anyone climbing.",
+        "game_clock": "Hollin Crag 05:28",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 56.233,
+          "op": "tap",
+          "input": {
+            "name": "send Wren"
+          },
+          "error": null
+        },
+        {
+          "elapsed_s": 189.726,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [51.677],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T22:37:27.712Z",
+          "elapsed_s": 67.13,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "all"
+          },
+          "reaction": "Everyone: climb on, and watch what Oskar does.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 10,
+          "error": "all is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T22:37:33.818Z",
+          "elapsed_s": 73.236,
+          "kind": "tool",
+          "op": "note",
+          "input": {},
+          "reaction": "Oskar who insisted on going down 30 seconds ago now says I am ready. Four people say nearly the same I will do it line. That is the identical-reply thing I dislike.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 176,
+          "error": "Unsupported op (invalid request, not a driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T22:38:09.099Z",
+          "elapsed_s": 108.517,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "more \u25be"
+          },
+          "reaction": "Looking for something sillier than climb/rest/eat.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 28,
+          "error": "2 enabled controls are named more \u25be; tap one by point: (325,518), (319,631) (game state, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T22:42:51.051Z",
+        "elapsed_s": 197.072,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the laptop. Better than the phone: a map, a hint that told me how to get them walking, and little story lines. But Wren and Oskar keep giving the same stock hut-path answer and I have not found my own kind of trouble.",
+        "game_clock": "Hollin Crag 06:31",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 194.661,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

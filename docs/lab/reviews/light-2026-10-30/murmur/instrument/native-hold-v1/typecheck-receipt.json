@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-31T01:27:58.972556+00:00",
+  "exit": 0,
+  "compiler": "repository TypeScript7.0.2 tsc",
+  "command": "tsc --noEmit --strict --noUncheckedIndexedAccess --target esnext --module esnext --moduleResolution bundler --allowImportingTsExtensions --skipLibCheck --lib esnext,dom,dom.iterable --types node lab-play.ts lab-play-helpers.ts lab-play-text.ts",
+  "setupFailures": [
+    "Guessed native-preview executable absent; no code checked.",
+    "nodenext inferred CommonJS because scratch has no package.json; import.meta rejected. Correct ES-module/bundler mode passed."
+  ],
+  "temporaryDependencyLinkRemoved": true
+}

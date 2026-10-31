@@ -1,0 +1,21 @@
+{
+  "time": "2026-10-30T22:46:18.931332+00:00",
+  "report": "rope/tessa/report.md",
+  "rawChecks": {
+    "phoneLeadOnAcceptedAt": [15.967, 75.293],
+    "desktopLeadOnAcceptedAt": [7.696, 35.214, 75.195],
+    "desktopSkipAcceptedAt": 173.628,
+    "phoneErrors": [
+      [67.13, "all absent"],
+      [73.236, "invalid request"],
+      [108.517, "two more controls ambiguous"]
+    ],
+    "desktopErrors": []
+  },
+  "limits": [
+    "Report claims two ambiguous more taps; raw log has one ambiguous more refusal plus two other invalid/absent requests. Preserve producer words; do not turn those three errors into game nonresponse.",
+    "Phone and desktop chose different turnaround answers. No matched-seed or matched-choice comparison; missing phone hint is not proved absent.",
+    "Lead on was accepted on both devices. Need explain independent climber movement without auto-moving or removing refusal.",
+    "Slow clock and menu/reading pause are not a reproduced timing defect; human-speed control required before such a route."
+  ]
+}

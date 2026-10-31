@@ -1,0 +1,39 @@
+{
+  "time": "2026-10-31T00:56:20.423409+00:00",
+  "producerMemoryLimit": "Noura reports losing her own copy of phone lines before266s. Original driver log retains these reactions/actions. Cold status at entry remains genuine; the report is memory-qualified and no continuous full producer diary is claimed. Effect on later recollection is unknown.",
+  "directRawCounterparts": [
+    {
+      "elapsed_s": 32.228,
+      "observation": "Producer explicitly recognized successful initial delivery and filled progress square."
+    },
+    {
+      "elapsed_s": 56.81,
+      "observation": "Producer explicitly said reading stops the clock; pause cause was learned during phone play."
+    },
+    {
+      "elapsed_s": 105.859,
+      "observation": "Producer saw1of16 notebook progress and liked it; no universally blank notebook."
+    },
+    {
+      "elapsed_s": 24.963,
+      "observation": "Clean cold interpreted newspaper swap as a prank and declined; warning preference is not universal."
+    }
+  ],
+  "saveBoundary": "New Monday on device2 was required by fresh-game test setup. No Continue/resume attempt or save failure was tested. Keep the exact conditional return, but do not route missing autosave as established. Explain truthful supported save/resume only.",
+  "goalBoundary": "Goal is visible on title at both sizes. Noura asks for it on first morning after missing/forgetting it; route discoverability/reminder preference, not absence from opening.",
+  "pauseBoundary": "Inspect actual paused UI state and supported resume/leave action. Preserve reading pause; her requested automatic restart is not proof simulation froze.",
+  "images": [
+    {
+      "image": "stairwell/noura/phone/a-001.png",
+      "sha256": "91b7fba4496f47d0a971943ea7288c876b29b0a3f65e6509c68edc943c6c13e1",
+      "directorViewed": true,
+      "observation": "Title visibly explains delivery through Saturday, Sunday vote on tea money/extra pay, caretaker role and nothing happens while away. Goal text fits before Begin at both viewed sizes. This does not show what the producer noticed or remembered."
+    },
+    {
+      "image": "stairwell/noura/desktop/d-001.png",
+      "sha256": "cd6757c3d5f375c3c7eca58bcf994eb21648fff9517193494aec2de08edeef5d",
+      "directorViewed": true,
+      "observation": "Title visibly explains delivery through Saturday, Sunday vote on tea money/extra pay, caretaker role and nothing happens while away. Goal text fits before Begin at both viewed sizes. This does not show what the producer noticed or remembered."
+    }
+  ]
+}

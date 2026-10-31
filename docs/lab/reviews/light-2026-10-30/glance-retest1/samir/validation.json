@@ -1,0 +1,86 @@
+{
+  "tester": "Samir Haddad",
+  "validationTime": "2026-10-31T03:38:52.576175+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T03:02:57.406Z",
+        "elapsed_s": 75.348,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone at about 75 seconds. Layout fixed and short opening good, but this is the same loop I know and nothing needs me yet. Pressed I am stopping in Feedback, then Back, typed nothing.",
+        "game_clock": "Mon 23:12",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 72.003,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T03:06:13.686Z",
+        "elapsed_s": 194.919,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping desktop at about 3 minutes, Monday 01:36. I liked the shorter opening, Bilal explained, and Dai deciding on the standing request. But Dai again asks where Morgan went and I cannot answer, the level tile stays not read, and I wait half a minute per step. Pressed I am stopping in Feedback, then Back, typed nothing.",
+        "game_clock": "Mon 01:36",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 191.333,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

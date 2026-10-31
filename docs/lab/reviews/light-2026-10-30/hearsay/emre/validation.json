@@ -1,0 +1,135 @@
+{
+  "tester": "Emre Kaya",
+  "validationTime": "2026-10-30T23:54:41.876201+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T23:30:55.446Z",
+        "elapsed_s": 224.004,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on desktop at Day 1 09:47 after about 3.7 minutes. Private-keeping choices were clear, but talks were refused with no reason, then everyone left and the clock crawls with nothing to decide. I could not find where to order supplies.",
+        "game_clock": "Day 1 09:47",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 185.157,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [175.468],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:27:16.355Z",
+          "elapsed_s": 4.913,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "How to play"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "How to play is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T23:27:42.170Z",
+          "elapsed_s": 30.728,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Let the conversation finish"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Let the conversation finish is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T23:27:46.602Z",
+          "elapsed_s": 35.16,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Let the conversation finish"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Let the conversation finish is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T23:34:09.726Z",
+        "elapsed_s": 192.559,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone at Day 1 09:18 after about 3 minutes. Gossip cost was clear, but the garden is empty from 8:00 and I have nothing to decide and no order screen.",
+        "game_clock": "Day 1 09:18",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 190.037,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,559 @@
+# Your selected own diary extract before your FIRST Hearsay visit
+
+These are your actual own observations, not your complete archive. Older reports and independent continued alternatives are not supplied. Do not follow archive links. Do not invent missing memories. Read this shorter extract completely in chunks before play.
+
+## Your own actual later report — pass/emre/report.md
+I would return voluntarily another evening on desktop, but only if I can pick up where I stopped and the slowed waits during an empty station give me something to do. I would not leave it running in a tab.
+
+**Ranked asks**
+1. Give me something to do during slowed waits. Tuesday 19:43 had both cooks gone, the grill empty and Selim in the bathroom. The phone Monday 18:16 had Selim refusing the grill. I could only wait.
+2. Let me carry on from where I stopped, so I do not replay Monday.
+3. Show a per-night money rate, and say how table counts grow. Monday was ₺600 of 15 tables again. I still can't see how to earn more.
+
+## 1. Session
+- Persona: Emre Kaya, 37, Ankara electrical technician and parent.
+- Exposure: retest. My own history file is the one at the path in the brief.
+- Round: light-1030 same-tester retest, free stop (floor 0, ceiling 25 min).
+- URL: https://pass.adamwhite.work/?labRunSource=agent. The footer now says "People by the Human Framework 4.12.0".
+- Session A: 1280x800 keyboard and mouse, light mode, port 21203. About 430 s (7 min).
+- Session B: 360x690 touch, light mode, port 21202. About 80 s.
+- Recording stayed on. I changed no consent setting, opened no Feedback and typed nothing.
+
+## 2. First impressions
+- A, about 4 s: the title page now asks "How long will customers wait?" Selim suggests longer, Dilek suggests normal. Normal was already selected. I left it.
+- A, about 5 s: the plan page now says an early table arrives at 18:12 and leaves without paying ₺40 if its food is late. It tells me to cover the stations. Last time I found the gap by accident.
+- A, about 36 s: I now have to tap "Ask them about the changes" before opening the doors.
+- A, about 100 s: Dilek asked a question in the middle of service (five minutes to call her mother). That gave me a decision during the rush.
+- B, about 40 s: the phone header fits. Ingredient counts differed from desktop (18 grill portions against 12).
+
+## 3. Verbatim
+Session A, elapsed seconds approximate:
+- about 4 s, note: "New this time: a choice of how long customers wait. Selim longer, Dilek normal (default). I take the default to compare with last time."
+- about 9 s, note: "The plan now warns about an early table at 18:12 and a 40 lira loss. Better than last time. Dilek break 18:35 is in the rush, so I look at changing it."
+- about 30 s, note: "Moved both breaks to 21:00 after the rush; Nobody cover stayed Nobody this time, no Rafi auto-pick seen yet. Both breaking at once at 21:00 may be a hole, guessing."
+- about 70 s, first_minute: "Both agreed. Doors open. The plan page now warns about the early table and makes me ask the cooks before opening, which is clearer than last time. Watching service."
+- about 103 s, note: "New: a cook asks me a real question mid-service. Rush is on, she is the only cold-side cook, so I ask her to wait till closing. Ingredients counters are also new."
+- about 140 s, pulse, 4 (Mon 19:06): "Mid-service questions give me something to decide, which was my complaint last time. Ingredient counts falling (5 grill portions); I wonder if they run out. 320 lira at 19:06."
+- about 172 s, note: "Grill portions are at 0 and cold nearly 0. I did not expect to restock. Looking at what I can ask Selim."
+- about 208 s, note: "Monday 600 again, same as last visit, 15 of 15 tables. The Why line (you earn when a table eats, stations and breaks decide when food is ready) helps. Ingredients hit 0 with no visible loss. Still do not see how to get more than 15 tables. Selim missed prayer again."
+- about 250 s, note: "New shortcut: Same plan as last night. Saves me the busywork I dislike. Rafi now has a plan too, dishes break at 19:00."
+- about 315 s, pulse, 4 (Tue 19:30): "Orders now show how long they wait and the lira at risk. That is the visible tradeoff I wanted. 960 by 19:30 Tuesday, ahead of Monday."
+- about 350 s, note: "Both covers empty another station; I can price this now. Order cards at left are cramped, text cut off (grill ○○ cold s...). Leaving grill empty."
+- about 390 s, note: "Both cooks walked off to explain the wait to tables, three tables at risk, 120 lira. Rafi cover would empty dishes and no plates, no food leaves. I leave empty. Same waiting-with-nothing-to-do as before, but I understand why."
+- about 428 s, want_quit, BORED: "Tuesday 19:43, 1000 lira. Grill empty, Selim in the bathroom, time slowed, nothing I can do. This is the same waiting as last visit. Better this time: I can see lira at risk and why each cook left."
+- 429.7 s, stop, BORED: "Stopping Tuesday week 1 19:43 at 1000 of 5200. Mid-service questions, order cards with lira at risk and Same plan as last night are real improvements. The empty-grill waiting is still the part I would skip. I would come back another evening, not leave it running."
+
+Session B:
+- about 5 s, note: "Phone, second visit same evening. Changed Dilek break to 21:00 and ask."
+- about 40 s, first_minute: "Phone header fits now, nothing cut off. Layout is readable; the order list was empty at 17:25. Ingredient counts differ from the desktop start, 18 grill vs 12, so nights are not identical."
+- about 60 s, note: "Selim eats 18:10, grill empty, a table waits. I did not change his break on this device. Asking him back."
+- about 78 s, want_quit, BORED: "Monday 18:16 on the phone. Selim refuses, bathroom first, early table about to leave, nothing I can do but wait in slowed time. This is the same dead wait as before. I already saw this plan on desktop."
+- 79.3 s, stop, BORED: "Stopping on phone Monday 18:16, 120 of 5200, after about 80 seconds. Layout is fine, header fits. I do not want to replay Monday. I would come back another evening on desktop only if it carries on from a save."
+
+## 4. Moments
+- What held me: the mid-service question, the order cards showing wait time and lira at risk, and the "Same plan as last night" button. Seeing why each cook left also helped.
+- What lost me: slowed time with an empty station and nothing to do (Tuesday 19:43, phone Monday 18:16). Quit wishes: BORED on both devices. Neither passed.
+- Pulses: 4 and 4, both on desktop.
+
+## 5. Confusion and clarity
+Clear:
+- The early-table warning.
+- The Ask-before-opening step.
+- The "Why" line on the day summary.
+- Orders showing wait time and lira at risk.
+- Why a cook left the station.
+
+Confusing:
+- Ingredients fell to 0 grill and 1 cold portion on Monday with no visible loss. I found no restock control, and I don't know what they do.
+- I still do not know how to earn more than 15 tables' worth.
+- Selim "did not keep" his prayer on Monday even with my 21:00 break. He stayed at the grill.
+- Both cooks left at once to explain a wait. I could not have stopped that.
+
+## 6. Device use
+- Desktop screenshots viewed: a-001 (Selim leaving the grill, cover choice) and a-002 (both cooks gone, three tables at risk). The order cards at the left are cramped and cut off ("grill ○○ cold s...").
+- Phone screenshots viewed: b-001 (start of service) and b-002 (talking to Selim). The job buttons overlap the cook buttons slightly. I could still read and use everything.
+- Controls used on desktop: New game, plan Change buttons, Done, Ask them about the changes, Open the doors, Selim and Close, mid-service answers, Same plan as last night.
+- Controls used on phone: New game, Change Dilek's plan, Done, Ask them about the changes, Open the doors, Selim and his job button.
+- One tap of mine on "Open on Tuesday" timed out, but the page had moved on. I chose again from the clickable list.
+- Unseen: the phone People panel, landscape and dark mode.
+
+## 7. Stop and return
+- Session A stop (BORED, 429.7 s): "Stopping Tuesday week 1 19:43 at 1000 of 5200. Mid-service questions, order cards with lira at risk and Same plan as last night are real improvements. The empty-grill waiting is still the part I would skip. I would come back another evening, not leave it running."
+- Session B stop (BORED, 79.3 s): "Stopping on phone Monday 18:16, 120 of 5200, after about 80 seconds. Layout is fine, header fits. I do not want to replay Monday. I would come back another evening on desktop only if it carries on from a save."
+
+Would I return voluntarily? Yes, another evening on desktop, to see whether ₺5,200 by Saturday is reachable. I will return only if I can pick up where I stopped and the empty-station waits give me something to do. I would not leave it running in a tab, because it slows down and waits for me.
+
+## 8. Changes I would want
+1. Something to do during slowed waits, or a faster pace while a station is empty.
+2. Resume from where I stopped.
+3. A per-night money rate, and how table counts grow.
+
+## 9. Compared with my last visit
+- Ask 1 (something to do during slowed waits): partly met. Mid-service questions and order cards give me decisions during busy stretches. The empty-grill wait at Tuesday 19:43 and the phone Monday 18:16 is still dead time.
+- Ask 2 (show how plan choices change money): partly met. Orders now show lira at risk and the day summary has a "Why" line. Monday was ₺600 again. Tuesday reached ₺1,000 by 19:43, ahead of last time's ₺800 for the whole night. I did not finish Tuesday, so I can't compare the totals.
+- Ask 3 (no Rafi auto-pick, say why People offers are greyed out): partly met. Rafi did not auto-cover after I changed Dilek's and Selim's breaks. I did not open People offers this time, so the greyed-out part is not seen.
+- New this time that would stop me returning: nothing new. The only thing that would keep me away is the unchanged dead wait on an empty station, plus having to replay Monday each visit.
+
+No git worktrees or servers are mine, so there is nothing to clean up.
+
+
+
+## Your own published report — human-framework/docs/games/voice-playtest-2026-10-27-retest.md
+### Emre Kaya
+
+**Would you return voluntarily?** Yes, I would come back another evening to try the shift again, either insisting or asking earlier. I would not play on tonight, and I would not leave it running.
+
+**Ranked asks**
+1. Show what a shift pays. Money stayed at 62 after the long shift on the desktop, and I could not find the pay.
+2. Keep the work option available, or say plainly why it is gone, after he wakes from sleep. In the phone session, work was missing from his choices at 14:51 (desktop session: I did not check).
+3. Make the "stands until 15:45" wording true when sleep ends the plan earlier. On the phone it said the plan stood until 15:45 and it ended at 13:15.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                   | reason | game clock | words                                                                                                                                                                                                                                                                                                  |
+| --------- | ----------------------- | ------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 8.1       | tap New game            |        |            | Fresh start, same title page.                                                                                                                                                                                                                                                                          |
+| 13.6      | tap His goals           |        |            | Clock is running from the start now; last time it stopped. Checking goals first.                                                                                                                                                                                                                       |
+| 16.8      | tap Speak               |        |            | Goals now list what he would choose without me, as guesses. I want the money problem first.                                                                                                                                                                                                            |
+| 23.1      | first_minute            |        | 05:07      | The clock now runs by itself and pauses while I read. Goals page is clear: he has 40 lira, owes 600, Osman wants 300 by the 15th. Dawn options are only prayer and sleep, so I cannot work on rent yet. I will let time pass to daytime.                                                               |
+| 46.6      | tap Continue            |        |            | The note explaining why the clock jumped is clear; I like that.                                                                                                                                                                                                                                        |
+| 53.2      | tap Say something else… |        |            | The sheet opened by itself when he reached a choice. Looking for a work or money option.                                                                                                                                                                                                               |
+| 56.1      | tap Say nothing Esc     |        |            | He leans to repair for money. I accept that and leave him working.                                                                                                                                                                                                                                     |
+| 76.8      | pulse 3                 |        | 12:10      | The Today log with Why this action? answers some of what I wanted last time. He mostly sleeps and prays; I have not yet been offered anything useful about rent.                                                                                                                                       |
+| 91.8      | tap Say something else… |        |            | Same shortfall: 280 against 300. I remember this point. This time I want to push the shift with a reason.                                                                                                                                                                                              |
+| 106.8     | tap Say it Enter        |        |            | Insist warns: he will do it objecting, work worse, and trust me less. That is a real tradeoff I can weigh. Rent matters more tonight; I accept the trust cost.                                                                                                                                         |
+| 126.9     | note                    |        | 13:50      | Insisting worked: he said I will do it, and he is at the workshop on the afternoon shift. Last time the shift expired. This time I got the shift, with a stated cost in trust.                                                                                                                         |
+| 154.6     | tap Let time pass       |        |            | Money is only 62 after the shift. I do not see where the shift pay went; that bothers me.                                                                                                                                                                                                              |
+| 187.3     | pulse 3                 |        | 18:05      | The shift happened but money is still 62. I cannot see what the shift earned or whether pay comes later. That is an unexplained resource, which I dislike.                                                                                                                                             |
+| 235.9     | TOOL log                |        | 19:55      | I am stopping after the first evening. I got the shift this time by insisting and saw the cost. I still do not know what the shift paid: money stayed at 62. I would come back another evening to try the second day, but not tonight.                                                                 |
+| 238.9     | stop                    | BORED  | 19:55      | I am stopping after the first evening. I got the shift this time by insisting and saw the cost. I still do not know what the shift paid: money stayed at 62. I would come back another evening to try the second day, but not tonight. (BORED is the nearest word; really I am just done for tonight.) |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry                         | reason     | game clock | words                                                                                                                                                                                                                                                                                                  |
+| --------- | ----------------------------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 12.7      | tap His goals ▸               |            |            | Phone layout is tidy; panels are buttons above the scene.                                                                                                                                                                                                                                              |
+| 16.3      | first_minute                  |            | 04:43      | Phone feels the same game, cleanly fitted. Goals panel is a sheet that covers the scene; readable. I will close it and let the day run.                                                                                                                                                                |
+| 53.7      | tap Go and see the doctor.    |            |            | On the phone I will try the doctor, since Selin asked, and see how he answers.                                                                                                                                                                                                                         |
+| 57.3      | note                          |            | 09:33      | The game now says it plainly: his word is a plan, not a promise; it stands until 12:32; I do not need to repeat it; if it ends I will see why. That is what I wanted last time.                                                                                                                        |
+| 76.3      | pulse 4                       |            | 11:00      | He did what I suggested and went to the clinic; the doctor scene landed. That feels like progress I caused. Rent still unsolved.                                                                                                                                                                       |
+| 116.8     | tap Take the afternoon shift. |            |            | Rent forecast is short again, 270 against 300. I will try the plain suggestion first this time, without insisting.                                                                                                                                                                                     |
+| 138.9     | note                          |            | 13:28      | Plain suggestion ended: he fell asleep before the shift, and it says why and to say it again after he wakes. I understand the reason now. But it said the plan stands until 15:45 and it ended at 13:15, which seemed to contradict. Mildly irritated, not quitting.                                   |
+| 162.6     | want_quit                     | FRUSTRATED | 14:51      | He woke at 14:50 and the afternoon shift is not among the six choices. Same dead end as my first visit, though this time I at least know why: he slept. I would stop here for tonight.                                                                                                                 |
+| 165.7     | stop                          | FRUSTRATED | 14:51      | I am stopping tonight. This time the doctor worked and the game explained why the shift ended. But the rent shortfall is still unsolved and the work choice vanished again after he slept. I would come back another evening, trying insist or an earlier ask for the shift, but not leave it running. |
+
+
+
+
+
+## Your own published report — human-framework/docs/games/watch-playtest-2026-10-27-panel-retest.md
+### Emre Kaya
+
+**Would you return voluntarily? "I would return voluntarily on another evening to open the spring of Part II and see whether I can feed the village the second winter, but I would not leave it running and I would not come back tonight."**
+
+**Ranked asks:**
+1. Show who is close to falling asleep before dusk, in plain words. The "Today" list only says everyone "slept and ate". The sleepiness hits during the night and I can't plan for it.
+2. Say what a winter costs the village in grain. The tally now gives "sacks left", and the fair gives loaves left, but neither says what a winter eats.
+3. Warn me before the thaw that a wall I defended can fall. "The thaw brought down the west wall" only reached me after it had happened.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry        | reason | game clock | words                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| --------- | ------------ | ------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.1       | note         |        |            | Title: same goal line. The two boxes now say night-off requests at dusk and spoken cautions at night in the new village; clearer wording than before but I still do not know what they cost. I leave them unchecked again and go up.                                                                                                                                                                                                                                              |
+| 16.1      | first_minute |        |            | Goal is clear. Scout says east wall; I moved Kian there. The red note now only names the mill wall as empty, which I like because it tells me what is uncovered. Tiredness still only a faint italic line. I have three people for four walls, so I cannot cover everything; guessing that is the point. Still do not know what the six dots at top mean (the top says 6 watches left, tooltip says early watches, thaw far off - better than before: it hints this is a sample). |
+| 95.6      | note         |        |            | Night 1: Kian tried to leave the east wall at nightfall; I called him back and he stayed. Lost a little grain because the mill wall was empty, which the dusk note told me. That I can explain and it is my choice. Asking Kian how he holds up gave me again nothing (nothing wrong with me). Same busywork talk as before.                                                                                                                                                      |
+| 171.2     | pulse 4      |        |            | Lost a lot of grain on night 2: Samira and Kian both went home asleep from the west wall, thieves crossed three walls. Account explains each wall. New this time: the call-him-back button now says the watcher will not agree before I tap it, and there is a Today list of who slept and ate at dusk. I still see no plain tired marker though.                                                                                                                                 |
+| 323.9     | pulse 4      |        |            | Night 3: both west-wall people left cold, wolves got in, a lot of grain lost. Morning now tells me what the loss means: enough to eat to harvest but not enough seed. That is the explanation I wanted last time. Buttons now say the watcher will probably agree or may not stay, which helps me choose. Kian again hears his sister, same side story.                                                                                                                           |
+| 443.0     | pulse 4      |        |            | Night 4: little grain lost, kept most of it. The call-by-name button now told me before I pressed it that the watcher will stay but will resent it. I can plan around that. Still three of my people went home tired over the night. 2 watches left.                                                                                                                                                                                                                              |
+| 536.5     | note         |        |            | Night 5: held the west wall by urging both, but a little grain was taken and the morning line now says the granary cannot feed the village to harvest, old and very young may not live. That is blunt and I can see my mistakes on nights 2 and 3 caused it. I wish I had known at night 2 how much a lot of grain is.                                                                                                                                                            |
+| 658.3     | pulse 3      |        |            | Last night: east wall empty again because Samira and Meryem went home; the same grain story as before. I can explain it but the nights feel like the same tiredness loop. Interest is held by wondering what the thaw says.                                                                                                                                                                                                                                                       |
+| 666.6     | note         |        |            | Thaw page: it now says the other 84 nights the watchers took their usual turns, who guarded most, and what the hunger did (Tamar died at 54, no seed). That answers part of what I asked: I see what the unplayed nights meant. But See the tally shows only marks, volumes and sacks (1 mark, 1 closed volume, 0 sacks), not how much grain a winter costs. Tamar dying from a winter I mismanaged hurts and I can explain it.                                                   |
+| 729.0     | note         |        |            | Fair: this time each offer says its cost in words (a good share of grain, a little grain) as well as loaves left. The granary is 19 loaves, a winter costs more than I can tell, so I take only seed grain (2 loaves) and leave the wall and bell. Still several buttons have the same name Take this offer.                                                                                                                                                                      |
+| 817.1     | want_quit    | BORED  |            | Second winter has everyone weak from hunger and falling asleep at their posts; I can explain it from my first winter, but my levers are the same small ones and the night loop repeats. I have seen the new things (tally, costs in words, will-stay hints). I would stop here for tonight.                                                                                                                                                                                       |
+| 822.1     | stop         | BORED  |            | I am stopping in the second winter on night 1. Better than last time: the nights and fair tell me costs before I choose, the thaw says what the 84 nights meant, and hunger carries into the next winter visibly. Still, the nights are a loop and I steer only a few. I would come back another evening to open the next part, not leave it running. Feedback offered I am stopping and I am confused; I picked I am stopping, typed nothing, no Submit.                         |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry        | reason   | game clock | words                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| --------- | ------------ | -------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 11.1      | first_minute |          |            | Phone dusk again: the wall picture is hidden under the watcher cards, only a sliver of the map shows, and the scout line is not visible without hunting. The red note at the bottom now names both empty walls (mill and east) so I still get an objective. Scout says gate road; I have two at the Gate already. I will send Kian to the mill.                                                                                                        |
+| 198.9     | pulse 4      |          |            | Two clean nights. Wall held, no grain lost. The pre-choice words (watcher will probably agree / may not stay) help me pick on a small screen. Kian again will not watch the east wall; I do not know why he fears it.                                                                                                                                                                                                                                  |
+| 329.9     | note         |          |            | Three held nights in a row on the phone. Reading the button words before I press has made the difference: I could see who would stay and who would not, and the night-off button told me up front that my voice cannot reach him, move the lantern. No grain lost so far.                                                                                                                                                                              |
+| 462.4     | pulse 4      |          |            | Two small grain losses over six nights; the phone is working fine at night and dawn. I get the loop and I am steering with the words on the buttons now. One watch left, curious what the thaw says about the other nights.                                                                                                                                                                                                                            |
+| 535.2     | note         |          |            | Thaw on phone: granary shows 5 loaves, the line says hit hard. The tally gives marks and sacks left (5), so now I do see a number for the grain, but still not what a winter costs. New and surprising: the thaw brought down the west wall where it was climbed all winter and nobody can guard it next winter. I did not know a wall could fall; it says why, but I only learn it after. Also Kian afraid of the east wall, Meryem of the mill wall. |
+| 541.1     | want_quit    | FINISHED |            | Part one is over on the phone; the winter ended hard but explained. I feel done for tonight.                                                                                                                                                                                                                                                                                                                                                           |
+| 541.1     | stop         | FINISHED |            | I am stopping at the Part I thaw on the phone. Two small grain losses and a granary at 5 loaves; the west wall fell at thaw. Clearer than last time because button words told me what the watcher would do and why a request was unavailable. I would come back another evening for the spring and next winter. I would not leave it running. Feedback offered I am stopping and I am confused; I picked I am stopping, typed nothing, no Submit.      |
+
+
+
+
+
+## Your own published report — valley/docs/playtests/2026-10-27-retest2.md
+### Emre Kaya
+
+**Would you return voluntarily?** Yes, another evening on the desktop, to see what the barley shortfall and the six-measure gift do to the 15 September payment. The morning now moves fast enough that I would not stay tonight, because I have seen what I came for. I would leave it running only if the game kept going while I was away, and I would not leave the phone running.
+
+**Ranked asks**
+1. On the phone, show the result of Send grain without scrolling. After Confirm, "Dispatched 6 measures… now holds 24" is still below the visible strip. I saw only "You: at the residence".
+2. Show what is left in the granary on the Send grain confirmation, not only after sending. It says "Send 6 measures", but I only learn that 24 remain after I commit.
+3. Make the notebook strip on the phone taller. About four lines show, and replies and Hold buttons need scrolling.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 2.1 | tap New game |  |  | Same title page, odd checkboxes remain. Defaults. |
+| 7.6 | first_minute |  | 18 July 07:30 | Called cutters. New line says watch the field for an hour of daylight to judge if cutting finishes before rain, with a your guess marker. That is a hint toward my old ask 1. Still the same slow clock. |
+| 41.0 | note |  | 18 July 14:00 | Now there is an enough/not enough line: about half the barley still standing at the current pace, more cutters would help. That was my ask 1. Fast too, the 14 came within 30 s. |
+| 44.0 | note |  |  | Skip now moved the clock 14:00 to 17:00. Last time it seemed to do nothing. Better. |
+| 49.1 | pulse 4 |  | 19 July 05:00 | The morning moves much faster with Skip, and the field forecast gives me the signal I wanted. Skip now says it runs time quickly to the next reply. |
+| 52.2 | note |  |  | Tapping Hold to insist now says tap again to confirm or hold until it fills. That fixes last time confusion for a mouse user. |
+| 55.4 | note |  |  | Second tap insisted with 9 people. Warned they will remember. Good consequence stated up front. |
+| 68.8 | note |  | 20 July 07:00 | Barley outcome seen: storm flattened about 39 measures, about 230 cut and 90 still standing. 4 of 28 refused after I insisted. Reached the answer to my return question in about 4 real minutes, mostly by Skip. |
+| 82.4 | note |  |  | Send grain confirm says 6 measures leave the granary, but still does not show what is left (30 before). Confirming. |
+| 90.3 | stop | FINISHED | 20 July 07:00 | I am stopping on desktop for now. I saw the barley outcome I came back for: storm took about 39 measures, 230 cut, 90 left, and insisting got 4 refusals. The morning ran fast with Skip. I would come back to see what the shortfall does to the September payment. |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 0.6 | tap New game |  |  | Second device, same evening. New game, defaults. |
+| 6.0 | first_minute |  | 18 July 07:30 | Phone: same opening, the forecast line about watching the field is there. Map still small, notebook strip short, but the bottom Skip and orders are clear. |
+| 27.2 | note |  |  | Phone: Skip works here too, label says it stops at the next event. Notebook strip is still only about 4 lines; replies and Hold buttons are below the fold. |
+| 32.8 | note |  |  | Phone Send grain confirm is now full width with a big Confirm button. Last time it was squashed. Fixed for me. |
+| 38.4 | pulse 3 |  |  | Phone is better but the Dispatched 6 measures result still sits below the visible strip after Confirm; the screenshot shows only You: at the residence. I have to scroll to learn the result. |
+| 42.1 | stop | FINISHED | 18 July 12:00 | Stopping on the phone after about 40 seconds; I have seen both fixes I was checking and the rest I saw on desktop. I would use the phone to check back in, not to play the morning. |
+
+
+
+
+
+## Your own published report — commonstead/docs/games/commonstead-playtest-2026-10-27b.md
+### Emre Kaya
+
+**"I would return voluntarily if the longer day keeps giving me a problem I can solve, because the trolley disputes were a real puzzle, but I would not come back until I can see what keeps the route blocked and why my yields only held for an hour."**
+
+**Ranked asks**
+1. Show why the trolley route is blocked and what I did wrong. Make a yield last, or say what made the next quarrel start. I patched one dispute at a time and could not plan.
+2. In the long day, keep the end screen personal. The ten-minute ending is better now. The long-day ending gave every resident a tiredness line and nothing about what they did.
+3. On the phone, keep the names row from cutting off Sevim. Make "Move / add builders" say it opens a placement mode, and say Cancel is how to leave it.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry                                | reason     | game clock     | words                                                                                                                                                                                                                                                                                      |
+| --------- | ------------------------------------ | ---------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 3.2       | tap                                  |            |                | Title now offers other starts. My last wish was a second day, so I open the longer settlement day.                                                                                                                                                                                         |
+| 5.9       | tap Start a settlement day           |            |                | Thirty minutes at Steady is long, but Fast exists. Trying it.                                                                                                                                                                                                                              |
+| 16.4      | tap Ballast bags                     |            |                | Four on boards, four on bags. Time already moves while I click, 08:04.                                                                                                                                                                                                                     |
+| 35.2      | first_minute                         |            | 08:?           | Clear goal, costs, storm at 20:00, cabin hint. Boards and bags crews set. I want to see how the long day differs from the short one; no explanation of what I do between work yet.                                                                                                         |
+| 78.3      | tap Clear                            |            |                | A trolley route dispute between Sam and Nora is why nobody hauls. This is a real problem, and it is the first thing I understand to solve.                                                                                                                                                 |
+| 90.6      | pulse 3                              |            | 11:35          | A real obstacle: a trolley dispute blocks all hauling. I asked Sam to yield but the request is just that, a request, and I cannot tell if he will. I see nobody working.                                                                                                                   |
+| 116.7     | tap Clear                            |            |                | Sam yielded after the talk. Route open. Re-ordering crews.                                                                                                                                                                                                                                 |
+| 143.0     | tap Offer to yield the trolley route |            |                | Another dispute, Nerys and Dai, on the same route. Dai yields this time. It repeats; I would like to know why.                                                                                                                                                                             |
+| 171.8     | pulse 3                              |            | 13:34          | Midday, 94 boards and no bags. The disputes keep blocking work and I am clicking offers rather than planning. It is a puzzle but a small one. I have not lost anything yet to explain.                                                                                                     |
+| 230.9     | tap Offer a voluntary practice bout  |            |                | Trying the practice bout to see if it settles the dispute for longer; I am guessing what it does.                                                                                                                                                                                          |
+| 242.9     | want_quit                            | FRUSTRATED | 16:55          | 17:00, 101 boards and zero bags. Each yield opens the route for about an hour, then another pair quarrels and everybody rests. I cannot work out what I should have done differently, and I do not know what the storm costs. I would like to see how it ends, so I continue on Fast.      |
+| 315.9     | note                                 |            | 20:32          | The storm came at 20:00 and soaked the supplies: boards 101 to 50, meals 70 to 28. The day does not end; it runs to 08:00. I can accept this loss, because I know I did not get bags moving. But I did not know the disputes would eat the afternoon.                                      |
+| 392.9     | pulse 2                              |            | 00:44          | Night. Nothing to do but wait for 08:00. I tried all on boards, nothing moved; they sleep. The first half was a puzzle, the second half is watching a clock.                                                                                                                               |
+| 538.9     | tap I'm confused                     |            |                | What confuses me: why gathering stopped all afternoon while I clicked yields, and the ending shows only tired lines.                                                                                                                                                                       |
+| 538.9     | stop                                 | FINISHED   | 08:00 tomorrow | Longer day ended at 08:00 with a lost storehouse and soaked supplies. I lost to disputes I could only patch one at a time, and the end screen gave every resident a tiredness line, not what they did. I would try the longer day again only if I could tell what keeps the route blocked. |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry                            | reason     | game clock | words                                                                                                                                                                                                                  |
+| --------- | -------------------------------- | ---------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.1       | tap New game                     |            |            | Phone, same evening. Short game this time, to compare with desktop.                                                                                                                                                    |
+| 42.7      | first_minute                     |            | ~1:00      | Short game on the phone: map is taller than I remember, the full goal and the 40-meal need are on screen. Names row still scrolls sideways; Sevim is cut off. Crews set in 10 seconds.                                 |
+| 68.5      | tap                              |            |            | Tapping open ground on the map to place the storehouse.                                                                                                                                                                |
+| 78.5      | TOOL tap                         |            |            | Everybody is tired, resting them all then they go back to the storehouse.                                                                                                                                              |
+| 108.0     | tap Cancel placement or movement |            |            | I never meant to enter placement mode; Move / add builders put me there. Cancelling.                                                                                                                                   |
+| 108.2     | pulse 3                          |            | 6:30       | Same plan as desktop works and the phone is playable now. Wrongly entered a placement mode and was stuck until I found Cancel. I was never told which of my crews was already building.                                |
+| 177.3     | want_quit                        | FRUSTRATED | 10:00      | Lost with 60 percent built at 8:52 and nobody indoors. Mine was the mistake, but nothing told me five builders at tired pace were not enough. I read the endings with interest.                                        |
+| 177.8     | stop                             | FINISHED   |            | Short game lost on the phone: storehouse unfinished, everyone soaked. Endings now differ per resident after one shared opening line, which I like. Phone is better than I remember but names row still cuts off Sevim. |
+
+
+
+
+
+## Your own published report — lefthand/docs/games/lefthand-playtest-2026-10-27-panel-retest.md
+### Emre Kaya
+
+**Would you return voluntarily?** Yes, I would come back another evening on the desktop to try explain-every-night against ask-not-to-tell. I would not leave it running, and I would not return on the phone unless one arrow step takes a human clearly less than the 6 to 8 game seconds it cost me through the driver.
+
+**Ranked asks**
+1. Make phone movement quick enough to finish a night. I cannot tell whether my thumb would be faster than this tool.
+2. Keep the arrow pad on screen on every night. On phone night 2 it fell below the fold and my taps hit the lantern button.
+3. Let me see the cost of cold and dawn as numbers before the morning, not only the warmth bar and text.
+
+**Desktop (1280x800 keyboard and mouse)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 3.3 | note |  |  | Return visit. Same table screen, but now it says a warmth bar empties and a neighbour carries me home. That answers my old meter complaint. I will try the door this time, since last time I never learned if it matters. |
+| 23.3 | note |  | Night 1, 49s | Tariq again at the start, near home. But now there is a third choice: Ask him not to tell, 1 second, works once. That is new. I try it. |
+| 59.2 | first_minute |  | Night 1, 19s left | Delivered at the door about 50s in. This time the Door label matches and the door tile is clearly marked green. A warmth bar is on screen now. Tariq still stops me near home, but I had a third option. Understanding the job is easy. |
+| 83.6 | note |  |  | Morning 1 now names my choices: door, lantern lit, Tariq asked to keep quiet, dawn before home. Each neighbour says something different and tied to what I did. That answers my old complaint about identical text. Dawn missed costs a stated thing: envelope stays with household. |
+| 105.6 | note |  | Night 2, 51s | Night 2: Tariq stops me again at the same spot, even though my lantern is hidden. But he remembers last night: he promised once, now he will tell whatever I say. The choice shrinks to Explain or Keep quiet. That is a visible consequence of my earlier pick. Still, the same spot each night is a bit fixed. |
+| 162.5 | pulse 4 |  | Morning 2 | Morning 2 is different from Morning 1 and traces back to my night 1 choice: Tariq told people because I asked him twice. I can see cause. Missing dawn twice now with no rescue; I am not sure what dawn actually costs me. Warmth bar helped me judge cold. |
+| 199.4 | note |  |  | Evening 3 text says the well now takes 6 seconds because of the village talk from my last night. The previous night changes the next menu. Good. (The Next evening tap reported a driver timeout yet the screen advanced; I assume it was a driver lag.) |
+| 266.0 | note |  |  | Ending: Help reached them; trust was lost. It names what happened over the three nights, including the Tariq repeat that cost me Samira trust. I can trace it to my choices. Run 1 took about 4.5 minutes. Now I want to try the opposite: Explain to Tariq on night 1 and use the well, to see if it differs. |
+| 416.2 | pulse 4 |  | Morning 1 run 2 | Run 2 night 1: I failed to deliver. Morning says I did not leave the envelope, dawn came, I was 5 steps from the well, nothing reached them. A clear failure I can explain. Part of it was my own misreading of the map (I thought I was diagonal and stepped wrong, and the game told me corner to corner does not count). Idris and Samira say they still need help. Stakes feel real now. |
+| 435.0 | stop | FINISHED |  | I am stopping desktop after about 9 minutes: one full three-night run and one failed first night. The feedback panel opens with a note box; I typed nothing and pressed nothing. I have seen what changed. I would play again another evening to try explain-every-night vs ask-not-to-tell, but not leave it running. |
+
+**Phone (360x690 touch phone)**
+
+| elapsed s | entry | reason | game clock | words |
+| --- | --- | --- | --- | --- |
+| 3.3 | note |  |  | Phone, second visit same evening. Same table text with the warmth bar line. |
+| 124.5 | first_minute |  |  | Phone: failed night 1. Each arrow tap cost me 7-8 seconds of game clock through the driver (46, 38, 31, 22, 15, 6), so I was 4 steps from the well at dawn. I suspect this is the driver, not the game, but I cannot be sure. Morning states plainly that nothing reached them; last visit missing dawn cost nothing visible. That is now a stated penalty. Screen fits at 360 wide; warmth bar visible. |
+| 179.6 | note |  | Night 2, 40s | Phone night 2: the arrow pad is below the fold here because the intro text is longer, so my coordinate taps hit the lantern button instead and I wasted about 12 seconds and hid my lantern by accident. On night 1 the arrows were visible. Layout moves between nights. |
+| 244.0 | pulse 3 |  | Morning 2 | Phone Morning 2: the cold carried me home, I owe work and nights get shorter. That is explained and tied to hiding the lantern by accident. Danyal saw me this time instead of Tariq, so nights vary on phone. I am failing mostly because each tap costs me 3-8 seconds through the driver; I suspect that is the tool, but I cannot prove a thumb would do better. Wanting to see Night 3 once. |
+| 341.4 | want_quit | FRUSTRATED |  | Phone: delivered nothing in three nights. Ending is clear and fair in its words (no help reached them, rescue, exhaustion). But I cannot tell if my thumb would be faster than this tool; each arrow step cost me 6-8 game seconds. If real thumbs are that slow, the phone cannot play this. |
+| 358.1 | stop | FRUSTRATED |  | I am stopping the phone session after about 6 minutes and three failed nights. The fail is partly my tool speed, which I suspect but cannot prove. I would play the phone again only if arrow steps are quicker or the walk is shorter. Feedback opens a note box; typed nothing, sent nothing. |
+
+
+
+
+
+## Your own selected FREE partial — docs/lab/reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-repair-r1--emre-free.md
+# Original complete report — hf3-repair-r1/emre-free
+
+Verbatim original report body. Source SHA256 `2872aebc47212c358214515cfb643a528166eeeb472cdaa208e4f93316e5431f`; raw events SHA256 `8f8af7b917852c9c414dc5f95bb4408f73b1ea1e6ad6803b0ebafdf0bd7f6d7e`. Task-only loopback driver addresses, where present, are retained as historical method text under explicit privacy disposition; they are not active service links. Header/fence are publication metadata.
+
+```text
+# Small Works playtest: Emre Kaya, hf3-repair-r1, free arm
+
+I stopped at 885.8 s (about 14 min 46 s) because I got bored (`BORED`). Every job was returned and the board was empty. I could not save `report.md`: I have no file-writing tool, and the brief allows Bash only for curl. This message is the report for the coordinator to save. The browser is no longer needed.
+
+## 1. Session
+- **Persona:** Emre Kaya, 37, electrical technician from Ankara and a parent, playing as himself.
+- **Exposure:** first visit to Small Works, with no exposure to it before.
+  - **History supplied to me:** my own diaries from Warren (twice), Voice (twice), Commonstead, Valley and A Dark Room.
+- **Round / arm / paired session:** hf3-repair-r1 / free / hf3-repair-r1-emre-kaya.
+- **URL:** https://repair.adamwhite.work, played through the local curl driver at http://127.0.0.1:19722/.
+- **Start:** I pressed Resume on the prepared workshop. I made no reset and changed no consent or recording setting; Recording stayed on.
+- **Device:** 1280x800 with mouse-style taps, by name or by coordinates. I made one requested layout check at 360x690 at about 286 s.
+- **Time:** floor 0, ceiling 25 min, actual 885.8 s.
+- **Game clock:** the earliest Day 1 times are in the raw log. By the end it was Day 5 · 09:30.
+- **Game time:** the clock moves only when I act. Each action costs the game minutes it shows on its button. "Wait 30 min", "Wait until the site opens" and "Close for the day" are the game's own controls, and I used them.
+- **Real-time claims:** time did not run between my commands, so I make no claims about live timing.
+- **Release commit:** left for the coordinator.
+
+## 2. First impressions
+- My earliest reactions and the first-minute note (logged after 60 s) are in the raw JSONL.
+- I can no longer quote those lines word for word, so I will not rewrite them from memory. Please use the raw log for this section.
+
+## 3. Verbatim
+These are the lines I can still quote exactly, all from the last part of the session. Everything earlier is in the raw JSONL.
+
+- **~708 s, note:** "Adjusting the switch did nothing, the light still goes out while carried. Twenty minutes for a fix that was never going to work - the meter said switch, but not that adjusting cannot fix it. I will buy a switch for nine pounds."
+- **~720 s, input:** "Steady while carried. The new switch did it; adjusting was a wasted twenty minutes but I can explain it. Returning to Halil."
+- **~742 s, input:** "Same symptom as the community fan. I will measure the battery first this time."
+- **~752 s, input:** "Battery low again, 1.54 V. Now I know the pattern: fans come in with weak cells. Buy a cell, six pounds, fitting cost is clear."
+- **~771 s, note:** "Second fan, same fault, fixed in under a minute of my time. £119 now. It feels good but also a bit like a routine: test, meter A to 0, buy cell, replace. Only the winding toy is left."
+- **~788 s, input:** "I tapped the wrong card - the page was a different height than I thought. Second try on the winding toy."
+- **~811 s, pulse 4:** "The toy is a proper puzzle again: spring reads 31.5 slow against 90, and even with a good spring the ring at 2 gives 15, so I need ring 3 for 18. Two faults, I can see both on paper. This is what I like."
+- **~834 s, note:** "Not enough time to set the ring today - fair, it is 16:45 and the day ends at 17. It said so clearly. I close the day and finish the toy tomorrow morning; it is due Day 4 17:00."
+- **~843 s, note:** "107 became 103 overnight again. Four pounds every night and still nothing tells me what for - rent? I can guess but I do not like guessing about money. The community afternoon is now open: three activities, my theatre could be used. Interesting, but first the toy."
+- **~852 s, input:** "Passed first try. My arithmetic was right: new spring plus ring 3. That is the satisfying kind of repair."
+- **~860 s, input:** "My own theatre on the stage - that is a nice use for the thing I fixed. Nothing else to repair, so I wait for the site to open."
+- **~868 s, input:** "Everyone chose my paper theatre - all five. Including Halil. I am pleased, honestly."
+- **~871 s, input:** "All five came and watched the theatre I repaired. That closes the circle nicely. I close the day to see if there is more."
+- **~874 s, input:** "Day 5, minus four pounds again, no new requests on the board. I wait once to see if anyone brings work."
+- **~877 s, want_quit (BORED):** "Every job is returned, the theatre show went well, and now the board is empty and the money just drips four pounds a night. I have nothing to plan. This is a good place to leave."
+- **885.8 s, stop (BORED):** "I am stopping on Day 5 with every promise kept and the paper theatre shown to all five neighbours. The meter puzzles - the governor sums, the spring and ring together - were the best part, and I could explain every setback except the four pounds that vanish each night and the recovered cell that never reached the drawer. Now the board is empty. I would return voluntarily another evening if new objects arrive with puzzles like the theatre and the toy; I would not come back just to repeat the battery swap on fans. I would not leave it running. Feedback: I selected I am stopping, typed nothing, submitted nothing."
+
+## 4. Moments
+**Pulses**
+
+| Elapsed | Engagement |
+|---|---|
+| 155 s | 4 |
+| 302 s | 4 |
+| 465 s | 5 (paper theatre: I worked out from the governor table that the ring should be 1, set it, and it passed) |
+| 649 s | 3 |
+| ~811 s | 4 (winding toy) |
+
+**Quit wishes**
+- **603 s, FRUSTRATED:** I recovered a cell from the cracked spare lantern. The game said "You finished recovering the part", but the drawer still showed 0 cells and Replace said "No cell stocked". I bought a cell for £6 instead. The wish passed once the fan worked.
+- **~877 s, BORED:** this one did not pass, and I stopped.
+
+**What kept me in**
+- I could do the gear and governor arithmetic myself from the Notes reference.
+- Halil's lantern: the readings while carried showed it was the switch (D and C at 0 V, B at 6 V). Adjusting it failed and replacing it worked.
+- All five people chose my paper theatre for the community afternoon.
+
+**What lost me**
+- £4 disappeared each night (£100→96, £107→103, £125→121) with no explanation.
+- The recovered part never showed up in the drawer.
+- The second fan was the same battery swap as the first, which made it feel like routine.
+- On Day 5 the board was empty.
+
+**Recognition**
+- **Cue:** a 61-year-old repairman named Halil, calling his daughter Selin. I saw it at about 490 s.
+- **Match:** Halil from my Voice sessions.
+- **Confidence:** fairly confident, but it stays a guess. I did not verify it.
+
+## 5. What confused me or became clear
+**Became clear through play**
+- Measure terminal by terminal, under the condition the owner uses it in, and compare with the Notes reference.
+- Adjust is not the same as Replace.
+- The day ends at 17:00, and the game clearly refuses actions that would run past it.
+- Each object's card has a "More" text. That is where I found out the cracked lantern only supplies parts.
+
+**Stayed unclear**
+- The nightly £4. I guess it is rent or upkeep, but nothing told me.
+- Why a recovered part never reached the drawer.
+- Sam's odd story about copying another player's bug report.
+- The meter keeps the last condition used (On table, Carry or Work harder). I had to check it every time I measured.
+
+## 6. Actual device use
+**Screenshots I viewed**
+- `current-wide.png` at 1280x800, several times. The ones in this part of the session were at about 726, 733 and 783 s; earlier views are listed in the raw log.
+- `current-phone.png` at 360x690, about 286 s.
+- I did not view `first-minute.png`.
+
+**Controls I used**
+- Named taps on Bench/Board/People, the object, meter, repair and notes tabs, the probe and terminal buttons, Read meter, Replace, Adjust, the ring setting buttons and Apply setting.
+- The Test/Try/Play buttons, Return to the owner, the drawer's Buy buttons, the community-afternoon tabs and its prepare and wait buttons.
+- Wait 30 min, Close for the day, Menu and Feedback.
+- Coordinate taps on board cards at x≈442, and on Close sheet at (1253,83) because two controls shared that name.
+
+**Trouble I actually saw**
+- Board cards shift up and down, so I opened the wrong card's More sheet once.
+- The list of objects in the object sheet would not scroll.
+
+**My own driver mistakes**
+- I sent parallel curl calls several times, at about 23, 102, 214, 409, 533, 580, 598, 708, 745, 811 and 877 s. All of them except the four at about 745 s paired a log line with one tap. At about 745 s I sent four probe and condition taps together, and they happened to work in order.
+
+**Driver and feedback**
+- There was no driver block.
+- In Feedback I selected "I'm stopping". I typed nothing and pressed neither Submit nor Send.
+
+## 7. Stop and return
+- **Stop:** 885.8 s, `BORED`, my own choice. The game itself had not ended.
+- **Would I return voluntarily?** In my words: "I would return voluntarily another evening if new objects arrive with puzzles like the theatre and the toy; I would not come back just to repeat the battery swap on fans. I would not leave it running."
+- **Leave it running?** No. Coming back another evening is conditional on new puzzle objects.
+- **Cleanup:**
+  - I made no worktrees, branches, servers or workers, and touched no repository, so there is no `git worktree list` to show.
+  - The screenshots are `current-wide.png` and `current-phone.png`, plus the driver's own `first-minute.png`.
+
+## 8. Changes I would want
+1. Tell me what the nightly £4 is for, at the moment it is taken.
+2. When I recover a part from the donor lantern, put it in the drawer, or tell me why it is not there.
+3. Vary the faults, so the second fan is not the same battery swap as the first.
+```
+
+
+
+## Your own selected FREE partial — docs/lab/reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-free.md
+# Original complete report — hf3-warren-r2/emre-free
+
+Verbatim original report body. Source SHA256 `59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365`; raw events SHA256 `883c5b0cbe2b6a6f9f4bf8450b506e9318d5eac5557f6b21c536acf7214dd7bb`. Task-only loopback driver addresses, where present, are retained as historical method text under explicit privacy disposition; they are not active service links. Header/fence are publication metadata.
+
+```text
+## 1. Session
+
+Emre Kaya, 37, Ankara electrical technician and parent. **Declared return**, using only the supplied selected history: Voice R1, Commonstead R1, Voice R2, Valley hold-tail, A Dark Room desktop control and Warren R1 matched. No additional history was opened. No cross-game recognition occurred.
+
+**Round/arm:** hf3-warren-r2 / free.  
+**Paired session:** hf3-warren-r2-emre-kaya.  
+**URL:** https://warren.adamwhite.work.
+
+I chose **Resume · 19 August** on the prepared hill. I used the supplied curl POST driver at **360×690**, with named and position taps. Actual duration: **276.199 seconds — 4:36.199**. Floor 0; ceiling 25 minutes. Final game clock: **Morning · 27 Aug · year 1**, paused in Feedback.
+
+Steady speed, recording and consent remained unchanged. Release commit is for the coordinator. No source, hidden state, exports or additional reports were inspected.
+
+## 2. First impressions
+
+At **4.022s**, I wanted to recover the failed shelter plan from my supplied Warren history.
+
+At **17.538s**, I could distinguish the cellar from the surrounding stone on the phone and marked its right-hand extension.
+
+My first-minute note came at **65.354s**, about five seconds late. Storage gave me an immediate practical job, but I was already thinking about whether this attempt would produce a different shelter outcome.
+
+## 3. Verbatim
+
+Every original local diary reaction follows unchanged. Full raw input lines remain in the existing **wall-clock.jsonl**.
+
+**4.022s — input**
+> I remember getting the beds and door ready but nobody shutting it. I want to see whether I can make that shelter work this time.
+
+**17.538s — input**
+> I will extend the cellar to the right first. On this phone I can still distinguish the room from the stone.
+
+**65.354s — first_minute**
+> The first square is dug and I know the next practical job: storage. I am following that prompt before going deeper. I still remember the door failing me last time; I want a different outcome, not just more rooms.
+
+**100.211s — input**
+> There is an actual invitation to Yusuf now. Comparing the map with a stopping line sounds useful when the stone may be loose. I will ask before marking more.
+
+**179.144s — pulse, engagement 3**
+> I still have a shelter plan, but Yusuf has spent several days discussing the marks while my invitation waits. I want his answer more than another repeated route report.
+
+**189.022s — note**
+> Correction: he did answer. I only found it by reopening him. He admits keeping people working on unstable ground; that matters to me as a technician. But I cannot tell where this stopping line is on my hill, or what I should do with the answer.
+
+**253.043s — want_quit, BORED**
+> I am back to checking what everyone is doing while the marked room waits. Yusuf gave me an interesting admission, but it did not give me a shelter decision. I do not want another evening of waiting for people to choose the work. I would stop now.
+
+**269.503s — note**
+> Feedback has both stopping and confused choices. I selected stopping; it is pressed and the note stays empty. I typed nothing and submitted nothing.
+
+**276.199s — stop, BORED**
+> I am stopping before the riders come. I made a store, lit the deeper passage and marked another square, but I am tired of checking people while the work waits. Yusuf admitting his mistake interested me; I did not find a practical use for it tonight. I would return voluntarily only when I feel like waiting to see the actual attack, not another evening just to repeat this preparation. I would not leave it running.
+
+## 4. Moments
+
+| Elapsed · visible game clock before input | Input and visible answer |
+|---|---|
+| 17.538s · Morning, 19 Aug | Chalk tap right of the cellar marked **1 new square**, with about three potential sleeping places. |
+| 54.917s · Morning, 20 Aug returned | A real 30-second wait ended with Meryem’s breakthrough reported and a prompt to mark storage. |
+| 75.066s · Morning, 21 Aug | Store tap returned: “The store is marked.” The jars remained empty. |
+| 82.195s · Morning, 21 Aug | Chalk tap below the cellar marked another square. |
+| 100.211s · Morning, 22 Aug | Asked Yusuf to compare the old map with today’s stopping line. The invitation became pending. |
+| 158.774s · Morning, 24 Aug | Hung a lamp in the deeper passage. |
+| 167.159s · Night, 24 Aug | Chalk tap beside that passage marked one more square. |
+| 182.758s · Morning, 25 Aug | Reopened Yusuf. His invitation had been answered; he described unstable ground and keeping people working past the agreed time. |
+| 248.006s · Morning, 27 Aug | Opened Meryem. She was harvesting barley. Her available invitation concerned marking a short route; I did not select it. |
+| 265.588s · Morning, 27 Aug | Selected **“I'm stopping”** locally in Feedback. It became pressed; the textbox stayed empty. |
+
+The invitation briefly interested me because it concerned a recognizable work responsibility. Finding its answer required reopening Yusuf. My only pulse was **3/5 at 179.144s**. My only quit wish was **BORED at 253.043s** and persisted to stopping.
+
+## 5. What confused me or became clear
+
+The chalk response now explicitly counted **one new square**, which let me know my taps registered. The first extension was dug, the store was accepted and the lamp was hung.
+
+I initially thought Yusuf’s invitation was still waiting. Reopening him corrected that impression. His admission meant something to me, but I did not understand how its stopping line related to the hill I was building.
+
+The next marked square remained visible while people pursued other tasks. I knew they chose their own work. I did not establish why that square remained undug or whether the invitation affected anything practical.
+
+Time advanced between commands and during three documented 30-second waits. Reading panels paused it; some new text slowed it. This was not frozen-time play. I did not reach the riders, build beds or test a door in this session.
+
+## 6. Actual device use
+
+I stayed at **360×690**. I actually viewed **current-phone.png** from shots at **6.838, 144.748 and 236.426 seconds**. These showed the initial cellar, the dug lower passage and the later marked square.
+
+The phone’s hill was small, but I could distinguish the squares and successfully tap them. The bottom tools remained visible. Later person panels and Feedback were **driver-only reading**; I did not inspect their screenshots.
+
+Normal controls used included Resume, chalk, furnish, store, lamp, The village, Master Yusuf, his invitation, Meryem, panel closes, Game menu and Feedback. No keyboard or drag input was used. No driver operation failed or blocked play.
+
+**1280×800 was not visited.** I stopped naturally before five minutes, so the requested second-viewport check remains unmet. I reused one manual screenshot file and did not view the automatic first-minute image.
+
+Feedback contained both stopping and confused choices. I selected stopping, typed nothing, submitted nothing and changed no consent setting. There is no production feedback receipt.
+
+## 7. Stop and return
+
+Final reason: **BORED**, voluntary, at **276.199s**.
+
+> I am stopping before the riders come. I made a store, lit the deeper passage and marked another square, but I am tired of checking people while the work waits. Yusuf admitting his mistake interested me; I did not find a practical use for it tonight. I would return voluntarily only when I feel like waiting to see the actual attack, not another evening just to repeat this preparation. I would not leave it running.
+
+The browser is no longer needed. The coordinator owns its cleanup and saves this report. I created no workers, browsers, servers, branches or worktrees. No repository was touched, so no worktree listing was run.
+
+## 8. Changes I would want
+
+1. Tell me why a marked square is still waiting and whether I can do anything useful about it.
+2. Make an invitation’s answer noticeable without requiring me to reopen the person.
+3. Let me understand how Yusuf’s stopping line applies to the work I am planning.
+```

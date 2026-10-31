@@ -1,0 +1,132 @@
+[
+  {
+    "id": "F-2341",
+    "tester": "Mei Tan",
+    "game": "glance",
+    "date": "2026-10-31",
+    "exposure": "standing return, first same-standing retest",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 198.217,
+        "reason": "BORED"
+      },
+      "phone": {
+        "elapsed_s": 195.824,
+        "reason": "BORED"
+      }
+    },
+    "primaryReturn": "I would come back another evening on the laptop, but only if something happens in the first hours that needs my decision. I would not leave it running.",
+    "laterFullReturn": "I would come back another evening on the laptop. I would do that only if the first hours held a decision that needs me. On the phone I did get one, at 4.8 m. So I might return on either device, but I cannot promise the laptop run would give me one. I did not test a second night.",
+    "verdict": "mixed",
+    "verdictReason": "Conditional: return another evening on the laptop only if the first hours hold a decision; plain evidence supports mixed, not keep or quit.",
+    "askIds": ["F-2346", "F-2347", "F-2348"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance-retest1/mei/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance-retest1/mei/validation.json"
+  },
+  {
+    "id": "F-2342",
+    "tester": "Samir Haddad",
+    "game": "glance",
+    "date": "2026-10-31",
+    "exposure": "standing return, first same-standing retest",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 75.348,
+        "reason": "BORED"
+      },
+      "desktop": {
+        "elapsed_s": 194.919,
+        "reason": "BORED"
+      }
+    },
+    "primaryReturn": "I might come back another evening, on desktop only, if I could answer Dai about Morgan and learn who the town people are, and if each step cost far less than half a minute of waiting. I would not leave it running.",
+    "laterFullReturn": "I might come back another evening, on desktop only. My conditions: I can answer Dai about Morgan or ask about the town people, and each step costs far less than half a minute of waiting. Without those I would not return. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight. The layout is fixed, but I already know the loop from desktop.",
+    "verdict": "mixed",
+    "verdictReason": "Conditional: desktop only, if he can answer Dai and each step costs far less than half a minute of waiting; mixed.",
+    "askIds": ["F-2349", "F-2350", "F-2351"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance-retest1/samir/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance-retest1/samir/validation.json"
+  },
+  {
+    "id": "F-2343",
+    "tester": "Leila Mansour",
+    "game": "glance",
+    "date": "2026-10-31",
+    "exposure": "standing return, first same-standing retest",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 209.957,
+        "reason": "BORED"
+      },
+      "phone": {
+        "elapsed_s": 236.858,
+        "reason": "BORED"
+      }
+    },
+    "primaryReturn": "Maybe: another evening, on desktop only, and only if each night asked me for more than about four choices. I would not leave it running.",
+    "laterFullReturn": "Maybe: another evening, and on desktop. I would only come back if a night asked me to decide more than about four things. I would not leave it running while I do something else.",
+    "verdict": "mixed",
+    "verdictReason": "Conditional: desktop only, and only if each night asks for more than about four choices; mixed.",
+    "askIds": ["F-2352", "F-2353", "F-2354"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance-retest1/leila/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance-retest1/leila/validation.json"
+  },
+  {
+    "id": "F-2344",
+    "tester": "Rosa Alvarez",
+    "game": "glance",
+    "date": "2026-10-31",
+    "exposure": "standing return, first same-standing retest",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 26.074,
+        "reason": "CONFUSED"
+      },
+      "desktop": {
+        "elapsed_s": 19.767,
+        "reason": "CONFUSED"
+      }
+    },
+    "primaryReturn": "No, not on my own. I would close it and not leave it running. I might come back another evening only if the gate panel said the call-and-interrupt idea once, in plain words, and showed me one job to do with the gate.",
+    "laterFullReturn": "No, not on my own. I would come back another evening only if the gate panel said the call idea once, in plain words, and showed me one job to do with the gate. I would not leave it running; I would close it. This time I would be more willing than last time, because the first screen no longer blocks me. I cannot say what happens after the gate, because I stopped there.",
+    "verdict": "quit",
+    "verdictReason": "Plain refusal: \"No, not on my own.\" The reopening condition (explain the call idea once and show one gate job) does not change the plain no; quit.",
+    "askIds": ["F-2355", "F-2356", "F-2357"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance-retest1/rosa/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance-retest1/rosa/validation.json"
+  },
+  {
+    "id": "F-2345",
+    "tester": "Ida Mikkelsen",
+    "game": "glance",
+    "date": "2026-10-31",
+    "exposure": "cold first visit to any game; within-person phone then desktop",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "opus",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 542.2,
+        "reason": "CONFUSED"
+      },
+      "desktop": {
+        "elapsed_s": 615.796,
+        "reason": "CONFUSED"
+      }
+    },
+    "primaryReturn": "Yes, I would come back another evening on the laptop to play Monday again, as long as Tuesday tells me what a high weir reading is. On the phone I would not come back.",
+    "laterFullReturn": "\"Yes, I would come back another evening on the laptop to play Monday again, as long as Tuesday tells me what a high weir reading is. On the phone I would not come back.\" Monday gave me exactly what I like: a quiet log I read at my own pace, then a morning list I can check against. I would not leave it running in a tab. I would come back on another evening I set aside, on the laptop only. If Tuesday still leaves me guessing at the weir, I would play Monday once more and stop there.",
+    "verdict": "mixed",
+    "verdictReason": "Conditional desktop return that depends on Tuesday explaining what a high weir reading is; no phone return; mixed. New cold person, conditional desktop return, so mixed rather than keep.",
+    "askIds": ["F-2358", "F-2359", "F-2360"],
+    "returnSource": "docs/lab/reviews/light-2026-10-30/glance-retest1/ida/report.original.md.txt",
+    "validation": "docs/lab/reviews/light-2026-10-30/glance-retest1/ida/validation.json"
+  }
+]

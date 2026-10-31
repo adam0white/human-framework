@@ -915,3 +915,285 @@ I'd come back another evening, but only if something new is waiting. The first m
 | 27.585    | stop  | BORED  | Desktop: Insist is a plain label, no visible effect from a click. Dilek will push back on go home, but I would rather watch a stronger reaction. Orders come sooner than before. Stopping. |
 
 Separate later [viewport/Feedback observation](../reviews/light-2026-10-30/pass/supplements/nia/report.md) is an additional fresh visit and does not replace the preceding report or verdict.
+
+<!-- selected-continuity-key: light-1030:rope:nia:free -->
+## 2026-10-30 Rope LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/rope/nia/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/rope/nia/report.original.md.txt), original SHA256 `238cfec43f48920da23e227aa09b745d71fbde77e8f90fc05103e3999cc9a482`. Build 30fc93b1e00e360abffa9d759d8d335a96360434/HF4.15.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- Her supplied own-history contained an old Warren continued-alternative body (lines 333–564 of the supplied history, preserved as rope/nia/own-history.original.md.txt). This is a director filtering breach. Her declared partial Read ranges cover it; its effect is unknown.
+- Her original input and report are unchanged. Her direct current-target observations are history-qualified: do not use them as clean cross-game continuity or recognition evidence ([history-qualification.json](../reviews/light-2026-10-30/rope/history-qualification.json)).
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+# Report: The Rope, Nia Okafor, first visit
+
+**Would you return voluntarily?** No, not as it is. I would come back another evening only if the people answered what I actually asked them. I would not leave it running. In the second session I gave up after 85 seconds because a question I asked got a generic "I will do it."
+
+**Ranked asks**
+1. Make answers respond to the specific question or topic. Both times I asked about a topic (Nell about mountain names, Tamar about teaching people when to turn back), I got a generic "I agree. Let's do it." or "I have considered it, and I will do it."
+2. Make early disagreement more varied, and give refusals a person's voice. Wren's "I cannot carry out that plan. What I need for that is missing." read like an error message. The one good moment was Wren's "I will do it, but I disagree."
+3. Make the climb move faster. About 3 real minutes took the clock from 05:00 to 06:20, with a turn-back time of 13:00.
+
+## 1. Session
+
+- **Persona:** Nia Okafor, 19, Lagos design student.
+- **Exposure:** first visit to The Rope.
+- **Round and arm:** light-1030, first panel round, free stop (floor 0).
+- **Own history supplied:** `own-history.md`. I read lines 1–475 of 1355; the rest was not read. It holds Voice and Warren diaries, nothing about this game. I recognised no one.
+- **URL:** https://rope.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, driver port 21304. About 215 s real time.
+- **Session B:** 1280x800 keyboard and mouse, light mode, driver port 21305, new game. About 87 s real time.
+
+## 2. First impressions
+
+- **Session A:**
+  - The title page at 2 s was short and clear: three mountains, "They can say no."
+  - At 5 s I was asked to promise a turn-back time, and I found that worth tapping.
+  - At 25 s all five agreed to everything, and it felt samey.
+  - At 58 s (just under 60 s) the first named detail appeared: Nell's borrowed crampons.
+  - The first refusal came at 117 s, which was late.
+- **Session B:**
+  - The wide layout at 2 s looked calm.
+  - At 12 s Wren's first refusal read like a machine error.
+
+## 3. Verbatim diary
+
+Lines are exact. Where the driver's timestamp did not print for a log line, I give the elapsed time as it appeared in that call's reply.
+
+**Session A**
+- 5.4 s (reaction on tap): "Short and clear. Tapping New game."
+- 7.7 s: "A promise they will remember. Picking the middle one."
+- 10 s: "Everyone said yes at once. Fine, walking."
+- 23 s: "Two similar buttons: lead on (me) and climb on (ask them). Asking them."
+- 25.6 s: "Impatient, so I urge."
+- 27.6 s: "They all agree, a bit samey. Now I walk."
+- 65 s, first_minute: "I wanted to see someone refuse me, but all five said yes twice. Controls clear-ish: climb on vs lead on confused me. Time is slow; a Nell crampons line was the first bit of character. Mild interest."
+- 66 s: "Skip, I am impatient."
+- 67.8 s: "Poking Nell directly, she seemed nervous."
+- 69.4 s: "Seeing what else I can say to Nell."
+- 72.8 s: "A conversation option! Trying it."
+- 75 s, note: "I asked Nell about mountain names and she said I agree lets do it. That ignores my question. Is that where the answer is hiding?"
+- 112 s: "Skip is back. 30 real seconds bought 17 game minutes; slow."
+- 117 s: "Testing rest at 05:40, five minutes in. Expect a refusal."
+- 119 s: "Oh nice, Oskar and Wren said not now. First real reaction. Pushing."
+- 121 s: "I want to see what insisting does, expressive choice."
+- 124 s, note: "Wren said I will do it but I disagree. THAT is a reaction. Insisting worked but feels costly. Wish they had that variety earlier."
+- 186 s, pulse, engagement 3, clock 06:04: "Refusal and insisting were interesting, but the climb crawls: 3 minutes and it is 06:04 of a day to 13:00."
+- 205 s, want_quit, BORED: "I told them to rest and now nothing happens for minutes of real time. Skip does a couple minutes at a time. I would leave here."
+- 215 s, stop, BORED, clock 06:20: "Stopping. I liked the refusal and the Wren disagree line, but the climb is slow and mostly yes-answers. Might come back another evening if early answers varied more."
+
+The brief gave the driver timestamps (`elapsed_s`) only on tool replies, and some of my reaction text rode on tap calls. I do not have a separate raw diary file. The lines above are the exact words I sent.
+
+**Session B**
+- 6.5 s: "Second device, trying the non-promise this time."
+- 10.2 s: "Asking Wren to turn back at the hut, to provoke a reaction."
+- 14.4 s, note: "Wren refused with I cannot carry out that plan, what I need for that is missing. That reads like a machine error, not a person. I asked to go down at the hut, a silly request, and got no character."
+- 65.9 s, first_minute, clock 05:16: "Desktop is the same game, wide and calm. First real thing was Wren giving a robotic refusal. Walking is slow and hints are just tips. Pick Tamar and share food looks like a thing to try."
+- 74.7 s: "A topic question for Tamar, hoping for a real answer this time."
+- 78.5 s, want_quit, TASTE: "Second time a topic question got a generic I will do it. Dialogue ignoring my reply is exactly what I hate. I would leave."
+- 86.7 s, stop, TASTE, clock 05:21: "Stopping after 85 seconds. Robotic refusal and generic answers to my questions. Desktop layout was nice. Would not return unless people answered what I actually asked."
+
+## 4. Moments
+
+- **What held me:**
+  - The promised turn-back time that "they remember."
+  - Insisting after a refusal. The game warned that insisting "can damage their trust in you." Wren's "I will do it, but I disagree" was the best moment.
+- **What lost me:**
+  - Every early answer was yes.
+  - The topic questions got generic replies.
+  - The climb is slow. 30 real seconds bought about 17 game minutes.
+- **Quit wishes:**
+  - A: BORED at 205 s; it did not pass, and I stopped 10 s later.
+  - B: TASTE at 78.5 s; it did not pass.
+- **Pulse:** one, at 186 s, engagement 3 (Session A). Session B ended before 180 s.
+- **Waiting:** after I told everyone to rest, they did not catch up for several minutes. Nothing I could do was visible. "Skip" helped only in 1–2 minute steps.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The title page.
+  - The turn-back promise screen.
+  - The warning text after a refusal, which said what insisting costs.
+- **Confusing:**
+  - "climb on" (asking them) and "lead on" (me) look alike. I knew they differed only after tapping.
+  - Topic questions ("Ask Nell about local mountain names") produced a generic reply. In Session A I looked in "All 5 answers" and found only the earlier climb-on answers. I could not find a reply to my question.
+  - Disabled buttons ("go down: You are at the hut") did explain why.
+  - Two "more ▾" buttons made a named tap fail. I had to tap by point.
+  - On "I'm stopping" in Feedback, the game pre-filled the note box with "I'm stopping." I did not type that. I never pressed Submit.
+
+## 6. Device use
+
+- **Phone, 360x690:**
+  - Screenshots viewed: `a-001.png` (title page) and `a-002.png` (in-climb).
+  - `a-001.png`: a cream page with the title, three line-drawn peaks, "Lead them up and bring them home. They can say no." and a red New game button. A bottom bar read "We record and link play across games on this device."
+  - `a-002.png`: a header and a time bar with "A call needs attention." A drawn slope showed five stick figures, one red, with names. Under it were large rounded buttons for everyone, the five people and the actions, then a "you" row. Everything fit without clipping, and the tap targets were big.
+  - Controls used: New game, the three-way "We turn" choices, climb on, urge, lead on, person buttons, "more ▾", the topic question, "All 5 answers", Back, rest, Ask more firmly, insist, Skip, Game menu, Feedback, I'm stopping.
+- **Desktop, 1280x800:**
+  - Screenshots viewed: `b-001.png` (title page) and `b-002.png` (in-climb).
+  - `b-001.png`: the same title page, centred, with a wide red New game bar.
+  - `b-002.png`: a two-column layout. The mountain drawing and clock were on the left, with a caption in handwriting font. Controls were on the right, with the "you" row at the bottom. The hut and the five figures were visible. Nothing was clipped.
+  - Controls used: the same set as on the phone, plus one keyboard press, Tab, which made no visible change. I tapped the second "more ▾" by coordinates (1221, 263).
+- **Unseen layout:** the Journal, the info panel, and the menu and Feedback screens as pictures. I read those only as text. I did not view a screenshot of either device's menu.
+- I used at most two screenshots per device.
+
+## 7. Stop and return
+
+- **Feedback:** the Feedback screen offered "I'm stopping" and "I'm confused" on both devices. I chose "I'm stopping" on both, typed nothing, changed no consent or recording setting, and pressed no Submit. I closed it with Back.
+- **Session A stop, BORED, 215 s:** "Stopping. I liked the refusal and the Wren disagree line, but the climb is slow and mostly yes-answers. Might come back another evening if early answers varied more."
+- **Session B stop, TASTE, 87 s:** "Stopping after 85 seconds. Robotic refusal and generic answers to my questions. Desktop layout was nice. Would not return unless people answered what I actually asked."
+- **Would I return voluntarily?** No, as it is. I would come back another evening only if answers responded to what I asked and refusals sounded like people.
+- **Leave it running?** No. Nothing happens while I wait, so there would be no reason to leave it open.
+- **Come back another evening?** Possibly. The turn-back promise and the refusal-and-insist loop are the hook for me.
+
+## 8. Changes I would want
+
+1. Answers should respond to my specific question or topic, not give a generic yes.
+2. Early disagreement should be more varied and refusals should sound like people. The "What I need for that is missing" refusal sounded like an error message.
+3. Make the climb move faster, or make waiting shorter. Skip moved only a minute or two at a time.
+
+## 9. Compared with my last visit
+
+First visit.
+
+Cleanup: I created no worktree, server or browser and wrote no files except screenshots through the driver. I touched no repository, so no `git worktree list` applies.
+
+<!-- selected-continuity-key: light-1030:murmur:nia:free -->
+## 2026-10-31 Murmur (Two Voices) LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/murmur/nia/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/murmur/nia/report.original.md.txt), original SHA256 `df1ce68439754070bf1a175b3bb3e00399ea8d34ef4cc99f3fb5a2f1d39299b9`. Build 6a5ce8fd83fd34d6a24493e92f32f4ec0a16f197/HF4.9.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- First visit after the reviewed native-hold input; a director pre-dispatch hold before her exposure is archived at murmur/nia/operator-pre-dispatch-hold and is not a player stop. Ordinary named taps incurred about 31.5 s locator fallback waits while the game clock ran in this round; her phone log has one such tool timeout (31.514 s op, at 220.5 s). This qualifies Tuesday refusals, missing choices and pacing; it is not proof of a game agency or clock defect ([README](../reviews/light-2026-10-30/murmur/README.md)).
+- Her visit is one of five people / seven reports.
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+**Would you return voluntarily?** I would come back another evening on my phone, but only to try different suggestions and see what Dilan does back. I wouldn't come back tonight, I wouldn't leave it running, and I'd stop again once a day starts repeating the same alarm choice.
+
+**Ranked asks**
+1. Make the days differ, or let me skip the scenes I've already seen. Tuesday opened on the same alarm choice as Monday. I met the Ece call and the lunch scene on both devices in the same order.
+2. Shorten the dead time between choices, or give me something to do in it. Each event took 20–30 real seconds of waiting, plus Skip steps.
+3. Show less repeated text. The whole day gets re-printed above every new choice, and the phone page keeps getting longer.
+
+## 1. Session
+
+- **Persona:** Nia Okafor, 19, Lagos design student.
+- **Exposure:** first visit. The game's visible title is "Two Voices", not Murmur.
+- **Round and arm:** light-1030, first panel round, free stop (floor 0).
+- **Own history supplied:** I read all 895 lines. It contains nothing about this game. I recognised no one.
+- **URL:** https://murmur.adamwhite.work/?labRunSource=agent
+- **Phone:** 360x690 touch, light, port 21604. About 249 s real time.
+- **Desktop:** 1280x800 keyboard and mouse, light, port 21605, new game. About 190 s real time.
+
+## 2. First impressions
+
+- **Phone, 0–6 s:** a short intro: you are a voice in Dilan's head, Monday to Saturday. I tapped Start.
+- **Phone, 12.7 s:** a first choice with a visible countdown, "58 seconds to answer", and a line under each option saying how she feels about it.
+- **Phone, 18.5 s:** I held an option to insist, and she answered with a short line of her own.
+- **Desktop, 12 s:** the same opening, on a wide two-column layout.
+
+## 3. Verbatim diary lines
+
+Timestamps are the driver's elapsed_s. Lines logged on a tap carry the tap's time.
+
+**Phone**
+- 6.3 s (on Start): "Short intro, a woman with a head full of voices. I am a voice. Starting."
+- 18.5 s (on hold-tap): "Hold to insist costs trust, but I want to see her push back."
+- 39.8 s (on hold-tap): "Insist again, curious what trust costs."
+- 65.2 s, first_minute, Mon 10:42: "Intro short, I got a choice at 12s. Holding to insist worked and she answered in her own words (thumbs-up and tonight). Ece lost and crying now. Fairly interesting; the waits between events are a bit long."
+- 68.6 s (on hold-tap): "Talk Ece through it, she is crying. Insist."
+- 96.8 s (on wait): "Insisting changed what she did: she guided Ece for fifteen minutes. That is a consequence I can see."
+- 100.2 s (on hold-tap): "Murat mocking Ece after I helped her. I want Dilan to defend her."
+- 103.9 s, note, Mon 14:10: "Everyone went quiet, then Murat laughed at himself. That is the surprising reaction I like. The story text is piling up though; the page gets long."
+- 133.1 s (on tap): "Quick tap on the one she is against, to see what a plain refusal looks like."
+- 135.6 s (on tap): "She answered me back with her own line about needing the coffee. That is a person, not a menu."
+- 171.8 s (on hold-tap): "She promised tonight on the bus. Holding her to it."
+- 183.9 s (on wait): "She pushed back: you keep pushing me, I am not listening today. Insisting has a limit. I like that."
+- 188.2 s, pulse, engagement 4, Mon 21:31: "Her refusal and the missed bus stop were real consequences of insisting. Still a lot of text piling up and short waits between choices."
+- 220.5 s (on a tap that errored, see section 5): "Plain tap on sleep, no hold, to see a gentle try."
+- 224.9 s (on Continue to Tuesday): "The day closed itself while I was slow, and she told me: you pushed me a lot today, I did it, I did not like it. That stings in a good way."
+- 234.9 s (on wait): "Last night coffee carried into Tuesday. It remembers."
+- 239.6 s, want_quit, BORED, Tue 06:41: "Day two starts like day one: same alarm choice. I got the good bits (insisting costs, she remembers the coffee) and now it is the same shape again. I would stop."
+- 249.3 s, stop, BORED, Tue 06:42: "Stopping on Tuesday morning. I loved that insisting has a cost and she remembers coffee, but day two begins with the same alarm choice. Would close it, not leave it running. Pressed I am stopping in Feedback, typed nothing, no submit."
+
+**Desktop**
+- 4.4 s (on Start): "Second device, same game. This time I will try the sleep-in and see what she does."
+- 39.9 s (on tap): "Sleeping in made her sleep through two alarms. Same story, different result than the phone. Now just read Aylin message."
+- 69.5 s, first_minute, Mon 08:27: "Wide layout is calm. A choice within 12s. My sleep-in changed her day: slept through alarms, watched videos about kitchens, now late and Murat is asking. That is a surprising chain. Waits between events a bit long."
+- 72.9 s (on hold-tap): "Make her tell the truth to Murat."
+- 101.6 s (on wait): "The honest answer worked out fine. Murat was kind. Same Murat who mocks Ece at lunch in the other run, so I wonder."
+- 103.9 s (on tap): "Same Ece call as the phone. This time the quick option, to compare."
+- 138.3 s (on tap): "Same lunch scene as the phone. Laughing along this time, to see the other side."
+- 172.0 s (on wait): "That felt bad, which I think is the point. Laughing along cost me something, and I felt it."
+- 174.2 s, pulse, engagement 3, Mon 15:23: "Same day beats as the phone, but my different choices changed what she did. Still the same scenes and a lot of waiting; I have now seen this day twice." **This pulse was logged before 180 s, which the brief forbids. Please flag it.**
+- 179.5 s (on tap): "Coffee, to see if Tuesday remembers it like on the phone."
+- 181.8 s, want_quit, BORED, Mon 15:23: "I have now seen this same Monday twice with different results; the desktop run is the same scenes. I would stop."
+- 190.3 s, stop, BORED, Mon 15:58: "Stopping on Monday afternoon, desktop. Same Monday as the phone with different results from my choices; I have seen the shape. Layout is calm and readable. Would close it. Pressed I am stopping in Feedback, typed nothing, no submit."
+
+## 4. Moments
+
+- **What held me on the phone:**
+  - Holding to insist, and the visible cost that came with it.
+  - The 12:40 lunch beat, where Murat mimics Ece crying and I insisted Dilan say "She found it, didn't she?" Everyone went quiet, then Murat laughed at himself.
+  - The refusal at 18:10: "You keep pushing me. I'm not listening to that today."
+  - The end-of-day line: "You pushed me a lot today. I did it. I didn't like it."
+  - Tuesday opening with the coffee from the night before ("She lay awake past midnight because of the third coffee").
+- **What held me on the desktop:**
+  - My sleep-in chaining into oversleeping, watching videos, and arriving late to Murat.
+  - The honest "I overslept" getting a kind reply.
+  - Laughing along feeling bad, even though nothing visibly punished it.
+- **What lost me:**
+  - Both devices showed the same Monday scenes in the same order, so the second run felt like replay.
+  - Each event needed 20–30 real seconds of waiting.
+  - Tuesday began with the same alarm choice.
+- **Quit wishes:** phone BORED at 239.6 s, did not pass, stopped 10 s later. Desktop BORED at 181.8 s, did not pass.
+- **Pulses:** phone 4 at 188.2 s. Desktop 3 at 174.2 s (premature, see section 3).
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The line under each option saying how she feels about it ("She is willing", "She would agree only if you insist").
+  - "Hold to insist. This costs trust." After a hold, the game wrote "You insisted on …" and showed her answer.
+  - "Press and hold an option to insist" was shown again on Tuesday.
+- **Confusing:**
+  - The page kept re-printing the whole day above each new choice, so the phone page got long.
+  - On the phone I tapped a choice at 220 s and the driver reported a 30 s timeout. The day had already ended on its own while I was slow, and the game showed "Continue to Tuesday". I suspect I was too slow, not the game, but I only learned the day can end itself after the fact.
+  - I could not tell what "trust" does beyond that end-of-day line.
+  - The title page says "Murmur" in the URL but the game calls itself "Two Voices".
+  - I didn't open the "Play a third week" options on the title page.
+
+## 6. Device use
+
+- **Phone, 360x690:**
+  - Screenshots viewed: `a-001.png` (title page) and `a-002.png` (Tuesday choice screen).
+  - `a-001.png`: a cream page with "All games" top left, and small "i" and "≡" top right. It showed the "Two Voices" title and two intro paragraphs. Below them were an "Other ways to begin" button and an overlapping text strip, "We record and link play across games on this device." Two small checkboxes sat at the bottom.
+  - The "We record…" strip sat on top of the region between the button and the checkboxes. It looked overlapped, not clipped. The Start button was off the bottom of the screen and needed scrolling, though the driver tapped it by name.
+  - `a-002.png`: a header "Tue 06:41" with a timer line, one log line, and a boxed card with the scene text. Under it were two large option buttons and a dashed "Say nothing". Nothing was clipped, and tap targets were large.
+  - Controls used: Start, Skip to the next event, Game menu, Feedback, "I'm stopping", "← Back", and hold-taps (about 1.5 s) on options.
+- **Desktop, 1280x800:**
+  - Screenshots viewed: `b-001.png` (title page) and `b-002.png` (Monday 15:23).
+  - `b-001.png`: the same title page, narrow and centred, with the same tooltip-like strip floating over the content and a wide red Start bar visible.
+  - `b-002.png`: a two-column layout with the day log on the left and the scene card with options on the right. The first log line at the top of the log looked partly cut off by the header. Otherwise nothing was clipped.
+  - Controls used: Start, an ordinary click on options and a 1.5 s hold-click, Skip, Game menu, Feedback, "I'm stopping", "← Back".
+- **Unseen layout:** the Information panel, the Feedback and menu screens as pictures, and the "Other ways to begin" options. I read the menu and Feedback only as text.
+
+## 7. Stop and return
+
+- **Feedback on both devices:** I opened the menu, then Feedback. It offered "I'd keep playing / Not sure / I'd stop here" and "I'm stopping / I'm confused". On both devices I chose "I'm stopping" and it showed as pressed. I typed nothing, changed no consent or recording setting, pressed no Submit, and closed it with Back.
+- **Phone stop (BORED, 249.3 s):** "Stopping on Tuesday morning. I loved that insisting has a cost and she remembers coffee, but day two begins with the same alarm choice. Would close it, not leave it running. Pressed I am stopping in Feedback, typed nothing, no submit."
+- **Desktop stop (BORED, 190.3 s):** "Stopping on Monday afternoon, desktop. Same Monday as the phone with different results from my choices; I have seen the shape. Layout is calm and readable. Would close it. Pressed I am stopping in Feedback, typed nothing, no submit."
+- **Would I return voluntarily?** Not tonight. I would come back another evening on my phone, but only if the days stopped repeating and the waiting got shorter, because I want to see what Dilan does back when I push her. I would not leave it running. Another evening is plausible; I'd try suggestions I haven't tried yet.
+
+## 8. Changes I would want
+
+1. Make later days open with new scenes, and let me skip the ones I've seen.
+2. Shorten the dead time between choices or give me something to do in it.
+3. Cut the repeated day-so-far text above each new choice.
+
+## 9. Compared with my last visit
+
+First visit.
+
+I created no worktree, server or browser, and wrote no files except screenshots through the driver. I touched no repository, so there is no `git worktree list` to show.

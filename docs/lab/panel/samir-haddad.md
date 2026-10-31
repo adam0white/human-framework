@@ -420,3 +420,117 @@ I logged no want_quit on either device. Stopping was my decision, with the reaso
 First visit.
 
 **Screenshots for the coordinator:** desktop/a-002.png (22:01 game screen, readable, dam sketch and Ask Dai button visible) and phone/b-002.png (22:00 game screen, level and gate tiles cut off at the bottom edge).
+
+<!-- selected-continuity-key: light-1030:glance-retest1:samir:free -->
+## 2026-10-31 Glance LIGHT first fixed-build retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/glance-retest1/samir/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/glance-retest1/samir/report.original.md.txt), original SHA256 `3b8bdd836a2ed878253c2b2185454c94615a1d6ef912f74a064e00500348b0d7`. Build 2e3fd995fb3ed855b4fe75eaa8e449fe2914cc7f/HF4.14.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- Device order phone then desktop; driver native-tap-v2 (differs from the initial round). His phone session stopped at 75.3 s.
+- His wording "about 30 real seconds per step" is his experience, not a driver-stall claim; his raw logs show no timeout error.
+- Method: he executed one ls of his own assigned run directory outside the curl-only protocol (filenames only, effect unknown); one malformed shell quotation failed before any request ([glance-retest-command-scope-audit.json](../reviews/light-2026-10-30/glance-retest1/inputs/glance-retest-command-scope-audit.json)).
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+**Would you return voluntarily?** I might come back another evening, on desktop only, if I could answer Dai about Morgan and learn who the town people are, and if each step cost far less than half a minute of waiting. I would not leave it running.
+
+**Ranked asks**
+1. Let me answer Dai, or ask him about himself, Morgan and the town. He asked about Morgan again and there is still no reply control.
+2. Show the level tile's last reading, with its age, instead of "— not read" all night while Dai reports 3.8 to 4.0.
+3. Cut the waiting. Each step is about 30 real seconds with nothing for me to do.
+
+## 1. Session
+
+- Persona: Samir Haddad. Exposure: RETURN, same-standing retest. Round light-1030-retest1, arm free stop (floor 0).
+- Own history: I read all 539 lines of own-history.md. My earlier Glance report is in it. Its method qualifications are kept: both earlier sessions ended before dawn, and one earlier pulse was logged before 180 s. The diary files for the earlier sessions were not supplied. The Warren, Voice, Watch, Pass, Valley, Commonstead and Lefthand records are other games. I used them only for how I tend to play.
+- URL: https://glance.adamwhite.work/?labRunSource=agent
+- Session A, phone 360x690, port 21902: about 75 s.
+- Session B, desktop 1280x800, port 21903: about 195 s.
+- I started a new game in each session. I created no worktrees, servers or files. I read cleanup-rule.md. No repository was touched, so there is no `git worktree list` to show.
+
+## 2. First impressions
+
+- Phone, 2.4 s: the title is tidy. A sample morning chart and a dam choice are new.
+- Phone, 9.7 s: in the game, Dai is resting, the level is not read, and the sketch and both gauge tiles are fully on screen. Last time they were cut off.
+- Phone, 11.7 s: the opening is shorter, but the "Optional chapter: Nerys, Bilal and Wren" line is still there.
+- Desktop, 1.7 s: the title and sample chart are readable.
+- Desktop, 8.4 s: the start level was 3.5 and Dai was resting. I opened Watch arrangements at 10.8 s. One line now explains Bilal as a visiting helper with no gate authority.
+
+## 3. Verbatim diary (elapsed s)
+
+**Phone (the first_minute line was logged at 66.971, after 60 s)**
+- 5.171 (on tap): "Phone first. Title has a sample morning and a dam choice now. Starting valley dam."
+- 11.711: "Phone: the opening text is shorter than last time, no wall of names above the fold; Dai is resting till 22:20. Optional chapter line still names Nerys, Bilal, Wren. Not sure yet if I recognise this setup."
+- 16.052 (on tap): "Different from last time: sketch and gauges are on screen, nothing cut off. That was my phone ask. Dai is resting but I want a number, so I call him."
+- 45.973 (on tap): "Level fell to 4.3. A lightning flash showed the wall, nice touch. Looking at the gate job."
+- 47.754 (on tap): "Level is falling, so I will not open the gate yet. Closing."
+- 66.971, first_minute: "Phone: sketch and gauges fit on screen now, my phone ask is met. Opening is much shorter. Dai answered in his own voice, level 4.3 and falling. But I know nobody but Dai, and there is nothing to do for minutes at a time."
+- 75.349, stop, BORED, engagement 3: "Stopping the phone at about 75 seconds. Layout fixed and short opening good, but this is the same loop I know and nothing needs me yet. Pressed I am stopping in Feedback, then Back, typed nothing."
+
+**Desktop**
+- 4.008 (on tap): "Desktop, my other device the same evening. Title is the sample morning and dam choice. Starting a new valley dam game."
+- 10.808 (on tap): "Start level 3.5 this time, Dai resting. I want to see who Nerys, Bilal and Wren are before anything else."
+- 13.22 (on select): "Bilal is explained in one line now, a visiting helper with no gate authority. Better. I know how this works: standing request at 4.5, open 2 turns."
+- 64.86, first_minute: "Desktop: opening is shorter and Bilal got a one-line explanation, which helps. Left a standing request and Dai is checking the level on his own. I like that he decides. Still waiting with nothing to do, and still no way to answer him or learn the town."
+- 100.854 (on tap): "Dai read 4.0 steady, but the level tile went back to a dash. I think it blanks when the reading is old. Guessing."
+- 186.011, pulse, engagement 3: "I recognise Dai asking where Morgan has gone, same line as last visit, at about 01:10. I am fairly sure. I still have no control to answer him. The standing request and shorter opening are nice, but the level tile reads not read all night while Dai says 3.8."
+- 186.835, want_quit, BORED: "Same Morgan question with nothing to answer it, and nothing needs me for half a minute at a time. I would leave here."
+- 194.92, stop, BORED, engagement 3: "Stopping desktop at about 3 minutes, Monday 01:36. I liked the shorter opening, Bilal explained, and Dai deciding on the standing request. But Dai again asks where Morgan went and I cannot answer, the level tile stays not read, and I wait half a minute per step. Pressed I am stopping in Feedback, then Back, typed nothing."
+
+## 4. Moments
+
+- Held me:
+  - The phone layout now showing the sketch and gauges.
+  - A shorter opening.
+  - Bilal explained in one line.
+  - The standing request. Dai took readings and decided on his own.
+  - The lightning flash showing the dam wall.
+- Lost me:
+  - Dai's Morgan question, with no way to reply.
+  - Long waits with nothing to do.
+  - The level tile that stayed "not read".
+- Quit wish: desktop, BORED, at about 187 s. It did not pass, and I stopped. Phone: I stopped at 75 s with no separate want_quit logged.
+- Pulse: one, on desktop at 186 s, engagement 3. The phone ended before 180 s.
+- The gate never opened on either device. Both sessions ended long before dawn.
+
+## 5. Confusion and clarity
+
+- Clear: how the standing request works. The text said what it would do and that Dai still decides. Bilal's one-line explanation also helped.
+- Confusing:
+  - On desktop the level tile showed "not read" all evening, even after Dai read 4.0 and then 3.8. I guessed it blanks once a reading is old. I do not know that.
+  - The two sessions started differently. The phone began at level 4.5 and the desktop at 3.5. I know this from earlier visits too. I do not know why.
+  - Dai's Morgan line looks like a prompt, but nothing lets me answer.
+
+## 6. Device use
+
+- Screenshots viewed: phone/b-001.png (title page), phone/b-002.png (game screen, 22:03), desktop/a-001.png (title page).
+  - b-001: the Start game button sat over the intro text at the bottom, and the recording banner sat below it.
+  - b-002: the sketch and gauge tiles were fully visible. The Skip button was at the bottom. This is not the cut-off tiles from last time.
+  - a-001: the full-width sample chart was readable. The bottom of the chart, including the bridge line, was cut off by the Start game button. The recording banner was visible.
+- I took no desktop game-screen screenshot. I used four of my five manual shots in total. I viewed no automatic checkpoint shot.
+- Phone controls: Start game, Ask Dai to read the level, Skip, a gauge tap, Close inspection, Game menu, Feedback, I'm stopping, Back.
+- Desktop controls: Start game, Watch arrangements, the gate-turns select, Save this request, Back, Skip, Game menu, Feedback, I'm stopping, Back.
+- I saw no layout trouble beyond the cropped chart on the desktop title page. I did not scroll or drag.
+- Feedback offered both "I'm stopping" and "I'm confused" on both devices. I pressed "I'm stopping", then Back, and typed and sent nothing. I changed no consent or recording setting.
+
+## 7. Stop and return
+
+- Phone stop: "Stopping the phone at about 75 seconds. Layout fixed and short opening good, but this is the same loop I know and nothing needs me yet." Reason: BORED.
+- Desktop stop: "Stopping desktop at about 3 minutes, Monday 01:36. … Dai again asks where Morgan went and I cannot answer, the level tile stays not read, and I wait half a minute per step." Reason: BORED.
+- **Would you return voluntarily?** I might come back another evening, on desktop only. My conditions: I can answer Dai about Morgan or ask about the town people, and each step costs far less than half a minute of waiting. Without those I would not return. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight. The layout is fixed, but I already know the loop from desktop.
+
+## 8. Changes I would want
+
+1. Let me answer Dai or ask him about himself and the town.
+2. Keep showing the level's last reading and its age on the tile.
+3. Cut the idle waiting, or give me something useful to decide while Dai rests.
+
+## 9. Compared with my last visit
+
+- Ask 1, answer Dai or ask him about the town: **did not meet it.** He asked about Morgan again and I found no reply control.
+- Ask 2, cut the opening wall of text and introduce Nerys, Bilal and Wren one at a time: **partly met.** The opening is shorter, Bilal now has a one-line explanation and the wall is gone. The "Optional chapter: Nerys, Bilal and Wren" line still names all three, and I met only Bilal's note, not Nerys or Wren.
+- Ask 3, on the phone show the level and gauges above the italic note and keep the recording banner off them: **met.** At 360x690 the sketch and both gauge tiles were fully on screen, and the banner did not cover them.
+- New, from what I reached:
+  - The level tile read "not read" all evening on desktop while Dai reported 4.0 and 3.8. This would not stop me returning alone, but it made me distrust the board.
+  - Waiting is still about 30 real seconds per step. That is the part most likely to stop me returning.

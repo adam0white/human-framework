@@ -1,0 +1,449 @@
+{
+  "failures": 0,
+  "checks": [
+    {
+      "label": "mei primaryReturn",
+      "file": "mei/report.md",
+      "span": "I would come back another evening on the laptop, but only if something happens in the first hours that needs my decision. I would not leave it running.",
+      "exact": true
+    },
+    {
+      "label": "mei primaryReturn",
+      "file": "mei/report.original.md.txt",
+      "span": "I would come back another evening on the laptop, but only if something happens in the first hours that needs my decision. I would not leave it running.",
+      "exact": true
+    },
+    {
+      "label": "mei laterFullReturn",
+      "file": "mei/report.md",
+      "span": "I would come back another evening on the laptop. I would do that only if the first hours held a decision that needs me. On the phone I did get one, at 4.8 m. So I might return on either device, but I cannot promise the laptop run would give me one. I did not test a second night.",
+      "exact": true
+    },
+    {
+      "label": "mei laterFullReturn",
+      "file": "mei/report.original.md.txt",
+      "span": "I would come back another evening on the laptop. I would do that only if the first hours held a decision that needs me. On the phone I did get one, at 4.8 m. So I might return on either device, but I cannot promise the laptop run would give me one. I did not test a second night.",
+      "exact": true
+    },
+    {
+      "label": "mei ask 1",
+      "file": "mei/report.md",
+      "span": "Give me a decision in the first hours. Or tell me at the start that nothing needs deciding until the level rises. The laptop gave me none in 3 real minutes.",
+      "exact": true
+    },
+    {
+      "label": "mei ask 1",
+      "file": "mei/report.original.md.txt",
+      "span": "Give me a decision in the first hours. Or tell me at the start that nothing needs deciding until the level rises. The laptop gave me none in 3 real minutes.",
+      "exact": true
+    },
+    {
+      "label": "mei ask 2",
+      "file": "mei/report.md",
+      "span": "Show what the gate did to the level, apart from the rain. After my two turns, the level fell from 4.8 to 3.5 m, but I could not tell how much was the gate.",
+      "exact": true
+    },
+    {
+      "label": "mei ask 2",
+      "file": "mei/report.original.md.txt",
+      "span": "Show what the gate did to the level, apart from the rain. After my two turns, the level fell from 4.8 to 3.5 m, but I could not tell how much was the gate.",
+      "exact": true
+    },
+    {
+      "label": "mei ask 3",
+      "file": "mei/report.md",
+      "span": "Fix the clipped Dai strip on the phone, and shorten the opening text.",
+      "exact": true
+    },
+    {
+      "label": "mei ask 3",
+      "file": "mei/report.original.md.txt",
+      "span": "Fix the clipped Dai strip on the phone, and shorten the opening text.",
+      "exact": true
+    },
+    {
+      "label": "samir primaryReturn",
+      "file": "samir/report.md",
+      "span": "I might come back another evening, on desktop only, if I could answer Dai about Morgan and learn who the town people are, and if each step cost far less than half a minute of waiting. I would not leave it running.",
+      "exact": true
+    },
+    {
+      "label": "samir primaryReturn",
+      "file": "samir/report.original.md.txt",
+      "span": "I might come back another evening, on desktop only, if I could answer Dai about Morgan and learn who the town people are, and if each step cost far less than half a minute of waiting. I would not leave it running.",
+      "exact": true
+    },
+    {
+      "label": "samir laterFullReturn",
+      "file": "samir/report.md",
+      "span": "I might come back another evening, on desktop only. My conditions: I can answer Dai about Morgan or ask about the town people, and each step costs far less than half a minute of waiting. Without those I would not return. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight. The layout is fixed, but I already know the loop from desktop.",
+      "exact": true
+    },
+    {
+      "label": "samir laterFullReturn",
+      "file": "samir/report.original.md.txt",
+      "span": "I might come back another evening, on desktop only. My conditions: I can answer Dai about Morgan or ask about the town people, and each step costs far less than half a minute of waiting. Without those I would not return. I would not leave it running, because it needs me at each step. I would not come back on the phone tonight. The layout is fixed, but I already know the loop from desktop.",
+      "exact": true
+    },
+    {
+      "label": "samir ask 1",
+      "file": "samir/report.md",
+      "span": "Let me answer Dai, or ask him about himself, Morgan and the town. He asked about Morgan again and there is still no reply control.",
+      "exact": true
+    },
+    {
+      "label": "samir ask 1",
+      "file": "samir/report.original.md.txt",
+      "span": "Let me answer Dai, or ask him about himself, Morgan and the town. He asked about Morgan again and there is still no reply control.",
+      "exact": true
+    },
+    {
+      "label": "samir ask 2",
+      "file": "samir/report.md",
+      "span": "Show the level tile's last reading, with its age, instead of \"— not read\" all night while Dai reports 3.8 to 4.0.",
+      "exact": true
+    },
+    {
+      "label": "samir ask 2",
+      "file": "samir/report.original.md.txt",
+      "span": "Show the level tile's last reading, with its age, instead of \"— not read\" all night while Dai reports 3.8 to 4.0.",
+      "exact": true
+    },
+    {
+      "label": "samir ask 3",
+      "file": "samir/report.md",
+      "span": "Cut the waiting. Each step is about 30 real seconds with nothing for me to do.",
+      "exact": true
+    },
+    {
+      "label": "samir ask 3",
+      "file": "samir/report.original.md.txt",
+      "span": "Cut the waiting. Each step is about 30 real seconds with nothing for me to do.",
+      "exact": true
+    },
+    {
+      "label": "leila primaryReturn",
+      "file": "leila/report.md",
+      "span": "Maybe: another evening, on desktop only, and only if each night asked me for more than about four choices. I would not leave it running.",
+      "exact": true
+    },
+    {
+      "label": "leila primaryReturn",
+      "file": "leila/report.original.md.txt",
+      "span": "Maybe: another evening, on desktop only, and only if each night asked me for more than about four choices. I would not leave it running.",
+      "exact": true
+    },
+    {
+      "label": "leila laterFullReturn",
+      "file": "leila/report.md",
+      "span": "Maybe: another evening, and on desktop. I would only come back if a night asked me to decide more than about four things. I would not leave it running while I do something else.",
+      "exact": true
+    },
+    {
+      "label": "leila laterFullReturn",
+      "file": "leila/report.original.md.txt",
+      "span": "Maybe: another evening, and on desktop. I would only come back if a night asked me to decide more than about four things. I would not leave it running while I do something else.",
+      "exact": true
+    },
+    {
+      "label": "leila ask 1",
+      "file": "leila/report.md",
+      "span": "Give me more to decide each night.",
+      "exact": true
+    },
+    {
+      "label": "leila ask 1",
+      "file": "leila/report.original.md.txt",
+      "span": "Give me more to decide each night.",
+      "exact": true
+    },
+    {
+      "label": "leila ask 2",
+      "file": "leila/report.md",
+      "span": "Show a visible result when I act. \"Doubt this reading\" left no mark, and my desktop \"1 turn\" request never happened.",
+      "exact": true
+    },
+    {
+      "label": "leila ask 2",
+      "file": "leila/report.original.md.txt",
+      "span": "Show a visible result when I act. \"Doubt this reading\" left no mark, and my desktop \"1 turn\" request never happened.",
+      "exact": true
+    },
+    {
+      "label": "leila ask 3",
+      "file": "leila/report.md",
+      "span": "Stop the clock while I read an inspection panel.",
+      "exact": true
+    },
+    {
+      "label": "leila ask 3",
+      "file": "leila/report.original.md.txt",
+      "span": "Stop the clock while I read an inspection panel.",
+      "exact": true
+    },
+    {
+      "label": "rosa primaryReturn",
+      "file": "rosa/report.md",
+      "span": "No, not on my own. I would close it and not leave it running. I might come back another evening only if the gate panel said the call-and-interrupt idea once, in plain words, and showed me one job to do with the gate.",
+      "exact": true
+    },
+    {
+      "label": "rosa primaryReturn",
+      "file": "rosa/report.original.md.txt",
+      "span": "No, not on my own. I would close it and not leave it running. I might come back another evening only if the gate panel said the call-and-interrupt idea once, in plain words, and showed me one job to do with the gate.",
+      "exact": true
+    },
+    {
+      "label": "rosa laterFullReturn",
+      "file": "rosa/report.md",
+      "span": "No, not on my own. I would come back another evening only if the gate panel said the call idea once, in plain words, and showed me one job to do with the gate. I would not leave it running; I would close it. This time I would be more willing than last time, because the first screen no longer blocks me. I cannot say what happens after the gate, because I stopped there.",
+      "exact": true
+    },
+    {
+      "label": "rosa laterFullReturn",
+      "file": "rosa/report.original.md.txt",
+      "span": "No, not on my own. I would come back another evening only if the gate panel said the call idea once, in plain words, and showed me one job to do with the gate. I would not leave it running; I would close it. This time I would be more willing than last time, because the first screen no longer blocks me. I cannot say what happens after the gate, because I stopped there.",
+      "exact": true
+    },
+    {
+      "label": "rosa ask 1",
+      "file": "rosa/report.md",
+      "span": "Say \"A call interrupts his current job, even if he does not agree. If he goes back to it afterwards, its report can come later.\" once, in plain words. It is now repeated in all six turns buttons.",
+      "exact": true
+    },
+    {
+      "label": "rosa ask 1",
+      "file": "rosa/report.original.md.txt",
+      "span": "Say \"A call interrupts his current job, even if he does not agree. If he goes back to it afterwards, its report can come later.\" once, in plain words. It is now repeated in all six turns buttons.",
+      "exact": true
+    },
+    {
+      "label": "rosa ask 2",
+      "file": "rosa/report.md",
+      "span": "Remove \"How Dai expects to feel after this job\" and \"Hold a button to insist\", or explain them in one plain sentence.",
+      "exact": true
+    },
+    {
+      "label": "rosa ask 2",
+      "file": "rosa/report.original.md.txt",
+      "span": "Remove \"How Dai expects to feel after this job\" and \"Hold a button to insist\", or explain them in one plain sentence.",
+      "exact": true
+    },
+    {
+      "label": "rosa ask 3",
+      "file": "rosa/report.md",
+      "span": "Do not hide the \"What counts as caught?\" rule only behind a folded heading without saying what \"caught\" means. I did not open it, so this is a guess from the heading.",
+      "exact": true
+    },
+    {
+      "label": "rosa ask 3",
+      "file": "rosa/report.original.md.txt",
+      "span": "Do not hide the \"What counts as caught?\" rule only behind a folded heading without saying what \"caught\" means. I did not open it, so this is a guess from the heading.",
+      "exact": true
+    },
+    {
+      "label": "ida primaryReturn",
+      "file": "ida/report.md",
+      "span": "Yes, I would come back another evening on the laptop to play Monday again, as long as Tuesday tells me what a high weir reading is. On the phone I would not come back.",
+      "exact": true
+    },
+    {
+      "label": "ida primaryReturn",
+      "file": "ida/report.original.md.txt",
+      "span": "Yes, I would come back another evening on the laptop to play Monday again, as long as Tuesday tells me what a high weir reading is. On the phone I would not come back.",
+      "exact": true
+    },
+    {
+      "label": "ida laterFullReturn",
+      "file": "ida/report.md",
+      "span": "\"Yes, I would come back another evening on the laptop to play Monday again, as long as Tuesday tells me what a high weir reading is. On the phone I would not come back.\" Monday gave me exactly what I like: a quiet log I read at my own pace, then a morning list I can check against. I would not leave it running in a tab. I would come back on another evening I set aside, on the laptop only. If Tuesday still leaves me guessing at the weir, I would play Monday once more and stop there.",
+      "exact": true
+    },
+    {
+      "label": "ida laterFullReturn",
+      "file": "ida/report.original.md.txt",
+      "span": "\"Yes, I would come back another evening on the laptop to play Monday again, as long as Tuesday tells me what a high weir reading is. On the phone I would not come back.\" Monday gave me exactly what I like: a quiet log I read at my own pace, then a morning list I can check against. I would not leave it running in a tab. I would come back on another evening I set aside, on the laptop only. If Tuesday still leaves me guessing at the weir, I would play Monday once more and stop there.",
+      "exact": true
+    },
+    {
+      "label": "ida ask 1",
+      "file": "ida/report.md",
+      "span": "Show a scale or a warning mark for the weir and the bridge. Without one, 0.37 m or 0.46 m means nothing to me.",
+      "exact": true
+    },
+    {
+      "label": "ida ask 1",
+      "file": "ida/report.original.md.txt",
+      "span": "Show a scale or a warning mark for the weir and the bridge. Without one, 0.37 m or 0.46 m means nothing to me.",
+      "exact": true
+    },
+    {
+      "label": "ida ask 2",
+      "file": "ida/report.md",
+      "span": "When I press \"Doubt this reading\", show at once that it was recorded, and remove the \"How Dai expects to feel after this job\" heading when every option under it just says \"He agrees\".",
+      "exact": true
+    },
+    {
+      "label": "ida ask 2",
+      "file": "ida/report.original.md.txt",
+      "span": "When I press \"Doubt this reading\", show at once that it was recorded, and remove the \"How Dai expects to feel after this job\" heading when every option under it just says \"He agrees\".",
+      "exact": true
+    },
+    {
+      "label": "ida ask 3",
+      "file": "ida/report.md",
+      "span": "On the phone, make the inspection panel scroll and make the lightning drawing bigger, or leave the Tuesday gauges until I am on a bigger screen.",
+      "exact": true
+    },
+    {
+      "label": "ida ask 3",
+      "file": "ida/report.original.md.txt",
+      "span": "On the phone, make the inspection panel scroll and make the lightning drawing bigger, or leave the Tuesday gauges until I am on a bigger screen.",
+      "exact": true
+    },
+    {
+      "label": "Mei saw a clipped Dai strip",
+      "file": "mei/report.md",
+      "span": "The Dai strip on the phone is still clipped at the right edge.",
+      "exact": true
+    },
+    {
+      "label": "Mei gauges visible",
+      "file": "mei/report.md",
+      "span": "The recording note did not cover the lower gauges this time, and on the phone the gauges were fully visible.",
+      "exact": true
+    },
+    {
+      "label": "Mei phone stop reaction",
+      "file": "mei/phone/wall-clock.jsonl",
+      "span": "Dai strip still cut at the right",
+      "exact": true
+    },
+    {
+      "label": "Samir saw fixed gauges",
+      "file": "samir/report.md",
+      "span": "At 360x690 the sketch and both gauge tiles were fully on screen, and the banner did not cover them.",
+      "exact": true
+    },
+    {
+      "label": "Samir phone first_minute reaction",
+      "file": "samir/phone/wall-clock.jsonl",
+      "span": "sketch and gauges fit on screen now, my phone ask is met",
+      "exact": true
+    },
+    {
+      "label": "Samir waiting wording (not a driver-stall claim)",
+      "file": "samir/report.md",
+      "span": "Waiting is still about 30 real seconds per step.",
+      "exact": true
+    },
+    {
+      "label": "Samir level tile reaction",
+      "file": "samir/desktop/wall-clock.jsonl",
+      "span": "the level tile went back to a dash",
+      "exact": true
+    },
+    {
+      "label": "Leila desktop pulse premature",
+      "file": "leila/report.md",
+      "span": "The desktop pulse was logged at 172 s, before the 180 s mark. The coordinator should flag it as premature.",
+      "exact": true
+    },
+    {
+      "label": "Leila saw no Doubt mark",
+      "file": "leila/phone/wall-clock.jsonl",
+      "span": "Doubt this reading: the panel just closed and I see no mark anywhere.",
+      "exact": true
+    },
+    {
+      "label": "Leila request seemed dropped",
+      "file": "leila/desktop/wall-clock.jsonl",
+      "span": "My level request seems dropped though; level still read 22:00.",
+      "exact": true
+    },
+    {
+      "label": "Leila does not know why",
+      "file": "leila/report.md",
+      "span": "I do not know why the 1-turn request disappeared.",
+      "exact": true
+    },
+    {
+      "label": "Rosa caught-fold guess untested",
+      "file": "rosa/report.md",
+      "span": "I did not open it, so this is a guess from the heading.",
+      "exact": true
+    },
+    {
+      "label": "Rosa tiny sessions",
+      "file": "rosa/report.md",
+      "span": "I did not reach 60 s (first_minute) or 180 s (pulse) in either session. Those checkpoints are untested.",
+      "exact": true
+    },
+    {
+      "label": "Rosa repeated call sentences",
+      "file": "rosa/phone/wall-clock.jsonl",
+      "span": "Same two sentences on all six buttons; who is interrupted and what comes later?",
+      "exact": true
+    },
+    {
+      "label": "Rosa current history excludes the Warren alternative",
+      "file": "rosa/own-history.original.md.txt",
+      "span": "Earlier Good Hands/Glance/Rope inputs included an excluded Warren alternative. That body is absent here",
+      "exact": true
+    },
+    {
+      "label": "Ida saw delayed Marked for another check (phone)",
+      "file": "ida/phone/wall-clock.jsonl",
+      "span": "Ah, it says Marked for another check under the level. So it did take.",
+      "exact": true
+    },
+    {
+      "label": "Ida saw delayed Marked for another check (desktop)",
+      "file": "ida/desktop/wall-clock.jsonl",
+      "span": "now Marked for another check appeared, a few seconds late.",
+      "exact": true
+    },
+    {
+      "label": "Ida phone scroll",
+      "file": "ida/phone/wall-clock.jsonl",
+      "span": "Scrolling did nothing; the page stayed put.",
+      "exact": true
+    },
+    {
+      "label": "Ida unwanted dialog",
+      "file": "ida/phone/wall-clock.jsonl",
+      "span": "A This week s mornings window popped open. I did not ask for it; maybe my tap landed on it as the panel closed.",
+      "exact": true
+    },
+    {
+      "label": "Ida weir scale (phone)",
+      "file": "ida/phone/wall-clock.jsonl",
+      "span": "Weir 0.46. Is that high or low?",
+      "exact": true
+    },
+    {
+      "label": "Ida weir scale (desktop)",
+      "file": "ida/desktop/wall-clock.jsonl",
+      "span": "no numbers or red mark, so 0.37 still means nothing to me.",
+      "exact": true
+    },
+    {
+      "label": "Ida within-person phone to desktop",
+      "file": "ida/desktop/wall-clock.jsonl",
+      "span": "No sign it remembers my phone game; I expected that.",
+      "exact": true
+    },
+    {
+      "label": "Ida recalls her phone game",
+      "file": "ida/desktop/wall-clock.jsonl",
+      "span": "I recall the phone game clearly, confident",
+      "exact": true
+    },
+    {
+      "label": "Ida cold with empty history",
+      "file": "ida/report.md",
+      "span": "My own history file was empty (\"No prior HF exposure. Empty initial diary.\"). I read all of it.",
+      "exact": true
+    }
+  ]
+}

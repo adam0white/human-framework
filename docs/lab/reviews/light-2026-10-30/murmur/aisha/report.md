@@ -1,0 +1,92 @@
+**Would you return voluntarily?** Yes, I would come back another evening, but only if I could really insist on the kind choice (press and hold) and Tuesday did not just replay Monday's morning. I would not leave it running.
+
+**Ranked asks**
+1. Let me insist on a choice. My taps were declined every time, the "Press and hold" hint appeared only on Tuesday, and my driver could only tap, so I may have missed the main mechanic. Say how to insist on the first screen.
+2. Make Tuesday's opening differ from Monday's: same alarm, same oversleep, same "ring road?" Keep the memory of the coffee, but change the scene.
+3. Give me a reason in the choice card for why she is "willing" or "only if you insist", and say what insisting costs before I try it.
+
+## 1. Session
+
+- Persona: Aisha Rahman, first visit. Release commit to be added by the coordinator.
+- Round: light-1030, free stop (floor 0). Game shown: "Two Voices" (Dilan, Istanbul); you called it Murmur.
+- Own history: I read all of own-history.md (lines 1–443 and 444–578, nothing unread). It is from other games.
+- URL: https://murmur.adamwhite.work/?labRunSource=agent
+- Session 1: phone 360x690, 222.7 s (about 3.7 min). Session 2: desktop 1280x800, 72.8 s (about 1.2 min).
+
+## 2. First impressions
+
+- Phone, 4 s: "Two Voices", a gentle premise.
+- Phone, 14 s: a 58-second countdown. It is clear. "She is willing" or "only if you insist" sits under each choice.
+- Phone, 20 s: Dilan declined my promise to Aylin and said so in her own words. I liked that she can refuse.
+- Desktop, 6–25 s: same opening, word for word as the phone.
+
+## 3. Verbatim
+
+Phone:
+- 0 s open (no log).
+- 7.2 "A title page, Two Voices. I am a voice in Dilan head; sounds gentle. Starting."
+- 15.6 "Countdown timer but clear. She is willing, so I go with her."
+- 20.7 "Oh, my five minutes became thirty. I own that. I want her to call Mum; a careful promise."
+- 22.5 "She declined and said so in her own words; I like that she can refuse."
+- 26.7 "I would rather she told the truth to Murat; I know she may not."
+- 28.8 "She lied, and I could not stop her. Honest about it, at least."
+- 64.4 "Ece is near tears; a map pin feels cold. I want a human voice for her, even if Dilan refuses."
+- 68.6 first_minute, Mon 10:43: "I understand: I whisper suggestions, Dilan decides, and she often declines the kinder one unless I insist. Her own words after each choice are honest and human. I cannot hold to insist with this driver. Mild frustration that kindness loses by default."
+- 74.6 "Murat mocking Ece, the girl I just failed to help. I want Dilan to defend her, gently."
+- 77.9 "She laughed at Ece and gave a reason. It hurt, in the way a true thing does. I cannot insist; my taps only suggest."
+- 83.3 (log on the drink-water tap; there were two logs at 83.3 and 86.7)
+- 86.7 note, Mon 15:21: "Four kind suggestions in a row declined, each with her own reason. Honest and not scolding, but my taps feel like they do nothing unless I can hold to insist, which I cannot do here. I am a voice with no weight."
+- 123.9 "A small, keepable promise: text and promise tomorrow. That is the one I would pick." (the tap timed out in the driver; the game moved on)
+- 157.6 "The tap reported a timeout though the game moved on, probably the driver. She scrolled past her stop; poor woman. Suggesting sleep."
+- 160.2 "End of Monday: a night card. It names what she did not do, and says what she thinks of me: I had something to say about everything. Fair, a little stinging."
+- 164.2 pulse 4, Mon in bed: "The night card is lovely: struck-through promises, her intentions carried to tomorrow, and a verdict on me. I want to repair Mum on Tuesday. Still, I mostly watched her ignore me." This was logged before 180 s, so it is premature; please flag it.
+- 175.1 "The third coffee came back to bite her at midnight. The game remembers what happened."
+- 209.0 "Now it tells me: press and hold to insist. My driver can only tap, so I cannot insist. Noted, may be a driver limit."
+- 212.0 pulse 3, Tue 08:27: "Tuesday opens the same as Monday: alarm, oversleep, the ring road. The memory of the coffee is nice, but I cannot insist, so I watch the same morning. Interest falling."
+- 214.1 want_quit, FRUSTRATED: "I cannot insist with a tap, so my kindest suggestions lose every time and Tuesday repeats Monday. I would stop here on the phone."
+- 222.7 stop, FRUSTRATED: "Stopping the phone at Tuesday 08:28, about 3.7 minutes. I liked her own words after each choice and the night card, but I could not hold to insist and Tuesday repeated Monday. Pressed I am stopping in Feedback, typed nothing, no Submit."
+
+Desktop:
+- 6.0 "Same title page, wider. Second visit same evening; I know Dilan now and want to try getting her up on time."
+- 13.7 "This time I say nothing to see what she does on her own."
+- 19.9 "Same Monday as on my phone, identical text. I try the same promise to Aylin."
+- 25.8 "Exactly the same Murat scene as on the phone. Say nothing here to see if she chooses honestly alone."
+- 62.5 first_minute, Mon 10:43: "Second visit, same evening, and Monday is word for word the phone one. I know the loop, so Ece and the lunchtime mockery are no surprise. On the laptop I hoped hold-to-insist would be possible, but the driver gives me only taps. I would stop soon."
+- 64.6 want_quit, BORED: "I just did this exact Monday on my phone; the same lines and the same refusals. Nothing new to learn on the laptop. I would stop."
+- 72.8 stop, BORED: "Stopping the desktop at Monday 10:43, about 71 seconds. It was word for word the Monday I had just played on my phone, and I could not insist. Pressed I am stopping in Feedback, typed nothing, no Submit."
+
+## 4. Moments
+
+- Held me: Dilan's own sentences after each choice, such as "Speaking up for Ece means facing the whole table. I'm going to laugh along." The Monday night card (struck-through promises, her intentions, "What she thinks of you"). The coffee returning at midnight on Tuesday.
+- Lost me: every kind suggestion was declined. I could not use insist, and the hold hint showed only on Tuesday. Tuesday's morning repeated Monday's. The desktop repeated the phone exactly.
+- Quit wishes: phone at 214 s (FRUSTRATED), desktop at 64.6 s (BORED). Neither passed.
+- Pulses: 164 s (premature), 3 at 212 s.
+
+## 5. Confusion and clarity
+
+- Clear: the countdown, "She is willing / only if you insist", and her stated reasons.
+- Unclear: how to insist. On Monday the "Hold to insist. This costs trust" text appeared only on the first choice, and I never worked out whether tapping could insist. Tuesday said "Press and hold an option to insist." I do not know whether this is a driver limit or a game problem.
+- Driver: three taps (about 123.9 s, 157.6 s and 208.98 s) reported 30-second timeouts but the game had moved on. I suspect the driver, not the game. One "Skip ahead" at 61.4 s also timed out.
+
+## 6. Device use
+
+- Phone shots viewed: p-001.png (title page, text readable, button below the fold at first) and p-002.png (Monday night card, clear, red "Continue to Tuesday" button). Desktop shot viewed: d-001.png (centred column, red Start button).
+- I used taps on named controls, wait, the menu, Feedback, "I'm stopping" and ← Back. I saw no layout trouble on either size.
+- Unseen: gameplay screens on the phone during a countdown (I took shots only at title and night card) and any desktop gameplay layout.
+
+## 7. Stop and return
+
+- Phone stop (222.7 s, FRUSTRATED): "Stopping the phone at Tuesday 08:28, about 3.7 minutes. I liked her own words after each choice and the night card, but I could not hold to insist and Tuesday repeated Monday."
+- Desktop stop (72.8 s, BORED): "Stopping the desktop at Monday 10:43, about 71 seconds. It was word for word the Monday I had just played on my phone."
+- Feedback: the menu and Feedback were reachable on both devices. I pressed "I'm stopping" on both, typed nothing, did not Submit, did not touch Recording, and closed with ← Back.
+- Would you return voluntarily? Yes, another evening, if I could really insist and Tuesday differed from Monday. I would not leave it running.
+
+## 8. Changes I would want
+
+See the three ranked asks at the top.
+
+## 9. Compared with my last visit
+
+First visit.
+
+I touched no git repo and created no worktrees. `git worktree list`: none of mine. Screenshots kept: p-001, p-002 (phone), d-001 (desktop).

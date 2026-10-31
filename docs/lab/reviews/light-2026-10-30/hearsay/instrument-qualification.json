@@ -1,0 +1,20 @@
+{
+  "time": "2026-10-31T00:01:36.580838+00:00",
+  "qualifications": {
+    "diego": {
+      "desktop": "Instrument-impaired: Who/What exact-label locator failed repeatedly. Producer continued and labelled BORED; retain words, exclude as unqualified game taste.",
+      "phone": "Instrument-impaired: Who locator failed. Producer labelled CONFUSED; retain words, no functional game-selector claim."
+    },
+    "rosa": {
+      "phone": "Unblocked current-target observation, BORED stop.",
+      "desktop": "Explicit TOOL stop after repeated Who exact-label timeout."
+    },
+    "luz": {
+      "desktop": "Explicit TOOL stop after Who exact-label timeout+retry. Not a game taste quit.",
+      "phone": "Explicit TOOL stop after Who exact-label timeout+retry. Not a game taste quit."
+    }
+  },
+  "control": "hearsay-select-control/result.json",
+  "findings": "After opening the public fold, both visible native selects persist selections using public role locator. Exact short getByLabel names have zero matches. Root did not submit a claim or feedback. Native selection is not proved broken.",
+  "future": "Fix semantic labelling or lab resolver before asserting selector usability from this cohort. Preserve original exposure/stop words; any later diagnostic return is a return, not a fresh cold slot."
+}

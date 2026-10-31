@@ -1,0 +1,266 @@
+{
+  "tester": "Aisha Rahman",
+  "validationTime": "2026-10-31T01:56:59.437446+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T01:07:26.443Z",
+        "elapsed_s": 222.728,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone at Tuesday 08:28, about 3.7 minutes. I liked her own words after each choice and the night card, but I could not hold to insist and Tuesday repeated Monday. Pressed I am stopping in Feedback, typed nothing, no Submit.",
+        "game_clock": "Tue 08:28",
+        "engagement": null,
+        "reason": "FRUSTRATED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "p-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "p-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 219.081,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [
+        164.242
+      ],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T01:04:01.994Z",
+          "elapsed_s": 18.279,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Skip to the next event is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T01:04:07.569Z",
+          "elapsed_s": 23.854,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Skip to the next event is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T01:04:45.124Z",
+          "elapsed_s": 61.409,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31515,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Skip to the next event', exact: true }).or(getByRole('link', { name: 'Skip to the next event', exact: true })).or(getByRole('tab', { name: 'Skip to the next event', exact: true })).or(getByRole('menuitem', { name: 'Skip to the next event', exact: true })).or(getByRole('checkbox', { name: 'Skip to the next event', exact: true })).or(getByRole('radio', { name: 'Skip to the next event', exact: true })).or(getByRole('option', { name: 'Skip to the next event', exact: true })).or(getByRole('switch', { name: 'Skip to the next event', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:04:55.318Z",
+          "elapsed_s": 71.603,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Skip to the next event is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T01:05:03.676Z",
+          "elapsed_s": 79.961,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 701,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T01:05:14.021Z",
+          "elapsed_s": 90.306,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 658,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T01:05:47.613Z",
+          "elapsed_s": 123.898,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Text Mum and promise to call tomorrow. She would agree only if you insist."
+          },
+          "reaction": "A small, keepable promise: text and promise tomorrow. That is the one I would pick.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31516,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Text Mum and promise to call tomorrow. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:06:21.334Z",
+          "elapsed_s": 157.619,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Put the phone on the floor and go to sleep. She would agree only if you insist."
+          },
+          "reaction": "The tap reported a timeout though the game moved on, probably the driver. She scrolled past her stop; poor woman. Suggesting sleep.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31516,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Put the phone on the floor and go to sleep. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T01:07:12.689Z",
+          "elapsed_s": 208.974,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Get up and put your feet on the floor. She would agree only if you insist."
+          },
+          "reaction": "Now it tells me: press and hold to insist. My driver can only tap, so I cannot insist. Noted, may be a driver limit.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31524,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true }).or(getByRole('link', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('tab', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('menuitem', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('checkbox', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('radio', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('option', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).or(getByRole('switch', { name: 'Get up and put your feet on the floor. She would agree only if you insist.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T01:08:40.708Z",
+        "elapsed_s": 72.8,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the desktop at Monday 10:43, about 71 seconds. It was word for word the Monday I had just played on my phone, and I could not insist. Pressed I am stopping in Feedback, typed nothing, no Submit.",
+        "game_clock": "Mon 10:43",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "d-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 69.364,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T01:07:44.956Z",
+          "elapsed_s": 17.048,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T01:07:51.090Z",
+          "elapsed_s": 23.182,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Skip to the next event is not on the page now; it was listed 1 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

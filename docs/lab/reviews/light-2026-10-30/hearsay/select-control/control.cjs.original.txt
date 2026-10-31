@@ -1,0 +1,42 @@
+const { createRequire } = require('node:module');
+const { writeFileSync } = require('node:fs');
+const { chromium } = createRequire('/Users/abdul/code/human-framework/package.json')('playwright');
+const root = '/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-select-control';
+(async () => {
+ const browser = await chromium.launch({ headless: true });
+ const result = { time: new Date().toISOString(), who: 'agent', purpose: 'Automated UI control, not a persona vote or account browsing', release: await (await fetch('https://hearsay.adamwhite.work/release.json')).json(), steps: [] };
+ try {
+  if(result.release.commit !== '76ebfb8f73956e1bbdc5cc6318d9f15e453d105b' || result.release.dirty !== false) throw Error('Live pin changed');
+  const page = await browser.newPage({ viewport: { width: 360, height: 690 }, isMobile: true, hasTouch: true, colorScheme: 'light' });
+  page.on('pageerror', e => result.steps.push({ pageerror: String(e) }));
+  await page.goto('https://hearsay.adamwhite.work/?labRunSource=agent', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: 'Begin', exact: true }).click();
+  await page.waitForTimeout(2000);
+  await page.getByText('Talk about someone else', { exact: true }).click();
+  await page.waitForTimeout(2000);
+  result.steps.push({ publicFoldOpened: 'Talk about someone else' });
+  result.visibleButtons = await page.getByRole('button').allTextContents();
+  result.selects = await page.locator('select').evaluateAll(nodes => nodes.map(n => ({ id: n.id, ariaLabel: n.getAttribute('aria-label'), labels: [...n.labels].map(x=>x.textContent), options: [...n.options].map(o=>({ label:o.label, value:o.value })), value: n.value })));
+  for(const name of ['Who?', 'What?']) {
+   result.steps.push({ label:name, exactVisibleLabelCount:await page.getByLabel(name,{exact:true}).count() });
+  }
+  const controls = page.getByRole('combobox');
+  result.roleComboboxCount = await controls.count();
+  if (result.roleComboboxCount >= 2) {
+   for (let i=0; i<2; i++) {
+    const control = controls.nth(i);
+    const options = await control.locator('option').evaluateAll(ns=>ns.map(n=>({label:n.label,value:n.value,disabled:n.disabled})));
+    const target = options.find(o => !o.disabled && (i===0 ? o.label==='Osman' : /honest/i.test(o.label))) || options.find(o=>!o.disabled&&o.value);
+    if (!target) throw Error('No public selectable option');
+    await page.waitForTimeout(2000);
+    await control.selectOption({ value: target.value });
+    await page.waitForTimeout(2000);
+    const actual = await control.inputValue();
+    result.steps.push({ control:i, target, actual, persisted:actual===target.value });
+   }
+   await page.screenshot({ path: root + '/after-select.png' });
+  }
+  result.noSubmitControlUsed = true;
+ } catch(e) { result.error = String(e); process.exitCode = 1; }
+ finally { await browser.close(); result.browserClosed = true; writeFileSync(root+'/result.json',JSON.stringify(result,null,2)+'\n'); console.log(JSON.stringify(result)); }
+})();

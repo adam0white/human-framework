@@ -1,0 +1,122 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-31T00:49:14.652465+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T00:32:22.168Z",
+        "elapsed_s": 196.236,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop the phone here for the evening, not from trouble. I delivered the first orders, heard Tarik on the ice, saw gossip on the step. No sentence needed a second reading. I want to see the big screen.",
+        "game_clock": "Monday 11:45",
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 188.278,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T00:29:48.883Z",
+          "elapsed_s": 42.951,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "as I heard it"
+          },
+          "reaction": "Two buttons have the same name, as I heard it, for two different news items. I cannot tell which I tap.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 24,
+          "error": "2 enabled controls are named as I heard it; tap one by point: (95,451), (95,573) (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T00:32:18.159Z",
+          "elapsed_s": 192.227,
+          "kind": "tool",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop the phone here. I delivered all the first orders, heard Tarik on the ice, and saw gossip on the step. No sentence needed a second reading. I stop because I have seen the loop and want to see the big screen.",
+          "game_clock": "Monday 11:45",
+          "engagement": 4,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Invalid reason (invalid request, not a driver failure)",
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T00:35:31.324Z",
+        "elapsed_s": 192.778,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop the big screen here for the evening, not from trouble. I saw the same loop as on the phone, with a different first order and my swap trick. One sentence needed a reread; the quit gate of two rereads was not reached.",
+        "game_clock": "Monday 07:44",
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 190.19,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

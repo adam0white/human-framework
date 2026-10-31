@@ -1,0 +1,36 @@
+{
+  "time": "2026-10-31T03:42:06.761738+00:00",
+  "checks": [
+    {
+      "tester": "Mei Tan",
+      "recordedPids": [62681, 62658, 62660],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    },
+    {
+      "tester": "Samir Haddad",
+      "recordedPids": [67268, 67245, 67247],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    },
+    {
+      "tester": "Leila Mansour",
+      "recordedPids": [70997, 70910, 70936],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "recordedPids": [76052, 76029, 76031],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    },
+    {
+      "tester": "Ida Mikkelsen",
+      "recordedPids": [76863, 76840, 76842],
+      "psOutput": "",
+      "allRecordedPidsAbsent": true
+    }
+  ],
+  "noKillNeeded": true
+}

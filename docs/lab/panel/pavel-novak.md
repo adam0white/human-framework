@@ -276,3 +276,151 @@ Stopped at 572.2 s, 21 July, year 1. Reason: **BORED**.
 1. Tell me how fast a day runs and why it has stopped, so that 15 seconds and six minutes are not both "a day".
 2. Make the ledger show the storm loss, and drop the rain warning once its date has passed.
 3. Group the identical "After I finish…" promises instead of showing two dozen "Hold to insist" buttons.
+
+<!-- selected-continuity-key: light-1030:rope:pavel:free -->
+## 2026-10-30 Rope LIGHT first visit — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/rope/pavel/report.md), exact producer original at [report.original.md.txt](../reviews/light-2026-10-30/rope/pavel/report.original.md.txt), original SHA256 `104cf31a5cb4a1a2b2433d0b2d5659a2eba3e5b497983573a8981d2d2d486e09`. Build 30fc93b1e00e360abffa9d759d8d335a96360434/HF4.15.0, dirty:false. Fresh phone 360x690 and desktop 1280x800 automated project-test contexts; sequential device visits, the second a return the same evening, not paired arms. Both Feedback labels were offered; the tester used a label and Back with no note typed or submitted (per the packet README). The agent run-source marker was requested through labRunSource=agent; no production recording receipt was independently read.
+
+**Director method notes (not the tester's words)**
+- Premature first-minute logs: desktop 59.037 s and phone 47.429 s. They are not valid 60-second checkpoints.
+- No old continued-alternative body was in his supplied history ([history-qualification.json](../reviews/light-2026-10-30/rope/history-qualification.json) does not list him).
+- The director viewed his desktop injury-call frame (a-004): go-to-him and turn-him-back are visible; the named walk-to-Bilal control is not in that frame. The frame does not prove injury recovery is globally unreachable, and he also used Stop between attempts. See [rope-director-image-observations.json](../reviews/light-2026-10-30/rope/rope-director-image-observations.json) and [rope-pavel-director-qualification.json](../reviews/light-2026-10-30/rope/rope-pavel-director-qualification.json).
+
+**Readable producer report follows. Formatting may add blank lines; the linked producer original is exact.**
+
+**Would you return voluntarily?** Not tonight. On the desktop, on another evening, I might come back to see whether the hurt climber can be reached and whether the 12:00 or 13:00 promise is tested. I would not leave it running.
+
+**Ranked asks**
+1. Make the hurt-climber call work, or say how to reach him. I pressed "go to him" three times. The page told me to "tap walk to Bilal", and no such button exists. The picture showed him a few steps below me while the text said I was too far away.
+2. Say plainly why the group falls apart after everyone agrees. On both devices all five said yes, I led on, and they trailed behind. Later four or five "cannot hear you". "Stay with them" did not visibly fix it.
+3. Shorten or explain the long quiet stretches. About 7 to 14 game minutes passed per 15 to 30 real seconds. Skip helps, but I could not tell what I was waiting for.
+
+## 1. Session
+
+- Persona: Pavel Novak, 70, retired Brno tram driver.
+- Exposure: first visit to The Rope. My own history (read once, first 439 of 618 lines) had nothing about this game.
+- Round: light-1030, first panel round, free stop (floor 0).
+- URL: https://rope.adamwhite.work/?labRunSource=agent
+- Session A: desktop 1280x800, light mode, keyboard and mouse. 297.5 s by the driver.
+- Session B: phone 360x690, touch, light mode, second visit the same evening. 283.8 s by the driver.
+- I stopped by choice in both sessions. The ceiling was not reached.
+
+## 2. First impressions
+
+- **Desktop, 1.9 s:** a cream title page. "Five people will climb three mountains." "They can say no." The three mountains are drawn as lines. One clear button, New game.
+- **Desktop, 4.5 s:** I got a turn-back question straight away: 12:00, 13:00, 14:00 or "We'll see". I liked this because it works like a timetable. I chose 13:00.
+- **Desktop, 7 s:** all five answered "yes". The page said I had promised to turn back at 13:00.
+- **Desktop, 36 s:** I learned that "lead on" (my own walking) and the group's "climb on" are separate controls. I had to learn this by trial.
+- **Phone, 2 s:** the same title page. The layout fits well.
+- **Phone, 5 s:** the same turn-back question. I chose 12:00 this time.
+
+## 3. Verbatim
+
+Quoted exactly as sent to the diary, in order. Elapsed seconds are from the driver.
+
+**Session A, desktop**
+- 4.5 s, reaction on tap: "Title page, three mountains, a rope team. Starting new game."
+- 7.2 s: "A timetable question, good. I choose 13:00; they remember if I keep my word."
+- 9.1 s: "All five agreed. Now I start walking and watch the clock."
+- 36.5 s: "The picture shows everyone still at the hut. My lead on did nothing visible; the hint says tap Climb on then ask. I try that."
+- 38.8 s: "Three strengths of asking. Gentle first; I keep the pressure for later."
+- 59.0 s, first_minute: "Clear goal: climb, turn back at 13:00 as I promised. Climbing seems to run slowly, about 7 game minutes per 15 real seconds. I had to learn that lead on and the group Climb on are two separate things." (game clock 05:20)
+- 92.8 s: "Slow walking; I try Skip to see what it does."
+- 129.9 s: "I am ahead and they are still near the hut though all said yes. A contradiction? I wait and watch if they catch up."
+- 165.8 s: "I keep getting ahead of them and waiting. I try Stay with them to keep the group together."
+- 194.7 s, pulse, engagement 3: "Interested in the promise and the group, but I mostly wait: clock crawls and little happens that needs me." (07:27)
+- 237.3 s: "Finally something needs me. A man is hurt; I go to him first."
+- 239.7 s: "It says I am too far and to tap walk to Bilal. I see no such button; only go to him, which I already tapped. Looking at the screen."
+- 243.5 s: "In the picture Bilal is a few steps below me, yet the page says I am too far. A contradiction. I press go to him again."
+- 257.5 s: "Maybe a walk-to-Bilal action hides in more."
+- 262.6 s, want_quit, CONFUSED: "A man is hurt, I press go to him twice and nothing changes. The text says walk to Bilal but there is no such button, and the picture shows him next to me. I would leave if this goes on, but I try Stop once more." (08:46)
+- 265.8 s: "Stopping removed the too-far message. Maybe I was still walking away. I try go to him now."
+- 288.1 s: "Stop is enabled again, so perhaps I am now walking to him. I wait."
+- 297.5 s, stop, CONFUSED: "I stop at 08:52. A climber is hurt, go to him does nothing I can see, and the text points to a walk-to-Bilal button that does not exist. I chose Im confused in Feedback, typed nothing, sent nothing." (08:52)
+
+**Session B, phone**
+- 5.0 s: "Phone, second visit. Same title. New game."
+- 7.5 s: "Different choice this time: earlier, 12:00."
+- 13.9 s: "I now know the order: ask climb on, then lead on."
+- 47.4 s, first_minute: "Phone layout is tidy. Same flow; this time I asked first then led, so it went smoother. The clock crawls, 8 game minutes in 30 real seconds. I am waiting for something to happen." (05:11)
+- 129.8 s: "Same as desktop: I walk ahead and they trail behind though they all said yes. I wait."
+- 183.6 s, pulse, engagement 3: "Steady and clear on the phone, with a promise to keep. Long quiet stretches, but Skip helps and something now appears: a route and weather warning." (08:54)
+- 185.1 s: "What is this warning? I open it."
+- 187.0 s: "That warning is not a control I can open; I skip ahead."
+- 206.3 s: "Oskar and Wren cannot hear me; the team is strung out. A good detail: I should keep them close. I choose stay with them."
+- 208.3 s: "They have no food left; the game says I can share mine. Looking at the screen."
+- 233.2 s: "Now four of five cannot hear me. I did choose stay with them, yet we drifted apart. I do not understand what that button does. Skip on."
+- 276.1 s, want_quit, BORED: "Mostly waiting, four of five cannot hear me, and I do not know how to bring them together. I would stop here for the evening." (11:24)
+- 283.8 s, stop, BORED: "I stop at 11:26 on the phone. Chose Im stopping in Feedback, typed nothing, sent nothing. Too much waiting, and the group drifted apart and could not hear me." (11:26)
+
+**Protocol note:** I logged both first_minute notes before 60 s, at 59.0 s on desktop and 47.4 s on phone. They are early and should be flagged. I never reached the first 60 s of play on the phone before writing it.
+
+## 4. Moments
+
+- **What held me:**
+  - The promise question at the start. I liked it as a timetable, and I liked "they remember if you keep your word".
+  - The hand-drawn slope with the rope team. It was readable on desktop.
+  - The three strengths of asking: ask gently, urge, and insist after a refusal.
+  - "Oskar added a stone" at the cairn. That was a small, nice event.
+- **What lost me:**
+  - Desktop, 237–290 s: the hurt climber and the stuck "go to him" call.
+  - Both devices: long waits for little, and a group that said yes and then trailed behind.
+- **Quit wishes:**
+  - Desktop, 262.6 s, CONFUSED. It did not pass, and I stopped 35 s later.
+  - Phone, 276.1 s, BORED. It did not pass, and I stopped 8 s later.
+- **Pulses:** desktop 3 at 194.7 s; phone 3 at 183.6 s.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The goal, and the turn-back promise shown in the header.
+  - The phone layout: three rows of controls and a drawing above.
+  - "Time stops while you choose" and "Time slows for reading" notices.
+  - Skip jumps to the next event.
+- **Confusing:**
+  - "Lead on" versus "climb on". The hint says "Tap Climb on, then ask", but "lead on" sits right under "you" and looks like the first thing to press.
+  - After everyone agreed, I walked off and the group stayed behind. I do not know whether that was my doing or theirs. This is my guess.
+  - The hurt climber. The text said "too far away… tap walk to Bilal", but there was no walk button. The picture showed Bilal close. I could not tell if "go to him" was working.
+  - On the phone, "Route and weather warning" appeared as an item I could not open.
+  - The "eat" button was greyed with "They have no food left. You can share yours", and I did not find how to share.
+- I never saw the 12:00 or 13:00 turn-back come due, so I cannot say whether the promise is kept or tested.
+
+## 6. Device use
+
+- **Desktop screenshots viewed (3 of the 6 allowed, none deleted):**
+  - `desktop/a-001.png`, right after open: cream title page, "THE ROPE", three mountain outlines, a red "New game" button, and a small recording notice at the bottom.
+  - `desktop/a-002.png`, 05:08: a split screen. The left side shows a slope with six figures near the hut. The right side shows the "Speak to everyone" panel and a "you" row at the bottom.
+  - `desktop/a-003.png`, 06:48: my figure ahead in red, the others clustered below. I did not see any overlap or cut-off text.
+  - `desktop/a-004.png`, 08:44: Bilal and the glacier rocks drawn right next to my figure. The "go to him" and "turn him back" buttons sat at the top of the right panel. The "too far" line sat at the bottom of the left panel.
+- **Desktop controls used:** New game, turn-back choice, lead on, climb on, ask gently, Skip, stay with them, go to him, turn him back (seen, not pressed), stop, more, Back to requests, Game menu, Feedback, "I'm confused", Back. I used the mouse path only through the driver.
+- **Phone screenshots viewed (2 of the 6 allowed, one more saved but not viewed):**
+  - `phone/b-001.png`, right after open: title page, three mountains, a full-width "New game" button. It fit the 360-wide screen with no cut-off.
+  - `phone/b-002.png`, 06:49: the top bar and progress strip, a slope drawing with five names, then the panel buttons and the "you" row below. Nothing was cut off. The labels "climb on" and "turn back" wrapped onto two lines. The drawing was readable at this point.
+  - `phone/b-003.png` was saved at 10:39 but I did not open it, so I report nothing about it.
+- **Phone controls used:** New game, turn-back choice, climb on, ask gently, lead on, Skip, stay with them, Game menu, Feedback, "I'm stopping", Back. I did not try the phone's more actions or the hurt-climber call, so the phone drawing in the late game is unseen.
+- **Trouble seen versus unseen:** I saw no layout trouble on either device. The desktop hurt-climber trouble was a rules and wording problem, not layout.
+- **Feedback:**
+  - Desktop: I opened Game menu, then Feedback, and chose "I'm confused". The note box filled itself with "I'm confused". I typed nothing, pressed Back, and did not press Submit.
+  - Phone: same path, with "I'm stopping". The note box filled itself with "I'm stopping". I typed nothing, pressed Back, and did not press Submit.
+  - Both choices were offered. Recording stayed checked and untouched.
+
+## 7. Stop and return
+
+- **Desktop stop, 297.5 s, reason CONFUSED:** "I stop at 08:52. A climber is hurt, go to him does nothing I can see, and the text points to a walk-to-Bilal button that does not exist. I chose Im confused in Feedback, typed nothing, sent nothing."
+- **Phone stop, 283.8 s, reason BORED:** "I stop at 11:26 on the phone. Chose Im stopping in Feedback, typed nothing, sent nothing. Too much waiting, and the group drifted apart and could not hear me."
+- **Would I return voluntarily?** Not tonight. I might come back on the desktop on another evening, to see whether the hurt climber can be reached and whether the turn-back promise is tested. I would not come back at all unless the hurt-climber call gives me a button that works. I would not leave it running.
+
+## 8. Changes I would want
+
+1. Make the hurt-climber call work. If I must walk to him, show a walk button that exists, or let "go to him" do that and show it happening.
+2. Say plainly why the group drifts apart after they all agree to climb on. Say what "stay with them" does.
+3. Explain the pace of the clock (7–14 game minutes per 15–30 real seconds) and what I am waiting for in a quiet stretch.
+
+## 9. Compared with my last visit
+
+First visit.
+
+I have no earlier Rope record, so there is no earlier ask to check.
+
+Cleanup rule: I created no worktree, server, browser, helper script or file. Both drivers belong to the coordinator. No repository was touched, so there is no `git worktree list` to show.

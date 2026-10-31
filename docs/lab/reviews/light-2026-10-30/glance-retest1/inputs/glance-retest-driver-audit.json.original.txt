@@ -1,0 +1,502 @@
+{
+  "mei": {
+    "tester": "Mei Tan",
+    "validationTime": "2026-10-31T03:38:52.570860+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T02:57:46.915Z",
+          "elapsed_s": 198.217,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Tuesday 01:40 with gate shut at 0 of 6, level 3.7, no decision made in about 3 real minutes. Readings and dates are clear and I like Dai as the only eyes, but long waits with nothing to decide lost me again. Chose I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+          "game_clock": "Tue 01:40",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 195.45,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T03:01:03.912Z",
+          "elapsed_s": 195.824,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on the phone at Tuesday 01:47 with gate at 2 of 6 and level 3.5. One decision at 4.8 m, then waiting. Readable at 360 wide, Dai strip still cut at the right. Chose I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+          "game_clock": "Tue 01:47",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 193.278,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "samir": {
+    "tester": "Samir Haddad",
+    "validationTime": "2026-10-31T03:38:52.576175+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T03:02:57.406Z",
+          "elapsed_s": 75.348,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone at about 75 seconds. Layout fixed and short opening good, but this is the same loop I know and nothing needs me yet. Pressed I am stopping in Feedback, then Back, typed nothing.",
+          "game_clock": "Mon 23:12",
+          "engagement": 3,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 72.003,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T03:06:13.686Z",
+          "elapsed_s": 194.919,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping desktop at about 3 minutes, Monday 01:36. I liked the shorter opening, Bilal explained, and Dai deciding on the standing request. But Dai again asks where Morgan went and I cannot answer, the level tile stays not read, and I wait half a minute per step. Pressed I am stopping in Feedback, then Back, typed nothing.",
+          "game_clock": "Mon 01:36",
+          "engagement": 3,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 191.333,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "leila": {
+    "tester": "Leila Mansour",
+    "validationTime": "2026-10-31T03:38:52.581975+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T03:10:23.709Z",
+          "elapsed_s": 209.957,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping desktop. I now see insist and refusal in words, and a clearer saved-image panel. But I still make a handful of choices in 3.5 minutes and wait the rest, and one request vanished silently. I would not leave it running.",
+          "game_clock": "Tue 01:17",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 206.683,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [
+          172.387
+        ],
+        "refusedInputs": []
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T03:14:21.982Z",
+          "elapsed_s": 236.858,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping phone. Same loop as desktop: gate, wait, read. Doubt this reading left no visible mark. I would not leave it running here.",
+          "game_clock": "Mon 01:18",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 233.284,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "rosa": {
+    "tester": "Rosa Alvarez",
+    "validationTime": "2026-10-31T03:38:52.587519+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T03:15:30.885Z",
+          "elapsed_s": 26.074,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "The long Nerys paragraph is gone, which helps, and The gate opens from 0 to 6 turns is plain. But the same two sentences about a call interrupting Dai repeat on six buttons, and insist is still there. I stop.",
+          "game_clock": "Mon 22:05",
+          "engagement": 2,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 23.158,
+            "op": "tap",
+            "input": {
+              "name": "I'm confused"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T03:15:51.003Z",
+          "elapsed_s": 19.767,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Same as the phone. The picture of the dam helped me a lot on the big screen, but the same two sentences about a call interrupting Dai are in every turns box, in narrow columns. I stop.",
+          "game_clock": "Mon 22:03",
+          "engagement": 2,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 17.174,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "ida": {
+    "tester": "Ida Mikkelsen",
+    "validationTime": "2026-10-31T03:38:52.599313+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T03:25:31.312Z",
+          "elapsed_s": 542.2,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone here. Feedback offered I am stopping and I am confused; I chose I am stopping and pressed Back, nothing sent. Back took me to the game menu, time stopped. Monday was satisfying because the morning list let me check his numbers. I will try the laptop later.",
+          "game_clock": "Tuesday 22:48",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-003.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-004.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 486.237,
+            "op": "tap",
+            "input": {
+              "name": "Send Dai to the weir He agrees. \u00b7 ~15 min \u00b7 If you hold: Call and wait for an answer."
+            },
+            "error": null
+          },
+          {
+            "elapsed_s": 537.719,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T03:35:48.607Z",
+          "elapsed_s": 615.796,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the laptop here. Feedback offered I am stopping and I am confused again; I chose I am stopping, pressed Back, nothing typed or sent, and Back took me to the game menu. Monday on the laptop was the best part of my evening: two of three caught. Tuesday still leaves me guessing at the weir.",
+          "game_clock": "Tuesday 23:53",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-004.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-005.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 497.09,
+            "op": "tap",
+            "input": {
+              "name": "Send Dai to the weir He agrees. \u00b7 ~15 min \u00b7 If you hold: Call and wait for an answer."
+            },
+            "error": null
+          },
+          {
+            "elapsed_s": 611.377,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T03:29:20.388Z",
+            "elapsed_s": 227.577,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "level 2.50 m D a i \u00b7 r e a d 0 1 : 3 4 (as written) was 3.5, read 00:05 (as written)"
+            },
+            "reaction": "Again the panel closed and the board shows no mark of my doubt this time. On the phone it said Marked for another check. I will ask him to read it properly.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "level 2.50 m D a i \u00b7 r e a d 0 1 : 3 4 (as written) was 3.5, read 00:05 (as written) is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  }
+}

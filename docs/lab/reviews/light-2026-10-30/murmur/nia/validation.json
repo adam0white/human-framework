@@ -1,0 +1,116 @@
+{
+  "tester": "Nia Okafor",
+  "validationTime": "2026-10-31T01:56:59.453266+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T01:32:29.776Z",
+        "elapsed_s": 249.264,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Tuesday morning. I loved that insisting has a cost and she remembers coffee, but day two begins with the same alarm choice. Would close it, not leave it running. Pressed I am stopping in Feedback, typed nothing, no submit.",
+        "game_clock": "Tue 06:42",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 244.75,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T01:32:01.036Z",
+          "elapsed_s": 220.524,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Put the phone on the floor and go to sleep. She wants to do it later."
+          },
+          "reaction": "Plain tap on sleep, no hold, to see a gentle try.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31514,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true }).or(getByRole('link', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('tab', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('menuitem', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('checkbox', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('radio', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('option', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).or(getByRole('switch', { name: 'Put the phone on the floor and go to sleep. She wants to do it later.', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T01:35:42.382Z",
+        "elapsed_s": 190.33,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Monday afternoon, desktop. Same Monday as the phone with different results from my choices; I have seen the shape. Layout is calm and readable. Would close it. Pressed I am stopping in Feedback, typed nothing, no submit.",
+        "game_clock": "Mon 15:58",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 103.912,
+          "op": "tap",
+          "input": {
+            "name": "Send her the map location. She is willing."
+          },
+          "error": null
+        },
+        {
+          "elapsed_s": 186.177,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [174.241],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

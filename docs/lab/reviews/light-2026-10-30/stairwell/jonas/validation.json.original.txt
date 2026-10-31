@@ -1,0 +1,111 @@
+{
+  "tester": "Jonas Berg",
+  "validationTime": "2026-10-31T00:49:14.635094+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T00:20:04.056Z",
+        "elapsed_s": 245.057,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping session A at about 4 minutes, Mon 09:54. Chose I am confused in Feedback, typed nothing, submitted nothing, closed it. I cannot measure what talking does.",
+        "game_clock": "Mon 09:54",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 201.087,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [
+        175.492
+      ],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T00:18:08.798Z",
+          "elapsed_s": 129.799,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "as I heard it",
+            "nth": 1
+          },
+          "reaction": "A gossip system with certainty levels: heard vs sure, and make something up. Interesting. I will pass on only the water-off notice as I heard it first.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Unsupported field: nth (invalid request, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T00:20:27.284Z",
+        "elapsed_s": 21.743,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping phone session at about 20 seconds, Mon 07:12. Chose I am stopping in Feedback, typed nothing, submitted nothing, closed it. Game menu still open.",
+        "game_clock": "Mon 07:12",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 17.651,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

@@ -1,0 +1,46 @@
+PASS desktop ordinary tap works status=200
+PASS desktop ordinary tap trusted 
+PASS desktop rejects {"duration_ms":99} status=500
+PASS desktop rejects {"duration_ms":5001} status=500
+PASS desktop rejects {"duration_ms":250.5} status=500
+PASS desktop rejects {"duration_ms":"500"} status=500
+PASS desktop rejects {"duration_ms":null} status=500
+PASS desktop rejects {"duration_ms":500,"extra":1} status=500
+PASS desktop rejects duration_ms on key 
+INFO desktop hold reply status=500 error="Unsupported field: duration_ms (invalid request, not a driver failure)"
+FAIL desktop hold native mousedown/mouseup trusted downs=1 ups=1
+FAIL desktop hold page-observed down->up in 1150..1500ms page_ms=0 http_wall_ms=4
+FAIL desktop hold HTTP wall >= 1200 
+FAIL desktop hold click fired once more 
+FAIL desktop hold by text status=500
+FAIL desktop hold by point status=500
+PASS desktop ambiguous refused with no input status=500
+PASS desktop disabled refused with no input status=500
+FAIL desktop covered refused with no input status=500
+FAIL desktop vanish hold ran (press delivered, target gone) down=1 up=1
+FAIL desktop not stuck: next hold gets fresh down+up down=1 up=1
+FAIL desktop log records duration_ms and op_ms>=1200 op_ms=2
+FAIL desktop no stuck mouse button after vanish 
+PASS phone ordinary tap works status=200
+PASS phone ordinary tap trusted 
+PASS phone rejects {"duration_ms":99} status=500
+PASS phone rejects {"duration_ms":5001} status=500
+PASS phone rejects {"duration_ms":250.5} status=500
+PASS phone rejects {"duration_ms":"500"} status=500
+PASS phone rejects {"duration_ms":null} status=500
+PASS phone rejects {"duration_ms":500,"extra":1} status=500
+PASS phone rejects duration_ms on key 
+INFO phone hold reply status=500 error="Unsupported field: duration_ms (invalid request, not a driver failure)"
+FAIL phone hold native touchstart/touchend trusted downs=0 ups=0
+FAIL phone hold page-observed down->up in 1150..1500ms page_ms=-1 http_wall_ms=3
+FAIL phone hold HTTP wall >= 1200 
+FAIL phone hold click fired once more 
+FAIL phone hold by text status=500
+FAIL phone hold by point status=500
+PASS phone ambiguous refused with no input status=500
+PASS phone disabled refused with no input status=500
+FAIL phone covered refused with no input status=500
+FAIL phone vanish hold ran (press delivered, target gone) down=0 up=0
+FAIL phone not stuck: next hold gets fresh down+up down=0 up=0
+FAIL phone log records duration_ms and op_ms>=1200 op_ms=3
+SUMMARY 22/43 pass; driver pids used: 14050,14061

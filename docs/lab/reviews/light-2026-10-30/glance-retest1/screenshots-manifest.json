@@ -1,0 +1,219 @@
+[
+  {
+    "tester": "Mei Tan",
+    "device": "desktop",
+    "privatePath": "glance-retest/mei/desktop/first-minute.png",
+    "sha256": "95c5caf98bf71710f7907662e4c10e6eba2c98600e0811c200f43260b4d3d1d3",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "desktop",
+    "privatePath": "glance-retest/mei/desktop/a-001.png",
+    "sha256": "56bcac89fa2e994067d5cf85619c03b6bbfd1920b4d191d8cfdfa777b4f9f498",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "phone",
+    "privatePath": "glance-retest/mei/phone/b-001.png",
+    "sha256": "a932e3597f81d15743f4c725116bdc69a290aebf369e90250a1f98deaa8da6fd",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "phone",
+    "privatePath": "glance-retest/mei/phone/first-minute.png",
+    "sha256": "7bec175b9e34e2da435029a7b27cb4242511ea130df0ac9db3d280f68ef4815b",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Mei Tan",
+    "device": "phone",
+    "privatePath": "glance-retest/mei/phone/b-002.png",
+    "sha256": "5ce5b69b109b614626d38bc96aa8eaeefb876e28b729206358d0cc1d4e4083a3",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "phone",
+    "privatePath": "glance-retest/samir/phone/b-001.png",
+    "sha256": "a932e3597f81d15743f4c725116bdc69a290aebf369e90250a1f98deaa8da6fd",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "phone",
+    "privatePath": "glance-retest/samir/phone/first-minute.png",
+    "sha256": "3c952c27fccbc10756acbd6c952c962057dbc275a6040226056ef6f4a8c5d36d",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "phone",
+    "privatePath": "glance-retest/samir/phone/b-002.png",
+    "sha256": "92bcfdcf7059239ac131782c7f6bc43cbc63b0b6350fa48619bf11732863cc52",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "desktop",
+    "privatePath": "glance-retest/samir/desktop/first-minute.png",
+    "sha256": "dd7e4b71aecfa87c9fe939cda45c27339724d6043559f12727b53d37a2f9ff04",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Samir Haddad",
+    "device": "desktop",
+    "privatePath": "glance-retest/samir/desktop/a-001.png",
+    "sha256": "56bcac89fa2e994067d5cf85619c03b6bbfd1920b4d191d8cfdfa777b4f9f498",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "desktop",
+    "privatePath": "glance-retest/leila/desktop/first-minute.png",
+    "sha256": "44df9b7afa1e79119eb0378cabae352746743777e4778aa416ae4814188c151a",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "desktop",
+    "privatePath": "glance-retest/leila/desktop/a-001.png",
+    "sha256": "56bcac89fa2e994067d5cf85619c03b6bbfd1920b4d191d8cfdfa777b4f9f498",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "phone",
+    "privatePath": "glance-retest/leila/phone/b-001.png",
+    "sha256": "a932e3597f81d15743f4c725116bdc69a290aebf369e90250a1f98deaa8da6fd",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "phone",
+    "privatePath": "glance-retest/leila/phone/first-minute.png",
+    "sha256": "ce4d17f78ff47159c3cc5dec5dce83ab3edb80e4c9e01061c0fef6b8d407a60e",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Leila Mansour",
+    "device": "phone",
+    "privatePath": "glance-retest/leila/phone/b-002.png",
+    "sha256": "67664a96eb3d1f7c82f4914434d24d08fb6f4f28a380734ed297951270e390be",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "privatePath": "glance-retest/rosa/phone/first-minute.png",
+    "sha256": "531e4500542c11cd906d40f1d9016bb1435003970898697d162f61971343eaee",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "privatePath": "glance-retest/rosa/phone/a-002.png",
+    "sha256": "776acccbed736eb4a2a8961243c673c95f3a65dc8af13bbac2468e5d6c0f9499",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "phone",
+    "privatePath": "glance-retest/rosa/phone/a-001.png",
+    "sha256": "a932e3597f81d15743f4c725116bdc69a290aebf369e90250a1f98deaa8da6fd",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "privatePath": "glance-retest/rosa/desktop/b-001.png",
+    "sha256": "56bcac89fa2e994067d5cf85619c03b6bbfd1920b4d191d8cfdfa777b4f9f498",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Rosa Alvarez",
+    "device": "desktop",
+    "privatePath": "glance-retest/rosa/desktop/b-002.png",
+    "sha256": "e96c93ec23bc3cce5601bb49c6a04d9cdfbbd3bb2a675b031be53be37b861b2a",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "phone",
+    "privatePath": "glance-retest/ida/phone/first-minute.png",
+    "sha256": "88b8cd857cf62c2057607114c74b69a7557ea22d361a69f836611b7dd91d97f9",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "phone",
+    "privatePath": "glance-retest/ida/phone/a-004.png",
+    "sha256": "aa04ae825e7432ddcf76530d2657173a5a6055d22a0b1b2caf6b0e2931c14fbd",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "phone",
+    "privatePath": "glance-retest/ida/phone/a-002.png",
+    "sha256": "7f208952a29f65e374875474f7ccd2c3e53fc032d31294c6b28714fb22335256",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "phone",
+    "privatePath": "glance-retest/ida/phone/a-003.png",
+    "sha256": "cc35feb549252220f4a38f7015c2b050bdfb201819a780cfdfc7763025235e38",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "phone",
+    "privatePath": "glance-retest/ida/phone/a-001.png",
+    "sha256": "a932e3597f81d15743f4c725116bdc69a290aebf369e90250a1f98deaa8da6fd",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "desktop",
+    "privatePath": "glance-retest/ida/desktop/b-004.png",
+    "sha256": "4b83db2282dbd3b058c3a91394ab7c816e8c81148f2d5cac56482fb298db3ce9",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "desktop",
+    "privatePath": "glance-retest/ida/desktop/b-005.png",
+    "sha256": "3726960d8149064bb48f9d1bfc02c0b2d81a1c7079b47be97b845ed17ba4da93",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "desktop",
+    "privatePath": "glance-retest/ida/desktop/b-001.png",
+    "sha256": "56bcac89fa2e994067d5cf85619c03b6bbfd1920b4d191d8cfdfa777b4f9f498",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "desktop",
+    "privatePath": "glance-retest/ida/desktop/first-minute.png",
+    "sha256": "12234f35b34fc5fbf062de2670828536174a800d5dcf0ce11bf21471e200e577",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "desktop",
+    "privatePath": "glance-retest/ida/desktop/b-002.png",
+    "sha256": "69df8e10fd96da77ea5d0d7cda046e90f3379e1573fd8868db3ba357e62a17fd",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  },
+  {
+    "tester": "Ida Mikkelsen",
+    "device": "desktop",
+    "privatePath": "glance-retest/ida/desktop/b-003.png",
+    "sha256": "46b4d937435517a32f9df0212df02a60fbb59b6ba54d62414107cd870cce6729",
+    "actualViewedReceipt": "inputs/glance-retest-driver-audit.json; not all captures necessarily viewed"
+  }
+]

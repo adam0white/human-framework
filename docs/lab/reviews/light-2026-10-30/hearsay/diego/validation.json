@@ -1,0 +1,209 @@
+{
+  "tester": "Diego Silva",
+  "validationTime": "2026-10-30T23:54:41.884302+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T23:38:42.656Z",
+        "elapsed_s": 234.415,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping. Opened Feedback, chose I am stopping, closed with Not now, nothing typed or sent. First 40 seconds had real consequences, then two empty-bench minutes. I would not sit through 13 days like this.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 230.504,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:35:14.401Z",
+          "elapsed_s": 26.16,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": "I saw Osman pad an invoice, two crates. That is evidence I own. Selecting Osman, honesty.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3017,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T23:35:16.241Z",
+          "elapsed_s": 28,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Osman",
+            "role": "option"
+          },
+          "reaction": "Select failed first try; tapping the option instead.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 8,
+          "error": "Osman left the page just before the tap (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-30T23:35:20.860Z",
+          "elapsed_s": 32.619,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Osman"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3012,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T23:35:39.905Z",
+          "elapsed_s": 51.664,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "What?",
+            "option": "Honesty"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3013,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('What?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T23:39:52.152Z",
+        "elapsed_s": 69.213,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on the phone. Opened Feedback, chose I am confused, closed with Not now, nothing typed or sent. Claims show no result and I cannot pick Who or What.",
+        "game_clock": null,
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 66.613,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:38:58.798Z",
+          "elapsed_s": 15.859,
+          "kind": "tool",
+          "op": "note",
+          "input": {},
+          "reaction": "I pressed Press for private details on Osman: the clock moved 06:22 to 06:24 and nothing visible changed. Unsure whether it was refused or silently worked.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Unsupported op (invalid request, not a driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T23:39:10.854Z",
+          "elapsed_s": 27.915,
+          "kind": "tool",
+          "op": "select",
+          "input": {
+            "label": "Who?",
+            "option": "Dilan"
+          },
+          "reaction": "Fold is open now, trying the select once on the phone.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3019,
+          "error": "locator.selectOption: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Who?', { exact: true }).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": null
+        },
+        {
+          "t": "2026-10-30T23:39:12.862Z",
+          "elapsed_s": 29.923,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Dilan",
+            "role": "option"
+          },
+          "reaction": "Select fails again with the fold open, so I try tapping the option by name.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 11,
+          "error": "Dilan left the page just before the tap (game state, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

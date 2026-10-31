@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-30T22:55:06.330603+00:00",
+  "viewed": [
+    "rope/pavel/desktop/a-004.png",
+    "rope/rosa/phone/a-003.png"
+  ],
+  "observations": [
+    "Pavel desktop injury call shows go to him/turn him back; map message names walk to Bilal, not shown in current frame.",
+    "Rosa phone weather-warning state shows selected-person action row and own-action dock. Text under the selected-person actions is clipped/covered by the lower dock.",
+    "Rosa phone shows two more controls in different action groups; raw named taps were ambiguous for multiple players.",
+    "Rosa phone warning heading itself does not overlap the buttons in this frame. It consumes vertical space above them."
+  ],
+  "limits": [
+    "Do not claim all menus lack walk or that injury recovery is impossible.",
+    "Map drawing does not establish numerical proximity.",
+    "No direct timing/movement human-speed reproduction yet; preserve distance, refusal and current activity before any change.",
+    "Current photo supports clipping and repeated labels; it does not show every transition or prove a pointer mistake caused by the game."
+  ]
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "id": "F-2311",
+    "tester": "Aisha Rahman",
+    "phase": "original",
+    "exposure": "first",
+    "instrument": "standard immediate taps only",
+    "returnPassages": [
+      [
+        "Opening return",
+        "Yes, I would come back another evening, but only if I could really insist on the kind choice (press and hold) and Tuesday did not just replay Monday's morning. I would not leave it running."
+      ],
+      [
+        "Separate later return",
+        "Yes, another evening, if I could really insist and Tuesday differed from Monday. I would not leave it running."
+      ]
+    ],
+    "independentPeople": 1,
+    "limits": "Two required fresh-device visits, not matched seeds or a continued save. Current observations remain; timeouts and prior Rosa input qualification stay explicit."
+  },
+  {
+    "id": "F-2312",
+    "tester": "Mei Tan",
+    "phase": "original",
+    "exposure": "first",
+    "instrument": "standard immediate taps only",
+    "returnPassages": [
+      [
+        "Opening return",
+        "I would come back another evening on the laptop, but only if I could tell what \"Hold to insist\" buys me and whether a held choice gets through. I would not leave it running."
+      ],
+      [
+        "Separate later return",
+        "I would come back another evening on the laptop, but only if I could tell what \"Hold to insist\" buys me and whether a held choice gets through. I want the Mum call to matter as the week goes on. I would not leave it running, because the timers need my answers."
+      ]
+    ],
+    "independentPeople": 1,
+    "limits": "Two required fresh-device visits, not matched seeds or a continued save. Current observations remain; timeouts and prior Rosa input qualification stay explicit."
+  },
+  {
+    "id": "F-2313",
+    "tester": "Nia Okafor",
+    "phase": "original",
+    "exposure": "first",
+    "instrument": "native-hold-v1",
+    "returnPassages": [
+      [
+        "Opening return",
+        "I would come back another evening on my phone, but only to try different suggestions and see what Dilan does back. I wouldn't come back tonight, I wouldn't leave it running, and I'd stop again once a day starts repeating the same alarm choice."
+      ],
+      [
+        "Separate later return",
+        "Not tonight. I would come back another evening on my phone, but only if the days stopped repeating and the waiting got shorter, because I want to see what Dilan does back when I push her. I would not leave it running. Another evening is plausible; I'd try suggestions I haven't tried yet."
+      ]
+    ],
+    "independentPeople": 1,
+    "limits": "Two required fresh-device visits, not matched seeds or a continued save. Current observations remain; timeouts and prior Rosa input qualification stay explicit."
+  },
+  {
+    "id": "F-2314",
+    "tester": "Rosa Alvarez",
+    "phase": "original",
+    "exposure": "first",
+    "instrument": "native-hold-v1",
+    "returnPassages": [
+      [
+        "Opening return",
+        "Yes, another evening, on the big screen or the phone, to see what Dilan's Tuesday and her Saturday look back bring. I would return only if the game tells me in plain words what \"trust\" does and what \"She wants to do it later\" means. I would not leave it running, because Dilan waits for my taps and the 64-second timer keeps going."
+      ],
+      [
+        "Separate later return",
+        "Yes, another evening, on the big screen or the phone, to see what Dilan's Tuesday and her Saturday look back bring. I would return only if the game tells me in plain words what \"trust\" does and what \"She wants to do it later\" means. I would not leave it running, because Dilan waits for my taps and the 64-second timer keeps going."
+      ]
+    ],
+    "independentPeople": 1,
+    "limits": "Two required fresh-device visits, not matched seeds or a continued save. Current observations remain; timeouts and prior Rosa input qualification stay explicit."
+  },
+  {
+    "id": "F-2315",
+    "tester": "Lucia Moretti",
+    "phase": "original",
+    "exposure": "first",
+    "instrument": "native-hold-v1",
+    "returnPassages": [
+      [
+        "Opening return",
+        "Maybe, on another free evening, but only if I could see how much she still trusts me. Without that I feel like a voice nobody listens to, and I do not want to replay the same Tuesday a third time."
+      ],
+      [
+        "Separate later return",
+        "Maybe, on another free evening, but only if I could see how much she still trusts me. Without that I feel like a voice nobody listens to, and I do not want to replay the same Tuesday a third time. I liked the people and the bedtime page enough to try once more if the game told me where I stand."
+      ],
+      [
+        "Separate later return",
+        "No. The answer clock would run, and I don't want to come back to missed choices."
+      ],
+      ["Separate later return", "Possibly, under the condition above."]
+    ],
+    "independentPeople": 1,
+    "limits": "Two required fresh-device visits, not matched seeds or a continued save. Current observations remain; timeouts and prior Rosa input qualification stay explicit."
+  },
+  {
+    "id": "F-2331",
+    "tester": "Aisha Rahman",
+    "phase": "instrument diagnostic return",
+    "exposure": "return",
+    "instrument": "native-hold-v1",
+    "returnPassages": [
+      [
+        "Opening return",
+        "Yes, I would come back another evening, but only if \"I'm not listening to that today\" came in different words each time and I could see how much trust I had left before I pushed. I would not leave it running."
+      ],
+      [
+        "Separate later return",
+        "Yes, I would come back another evening, but only if \"I'm not listening to that today\" came in different words each time and I could see how much trust I had left before I pushed. I would not leave it running. I would stay away if the next visit repeated Monday and the same refusal line."
+      ]
+    ],
+    "independentPeople": 0,
+    "limits": "Same6a5 game, new held input and different choices. Not a game-fix iteration; newly noticed hints/Information do not prove deployment changes."
+  },
+  {
+    "id": "F-2332",
+    "tester": "Mei Tan",
+    "phase": "instrument diagnostic return",
+    "exposure": "return",
+    "instrument": "native-hold-v1",
+    "returnPassages": [
+      [
+        "Opening return",
+        "I would come back on another evening, on the laptop or the phone, to play the rest of the week. I would do that only if I can see how much trust Dilan has left before I spend it. I would not leave it running."
+      ],
+      [
+        "Separate later return",
+        "Yes, on another evening, to play Tuesday onward. My condition is the first ask: that I can see how much trust Dilan has left before I spend it. I would not leave it running, because each choice has a timer and I want to make the calls myself."
+      ]
+    ],
+    "independentPeople": 0,
+    "limits": "Same6a5 game, new held input and different choices. Not a game-fix iteration; newly noticed hints/Information do not prove deployment changes."
+  }
+]

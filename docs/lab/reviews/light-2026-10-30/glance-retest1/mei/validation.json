@@ -1,0 +1,86 @@
+{
+  "tester": "Mei Tan",
+  "validationTime": "2026-10-31T03:38:52.570860+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T02:57:46.915Z",
+        "elapsed_s": 198.217,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Tuesday 01:40 with gate shut at 0 of 6, level 3.7, no decision made in about 3 real minutes. Readings and dates are clear and I like Dai as the only eyes, but long waits with nothing to decide lost me again. Chose I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+        "game_clock": "Tue 01:40",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 195.45,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T03:01:03.912Z",
+        "elapsed_s": 195.824,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on the phone at Tuesday 01:47 with gate at 2 of 6 and level 3.5. One decision at 4.8 m, then waiting. Readable at 360 wide, Dai strip still cut at the right. Chose I am stopping in Feedback, pressed Back, typed and submitted nothing.",
+        "game_clock": "Tue 01:47",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 193.278,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

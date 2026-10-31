@@ -1,0 +1,135 @@
+**Would I return voluntarily?** I would come back another evening on the laptop, but only if something happens in the first hours that needs my decision. I would not leave it running.
+
+**Ranked asks**
+1. Give me a decision in the first hours. Or tell me at the start that nothing needs deciding until the level rises. The laptop gave me none in 3 real minutes.
+2. Show what the gate did to the level, apart from the rain. After my two turns, the level fell from 4.8 to 3.5 m, but I could not tell how much was the gate.
+3. Fix the clipped Dai strip on the phone, and shorten the opening text.
+
+## 1. Session
+
+- **Persona:** Mei Tan, 53, accountant and carer in Singapore.
+- **Exposure:** return visit, first same-standing retest.
+- **Round and arm:** light-1030-retest1, free stop (floor 0).
+- **History supplied:** own-history.md, all 768 lines, read in two chunks. Nothing was unread.
+  - It holds my earlier Glance report and my reports for other games.
+  - Its first excerpt is a published excerpt only. Older raw diary lines were not supplied. I kept that qualification.
+- **URL:** https://glance.adamwhite.work/?labRunSource=agent
+- **Session A:** 1280x800 keyboard and mouse, light mode, port 21901. Real time 198 s.
+- **Session B:** 360x690 touch phone, light mode, port 21900. Real time 196 s.
+- **New game each time:** the maps and readings differed from last visit. The laptop started at 4.3 m, the phone at 4.0 m.
+
+## 2. First impressions
+
+**A (laptop)**
+- At 2 s the title page was the same as last time. I saw the title, a red level line with crest and lip marks, a gate line and the red Start game button. The recording note sat at the bottom.
+- At 4.6 s I tapped Start game. The first screen after 9 s was Monday 22:01, with Dai resting and a long block of text.
+- At 67 s I logged first_minute.
+
+**B (phone)**
+- At 1.7 s I saw the title page at 360 wide. The chart was small and the Start button was just above the recording note.
+- At 3.5 s I tapped Start game.
+- At 66 s I logged first_minute.
+
+## 3. Verbatim
+
+Only the log ops are listed. Ordinary taps also carried reaction text, which is in the driver diary.
+
+**Session A (elapsed s)**
+- 66.97, first_minute, Mon 23:08: "Same dam night desk. Goal and deadline clear. Level 3.5 read 22:12, falling with gate shut. Nothing to decide yet; the quiet opening is the same as last time. Text blocks still long."
+- 190.35, pulse, engagement 3, Tue 01:34: "Again a quiet first three hours with nothing to decide: level 3.7 and falling, Dai chatting. Readings and their ages are clear, but I am waiting. Dai asking about Morgan is a nice touch."
+- 192.17, want_quit, BORED, Tue 01:34: "Three hours with no decision again; I would stop for this evening. Same as last time, and the level never made me act."
+- 198.22, stop, BORED, Tue 01:40: "Stopping on Tuesday 01:40 with gate shut at 0 of 6, level 3.7, no decision made in about 3 real minutes. Readings and dates are clear and I like Dai as the only eyes, but long waits with nothing to decide lost me again. Chose I am stopping in Feedback, pressed Back, typed and submitted nothing."
+
+**Session B (elapsed s)**
+- 65.90, first_minute, Mon 23:18: "Phone works. Same quiet opening as the laptop, level 4.2 read 22:12 and nothing to decide. Text readable; I have not looked at the lower gauges yet."
+- 187.4, want_quit, BORED, Tue 01:42: "I have seen the loop; long waits, one decision. I would stop for this evening."
+- My first pulse log on the phone failed on a shell quote and recorded nothing. I resent it.
+- 191.45, pulse, engagement 3, Tue 01:47: "On the phone I got a real choice at 4.8 m, opened two turns, and Dai reported 3.5 afterwards without my asking again. That helps. I still cannot tell how much of the fall was the gate. One decision in about three real minutes."
+- 195.82, stop, BORED, Tue 01:47: "Stopping on the phone at Tuesday 01:47 with gate at 2 of 6 and level 3.5. One decision at 4.8 m, then waiting. Readable at 360 wide, Dai strip still cut at the right. Chose I am stopping in Feedback, pressed Back, typed and submitted nothing."
+- Timing note: the pulse arrived at 191 s, after the 180 s minimum. The want_quit went in at 187 s, before the pulse. I did not log a phone pulse earlier.
+
+## 4. Moments
+
+**What held me**
+- Every reading is still labelled as what Dai saw, with its time.
+- The gate sheet lists how willing Dai is for each number of turns.
+- On the phone the level reached 4.8 m against a 5.0 m lip, so I had a real choice.
+- Dai asking "Where has Morgan gone?" read like a person.
+
+**What lost me**
+- On the laptop the level fell by itself and stayed under 4.0 m. I made no decision in about 3 real minutes.
+- On the phone the first 100 s had no decision.
+
+**Quit wishes**
+- One per session, both BORED. Neither passed. I stopped both times.
+
+**Pulses**
+- A: one, engagement 3, at 190 s.
+- B: one, engagement 3, at 191 s.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The goal, the deadline, and the crest and lip marks.
+- Readings carry their age: "Dai read it 57 min ago."
+- "Time slows while you read" and "Time stops while this menu is open."
+
+**Unclear**
+- How much of a fall in level comes from the gate and how much from the rain easing.
+- On the phone, after I asked for two turns, Dai started reading the level himself. I did not ask for that. I am guessing it is part of the gate job. I did not verify it.
+
+**Not used**
+- Doubt this reading, Compare observations, Watch arrangements, Information, and the pace buttons.
+
+## 6. Device use
+
+**Screenshots viewed**
+- desktop/a-001.png, the title page. I saw the title, a red level line over crest and lip marks, the gate line and a red Start game button.
+- phone/b-001.png, the title page at 360 wide. I saw the title, a small chart with crest, lip, gate and bridge lines, the sample morning text, and Start game above the recording note.
+- phone/b-002.png, Monday 23:22. I saw the Watch ar… and Dai strip, with Dai's text cut off at "His…". The dam picture was small. The level and gate gauges were fully visible, and Skip sat at the bottom. The recording note did not cover the gauges.
+
+**Controls used**
+- Laptop: Start game, Ask Dai to read the level, Skip, level gauge, Ask Dai to read it, Game menu, Feedback, I'm stopping, ← Back.
+- Phone: Start game, Ask Dai to read the level, Skip, gate gauge, 2 turns, Game menu, Feedback, I'm stopping, ← Back.
+
+**Trouble seen**
+- The Dai strip on the phone is still clipped at the right edge.
+
+**Unseen**
+- I did not scroll the phone, play a night through, or open the pace buttons.
+- I viewed one laptop screenshot after the title page: none. I did not take a second laptop picture.
+
+**Driver**
+- No failures and no block.
+
+## 7. Stop and return
+
+**Stop words**
+- A (BORED, 198 s): "Stopping on Tuesday 01:40 with gate shut at 0 of 6, level 3.7, no decision made in about 3 real minutes. Readings and dates are clear and I like Dai as the only eyes, but long waits with nothing to decide lost me again. Chose I am stopping in Feedback, pressed Back, typed and submitted nothing."
+- B (BORED, 196 s): "Stopping on the phone at Tuesday 01:47 with gate at 2 of 6 and level 3.5. One decision at 4.8 m, then waiting. Readable at 360 wide, Dai strip still cut at the right. Chose I am stopping in Feedback, pressed Back, typed and submitted nothing."
+
+**Feedback**
+- Both sessions offered "I'd keep playing", "Not sure", "I'd stop here", "I'm stopping" and "I'm confused".
+- I chose "I'm stopping" (it showed pressed), then pressed ← Back. I typed nothing, pressed no Submit, and changed no consent or recording setting.
+
+**Would I return voluntarily?** I would come back another evening on the laptop. I would do that only if the first hours held a decision that needs me. On the phone I did get one, at 4.8 m. So I might return on either device, but I cannot promise the laptop run would give me one. I did not test a second night.
+
+**Leave it running?** No. I want to make the gate calls myself, and I will not trust Dai alone.
+
+## 8. Changes I would want
+
+1. A decision in the first hours, or a plain line that none is due until the level rises.
+2. Show the gate's own effect on the level after I set it.
+3. Fix the clipped Dai strip on the phone, and shorten the opening text blocks.
+
+## 9. Compared with my last visit
+
+My earlier report had three asks.
+
+1. **A decision, or a plain statement that none is needed, in the first hour.** Did not meet it. The laptop gave me nothing to decide for about 3 real minutes. The phone gave me a decision at 4.8 m, after about 100 s. I saw no statement that none is needed. I do not know why the two runs differed.
+2. **Show what the gate does to the level after I set it, without asking Dai again.** Partly met, on the phone only. After I set two turns, Dai reported 3.5 m at 00:50 without my asking again. I did not see the gate's own effect separated from the rain. On the laptop I never set the gate, so I did not see it.
+3. **Cut the opening text blocks and fix the clipped Dai strip on the phone.** Did not meet it. The Dai strip is still cut off ("His…") at the right edge on the phone. The opening log text still opens with long blocks. The recording note did not cover the lower gauges this time, and on the phone the gauges were fully visible. That is a small gain.
+
+**New blocking asks:** none new. The same wait is what would stop me.
+
+I created no files, workers, browsers or worktrees. I used only the two drivers. I touched no repository, so there is no `git worktree list` output.

@@ -1,0 +1,135 @@
+[
+  {
+    "id": "F-2221",
+    "tester": "pavel",
+    "quote": "Not tonight. I might come back on the desktop on another evening, to see whether the hurt climber can be reached and whether the turn-back promise is tested. I would not come back at all unless the hurt-climber call gives me a button that works. I would not leave it running.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/pavel/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2222",
+    "tester": "tessa",
+    "quote": "Not on my own tonight. I might come back another evening on my laptop, only to see whether Wren and Oskar ever answer in their own words. I would not leave it running.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/tessa/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2222",
+    "tester": "tessa",
+    "quote": "On the phone I would want a clear way to get everyone walking first.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/tessa/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2223",
+    "tester": "nia",
+    "quote": "No, as it is. I would come back another evening only if answers responded to what I asked and refusals sounded like people.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/nia/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2224",
+    "tester": "rosa",
+    "quote": "I would come back another evening on the large screen to see the first mountain through, but only if the rope words are explained; I would not leave it running, and I would not keep playing it on the phone as it is.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/rosa/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2225",
+    "tester": "emilie",
+    "quote": "Yes, but only on an evening I want to sit and watch slowly. I would come back if the game showed me which way each person is walking and gave me the button it tells me to press. As it is, the second session ended with Oskar hurt and no way to reach him, and that stays with me.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/emilie/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2225",
+    "tester": "emilie",
+    "quote": "I would not come back if the next climb also strings everyone out while Skip jumps an hour and a half.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/emilie/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2226",
+    "tester": "emilie",
+    "quote": "When the game says \"Tap walk to Oskar\", give me a walk to Oskar button. When someone is hurt, the speak panel should not vanish and leave me with only \"go to him\", which did nothing (phone, 12:14).",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/emilie/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2227",
+    "tester": "nia",
+    "quote": "Make answers respond to the specific question or topic.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/nia/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2228",
+    "tester": "tessa",
+    "quote": "Give each person their own reply.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/tessa/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2229",
+    "tester": "pavel",
+    "quote": "Say plainly why the group falls apart after everyone agrees.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/pavel/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2230",
+    "tester": "rosa",
+    "quote": "Explain the rope words (rope up, close up, \"something I need for that is missing\") in plain sentences.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/rosa/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2231",
+    "tester": "rosa",
+    "quote": "On the phone, keep the buttons in one place.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/rosa/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2232",
+    "tester": "emilie",
+    "quote": "\"A call needs attention\" appeared on both devices with no call I could find.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/emilie/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2233",
+    "tester": "emilie",
+    "quote": "Show which way each person is moving and where they are, as words or arrows. I walked 18 game minutes after Wren, who was going down to the hut, while Oskar was alone up high. On the laptop I chased Nell the same way.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/emilie/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2234",
+    "tester": "emilie",
+    "quote": "Make Skip stop at the windows that matter: \"close enough to rope up\", someone dropping out of earshot, food running out. A single Skip jumped me from 09:28 to 11:01, and three people dropped out of earshot during it.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/emilie/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2235",
+    "tester": "pavel",
+    "quote": "Shorten or explain the long quiet stretches.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/pavel/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2236",
+    "tester": "emilie",
+    "quote": "On the laptop, the clock jumped from 13:30 to 14:02 while I opened the menu. I may have been slow there, because a 49 s snapshot preceded it.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/emilie/report.original.md.txt",
+    "exact": true
+  },
+  {
+    "id": "F-2237",
+    "tester": "rosa",
+    "quote": "Say what \"A call needs attention\" refers to.",
+    "source": "docs/lab/reviews/light-2026-10-30/rope/rosa/report.original.md.txt",
+    "exact": true
+  }
+]

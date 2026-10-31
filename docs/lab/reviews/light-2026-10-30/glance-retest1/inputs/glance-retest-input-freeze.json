@@ -1,0 +1,64 @@
+{
+  "time": "2026-10-31T02:50:55.021190+00:00",
+  "state": "Inputs frozen before dispatch; native-tap-v2 exact hashes approved; fresh live/SDK/disk/cooldown gates remain.",
+  "players": [
+    {
+      "tester": "Mei Tan",
+      "first": "mei",
+      "briefSha256": "0f561f8724fda745efa1187c89abf1f18f228da8624604e8f2a99a30d72997f1",
+      "historySha256": "3831f7cf1a627ed3752fedff431ec1cb189bb60cfaf1a8d6322a6ea2e0544a7c",
+      "exposure": "return"
+    },
+    {
+      "tester": "Samir Haddad",
+      "first": "samir",
+      "briefSha256": "4c9916f8ac18f21d38da6c4349b1a2d17ecd8c06e46085143caf5fec3f516caf",
+      "historySha256": "df5764b4c26e8fb9bef0f69bb20896b700d1a9cc2138124477e369bbc26c6256",
+      "exposure": "return"
+    },
+    {
+      "tester": "Leila Mansour",
+      "first": "leila",
+      "briefSha256": "f747b50f9ee40c86f17073848fa7687231a5c85bb80a281fce27ee6af023f34d",
+      "historySha256": "4a1950a208a6ec4a81724822c01b4100d4e6d1aac7ff086680cd9351a8f77a9e",
+      "exposure": "return"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "first": "rosa",
+      "briefSha256": "07841cbc21d9fee148b0ecab7043f9cb57f6062eb99245a57b8b4599790dd5f0",
+      "historySha256": "8a35af24d79065ab42be1e55eac8d54bab49deca8a64144a1d2e9b4b44fdd7a7",
+      "exposure": "return"
+    },
+    {
+      "tester": "Ida Mikkelsen",
+      "first": "ida",
+      "briefSha256": "19e8b6942e205a3a6421ab3265b0949719dd6957635a5740009c253e07098396",
+      "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "exposure": "first"
+    }
+  ],
+  "instrument": {
+    "time": "2026-10-31T02:50:55.021190+00:00",
+    "approved": true,
+    "instrumentRoot": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-tap-v2/v2",
+    "hashes": {
+      "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+      "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+      "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+    },
+    "review": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-tap-v2/review.md",
+    "reviewSha256": "09c70327aae9853316900f37947ce1d357fac2a49a373f44473d08663efb10ed",
+    "deltaReview": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-tap-v2/review-delta.md",
+    "deltaReviewSha256": "4cf13f81e73fb7390434c6e6f3a15e9041f489d67a061733891cb08484ed69e2",
+    "controls": "Final guarded source:18tap/44hold/strictTS pass;34unchangedhelper/texttests previously pass. V1 real31s stall reproduced locally/live.",
+    "scope": "scratch diagnostic panel input, no upstream approval or gamefix",
+    "limits": [
+      "Input status200 acknowledges native input, not intended game outcome; inspect visible result.",
+      "A moving/replaced target can be missed or compat-clicked on phone; no post-press confirmation.",
+      "Chromium only. No v2 live-game run yet; local real-input controls passed.",
+      "select/type and ambiguous boundingBox retain existing timeout limitations.",
+      "driver_check remains fork-unverified; deliberate scratch staleoverride paired with exact hash checks."
+    ]
+  }
+}

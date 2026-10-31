@@ -1,0 +1,174 @@
+**Would you return voluntarily?** I would come back another evening, on the big screen or the phone, to find out what the neighbours think of me and what the Sunday vote brings. I would come back only if the game tells me in plain words what "as I heard it" and "for certain" mean, and warns me before the unkind newspaper swap. I would not leave it running while I do something else, because the jobs wait for my taps.
+
+**Ranked asks**
+1. Explain **Tell…** in one plain sentence ("as I heard it" vs "for certain", and "Make something up…"). Give the two same-named buttons different names, for example "Hacer's news: as I heard it". On the phone, two buttons had the same name and I had to tap by point.
+2. Say at the start, in one sentence each, how the Sunday vote works, what "trust" and "feelings" mean, and what the ₺ amounts are. Also say how far **Skip** jumps.
+3. Mark mischief choices, such as **Swap newspapers**, with "may upset someone" before I tap. I did not know the swap was unkind until Hacer saw me.
+
+---
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, the busy second-language reader.
+- **Exposure:** first visit to this game.
+- **Round and arm:** light-1030, first panel round, free stop (floor 0).
+- **Own history:** `own-history.md`, 850 lines, read fully in two reads. It has nothing about this game. I used it only to recall my habits: deliberate taps, help read only when it answers a question, no assumed conventions.
+- **URL:** https://stairwell.adamwhite.work/?labRunSource=agent
+- **Devices and real time (driver elapsed_s to the stop log):**
+  - Session A: 360x690 touch phone, light mode, driver port 21506. Stop log at 196.2 s.
+  - Session B: 1280x800 keyboard and mouse, light mode, driver port 21507. Stop log at 192.8 s.
+- **Both sessions started a new game.** I left recording at its default (on). I did not change consent or recording.
+
+## 2. First impressions
+
+**Phone**
+- 3.6 s: the title page tells me I deliver supplies to five flats, with a Sunday vote on tea money. "Several ideas."
+- 12 s: the game screen shows a building picture, orders and many tabs. I see "Go to the bakery".
+- 13.8 s: "Clear job: bread for Sevim. I go."
+- 24.9 s: a new button, Swap Hacer and Sevim newspapers. I did not know why it was there, so I ignored it.
+
+**Desktop**
+- 4.4 s: "Second visit, big screen. Same title."
+- 12.2 s: the order differs from the phone. Hacer is first, not Sevim.
+- 16 to 20 s: the Orders tab is clear, with names and deadlines. The Residents tab shows in/out and minutes. I guessed the minutes are walking time, and the Orders list confirmed it.
+
+## 3. Verbatim diary lines
+
+Each line is a reaction I attached to an op or logged. The elapsed seconds are the driver's.
+
+**Session A, phone**
+- 3.56 s (shot a-001): "Title: I deliver supplies to five flats, Sunday vote on tea money. Several ideas."
+- 5.87 s (tap Begin): "I begin."
+- 11.97 s (shot a-002): "Game screen: a building picture, orders, many tabs. I see Go to the bakery."
+- 13.8 s (tap Go to the bakery): "Clear job: bread for Sevim. I go."
+- 24.95 s (tap Go to flat 2): "A new button, Swap Hacer and Sevim newspapers. I do not know why. I ignore it and deliver."
+- 37.37 s (tap Anything new?): "Bread delivered. Sevim talks. I ask Anything new, plain words. I do not know what Tell or Sit together do."
+- 38.67 s (tap Tell…): "What does Tell do? Looking."
+- 41.07 s (scroll): "Two kinds: as I heard it, or for certain. I guess it is how sure I sound. Guessing."
+- 42.95 s (tap as I heard it, driver error): "Two buttons have the same name, as I heard it, for two different news items. I cannot tell which I tap."
+- 44.57 s (tap point 95,573): "I tap the water news, as I heard it, by point."
+- 46.29 s (tap Close conversation): "I close the talk and go to the next order."
+- 64.11 s, first_minute, engagement 3, game clock Monday 07:29: "I understand: deliver bread and papers to flats before the due time, and talk to neighbours; the Sunday vote on my tea money is the goal. Clear buttons: Go to... Not clear: Tell with as I heard it vs for certain, Sit together, Swap newspapers. Two buttons had the same name."
+- 65.7 s (tap Sit together): "He asked me to sit; I try Sit together."
+- 77.34 s (wait): "A human story about the frozen ferry. I like it."
+- 78.7 s (tap I am listening): "I listen. Plain."
+- 89.07 s (tap Read the residents' notebook): "I open the notebook to learn what I can do about the Sunday vote."
+- 91.37 s (tap ✕): "Notebook: What you have learned 1 of 16, Stamps. Two more ideas to learn. I close it."
+- 102.5 s (tap Close conversation): "A five lira tip, (₺5), I think it is a tip. Not explained."
+- 121.31 s (tap Skip): "All five orders done. Now only Skip is offered. I do not know what it skips to."
+- 123.15 s (tap Go to the entrance): "Skip brought a new job: sweep the entrance. Good, there is always a next job so far."
+- 137.78 s (tap Skip): "They gossip on the step and I can overhear. Interesting, but the words claim and what I heard are not explained."
+- 182.53 s, pulse, engagement 4, game clock Monday 11:45: "I like this: every order is a plain job, the neighbours are ordinary people, and the Skip button always brings another job. I have not had to reread any sentence yet. The Sunday vote and what trust means are still vague."
+- 188.28 s (tap I'm stopping): "I stop the phone here for the evening. The feedback choices are plain. I type nothing."
+- 192.23 s: the first stop log was rejected for an invalid reason word. Its text was: "I stop the phone here. I delivered all the first orders, heard Tarık on the ice, and saw gossip on the step. No sentence needed a second reading. I stop because I have seen the loop and want to see the big screen."
+- 196.24 s, stop, reason TASTE, engagement 4, game clock Monday 11:45: "I stop the phone here for the evening, not from trouble. I delivered the first orders, heard Tarık on the ice, saw gossip on the step. No sentence needed a second reading. I want to see the big screen."
+
+**Session B, desktop**
+- 4.35 s (shot b-001): "Second visit, big screen. Same title."
+- 6.23 s (tap Begin): "I know the aim now. I begin."
+- 12.21 s (shot b-002): "Game screen on big screen. Order is different from the phone: Hacer first, not Sevim."
+- 14.32 s (tap Orders 5): "I look at the Orders tab to see the whole list."
+- 16.30 s (tap Residents): "Orders list is clear: names, deadlines. The 7 + 7 min I guess is walking time. Now Residents."
+- 18.28 s (tap Derya · flat 5 · out · 3 min): "Residents list: in or out, and some minutes. I guess minutes is how far I walk. I try Derya, who is out."
+- 20.55 s (tap Back): "Minutes are walking time: confirmed. Also a tired warning. I go back and fetch the bread."
+- 34.36 s (tap Swap Hacer's and Sevim's newspapers): "I try the swap. I do not know why it exists; maybe the papers were mixed. Guessing."
+- 36.70 s (tap Go to flat 1): "Oh! The swap was a trick: each has the other crossword, and Hacer saw me. I did not know it was a mischief choice. I should have been told it could be unkind. Plain sentence though; I understood it as a crossword fan."
+- 117.24 s (tap Sit together): "Hacer asks me to sit. I sit, even after the swap."
+- 119.93 s, first_minute, engagement 4, game clock Monday 07:24: "I understand the job: carry orders to flats on time, talk to neighbours, Sunday vote. Clear: Orders and Residents lists with walking minutes. Not clear: why Swap exists and that it is unkind; Hacer did not seem angry, she told me about her shop job. No sentence reread yet."
+- 139.84 s (tap I am listening): "I must reread: A reply takes two minutes. They can choose to leave the subject. Reread 1. I guess: my answer takes two game minutes, and she may change the subject. Guessing."
+- 153.89 s (tap Close conversation): "Now I see: she chose to leave the subject, as the sentence said. I close."
+- 156.03 s (tap Go to flat 7): "Next job for Tarik. I go."
+- 184.77 s, pulse, engagement 4, game clock Monday 07:44: "Plain jobs and kind neighbours hold me; one sentence (A reply takes two minutes. They can choose to leave the subject) needed a reread, and the swap cost was never explained. Concept count so far: orders, walking minutes, due time, tired, feelings/trust, tips, tell/sit, Sunday raise vote = about 8."
+- 190.19 s (tap I'm stopping): "Both choices are offered, plain. I choose I am stopping. I type nothing."
+- 192.78 s, stop, reason TASTE, engagement 4, game clock Monday 07:44: "I stop the big screen here for the evening, not from trouble. I saw the same loop as on the phone, with a different first order and my swap trick. One sentence needed a reread; the quit gate of two rereads was not reached."
+
+Two logging notes:
+- The pulse on desktop was logged at 184.8 s because the first tap on "Sit together" took until 117 s (a long gap between my taps, not a game delay that I can see).
+- The phone first_minute and pulse and the desktop first_minute and pulse were all logged after their minimum times.
+
+## 4. Moments
+
+**What held me**
+- Every order is a plain job with a name, a place and a time.
+- The neighbours are ordinary people with understandable lives. Tarık and the frozen ferry was the story I liked most. Hacer's shop-counter story was the second.
+- Skip always brings another job, so I never felt stuck.
+- The desktop Orders and Residents lists were clear at a glance.
+- The feedback choices ("I'm stopping", "I'm confused") are plain.
+
+**What lost me, a little**
+- The two "as I heard it" buttons had the same name (phone).
+- The Swap button gave no warning that it is unkind.
+- Words I never saw explained: trust, claim, stamps, the ₺ tips, "what you have learned 1 of 16".
+
+**Quit wishes.** I logged no `want_quit`. The rule needs two rereads plus the concept table. I reached one reread (desktop). I stopped by choice (TASTE: I had seen the loop). The wish never came from confusion or boredom.
+
+**Pulses:** phone engagement 4 at 182.5 s; desktop engagement 4 at 184.8 s.
+
+## 5. Confusion and clarity
+
+**Clear**
+- "Go to the bakery", "Go to flat 7", the Orders list, walking minutes, "due 08:15", "Time is paused".
+- "Anything new?" is a plain question.
+- "You don't know how Hacer feels about you" tells me the game hides this on purpose, and I understood it.
+
+**Reread (1)**
+- "A reply takes two minutes. They can choose to leave the subject." I reread it once and guessed. Hacer then did leave the subject ("I would rather leave it there"), so the sentence was true and just compressed.
+
+**Not clear**
+- **Tell…** with "as I heard it" and "for certain" (phone). I guessed it was how sure I sound.
+- Two buttons with the same name.
+- The Swap newspapers button and its cost.
+- ₺5 as a tip.
+- "Claim" and "what I heard" in the gossip text.
+- "1 of 16" in the notebook.
+
+**Concept-count table.** The list below shows each concept a screen asked me to learn, with the exact sentences that carried it.
+
+| Screen | Exact sentences | Concepts |
+|---|---|---|
+| Title page | "I deliver supplies to five flats, Sunday vote on tea money." Plus two checkboxes and "Other ways to begin" | 4 |
+| Game screen, 07:03 | Orders, walking minutes, due time, "you may feel tired", building view, tabs | 6 to 7 |
+| Conversation | "Anything new?", Tell…, Sit together, "Will you support my raise on Sunday? Ask from Thursday at 07:00, face to face." | 4 |
+| Tell… | "as I heard it" vs "for certain" | 2 |
+| Notebook | "What you have learned 1 of 16", Stamps | 2 |
+| Desktop pulse count | orders, walking minutes, due time, tired, feelings/trust, tips, tell/sit, Sunday raise vote | about 8 |
+
+Counts are my estimate. I did not reach the two-reread gate.
+
+## 6. Device use
+
+**Phone (360x690), screenshots viewed:**
+- `phone/a-001.png`: title page. I saw a heading, three paragraphs, two checkboxes, "Other ways to begin", a red "Begin on Monday" button and a recording notice at the bottom edge. Text was readable.
+- `phone/a-002.png`: game screen at Monday 07:03, with the building picture, orders and tabs.
+- Controls used: Begin on Monday, Go to…, Anything new?, Tell…, as I heard it (by point 95,573), Sit together, I am listening, Close conversation, Read the residents' notebook, ✕, Skip to the next event, Game menu, Feedback, I'm stopping, Close feedback.
+- Trouble seen: the duplicate "as I heard it" name forced a tap by point. The first Begin tap showed no change in its reply; a wait showed the game loaded.
+
+**Desktop (1280x800), screenshots viewed:**
+- `desktop/b-001.png`: title page, centred.
+- `desktop/b-002.png`: two-column game screen at Monday 07:03.
+- Controls used: Begin on Monday, Orders 5, Residents, Derya · flat 5 · out · 3 min, Back, Go to the bakery, Swap Hacer's and Sevim's newspapers, Go to flat 1, Sit together, I am listening, Close conversation, Go to flat 7, Game menu, Feedback, I'm stopping, Close feedback.
+- Not seen: I did not test the notebook, the raise question or Tell… on desktop. I did not check text size on the big screen beyond the screenshots.
+
+I took 2 manual screenshots per device (under the limit of 5).
+
+**Feedback evidence (both devices):** I opened Game menu, then Feedback. "I'm stopping" and "I'm confused" were both offered, plus "Would you keep playing?" radios. I pressed "I'm stopping" on both and closed with "Close feedback". I typed nothing and pressed no Submit. After closing, the desktop game menu was still showing when I logged the stop.
+
+## 7. Stop and return
+
+**Stop words**
+- **Phone:** "I stop the phone here for the evening, not from trouble. I delivered the first orders, heard Tarık on the ice, saw gossip on the step. No sentence needed a second reading. I want to see the big screen." Reason: TASTE. The first attempt used a reason word outside the allowed list and was rejected.
+- **Desktop:** "I stop the big screen here for the evening, not from trouble. I saw the same loop as on the phone, with a different first order and my swap trick. One sentence needed a reread; the quit gate of two rereads was not reached." Reason: TASTE.
+
+**Would I return voluntarily?** Yes, another evening, on the big screen or the phone. I want to see what Hacer and Sevim think of the swap, whether Tarık's trust grows, and what happens on Sunday. I would come back only if Tell… is explained in plain words and the mischief button warns me first. Without that, I would still return to deliver orders, but I would be guessing at the part that decides the vote.
+
+**Leave it running?** No. Time moves only while I walk or skip, and jobs wait for my taps. Another evening, yes.
+
+## 8. Changes I would want
+
+See the ranked asks at the top.
+
+## 9. Compared with my last visit
+
+First visit. I recognised no one. Between the two sessions the first order differed (Sevim first on the phone, Hacer first on the desktop), but that is a difference between two runs, not between visits.
+
+I created no worktrees, branches, servers or processes, and touched no repository. Screenshots stayed within the limit.

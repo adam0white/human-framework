@@ -1,0 +1,32 @@
+{
+  "time": "2026-10-30T23:11:13.520874+00:00",
+  "removed": [
+    {
+      "file": "rope/emilie/desktop/first-minute.png",
+      "sha256": "4dac4b03e8a76c269fe294f258d81ecd8f4e83bb89498247cdd37fcd48af0c07",
+      "bytes": 108782,
+      "reason": "Owner six-per-device retention allowance; keep title, issue-state and ending frames. Raw capture/view receipts and original report remain unchanged."
+    },
+    {
+      "file": "rope/emilie/desktop/a-003.png",
+      "sha256": "57519f0ad6998a159079a3de7dadb467c3228387eaa3232fb268e75497bab015",
+      "bytes": 113664,
+      "reason": "Owner six-per-device retention allowance; keep title, issue-state and ending frames. Raw capture/view receipts and original report remain unchanged."
+    },
+    {
+      "file": "rope/emilie/desktop/a-005.png",
+      "sha256": "5920b347e2dc7e2f90a4067b238e4f863a124bbeec6df779f8481acf9110305d",
+      "bytes": 84888,
+      "reason": "Owner six-per-device retention allowance; keep title, issue-state and ending frames. Raw capture/view receipts and original report remain unchanged."
+    },
+    {
+      "file": "rope/emilie/phone/first-minute.png",
+      "sha256": "59a93f261aff88086f7c72b03964eaaf3e39c355bdd156931c08e5ebcbe34035",
+      "bytes": 56166,
+      "reason": "Owner six-per-device retention allowance; keep title, issue-state and ending frames. Raw capture/view receipts and original report remain unchanged."
+    }
+  ],
+  "retainedDesktop": ["a-004.png", "a-007.png", "a-006.png", "a-002.png", "a-001.png", "a-008.png"],
+  "retainedPhone": ["b-006.png", "b-004.png", "b-005.png", "b-001.png", "b-002.png", "b-003.png"],
+  "qualification": "Producer took eight viewed desktop shots plus one automatic harness checkpoint. Retention now meets six-per-device; this does not erase the original over-capture breach. Producer words and Read-image receipts remain original."
+}

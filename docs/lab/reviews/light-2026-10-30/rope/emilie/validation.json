@@ -1,0 +1,223 @@
+{
+  "tester": "Emilie Laurent",
+  "validationTime": "2026-10-30T23:11:13.577288+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-30T23:00:42.729Z",
+        "elapsed_s": 687.891,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Opened Feedback, chose I am stopping, pressed Back without sending. The clock jumped from 13:30 to 14:02 while I opened the menu. I stop here: the descent is just watching, and Nell keeps walking away from me.",
+        "game_clock": "14:02",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-004.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-005.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-006.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-007.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-008.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 353.575,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        },
+        {
+          "elapsed_s": 384.936,
+          "op": "tap",
+          "input": {
+            "name": "send Tamar Vale"
+          },
+          "error": null
+        },
+        {
+          "elapsed_s": 683.726,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T22:50:06.142Z",
+          "elapsed_s": 51.304,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "more \u25be"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 38,
+          "error": "2 enabled controls are named more \u25be; tap one by point: (1221,263), (1214,752) (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-30T22:52:19.534Z",
+          "elapsed_s": 184.696,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Skip to the next event is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-30T22:55:09.424Z",
+          "elapsed_s": 354.586,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Resume"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Resume is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-30T23:07:26.271Z",
+        "elapsed_s": 401.893,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Back where I was: Oskar hurt, go to him, a call needs attention, and the clock stays at 12:14. The one thing I want to do - walk to the hurt man - the game names but does not give me. I stop here. The phone session started better than the laptop, the rope worked, then I lost Oskar and the controls.",
+        "game_clock": "12:14",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-004.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-005.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-006.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 394.188,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [56.714],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-30T23:01:41.665Z",
+          "elapsed_s": 57.287,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 5,
+          "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

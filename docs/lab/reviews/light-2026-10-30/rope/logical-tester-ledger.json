@@ -1,0 +1,209 @@
+[
+  {
+    "id": "F-2221",
+    "tester": "Pavel Novak",
+    "openingReturnQuote": "Not tonight. On the desktop, on another evening, I might come back to see whether the hurt climber can be reached and whether the 12:00 or 13:00 promise is tested. I would not leave it running.",
+    "ledgerReturnQuotesSeparate": [
+      "Not tonight. I might come back on the desktop on another evening, to see whether the hurt climber can be reached and whether the turn-back promise is tested. I would not come back at all unless the hurt-climber call gives me a button that works. I would not leave it running."
+    ],
+    "verdict": "mixed",
+    "perDeviceStop": {
+      "desktop": {
+        "t": "2026-10-30T22:41:17.097Z",
+        "elapsed_s": 297.523,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at 08:52. A climber is hurt, go to him does nothing I can see, and the text points to a walk-to-Bilal button that does not exist. I chose Im confused in Feedback, typed nothing, sent nothing.",
+        "game_clock": "08:52",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "phone": {
+        "t": "2026-10-30T22:46:01.310Z",
+        "elapsed_s": 283.827,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at 11:26 on the phone. Chose Im stopping in Feedback, typed nothing, sent nothing. Too much waiting, and the group drifted apart and could not hear me.",
+        "game_clock": "11:26",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    "historyQualification": null,
+    "limits": "Verdict is a director code for this individual passage; not a vote or population estimate. Separate device conditions and all original words remain in source report."
+  },
+  {
+    "id": "F-2222",
+    "tester": "Tessa Williams",
+    "openingReturnQuote": "Not on my own tonight. I might come back another evening on my laptop, only to see whether Wren and Oskar ever answer in their own words. I would not leave it running.",
+    "ledgerReturnQuotesSeparate": [
+      "Not on my own tonight. I might come back another evening on my laptop, only to see whether Wren and Oskar ever answer in their own words. I would not leave it running.",
+      "On the phone I would want a clear way to get everyone walking first."
+    ],
+    "verdict": "mixed",
+    "perDeviceStop": {
+      "phone": {
+        "t": "2026-10-30T22:39:32.917Z",
+        "elapsed_s": 192.335,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone. Fun to poke people one at a time and insist, but I stayed at the hut for three minutes, replies repeated, and I could not tell how to actually get anyone climbing.",
+        "game_clock": "Hollin Crag 05:28",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "desktop": {
+        "t": "2026-10-30T22:42:51.051Z",
+        "elapsed_s": 197.072,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the laptop. Better than the phone: a map, a hint that told me how to get them walking, and little story lines. But Wren and Oskar keep giving the same stock hut-path answer and I have not found my own kind of trouble.",
+        "game_clock": "Hollin Crag 06:31",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    "historyQualification": null,
+    "limits": "Verdict is a director code for this individual passage; not a vote or population estimate. Separate device conditions and all original words remain in source report."
+  },
+  {
+    "id": "F-2223",
+    "tester": "Nia Okafor",
+    "openingReturnQuote": "No, not as it is. I would come back another evening only if the people answered what I actually asked them. I would not leave it running.",
+    "ledgerReturnQuotesSeparate": [
+      "No, as it is. I would come back another evening only if answers responded to what I asked and refusals sounded like people."
+    ],
+    "verdict": "quit",
+    "perDeviceStop": {
+      "phone": {
+        "t": "2026-10-30T22:47:12.507Z",
+        "elapsed_s": 215.306,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping. I liked the refusal and the Wren disagree line, but the climb is slow and mostly yes-answers. Might come back another evening if early answers varied more.",
+        "game_clock": "06:20",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "desktop": {
+        "t": "2026-10-30T22:48:39.580Z",
+        "elapsed_s": 86.65,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping after 85 seconds. Robotic refusal and generic answers to my questions. Desktop layout was nice. Would not return unless people answered what I actually asked.",
+        "game_clock": "05:21",
+        "engagement": null,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    "historyQualification": "Excluded Warren CONT body supplied; preserve raw observation, no clean continuity/recognition evidence; see history-qualification.json",
+    "limits": "Verdict is a director code for this individual passage; not a vote or population estimate. Separate device conditions and all original words remain in source report."
+  },
+  {
+    "id": "F-2224",
+    "tester": "Rosa Alvarez",
+    "openingReturnQuote": "I would come back another evening on the large screen to see the first mountain through, but only if the rope words are explained; I would not leave it running, and I would not keep playing it on the phone as it is.",
+    "ledgerReturnQuotesSeparate": [
+      "I would come back another evening on the large screen to see the first mountain through, but only if the rope words are explained; I would not leave it running, and I would not keep playing it on the phone as it is."
+    ],
+    "verdict": "mixed",
+    "perDeviceStop": {
+      "phone": {
+        "t": "2026-10-30T22:50:13.526Z",
+        "elapsed_s": 212.609,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here. I liked the named people and that they may say no, but the rope part has many new words and two buttons called more.",
+        "game_clock": "Hollin Crag 09:07",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "desktop": {
+        "t": "2026-10-30T22:51:32.496Z",
+        "elapsed_s": 77.856,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop for the evening. Same game, easier to read on the large screen, and I like the journal. But I mostly waited and pressed Skip, and I do not yet know what the call needing attention is.",
+        "game_clock": "Hollin Crag 06:50",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    "historyQualification": "Excluded Warren CONT body supplied; preserve raw observation, no clean continuity/recognition evidence; see history-qualification.json",
+    "limits": "Verdict is a director code for this individual passage; not a vote or population estimate. Separate device conditions and all original words remain in source report."
+  },
+  {
+    "id": "F-2225",
+    "tester": "Emilie Laurent",
+    "openingReturnQuote": "Yes, but only on an evening I want to sit and watch slowly. I would come back if the game showed me which way each person is walking and gave me the button it tells me to press. As it is, the second session ended with Oskar hurt and no way to reach him, and that stays with me.",
+    "ledgerReturnQuotesSeparate": [
+      "Yes, but only on an evening I want to sit and watch slowly. I would come back if the game showed me which way each person is walking and gave me the button it tells me to press. As it is, the second session ended with Oskar hurt and no way to reach him, and that stays with me.",
+      "I would not come back if the next climb also strings everyone out while Skip jumps an hour and a half."
+    ],
+    "verdict": "mixed",
+    "perDeviceStop": {
+      "desktop": {
+        "t": "2026-10-30T23:00:42.729Z",
+        "elapsed_s": 687.891,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Opened Feedback, chose I am stopping, pressed Back without sending. The clock jumped from 13:30 to 14:02 while I opened the menu. I stop here: the descent is just watching, and Nell keeps walking away from me.",
+        "game_clock": "14:02",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "phone": {
+        "t": "2026-10-30T23:07:26.271Z",
+        "elapsed_s": 401.893,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Back where I was: Oskar hurt, go to him, a call needs attention, and the clock stays at 12:14. The one thing I want to do - walk to the hurt man - the game names but does not give me. I stop here. The phone session started better than the laptop, the rope worked, then I lost Oskar and the controls.",
+        "game_clock": "12:14",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    "historyQualification": null,
+    "limits": "Verdict is a director code for this individual passage; not a vote or population estimate. Separate device conditions and all original words remain in source report."
+  }
+]

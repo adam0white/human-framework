@@ -1,0 +1,190 @@
+{
+  "tester": "Noura Farhat",
+  "validationTime": "2026-10-31T00:49:14.663705+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T00:42:02.640Z",
+        "elapsed_s": 345.805,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here on the phone. I liked the neighbours and the bread round, but the parcel to Burak lost me: given to Derya, back in my room, then suddenly done without my seeing. I pressed I am confused and closed it without writing.",
+        "game_clock": "Monday 18:23",
+        "engagement": 3,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-004.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 337.67,
+          "op": "tap",
+          "input": {
+            "name": "I'm confused"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [
+        167.004
+      ],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T00:37:15.194Z",
+          "elapsed_s": 58.359,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Here"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Here is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T00:38:07.918Z",
+          "elapsed_s": 111.083,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": "Derya works nights, she is asleep. I would never ring a night worker awake. Skip on.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T00:38:24.462Z",
+          "elapsed_s": 127.627,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T00:47:11.598Z",
+        "elapsed_s": 308.234,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here on the laptop. Every order is done, I saw each parcel go into a hand, and I finally learned there is a raise to ask for on Thursday. But that is three game days away and Monday was the same Monday as on the phone. I pressed I am stopping and closed it without writing.",
+        "game_clock": "Monday 16:35",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "d-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "d-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "d-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 299.411,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T00:43:46.952Z",
+          "elapsed_s": 103.588,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 6,
+          "error": "Skip to the next event is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T00:44:10.456Z",
+          "elapsed_s": 127.092,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

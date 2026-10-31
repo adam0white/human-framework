@@ -1,0 +1,108 @@
+{
+  "tester": "Maya Chen",
+  "validationTime": "2026-10-31T00:49:14.626098+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T00:11:29.760Z",
+        "elapsed_s": 206.091,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone after about three and a half minutes. I met four of five again and got the same lines: frozen ferry, forty years of children, Tarik is kind from everyone. New swap-the-newspapers, reply buttons and the work boundaries answer were nice, but replies get a stock leave-it line and nobody mentions the swap. I would come back another evening to see Tuesday, not leave it running.",
+        "game_clock": "Monday 08:59",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 202.208,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [163.43],
+      "refusedInputs": []
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T00:15:01.134Z",
+        "elapsed_s": 210.001,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on desktop after about three and a half minutes. Same lines again: ferry, children reading, Tarik is kind, and every reply button gets the stock leave-it-there. New and liked: gate line, on-time remark, Stamps list, Tarik reacting to my gossip. I would come back another evening for Tuesday, not leave it running.",
+        "game_clock": "Monday 08:00",
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 206.597,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T00:14:13.333Z",
+          "elapsed_s": 162.2,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "as I heard it"
+          },
+          "reaction": "Telling Tarik that Hacer asks about everyones private life, as I heard it, the hedged way.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 24,
+          "error": "2 enabled controls are named as I heard it; tap one by point: (824,410), (824,551) (game state, not a driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

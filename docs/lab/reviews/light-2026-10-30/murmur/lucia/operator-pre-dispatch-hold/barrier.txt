@@ -1,0 +1,1 @@
+DIRECTOR DISPATCH HOLD: native press-and-hold is missing from the driver. This is an output-directory barrier before any browser or tester launch, not a player stop or game failure. Preserve the unused brief/history.

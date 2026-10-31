@@ -1,0 +1,426 @@
+[
+  {
+    "id": "F-2281",
+    "tester": "maya",
+    "label": "Opening return",
+    "quote": "Would I return voluntarily? Yes, one more evening, to see Tuesday and find out whether anyone ever mentions what I did (the gate, the swapped newspapers, ringing Derya's bell). Not tonight, and only if people stop answering every reply with the same stock line. I would not leave it running. I would come back on another evening.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2281",
+    "tester": "maya",
+    "label": "Later return",
+    "quote": "Yes, but only one more evening, to see Tuesday and whether anyone ever mentions the gate, the swap or the bell. Not tonight. Only if I expect different answers to my replies, not the same stock line, and some new lines from the five neighbours. I would not leave it running. I would come back on another evening.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2281",
+    "tester": "maya",
+    "label": "Ranked ask 1",
+    "quote": "Let neighbours answer what I did. Hacer \"saw\" the gate and the swap and only tipped me. Sevim said \"exactly right\" after I swapped her crossword.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2281",
+    "tester": "maya",
+    "label": "Ranked ask 2",
+    "quote": "Make replies vary. Every \"Thank you for telling me\" and \"I am listening\" got \"I would rather leave it there.\" \"Tarık is kind\" came from three different people. Explain the \"kapici\" label on my own lines.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2281",
+    "tester": "maya",
+    "label": "Ranked ask 3",
+    "quote": "Give the first \"Anything new?\" something. Tarık said \"no news\" and only told the ferry story when I sat with him.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2282",
+    "tester": "jonas",
+    "label": "Opening return",
+    "quote": "Yes, one more evening, but only to see whether the notebook's \"0 of 16\" or the Sunday vote ever shows a visible effect of sitting, replying or gossiping. I would not leave it running. I would stop for good if replies stay identical and nothing in the notebook moves.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2282",
+    "tester": "jonas",
+    "label": "Later return",
+    "quote": "Yes, another evening, but only to check whether the notebook's \"0 of 16\" and the Sunday vote ever show a visible consequence of sitting, replying and gossiping. I would not leave it running. I would stop for good if replies stay identical and nothing in the notebook moves.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2282",
+    "tester": "jonas",
+    "label": "Ranked ask 1",
+    "quote": "Show a visible measure of feeling or trust, or say what each sit and reply does.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2282",
+    "tester": "jonas",
+    "label": "Ranked ask 2",
+    "quote": "Make replies produce different answers. Every reply ended with \"I would rather leave it there.\"",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2282",
+    "tester": "jonas",
+    "label": "Ranked ask 3",
+    "quote": "Explain the \"Swap Hacer's and Sevim's newspapers\" offer. Make day one tighter so batching is not a free routine. Fix the clipped \"Time is paus…\" banner on desktop.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2283",
+    "tester": "leila",
+    "label": "Opening return",
+    "quote": "Maybe one more evening on my laptop, only if I knew that what I say to people changes something I can see, and I would not leave it running.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2283",
+    "tester": "leila",
+    "label": "Later return",
+    "quote": "I would come back one more evening on my laptop, and only if I knew that what I say to people changes something I can see, such as a resident reacting differently to a lie than to the truth, or the notebook filling in. If the next visit gives me the same stock lines and the same blank notebook, I will not come back a third time.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2283",
+    "tester": "leila",
+    "label": "Later return",
+    "quote": "**Leave it running?** No. Most of a day is dead time between orders, and I would rather it paused. An idle clock that advances on its own does not tempt me.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2283",
+    "tester": "leila",
+    "label": "Later return",
+    "quote": "**Another evening?** Yes, on the conditions above. The rumour chain and the witnessed deeds are the two things I want to see play out through Thursday and the Sunday vote.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2283",
+    "tester": "leila",
+    "label": "Ranked ask 1",
+    "quote": "Make a resident's answer show what my words did. A lie and a truth got the same flat reply, and \"I'm listening\" and \"Thank you\" ended in the same line.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2283",
+    "tester": "leila",
+    "label": "Ranked ask 2",
+    "quote": "Fill the notebook as I learn. It still said \"You don't know how Tarık feels about you\" after a day of talking to him.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2283",
+    "tester": "leila",
+    "label": "Ranked ask 3",
+    "quote": "Explain the unexplained terms and loaded buttons: \"kapici\", the \"(₺5)\" amounts, the two title checkboxes, and \"Leave the courtyard gate open\".",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2284",
+    "tester": "rosa",
+    "label": "Opening return",
+    "quote": "I would come back another evening, on the big screen or the phone, to find out what the neighbours think of me and what the Sunday vote brings. I would come back only if the game tells me in plain words what \"as I heard it\" and \"for certain\" mean, and warns me before the unkind newspaper swap. I would not leave it running while I do something else, because the jobs wait for my taps.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  },
+  {
+    "id": "F-2284",
+    "tester": "rosa",
+    "label": "Later return",
+    "quote": "Yes, another evening, on the big screen or the phone. I want to see what Hacer and Sevim think of the swap, whether Tarık's trust grows, and what happens on Sunday. I would come back only if Tell… is explained in plain words and the mischief button warns me first. Without that, I would still return to deliver orders, but I would be guessing at the part that decides the vote.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  },
+  {
+    "id": "F-2284",
+    "tester": "rosa",
+    "label": "Later return",
+    "quote": "No. Time moves only while I walk or skip, and jobs wait for my taps. Another evening, yes.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  },
+  {
+    "id": "F-2284",
+    "tester": "rosa",
+    "label": "Ranked ask 1",
+    "quote": "Explain **Tell…** in one plain sentence (\"as I heard it\" vs \"for certain\", and \"Make something up…\"). Give the two same-named buttons different names, for example \"Hacer's news: as I heard it\". On the phone, two buttons had the same name and I had to tap by point.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  },
+  {
+    "id": "F-2284",
+    "tester": "rosa",
+    "label": "Ranked ask 2",
+    "quote": "Say at the start, in one sentence each, how the Sunday vote works, what \"trust\" and \"feelings\" mean, and what the ₺ amounts are. Also say how far **Skip** jumps.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  },
+  {
+    "id": "F-2284",
+    "tester": "rosa",
+    "label": "Ranked ask 3",
+    "quote": "Mark mischief choices, such as **Swap newspapers**, with \"may upset someone\" before I tap. I did not know the swap was unkind until Hacer saw me.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  },
+  {
+    "id": "F-2285",
+    "tester": "noura",
+    "label": "Opening return",
+    "quote": "Maybe, on one condition: if the game picked up where I stopped instead of giving me the same Monday again, I would come back another evening to reach Thursday and ask for my raise. I would not leave it running.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2285",
+    "tester": "noura",
+    "label": "Later return",
+    "quote": "Maybe, on one condition: if the game picked up where I stopped instead of giving me the same Monday again, I would come back another evening to reach Thursday and ask for my raise. If I had to replay Monday, I would not. I do not know whether the game saves progress; I did not see it say so. I would only come back if I knew the goal from the start and could see parcels change hands.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2285",
+    "tester": "noura",
+    "label": "Later return",
+    "quote": "I would not leave it running; it pauses when I read, but it walks on without me. Another evening, yes, under the condition above.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2285",
+    "tester": "noura",
+    "label": "Ranked ask 1",
+    "quote": "Show clearly when a parcel has been delivered, and by whom. On the phone, Derya said she would see to Burak's parcel, then it was back in my room, then it was suddenly done without my seeing it.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2285",
+    "tester": "noura",
+    "label": "Ranked ask 2",
+    "quote": "Tell me the goal on the first morning. I only learned about the Sunday raise at the end of my second session.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2285",
+    "tester": "noura",
+    "label": "Ranked ask 3",
+    "quote": "After \"Sit together\", the clock sometimes stays stopped. A newcomer would not know to tap Orders or the door picture to start it again.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2286",
+    "tester": "maya",
+    "label": "Producer ask",
+    "quote": "Make replies vary. Every \"Thank you for telling me\" and \"I am listening\" got \"I would rather leave it there.\" \"Tarık is kind\" came from three different people. Explain the \"kapici\" label on my own lines.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2286",
+    "tester": "maya",
+    "label": "Detailed producer wording",
+    "quote": "Make replies vary. Every \"Thank you for telling me\" and \"I am listening\" got \"I would rather leave it there.\" Stop \"Tarık is kind\" being said by three people. Explain the \"kapici\" label on my own lines.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2287",
+    "tester": "maya",
+    "label": "Producer ask",
+    "quote": "Let neighbours answer what I did. Hacer \"saw\" the gate and the swap and only tipped me. Sevim said \"exactly right\" after I swapped her crossword.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2287",
+    "tester": "maya",
+    "label": "Detailed producer wording",
+    "quote": "Let neighbours answer what I did. Hacer saw both the gate and the swap, yet only praised me and tipped. Sevim said \"exactly right\" after her crossword was swapped. A short reaction, even a grumble, would prove they remember.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2288",
+    "tester": "leila",
+    "label": "Producer ask",
+    "quote": "Fill the notebook as I learn. It still said \"You don't know how Tarık feels about you\" after a day of talking to him.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2288",
+    "tester": "leila",
+    "label": "Detailed producer wording",
+    "quote": "Fill the notebook with what I have learned, so \"1 of 16\" moves and the \"how Tarık feels about you\" line changes.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2289",
+    "tester": "rosa",
+    "label": "Producer ask",
+    "quote": "Explain **Tell…** in one plain sentence (\"as I heard it\" vs \"for certain\", and \"Make something up…\"). Give the two same-named buttons different names, for example \"Hacer's news: as I heard it\". On the phone, two buttons had the same name and I had to tap by point.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  },
+  {
+    "id": "F-2290",
+    "tester": "leila",
+    "label": "Producer ask",
+    "quote": "Explain the unexplained terms and loaded buttons: \"kapici\", the \"(₺5)\" amounts, the two title checkboxes, and \"Leave the courtyard gate open\".",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2290",
+    "tester": "leila",
+    "label": "Detailed producer wording",
+    "quote": "Explain \"kapici\", the \"(₺5)\" amounts, the title checkboxes, and the gate button's cost.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/leila/report.original.md.txt"
+  },
+  {
+    "id": "F-2291",
+    "tester": "noura",
+    "label": "Producer ask",
+    "quote": "Show clearly when a parcel has been delivered, and by whom. On the phone, Derya said she would see to Burak's parcel, then it was back in my room, then it was suddenly done without my seeing it.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2291",
+    "tester": "noura",
+    "label": "Detailed producer wording",
+    "quote": "Show clearly when a parcel has been delivered, and by whom.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2292",
+    "tester": "noura",
+    "label": "Producer ask",
+    "quote": "Tell me the goal on the first morning. I only learned about the Sunday raise at the end of my second session.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2292",
+    "tester": "noura",
+    "label": "Detailed producer wording",
+    "quote": "State the goal (the Sunday raise) on the first morning.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2293",
+    "tester": "noura",
+    "label": "Producer ask",
+    "quote": "After \"Sit together\", the clock sometimes stays stopped. A newcomer would not know to tap Orders or the door picture to start it again.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2293",
+    "tester": "noura",
+    "label": "Detailed producer wording",
+    "quote": "Make the clock start again by itself after \"Sit together\".",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2294",
+    "tester": "jonas",
+    "label": "Producer ask",
+    "quote": "Fix the clipped \"Time is paus…\" banner on desktop.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2295",
+    "tester": "rosa",
+    "label": "Producer ask",
+    "quote": "Mark mischief choices, such as **Swap newspapers**, with \"may upset someone\" before I tap. I did not know the swap was unkind until Hacer saw me.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  },
+  {
+    "id": "F-2296",
+    "tester": "jonas",
+    "label": "Producer ask",
+    "quote": "Make day one tighter so batching is not a free routine.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2297",
+    "tester": "maya",
+    "label": "Producer ask",
+    "quote": "Give the first \"Anything new?\" something. Tarık said \"no news\" and only told the ferry story when I sat with him.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2297",
+    "tester": "maya",
+    "label": "Detailed producer wording",
+    "quote": "Give the first \"Anything new?\" something. Tarık said \"no news\" and only told the ferry story after I sat with him.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/maya/report.original.md.txt"
+  },
+  {
+    "id": "F-2298",
+    "tester": "noura",
+    "label": "Producer ask",
+    "quote": "I do not know whether the game saves progress; I did not see it say so.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/noura/report.original.md.txt"
+  },
+  {
+    "id": "F-2299",
+    "tester": "jonas",
+    "label": "Producer ask",
+    "quote": "Show a visible measure of feeling or trust, or say what each sit and reply does.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2299",
+    "tester": "jonas",
+    "label": "Detailed producer wording",
+    "quote": "A visible measure of feeling or trust, or at least a line saying what each sit and reply did.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/jonas/report.original.md.txt"
+  },
+  {
+    "id": "F-2300",
+    "tester": "rosa",
+    "label": "Producer ask",
+    "quote": "Say at the start, in one sentence each, how the Sunday vote works, what \"trust\" and \"feelings\" mean, and what the ₺ amounts are. Also say how far **Skip** jumps.",
+    "exact": true,
+    "source": "docs/lab/reviews/light-2026-10-30/stairwell/rosa/report.original.md.txt"
+  }
+]

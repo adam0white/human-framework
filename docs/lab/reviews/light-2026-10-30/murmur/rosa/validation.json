@@ -1,0 +1,106 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-31T01:56:59.458661+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T01:39:35.376Z",
+        "elapsed_s": 191.417,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop the phone here for the evening, not from trouble. I liked Dilan and her small ordinary troubles. No sentence needed a second reading. I saw the loop and want to see the big screen.",
+        "game_clock": "Mon 21:31",
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 188.738,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T01:38:04.298Z",
+          "elapsed_s": 100.339,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to the next event"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 31519,
+          "error": "locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Skip to the next event', exact: true }).or(getByRole('link', { name: 'Skip to the next event', exact: true })).or(getByRole('tab', { name: 'Skip to the next event', exact: true })).or(getByRole('menuitem', { name: 'Skip to the next event', exact: true })).or(getByRole('checkbox', { name: 'Skip to the next event', exact: true })).or(getByRole('radio', { name: 'Skip to the next event', exact: true })).or(getByRole('option', { name: 'Skip to the next event', exact: true })).or(getByRole('switch', { name: 'Skip to the next event', exact: true })).visible().first()\u001b[22m\n (driver failure)",
+          "requested_control_present_before": true
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T01:42:47.522Z",
+        "elapsed_s": 191.757,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop the big screen here for the evening, not from trouble. I saw that insisting changed her day compared with the phone, and the Mum call was warm. No reread. I stop because I have seen a full Monday.",
+        "game_clock": "Monday 21:31",
+        "engagement": 5,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 67.875,
+          "op": "tap",
+          "input": {
+            "name": "Send her the map location. She is willing."
+          },
+          "error": null
+        },
+        {
+          "elapsed_s": 189.035,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}
