@@ -1,11 +1,16 @@
-import { execFileSync, spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { execFileSync, spawn, spawnSync } from 'node:child_process';
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 
 // One linked record behind a stubbed Wrangler. `throttle` is how the first payload read fails.
-function harness(throttle?: { stderr: string; status?: number }) {
+// `during` runs inside the script on its first Wrangler read, while the script holds the cache lock.
+// `pauseOnStale` parks a script that reaches the retired stale-lock removal until `release` exists.
+function harness(
+  throttle?: { stderr: string; status?: number },
+  options: { during?: string; pauseOnStale?: boolean; failBodyWrite?: boolean } = {},
+) {
   const root = mkdtempSync(join(tmpdir(), 'inbox-lock-'));
   mkdirSync(join(root, 'scripts'));
   mkdirSync(join(root, 'apps/site/worker'), { recursive: true });
@@ -58,7 +63,9 @@ function harness(throttle?: { stderr: string; status?: number }) {
       else if (key === 'private/linked-index/' + day + '.json') fs.writeFileSync(file, JSON.stringify({ records: [record] }));
       else fs.writeFileSync(file, gzipSync(JSON.stringify({ ...record, v: 2, data: 'received' })));
     };
-    child.execFileSync = (_cmd, args) => { body(args[4].replace('hf-lab/', ''), args[args.indexOf('--file') + 1]); return ''; };
+    const lockPath = root + '/.lab-inbox/.download-lock';
+    let during = ${JSON.stringify(Boolean(options.during))};
+    child.execFileSync = (_cmd, args) => { if (during) { during = false; ${options.during ?? ''} } body(args[4].replace('hf-lab/', ''), args[args.indexOf('--file') + 1]); return ''; };
     child.execFile = (_cmd, args, _options, callback) => {
       const file = args[args.indexOf('--file') + 1];
       log({ type: 'start' });
@@ -71,6 +78,29 @@ function harness(throttle?: { stderr: string; status?: number }) {
       return {};
     };
     syncBuiltinESMExports();
+    if (${JSON.stringify(Boolean(options.failBodyWrite))}) {
+      // The lock body write fails after a foreign file has replaced the lock pathname.
+      const write = fs.writeSync;
+      fs.writeSync = (fd, data, ...rest) => {
+        if (typeof data === 'string' && data.includes('"nonce"')) {
+          fs.rmSync(lockPath);
+          fs.writeFileSync(lockPath, 'foreign lock');
+          throw Object.assign(new Error('ENOSPC: injected body write failure'), { code: 'ENOSPC' });
+        }
+        return write(fd, data, ...rest);
+      };
+      syncBuiltinESMExports();
+    }
+    if (${JSON.stringify(Boolean(options.pauseOnStale))}) {
+      const warn = console.warn;
+      console.warn = (...args) => {
+        if (/stale/i.test(String(args[0]))) {
+          fs.writeFileSync(root + '/paused-' + process.pid, '');
+          while (!fs.existsSync(root + '/release')) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
+        }
+        warn(...args);
+      };
+    }
   `,
   );
   const run = () =>
@@ -92,24 +122,116 @@ function harness(throttle?: { stderr: string; status?: number }) {
   return { root, run, calls, lock: join(root, '.lab-inbox/.download-lock') };
 }
 
-it('reclaims a lock left by a dead process but still honours a live one', () => {
+// A child that has exited leaves a PID that is no longer alive.
+const deadPid = () =>
+  execFileSync(process.execPath, ['-e', 'process.stdout.write(String(process.pid))'], { encoding: 'utf8' });
+
+it.each([
+  ['a dead process', deadPid],
+  ['a live process', () => String(process.pid)],
+  ['an unreadable body', () => 'not a pid'],
+  ['an empty body', () => ''],
+])('refuses and preserves an existing lock held by %s', (_name, body) => {
   const h = harness();
   try {
-    // A child that has exited leaves a PID that is no longer alive.
-    const exited = execFileSync(process.execPath, ['-e', 'process.stdout.write(String(process.pid))'], {
-      encoding: 'utf8',
-    });
-    writeFileSync(h.lock, exited);
-    const reclaimed = h.run();
-    expect(reclaimed.status).toBe(0);
-    expect(reclaimed.stderr).toMatch(/stale/i);
-    expect(reclaimed.stdout).toContain('0 pending');
-
-    writeFileSync(h.lock, String(process.pid));
-    const blocked = h.run();
-    expect(blocked.status).not.toBe(0);
-    expect(readFileSync(h.lock, 'utf8')).toBe(String(process.pid));
+    const text = body();
+    writeFileSync(h.lock, text);
+    const out = h.run();
+    expect(out.status).not.toBe(0);
+    expect(out.stderr).toMatch(/locked/i);
+    expect(out.stderr).toMatch(/stopped/i);
+    expect(out.stderr).not.toMatch(/removed/i);
+    expect(readFileSync(h.lock, 'utf8')).toBe(text);
+    expect(h.calls()).toEqual([]);
   } finally {
+    rmSync(h.root, { recursive: true, force: true });
+  }
+});
+
+it('blocks two contenders on one dead lock and keeps the lock', async () => {
+  const h = harness(undefined, { pauseOnStale: true });
+  try {
+    const text = deadPid();
+    writeFileSync(h.lock, text);
+    const contenders = [0, 1].map(() => {
+      const child = spawn(
+        process.execPath,
+        ['--import', join(h.root, 'preload.mjs'), join(h.root, 'scripts/lab-inbox.ts'), '--drain'],
+        { stdio: ['ignore', 'pipe', 'pipe'] },
+      );
+      const closed = new Promise<number | null>((resolve) => child.once('close', resolve));
+      return { child, closed, done: false, status: undefined as number | null | undefined };
+    });
+    for (const c of contenders)
+      void c.closed.then((status) => {
+        c.done = true;
+        c.status = status;
+      });
+    // Each contender either exits (it refuses) or parks at the retired stale-removal step.
+    await vi.waitFor(
+      () =>
+        expect(contenders.every((c) => c.done || existsSync(join(h.root, `paused-${c.child.pid}`)))).toBe(
+          true,
+        ),
+      { timeout: 20_000, interval: 25 },
+    );
+    writeFileSync(join(h.root, 'release'), '');
+    const statuses = await Promise.all(contenders.map((c) => c.closed));
+    expect(statuses).toEqual([1, 1]);
+    expect(readFileSync(h.lock, 'utf8')).toBe(text);
+  } finally {
+    rmSync(h.root, { recursive: true, force: true });
+  }
+});
+
+it('removes only its own lock when it exits', () => {
+  const replaced = harness(undefined, {
+    during: `fs.rmSync(lockPath); fs.writeFileSync(lockPath, 'replacement lock');`,
+  });
+  const ordinary = harness(undefined, {
+    during: `fs.writeFileSync(root + '/held', fs.readFileSync(lockPath, 'utf8'));`,
+  });
+  try {
+    expect(replaced.run().status).toBe(0);
+    expect(readFileSync(replaced.lock, 'utf8')).toBe('replacement lock');
+
+    expect(ordinary.run().status).toBe(0);
+    const held = JSON.parse(readFileSync(join(ordinary.root, 'held'), 'utf8')) as {
+      pid: number;
+      nonce: string;
+    };
+    expect(Number.isInteger(held.pid)).toBe(true);
+    expect(held.nonce).toBeTruthy();
+    expect(existsSync(ordinary.lock)).toBe(false);
+  } finally {
+    rmSync(replaced.root, { recursive: true, force: true });
+    rmSync(ordinary.root, { recursive: true, force: true });
+  }
+});
+
+it('keeps a foreign lock and reports the original error when the lock body write fails', () => {
+  const h = harness(undefined, { failBodyWrite: true });
+  try {
+    const out = h.run();
+    expect(out.status).not.toBe(0);
+    expect(out.stderr).toMatch(/ENOSPC: injected body write failure/);
+    expect(readFileSync(h.lock, 'utf8')).toBe('foreign lock');
+  } finally {
+    rmSync(h.root, { recursive: true, force: true });
+  }
+});
+
+it.skipIf(process.getuid?.() === 0)('reports a lock-creation error that is not a held lock as itself', () => {
+  const h = harness();
+  const cache = join(h.root, '.lab-inbox');
+  try {
+    chmodSync(cache, 0o500);
+    const out = h.run();
+    expect(out.status).not.toBe(0);
+    expect(out.stderr).toMatch(/EACCES/);
+    expect(out.stderr).not.toMatch(/locked/i);
+  } finally {
+    chmodSync(cache, 0o700);
     rmSync(h.root, { recursive: true, force: true });
   }
 });

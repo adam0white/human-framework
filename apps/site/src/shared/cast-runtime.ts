@@ -900,14 +900,15 @@ export function startCastFresh(game: string) {
   requireNativeSession();
   const s = states.get(game);
   if (!s) return;
-  if (s.pendingInit && !s.busy) {
+  if (s.blocked && !s.busy && s.runGen !== undefined && (s.localLoad || !s.pendingInit)) {
+    // A refused restore comes first: an earlier ordinary init (Replay, New town) is still pending but
+    // belongs to a replaced run. The page owns run generations, so it sends a new `castFresh` init on
+    // its next generation; the refused save stays as it was.
+    s.requestFreshStart?.(s.runGen);
+  } else if (s.pendingInit && !s.busy) {
     const message = s.pendingInit;
     reset(s, typeof message.gen === 'number' ? message.gen : undefined);
     startLocal(s, message);
-  } else if (s.blocked && !s.busy && s.runGen !== undefined) {
-    // A refused restore has no pending init. The page owns run generations, so it sends a new
-    // `castFresh` init on its next generation; the refused save stays as it was.
-    s.requestFreshStart?.(s.runGen);
   }
   changed();
 }

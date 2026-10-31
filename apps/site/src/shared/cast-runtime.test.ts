@@ -1370,12 +1370,24 @@ async function acceptedVoice(heads: Record<string, PersonaEnvelope>) {
 async function continueVoice(
   rejectLoad?: (failure: { gen: number; message: string }) => void,
   requestFreshStart?: (gen: number) => void,
+  ordinaryInit = false,
 ) {
   const id = 'hf.cast.riza.voice';
   const { text, accepted } = await acceptedVoice({ [id]: await head(id) });
   const worker = new FakeWorker();
   close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never, rejectLoad, requestFreshStart);
-  postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1, castPreview: true });
+  if (ordinaryInit) {
+    // Replay or New town: an ordinary init that has already started its run when Continue is pressed.
+    control.autoPreflight = true;
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1 });
+    await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
+  } else
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'init',
+      seed: 1,
+      gen: 1,
+      castPreview: true,
+    });
   postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, local: true, text });
   await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
   return { worker, accepted };
@@ -1457,8 +1469,8 @@ it('C86-2: a receipt failure from a replaced Continue does not touch the new cha
 });
 
 // C88 controls: the same genuine accepted Continue whose ownership restore is refused.
-async function refusedContinue(requestFreshStart?: (gen: number) => void) {
-  const { worker, accepted } = await continueVoice(vi.fn(), requestFreshStart);
+async function refusedContinue(requestFreshStart?: (gen: number) => void, ordinaryInit = false) {
+  const { worker, accepted } = await continueVoice(vi.fn(), requestFreshStart, ordinaryInit);
   const spy = vi.spyOn(crypto.subtle, 'digest').mockRejectedValue(new Error('receipt digest failed'));
   try {
     worker.reply(accepted);
@@ -1495,6 +1507,26 @@ it('C88-2: after a refused restore, the fresh-start button starts a new local ga
     }),
   );
   worker = await refusedContinue(requestFreshStart);
+  const inits = worker.requests('init').length;
+  startCastFresh('voice'); // The CastStartGate button.
+  expect(requestFreshStart).toHaveBeenCalledWith(2);
+  expect(worker.requests('init')).toHaveLength(inits + 1);
+  expect(worker.requests('init').at(-1)).toEqual({ type: 'init', seed: 1, gen: 3 });
+  expect(castState('voice')).toMatchObject({ busy: false, blocked: false });
+  expect(control.puts).toEqual([]);
+});
+
+it('C0-O1: after Replay or New town, a refused Continue still starts fresh through the page, not the old init', async () => {
+  let worker: FakeWorker | undefined;
+  const requestFreshStart = vi.fn((gen: number) =>
+    postCastMessage(requireValue(worker) as unknown as Worker, 'voice', {
+      type: 'init',
+      seed: 1,
+      gen: gen + 1,
+      castFresh: true,
+    }),
+  );
+  worker = await refusedContinue(requestFreshStart, true);
   const inits = worker.requests('init').length;
   startCastFresh('voice'); // The CastStartGate button.
   expect(requestFreshStart).toHaveBeenCalledWith(2);
