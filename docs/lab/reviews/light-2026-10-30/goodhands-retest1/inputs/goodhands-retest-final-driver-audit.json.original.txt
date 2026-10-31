@@ -1,0 +1,511 @@
+{
+  "jonas": {
+    "tester": "Jonas Berg",
+    "validationTime": "2026-10-31T08:16:20.239707+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T07:54:36.051Z",
+          "elapsed_s": 131.509,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping desktop at about 2 minutes, Mon 10:15. I tested what I asked for last time and two of three are visibly addressed. I would not leave it running; I would come back another evening for trial results. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back.",
+          "game_clock": "Mon 10:15",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 126.531,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T07:55:07.674Z",
+          "elapsed_s": 31.231,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping phone at about 30 seconds, Mon 08:54. Banner no longer clipped; I know the loop from desktop. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back. First minute and pulse untested.",
+          "game_clock": "Mon 08:54",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 28.111,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "aisha": {
+    "tester": "Aisha Rahman",
+    "validationTime": "2026-10-31T08:16:20.244761+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T07:57:32.212Z",
+          "elapsed_s": 101.683,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping after under two minutes on the laptop. I liked the old-case card where Nermin corrects her own record, but I could not see how to send the letter, and the reference still gave a bad fact instead of a reason. I pressed I would stop here in Feedback, typed nothing, no Submit.",
+          "game_clock": "Mon 2 Nov 10:21",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 93.542,
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T07:57:24.071Z",
+            "elapsed_s": 93.542,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 4,
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T07:58:06.316Z",
+          "elapsed_s": 32.985,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone after about half a minute. I had just played the same opening on the laptop, and Ozlem gave the same thin answer. The phone layout now fits. I pressed I would stop here, typed nothing, no Submit.",
+          "game_clock": "Mon 2 Nov 09:03",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "diego": {
+    "tester": "Diego Silva",
+    "validationTime": "2026-10-31T08:16:20.251119+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T08:00:22.035Z",
+          "elapsed_s": 98.728,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+          "game_clock": "Mon 2 Nov 11:00",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 94.699,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T08:01:50.655Z",
+          "elapsed_s": 87.446,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+          "game_clock": "Mon 2 Nov 09:58",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 83.679,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T08:00:28.724Z",
+            "elapsed_s": 5.515,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Select \u00d6zlem Ko\u00e7 on the bench"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 280,
+            "error": "Select \u00d6zlem Ko\u00e7 on the bench is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "rosa": {
+    "tester": "Rosa Alvarez",
+    "validationTime": "2026-10-31T08:16:20.256893+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T08:03:44.746Z",
+          "elapsed_s": 70.146,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I placed Ozlem and the rent is covered at 09:35. Reasons are explained now and the fee has numbers. Now I only wait for the next family call, so I stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+          "game_clock": null,
+          "engagement": 3,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 63.853,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T08:04:29.108Z",
+          "elapsed_s": 43.144,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "On the big screen I understood everything without a reread. The card now says why Sebnem stays unsure. I have placed nobody here and I would rather stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+          "game_clock": null,
+          "engagement": 3,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 40.966,
+            "op": "tap",
+            "input": {
+              "name": "I'm stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "nadia": {
+    "tester": "Nadia Petrovi\u0107",
+    "validationTime": "2026-10-31T08:16:20.265277+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T08:10:01.102Z",
+          "elapsed_s": 298.662,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I will stop here. The first placement was satisfying, but now I cannot find where my kept numbers live and the belief rules feel uneven. I would rather stop than guess.",
+          "game_clock": "Mon 2 Nov 15:32",
+          "engagement": null,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [],
+        "earlyFirstMinute": [],
+        "earlyPulse": [
+          179.105
+        ],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T08:07:49.185Z",
+            "elapsed_s": 166.745,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Skip to 11:52 \u00b7 Someone will bring news from outside Good Hands"
+            },
+            "reaction": "Keeping a number said 2 minutes but the clock jumped from 11:05 to 11:18, then 11:27 while I read. I guess the clock runs while I read. The task line nicely tells me who to call.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 286,
+            "error": "Skip to 11:52 \u00b7 Someone will bring news from outside Good Hands is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          },
+          {
+            "t": "2026-10-31T08:08:36.869Z",
+            "elapsed_s": 214.429,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Skip to 14:00 \u00b7 A family is due to call"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 355,
+            "error": "Skip to 14:00 \u00b7 A family is due to call is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T08:13:57.362Z",
+          "elapsed_s": 234.607,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop here. Tonight I placed \u00d6zlem twice and found the kept-number list, which answered my question from the computer. But it is the same afternoon again, and for me one evening of it is enough.",
+          "game_clock": "Mon 2 Nov 11:37",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-004.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [],
+        "earlyFirstMinute": [],
+        "earlyPulse": [
+          177.761
+        ],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  }
+}

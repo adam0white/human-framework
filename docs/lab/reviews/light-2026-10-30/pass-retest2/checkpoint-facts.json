@@ -1,0 +1,973 @@
+{
+  "note": "Computed from the copied wall-clock.jsonl, completion.json, dispatch.json, release-start.json, validation.json and driver.out by build-packet.py. Session length is measured from the open row. A first_minute log is a tester line. The first-minute.png file is the automatic driver capture after the stop, not play. note log rows are driver log lines, not feedback notes.",
+  "build": {
+    "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+    "dirty": false,
+    "framework": "4.12.0",
+    "app": "0.1.0",
+    "checkedIn": "every completion.json pin (10), every release-start.json (10) and the post-round release file (inputs/pass-retest2-final-release-after-round.json)",
+    "postRoundReleaseTime": "2026-10-31T07:37:36.911794+00:00",
+    "hardeningLabel": "HF 4.12.0"
+  },
+  "driver": {
+    "name": "native-tap-v2",
+    "dispatchHashAllFive": {
+      "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+      "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+      "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+    },
+    "approvedInstrumentTime": "2026-10-31T02:50:55.021190+00:00",
+    "identicalInAllFiveDispatches": true,
+    "driver_check": "fork-unverified",
+    "limits": [
+      "Input status 200 acknowledges native input, not intended game outcome; inspect the visible result.",
+      "Current native v2 holds for an actual 1.8 s; this differs from the earlier instrument (parent-stated), so a working hold cannot isolate a game-code cause.",
+      "A moving or replaced target can be missed or compat-clicked on phone; no post-press confirmation.",
+      "Prefix, stale and live-clock controls during model latency do not prove a product timing defect."
+    ]
+  },
+  "round": {
+    "id": "light-1031-pass-retest2",
+    "collectionEnded": "2026-10-31T07:36:57.910821Z",
+    "nextPanelNotBefore": "2026-10-31T07:51:57.910821Z",
+    "freeStop": true,
+    "floor": 0,
+    "ceilingMin": 20,
+    "urlRunSource": "labRunSource=agent via dispatch.json linkedEnvelopeSource",
+    "productionReceipt": "not independently read, unverified",
+    "deploymentHold": "released (parent-stated)",
+    "lastCompletionEnded": "2026-10-31T07:36:57.910821+00:00"
+  },
+  "method": {
+    "agentBashCalls": 362,
+    "validAssignedJsonCurl": 347,
+    "malformedQuotes": 15,
+    "shellParseBeforeCurl": 14,
+    "soniaDesktopInvalidJsonDriverRejectionBeforeInput": 1,
+    "executedOutOfProtocol": 0,
+    "source": "parent-stated from the private command-scope audit, which is not in this packet and which the preparer did not read",
+    "note": "No executed protocol breach, no fake note, Submit or consent change. Both quick feedback labels were used, with point fallback where a shell quote failed."
+  },
+  "cleanup": {
+    "recordedProcessIds": 15,
+    "allAbsent": true,
+    "signalsSent": [],
+    "driverPidsFoundInDriverOutAreAmongRecorded": true
+  },
+  "images": {
+    "imageReadReceiptsTotal": 24,
+    "retainedPngTotal": 35,
+    "largestPngCountOnOneDevice": 5,
+    "note": "Receipts come from validation.json. Automatic first-minute.png captures have no receipt. Image Reads are an actual audit only. Nia phone gameplay was never viewed (title only). Sonia desktop a-004 was not viewed."
+  },
+  "checks": {
+    "stopsTotal": 10,
+    "allCompletionExitZero": true,
+    "pinsClean": true,
+    "unexpectedReadsAll": [[], [], [], [], []]
+  },
+  "testers": {
+    "maya": {
+      "tester": "Maya Chen",
+      "dispatchTime": "2026-10-31T06:54:23.667387+00:00",
+      "completionEnded": "2026-10-31T07:04:09.549413+00:00",
+      "validationTime": "2026-10-31T07:37:36.778607+00:00",
+      "sessions": {
+        "phone": {
+          "startRowT": "2026-10-31T06:54:23.002Z",
+          "openRowT": "2026-10-31T06:54:39.217Z",
+          "lastRowT": "2026-10-31T06:59:14.576Z",
+          "driverPid": 24280,
+          "port": 22300,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T06:59:14.576Z",
+            "elapsed_s": 275.942,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping the phone visit. I got Dilek clips story and a follow up, but talking cost a table and cooks left stations on their own, and the Nevin thread went nowhere.",
+            "game_clock": "Mon 18:41",
+            "engagement": 3,
+            "reason": "FRUSTRATED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Stopping the phone visit. I got Dilek clips story and a follow up, but talking cost a table and cooks left stations on their own, and the Nevin thread went nowhere.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 60.982,
+              "game_clock": "Mon 17:33",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 189.576,
+              "game_clock": "Mon 18:31",
+              "engagement": 4,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 273.92,
+              "game_clock": "Mon 18:41",
+              "engagement": 3,
+              "reason": "FRUSTRATED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 275.942,
+              "game_clock": "Mon 18:41",
+              "engagement": 3,
+              "reason": "FRUSTRATED"
+            }
+          ],
+          "noteLogRows": 1,
+          "toolErrors": [
+            {
+              "t": "2026-10-31T06:55:57.774Z",
+              "elapsed_s": 79.14,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "name": "Selim grill"
+              },
+              "error": "Selim grill is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            },
+            {
+              "t": "2026-10-31T06:58:05.472Z",
+              "elapsed_s": 206.838,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "t": "2026-10-31T06:58:11.409Z",
+              "elapsed_s": 212.775,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "name": "I\\u0027m stopping"
+              },
+              "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "pngFiles": ["a-001.png", "a-002.png", "a-003.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png", "a-002.png", "a-003.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 206.838,
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "elapsed_s": 212.775,
+              "op": "tap",
+              "input": {
+                "name": "I\\u0027m stopping"
+              },
+              "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "desktop": {
+          "startRowT": "2026-10-31T06:54:23.045Z",
+          "openRowT": "2026-10-31T06:59:16.482Z",
+          "lastRowT": "2026-10-31T07:03:27.755Z",
+          "driverPid": 24282,
+          "port": 22301,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:03:27.755Z",
+            "elapsed_s": 251.758,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping the desktop visit at about four minutes. The Nevin follow up finally answered and Dilek hinted at her recordings, but every talk still pulls a cook off a station and I am never told that before I tap.",
+            "game_clock": "Mon 18:29",
+            "engagement": 3,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Stopping the desktop visit at about four minutes. The Nevin follow up finally answered and Dilek hinted at her recordings, but every talk still pulls a cook off a station and I am never told that before I tap.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 61.826,
+              "game_clock": "Mon 17:32",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 187.607,
+              "game_clock": "Mon 18:21",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 250.425,
+              "game_clock": "Mon 18:29",
+              "engagement": 3,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 251.758,
+              "game_clock": "Mon 18:29",
+              "engagement": 3,
+              "reason": "TASTE"
+            }
+          ],
+          "noteLogRows": 1,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png", "b-003.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["b-001.png", "b-002.png", "b-003.png"],
+          "formAndSendInputs": [],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        }
+      }
+    },
+    "emre": {
+      "tester": "Emre Kaya",
+      "dispatchTime": "2026-10-31T07:04:10.821677+00:00",
+      "completionEnded": "2026-10-31T07:11:06.525952+00:00",
+      "validationTime": "2026-10-31T07:37:36.786760+00:00",
+      "sessions": {
+        "phone": {
+          "startRowT": "2026-10-31T07:04:10.221Z",
+          "openRowT": "2026-10-31T07:09:20.726Z",
+          "lastRowT": "2026-10-31T07:10:33.815Z",
+          "driverPid": 36281,
+          "port": 22302,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:10:33.815Z",
+            "elapsed_s": 73.602,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on phone Monday 18:15, 120 of 5200, about 72 seconds. Layout fits. The plan page now says plainly when a cover said no, which I liked. But the empty grill with slowed time is the same dead wait. I would come back another evening on desktop, not leave it running.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Stopping on phone Monday 18:15, 120 of 5200, about 72 seconds. Layout fits. The plan page now says plainly when a cover said no, which I liked. But the empty grill with slowed time is the same dead wait. I would come back another evening on desktop, not leave it running.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 65.895,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 67.516,
+              "game_clock": null,
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 73.602,
+              "game_clock": null,
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 70.875,
+              "op": "tap",
+              "input": {
+                "text": "m stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "desktop": {
+          "startRowT": "2026-10-31T07:04:10.139Z",
+          "openRowT": "2026-10-31T07:04:18.305Z",
+          "lastRowT": "2026-10-31T07:09:19.177Z",
+          "driverPid": 36279,
+          "port": 22303,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:09:19.177Z",
+            "elapsed_s": 301.426,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping desktop Tuesday 18:42, 840 of 5200, about 5 minutes. Per-night target, ingredients refilling, predicted replies and Kitchen speed in the menu are real improvements. But Fast did not help while a station was empty: time stays slowed and I cannot ask anyone useful. I would come back another evening, not leave it running.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Stopping desktop Tuesday 18:42, 840 of 5200, about 5 minutes. Per-night target, ingredients refilling, predicted replies and Kitchen speed in the menu are real improvements. But Fast did not help while a station was empty: time stays slowed and I cannot ask anyone useful. I would come back another evening, not leave it running.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 50.664,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 187.764,
+              "game_clock": null,
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 258.96,
+              "game_clock": null,
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 301.426,
+              "game_clock": null,
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 1,
+          "toolErrors": [
+            {
+              "t": "2026-10-31T07:09:12.215Z",
+              "elapsed_s": 294.464,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "pngFiles": ["a-001.png", "a-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png", "a-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 294.464,
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "elapsed_s": 298.246,
+              "op": "tap",
+              "input": {
+                "text": "m stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [50.664],
+          "earlyPulse": []
+        }
+      }
+    },
+    "nia": {
+      "tester": "Nia Okafor",
+      "dispatchTime": "2026-10-31T07:11:07.804227+00:00",
+      "completionEnded": "2026-10-31T07:17:03.385727+00:00",
+      "validationTime": "2026-10-31T07:37:36.793982+00:00",
+      "sessions": {
+        "phone": {
+          "startRowT": "2026-10-31T07:11:07.103Z",
+          "openRowT": "2026-10-31T07:11:18.946Z",
+          "lastRowT": "2026-10-31T07:14:36.004Z",
+          "driverPid": 43344,
+          "port": 22304,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:14:36.004Z",
+            "elapsed_s": 197.553,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on Monday evening. Liked Dilek calling her mother and the hold that worked. Disliked that How are you doing got the toilet or prayer line, and the waiting. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+            "game_clock": "Mon 18:58",
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Stopping on Monday evening. Liked Dilek calling her mother and the hold that worked. Disliked that How are you doing got the toilet or prayer line, and the waiting. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 62.36,
+              "game_clock": "Mon 18:03",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 182.121,
+              "game_clock": "Mon 18:57",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 196.331,
+              "game_clock": "Mon 18:58",
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 197.553,
+              "game_clock": "Mon 18:58",
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [
+            {
+              "t": "2026-10-31T07:11:57.811Z",
+              "elapsed_s": 39.36,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "name": "Eat For now, I want to use the bathroom first. I cannot hold it much longer.",
+                "duration_ms": 1800
+              },
+              "error": "Eat For now, I want to use the bathroom first. I cannot hold it much longer. is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)"
+            },
+            {
+              "t": "2026-10-31T07:14:26.726Z",
+              "elapsed_s": 188.275,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "pngFiles": ["a-001.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 188.275,
+              "op": "tap",
+              "input": {
+                "text": "stopping"
+              },
+              "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "elapsed_s": 193.147,
+              "op": "tap",
+              "input": {
+                "text": "m stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "desktop": {
+          "startRowT": "2026-10-31T07:11:07.160Z",
+          "openRowT": "2026-10-31T07:14:37.662Z",
+          "lastRowT": "2026-10-31T07:16:25.000Z",
+          "driverPid": 43348,
+          "port": 22305,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:16:25.000Z",
+            "elapsed_s": 107.858,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on Monday 18:11, desktop. Insist finally did something I could see, and Selim gave a real answer about Nevin, but one click sent Dilek home for the night and I could not recover. Would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": "FRUSTRATED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "Stopping on Monday 18:11, desktop. Insist finally did something I could see, and Selim gave a real answer about Nevin, but one click sent Dilek home for the night and I could not recover. Would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 66.948,
+              "game_clock": "Mon 17:45",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 106.554,
+              "game_clock": null,
+              "engagement": null,
+              "reason": "FRUSTRATED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 107.858,
+              "game_clock": null,
+              "engagement": null,
+              "reason": "FRUSTRATED"
+            }
+          ],
+          "noteLogRows": 1,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 103.621,
+              "op": "tap",
+              "input": {
+                "text": "m stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        }
+      }
+    },
+    "rosa": {
+      "tester": "Rosa Alvarez",
+      "dispatchTime": "2026-10-31T07:17:04.631074+00:00",
+      "completionEnded": "2026-10-31T07:23:30.308075+00:00",
+      "validationTime": "2026-10-31T07:37:36.801848+00:00",
+      "sessions": {
+        "phone": {
+          "startRowT": "2026-10-31T07:17:03.881Z",
+          "openRowT": "2026-10-31T07:17:13.021Z",
+          "lastRowT": "2026-10-31T07:20:44.001Z",
+          "driverPid": 50515,
+          "port": 22306,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:20:44.001Z",
+            "elapsed_s": 211.457,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "The empty grill is now explained and I fixed it, which pleased me. But the cooks leave stations by themselves and the words Insist, Hold it to insist and I will explain the wait I do not understand. I do not know if 5,200 is reachable. I would close it, not leave it running. I stop on the phone. In Feedback I pressed I am confused by position, typed nothing, no Submit.",
+            "game_clock": "Mon 19:56",
+            "engagement": 3,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "The empty grill is now explained and I fixed it, which pleased me. But the cooks leave stations by themselves and the words Insist, Hold it to insist and I will explain the wait I do not understand. I do not know if 5,200 is reachable. I would close it, not leave it running. I stop on the phone. In Feedback I pressed I am confused by position, typed nothing, no Submit.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 68.55,
+              "game_clock": "Mon 18:33",
+              "engagement": 4,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 189.339,
+              "game_clock": "Mon 19:48",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 194.921,
+              "game_clock": null,
+              "engagement": null,
+              "reason": "CONFUSED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 211.457,
+              "game_clock": "Mon 19:56",
+              "engagement": 3,
+              "reason": "CONFUSED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [
+            {
+              "t": "2026-10-31T07:20:33.056Z",
+              "elapsed_s": 200.512,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "text": "confused"
+              },
+              "error": "confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "t": "2026-10-31T07:20:35.096Z",
+              "elapsed_s": 202.552,
+              "kind": "tool",
+              "op": "tap",
+              "input": {
+                "name": "I\\u0027m confused"
+              },
+              "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "pngFiles": ["a-001.png", "a-002.png", "a-003.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png", "a-002.png", "a-003.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 200.512,
+              "op": "tap",
+              "input": {
+                "text": "confused"
+              },
+              "error": "confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            },
+            {
+              "elapsed_s": 202.552,
+              "op": "tap",
+              "input": {
+                "name": "I\\u0027m confused"
+              },
+              "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        },
+        "desktop": {
+          "startRowT": "2026-10-31T07:17:03.996Z",
+          "openRowT": "2026-10-31T07:20:45.544Z",
+          "lastRowT": "2026-10-31T07:22:40.974Z",
+          "driverPid": 50526,
+          "port": 22307,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:22:40.974Z",
+            "elapsed_s": 115.864,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "On the big screen it is easier to read, and the early warning about the grill was clear. But I earned only 200 lira by 19:32, three tables wait for an empty grill, and Selim says he will explain the wait while the screen says in the bathroom. I do not understand what he does. I would close it, not leave it running. I stop. In Feedback I pressed I am stopping by position, typed nothing, no Submit.",
+            "game_clock": "Mon 19:32",
+            "engagement": 3,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "On the big screen it is easier to read, and the early warning about the grill was clear. But I earned only 200 lira by 19:32, three tables wait for an empty grill, and Selim says he will explain the wait while the screen says in the bathroom. I do not understand what he does. I would close it, not leave it running. I stop. In Feedback I pressed I am stopping by position, typed nothing, no Submit.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 68.317,
+              "game_clock": "Mon 18:41",
+              "engagement": 4,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 105.314,
+              "game_clock": null,
+              "engagement": null,
+              "reason": "CONFUSED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 115.864,
+              "game_clock": "Mon 19:32",
+              "engagement": 3,
+              "reason": "CONFUSED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png", "b-003.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["b-001.png", "b-002.png", "b-003.png"],
+          "formAndSendInputs": [],
+          "earlyFirstMinute": [],
+          "earlyPulse": []
+        }
+      }
+    },
+    "sonia": {
+      "tester": "Sonia Ionescu",
+      "dispatchTime": "2026-10-31T07:23:31.578536+00:00",
+      "completionEnded": "2026-10-31T07:36:57.910821+00:00",
+      "validationTime": "2026-10-31T07:37:36.809238+00:00",
+      "sessions": {
+        "phone": {
+          "startRowT": "2026-10-31T07:23:30.961Z",
+          "openRowT": "2026-10-31T07:31:14.406Z",
+          "lastRowT": "2026-10-31T07:36:07.955Z",
+          "driverPid": 57367,
+          "port": 22308,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:36:07.955Z",
+            "elapsed_s": 294.064,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop here. Same Monday twice, the grill is out of food, and I mostly read afterwards what the cooks already decided. ₺560 of ₺5,200 and still no idea how Saturday could ever work.",
+            "game_clock": "Mon wk1 20:33",
+            "engagement": null,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "I stop here. Same Monday twice, the grill is out of food, and I mostly read afterwards what the cooks already decided. ₺560 of ₺5,200 and still no idea how Saturday could ever work.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 59.589,
+              "game_clock": "Mon 18:29",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 247.421,
+              "game_clock": "Mon 19:43",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 283.846,
+              "game_clock": "Mon 20:24",
+              "engagement": null,
+              "reason": "BORED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 294.064,
+              "game_clock": "Mon wk1 20:33",
+              "engagement": null,
+              "reason": "BORED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [],
+          "pngFiles": ["b-001.png", "b-002.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["b-001.png", "b-002.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 289.465,
+              "op": "tap",
+              "input": {
+                "text": "m stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [59.589],
+          "earlyPulse": []
+        },
+        "desktop": {
+          "startRowT": "2026-10-31T07:23:30.878Z",
+          "openRowT": "2026-10-31T07:23:37.626Z",
+          "lastRowT": "2026-10-31T07:31:12.062Z",
+          "driverPid": 57365,
+          "port": 22309,
+          "release": {
+            "app": "0.1.0",
+            "framework": "4.12.0",
+            "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+            "dirty": false
+          },
+          "stop": {
+            "t": "2026-10-31T07:31:12.062Z",
+            "elapsed_s": 455,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop here. The cooks say yes and then do something else, and I keep answering the same leave-it-empty question. ₺520 of ₺5,200 on Monday and I do not see what I could do to change that.",
+            "game_clock": "Mon wk1 21:06",
+            "engagement": null,
+            "reason": "FRUSTRATED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "rawStopReaction": "I stop here. The cooks say yes and then do something else, and I keep answering the same leave-it-empty question. ₺520 of ₺5,200 on Monday and I do not see what I could do to change that.",
+          "rawStopReactionLiterallyInReport": true,
+          "checkpoints": [
+            {
+              "kind": "first_minute",
+              "elapsed_s": 61.814,
+              "game_clock": "Mon wk1 18:30",
+              "engagement": null,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 166.809,
+              "game_clock": "Mon 19:39",
+              "engagement": 3,
+              "reason": null
+            },
+            {
+              "kind": "pulse",
+              "elapsed_s": 372.957,
+              "game_clock": "Mon 20:49",
+              "engagement": 2,
+              "reason": null
+            },
+            {
+              "kind": "want_quit",
+              "elapsed_s": 444.952,
+              "game_clock": "Mon 21:04",
+              "engagement": null,
+              "reason": "FRUSTRATED"
+            },
+            {
+              "kind": "stop",
+              "elapsed_s": 455,
+              "game_clock": "Mon wk1 21:06",
+              "engagement": null,
+              "reason": "FRUSTRATED"
+            }
+          ],
+          "noteLogRows": 0,
+          "toolErrors": [
+            {
+              "t": "2026-10-31T07:25:34.508Z",
+              "elapsed_s": 117.446,
+              "kind": "tool",
+              "op": "invalid",
+              "input": {},
+              "error": "SyntaxError: Unterminated string in JSON at position 159 (line 1 column 160) (invalid request, not a driver failure)"
+            }
+          ],
+          "pngFiles": ["a-001.png", "a-002.png", "a-003.png", "a-004.png", "first-minute.png"],
+          "firstMinutePngPresent": true,
+          "imageReadReceipts": ["a-001.png", "a-002.png", "a-003.png"],
+          "formAndSendInputs": [
+            {
+              "elapsed_s": 128.507,
+              "op": "tap",
+              "input": {
+                "text": "m confused"
+              },
+              "error": null
+            },
+            {
+              "elapsed_s": 451.192,
+              "op": "tap",
+              "input": {
+                "text": "m stopping"
+              },
+              "error": null
+            }
+          ],
+          "earlyFirstMinute": [],
+          "earlyPulse": [166.809]
+        }
+      }
+    }
+  }
+}

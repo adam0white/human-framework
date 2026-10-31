@@ -1,0 +1,92 @@
+{
+  "tester": "Diego Silva",
+  "validationTime": "2026-10-31T06:40:04.230082+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T06:26:55.351Z",
+        "elapsed_s": 196.301,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the desktop session. The first half minute is better than last time: selects work, claims echo, pressing Osman answers. But the garden emptied around 09:00 and stayed empty for two real minutes, everyone asleep by midnight, with Day 4 still far away. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+        "game_clock": "Day 2 05:12",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 193.688,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T06:28:10.735Z",
+        "elapsed_s": 74.143,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the phone session. It reads fine and the gossip price is honest, but by 08:45 the garden is empty again, the claim buttons are greyed because Riza left, and Day 4 is far. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+        "game_clock": "Day 1 08:49",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 1,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 71.133,
+          "op": "tap",
+          "input": {
+            "name": "I'm stopping"
+          },
+          "error": null
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

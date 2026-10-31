@@ -1,0 +1,212 @@
+{
+  "jonas": {
+    "desktop": {
+      "pngCount": 2,
+      "viewed": ["a-001.png"],
+      "stop": {
+        "t": "2026-10-31T07:54:36.051Z",
+        "elapsed_s": 131.509,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping desktop at about 2 minutes, Mon 10:15. I tested what I asked for last time and two of three are visibly addressed. I would not leave it running; I would come back another evening for trial results. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back.",
+        "game_clock": "Mon 10:15",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": []
+    },
+    "phone": {
+      "pngCount": 3,
+      "viewed": ["b-001.png", "b-002.png", "b-003.png"],
+      "stop": {
+        "t": "2026-10-31T07:55:07.674Z",
+        "elapsed_s": 31.231,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping phone at about 30 seconds, Mon 08:54. Banner no longer clipped; I know the loop from desktop. Pressed I am stopping in Feedback, typed nothing, submitted nothing, pressed Back. First minute and pulse untested.",
+        "game_clock": "Mon 08:54",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": []
+    }
+  },
+  "aisha": {
+    "desktop": {
+      "pngCount": 2,
+      "viewed": ["a-001.png"],
+      "stop": {
+        "t": "2026-10-31T07:57:32.212Z",
+        "elapsed_s": 101.683,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping after under two minutes on the laptop. I liked the old-case card where Nermin corrects her own record, but I could not see how to send the letter, and the reference still gave a bad fact instead of a reason. I pressed I would stop here in Feedback, typed nothing, no Submit.",
+        "game_clock": "Mon 2 Nov 10:21",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": []
+    },
+    "phone": {
+      "pngCount": 2,
+      "viewed": ["b-001.png", "b-002.png"],
+      "stop": {
+        "t": "2026-10-31T07:58:06.316Z",
+        "elapsed_s": 32.985,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone after about half a minute. I had just played the same opening on the laptop, and Ozlem gave the same thin answer. The phone layout now fits. I pressed I would stop here, typed nothing, no Submit.",
+        "game_clock": "Mon 2 Nov 09:03",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": []
+    }
+  },
+  "diego": {
+    "desktop": {
+      "pngCount": 2,
+      "viewed": ["a-001.png"],
+      "stop": {
+        "t": "2026-10-31T08:00:22.035Z",
+        "elapsed_s": 98.728,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+        "game_clock": "Mon 2 Nov 11:00",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": []
+    },
+    "phone": {
+      "pngCount": 3,
+      "viewed": ["b-001.png", "b-002.png"],
+      "stop": {
+        "t": "2026-10-31T08:01:50.655Z",
+        "elapsed_s": 87.446,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back.",
+        "game_clock": "Mon 2 Nov 09:58",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": []
+    }
+  },
+  "rosa": {
+    "phone": {
+      "pngCount": 3,
+      "viewed": ["a-001.png", "a-002.png"],
+      "stop": {
+        "t": "2026-10-31T08:03:44.746Z",
+        "elapsed_s": 70.146,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I placed Ozlem and the rent is covered at 09:35. Reasons are explained now and the fee has numbers. Now I only wait for the next family call, so I stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+        "game_clock": null,
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": []
+    },
+    "desktop": {
+      "pngCount": 3,
+      "viewed": ["b-001.png", "b-002.png"],
+      "stop": {
+        "t": "2026-10-31T08:04:29.108Z",
+        "elapsed_s": 43.144,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "On the big screen I understood everything without a reread. The card now says why Sebnem stays unsure. I have placed nobody here and I would rather stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit.",
+        "game_clock": null,
+        "engagement": 3,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": []
+    }
+  },
+  "nadia": {
+    "desktop": {
+      "pngCount": 4,
+      "viewed": ["a-001.png", "a-002.png", "a-003.png"],
+      "stop": {
+        "t": "2026-10-31T08:10:01.102Z",
+        "elapsed_s": 298.662,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I will stop here. The first placement was satisfying, but now I cannot find where my kept numbers live and the belief rules feel uneven. I would rather stop than guess.",
+        "game_clock": "Mon 2 Nov 15:32",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": [179.105]
+    },
+    "phone": {
+      "pngCount": 5,
+      "viewed": ["b-001.png", "b-002.png", "b-003.png", "b-004.png"],
+      "stop": {
+        "t": "2026-10-31T08:13:57.362Z",
+        "elapsed_s": 234.607,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here. Tonight I placed \u00d6zlem twice and found the kept-number list, which answered my question from the computer. But it is the same afternoon again, and for me one evening of it is enough.",
+        "game_clock": "Mon 2 Nov 11:37",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "earlyFirstMinute": [],
+      "earlyPulse": [177.761]
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+ "note": "Per tester identity of the supplied inputs and the driver. Hashes of copied histories and briefs are compared with the input freeze and dispatch files by validate-quotes.py. This index does not hash the packet indexes or manifests.",
+ "testers": [
+  {
+   "id": "hearsay-retest-maya",
+   "tester": "Maya Chen",
+   "kind": "standing",
+   "exposure": "retest",
+   "model": "sonnet",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22500,
+    "desktop": 22501
+   },
+   "historyBytes": 151819,
+   "historyNewlines": 995,
+   "historyCharactersPerFreeze": 151505,
+   "historySha256": "a0c77b558f5521543bd5c33bb03c609be9931deb2389f574e49cc5420db6aaae",
+   "briefSha256": "864d696666027c191b48c4cec83c19231ea6bc5c18bcf8583f86d61eebe8c6ba",
+   "ownSourceCount": 12,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T06:09:19.551399+00:00",
+   "note": "Hashes compared with hearsay-retest-input-freeze.json and dispatch.json by validate-quotes.py. History and brief were copied mechanically and not read by the preparer."
+  },
+  {
+   "id": "hearsay-retest-emre",
+   "tester": "Emre Kaya",
+   "kind": "standing",
+   "exposure": "retest",
+   "model": "sonnet",
+   "deviceOrder": [
+    "desktop",
+    "phone"
+   ],
+   "ports": {
+    "phone": 22502,
+    "desktop": 22503
+   },
+   "historyBytes": 114979,
+   "historyNewlines": 775,
+   "historyCharactersPerFreeze": 114801,
+   "historySha256": "2d8c73d2ee880c32ac90131f5ffddfce020ef196e2e6379e51aacdb7d10d2900",
+   "briefSha256": "46971e8255cb59e970462d3dac0b7660a569d9a618c5de6ea1ef4ba8aa59b134",
+   "ownSourceCount": 11,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T06:11:31.049212+00:00",
+   "note": "Hashes compared with hearsay-retest-input-freeze.json and dispatch.json by validate-quotes.py. History and brief were copied mechanically and not read by the preparer."
+  },
+  {
+   "id": "hearsay-retest-diego",
+   "tester": "Diego Silva",
+   "kind": "standing",
+   "exposure": "retest",
+   "model": "sonnet",
+   "deviceOrder": [
+    "desktop",
+    "phone"
+   ],
+   "ports": {
+    "phone": 22504,
+    "desktop": 22505
+   },
+   "historyBytes": 117796,
+   "historyNewlines": 982,
+   "historyCharactersPerFreeze": 117616,
+   "historySha256": "de99758b035571555a8cb24c6c848034c71b229a1c244ec7c6bbec9f615d30f6",
+   "briefSha256": "84d53f7fb218d0b25051cd4392096dadceae41866751cfdf218080822a7c7fb2",
+   "ownSourceCount": 12,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T06:23:28.536151+00:00",
+   "note": "Hashes compared with hearsay-retest-input-freeze.json and dispatch.json by validate-quotes.py. History and brief were copied mechanically and not read by the preparer."
+  },
+  {
+   "id": "hearsay-retest-rosa",
+   "tester": "Rosa Alvarez",
+   "kind": "standing",
+   "exposure": "retest",
+   "model": "sonnet",
+   "deviceOrder": [
+    "phone",
+    "desktop"
+   ],
+   "ports": {
+    "phone": 22506,
+    "desktop": 22507
+   },
+   "historyBytes": 177793,
+   "historyNewlines": 1418,
+   "historyCharactersPerFreeze": 177542,
+   "historySha256": "935b75e5ec1364b4ff51f59233c8b285996a4f3e7376b1a85c8bc6243e419173",
+   "briefSha256": "aab9c76076d95ea3a1b2f43274ed079004df986b236df19e802a8ac480e5e546",
+   "ownSourceCount": 15,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T06:28:45.323443+00:00",
+   "note": "Hashes compared with hearsay-retest-input-freeze.json and dispatch.json by validate-quotes.py. History and brief were copied mechanically and not read by the preparer."
+  },
+  {
+   "id": "hearsay-retest-irena",
+   "tester": "Irena Novotná",
+   "kind": "cold",
+   "exposure": "first",
+   "model": "opus",
+   "deviceOrder": [
+    "desktop",
+    "phone"
+   ],
+   "ports": {
+    "phone": 22508,
+    "desktop": 22509
+   },
+   "historyBytes": 77,
+   "historyNewlines": 1,
+   "historyCharactersPerFreeze": 77,
+   "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+   "briefSha256": "b0bbfa97a1da44f2408a5fd4c38c187f36694140e8e9cc5ab20b7a6d316a88c7",
+   "ownSourceCount": 0,
+   "driver": {
+    "lab-play.ts": "0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff",
+    "lab-play-helpers.ts": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+   },
+   "dispatchTime": "2026-10-31T06:32:26.874777+00:00",
+   "note": "Hashes compared with hearsay-retest-input-freeze.json and dispatch.json by validate-quotes.py. History and brief were copied mechanically and not read by the preparer."
+  }
+ ]
+}

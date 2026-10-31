@@ -1,0 +1,175 @@
+[
+  {
+    "id": "F-2461",
+    "tester": "Maya Chen",
+    "game": "hearsay",
+    "date": "2026-10-31",
+    "exposure": "standing player, retest after fixes",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 71.863,
+        "reason": "TASTE",
+        "game_clock": "Day 1 09:01",
+        "rawStopReaction": "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "desktop": {
+        "elapsed_s": 22.66,
+        "reason": "TASTE",
+        "game_clock": "Day 1 06:26",
+        "rawStopReaction": "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "Yes, one more evening, to see what Day 2 does with the secrets I kept and the one I told. It would have to stay as clear as this visit about who hears what. I would not leave it running.",
+    "laterFullReturn": "Yes, one more evening. I would come to see what Day 2 does with the secrets I kept and the one I told. I would also come because the game now says who hears what before I tap. I would stop coming back if Day 1 turns out to be the same stories every time, or if the garden keeps emptying while I have nothing to do. I would not leave it running. Another evening is the way back, because I learn nothing from watching the clock.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: one more evening to see what Day 2 does with the secrets she kept and the one she told, only if it stays as clear about who hears what. Not leaving it running. Both sessions stopped TASTE.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2466", "F-2467", "F-2468"],
+    "historyQualification": "Director qualification: own-history lines 1–349 read only, earlier own Hearsay report included, later cross-game history unread. Do not claim the full supplied history was read.",
+    "viewEvidence": "Viewed phone a-001 and a-002, desktop b-001 and b-002. Never viewed the phone with the Garden record open or a speech panel showing a reply. Desktop stopped before 60 s so no first-minute capture."
+  },
+  {
+    "id": "F-2462",
+    "tester": "Emre Kaya",
+    "game": "hearsay",
+    "date": "2026-10-31",
+    "exposure": "standing player, retest after fixes",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 468.833,
+        "reason": "BORED",
+        "game_clock": "Day 4 12:02",
+        "rawStopReaction": "Stopping on desktop at Day 4 12:02, about 7.8 minutes. The order screen with costs, the Next line, faster Fast pace and where-people-are were real improvements. The odd chapter message and the Dilan busy loop stayed. I would come back another evening for Day 8, not leave it running.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 204.88,
+        "reason": "BORED",
+        "game_clock": "Day 2 09:37",
+        "rawStopReaction": "Stopping on phone at Day 2 09:37, about 3.4 minutes. Same title, same Next line, same chapter message. Only one talk done and then waiting. I would come back another evening on desktop, not leave it running.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I would come back another evening on desktop to reach Day 8 and see how the paid cooking and the four reservations go, but only if the \"chapter could not be saved\" message is explained or gone and Dilan's \"busy\" has a reason. I would not leave it running, and I would not return tonight.",
+    "laterFullReturn": "I would come back another evening on desktop to reach Day 8 and see how the paid cooking and the four reservations go, but only if the chapter message is explained or gone and Dilan's \"busy\" has a reason. I would not leave it running, because the long stretches show me nothing to decide. I would not return tonight.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening on desktop to reach Day 8, only if the chapter message is explained or gone and Dilan busy has a reason. Not tonight, not left running.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2469", "F-2470", "F-2471"],
+    "historyQualification": "Self-claim in report: read all of own-history.md (lines 1–480 and 481–776). Tool Read receipts for the history are not in this packet (validation.json records image reads and unexpected reads only), so this is unverified here. Verify receipts if reported independently.",
+    "viewEvidence": "Viewed desktop a-001 (title) and phone b-001 and b-002. Desktop play screens, the order screen and Day 8 onward were not viewed in any image. Phone pace row and Next line scrolled above the fold once a person panel opened (b-002, her own words)."
+  },
+  {
+    "id": "F-2463",
+    "tester": "Diego Silva",
+    "game": "hearsay",
+    "date": "2026-10-31",
+    "exposure": "standing player, retest after fixes",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 196.301,
+        "reason": "BORED",
+        "game_clock": "Day 2 05:12",
+        "rawStopReaction": "I am stopping the desktop session. The first half minute is better than last time: selects work, claims echo, pressing Osman answers. But the garden emptied around 09:00 and stayed empty for two real minutes, everyone asleep by midnight, with Day 4 still far away. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 74.143,
+        "reason": "BORED",
+        "game_clock": "Day 1 08:49",
+        "rawStopReaction": "I am stopping the phone session. It reads fine and the gossip price is honest, but by 08:45 the garden is empty again, the claim buttons are greyed because Riza left, and Day 4 is far. Feedback: I am stopping chosen, Not now pressed, nothing typed.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I might come back on another evening, but only if the empty stretch before Day 4 were filled or skippable. I would not return tonight, and I would not leave it running.",
+    "laterFullReturn": "I might come back on another evening, but only if the empty stretch before Day 4 were filled or skippable. I would not return tonight. I would not leave it running, because the garden empties and nothing I can do changes that.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: might return another evening, only if the empty stretch before Day 4 were filled or skippable. Not tonight, not left running.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2472", "F-2473", "F-2474"],
+    "historyQualification": "Self-claim in report: read all of own-history.md (lines 1–983). Tool Read receipts for the history are not in this packet, so this is unverified here. Verify receipts if reported independently.",
+    "viewEvidence": "Viewed desktop a-001 and a-002 (a-002 scrolled, top of the play screen not seen) and phone b-001 and b-002. No phone empty-garden image. His report says he took no automatic checkpoint shot, but first-minute.png exists on both devices. It has no read receipt."
+  },
+  {
+    "id": "F-2464",
+    "tester": "Rosa Alvarez",
+    "game": "hearsay",
+    "date": "2026-10-31",
+    "exposure": "standing player, retest after fixes",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 108.238,
+        "reason": "CONFUSED",
+        "game_clock": "Day 1 15:00",
+        "rawStopReaction": "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "desktop": {
+        "elapsed_s": 73.576,
+        "reason": "BORED",
+        "game_clock": "Day 1 07:06",
+        "rawStopReaction": "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I would come back another evening on the big screen, now that the lists work and the bread goal is on the first screen, but only if the game says why someone is 'busy' when they are sitting right there. I would not leave it running, and on the phone I would not return only to wait.",
+    "laterFullReturn": "Yes, another evening, on the big screen only, to see the bread offer on Day 4 and what happens to Rıza and Derya. I would want a reason when someone is \"busy\" while sitting at the garden. On the phone I would not return only to wait. I would not leave it running, because I would not know what I missed while the clock moves.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening on the big screen, only if the game says why someone is busy while sitting there. Phone would not be revisited only to wait. Not left running.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2475", "F-2476", "F-2477"],
+    "historyQualification": "Director qualification: own-history lines 1–826 of 1419 read, earlier own Hearsay report included, lines 827–1419 (later Stairwell and cross-game) unread. The earlier Rosa GoodHands, Glance and Rope alternative-contamination qualification remains in the supplied history. Current target findings cannot erase that exposure.",
+    "viewEvidence": "Phone: viewed a-001, the title only, so there is no phone gameplay layout evidence. Desktop: viewed b-001 and b-002 (b-002 scrolled, top bar cut off)."
+  },
+  {
+    "id": "F-2465",
+    "tester": "Irena Novotná",
+    "game": "hearsay",
+    "date": "2026-10-31",
+    "exposure": "new cold person, empty history, first Hearsay visit",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "opus",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 250.253,
+        "reason": "BORED",
+        "game_clock": "Day 1 15:26",
+        "rawStopReaction": "I have heard everyone who is here and nothing can be ordered until Day 4. I like the record, but I am stopping. Feedback: I chose I am stopping, then Not now; the dialog closed with no error.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 80.308,
+        "reason": "BORED",
+        "game_clock": "Day 1 07:17",
+        "rawStopReaction": "Same morning a second time, and three days before any real choice. I liked that I could take back what I said. I am stopping. Feedback: I am stopping chosen by tapping its spot, then Not now; dialog closed, no error.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I would come back another evening only if something new happens before Day 4 and people stop being 'busy' without a reason. As it is, I saw the same morning word for word on both devices, and I would not leave it running.",
+    "laterFullReturn": "\"I would come back another evening only if something new happens before Day 4 and people stop being 'busy' without a reason. As it is, I saw the same morning word for word on both devices, and I would not leave it running.\" I like the dated record and being able to withdraw a claim. Those are the reasons I would give it a second evening at all. But I will not sit through three game days with nothing to decide.",
+    "laterExtraReturnSpans": {
+      "Section 7 bullet, leave it running": "**Leave it running:** No.",
+      "Section 7 bullet, come back another evening": "**Come back another evening:** Only on the conditions above."
+    },
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening only if something new happens before Day 4 and people stop being busy without a reason. Not left running.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2478", "F-2479", "F-2480"],
+    "historyQualification": "Self-claim in report: read the empty history in full (one line, 77 characters per the input freeze). No prior HF exposure.",
+    "viewEvidence": "Viewed all three desktop and all three phone images. Phone p-002 is scrolled to the story panel. No image shows the phone card grid or the pace bar."
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-31T06:52:04.002763+00:00",
+  "state": "Prepared only; fresh live/SDK/disk/browserlease/cooldown gates remain. Pass288 technicalhandbackpending, no admission yet; no dispatch, freshlive/disk/pause/slots remain.",
+  "players": [
+    {
+      "tester": "Maya Chen",
+      "characters": 160882,
+      "historySha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045",
+      "briefSha256": "2912a74eedafd26d6ecfda468ce6d696e0398c5cfa54219d3f024149fc01c5ff",
+      "ownSourceCount": 13
+    },
+    {
+      "tester": "Emre Kaya",
+      "characters": 127228,
+      "historySha256": "e9cde6923f920d658d4c2233ae55fb0bee4e4da0d52183a256cc4218e5bf0751",
+      "briefSha256": "aa5c586444e6fd026c24ff35ff0d7d94dc793673cd0ecce838daca7572dfd78f",
+      "ownSourceCount": 12
+    },
+    {
+      "tester": "Nia Okafor",
+      "characters": 126963,
+      "historySha256": "3b5c92c0d9cf785de796499d00c36274ef8eb8c40b956f62d74a49ecf074426a",
+      "briefSha256": "e30f8c38f278818d13c5864d60fe342423678b97ccaf0c7653071e61a9b69022",
+      "ownSourceCount": 12
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "characters": 202187,
+      "historySha256": "3b79aa6dba4160965f913991936c99e8a05c2896bfcb0dda4f1b5242981cceff",
+      "briefSha256": "c6a661bcae8c9a586c54d7856446a4937219904c179d8371a19e2adf61f95ca9",
+      "ownSourceCount": 17
+    },
+    {
+      "tester": "Sonia Ionescu",
+      "characters": 77,
+      "historySha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9",
+      "briefSha256": "9047104c6dafee8911cbfcfd65d25db84941068c149db4406ad898ebfb5ed04f",
+      "ownSourceCount": 0
+    }
+  ]
+}

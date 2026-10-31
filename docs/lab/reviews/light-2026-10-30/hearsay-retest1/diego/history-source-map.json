@@ -1,0 +1,84 @@
+{
+  "time": "2026-10-31T06:09:03.781699+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "selection": "diego-free complete return plus literal own asks only; excludes CONT and director method interpretation",
+      "selectedReturnAndAsksOnly": true,
+      "selectedSha256": "3226994078aea9f2ab755b24b5939c17f52818876143335066f41fd3cb02791d"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/hf3-warren-2026-10-25/diego-free-matched.md",
+      "selection": "FREE only; independent CONT alternative excluded",
+      "selectedSha256": "9cdbd8e5c409b69616a49d4c928b216bf4a1b5c082082b86665604603a12b553"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands/diego/report.md",
+      "sourceSha256": "f796bca40c67ecf534e3ad10c4d01c5c2e096b43fbdeda71fcdcd035c4606cd3",
+      "selectedSha256": "3e8b51d1211c52d0fb4d749a70f6a520abcc5a973e50b6c673893e30d8b50f7c"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay/diego/report.md",
+      "sourceSha256": "2f7ac069c39a704b9907e8af45e8391af467d1c815e6186cae15e233c23140fd",
+      "selectedSha256": "8223fe13edd221317501624e51a714b76797e3115ba17242ab8b6b8e71fee545"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke/diego/report.md",
+      "sourceSha256": "fd64da6878f1904080017404b7510f8b22da2e7e720e64d8d8c85169c3f94eae",
+      "selectedSha256": "743a2b981fba53b784fb3796c48c7997a2cc66e2e10f36be423ba0bf0a10ba82"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word/diego/report.md",
+      "sourceSha256": "6ef8bec68cc0d873b2842721aea30da40d7c6c3c4b7df5d0f3b1a46100187b8e",
+      "selectedSha256": "507934bd71795ffed93cd08fd628417bcac8b2a3a7102450d52676e67b1e283d"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/voice-playtest-2026-10-27-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "443a16bf68ed6be065fdab953df9218f483c3143b3df309ce2c4749029928775"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "74e42234548afcd29c96db042733359ad28f0314a9cbffecee17b6dd2c4c0ac9"
+    },
+    {
+      "repo": "pass",
+      "commit": "288b2fda7c8589931a9d9e8f044f1a8aaf630333",
+      "path": "docs/playtests/panel-2026-10-27.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "df81c2eab5abf61b2499e08f17102b37874782d3c19bf84b983496f963de1606"
+    },
+    {
+      "repo": "valley",
+      "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+      "path": "docs/playtests/2026-10-27-retest2.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "c4e7483986ed37435e71446053a44a94f4bc0bdfc3ab1a906e085d0ea05c6a8c"
+    },
+    {
+      "repo": "commonstead",
+      "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+      "path": "docs/games/commonstead-playtest-2026-10-27b.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "a7ede2bc51528110832ca989986590387eaa7c4a112406c68f91fbca8666c2db"
+    },
+    {
+      "repo": "lefthand",
+      "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+      "path": "docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "366ec19435ca74c10757d860b3461eb3c3f087bd315953364c1f47daba896953"
+    }
+  ],
+  "historySha256": "de99758b035571555a8cb24c6c848034c71b229a1c244ec7c6bbec9f615d30f6"
+}

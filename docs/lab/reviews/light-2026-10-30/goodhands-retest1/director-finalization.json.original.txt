@@ -1,0 +1,20 @@
+{
+  "time": "2026-10-31T08:46:27.392255+00:00",
+  "sourceCopiesVerified": 83,
+  "literalCellsUnchanged": true,
+  "datesAccepted": true,
+  "corrections": [
+    "Missing ask-ledger.json generated from literal Markdown rows",
+    "Aisha later return adds an unsent-letter condition",
+    "Jonas raw spelling Gülce; report Gulce",
+    "F2533 balance threshold does not measure clock speed; C14 retained conditionally only in F2525",
+    "Bounded clarity scope does not add blanket owner permission gate"
+  ],
+  "iteration": 1,
+  "finished": false,
+  "blockingSourceLeads": [
+    "F-2529",
+    "F-2538"
+  ],
+  "acceptanceClaimed": false
+}

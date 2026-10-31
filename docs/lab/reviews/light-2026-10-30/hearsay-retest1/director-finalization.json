@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-31T06:57:33.589289+00:00",
+  "producerCopiesVerified": 65,
+  "ledgerRows": 20,
+  "range": "F2461\u20132480",
+  "unused": "F2481\u20132490",
+  "gameFinished": false,
+  "ownerAcceptance": false,
+  "routingCorrection": "F2476 Nov3 known availability clarity, not automatic timing retune",
+  "validatorCorrection": "Replaced unconditional provider-envelope scan success with actual regex scan. Prior validator retained inert."
+}

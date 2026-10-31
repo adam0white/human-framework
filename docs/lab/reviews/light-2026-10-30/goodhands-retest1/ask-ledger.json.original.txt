@@ -1,0 +1,167 @@
+[
+ {
+  "id": "F-2526",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Jonas Berg",
+  "words": "\"Show where the fee gets refused. Nobody refused ₺9,200. Only one line of grumbling appeared.\" Later wording (section 8): \"Show where the fee gets refused, or say the family has no limit.\" Later wording (section 9): \"I found no refusal point, and the wage's effect I did not test. The fee still got accepted.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Jonas wants to see where a fee gets refused or be told the family has no limit, nobody refused 9200 and only a line of grumbling appeared though the more than we planned but we will manage reaction was seen, broader preference with no hard cap or automatic punishment authorized, the trial outcome was not reached so a later consequence is not proven absent, target2026-11-10 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/jonas/report.md"
+ },
+ {
+  "id": "F-2527",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Jonas Berg",
+  "words": "\"Show on the call or reference screen when a candidate can next be reached. The phone \"Call a reference\" button still has no subtitle.\" Later wording (section 8): \"Show when a candidate can next be reached, on the reference or call screen, and add the missing phone subtitles.\" Later wording (section 9): \"I saw no \"next call\" time beyond that line. Phone subtitles under \"Call a reference\" are still missing.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Jonas wants the call or reference screen to show when a candidate can next be reached and the phone Call a reference, Send for a trial and Keep the phone number buttons still show no subtitle, Hale Erol showed only At work until 09:00 in the phone game, the phone negotiate and reference screens were unvisited so the subtitle observation is limited to the visible buttons, clarity lead and inspect the source for the next call time first, no hard clock pause or retune authorized, target2026-11-03 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/jonas/report.md"
+ },
+ {
+  "id": "F-2528",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Jonas Berg",
+  "words": "\"Let a reference settle a trait. Melek said \"listened\" and Nermin stayed \"unsure\", so I cannot tell what would count as enough.\" Later wording (section 8): \"Say what a reference needs to say to settle a trait.\" Later wording (section 5): \"Melek said Şebnem \"listened\". Nermin still said unsure. I do not know what would be enough.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Jonas wants to know what a reference needs to say to settle a trait since Melek said listened and Nermin stayed unsure, clarity and source inspection lead into what counts as evidence, do not force equal belief or certainty, no automatic rule change, target2026-11-03 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/jonas/report.md"
+ },
+ {
+  "id": "F-2529",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Aisha Rahman",
+  "words": "\"Let me finish the repair. After \"Correct the agency record and write to the worker first\", the letter stayed \"not sent\" and I found no way to send it.\" Later wording (section 5): \"Whether the drafted letter to the worker can ever be sent, or whether the old case continues later. I did not find out.\" Later wording (section 9): \"let me send the letter in the old-case card. The repair stops at \"has not sent the letter or paid anything yet\".\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Aisha wants to send the repair letter after choosing Correct the agency record and write to the worker first since the letter stayed not sent and the card said Nermin has not sent the letter or paid anything yet, new blocking source lead reached on desktop, she saw the draft and no send control in the reached screen only and the later continuation and the What happens to these people next menu were unvisited so a later send is not proven absent, do not force an automatic send or payment or actor compliance, inspect the source for the draft letter continuation first, target2026-11-03 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/aisha/report.md"
+ },
+ {
+  "id": "F-2530",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Aisha Rahman",
+  "words": "\"When I ask why a job ended, give me a reason in the person's own words. I got another bad fact: \"left without handing over the work as agreed.\"\" Later wording (section 4): \"\"Ask why the job ended\" gave another bad fact, not a reason.\" Later wording (section 3): \"Asked why the job ended and got another bad fact (left without handing over work), not a reason, same as last time.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Aisha asked why the job ended and got another bad fact and not a reason in the person's own words, the same shape she saw last time and her own side came after a callback she did not reach, clarity and source inspection lead for reason versus bad fact, target2026-11-03 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/aisha/report.md"
+ },
+ {
+  "id": "F-2531",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Aisha Rahman",
+  "words": "\"Make a second candidate's interview answers say more than \"I have worked as a nanny.\"\" Later wording (section 3): \"Her answers are thin now: I have worked as a nanny. Less than last time, I think.\" Later wording (section 3, phone): \"Ozlem gives the same thin I have worked as a nanny.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Aisha wants a second candidate's interview answers to say more than I have worked as a nanny, Ozlem gave the same thin answer on the phone as on desktop and the phone was her same-evening second device at 33 s, broader preference toward richer interviews with no automatic change, target2026-11-10 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/aisha/report.md"
+ },
+ {
+  "id": "F-2532",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Diego Silva",
+  "words": "\"Make an unchecked promise cost something. I promised \"warm\", which I had not checked, and the family agreed in seconds. Nothing bit back.\" Later wording (section 8): \"Make an unchecked promise cost something I can feel.\" Later wording (section 9): \"But I still promised an unchecked trait and the family agreed at once.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Diego wants an unchecked promise to cost something he can feel since he promised warm unchecked and the family agreed in seconds, he saw no cost on this visit but no trial result or second payment was reached so no immediate bite does not prove no later consequence, broader preference with no extra punitive rule or new penalty or story fact authorized, target2026-11-10 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/diego/report.md"
+ },
+ {
+  "id": "F-2533",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Diego Silva",
+  "words": "\"Don't let the deposit clear rent by Monday morning. Cash was ₺5,250 at 10:04 on desktop, over the ₺5,000 rent.\" Later wording (section 8): \"Don't let the deposit cover the rent on Monday morning.\" Later wording (section 9): \"Cash still passed ₺5,000 at 10:04 Monday on desktop, a few minutes after I agreed.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Diego wants the deposit not to clear the rent by Monday morning since cash read 5250 at 10:04 on desktop above the 5000 rent, initial cash and deposit are distinct and cash above the rent target is not a rent payment or game end, Diego dislikes the early rent and Nadia likes it so the disagreement is retained, review this broader economy preference on Nov10 and preserve current rules in the bounded clarity correction, no automatic easier or harder game, target2026-11-10 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/diego/report.md"
+ },
+ {
+  "id": "F-2534",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Diego Silva",
+  "words": "\"Give the incoming calls more than Promise, Decline or Finish. The Kaya call is better written now, but the menu is the same.\" Later wording (section 8): \"Give calls and the old-case choice a visible effect later on.\" Later wording (section 4): \"The call menu is still Promise to look, Decline, Finish.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Diego wants incoming calls to offer more than Promise, Decline or Finish and the Kaya call is better written now and names the plate throwing but the menu is the same, broader preference with no automatic change, the City map and the time-cost repeat ask were not seen, target2026-11-10 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/diego/report.md"
+ },
+ {
+  "id": "F-2535",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Rosa Alvarez",
+  "words": "\"After a placement, tell me what to do while I wait. Both sessions ended on \"Next: A family is due to call. Wait or meet someone on your bench.\"\" Later wording (section 8): \"Tell me what is worth doing while I wait, after a placement.\" Later wording (section 9): \"Not met on \"what to do while waiting\". The screen still said only \"Wait or meet someone on your bench.\"\"",
+  "verdict": "keep",
+  "routes": "fix:goodhands Rosa wants to be told what is worth doing while she waits after a placement since her ask says both sessions ended on the Next line A family is due to call, phone placement was reached and desktop placement was not, rent covered by the cash bar is not an actual Friday rent payment or game end, clarity lead for post-placement next guidance, target2026-11-03 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/rosa/report.md"
+ },
+ {
+  "id": "F-2536",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Rosa Alvarez",
+  "words": "\"Say each wage and fee once on the agreement screen. The same numbers appear three times.\" Later wording (section 8): \"Say the wage and fee once on the agreement screen.\" Later wording (section 4): \"The agreement screen says the wage and hours three times.\"",
+  "verdict": "keep",
+  "routes": "fix:goodhands Rosa wants each wage and fee said once on the agreement screen since the same numbers appear three times and Nadia also saw Nermin say the same terms twice in a row, inspect the source for a duplicate copy first but do not remove the actual two-party terms or assent, broader preference for fewer repeated terms, target2026-11-10 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/rosa/report.md"
+ },
+ {
+  "id": "F-2537",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Rosa Alvarez",
+  "words": "\"Keep \"I'm stopping\" and \"I'm confused\" in Feedback on both devices. Both were there this time.\" Later wording (section 8): \"Keep the two Feedback labels on both devices.\" Later wording (section 7): \"both \"I'm stopping\" and \"I'm confused\" were offered on both devices.\"",
+  "verdict": "keep",
+  "routes": "fix:goodhands Rosa asks to keep I'm stopping and I'm confused in Feedback on both devices and both were offered on both devices this time so the ask is already met at both sizes, preservation-only review with no unmet bug or new feature, no Submit or note or consent change was made, target2026-11-10 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/rosa/report.md"
+ },
+ {
+  "id": "F-2538",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Nadia Petrović",
+  "words": "\"Explain the belief rule in the same words every time. On the computer, Şebnem's one bad reference made Nermin \"doubt\" her, but Cihan's one bad reference (\"would not hire him again… did not come and did not call\") left her only \"still unsure\". Nothing said why.\" Later wording (section 8): \"Explain the doubt/unsure rule in the same words every time.\" Later wording (section 9): \"two bad references got different readings with no reason given (Şebnem got doubt, Cihan stayed unsure). This made me stop on the desktop.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Nadia wants the belief rule explained in the same words every time since Şebnem's one bad reference made Nermin doubt her while Cihan's one bad reference left her only still unsure, the two bad references concern different people and traits and knowledge so do not force equal belief or certainty, inspect the actual meaning and reason in the source, new blocking source lead reached on desktop where she stopped CONFUSED, target2026-11-03 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/nadia/report.md"
+ },
+ {
+  "id": "F-2539",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Nadia Petrović",
+  "words": "\"Let me see my kept numbers while a card is open. On the computer I never found where Gülce's number had gone. On the phone, the list (\"Şebnem Eren · at home\") appears only when no card is open.\" Later wording (section 8): \"Show kept numbers while a card is open.\" Later wording (section 5): \"Kept numbers are listed under the bench when no card is open.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Nadia wants to see her kept numbers while a card is open, she did find the kept numbers on the phone under the bench list when no card was open and did not find them on desktop so the desktop absence is not a global absence, source inspection lead for a list alongside the card, the Task line tap and time jump cause is unknown and model clock latency is qualified, target2026-11-03 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/nadia/report.md"
+ },
+ {
+  "id": "F-2540",
+  "date": "2026-10-31",
+  "game": "goodhands",
+  "kind": "playtester",
+  "who": "Fictional LIGHT panel: Nadia Petrović",
+  "words": "\"Show the Pace (Slow) setting at the start. I only found it in the menu at the very end, after feeling rushed for a whole session.\" Later wording (section 8): \"Show the Pace setting at the start.\" Later wording (section 3): \"There is a Pace setting with Slow. I never knew; on the computer I felt rushed.\"",
+  "verdict": "mixed",
+  "routes": "fix:goodhands Nadia wants the Pace setting visible at the start since she found Slow only in the menu at the end after feeling rushed, visibility only and it does not change the default clock, no clock or speed retune authorized, target2026-11-03 (open)",
+  "source": "docs/lab/reviews/light-2026-10-30/goodhands-retest1/nadia/report.md"
+ }
+]

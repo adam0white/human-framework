@@ -1,0 +1,137 @@
+I would come back another evening on desktop to reach Day 8 and see how the paid cooking and the four reservations go, but only if the "chapter could not be saved" message is explained or gone and Dilan's "busy" has a reason. I would not leave it running, and I would not return tonight.
+
+**Ranked asks**
+1. Explain the "A person's chapter could not be saved. Finish outstanding responsibilities and try again." message, or remove it. It appeared on both devices.
+2. Say why Dilan stays "busy" when he is sitting at the garden, and when he will be free.
+3. Give me a decision, or a way to skip ahead, while I wait for Day 8 (desktop) and between talks and Day 4 (phone).
+
+# Report: Hearsay retest, Emre Kaya
+
+## 1. Session
+
+- **Persona:** Emre Kaya, 37, Ankara electrical technician and parent.
+- **Exposure and arm:** retest, round light-1031-hearsay-retest1, free stop (floor 0).
+- **Own history:** I read all of own-history.md (lines 1–480 and 481–776), so nothing is unread.
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent (build ccd8592e / 4.12.0 as supplied).
+- **Session A:** 1280x800 desktop, port 22503. Real time 468.8 s (about 7.8 min). Stopped at Day 4 12:02.
+- **Session B:** 360x690 touch phone, port 22502. Real time 204.9 s (about 3.4 min). Stopped at Day 2 09:37.
+
+## 2. First impressions
+
+**Session A (desktop)**
+- 2.5 s: the title page is unchanged (same "Hearsay", same Day 13 lunch goal).
+- 5.3 s: a new "Next" line says Day 4 at 12:00 is when bread and produce can be ordered. That was my ask 3 last time.
+- 25 s: three talks were accepted in a row. Last time three were refused.
+- 31 s: Dilan refused, but the wording is now "busy right now… try again later".
+
+**Session B (phone)**
+- 1.7 s: the same title page.
+- 43 s: the same Next line.
+- The conversation text now shows what repeating would cost before I choose ("Rıza may stop trusting you with private matters").
+
+## 3. Verbatim diary lines
+
+**Session A (desktop), elapsed seconds first**
+- 5.29: "Same title as last time. Goal is the same: Day 13 lunch."
+- 7.7 note: "New: top says Next Day 4 at 12:00 bread and produce order offered, nothing can be ordered before. That was my ask 3 last time. Good."
+- 16.4: "Different story from last time: tenant repair money, not crates. I need Osman for produce so I keep it private."
+- 25.3: "Three talks in a row accepted, no refusals so far. Last time three refused."
+- 30.9 note: "Dilan refused: now says busy right now, try again later, this choice was not made. Better than cannot do this now, still no time for when."
+- 65.8 first_minute (Day 1 11:26): "Goal clear, and now the top says orders open Day 4 12:00. Three talks went through, one refused as busy. Fast passed four hours in 30 s, much quicker than last time. Each name now shows where the person is, and the empty garden tells me what I can do. Still nothing to decide until Day 4."
+- 98.5: "People are back at 18:10. Retrying Dilan."
+- 130.4: "Dilan busy again at 18:29, same wording, still no reason or time. I stop trying him."
+- 163.3 note (Day 2 04:19): "A message appeared I did not cause: A person chapter could not be saved. Finish outstanding responsibilities and try again. I have no idea what chapter or what responsibilities. Confusing, and it looks like a system error."
+- 196.4 pulse, engagement 3 (Day 2 10:54): "Money climbs, time moves, and I know when the first decision comes. But I only wait again, and the strange chapter message is still sitting there."
+- 261.1: "Dilan busy for the third time, even though he is sitting at the garden. I give up on him."
+- 357.0 pulse, engagement 3 (Day 3 16:20): "I am waiting for Day 4 because the game told me when it comes. That is why I stay. Without that line I would have left. Money keeps rising: 1080."
+- 457.9 (Pay 120): "There it is, the order screen, at 456 s. Costs in numbers: 380 now or 410 on credit, four meals vs five. I have 1220, so I pay now."
+- 462.6 (Feedback): "Menu says my garden saves automatically, which I like."
+- 466.9 want_quit, BORED (Day 4 12:02): "I got what I came for: the order screen with real numbers. The next decision is Day 8, four game days of waiting away, and I know what the waiting looks like."
+- 468.8 stop, BORED (Day 4 12:02): "Stopping on desktop at Day 4 12:02, about 7.8 minutes. The order screen with costs, the Next line, faster Fast pace and where-people-are were real improvements. The odd chapter message and the Dilan busy loop stayed. I would come back another evening for Day 8, not leave it running."
+
+**Session B (phone), elapsed seconds first**
+- 43.6 (Begin): "Phone, same title page. Starting a new game."
+- 47.98 (Offer practical help): "Repeating costs trust and the text now says so up front. Keeping it private."
+- 66.8 first_minute (Day 1 06:58): "Phone, Day 1 06:58. Same goal, same Next line about Day 4 12:00. One talk done and kept private; the trade-off text before repeating is clear. Fast moves about 40 game minutes in 15 s. Nothing to decide until Day 4 again."
+- ~70 (wait): "Phone view scrolled down to the person panel; the pace row and Next line are above the fold now, same as last time."
+- 164.6 note (Day 2 02:32): "Same message as on desktop: A person chapter could not be saved. Finish outstanding responsibilities and try again. At Day 2 02:32 everyone at the lodging. I still do not know what it means or what I should finish."
+- 196.6 pulse, engagement 2 (Day 2 09:00): "On the phone I only did one talk and have been waiting since. Money rises (780) and I know Day 4 is the next thing, but I am watching a clock, and the chapter message stays."
+- 203.4 want_quit, BORED, engagement 2 (Day 2 09:37): "On the phone I did one talk, then only waited. The Day 4 order is four game days of waiting away and I saw it on desktop. The unexplained chapter message is still there."
+- 204.9 stop, BORED, engagement 2 (Day 2 09:37): "Stopping on phone at Day 2 09:37, about 3.4 minutes. Same title, same Next line, same chapter message. Only one talk done and then waiting. I would come back another evening on desktop, not leave it running."
+
+## 4. Moments
+
+**What held me**
+- **Desktop, the Next line.** It told me when the first decision comes, so I kept waiting. My pulse at 357 s said that without that line I would have left.
+- **Desktop, the order screen** (456 s):
+  - 1220 lira, each meal sells for 100.
+  - Four meals pay for a 380 lira cost if paid now, or 410 on credit (five meals needed).
+  - Options: pay 120 for the sample now, get it now and pay 150 before lunch, or decline.
+  - I paid now, money went to 1100, and the screen said bread and produce were ordered.
+  - A new Next line then said Day 8 at 12:00, when Aylin offers paid cooking.
+- **Both devices, the trade-off text.** It states what repeating would cost before I choose.
+- **Desktop, the menu.** It says my garden saves automatically.
+
+**What lost me**
+- **Dilan.** He said "busy right now… This choice was not made" three times on desktop (7:22, 18:29, 17:53 on Day 2), even though he was at the garden.
+- **The chapter message.** It appeared at Day 2 04:19 on desktop and Day 2 02:32 on phone. I never understood it.
+- **Waiting.** After the Day 4 order, the next decision is four game days away.
+
+**Quit wishes and pulses**
+- Desktop: want_quit at 466.9 s (BORED). I stopped, and the wish did not pass. Pulses were 3 at 196 s and 3 at 357 s.
+- Phone: want_quit at 203.4 s (BORED). I stopped, and the wish did not pass. One pulse, 2 at 196.6 s.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The goal, and when the first order opens.
+- Where each person is. Examples: "out delivering parcels", "at the hospital", "sleeping at the temporary lodging". The empty-garden line lists what I can do.
+- What the pace controls do. The text explains why the clock slows after a tap.
+- The cost of repeating something, before I choose.
+
+**Confusing**
+- "A person's chapter could not be saved. Finish outstanding responsibilities and try again." It stayed on screen from Day 2 on both devices. It looks like a system error, and I could not clear it.
+- Dilan's repeated "busy", with no reason and no time.
+
+## 6. Device use
+
+- **Desktop 1280x800.** I viewed a-001.png, the cream title page with "Hearsay", the goal text, a "How to play" disclosure, Begin, Feedback, Fullscreen, All games, People across games, the Recording checkbox (checked) and "Other ways to begin". Its a-001.png path is in the desktop folder. Controls used:
+  - Begin
+  - the people buttons
+  - Invite a quiet conversation
+  - Let the conversation finish
+  - Offer practical help and keep this private
+  - Keep this private
+  - Fast
+  - Pay 120 lira for the sample now
+  - Game menu
+  - Feedback
+  - I'm stopping
+  - Not now
+- **Phone 360x690.** I viewed b-001.png (the same title page, narrow, with buttons and links stacked) and b-002.png (Day 1 07:34, the person panel with "Sit and talk again", scrolled so the Next line and Pace row were off the top). Controls used: Begin, Invite a quiet conversation, Let the conversation finish, Offer practical help and keep this private, Fast, Game menu, Feedback, I'm stopping, Not now.
+- **Seen trouble:** on the phone the pace row and Next line scroll out of view once a person panel is open (b-002.png).
+- **Unseen:** Day 8 onward on both devices, the phone order screen, the Garden record panel and dark mode.
+- **Feedback flow on both devices:** Game menu, then Feedback. It showed "I'd keep playing / Not sure / I'd stop here", then "I'm stopping / I'm confused", a note box, a name box, "What is sent", "Not now" and "Submit". I pressed "I'm stopping" (it showed pressed), then "Not now". I typed nothing, pressed no Submit and changed no consent. There was no error.
+- **Driver:** no blocks and no errors on either device.
+
+## 7. Stop and return
+
+- **Desktop stop words (468.8 s, BORED):** "Stopping on desktop at Day 4 12:02, about 7.8 minutes. The order screen with costs, the Next line, faster Fast pace and where-people-are were real improvements. The odd chapter message and the Dilan busy loop stayed. I would come back another evening for Day 8, not leave it running."
+- **Phone stop words (204.9 s, BORED):** "Stopping on phone at Day 2 09:37, about 3.4 minutes. Same title, same Next line, same chapter message. Only one talk done and then waiting. I would come back another evening on desktop, not leave it running."
+- **Would you return voluntarily?** I would come back another evening on desktop to reach Day 8 and see how the paid cooking and the four reservations go, but only if the chapter message is explained or gone and Dilan's "busy" has a reason. I would not leave it running, because the long stretches show me nothing to decide. I would not return tonight.
+
+## 8. Changes I would want
+
+1. Explain the "chapter could not be saved" message, or remove it.
+2. Say why Dilan is "busy" while at the garden, and when he will be free.
+3. Give me a decision or a skip while waiting for Day 8, and between talks and Day 4.
+
+## 9. Compared with my last visit
+
+- **Ask 1 (say why a talk is refused, show when each person returns): partly met.** The wording is now "busy right now. You can try again later", and every name shows where the person is. Dilan's repeated "busy" has no reason or time. The chapter message was not there last time and I could not explain it.
+- **Ask 2 (something to decide while the garden is empty, or a faster pace): partly met.** Fast now runs at 12 game minutes per second (about one game day per real minute). The Next line says when the next decision comes, and the empty-garden text lists what I can do. I still only waited about 4 minutes on desktop to reach Day 4. I did not see a new action for the empty stretch.
+- **Ask 3 (show where and when bread and produce get ordered, and what private or gossip choices cost): largely met for ordering.** The Next line names Day 4 12:00, and the order screen gave 380 vs 410 lira and four vs five meals. The talk text now states the cost of repeating before I choose. I did not re-test what a private choice earns beyond money rising.
+- **Not seen:** Day 8 paid cooking, reservations, and resuming a saved garden. The menu says it saves automatically, but I did not test it.
+- **New blocker candidate:** the unexplained "chapter could not be saved" message, on both devices, from Day 2. It did not stop play.
+
+No repo touched; no worktree of mine remains.

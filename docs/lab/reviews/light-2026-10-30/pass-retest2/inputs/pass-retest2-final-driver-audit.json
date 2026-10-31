@@ -1,0 +1,652 @@
+{
+  "maya": {
+    "tester": "Maya Chen",
+    "validationTime": "2026-10-31T07:37:36.778607+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T06:59:14.576Z",
+          "elapsed_s": 275.942,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the phone visit. I got Dilek clips story and a follow up, but talking cost a table and cooks left stations on their own, and the Nevin thread went nowhere.",
+          "game_clock": "Mon 18:41",
+          "engagement": 3,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 206.838,
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+          },
+          {
+            "elapsed_s": 212.775,
+            "op": "tap",
+            "input": {
+              "name": "I\\u0027m stopping"
+            },
+            "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T06:55:57.774Z",
+            "elapsed_s": 79.14,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Selim grill"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 12,
+            "error": "Selim grill is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          },
+          {
+            "t": "2026-10-31T06:58:05.472Z",
+            "elapsed_s": 206.838,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 4,
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          },
+          {
+            "t": "2026-10-31T06:58:11.409Z",
+            "elapsed_s": 212.775,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "I\\u0027m stopping"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 6,
+            "error": "I\\u0027m stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T07:03:27.755Z",
+          "elapsed_s": 251.758,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping the desktop visit at about four minutes. The Nevin follow up finally answered and Dilek hinted at her recordings, but every talk still pulls a cook off a station and I am never told that before I tap.",
+          "game_clock": "Mon 18:29",
+          "engagement": 3,
+          "reason": "TASTE",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "emre": {
+    "tester": "Emre Kaya",
+    "validationTime": "2026-10-31T07:37:36.786760+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T07:09:19.177Z",
+          "elapsed_s": 301.426,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping desktop Tuesday 18:42, 840 of 5200, about 5 minutes. Per-night target, ingredients refilling, predicted replies and Kitchen speed in the menu are real improvements. But Fast did not help while a station was empty: time stays slowed and I cannot ask anyone useful. I would come back another evening, not leave it running.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 294.464,
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+          },
+          {
+            "elapsed_s": 298.246,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [50.664],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T07:09:12.215Z",
+            "elapsed_s": 294.464,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T07:10:33.815Z",
+          "elapsed_s": 73.602,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on phone Monday 18:15, 120 of 5200, about 72 seconds. Layout fits. The plan page now says plainly when a cover said no, which I liked. But the empty grill with slowed time is the same dead wait. I would come back another evening on desktop, not leave it running.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 70.875,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "nia": {
+    "tester": "Nia Okafor",
+    "validationTime": "2026-10-31T07:37:36.793982+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T07:14:36.004Z",
+          "elapsed_s": 197.553,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Monday evening. Liked Dilek calling her mother and the hold that worked. Disliked that How are you doing got the toilet or prayer line, and the waiting. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+          "game_clock": "Mon 18:58",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 188.275,
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+          },
+          {
+            "elapsed_s": 193.147,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T07:11:57.811Z",
+            "elapsed_s": 39.36,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "Eat For now, I want to use the bathroom first. I cannot hold it much longer.",
+              "duration_ms": 1800
+            },
+            "reaction": "Toilet line again for Dilek on every job. Holding Eat to insist, which I could not do last time.",
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 7,
+            "error": "Eat For now, I want to use the bathroom first. I cannot hold it much longer. is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+            "requested_control_present_before": false
+          },
+          {
+            "t": "2026-10-31T07:14:26.726Z",
+            "elapsed_s": 188.275,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "stopping"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 5,
+            "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T07:16:25.000Z",
+          "elapsed_s": 107.858,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "Stopping on Monday 18:11, desktop. Insist finally did something I could see, and Selim gave a real answer about Nevin, but one click sent Dilek home for the night and I could not recover. Would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 103.621,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "rosa": {
+    "tester": "Rosa Alvarez",
+    "validationTime": "2026-10-31T07:37:36.801848+00:00",
+    "sessions": {
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T07:20:44.001Z",
+          "elapsed_s": 211.457,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "The empty grill is now explained and I fixed it, which pleased me. But the cooks leave stations by themselves and the words Insist, Hold it to insist and I will explain the wait I do not understand. I do not know if 5,200 is reachable. I would close it, not leave it running. I stop on the phone. In Feedback I pressed I am confused by position, typed nothing, no Submit.",
+          "game_clock": "Mon 19:56",
+          "engagement": 3,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 200.512,
+            "op": "tap",
+            "input": {
+              "text": "confused"
+            },
+            "error": "confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+          },
+          {
+            "elapsed_s": 202.552,
+            "op": "tap",
+            "input": {
+              "name": "I\\u0027m confused"
+            },
+            "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T07:20:33.056Z",
+            "elapsed_s": 200.512,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "text": "confused"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 4,
+            "error": "confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          },
+          {
+            "t": "2026-10-31T07:20:35.096Z",
+            "elapsed_s": 202.552,
+            "kind": "tool",
+            "op": "tap",
+            "input": {
+              "name": "I\\u0027m confused"
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 3,
+            "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+            "requested_control_present_before": false
+          }
+        ]
+      },
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T07:22:40.974Z",
+          "elapsed_s": 115.864,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "On the big screen it is easier to read, and the early warning about the grill was clear. But I earned only 200 lira by 19:32, three tables wait for an empty grill, and Selim says he will explain the wait while the screen says in the bathroom. I do not understand what he does. I would close it, not leave it running. I stop. In Feedback I pressed I am stopping by position, typed nothing, no Submit.",
+          "game_clock": "Mon 19:32",
+          "engagement": 3,
+          "reason": "CONFUSED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [],
+        "earlyFirstMinute": [],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  },
+  "sonia": {
+    "tester": "Sonia Ionescu",
+    "validationTime": "2026-10-31T07:37:36.809238+00:00",
+    "sessions": {
+      "desktop": {
+        "stop": {
+          "t": "2026-10-31T07:31:12.062Z",
+          "elapsed_s": 455,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop here. The cooks say yes and then do something else, and I keep answering the same leave-it-empty question. \u20ba520 of \u20ba5,200 on Monday and I do not see what I could do to change that.",
+          "game_clock": "Mon wk1 21:06",
+          "engagement": null,
+          "reason": "FRUSTRATED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "a-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-002.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "a-003.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 128.507,
+            "op": "tap",
+            "input": {
+              "text": "m confused"
+            },
+            "error": null
+          },
+          {
+            "elapsed_s": 451.192,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [],
+        "earlyPulse": [166.809],
+        "refusedInputs": [
+          {
+            "t": "2026-10-31T07:25:34.508Z",
+            "elapsed_s": 117.446,
+            "kind": "tool",
+            "op": "invalid",
+            "input": {},
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 4,
+            "error": "SyntaxError: Unterminated string in JSON at position 159 (line 1 column 160) (invalid request, not a driver failure)",
+            "requested_control_present_before": null
+          }
+        ]
+      },
+      "phone": {
+        "stop": {
+          "t": "2026-10-31T07:36:07.955Z",
+          "elapsed_s": 294.064,
+          "kind": "stop",
+          "op": "log",
+          "input": null,
+          "reaction": "I stop here. Same Monday twice, the grill is out of food, and I mostly read afterwards what the cooks already decided. \u20ba560 of \u20ba5,200 and still no idea how Saturday could ever work.",
+          "game_clock": "Mon wk1 20:33",
+          "engagement": null,
+          "reason": "BORED",
+          "op_ms": 0,
+          "error": null,
+          "requested_control_present_before": null
+        },
+        "imageReads": [
+          {
+            "file": "b-001.png",
+            "success": true,
+            "imageBlocks": 1
+          },
+          {
+            "file": "b-002.png",
+            "success": true,
+            "imageBlocks": 1
+          }
+        ],
+        "formAndSendInputs": [
+          {
+            "elapsed_s": 289.465,
+            "op": "tap",
+            "input": {
+              "text": "m stopping"
+            },
+            "error": null
+          }
+        ],
+        "earlyFirstMinute": [59.589],
+        "earlyPulse": [],
+        "refusedInputs": []
+      }
+    },
+    "unexpectedReads": [],
+    "runSource": "agent",
+    "nonMessageStreamMetadata": [],
+    "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+  }
+}

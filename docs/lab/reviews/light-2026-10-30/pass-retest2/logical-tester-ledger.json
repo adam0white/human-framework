@@ -1,0 +1,181 @@
+[
+  {
+    "id": "F-2491",
+    "tester": "Maya Chen",
+    "game": "pass",
+    "date": "2026-10-31",
+    "exposure": "standing player, second retest after fixes",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 275.942,
+        "reason": "FRUSTRATED",
+        "game_clock": "Mon 18:41",
+        "rawStopReaction": "Stopping the phone visit. I got Dilek clips story and a follow up, but talking cost a table and cooks left stations on their own, and the Nevin thread went nowhere.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "desktop": {
+        "elapsed_s": 251.758,
+        "reason": "TASTE",
+        "game_clock": "Mon 18:29",
+        "rawStopReaction": "Stopping the desktop visit at about four minutes. The Nevin follow up finally answered and Dilek hinted at her recordings, but every talk still pulls a cook off a station and I am never told that before I tap.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "Yes, one more evening, to hear whether Selim tells me more about Nevin and whether Dilek's recordings go anywhere, but only if talking to a cook stops pulling them off their station without warning. I would not leave it running. I would come back on another evening.",
+    "laterFullReturn": "Yes, one more evening, to hear whether Selim tells me more about Nevin and whether Dilek's recordings go anywhere, but only if talking to a cook stops pulling them off their station without warning. I would not leave it running. I would come back another evening.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: one more evening to hear whether Selim says more about Nevin and whether Dilek recordings go anywhere, only if talking to a cook stops pulling them off a station without warning. Not left running.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2496", "F-2497", "F-2498"],
+    "historyQualification": "Parent checked actual Read receipts covering whole supplied1093-line file; tool rendered last emptyline1094. Safe ranges in director-finalization.json; provider envelopes stay private.",
+    "viewEvidence": "Viewed phone a-001, a-002, a-003 and desktop b-001, b-002, b-003 by actual image Read receipt. Phone and desktop first-minute captures are automatic and carry no receipt."
+  },
+  {
+    "id": "F-2492",
+    "tester": "Emre Kaya",
+    "game": "pass",
+    "date": "2026-10-31",
+    "exposure": "standing player, second retest after fixes",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 301.426,
+        "reason": "BORED",
+        "game_clock": null,
+        "rawStopReaction": "Stopping desktop Tuesday 18:42, 840 of 5200, about 5 minutes. Per-night target, ingredients refilling, predicted replies and Kitchen speed in the menu are real improvements. But Fast did not help while a station was empty: time stays slowed and I cannot ask anyone useful. I would come back another evening, not leave it running.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 73.602,
+        "reason": "BORED",
+        "game_clock": null,
+        "rawStopReaction": "Stopping on phone Monday 18:15, 120 of 5200, about 72 seconds. Layout fits. The plan page now says plainly when a cover said no, which I liked. But the empty grill with slowed time is the same dead wait. I would come back another evening on desktop, not leave it running.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I would come back another evening on desktop, but only if an empty station doesn't leave me stuck in slowed time with no one to ask. I would not leave it running in a tab.",
+    "laterFullReturn": "Yes, another evening on desktop, to see if ₺5,200 by Saturday can be reached. The conditions are that I can pick up where I stopped and that an empty station doesn't leave me stuck in slowed time with no one to ask.",
+    "laterExtraReturnSpans": {
+      "Section 7 bullet, leave it running": "**Leave it running?** No. It slows down and waits for me.",
+      "Section 7 bullet, another evening": "**Another evening?** Yes, with those conditions."
+    },
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening on desktop, only if an empty station does not leave him stuck in slowed time with no one to ask and he can pick up where he stopped. Not left running.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2499", "F-2500", "F-2501"],
+    "historyQualification": "Actual history 907 lines; producer read through 598 and says so. The tail after line 598 is unread. Whole-file read is not claimed. His earlier own Pass retest is near the front; the published R1 and later sections may be later (director qualification).",
+    "viewEvidence": "Viewed desktop a-001, a-002 and phone b-001, b-002. His report names a-002 cut off order cards; the phone People panel was not viewed."
+  },
+  {
+    "id": "F-2493",
+    "tester": "Nia Okafor",
+    "game": "pass",
+    "date": "2026-10-31",
+    "exposure": "standing player, second retest after fixes",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 197.553,
+        "reason": "BORED",
+        "game_clock": "Mon 18:58",
+        "rawStopReaction": "Stopping on Monday evening. Liked Dilek calling her mother and the hold that worked. Disliked that How are you doing got the toilet or prayer line, and the waiting. I would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "desktop": {
+        "elapsed_s": 107.858,
+        "reason": "FRUSTRATED",
+        "game_clock": null,
+        "rawStopReaction": "Stopping on Monday 18:11, desktop. Insist finally did something I could see, and Selim gave a real answer about Nevin, but one click sent Dilek home for the night and I could not recover. Would close it, not leave it running. Pressed Im stopping in Feedback, typed nothing, no submit.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I would come back another evening, but only to play it on my phone and push a cook to see what happens. I would not come back tonight and I would not leave it running. I would stop again the first time a single click ruins my night with nothing I can do about it.",
+    "laterFullReturn": "I would come back another evening, but only to play it on my phone and push a cook to see what happens. I would not come back tonight and I would not leave it running. I would stop again the first time a single click ruins my night with nothing I can do about it.",
+    "laterExtraReturnSpans": {
+      "Section 7 bullet, leave it running": "**Leave it running?** No. There is too much I can only watch while tables leave.",
+      "Section 7 bullet, come back another evening": "**Come back another evening?** Yes, for the cooks pushing back and for the personal moments. Not if that one-click spiral is still there."
+    },
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening on her phone to push a cook and see what happens, not tonight and not left running, and she would stop again the first time one click ruins her night with nothing she can do.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2502", "F-2503", "F-2504"],
+    "historyQualification": "Actual history 963 lines; producer read through 599 and calls that the whole history. Her published own Pass R1 is supplied at line 760, in the unread tail, so her claim that her first-visit report is absent is false as a statement about the supplied file. The first fixed retest was earlier and read.",
+    "viewEvidence": "Viewed phone a-001 (title) only. Phone gameplay was never viewed in an image. Desktop viewed b-001 and b-002. The menu and Feedback screens were not viewed."
+  },
+  {
+    "id": "F-2494",
+    "tester": "Rosa Alvarez",
+    "game": "pass",
+    "date": "2026-10-31",
+    "exposure": "standing player, second retest after fixes",
+    "deviceOrder": ["phone", "desktop"],
+    "model": "sonnet",
+    "voluntaryStops": {
+      "phone": {
+        "elapsed_s": 211.457,
+        "reason": "CONFUSED",
+        "game_clock": "Mon 19:56",
+        "rawStopReaction": "The empty grill is now explained and I fixed it, which pleased me. But the cooks leave stations by themselves and the words Insist, Hold it to insist and I will explain the wait I do not understand. I do not know if 5,200 is reachable. I would close it, not leave it running. I stop on the phone. In Feedback I pressed I am confused by position, typed nothing, no Submit.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "desktop": {
+        "elapsed_s": 115.864,
+        "reason": "CONFUSED",
+        "game_clock": "Mon 19:32",
+        "rawStopReaction": "On the big screen it is easier to read, and the early warning about the grill was clear. But I earned only 200 lira by 19:32, three tables wait for an empty grill, and Selim says he will explain the wait while the screen says in the bathroom. I do not understand what he does. I would close it, not leave it running. I stop. In Feedback I pressed I am stopping by position, typed nothing, no Submit.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "I would come back another evening if the game told me early whether ₺5,200 is reachable and if the cooks' strange sentences (\"I will explain the wait…\", \"Insist\", \"Hold it to insist\") were written in plain words. I would not leave it running; I would close it.",
+    "laterFullReturn": "I would come back another evening, on the big screen, if the game told me early whether ₺5,200 is reachable and if the strange cook sentences (\"I will explain the wait…\", \"Insist\", \"Hold it to insist\") were written plainly. I would close it, not leave it running, because the game moves on by itself while I read and I would not know what I missed. I would not choose the phone again unless the cook menu got shorter.",
+    "laterExtraReturnSpans": {},
+    "verdict": "mixed",
+    "verdictReason": "Conditional: another evening on the big screen if the game says early whether 5200 is reachable and the strange cook sentences are written in plain words. Not left running and not the phone.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2505", "F-2506", "F-2507"],
+    "historyQualification": "Actual history 1583 lines; producer read through 399 and claims the whole file, which is false (director qualification). Her published own Pass R1 sits at line 1397 and later cross-game history is unread.",
+    "viewEvidence": "Viewed phone a-001, a-002, a-003 and desktop b-001, b-002, b-003. Her report says Feedback may obscure the scene behind the overlay; no global clipping conclusion."
+  },
+  {
+    "id": "F-2495",
+    "tester": "Sonia Ionescu",
+    "game": "pass",
+    "date": "2026-10-31",
+    "exposure": "new cold person, empty history, first Pass visit",
+    "deviceOrder": ["desktop", "phone"],
+    "model": "opus",
+    "voluntaryStops": {
+      "desktop": {
+        "elapsed_s": 455,
+        "reason": "FRUSTRATED",
+        "game_clock": "Mon wk1 21:06",
+        "rawStopReaction": "I stop here. The cooks say yes and then do something else, and I keep answering the same leave-it-empty question. ₺520 of ₺5,200 on Monday and I do not see what I could do to change that.",
+        "rawStopReactionLiterallyInReport": true
+      },
+      "phone": {
+        "elapsed_s": 294.064,
+        "reason": "BORED",
+        "game_clock": "Mon wk1 20:33",
+        "rawStopReaction": "I stop here. Same Monday twice, the grill is out of food, and I mostly read afterwards what the cooks already decided. ₺560 of ₺5,200 and still no idea how Saturday could ever work.",
+        "rawStopReactionLiterallyInReport": true
+      }
+    },
+    "primaryReturn": "Not on my own, no. If a friend sent it and asked me to play Tuesday with her, I would try one more evening. But only if the cooks did what they said and someone showed me how ₺5,200 could ever be reached. As it is, I watched one Monday twice and did not feel I was running anything.",
+    "laterFullReturn": "Not on my own, no. If a friend sent it and asked me to play Tuesday with her, I would try one more evening. But only if the cooks did what they said and someone showed me how ₺5,200 could ever be reached. As it is, I watched one Monday twice and did not feel I was running anything.",
+    "laterExtraReturnSpans": {
+      "Section 7 bullet, leave it running": "**Leave it running:** no. It does not hold my attention like that.",
+      "Section 7 bullet, come back another evening": "**Come back another evening:** only under the friend condition above. I would not open it by myself."
+    },
+    "verdict": "mixed",
+    "verdictReason": "Not on her own. Conditional on a friend asking: one more evening only if the cooks did what they said and someone showed how 5200 could be reached. Not left running.",
+    "verdictMeaning": "The tester's own stated conditions, not a vote and not a population estimate.",
+    "askIds": ["F-2508", "F-2509", "F-2510"],
+    "historyQualification": "Cold person with an empty supplied history (77 characters, \"No prior HF exposure\"); she read it in full. No earlier Pass exposure.",
+    "viewEvidence": "Viewed desktop a-001, a-002, a-003 and phone b-001, b-002 by receipt. Desktop a-004 (about 21:06) was taken but never viewed."
+  }
+]

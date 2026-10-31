@@ -1,0 +1,134 @@
+{
+  "tester": "Rosa Alvarez",
+  "validationTime": "2026-10-31T07:37:36.801848+00:00",
+  "sessions": {
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T07:20:44.001Z",
+        "elapsed_s": 211.457,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "The empty grill is now explained and I fixed it, which pleased me. But the cooks leave stations by themselves and the words Insist, Hold it to insist and I will explain the wait I do not understand. I do not know if 5,200 is reachable. I would close it, not leave it running. I stop on the phone. In Feedback I pressed I am confused by position, typed nothing, no Submit.",
+        "game_clock": "Mon 19:56",
+        "engagement": 3,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 200.512,
+          "op": "tap",
+          "input": {
+            "text": "confused"
+          },
+          "error": "confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        },
+        {
+          "elapsed_s": 202.552,
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m confused"
+          },
+          "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T07:20:33.056Z",
+          "elapsed_s": 200.512,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "confused"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T07:20:35.096Z",
+          "elapsed_s": 202.552,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "I\\u0027m confused"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 3,
+          "error": "I\\u0027m confused is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T07:22:40.974Z",
+        "elapsed_s": 115.864,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "On the big screen it is easier to read, and the early warning about the grill was clear. But I earned only 200 lira by 19:32, three tables wait for an empty grill, and Selim says he will explain the wait while the screen says in the bathroom. I do not understand what he does. I would close it, not leave it running. I stop. In Feedback I pressed I am stopping by position, typed nothing, no Submit.",
+        "game_clock": "Mon 19:32",
+        "engagement": 3,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

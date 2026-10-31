@@ -1,0 +1,97 @@
+{
+  "time": "2026-10-31T06:09:03.862338+00:00",
+  "policy": "Explicit selected FREE plus latest own actual reports, no whole panel diary, no CONT body; not complete archive.",
+  "sources": [
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "selection": "rosa-free complete return plus literal own asks only; excludes CONT and director method interpretation",
+      "selectedReturnAndAsksOnly": true,
+      "selectedSha256": "57d25e255369e919f34e4ca07e6030db4e918cc18f8739a2e85a48f12b5dc10d"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/lab/reviews/hf3-warren-2026-10-25/rosa-free-matched.md",
+      "selection": "FREE only; independent CONT alternative excluded",
+      "selectedSha256": "4b786fee790dc0c208f3b612246e4a80e5a4cc9d1588030a716788ee7060245b"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass/rosa/report.md",
+      "sourceSha256": "1bca20632d52b47463c65c2a3978b504136c57ac8a8439ade8061968bb8f7fa0",
+      "selectedSha256": "8e532b66c63c57768a28960fe398710b37decb542a5dedc363d7e842cc6ac5b2"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands/rosa/report.md",
+      "sourceSha256": "5ee42181ab3a60c07c3e1e66d673cfda147fde992a974bffe8354a20598590c9",
+      "selectedSha256": "e4646428df7c83bf13801ee48c676d127b5565eb47402375ec3103a055d9aa80"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance/rosa/report.md",
+      "sourceSha256": "0fc1b48b45829e050e957e3fdb1bbdebe6d1f67bec3b762afd54575504748688",
+      "selectedSha256": "c8ef048c08699a03e64205aa299accb59affbab07086398f76cfe237bd970d65"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope/rosa/report.md",
+      "sourceSha256": "887f35acbb6730f4b76b83a98776a933a1a5018719a99e0f92a01ac813a632e3",
+      "selectedSha256": "9fcb95b2e3feac0d4d120d347f4e5dae1ed40f2aec6f08be1ea882ada2e91e6f"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay/rosa/report.md",
+      "sourceSha256": "042e3f47b8ab00d84583c4f49eb1fa458b5faa3bcc14cb6c33d83e9cdab22db9",
+      "selectedSha256": "1c73d2803507b594d60432234ac1f4098650d5441fa6c22d9ff191cf6676b82c"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell/rosa/report.md",
+      "sourceSha256": "213c081e10e6aa03743b3917be5be3210416d06c61b73d884e39395eddb0bc53",
+      "selectedSha256": "5c079851f9b2f776f0564b83d1d0f6a2b0d2b236631ad746174c523006200e15"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur/rosa/report.md",
+      "sourceSha256": "645b1344656847e0ec82055c2fd1778130e0bf07fdf3b12d272b73c055365340",
+      "selectedSha256": "381bf3a3669336dd9c53136caf6dad53465435817d1139f6c9db566d29b9450d"
+    },
+    {
+      "privateOriginal": "/Users/abdul/code/.lab-scratch/playtest/light-1030/glance-retest/rosa/report.md",
+      "sourceSha256": "b646fc508dbfa12aeb4979552583aeab50dea216988f20111b8052715ba6c921",
+      "selectedSha256": "cd5666e04850c35b020a06402e3cbc748af8271def36207717e6f12d91755797"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/voice-playtest-2026-10-27-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "b39aad520dbe5065b431fdc1c9142d0e64af67dfb4a88331e3185662166046ac"
+    },
+    {
+      "repo": "human-framework",
+      "commit": "19f91e32ece786b47d6b08f3f665b5ece0be7ace",
+      "path": "docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "11f5396fc831560a34c38725579fcc9d9ebdba094d2ce75426276c6cb623f1e5"
+    },
+    {
+      "repo": "valley",
+      "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+      "path": "docs/playtests/2026-10-27-retest2.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "828ffbdcc50ab632b5379f79a87648aef7309e36e85aad4ba67b1f4cb4bc95e8"
+    },
+    {
+      "repo": "commonstead",
+      "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+      "path": "docs/games/commonstead-playtest-2026-10-27b.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "a1bcf28b40ac3f1c49740024ed763256a7587b296f83c6e2f67cd6768ef7e579"
+    },
+    {
+      "repo": "lefthand",
+      "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+      "path": "docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "ownSectionOnly": true,
+      "selectedSha256": "de755436f8e8b1375526c77fb6312b49b9e25793f598cfbf71266d82265e61e9"
+    }
+  ],
+  "historySha256": "935b75e5ec1364b4ff51f59233c8b285996a4f3e7376b1a85c8bc6243e419173"
+}

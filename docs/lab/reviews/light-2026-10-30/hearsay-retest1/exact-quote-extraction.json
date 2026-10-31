@@ -1,0 +1,265 @@
+{
+  "note": "Every string is an exact substring of the named copied raw file (report text or a wall-clock.jsonl reaction field). Nothing paraphrased, no quote substitution, no pipes, no newlines. primaryReturn is the opening return answer at the top of report.md. laterFullReturn is the separate section 7 answer. rankedAsks are the top three asks of report.md. laterAskSpans are later wording from section 5, 8 or 9, kept only where it adds or changes content and labelled separately. Maya has no section 8, so her later spans come from section 9. Irena and Rosa wrapped their opening answer in producer quote marks, which are not part of those primaryReturn spans. Irena laterFullReturn keeps the producer quote marks because the whole section 7 line is one literal answer. Internal quotes are original. No stop quote is abbreviated here. Full raw stop words are in logical-tester-ledger.json.",
+  "testers": {
+    "maya": {
+      "tester": "Maya Chen",
+      "primaryReturn": "Yes, one more evening, to see what Day 2 does with the secrets I kept and the one I told. It would have to stay as clear as this visit about who hears what. I would not leave it running.",
+      "laterFullReturn": "Yes, one more evening. I would come to see what Day 2 does with the secrets I kept and the one I told. I would also come because the game now says who hears what before I tap. I would stop coming back if Day 1 turns out to be the same stories every time, or if the garden keeps emptying while I have nothing to do. I would not leave it running. Another evening is the way back, because I learn nothing from watching the clock.",
+      "laterExtraReturnSpans": {},
+      "rankedAsks": [
+        "Give the garden something for me to do when everyone has left. On the phone at 08:46 it was empty, and my only options were pouring tea or waiting.",
+        "Stop repeating the goal paragraph in the Garden record. On desktop it showed twice in a row, once in the \"Goal\" heading block and again as the first \"Everything you heard\" entry.",
+        "Let me pick the listener myself on \"Repeat this at another table\". The game now names the listener and the claim before I tap, but it still chooses them."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 9)",
+            "span": "The empty garden on the phone at 08:46 left me with nothing to do, and that is why I stopped there."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 9)",
+            "span": "The goal paragraph still shows twice at the top."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 9)",
+            "span": "But it still picks both. I cannot change either."
+          }
+        ]
+      }
+    },
+    "emre": {
+      "tester": "Emre Kaya",
+      "primaryReturn": "I would come back another evening on desktop to reach Day 8 and see how the paid cooking and the four reservations go, but only if the \"chapter could not be saved\" message is explained or gone and Dilan's \"busy\" has a reason. I would not leave it running, and I would not return tonight.",
+      "laterFullReturn": "I would come back another evening on desktop to reach Day 8 and see how the paid cooking and the four reservations go, but only if the chapter message is explained or gone and Dilan's \"busy\" has a reason. I would not leave it running, because the long stretches show me nothing to decide. I would not return tonight.",
+      "laterExtraReturnSpans": {},
+      "rankedAsks": [
+        "Explain the \"A person's chapter could not be saved. Finish outstanding responsibilities and try again.\" message, or remove it. It appeared on both devices.",
+        "Say why Dilan stays \"busy\" when he is sitting at the garden, and when he will be free.",
+        "Give me a decision, or a way to skip ahead, while I wait for Day 8 (desktop) and between talks and Day 4 (phone)."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 5)",
+            "span": "It stayed on screen from Day 2 on both devices. It looks like a system error, and I could not clear it."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "the unexplained \"chapter could not be saved\" message, on both devices, from Day 2. It did not stop play."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 9)",
+            "span": "Dilan's repeated \"busy\" has no reason or time."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 9)",
+            "span": "I did not see a new action for the empty stretch."
+          }
+        ]
+      }
+    },
+    "diego": {
+      "tester": "Diego Silva",
+      "primaryReturn": "I might come back on another evening, but only if the empty stretch before Day 4 were filled or skippable. I would not return tonight, and I would not leave it running.",
+      "laterFullReturn": "I might come back on another evening, but only if the empty stretch before Day 4 were filled or skippable. I would not return tonight. I would not leave it running, because the garden empties and nothing I can do changes that.",
+      "laterExtraReturnSpans": {},
+      "rankedAsks": [
+        "Fill or skip the empty garden before Day 4. Both sessions hit it within about a minute or two, and everything is greyed out then.",
+        "Show how the person you slandered reacts. The game echoes what I said, but Rıza never answered.",
+        "Explain \"A person's chapter could not be saved. Finish outstanding responsibilities and try again.\" I don't know what it wants from me."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Fill or skip the empty garden before Day 4. Both sessions hit it quickly, and everything I want to touch goes grey."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "The wait itself is the same, though."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Show how the person I slandered reacts. The echo line is better than nothing, but Rıza never answered."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "On desktop the claim shows an echo line (\"You have not proved this.\") but Rıza gave no visible answer."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Explain the \"chapter could not be saved\" message in plain words, including what responsibility it wants finished."
+          },
+          {
+            "label": "Later wording (section 9)",
+            "span": "I did not see it on the phone."
+          }
+        ]
+      }
+    },
+    "rosa": {
+      "tester": "Rosa Alvarez",
+      "primaryReturn": "I would come back another evening on the big screen, now that the lists work and the bread goal is on the first screen, but only if the game says why someone is 'busy' when they are sitting right there. I would not leave it running, and on the phone I would not return only to wait.",
+      "laterFullReturn": "Yes, another evening, on the big screen only, to see the bread offer on Day 4 and what happens to Rıza and Derya. I would want a reason when someone is \"busy\" while sitting at the garden. On the phone I would not return only to wait. I would not leave it running, because I would not know what I missed while the clock moves.",
+      "laterExtraReturnSpans": {},
+      "rankedAsks": [
+        "Say why a person is \"busy\" when they are at the garden, and when they will be free.",
+        "Say when people come back after the garden empties, not only what I can do meanwhile.",
+        "Keep the long \"Pace: Automatic…\" sentence short. It repeats on every screen and I skip it."
+      ],
+      "laterAskSpans": {
+        "1": [
+          {
+            "label": "Later wording (section 9)",
+            "span": "\"Derya is busy right now… This choice was not made\" three times in about a minute. Derya was sitting at the garden, and nothing said why or for how long."
+          }
+        ],
+        "2": [
+          {
+            "label": "Later wording (section 9)",
+            "span": "It still does not say when people return. On Fast, Derya came back within about a minute of real time."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 5)",
+            "span": "It changes wording on every tap and I did not read it fully."
+          }
+        ]
+      }
+    },
+    "irena": {
+      "tester": "Irena Novotná",
+      "primaryReturn": "I would come back another evening only if something new happens before Day 4 and people stop being 'busy' without a reason. As it is, I saw the same morning word for word on both devices, and I would not leave it running.",
+      "laterFullReturn": "\"I would come back another evening only if something new happens before Day 4 and people stop being 'busy' without a reason. As it is, I saw the same morning word for word on both devices, and I would not leave it running.\" I like the dated record and being able to withdraw a claim. Those are the reasons I would give it a second evening at all. But I will not sit through three game days with nothing to decide.",
+      "laterExtraReturnSpans": {
+        "Section 7 bullet, leave it running": "**Leave it running:** No.",
+        "Section 7 bullet, come back another evening": "**Come back another evening:** Only on the conditions above."
+      },
+      "rankedAsks": [
+        "Give me something to decide or learn between Day 1 and the Day 4 supply decision. In both sessions I ran out of things to do on Day 1.",
+        "When someone refuses to talk, say why and until when, and never call Hatice herself \"busy\".",
+        "Make the label you get from repeating a story fit that story, and stop ending every reply with the same Day 4 supply sentence."
+      ],
+      "laterAskSpans": {
+        "2": [
+          {
+            "label": "Later wording (section 5)",
+            "span": "Hatice was \"busy\" when I tried to reflect."
+          }
+        ],
+        "3": [
+          {
+            "label": "Later wording (section 8)",
+            "span": "Make the repeat label fit the story, and drop the repeated Day 4 sentence from people's replies."
+          }
+        ]
+      }
+    }
+  },
+  "supportingSpans": [
+    {
+      "label": "Emre desktop raw chapter message",
+      "file": "emre/desktop/wall-clock.jsonl",
+      "span": "A message appeared I did not cause: A person chapter could not be saved. Finish outstanding responsibilities and try again."
+    },
+    {
+      "label": "Emre phone raw chapter message",
+      "file": "emre/phone/wall-clock.jsonl",
+      "span": "Same message as on desktop: A person chapter could not be saved. Finish outstanding responsibilities and try again."
+    },
+    {
+      "label": "Diego desktop raw chapter message",
+      "file": "diego/desktop/wall-clock.jsonl",
+      "span": "A message just appeared saying a person chapter could not be saved, finish outstanding responsibilities."
+    },
+    {
+      "label": "Emre desktop Dilan busy third time",
+      "file": "emre/desktop/wall-clock.jsonl",
+      "span": "Dilan busy for the third time, even though he is sitting at the garden."
+    },
+    {
+      "label": "Emre desktop Next line kept him waiting",
+      "file": "emre/desktop/wall-clock.jsonl",
+      "span": "I am waiting for Day 4 because the game told me when it comes. That is why I stay. Without that line I would have left."
+    },
+    {
+      "label": "Emre desktop order screen costs",
+      "file": "emre/desktop/wall-clock.jsonl",
+      "span": "Costs in numbers: 380 now or 410 on credit, four meals vs five."
+    },
+    {
+      "label": "Rosa phone busy without reason",
+      "file": "rosa/phone/wall-clock.jsonl",
+      "span": "Derya is at the garden but busy again, and it does not say why or for how long."
+    },
+    {
+      "label": "Rosa phone busy said plainly",
+      "file": "rosa/phone/wall-clock.jsonl",
+      "span": "Derya is busy, and it says so plainly. Good."
+    },
+    {
+      "label": "Rosa report opening line, session stops not game endings",
+      "file": "rosa/report.md",
+      "span": "Both sessions are finished, so here is the full report."
+    },
+    {
+      "label": "Irena desktop Hatice busy on reflection",
+      "file": "irena/desktop/wall-clock.jsonl",
+      "span": "I am Hatice. Busy with what? Nobody is here."
+    },
+    {
+      "label": "Irena desktop Ece heard and saw",
+      "file": "irena/desktop/wall-clock.jsonl",
+      "span": "Ece says \"what I have heard\" and \"I saw it myself\" in one breath."
+    },
+    {
+      "label": "Irena report Ece heard and saw",
+      "file": "irena/report.md",
+      "span": "Ece says both \"what I have heard\" and \"I saw it myself\" about the same thing."
+    },
+    {
+      "label": "Irena desktop private hobby is not kind objection",
+      "file": "irena/desktop/wall-clock.jsonl",
+      "span": "Where does unkind come from? That twist bothers me."
+    },
+    {
+      "label": "Irena desktop repeated Day 4 sentence",
+      "file": "irena/desktop/wall-clock.jsonl",
+      "span": "But both women end with the same sentence about Day 4 supplies."
+    },
+    {
+      "label": "Irena report shell quoting is her tooling",
+      "file": "irena/report.md",
+      "span": "tapping \"I'm stopping\" by name failed because of my own shell quoting of the apostrophe."
+    },
+    {
+      "label": "Maya phone Ece refusal in place",
+      "file": "maya/phone/wall-clock.jsonl",
+      "span": "Ece refusal now appears at once: keeps this private for now."
+    },
+    {
+      "label": "Diego desktop Osman press answered",
+      "file": "diego/desktop/wall-clock.jsonl",
+      "span": "Pressing now answers me: Osman keeps it private for now."
+    },
+    {
+      "label": "Diego desktop claim echo",
+      "file": "diego/desktop/wall-clock.jsonl",
+      "span": "Claim now echoes what I said and that it is unproved. Better, though Riza does not answer."
+    }
+  ]
+}

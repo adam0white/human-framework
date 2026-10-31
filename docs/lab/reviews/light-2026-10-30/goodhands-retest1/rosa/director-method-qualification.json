@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-31T08:05:31.108468+00:00",
+  "historyActualLines": 1682,
+  "historyReadReceipts": [
+    {
+      "request": {
+        "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/rosa/own-history.md",
+        "limit": 150
+      },
+      "first": 1,
+      "last": 150
+    },
+    {
+      "request": {
+        "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/rosa/own-history.md",
+        "offset": 150,
+        "limit": 200
+      },
+      "first": 150,
+      "last": 349
+    },
+    {
+      "request": {
+        "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/rosa/own-history.md",
+        "offset": 349,
+        "limit": 120
+      },
+      "first": 349,
+      "last": 468
+    }
+  ],
+  "producerHistoryEndClaim": "Incorrect: tool reply ended at468, supplied file continued. Earlier own Good Hands report included, later Glance/cross-game/current Pass tail unread.",
+  "limits": [
+    "No new blocking ask is actual return. No rereads on reached screens is positive present-visit finding, not universal language/usability acceptance.",
+    "Rent covered by cash bar is not actual Friday rent payment or game completion; producer paid words remain unchanged.",
+    "Phone placement reached, desktop placement not reached; top bothsessions statement must not imply two placements.",
+    "Actual card full length unviewed/unscrolled; no full-card reachability proof.",
+    "Phone firstminute not logged despite70s stop; desktop43s had no firstminute due. Neither pulse due.",
+    "Same two Feedback labels offered and stopping used, malformedquote tool limits checked later.",
+    "Existing Rosa CONT/exposure qualifications remain; partial history read does not erase prior exposure."
+  ]
+}

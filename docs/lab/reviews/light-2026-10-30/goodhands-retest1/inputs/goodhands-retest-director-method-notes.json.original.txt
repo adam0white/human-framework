@@ -1,0 +1,16 @@
+{
+  "time": "2026-10-31T08:18:42.618248+00:00",
+  "BashCalls": 335,
+  "validAssignedJsonCurls": 322,
+  "shellParseFailuresBeforeCurl": 13,
+  "executedProtocolBreaches": 0,
+  "history": "Jonas599/939; Aisha full874(render875); Diego full1116(render1117); Rosa468/1682; Nadia emptyone-line full. Actual Read receipts recorded per-person safe qualifications.",
+  "newBlockingSourceLeads": [
+    "Aisha draft-letter continuation",
+    "Nadia doubt/unsure explanation"
+  ],
+  "lastReturn": "2026-10-31T08:14:43.043376+00:00",
+  "nextRoundNotBefore": "2026-10-31T08:29:43.043376+00:00",
+  "widerQA": "Not inferred; ordinary fresh-entry scope only",
+  "notes": "No note/Submit/consent change; agent query set/no productionreceipt independently read. All15model/driverPIDsabsent, perdriverbrowserclose; no complete descendant journal. Nadia2.006s devicegap, twoearlypulses; firstminute111.7latevalid."
+}

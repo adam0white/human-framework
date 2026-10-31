@@ -1,0 +1,31 @@
+{
+  "time": "2026-10-31T07:59:17.937987+00:00",
+  "historyActualLines": 874,
+  "historyReadReceipts": [
+    {
+      "request": {
+        "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/aisha/own-history.md"
+      },
+      "first": 1,
+      "last": 484
+    },
+    {
+      "request": {
+        "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/aisha/own-history.md",
+        "offset": 485,
+        "limit": 400
+      },
+      "first": 485,
+      "last": 875
+    }
+  ],
+  "limits": [
+    "New blocking repair-letter send ask is reached source lead, not proof absent later continuation. What happens next menu not opened and later game unvisited.",
+    "Drafted/not sent is not dispatch or actor agreement; no automatic send/pay/forced actor/easier repair authorized.",
+    "Honesty unsure despite reference does not prove reference ignored; actual update mechanism/confidence rule source inspection needed. Patience update did match.",
+    "Clockhardpause not authorized; existing slowdown/menu/feedback pause and model latency qualified.",
+    "No desktop gameplay screenshot viewed, title only; actual text observations narrower than geometry.",
+    "Actual Feedback choice was I\u2019d stop here after shell errors, not successful exact I am stopping tap; no note/Submit/consent change.",
+    "Phone32.985s same evening seconddevice, no firstminute/pulse due."
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "tester": "Nadia Petrovi\u0107",
+  "validationTime": "2026-10-31T08:16:20.265277+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T08:10:01.102Z",
+        "elapsed_s": 298.662,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I will stop here. The first placement was satisfying, but now I cannot find where my kept numbers live and the belief rules feel uneven. I would rather stop than guess.",
+        "game_clock": "Mon 2 Nov 15:32",
+        "engagement": null,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [179.105],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T08:07:49.185Z",
+          "elapsed_s": 166.745,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to 11:52 \u00b7 Someone will bring news from outside Good Hands"
+          },
+          "reaction": "Keeping a number said 2 minutes but the clock jumped from 11:05 to 11:18, then 11:27 while I read. I guess the clock runs while I read. The task line nicely tells me who to call.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 286,
+          "error": "Skip to 11:52 \u00b7 Someone will bring news from outside Good Hands is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T08:08:36.869Z",
+          "elapsed_s": 214.429,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Skip to 14:00 \u00b7 A family is due to call"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 355,
+          "error": "Skip to 14:00 \u00b7 A family is due to call is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T08:13:57.362Z",
+        "elapsed_s": 234.607,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop here. Tonight I placed \u00d6zlem twice and found the kept-number list, which answered my question from the computer. But it is the same afternoon again, and for me one evening of it is enough.",
+        "game_clock": "Mon 2 Nov 11:37",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "b-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-003.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "b-004.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [177.761],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}

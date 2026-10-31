@@ -1,0 +1,184 @@
+**Would you return voluntarily?** "Maybe, on one condition: the next evening has to give me a different afternoon or a second day. I would not replay this same Monday a third time."
+
+**Ranked asks**
+1. Explain the belief rule in the same words every time. On the computer, Şebnem's one bad reference made Nermin "doubt" her, but Cihan's one bad reference ("would not hire him again… did not come and did not call") left her only "still unsure". Nothing said why.
+2. Let me see my kept numbers while a card is open. On the computer I never found where Gülce's number had gone. On the phone, the list ("Şebnem Eren · at home") appears only when no card is open.
+3. Show the Pace (Slow) setting at the start. I only found it in the menu at the very end, after feeling rushed for a whole session.
+
+---
+
+## 1. Session
+- **Persona:** Nadia Petrović, 38, parcel counter clerk from Niš.
+- **Exposure:** first visit, cold.
+- **Round and arm:** light-1031-goodhands-retest1, free stop (floor 0).
+- **own-history.md, read in full:** "No prior HF exposure. Empty initial diary. No observed sessions or memories." Nothing was left unread.
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent
+
+| Session | Device | Real time | Game clock |
+|---|---|---|---|
+| A | 1280x800 desktop, keyboard and mouse, light mode | 298.7 s (about 5.0 min) | Mon 2 Nov 08:38 → 15:32 |
+| B | 360x690 touch phone, light mode | 234.6 s (about 3.9 min) | Mon 2 Nov, morning → 11:37 |
+
+## 2. First impressions
+- **A, 6 s:** The promise was clear: a nanny by Tuesday, rent by Friday.
+- **A, 19 s:** I liked that each action shows its time cost.
+- **A, 63 s:** I understood the job, the money and the deadline.
+- **B, 6.7 s:** Same opening as on my computer earlier tonight. It fit the phone well.
+- **B, 20.1 s:** It was not the same game: Hale was at work until 09:00. Three action buttons had lost their time-cost lines.
+
+## 3. Verbatim diary (as logged)
+
+**Session A (desktop)**
+- 6.0 "Clear promise: a nanny by Tuesday, rent Friday. I understand what I owe before I start. Good."
+- 14.8 "I have ₺3,000 and need ₺5,000 by Friday. Let me read the first applicant."
+- 19.0 "Each action says its time cost. I like that. Interview first, 30 minutes."
+- 27.1 "Phone ringing mid-interview. The client matters, I answer."
+- 31.7 "They pay ₺9,000, Gülce asks ₺8,000, and they need patience. I will not promise what I have not checked."
+- 39.1 "The family said patient. I want a question about patience."
+- 43.3 "No question literally says patience. I am guessing the crying child one tests it."
+- 47.4 "Nice that Nermin says plainly she is still unsure. Hours next, Tuesday 08:00 matters."
+- 56.3 "She left after four questions. I was warned 4 remain, fair. But the reading line still says the patience thing after her hours answer; it did not change."
+- 60.7 "The card explains why she stays unsure: only her own word. That is a record I can reread. I like it."
+- 63.2 first_minute "First minute: I understand the job, the money and the deadline. Each action shows its time cost. Şebnem has a reachable reference, so I will call it before interviewing." (09:31)
+- 74.0 "Here is the patience question I wanted. Clear."
+- 78.3 "Şebnem argued when instructions were repeated. That is exactly what the Arslans warned about. Not her for this family."
+- 85.8 "Top line still says Şebnem is waiting while I read, but I opened Özlem. Small mismatch."
+- 97.8 "Özlem listened when instructions were repeated. That is my candidate. One more check: does she keep arrangements?"
+- 105.6 "Wage not yet asked, but I want to see what negotiating shows before I spend 30 minutes interviewing."
+- 110.8 "\"The wage is ₺9,000 and so is the fee\" — I had to read twice. My fee is a whole month of her wage? ₺2,250 now, ₺6,750 after trial. I think so. I will promise only what was checked."
+- 118.7 "Two checked promises, nothing unchecked. Committing."
+- 123.1 "Nermin says the same terms twice in a row. Odd repetition, but both sides agreed. Taking it."
+- 127.6 "₺5,250 now, rent ₺5,000 covered by Monday morning. Satisfying, I can see exactly what changed."
+- 130.9 "Her card now says ₺8,500 a month. I never asked her wage and we agreed ₺9,000. Where did 8,500 come from? Unexplained."
+- 136.2 "Plain drawn office, readable. Skipping to the next call."
+- 150.4 "Another family, also needs patience. My only carer, Şebnem, argued at repeated instructions. I promise to look, not to deliver."
+- 163.4 "Not placing Şebnem with a plate-thrower after that reference. Keeping her number, she may suit another job later."
+- 166.7 "Keeping a number said 2 minutes but the clock jumped from 11:05 to 11:18, then 11:27 while I read. I guess the clock runs while I read. The task line nicely tells me who to call."
+- 171.5 "The clock got to 11:52 by itself before my skip landed. Özlem is calling, already, from her new job? Worried."
+- 179.1 pulse 4 "I placed one worker on checked evidence and covered rent; I can reread why I believe each thing. The clock moving while I read makes me a bit rushed." (12:17)
+- 183.6 "I need a patient carer and have none. Maybe the City button finds new people."
+- 188.9 "City is just a map of where people are, not new applicants. And the landlord calls. I have his rent at least."
+- 193.6 "Who is Sevil? Nobody introduced her. I just nod along."
+- 207.3 "A new person, Hülya, an oven cook. Not a carer, but I will read her card."
+- 212.4 "No family wants a cook yet. Keep her number."
+- 223.5 "A driver now. I have no drivers at all. Promise to look only means look, so I will say that."
+- 236.9 "I want the card for Gülce to call her reference, but the bench is empty and I see no list of kept numbers. Trying the task line."
+- 242.5 "I tapped the task line and instead time jumped to 14:45 and the landlord is talking again about Hülya, who already went home. I did not mean to skip time. Confused."
+- 250.7 "A driver just as the Demirs asked. They need discretion. Same method: reference first."
+- 259.2 "Need a discretion question, not shown in the first two."
+- 264.4 "There is no question about keeping private matters private, and that is the one thing the Demirs asked for. The card lists discreet but I cannot ask about it. Guessing: would she hire him again."
+- 270.3 "She would not hire him again, he did not come and did not call. Yet Nermin is only \"still unsure\" he arrives when promised. Earlier one report was enough to doubt Şebnem. Why not here? The rule changed without a reason."
+- 275.0 want_quit CONFUSED "Two references both say something bad, one makes Nermin doubt, the other leaves her unsure, and nothing says why. I cannot ask about discretion, and I cannot find how to reach Gülce for the Kaya job. I am losing the thread." (15:25)
+- 296.1 "One last look: maybe the Placed tab shows who I can call back."
+- 298.7 stop CONFUSED "I will stop here. The first placement was satisfying, but now I cannot find where my kept numbers live and the belief rules feel uneven. I would rather stop than guess." (15:32)
+
+**Session B (phone)**
+- 6.7 "Same opening as on my computer earlier tonight (session A). Fits the phone fine. This time I want to see whether I can call kept numbers back."
+- 16.2 "Same three names on the bench as in session A on my computer: Gülce, Şebnem, Özlem. Fairly sure. I will see if Özlem is the same person."
+- 20.1 "Same Hale Erol reference but now she is at work until 09:00; on the computer she was reachable. So not the same game. Here, three of the action buttons lost their time-cost lines."
+- 26.3 "On the phone the card shows only a few lines between the bench and the action buttons. Her reference is busy till 09:00, so I interview her first and ask about patience myself."
+- 30.5 "Asking wage this time; on the computer her card later showed 8,500 and I never knew where from."
+- 34.7 "She asks ₺8,500. So that number on the computer was her own asked wage, filled in without my asking. Now it makes sense, but it should have said so."
+- 47.5 "Her reference is free after 09:00 now. I will keep her on the bench and phone the reference, which worked for me last time."
+- 111.7 first_minute "First minute on the phone: same office, same job. The reference answer is word for word what I heard on the computer. I know the routine now, so it feels less new." (09:28)
+- 116.7 "Patience confirmed, same as on the computer. Now arrangements."
+- 125.7 "A button called The day’s notes. I did not notice it on the computer. A record to reread, maybe it lists kept numbers."
+- 130.0 "A concise log, newest on top. I like it. But it skips the two things Hale actually reported, only her opening line. No list of kept numbers here either."
+- 143.8 "Same two checked promises as on the computer. Proposing."
+- 149.1 "Nermin repeats the terms twice again, same as on the computer. Agreeing."
+- 153.2 "₺5,250 again, rent covered by 10:04, earlier than on the computer. Suna is named here; I guess she is the Arslan mother."
+- 158.1 "The bench dots changed to half circles. No label says what that means. Guessing they are getting tired of waiting."
+- 161.6 "This time I keep her number on purpose, then I look for where it goes."
+- 166.0 "Her card stays open with Call in to the office. Good. But she vanished from the bench list. If I click away, where do I find her again? Checking Placed."
+- 172.7 "There it is: Şebnem Eren · at home, listed under the bench when no card is open. On the computer I always had a card open, so I never saw this list. That was my big confusion from session A, answered."
+- 177.8 pulse 4 "Rent covered faster than on the computer, and I found where kept numbers live. The thing that made me stop earlier is gone, so I want to see the next family." (10:27)
+- 189.9 "The game paused itself for the phone. That is kind; on the computer I felt rushed."
+- 193.6 "Kaya family again, same as the computer. This time I can check Şebnem properly, since her reference is reachable."
+- 216.8 "Same answer as on the computer: Şebnem argued. So the Kaya job again depends on Gülce, whose patience I could not check last time. I am replaying the same afternoon."
+- 220.2 want_quit BORED "The card says one report is enough for Nermin to doubt. That explains Şebnem but not why Cihan stayed unsure on the computer. Everything here is the same afternoon I already played an hour ago, and the phone screen shows me only a slice at a time. I have had enough for tonight." (11:33)
+- 225.3 "There is a Pace setting with Slow. I never knew; on the computer I felt rushed."
+- 234.6 stop BORED "I stop here. Tonight I placed Özlem twice and found the kept-number list, which answered my question from the computer. But it is the same afternoon again, and for me one evening of it is enough." (11:37)
+
+**Disclosure:** both pulses came slightly before the 180 s mark (179.1 s in A and 177.8 s in B). That breaks the "none before 180" rule.
+
+## 4. Moments
+**What held me:**
+- The checked-only promises.
+- The cash bar jumping from ₺3,000 to ₺5,250 against ₺5,000 rent.
+- An evidence card I could reread.
+- The Day's notes log.
+- The auto-pause for the phone call in B.
+
+**What lost me:**
+- In A: the uneven doubt/unsure rule. I also could not find kept numbers, and tapping the Task line seemed to skip time.
+- In B: repetition. Same names, same references, same answers.
+
+**Quit wishes:**
+- A: CONFUSED at 275 s. It did not pass; I stopped at 298.7 s.
+- B: BORED at 220 s. It did not pass; I stopped at 234.6 s.
+
+**Pulses:** 4 in A and 4 in B.
+
+## 5. Confusion and clarity
+**Cleared in B:**
+- The ₺8,500 on Özlem's card is her own asked wage.
+- Kept numbers are listed under the bench when no card is open.
+- The card says "one report … is enough for her to doubt it".
+
+**Still unclear:**
+- Why Cihan stayed "unsure" after a bad reference.
+- There was no discretion question.
+- Nermin says the terms twice.
+- Nobody introduced Sevil or Suna.
+- The bench dots (◐ ◌) have no labels.
+- The header said "Şebnem is waiting" while Özlem's card was open.
+- The Day's notes leave out what references actually reported.
+
+## 6. Device use
+**Desktop screenshots, all viewed:**
+- a-001: title page.
+- a-002: office with Özlem's card.
+- a-003: Feedback panel.
+
+**Desktop controls used:** Open the office, bench names, Interview, Call a reference, reference questions, Negotiate, quality toggles, Propose, agreement, Skip, Task line, City, Placed, phone Answer, Game menu, Feedback.
+
+**Phone screenshots, all viewed:**
+- b-001: title page, fits.
+- b-002: office. Only a few card lines are visible above the fixed action grid.
+- b-003: the kept-number list under the bench.
+- b-004: Feedback panel. All five quick labels fit.
+
+**Phone controls used:** the same set, plus The Day's notes and the tabs.
+
+**Phone layout:**
+- Seen trouble: the card area is short. Three action buttons lose their time-cost lines.
+- Not seen as trouble: no overlap, no cut-off text.
+
+**Feedback, desktop:**
+- What happened: I chose "I'm confused" (it showed pressed), then Back.
+
+**Feedback, phone:**
+- What happened: I chose "I'm stopping" by tapping at x 95, y 184 (it showed pressed), then Back.
+- Why coordinates: the apostrophe in the label breaks the shell.
+
+**On both devices:** nothing typed, nothing submitted, recording left on.
+
+## 7. Stop and return
+- **A stop, CONFUSED:** "I will stop here. The first placement was satisfying, but now I cannot find where my kept numbers live and the belief rules feel uneven. I would rather stop than guess."
+- **B stop, BORED:** "I stop here. Tonight I placed Özlem twice and found the kept-number list, which answered my question from the computer. But it is the same afternoon again, and for me one evening of it is enough."
+
+**Would you return voluntarily?** Maybe, on one condition: the next evening has to give me a different afternoon or a second day. I would not replay this same Monday a third time. I like checking evidence before I promise, and I like seeing the cash change. Now I know where kept numbers live and that Pace has a Slow setting, so the next attempt would start better. If the doubt/unsure rule stays unexplained, I would stop trusting Nermin's readings, and then the game loses its point for me.
+
+**Leave it running or come back another evening?** I would not leave it running. The clock moves while I read. I would come back another evening, on the desktop, with Pace set to Slow.
+
+## 8. Changes I would want
+1. Explain the doubt/unsure rule in the same words every time.
+2. Show kept numbers while a card is open.
+3. Show the Pace setting at the start.
+
+## 9. Earlier visit comparison
+First visit; no earlier visit to compare.
+
+**Blocking ask (from what I reached):** two bad references got different readings with no reason given (Şebnem got doubt, Cihan stayed unsure). This made me stop on the desktop.
+
+No repo touched; no worktree of mine remains.

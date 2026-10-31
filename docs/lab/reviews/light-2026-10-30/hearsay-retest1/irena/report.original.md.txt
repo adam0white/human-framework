@@ -1,0 +1,147 @@
+**Would you return?** "I would come back another evening only if something new happens before Day 4 and people stop being 'busy' without a reason. As it is, I saw the same morning word for word on both devices, and I would not leave it running."
+
+**Ranked asks:**
+1. Give me something to decide or learn between Day 1 and the Day 4 supply decision. In both sessions I ran out of things to do on Day 1.
+2. When someone refuses to talk, say why and until when, and never call Hatice herself "busy".
+3. Make the label you get from repeating a story fit that story, and stop ending every reply with the same Day 4 supply sentence.
+
+---
+
+# Report: Irena Novotná, Hearsay, round light-1031-hearsay-retest1
+
+## 1. Session
+- **Persona:** Irena Novotná, 41, school librarian in Jihlava.
+- **Exposure:** First visit, cold. My history file reads "No prior HF exposure. Empty initial diary. No observed sessions or memories." I read it in full.
+- **Round and arm:** light-1031-hearsay-retest1, free stop (floor 0).
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent
+- **Session A:** desktop 1280x800, keyboard and mouse, light mode. 250 s real time (about 4 min 10 s). Stopped at Day 1 15:26.
+- **Session B:** phone 360x690, touch, light mode. 80 s real time (about 1 min 20 s). Stopped at Day 1 07:17.
+
+## 2. First impressions
+- **Desktop:**
+  - At 5 s I liked the clean title page.
+  - At 8 s I read "Four reservations, repeat or keep claims private" as a game about sources, which pleased me.
+  - At 10 s I was already annoyed. Rıza asks about a blue tiled doorway and there is no way to answer him.
+  - At 16 s a harmless hobby turned into "Rıza is not kind" if repeated, and that bothered me.
+  - At 33 s I found the dated Garden record, and it was the best thing in the game for me.
+- **Phone:**
+  - At 6 s it was the same Rıza and the same doorway, with no way to answer.
+  - Pace started on "Automatic" here. On desktop the pace line only said automatic pace was available in the menu.
+  - By 19 s I recognised every story from the desktop session.
+
+## 3. Verbatim diary (elapsed_s, as logged)
+
+**Session A (desktop)**
+- 5.457: "Clean title. A tea garden, a goal on Day 13. I want the rules before I begin."
+- 7.699: "Four reservations, repeat or keep claims private. That is about sources. Good, I will begin."
+- 10.518 (Day 1 06:00): "Rıza asks about a blue tiled doorway but I have no button to answer him. I will invite a quiet conversation instead."
+- 12.423: "No words appear, just a timer. I will let it finish and see what he says."
+- 15.939: "Odd. He collects doorway sketches, but repeating it would become "Rıza is not kind" to Derya. Where does unkind come from? That twist bothers me. I keep it private and offer help."
+- 18.469: "A walking route along public streets, private courtyards left out. That I liked. Now Osman, the other supplier."
+- 26.036: "Osman kept a tenant's money. That one is at least close to "not honest". I would rather help him correct it than tell Derya. Help and keep private."
+- 28.916: "He writes the exact correction. I like a person who corrects the book. But who is Halil? He is not at the tables."
+- 32.637: "A dated record of who said what. That is exactly what I want. But Osman wrote ten crates for eight and did not fix it; Ece saw. He corrects one account and not mine. I want to ask Ece."
+- 41.836: "I ask Ece what she has heard about Osman's honesty, before I say anything myself. She stood by the crates."
+- 45.9: "Ece says "what I have heard" and "I saw it myself" in one breath. Which is it? Then she talks about the bench and the Day 4 supplies, like three answers stuck together. Money went 400 to 540 and I do not know why."
+- 52.02: "Derya has heard nothing, which I believe. But both women end with the same sentence about Day 4 supplies. It sounds like a sign, not a person."
+- 66.012, first_minute (Day 1 07:23): "The game told me to choose Invite a quiet conversation with Derya, I did, and it said she is busy and the choice was not made. That annoys me a little. Still, the dated record of who said what is the thing I like most so far."
+- 74.255: "Nermin is busy too, same sentence. Nobody tells me when "later" is. I am guessing everyone is busy after my last chat."
+- 79.683: "The cards are tidy. Hatice has a tea cup, the others an empty circle. I do not know what the circle means."
+- 82.665: "Aylin is a school cook who just turned down evening cooking with a too-cheerful smile. She matters for the Day 8 cooking. I want to hear her."
+- 88.026: "Third time: a harmless private hobby, and repeating it would turn into "Aylin is not kind" to Derya. Always Derya, always "not kind". The label does not match the story. I keep it private, and this time no help, she does not need any."
+- 91.957 (Day 1 08:01): "At 8:00 everyone left at once, right as I pressed Keep this private. The button went grey; the text says it stays private anyway. So my choice was not needed. The garden is empty now. I will wait and see who comes back."
+- 122.114: "The pace line says it is slow because a private matter waits for my answer, but all three answer buttons are grey. I cannot answer. Half an hour of game in 25 seconds, nobody here. I press Fast."
+- 125.143: "Fast still says 1 minute a second. I close the record and hope."
+- 132.513: "That cleared the slow clock. Hatice "expects eating to go well", "drinking to go well"... five lines that tell me nothing. The wedding account in the drawer is the only real thing. I reflect on it."
+- 136.094 (Day 1 08:45): ""Hatice is busy right now. You can try again later." I am Hatice. Busy with what? Nobody is here. This is the third "busy" and none says why or until when. I am now guessing at the rules."
+- 169.865: "Lunchtime, people are back. Money did not change while they were out. Dilan I have not met."
+- 173.096: "Dilan left before I reached her. That is my fault, I left it on Fast. Back to Normal."
+- 224.545: "Derya reported a scheduling error and the training stopped. A real worry, not gossip. Nobody else is here anyway. I keep it private."
+- 226.542, pulse, engagement 3 (Day 1 15:19): "The dated record and the honest small stories hold me, but I have nothing to do until Day 4 and the busy refusals wore on me."
+- 230.334, want_quit BORED (Day 1 15:19): "Three game days until anything can be ordered, the garden is empty, and I have heard everyone who is here. I would close it now."
+- 250.253, stop BORED (Day 1 15:26): "I have heard everyone who is here and nothing can be ordered until Day 4. I like the record, but I am stopping. Feedback: I chose I am stopping, then Not now; the dialog closed with no error."
+
+**Session B (phone)**
+- 6.001: "Same title on my phone. It fits well. This time I want to ask before I listen, and see if the record still holds."
+- 9.072: "Same Rıza, same blue doorway, still no way to answer him. On the phone the pace says Automatic already. This time I just pour tea and see what that does."
+- 12.135: "Pouring tea: three minutes passed, one line, nothing else. Fine. Osman is the one with the crates, I go to him directly this time."
+- 18.788: "The very same Osman story as at the library. Here the label at least fits: he kept money he knew was not his. I want to see what repeating does, once, with the one case where it is fair."
+- 22.839: "It tells me plainly what I did: not proof, private, judged unkindly. Fair enough, it names the source. But it scolds me in three sentences for the one case that was true. Osman heard and stops trusting me."
+- 26.966: "On the phone the page jumped down to the story; the people cards are above, out of sight. Let me see what Derya does with what I told her."
+- 30.78: "Derya just heard me call Osman dishonest and her card says nothing about it, only a letter about training. I cannot tell if she took it in."
+- 39.202: "Ask Ece what she has heard about Osman honesty. I want to know if my words already travelled."
+- 42.716: "Word for word the same Ece answer as on the desktop: heard and saw in one breath, then the bench, then Day 4. Now I want to take back what I told Derya. Withdrawing is the thing I would do."
+- 47.9: "I could take it back, and the game says honestly that others may already have passed it on. That I respect. Derya herself shows nothing, no nod. Let me see if the record keeps my correction."
+- 60.754: "The record kept everything in order, my repeat and my withdrawal both. Same crate scene at 6:30 as before. I read it through."
+- 63.696, first_minute (Day 1 07:08): "Same morning, same people, same words as on the library computer. Here I tried repeating and then withdrawing, and the record kept both with times. That is the part I like. Osman left for another tea stop. Money 400 to 520, and the 7:00 line explains it: customers who still trust me paid."
+- 67.43, want_quit BORED (Day 1 07:08): "I have now seen the same morning twice, word for word. The one new thing, taking back an accusation, I have tried. Nothing to decide until Day 4. I would put the phone down."
+- 80.308, stop BORED (Day 1 07:17): "Same morning a second time, and three days before any real choice. I liked that I could take back what I said. I am stopping. Feedback: I am stopping chosen by tapping its spot, then Not now; dialog closed, no error."
+
+## 4. Moments
+- **What held me:**
+  - The Garden record, which lists who said what with a day and a time.
+  - Rıza's walking route, described plainly.
+  - Osman writing the exact correction for the tenant.
+  - On the phone, "Withdraw your accusation". The game said honestly that other people may already have repeated the claim, and the record kept both my claim and my withdrawal.
+- **What lost me:**
+  - Three unexplained "busy" refusals, one of them from Hatice herself.
+  - Answer buttons that were disabled while the pace line said a private matter was waiting for my answer.
+  - Every reply ending with the same Day 4 supply sentence.
+  - Mismatched labels: harmless stories became "not kind" if repeated.
+  - Nothing to decide until Day 4.
+  - On the phone, the identical morning repeated word for word.
+- **Pulse:** desktop, engagement 3 at 226 s. I left the phone before 180 s, so no phone pulse was taken.
+- **Quit wishes:** Both became real stops, BORED both times. The desktop wish came at 230 s, the phone wish at 67 s.
+
+## 5. Confusion and clarity
+- **Confusing:**
+  - Hatice was "busy" when I tried to reflect.
+  - Derya was "busy" right after the game told me to invite her, and the game did not say until when.
+  - At 8:00 the slow-clock text said a private matter was waiting for my answer, but every answer button was disabled.
+  - Pressing Fast still showed 1 minute a second.
+  - Ece says both "what I have heard" and "I saw it myself" about the same thing.
+  - The ◯ icon on the cards is never explained.
+  - The "expects eating/drinking to go well" lines told me nothing.
+  - Halil is mentioned but never present.
+  - On desktop, money went 400 → 540 → 640 and I did not see why.
+  - Derya showed no reaction to my accusation or my withdrawal.
+- **Clear:**
+  - The goal line and the "Next: Day 4" line.
+  - The repeat warning, which says exactly what will be said and to whom.
+  - On the phone, the 7:00 record line explained the money: customers who still trust you pay.
+  - The withdrawal text.
+
+## 6. Device use
+- **Desktop screenshots, all viewed:**
+  - a-001: title page.
+  - a-002: the game screen, with the card grid on the left and the detail panel on the right.
+  - a-003: the Feedback dialog, with both groups visible, the note box and Name.
+- **Desktop controls used:** person cards; Invite, Let the conversation finish, Keep this private, Offer help; Talk about someone else with its selects and "Ask what they have heard"; the Garden record; Pause, Normal, Fast; Reflect; Game menu; Feedback; Not now.
+- **Phone screenshots, all viewed:**
+  - p-001: title page. It fits 360 px with no overflow.
+  - p-002: after my tap, the page scrolled to the story panel. The person cards were above and out of view.
+  - p-003: the Feedback sheet. The buttons wrap onto two lines and are readable.
+- **Phone controls used:** Begin, Pour tea, cards, Invite, Repeat, the Talk section with Who/What selects, Ask, Withdraw, Garden record, wait, Game menu, Feedback, Not now.
+- **Trouble I saw:** On the phone, after each action the page jumped down to the story, so to choose another person I would have had to scroll back up. I did not see the card grid at phone size in any screenshot.
+- **Not seen:** the phone layout of the card grid and the pace bar.
+- **Driver note:** In both sessions, tapping "I'm stopping" by name failed because of my own shell quoting of the apostrophe. One attempt with text "stopping" got the driver reply "not on the page". I tapped the button by its position from the screenshot instead (desktop 386,210; phone 101,257). In both cases it showed as pressed. This is my tooling, not the game.
+
+## 7. Stop and return
+- **Desktop stop:** "I have heard everyone who is here and nothing can be ordered until Day 4. I like the record, but I am stopping." Reason: BORED.
+- **Phone stop:** "Same morning a second time, and three days before any real choice. I liked that I could take back what I said. I am stopping." Reason: BORED.
+- **Feedback step, both devices:** I opened Game menu → Feedback. Both "I'm stopping" and "I'm confused" were offered. I chose "I'm stopping", and it showed as pressed. Then I pressed "Not now", and the dialog closed with no error. I typed nothing, pressed no Submit, and left Recording checked.
+- **Would you return voluntarily?** "I would come back another evening only if something new happens before Day 4 and people stop being 'busy' without a reason. As it is, I saw the same morning word for word on both devices, and I would not leave it running." I like the dated record and being able to withdraw a claim. Those are the reasons I would give it a second evening at all. But I will not sit through three game days with nothing to decide.
+  - **Leave it running:** No.
+  - **Come back another evening:** Only on the conditions above.
+
+## 8. Changes I would want
+1. Give me something to decide or learn before Day 4.
+2. When someone is "busy", say why and until when, and never say it about Hatice.
+3. Make the repeat label fit the story, and drop the repeated Day 4 sentence from people's replies.
+
+## 9. Compared with my last visit
+First visit; no earlier asks. **Blockers I reached:**
+- On desktop at 8:00, the answer buttons were disabled while the pace line said an answer was waiting, which kept the clock slow. Selecting Hatice cleared it.
+- I reached no hard blocker. I did not reach Day 4, any order, or any reservation.
+
+No repo touched; no worktree of mine remains.

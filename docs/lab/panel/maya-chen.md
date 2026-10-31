@@ -2136,3 +2136,301 @@ The B first_minute line was logged at 64.2 s, after the 60 s mark. The A first_m
 This was my first visit to His Word.
 
 **Cleanup:** I own no worktree, started no processes, and wrote no files except the four screenshots through the driver. `git worktree list`: I touched no repository, so there is nothing to list.
+
+<!-- selected-continuity-key: light-1030:hearsay-retest1:maya:free -->
+## 2026-10-31 Hearsay LIGHT first fixed-build retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/hearsay-retest1/maya/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/hearsay-retest1/maya/report.original.md.txt), original SHA256 `845c6cf82eda7ca378e7b21fb5644e174dee5128597f0a8a89089d78ce518d72`. Build ccd8592e90c06a689102ddae20f5376f8fc78cc7/HF4.12.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order phone then desktop; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- History: Maya read own-history lines 1-349 only ([director-history-qualification.json](../reviews/light-2026-10-30/hearsay-retest1/maya/director-history-qualification.json)). Her earlier own Hearsay report is in that range; later cross-game history is unread. Do not claim the full supplied history was read.
+- Stops: phone 71.863 s TASTE (game clock "Day 1 09:01") and desktop 22.66 s TASTE ("Day 1 06:26"); she did not reach Day 2. The desktop stop came before 180 s so no pulse was due. The goal paragraph shown twice in the Garden record (F-2467) was seen on desktop only and is a cheap wording lead that needs source reproduction first. Choosing the listener (F-2468) is a preference.
+- The stop labels (TASTE, BORED, CONFUSED) are the producers' own session labels, not game endings or independent completions. Durations (22.66-468.833 s) are model and tool time, not human reading speed; clock, empty-garden and story-timing changes wait for the C14 human-speed comparison. Feedback: a quick label then "Not now"; no note was typed, Submit was not pressed and no consent setting changed. The agent run-source marker (labRunSource=agent) has no independently read production receipt. The driver is native-tap-v2 (input status 200 acknowledges input only; driver_check fork-unverified). No Day 8 was reached. No game finished; no CLEAR or acceptance is claimed.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would you return:** Yes, one more evening, to see what Day 2 does with the secrets I kept and the one I told. It would have to stay as clear as this visit about who hears what. I would not leave it running.
+
+**Ranked asks:**
+1. Give the garden something for me to do when everyone has left. On the phone at 08:46 it was empty, and my only options were pouring tea or waiting.
+2. Stop repeating the goal paragraph in the Garden record. On desktop it showed twice in a row, once in the "Goal" heading block and again as the first "Everything you heard" entry.
+3. Let me pick the listener myself on "Repeat this at another table". The game now names the listener and the claim before I tap, but it still chooses them.
+
+## 1. Session
+
+- Persona: Maya Chen. Exposure: retest. Round light-1031-hearsay-retest1, free stop (floor 0).
+- History read: own-history.md lines 1–349 of the file. Anything after line 349 was not read. This covers my earlier Hearsay report (visible as lines 234–348), my Pass report and the Well and Warren records.
+- URL: https://hearsay.adamwhite.work/?labRunSource=agent (build 4.12.0).
+- Phone: 360x690 touch, light, port 22500. About 72 s by the driver clock.
+- Desktop: 1280x800 keyboard and mouse, light, port 22501. About 23 s.
+- Recording stayed on. I touched no consent setting. Both sessions ended well under the 20-minute ceiling.
+
+## 2. First impressions
+
+- **Phone, 2.6 s:** The title was the same clean page as before. There is no lore wall.
+- **Phone, 7.8 s:** I was in Rıza's quiet talk and got the same doorway-sketches secret.
+- **Phone, 9.5 s:** On "Repeat this at another table" I could read the plan before tapping. It said I would tell Derya "Rıza is not kind."
+- **Phone, ~13 s:** Ece's refusal appeared right by the button as "Ece chooses to keep this private for now."
+- **Desktop, 8 s:** Osman's secret was a kept repair deposit. Last time his secret was an invoice (8 crates counted, 10 written). I noticed the difference.
+
+## 3. Verbatim diary
+
+These are my raw lines in order. Elapsed seconds come from the driver. Lines marked "reaction" went out as a reaction field on a tap. The driver logged them with the op's next stamp, so those times are approximate.
+
+**Phone**
+- ~4.9 s: "Same clean title as before. Beginning."
+- ~6.5 s: "Same opening as before. Quiet talk with Riza."
+- ~9.9 s: "New: it now says I would tell Derya Riza is not kind, before I tap. That was my first ask. Trying it anyway to see who reacts."
+- ~11.9 s: "The result showed right at the top, who heard and what was said, and Riza lost trust. Clear. Checking Ece, whose refusal had no reason last time."
+- ~15.5 s: "Ece refusal now appears at once: keeps this private for now. A reason-ish line, in place. Better. Going to Derya."
+- ~20.5 s: "Derya story is a real one, a letter about training and a reported error. I will keep this one and help."
+- 63.8 s, first_minute (Day 1 08:46): "Talking within seconds again. The game now says who I would tell and what I would say before I tap Repeat, and Ece refusal showed in place. Then everyone left and the garden is empty at 08:46, nothing for me to do but pour tea."
+- ~65.8 s: "Seen the loop again and the garden is empty. I would stop and try desktop."
+- 71.9 s, stop, TASTE, engagement 3 (Day 1 09:01): "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop."
+
+**Desktop**
+- ~3.8 s: "Desktop, same evening. This time I will try someone other than Riza first: Osman."
+- ~10.3 s: "A different Osman secret from last time, a kept repair deposit, not the invoice. Keeping it private and watching who reacts."
+- ~14.2 s: "Record is short this early, though the goal sentence shows twice in a row."
+- 22.7 s, stop, TASTE, engagement 3 (Day 1 06:26): "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now."
+
+## 4. Moments
+
+- **Held me:**
+  - The line "If you repeat this, you tell Derya: 'Rıza is not kind.'" before I tapped.
+  - The result at the top of the panel. It named who heard it and said Rıza stopped trusting me.
+  - Ece's refusal in place.
+  - A different Osman secret on desktop.
+- **Lost me:**
+  - Between 52 s and 63 s on the phone the garden emptied. All seven people left and the clock ran on. I had nothing to act on except pouring tea.
+  - The goal paragraph repeated in the record.
+  - I recognised the loop quickly.
+- **Quit wishes:** I logged no separate want_quit. Both stops carry TASTE. Neither passed.
+- **Pulses:** None. The phone session ended at 72 s and the desktop session at 23 s, both before elapsed_s 180. The pulse checkpoint is untested.
+- **First minute:** Logged on the phone at 63.8 s. The desktop session ended before 60 s, so I logged none there.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - Who would hear a repeated secret and what I would say.
+  - The cost of repeating one.
+  - Refusals appearing in place.
+  - The line "The clock is slowed… because you tapped in the last 15 seconds".
+- **Unclear:**
+  - After I helped Derya the clock ran on by itself. It jumped from 06:45 to 08:05 during one 30-second wait. People left for deliveries and appointments, and I had no warning.
+  - "Sit and talk again" turned disabled once Derya left. The label did not say why.
+  - Whether Derya's move to "sleeping at the temporary lodging" was my doing or just her schedule. I am guessing the schedule.
+
+## 6. Device use
+
+- **Screenshots viewed (all with Read):**
+  - Phone a-001.png (title): single cream column with a "Hearsay" heading and the premise. "Begin / Feedback / Fullscreen" sit in a row, with the Recording checkbox checked and a boxed banner below. I saw no clipped text.
+  - Phone a-002.png (in play): the Derya panel with "Sit and talk again" greyed out and "Pour tea without sharing news" below. The text was readable and uncovered.
+  - Desktop b-001.png (title): the same content in a left-aligned column with a large heading. It looked clean.
+  - Desktop b-002.png (in play): a 4x2 grid of person cards on the left with the Osman panel on the right, and the Garden record opened below. Readable.
+- **Manual screenshots:** two on the phone and two on the desktop.
+- **Controls used:**
+  - Phone: Begin, person cards, "Invite a quiet conversation", "Let the conversation finish", "Repeat this at another table", "Press for private details", "Offer practical help and keep this private", wait, Game menu, Feedback, "I'm stopping", "Not now".
+  - Desktop: Begin, Osman card, "Invite a quiet conversation", "Let the conversation finish", "Keep this private", Garden record, Game menu, Feedback, "I'm stopping", "Not now".
+- **Unseen:**
+  - I did not look at the phone with the Garden record open.
+  - I did not use keyboard keys on desktop.
+  - I did not look at the phone layout while a speech panel was showing a reply.
+- **Feedback on both devices:** I pressed "I'm stopping" (it became pressed), then "Not now". I typed nothing, pressed no Submit and left consent alone. No error appeared.
+
+## 7. Stop and return
+
+- **Phone (TASTE, 71.9 s):** "I am stopping on the phone at about 70 seconds. The game now tells me who I would tell and what I would say, and Ece refusal shows in place. But then everyone left and the garden went empty with nothing to do, and I have seen the loop. I want to try desktop."
+- **Desktop (TASTE, 22.7 s):** "I am stopping on desktop after about 20 seconds. Osman gave a different secret this time, which I liked, and the record is short. But I have seen the loop and want to see Day 2 another evening, not now."
+- **Would you return voluntarily?** Yes, one more evening. I would come to see what Day 2 does with the secrets I kept and the one I told. I would also come because the game now says who hears what before I tap. I would stop coming back if Day 1 turns out to be the same stories every time, or if the garden keeps emptying while I have nothing to do. I would not leave it running. Another evening is the way back, because I learn nothing from watching the clock.
+
+## 9. Compared with my last visit
+
+- **Ask 1, choose who I repeat a secret to and what I say:** Partly met. The game now shows the listener and the claim before I tap ("you tell Derya: 'Rıza is not kind.'"). But it still picks both. I cannot change either.
+- **Ask 2, show refusals and "not now" answers beside the button, with a reason:** Met for what I saw. Ece's refusal appeared at once as "Ece chooses to keep this private for now." Last time it said "This person cannot do this now. Try again later." with no reason. I did not see a refusal appear only in the record this time.
+- **Ask 3, shorten the Garden record and remove off-topic lines:** Partly met. Early on the record is short and I saw nothing off-topic. The goal paragraph still shows twice at the top. I did not reach Day 4, so I cannot say whether it grows long again.
+- **New blocker from what I reached:** None that stopped me. The empty garden on the phone at 08:46 left me with nothing to do, and that is why I stopped there.
+
+No repo touched; no worktree of mine remains.
+
+<!-- selected-continuity-key: light-1030:pass-retest2:maya:free -->
+## 2026-10-31 Pass LIGHT second retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/pass-retest2/maya/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/pass-retest2/maya/report.original.md.txt), original SHA256 `eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c`. Build 288b2fda7c8589931a9d9e8f044f1a8aaf630333/HF4.12.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order phone then desktop; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- History: whole supplied history was accessed (parent-checked Read ranges 1-200, 200-399, 400-699, 700-999 and 1000-1094; the file has 1093 split lines, the producer reports 1094). No director method-qualification file exists for Maya in this packet.
+- Stops: phone 275.942 s FRUSTRATED ("Mon 18:41") and desktop 251.758 s TASTE ("Mon 18:29"). She saw a private-talk warning in one session and later says nothing warned her about the Nevin follow-up; both statements are kept and no universal absence is claimed.
+- The stop labels (BORED, FRUSTRATED, CONFUSED, TASTE) are the producers' own session labels, not game endings; no bank deadline was reached. Raw stop rows run 73.602-455 s of model and tool time (the 67-455 s range in the packet ledger-additions preface is stale; the literal ledger rows are unchanged). Clock, skip and speed are retuned only after calibration C14; difficulty, faith-quiet, agency and refusal are preserved. Feedback: both quick labels were used, with a point fallback where an apostrophe broke shell quoting; no note was typed, Submit was not pressed and no consent setting changed. The agent run-source marker has no independently read production receipt. The driver is native-tap-v2 (fork-unverified). The dated Pass Deferred is a separate documentation record; this section claims no CLEAR, CI, deployment or acceptance.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would you return voluntarily?** Yes, one more evening, to hear whether Selim tells me more about Nevin and whether Dilek's recordings go anywhere, but only if talking to a cook stops pulling them off their station without warning. I would not leave it running. I would come back on another evening.
+
+**Ranked asks:**
+1. Warn me before I tap a talk or a follow-up that the cook will leave the grill or cold side, and for how long. Do the same for a table complaint at the kitchen door, which pulled Dilek and Selim away on their own.
+2. Make "ask me about Nevin" lead to a longer reply. Selim's line was one short sentence, and the follow-up pulled him off the grill.
+3. Fix the doubled bathroom wording in Selim's "How are you doing?" reply.
+
+---
+
+## 1. Session
+
+- **Persona:** Maya Chen, retest of The Pass (HF4.12.0, build 288b2fda).
+- **Round and arm:** light-1031-pass-retest2, free stop (floor 0, ceiling 20 minutes).
+- **History:** I read all of own-history.md, lines 1–1094. I read the cleanup rule too. I own no worktree, server or process.
+- **URL:** https://pass.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 touch phone, light mode, driver 22300. About 276 s of play. I took the default normal wait.
+- **Session B:** 1280x800 keyboard and mouse, light mode, driver 22301. About 252 s of play. I chose Selim's longer wait.
+
+## 2. First impressions
+
+- **A, 2–8 s:** Same title as before. The wait-length choice is still there. I remembered Selim and Dilek.
+- **A, 10 s:** The opening page now warns that Selim's break would leave the grill empty when the 18:12 table arrives. I asked for that last time.
+- **A, 19–32 s:** Both People offers were greyed out before service, with a "they are busy" reason. The cook panel now warns before a talk, saying "they stop work. Their station may need someone else."
+- **A, 34 s:** Selim's bathroom reply is still garbled, with the bathroom line said twice.
+- **B, 5–25 s:** Same title. This time each job button shows the chef's guess at the cook's reply. I had not seen that before.
+- **B, 61 s:** I could act within seconds. Selim's reply still says the bathroom line twice.
+
+## 3. Verbatim diary lines (elapsed seconds)
+
+**Session A**
+- 7.6 s (reaction): "Same title, wait choice still there. I remember Selim and Dilek. Starting with the default normal wait."
+- 10.3 s (reaction): "New: the page warns me that Selim break leaves the grill empty when the early table arrives. That is the warning I asked for before. Changing his plan."
+- 19.4 s (reaction): "Both offers are greyed out now, with a reason (they are busy) and a button to talk another time. Trying it to see what it does."
+- 21.3 s (reaction): "Tapping Talk with Selim another time changed nothing I can see. Offers are disabled before the doors open, so no conversation yet. Going on."
+- 27.3 s (reaction): "Still greyed out at 17:27 with no orders, saying they are busy with current work. I am not sure that is true when the kitchen is waiting. Trying the another-time button on Dilek."
+- 32.1 s (reaction): "The panel now warns me, before I tap, that a private talk makes the cook stop work and the station may be empty. That was my first ask last time. I do not see a Choose something he said option this time; trying How are you doing."
+- 34.5 s (note, Mon 17:30): "Same garbled reply as last time: the bathroom line says it twice, then ask me about Nevin when I have a moment. He went to the bathroom right away. No orders yet, so it costs nothing, but the wording is still repeated."
+- 58.6 s (reaction): "Selim is in the bathroom for about a minute; one minute is fair. Leaving the grill empty, a table is waiting but it only needs the cold side too."
+- 61.0 s (first_minute, Mon 17:33): "No lore wall; I could act within seconds. New since last time: the opening page warns me that Selim break would leave the grill empty, and the cook panel now says a private talk or a move can leave a station empty. But the offers in People are greyed out before service, and Choose something Selim said is gone. Selim reply still has the garbled doubled bathroom line."
+- 88.1 s (reaction): "Selim left the grill by himself or because of my tap, I am not sure which. 25 minutes empty with a table due at 18:12. I want to ask him why."
+- 104.0 s (reaction): "Dilek says she cannot take over, and now she is in the bathroom too. Nobody covers the grill for 23 minutes and I never asked Selim to leave it. I can not tell what caused this; guessing it was his own plan."
+- 115.9 s (reaction): "Clear now: the page says You left the grill empty and you can ask a cook to work there. A table waits for the grill. Asking Selim to take it."
+- 130.2 s (reaction): "Selim agreed to the grill and then went outside for ten minutes, while a table waits. His reply about explaining the wait and leaving other tables for three minutes does not match what happened. The Choose something you heard option is back, trying it for the Nevin list."
+- 133.5 s (reaction): "Selim talk-about choice is greyed out while he is outside, and the only thing offered is the wait line, not Nevin. Looking at Dilek instead for her sound clips."
+- 136.7 s (reaction): "The warning says she stops work and her station may need someone else. I accept it knowingly, for her clips story."
+- 176.7 s (reaction): "Dilek gave me her clips story, which I wanted, and it cost a table: 40 lira lost. I knew the risk this time. Selim stepped out again, 4 minutes this time."
+- 189.6 s (pulse, engagement 4, Mon 18:31): "Dilek now asks me for five minutes to call her mother, which follows from the clips story she just told. That is a person carrying a story forward, and the cost to the station is written next to the choice. Selim leaving the grill on his own is still hard to follow."
+- 191.2 s (reaction): "Letting her call her mother. It follows her story."
+- 199.5 s (reaction): "Waiting for her answer. I have seen the loop again: talk costs a table, the cooks drift off. The stories I wanted came this time though. Opening the menu to stop."
+- 269.3 s (reaction): "Tapping I am stopping by position, since the name has an apostrophe the shell will not pass."
+- 271.6 s (reaction): "I'm stopping got pressed and the note box filled itself with the same words. I typed nothing. Going Back."
+- 273.9 s (want_quit, FRUSTRATED, engagement 3, Mon 18:41): "Every talk I start costs a table and the cooks wander off on their own. I got the stories, but I do not want to repeat the loop again tonight."
+- 275.9 s (stop, FRUSTRATED, engagement 3, Mon 18:41): "Stopping the phone visit. I got Dilek clips story and a follow up, but talking cost a table and cooks left stations on their own, and the Nevin thread went nowhere."
+
+**Session B**
+- 5.6 s (reaction): "Same title as on my phone. This time I pick Selim longer wait to see what it changes."
+- 11.6 s (reaction): "Same warning about the 18:12 table and Selim break. Selim sunset-prayer window 18:35-19:20 is mentioned here, I think that is new to me. Changing his break."
+- 19.8 s (reaction): "Both cooks agreed to the new plan. Opening the doors with the longer wait chosen."
+- 22.3 s (reaction): "Ingredients are 15 grill and 17 cold this time. I do not know if that is the longer wait or just a different run. Talking to Selim first."
+- 25.1 s (reaction): "New to me: each job shows the chef guess at his reply under it. Selim is going to say bathroom for everything except the grill. Asking how he is."
+- 28.3 s (reaction): "Same doubled bathroom line as on the phone, so the wording is unchanged. Looking at what I can ask now."
+- 30.4 s (reaction): "Closing the panel to let time run. I will ask about Nevin when he is back from the bathroom."
+- 59.7 s (reaction): "One minute at the bathroom is fair, and Dilek is needed at the cold side. Leaving it empty."
+- 61.8 s (first_minute, Mon 17:32): "I could act within seconds and there was no lore wall. New to me here: each job shows the chef guess at the cook reply, and a table card shows how long it waits and when it leaves. Selim still goes to the bathroom first and his reply still says it twice."
+- 82.6 s (reaction): "It is 18:00 already. Selim has left the grill again by himself, and the button says he is at the cold side, the same as Dilek. I did not ask for that."
+- 87.0 s (reaction): "Both cooks are standing at the cold side and the grill is empty for 25 minutes. I will leave it empty for the prompt, then ask Selim to go back to the grill."
+- 98.9 s (reaction): "The guess under Grill says he agrees now. Trusting it."
+- 110.8 s (reaction): "Selim is back at the grill before the 18:12 table, and the preview was right. Now asking how he is, hoping for the Nevin thread."
+- 114.3 s (reaction): "At last he says he misses Nevin and asks for three minutes. It ends at 18:09, before the 18:12 table, so I can afford it. Opening his panel."
+- 116.9 s (reaction): "He is already talking with me for three minutes, so I did not even have to invite him. Opening the list of things I heard him say."
+- 119.6 s (reaction): "The talk-about button is greyed because he is already talking at the pass. I will close and let the three minutes run."
+- 139.7 s (reaction): "He said three minutes then back. It is 18:14, he is at the cold side not the grill, and table 6 is waiting for the grill. I never got to hear anything about Nevin. Asking him back to the grill."
+- 154.8 s (reaction): "Selim is at the grill again and the food is cooking. Now I try the Nevin line to follow up on what he said."
+- 157.0 s (reaction): "The Nevin line is available now that he is free. Tapping it."
+- 162.7 s (note, Mon 18:18): "The Nevin line led somewhere this time: Selim said Nevin knew these pans as well as he does and he misses working beside her. That is a real answer to my follow up, which I never got on the phone. But the talk pulled him off the grill again while table 6 is about to leave, and nothing warned me before I tapped it."
+- 187.6 s (pulse, engagement 3, Mon 18:21): "The Nevin reply came but it is one short line, and while I was reading it Selim stayed off the grill, table 6 is about to walk out, and now Dilek has gone to the bathroom too. I want the stories but I keep losing the kitchen to get them."
+- 190.6 s (reaction): "Selim is free, so I ask him to cover the cold side."
+- 211.0 s (reaction): "Now I see why: the table complained at the kitchen door and Dilek went to explain, which is what pulls cooks off stations. I was never told that beforehand. Grill is still empty. Asking Selim for the grill."
+- 213.6 s (reaction): "The previews now give a reason, like not now Dilek stepped out. That helps me guess. Asking for the grill."
+- 228.1 s (reaction): "Table 6 got served at the last minute, 160 lira, nothing lost this time. That felt like a small win. Now I look at Dilek."
+- 234.1 s (reaction): "Dilek hints at her recordings right away this time, without me paying a table for it. Opening her panel to follow the line."
+- 247.8 s (reaction): "Im stopping is pressed and filled the note box itself. I typed nothing and press no Submit. Going Back."
+- 250.4 s (want_quit, BORED, engagement 3, Mon 18:29): "I got what I came for on this device: a Nevin line and a hint about the recordings, and nothing lost. Another loop of talk then cooks wander off is not what I want tonight."
+- 251.8 s (stop, TASTE, engagement 3, Mon 18:29): "Stopping the desktop visit at about four minutes. The Nevin follow up finally answered and Dilek hinted at her recordings, but every talk still pulls a cook off a station and I am never told that before I tap."
+
+## 4. Moments
+
+**Held me**
+- **A:** Dilek's clips story, which followed from my private talk. It was followed straight away by her asking for five minutes to call her mother. That is the "person who carries a story forward" I like. The cost to the station was written next to the choice.
+- **B:** The job previews. "Not now, Dilek stepped out" and "I agree to that now" turned out to be right when I trusted them.
+- **B:** Table 6 was served at the last minute. That was a small win.
+- **B:** The Nevin line finally answered me.
+
+**Lost me**
+- Selim leaves the grill on his own around 18:00 in both sessions, for about 25 minutes. I could not tell why until B.
+- Table complaints pull a cook off a station. The complaint reads "Leave the other tables. Come and explain why our food is not here." This is the cause of what I could not explain in A. Nothing warned me before it happened.
+- The doubled bathroom reply, unchanged.
+- The "Talk with Selim/Dilek another time" button on the phone did nothing I could see.
+
+**Quit wishes**
+- A, 274 s: FRUSTRATED. It passed only in the sense that I stopped.
+- B, 250 s: BORED. I stopped.
+
+**Pulses**
+- A, 189.6 s: engagement 4.
+- B, 187.6 s: engagement 3.
+
+## 5. Confusion and clarity (from actual play)
+
+**Clear**
+- The pre-service warning about Selim's break and the 18:12 table.
+- The "A request to move or step away can leave the grill empty" line.
+- The warning under the private-talk invite.
+- The B job previews, with their reasons.
+- The B table card, with "Waiting N min · leaves after 18:24 · ₺40 at risk."
+
+**Confusing**
+- Why Selim leaves the grill unprompted at 18:00 (A and B).
+- On B at 18:00, Selim shows as "cold side" next to Dilek while the grill is empty. I did not ask for that.
+- The B talk ran about eight minutes of game clock, not the "three minutes" Selim asked for. He then showed up at the cold side, not the grill.
+- On the phone, the "talk another time" button.
+- In A, "Choose something you heard Selim say" offered only the wait line, not Nevin.
+- I did not see what the wait-length choice changes. B's ingredients were 15 grill and 17 cold, but I cannot tell if that was the longer wait or a different run. That is a guess.
+- In B, the table complaint attributed "I will explain the wait" to Dilek, which looked like a Selim line copied across. That is a guess.
+
+## 6. Device use
+
+**Phone (360x690)**
+- Screenshots viewed:
+  - a-001: title page, cream single column, with the wait-length radios, a red "New game" button and a bottom banner. Nothing clipped.
+  - a-002: Monday 18:01, header and till bar, a small kitchen drawing, and the "Choose who to ask" box. Nothing clipped, but the picture is small.
+  - a-003: the Feedback dialog with "I'd keep playing / Not sure / I'd stop here", the "I'm stopping / I'm confused" pair, a note box and a red Submit. Nothing clipped.
+- Controls used: New game, the plan editor, People, cook buttons, "Leave the station empty", the Feedback buttons by position, Back to the menu.
+- Trouble seen: the apostrophe in "I'm stopping" would not pass through the shell, so I tapped it by position. Pressing it filled the note box with the same words. I typed nothing.
+
+**Desktop (1280x800)**
+- Screenshots viewed:
+  - b-001: title page, centred column, radios and a red "New game" button. Nothing clipped.
+  - b-002: 18:00, the till bar, the kitchen drawing with both cooks at the cold side and the grill empty, and the red "Choose who to ask" panel on the right. Clear.
+  - b-003: the Feedback dialog over the dimmed game. Clear.
+- Controls used: the same as on the phone, plus the plan editor and job buttons by name. I used the "I'm stopping" press by position.
+- I saw no layout trouble. I did not check scrolling the People sheet on desktop.
+
+## 7. Stop and return
+
+- **A, 275.9 s:** "Stopping the phone visit. I got Dilek clips story and a follow up, but talking cost a table and cooks left stations on their own, and the Nevin thread went nowhere." Reason: FRUSTRATED.
+- **B, 251.8 s:** "Stopping the desktop visit at about four minutes. The Nevin follow up finally answered and Dilek hinted at her recordings, but every talk still pulls a cook off a station and I am never told that before I tap." Reason: TASTE.
+- **Feedback:** the menu offered "I'm stopping" and "I'm confused" in both sessions. I pressed "I'm stopping", then Back. I typed nothing, pressed no Submit and changed no consent or recording setting.
+- **Would you return voluntarily?** Yes, one more evening, to hear whether Selim tells me more about Nevin and whether Dilek's recordings go anywhere, but only if talking to a cook stops pulling them off their station without warning. I would not leave it running. I would come back another evening.
+
+## 8. Changes I would want
+
+1. Tell me before I tap that a talk, a follow-up or a table complaint will take a cook off a station, and for how long.
+2. Make "ask me about Nevin" lead to more than one short line. The follow-up should not cost me the grill.
+3. Fix the doubled bathroom wording in Selim's reply.
+
+## 9. Compared with my last visit
+
+- **Warn me before a talk pulls a cook off a station:** partly met. The opening page and the panel now warn. The private-talk invite says "they stop work. Their station may need someone else." I still got no warning about the Nevin follow-up, or about a table complaint pulling a cook away.
+- **Clean the reply wording and the "about N minutes" notice:** wording not met. Selim's bathroom line still repeats. The notice looked sensible this time ("until 17:34", "until 18:25", "until 18:32"), and I never saw it jump to "19 minutes".
+- **"Ask me about Nevin" should lead somewhere:** partly met, on desktop only. It gave one short line after a long wait. On the phone it never appeared, because the choice was disabled or offered only the wait line.
+- **Dilek's clips story and follow-up:** reached on the phone through a private talk. She told me about the clips, then asked for five minutes to call her mother. On desktop she hinted at the recordings through "How are you doing?" with no cost.
+- **New blockers:**
+  - Selim leaves the grill unprompted at about 18:00 in both sessions.
+  - The phone "talk another time" button does nothing I could see.
+  - The talk-about choices are greyed while the cook is mid-talk. That left me waiting without knowing when they would return.
+- **Not seen:** I did not reach Tuesday or the bank deadline, so any later-week change is untouched. I never saw what the wait-length choice changes.
+
+`git worktree list` is not applicable. I touched no repo, and I own no worktree, server or process.

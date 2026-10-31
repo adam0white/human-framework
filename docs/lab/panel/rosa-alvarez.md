@@ -1543,3 +1543,427 @@ The three ranked asks are at the top.
 - **New this time that would stop me returning:** the repeated "A call interrupts his current job…" text on all six turns buttons. On desktop the boxes are narrow, so it reads one word per line.
 
 Cleanup: I made no worktrees, branches, servers or processes and touched no repository, so there is no `git worktree list` to show. I took two screenshots per device, within the limit. The coordinator owns the drivers.
+
+<!-- selected-continuity-key: light-1030:hearsay-retest1:rosa:free -->
+## 2026-10-31 Hearsay LIGHT first fixed-build retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/hearsay-retest1/rosa/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/hearsay-retest1/rosa/report.original.md.txt), original SHA256 `f90245e3044dbb5b9b7573a0e27727432e68859368882b0ad8220c7adf4475fc`. Build ccd8592e90c06a689102ddae20f5376f8fc78cc7/HF4.12.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order phone then desktop; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- History: Rosa read own-history lines 1-826 of 1419 ([director-history-qualification.json](../reviews/light-2026-10-30/hearsay-retest1/rosa/director-history-qualification.json)). Her earlier own Hearsay report is included; later Stairwell and cross-game history is unread. The earlier Rosa Good Hands, Glance and Rope alternative-contamination qualification remains in her supplied history; current findings do not erase that exposure.
+- Stops: phone 108.238 s CONFUSED ("Day 1 15:00") and desktop 73.576 s BORED ("Day 1 07:06"). Her opening "Both sessions are finished" means both sessions stopped, not that the game ended. Only the phone title was viewed, so there is no phone gameplay layout evidence. Both stops came before 180 s so no pulse was due. The long Pace sentence (F-2477) is a cheap wording lead.
+- The stop labels (TASTE, BORED, CONFUSED) are the producers' own session labels, not game endings or independent completions. Durations (22.66-468.833 s) are model and tool time, not human reading speed; clock, empty-garden and story-timing changes wait for the C14 human-speed comparison. Feedback: a quick label then "Not now"; no note was typed, Submit was not pressed and no consent setting changed. The agent run-source marker (labRunSource=agent) has no independently read production receipt. The driver is native-tap-v2 (input status 200 acknowledges input only; driver_check fork-unverified). No Day 8 was reached. No game finished; no CLEAR or acceptance is claimed.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+Both sessions are finished, so here is the full report.
+
+# Hearsay retest: Rosa Alvarez
+
+**Would you return voluntarily?** "I would come back another evening on the big screen, now that the lists work and the bread goal is on the first screen, but only if the game says why someone is 'busy' when they are sitting right there. I would not leave it running, and on the phone I would not return only to wait."
+
+**Ranked asks**
+1. Say why a person is "busy" when they are at the garden, and when they will be free.
+2. Say when people come back after the garden empties, not only what I can do meanwhile.
+3. Keep the long "Pace: Automatic…" sentence short. It repeats on every screen and I skip it.
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, 62, busy second-language reader.
+- **Exposure:** retest. Round light-1031-hearsay-retest1, free stop (floor 0).
+- **History read:** lines 1–826 of 1419 in own-history.md. That covers my Well return, Warren, Pass, Good Hands, Glance, Rope, my earlier Hearsay report and the start of Stairwell. **Lines 827–1419 are unread.** I claim no memory from them.
+- **URL:** https://hearsay.adamwhite.work/?labRunSource=agent
+- **Session A:** 360x690 phone, port 22506, about 108 s at the stop.
+- **Session B:** 1280x800 desktop, port 22507, about 74 s at the stop.
+- I changed no consent or recording setting, typed no note and pressed no Submit.
+- **Recognition:** I knew the title, the goal and Rıza's doorway-photograph secret from my last visit. Cue: same first screen and same line, "Rıza keeps doorway sketches and photographs".
+
+## 2. First impressions
+
+- **A, 0.5 s:** the same clear title.
+- **A, 4.5 s:** a new line on the first screen: "Next: Day 4 at 12:00. Rıza and Osman offer the bread and produce order… Nothing can be ordered before then." This answers my old bread question.
+- **A, 62 s:** the garden emptied. The screen now says "Nobody else is at the garden now. You can pour tea, read the Garden record, tap a name to see where that person is, or change the pace."
+- **B, 3.6 s:** the "Talk about someone else" heading opened when I tapped it. The Who? and What? lists took my choices.
+
+## 3. Verbatim diary lines (elapsed seconds)
+
+**Session A (phone)**
+- 4.475: "I know this title from last time. Same goal, Day 13 lunch."
+- 6.675: "New: a Next line says Day 4 at 12:00 bread offer, nothing can be ordered before. That answers my old question about the bread. I talk to Riza."
+- 7.972: "Fifteen minutes, clear. I let it finish."
+- 9.243: "Same kind secret as before. I keep it private and offer help."
+- 35.751: "Waiting to see if the garden empties again and what the game tells me."
+- 37.174: "Everyone is still here this time. I try Derya."
+- 39.976: "Derya is busy, and it says so plainly. Good. I try Dilan."
+- 62.476: "Two people busy now. I wait a bit."
+- 64.498 first_minute (engagement 3, Day 1 08:11): "I understand: tea garden, talk to people, keep private things private, bread offer on Day 4. Now the garden is empty, but the game says what I can do: pour tea, read record, tap a name, change pace. That is new and helps. I still do not know when they come back."
+- 65.959: "I try Fast to see when people come back."
+- 98.645: "Derya is back. Better than last time: someone returned within a minute."
+- 102.225 want_quit CONFUSED (Day 1 14:57): "Derya is at the garden but busy again, and it does not say why or for how long. Three refusals now (Derya, Dilan, Derya). I do not know what makes someone busy. I read no sentence twice, but I cannot act. I will check the menu and stop."
+- 108.238 stop CONFUSED (engagement 3, Day 1 15:00): "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone."
+
+**Session B (desktop)**
+- 2.319: "Second visit, big screen. Same title. This time I try Talk about someone else properly."
+- 3.633: "Last time this looked like a button but was a folded heading. I try it again."
+- 5.212: "The folded heading opened. I choose Osman in the Who? list, which failed last time."
+- 8.485: "Both lists now take my choice. I only ask what Riza has heard about Osman honesty; I accuse no one."
+- 13.719: "I have no real reason to praise Osman yet, but I want to see what the game says. A kind claim seems harmless."
+- 47.537: "That answer was short and clear. I wait to see the empty garden on the big screen."
+- 66.676 first_minute (engagement 3, Day 1 07:02): "Big screen is easy. The goal and Day 4 bread offer are at the top in bold. The Who? and What? lists now work and Riza answered plainly. I understand: talk, ask what people heard, be careful with claims. No reread yet."
+- 73.576 stop BORED (engagement 3, Day 1 07:06): "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen."
+
+Every `reaction` string was sent with its tap, wait or log op. The elapsed seconds above are the driver's. The `[sic]` timing note: the two `first_minute` logs were sent after 60 s (64.5 s and 66.7 s).
+
+## 4. Moments
+
+- **Held me:** the "Next: Day 4 at 12:00…" line, Rıza's gentle secret again, and the plain "Derya is busy right now. You can try again later." message. On the desktop, "You tell Rıza: 'Osman is honest.' You have not proved this." was short and honest.
+- **Lost me:** Derya at the garden but "busy" twice, and Dilan "busy", with no reason. The invitation button looked normal each time, so I tapped and was refused.
+- **Quit wishes:** A, 102 s, CONFUSED. It did not pass. B ended BORED at 73.6 s, with no want_quit.
+- **Pulses:** none. Neither session reached 180 s.
+
+## 5. Confusion and clarity
+
+- **Clear:** the Day 4 line, the "busy… try again later" message, the empty-garden hint, the folded heading opening and the lists working.
+- **Unclear:**
+  - What makes a person "busy" while sitting at the garden.
+  - "Hatice has not noticed enough to describe Rıza's condition" (still unexplained, as before).
+  - The long "Pace: Automatic… The clock is slowed to 1 game minute a second because…" paragraph. It changes wording on every tap and I did not read it fully. I did not reread it, so it did not count against my quit rule.
+- **Rereads:** none required.
+
+| Screen and purpose          | New concepts (list every one)                                                                                                                                                                                                                                    | Concept count | Sentences reread (verbatim) | Reason                     |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------- | -------------------------- |
+| Title (A, B)                | Hearsay; tea garden; paid workers' lunch Day 13; How to play; Begin; Feedback; Fullscreen; All games; People across games; Recording checkbox; Other ways to begin; Lab privacy; Debug                                                                           | 13            | none                        | Known from last visit      |
+| Garden at 06:00 (A, B)      | Day and clock; Game menu; lunch line (bread, produce, cooking, 0/4 meals); Next: Day 4 12:00; lira; Pace Automatic with Pause/Slow/Normal/Fast; eight people; Condition; quiet conversation; press for details; talk about someone else; pour tea; Garden record | 14            | none                        | Next line is new and clear |
+| Conversation (A)            | fifteen-minute talk; let finish; leave                                                                                                                                                                                                                           | 3             | none                        | Clear                      |
+| After the talk (A)          | About Rıza; keep private; repeat at another table                                                                                                                                                                                                                | 3             | none                        | Clear                      |
+| Busy refusal (A)            | "busy right now"; "This choice was not made"                                                                                                                                                                                                                     | 2             | none                        | Reason for busy is missing |
+| Empty garden (A)            | benches empty; tap a name for location; people away or sleeping                                                                                                                                                                                                  | 3             | none                        | Hint is helpful            |
+| Talk about someone else (B) | Who? list; What? list (promises, honesty, kindness, generosity); Ask what they have heard; positive claim; damaging claim; withdraw accusation; claim is not proof                                                                                               | 7             | none                        | Clear once open            |
+| Game menu (A, B)            | clock paused; Resume; Use automatic pace; New game; Download this run                                                                                                                                                                                            | 5             | none                        | Ignored                    |
+| Feedback (A, B)             | keep playing / not sure / stop here; stopping / confused; note; name; what is sent; Not now; Submit                                                                                                                                                              | 8             | none                        | Same as before             |
+
+## 6. Device use
+
+- **Phone screenshot viewed:** `phone/a-001.png`, the title page. I saw the heading, the goal sentence, Begin, Feedback and Fullscreen in a row, the Recording checkbox and the record notice. Text was readable.
+- **Desktop screenshots viewed:** `desktop/b-001.png` shows the title in a wide left-aligned column with the notice across the bottom. `desktop/b-002.png` shows the game page scrolled so the top bar was cut off. I saw the bold "Next" line, the Pace paragraph, the 4x2 people grid and Rıza's card with Osman's honesty answer. It was easy to read.
+- **Phone controls used:** Begin, Invite a quiet conversation, Let the conversation finish, Offer practical help, name buttons (Derya, Dilan), Fast, Game menu, Feedback, I'm confused, Not now.
+- **Desktop controls used:** Begin, Talk about someone else (tap by text), Who? select, What? select, Ask what they have heard, Make a positive claim, Game menu, Feedback, I'm stopping, Not now.
+- **Unseen:** the phone game layout in a picture. I viewed only the title there.
+- **Driver trouble:** none. The selects that timed out last time worked on the first try.
+
+## 7. Stop and return
+
+- **A stop (108.2 s, CONFUSED):** "Better than last time: the empty garden now tells me what I can do, and the bread offer on Day 4 is on the first screen. But Derya and Dilan are busy with no reason given, even when they are sitting at the garden. I cannot tell what to do, so I stop on the phone."
+- **B stop (73.6 s, BORED):** "The earlier blocker is gone: the lists work and the answers are short. I have seen what I came to see and nothing urgent pulls me on in this short visit, so I stop here. I would come back another evening on the big screen."
+- **Feedback:** I opened Game menu then Feedback on both devices. Both "I'm confused" and "I'm stopping" were offered. I pressed "I'm confused" on the phone and "I'm stopping" on the desktop; each showed as pressed. I pressed Not now, typed nothing and pressed no Submit.
+- **Would you return voluntarily?** Yes, another evening, on the big screen only, to see the bread offer on Day 4 and what happens to Rıza and Derya. I would want a reason when someone is "busy" while sitting at the garden. On the phone I would not return only to wait. I would not leave it running, because I would not know what I missed while the clock moves.
+
+## 8. Changes I would want
+
+1. Say why a person is busy, and when they will be free.
+2. Say when people return after the garden empties.
+3. Shorten the "Pace" sentence.
+
+## 9. Compared with my last Hearsay visit
+
+- **Ask 1, say what I can do when everyone has left:** partly met. The screen now says "You can pour tea, read the Garden record, tap a name to see where that person is, or change the pace." It still does not say when people return. On Fast, Derya came back within about a minute of real time.
+- **Ask 2, put the bread and produce goal on the first screen:** met. "Next: Day 4 at 12:00. Rıza and Osman offer the bread and produce order… Nothing can be ordered before then." is on the first screen in both sessions. I did not reach Day 4, so I cannot say how the order itself works.
+- **Ask 3, make "Talk about someone else" clearly a folded heading and make the lists work:** partly met. On the desktop the lists took my choice on the first try, and tapping the heading by text opened it. I still think the heading does not look like a button or a heading. I did not check the phone.
+- **New blocker, from what I reached:** "Derya is busy right now… This choice was not made" three times in about a minute. Derya was sitting at the garden, and nothing said why or for how long.
+
+No repo touched; no worktree of mine remains.
+
+<!-- selected-continuity-key: light-1030:pass-retest2:rosa:free -->
+## 2026-10-31 Pass LIGHT second retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/pass-retest2/rosa/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/pass-retest2/rosa/report.original.md.txt), original SHA256 `c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0`. Build 288b2fda7c8589931a9d9e8f044f1a8aaf630333/HF4.12.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order phone then desktop; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- Method qualification: [director-method-qualification.json](../reviews/light-2026-10-30/pass-retest2/rosa/director-method-qualification.json). She read 399 of 1583 lines; her producer full-read claim is incorrect (original preserved) and the unread tail includes her published own Pass round 1 at line 1397 and later cross-game history.
+- Stops: phone 211.457 s CONFUSED ("Mon 19:56") and desktop 115.864 s CONFUSED ("Mon 19:32"). She made two actual rereads; nothing forces a continuation. Selim's opening warning was expressly improved, so there is no blanket absence. An earlier meal than the planned time may be a different meal, which does not prove the schedule was ignored. A feedback overlay may obscure the scene; no global clipping conclusion. Monday money totals do not prove the 5200 bank target impossible; an early bank-target explanation is clarity, not a financial guarantee.
+- The stop labels (BORED, FRUSTRATED, CONFUSED, TASTE) are the producers' own session labels, not game endings; no bank deadline was reached. Raw stop rows run 73.602-455 s of model and tool time (the 67-455 s range in the packet ledger-additions preface is stale; the literal ledger rows are unchanged). Clock, skip and speed are retuned only after calibration C14; difficulty, faith-quiet, agency and refusal are preserved. Feedback: both quick labels were used, with a point fallback where an apostrophe broke shell quoting; no note was typed, Submit was not pressed and no consent setting changed. The agent run-source marker has no independently read production receipt. The driver is native-tap-v2 (fork-unverified). The dated Pass Deferred is a separate documentation record; this section claims no CLEAR, CI, deployment or acceptance.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would you return voluntarily?** I would come back another evening if the game told me early whether ₺5,200 is reachable and if the cooks' strange sentences ("I will explain the wait…", "Insist", "Hold it to insist") were written in plain words. I would not leave it running; I would close it.
+
+**Ranked asks**
+1. Rewrite the cook sentences I could not follow. This covers "I will explain the wait. I am leaving the other tables for three minutes…", the "Insist / Hold it to insist" help line, and the status "in the bathroom" beside that sentence.
+2. Show early whether ₺5,200 is reachable (still not seen).
+3. Warn about Dilek's meal break in the rush as well as Selim's. After that, make the "Nobody will work at the grill while Selim eats" line match the break I chose.
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, 62, retired school administrator from Puebla, busy second-language reader.
+- **Exposure:** retest. I read my own-history.md completely (lines 1–399) in two chunks. Nothing was left unread.
+- **Round and arm:** light-1031-pass-retest2, free stop (floor 0), ceiling 20 minutes per session.
+- **URL:** https://pass.adamwhite.work/?labRunSource=agent. The page said "People by the Human Framework 4.12.0".
+- **Session A:** 360x690 touch phone, light, driver port 22306. Stop at 211.5 s of driver time.
+- **Session B:** 1280x800 keyboard and mouse, light, driver port 22307, new game. Stop at 115.9 s.
+- **Recording and consent:** I left recording on and changed no consent setting. I typed no note and pressed no Submit.
+- **Cleanup:** I made no worktrees, servers or processes. I touched no repository, so there is no `git worktree list` to show.
+
+## 2. First impressions
+
+- **A, title (0.5 s):** the title page was the same as before. I knew the goal. I read it once, with no reread.
+- **A, planning (5 s):** this was the biggest change. The top now says "Selim's meal break (18:10–18:30) leaves the grill empty when the early table arrives at 18:12. Move that break or choose a cook to cover it." That is the problem that stopped me last time. I fixed it in one tap, with the 21:00 break.
+- **A, first evening (41 s):** four tables served and ₺160 with no trouble. That is better than last time.
+- **B, planning (5–7 s):** same warning, same fix. The big screen was easier to read.
+
+## 3. Verbatim diary lines
+
+Session A (phone). Elapsed seconds are from the driver.
+
+- 5.3 s, tap New game: "Same title as last time. I know the goal. New game."
+- 7.95 s, tap Change Selim's plan: "Now it tells me the grill will be empty at 18:12 and to move the break. I read it once; clear. I change Selim."
+- 10.3 s, tap 21:00 after the rush: "I put the break after the rush so the grill is covered. Plain choices."
+- 13.6 s, tap Ask them about the changes: "Dilek also says waiting for a new answer, though I changed only Selim. Slightly odd, but I ask."
+- 15.2 s, tap Open the doors: "Selim agreed to the late break. Open the doors."
+- 43.3 s, shot a-002: "Three tables served without my doing anything. Better than last time, when the grill was empty at the start."
+- 68.6 s, first_minute, engagement 4, Mon 18:33: "The planning screen now warned me about the empty grill in plain words, and I fixed it in one tap. Four tables served and 160 lira with no trouble. Now Dilek asks five minutes to call her mother; the warning says the cold side may be empty. I understood that on first reading."
+- 69.9 s, tap Go on. Take five minutes.: "Her mother is not answering; I let her go. It is the human thing."
+- 97.8 s, tap Leave the station empty: "Only about one minute empty and no table waiting. I leave it empty; this choice and its cost are stated plainly."
+- 131.9 s, tap Leave the station empty: "Selim says: I will explain the wait. I am leaving the other tables for three minutes. I read that twice: who is he explaining to, and why bathroom? Reread 1. Table 3 waits for cold side, so I leave the grill empty."
+- 165.2 s, tap Leave the station empty: "Nine tables served, 360 lira. Selim is out for ten minutes but no table waits, so I leave it empty."
+- 189.3 s, pulse, engagement 3, Mon 19:48: "Money is growing and the screen explains empty stations in plain words. But Selim is eating now though the plan said 21:00, and the quote about explaining the wait is strange. I do not know if I can reach 5,200."
+- 192.4 s, tap Grill I am willing to do that now.: "This menu is long, but the words under each job tell me the answer. I ask for the grill. Reread 2: Insist and Hold it to insist, I do not understand. Second reread."
+- 194.9 s, want_quit, CONFUSED: "Second reread: Selim says I will explain the wait. I am leaving the other tables for three minutes. And the cook menu: Tap a job to ask. Hold it to insist, or open Insist on a job for tap and keyboard controls. I do not know what insist or hold means. I will stop after I check Feedback."
+- 211.5 s, stop, CONFUSED, engagement 3, Mon 19:56: "The empty grill is now explained and I fixed it, which pleased me. But the cooks leave stations by themselves and the words Insist, Hold it to insist and I will explain the wait I do not understand. I do not know if 5,200 is reachable. I would close it, not leave it running. I stop on the phone. In Feedback I pressed I am confused by position, typed nothing, no Submit."
+
+Session B (desktop)
+
+- 4.1 s, tap New game: "Same title, big screen. New game."
+- 6.9 s, tap Change Selim's plan: "Same warning as on the phone, in plain words. I move the break again."
+- 11.0 s, tap Done: "The dialog still says Nobody will work at the grill while Selim eats, though the break is now 21:00. I read it twice: is it a warning about now or about 21:00? Reread 1."
+- 49.7 s, tap After closing time: "Same request from Dilek as on the phone. This time I try the other answer, After closing time. The screen has two columns and is much easier to read."
+- 68.3 s, first_minute, engagement 4, Mon 18:41: "Big screen: picture left, cook choices right; much easier to read. Dilek asked five minutes for her mother; I said after closing time and she accepted, politely, and now she is on her planned break during the rush, so the cold side is empty. The planning screen warned me only about Selim, not about Dilek. I understood the Dilek request at first reading."
+- 102.4 s, tap Leave the station empty: "Only 200 lira at 19:27 and the grill already shows nobody here; Selim leaves anyway. I read again: I will explain the wait, I am leaving the other tables, and the status says in the bathroom. The words do not match. Reread 2."
+- 105.3 s, want_quit, CONFUSED: "Second reread on this device: the planning dialog said Nobody will work at the grill while Selim eats after I moved the break, and Selim says I will explain the wait. I am leaving the other tables for three minutes while the status says in the bathroom. I cannot tell what is happening to my grill. I will stop after Feedback."
+- 115.9 s, stop, CONFUSED, engagement 3, Mon 19:32: "On the big screen it is easier to read, and the early warning about the grill was clear. But I earned only 200 lira by 19:32, three tables wait for an empty grill, and Selim says he will explain the wait while the screen says in the bathroom. I do not understand what he does. I would close it, not leave it running. I stop. In Feedback I pressed I am stopping by position, typed nothing, no Submit."
+
+**Disclosures**
+- Two log or tap commands failed on shell quoting. They were my errors, not driver blocks. One was the first `first_minute` call. The other was the "I'm confused" tap, where the apostrophe in the name could not be typed.
+- I resent the `first_minute` call with plainer text. For the "I'm confused" and "I'm stopping" taps I used screen position from a screenshot instead of the name.
+- Session B had no pulse because I stopped at 115.9 s, before 180 s.
+- Each `first_minute` was logged at or after 60 s (68.6 s and 68.3 s).
+
+## 4. Moments
+
+**Held me**
+- The planning warning that names the problem. "Selim's meal break (18:10–18:30) leaves the grill empty when the early table arrives at 18:12. Move that break or choose a cook to cover it." I fixed it at once. This was my main wish last time.
+- Dilek asking to call her mother. It is an ordinary human request. The note "Dilek is the only cook at the cold side. A request to move or step away can leave the cold side empty." explained the cost in one line.
+- Tables being served without trouble: 4 tables and ₺160 by 18:18 on the phone, and ₺360 after nine tables by 19:36.
+- The desktop two-column layout. Cook choices on the right, kitchen picture on the left, and the whole screen read without scrolling.
+
+**Lost me**
+- Selim's quote "I will explain the wait. I am leaving the other tables for three minutes. The cooks will keep the orders they already have." It appears when he leaves, and the status beside it says "in the bathroom" or "outside". The words do not match the picture, and I did not know who he explains to.
+- "Tap a job to ask. Hold it to insist, or open "Insist on a job" for tap and keyboard controls." I do not know what insist or hold means here.
+- On desktop, the plan dialog still said "Nobody will work at the grill while Selim eats" after I moved the break to 21:00. I could not tell whether that referred to now or later.
+- On the phone, Selim was "eating" at 19:48 although I had moved his break to 21:00. I do not know why. I am guessing it was an earlier or different meal.
+
+**Quit wishes**
+- A, 194.9 s, CONFUSED. It did not pass, so I stopped. I viewed the pause menu before the stop.
+- B, 105.3 s, CONFUSED. It did not pass, so I stopped.
+
+**Pulses:** A at 189.3 s, engagement 3 ("Money is growing and the screen explains empty stations in plain words. But Selim is eating now though the plan said 21:00, and the quote about explaining the wait is strange"). B: none, because the session ended at 115.9 s.
+
+## 5. Confusion and clarity (actual play only)
+
+**Clear**
+- The goal, ₺5,200 by Saturday, and "They can refuse".
+- The new planning warning about the grill, and the "Move that break or choose a cook to cover it" instruction.
+- "Dilek is the only cook at the cold side. A request to move or step away can leave the cold side empty."
+- "Nobody will work at the cold side for about 1 minute, until 18:38." That time length helped me decide.
+- "You left the grill empty. You will not be asked about it again while it stays empty. You can ask a cook to work there now."
+
+**Unclear**
+- The quotes I list under "Lost me" above.
+- Whether I can reach ₺5,200. I saw no total or forecast.
+- Why Dilek's planned meal break at 18:35 in the rush leaves the cold side empty. The planning screen warned me only about Selim's break.
+- Why Dilek also said "Waiting for a new answer from Dilek" when I changed only Selim.
+
+| Screen and purpose                                    | New concepts (list every one)                                                                                                                                                                                                                                    | Concept count | Sentences reread (verbatim)                                                                                                   | Reason                                                                                                     |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Title (A, B): start                                   | The Pass; running a kitchen four weeks; Nevin's restaurant; cooks refuse; ₺5,200 (Turkish lira) by Saturday; wait choice (Selim longer, Dilek normal); Other ways to begin; New game; All games; Information; Game menu; recording and linking play across games | 12            | none                                                                                                                          | I knew it from last time                                                                                   |
+| Planning, Mon 17:30 (A, B): set breaks before opening | Station; cold side; rush 18:30–20:30; early table at 18:12; ₺40 lost if late; grill empty; meal break; cover; sunset-prayer time; work requests can compete; Change plan; Agreed; Read full answer; Ask them about the changes; Open the doors; People           | 16            | none on the phone. On desktop (the dialog): "Nobody will work at the grill while Selim eats."                                 | After I moved the break to 21:00 it still said this, and I could not tell whether it meant now or at 21:00 |
+| Plan dialog (A, B): move the break                    | Station choice; meal break times; who takes over (Dilek or Nobody); Done                                                                                                                                                                                         | 4             | See above                                                                                                                     | See above                                                                                                  |
+| Kitchen, evening (A, B)                               | Slowed time; ingredients left; table cards with grill and cold side dots; waiting minutes; ₺40 at risk; "nobody here"; Tables served and left; Lost meal payments; till; Earlier conversations; Opening notes                                                    | 11            | none                                                                                                                          | The picture and cards helped                                                                               |
+| Cook asks a request (A, B): Dilek                     | Five minutes to call her mother; only cook at the station; Go on; After closing time; "I'm not at my agreed station"                                                                                                                                             | 5             | none                                                                                                                          | Plain                                                                                                      |
+| Cook leaves station (A, B)                            | Choose someone to take over; Ask X to take over; Leave the station empty; you will not be asked again                                                                                                                                                            | 4             | "I will explain the wait. I am leaving the other tables for three minutes. The cooks will keep the orders they already have." | I do not know who he explains to, or why the status says in the bathroom                                   |
+| Talking to a cook (A): Selim                          | Ask for a job; Insist on a job; hold to insist; Invite to talk in private; three-minute private talk; Ask for fifteen minutes in the dining room; words under each job are a guess; Go home                                                                      | 9             | "Tap a job to ask. Hold it to insist, or open "Insist on a job" for tap and keyboard controls."                               | I do not know what insist or hold means here                                                               |
+| Game menu (A, B)                                      | Saved and paused; Feedback; Full screen; New game; Kitchen speed (Slow, Steady, Fast); Recording; Lab privacy; Debug; Resume                                                                                                                                     | 9             | none                                                                                                                          | I only looked                                                                                              |
+| Feedback (A, B)                                       | Keep playing choices; I'm stopping; I'm confused; note box; Add a name or tester ID; What is sent; Keep a copy of this run; Submit                                                                                                                               | 8             | none                                                                                                                          | Same as before; plain                                                                                      |
+
+I did not visit People, the Information panel or any end-of-week screen. I did not reach Saturday.
+
+## 6. Device use
+
+**Phone (360x690, touch).** Screenshots viewed: a-001 (title page) and a-002 (kitchen at 18:18). I also took a-003 (Feedback) and read it so I could find the "I'm confused" button.
+- a-001: plain text, wait-choice boxes, a red New game button, and a recording line at the bottom. All legible.
+- a-002: top bar with time and People; a ₺160 bar; the kitchen picture with Selim and Dilek, small but readable; and cook buttons. Text was small but readable. The cook buttons sat below the picture, so I did not need to scroll to find them.
+- Controls used: New game, Change plan, meal-break choices, Done, Ask them about the changes, Open the doors, cook buttons, Go on, Leave the station empty, the cook-request menu, Game menu, Feedback, and a position tap for I'm confused.
+- Trouble seen: after I asked for the Grill job, the whole menu was disabled and the button said "asked…". I could not tell whether Selim agreed until the game menu opened. Not a layout fault, but I was left waiting.
+- Unseen: the full Information and People panels, and the long text lists beyond the first screen.
+
+**Desktop (1280x800, keyboard and mouse).** Screenshots viewed: b-001, b-002 and b-003.
+- b-001: a centred column with a large title and red New game button.
+- b-002: two columns. Left: the kitchen picture and status. Right: Selim and Dilek buttons and the Dilek request box with two choices. This was much easier than the phone.
+- b-003: Feedback open over the kitchen with the two label buttons and an empty note box. Behind the overlay, three table cards were cut off, which I think is just the overlay.
+- Controls used: mouse taps through the driver: New game, plan, break times, Done, Ask, Open the doors, Dilek's request choices, Leave the station empty, Game menu, Feedback, a position tap for I'm stopping, and Back.
+- I used no keyboard keys.
+
+**Apostrophe problem (driver, not a game fault):** a tap on "I'm confused" by name failed because I could not type the apostrophe into the command. I used screen position instead. I never needed the name again.
+
+## 7. Stop and return
+
+- **Session A stop, 211.5 s, CONFUSED:** "The empty grill is now explained and I fixed it, which pleased me. But the cooks leave stations by themselves and the words Insist, Hold it to insist and I will explain the wait I do not understand. I do not know if 5,200 is reachable. I would close it, not leave it running. I stop on the phone."
+- **Session B stop, 115.9 s, CONFUSED:** "On the big screen it is easier to read, and the early warning about the grill was clear. But I earned only 200 lira by 19:32, three tables wait for an empty grill, and Selim says he will explain the wait while the screen says in the bathroom. I do not understand what he does. I would close it, not leave it running. I stop."
+- **Feedback:** both buttons were available. I chose "I'm confused" on the phone and "I'm stopping" on desktop, each by screen position. Each became pressed and the note box showed that label's text. I typed nothing and pressed no Submit. I closed with Back to the menu each time.
+
+**Would you return voluntarily?** I would come back another evening, on the big screen, if the game told me early whether ₺5,200 is reachable and if the strange cook sentences ("I will explain the wait…", "Insist", "Hold it to insist") were written plainly. I would close it, not leave it running, because the game moves on by itself while I read and I would not know what I missed. I would not choose the phone again unless the cook menu got shorter.
+
+## 8. Changes I would want
+
+1. Rewrite the sentences that confused me. "I will explain the wait. I am leaving the other tables for three minutes." should say who he talks to. Make the status ("in the bathroom") match the quote. Replace "Insist" and "Hold it to insist" with plain words.
+2. Show early whether ₺5,200 is reachable. A line such as "You have ₺360. You need ₺5,200 by Saturday." would do.
+3. Warn about Dilek's meal break in the rush as well as Selim's. Also make the plan dialog line "Nobody will work at the grill while Selim eats" match the break I chose.
+
+## 9. Compared with my last visit
+
+- **Do not let the starting plan leave the grill empty, or tell me before I open the doors (ask 1):** met for Selim. The planning screen now says "Selim's meal break (18:10–18:30) leaves the grill empty when the early table arrives at 18:12. Move that break or choose a cook to cover it." I fixed it in one tap. I met a similar problem for Dilek: her planned 18:35 break in the rush left the cold side empty (Session B at 18:41), with no warning on the planning screen. So this is partly met. The dialog also still said "Nobody will work at the grill while Selim eats" after I moved the break (Session B).
+- **Show early whether ₺5,200 is reachable (ask 2):** not met. I saw only "₺160 … ₺5,200 due Saturday" and a bar. I saw no forecast.
+- **Keep the planning text short; the long repeated "I agree to that…" quotes (ask 3):** not met. The planning screen is still four paragraphs, and "I agree to that. I will work at the grill until 21:00…" still appears in opening notes and again in the log. Related to my older asks, the "Earlier conversations" and "Opening notes" lists are still long.
+- **From my earlier Well and Warren asks:** I did not play those games this time, so not seen. The closest idea (tell me what changed after I act) applies here. When I moved the break, the plan said "Waiting for a new answer" for both cooks, then "agreed" after I asked. That helped, but I did not understand why Dilek was also waiting.
+- **Make it clear when a cook dialog is closed (from my last Pass report):** partly met. After a request the buttons became disabled with "They heard you. You are waiting for their answer." That was clear. I did not test the close button.
+- **New blockers from this visit:** the "Insist / Hold it to insist" help line and Selim's "I will explain the wait" quote. Each cost me a reread, and together they ended both sessions. Also, Selim ate at 19:48 when I had moved his break to 21:00, and I could not tell why.
+
+<!-- selected-continuity-key: light-1030:goodhands-retest1:rosa:free -->
+## 2026-10-31 Good Hands LIGHT first fixed-build retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/goodhands-retest1/rosa/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/goodhands-retest1/rosa/report.original.md.txt), original SHA256 `36916c3edaf04e06f66647901d5fc98adac09d6b5af61d6651d8ec331ab75b37`. Build 2e67317e6a0aa187bf41de5d9bac5369916700f2/HF4.8.1, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order phone then desktop; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- Method qualification: [director-method-qualification.json](../reviews/light-2026-10-30/goodhands-retest1/rosa/director-method-qualification.json). Her history has 1682 lines and the tool replies ended at line 468; her producer claim that the file was cut is incorrect. Her earlier own Good Hands report was included; the later Glance, cross-game and Pass tail is unread. The earlier Rosa CONT and exposure qualification remains.
+- Stops: phone 70.146 s BORED and desktop 43.144 s BORED (no game_clock recorded). Her verdict is keep, resting on her affirmative return and no new blocker. No rereads on the screens reached is a present-visit finding, not universal language or usability acceptance. Phone placement was reached and desktop placement was not, so her opening line must not imply two placements. Rent covered by the cash bar is not an actual Friday rent payment or a game end. Her full applicant cards were unscrolled and unseen. F-2537 is already met at both sizes: preservation only. Her phone first minute was not logged despite 70 s.
+- The stop labels are the producers' own session labels, not game endings; all five testers reached only Monday and no trial or later-week outcome was reached. Durations (31.231-298.662 s) are model and tool time, not human reading speed. Feedback: the offered quick labels were seen; no note was typed, Submit was not pressed and no consent setting changed. The agent run-source marker has no independently read production receipt. The driver is native-tap-v2 (fork-unverified). This is the first fixed-build retest, not a second iteration; the game is not finished and no CLEAR or acceptance is claimed. Clarity work keeps the clock, difficulty and economy; C14 comes before any clock change.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would you return voluntarily?** "I would come back another evening, probably on the big screen, to see what happens to Özlem and the Kaya family. I would not leave it running; I would close it."
+
+**Ranked asks**
+1. After a placement, tell me what to do while I wait. Both sessions ended on "Next: A family is due to call. Wait or meet someone on your bench."
+2. Say each wage and fee once on the agreement screen. The same numbers appear three times.
+3. Keep "I'm stopping" and "I'm confused" in Feedback on both devices. Both were there this time.
+
+---
+
+## 1. Session
+
+- **Persona:** Rosa Alvarez, 62, retired school administrator from Puebla. She reads English as a second language and is busy. Rule: stop after the second sentence she must reread.
+- **Exposure:** retest. I read all of own-history.md in chunks (lines 1–468, to the end). It covers Well, Warren, Pass, Good Hands and the start of Glance. The Glance section was cut off at the file end, so I have no memory beyond it.
+- **Round and arm:** light-1031-goodhands-retest1, free stop (floor 0). Build 2e67317e / 4.8.1.
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent
+- **Session A:** phone 360x690 touch, light, port 22706. About 70 s of driver time at the stop log.
+- **Session B:** desktop 1280x800, light, port 22707. About 43 s at the stop log.
+- **Not reached:** I stopped before 60 s on desktop and I never reached 180 s. I logged no first_minute on the phone (see Section 3), and no pulse in either session.
+
+## 2. First impressions
+
+- **A, 0.5 s:** the same title as last time. The aim, the family and the rent were clear on first reading.
+- **A, 9.4 s:** the office showed ₺3,000 and "Rent ₺5,000". I do not remember a starting cash figure from before, so I cannot say if that is new.
+- **A, 31.5 s:** the crying question gave a clear "I take a breath before I answer", and the reading said "I believe".
+- **B, 7.4 s:** the same office, with the big picture on the left and the card on the right.
+
+## 3. Verbatim diary (driver seconds)
+
+**Session A (phone)**
+- 4.6 s, Open the office: "Same title as before; I know the aim."
+- 12.3 s, Özlem Koç: "I remember Özlem from last time; I start with her. Cash is 3,000 now, not what I remember."
+- 23.3 s, still interviewing: "Honest, simple."
+- 35.7 s, wait on the bench: "Patient answer is clear: she takes a breath. The reading now says Özlem said this, I believe. I understand it."
+- 41.7 s, Negotiate: "New: the card now says why: only Özlem says so, nobody confirmed, enough to believe. That is what I asked for."
+- 44.9 s, patient: "The fee paragraph now has numbers: 2,250 now, 6,750 after trial. That was my ask. Still a long paragraph but I read it once."
+- 51.0 s, agreement: "The same wage and hours are said three times on this screen. Too much repeating, but numbers are clear."
+- 56.5 s, shot a-002: "Rent is covered already at under a minute. Placed card shows one sentence now, not five."
+- 59.8 s, want_quit BORED (engagement 3): "I placed one nanny and the rent is covered in under a minute. The Next line is whole now and the buttons sit at the bottom. But now it only says wait; I would stop for tonight."
+- 70.1 s, stop BORED (engagement 3): "I placed Ozlem and the rent is covered at 09:35. Reasons are explained now and the fee has numbers. Now I only wait for the next family call, so I stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit."
+
+Two log calls failed because of an apostrophe in the shell quoting. I resent the stop line with plainer wording, and it worked. The apostrophe is missing from the logged line: it says "the stopping label", not "I'm stopping".
+
+**Session B (desktop)**
+- 2.6 s, Open the office: "Same title, big screen. I know the aim."
+- 10.6 s, Şebnem Eren: "This time I try Şebnem, the one I doubted before, to see whether the reading explains itself."
+- 35.1 s, shot b-002: "New: the card says why she stays unsure: not clear enough. That is what I asked for."
+- 43.1 s, stop BORED (engagement 3): "On the big screen I understood everything without a reread. The card now says why Sebnem stays unsure. I have placed nobody here and I would rather stop for tonight. Feedback: I pressed the stopping label, typed nothing, no Submit."
+
+## 4. Moments
+
+- **Held me:**
+  - The card now says why a reading is "believe" or "unsure". Özlem's own answer was "enough for her to believe it". Şebnem's was "not clear enough, so she stays unsure". This is what I asked for last time.
+  - The agreement screen gave the fee in numbers: ₺2,250 now, ₺6,750 after the trial. Cash then rose to ₺5,250.
+  - The phone layout had a whole "Next" line and the action buttons in a bar at the bottom.
+- **Lost me:**
+  - After the placement I only had "Wait or meet someone on your bench". Nothing told me what was worth doing.
+  - The agreement screen says the wage and hours three times.
+- **Quit wishes:** A at 59.8 s, BORED. It did not pass, so I stopped. B ended in BORED at 43 s with no earlier want_quit line.
+- **Pulses:** none. The 180 s mark was never reached.
+
+## 5. Confusion and clarity
+
+- **Rereads:** none in either session.
+- **Clear:** the aim, the question list, "Nermin's reading" with its reason, and the numbers in the fee paragraph. The "Wage ₺8,500" note on the card also helped.
+- **Unclear:**
+  - "Nobody else has confirmed it" sits above "This is enough for her to believe it". It is a long, compact block, but I understood it on the first reading.
+  - It surprised me that ₺5,250 passed the ₺5,000 rent in under a minute. I did not know what else was worth doing.
+
+| Screen and purpose            | New concepts                                                                                                               | Count | Sentences reread (verbatim) | Reason                   |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ----- | --------------------------- | ------------------------ |
+| Title (A, B)                  | agency, Nermin, Izmir, nanny, applicants, bench, rent, landlord, Friday, recording note, All games, Information, game menu | 13    | none                        | Clear                    |
+| Office (A, B)                 | clock, cash bar, rent line, Task line, Skip, Bench/Families/Placed, City, desk card, old case, day's notes                 | 10    | none                        | Plain                    |
+| Applicant card (A, B)         | six qualities, "not asked yet", wage note, experience, former employers, five actions                                      | 9     | none                        | Readable                 |
+| Interview (A, B)              | question time cost, questions remaining, More questions, wait on the bench, send home                                      | 5     | none                        | Clear                    |
+| Family call (A)               | Answer, still interviewing, wage offered                                                                                   | 3     | none                        | Plain                    |
+| Card after an answer (A, B)   | "said this", "Only X says so", "nobody confirmed", "stays unsure"                                                          | 4     | none                        | Clear                    |
+| Negotiate (A)                 | deposit, usual terms, fee, qualities promised, "not checked"                                                               | 5     | none                        | Numbers helped           |
+| Agreement (A)                 | wage, hours, day off, trial, agency fee                                                                                    | 5     | none                        | The numbers are repeated |
+| Placed card (A)               | disabled action buttons                                                                                                    | 1     | none                        | Plain                    |
+| Game menu and Feedback (A, B) | Feedback, the label buttons, note, name, what is sent, keep a copy, Submit                                                 | 8     | none                        | I used only the label    |
+
+## 6. Device use
+
+- **Phone (A):**
+  - I viewed a-001, the title: readable text and a big red button.
+  - I viewed a-002, the placed office: the picture is now small, with the "Next" line whole and the Skip button below it. The Bench/Families/Placed tabs and the names fit on screen. The action buttons sit in a bar at the bottom.
+  - The card text reached the bottom bar, and I did not scroll to read the rest.
+  - Controls used: Open the office, bench, Interview, questions, Answer, Negotiate, quality, Propose, End the conversation, Game menu, Feedback, the stopping label, Back.
+- **Desktop (B):**
+  - I viewed b-001, the title: a centred column with a red button.
+  - I viewed b-002: the office picture on the left, and the tabs, bench and card on the right. A "ring!" call banner was at the top, and the action boxes at the lower right.
+  - Controls used: the same, with mouse taps.
+- **Trouble seen:** none on either device. I saw no timeout error this time. I did not reach the Negotiate or Placed screens on desktop.
+- **Unseen:** the full length of the applicant card on both devices.
+
+## 7. Stop and return
+
+- **A stop, BORED, 70.1 s:** "I placed Ozlem and the rent is covered at 09:35. Reasons are explained now and the fee has numbers. Now I only wait for the next family call, so I stop for tonight."
+- **B stop, BORED, 43.1 s:** "On the big screen I understood everything without a reread. The card now says why Sebnem stays unsure. I have placed nobody here and I would rather stop for tonight."
+- **Feedback:** both "I'm stopping" and "I'm confused" were offered on both devices. I chose "I'm stopping" in each. Each showed as pressed. I typed nothing, pressed no Submit, changed no consent, and pressed Back.
+- **Would you return voluntarily?** Yes, another evening. I would play on the tablet or desktop, to see what happens to Özlem and the Kaya family. I understood everything on this visit without a reread, which I could not say last time. I would not leave it running. After the rent was paid I had nothing to do but wait, and I would not know what I missed.
+
+## 8. Changes I would want
+
+1. Tell me what is worth doing while I wait, after a placement.
+2. Say the wage and fee once on the agreement screen.
+3. Keep the two Feedback labels on both devices.
+
+## 9. Compared with my last visit
+
+- **"Nermin's reading" should say why (ask 1):** met. The card now says why: Özlem's own answer was "enough for her to believe it", and Şebnem's was "not clear enough, so she stays unsure". I saw it for both of them.
+- **Fee and deposit paragraph in short sentences, with real numbers (ask 2):** mostly met. It now gives ₺2,250 and ₺6,750, and I read it once. It is still a long block.
+- **One short line instead of the same sentence in five boxes; fix the cut-off "Next" line and the big picture on the phone (ask 3):**
+  - Met on the phone: the picture is smaller, the Next line is whole, and the placed card shows one sentence.
+  - Not met on "what to do while waiting". The screen still said only "Wait or meet someone on your bench."
+- **New blocking ask:** none. My stop came from having nothing to do after the placement.
+
+No repo touched; no worktree of mine remains.

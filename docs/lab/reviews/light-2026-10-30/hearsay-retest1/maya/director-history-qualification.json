@@ -1,0 +1,8 @@
+{
+  "recordedAt": "2026-10-31T06:25:00.164594+00:00",
+  "game": "hearsay",
+  "round": "retest1",
+  "person": "Maya Chen",
+  "qualification": "Tester explicitly read own-history.md lines1\u2013349 only. Earlier own Hearsay report is included there; later cross-game history was unread. Preserve this qualification. Do not claim the full supplied own history was read.",
+  "producerReportUnchanged": true
+}

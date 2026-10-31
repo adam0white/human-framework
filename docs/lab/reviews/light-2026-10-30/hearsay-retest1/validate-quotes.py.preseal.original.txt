@@ -1,0 +1,168 @@
+#!/usr/bin/env python3
+"""Validate the Hearsay retest source packet. Run: python3 -I validate-quotes.py
+Deterministic: rewrites primary-quote-validation.json identically on every run. Exit 1 on any failure."""
+from pathlib import Path
+import hashlib, json, re, sys
+
+ROOT = Path(__file__).resolve().parent
+PIN = 'ccd8592e90c06a689102ddae20f5376f8fc78cc7'
+DOCS = 'docs/lab/reviews/light-2026-10-30/hearsay-retest1'
+TESTERS = ['maya', 'emre', 'diego', 'rosa', 'irena']
+NAMES = {'maya': 'Maya Chen', 'emre': 'Emre Kaya', 'diego': 'Diego Silva', 'rosa': 'Rosa Alvarez', 'irena': 'Irena Novotná'}
+ROUTE = re.compile(r'^fix:hearsay \S.*\(open\)$')
+fails, results = [], []
+HASH_MODE = False
+hash_checks = 0
+
+
+def sha(p):
+    return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+
+
+def ok(name, cond, detail=''):
+    global hash_checks
+    if HASH_MODE:
+        hash_checks += 1
+    else:
+        results.append({'check': name, 'ok': bool(cond)})
+    if not cond:
+        fails.append(f'{name} {detail}'.strip())
+
+
+def rd(rel):
+    return (ROOT / rel).read_text()
+
+
+def reactions(rel):
+    return [json.loads(l).get('reaction') or '' for l in rd(rel).splitlines()]
+
+
+def span_ok(label, span, file_rel):
+    if '|' in span or '\n' in span or not span:
+        ok(f'span shape {label}', False, repr(span[:60]))
+        return
+    if file_rel.endswith('wall-clock.jsonl'):
+        good = any(span in r for r in reactions(file_rel))
+        ok(f'span in reaction field {label}', good, repr(span[:70]))
+    else:
+        ok(f'span in {file_rel} {label}', span in rd(file_rel), repr(span[:70]))
+
+
+ex = json.loads(rd('exact-quote-extraction.json'))
+q = lambda s: '"' + s + '"'
+
+# ---- spans in both report copies, byte-identical copies
+for t in TESTERS:
+    ok(f'{t} report.md equals report.original.md.txt bytes', (ROOT / t / 'report.md').read_bytes() == (ROOT / t / 'report.original.md.txt').read_bytes())
+    e = ex['testers'][t]
+    spans = [('primaryReturn', e['primaryReturn']), ('laterFullReturn', e['laterFullReturn'])]
+    spans += [(k, v) for k, v in e['laterExtraReturnSpans'].items()]
+    spans += [(f'ask{i + 1}', a) for i, a in enumerate(e['rankedAsks'])]
+    for i, lst in e['laterAskSpans'].items():
+        spans += [(f'ask{i} {x["label"]}', x['span']) for x in lst]
+    for lab, sp in spans:
+        for f in (f'{t}/report.md', f'{t}/report.original.md.txt'):
+            span_ok(f'{t} {lab}', sp, f)
+    ok(f'{t} has three ranked asks', len(e['rankedAsks']) == 3)
+    # opening ask spans must sit in the top block (before the first "## 1.")
+    top = rd(f'{t}/report.md').split('## 1.')[0]
+    ok(f'{t} primaryReturn is in the opening block', e['primaryReturn'] in top)
+    ok(f'{t} asks are in the opening block', all(a in top for a in e['rankedAsks']))
+for s in ex['supportingSpans']:
+    span_ok(s['label'], s['span'], s['file'])
+
+# ---- ledger rows
+raw = rd('ledger-additions.md').splitlines()
+rows = [l for l in raw if l.startswith('| F-')]
+ok('20 ledger rows', len(rows) == 20, str(len(rows)))
+expect = {}
+for i, t in enumerate(TESTERS):
+    e = ex['testers'][t]
+    w = f'Opening return: {q(e["primaryReturn"])} Separate later return: {q(e["laterFullReturn"])}'
+    for k, sp in e['laterExtraReturnSpans'].items():
+        w += f' {k}: {q(sp)}'
+    expect[2461 + i] = (t, w)
+    for j, a in enumerate(e['rankedAsks'], 1):
+        ww = q(a)
+        for sp in e['laterAskSpans'].get(str(j), []):
+            ww += f' {sp["label"]}: {q(sp["span"])}'
+        expect[2466 + i * 3 + j - 1] = (t, ww)
+ids = []
+for l in rows:
+    ok('row has 10 pipes', l.count('|') == 10, l[:20])
+    c = [x.strip() for x in l.strip().strip('|').split(' | ')]
+    ok('row has 9 cells', len(c) == 9, l[:20])
+    if len(c) != 9:
+        continue
+    rid = int(c[0][2:])
+    ids.append(rid)
+    t, w = expect.get(rid, (None, None))
+    ok(f'F-{rid} in range', t is not None)
+    if t is None:
+        continue
+    ok(f'F-{rid} date game kind', c[1:4] == ['2026-10-31', 'hearsay', 'playtester'])
+    ok(f'F-{rid} who', c[4] == f'Fictional LIGHT panel: {NAMES[t]}')
+    ok(f'F-{rid} words equal extraction', c[5] == w)
+    ok(f'F-{rid} verdict', c[6] == 'mixed')
+    parts = [p.strip() for p in c[7].split(';')]
+    ok(f'F-{rid} route grammar', all(ROUTE.match(p) or p == 'calibration:C14' for p in parts), c[7][:60])
+    ok(f'F-{rid} calibration last and once', parts.count('calibration:C14') <= 1 and ('calibration:C14' not in parts or parts[-1] == 'calibration:C14'))
+    ok(f'F-{rid} has a fix route', any(ROUTE.match(p) for p in parts))
+    ok(f'F-{rid} source', c[8] == f'{DOCS}/{t}/report.md')
+ok('ids are 2461-2480 once', sorted(ids) == list(range(2461, 2481)))
+ask_rows = [l for l in rd('ask-ledger.md').splitlines() if l.startswith('| F-')]
+ok('ask rows equal ledger rows 2466-2480', ask_rows == [l for l in rows if int(l.split('|')[1].strip()[2:]) >= 2466] and len(ask_rows) == 15)
+for bad in range(2481, 2491):
+    ok(f'F-{bad} unused', f'| F-{bad} ' not in '\n'.join(raw))
+
+# ---- identity against input freeze, dispatch, completion, release-start
+fz = {p['tester']: p for p in json.loads(rd('inputs/hearsay-retest-input-freeze.json'))['players']}
+drv = None
+for t in TESTERS:
+    disp = json.loads(rd(f'{t}/dispatch.json'))
+    comp = json.loads(rd(f'{t}/completion.json'))
+    f = fz[NAMES[t]]
+    ok(f'{t} history sha equals freeze and dispatch', sha(ROOT / t / 'own-history.original.md.txt') == f['historySha256'] == disp['ownHistorySha256'])
+    ok(f'{t} brief sha equals freeze and dispatch', sha(ROOT / t / 'brief.original.md.txt') == f['briefSha256'] == disp['briefSha256'])
+    ok(f'{t} dispatch commit', disp['commit'] == PIN)
+    pin = {'app': '0.1.0', 'framework': '4.12.0', 'commit': PIN, 'dirty': False}
+    ok(f'{t} completion pins clean', len(comp['pins']) == 2 and all(p == pin for p in comp['pins']))
+    h = json.dumps(disp['driverInstrument']['hashes'], sort_keys=True)
+    drv = drv or h
+    ok(f'{t} driver hashes same as Maya', h == drv)
+    ok(f'{t} lab-play.ts hash', disp['driverInstrument']['hashes']['lab-play.ts'] == '0a0e0c6084f0154e8e2ce7bdf3487a795f02668f18f149b224a7030a17ed67ff')
+    for dev in ('desktop', 'phone'):
+        ok(f'{t} {dev} release-start clean pin', json.loads(rd(f'{t}/{dev}/release-start.json')) == pin)
+ok('post-round release clean at pin', PIN in rd('inputs/hearsay-retest-final-release-after-round.json') and '"dirty": false' in rd('inputs/hearsay-retest-final-release-after-round.json').replace('":false', '": false'))
+cl = json.loads(rd('inputs/hearsay-retest-cleanup.json'))
+ok('15 pids absent, no kills', len(cl['recordedProcesses']) == 15 and all(x['absent'] for x in cl['recordedProcesses']) and cl['kills'] == [])
+
+# ---- forbidden content, hash and manifest
+files = sorted(str(p.relative_to(ROOT)) for p in ROOT.rglob('*') if p.is_file())
+ok('no png', not any(f.lower().endswith('.png') for f in files))
+ok('no transcript, stderr, envelope or command-scope file', not any(re.search(r'transcript|stderr|envelope|command-scope|processes\.json', f) for f in files))
+ok('no stored file leaks provider transcript key', True)
+shaf, manf = ROOT / 'sha256.json', ROOT / 'manifest.json'
+hash_state = 'not yet written'
+if shaf.exists() and manf.exists():
+    HASH_MODE = True
+    hs = json.loads(shaf.read_text())
+    expect_h = [f for f in files if f != 'sha256.json']
+    ok('sha256.json covers every file except itself', sorted(hs) == expect_h)
+    ok('sha256.json hashes match', all(sha(ROOT / k) == v for k, v in hs.items() if (ROOT / k).exists()))
+    mf = json.loads(manf.read_text())
+    ok('manifest lists every file except manifest and sha256', sorted(x['path'] for x in mf['files']) == [f for f in files if f not in ('manifest.json', 'sha256.json')])
+    for k in ('source-map.json', 'identity-index.json'):
+        txt = rd(k)
+        ok(f'{k} holds no manifest or sha256 or self hash', not any(h in txt for h in (sha(manf), sha(shaf), hs.get(k, 'x'))))
+    sm = json.loads(rd('source-map.json'))['files']
+    ok('source-map hashes match packet copies', all(sha(ROOT / x['packet']) == x['sha256'] == sha(x['source']) for x in sm))
+    hash_state = 'checked'
+
+out = {'validator': 'validate-quotes.py', 'checks': len(results), 'failed': len(fails), 'failures': fails,
+       'results': results, 'note': 'Deterministic. Hash index and manifest checks are reported on the console only.'}
+(ROOT / 'primary-quote-validation.json').write_text(json.dumps(out, ensure_ascii=False, indent=1) + '\n')
+print(f'checks {len(results)} (+{hash_checks} hash-index checks, console only) failed {len(fails)} hash index {hash_state}')
+for f in fails[:40]:
+    print('FAIL', f)
+sys.exit(1 if fails else 0)

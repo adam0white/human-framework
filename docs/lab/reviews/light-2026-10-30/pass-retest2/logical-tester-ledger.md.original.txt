@@ -1,0 +1,11 @@
+# Logical tester ledger — Pass retest 2
+
+One row per tester. Verdict words are each tester's own conditions. They are not votes and not a population estimate. The stop labels are the producers' own session labels. They are not five independent game completions. Full raw stop words are in `logical-tester-ledger.json` and `all-driver-reactions.json`.
+
+| id | tester | exposure | verdict | stops | asks |
+| --- | --- | --- | --- | --- | --- |
+| F-2491 | Maya Chen | standing player, second retest after fixes | mixed | phone 275.942 s FRUSTRATED, desktop 251.758 s TASTE | F-2496–F-2498 |
+| F-2492 | Emre Kaya | standing player, second retest after fixes | mixed | desktop 301.426 s BORED, phone 73.602 s BORED | F-2499–F-2501 |
+| F-2493 | Nia Okafor | standing player, second retest after fixes | mixed | phone 197.553 s BORED, desktop 107.858 s FRUSTRATED | F-2502–F-2504 |
+| F-2494 | Rosa Alvarez | standing player, second retest after fixes | mixed | phone 211.457 s CONFUSED, desktop 115.864 s CONFUSED | F-2505–F-2507 |
+| F-2495 | Sonia Ionescu | new cold person, empty history, first Pass visit | mixed | desktop 455 s FRUSTRATED, phone 294.064 s BORED | F-2508–F-2510 |

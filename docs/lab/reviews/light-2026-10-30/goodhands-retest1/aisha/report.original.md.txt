@@ -1,0 +1,99 @@
+**Would you return voluntarily?** Yes, I would come back another evening, but only if the notes changed when a person gave their own account, and I could actually send the repair letter I drafted for the old case. I would not leave it running.
+
+**Ranked asks**
+1. Let me finish the repair. After "Correct the agency record and write to the worker first", the letter stayed "not sent" and I found no way to send it.
+2. When I ask why a job ended, give me a reason in the person's own words. I got another bad fact: "left without handing over the work as agreed."
+3. Make a second candidate's interview answers say more than "I have worked as a nanny."
+
+## 1. Session
+- **Persona:** Aisha Rahman, 45, Birmingham community pharmacist.
+- **Exposure:** retest. I last played Good Hands in an earlier round.
+- **Round and arm:** light-1031-goodhands-retest1, free stop (floor 0).
+- **History read:** all 875 lines, in two chunks. Nothing is unread.
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent
+- **Session A:** desktop 1280x800, light mode, port 22703. About 102 s.
+- **Session B:** phone 360x690 touch, light mode, port 22702. About 33 s.
+- **Release commit:** the coordinator adds it.
+
+## 2. First impressions
+**Session A (desktop)**
+- 5 s: the same cream title page.
+- 10 s: the office opened. There was now an "old case from before this month" card with "Look again at one of your earlier agency decisions".
+- 17–21 s: I took the card. It showed Nermin's own admission: she softened a worker's warning and refunded the client before checking the worker's loss. I chose "Correct the agency record and write to the worker first". Nermin drafted a private letter but "has not sent the letter or paid anything yet". No control sent it.
+
+**Session B (phone)**
+- 8 s (b-002.png): the "Arslan family needs a nanny…" bar is fully visible, not clipped as it was before. The same old-case card is there.
+
+## 3. Verbatim diary lines (driver elapsed_s)
+
+**Session A**
+- 5.318 (on tap): "Same title page as before; I know the place."
+- 17.256 (on tap): "New to me: an old case on the mind of Nermin. I want to see what it is."
+- 21.058 (on tap): "A chance to repair an old mistake. That is exactly my sort of room to repair."
+- 24.678 (on tap): "Letter drafted but not sent, and no button to send it. I will follow Sebnem again."
+- 28.38 (on tap): "Interview her first, to hear her side before any reference."
+- 38.418 (on tap): "The family call came much earlier than 11:00 this time. Answering."
+- 42.333 (on tap): "Same call as last time. I will not promise what I cannot yet keep."
+- 53.539 (on tap): "Her answers are thin now: I have worked as a nanny. Less than last time, I think."
+- 63.484 (first_minute, Mon 2 Nov 09:50): "I understand: interview, family call, references, trial. New since last time: an old-case card where Nermin corrects her own record and drafts a letter to a worker, though I see no way to send it. The family call came at 09:17, not 11:00. Sebnem again leaves and wants calling back after 11:38. I recognise the shape."
+- 77.909 (on tap): "Melek says Sebnem handed back the change and receipts together, yet the reading says I am still unsure she is honest. Same complaint as last time: the reading does not follow what I heard."
+- 82.035 (on tap): "This time the reference says she argued when instructions were repeated, and the reading matches it. So the reference differs from last visit, and the note follows. I want her side before judging."
+- 85.698 (want_quit, BORED, Mon 2 Nov 10:21): "Asked why the job ended and got another bad fact (left without handing over work), not a reason, same as last time. I have seen the shape of this one; her own side would come after 11:38 but I know that part. I would stop here."
+- 101.683 (stop, BORED, Mon 2 Nov 10:21): "Stopping after under two minutes on the laptop. I liked the old-case card where Nermin corrects her own record, but I could not see how to send the letter, and the reference still gave a bad fact instead of a reason. I pressed I would stop here in Feedback, typed nothing, no Submit."
+
+**Session B**
+- 3.819 (on tap): "Same title page on the phone."
+- 15.419 (on tap): "The news bar is no longer cut off on the phone; that was my old complaint. This time I will follow Ozlem."
+- 24.409 (want_quit, BORED, Mon 2 Nov 09:03): "The same family call arrives mid-interview and I did this on the laptop a minute ago. Ozlem gives the same thin I have worked as a nanny. Nothing new to learn here, so I would stop on the phone."
+- 32.985 (stop, BORED, Mon 2 Nov 09:03): "Stopping the phone after about half a minute. I had just played the same opening on the laptop, and Ozlem gave the same thin answer. The phone layout now fits. I pressed I would stop here, typed nothing, no Submit."
+
+Tags not reached:
+- **Desktop first_minute:** logged at 63.5 s, valid.
+- **Phone first_minute:** untested. The session ended at 33 s, before 60 s.
+- **Pulses:** none logged on either device. Neither session reached 180 s.
+
+## 4. Moments
+- **Held me:**
+  - The old-case card. Nermin admitting she "made the warning sound less serious" and offering to correct the record and write to the worker is the room to repair that I asked for.
+  - The interview answers and the apology line, "Sorry. Where were we?", are still considerate.
+  - Gülce was named as waiting "while you read", so the game says what my reading costs.
+- **Lost me:**
+  - The drafted letter had no way to be sent, so the repair stopped halfway.
+  - "Ask why the job ended" gave another bad fact, not a reason.
+  - I had played the same opening on the laptop just before the phone, so the phone had nothing new.
+- **Quit wishes:** desktop 85.7 s (BORED), phone 24.4 s (BORED). Neither passed.
+- **Pulses:** none, as above.
+
+## 5. Confusion and clarity
+- **Clear:** the Bench, Families and Placed tabs. The "You have not asked yet" placeholders. "Paused while the menu is open" and "Paused for Feedback."
+- **Unclear:**
+  - Whether the drafted letter to the worker can ever be sent, or whether the old case continues later. I did not find out.
+  - Why Melek's account was different from my last visit (she now says Şebnem argued) while the first note, "still unsure honest", did not move after "handed back the change and receipts". I am guessing the content varies per game.
+- **Driver:** I could not press "I'm stopping" because the straight apostrophe in the name would not pass my shell. A tap by text also failed. I tapped "I’d stop here" instead, which has a curly apostrophe. That is the stopping label I used on both devices. I think this was my command line, not the game.
+
+## 6. Device use
+- **Desktop (1280x800):** I viewed a-001.png, the cream title page with the "GH placement agency" sign, "Open the office", and the recording notice bottom left. I used a-001 only; no second desktop shot was taken. I tapped named controls, the old-case buttons, a bench applicant, interview questions, the call answer and reference call, Game menu, Feedback, "I’d stop here" and Back. The menu now includes "What happens to these people next". I did not open it.
+- **Phone (360x690):** I viewed b-001.png (the title page, readable, red button at the bottom) and b-002.png (the office: sketch, tabs, three bench buttons, the Arslan bar fully visible, Skip button text fits). I tapped Open the office, a bench applicant, interview questions, Game menu, Feedback, "I’d stop here" and Back.
+- **Seen trouble:** none at either size. The old clipped news bar is gone. **Unseen:** the phone layout once the call or reference screens were open.
+- **Shots:** two of six used per device at most (a-001; b-001, b-002).
+
+## 7. Stop and return
+- **Session A stop (BORED):** "Stopping after under two minutes on the laptop. I liked the old-case card where Nermin corrects her own record, but I could not see how to send the letter, and the reference still gave a bad fact instead of a reason."
+- **Session B stop (BORED):** "Stopping the phone after about half a minute. I had just played the same opening on the laptop, and Ozlem gave the same thin answer. The phone layout now fits."
+- **Feedback:** reachable through Game menu → Feedback on both devices. I chose "I’d stop here" on both, typed nothing, pressed no Submit, left Recording checked and pressed Back. "I'm stopping" was offered, but I could not select it because of the apostrophe.
+- **Would you return voluntarily?** The answer is the sentence at the top. I would stay away if the old case ended at an unsent letter again. Another evening, not left running.
+
+## 8. Changes I would want
+See the three ranked asks at the top.
+
+## 9. Compared with my last visit
+My own last Good Hands asks:
+1. **Update Nermin's notes when someone gives their own account.** Partly met. This time Melek's patience claim was followed by a matching reading ("I doubt that the worker is patient"). But "handed back the change and receipts" still left "still unsure honest". I never reached Şebnem's own answer, so I cannot say whether her words change the note.
+2. **Pause the clock while I read.** Not met. Time advanced during my reading, and the screen said "Gülce Aksoy is waiting while you read." The clock does pause while the menu or Feedback is open, which is new to me.
+3. **Show whether a tap has registered, or stop the 30-second timeouts.** Met. I had no driver timeouts this time.
+
+My earlier note about the phone: the clipped Arslan news bar is fixed. I saw it complete at 8 s.
+
+**New blocking ask from what I reached:** let me send the letter in the old-case card. The repair stops at "has not sent the letter or paid anything yet".
+
+No repo touched; no worktree of mine remains.

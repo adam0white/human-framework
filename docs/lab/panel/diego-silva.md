@@ -907,3 +907,294 @@ Entries marked "(reaction field)" went in on an action call, not as a separate l
 First visit to this game. I recognised nothing from session A to session B except the same text (same scenario, same names). Both sessions were fresh games, so no seed or save continuity.
 
 **Cleanup:** I created no worktrees, servers or browsers and touched no repository. The coordinator stops the drivers. `git worktree list`: none of mine.
+
+<!-- selected-continuity-key: light-1030:hearsay-retest1:diego:free -->
+## 2026-10-31 Hearsay LIGHT first fixed-build retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/hearsay-retest1/diego/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/hearsay-retest1/diego/report.original.md.txt), original SHA256 `fe898ba999ee8e01a851dae1991df4d91953a1db73c30dd20b20100483fe283d`. Build ccd8592e90c06a689102ddae20f5376f8fc78cc7/HF4.12.0, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order desktop then phone; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- History: his report claims the full supplied history was read; the packet holds no Read receipt, so that is a self-claim.
+- Stops: desktop 196.301 s BORED ("Day 2 05:12") and phone 74.143 s BORED ("Day 1 08:49"). He saw the chapter-save warning on desktop only; his phone stopped on Day 1, so the absence there is not a counter-finding. No phone empty-garden image exists. His slandered person gave no visible answer (F-2473, an incomplete-result preference dated 2026-11-10); the empty stretch before Day 4 waits for the C14 comparison.
+- The stop labels (TASTE, BORED, CONFUSED) are the producers' own session labels, not game endings or independent completions. Durations (22.66-468.833 s) are model and tool time, not human reading speed; clock, empty-garden and story-timing changes wait for the C14 human-speed comparison. Feedback: a quick label then "Not now"; no note was typed, Submit was not pressed and no consent setting changed. The agent run-source marker (labRunSource=agent) has no independently read production receipt. The driver is native-tap-v2 (input status 200 acknowledges input only; driver_check fork-unverified). No Day 8 was reached. No game finished; no CLEAR or acceptance is claimed.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would you return voluntarily?** I might come back on another evening, but only if the empty stretch before Day 4 were filled or skippable. I would not return tonight, and I would not leave it running.
+
+**Ranked asks**
+1. Fill or skip the empty garden before Day 4. Both sessions hit it within about a minute or two, and everything is greyed out then.
+2. Show how the person you slandered reacts. The game echoes what I said, but Rıza never answered.
+3. Explain "A person's chapter could not be saved. Finish outstanding responsibilities and try again." I don't know what it wants from me.
+
+---
+
+## 1. Session
+
+- Persona: Diego Silva, 28, Recife sound editor. Impatient, likes responsive controls and learnable risk, dislikes forms.
+- Exposure: RETEST (return visit). Round light-1031-hearsay-retest1, free-stop arm (floor 0, ceiling 20 min).
+- Own history: /Users/abdul/code/.lab-scratch/playtest/light-1030/hearsay-retest/diego/own-history.md. I read all of it (lines 1–983). No unread parts.
+- URL: https://hearsay.adamwhite.work/?labRunSource=agent. Build ccd8592e90c06a689102ddae20f5376f8fc78cc7 / 4.12.0.
+- Session A: desktop 1280x800, light mode, port 22505. Real time 196.3 s.
+- Session B: phone 360x690, light mode, port 22504. Real time 74.1 s.
+
+## 2. First impressions
+
+**Session A, desktop**
+- 5.3 s: "Same tea garden title. Begin."
+- 8.1 s: The new "Next:" line says nothing can be ordered until Day 4, so I wasn't waiting blind.
+- 11.6 s: The repeat option now spells out what Derya would hear and the price.
+
+**Session B, phone**
+- 3.8 s: "Phone, same evening, new game. Begin."
+- 5.6 s: "Same opening on the phone. Rıza."
+- 8.8 s: "On the phone I take the gossip route to see the price. Same secret, so same text."
+- 10.9 s: "Repeating the secret cost me Riza at once and the text says so in full."
+
+## 3. Verbatim diary lines
+
+Elapsed seconds are in parentheses. Lines are in order, as logged.
+
+**Session A**
+- (5.331) "Same tea garden title. Begin."
+- (8.111) "Obvious verb. The new Next line tells me nothing can be ordered until Day 4, so I should not be stuck waiting blind."
+- (9.55) "Letting it run."
+- (11.568) "New: the repeat option now spells out exactly what Derya would hear and the price. I keep it private and help."
+- (13.295) "Opening the fold first this time, since selects timed out before."
+- (14.65) "Trying the Who select with the fold already open."
+- (16.229) "Select works with the fold open. Honesty."
+- (18.111) "Slander Osman on honesty to Riza, unchecked. Last time claims showed nothing. Watching for a reply."
+- (20.362) "Claim now echoes what I said and that it is unproved. Better, though Riza does not answer. On to Osman."
+- (21.907) "Trying the pushy verb on Osman again; last time nothing visible changed."
+- (24.041) "Pressing now answers me: Osman keeps it private for now. That answers my old complaint. Trying the quiet talk."
+- (27.864) "Osman admits he kept a tenant money. Helping privately again."
+- (30.857) "Derya next."
+- (34.064) "Helping Derya privately too. Money is 540."
+- (39.796, shot a-002) "Dilan busy, choice not made, stated plainly. Checking the layout."
+- (41.744) "Trying Fast to see whether the empty bench still bites."
+- (61.701) "Fast pace on. Waiting to see if people leave and the bench empties."
+- (64.264, first_minute, Day 1 09:21) "Selects work now, claims echo back what I said, and pressing Osman says he keeps it private. Money went 400 to 540. At 09:21 the benches are empty again, but now it says so and tells me where everyone is. Still nothing to do until Day 4, which is the same wall as before, only explained."
+- (90.663) "Waiting for someone to come back."
+- (128.02) "Nothing more to do with Derya. Waiting toward Day 4."
+- (130.624) "Benches empty. The only thing offered is pouring tea. Trying it."
+- (186.866, pulse, engagement 3, Day 2 04:02) "First 40 seconds were good: selects work, claims echo back, Osman answers a press. Since about 09:00 the garden has been empty and now everyone is asleep at the lodging. A message just appeared saying a person chapter could not be saved, finish outstanding responsibilities. I have no idea what that means."
+- (188.611, want_quit BORED, Day 2 04:02) "Empty garden again for most of three real minutes, nobody to touch, Day 4 is far. Better explained than last time, but I still wait. I would stop here."
+- (193.688) "Choosing I am stopping. Typing nothing."
+- (196.301, stop BORED, Day 2 05:12) "I am stopping the desktop session. The first half minute is better than last time: selects work, claims echo, pressing Osman answers. But the garden emptied around 09:00 and stayed empty for two real minutes, everyone asleep by midnight, with Day 4 still far away. Feedback: I am stopping chosen, Not now pressed, nothing typed."
+
+**Session B**
+- (3.844) "Phone, same evening, new game. Begin."
+- (5.579) "Same opening on the phone. Rıza."
+- (8.764) "On the phone I take the gossip route to see the price. Same secret, so same text."
+- (10.887, shot b-002) "Repeating the secret cost me Riza at once and the text says so in full. Checking the phone layout."
+- (53.807) "Trying the claim fold on the phone, where selects timed out last time."
+- (64.056) "Fold opens and the selects are real on the phone now, but every claim button is disabled because Riza left."
+- (65.933, first_minute, Day 1 08:45) "Phone works and reads fine. Gossip told me its price up front and charged it. By 08:45 the bench is empty again, everyone out, claim buttons disabled. Same wall as desktop."
+- (67.85, want_quit BORED, Day 1 08:45) "Everyone is out and the buttons I wanted are greyed. Day 4 is far. Same wall as the desktop, so I would stop."
+- (71.133) "Choosing I am stopping. Typing nothing."
+- (74.143, stop BORED, Day 1 08:49) "I am stopping the phone session. It reads fine and the gossip price is honest, but by 08:45 the garden is empty again, the claim buttons are greyed because Riza left, and Day 4 is far. Feedback: I am stopping chosen, Not now pressed, nothing typed."
+
+I wrote the diary lines at 2–3 s on desktop (a few early ones) and the phone's first lines as `reaction` text on actions, not as separate `log` ops. The raw wording above is what I sent.
+
+## 4. Moments
+
+**What held me**
+- The opening half-minute on desktop was good. The selects worked, the claim echoed what I said, and pressing Osman got an answer. Money went from 400 to 540.
+- Both sessions told me the price of gossip before I paid it.
+- Absent people are now shown with where they are, so the garden doesn't just go quiet.
+
+**What lost me**
+- Desktop: the garden emptied around 09:00 on Day 1, and Derya came back only briefly. By 23:39 everyone was at the lodging or the hospital. That ran to Day 2 04:02, about two real minutes on Fast.
+- Phone: the bench was empty by 08:45 on Day 1, after about 50 s. Every claim button was greyed out.
+
+**Quit wishes**
+- Desktop: BORED at 188.6 s. It did not pass. I stopped.
+- Phone: BORED at 67.9 s. It did not pass. I stopped.
+
+**Pulses**
+- Desktop, 186.9 s: engagement 3. The first 40 s were good, then the garden sat empty.
+- Phone: no pulse. The session ended at 74 s, before the 180 s mark. The timed check-in was not reached.
+
+## 5. Confusion and clarity
+
+- **Clear:**
+  - The "Next:" line says plainly that the first order comes on Day 4 at 12:00.
+  - The empty-bench text says nobody is there and what I can still do.
+  - Dilan's refusal is stated plainly: busy, "This choice was not made."
+  - The cost of repeating a secret is written out, and on the phone the price landed at once.
+- **Confusing:**
+  - At Day 2 04:02 on desktop the status line read "A person's chapter could not be saved. Finish outstanding responsibilities and try again." I didn't know what it meant or what to do, and I did nothing.
+  - On phone the claim buttons are disabled with no stated reason beyond Rıza being away. I worked that out myself.
+- **Odd:** the menu button changes to "Back", and the pace buttons go disabled while the menu is open. This is small.
+
+## 6. Device use
+
+**Desktop 1280x800**
+- Screenshots viewed: a-001.png and a-002.png. a-001 shows the cream title page: the "Hearsay" heading, the premise, a "How to play" fold, Begin, Feedback and Fullscreen, two links, a checked Recording box, "Other ways to begin" and the footer. a-002 was scrolled, so it showed only the lower half. It shows the Pace line, a 4x2 tile grid of the eight people, and Dilan's card with the busy banner. It was readable and tidy.
+- Controls used: Begin, mouse taps on the conversation verbs and name tiles, the Who? and What? selects, pace buttons (Fast), the Game menu, Feedback, "I'm stopping" and Not now.
+- I did not see the top of the play screen in a screenshot.
+
+**Phone 360x690**
+- Screenshots viewed: b-001.png and b-002.png. b-001 shows the title page at 360 wide. It's readable, nothing is clipped, and Begin, Feedback and Fullscreen sit in one row. b-002 is scrolled partway down the play screen. It shows the pace buttons and the status text in a bordered box, then Rıza's name and card. The text was readable with no clipping, and the buttons were big enough to hit.
+- Controls used: Begin, the conversation verbs, the "Talk about someone else" fold (the selects opened and were real), the Game menu, Feedback, "I'm stopping" and Not now.
+- I never took an automatic checkpoint shot on either device. I did not see a phone screenshot of the empty-bench view.
+
+## 7. Stop and return
+
+- **Desktop stop (196.3 s, BORED):** "I am stopping the desktop session. The first half minute is better than last time: selects work, claims echo, pressing Osman answers. But the garden emptied around 09:00 and stayed empty for two real minutes, everyone asleep by midnight, with Day 4 still far away."
+- **Phone stop (74.1 s, BORED):** "I am stopping the phone session. It reads fine and the gossip price is honest, but by 08:45 the garden is empty again, the claim buttons are greyed because Riza left, and Day 4 is far."
+- **Feedback on both:** the dialog offered "I'm stopping" and "I'm confused". I chose "I'm stopping" (it showed pressed), typed nothing, and pressed Not now. There was no error. The menu stayed open after Not now.
+- **Would I return voluntarily?** I might come back on another evening, but only if the empty stretch before Day 4 were filled or skippable. I would not return tonight. I would not leave it running, because the garden empties and nothing I can do changes that.
+
+## 8. Changes I would want
+
+1. Fill or skip the empty garden before Day 4. Both sessions hit it quickly, and everything I want to touch goes grey.
+2. Show how the person I slandered reacts. The echo line is better than nothing, but Rıza never answered.
+3. Explain the "chapter could not be saved" message in plain words, including what responsibility it wants finished.
+
+## 9. Compared with my last visit
+
+- **Ask 1, fill or skip the empty bench time: not met.** Desktop emptied around 09:00 and stayed empty about two real minutes. Phone emptied by 08:45. It is better explained: the game says the benches are empty, tells me where everyone is, and the "Next: Day 4" line sets the wait. The wait itself is the same, though.
+- **Ask 2, make Who? and What? work and show what a claim did: partly met.** The selects work on desktop and phone once the fold is open. On desktop the claim shows an echo line ("You have not proved this.") but Rıza gave no visible answer. On phone I did not make a claim, because the buttons were greyed after Rıza left. The phone selects opening is a clear step forward from the timeouts last time.
+- **Ask 3, show the cost of "Press for private details" on Osman: met.** The game now says "Osman chooses to keep this private for now." The gossip cost is also spelled out in full on both devices.
+- **New blocker reached:** the unexplained "A person's chapter could not be saved…" status line at Day 2 04:02 on desktop. I did not see it on the phone.
+
+No repo touched; no worktree of mine remains.
+
+<!-- selected-continuity-key: light-1030:goodhands-retest1:diego:free -->
+## 2026-10-31 Good Hands LIGHT first fixed-build retest — free stop
+
+Source: [complete own report](../reviews/light-2026-10-30/goodhands-retest1/diego/report.md), a readable formatting view of the exact producer original [report.original.md.txt](../reviews/light-2026-10-30/goodhands-retest1/diego/report.original.md.txt), original SHA256 `b35be4b55a83cebae8d02eaddc902ed7900f46d375b20e4afbd285e1905c8068`. Build 2e67317e6a0aa187bf41de5d9bac5369916700f2/HF4.8.1, dirty:false. Two devices, phone 360x690 touch and desktop 1280x800, in the order desktop then phone; the second device is a second visit by the same person, not a paired arm.
+
+**Director method qualification (not the tester's words)**
+- Method qualification: [director-method-qualification.json](../reviews/light-2026-10-30/goodhands-retest1/diego/director-method-qualification.json). His history has 1116 lines and he read all of them (tool render 1117).
+- Stops: desktop 98.728 s BORED ("Mon 2 Nov 11:00") and phone 87.446 s BORED ("Mon 2 Nov 09:58", a second fresh same-evening exposure). Cash of 5250 above the 5000 rent target is not a rent payment, trial outcome, game end or clock-speed measurement. His later return adds the condition that rent not be covered before noon Monday; both conditions are kept. He dislikes early rent and Nadia likes it; the disagreement is kept. No trial result or second payment was reached, so no immediate bite does not prove no later consequence. He has no new blocking ask and no extra punitive rule is authorized. Only the desktop title image was viewed; the city map was unvisited.
+- The stop labels are the producers' own session labels, not game endings; all five testers reached only Monday and no trial or later-week outcome was reached. Durations (31.231-298.662 s) are model and tool time, not human reading speed. Feedback: the offered quick labels were seen; no note was typed, Submit was not pressed and no consent setting changed. The agent run-source marker has no independently read production receipt. The driver is native-tap-v2 (fork-unverified). This is the first fixed-build retest, not a second iteration; the game is not finished and no CLEAR or acceptance is claimed. Clarity work keeps the clock, difficulty and economy; C14 comes before any clock change.
+
+**Readable view of the producer's report follows. Formatting may adjust blank lines, table spacing or list markers; the words are the producer's, and the linked producer original is exact.**
+
+**Would I return voluntarily?** I might come back on another evening, but only if a wrong or unchecked promise cost me something I could feel. I would not return tonight, and I would not leave it running.
+
+**Ranked asks**
+1. Make an unchecked promise cost something. I promised "warm", which I had not checked, and the family agreed in seconds. Nothing bit back.
+2. Don't let the deposit clear rent by Monday morning. Cash was ₺5,250 at 10:04 on desktop, over the ₺5,000 rent.
+3. Give the incoming calls more than Promise, Decline or Finish. The Kaya call is better written now, but the menu is the same.
+
+## 1. Session
+
+- **Persona:** Diego Silva, 28, Recife sound editor. Impatient.
+- **Exposure:** RETEST. Round light-1031-goodhands-retest1, free stop (floor 0).
+- **Own history:** I read all 1117 lines in two chunks. I read the cleanup rule too. No part is unread. The history holds an earlier Good Hands report, but none of it is about this build.
+- **URL:** https://goodhands.adamwhite.work/?labRunSource=agent. Build 2e67317e / 4.8.1.
+- **Session A:** desktop 1280x800, light mode, port 22705. About 99 s on the driver clock.
+- **Session B:** phone 360x690 touch, light mode, port 22704. About 87 s. This was a fresh game with no continuity.
+
+## 2. First impressions
+
+- **A, 2 s:** the title page looks the same, with an "Open the office" button.
+- **A, 10 s:** the desk has a new card, "An old case from before this month is still on your mind."
+- **A, 52 s:** the negotiate screen now says the family pays a quarter of the fee at agreement and the rest after the trial. That is new.
+- **B, 16 s:** Gülce's reference is "At work until 14:00". Last time the references were all reachable.
+- **B, 53 s:** applicants now have stated needs and can leave with a call-back time.
+
+## 3. Verbatim
+
+Raw lines as logged. A few lines went in on an action's reaction field.
+
+### Session A (desktop)
+
+- 6.289 (reaction on Open the office): "Same nanny office as before. Opening it; I remember rent covered too fast and samey interviews."
+- 17.717 (reaction): "New to me: an old case on her mind. Tapping it."
+- 21.57 (reaction): "A real moral fork about the past. Taking the honest route to see what it costs."
+- 24.975 (reaction): "Going to Özlem, the one the reference call separated last time."
+- 28.133 (reaction): "Reference first, since that was the real signal last time."
+- 35.075 (reaction): "Last time I never checked honesty. Asking it now."
+- 41.956 (reaction): "Asking why the job ended, a question I did not try before."
+- 52.533 (reaction): "Going for the placement. Curious whether rent is again covered in two minutes."
+- 56.353 (reaction): "New: the family pays a quarter now and the rest only after the trial. I will promise warm, which I did not check, to see if it bites."
+- 62.104 first_minute, clock Mon 2 Nov 09:49: "New since last visit: an old-case choice on Nermin, and the fee is split, a quarter now and the rest after the trial, so rent is not instantly covered. Reference gave honest and reliable evidence. I promised warm unchecked and the family agreed in seconds anyway, same instant agreement as before. Still no haggling."
+- 70.809 (reaction): "Cash 5250 at 10:04, over rent again. The deposit trick still clears rent before lunch Monday. Ending, then I want to see the trial."
+- 75.017 (reaction): "Nothing left to touch for her. Skipping to the next call."
+- 86.764 want_quit BORED, clock Mon 2 Nov 11:00: "The Kaya call now says the person throws a plate, so patient matters. That is better than the template. But rent is over 5000 again by Monday 10:04 and the call menu is the same Promise, Decline, Finish. I would stop here."
+- 98.728 stop BORED, clock Mon 2 Nov 11:00: "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back."
+
+### Session B (phone)
+
+- 4.016 (reaction): "Phone, same evening. I know the opening now. Going straight to a reference."
+- 9.216 (reaction): "On the phone I try the other branch of the old case: leave it closed."
+- 16.004 (reaction): "Trying Gülce this time, the first applicant."
+- 19.51 (reaction): "Her reference is at work until 14:00, so no shortcut this time. Interviewing."
+- 26.467 (reaction): "A bland answer, "I have worked as a nanny". The Arslans ring early again, same as before."
+- 29.781 (reaction): "Promising an answer today, a commitment. Curious if it holds me to it."
+- 39.098 (reaction): "Asking the crying question to get at patience."
+- 53.284 (reaction): "She ran out of questions and left; I have one patience reading from one sentence. Moving to the next."
+- 56.682 (reaction): "Applicants now leave and have stated needs. Next, Şebnem."
+- 62.1 first_minute, clock Mon 2 Nov 09:35: "Phone fits fine: big buttons, no clipped banner. New to me: an old-case choice, and applicants who leave with stated needs and a call-back time. Gülce answered patience with one line and the notes already say I believe she is patient; that feels too easy. Interviews still cost minutes and the Arslans phone early. Mildly interested."
+- 68.646 (reaction): "Same 8,000 as Gülce. I want a question that might separate them."
+- 74.759 note, clock Mon 2 Nov 09:58: "This separates them. Gülce took a breath and got a believed patient; Şebnem said patient through quite a lot and Nermin is still unsure. Last time the first two applicants gave near-identical answers. That part is better."
+- 77.761 want_quit BORED, clock Mon 2 Nov 09:58: "I would stop here. The interviews are less samey and applicants leave on their own clock, but I have already seen where this goes: a placement, a deposit, rent covered. I have seen no cost for a wrong promise on this visit."
+- 87.447 stop BORED, clock Mon 2 Nov 09:58: "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back."
+
+## 4. Moments
+
+**What held me**
+- The old-case card. I chose to correct the record on desktop and leave it closed on the phone. Both gave a short, plain answer. I did not see the choice change anything later.
+- The reference call, again the clearest signal. Hale Erol's answers were specific: "returned the change with the receipts".
+- On the phone, Gülce and Şebnem finally answered patience differently. One was believed, one left Nermin "still unsure".
+- The Kaya call now names the plate-throwing and the need for patience.
+
+**What lost me**
+- The family still agreed in seconds with an unchecked trait promised.
+- Cash read ₺5,250 at 10:04 on desktop, over the ₺5,000 rent.
+- The call menu is still Promise to look, Decline, Finish.
+
+**Quit wishes and pulses**
+- A: want_quit BORED at 86.8 s. B: want_quit BORED at 77.8 s. Neither passed and I stopped.
+- No pulse, because both sessions ended before 180 s. Later checkpoints are untested.
+
+## 5. Confusion and clarity
+
+**Clear**
+- The split payment is explained in plain words on the negotiate screen.
+- Gülce's note says only she says so and nobody has confirmed it.
+- "Call back after 11:23, and allow time for the journey" is clear.
+
+**Unclear or odd**
+- On the phone, the "Call a reference" button for Gülce and Şebnem showed no "takes about 15 minutes" line. I did not tap it, so I do not know why.
+- Nermin's note says "I believe the worker is patient" from one sentence by the applicant.
+- Rent covered early: the bar passed ₺5,000 on the deposit. I never saw the second payment or the trial result.
+
+## 6. Device use
+
+**Desktop 1280x800**
+- Viewed `desktop/a-001.png`, right after open: cream title page, "Izmir · November 2026", the GH arch logo, the Good Hands heading, a red "Open the office" button, and the recording footer line. Nothing clipped.
+- Controls: named taps, a text tap for "I'm stopping", Skip, Game menu, Feedback, Back. No driver trouble.
+- I did not view the desk on desktop in a screenshot.
+
+**Phone 360x690**
+- Viewed `phone/b-001.png`, right after open: the same title page at 360 wide with the red "Open the office" button at the bottom. Readable, nothing clipped.
+- Viewed `phone/b-002.png`: the interview. The header shows the date, cash bar and rent. A thin office strip with a City button sits under it. The question buttons are large and sit at the bottom. The task banner was not clipped this time.
+- Controls: named taps and the "More questions" fold. No coordinate taps.
+- Unseen: the phone map, Families and Placed, and the Feedback dialog on both devices (text only).
+
+## 7. Stop and return
+
+- **A stop:** BORED, about 99 s. "I am stopping the desktop session at about 97 seconds. The old-case choice and the split fee are new, and the Kaya call is more specific. But I still promised an unchecked trait with no bite, and rent was over 5000 by 10:04 Monday. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back."
+- **B stop:** BORED, about 87 s. "I am stopping the phone session at about 85 seconds. It plays well on the phone and the applicants now differ, but I have seen the shape: interview, reference, deposit, rent. No cost for a false promise reached me. In Feedback I chose I am stopping, typed nothing, no Submit, pressed Back."
+- **Feedback:** both "I'm stopping" and "I'm confused" were offered. I chose "I'm stopping" on both and it showed pressed. I typed no note, changed no consent and pressed no Submit. Back worked with no error.
+- **Return:** I would not return voluntarily tonight. I might come back another evening, but only if a wrong promise cost me something and the rent were not covered before noon Monday. I would not leave it running, because nothing in it needs me to be watching.
+
+## 8. Changes I would want
+
+1. Make an unchecked promise cost something I can feel.
+2. Don't let the deposit cover the rent on Monday morning.
+3. Give calls and the old-case choice a visible effect later on.
+
+## 9. Compared with my last visit
+
+- **Ask 1, make a placement cost something I can feel, and don't let rent clear in two minutes: partly met.** The family now pays only a quarter at agreement and the rest after the trial, and the screen says so. But I still promised an unchecked trait and the family agreed at once. Cash still passed ₺5,000 at 10:04 Monday on desktop, a few minutes after I agreed.
+- **Ask 2, make applicants and families differ: partly met.** On the phone, Gülce and Şebnem separated on patience. Gülce left on a call-back time. The Kaya call now names the plate-throwing. I did not see another Arslan versus Kaya comparison.
+- **Ask 3, don't let looking cost game time I didn't ask for: not seen.** I did not open the City map on either device.
+- **New blocking ask:** none from what I reached. The nearest is that an unchecked promise still costs nothing.
+
+No repo touched; no worktree of mine remains.

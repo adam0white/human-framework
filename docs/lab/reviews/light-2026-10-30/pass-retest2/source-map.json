@@ -1,0 +1,479 @@
+{
+  "note": "Packet path to original absolute path for every byte-exact copy. Hashes are of the bytes, equal on both sides. Generated files are not listed. This map contains no hash of any index or manifest.",
+  "files": [
+    {
+      "packet": "maya/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/report.md",
+      "role": "producer report, readable copy",
+      "sha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c"
+    },
+    {
+      "packet": "maya/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/report.md",
+      "role": "producer report, byte-identical .txt copy",
+      "sha256": "eccfb8e9d3ef25acc0e391910d71bbbbdcae9f3854b21c2533aa2546bf64dd5c"
+    },
+    {
+      "packet": "maya/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/brief.md",
+      "role": "brief as supplied to tester (copied mechanically, not read)",
+      "sha256": "2912a74eedafd26d6ecfda468ce6d696e0398c5cfa54219d3f024149fc01c5ff"
+    },
+    {
+      "packet": "maya/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/own-history.md",
+      "role": "history as supplied to tester (copied mechanically, not read)",
+      "sha256": "2cff45778b6b17fd56678f78ef4ca795f25d8411f4b49cddca7dcd8085f06045"
+    },
+    {
+      "packet": "maya/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/history-source-map.json",
+      "role": "director map of which sources fed the supplied history (copied mechanically)",
+      "sha256": "ce609c597d2ae887c1cbfbc5c3ec2d10c020da2c073a244bd00ee66716314397"
+    },
+    {
+      "packet": "maya/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/completion.json",
+      "role": "driver completion pins",
+      "sha256": "14dd91395042b9ff43d77158c7aed2debd7b7716c88d601e3ef4b41799a53dec"
+    },
+    {
+      "packet": "maya/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/dispatch.json",
+      "role": "dispatch record",
+      "sha256": "1b1f765d8729ac321e1e810e59846cc841c9c84c89d0a44f6eae753e119cf4c9"
+    },
+    {
+      "packet": "maya/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/validation.json",
+      "role": "director validation of stops, image reads and inputs",
+      "sha256": "7d5e36af8792f71dc9c7f83a36642565c3eb000a7391485dd4ce1a47f477713f"
+    },
+    {
+      "packet": "maya/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/phone/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "b9a0e2e63d2caf51f0367c49ea1e5f72acea81e53f45161d48e6829c8c0ca91e"
+    },
+    {
+      "packet": "maya/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/phone/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "maya/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/phone/driver.out",
+      "role": "driver start line",
+      "sha256": "b14ebe611f1a8f881ddb79f2fe3e87944c39d3eacaadb22ec422c87898ac304e"
+    },
+    {
+      "packet": "maya/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/desktop/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "68541592864c467cb52ec59964f2a719a39b726507fb0907803ff60c575f0db4"
+    },
+    {
+      "packet": "maya/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/desktop/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "maya/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/maya/desktop/driver.out",
+      "role": "driver start line",
+      "sha256": "096331d45fa5f9cac798b92d3278cc181bb5cfe52a5c7d48879aeca238dc443c"
+    },
+    {
+      "packet": "emre/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/report.md",
+      "role": "producer report, readable copy",
+      "sha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39"
+    },
+    {
+      "packet": "emre/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/report.md",
+      "role": "producer report, byte-identical .txt copy",
+      "sha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39"
+    },
+    {
+      "packet": "emre/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/brief.md",
+      "role": "brief as supplied to tester (copied mechanically, not read)",
+      "sha256": "aa5c586444e6fd026c24ff35ff0d7d94dc793673cd0ecce838daca7572dfd78f"
+    },
+    {
+      "packet": "emre/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/own-history.md",
+      "role": "history as supplied to tester (copied mechanically, not read)",
+      "sha256": "e9cde6923f920d658d4c2233ae55fb0bee4e4da0d52183a256cc4218e5bf0751"
+    },
+    {
+      "packet": "emre/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/history-source-map.json",
+      "role": "director map of which sources fed the supplied history (copied mechanically)",
+      "sha256": "43097521ccc5e12a94a8de4b104cea4a66cb87428723389e8657f9d2635a3f24"
+    },
+    {
+      "packet": "emre/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/completion.json",
+      "role": "driver completion pins",
+      "sha256": "e6979c39e81a5ec7f36674da17029ba06f9fa97a35f0dd122af8944fa1300dbe"
+    },
+    {
+      "packet": "emre/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/dispatch.json",
+      "role": "dispatch record",
+      "sha256": "7184f00f522ddbd99e98cee60102301e4e28fdc3c9cf2ea56b7c78495a24a677"
+    },
+    {
+      "packet": "emre/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/validation.json",
+      "role": "director validation of stops, image reads and inputs",
+      "sha256": "b8566e9f9f17a600dac57e6017641b5ca0e3e5f683f32ca2930fa28e820c3bcc"
+    },
+    {
+      "packet": "emre/director-method-qualification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/director-method-qualification.json",
+      "role": "director history and method qualification (copied mechanically)",
+      "sha256": "395b94562449cc122088fab2ef258a28d3ebbd54e1e176f22c19cf494f8c0325"
+    },
+    {
+      "packet": "emre/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/phone/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "c33a52f4a4d69a6f1fc05b28568d45eada69a4389058fb13526f9847f45e349c"
+    },
+    {
+      "packet": "emre/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/phone/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "emre/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/phone/driver.out",
+      "role": "driver start line",
+      "sha256": "703a9b4eb4f71535d3d91390a392ba4348b4c18fedc2c2e2511fe1413e2d1615"
+    },
+    {
+      "packet": "emre/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/desktop/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "441294e6826bb3bab966c996e270127d2c296435febddf714095bbbf0c548ade"
+    },
+    {
+      "packet": "emre/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/desktop/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "emre/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/emre/desktop/driver.out",
+      "role": "driver start line",
+      "sha256": "f08b2351fc9b70274caf696b6a656bf83d439d35c2c3520536d087a96380fca1"
+    },
+    {
+      "packet": "nia/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/report.md",
+      "role": "producer report, readable copy",
+      "sha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d"
+    },
+    {
+      "packet": "nia/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/report.md",
+      "role": "producer report, byte-identical .txt copy",
+      "sha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d"
+    },
+    {
+      "packet": "nia/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/brief.md",
+      "role": "brief as supplied to tester (copied mechanically, not read)",
+      "sha256": "e30f8c38f278818d13c5864d60fe342423678b97ccaf0c7653071e61a9b69022"
+    },
+    {
+      "packet": "nia/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/own-history.md",
+      "role": "history as supplied to tester (copied mechanically, not read)",
+      "sha256": "3b5c92c0d9cf785de796499d00c36274ef8eb8c40b956f62d74a49ecf074426a"
+    },
+    {
+      "packet": "nia/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/history-source-map.json",
+      "role": "director map of which sources fed the supplied history (copied mechanically)",
+      "sha256": "71fc6f74c2eeac51dde6970cd739873f06f022f98fafd3b3e3edac1df3dc4090"
+    },
+    {
+      "packet": "nia/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/completion.json",
+      "role": "driver completion pins",
+      "sha256": "2dac23148693029b7ad41b86a479cd0ed4603e2baab1257161190b6d817ab407"
+    },
+    {
+      "packet": "nia/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/dispatch.json",
+      "role": "dispatch record",
+      "sha256": "89303ec69ceabe985d88380909c5aa2e75d07247de14f07021a28849034ebb70"
+    },
+    {
+      "packet": "nia/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/validation.json",
+      "role": "director validation of stops, image reads and inputs",
+      "sha256": "fa832ef585ad1c05242fddfa504c91806616b07c8d5232bc6c8db09e87328048"
+    },
+    {
+      "packet": "nia/director-method-qualification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/director-method-qualification.json",
+      "role": "director history and method qualification (copied mechanically)",
+      "sha256": "c26c6b246dd5450672a9af1a4c1595ed6e05a5eca77a7d7dbf493fe918aa3b1b"
+    },
+    {
+      "packet": "nia/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/phone/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "f14d02792e410f30e5177dbf9ae6834a4dd4a7a7975ca933816bab26041afbff"
+    },
+    {
+      "packet": "nia/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/phone/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "nia/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/phone/driver.out",
+      "role": "driver start line",
+      "sha256": "7d586c4be9ab4bae57b1c2f1753ec4b87189e6a9ac534f0dd0f232a775777e4f"
+    },
+    {
+      "packet": "nia/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/desktop/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "c04a6fa408873a6598bcb1210b6b1a5a5e6b9808e4357e1337bf24a43c517697"
+    },
+    {
+      "packet": "nia/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/desktop/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "nia/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/nia/desktop/driver.out",
+      "role": "driver start line",
+      "sha256": "38b9a8195e1d493c0292b8b04c431a087779b4cf7cdbb9b79e91a019956142ba"
+    },
+    {
+      "packet": "rosa/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/report.md",
+      "role": "producer report, readable copy",
+      "sha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0"
+    },
+    {
+      "packet": "rosa/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/report.md",
+      "role": "producer report, byte-identical .txt copy",
+      "sha256": "c7c47c055a88894651ea7bd7cfc1114a2262ad30dd596cfb67e56a4857c3a9a0"
+    },
+    {
+      "packet": "rosa/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/brief.md",
+      "role": "brief as supplied to tester (copied mechanically, not read)",
+      "sha256": "c6a661bcae8c9a586c54d7856446a4937219904c179d8371a19e2adf61f95ca9"
+    },
+    {
+      "packet": "rosa/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/own-history.md",
+      "role": "history as supplied to tester (copied mechanically, not read)",
+      "sha256": "3b79aa6dba4160965f913991936c99e8a05c2896bfcb0dda4f1b5242981cceff"
+    },
+    {
+      "packet": "rosa/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/history-source-map.json",
+      "role": "director map of which sources fed the supplied history (copied mechanically)",
+      "sha256": "18997bf6e175d94f26548299156f2c3d14c7349f84068576ede4ec1d7d7a3a7d"
+    },
+    {
+      "packet": "rosa/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/completion.json",
+      "role": "driver completion pins",
+      "sha256": "b0cc1d12332fbe69921d05ff2c236d74c198375970e7f2097fd07ef263444606"
+    },
+    {
+      "packet": "rosa/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/dispatch.json",
+      "role": "dispatch record",
+      "sha256": "53be482d7fce2bfa612953b4b4e6169a5a15b3a6ff227656b0cbbcbfa3388dac"
+    },
+    {
+      "packet": "rosa/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/validation.json",
+      "role": "director validation of stops, image reads and inputs",
+      "sha256": "8e296407b6dd3290193268a2827215d4ce5d65748279096392c68ef54dce7dc8"
+    },
+    {
+      "packet": "rosa/director-method-qualification.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/director-method-qualification.json",
+      "role": "director history and method qualification (copied mechanically)",
+      "sha256": "08993f6085ac972542179e57ed0ffa7b6657b86046b7c05799c9e349bbfd7dbc"
+    },
+    {
+      "packet": "rosa/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/phone/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "975b3896674452ec9671a5fa1a876a1596f63c6c369be5f96ef2ce54be62f0be"
+    },
+    {
+      "packet": "rosa/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/phone/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "rosa/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/phone/driver.out",
+      "role": "driver start line",
+      "sha256": "5c9d2e96b50ddfb07fbd05629317936c015cab964c87373ec483d5595420e371"
+    },
+    {
+      "packet": "rosa/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/desktop/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "394542f6b561f77c3b1658f740634262ab3c08f20f4416ff431e0f5de99a7239"
+    },
+    {
+      "packet": "rosa/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/desktop/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "rosa/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/rosa/desktop/driver.out",
+      "role": "driver start line",
+      "sha256": "0833727a1c121f5ed017e7a6af1e594c3cec05f7e280edc57de889552db7711d"
+    },
+    {
+      "packet": "sonia/report.md",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/report.md",
+      "role": "producer report, readable copy",
+      "sha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3"
+    },
+    {
+      "packet": "sonia/report.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/report.md",
+      "role": "producer report, byte-identical .txt copy",
+      "sha256": "8a15f348d51431fed8e762b55f8cf87e9f8395ba28e8285221aa59b276c7fbd3"
+    },
+    {
+      "packet": "sonia/brief.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/brief.md",
+      "role": "brief as supplied to tester (copied mechanically, not read)",
+      "sha256": "9047104c6dafee8911cbfcfd65d25db84941068c149db4406ad898ebfb5ed04f"
+    },
+    {
+      "packet": "sonia/own-history.original.md.txt",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/own-history.md",
+      "role": "history as supplied to tester (copied mechanically, not read)",
+      "sha256": "7d7026b63f09e8995797bb5c5a1af2333c3d18f004e1b428f9cb8d286a9c02a9"
+    },
+    {
+      "packet": "sonia/history-source-map.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/history-source-map.json",
+      "role": "director map of which sources fed the supplied history (copied mechanically)",
+      "sha256": "348aca527a61b0614e026b14107e630f9f3e533a3f88cbf3cf670df2a7b7d634"
+    },
+    {
+      "packet": "sonia/completion.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/completion.json",
+      "role": "driver completion pins",
+      "sha256": "a029b8e6bbc91194a02dfc62813658df46ba4c82dceeb9b1275dfd4e5afd91c8"
+    },
+    {
+      "packet": "sonia/dispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/dispatch.json",
+      "role": "dispatch record",
+      "sha256": "1a1a98b484d397fd4d537194f976eb19ea3b57ce401fef3b7df56a39ff035f78"
+    },
+    {
+      "packet": "sonia/validation.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/validation.json",
+      "role": "director validation of stops, image reads and inputs",
+      "sha256": "ffd4e9ca44e1c59cfb9c4e2ef8b51a5cb37cbe71b21d7a65f01123a79ef94fbd"
+    },
+    {
+      "packet": "sonia/phone/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/phone/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "c303e2a3b2e492ffb8c930e176d6e1b8723618aa61089fe22440131b0a0c111c"
+    },
+    {
+      "packet": "sonia/phone/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/phone/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "sonia/phone/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/phone/driver.out",
+      "role": "driver start line",
+      "sha256": "6aafe6e23fa88a26acc590504f82f654d0b5ee875fcc60654c99643440e68632"
+    },
+    {
+      "packet": "sonia/desktop/wall-clock.jsonl",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/desktop/wall-clock.jsonl",
+      "role": "raw driver rows",
+      "sha256": "d778e8a3b3f13459a282331148030644f88663672967a452dc567ba5f59138b5"
+    },
+    {
+      "packet": "sonia/desktop/release-start.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/desktop/release-start.json",
+      "role": "release pin at session start",
+      "sha256": "b79966daa7ce85852ac6b767321c65feecebefd3e46af621068c32b4353a871f"
+    },
+    {
+      "packet": "sonia/desktop/driver.out",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2/sonia/desktop/driver.out",
+      "role": "driver start line",
+      "sha256": "a3af8ebe17a3cfc89d73dc9c85daea5a2bdf89f3ca885ce9d0f249c43e17191c"
+    },
+    {
+      "packet": "inputs/pass-retest2-plan.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2-plan.json",
+      "role": "dispatch plan",
+      "sha256": "b4a7633909aca09e74d06a8c36fe06938346973ac1f61e9d0fd871eaaaa21546"
+    },
+    {
+      "packet": "inputs/pass-retest2-input-freeze.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2-input-freeze.json",
+      "role": "input freeze with brief and history hashes",
+      "sha256": "ea5687fd591d3cbdd35354a7030e309c11b97503d0d05b96d182f9f1a403526d"
+    },
+    {
+      "packet": "inputs/pass-retest2-predispatch.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2-predispatch.json",
+      "role": "predispatch gate record",
+      "sha256": "64803c77987a1f9e9e83da2757b5e964f9e8849c0317c2901ad86229c17c8d87"
+    },
+    {
+      "packet": "inputs/pass-retest2-final-driver-audit.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2-final-driver-audit.json",
+      "role": "final driver audit",
+      "sha256": "3db3d70fbfc41300feaefb914e0cf5ba5c0574f2c9c354c2c1971d7d0d640bf4"
+    },
+    {
+      "packet": "inputs/pass-retest2-final-release-after-round.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2-final-release-after-round.json",
+      "role": "post-round release pin",
+      "sha256": "e52aee5bd3267506dbb66862d49b4e9235a6ae20030ee81837ebbaddbaa93da8"
+    },
+    {
+      "packet": "inputs/pass-retest2-process-cleanup.json",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/pass-retest2-process-cleanup.json",
+      "role": "process cleanup readback",
+      "sha256": "ca3d422bc951ec13b0b8705c9da3a78f5aacc9fe71ae35b09fdebbc246067741"
+    }
+  ]
+}

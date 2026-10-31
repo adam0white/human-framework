@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-31T06:40:58.632107+00:00",
+  "recordedProcesses": [
+    {
+      "tester": "maya",
+      "pid": 70846,
+      "absent": true
+    },
+    {
+      "tester": "maya",
+      "pid": 70805,
+      "absent": true
+    },
+    {
+      "tester": "maya",
+      "pid": 70807,
+      "absent": true
+    },
+    {
+      "tester": "emre",
+      "pid": 74580,
+      "absent": true
+    },
+    {
+      "tester": "emre",
+      "pid": 74548,
+      "absent": true
+    },
+    {
+      "tester": "emre",
+      "pid": 74554,
+      "absent": true
+    },
+    {
+      "tester": "diego",
+      "pid": 93460,
+      "absent": true
+    },
+    {
+      "tester": "diego",
+      "pid": 93441,
+      "absent": true
+    },
+    {
+      "tester": "diego",
+      "pid": 93443,
+      "absent": true
+    },
+    {
+      "tester": "rosa",
+      "pid": 96880,
+      "absent": true
+    },
+    {
+      "tester": "rosa",
+      "pid": 96859,
+      "absent": true
+    },
+    {
+      "tester": "rosa",
+      "pid": 96861,
+      "absent": true
+    },
+    {
+      "tester": "irena",
+      "pid": 4847,
+      "absent": true
+    },
+    {
+      "tester": "irena",
+      "pid": 4828,
+      "absent": true
+    },
+    {
+      "tester": "irena",
+      "pid": 4830,
+      "absent": true
+    }
+  ],
+  "kills": [],
+  "scope": "All15 recorded tester/driver PIDs absent. Driver finally cleanup owns browser contexts; absence is not a separate all-system process inventory."
+}

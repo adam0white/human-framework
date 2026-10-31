@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-31T07:56:13.090465+00:00",
+  "historyActualLines": 939,
+  "historyReadReceipts": [
+    {
+      "request": {
+        "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/jonas/own-history.md",
+        "limit": 200
+      },
+      "returnedFirstLine": 1,
+      "returnedLastLine": 200
+    },
+    {
+      "request": {
+        "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/jonas/own-history.md",
+        "offset": 200,
+        "limit": 200
+      },
+      "returnedFirstLine": 200,
+      "returnedLastLine": 399
+    },
+    {
+      "request": {
+        "file_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/goodhands-retest/jonas/own-history.md",
+        "offset": 400,
+        "limit": 200
+      },
+      "returnedFirstLine": 400,
+      "returnedLastLine": 599
+    }
+  ],
+  "limits": [
+    "New blocking ask none is his actual return, retain outstanding repeat asks.",
+    "9200 accepted with cost reaction does not prove no refusal point or no later consequence; no trial reached.",
+    "Phone31.232s own second-device exposure, not independent cold or full game.",
+    "Phone reference/negotiation scenes unvisited; visible button subtitle observation narrower.",
+    "No hard-cap/easier-game/forced actor acceptance authorized.",
+    "Shell quoting errors tool limits; verify actual command audit later."
+  ],
+  "historyReadThrough": 599,
+  "producerFullReadClaim": "Incorrect: read1\u2013599 of939; unread own-history tail retained."
+}

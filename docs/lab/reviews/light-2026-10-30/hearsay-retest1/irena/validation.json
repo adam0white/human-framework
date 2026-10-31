@@ -1,0 +1,142 @@
+{
+  "tester": "Irena Novotn\u00e1",
+  "validationTime": "2026-10-31T06:40:04.240534+00:00",
+  "sessions": {
+    "desktop": {
+      "stop": {
+        "t": "2026-10-31T06:36:42.189Z",
+        "elapsed_s": 250.253,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I have heard everyone who is here and nothing can be ordered until Day 4. I like the record, but I am stopping. Feedback: I chose I am stopping, then Not now; the dialog closed with no error.",
+        "game_clock": "Day 1 15:26",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "a-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "a-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [
+        {
+          "elapsed_s": 237.598,
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)"
+        }
+      ],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": [
+        {
+          "t": "2026-10-31T06:33:59.962Z",
+          "elapsed_s": 88.026,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Keep this private"
+          },
+          "reaction": "Third time: a harmless private hobby, and repeating it would turn into \"Aylin is not kind\" to Derya. Always Derya, always \"not kind\". The label does not match the story. I keep it private, and this time no help, she does not need any.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 11,
+          "error": "Keep this private is shown but disabled right now (game state, not a driver failure)",
+          "requested_control_present_before": true
+        },
+        {
+          "t": "2026-10-31T06:35:21.801Z",
+          "elapsed_s": 169.865,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "name": "Dilan at the garden"
+          },
+          "reaction": "Lunchtime, people are back. Money did not change while they were out. Dilan I have not met.",
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 4,
+          "error": "Dilan at the garden is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure)",
+          "requested_control_present_before": false
+        },
+        {
+          "t": "2026-10-31T06:36:29.534Z",
+          "elapsed_s": 237.598,
+          "kind": "tool",
+          "op": "tap",
+          "input": {
+            "text": "stopping"
+          },
+          "reaction": null,
+          "game_clock": null,
+          "engagement": null,
+          "reason": null,
+          "op_ms": 12,
+          "error": "stopping is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+          "requested_control_present_before": false
+        }
+      ]
+    },
+    "phone": {
+      "stop": {
+        "t": "2026-10-31T06:38:04.009Z",
+        "elapsed_s": 80.308,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Same morning a second time, and three days before any real choice. I liked that I could take back what I said. I am stopping. Feedback: I am stopping chosen by tapping its spot, then Not now; dialog closed, no error.",
+        "game_clock": "Day 1 07:17",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      },
+      "imageReads": [
+        {
+          "file": "p-001.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "p-002.png",
+          "success": true,
+          "imageBlocks": 1
+        },
+        {
+          "file": "p-003.png",
+          "success": true,
+          "imageBlocks": 1
+        }
+      ],
+      "formAndSendInputs": [],
+      "earlyFirstMinute": [],
+      "earlyPulse": [],
+      "refusedInputs": []
+    }
+  },
+  "unexpectedReads": [],
+  "runSource": "agent",
+  "nonMessageStreamMetadata": [],
+  "limits": "Use raw elapsed_s. Partial history reads stay qualified. Send for a trial is gameplay, not note submission. No production receipt independently read."
+}
