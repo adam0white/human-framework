@@ -1,0 +1,62 @@
+I would return voluntarily another evening, on either device, to spend more time with the neighbours and see the Sunday vote; I would close the game now, not leave it running.
+
+My ranked asks are:
+
+1. Explain in plain words how the Sunday vote is decided. I know it concerns my extra pay, but I still do not know how the decision is made.
+2. Keep the explanation of the newspaper prank and say that it may upset someone.
+3. Say how far Skip will take me. I did not reach Skip on this visit, so this remains a question from my earlier play.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit to *The Stairwell*. I started a fresh game on each device at the supplied agent-marked URL. No old save or matched seed was imported.
+
+The phone was a **360×690 touch** session, stopped at **62.882 seconds**. The desktop was a **1280×800 keyboard-and-mouse** session later the same evening, stopped at **42.903 seconds**; I used mouse actions. Recording and consent remained at their defaults. I typed no Feedback note and pressed no Submit.
+
+I read the supplied history in explicit ranges through line **3526**. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. It is selected history, not my complete archive. Earlier qualifications in that history still apply, including the separate, coordinator-cut Hearsay attempt and the limits on earlier history reads.
+
+The familiar title and Sunday tea-money goal gave me an immediate reason to begin. The phone delivery was clear: Sevim needed bread and a newspaper, and the page gave the walking time and deadline. I liked sitting with her and hearing that she still hears children reading aloud in the evenings. On desktop, Hacer’s invitation and family paperwork felt like the ordinary human details I had enjoyed before.
+
+Neither session reached an ending. I stopped because I had enjoyed a short visit and had seen this beginning again, not because I had completed the week.
+
+**Diary — successful log lines, unchanged and in order**
+
+Phone:
+
+- **6.210 s, note, engagement 4:** “The title and Sunday tea money bring back my earlier deliveries. I am confident this is the same building. The text is readable; the button covers the lower explanation. Title concepts: caretaker, five flats, deliveries, Sunday vote, extra pay, notebook, six days, saving, two four-week options, character transfer, download, other starts, information, menu, all games, recording and linked play: 17. No reread.”
+- **13.790 s, note, engagement 4, Monday 07:02:** “Sevim needs bread and a newspaper. Her name reminds me of delivering to her and the crossword swap before, fairly confidently. The order and deadline are plain. Main screen concepts: clock, building and flats, residents in or out, five orders, deadline, walking time, bakery, shop, four views, gate and possible consequence, break, journal: 12. No reread.”
+- **21.100 s, note, engagement 4, Monday 07:12:** “The swap says prank and each gets the other crossword. I remember Hacer seeing me do this before, confidently, and leave the papers alone. It still does not say someone may be upset. Bakery adds three concepts: swap, prank and being seen. No reread.”
+- **34.428 s, note, engagement 4, Monday 07:22:** “Sevim remembers children reading aloud for forty years. As a school administrator I like that ordinary detail. I do not recall this particular story from before. Conversation concepts: hidden feelings and trust, paused time, ask news, tell, sit, break, raise question from Thursday, notebook line, sitting time: 9. No reread.”
+- **52.049 s, want_quit, TASTE, engagement 4, Monday 07:34:** “I liked hearing Sevim speak about children, and I understand she wants to leave the subject. I have had a pleasant short visit and would stop on the phone now.”
+- **62.882 s, stop, TASTE, engagement 4, Monday 07:34:** “I stop on the phone. Sevim and her memories of children pleased me, and the delivery was clear. I would close it and try the larger screen.”
+
+Desktop:
+
+- **14.810 s, note, engagement 4, Monday 07:04:** “Hacer is first on this fresh game. Her name reminds me of her shop counter story, fairly confidently. The notebook says feelings and trust are hidden and stamps are things I have done. I still do not see how the Sunday vote is decided. Notebook concepts: pause, outside observations, hidden feelings, hidden trust, readings, no promise about vote, mood, learned facts, stamps: 9. No reread.”
+- **30.066 s, note, engagement 4, Monday 07:20:** “Her shop counter and family paperwork confirm the story I remembered. I am confident. The journal calls five lira a tip, as before. I like that she asks me to sit. The conversation and reply have nine concepts, as on the phone; no reread.”
+- **32.315 s, want_quit, TASTE, engagement 4, Monday 07:20:** “I enjoyed hearing Hacer again, but I have seen this beginning twice tonight. I would stop and come back another evening for the vote.”
+- **42.903 s, stop, TASTE, engagement 4, Monday 07:20:** “I stop on the big screen. Hacer and her family paperwork are familiar and warm. The notebook helps, but I still want to know how the Sunday vote works. I would close it for tonight.”
+
+Both quit wishes remained through the Feedback check. The phone wish occurred before 60 seconds; its stop followed the check. I did **not** log a first-minute checkpoint. Desktop stopped before 60 seconds. Neither session reached 180 seconds, so no pulse was due. The first-minute checkpoints and pulses are untested.
+
+I did not reread a sentence on either device. The two-sentence quitting rule did not trigger. The notebook clearly said that residents’ feelings and trust are hidden, and the journal identified Hacer’s ₺5 as a tip. The vote itself remained unclear to me. No new blocking ask arose in the part I reached.
+
+My recognition came from visible cues: the title and tea-money goal at 6.210 seconds prompted confident recognition of the earlier game; Sevim’s name and order at 13.790 seconds reminded me fairly confidently of delivering to her; the crossword prank at 21.100 seconds brought back Hacer seeing my earlier swap. On desktop, Hacer’s name prompted a fairly confident memory of her shop story at 14.810 seconds, and the shop-counter and paperwork text confirmed it for me at 30.066 seconds. Sevim’s children-reading story did **not** prompt a memory of that particular encounter.
+
+The concept counts in the diary are my contemporaneous estimates. The other screens I reached presented these additional groups, with no rereads:
+
+| Screen | Concepts encountered | Count |
+| --- | --- | ---: |
+| Phone reply | Two reply choices; two-minute cost; resident decides whether to continue; wording does not change that decision; returning to sit tomorrow | 5 |
+| Game menu, both | Close; Feedback; download; full screen; new game; title page; All games; Recording; Lab privacy; Debug; Resume | 11 |
+| Feedback, both | Close; stopping and confused labels; three optional keep-playing answers; note; optional name; what is sent; copy; Submit | 10 |
+
+Compared with my last Stairwell visit, the notebook again explained hidden feelings, trust and stamps, but I still did not learn how the vote is decided. The newspaper control still called the swap a prank and explained the exchanged crosswords; it did not explicitly say someone might be upset. I did not revisit Tell or reach Skip, so I cannot assess them this time.
+
+I viewed two screenshots:
+
+- [Phone title](</Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/phone/a-001.png>) at **2.084 s** showed readable text, unchecked choices, the red Begin button and the recording notice. The fixed button covered part of the lower explanation.
+- [Desktop title](</Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/desktop/b-001.png>) at **2.050 s** showed the title and introduction in a large centered column. The Begin button covered lower text.
+
+I viewed no game-screen screenshot on either device, so I cannot describe those layouts visually. On both, the first Begin input left the title visible in its immediate response; a short wait showed the game had opened.
+
+On both devices, Feedback offered **“I'm stopping”** and **“I'm confused.”** I selected **“I'm stopping”**; it showed as pressed. **Close feedback** returned to the game menu. I typed nothing and submitted nothing.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers. A `git worktree list` is not applicable to my work.

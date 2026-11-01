@@ -1,0 +1,53 @@
+{
+  "at": "2026-11-01T09:43:13.841559+00:00",
+  "status": "CLOSED_QUALIFIED_WITH_LIMITS",
+  "game": "rope",
+  "iteration": 2,
+  "reportsRootFullyRead": 5,
+  "voluntaryUnfinishedStops": 10,
+  "endings": 0,
+  "cuts": 0,
+  "live": {
+    "app": "0.2.0",
+    "framework": "4.15.0",
+    "commit": "ac084f6964c4b27a2562b945eb78243949c972b8",
+    "dirty": false
+  },
+  "rootReturnSha256": "273bccb6c04b3e47fe519515400cc16a941f5580ebcc0cce62a19c3c476af7f8",
+  "protocolReviewSha256": "6f97e8d2c5095d46855a7a9c8ed70af34768efe1776188f67b7d12f12623b64f",
+  "rootFullProtocolReviewMdJsonRead": true,
+  "resourceReturn": "484 sampled original identities absent; five profiles absent; eleven ports closed; same-user task cwd scan0 unknown0; not global/unseen proof",
+  "rootParentRawReadScope": "All five complete reports, all ten stop/feedback summary records and protocol MD/JSON fully read; original raw events independently reviewed by protocol reviewer, broad parent raw output truncated and not claimed fully read.",
+  "methodLimits": [
+    {
+      "id": "A1",
+      "qualification": "All five reports claim viewed screenshots, but completed transcript event inventories contain no identifiable image tool events or returned image blocks. Images are saved and quota-compliant; viewing/perception and screenshot-dependent layout claims remain UNVERIFIABLE. Do not recast saved PNGs as views or claim full image protocol compliance."
+    },
+    {
+      "id": "A2",
+      "qualification": "Tessa phone first_minute59.513 is early and explicitly disclosed, followed by valid61.590. Tamar phone59.997 is early and explicitly disclosed, followed by valid62.211. Preserve both raw entries; count only valid successor. Tessa desktop quit wish51.304 precedes60; stop60.466 follows Feedback. No forced extra first-minute checkpoint is required. Tamar phone quit wish177.941 precedes180; stop186.148 follows Feedback. No forced pulse is required."
+    },
+    {
+      "id": "A3",
+      "qualification": "Rosa stops58.019phone/48.694desktop voluntarily. Automatic first-minute screenshots60.081/60.092 happen after stop while reporting, with no subsequent player gameplay command. They are automatic artifacts, not continued play or player checkpoint compliance. Rosa concept table is retrospective, so it does not prove contemporaneous per-screen counting."
+    },
+    {
+      "id": "A4",
+      "qualification": "Pavel desktop raw first_minute67.078 is a successful retained log omitted from his successful diary list. He discloses a prior request whose result he did not receive and uses70.003 as confirmed. Preserve the raw67.078 plus reported70.003; do not call the report a complete verbatim reproduction of every retained successful diary log."
+    },
+    {
+      "id": "A5",
+      "qualification": "Tessa has two nonzero malformed-shell quoting failures, retained as failures; no gameplay request is inferred from them. Corrected Feedback operations succeeded. Small report/wallclock response-time differences (for example77.407vs77.406) remain literal in both sources; do not rewrite either."
+    }
+  ],
+  "history": "All supplied lines present in retained stdout and producer read acknowledgments; delivery/comprehension not independently established; inherited qualifications retained.",
+  "feedback": "Observed label+Back responses; no typing/Submit/settings/recording change observed. No blanket network guard/backend receipt claim.",
+  "images": "UNVERIFIABLE actual perception for every tester. Saved images within quotas; no parent image opened. Layout claims remain producer claims.",
+  "deferred": "F2931\u20132943; Nov3/Nov10; second iteration, no third ordinary panel; canonical dated integration pending",
+  "deploymentHold": false,
+  "browserCustodyReleased": true,
+  "lastPhysicalReturn": "2026-11-01T09:34:56.490848+00:00",
+  "nextRoundNotBefore": "2026-11-01T09:49:56.490848+00:00",
+  "noPlayerOrOwnerAcceptanceClaim": true,
+  "finished": false
+}

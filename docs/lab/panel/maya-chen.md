@@ -2979,3 +2979,68 @@ My three ranked asks are at the top. The people’s reasons and the visible term
 
 No repo touched; no worktree of mine remains.
 ```
+
+<!-- selected-continuity-key: light-1030:stairwell-retest2:maya:free -->
+
+## stairwell-retest2: maya
+
+Exact own report. Source-epoch method qualifications S1–S6 and inherited selected-history limits remain binding; reported image views and perception are UNVERIFIABLE. Ending or acceptance is not inferred. Packet map: docs/lab/reviews/light-2026-10-30/stairwell-retest2/publication-map.json. Root qualification: docs/lab/reviews/light-2026-10-30/stairwell-retest2/stairwell-retest2-root-qualification.json.txt.
+
+```text
+I would not return voluntarily tonight; I might come back another evening if I could expect neighbours to respond to my choices and hear something beyond the familiar Monday stories. I would not leave it running.
+
+My ranked asks:
+
+1. Let neighbours respond to things they saw me do. Hacer saw the gate and newspaper swap, but neither came up in the conversation I reached.
+2. Give conversations more varied continuations. Hacer’s shop story and her response to “I am listening” were familiar from my last visit.
+3. Give Tarık something on the first “Anything new?” ask. He again said he had no news, then told the ferry story when I sat with him.
+
+I am Maya Chen, 24, a Vancouver library assistant. This was a return visit to *The Stairwell*, using the supplied URL with `?labRunSource=agent`. I read all **1,904 lines** of my supplied own history before playing. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The supplied history is a selection, not my complete archive.
+
+Both sessions were fresh games on the same evening, with no imported save or matched seed. I left recording and consent at their defaults.
+
+- **Phone:** 360×690 touch, driver port 24500. Open at **0.464 s**, stop at **75.351 s**, Monday 07:31.
+- **Desktop:** 1280×800 keyboard and mouse, driver port 24501. Open at **0.464 s**, stop at **47.449 s**, Monday 07:36.
+
+Neither game ended. Both stops were voluntary and below the 20-minute ceiling.
+
+The title felt familiar and readable on both devices. The bread round gave me something to do immediately. I liked the small detail of Hacer’s niece handling family paperwork, and I still like the image in Tarık’s ferry story. But hearing the same conversations again made me want to leave before reaching later days.
+
+**Diary — phone**
+
+These are my logged words in order, unchanged. Times are driver `elapsed_s`.
+
+- **8.686 s, note:** “The familiar title and Rıza notebook remind me of the bread round and the gate that Hacer saw, high confidence. I want to see whether a neighbour answers a choice this time.”
+- **27.439 s, note:** “Hacer saw both the gate and the swapped papers again. I remember her praising me without mentioning either in my last visit, high confidence; I am curious what she says now.”
+- **36.621 s, note:** “Her greeting and shop counter story are the same ones I remember, high confidence. She has not mentioned either thing she saw. I still like the niece detail, but it feels familiar.”
+- **63.035 s, first_minute, engagement 2/5, Monday 07:31:** “The bread round and deadline are clear. Hacer saw the gate and swapped papers but her greeting did not mention them; her shop story and leave-it reply are familiar. The explanation says my two replies do not change whether she continues.”
+- **65.308 s, want_quit, BORED, engagement 2/5:** “I have heard the same greeting, story and refusal again. I would leave the phone visit here and try the other device; I have not seen a later consequence of the gate or papers.”
+- **75.351 s, stop, BORED, engagement 2/5, Monday 07:31:** “I am stopping on the phone. Hacer saw the gate and papers but did not mention them in the conversation I reached, and her story and refusal were familiar. I selected I am stopping and closed Feedback without typing or sending.”
+
+**Diary — desktop**
+
+- **5.919 s, note:** “Same evening on the wider screen. The title is familiar; I want a different neighbour this time and will leave the long-game boxes empty.”
+- **13.232 s, note:** “Tarık first reminds me of his frozen ferry and the first no-news answer from my last visit, high confidence. I will ask him again.”
+- **31.847 s, note:** “No news first, then the 1974 frozen ferry story when I sit: exactly the sequence I remember, high confidence. I like the image of walking on ice, but I have heard it again.”
+- **38.014 s, want_quit, BORED, engagement 2/5:** “I would stop here. The ferry is a lovely detail, but this is the same first ask and story again, and I do not want another familiar Monday tonight.”
+- **47.449 s, stop, BORED, engagement 2/5, Monday 07:36:** “I am stopping on desktop. Tarık had no news and then told the familiar ferry story again. I like the story, but I do not want to repeat this morning tonight. I selected I am stopping and closed Feedback without sending.”
+
+Both quit wishes persisted to the stops. The phone reached a valid first-minute checkpoint; the desktop stopped before 60 seconds, so its first-minute checkpoint was untested. Both stopped before 180 seconds, so no pulse or later checkpoint was reached. Tuesday, later consequences and the Sunday vote remain untested.
+
+The immediate work was clear: the game showed the order, expected arrival and deadline. It explicitly said Hacer saw the gate and swap, while saying I did not know what she thought. Her greeting did not mention either, but I stopped before any later reaction, so I cannot say none exists. The explanation beside the reply choices was clear about their effect. I did not feel confused enough to select “I’m confused.”
+
+Compared with my last Stairwell visit, the three concerns I brought back remain in the portion I reached: Hacer did not immediately acknowledge the witnessed choices; her story and refusal were familiar; and Tarık again gave no news before the ferry story. I did not test whether other residents now vary their replies or whether a later consequence follows. I reached **no new blocking ask**.
+
+**Screenshots actually viewed:**
+
+- Phone [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/phone/a-001.png), immediately after open: a cream single-column title page. The fixed Begin area covered the end of the lower explanation in the image; the driver text supplied the full wording.
+- Phone [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/phone/a-002.png), at Hacer’s flat: the building, tabs and conversation controls were readable; her speech strip covered part of the upper drawing.
+- Desktop [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/desktop/b-001.png), immediately after open: a centred title column with the Begin button fixed near the bottom; lower text continued behind or below that area.
+- Desktop [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/desktop/b-002.png), during the ferry story: the building was on the left and the journal on the right. The story was readable, while the upper status area was partly clipped.
+
+I used touch-style named taps on the phone and mouse-like named taps on desktop. I did not use keyboard keys, so keyboard operation remains untested. I took two manual screenshots per device.
+
+On both devices I opened Feedback, selected **“I’m stopping”** and saw it marked pressed. **Close feedback** returned to the game menu. I typed no note, pressed no Submit and changed no recording or consent setting.
+
+I touched no repository and own no worktree, browser, server or process. The coordinator owns the drivers. `git worktree list` is not applicable because I touched no repository.
+```

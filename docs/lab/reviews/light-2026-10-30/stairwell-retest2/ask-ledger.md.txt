@@ -1,0 +1,87 @@
+# Stairwell retest 2 — draft ask ledger
+
+Root qualified with limits; independent packet review pending. Two iterations complete; dated Deferred; no third ordinary panel. No absence-of-blocker inference. F2965–F2970 unused.
+
+## F2951 — Maya #1
+
+1. Let neighbours respond to things they saw me do. Hacer saw the gate and newspaper swap, but neither came up in the conversation I reached.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-03.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/report.md line 5; Unicode [231, 372); SHA-256 2ed7c7d76bb73a2395de8c1c77145e58ed0de49b2d61eea359c063e66aab6ded.
+
+## F2952 — Maya #2
+
+2. Give conversations more varied continuations. Hacer’s shop story and her response to “I am listening” were familiar from my last visit.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/report.md line 6; Unicode [373, 511); SHA-256 2ed7c7d76bb73a2395de8c1c77145e58ed0de49b2d61eea359c063e66aab6ded.
+
+## F2953 — Maya #3
+
+3. Give Tarık something on the first “Anything new?” ask. He again said he had no news, then told the ferry story when I sat with him.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/report.md line 7; Unicode [512, 646); SHA-256 2ed7c7d76bb73a2395de8c1c77145e58ed0de49b2d61eea359c063e66aab6ded.
+
+## F2954 — Jonas #1
+
+1. Give sitting and replying a visible consequence I can understand before the Sunday vote.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/jonas/report.md line 5; Unicode [292, 383); SHA-256 234e040836271e8ba7e7a469c2ae698e7341a0d41d54cb958d7a529bd374ea3b.
+
+## F2955 — Jonas #2
+
+2. Make the conversations I reached produce more distinct outcomes.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/jonas/report.md line 6; Unicode [384, 451); SHA-256 234e040836271e8ba7e7a469c2ae698e7341a0d41d54cb958d7a529bd374ea3b.
+
+## F2956 — Jonas #3
+
+3. Explain why a story enters or does not enter the notebook.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/jonas/report.md line 7; Unicode [452, 513); SHA-256 234e040836271e8ba7e7a469c2ae698e7341a0d41d54cb958d7a529bd374ea3b.
+
+## F2957 — Leila #1
+
+1. Give residents more distinct responses to what I say, including after their stories.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/leila/report.md line 5; Unicode [191, 278); SHA-256 d9bb4d4572e7cad4853e7c9d24b99db8d54543c9249443e5d7339060464262bb.
+
+## F2958 — Leila #2
+
+2. Record the stories I hear in the notebook, or explain which stories reach it.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/leila/report.md line 6; Unicode [279, 359); SHA-256 d9bb4d4572e7cad4853e7c9d24b99db8d54543c9249443e5d7339060464262bb.
+
+## F2959 — Rosa #1
+
+1. Explain in plain words how the Sunday vote is decided. I know it concerns my extra pay, but I still do not know how the decision is made.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/report.md line 5; Unicode [198, 338); SHA-256 f669be5e6ef9790956094e622852a01cd9670eb82cae43872a172a8536ec4cae.
+
+## F2960 — Rosa #2
+
+2. Keep the explanation of the newspaper prank and say that it may upset someone.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/report.md line 6; Unicode [339, 420); SHA-256 f669be5e6ef9790956094e622852a01cd9670eb82cae43872a172a8536ec4cae.
+
+## F2961 — Rosa #3
+
+3. Say how far Skip will take me. I did not reach Skip on this visit, so this remains a question from my earlier play.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10. Prior question, not observed this visit Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/report.md line 7; Unicode [421, 539); SHA-256 f669be5e6ef9790956094e622852a01cd9670eb82cae43872a172a8536ec4cae.
+
+## F2962 — Marisol #1
+
+1. Show whether the courtyard gate opened. On the phone, I tapped the enabled control twice and saw no confirmation; that was the blocking interaction I reached.
+
+Deferred; fix:lab; secondary fix:stairwell; inspection lead, cause unknown; target 2026-11-03. TOOL; nonvoluntary; cause unknown; no inferred product failure Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/marisol/report.md line 5; Unicode [147, 308); SHA-256 c8671d56ec6c41ec112929d4c38ae756a2d0d37ffdc0c4beced349fd3a6a8024.
+
+## F2963 — Marisol #2
+
+2. Show where a piece of news came from when I am choosing whether to repeat it. I did not know why the water shutoff was marked certain.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-03.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/marisol/report.md line 6; Unicode [309, 446); SHA-256 c8671d56ec6c41ec112929d4c38ae756a2d0d37ffdc0c4beced349fd3a6a8024.
+
+## F2964 — Marisol #3
+
+3. Make the phone journal easier to scan as it grows. The same earlier lines kept occupying space while I looked for what happened next.
+
+Deferred; fix:stairwell; inspection lead, cause unknown; target 2026-11-10.  Source /Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/marisol/report.md line 7; Unicode [447, 583); SHA-256 c8671d56ec6c41ec112929d4c38ae756a2d0d37ffdc0c4beced349fd3a6a8024.

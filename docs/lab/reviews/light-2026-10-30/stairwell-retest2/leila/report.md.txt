@@ -1,0 +1,53 @@
+**Would I return voluntarily?** Maybe another evening, if conversations gave me more distinct responses and I could record the stories I hear. I would not leave it running.
+
+**Ranked asks**
+
+1. Give residents more distinct responses to what I say, including after their stories.
+2. Record the stories I hear in the notebook, or explain which stories reach it.
+
+I reached no blocking ask. The notebook confused me, but the familiar conversations made me leave.
+
+I am Leila Mansour, 26, a translator in Alexandria. This was a return visit to *The Stairwell*. I played the assigned URL with `?labRunSource=agent` in two fresh games: a **360×690 touch phone** first, then a **1280×800 desktop** with keyboard and mouse, on the same evening. No save or matched seed was imported. I left the start choices, recording and consent at their defaults.
+
+I read all **1,281 supplied history lines** before play. The last line read was exactly: **“End of supplied own history.”** Unread ranges: **none**. The supplied history is selected, not my complete archive; its earlier method qualifications still apply.
+
+The phone session stopped at **69.919 s**, Monday 07:31. The desktop session stopped at **53.914 s**, Monday 07:38. Both were voluntary early stops, before the three-minute pulse and 20-minute ceiling. Desktop stopped before the first-minute checkpoint, so I did not log one. Neither session has a pulse or engagement rating. I did not reach later days or the Sunday vote.
+
+The delivery job and deadline were clear. On the phone I liked Sevim’s line about hearing children read in the evenings, even though I recognized it from my last visit. Her refusal ended the conversation just as I wanted more. The notebook then said it counted stories, but remained at zero after hers. On desktop, Tarık’s blessing for my legs felt warm; his ferry story and “That is interesting” answer were familiar enough that I did not want to work through the rest of Monday again.
+
+These are my unedited driver diary lines, in order.
+
+**Phone**
+
+- **5.149 s, note:** “The tea-money vote and notebook bring back my earlier mornings, clearly. The title explains the boxes; I am leaving them alone.”
+- **26.801 s, note:** “Sevim hearing children read in the evenings: I remember that lovely line from my last desktop visit, confidently. I want to see what she does with my answer.”
+- **48.597 s, note:** “She closes with the same near-refusal I remember from the last visit. It is her right to stop, but I feel the conversation shut just as it became interesting.”
+- **52.865 s, note:** “The notebook says it counts stories, yet Sevim told me one and it remains zero. I do not know which stories reach it.”
+- **61.788 s, first_minute, Monday 07:31:** “The delivery and deadline are clear and conversation pauses time. Sevim has a beautiful remembered line, then a familiar refusal. The notebook counts stories but still shows zero after hers; I chose confused in Feedback and closed it without sending.”
+- **63.709 s, want_quit, BORED, Monday 07:31:** “I have heard this morning and this refusal before. The line is lovely but the conversation stops there, and I would leave the phone session now.”
+- **69.919 s, stop, BORED, Monday 07:31:** “Stopping the phone. Sevim has a lovely particular memory, but I have heard it and the refusal before; I do not want to repeat this morning. The notebook still confuses me. I will try the desktop.”
+
+**Desktop**
+
+- **10.336 s, note:** “A different first order: Tarık instead of Sevim. I remember his ferry story from my first visit; I will see him.”
+- **28.915 s, note:** “The frozen ferry is exactly the story I remember, high confidence. His blessing for my legs is warm. I had to tap Go to flat 7 twice; the second started the walk.”
+- **43.878 s, note:** “That is interesting again: I remember Tarık giving that answer to the same water news on my first desktop visit, confidently. It tells me little about him.”
+- **46.189 s, want_quit, BORED, Monday 07:38:** “The ferry and the flat answer are familiar again. I do not want to deliver the rest of this morning for the same conversations; I would stop tonight.”
+- **53.914 s, stop, BORED, Monday 07:38:** “Stopping desktop. Tarık is warm, but his story and his answer to my news are familiar. I would not replay the morning again tonight or leave it running.”
+
+Both quit wishes persisted. The phone confusion was narrower than a control problem: I could open and read the notebook, but could not tell why Sevim’s story did not count. The game clearly said conversation and notebook reading paused time. It also explicitly said my choice between the two listening replies would not change whether the resident continued.
+
+The recognitions above came from visible cues. I recognized the title’s tea-money vote and notebook at **5.149 s**, Sevim’s reading-aloud line at **26.801 s**, her similar refusal at **48.597 s**, Tarık’s frozen-ferry story at **28.915 s desktop**, and his water-news answer at **43.878 s desktop**. I was confident in those recollections. I did not recognize a prior encounter behind Tarık’s blessing for my legs.
+
+At the phone notebook confusion, I opened Feedback, selected **“I’m confused”** and saw it marked pressed. After deciding to stop, I reopened Feedback and selected **“I’m stopping.”** On desktop I selected **“I’m stopping”** after the quit wish. Each time, **Close feedback** returned me to the game menu. I typed no note, submitted nothing and changed no consent setting.
+
+I viewed two manual screenshots:
+
+- [Phone title, a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/leila/phone/a-001.png): the title, job, unchecked boxes and Begin button fit across the narrow screen. The lower explanation continued behind the fixed bottom controls.
+- [Desktop title, b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/leila/desktop/b-001.png): a centred text column and Begin button; the lower checkbox text continued behind the fixed bottom controls.
+
+I took no gameplay screenshots and viewed no automatic checkpoint, so I cannot assess the playing layouts visually on this visit. On desktop the first **Go to flat 7** tap returned the bakery screen; one retry started the walk. I used named mouse taps and no keyboard keys.
+
+Compared with my last Stairwell visit, the personal story and refusal I encountered remained familiar. The notebook still showed zero after a story, as it had after Hacer’s story in that visit. I did not revisit the invented romance or see enough gossip to assess those earlier observations again.
+
+I started no worktree, server, browser or helper process. The coordinator owns the drivers. No repository was touched; `git worktree list` was not run, and none of my worktrees remain.

@@ -1,0 +1,52 @@
+I would not voluntarily return soon, and I would not leave the game running.
+
+My ranked asks from these sessions:
+
+1. Make it clear whether an agreed rope request is complete or still pending, and what I can do to help it succeed. This was my blocking ask on the phone: Wren and Nell agreed, then moved too far apart.
+2. Make delayed conversations easier to follow: tell me whether a request remains pending and when I need to ask again.
+3. Make the climbers and their labels easier to distinguish when they overlap, especially on the phone.
+
+I played as Tamar Aharoni for the first time: a fresh 360×690 touch-phone game, then a fresh 1280×800 desktop game the same evening. The supplied history ended at line 1, **“No prior HF diary entries.”** Unread range: none. I left recording and consent at their defaults, retained the agent query, and did not change settings or a profile. Neither game ended.
+
+The phone title screen at 1.595 seconds made a good first impression: the mountain sketches were spare, and “They can say no” made me curious about the people. The desktop title screen at 2.465 seconds was familiar from that phone visit. I recognized the drawings and promise with high confidence; that was recognition of my own encounter minutes earlier, not prior HF experience. At 26.166 seconds on desktop, “Ask Wren about the habitat survey” reminded me, with high confidence, of her omitted observation in the phone session. I did not recognize anything from before these sessions.
+
+On the phone, I promised to turn back at 12:00 without knowing how long the climb would take. Wren ate while others started, then joined them. I liked that she had her own need. Later, the steep-ground instruction gave me a reason to try a rope. Nell and Wren agreed, but the later message said they had moved too far apart to rope up. I could not tell from the earlier agreement that this remained unresolved. Wren’s survey disclosure interested me, but the coordination had become more work than I wanted.
+
+On desktop, I chose “We’ll see” for the turnaround and asked the group to climb. The larger buttons and answers were easier to read, though the figures still overlapped. Nell’s account of mapping misleading mountain names made me smile. Oskar deferred a photography conversation until after the hut path; when I asked again after the stated time, he deferred it to another stretch. I did not know whether the original request had remained pending.
+
+**Diary, in order.** Engagement is the value I logged; times are driver `elapsed_s`, in seconds.
+
+Phone:
+
+- **5.103, note, engagement 4:** “The mountain sketches and promise that they can say no make me curious about the people. The large New game button is clear.”
+- **8.234, note, 4:** “I have to set a turnaround time before I know how long this climb takes. I will choose the cautious earlier time, though I do not know what it costs.”
+- **17.231, note, 4, game 05:01:** “Four are walking and Wren is eating. I like that Wren has a need, but I am not sure if I should move or wait for her.”
+- **48.124, note, 4, game 05:12:** “Wren joined after eating, which is reassuring. The little figures and labels overlap on my phone, so it is hard to read the scene, but the status buttons tell me where she is.”
+- **59.997, first_minute, 4, game 05:15:** “The journal gives me a welcome glimpse of the people, especially Wren skipping breakfast. I understand requests and my own movement better now, though I am still finding the pace.” This was logged 0.003 seconds too early; I repeated it at the eligible time below.
+- **62.211, first_minute, 4, game 05:15:** “The journal gives me a welcome glimpse of the people, especially Wren skipping breakfast. I understand requests and my own movement better now, though I am still finding the pace.”
+- **92.783, note, 3, game 07:24:** “Two hours passed quickly but I am still walking to Wren, a few dozen metres away. I do not know whether I am actually catching her or what event I am waiting for.”
+- **119.484, note, 4, game 08:53:** “The rope instruction gave me a clear reason to act. I expected to rope myself to Wren, but chose Nell when offered; now Wren needs a moment behind the rocks. That feels human.”
+- **159.554, note, 3, game 09:06:** “Wren finally says something specific and morally interesting. I want more context for the survey, but the wait for one paragraph feels long.”
+- **169.684, note, 2, game 09:36:** “They agreed to rope up, but now they moved too far apart. I thought the agreement had settled it. I am losing confidence that I know what my choices accomplish.”
+- **177.941, want_quit, FRUSTRATED, 2, game 09:37:** “I would stop here. I care about Wren, but coordinating the rope feels like repeating requests while the group drifts away.”
+- **186.148, stop, FRUSTRATED, 2, game 09:39:** “I am leaving with the rope unresolved; the people interest me more than the coordination does.”
+
+Desktop:
+
+- **5.629, note, engagement 3:** “I recognize the mountain drawings and the promise that the climbers can say no from my phone just now. I want to see if the larger screen makes the group easier to follow.”
+- **19.347, note, 3, game 05:02:** “The desktop buttons are roomy and I can read the answers, although the figures still overlap. This time I left the turnaround open and everyone started climbing.”
+- **26.166, note, 3, game 05:04:** “The habitat survey option reminds me of Wren telling me about the omitted observation on my phone. I know that part already, so I will see what someone else has to say.”
+- **60.886, first_minute, 3, game 05:17:** “I can find the conversation choices now. Oskar asks me to wait a long time; Nell agrees, and I am curious about the names, but the formal wording makes the conversations feel like tasks.”
+- **86.670, note, 3, game 05:23:** “Nell mapping misleading names is a lovely specific detail. I wish the exchange felt more like a conversation than waiting for a report to appear.”
+- **115.704, note, 2, game 06:48:** “I waited until after Oskar said he would finish the path and asked again; now he wants to finish another stretch. I respect his no, but I feel stalled and do not know if the earlier request was still pending.”
+- **124.948, want_quit, BORED, 2, game 06:49:** “I would leave now. Nell made me smile, but I am spending more time managing waiting than learning about the people.”
+- **133.458, stop, BORED, 2, game 06:49:** “I am leaving after the second delay. I liked Nell but do not want to keep waiting for another conversation.”
+
+For confusion, I opened Feedback and selected **“I’m confused”** three times on phone and once on desktop. For each stop I opened it again and selected **“I’m stopping.”** Each selection appeared pressed and automatically filled the note field with the label. I typed nothing, used Back, and did not submit. The phone session lasted 186.148 seconds and the desktop session 133.458 seconds. I did not log a three-minute pulse: the phone quit wish came before that checkpoint, and desktop stopped before it. Later checkpoints, the remaining climbs, and the ending were untested.
+
+I viewed these saved screenshots:
+
+- [Phone title](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/phone/phone-001.png>) and [phone climb](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/phone/phone-002.png>): the title button was large; the climbing figures and labels overlapped, while the status buttons remained useful.
+- [Desktop title](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/desktop/desktop-001.png>) and [desktop climb](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/desktop/desktop-002.png>): the controls and responses had more room, but the clustered figures still overlapped.
+
+The coordinator owns the drivers and browsers. I created no worktree or process and touched no repository; no `git worktree list` was run.

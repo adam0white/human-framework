@@ -1,0 +1,45 @@
+I would not voluntarily return tonight, though I would consider another short visit to hear more of the neighbours’ stories.
+
+My ranked asks are:
+
+1. Show whether the courtyard gate opened. On the phone, I tapped the enabled control twice and saw no confirmation; that was the blocking interaction I reached.
+2. Show where a piece of news came from when I am choosing whether to repeat it. I did not know why the water shutoff was marked certain.
+3. Make the phone journal easier to scan as it grows. The same earlier lines kept occupying space while I looked for what happened next.
+
+I played two fresh games on the same evening: a 360×690 touch phone, then a 1280×800 desktop with mouse input. The supplied history ended at line 1, **“No prior HF diary entries.”** Unread range: none. This was my first visit to an HF game. The desktop session followed my own phone session; it did not import its save.
+
+The caretaker premise was clear immediately: deliver supplies, then attend a Sunday vote on extra pay. The choices about four-week play and shared history made the opening feel crowded before I knew the people. Once playing, the suggested destinations, deadlines and paused conversations made the delivery route understandable. I liked leaving bread for the absent Derya and hearing Sevim recall children reading aloud. The errands later became repetitive.
+
+On the phone, I stopped at **169.014 seconds**, Monday 11:08 in the game. I had completed the morning deliveries, changed a bulb, beaten Hacer’s carpet and visited the front step. I did not reach the end of Monday, later days or the Sunday vote. The three-minute pulse and later checkpoints were untested. The gate control remained visible and unchanged after two taps; I cannot tell whether the action took effect, so I classified that interaction as **TOOL**.
+
+On desktop, I stopped at **102.158 seconds**, Monday 09:00. I completed the morning deliveries and shared Hacer’s comment about Tarık with Sevim, who called it old news. Hacer’s carpet job was next. I did not reach the end of Monday, later days or the Sunday vote. The three-minute pulse and later checkpoints were untested. I would leave both games paused rather than running.
+
+The screenshots I actually viewed were the opening screens: [phone](</Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/marisol/phone/a-001.png>) and [desktop](</Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/marisol/desktop/a-001.png>). The phone showed a narrow, text-heavy introduction with the red start button fixed near the bottom. The desktop showed a centered column and the same prominent button. I did not view a gameplay screenshot, so my gameplay observations come from the driver’s visible text and controls.
+
+At phone confusion, I opened Feedback, selected **“I'm confused”**, and closed it; the label was shown as pressed. At each stop, I opened Feedback, selected **“I'm stopping”**, and closed it; each was shown as pressed. I typed no note and submitted nothing. The first attempt to select the confusion label failed at the shell because of an apostrophe; the subsequent call succeeded.
+
+Recognition was limited to my own phone session. At desktop **5.944 seconds**, the title and caretaker premise recalled that session, with high confidence. At **26.444 seconds**, Hacer’s invitation recalled sitting with her on the phone, with high confidence. At **94.435 seconds**, the carpet job recalled the phone job, with high confidence. I had no prior HF recognition before the phone session.
+
+The diary lines below are the words logged during play, in order. Engagement is the number entered in each log.
+
+**Phone**
+
+- **4.543s, note, engagement 3:** “The caretaker job and Sunday vote sound clear and interesting. The four-week boxes and shared history are a lot to sort through before I have met anyone.”
+- **22.254s, note, engagement 4:** “The delivery happened when I arrived, and Tarık thanked me. That is a nice little payoff. I am glad the conversation pauses time.”
+- **50.225s, note, engagement 4:** “Sevim remembering children reading is lovely, and her stopping the conversation feels like a person with boundaries. I want to meet the others.”
+- **61.267s, first minute, engagement 4:** “I understand the delivery route now and like hearing a little about the neighbours. The map and repeated text take a lot of space on my phone.”
+- **124.513s, note, engagement 3:** “The work is becoming a loop of tapping the suggested destination and skipping. I like the small details, but the repeated journal is getting long.”
+- **138.675s, note, engagement 3:** “Where did the certain water shutoff come from? I do not remember hearing it, so I do not want to tell Hacer it is certain.”
+- **160.635s, want quit, TOOL, engagement 2:** “I am ready to put this down. I tried opening the gate twice and cannot see whether anything happened; the errands and skips are feeling repetitive.”
+- **169.014s, stop, TOOL, engagement 2:** “I am stopping here; I liked meeting the neighbours, but the repeated errands and unclear gate response have worn out my curiosity for now.”
+
+**Desktop**
+
+- **5.944s, note, engagement 3:** “The title and caretaker premise are familiar from my phone earlier this evening. I want to see whether a fresh start feels easier on a larger screen.”
+- **26.444s, note, engagement 3:** “Hacer asks me to sit and answers for me again; I remember sitting with her on the phone. I want to see what else she says this time.”
+- **62.376s, first minute, engagement 3:** “Tarık’s ice story is the kind of neighbour detail I came for. I am already repeating the same delivery steps from the phone, though.”
+- **70.554s, note, engagement 3:** “I told Sevim what Hacer said about Tarık and she called it old news. That response makes sense, though it is a little deflating.”
+- **94.435s, want quit, BORED, engagement 2:** “I have done the morning deliveries again and the carpet job is familiar too. I would stop here; I like the people but do not want to repeat the routine tonight.”
+- **102.158s, stop, BORED, engagement 2:** “I am stopping for tonight. The neighbours interest me, but I do not want to replay the same morning chores on this device.”
+
+No repository or worktree was touched. The assigned tool restrictions did not permit running `git worktree list`.

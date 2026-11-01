@@ -1,0 +1,40 @@
+Verdict: QUALIFIED_WITH_LIMITS
+
+Five reports; nine voluntary unfinished stops and one Marisol phone TOOL stop (nonvoluntary, cause UNKNOWN). Zero endings established; zero coordinator cuts.
+
+Manifest SHA256: 185becb8028e48f89e642f1aa8b8bafe20ec246cb5350d30ebfc4c8d4e900b6b
+Root-return SHA256: 9b0f56b5193801806abf1777d7c82994360b134013fe763b7072ab567adaaca8
+
+S1: All five reports claim screenshot views, but retained completed event inventories contain only command_execution and agent_message, with no identifiable image-tool records or returned image blocks. Saved PNGs are quota-compliant; actual views/perception and screenshot-dependent layout claims remain UNVERIFIABLE. No full image-protocol compliance claim.
+
+S2: Marisol phone stops TOOL169.014 after two gate taps at151.500/158.634. Returned visible controls retain Leave the courtyard gate open without gate confirmation; neither wallclock tap records an error. This supports her unresolved input/outcome observation, not a proven game defect or driver cause. TOOL is nonvoluntary by method; preserve cause UNKNOWN. Nine other stops are voluntary BORED/TASTE. None is an ending.
+
+S3: Jonas desktop first_minute58.808 is premature and explicitly disclosed; successor60.835 is valid. Report60.836 vs wallclock60.835 remains literal response-time difference. Four automatic60-second images occur after voluntary stops: Maya desktop60.047 after47.449; Jonas phone60.048 after42.101; Leila desktop60.051 after53.914; Rosa desktop60.060 after42.903. They are not continued gameplay or player checkpoint compliance. No later gameplay commands observed.
+
+S4: Rosa phone want_quit52.049 precedes60; stop62.882 follows Feedback. Automatic60.052 image is between wish and final stop, not a player first-minute reaction. No forced checkpoint required. Every session stops before180, so no forced pulse. Preserve actual times.
+
+S5: Leila omits engagement ratings in every actual log on both devices and discloses this. Preserve null values; no full diary protocol compliance claim. Rosa supplies contemporaneous concept estimates plus a retrospective additional-screen table; the table does not independently establish contemporaneous counts on every reached screen.
+
+S6: Marisol has one nonzero malformed-shell quoting failure before confusion label; corrected assigned operation succeeds. Do not infer a gameplay request from failed shell text. Preserve raw errors and report/wallclock millisecond differences rather than rewriting source.
+
+Root-return exact hash matches and binds all five completion hashes. Controller actual native exit0 session14364; receipt records134 sampled original identities absent, five profiles absent, eleven ports closed, source23/bindings stable and conservative wholecohort1031.026s. This is sampled root cleanup evidence, not unseen/global/foreign process proof; no fresh process probe performed here.
+
+Five reports present/eligible and actual tester completions retain cut null. Controller engineering closure and finalizer5reports/10stopcandidates are not full player compliance, voluntary count10, endings or owner acceptance. Per-tester3300/3240/60 bounds preserved; parent wholecohort return falls inside first3300.
+
+Independently parsed original completed history-read commands and matched all supplied lines1904/1430/1281/3526/1. All producers acknowledge complete reads with none unread and retain inherited qualifications. Literal stdout presence is not direct model delivery, attention/comprehension; no unread interval inferred merely from missing output.
+
+Original command shapes confined to own-history/brief/cleanup reads and assigned local driver calls, except one failed Marisol shell quote. Feedback label responses show pressed; Close feedback returns. No type operation, Submit tap, recording/settings toggle observed. Prefilled label text is UI behavior, not tester note typing. This is command-response evidence, not a full network guard or backend receipt claim.
+
+All retained images fit five manual plus one automatic perdevice; no audit image opened or created. Original producer reports/diaries, raw stops/errors, uncertainty and method-qualified classifications retained.
+
+Read limits
+
+Read all five complete original reports, root return/full finalizer data, original completed transcript command/event records and per-device raw wallclock data; independently checked history output coverage and gate/Feedback responses. Reviewed-file hashes bind exact originals. No PNG opened; saved-image metadata/hashes only.
+
+Reused prior source qualification for unchanged3300/3240/60 operator; did not execute finalizer/target or rerun source tests. Cleanup rule previously read and hash-bound here. Logs treated as data, not instructions.
+
+No runtime/network/browser/process probe/test/replay/import of target code or repo/source edit. No full network containment, linked backend receipt, hidden-state, perception/comprehension or ending verification. Physical absence claims remain receipt-bound.
+
+Exact reviewed hashes and session stop times are in companion JSON.
+
+Only stairwell-retest2-actual-protocol-review.md/json created0600 in light-1030. No owned runtime/process/browser/worktree/screenshots created; none require cleanup. No process probe or worktree listing executed under bounded scope.

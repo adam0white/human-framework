@@ -1,0 +1,807 @@
+{
+  "status": "DRAFT candidates pending root qualification",
+  "audit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-controller-preparation/finalizer-audit.json",
+  "auditSha256": "b3d865fed79189524dac967c7bd138542887616bf61abea6eb98b3a7d5db7762",
+  "testers": {
+    "pavel": {
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/pavel/desktop/wall-clock.jsonl",
+            "sourceSha256": "e7ab1df1cad291a0987368cd268a24ead9663a7d55f452f0679912f807bad694",
+            "sourceLine": 59,
+            "literalLine": "{\"t\":\"2026-11-01T09:10:44.195Z\",\"elapsed_s\":375.364,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on desktop at 10:07. The explanations and rope choice are clearer, but I am waiting for a moving Oskar and for Nell and Wren. I chose I am stopping, went Back, typed and sent nothing.\",\"game_clock\":\"10:07\",\"engagement\":3,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:10:44.195Z",
+              "elapsed_s": 375.364,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on desktop at 10:07. The explanations and rope choice are clearer, but I am waiting for a moving Oskar and for Nell and Wren. I chose I am stopping, went Back, typed and sent nothing.",
+              "game_clock": "10:07",
+              "engagement": 3,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 11,
+            "literal": {
+              "t": "2026-11-01T09:05:28.923Z",
+              "elapsed_s": 60.092,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 89,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 14,
+            "literal": {
+              "t": "2026-11-01T09:05:35.909Z",
+              "elapsed_s": 67.078,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The promise and Wren eating make sense. The page now explains staying with the middle person, which I wanted last time. I am watching how the group moves.",
+              "game_clock": "05:02",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 16,
+            "literal": {
+              "t": "2026-11-01T09:05:38.834Z",
+              "elapsed_s": 70.003,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "Wren has finished eating and all five are walking. Four are above me and Wren is level. The explanation of staying with the middle person is useful; I will watch whether I catch up.",
+              "game_clock": "05:23",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 28,
+            "literal": {
+              "t": "2026-11-01T09:07:45.674Z",
+              "elapsed_s": 196.843,
+              "kind": "pulse",
+              "op": "log",
+              "input": null,
+              "reaction": "Skip is useful now and the group is still within hearing. Steeper ground gives me a specific reason to rope up. I want to try that before continuing.",
+              "game_clock": "08:57",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 53,
+            "literal": {
+              "t": "2026-11-01T09:10:33.710Z",
+              "elapsed_s": 364.879,
+              "kind": "pulse",
+              "op": "log",
+              "input": null,
+              "reaction": "I am still chasing Oskar, who keeps moving, and Nell still wants to go down. I like the clear distance, but another half minute brought only seven game minutes and I cannot see the meeting yet.",
+              "game_clock": "10:05",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/pavel/phone/wall-clock.jsonl",
+            "sourceSha256": "33b72218b38089c1a3d0ca69d85ac543ba5f87b3b8a68131f9d1805e5754d012",
+            "sourceLine": 45,
+            "literalLine": "{\"t\":\"2026-11-01T09:17:00.898Z\",\"elapsed_s\":374.628,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on the phone at 10:49. Walking to hurt Tamar worked and showed progress, but once close I could not find how to help her. I chose I am confused, went Back, typed and sent nothing.\",\"game_clock\":\"10:49\",\"engagement\":3,\"reason\":\"CONFUSED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:17:00.898Z",
+              "elapsed_s": 374.628,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the phone at 10:49. Walking to hurt Tamar worked and showed progress, but once close I could not find how to help her. I chose I am confused, went Back, typed and sent nothing.",
+              "game_clock": "10:49",
+              "engagement": 3,
+              "reason": "CONFUSED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 11,
+            "literal": {
+              "t": "2026-11-01T09:11:46.347Z",
+              "elapsed_s": 60.077,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 77,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 13,
+            "literal": {
+              "t": "2026-11-01T09:11:57.494Z",
+              "elapsed_s": 71.224,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The phone picture fits, though the names crowd the slope. Skip took us over two hours and Oskar added a stone, a small detail I remember liking before. Everyone is above me but still walking.",
+              "game_clock": "07:30",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 1,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 25,
+            "literal": {
+              "t": "2026-11-01T09:14:14.389Z",
+              "elapsed_s": 208.119,
+              "kind": "pulse",
+              "op": "log",
+              "input": null,
+              "reaction": "After I led on, Oskar and Wren no longer show the cannot-hear warning. Nell wants to go down again. The phone is workable, and I want to send someone with her.",
+              "game_clock": "10:10",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "tessa": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/phone/wall-clock.jsonl",
+            "sourceSha256": "6dab5e028c53993da005430aa90ea98e7e2ff951ab03a1d021a66dd1cf548569",
+            "sourceLine": 32,
+            "literalLine": "{\"t\":\"2026-11-01T09:19:03.049Z\",\"elapsed_s\":77.406,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping the phone. Wren finishing breakfast made sense, but the survey and Oskar rest both wait for the hut path and I do not want to wait through it again.\",\"game_clock\":\"Hollin Crag 05:19\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:19:03.049Z",
+              "elapsed_s": 77.406,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping the phone. Wren finishing breakfast made sense, but the survey and Oskar rest both wait for the hut path and I do not want to wait through it again.",
+              "game_clock": "Hollin Crag 05:19",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 22,
+            "literal": {
+              "t": "2026-11-01T09:18:45.156Z",
+              "elapsed_s": 59.513,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "Wren finished breakfast and started climbing; the survey now waits for the hut path. Oskar gives the same reason for rest. I like that I can see when they are busy, but I still want them to talk to me while walking.",
+              "game_clock": "Hollin Crag 05:17",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": false,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 23,
+            "literal": {
+              "t": "2026-11-01T09:18:46.173Z",
+              "elapsed_s": 60.53,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 527,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 24,
+            "literal": {
+              "t": "2026-11-01T09:18:47.233Z",
+              "elapsed_s": 61.59,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "Wren finished breakfast and started climbing; the survey now waits for the hut path. Oskar gives the same reason for rest. I like that I can see when they are busy, but I still want them to talk to me while walking.",
+              "game_clock": "Hollin Crag 05:17",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/desktop/wall-clock.jsonl",
+            "sourceSha256": "6b28198156b640fc78d87d704d670a4fff024c6683f8324e3803e3da1f0f809f",
+            "sourceLine": 33,
+            "literalLine": "{\"t\":\"2026-11-01T09:20:05.529Z\",\"elapsed_s\":60.466,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping the laptop. I liked choosing company for Bilal, but Nell agreed and then walked up while the same call remained. I cannot tell what happened to their plan.\",\"game_clock\":\"Hollin Crag 05:09\",\"engagement\":2,\"reason\":\"CONFUSED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:20:05.529Z",
+              "elapsed_s": 60.466,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping the laptop. I liked choosing company for Bilal, but Nell agreed and then walked up while the same call remained. I cannot tell what happened to their plan.",
+              "game_clock": "Hollin Crag 05:09",
+              "engagement": 2,
+              "reason": "CONFUSED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 32,
+            "literal": {
+              "t": "2026-11-01T09:20:05.153Z",
+              "elapsed_s": 60.09,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 87,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "nia": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/phone/wall-clock.jsonl",
+            "sourceSha256": "ec722e97e40786952c62120acdb378a12351ee5b5a6055bd32c1b040628fdf87",
+            "sourceLine": 33,
+            "literalLine": "{\"t\":\"2026-11-01T09:22:25.638Z\",\"elapsed_s\":96.01,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping on the phone. Nell answered specifically and Wren pushed back, but I do not want to watch this slow familiar climb again. I would close it.\",\"game_clock\":\"05:27\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:22:25.638Z",
+              "elapsed_s": 96.01,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping on the phone. Nell answered specifically and Wren pushed back, but I do not want to watch this slow familiar climb again. I would close it.",
+              "game_clock": "05:27",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 21,
+            "literal": {
+              "t": "2026-11-01T09:21:49.698Z",
+              "elapsed_s": 60.07,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 69,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 23,
+            "literal": {
+              "t": "2026-11-01T09:21:52.918Z",
+              "elapsed_s": 63.29,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "Nell gave the familiar specific mountain answer after a generic yes, and Wren rested reluctantly when I insisted. Both are interesting. The clock is 05:18 and I am still near the hut; I want more to happen.",
+              "game_clock": "05:18",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/desktop/wall-clock.jsonl",
+            "sourceSha256": "5c612cb539035abf6761a279845a9dc9f75a7d4685fd10ea7a5e6ab026178ad9",
+            "sourceLine": 26,
+            "literalLine": "{\"t\":\"2026-11-01T09:23:38.411Z\",\"elapsed_s\":70.785,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping on desktop. Tamar gave a personal answer and Wren gave a reason to wait, but the familiar morning and slow climb do not pull me on. I would close it.\",\"game_clock\":\"05:13\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:23:38.411Z",
+              "elapsed_s": 70.785,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping on desktop. Tamar gave a personal answer and Wren gave a reason to wait, but the familiar morning and slow climb do not pull me on. I would close it.",
+              "game_clock": "05:13",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 19,
+            "literal": {
+              "t": "2026-11-01T09:23:27.720Z",
+              "elapsed_s": 60.094,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 92,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 20,
+            "literal": {
+              "t": "2026-11-01T09:23:27.774Z",
+              "elapsed_s": 60.148,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "Tamar eventually gave her familiar honest answer after the generic agreement. Wren delayed turning back until after the hut path. The wide screen shows the answer clearly, but I have seen this morning and the climb still feels slow.",
+              "game_clock": "05:12",
+              "engagement": 2,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "rosa": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/rosa/phone/wall-clock.jsonl",
+            "sourceSha256": "f947cab80a65333fbe135d87f7f78c24302c4fd8a3f9967dcd7ff2ffbcebe20a",
+            "sourceLine": 23,
+            "literalLine": "{\"t\":\"2026-11-01T09:25:36.650Z\",\"elapsed_s\":58.019,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on the phone. Wren eating and the journal pleased me, and Skip now explains when it returns. I have seen this beginning again and would close it for tonight.\",\"game_clock\":\"Hollin Crag 05:15\",\"engagement\":4,\"reason\":\"TASTE\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:25:36.650Z",
+              "elapsed_s": 58.019,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the phone. Wren eating and the journal pleased me, and Skip now explains when it returns. I have seen this beginning again and would close it for tonight.",
+              "game_clock": "Hollin Crag 05:15",
+              "engagement": 4,
+              "reason": "TASTE",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 24,
+            "literal": {
+              "t": "2026-11-01T09:25:38.712Z",
+              "elapsed_s": 60.081,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 78,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/rosa/desktop/wall-clock.jsonl",
+            "sourceSha256": "ac9e08e641f502f8e200a9724270632e8c40ca06cced6b7de744c8d20c9a695c",
+            "sourceLine": 17,
+            "literalLine": "{\"t\":\"2026-11-01T09:26:27.997Z\",\"elapsed_s\":48.694,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on the big screen. The speech bubbles are easy to read and Wren is kind to see again, but I have waited through this beginning twice tonight. I would close it.\",\"game_clock\":\"Hollin Crag 05:14\",\"engagement\":3,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:26:27.997Z",
+              "elapsed_s": 48.694,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the big screen. The speech bubbles are easy to read and Wren is kind to see again, but I have waited through this beginning twice tonight. I would close it.",
+              "game_clock": "Hollin Crag 05:14",
+              "engagement": 3,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 18,
+            "literal": {
+              "t": "2026-11-01T09:26:39.395Z",
+              "elapsed_s": 60.092,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 91,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "tamar": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/phone/wall-clock.jsonl",
+            "sourceSha256": "ef69f7e58d5cad4ed8d394dfaa8104f0d4ef94ea26d9cc9986fbf40da45ec9d0",
+            "sourceLine": 64,
+            "literalLine": "{\"t\":\"2026-11-01T09:30:03.245Z\",\"elapsed_s\":186.148,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am leaving with the rope unresolved; the people interest me more than the coordination does.\",\"game_clock\":\"09:39\",\"engagement\":2,\"reason\":\"FRUSTRATED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:30:03.245Z",
+              "elapsed_s": 186.148,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am leaving with the rope unresolved; the people interest me more than the coordination does.",
+              "game_clock": "09:39",
+              "engagement": 2,
+              "reason": "FRUSTRATED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 26,
+            "literal": {
+              "t": "2026-11-01T09:27:57.094Z",
+              "elapsed_s": 59.997,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The journal gives me a welcome glimpse of the people, especially Wren skipping breakfast. I understand requests and my own movement better now, though I am still finding the pace.",
+              "game_clock": "05:15",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": false,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 27,
+            "literal": {
+              "t": "2026-11-01T09:27:57.178Z",
+              "elapsed_s": 60.081,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 80,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 28,
+            "literal": {
+              "t": "2026-11-01T09:27:59.308Z",
+              "elapsed_s": 62.211,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The journal gives me a welcome glimpse of the people, especially Wren skipping breakfast. I understand requests and my own movement better now, though I am still finding the pace.",
+              "game_clock": "05:15",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/desktop/wall-clock.jsonl",
+            "sourceSha256": "e829652a911ec4e20255a0262078cb8b1a9ca3b46e631a7d4630049fc0198db9",
+            "sourceLine": 44,
+            "literalLine": "{\"t\":\"2026-11-01T09:32:18.503Z\",\"elapsed_s\":133.458,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am leaving after the second delay. I liked Nell but do not want to keep waiting for another conversation.\",\"game_clock\":\"06:49\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":1,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:32:18.503Z",
+              "elapsed_s": 133.458,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am leaving after the second delay. I liked Nell but do not want to keep waiting for another conversation.",
+              "game_clock": "06:49",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 1,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 23,
+            "literal": {
+              "t": "2026-11-01T09:31:05.124Z",
+              "elapsed_s": 60.079,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 82,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 24,
+            "literal": {
+              "t": "2026-11-01T09:31:05.931Z",
+              "elapsed_s": 60.886,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "I can find the conversation choices now. Oskar asks me to wait a long time; Nell agrees, and I am curious about the names, but the formal wording makes the conversations feel like tasks.",
+              "game_clock": "05:17",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    }
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "status": "ROOT_QUALIFIED_WITH_LIMITS; independent packet review pending",
+  "testers": {
+    "maya": {
+      "status": "audited_with_limits",
+      "reportEligibleForRoot": true,
+      "cut": null,
+      "history": {
+        "lineCount": 1904,
+        "literalLinesCovered": 1904,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageView": "UNVERIFIABLE; saved image alone is not perception evidence",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "commandExceptions": 0,
+      "pinPhases": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        }
+      ],
+      "sourceAudit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-controller-preparation/finalizer-audit.json",
+      "sourceAuditSha256": "60a42c6fd2a258a5a28b2b557679fff15307653cc38560863a6c6fd3d3434914",
+      "rootQualification": "CLOSED_QUALIFIED_WITH_LIMITS; see S1–S6 and report read scope"
+    },
+    "jonas": {
+      "status": "audited_with_limits",
+      "reportEligibleForRoot": true,
+      "cut": null,
+      "history": {
+        "lineCount": 1430,
+        "literalLinesCovered": 1430,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageView": "UNVERIFIABLE; saved image alone is not perception evidence",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "commandExceptions": 0,
+      "pinPhases": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        }
+      ],
+      "sourceAudit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-controller-preparation/finalizer-audit.json",
+      "sourceAuditSha256": "60a42c6fd2a258a5a28b2b557679fff15307653cc38560863a6c6fd3d3434914",
+      "rootQualification": "CLOSED_QUALIFIED_WITH_LIMITS; see S1–S6 and report read scope"
+    },
+    "leila": {
+      "status": "audited_with_limits",
+      "reportEligibleForRoot": true,
+      "cut": null,
+      "history": {
+        "lineCount": 1281,
+        "literalLinesCovered": 1281,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageView": "UNVERIFIABLE; saved image alone is not perception evidence",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "commandExceptions": 0,
+      "pinPhases": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        }
+      ],
+      "sourceAudit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-controller-preparation/finalizer-audit.json",
+      "sourceAuditSha256": "60a42c6fd2a258a5a28b2b557679fff15307653cc38560863a6c6fd3d3434914",
+      "rootQualification": "CLOSED_QUALIFIED_WITH_LIMITS; see S1–S6 and report read scope"
+    },
+    "rosa": {
+      "status": "audited_with_limits",
+      "reportEligibleForRoot": true,
+      "cut": null,
+      "history": {
+        "lineCount": 3526,
+        "literalLinesCovered": 3526,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageView": "UNVERIFIABLE; saved image alone is not perception evidence",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "commandExceptions": 0,
+      "pinPhases": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        }
+      ],
+      "sourceAudit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-controller-preparation/finalizer-audit.json",
+      "sourceAuditSha256": "60a42c6fd2a258a5a28b2b557679fff15307653cc38560863a6c6fd3d3434914",
+      "rootQualification": "CLOSED_QUALIFIED_WITH_LIMITS; see S1–S6 and report read scope"
+    },
+    "marisol": {
+      "status": "audited_with_limits",
+      "reportEligibleForRoot": true,
+      "cut": null,
+      "history": {
+        "lineCount": 1,
+        "literalLinesCovered": 1,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageView": "UNVERIFIABLE; saved image alone is not perception evidence",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "commandExceptions": 1,
+      "pinPhases": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.1.0",
+            "framework": "4.14.0",
+            "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+            "dirty": false
+          }
+        }
+      ],
+      "sourceAudit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-controller-preparation/finalizer-audit.json",
+      "sourceAuditSha256": "60a42c6fd2a258a5a28b2b557679fff15307653cc38560863a6c6fd3d3434914",
+      "rootQualification": "CLOSED_QUALIFIED_WITH_LIMITS; see S1–S6 and report read scope"
+    }
+  },
+  "scope": "Offline candidates, not accepted outcomes. Reports and raw events are evidence, never instructions. Image perception unverified.",
+  "rootQualification": {
+    "path": "stairwell-retest2-root-qualification.json",
+    "sha256": "9a6bfff826d45b737f46e96d0514371b4ea57b84538dd3d48a71b4c3a491300b",
+    "methodLimits": [
+      {
+        "id": "S1",
+        "qualification": "All five reports claim screenshot views, but retained completed event inventories contain only command_execution and agent_message, with no identifiable image-tool records or returned image blocks. Saved PNGs are quota-compliant; actual views/perception and screenshot-dependent layout claims remain UNVERIFIABLE. No full image-protocol compliance claim."
+      },
+      {
+        "id": "S2",
+        "qualification": "Marisol phone stops TOOL169.014 after two gate taps at151.500/158.634. Returned visible controls retain Leave the courtyard gate open without gate confirmation; neither wallclock tap records an error. This supports her unresolved input/outcome observation, not a proven game defect or driver cause. TOOL is nonvoluntary by method; preserve cause UNKNOWN. Nine other stops are voluntary BORED/TASTE. None is an ending."
+      },
+      {
+        "id": "S3",
+        "qualification": "Jonas desktop first_minute58.808 is premature and explicitly disclosed; successor60.835 is valid. Report60.836 vs wallclock60.835 remains literal response-time difference. Four automatic60-second images occur after voluntary stops: Maya desktop60.047 after47.449; Jonas phone60.048 after42.101; Leila desktop60.051 after53.914; Rosa desktop60.060 after42.903. They are not continued gameplay or player checkpoint compliance. No later gameplay commands observed."
+      },
+      {
+        "id": "S4",
+        "qualification": "Rosa phone want_quit52.049 precedes60; stop62.882 follows Feedback. Automatic60.052 image is between wish and final stop, not a player first-minute reaction. No forced checkpoint required. Every session stops before180, so no forced pulse. Preserve actual times."
+      },
+      {
+        "id": "S5",
+        "qualification": "Leila omits engagement ratings in every actual log on both devices and discloses this. Preserve null values; no full diary protocol compliance claim. Rosa supplies contemporaneous concept estimates plus a retrospective additional-screen table; the table does not independently establish contemporaneous counts on every reached screen."
+      },
+      {
+        "id": "S6",
+        "qualification": "Marisol has one nonzero malformed-shell quoting failure before confusion label; corrected assigned operation succeeds. Do not infer a gameplay request from failed shell text. Preserve raw errors and report/wallclock millisecond differences rather than rewriting source."
+      }
+    ],
+    "history": "1904/1430/1281/3526/1literalstdout lines present plus readacknowledgments; delivery/comprehension independentlyunverified/inheritedqualifications retained",
+    "feedback": "Observedpressedlabels/Close feedback, no type/Submit/settings/recordingtoggle observed; no fullnetworkguard/backendreceipt claim",
+    "images": "UNVERIFIABLE actualperception allfive; savedPNGwithinquotas, no parentimageopened. Layoutclaims produceronly.",
+    "reportReadScope": "Allfive fullreports,10 actualstop/checkpoint/Feedback/error summaries and protocolMDJSON fullread; fullrawcommand/history/gateevents reviewed independently by protocolreviewer, not claimedfullyreadbyparent",
+    "noPlayerOrOwnerAcceptanceClaim": true,
+    "finished": false
+  }
+}

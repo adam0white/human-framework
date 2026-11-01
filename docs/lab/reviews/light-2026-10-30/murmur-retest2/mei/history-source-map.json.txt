@@ -1,0 +1,117 @@
+{
+  "policy": "Exact supplied first Murmur retest history, literal own reports and separate method qualifications; selected not complete archive; no alternative continuity body imported.",
+  "segments": [
+    {
+      "role": "exact actual first-retest supplied baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/own-history.md",
+      "sha256": "689dbeffdc4a86d185e4aa1cba4e8c975674d9a3a77f39447466538de733102f",
+      "outputByteRange": [
+        0,
+        142749
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/report.md",
+      "sha256": "9632f013492f51e90b6e17116b9c9d6c68595613631bf17f3bef7e8a10d7e4b5",
+      "outputByteRange": [
+        142782,
+        155162
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/report.md",
+      "sha256": "055fd136469f7861e3184393cb469c0e9a7df17a247c983b15318a7ebb235e7a",
+      "outputByteRange": [
+        155195,
+        165157
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/report.md",
+      "sha256": "10147f0058cffff6fae7f5fa851248b9bb6ce914394e78ccdb8bd386823ecc9c",
+      "outputByteRange": [
+        165190,
+        176334
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/dispatch.json",
+      "sha256": "a53ea08e14ff422e630a6ae58b17a59bde4ee0a0c7e211804a9ba04e566e6599",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/completion.json",
+      "sha256": "a6682c23d46d9c87bfaecb8942602b7d4df1ce07183e27ec6afcef5eb8fafaa4",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/history-source-map.json",
+      "sha256": "1644b21f735f59a135e58c25676412a44c2eebb41e60160da8c7c410efe61cca",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/mei/director-method-qualification.json",
+      "sha256": "f6f4b7906ada43d8cc3dc11452968cda8c48d28750ca6cc65cbaba0622424fad",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/dispatch.json",
+      "sha256": "cdf07ceebd684d53366ae48fbaeb3ae49d2210598bfed81d41748b0057b2db31",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/completion.json",
+      "sha256": "49cbcb92e908946cca881dfe622c0abb3399272b1e4b67de9a3f1d9f5f44851d",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/history-source-map.json",
+      "sha256": "0b2b050d48e43d34a5a38d7d55ee01a20535f43f5992f8f50235dd123c31f327",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/mei/director-method-qualification.json",
+      "sha256": "57451574c65bda93685c7bc0776b004f17b1cd05f6bdf6bf3c77ff5e3edff26c",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/dispatch.json",
+      "sha256": "24c0acecc97a4da3205756112648d5050dcf82a93403118737c2e683398a4fcb",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/completion.json",
+      "sha256": "109437651a3aef9c0bf7e7a16ec8f8488158bb9cc608731fc1cf6236d7e27f4f",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/history-source-map.json",
+      "sha256": "bb3d65f88b8ccc22ada9f2cd6be7fd62236f1f26e1495860614d4167d3d024e6",
+      "role": "history-source-map.json"
+    }
+  ],
+  "qualification": {
+    "outputByteRange": [
+      176334,
+      177548
+    ],
+    "sha256": "f9378017d20d06a128df9dc890cbd54ad657898b980c110ddbfaad3d24e17fe7",
+    "placement": "after unchanged reports before final marker; not memories"
+  },
+  "historySha256": "85a30c3ddfb8c4ff5f75148339a35aa97b069485908822a6d146d309d8154f14",
+  "neighboursCoordinatorQualification": {
+    "sourceAudit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-controller-preparation/finalizer-audit.json",
+    "sourceAuditSha256": "5ef553ad881163b2b2dbfb4af0e3ec631cb55a5b7eb4d283bba1f2360068c67f",
+    "outputByteRange": [
+      177548,
+      178904
+    ],
+    "sha256": "26450751e636fe968e37eac4cc1bc0f8d16d0d29a5eeaa4a21aa6f4502a70370",
+    "placement": "after unchanged report bodies and prior qualifications, before final marker; not player memory"
+  }
+}

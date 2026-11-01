@@ -1,0 +1,171 @@
+{
+  "status": "ROOT_QUALIFIED_WITH_LIMITS",
+  "testers": {
+    "aisha": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/completion.json",
+      "sha256": "3ed61416289a30512ac183e4aa89ab69d6921fa05e1f6deae8371b8bb7266c8b",
+      "testerExit": 0,
+      "pass": true,
+      "cut": null,
+      "start": "2026-11-01T10:23:18.547716+00:00",
+      "end": "2026-11-01T10:26:52.267297+00:00",
+      "driverExits": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        }
+      ]
+    },
+    "mei": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/completion.json",
+      "sha256": "af2ced6efd09fdfe312e872f7d9bdf5c42e1d2d57a5e72b41a456f545e5b06e2",
+      "testerExit": 0,
+      "pass": true,
+      "cut": null,
+      "start": "2026-11-01T10:26:52.269299+00:00",
+      "end": "2026-11-01T10:34:23.972258+00:00",
+      "driverExits": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        }
+      ]
+    },
+    "nia": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/completion.json",
+      "sha256": "4258fbff996bb80045ff098a67d4a3d453cc49df61be539b5749acf7243280c7",
+      "testerExit": 0,
+      "pass": true,
+      "cut": null,
+      "start": "2026-11-01T10:34:23.974315+00:00",
+      "end": "2026-11-01T10:38:56.118181+00:00",
+      "driverExits": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        }
+      ]
+    },
+    "rosa": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/completion.json",
+      "sha256": "67312c07dd10d25b3ff2ca29337f60203c573396c1b126b77a2272c538c6aec4",
+      "testerExit": 0,
+      "pass": true,
+      "cut": null,
+      "start": "2026-11-01T10:38:56.120593+00:00",
+      "end": "2026-11-01T10:41:55.809685+00:00",
+      "driverExits": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        }
+      ]
+    },
+    "soraya": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/completion.json",
+      "sha256": "fbee7b5a66e385832aac29880d025b18b2532c27d96d2d500e93f6c13a50c119",
+      "testerExit": 0,
+      "pass": true,
+      "cut": null,
+      "start": "2026-11-01T10:41:55.811523+00:00",
+      "end": "2026-11-01T10:46:21.072772+00:00",
+      "driverExits": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "phase": "before",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        },
+        {
+          "phase": "after",
+          "value": {
+            "app": "0.10.0",
+            "framework": "4.9.0",
+            "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+            "dirty": false
+          }
+        }
+      ]
+    }
+  },
+  "scope": "Bounded projection; full raw completion remains private at cited hash."
+}

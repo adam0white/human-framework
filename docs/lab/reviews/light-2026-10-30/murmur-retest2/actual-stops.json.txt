@@ -1,0 +1,685 @@
+{
+  "status": "ROOT_QUALIFIED_WITH_LIMITS; independent packet reviews pending",
+  "audit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-controller-preparation/finalizer-audit.json",
+  "auditSha256": "e36872a130d16f43833d859971a6eb65961c73a42c23a3add86542668f4a0b49",
+  "testers": {
+    "aisha": {
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/desktop/wall-clock.jsonl",
+            "sourceSha256": "1db8d342fe489e3ee6ddb9af9c795552d4cbf2833cff73482ed27cbfe85329d3",
+            "line": 47,
+            "literalLine": "{\"t\":\"2026-11-01T10:25:56.414Z\",\"elapsed_s\":128.686,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am stopping on Tuesday. I liked Dilan helping Ece and telling me that my pressure hurt. Murat noticed she was late again, but his response to her apology repeated yesterday exactly, and I have had enough of this opening tonight.\",\"game_clock\":\"Tuesday 11:11\",\"engagement\":null,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:25:56.414Z",
+              "elapsed_s": 128.686,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping on Tuesday. I liked Dilan helping Ece and telling me that my pressure hurt. Murat noticed she was late again, but his response to her apology repeated yesterday exactly, and I have had enough of this opening tonight.",
+              "game_clock": "Tuesday 11:11",
+              "engagement": null,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 22,
+            "literal": {
+              "t": "2026-11-01T10:24:47.845Z",
+              "elapsed_s": 60.117,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 115,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 24,
+            "literal": {
+              "t": "2026-11-01T10:24:49.967Z",
+              "elapsed_s": 62.239,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "I understand the suggestions and holds. Ece got help and Dilan spoke for her, but Dilan told me she disliked being pushed. I want to give her room now.",
+              "game_clock": "Monday 15:21",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/phone/wall-clock.jsonl",
+            "sourceSha256": "8dec4df9f68e599af947d8f9a694fb6e31e60695ba92442db5a90df84c5b3c5e",
+            "line": 17,
+            "literalLine": "{\"t\":\"2026-11-01T10:26:35.772Z\",\"elapsed_s\":37.362,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am stopping the phone at the message from Aylin. The hold got Dilan up, but I just played this opening and do not want to repeat it tonight. I selected I am stopping and went back without sending.\",\"game_clock\":\"Mon 07:16\",\"engagement\":null,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:26:35.772Z",
+              "elapsed_s": 37.362,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping the phone at the message from Aylin. The hold got Dilan up, but I just played this opening and do not want to repeat it tonight. I selected I am stopping and went back without sending.",
+              "game_clock": "Mon 07:16",
+              "engagement": null,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "mei": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/phone/wall-clock.jsonl",
+            "sourceSha256": "5c10dc08d968e52edea168df9bc4b5913f2414e14c1b7bef9470b8185336ec8e",
+            "line": 28,
+            "literalLine": "{\"t\":\"2026-11-01T10:29:39.781Z\",\"elapsed_s\":135.483,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping on Monday of the second week with the letter unsigned. The Friday deadline and one-year renewal are clear, but the other terms remain unknown. I chose confused and then stopping in Feedback, pressed Back, and typed and submitted nothing.\",\"game_clock\":\"Mon 07:26 second week\",\"engagement\":3,\"reason\":\"CONFUSED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:29:39.781Z",
+              "elapsed_s": 135.483,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping on Monday of the second week with the letter unsigned. The Friday deadline and one-year renewal are clear, but the other terms remain unknown. I chose confused and then stopping in Feedback, pressed Back, and typed and submitted nothing.",
+              "game_clock": "Mon 07:26 second week",
+              "engagement": 3,
+              "reason": "CONFUSED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 11,
+            "literal": {
+              "t": "2026-11-01T10:28:25.055Z",
+              "elapsed_s": 60.757,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 754,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 13,
+            "literal": {
+              "t": "2026-11-01T10:28:37.423Z",
+              "elapsed_s": 73.125,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "I can support Dilan getting up as she promised, and both choices say she is willing. The phone choice is readable. Several calls returned no text, so I cannot yet see whether my tap took effect.",
+              "game_clock": "Mon 06:41 second week",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/desktop/wall-clock.jsonl",
+            "sourceSha256": "15ea7756baac6135f9b48b1d43b805becb761b1aeac9b0eca6bc7abf49fd6397",
+            "line": 42,
+            "literalLine": "{\"t\":\"2026-11-01T10:33:56.844Z\",\"elapsed_s\":255.295,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping on Monday evening of the second week. Mum finished her story and Ece handled the parcels, which pleased me. I am tired of repeating Monday and did not reach the third week. I chose confused and stopping in Feedback, pressed Back, and typed and submitted nothing.\",\"game_clock\":\"Monday 19:08 second week\",\"engagement\":3,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:33:56.844Z",
+              "elapsed_s": 255.295,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping on Monday evening of the second week. Mum finished her story and Ece handled the parcels, which pleased me. I am tired of repeating Monday and did not reach the third week. I chose confused and stopping in Feedback, pressed Back, and typed and submitted nothing.",
+              "game_clock": "Monday 19:08 second week",
+              "engagement": 3,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 12,
+            "literal": {
+              "t": "2026-11-01T10:30:42.589Z",
+              "elapsed_s": 61.04,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 1038,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 13,
+            "literal": {
+              "t": "2026-11-01T10:30:43.824Z",
+              "elapsed_s": 62.275,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The laptop is at the same second-week alarm I just saw on the phone. I supported her promise to get up again; the tap returned no text, so I am waiting to see the outcome. I do not know whether the third-week option starts later.",
+              "game_clock": "Monday 06:41 second week",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 33,
+            "literal": {
+              "t": "2026-11-01T10:33:21.652Z",
+              "elapsed_s": 220.103,
+              "kind": "pulse",
+              "op": "log",
+              "input": null,
+              "reaction": "I like that Ece handled her own work and Dilan had hot tea. The repeating Monday and slow responses are wearing on me. I am unsure whether Mum was promised ten or twenty minutes.",
+              "game_clock": "Monday 18:11 second week",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "nia": {
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/desktop/wall-clock.jsonl",
+            "sourceSha256": "1022ec4cf6db46b1af46910fd80c5a248fe6c1470c78a020bdcbbe2c844525ac",
+            "line": 29,
+            "literalLine": "{\"t\":\"2026-11-01T10:36:07.258Z\",\"elapsed_s\":75.763,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping on desktop. I liked helping Ece, but the third-week choice still began with the familiar morning and I do not want to replay it. I would close it.\",\"game_clock\":\"Monday 12:41\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:36:07.258Z",
+              "elapsed_s": 75.763,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping on desktop. I liked helping Ece, but the third-week choice still began with the familiar morning and I do not want to replay it. I would close it.",
+              "game_clock": "Monday 12:41",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 21,
+            "literal": {
+              "t": "2026-11-01T10:35:51.583Z",
+              "elapsed_s": 60.088,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 87,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 22,
+            "literal": {
+              "t": "2026-11-01T10:35:53.877Z",
+              "elapsed_s": 62.382,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The third-week box did not take me past the familiar alarm, Aylin and Ece opening. I can insist and see what she does, but I am confused about what that box changes. I want to see her answer Ece.",
+              "game_clock": "Monday 10:41",
+              "engagement": 2,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/phone/wall-clock.jsonl",
+            "sourceSha256": "b1d3363350e695bb8139ebb0d71356d76c6cb45f584ed97e1d2685aa694b85aa",
+            "line": 29,
+            "literalLine": "{\"t\":\"2026-11-01T10:38:34.229Z\",\"elapsed_s\":144.754,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping on phone. The second-week start gave me a new tenancy choice and a clear deadline, but the same insist reply and long blank driver calls drained me. I would close it.\",\"game_clock\":\"Mon 07:26 second week\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:38:34.229Z",
+              "elapsed_s": 144.754,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping on phone. The second-week start gave me a new tenancy choice and a clear deadline, but the same insist reply and long blank driver calls drained me. I would close it.",
+              "game_clock": "Mon 07:26 second week",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 13,
+            "literal": {
+              "t": "2026-11-01T10:37:10.866Z",
+              "elapsed_s": 61.391,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 1385,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 14,
+            "literal": {
+              "t": "2026-11-01T10:37:13.098Z",
+              "elapsed_s": 63.623,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The other start skips the first week and gives the alarm a remembered promise. I suggested getting up and the log confirms it. Two calls returned blank before later screens showed the actions had happened, so I am unsure why the driver went quiet.",
+              "game_clock": "Mon 06:51 second week",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "rosa": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/phone/wall-clock.jsonl",
+            "sourceSha256": "06b99f9cd5fb9fd5cb653ca7dc48e1f7e3d47618fab3047901c07cb48716d300",
+            "line": 22,
+            "literalLine": "{\"t\":\"2026-11-01T10:40:44.073Z\",\"elapsed_s\":59.865,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on the phone. I liked helping Ece and seeing her parcel delivered, but I have seen this Monday before. I would close it and try the big screen.\",\"game_clock\":\"Mon 12:41\",\"engagement\":4,\"reason\":\"TASTE\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:40:44.073Z",
+              "elapsed_s": 59.865,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the phone. I liked helping Ece and seeing her parcel delivered, but I have seen this Monday before. I would close it and try the big screen.",
+              "game_clock": "Mon 12:41",
+              "engagement": 4,
+              "reason": "TASTE",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 23,
+            "literal": {
+              "t": "2026-11-01T10:40:44.240Z",
+              "elapsed_s": 60.032,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 29,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/desktop/wall-clock.jsonl",
+            "sourceSha256": "ee96fb01a6d4a6d9675c0b4376c701e8fbbb52fb34d78c5e0b8a3889dbb58bbf",
+            "line": 21,
+            "literalLine": "{\"t\":\"2026-11-01T10:41:36.175Z\",\"elapsed_s\":50.268,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on the big screen. Murat accepted the truth and the result was clear, but I have seen this morning again. I would close it and return another evening for more of the week.\",\"game_clock\":\"Monday 10:41\",\"engagement\":4,\"reason\":\"TASTE\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:41:36.175Z",
+              "elapsed_s": 50.268,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the big screen. Murat accepted the truth and the result was clear, but I have seen this morning again. I would close it and return another evening for more of the week.",
+              "game_clock": "Monday 10:41",
+              "engagement": 4,
+              "reason": "TASTE",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 22,
+            "literal": {
+              "t": "2026-11-01T10:41:45.962Z",
+              "elapsed_s": 60.055,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 53,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "soraya": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/phone/wall-clock.jsonl",
+            "sourceSha256": "7d7753a8b2950940884b7f403517f78c000ead87180be55705218f58e158f128",
+            "line": 38,
+            "literalLine": "{\"t\":\"2026-11-01T10:44:38.125Z\",\"elapsed_s\":154.948,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am stopping after Monday; I like the people but the repeated responses have dulled my curiosity.\",\"game_clock\":\"Mon in bed\",\"engagement\":3,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:44:38.125Z",
+              "elapsed_s": 154.948,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping after Monday; I like the people but the repeated responses have dulled my curiosity.",
+              "game_clock": "Mon in bed",
+              "engagement": 3,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 15,
+            "literal": {
+              "t": "2026-11-01T10:43:03.253Z",
+              "elapsed_s": 60.076,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 73,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 17,
+            "literal": {
+              "t": "2026-11-01T10:43:07.256Z",
+              "elapsed_s": 64.079,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "I understand the choices and enjoy seeing their consequences. Dilan resents being pushed, which makes me pause before doing it again. I want to help Ece, but Dilan has work too.",
+              "game_clock": "Mon 10:41",
+              "engagement": 5,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/desktop/wall-clock.jsonl",
+            "sourceSha256": "0e5d69764dc26c9e541e11aac2e2e3caa34324be6028e64fd7c3d9e0f8c05705",
+            "line": 25,
+            "literalLine": "{\"t\":\"2026-11-01T10:46:02.112Z\",\"elapsed_s\":82.199,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am stopping at lunch because I do not want to repeat Monday again tonight.\",\"game_clock\":\"Monday 12:42\",\"engagement\":3,\"reason\":\"BORED\",\"op_ms\":1,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:46:02.112Z",
+              "elapsed_s": 82.199,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping at lunch because I do not want to repeat Monday again tonight.",
+              "game_clock": "Monday 12:42",
+              "engagement": 3,
+              "reason": "BORED",
+              "op_ms": 1,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinal": true,
+        "eligibleVoluntaryFinal": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 16,
+            "literal": {
+              "t": "2026-11-01T10:45:40.007Z",
+              "elapsed_s": 60.094,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 95,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 18,
+            "literal": {
+              "t": "2026-11-01T10:45:45.714Z",
+              "elapsed_s": 65.801,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "Helping Ece street by street felt kinder than sending a map, and I saw her deliver the parcel. I recognize the lunch scene too, so I am less curious about repeating it.",
+              "game_clock": "Monday 12:41",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    }
+  },
+  "scope": "Ten voluntary unfinished stops; no ending or cuts."
+}

@@ -100,3 +100,11 @@ Each packet publication map resolves original source filenames to exact inert `.
 ## Batch 7 source-only candidate
 
 [Integration qualification](batch7-integration.md) and publication maps: [Child initial](child-initial/publication-map.json), [Neighbours initial](neighbours-initial/publication-map.json), [Child retest](child-retest1/publication-map.json), [Rosa recovery](child-rosa-recovery1/publication-map.json). Cold session reports remain in their round archives.
+
+## Batch 8 source-only candidate
+
+[Rope retest 2 integration qualification](batch8-integration.md) and [publication map](rope-retest2/publication-map.json). The cold report remains in the round archive.
+
+[Stairwell retest 2 qualification](batch8-stairwell-integration.md) and [publication map](stairwell-retest2/publication-map.json).
+
+[Murmur retest 2 qualification](batch8-murmur-integration.md) and [publication map](murmur-retest2/publication-map.json).

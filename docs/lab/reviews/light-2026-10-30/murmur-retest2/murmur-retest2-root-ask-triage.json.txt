@@ -1,0 +1,163 @@
+{
+  "at": "2026-11-01T10:48:59.748722+00:00",
+  "sourceExtractionSha256": "6e4b483c930f4256f44d52d5f1dfb15e130527535bf3dffe2cf728b367768368",
+  "rows": [
+    {
+      "id": "F2971",
+      "tester": "aisha",
+      "rank": 1,
+      "literal": "1. Let Murat’s response reflect the repeated lateness. On Tuesday he asked what happened *again*, but his response to Dilan’s apology was word for word Monday’s.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2972",
+      "tester": "aisha",
+      "rank": 2,
+      "literal": "2. Give me a clearer warning before I push Dilan too far. She told me afterwards that she disliked it, but I could not tell beforehand how close I was.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2973",
+      "tester": "aisha",
+      "rank": 3,
+      "literal": "3. Keep the full first-choice explanation visible on the phone. It appeared cut off after “If time” in the view I reached.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference; screenshot-dependent clipping/layout claim UNVERIFIABLE (M1), full returned text present"
+    },
+    {
+      "id": "F2974",
+      "tester": "mei",
+      "rank": 1,
+      "literal": "1. Show the remaining tenancy terms after Dilan reads the letter. The one-year renewal and Friday deadline help, but the other terms remained unknown when I had to decide.",
+      "target": "2026-11-03",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "player calls this blocking at reached choice"
+    },
+    {
+      "id": "F2975",
+      "tester": "mei",
+      "rank": 2,
+      "literal": "2. Give me a way to continue from a saved place. I wanted to see a later week but stopped while repeating Monday.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2976",
+      "tester": "mei",
+      "rank": 3,
+      "literal": "3. Clarify the commitment to Mum: the scene said twenty minutes of attention each evening, while Dilan’s own line said she had promised a ten-minute call.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2977",
+      "tester": "nia",
+      "rank": 1,
+      "literal": "1. Make the later starting points easier to understand and find. I selected “Play a third week” expecting to start later, then discovered “Begin at the second week” under “Other ways to begin.” Reaching new scenes is the blocking ask I brought into this visit.",
+      "target": "2026-11-03",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "Carried-in new-scenes blocker partly answered by discovered second-week start; start-option meaning/discoverability remains requested; not a new proven access failure"
+    },
+    {
+      "id": "F2978",
+      "tester": "nia",
+      "rank": 2,
+      "literal": "2. Give Dilan more varied replies when I insist. Her objection to reading the tenancy letter was the same line I remembered from two different choices last visit.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2979",
+      "tester": "nia",
+      "rank": 3,
+      "literal": "3. Show less repeated day text. The driver’s visible text repeated the latest event and, around the tenancy decision, repeated the letter’s details several times.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:lab",
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference; primary fix:lab inspection of repeated driver text; secondary fix:murmur inspection only if independently reproduced; no established cause"
+    },
+    {
+      "id": "F2980",
+      "tester": "rosa",
+      "rank": 1,
+      "literal": "1. Explain what trust changes and whether I can see how much remains.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2981",
+      "tester": "rosa",
+      "rank": 2,
+      "literal": "2. Explain the choice labels together before the first choice, including “She wants to do it later,” which I did not encounter this time.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2982",
+      "tester": "rosa",
+      "rank": 3,
+      "literal": "3. Say how far Skip will advance before I press it.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2983",
+      "tester": "soraya",
+      "rank": 1,
+      "literal": "1. Give Dilan more varied responses when I insist. Her repeated sentence made the choices feel less personal.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    },
+    {
+      "id": "F2984",
+      "tester": "soraya",
+      "rank": 2,
+      "literal": "2. Explain why a first-time player is offered a “third week” before starting.",
+      "target": "2026-11-10",
+      "routes": [
+        "fix:murmur"
+      ],
+      "qualification": "preference/other observation; no product-cause inference"
+    }
+  ],
+  "unused": "F2985–2990",
+  "scope": "Dated inspection routes, not proven defects or instructions to alter autonomy/difficulty; no third ordinary panel after two iterations"
+}

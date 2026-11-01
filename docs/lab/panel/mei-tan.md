@@ -1601,3 +1601,81 @@ I would return on the laptop to see the hall progress if the town were saved and
 
 The coordinator owns the drivers and browser cleanup. I started no helpers or processes and touched no repository; I have no worktree to list.
 ```
+
+<!-- selected-continuity-key: light-1030:murmur-retest2:mei:free -->
+
+## murmur-retest2: mei
+
+Exact own report. Source-epoch M1–M6 and inherited selected-history limits remain binding. Image perception and complete model delivery/comprehension remain unverified. No ending or owner acceptance is inferred. Packet map: docs/lab/reviews/light-2026-10-30/murmur-retest2/publication-map.json. Root qualification: docs/lab/reviews/light-2026-10-30/murmur-retest2/murmur-retest2-root-qualification.json.txt.
+
+```text
+I would return voluntarily another evening on my laptop if I could continue from a saved place and see the tenancy terms before deciding whether Dilan should sign; I would not leave it running.
+
+**Ranked asks**
+
+1. Show the remaining tenancy terms after Dilan reads the letter. The one-year renewal and Friday deadline help, but the other terms remained unknown when I had to decide.
+2. Give me a way to continue from a saved place. I wanted to see a later week but stopped while repeating Monday.
+3. Clarify the commitment to Mum: the scene said twenty minutes of attention each evening, while Dilan’s own line said she had promised a ten-minute call.
+
+I am Mei Tan, 53, an accountant and carer in Singapore. This was a return visit to Murmur. I used the assigned URL with `?labRunSource=agent` and two independent fresh games on the same evening:
+
+- **Phone:** 360×690 touch, driver 24702. I began at the second week and stopped at **135.484 real seconds**, Monday 07:26.
+- **Desktop:** 1280×800 keyboard and mouse, driver 24703. I checked “Play a third week,” began at the second week, and stopped at **255.296 real seconds**, Monday 19:08. I did not reach the third week.
+
+Neither game ended. I read the supplied history through line **1497**. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. The history is selected rather than a complete archive. My original desktop Murmur visit included a roughly 31.5-second named-tap stall; the later held-input diagnostic used a different method. These visits do not establish a game-only cause for differences.
+
+At **5.610 seconds on the phone**, the visible names Dilan and Aylin prompted a confident memory of saving trust for the Mum call and being glad they spoke. At **117.439 seconds**, the tenancy letter prompted a confident memory that I had previously been unable to see its terms or deadline after Dilan read it. On desktop, the opening and letter were also familiar from the phone session I had just played. I did not recognize a new earlier encounter beyond those recorded memories.
+
+The phone introduction was readable, although Start was below the visible screen. The second-week alarm choice was large and clear. I liked supporting Dilan’s own promise to get up without insisting. Later, holding to ask her to read the letter worked, and she said she disliked being pushed. That made the cost personal.
+
+The letter now gave me something I had wanted last time: a renewal for one year, due Friday at 17:00. It also explicitly said the other terms and consequences were unknown. I could compare the deadline with Monday, but I still could not judge what she would sign. **That was the blocking ask I reached on the phone.** I left the choice unresolved.
+
+On the laptop, Ece handled her own returned parcels correctly and Dilan drank her tea hot. That small outcome felt satisfying. I also cared about Mum’s call: Dilan reluctantly called when I insisted, then willingly put her screen away and let Mum finish. But I had played this Monday before, and the long gaps in driver responses made repeating it feel more tiring. The ten-minute and twenty-minute statements confused me; they might refer to different commitments, but the scene did not make their relationship clear to me.
+
+**Diary — phone**
+
+These are the log reactions I sent, in order and unedited. Engagement is the value I entered.
+
+- **5.610 s, note, engagement 4:** “Dilan and Aylin are familiar. I remember saving trust for the Mum call and being glad they spoke; I am confident of that. I want to see the later week rather than repeat Monday again.”
+- **73.126 s, first_minute, engagement 3, Mon 06:41 second week:** “I can support Dilan getting up as she promised, and both choices say she is willing. The phone choice is readable. Several calls returned no text, so I cannot yet see whether my tap took effect.”
+- **75.237 s, note, engagement 4, Mon 07:03 second week:** “The log now confirms my suggestion and says she was up before the second alarm. I like seeing her keep her own promise. The delayed responses made that uncertain until now.”
+- **117.439 s, note, engagement 4, Mon 07:13 second week:** “The tenancy letter is familiar: last time I could not see its terms or deadline after she read it. I am confident of that memory. I held to read it again; the call returned no visible result yet.”
+- **119.516 s, note, engagement 4, Mon 07:26 second week:** “Now I can compare Friday at 17:00 with Monday, and the renewal is one year. That answers the deadline, but other terms and consequences are explicitly unknown. I will not ask her to sign a contract I cannot read.”
+- **127.783 s, want_quit, CONFUSED, engagement 3, Mon 07:26 second week:** “I would stop here tonight. The deadline is clear now, but I still cannot judge the other tenancy terms and I do not want to insist on signing. I have already played this opening before.”
+- **135.484 s, stop, CONFUSED, engagement 3, Mon 07:26 second week:** “Stopping on Monday of the second week with the letter unsigned. The Friday deadline and one-year renewal are clear, but the other terms remain unknown. I chose confused and then stopping in Feedback, pressed Back, and typed and submitted nothing.”
+
+The quit wish stood. The phone session ended before the 180-second pulse checkpoint.
+
+**Diary — desktop**
+
+- **6.333 s, note, engagement 4:** “Back on the laptop after the phone. I have seen the second-week letter again, so I want to see a later week if the start offers it.”
+- **48.480 s, note, engagement 3:** “I chose the third-week option and the second-week start, but the start and subsequent calls returned no visible text. I do not yet know where I am.”
+- **62.276 s, first_minute, engagement 3, Monday 06:41 second week:** “The laptop is at the same second-week alarm I just saw on the phone. I supported her promise to get up again; the tap returned no text, so I am waiting to see the outcome. I do not know whether the third-week option starts later.”
+- **86.895 s, note, engagement 3, Monday 07:13 second week:** “The letter has returned exactly where I just saw it on the phone. I know the deadline after reading, but not the other terms. I will put it aside this time rather than spend trust to repeat the reading.”
+- **127.122 s, note, engagement 3, Monday 08:58 second week:** “She put the letter under the fruit bowl, with a corner showing. That small detail feels human, but I am repeating a day I know and the calls are slow.”
+- **153.760 s, note, engagement 3, Monday 10:46 second week:** “Ece said she could handle the parcels, so I let her. I like respecting her choice. The input calls have again returned no text, so I have not yet seen the result.”
+- **167.809 s, note, engagement 3, Monday 14:31 second week:** “Ece handled them correctly and Dilan had hot tea. That is a satisfying consequence of letting her do her work. I would like to see a new day, but I am tiring of repeating this one.”
+- **170.027 s, note, engagement 4, Monday 18:11 second week:** “It says she promised twenty minutes each evening, but her own line says ten minutes. I do not know which commitment applies. I want her to call Mum, so I will ask despite that uncertainty.”
+- **Pulse attempted after 180 s, engagement 3, Monday 18:11 second week:** “I like that Ece handled her own work and Dilan had hot tea. The repeating Monday and slow responses are wearing on me. I am unsure whether Mum was promised ten or twenty minutes.” The call returned no text, so I cannot confirm its elapsed time or whether it was recorded.
+- **220.104 s, note, engagement 3, Monday 18:11 second week:** “I held to call Mum. The call returned no visible result yet; I will check before leaving.” The response to this note then showed the insistence tick and that Mum had picked up.
+- **235.024 s, want_quit, BORED, engagement 3, Monday 18:15 second week:** “I would stop tonight after asking Dilan to let Mum finish. I care about that call, but I have replayed this Monday and I cannot reach the later week without more repetition.”
+- **255.296 s, stop, BORED, engagement 3, Monday 19:08 second week:** “Stopping on Monday evening of the second week. Mum finished her story and Ece handled the parcels, which pleased me. I am tired of repeating Monday and did not reach the third week. I chose confused and stopping in Feedback, pressed Back, and typed and submitted nothing.”
+
+The desktop quit wish stood. I did not reach a second pulse or the third week.
+
+**Screens and controls**
+
+I actually viewed these screenshots:
+
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/phone/a-001.png>): readable introduction in one column; the recording notice crossed the page above the optional boxes. Start was below the visible area.
+- [Phone alarm choice](</Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/phone/a-002.png>): large, readable choice buttons and a visible answer timer.
+- [Desktop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/desktop/b-001.png>): the introduction, optional boxes and Start were visible; the recording notice crossed the area above the boxes.
+
+Requests for phone `a-003.png` and desktop `b-002.png` returned no text. I did not view them and cannot say whether they were saved. Several other calls returned no text, and Skip returned `locator.innerText: Timeout 5000ms exceeded` on both devices. Later visible responses confirmed the choices and outcomes described above. A desktop Game menu call returned no text; one retry opened it. I cannot attribute those delays to the game.
+
+On both devices I opened Feedback when confused, selected **“I'm confused”**, saw it marked pressed, and pressed **← Back**. At each stop I reopened Feedback, selected **“I'm stopping”**, saw it marked pressed, and pressed **← Back**. I typed no note and submitted nothing. Recording and consent remained at their defaults.
+
+Compared with my last Murmur visit, the tenancy deadline is now visible after reading, but the remaining terms are still unavailable at the decision I reached. I again saw willingness labels and Dilan’s response to being pushed; I did not see a remaining trust amount or test a failed hold. I did not test whether either new game could be resumed from a saved place.
+
+I created no workers, browsers, servers or worktrees. The coordinator owns the drivers and their cleanup. No repository was touched, so there is no `git worktree list` output.
+```

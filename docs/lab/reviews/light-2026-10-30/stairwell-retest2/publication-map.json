@@ -1,0 +1,175 @@
+{
+  "schema": "bounded-source-epoch-publication-map/v1",
+  "packet": "stairwell-retest2",
+  "sourceManifestSha256": "8c0e94b300dca16be5039e3f6f6fc7e9e7a5f7a08701c1ffb1bf363b1fe38f14",
+  "files": {
+    "README.md": {
+      "publishedPath": "README.md.txt",
+      "sha256": "0bf9f24077b731299dc4949d2835cf3beea2149b4542ebc9abe9fcd8f9ef4a29",
+      "bytes": 1300
+    },
+    "actual-stops.json": {
+      "publishedPath": "actual-stops.json.txt",
+      "sha256": "17301b115dba4e8f0b7a9802a1964c08c2be3619b875b3304ee68617d4b89827",
+      "bytes": 32880
+    },
+    "ask-ledger.json": {
+      "publishedPath": "ask-ledger.json.txt",
+      "sha256": "877ea32938d2c1d77051182844fe9d738f58416121f3ec293046adf054cb81f4",
+      "bytes": 10862
+    },
+    "ask-ledger.md": {
+      "publishedPath": "ask-ledger.md.txt",
+      "sha256": "9768eb578b65bca32f351e45417be878fc2759ecc741ae3eeb7b46fcf1116cf5",
+      "bytes": 6186
+    },
+    "jonas/history-source-map.json": {
+      "publishedPath": "jonas/history-source-map.json.txt",
+      "sha256": "97fdbd653848138fd272ddcf42adfd4589aac339af31f01e2ad49a83fa543b70",
+      "bytes": 5326
+    },
+    "jonas/report.md": {
+      "publishedPath": "jonas/report.md.txt",
+      "sha256": "234e040836271e8ba7e7a469c2ae698e7341a0d41d54cb958d7a529bd374ea3b",
+      "bytes": 7322
+    },
+    "leila/history-source-map.json": {
+      "publishedPath": "leila/history-source-map.json.txt",
+      "sha256": "565579c15ce4e050750b73a4482de0933ee9504eb3394ae650232bf70c91b07d",
+      "bytes": 5326
+    },
+    "leila/report.md": {
+      "publishedPath": "leila/report.md.txt",
+      "sha256": "d9bb4d4572e7cad4853e7c9d24b99db8d54543c9249443e5d7339060464262bb",
+      "bytes": 6885
+    },
+    "manifest.json": {
+      "publishedPath": "manifest.json.txt",
+      "sha256": "8c0e94b300dca16be5039e3f6f6fc7e9e7a5f7a08701c1ffb1bf363b1fe38f14",
+      "bytes": 3255
+    },
+    "marisol/history-source-map.json": {
+      "publishedPath": "marisol/history-source-map.json.txt",
+      "sha256": "583dcf78614b5a7ff200b9845e644a8f26933f05159256b3e9c7d1157f167e10",
+      "bytes": 154
+    },
+    "marisol/report.md": {
+      "publishedPath": "marisol/report.md.txt",
+      "sha256": "c8671d56ec6c41ec112929d4c38ae756a2d0d37ffdc0c4beced349fd3a6a8024",
+      "bytes": 6437
+    },
+    "maya/history-source-map.json": {
+      "publishedPath": "maya/history-source-map.json.txt",
+      "sha256": "52d64ef15f801af8e1db35750b7f8a389630167a38c0b4a9aa48913e2452ee2b",
+      "bytes": 8724
+    },
+    "maya/report.md": {
+      "publishedPath": "maya/report.md.txt",
+      "sha256": "2ed7c7d76bb73a2395de8c1c77145e58ed0de49b2d61eea359c063e66aab6ded",
+      "bytes": 7233
+    },
+    "method-qualification.json": {
+      "publishedPath": "method-qualification.json.txt",
+      "sha256": "96fad930ce5c194e2ac9bb8eb8858e68ac4bc3b52e5b1a92cecce34d3532b481",
+      "bytes": 11986
+    },
+    "rosa/history-source-map.json": {
+      "publishedPath": "rosa/history-source-map.json.txt",
+      "sha256": "3dedc48d9585cd4e3aa5af06d221884a1c432c9e4b4c55161d94d58a33a4aaa3",
+      "bytes": 15182
+    },
+    "rosa/report.md": {
+      "publishedPath": "rosa/report.md.txt",
+      "sha256": "f669be5e6ef9790956094e622852a01cd9670eb82cae43872a172a8536ec4cae",
+      "bytes": 8708
+    },
+    "source-map.json": {
+      "publishedPath": "source-map.json.txt",
+      "sha256": "53be4ef8d4c64b12efd1c025587b2e1adb313b04a80fe46eb3fd672039ab4a50",
+      "bytes": 9282
+    },
+    "stairwell-retest2-actual-protocol-review.json": {
+      "publishedPath": "stairwell-retest2-actual-protocol-review.json.txt",
+      "sha256": "5ddfb86c989fd5695ab1bc20ae9e2dde8a52fa269011fee6f7c7ab334ed748b4",
+      "bytes": 15924
+    },
+    "stairwell-retest2-actual-protocol-review.md": {
+      "publishedPath": "stairwell-retest2-actual-protocol-review.md.txt",
+      "sha256": "62ab0d705d5294e8ffddac45bb65587d23bd11cbfb27457cfbe1084b98ad29b7",
+      "bytes": 5304
+    },
+    "stairwell-retest2-final-release.json": {
+      "publishedPath": "stairwell-retest2-final-release.json.txt",
+      "sha256": "977411050fba4b409f49c7b4aae6362da5066e04c8b3f31396878420881d44f8",
+      "bytes": 120
+    },
+    "stairwell-retest2-root-qualification.json": {
+      "publishedPath": "stairwell-retest2-root-qualification.json.txt",
+      "sha256": "9a6bfff826d45b737f46e96d0514371b4ea57b84538dd3d48a71b4c3a491300b",
+      "bytes": 4517
+    }
+  },
+  "excluded": {
+    "cleanup-rule.md": {
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "jonas/brief.md": {
+      "sha256": "93893b3f440317d0240236310fb39b494aaa91bac88717a229acf99ed4f2686b",
+      "bytes": 7516,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "jonas/own-history.md": {
+      "sha256": "7354588cbf1e8d5d7372cd29d54fd39093cc8f3c1f8c0b6abfe4c35c4a97a6c7",
+      "bytes": 207905,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "leila/brief.md": {
+      "sha256": "0789c98824eda6314e28135ea17c64b3bcda415689db6b001ef352ba7c2c7f80",
+      "bytes": 7518,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "leila/own-history.md": {
+      "sha256": "814f026af27b92f619c1cfbd882f0ea7a74b2fe1b6958708e46b5f4691c5e65d",
+      "bytes": 167517,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "marisol/brief.md": {
+      "sha256": "384da1c9145b2e31ba1cc374e0025bfb0a5ee3a3b76cbb77f41eed779dc3391f",
+      "bytes": 7777,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "marisol/own-history.md": {
+      "sha256": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d",
+      "bytes": 27,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "maya/brief.md": {
+      "sha256": "7eb7251ca1eff22b841248d93969f2a04cad7597c0d77c547e7638607189228e",
+      "bytes": 7567,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "maya/own-history.md": {
+      "sha256": "a7587aa1e0eaa7bc73ca716ffba090b859b111070ab53b717262e974de90370f",
+      "bytes": 244919,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "root-return.json": {
+      "sha256": "9b0f56b5193801806abf1777d7c82994360b134013fe763b7072ab567adaaca8",
+      "bytes": 2289,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "rosa/brief.md": {
+      "sha256": "00c1a6771daf931320f00d5dee7636c1bdb341c8fd95abec92f8b567ca4bdd0c",
+      "bytes": 7795,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "rosa/own-history.md": {
+      "sha256": "470b042636ac9e007f1c5559f4453bd6ae013580d607d1d3f5c5ec9db77b79a0",
+      "bytes": 381472,
+      "reason": "outside bounded inert publication selection; private source retained"
+    }
+  },
+  "scope": "Byte-exact inert selected snapshots; withheld private histories and runtime evidence are hash-only. Local paths are provenance, not public image assets."
+}

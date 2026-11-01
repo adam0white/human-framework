@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-31",
+ "generated": "2026-11-01",
  "ledger": [
   {
    "id": "F-001",
@@ -21639,6 +21639,541 @@
     "fix:child Consider player preference, preserve uncertainty target2026-11-10 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/child-retest1/zora/report.md.txt"
+  },
+  {
+   "id": "F-2931",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Pavel",
+   "words": "1. **Show me how to help the hurt person once I reach her.** On the phone I reached Tamar and the page said I was close enough to help, but her injury card and “turn her back” choice had disappeared. I could not find a help action among her requests. This was my blocking ask.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/pavel/report.md.txt"
+  },
+  {
+   "id": "F-2932",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Pavel",
+   "words": "2. Show whether a person asked to meet someone has met them and what happens next. Bilal agreed to meet Nell, but she was still walking up and he was not walking; later both wanted to go down.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/pavel/report.md.txt"
+  },
+  {
+   "id": "F-2933",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Pavel",
+   "words": "3. Let me move through quiet waits more readily. Skip covered hours on both devices, but it was absent during some reading periods, and I spent long stretches waiting for people to meet or catch up.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/pavel/report.md.txt"
+  },
+  {
+   "id": "F-2934",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Tessa",
+   "words": "1. Show what happens after someone agrees to meet a climber who wants to descend. Nell agreed to meet Bilal, but his call stayed open and their displayed movements left me unsure whether they would go together.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/tessa/report.md.txt"
+  },
+  {
+   "id": "F-2935",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Tessa",
+   "words": "2. Give me a way to talk with people during the walk. Wren postponed the habitat survey first for breakfast, then for the hut path.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/tessa/report.md.txt"
+  },
+  {
+   "id": "F-2936",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Tessa",
+   "words": "3. Separate the names around the hut on the map. They overlapped on both screens I viewed.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/tessa/report.md.txt"
+  },
+  {
+   "id": "F-2937",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "1. Let me reach new parts of the climb sooner. I enjoyed the personal answers, but I had heard both before and did not want to watch the familiar morning again.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/nia/report.md.txt"
+  },
+  {
+   "id": "F-2938",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "2. Make the first reply to a topic question specific. Nell and Tamar both began with a generic agreement before giving their real answers.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/nia/report.md.txt"
+  },
+  {
+   "id": "F-2939",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "1. Say how far **Skip** will advance before I press it. It now explains when it returns, which helps.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-2940",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "2. Give me something to discover or do during the early wait. I enjoyed Wren’s answer, but I stopped after seeing the same beginning twice tonight.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-2941",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Tamar",
+   "words": "1. Make it clear whether an agreed rope request is complete or still pending, and what I can do to help it succeed. This was my blocking ask on the phone: Wren and Nell agreed, then moved too far apart.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/tamar/report.md.txt"
+  },
+  {
+   "id": "F-2942",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Tamar",
+   "words": "2. Make delayed conversations easier to follow: tell me whether a request remains pending and when I need to ask again.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/tamar/report.md.txt"
+  },
+  {
+   "id": "F-2943",
+   "date": "2026-11-01",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Tamar",
+   "words": "3. Make the climbers and their labels easier to distinguish when they overlap, especially on the phone.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/rope-retest2/tamar/report.md.txt"
+  },
+  {
+   "id": "F-2951",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "1. Let neighbours respond to things they saw me do. Hacer saw the gate and newspaper swap, but neither came up in the conversation I reached.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/maya/report.md.txt"
+  },
+  {
+   "id": "F-2952",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "2. Give conversations more varied continuations. Hacer’s shop story and her response to “I am listening” were familiar from my last visit.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/maya/report.md.txt"
+  },
+  {
+   "id": "F-2953",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "3. Give Tarık something on the first “Anything new?” ask. He again said he had no news, then told the ferry story when I sat with him.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/maya/report.md.txt"
+  },
+  {
+   "id": "F-2954",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Jonas",
+   "words": "1. Give sitting and replying a visible consequence I can understand before the Sunday vote.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/jonas/report.md.txt"
+  },
+  {
+   "id": "F-2955",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Jonas",
+   "words": "2. Make the conversations I reached produce more distinct outcomes.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/jonas/report.md.txt"
+  },
+  {
+   "id": "F-2956",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Jonas",
+   "words": "3. Explain why a story enters or does not enter the notebook.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/jonas/report.md.txt"
+  },
+  {
+   "id": "F-2957",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Leila",
+   "words": "1. Give residents more distinct responses to what I say, including after their stories.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/leila/report.md.txt"
+  },
+  {
+   "id": "F-2958",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Leila",
+   "words": "2. Record the stories I hear in the notebook, or explain which stories reach it.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/leila/report.md.txt"
+  },
+  {
+   "id": "F-2959",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "1. Explain in plain words how the Sunday vote is decided. I know it concerns my extra pay, but I still do not know how the decision is made.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-2960",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "2. Keep the explanation of the newspaper prank and say that it may upset someone.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-2961",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "3. Say how far Skip will take me. I did not reach Skip on this visit, so this remains a question from my earlier play.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-2962",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Marisol",
+   "words": "1. Show whether the courtyard gate opened. On the phone, I tapped the enabled control twice and saw no confirmation; that was the blocking interaction I reached.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab investigate unresolved phone gate outcome, cause unknown, target 2026-11-03 (deferred)",
+    "fix:stairwell inspect same unresolved outcome, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/marisol/report.md.txt"
+  },
+  {
+   "id": "F-2963",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Marisol",
+   "words": "2. Show where a piece of news came from when I am choosing whether to repeat it. I did not know why the water shutoff was marked certain.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/marisol/report.md.txt"
+  },
+  {
+   "id": "F-2964",
+   "date": "2026-11-01",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Marisol",
+   "words": "3. Make the phone journal easier to scan as it grows. The same earlier lines kept occupying space while I looked for what happened next.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/stairwell-retest2/marisol/report.md.txt"
+  },
+  {
+   "id": "F-2971",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Aisha",
+   "words": "1. Let Murat’s response reflect the repeated lateness. On Tuesday he asked what happened *again*, but his response to Dilan’s apology was word for word Monday’s.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/aisha/report.md.txt"
+  },
+  {
+   "id": "F-2972",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Aisha",
+   "words": "2. Give me a clearer warning before I push Dilan too far. She told me afterwards that she disliked it, but I could not tell beforehand how close I was.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/aisha/report.md.txt"
+  },
+  {
+   "id": "F-2973",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Aisha",
+   "words": "3. Keep the full first-choice explanation visible on the phone. It appeared cut off after “If time” in the view I reached.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/aisha/report.md.txt"
+  },
+  {
+   "id": "F-2974",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mei",
+   "words": "1. Show the remaining tenancy terms after Dilan reads the letter. The one-year renewal and Friday deadline help, but the other terms remained unknown when I had to decide.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/mei/report.md.txt"
+  },
+  {
+   "id": "F-2975",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mei",
+   "words": "2. Give me a way to continue from a saved place. I wanted to see a later week but stopped while repeating Monday.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/mei/report.md.txt"
+  },
+  {
+   "id": "F-2976",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mei",
+   "words": "3. Clarify the commitment to Mum: the scene said twenty minutes of attention each evening, while Dilan’s own line said she had promised a ten-minute call.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/mei/report.md.txt"
+  },
+  {
+   "id": "F-2977",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "1. Make the later starting points easier to understand and find. I selected “Play a third week” expecting to start later, then discovered “Begin at the second week” under “Other ways to begin.” Reaching new scenes is the blocking ask I brought into this visit.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/nia/report.md.txt"
+  },
+  {
+   "id": "F-2978",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "2. Give Dilan more varied replies when I insist. Her objection to reading the tenancy letter was the same line I remembered from two different choices last visit.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/nia/report.md.txt"
+  },
+  {
+   "id": "F-2979",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "3. Show less repeated day text. The driver’s visible text repeated the latest event and, around the tenancy decision, repeated the letter’s details several times.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab inspect repeated visible-text outcome, cause unknown, target 2026-11-10 (deferred)",
+    "fix:murmur inspect same repeated-text observation, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/nia/report.md.txt"
+  },
+  {
+   "id": "F-2980",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "1. Explain what trust changes and whether I can see how much remains.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-2981",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "2. Explain the choice labels together before the first choice, including “She wants to do it later,” which I did not encounter this time.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-2982",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "3. Say how far Skip will advance before I press it.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-2983",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Soraya",
+   "words": "1. Give Dilan more varied responses when I insist. Her repeated sentence made the choices feel less personal.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/soraya/report.md.txt"
+  },
+  {
+   "id": "F-2984",
+   "date": "2026-11-01",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Soraya",
+   "words": "2. Explain why a first-time player is offered a “third week” before starting.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/soraya/report.md.txt"
   }
  ],
  "lessons": [
@@ -22263,7 +22798,7 @@
   }
  ],
  "routes": {
-  "fix": 1984,
+  "fix": 2027,
   "lesson": 291,
   "hf": 14,
   "calibration": 81,

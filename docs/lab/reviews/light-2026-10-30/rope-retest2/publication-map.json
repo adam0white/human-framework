@@ -1,0 +1,175 @@
+{
+  "schema": "bounded-source-epoch-publication-map/v1",
+  "packet": "rope-retest2",
+  "sourceManifestSha256": "e02a41f8fe0c2c931331c030b779396d0f41bc7416535e5794438d36003d2b8f",
+  "files": {
+    "README.md": {
+      "publishedPath": "README.md.txt",
+      "sha256": "78a4182635426038557b5c6bb5c41a016d5607c5407069727ff27656895087d9",
+      "bytes": 1233
+    },
+    "actual-stops.json": {
+      "publishedPath": "actual-stops.json.txt",
+      "sha256": "cb71da538acc9592af29ee6161331a4c66e03357b8df461229255e47ebe928ef",
+      "bytes": 37184
+    },
+    "ask-ledger.json": {
+      "publishedPath": "ask-ledger.json.txt",
+      "sha256": "d488dd1f6a6a2f11be69f4d30798540e054c00b526f5b568cd339ef20e3b3241",
+      "bytes": 9832
+    },
+    "ask-ledger.md": {
+      "publishedPath": "ask-ledger.md.txt",
+      "sha256": "9209d27750e51b0c8c9098cff08cce10e6c4936c7b9e7ac2fa822c5e9fb30e6d",
+      "bytes": 6282
+    },
+    "manifest.json": {
+      "publishedPath": "manifest.json.txt",
+      "sha256": "e02a41f8fe0c2c931331c030b779396d0f41bc7416535e5794438d36003d2b8f",
+      "bytes": 3224
+    },
+    "method-qualification.json": {
+      "publishedPath": "method-qualification.json.txt",
+      "sha256": "ab26303c45fdc5bb210f3ed3a009dc12371f13a0398f7eb2e4a27c4ea610693c",
+      "bytes": 10852
+    },
+    "nia/history-source-map.json": {
+      "publishedPath": "nia/history-source-map.json.txt",
+      "sha256": "96f968bd779dde5f0f4ad9046f4c24ecd840621f192b487e44d45f315207c26d",
+      "bytes": 7060
+    },
+    "nia/report.md": {
+      "publishedPath": "nia/report.md.txt",
+      "sha256": "06e2b82a906945be064b590acc05724f6b7bd96d0adb3a88ec83128447660f42",
+      "bytes": 8192
+    },
+    "pavel/history-source-map.json": {
+      "publishedPath": "pavel/history-source-map.json.txt",
+      "sha256": "0f3941e0b97aa099f1744dfc6aae3a52322fcaf8582cbeeb398797d3142f690d",
+      "bytes": 4281
+    },
+    "pavel/report.md": {
+      "publishedPath": "pavel/report.md.txt",
+      "sha256": "eaa37d6276a1d4788e4f333f96acd625938e6f81b5adb3fb6f64d7ead6c974c9",
+      "bytes": 10929
+    },
+    "rope-retest2-actual-protocol-review.json": {
+      "publishedPath": "rope-retest2-actual-protocol-review.json.txt",
+      "sha256": "6f97e8d2c5095d46855a7a9c8ed70af34768efe1776188f67b7d12f12623b64f",
+      "bytes": 15394
+    },
+    "rope-retest2-actual-protocol-review.md": {
+      "publishedPath": "rope-retest2-actual-protocol-review.md.txt",
+      "sha256": "d0e1158be7917e6ec5ecaf41589a2739cd9a9cf75e18d59025101e28e20c1e32",
+      "bytes": 4955
+    },
+    "rope-retest2-final-release.json": {
+      "publishedPath": "rope-retest2-final-release.json.txt",
+      "sha256": "b7da196be25136e6ab5b1e4aa26f5d49422db987c2c6172151804a4ecb03f64a",
+      "bytes": 120
+    },
+    "rope-retest2-root-qualification.json": {
+      "publishedPath": "rope-retest2-root-qualification.json.txt",
+      "sha256": "a9095dc1f7f2a0d16fb9c55e8f5c87a7741e0c0e203d4ba082c6ef0f2841bbe5",
+      "bytes": 3949
+    },
+    "rosa/history-source-map.json": {
+      "publishedPath": "rosa/history-source-map.json.txt",
+      "sha256": "fcba925aa0a3a6bdd9f194fa09bb4e09bbb572ccb3deb7e5e1f33a6f3e42da46",
+      "bytes": 15027
+    },
+    "rosa/report.md": {
+      "publishedPath": "rosa/report.md.txt",
+      "sha256": "c1bc42de378c2c070569b1512e78c33436d33272fe21405e4588ca3df0557bb3",
+      "bytes": 8164
+    },
+    "source-map.json": {
+      "publishedPath": "source-map.json.txt",
+      "sha256": "69467ad5c2b0ab022c7d9f291dd92863d5c05c4cf74288e2f49b57f2173467d6",
+      "bytes": 7514
+    },
+    "tamar/history-source-map.json": {
+      "publishedPath": "tamar/history-source-map.json.txt",
+      "sha256": "574a48113c4dc75f1f26ae2f4c6c7f8299de6cd6b20a5e5d909ca818a67fc996",
+      "bytes": 154
+    },
+    "tamar/report.md": {
+      "publishedPath": "tamar/report.md.txt",
+      "sha256": "85eaf815736be771e673ba60196b13aa6581d31729fe40c55e8e2d02331b2bb9",
+      "bytes": 8062
+    },
+    "tessa/history-source-map.json": {
+      "publishedPath": "tessa/history-source-map.json.txt",
+      "sha256": "7769c1411346ade7401292ca7677d6c6a4b6f96d044627924aca72adba2c3e7b",
+      "bytes": 4277
+    },
+    "tessa/report.md": {
+      "publishedPath": "tessa/report.md.txt",
+      "sha256": "6d804f2791d29617e51c5392ef520e2e06a388df9704ca3cc8897a1e5fe8d668",
+      "bytes": 8462
+    }
+  },
+  "excluded": {
+    "cleanup-rule.md": {
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "nia/brief.md": {
+      "sha256": "1909a7df7e581fffd7c9c4fea77ca0dad35fe6f4c3b71ff4099a185a981d023c",
+      "bytes": 7654,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "nia/own-history.md": {
+      "sha256": "79f6b90d45c62111d5fed824902ea90436e236de5308b3c3466cb97cf5ffde6c",
+      "bytes": 196998,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "pavel/brief.md": {
+      "sha256": "ef6b17ace2447395bd666da3a827b0abb5f3b51127d23bf5343180abfb079105",
+      "bytes": 7683,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "pavel/own-history.md": {
+      "sha256": "c77c2291b1cda99dcfe5083d713b478f193bf8fe6de32bcc6d8bdb7adfba4967",
+      "bytes": 158424,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "root-return.json": {
+      "sha256": "273bccb6c04b3e47fe519515400cc16a941f5580ebcc0cce62a19c3c476af7f8",
+      "bytes": 4462,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "rosa/brief.md": {
+      "sha256": "ffb4e21e26fd0e523bc8a8bbdc97ebaccc088a95d4d1f00fec69ee66975f5ab0",
+      "bytes": 7950,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "rosa/own-history.md": {
+      "sha256": "3ec357cb03d490a10f3c330483243fc7d42039728f405be05d79c11420c17f66",
+      "bytes": 358827,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "tamar/brief.md": {
+      "sha256": "30071f659c0a0da7e6e86a48cdf672603b6964407482dc8bb00e2add1793ac14",
+      "bytes": 7911,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "tamar/own-history.md": {
+      "sha256": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d",
+      "bytes": 27,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "tessa/brief.md": {
+      "sha256": "6a70ca95dc1700f8ec8872dda3d4add972957d8ea2d25e268aaa0d3d9e463ae8",
+      "bytes": 7699,
+      "reason": "outside bounded inert publication selection; private source retained"
+    },
+    "tessa/own-history.md": {
+      "sha256": "293e3ae58c68aa720d9bf3eff6cf250a9615c9d5963bc3fb626f6626f2cdc0d5",
+      "bytes": 114945,
+      "reason": "outside bounded inert publication selection; private source retained"
+    }
+  },
+  "scope": "Byte-exact inert selected snapshots; withheld bodies are hash-only, including private own histories and runtime evidence. Local paths are provenance, not public image assets."
+}

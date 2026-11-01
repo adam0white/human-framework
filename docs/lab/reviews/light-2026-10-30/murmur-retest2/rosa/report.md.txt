@@ -1,0 +1,58 @@
+I would return voluntarily another evening on either device to see more of Dilan’s week, though I still want to understand what trust changes; I would close it now and not leave it running.
+
+My ranked asks are:
+
+1. Explain what trust changes and whether I can see how much remains.
+2. Explain the choice labels together before the first choice, including “She wants to do it later,” which I did not encounter this time.
+3. Say how far Skip will advance before I press it.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit to Murmur, titled **Two Voices** on the page. Both sessions used fresh, independent games at the supplied agent-marked URL, with no imported save or matched seed. Recording and consent stayed at their defaults.
+
+- **Phone:** 360×690 touch. I stopped at **59.865 seconds**.
+- **Desktop:** 1280×800 keyboard and mouse, later the same evening. I used mouse actions and stopped at **50.268 seconds**.
+
+I read the supplied history in explicit ranges through line **3685**. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. The history is selected, not my complete archive. The original Murmur history read reached only lines 1–865 of 1,203; that earlier limit remains.
+
+The familiar people gave me a reason to start. On the phone I insisted that Dilan get up and help Ece, then felt pleased when Ece delivered her parcel. On desktop I let Dilan sleep and saw her miss her alarms; I then asked her to tell Murat the truth. His ordinary response held me. I stopped both sessions because I had seen those parts of Monday again, not because the game ended.
+
+**Diary — successful log lines, unchanged and in order**
+
+Phone:
+
+- **5.969 s, note, engagement 4:** “Dilan and her parcel work bring back my earlier visits. I am confident I remember helping Ece and asking Dilan to call Mum. The title is readable. I want to see her week again.”
+- **29.181 s, note, engagement 4, Mon 07:16:** “She got up before the second alarm, as I remember from insisting before. Aylin asking about Mum is familiar too. I like that my suggestion has a clear result. The timer still makes me hurry.”
+- **42.772 s, note, engagement 4, Mon 10:41:** “Ece lost and trying not to cry reminds me of guiding her before. I am confident it is the same encounter. I want to help her again, though I have already insisted twice.”
+- **49.799 s, want_quit, TASTE, engagement 4, Mon 11:42:** “Ece delivered the parcel and I am glad. I have seen these scenes again, and I would stop the phone for tonight and try the big screen.”
+- **59.865 s, stop, TASTE, engagement 4, Mon 12:41:** “I stop on the phone. I liked helping Ece and seeing her parcel delivered, but I have seen this Monday before. I would close it and try the big screen.”
+
+Desktop:
+
+- **15.425 s, note, engagement 4, Monday 06:41:** “The same familiar alarm on the large screen. I let her sleep this time. I remember she missed alarms before, and I want to see her answer without pushing.”
+- **27.246 s, note, engagement 4, Monday 07:16:** “She slept through the second and third alarms, as I remembered from my earlier visit. I see the difference from getting her up on the phone. The result is plain.”
+- **41.288 s, want_quit, TASTE, engagement 4, Monday 09:01:** “Murat accepts her honest apology, as I remember, and I like his ordinary answer. I have seen this morning again and would stop for tonight.”
+- **50.268 s, stop, TASTE, engagement 4, Monday 10:41:** “I stop on the big screen. Murat accepted the truth and the result was clear, but I have seen this morning again. I would close it and return another evening for more of the week.”
+
+Both quit wishes remained through the Feedback check. I did not reread a sentence in either session, so my two-reread rule did not trigger. Neither stop reached 60 seconds; the first-minute checkpoints are untested. Neither reached 180 seconds, so no pulse was due. I did not reach Tuesday, Saturday’s look back, or an ending.
+
+The choices and their immediate results were clear. On the phone, getting up led to Dilan rising before the second alarm; on desktop, sleeping led to her missing the second and third. The timer made me feel hurried even though the menu said each choice allows 64 seconds. I still could not see how much trust remained. Skip’s accessible name said it went to the next event, but I did not see an advance estimate.
+
+My recognition came from visible cues: Dilan’s parcel work prompted confident memories of Ece and Mum at **5.969 s**; the second-alarm result and Aylin’s message prompted memories at **29.181 s**; Ece’s lost-van situation prompted confident recognition at **42.772 s**. On desktop, the alarm and missed-alarms result prompted memories at **15.425 s** and **27.246 s**; Murat’s apology scene prompted one at **41.288 s**. I recorded no other recognition.
+
+| Screen reached | Concepts presented, including familiar settings and lab topics | Count | Rereads |
+|---|---|---:|---|
+| Title, both | Voice in Dilan’s head; suggestions; Monday–Saturday; look back; Dilan’s parcel work; Aylin; Ece; Murat; other beginnings; third week; outcomes week; Start; linked recording; All games; Information; menu; Human Framework | 17 | None |
+| Opening transition, both | Day and clock; alarm about to ring | 2 | None |
+| First choice, both | Answer timer; other voice; pencil handwriting; tap to suggest; hold to insist; trust cost; refusal; timeout; willingness labels; Say nothing | 10 | None |
+| Later choices and results | Recorded suggestion or insistence; words kept in mind; Skip; alarms; Aylin’s message; Mum; lateness; Murat; Ece’s delivery; lunchtime response | 10 | None |
+| Game menu, both | Paused time; pace between moments; 64-second choice; Automatic, Slow, Steady and Fast; Feedback; full screen; New game; title page; All games; People across games; download; Recording; Lab privacy; Debug; Resume | 17 | None |
+| Feedback, both | Three keep-playing choices; stopping; confused; note; optional name; linked history; what is sent; Submit; Back | 10 | None |
+
+These are retrospective counts of what I encountered, not counts for unseen screens.
+
+I viewed [phone/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/phone/a-001.png) at **2.403 s**. The title and introduction were readable; the recording notice crossed the lower area, and Start was below the visible image. I viewed [desktop/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/desktop/b-001.png) at **2.089 s**. It showed the same introduction in a comfortable centered column, with the Start button visible. I viewed no game-screen screenshot, so I cannot assess those layouts visually.
+
+On both devices, I opened Feedback, selected **“I'm stopping”**, saw it marked pressed, and used **← Back** to return to the game menu. I typed no note and pressed no Submit. My first phone attempt to address the label failed in the shell before reaching the driver; the corrected attempt worked.
+
+Compared with my last Murmur visit, I again saw that suggestions can change the day and that insistence can cost trust. I did not encounter an explanation of a trust level or what happens at zero. I saw “She is willing” and “She would agree only if you insist,” but not “She wants to do it later” or a combined explanation of the labels. Skip still named the next event without telling me the advance beforehand. **No new blocking ask arose** in the part I reached.
+
+I made no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; a worktree listing does not apply to my work.

@@ -1,0 +1,677 @@
+{
+  "status": "ROOT_QUALIFIED_WITH_LIMITS; independent packet review pending",
+  "audit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-controller-preparation/finalizer-audit.json",
+  "auditSha256": "60a42c6fd2a258a5a28b2b557679fff15307653cc38560863a6c6fd3d3434914",
+  "testers": {
+    "maya": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/phone/wall-clock.jsonl",
+            "sourceSha256": "bf228d515da215486eab8017a0264b966473e837696b0a477ae0769cc20bd39b",
+            "sourceLine": 27,
+            "literalLine": "{\"t\":\"2026-11-01T09:52:11.780Z\",\"elapsed_s\":75.351,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am stopping on the phone. Hacer saw the gate and papers but did not mention them in the conversation I reached, and her story and refusal were familiar. I selected I am stopping and closed Feedback without typing or sending.\",\"game_clock\":\"Monday 07:31\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:52:11.780Z",
+              "elapsed_s": 75.351,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping on the phone. Hacer saw the gate and papers but did not mention them in the conversation I reached, and her story and refusal were familiar. I selected I am stopping and closed Feedback without typing or sending.",
+              "game_clock": "Monday 07:31",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 20,
+            "literal": {
+              "t": "2026-11-01T09:51:56.460Z",
+              "elapsed_s": 60.031,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 32,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 21,
+            "literal": {
+              "t": "2026-11-01T09:51:59.464Z",
+              "elapsed_s": 63.035,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The bread round and deadline are clear. Hacer saw the gate and swapped papers but her greeting did not mention them; her shop story and leave-it reply are familiar. The explanation says my two replies do not change whether she continues.",
+              "game_clock": "Monday 07:31",
+              "engagement": 2,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/desktop/wall-clock.jsonl",
+            "sourceSha256": "a5405374b2aa9c496cb8669233c971124f075780fb20a9aa0ab8a8d2d1945107",
+            "sourceLine": 21,
+            "literalLine": "{\"t\":\"2026-11-01T09:53:01.753Z\",\"elapsed_s\":47.449,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am stopping on desktop. Tarık had no news and then told the familiar ferry story again. I like the story, but I do not want to repeat this morning tonight. I selected I am stopping and closed Feedback without sending.\",\"game_clock\":\"Monday 07:36\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:53:01.753Z",
+              "elapsed_s": 47.449,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping on desktop. Tarık had no news and then told the familiar ferry story again. I like the story, but I do not want to repeat this morning tonight. I selected I am stopping and closed Feedback without sending.",
+              "game_clock": "Monday 07:36",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 22,
+            "literal": {
+              "t": "2026-11-01T09:53:14.351Z",
+              "elapsed_s": 60.047,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 45,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "jonas": {
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/jonas/desktop/wall-clock.jsonl",
+            "sourceSha256": "62a4d8c2ff34165089e73340efc3566244e2020e62e8b45571b4d1f6745ca5bf",
+            "sourceLine": 31,
+            "literalLine": "{\"t\":\"2026-11-01T09:54:56.100Z\",\"elapsed_s\":70.352,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping desktop at Monday 07:32. The notebook records the news accurately, but I do not want to repeat the familiar conversations for the Sunday vote. I selected stopping and closed Feedback without typing or sending.\",\"game_clock\":\"Monday 07:32\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:54:56.100Z",
+              "elapsed_s": 70.352,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping desktop at Monday 07:32. The notebook records the news accurately, but I do not want to repeat the familiar conversations for the Sunday vote. I selected stopping and closed Feedback without typing or sending.",
+              "game_clock": "Monday 07:32",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 24,
+            "literal": {
+              "t": "2026-11-01T09:54:44.556Z",
+              "elapsed_s": 58.808,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "One delivery and one sit. Hacer gave the same closing line I remember; news added a correctly qualified notebook fact. The time costs and pause are clear. I still cannot tell what sitting changes or why her niece story is absent from the notebook.",
+              "game_clock": "Monday 07:32",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 1,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": false,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 25,
+            "literal": {
+              "t": "2026-11-01T09:54:45.800Z",
+              "elapsed_s": 60.052,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 51,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 26,
+            "literal": {
+              "t": "2026-11-01T09:54:46.583Z",
+              "elapsed_s": 60.835,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "One delivery and one sit. Hacer gave the same closing line I remember; news added a correctly qualified notebook fact. The time costs and pause are clear. I still cannot tell what sitting changes or why her niece story is absent from the notebook.",
+              "game_clock": "Monday 07:32",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/jonas/phone/wall-clock.jsonl",
+            "sourceSha256": "e4b91ea618e38ed97ef0bd69e31066587794e55fd84060a8a0a666b78fa3d7ec",
+            "sourceLine": 20,
+            "literalLine": "{\"t\":\"2026-11-01T09:55:40.182Z\",\"elapsed_s\":42.101,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping phone at Monday 07:22. The gate left a stamp and a witness, but I do not want another delivery week tonight. I selected stopping and closed Feedback without typing or sending.\",\"game_clock\":\"Monday 07:22\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:55:40.182Z",
+              "elapsed_s": 42.101,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping phone at Monday 07:22. The gate left a stamp and a witness, but I do not want another delivery week tonight. I selected stopping and closed Feedback without typing or sending.",
+              "game_clock": "Monday 07:22",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 21,
+            "literal": {
+              "t": "2026-11-01T09:55:58.129Z",
+              "elapsed_s": 60.048,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 46,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "leila": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/leila/phone/wall-clock.jsonl",
+            "sourceSha256": "54656e50c0363ee91dfe7804473ff4aad24cc811195f17bb0c55736c28439dbd",
+            "sourceLine": 31,
+            "literalLine": "{\"t\":\"2026-11-01T09:57:29.077Z\",\"elapsed_s\":69.919,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping the phone. Sevim has a lovely particular memory, but I have heard it and the refusal before; I do not want to repeat this morning. The notebook still confuses me. I will try the desktop.\",\"game_clock\":\"Monday 07:31\",\"engagement\":null,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:57:29.077Z",
+              "elapsed_s": 69.919,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping the phone. Sevim has a lovely particular memory, but I have heard it and the refusal before; I do not want to repeat this morning. The notebook still confuses me. I will try the desktop.",
+              "game_clock": "Monday 07:31",
+              "engagement": null,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 25,
+            "literal": {
+              "t": "2026-11-01T09:57:19.201Z",
+              "elapsed_s": 60.043,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 40,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 26,
+            "literal": {
+              "t": "2026-11-01T09:57:20.945Z",
+              "elapsed_s": 61.787,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "The delivery and deadline are clear and conversation pauses time. Sevim has a beautiful remembered line, then a familiar refusal. The notebook counts stories but still shows zero after hers; I chose confused in Feedback and closed it without sending.",
+              "game_clock": "Monday 07:31",
+              "engagement": null,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/leila/desktop/wall-clock.jsonl",
+            "sourceSha256": "9fb620759788eb2aa773f8ab8bc5d830c7bd7be1d21a1301a9aceec60149972c",
+            "sourceLine": 26,
+            "literalLine": "{\"t\":\"2026-11-01T09:58:24.960Z\",\"elapsed_s\":53.914,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"Stopping desktop. Tarık is warm, but his story and his answer to my news are familiar. I would not replay the morning again tonight or leave it running.\",\"game_clock\":\"Monday 07:38\",\"engagement\":null,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T09:58:24.960Z",
+              "elapsed_s": 53.914,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping desktop. Tarık is warm, but his story and his answer to my news are familiar. I would not replay the morning again tonight or leave it running.",
+              "game_clock": "Monday 07:38",
+              "engagement": null,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 27,
+            "literal": {
+              "t": "2026-11-01T09:58:31.097Z",
+              "elapsed_s": 60.051,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 48,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "rosa": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/phone/wall-clock.jsonl",
+            "sourceSha256": "2236ce9b27da41a3d9c7b24cbe1f97173068a56fd79488af018cad30a312f12e",
+            "sourceLine": 26,
+            "literalLine": "{\"t\":\"2026-11-01T10:00:23.739Z\",\"elapsed_s\":62.882,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on the phone. Sevim and her memories of children pleased me, and the delivery was clear. I would close it and try the larger screen.\",\"game_clock\":\"Monday 07:34\",\"engagement\":4,\"reason\":\"TASTE\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:00:23.739Z",
+              "elapsed_s": 62.882,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the phone. Sevim and her memories of children pleased me, and the delivery was clear. I would close it and try the larger screen.",
+              "game_clock": "Monday 07:34",
+              "engagement": 4,
+              "reason": "TASTE",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 24,
+            "literal": {
+              "t": "2026-11-01T10:00:20.909Z",
+              "elapsed_s": 60.052,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 49,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/desktop/wall-clock.jsonl",
+            "sourceSha256": "05426f596776fe5b713021e394b33a31fb72a40ea54cf28e0815280ea6827a09",
+            "sourceLine": 20,
+            "literalLine": "{\"t\":\"2026-11-01T10:01:08.567Z\",\"elapsed_s\":42.903,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on the big screen. Hacer and her family paperwork are familiar and warm. The notebook helps, but I still want to know how the Sunday vote works. I would close it for tonight.\",\"game_clock\":\"Monday 07:20\",\"engagement\":4,\"reason\":\"TASTE\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:01:08.567Z",
+              "elapsed_s": 42.903,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the big screen. Hacer and her family paperwork are familiar and warm. The notebook helps, but I still want to know how the Sunday vote works. I would close it for tonight.",
+              "game_clock": "Monday 07:20",
+              "engagement": 4,
+              "reason": "TASTE",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 21,
+            "literal": {
+              "t": "2026-11-01T10:01:25.724Z",
+              "elapsed_s": 60.06,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 59,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    },
+    "marisol": {
+      "phone": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/marisol/phone/wall-clock.jsonl",
+            "sourceSha256": "c4a0779db6bdfbb5bb1c0bb623221038e5bda95e2b493519d7fd784980b16d70",
+            "sourceLine": 71,
+            "literalLine": "{\"t\":\"2026-11-01T10:04:24.590Z\",\"elapsed_s\":169.014,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am stopping here; I liked meeting the neighbours, but the repeated errands and unclear gate response have worn out my curiosity for now.\",\"game_clock\":\"Monday 11:08\",\"engagement\":2,\"reason\":\"TOOL\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:04:24.590Z",
+              "elapsed_s": 169.014,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping here; I liked meeting the neighbours, but the repeated errands and unclear gate response have worn out my curiosity for now.",
+              "game_clock": "Monday 11:08",
+              "engagement": 2,
+              "reason": "TOOL",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": false,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 26,
+            "literal": {
+              "t": "2026-11-01T10:02:35.636Z",
+              "elapsed_s": 60.06,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 58,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 27,
+            "literal": {
+              "t": "2026-11-01T10:02:36.843Z",
+              "elapsed_s": 61.267,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "I understand the delivery route now and like hearing a little about the neighbours. The map and repeated text take a lot of space on my phone.",
+              "game_clock": "Monday 07:39",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      },
+      "desktop": {
+        "actualStopRows": [
+          {
+            "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/marisol/desktop/wall-clock.jsonl",
+            "sourceSha256": "a486aca5d47d5477652049856490b20d5d2ccb8a2395a704694f5f6561e35504",
+            "sourceLine": 45,
+            "literalLine": "{\"t\":\"2026-11-01T10:06:08.300Z\",\"elapsed_s\":102.158,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am stopping for tonight. The neighbours interest me, but I do not want to replay the same morning chores on this device.\",\"game_clock\":\"Monday 09:00\",\"engagement\":2,\"reason\":\"BORED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+            "parsed": {
+              "t": "2026-11-01T10:06:08.300Z",
+              "elapsed_s": 102.158,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping for tonight. The neighbours interest me, but I do not want to replay the same morning chores on this device.",
+              "game_clock": "Monday 09:00",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          }
+        ],
+        "eligibleActualFinalCandidate": true,
+        "eligibleVoluntaryFinalCandidate": true,
+        "qualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review.",
+        "checkpoints": [
+          {
+            "row": 25,
+            "literal": {
+              "t": "2026-11-01T10:05:26.198Z",
+              "elapsed_s": 60.056,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 55,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": true,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          },
+          {
+            "row": 26,
+            "literal": {
+              "t": "2026-11-01T10:05:28.517Z",
+              "elapsed_s": 62.375,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "Tarık’s ice story is the kind of neighbour detail I came for. I am already repeating the same delivery steps from the phone, though.",
+              "game_clock": "Monday 07:37",
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            "automaticScreenshot": false,
+            "thresholdValid": true,
+            "actionableScreen": "UNVERIFIED"
+          }
+        ],
+        "missingCheckpoint": "Untested or absent; no checkpoint obligation",
+        "imageView": "UNVERIFIABLE: saved image is not perception evidence"
+      }
+    }
+  },
+  "scope": "Nine voluntary candidates and one TOOL nonvoluntary candidate, cause unknown; no endings claimed.",
+  "rootQualificationSha256": "9a6bfff826d45b737f46e96d0514371b4ea57b84538dd3d48a71b4c3a491300b",
+  "rootFindings": {
+    "voluntaryUnfinishedStops": 9,
+    "nonvoluntaryToolStops": 1,
+    "toolCase": "Marisol phone169.014,causeUNKNOWN; successful gate taps without confirmed outcome not proof product/driverfailure",
+    "endings": 0,
+    "cuts": 0,
+    "limitations": "S1–S6 in method-qualification.json"
+  }
+}

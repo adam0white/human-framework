@@ -1,0 +1,83 @@
+# Rope retest 2 — draft ask ledger
+
+Root collection qualified with limits; independent packet review pending. All entries are fix:rope inspection leads with cause unknown. Two iterations are complete; defer by date, with no third ordinary panel. This does not establish absence of blockers. F2944–F2950 unused.
+
+Pavel’s phone Bilal/Nell observation and desktop Wren/Nell observation are separate; do not conflate them.
+
+## F2931 — Pavel #1
+
+1. **Show me how to help the hurt person once I reach her.** On the phone I reached Tamar and the page said I was close enough to help, but her injury card and “turn her back” choice had disappeared. I could not find a help action among her requests. This was my blocking ask.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-03. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/pavel/report.md line 5; Unicode [185, 461); SHA-256 eaa37d6276a1d4788e4f333f96acd625938e6f81b5adb3fb6f64d7ead6c974c9.
+
+## F2932 — Pavel #2
+
+2. Show whether a person asked to meet someone has met them and what happens next. Bilal agreed to meet Nell, but she was still walking up and he was not walking; later both wanted to go down.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-03. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/pavel/report.md line 6; Unicode [462, 654); SHA-256 eaa37d6276a1d4788e4f333f96acd625938e6f81b5adb3fb6f64d7ead6c974c9.
+
+## F2933 — Pavel #3
+
+3. Let me move through quiet waits more readily. Skip covered hours on both devices, but it was absent during some reading periods, and I spent long stretches waiting for people to meet or catch up.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-10. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/pavel/report.md line 7; Unicode [655, 853); SHA-256 eaa37d6276a1d4788e4f333f96acd625938e6f81b5adb3fb6f64d7ead6c974c9.
+
+## F2934 — Tessa #1
+
+1. Show what happens after someone agrees to meet a climber who wants to descend. Nell agreed to meet Bilal, but his call stayed open and their displayed movements left me unsure whether they would go together.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-03. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/report.md line 5; Unicode [238, 448); SHA-256 6d804f2791d29617e51c5392ef520e2e06a388df9704ca3cc8897a1e5fe8d668.
+
+## F2935 — Tessa #2
+
+2. Give me a way to talk with people during the walk. Wren postponed the habitat survey first for breakfast, then for the hut path.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-10. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/report.md line 6; Unicode [449, 580); SHA-256 6d804f2791d29617e51c5392ef520e2e06a388df9704ca3cc8897a1e5fe8d668.
+
+## F2936 — Tessa #3
+
+3. Separate the names around the hut on the map. They overlapped on both screens I viewed.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-10. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/report.md line 7; Unicode [581, 671); SHA-256 6d804f2791d29617e51c5392ef520e2e06a388df9704ca3cc8897a1e5fe8d668.
+
+## F2937 — Nia #1
+
+1. Let me reach new parts of the climb sooner. I enjoyed the personal answers, but I had heard both before and did not want to watch the familiar morning again.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-03. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/report.md line 5; Unicode [165, 325); SHA-256 06e2b82a906945be064b590acc05724f6b7bd96d0adb3a88ec83128447660f42.
+
+## F2938 — Nia #2
+
+2. Make the first reply to a topic question specific. Nell and Tamar both began with a generic agreement before giving their real answers.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-10. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/report.md line 6; Unicode [326, 464); SHA-256 06e2b82a906945be064b590acc05724f6b7bd96d0adb3a88ec83128447660f42.
+
+## F2939 — Rosa #1
+
+1. Say how far **Skip** will advance before I press it. It now explains when it returns, which helps.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-10. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/rosa/report.md line 5; Unicode [180, 281); SHA-256 c1bc42de378c2c070569b1512e78c33436d33272fe21405e4588ca3df0557bb3.
+
+## F2940 — Rosa #2
+
+2. Give me something to discover or do during the early wait. I enjoyed Wren’s answer, but I stopped after seeing the same beginning twice tonight.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-10. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/rosa/report.md line 6; Unicode [282, 429); SHA-256 c1bc42de378c2c070569b1512e78c33436d33272fe21405e4588ca3df0557bb3.
+
+## F2941 — Tamar #1
+
+1. Make it clear whether an agreed rope request is complete or still pending, and what I can do to help it succeed. This was my blocking ask on the phone: Wren and Nell agreed, then moved too far apart.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-03. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/report.md line 5; Unicode [115, 317); SHA-256 85eaf815736be771e673ba60196b13aa6581d31729fe40c55e8e2d02331b2bb9.
+
+## F2942 — Tamar #2
+
+2. Make delayed conversations easier to follow: tell me whether a request remains pending and when I need to ask again.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-03. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/report.md line 6; Unicode [318, 437); SHA-256 85eaf815736be771e673ba60196b13aa6581d31729fe40c55e8e2d02331b2bb9.
+
+## F2943 — Tamar #3
+
+3. Make the climbers and their labels easier to distinguish when they overlap, especially on the phone.
+
+Deferred; fix:rope inspection lead; cause unknown; target 2026-11-10. Source /Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tamar/report.md line 7; Unicode [438, 541); SHA-256 85eaf815736be771e673ba60196b13aa6581d31729fe40c55e8e2d02331b2bb9.

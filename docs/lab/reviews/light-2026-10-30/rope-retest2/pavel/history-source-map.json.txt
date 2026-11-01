@@ -1,0 +1,102 @@
+{
+  "policy": "Exact first-retest supplied baseline, literal own reports, and coordinator method qualifications. Selected records, not a full archive. No independent CONT body.",
+  "segments": [
+    {
+      "role": "exact original first-retest supplied baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/pavel/own-history.md",
+      "sha256": "c5fccb0ec605c8ab203d8a47fc16906c12b39cf781216c899e73145a03efaeb1",
+      "outputByteRange": [
+        0,
+        128309
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/pavel/report.md",
+      "sha256": "f9945cc22f7b4a3226ebc2988f9ee468d28029064ce88d8e712869fb3d92b675",
+      "outputByteRange": [
+        128342,
+        143345
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/pavel/report.md",
+      "sha256": "1efd7546f1dc4eb50e70977e3118e30694918e9937560cdbf4a3cee233b82a00",
+      "outputByteRange": [
+        143378,
+        151049
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/pavel/report.md",
+      "sha256": "7f8df435484d288cdaaedd53a86e32a0617b5c34937f7b73ba6ebf6318d1015d",
+      "outputByteRange": [
+        151082,
+        157660
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/pavel/dispatch.json",
+      "sha256": "2a849e5824f6d149e7ebe044f3c0f6431a29c2664600a1d5541064e2324a4a4e",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/pavel/completion.json",
+      "sha256": "08281cb4c9d3109548610d7e0fd97666a61f7041862e3a50d580a1ae1d9631cd",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/pavel/history-source-map.json",
+      "sha256": "1bc38508357f27fcbc5571c9d71842e64374c19cb62d7f5de87d858e0a28f7b5",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/pavel/dispatch.json",
+      "sha256": "84a3c1aa53e41c521253fc446e6b34ae2f3b61548176e623346e8fde06128ae7",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/pavel/completion.json",
+      "sha256": "32df6d197bf3d908e478f201e66ccdcbeb9df51fef42403d7e9e36b8fdf0e64c",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/pavel/history-source-map.json",
+      "sha256": "236448c130bbf15aac30e67f3ccefc4b6112039794ddbd0627e067db55c66776",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/pavel/dispatch.json",
+      "sha256": "d5925c6b9bbe60c11fc5570e60ba88fa7b601056b220c818cd7b1dcd11374b30",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/pavel/completion.json",
+      "sha256": "325b6959e034968dee1b00b19124c75c4e02a477d4d6788c77deeb585ac5fea5",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/pavel/history-source-map.json",
+      "sha256": "6bf3fa1f898b0df1f95d166d9b73ac0c1b298973bdb4fb3f725627788984427f",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/pavel/director-method-qualification.json",
+      "sha256": "12fac77083e621b3728b8513de3d971f0b74896e7a47b41f08e46316245ff53a",
+      "role": "historical qualification/source map"
+    }
+  ],
+  "coordinatorQualification": {
+    "outputByteRange": [
+      157660,
+      158394
+    ],
+    "sha256": "51027ae30f4e284c0c2ccd579e17012b56e0c4992fe7af998742a9f52e39cb91",
+    "placement": "after literal reports and before final marker; not player memories"
+  },
+  "historySha256": "c77c2291b1cda99dcfe5083d713b478f193bf8fe6de32bcc6d8bdb7adfba4967"
+}

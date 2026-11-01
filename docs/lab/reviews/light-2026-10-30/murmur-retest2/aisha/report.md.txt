@@ -1,0 +1,47 @@
+I would come back another evening if Dilan’s conversations responded more distinctly to what happened before; I would not leave it running, and I have had enough for tonight.
+
+Ranked asks:
+
+1. Let Murat’s response reflect the repeated lateness. On Tuesday he asked what happened *again*, but his response to Dilan’s apology was word for word Monday’s.
+2. Give me a clearer warning before I push Dilan too far. She told me afterwards that she disliked it, but I could not tell beforehand how close I was.
+3. Keep the full first-choice explanation visible on the phone. It appeared cut off after “If time” in the view I reached.
+
+I reached no new blocking ask.
+
+I played *Two Voices* as a returning player, starting a fresh game on each device at the assigned URL with the agent query retained. The 1280×800 desktop session ended at **128.687 seconds**, on Tuesday at 11:11. The 360×690 touch-phone session ended at **37.362 seconds**, on Monday at 07:16. Both stops were voluntary and marked **BORED**.
+
+I read the supplied history through line **1372**. The last line read was “End of supplied own history.” Unread ranges: **none**. The supplied history is selected, not my complete archive. It also qualifies the original phone visit because named taps stalled, and describes the held-input return as a diagnostic on the unchanged game. The fresh sessions here were unmatched; my observations do not establish the cause of every difference.
+
+On desktop, the title and names brought Dilan and Ece back to me at **4.909 seconds**: I remembered helping Ece on her route, with high confidence. Dilan told Murat she had overslept, guided Ece street by street and spoke up when Murat mocked her. I liked that Ece got help, and I liked that the game also told me Dilan’s deliveries were still late. When Dilan said she was acting because I had pushed her and disliked it, I felt the cost.
+
+Tuesday’s “Late again, Dilan” was different from the traffic question I remembered from my last visit. It suggested Murat remembered the previous day, although I cannot tell exactly what the game remembers. The repeated apology and response immediately afterwards took me out of it. On the phone, I recognised the opening I had just played on the laptop; getting Dilan up changed the immediate outcome, but I did not want to read Monday again.
+
+My diary lines, exactly as logged, in order:
+
+**Desktop**
+
+- **4.909 s, note:** “Two Voices and Dilan bring back my earlier visits; I remember Ece needing help on her route, with high confidence. I want to see Dilan again.”
+- **54.231 s, note:** “Dilan told the truth and helped Ece, but says she dislikes my pushing. I am glad Ece has an ally and uncomfortable that I made Dilan do it.”
+- **62.239 s, first_minute, engagement 4, Monday 15:21:** “I understand the suggestions and holds. Ece got help and Dilan spoke for her, but Dilan told me she disliked being pushed. I want to give her room now.”
+- **111.748 s, note, Tuesday 08:26:** “Murat now says late again and asks what happened, rather than asking about traffic as he did before. He seems to remember yesterday. The answer choices are still the same, but that small change matters to me.”
+- **120.188 s, want_quit, BORED, Tuesday 09:51:** “The question changed, but her apology and his entire answer are identical to yesterday. I have just played this day again and would stop here tonight.”
+- **128.687 s, stop, BORED, Tuesday 11:11:** “I am stopping on Tuesday. I liked Dilan helping Ece and telling me that my pressure hurt. Murat noticed she was late again, but his response to her apology repeated yesterday exactly, and I have had enough of this opening tonight.”
+
+**Phone**
+
+- **4.912 s, note:** “Same title and people on my phone, immediately after the laptop. The introduction reads comfortably, but Start is below the screen.”
+- **15.414 s, note:** “The alarm and shelf are the same as the laptop just now. The first-choice explanation still appears cut off after If time on my phone; the buttons are readable.”
+- **27.049 s, want_quit, BORED, Mon 07:16:** “Getting her up changed the immediate outcome, but Aylin sends the same message I just read on the laptop. I do not want to replay Monday again tonight.”
+- **37.362 s, stop, BORED, Mon 07:16:** “I am stopping the phone at the message from Aylin. The hold got Dilan up, but I just played this opening and do not want to repeat it tonight. I selected I am stopping and went back without sending.”
+
+The desktop first-minute entry was after 60 seconds. The phone ended before that checkpoint. Neither session reached 180 seconds, so no pulse was due and later pulse checkpoints were untested. I logged no other engagement score. One phone stop-log command failed at the shell before reaching the driver; the line above is the successful replacement.
+
+The tap-versus-hold explanation was clear in the text returned by the driver. Holds led to visible outcomes on both devices. Dilan’s own objections made the cost of pressure clear *after* I insisted; I still did not see how close I was to her limit beforehand. I did not reach a refused held insist, so I cannot assess whether the repeated refusal wording from my earlier diagnostic visit has changed.
+
+I viewed three screenshots:
+
+- [Desktop title page](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/desktop/a-001.png): a centred cream page with the introduction, start options and Start button. I did not view a desktop gameplay screenshot.
+- [Phone title page](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/phone/b-001.png): a readable narrow column; Start was below the visible area.
+- [Phone first choice](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/phone/b-002.png): readable choice buttons, but the explanatory paragraph appeared cut after “If time.” The driver returned the full sentence as text; I did not establish whether another layout or scrolling would reveal it.
+
+At each stop I opened **Game menu → Feedback**, selected **“I'm stopping”**, saw it marked pressed, and used **← Back**. I typed no note and did not submit. Recording and consent stayed at their defaults. I touched no repository and created no worktree, browser, server or helper; the coordinator owns the drivers. There is no repository for which I can report `git worktree list`.
