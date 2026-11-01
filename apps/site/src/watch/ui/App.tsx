@@ -93,10 +93,11 @@ function freePost(f: Frame, section: SectionId, who: WatcherId): PostId | null {
 export function App() {
   const [fileError, setFileError] = useState<string | null>(null);
   const fileRead = useRef(0);
-  const { frame, speed, error, seed, shelf, saving, current, actions } = useWatch();
+  const { frame, runIdentity, inputPending, speed, error, seed, shelf, saving, current, actions } =
+    useWatch();
   const [selected, setSelectedState] = useState<WatcherId | null>(null);
-  // This is UI intent, not an acknowledgement. The protocol has no input receipt.
-  // Deduplicate only within one unchanged frame and selection; a new frame can include a refusal.
+  // UI intent, not simulation acceptance. A frame may include a refusal or precede a queued reversal.
+  // An unchanged local pick is safe to deduplicate; frame equality alone is unsafe with input pending.
   type PressPick = {
     frame: Frame;
     who: WatcherId;
@@ -104,6 +105,7 @@ export function App() {
     press: Press;
     current: string;
     seed: number;
+    runIdentity: number;
   };
   const [pressPick, setPressPick] = useState<PressPick | null>(null);
   const latestPress = useRef<PressPick | null>(null);
@@ -144,21 +146,22 @@ export function App() {
   }, []);
 
   const hasFrame = frame !== null;
-  const pressContext = useRef({ current, seed, error, hasFrame });
+  const pressContext = useRef({ current, seed, error, hasFrame, runIdentity });
   useEffect(() => {
     const before = pressContext.current;
     if (
       before.current === current &&
       before.seed === seed &&
       before.error === error &&
-      before.hasFrame === hasFrame
+      before.hasFrame === hasFrame &&
+      before.runIdentity === runIdentity
     )
       return;
-    pressContext.current = { current, seed, error, hasFrame };
+    pressContext.current = { current, seed, error, hasFrame, runIdentity };
     setSelectedState(null);
     setPressPick(null);
     latestPress.current = null;
-  }, [current, seed, error, hasFrame]);
+  }, [current, seed, error, hasFrame, runIdentity]);
 
   useEffect(() => {
     if (selected) stage.current?.querySelector<HTMLButtonElement>('.w-order-back, .w-account-close')?.focus();
@@ -335,22 +338,42 @@ export function App() {
     pick.who === selected &&
     pick.post === selectedWatcher?.posted &&
     pick.current === current &&
-    pick.seed === seed;
+    pick.seed === seed &&
+    pick.runIdentity === runIdentity;
   const pressFor = (): Press =>
     isCurrentPick(pressPick) ? pressPick.press : (selectedWatcher?.press ?? 'ask');
   const setPressure = (press: Press) => {
     if (!selectedWatcher) return;
-    const previous = isCurrentPick(latestPress.current) ? latestPress.current.press : selectedWatcher.press;
-    const pick = { frame, who: selectedWatcher.id, post: selectedWatcher.posted, press, current, seed };
+    const previousPick = latestPress.current;
+    const hasPick = isCurrentPick(previousPick);
+    const previous = hasPick ? previousPick.press : selectedWatcher.press;
+    const pick = {
+      frame,
+      who: selectedWatcher.id,
+      post: selectedWatcher.posted,
+      press,
+      current,
+      seed,
+      runIdentity,
+    };
     latestPress.current = pick;
     setPressPick(pick);
-    if (selectedWatcher.posted && (previous !== press || selectedWatcher.duskRest?.active))
+    if (
+      selectedWatcher.posted &&
+      (previous !== press || (!hasPick && inputPending) || selectedWatcher.duskRest?.active)
+    )
       actions.input({ k: 'post', watcher: selectedWatcher.id, post: selectedWatcher.posted, press });
   };
   const post = (who: WatcherId, at: PostId | null) => {
     const watcher = frame.watchers.find((w) => w.id === who);
     const previous = isCurrentPick(latestPress.current) ? latestPress.current.press : watcher?.press;
-    if (!watcher || watcher.posted !== at || previous !== pressFor() || watcher.duskRest?.active) {
+    if (
+      !watcher ||
+      watcher.posted !== at ||
+      previous !== pressFor() ||
+      inputPending ||
+      watcher.duskRest?.active
+    ) {
       actions.input({ k: 'post', watcher: who, post: at, press: pressFor() });
     }
     setSelected(null);

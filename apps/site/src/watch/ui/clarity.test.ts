@@ -1,11 +1,14 @@
 let usePolicyWatch: typeof import('./useWatch.ts').useWatch;
 function PolicyWatch({
   capture,
+  render,
 }: {
   capture(value: ReturnType<typeof import('./useWatch.ts').useWatch>): void;
+  render?(value: ReturnType<typeof import('./useWatch.ts').useWatch>): import('react').ReactNode;
 }) {
-  capture(usePolicyWatch());
-  return null;
+  const watch = usePolicyWatch();
+  capture(watch);
+  return render?.(watch) ?? null;
 }
 
 // @vitest-environment happy-dom
@@ -17,6 +20,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it, vi } from 'vitest';
 import * as castRuntime from '../../shared/cast-runtime.ts';
 import { requireValue } from '../../shared/require-value.ts';
+import type { MainToWorker, WorkerToMain } from '../protocol.ts';
 import { applyDuskRest } from '../sim/dusk-rest.ts';
 import { applyInput, newGame, stepMinute } from '../sim/night.ts';
 import { buildFrame } from '../sim/view.ts';
@@ -154,12 +158,15 @@ it('keeps the latest mounted pressure intent until a frame and resets selection,
   };
   const input = vi.fn();
   let current = 'first';
+  let runIdentity = 1;
   const container = document.createElement('div');
   document.body.append(container);
   const root = createRoot(container);
   const publish = async () => {
     vi.mocked(useWatch).mockReturnValue({
       frame,
+      runIdentity,
+      inputPending: false,
       speed: 'watch',
       error: null,
       seed: 42,
@@ -228,6 +235,17 @@ it('keeps the latest mounted pressure intent until a frame and resets selection,
   frame = { ...frame };
   await publish();
   expect(chosen()).toBe('Insist');
+  // Accepted replacement with seed and shelf key unchanged clears both the mounted and synchronous picks.
+  runIdentity++;
+  await publish();
+  expect(container.querySelector('.w-press')).toBeNull();
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  input.mockClear();
+  await click('.w-place:not(:disabled)');
+  expect(input).toHaveBeenCalledTimes(1);
+  expect(input.mock.calls[0]?.[0].press).toBe('ask');
+  await click(`.w-person-${watcher.id}`);
   const other = requireValue(frame.watchers.find((w) => w.id !== watcher.id));
   await click('.w-order-back');
   await click(`.w-person-${other.id}`);
@@ -238,6 +256,8 @@ it('keeps the latest mounted pressure intent until a frame and resets selection,
   await click('.w-press:nth-of-type(3)');
   vi.mocked(useWatch).mockReturnValue({
     frame,
+    runIdentity,
+    inputPending: false,
     speed: 'watch',
     error: 'Request refused',
     seed: 42,
@@ -270,6 +290,8 @@ it('keeps explicit active night-off cancellation through sheet, map and pressure
   const publish = async () => {
     vi.mocked(useWatch).mockReturnValue({
       frame: buildFrame(state, 0, false),
+      runIdentity: 1,
+      inputPending: false,
       speed: 'watch',
       error: null,
       seed: 2026,
@@ -334,6 +356,8 @@ it('sends a changed post once and does not resend the same post and press', asyn
   const input = vi.fn();
   vi.mocked(useWatch).mockReturnValue({
     frame,
+    runIdentity: 1,
+    inputPending: false,
     speed: 'watch',
     error: null,
     seed: 42,
@@ -399,6 +423,8 @@ it('holds the clock for the single top-bar info and menu without simulation inpu
   const { useWatch } = await import('./useWatch.ts');
   vi.mocked(useWatch).mockReturnValue({
     frame: { ...dusk, phase: 'night' },
+    runIdentity: 1,
+    inputPending: false,
     speed: 'watch',
     error: null,
     seed: 42,
@@ -766,16 +792,114 @@ it('explains stairs in saved volume endings and epilogues without changing saved
   expect(JSON.stringify(frame)).toBe(before);
 });
 
+// UNRUN: actual hook, synthetic worker boundary; cast admission and native storage stay outside this control.
+it('changes native run identity only after acceptance, including a same-seed same-page reload', async () => {
+  vi.resetModules();
+  window.history.replaceState(null, '', '/watch/?seed=42');
+  const post = vi.fn();
+  let worker: EventTarget | undefined;
+  vi.stubGlobal(
+    'Worker',
+    class extends EventTarget {
+      postMessage = post;
+      constructor() {
+        super();
+        worker = this;
+      }
+      terminate() {}
+    },
+  );
+  const runtime = await import('../../shared/cast-runtime.ts');
+  const bind = vi.spyOn(runtime, 'bindCastWorker').mockReturnValue(() => {});
+  const dispatch = vi
+    .spyOn(runtime, 'postCastMessage')
+    .mockImplementation((worker, _game, message) => worker.postMessage(message));
+  const { useWatch: useCurrent } = await vi.importActual<typeof import('./useWatch.ts')>('./useWatch.ts');
+  usePolicyWatch = useCurrent;
+  let current: ReturnType<typeof useCurrent> | undefined;
+  const node = document.createElement('div'),
+    root = createRoot(node);
+  const deliver = async (message: WorkerToMain) => {
+    // The hook and telemetry both subscribe. Broadcast through actual EventTarget semantics.
+    await act(() => {
+      requireValue(worker).dispatchEvent(new MessageEvent('message', { data: message }));
+    });
+  };
+  try {
+    await act(() =>
+      root.render(
+        createElement(PolicyWatch, {
+          capture: (value) => {
+            current = value;
+          },
+        }),
+      ),
+    );
+    const init = post.mock.calls
+      .map(([message]) => message as MainToWorker)
+      .find((message) => message.type === 'init');
+    if (init?.type !== 'init') throw new Error('Missing native init');
+    await deliver({ type: 'frame', gen: init.gen, frame: dusk, speed: 'watch', inputAck: 0 });
+    expect(requireValue(current).runIdentity).toBe(init.gen);
+    const load = async (id: string, ok: boolean) => {
+      let done = Promise.resolve(false);
+      const identity = requireValue(current).runIdentity;
+      await act(() => {
+        done = requireValue(current).actions.load(id);
+      });
+      expect(requireValue(current).runIdentity).toBe(identity);
+      const request = post.mock.calls
+        .map(([message]) => message as MainToWorker)
+        .filter((message) => message.type === 'load')
+        .at(-1);
+      if (request?.type !== 'load') throw new Error('Missing native load');
+      await deliver({ type: 'loaded', id, gen: request.gen, ok, ...(ok ? { seed: 42 } : {}) });
+      expect(await done).toBe(ok);
+      return request.gen;
+    };
+    const accepted = await load('same:auto', true);
+    await deliver({ type: 'frame', gen: accepted, frame: dusk, speed: 'watch', inputAck: 0 });
+    expect(requireValue(current).runIdentity).toBe(accepted);
+    await load('missing:auto', false);
+    expect(requireValue(current).runIdentity).toBe(accepted);
+    // Reload the same seed and page again. The failed attempt may reuse a transport generation.
+    let done = Promise.resolve(false);
+    await act(() => {
+      done = requireValue(current).actions.load('same:auto');
+    });
+    const replacement = post.mock.calls
+      .map(([message]) => message as MainToWorker)
+      .filter((message) => message.type === 'load')
+      .at(-1);
+    if (replacement?.type !== 'load') throw new Error('Missing replacement');
+    await deliver({ type: 'loaded', id: 'same:auto', gen: replacement.gen, ok: true, seed: 42 });
+    expect(await done).toBe(true);
+    await deliver({ type: 'frame', gen: replacement.gen, frame: dusk, speed: 'watch', inputAck: 0 });
+    expect(requireValue(current).runIdentity).toBe(replacement.gen);
+    expect(requireValue(current).seed).toBe(42);
+    expect(requireValue(current).current).toBe('');
+  } finally {
+    await act(() => root.unmount());
+    bind.mockRestore();
+    dispatch.mockRestore();
+    vi.unstubAllGlobals();
+    window.history.replaceState(null, '', '/');
+  }
+});
+
 it('file entry renders the ordinary chooser with no authored worker or native shelf access', async () => {
   vi.resetModules();
   window.history.replaceState(null, '', '/watch/?file=1');
   const post = vi.fn();
+  let worker: EventTarget | undefined;
   vi.stubGlobal(
     'Worker',
-    class {
+    class extends EventTarget {
       postMessage = post;
-      addEventListener() {}
-      removeEventListener() {}
+      constructor() {
+        super();
+        worker = this;
+      }
       terminate() {}
     },
   );
@@ -803,13 +927,160 @@ it('file entry renders the ordinary chooser with no authored worker or native sh
     expect(() => requireValue(current).actions.restart(1)).toThrow(/file/i);
     expect(() => requireValue(current).actions.refreshShelf()).toThrow(/file/i);
     await expect(requireValue(current).actions.load('native:auto')).rejects.toThrow(/file/i);
+    // Real hook load/ack path with synthetic worker replies; no file validation or replay claim.
+    const deliver = async (message: WorkerToMain) => {
+      // Do not let a later telemetry subscription replace the hook's listener.
+      await act(() => {
+        requireValue(worker).dispatchEvent(new MessageEvent('message', { data: message }));
+      });
+    };
+    const loadFile = async () => {
+      await act(() => requireValue(current).actions.loadFile('synthetic worker-accepted file'));
+      const message = post.mock.calls
+        .map(([message]) => message as MainToWorker)
+        .filter((message) => message.type === 'loadFile')
+        .at(-1);
+      if (message?.type !== 'loadFile') throw new Error('Missing file request');
+      return message.gen;
+    };
+    const first = await loadFile();
+    expect(requireValue(current).runIdentity).toBe(0);
+    await deliver({ type: 'fileLoaded', ok: true, gen: first, seed: 42 });
+    await deliver({ type: 'frame', gen: first, frame: dusk, speed: 'watch', inputAck: 0 });
+    expect(requireValue(current).runIdentity).toBe(first);
+    await act(() => {
+      requireValue(current).actions.input({ k: 'post', watcher: 'tamar', post: 'east-1', press: 'urge' });
+      requireValue(current).actions.input({ k: 'post', watcher: 'tamar', post: 'east-1', press: 'ask' });
+    });
+    const sent = post.mock.calls
+      .map(([message]) => message as MainToWorker)
+      .filter((message) => message.type === 'input');
+    const urge = requireValue(sent.at(-2)),
+      ask = requireValue(sent.at(-1));
+    expect(urge.requestId).toBeLessThan(requireValue(ask.requestId));
+    await deliver({ type: 'frame', gen: first, frame: dusk, speed: 'watch', inputAck: urge.requestId });
+    expect(requireValue(current).inputPending).toBe(true);
+    await deliver({ type: 'frame', gen: first, frame: dusk, speed: 'watch', inputAck: ask.requestId });
+    expect(requireValue(current).inputPending).toBe(false);
+    expect(requireValue(current).runIdentity).toBe(first);
+    const failed = await loadFile();
+    await deliver({ type: 'fileLoaded', ok: false, gen: failed, error: 'Synthetic refusal' });
+    expect(requireValue(current).runIdentity).toBe(first);
+    const cancelledGen = await loadFile();
+    await act(() => requireValue(current).actions.cancelFileLoad());
+    await deliver({ type: 'fileLoaded', ok: true, gen: cancelledGen, seed: 42 });
+    expect(requireValue(current).runIdentity).toBe(first);
+    const replacement = await loadFile();
+    await deliver({ type: 'fileLoaded', ok: true, gen: replacement, seed: 42 });
+    await deliver({ type: 'frame', gen: replacement, frame: dusk, speed: 'watch', inputAck: ask.requestId });
+    expect(requireValue(current).runIdentity).toBe(replacement);
+    expect(requireValue(current).seed).toBe(42);
+    expect(requireValue(current).current).toBe('');
     const mocked = await import('./useWatch.ts');
+    const { App: FileApp } = await import('./App.tsx');
+    // Connect App to the still-mounted real hook. Final click must reach Worker.postMessage,
+    // even though its press matches the intermediate frame and a later Ask remains unprocessed.
+    await act(() =>
+      root.render(
+        createElement(PolicyWatch, {
+          capture: (value) => {
+            current = value;
+          },
+          render: (watch) => {
+            vi.mocked(mocked.useWatch).mockReturnValue(watch);
+            return createElement(FileApp);
+          },
+        }),
+      ),
+    );
+    const watcher = requireValue(dusk.watchers[0]);
+    const postId = requireValue(dusk.sections.flatMap((s) => s.posts)[0]).id;
+    const posted = {
+      ...dusk,
+      watchers: dusk.watchers.map((w) =>
+        w.id === watcher.id ? { ...w, posted: postId, press: 'ask' as const } : w,
+      ),
+      sections: dusk.sections.map((s) => ({
+        ...s,
+        posts: s.posts.map((p) => ({
+          ...p,
+          posted: p.id === postId ? watcher.id : p.posted === watcher.id ? null : p.posted,
+        })),
+      })),
+    };
+    await deliver({
+      type: 'frame',
+      gen: replacement,
+      frame: posted,
+      speed: 'watch',
+      inputAck: ask.requestId,
+    });
+    const click = async (selector: string) => {
+      await act(() => requireValue(node.querySelector<HTMLButtonElement>(selector)).click());
+    };
+    const inputs = () =>
+      post.mock.calls
+        .map(([message]) => message as MainToWorker)
+        .filter((message) => message.type === 'input');
+    const before = inputs().length;
+    await click(`.w-person-${watcher.id}`);
+    await click('.w-press:nth-of-type(2)');
+    await click('.w-press:nth-of-type(1)');
+    const firstUrge = requireValue(inputs().at(-2));
+    await deliver({
+      type: 'frame',
+      gen: replacement,
+      speed: 'watch',
+      inputAck: firstUrge.requestId,
+      frame: {
+        ...posted,
+        watchers: posted.watchers.map((w) => (w.id === watcher.id ? { ...w, press: 'urge' as const } : w)),
+      },
+    });
+    await click('.w-press:nth-of-type(2)');
+    await click('.w-press:nth-of-type(2)');
+    expect(
+      inputs()
+        .slice(before)
+        .map((message) => message.input),
+    ).toEqual([
+      { k: 'post', watcher: watcher.id, post: postId, press: 'urge' },
+      { k: 'post', watcher: watcher.id, post: postId, press: 'ask' },
+      { k: 'post', watcher: watcher.id, post: postId, press: 'urge' },
+    ]);
+    await click('.w-press:nth-of-type(1)');
+    await click('.w-order-back');
+    await click(`.w-person-${watcher.id}`);
+    await click('.w-press:nth-of-type(2)');
+    expect(inputs()).toHaveLength(before + 5);
+    expect(inputs().at(-1)?.input).toEqual({ k: 'post', watcher: watcher.id, post: postId, press: 'urge' });
+    await click('.w-press:nth-of-type(1)');
+    await click('.w-order-back');
+    await click(`.w-person-${watcher.id}`);
+    await click('.w-place[aria-pressed=true]');
+    expect(inputs()).toHaveLength(before + 7);
+    expect(inputs().at(-1)?.input).toEqual({ k: 'post', watcher: watcher.id, post: postId, press: 'urge' });
+    // A fully processed frame can still report Ask (a refusal). Do not retry or retain optimistic Urge.
+    await deliver({
+      type: 'frame',
+      gen: replacement,
+      frame: posted,
+      speed: 'watch',
+      inputAck: requireValue(inputs().at(-1)).requestId,
+    });
+    expect(requireValue(current).inputPending).toBe(false);
+    expect(inputs()).toHaveLength(before + 7);
+    await click(`.w-person-${watcher.id}`);
+    expect(node.querySelector('.w-press[aria-pressed=true]')?.textContent).toBe('Ask');
+    await click('.w-press:nth-of-type(1)');
+    expect(inputs()).toHaveLength(before + 7);
+    await click('.w-press:nth-of-type(2)');
+    expect(inputs()).toHaveLength(before + 8);
     const fileLoads = vi.fn();
     vi.mocked(mocked.useWatch).mockReturnValue({
       ...requireValue(current),
       actions: { ...requireValue(current).actions, loadFile: fileLoads, cancelFileLoad: vi.fn() },
     });
-    const { App: FileApp } = await import('./App.tsx');
     await act(() => root.render(createElement(FileApp)));
     expect(node.textContent).toContain('This file stays in this tab.');
     expect(node.querySelector('input[type=file]')).not.toBeNull();
@@ -1068,6 +1339,8 @@ it('shows a saving failure during play without opening the menu', async () => {
   const { useWatch } = await import('./useWatch.ts');
   vi.mocked(useWatch).mockReturnValue({
     frame: { ...dusk, phase: 'night' },
+    runIdentity: 1,
+    inputPending: false,
     speed: 'watch',
     error: null,
     seed: 42,

@@ -27,7 +27,8 @@ export type MainToWorker =
       startAtDusk?: boolean;
     }
   | { type: 'tick'; dtMs: number }
-  | { type: 'input'; input: Input }
+  /** Transport sequence only. It never enters the native Input or saved log. */
+  | { type: 'input'; input: Input; requestId?: number }
   | { type: 'speed'; speed: Speed }
   | { type: 'hold'; on: boolean }
   /** Write the running page now (the tab is being hidden or closed). */
@@ -42,7 +43,8 @@ export type WorkerReply =
   | { type: 'fileLoaded'; ok: boolean; error?: string; seed?: number }
   | CastReply
   | TelemetryReply
-  | { type: 'frame'; frame: Frame; speed: Speed }
+  /** Last input processed by this worker, including refusals; not simulation acceptance. */
+  | { type: 'frame'; frame: Frame; speed: Speed; inputAck?: number }
   | {
       type: 'exported';
       requestId: number;

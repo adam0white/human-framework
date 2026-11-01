@@ -55,7 +55,15 @@ it('loads its own saved page and restores cast metadata', async () => {
       );
     await send({ type: 'init', gen: 1, seed: 7, scenarioVersion: WATCH_SCENARIO_VERSION });
     await waitForShelf(1);
-    await send({ type: 'input', input: { k: 'start' } });
+    await send({ type: 'input', input: { k: 'start' }, requestId: 1 });
+    expect(replies.at(-1)).toMatchObject({ type: 'frame', gen: 1, inputAck: 1, frame: { phase: 'dusk' } });
+    // UNRUN addition: the transport acknowledges processing even when the native handler refuses.
+    await send({ type: 'input', input: { k: 'start' }, requestId: 2 });
+    expect(replies.at(-1)).toMatchObject({ type: 'frame', gen: 1, inputAck: 2, frame: { phase: 'dusk' } });
+    await send({ type: 'export', requestId: 99 });
+    const exported = replies.at(-1);
+    if (exported?.type !== 'exported') throw new Error('Missing export');
+    expect(exported.data.inputs).toEqual([{ m: expect.any(Number), i: { k: 'start' } }]);
     await send({
       type: 'castOwnership',
       heads: {},

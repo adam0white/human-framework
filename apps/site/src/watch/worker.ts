@@ -50,6 +50,8 @@ let castSkipped: string[] = [];
 const pacer = new Pacer();
 let lastKey = '';
 let sinceFrame = 0;
+// Transient transport progress, outside WatchRun, its log and its snapshots.
+let inputAck = 0;
 const FRAME_MS = 50;
 /** The most real time one tick may carry (a stalled tab or a long GC pause). */
 const MAX_TICK_MS = 250;
@@ -254,7 +256,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     sinceFrame = 0;
     const frame = buildFrame(s, pacer.progress, pacer.slowed(run), isSeason(s) ? rate * DAY : rate);
     deaths();
-    host.post({ type: 'frame', frame, speed: pacer.speed });
+    host.post({ type: 'frame', frame, speed: pacer.speed, inputAck });
   };
 
   if (msg.type === 'loadFile') {
@@ -424,6 +426,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         pacer.follow(run);
         maybeSave();
       }
+      if (msg.requestId !== undefined) inputAck = msg.requestId;
       flush(true);
       return;
     case 'speed':
