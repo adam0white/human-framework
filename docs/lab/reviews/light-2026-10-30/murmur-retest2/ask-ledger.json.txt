@@ -1,0 +1,288 @@
+{
+  "status": "ROOT_QUALIFIED_WITH_LIMITS; independent packet reviews pending",
+  "items": [
+    {
+      "id": "F2971",
+      "tester": "aisha",
+      "rank": 1,
+      "rankedItemVerbatim": "1. Let Murat’s response reflect the repeated lateness. On Tuesday he asked what happened *again*, but his response to Dilan’s apology was word for word Monday’s.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/report.md",
+      "line": 5,
+      "unicodeStart": 190,
+      "unicodeEndExclusive": 351,
+      "byteStart": 192,
+      "byteEndExclusive": 359,
+      "sourceSha256": "2fd654f7105734ca55db8bbe433c5916e2fdb11f7a9990c1e945ab93941186e1",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2972",
+      "tester": "aisha",
+      "rank": 2,
+      "rankedItemVerbatim": "2. Give me a clearer warning before I push Dilan too far. She told me afterwards that she disliked it, but I could not tell beforehand how close I was.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/report.md",
+      "line": 6,
+      "unicodeStart": 352,
+      "unicodeEndExclusive": 503,
+      "byteStart": 360,
+      "byteEndExclusive": 511,
+      "sourceSha256": "2fd654f7105734ca55db8bbe433c5916e2fdb11f7a9990c1e945ab93941186e1",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2973",
+      "tester": "aisha",
+      "rank": 3,
+      "rankedItemVerbatim": "3. Keep the full first-choice explanation visible on the phone. It appeared cut off after “If time” in the view I reached.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/report.md",
+      "line": 7,
+      "unicodeStart": 504,
+      "unicodeEndExclusive": 626,
+      "byteStart": 512,
+      "byteEndExclusive": 638,
+      "sourceSha256": "2fd654f7105734ca55db8bbe433c5916e2fdb11f7a9990c1e945ab93941186e1",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference; screenshot-dependent clipping/layout claim UNVERIFIABLE (M1), full returned text present",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2974",
+      "tester": "mei",
+      "rank": 1,
+      "rankedItemVerbatim": "1. Show the remaining tenancy terms after Dilan reads the letter. The one-year renewal and Friday deadline help, but the other terms remained unknown when I had to decide.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/report.md",
+      "line": 5,
+      "unicodeStart": 212,
+      "unicodeEndExclusive": 383,
+      "byteStart": 212,
+      "byteEndExclusive": 383,
+      "sourceSha256": "9d794cda92e68ed3a3387f66b9fa4193a76fe6c47c2246bcf1c01166cd127e81",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-03",
+      "qualification": "player calls this blocking at reached choice",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2975",
+      "tester": "mei",
+      "rank": 2,
+      "rankedItemVerbatim": "2. Give me a way to continue from a saved place. I wanted to see a later week but stopped while repeating Monday.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/report.md",
+      "line": 6,
+      "unicodeStart": 384,
+      "unicodeEndExclusive": 497,
+      "byteStart": 384,
+      "byteEndExclusive": 497,
+      "sourceSha256": "9d794cda92e68ed3a3387f66b9fa4193a76fe6c47c2246bcf1c01166cd127e81",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2976",
+      "tester": "mei",
+      "rank": 3,
+      "rankedItemVerbatim": "3. Clarify the commitment to Mum: the scene said twenty minutes of attention each evening, while Dilan’s own line said she had promised a ten-minute call.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/report.md",
+      "line": 7,
+      "unicodeStart": 498,
+      "unicodeEndExclusive": 652,
+      "byteStart": 498,
+      "byteEndExclusive": 654,
+      "sourceSha256": "9d794cda92e68ed3a3387f66b9fa4193a76fe6c47c2246bcf1c01166cd127e81",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2977",
+      "tester": "nia",
+      "rank": 1,
+      "rankedItemVerbatim": "1. Make the later starting points easier to understand and find. I selected “Play a third week” expecting to start later, then discovered “Begin at the second week” under “Other ways to begin.” Reaching new scenes is the blocking ask I brought into this visit.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/report.md",
+      "line": 5,
+      "unicodeStart": 197,
+      "unicodeEndExclusive": 457,
+      "byteStart": 199,
+      "byteEndExclusive": 471,
+      "sourceSha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-03",
+      "qualification": "Carried-in new-scenes blocker partly answered by discovered second-week start; start-option meaning/discoverability remains requested; not a new proven access failure",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2978",
+      "tester": "nia",
+      "rank": 2,
+      "rankedItemVerbatim": "2. Give Dilan more varied replies when I insist. Her objection to reading the tenancy letter was the same line I remembered from two different choices last visit.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/report.md",
+      "line": 6,
+      "unicodeStart": 458,
+      "unicodeEndExclusive": 620,
+      "byteStart": 472,
+      "byteEndExclusive": 634,
+      "sourceSha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2979",
+      "tester": "nia",
+      "rank": 3,
+      "rankedItemVerbatim": "3. Show less repeated day text. The driver’s visible text repeated the latest event and, around the tenancy decision, repeated the letter’s details several times.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/report.md",
+      "line": 7,
+      "unicodeStart": 621,
+      "unicodeEndExclusive": 783,
+      "byteStart": 635,
+      "byteEndExclusive": 801,
+      "sourceSha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec",
+      "routes": [
+        "fix:lab",
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference; primary fix:lab inspection of repeated driver text; secondary fix:murmur inspection only if independently reproduced; no established cause",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2980",
+      "tester": "rosa",
+      "rank": 1,
+      "rankedItemVerbatim": "1. Explain what trust changes and whether I can see how much remains.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/report.md",
+      "line": 5,
+      "unicodeStart": 212,
+      "unicodeEndExclusive": 281,
+      "byteStart": 214,
+      "byteEndExclusive": 283,
+      "sourceSha256": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2981",
+      "tester": "rosa",
+      "rank": 2,
+      "rankedItemVerbatim": "2. Explain the choice labels together before the first choice, including “She wants to do it later,” which I did not encounter this time.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/report.md",
+      "line": 6,
+      "unicodeStart": 282,
+      "unicodeEndExclusive": 419,
+      "byteStart": 284,
+      "byteEndExclusive": 425,
+      "sourceSha256": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2982",
+      "tester": "rosa",
+      "rank": 3,
+      "rankedItemVerbatim": "3. Say how far Skip will advance before I press it.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/report.md",
+      "line": 7,
+      "unicodeStart": 420,
+      "unicodeEndExclusive": 471,
+      "byteStart": 426,
+      "byteEndExclusive": 477,
+      "sourceSha256": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2983",
+      "tester": "soraya",
+      "rank": 1,
+      "rankedItemVerbatim": "1. Give Dilan more varied responses when I insist. Her repeated sentence made the choices feel less personal.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/report.md",
+      "line": 5,
+      "unicodeStart": 92,
+      "unicodeEndExclusive": 201,
+      "byteStart": 92,
+      "byteEndExclusive": 201,
+      "sourceSha256": "67d26cb2293d52ebd6c215b1ce60de23ae8d46ce4f718b3a3951dab4fc60b5ec",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    },
+    {
+      "id": "F2984",
+      "tester": "soraya",
+      "rank": 2,
+      "rankedItemVerbatim": "2. Explain why a first-time player is offered a “third week” before starting.",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/report.md",
+      "line": 6,
+      "unicodeStart": 202,
+      "unicodeEndExclusive": 279,
+      "byteStart": 202,
+      "byteEndExclusive": 283,
+      "sourceSha256": "67d26cb2293d52ebd6c215b1ce60de23ae8d46ce4f718b3a3951dab4fc60b5ec",
+      "routes": [
+        "fix:murmur"
+      ],
+      "target": "2026-11-10",
+      "qualification": "preference/other observation; no product-cause inference",
+      "disposition": "Deferred; inspection lead, cause unknown",
+      "panel": "two iterations complete; no third ordinary panel"
+    }
+  ],
+  "unused": "F2985–F2990",
+  "cycle": "Two iterations complete, no third ordinary panel; no no-blocker claim."
+}

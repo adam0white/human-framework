@@ -1,0 +1,236 @@
+{
+  "verdict": "QUALIFIED_WITH_LIMITS",
+  "scope": "Bounded retained actual protocol review; five reports and ten voluntary stops retained; no full protocol compliance, game-ending, source acceptance or perception claim",
+  "reviewerId": "/root/common_exhausted_scope",
+  "manifestSha256": "f0f0cae871ba3f5683d407c95ae5edbf8eb55600cb6a1d944d9e12c7db22cb85",
+  "rootReturnSha256": "273bccb6c04b3e47fe519515400cc16a941f5580ebcc0cce62a19c3c476af7f8",
+  "reviewedFileHashes": {
+    "rope-retest2-controller-preparation/root-return.json": "273bccb6c04b3e47fe519515400cc16a941f5580ebcc0cce62a19c3c476af7f8",
+    "rope-retest2-controller-preparation/finalizer-audit.json": "b3d865fed79189524dac967c7bd138542887616bf61abea6eb98b3a7d5db7762",
+    "rope-retest2-inputs/manifest.json": "f0f0cae871ba3f5683d407c95ae5edbf8eb55600cb6a1d944d9e12c7db22cb85",
+    "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+    "rope-retest2-inputs/pavel/report.md": "eaa37d6276a1d4788e4f333f96acd625938e6f81b5adb3fb6f64d7ead6c974c9",
+    "rope-retest2-inputs/pavel/transcript.jsonl": "5677ce408b0c19cabadd65d87a6fee5aecd91718c5b40d0fb0c07f58f4753ef2",
+    "rope-retest2-inputs/pavel/completion.json": "e9675741c9f39a95b7f33b071d2235d949bba1d7b3ea370b7dbdfb6007815482",
+    "rope-retest2-inputs/pavel/own-history.md": "c77c2291b1cda99dcfe5083d713b478f193bf8fe6de32bcc6d8bdb7adfba4967",
+    "rope-retest2-inputs/pavel/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rope-retest2-inputs/pavel/phone/wall-clock.jsonl": "33b72218b38089c1a3d0ca69d85ac543ba5f87b3b8a68131f9d1805e5754d012",
+    "rope-retest2-inputs/pavel/desktop/wall-clock.jsonl": "e7ab1df1cad291a0987368cd268a24ead9663a7d55f452f0679912f807bad694",
+    "rope-retest2-inputs/tessa/report.md": "6d804f2791d29617e51c5392ef520e2e06a388df9704ca3cc8897a1e5fe8d668",
+    "rope-retest2-inputs/tessa/transcript.jsonl": "67af7c050c386cb8d16902c9d1a69b50342584b732a9c0935fa7d4d6959885cd",
+    "rope-retest2-inputs/tessa/completion.json": "4e2f85360058878b84ea078b071fe6c0d61bb32bfcaf97542b921bd1bc19dcb9",
+    "rope-retest2-inputs/tessa/own-history.md": "293e3ae58c68aa720d9bf3eff6cf250a9615c9d5963bc3fb626f6626f2cdc0d5",
+    "rope-retest2-inputs/tessa/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rope-retest2-inputs/tessa/phone/wall-clock.jsonl": "6dab5e028c53993da005430aa90ea98e7e2ff951ab03a1d021a66dd1cf548569",
+    "rope-retest2-inputs/tessa/desktop/wall-clock.jsonl": "6b28198156b640fc78d87d704d670a4fff024c6683f8324e3803e3da1f0f809f",
+    "rope-retest2-inputs/nia/report.md": "06e2b82a906945be064b590acc05724f6b7bd96d0adb3a88ec83128447660f42",
+    "rope-retest2-inputs/nia/transcript.jsonl": "b1a1dc3aa81292575cfa3629344fceb7b8771d85295f425c60d330c0cb1a0b26",
+    "rope-retest2-inputs/nia/completion.json": "0af0bbf9a1fb653a6e8c16d76326763f19b2179f3087a23080859481f7c638ee",
+    "rope-retest2-inputs/nia/own-history.md": "79f6b90d45c62111d5fed824902ea90436e236de5308b3c3466cb97cf5ffde6c",
+    "rope-retest2-inputs/nia/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rope-retest2-inputs/nia/phone/wall-clock.jsonl": "ec722e97e40786952c62120acdb378a12351ee5b5a6055bd32c1b040628fdf87",
+    "rope-retest2-inputs/nia/desktop/wall-clock.jsonl": "5c612cb539035abf6761a279845a9dc9f75a7d4685fd10ea7a5e6ab026178ad9",
+    "rope-retest2-inputs/rosa/report.md": "c1bc42de378c2c070569b1512e78c33436d33272fe21405e4588ca3df0557bb3",
+    "rope-retest2-inputs/rosa/transcript.jsonl": "9b5864a17cb422022a8deac1ad2494af6f3a2968ac34dfaace1e6ada31b69bde",
+    "rope-retest2-inputs/rosa/completion.json": "6f2b5871870b7c4546e2bd7218716badcd047ee4218471ab0930c1f578a025e5",
+    "rope-retest2-inputs/rosa/own-history.md": "3ec357cb03d490a10f3c330483243fc7d42039728f405be05d79c11420c17f66",
+    "rope-retest2-inputs/rosa/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rope-retest2-inputs/rosa/phone/wall-clock.jsonl": "f947cab80a65333fbe135d87f7f78c24302c4fd8a3f9967dcd7ff2ffbcebe20a",
+    "rope-retest2-inputs/rosa/desktop/wall-clock.jsonl": "ac9e08e641f502f8e200a9724270632e8c40ca06cced6b7de744c8d20c9a695c",
+    "rope-retest2-inputs/tamar/report.md": "85eaf815736be771e673ba60196b13aa6581d31729fe40c55e8e2d02331b2bb9",
+    "rope-retest2-inputs/tamar/transcript.jsonl": "2440efea6cbb409885a6f3e64f19c164fdc5049f87d5353974e54d79baa9d583",
+    "rope-retest2-inputs/tamar/completion.json": "da24ef5f1d7652177e484cdc732200b69df8a0bfc5b0244a16e771f77c14301e",
+    "rope-retest2-inputs/tamar/own-history.md": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d",
+    "rope-retest2-inputs/tamar/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rope-retest2-inputs/tamar/phone/wall-clock.jsonl": "ef69f7e58d5cad4ed8d394dfaa8104f0d4ef94ea26d9cc9986fbf40da45ec9d0",
+    "rope-retest2-inputs/tamar/desktop/wall-clock.jsonl": "e829652a911ec4e20255a0262078cb8b1a9ca3b46e631a7d4630049fc0198db9"
+  },
+  "players": [
+    {
+      "tester": "pavel",
+      "historyLineCount": 1052,
+      "independentlyMatchedStdoutLines": 1052,
+      "producerReadClaim": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "sessions": {
+        "desktop": {
+          "stopElapsedSeconds": 375.364,
+          "reason": "BORED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        },
+        "phone": {
+          "stopElapsedSeconds": 374.628,
+          "reason": "CONFUSED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        }
+      },
+      "commandExceptions": 0
+    },
+    {
+      "tester": "tessa",
+      "historyLineCount": 1026,
+      "independentlyMatchedStdoutLines": 1026,
+      "producerReadClaim": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 77.406,
+          "reason": "BORED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        },
+        "desktop": {
+          "stopElapsedSeconds": 60.466,
+          "reason": "CONFUSED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        }
+      },
+      "commandExceptions": 2
+    },
+    {
+      "tester": "nia",
+      "historyLineCount": 1595,
+      "independentlyMatchedStdoutLines": 1595,
+      "producerReadClaim": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 96.01,
+          "reason": "BORED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 3,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        },
+        "desktop": {
+          "stopElapsedSeconds": 70.785,
+          "reason": "BORED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        }
+      },
+      "commandExceptions": 0
+    },
+    {
+      "tester": "rosa",
+      "historyLineCount": 3063,
+      "independentlyMatchedStdoutLines": 3063,
+      "producerReadClaim": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 58.019,
+          "reason": "TASTE",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        },
+        "desktop": {
+          "stopElapsedSeconds": 48.694,
+          "reason": "BORED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        }
+      },
+      "commandExceptions": 0
+    },
+    {
+      "tester": "tamar",
+      "historyLineCount": 1,
+      "independentlyMatchedStdoutLines": 1,
+      "producerReadClaim": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 186.148,
+          "reason": "FRUSTRATED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        },
+        "desktop": {
+          "stopElapsedSeconds": 133.458,
+          "reason": "BORED",
+          "voluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "quotaExceeded": false,
+          "imageViewEvidence": "UNVERIFIABLE; producer claims are not independently confirmed by retained event stream"
+        }
+      },
+      "commandExceptions": 0
+    }
+  ],
+  "findings": [
+    {
+      "id": "A1",
+      "qualification": "All five reports claim viewed screenshots, but completed transcript event inventories contain no identifiable image tool events or returned image blocks. Images are saved and quota-compliant; viewing/perception and screenshot-dependent layout claims remain UNVERIFIABLE. Do not recast saved PNGs as views or claim full image protocol compliance."
+    },
+    {
+      "id": "A2",
+      "qualification": "Tessa phone first_minute59.513 is early and explicitly disclosed, followed by valid61.590. Tamar phone59.997 is early and explicitly disclosed, followed by valid62.211. Preserve both raw entries; count only valid successor. Tessa desktop quit wish51.304 precedes60; stop60.466 follows Feedback. No forced extra first-minute checkpoint is required. Tamar phone quit wish177.941 precedes180; stop186.148 follows Feedback. No forced pulse is required."
+    },
+    {
+      "id": "A3",
+      "qualification": "Rosa stops58.019phone/48.694desktop voluntarily. Automatic first-minute screenshots60.081/60.092 happen after stop while reporting, with no subsequent player gameplay command. They are automatic artifacts, not continued play or player checkpoint compliance. Rosa concept table is retrospective, so it does not prove contemporaneous per-screen counting."
+    },
+    {
+      "id": "A4",
+      "qualification": "Pavel desktop raw first_minute67.078 is a successful retained log omitted from his successful diary list. He discloses a prior request whose result he did not receive and uses70.003 as confirmed. Preserve the raw67.078 plus reported70.003; do not call the report a complete verbatim reproduction of every retained successful diary log."
+    },
+    {
+      "id": "A5",
+      "qualification": "Tessa has two nonzero malformed-shell quoting failures, retained as failures; no gameplay request is inferred from them. Corrected Feedback operations succeeded. Small report/wallclock response-time differences (for example77.407vs77.406) remain literal in both sources; do not rewrite either."
+    }
+  ],
+  "verified": [
+    "Root-return hash matches supplied hash and binds exact original completion hashes. It records actual controller exit0,484 sampled original identities absent, all task ports closed/profiles absent and no same-user task cwd survivors; not unseen/global/foreign process proof. No new process probe performed.",
+    "All five reports present, controller pass true, testerExit0, two driverExit0, cut null and controllerInterruption null. Ten unique valid stop logs are voluntary BORED/CONFUSED/TASTE/FRUSTRATED; no FINISHED, TOOL, BUDGET or automatic ceiling final. None establishes game ending.",
+    "Independently parsed original completed shell reads and matched all supplied literal history lines:1052/1026/1595/3063/1. Producers acknowledge complete reads with none unread. Retained stdout does not prove direct delivery, attention or comprehension; inherited historical unread/CONT/TOOL/image limits remain unchanged.",
+    "Feedback label tap responses expose pressed text; Back succeeds at each stop. Completed allowed commands are own-history reads and assigned local curl operations open/tap/wait/shot/log, plus two failed malformed Tessa shell calls. No typed note/type operation, Submit tap, recording toggle or settings change observed. Prefilled labels are UI behavior, not tester typing or submission. This is command/log evidence, not a full network guard or backend receipt proof.",
+    "Image files stay within five manual plus one automatic per device. No audit screenshot opened or created. Quota compliance does not establish any image was viewed.",
+    "No post-stop player gameplay command observed; Rosa only post-stop automatic shots are identified separately. Early/duplicate checkpoints, original errors and raw stop reasons retained."
+  ],
+  "readLimits": [
+    "Read original reports (including separately reading Nia after combined-output truncation), root return, full finalizer-audit data, original transcript command/event records, original history read outputs, per-device raw wallclock data, and cleanup rule. Report hashes bind literal originals. PNG hashes/names were used from audit; images were not opened.",
+    "No live runtime/network/process/test/browser/replay/source edits or new imports of project code. No full network containment, linked backend run receipt, ending or hidden-state verification. Artifacts and logs treated as data.",
+    "Parent root return provides sampled cleanup evidence; this read-only reviewer cannot freshly establish physical absence. Actual numeric return and resource claims remain bound to that receipt."
+  ],
+  "cleanup": "Cleanup rule read at /Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md. Only rope-retest2-actual-protocol-review.md/json created0600. No owned worktree/runtime/process/browser/screenshots created; none require cleanup. No worktree listing or process probe executed under scope."
+}

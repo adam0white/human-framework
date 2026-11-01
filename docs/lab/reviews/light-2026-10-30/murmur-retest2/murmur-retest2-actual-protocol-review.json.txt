@@ -1,0 +1,512 @@
+{
+  "verdict": "QUALIFIED_WITH_LIMITS",
+  "reviewerId": "/root/common_exhausted_scope",
+  "manifestSha256": "4bbb8eda0aad18a6f14d327f041d63c9ffd18d8d4c961403fed3cd9c95ec9493",
+  "rootReturnSha256": "62462907b71dd661d813d232b7ce254604ac8c551cac5dc4a01f83248b31eda4",
+  "reviewedFileHashes": {
+    "murmur-retest2-controller-preparation/root-return.json": "62462907b71dd661d813d232b7ce254604ac8c551cac5dc4a01f83248b31eda4",
+    "murmur-retest2-controller-preparation/finalizer-audit.json": "e36872a130d16f43833d859971a6eb65961c73a42c23a3add86542668f4a0b49",
+    "murmur-retest2-inputs/manifest.json": "4bbb8eda0aad18a6f14d327f041d63c9ffd18d8d4c961403fed3cd9c95ec9493",
+    "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+    "murmur-retest2-inputs/aisha/report.md": "2fd654f7105734ca55db8bbe433c5916e2fdb11f7a9990c1e945ab93941186e1",
+    "murmur-retest2-inputs/aisha/transcript.jsonl": "1b8ca05148ff47e6cd647ecf226232c939ec96617443a7a6dc64b7fb921b06b5",
+    "murmur-retest2-inputs/aisha/completion.json": "3ed61416289a30512ac183e4aa89ab69d6921fa05e1f6deae8371b8bb7266c8b",
+    "murmur-retest2-inputs/aisha/own-history.md": "518f7af1ba65b1a1fe4c8a16bfd174f72efe89dd48c3967e3da5bcbe995a056b",
+    "murmur-retest2-inputs/aisha/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "murmur-retest2-inputs/aisha/phone/wall-clock.jsonl": "8dec4df9f68e599af947d8f9a694fb6e31e60695ba92442db5a90df84c5b3c5e",
+    "murmur-retest2-inputs/aisha/desktop/wall-clock.jsonl": "1db8d342fe489e3ee6ddb9af9c795552d4cbf2833cff73482ed27cbfe85329d3",
+    "murmur-retest2-inputs/mei/report.md": "9d794cda92e68ed3a3387f66b9fa4193a76fe6c47c2246bcf1c01166cd127e81",
+    "murmur-retest2-inputs/mei/transcript.jsonl": "ab33435363302e2fa36c5fe73ef89914102adcd09181ca1feeee9a535fbfff04",
+    "murmur-retest2-inputs/mei/completion.json": "af2ced6efd09fdfe312e872f7d9bdf5c42e1d2d57a5e72b41a456f545e5b06e2",
+    "murmur-retest2-inputs/mei/own-history.md": "85a30c3ddfb8c4ff5f75148339a35aa97b069485908822a6d146d309d8154f14",
+    "murmur-retest2-inputs/mei/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "murmur-retest2-inputs/mei/phone/wall-clock.jsonl": "5c10dc08d968e52edea168df9bc4b5913f2414e14c1b7bef9470b8185336ec8e",
+    "murmur-retest2-inputs/mei/desktop/wall-clock.jsonl": "15ea7756baac6135f9b48b1d43b805becb761b1aeac9b0eca6bc7abf49fd6397",
+    "murmur-retest2-inputs/nia/report.md": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec",
+    "murmur-retest2-inputs/nia/transcript.jsonl": "7b5cac0c5649b8105638d474cba8ab909ae8ca0c66252f02dc2662a6adae2115",
+    "murmur-retest2-inputs/nia/completion.json": "4258fbff996bb80045ff098a67d4a3d453cc49df61be539b5749acf7243280c7",
+    "murmur-retest2-inputs/nia/own-history.md": "cc44f9423475128de104c2406ef995f217c68209e740ae6ac2a17f9f2255bc10",
+    "murmur-retest2-inputs/nia/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "murmur-retest2-inputs/nia/phone/wall-clock.jsonl": "b1d3363350e695bb8139ebb0d71356d76c6cb45f584ed97e1d2685aa694b85aa",
+    "murmur-retest2-inputs/nia/desktop/wall-clock.jsonl": "1022ec4cf6db46b1af46910fd80c5a248fe6c1470c78a020bdcbbe2c844525ac",
+    "murmur-retest2-inputs/rosa/report.md": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00",
+    "murmur-retest2-inputs/rosa/transcript.jsonl": "9eed7423d646dc313bdcf8904b47b808cb23dbff828b2ca094dabaa966320668",
+    "murmur-retest2-inputs/rosa/completion.json": "67312c07dd10d25b3ff2ca29337f60203c573396c1b126b77a2272c538c6aec4",
+    "murmur-retest2-inputs/rosa/own-history.md": "a9b843abd44a2fed304c8db0e79f86ddf73bec37a61373662f51f04db6d25651",
+    "murmur-retest2-inputs/rosa/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "murmur-retest2-inputs/rosa/phone/wall-clock.jsonl": "06b99f9cd5fb9fd5cb653ca7dc48e1f7e3d47618fab3047901c07cb48716d300",
+    "murmur-retest2-inputs/rosa/desktop/wall-clock.jsonl": "ee96fb01a6d4a6d9675c0b4376c701e8fbbb52fb34d78c5e0b8a3889dbb58bbf",
+    "murmur-retest2-inputs/soraya/report.md": "67d26cb2293d52ebd6c215b1ce60de23ae8d46ce4f718b3a3951dab4fc60b5ec",
+    "murmur-retest2-inputs/soraya/transcript.jsonl": "fb32ba2584ade8709c3f57647c27349e633048162c308907f13d0651c15a41ea",
+    "murmur-retest2-inputs/soraya/completion.json": "fbee7b5a66e385832aac29880d025b18b2532c27d96d2d500e93f6c13a50c119",
+    "murmur-retest2-inputs/soraya/own-history.md": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d",
+    "murmur-retest2-inputs/soraya/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "murmur-retest2-inputs/soraya/phone/wall-clock.jsonl": "7d7753a8b2950940884b7f403517f78c000ead87180be55705218f58e158f128",
+    "murmur-retest2-inputs/soraya/desktop/wall-clock.jsonl": "0e5d69764dc26c9e541e11aac2e2e3caa34324be6028e64fd7c3d9e0f8c05705"
+  },
+  "players": [
+    {
+      "tester": "aisha",
+      "historyLines": 1372,
+      "independentlyMatchedStdoutLines": 1372,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 1,
+      "sessions": {
+        "desktop": {
+          "stopElapsedSeconds": 128.686,
+          "reason": "BORED",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [],
+          "nullEngagementLogCount": 5
+        },
+        "phone": {
+          "stopElapsedSeconds": 37.362,
+          "reason": "BORED",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 0,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [],
+          "nullEngagementLogCount": 4
+        }
+      }
+    },
+    {
+      "tester": "mei",
+      "historyLines": 1497,
+      "independentlyMatchedStdoutLines": 1497,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 0,
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 135.483,
+          "reason": "CONFUSED",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [
+            {
+              "row": 15,
+              "literal": {
+                "t": "2026-11-01T10:28:47.052Z",
+                "elapsed_s": 82.754,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Skip to the next event"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 6127,
+                "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)",
+                "requested_control_present_before": null
+              }
+            },
+            {
+              "row": 17,
+              "literal": {
+                "t": "2026-11-01T10:29:21.736Z",
+                "elapsed_s": 117.438,
+                "kind": "tool",
+                "op": "shot",
+                "input": {
+                  "file": "a-003.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 20848,
+                "error": "page.screenshot: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n (driver failure)",
+                "requested_control_present_before": null
+              }
+            }
+          ],
+          "nullEngagementLogCount": 0
+        },
+        "desktop": {
+          "stopElapsedSeconds": 255.295,
+          "reason": "BORED",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [
+            {
+              "row": 14,
+              "literal": {
+                "t": "2026-11-01T10:30:53.166Z",
+                "elapsed_s": 71.617,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Skip to the next event"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 7888,
+                "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)",
+                "requested_control_present_before": null
+              }
+            },
+            {
+              "row": 15,
+              "literal": {
+                "t": "2026-11-01T10:31:04.502Z",
+                "elapsed_s": 82.953,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Skip to the next event"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 8410,
+                "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)",
+                "requested_control_present_before": null
+              }
+            },
+            {
+              "row": 37,
+              "literal": {
+                "t": "2026-11-01T10:33:48.378Z",
+                "elapsed_s": 246.829,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Game menu"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 10236,
+                "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)",
+                "requested_control_present_before": null
+              }
+            }
+          ],
+          "nullEngagementLogCount": 0
+        }
+      }
+    },
+    {
+      "tester": "nia",
+      "historyLines": 1749,
+      "independentlyMatchedStdoutLines": 1749,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 0,
+      "sessions": {
+        "desktop": {
+          "stopElapsedSeconds": 75.763,
+          "reason": "BORED",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [],
+          "nullEngagementLogCount": 0
+        },
+        "phone": {
+          "stopElapsedSeconds": 144.754,
+          "reason": "BORED",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [
+            {
+              "row": 9,
+              "literal": {
+                "t": "2026-11-01T10:36:54.473Z",
+                "elapsed_s": 44.998,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Begin at the second week"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 4,
+                "error": "Begin at the second week is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+                "requested_control_present_before": false
+              }
+            },
+            {
+              "row": 12,
+              "literal": {
+                "t": "2026-11-01T10:37:10.841Z",
+                "elapsed_s": 61.366,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Get up and put your feet on the floor. She is willing."
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 12,
+                "error": "Get up and put your feet on the floor. She is willing. is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+                "requested_control_present_before": false
+              }
+            },
+            {
+              "row": 15,
+              "literal": {
+                "t": "2026-11-01T10:37:22.726Z",
+                "elapsed_s": 73.251,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Skip to the next event"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 8179,
+                "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)",
+                "requested_control_present_before": null
+              }
+            },
+            {
+              "row": 16,
+              "literal": {
+                "t": "2026-11-01T10:37:35.114Z",
+                "elapsed_s": 85.639,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Skip to the next event"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 10342,
+                "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)",
+                "requested_control_present_before": null
+              }
+            },
+            {
+              "row": 17,
+              "literal": {
+                "t": "2026-11-01T10:37:36.641Z",
+                "elapsed_s": 87.166,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Skip to the next event"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 11,
+                "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+                "requested_control_present_before": false
+              }
+            },
+            {
+              "row": 20,
+              "literal": {
+                "t": "2026-11-01T10:37:54.383Z",
+                "elapsed_s": 104.908,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Read it before deciding. She would agree only if you insist.",
+                  "duration_ms": 1500
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 5,
+                "error": "Read it before deciding. She would agree only if you insist. is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+                "requested_control_present_before": false
+              }
+            },
+            {
+              "row": 22,
+              "literal": {
+                "t": "2026-11-01T10:38:21.071Z",
+                "elapsed_s": 131.596,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Skip to the next event"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 23123,
+                "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('body')\u001b[22m\n (driver failure)",
+                "requested_control_present_before": null
+              }
+            },
+            {
+              "row": 23,
+              "literal": {
+                "t": "2026-11-01T10:38:21.196Z",
+                "elapsed_s": 131.721,
+                "kind": "tool",
+                "op": "tap",
+                "input": {
+                  "name": "Skip to the next event"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 120,
+                "error": "Skip to the next event is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure)",
+                "requested_control_present_before": false
+              }
+            }
+          ],
+          "nullEngagementLogCount": 0
+        }
+      }
+    },
+    {
+      "tester": "rosa",
+      "historyLines": 3685,
+      "independentlyMatchedStdoutLines": 3685,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 1,
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 59.865,
+          "reason": "TASTE",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [],
+          "nullEngagementLogCount": 0
+        },
+        "desktop": {
+          "stopElapsedSeconds": 50.268,
+          "reason": "TASTE",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [],
+          "nullEngagementLogCount": 0
+        }
+      }
+    },
+    {
+      "tester": "soraya",
+      "historyLines": 1,
+      "independentlyMatchedStdoutLines": 1,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 1,
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 154.948,
+          "reason": "BORED",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [],
+          "nullEngagementLogCount": 0
+        },
+        "desktop": {
+          "stopElapsedSeconds": 82.199,
+          "reason": "BORED",
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE; no identifiable image-tool records in retained stream",
+          "rawErrorRows": [],
+          "nullEngagementLogCount": 0
+        }
+      }
+    }
+  ],
+  "summary": {
+    "eligibleReports": 5,
+    "actualStopCandidates": 10,
+    "voluntaryUnfinishedStops": 10,
+    "nonvoluntaryToolStops": 0,
+    "coordinatorCuts": 0,
+    "endingsEstablished": 0
+  },
+  "findings": [
+    {
+      "id": "M1",
+      "qualification": "All five reports claim screenshot views, but retained completed stream types contain no identifiable image-tool events/returned image blocks. Saved PNGs meet quota; actual views/perception and screenshot-dependent layout claims remain UNVERIFIABLE. No full image-protocol compliance claim."
+    },
+    {
+      "id": "M2",
+      "qualification": "Three nonzero malformed-shell quote failures are retained: Aisha phone stop-log request, Rosa phone Feedback label, Soraya phone Feedback label. Corrected calls succeed. Failed shell text is not evidence of gameplay input. Preserve original strings and report/wallclock millisecond differences, such as128.687vs128.686 and255.296vs255.295."
+    },
+    {
+      "id": "M3",
+      "qualification": "Mei raw errors: phone body-text timeout82.754 and screenshot timeout117.438; desktop body-text timeouts71.617/82.953/246.829. Nia phone records five unavailable/state-changed control errors and body-text timeouts73.251/85.639/131.596. These remain actual method errors, not proof of product cause. Inputs can precede snapshot failure; later visible outcomes do not erase errors. Both producers preserve uncertainty. No terminal TOOL stop occurred."
+    },
+    {
+      "id": "M4",
+      "qualification": "Mei desktop pulse is actually retained at220.103 with its original reaction, then a note at220.104. Her report describes pulse receipt/time as uncertain. Preserve both raw completed pulse and her uncertainty; do not say pulse was absent or pretend its result was received. All retained first-minute player logs pass60-second minimum; Mei phone73.125 is late but valid. Desktop pulse220.103 passes180. No forced later checkpoint."
+    },
+    {
+      "id": "M5",
+      "qualification": "Rosa voluntary stops59.865phone/50.268desktop precede automatic first-minute screenshots60.032/60.055. Those automatic artifacts are not continued play or player first-minute compliance; no post-stop gameplay commands observed. Rosa concept counts are explicitly retrospective, not proof of contemporaneous per-screen counting. Her two-reread rule was self-reported untriggered."
+    },
+    {
+      "id": "M6",
+      "qualification": "Aisha supplies engagement only on desktop first-minute; five other desktop and four phone log entries have null engagement, as disclosed in report. Preserve missing ratings; no full diary protocol compliance claim. Reports of blank/late replies are producer receipt observations: retained completed curl outputs are nonempty, so neither model delivery nor cause of claimed blank presentation is independently established."
+    }
+  ],
+  "verified": [
+    "Exact root-return hash binds original controller439efdec/finalizerfadb8947/manifest and five completion hashes. Numeric controller exit0 session96874; receipt records132 sampled original identities absent, five profiles absent, eleven ports closed and23 input/bindings stable. Conservative wholecohort1402.154s within first3300; original per-tester3300/3240/60 unchanged. Sampled cleanup is not global/unseen/foreign process proof.",
+    "Five reports eligible; all cuts null and ten unique valid stop logs voluntary BORED/CONFUSED/TASTE. No FINISHED/TOOL/BUDGET/ceiling finals or coordinator cuts. No game ending established; reaching Monday reflection is not ending the complete game. Engineering return is not owner/player acceptance.",
+    "Independently matched current history stdout1372/1497/1749/3685/1 and all producers acknowledge read complete/unread none. Prior selected-branch, partial-history, CONT/diagnostic, cut and perception qualifications remain. Stdout coverage is not direct delivery/attention/comprehension; missing output alone would not prove unread.",
+    "Feedback selected labels show pressed and Back responses return; Soraya selects both I would stop here and I am stopping. No type operation, Submit tap, recording/settings toggle observed. Label-prefilled text is UI behavior, not tester typing. No full network guard, backend receipt or ingestion claim.",
+    "Saved image totals remain within five manual plus one automatic per device. No audit image opened or created. No post-stop player gameplay operation found; only identified Rosa automatic shots. Raw report claims remain literal and governed by these limits."
+  ],
+  "readLimits": [
+    "Read all five complete original reports, full finalizer data/root return, original completed transcript/event records, original history-read outputs and per-device raw wallclock data. Independent coverage/Feedback/risk/error/post-stop checks performed from data. PNG names/hashes used; no images opened.",
+    "Cleanup rule read. Prior unchanged operator source review transfers; actual finalizer not rerun. Reviewed file hashes bind exact sources. Root resource/physical-absence statements remain receipt-bound, not freshly probed.",
+    "No runtime/network/browser/process probe/test/replay/target imports or repo/source edits. No hidden-state, full network containment, linked backend receipt, model delivery/comprehension or image perception verification. Logs treated as data."
+  ],
+  "cleanup": "Only murmur-retest2-actual-protocol-review.md/json created0600 in light-1030. No owned worktree/runtime/process/browser/screenshots created; none require cleanup. No process probe/worktree listing under scope."
+}

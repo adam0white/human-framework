@@ -1,0 +1,107 @@
+{
+  "policy": "Exact supplied first-retest baseline plus complete own reports only; selected record, not full archive. Preserve original exclusions and method qualifications at cited source maps. No direct model delivery, comprehension or image viewing is inferred from stored output or PNG.",
+  "segments": [
+    {
+      "role": "exact last supplied Stairwell first-retest baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/own-history.md",
+      "sha256": "d0d5f8aab09ce23501661d854796c11836c8e95acccda4849aba84a69d44619e",
+      "outputByteRange": [
+        0,
+        142786
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/report.md",
+      "sha256": "bedae380513673d0aca5bb61dc55f949f1584fd16a3e8aad5f05005c2ea0e510",
+      "outputByteRange": [
+        142819,
+        157933
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/report.md",
+      "sha256": "025d88f96ffab1ec34481e38da7b6b4a407c02dc3623a44b67f86e54b7967404",
+      "outputByteRange": [
+        157966,
+        166380
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/dispatch.json",
+      "sha256": "be47e441e9aadbe4c719b8e2268d5113ab1de36f27b0e3a2a1805966d7c0ebd2",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/completion.json",
+      "sha256": "303312aa046ceb67a73711b4147033dbdddda2343b69e8813ceaf25dffa154f3",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/director-method-qualification.json",
+      "sha256": "c037eed5e60be574231e5026bb94f41faba752f19b41ca5fe8d78d4145081be8",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/history-source-map.json",
+      "sha256": "04a5481bc0258f4b77cc38001646475e69b87c9a8223642dd81440befc3a2438",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/dispatch.json",
+      "sha256": "3cbc49ea541478745cfe0fbc743f7a84b5c0b3182da27f47cad2412d1608fa20",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/completion.json",
+      "sha256": "a8d476c8e93e6c9cc0cd35c07b9762916350cbb27539adb57ffa3259199f49fa",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/director-method-qualification.json",
+      "sha256": "ed1ed6fbec5a4243f206f75bddd3c0a990b2c8ddf8bac016f3e79658d1093501",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/history-source-map.json",
+      "sha256": "cbcc1a2a435e2f5e7714a1ea070c766f2ebf1bcd1ebd9b7044eacad33c013940",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/history-source-map.json",
+      "sha256": "04a5481bc0258f4b77cc38001646475e69b87c9a8223642dd81440befc3a2438",
+      "role": "baseline provenance and exclusions"
+    }
+  ],
+  "directorQualifications": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/leila/director-method-qualification.json",
+      "sha256": "c037eed5e60be574231e5026bb94f41faba752f19b41ca5fe8d78d4145081be8",
+      "status": "Qualified completion",
+      "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+      "imageEvidenceScope": null,
+      "note": "Full qualification at hashed path governs; its absence from player history is deliberate."
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/leila/director-method-qualification.json",
+      "sha256": "ed1ed6fbec5a4243f206f75bddd3c0a990b2c8ddf8bac016f3e79658d1093501",
+      "status": null,
+      "historyEvidenceScope": null,
+      "imageEvidenceScope": null,
+      "note": "Full qualification at hashed path governs; its absence from player history is deliberate."
+    }
+  ],
+  "historySha256": "814f026af27b92f619c1cfbd882f0ea7a74b2fe1b6958708e46b5f4691c5e65d",
+  "coordinatorQualificationAppendix": {
+    "outputByteRange": [
+      166380,
+      167486
+    ],
+    "source": "director qualification files already hashed in evidence; Rosa recovery README/root qualification",
+    "sha256": "1818b58d5e415a4895860b0d731145e50ff57836f7e3f7ddc5501277e479c02f",
+    "placement": "after literal reports, before final history marker; not a player memory"
+  }
+}

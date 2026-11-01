@@ -3292,3 +3292,211 @@ The phone quit wish occurred before 60 seconds; the stop log followed the requir
 
 I created no worktree, browser, server or helper process. The coordinator owns the drivers and browsers; no repository worktree listing applies.
 ```
+
+<!-- selected-continuity-key: light-1030:rope-retest2:rosa:free -->
+
+## rope-retest2: rosa
+
+Exact own report. Source-epoch method qualifications A1–A5 and inherited selected-history limits remain binding; image views and perception are UNVERIFIABLE. Reported ending or acceptance is not inferred. Packet map: docs/lab/reviews/light-2026-10-30/rope-retest2/publication-map.json. Coordinator qualification: docs/lab/reviews/light-2026-10-30/rope-retest2/rope-retest2-root-qualification.json.txt.
+
+```text
+I would return voluntarily another evening if there were something new to discover about the people or the climb; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Say how far **Skip** will advance before I press it. It now explains when it returns, which helps.
+2. Give me something to discover or do during the early wait. I enjoyed Wren’s answer, but I stopped after seeing the same beginning twice tonight.
+
+I am Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit to **The Rope**, using the agent-marked page and two fresh, independent games. No old save or matched seed was imported.
+
+The phone was **360×690 touch**; the desktop was **1280×800**, where I used mouse actions. The coordinator recorded the release as commit `ac084f6964c4b27a2562b945eb78243949c972b8`, Human Framework 4.15.0. I left recording and consent at their defaults.
+
+I read the supplied 3,063-line own history in explicit ranges before play, including smaller follow-up ranges where output was truncated. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. The history is selected, not my complete archive; the earlier Rope report’s continuity qualification about the excluded Warren alternative remains.
+
+The title and mountain drawings were familiar and clear on the phone at **1.951 seconds**. On the desktop at **1.989 seconds**, the same title was large and comfortable to read. I liked that Wren wanted breakfast before answering, then agreed after she ate. Her own need gave the wait a human reason. The journal made that clearer by saying she had left without breakfast.
+
+These are my successful diary log lines, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **5.258 s — note, engagement 4:** “The three mountains and the promise that they can say no remind me of my earlier climbs. I am confident I know this title. The page is readable.”
+- **12.460 s — note, engagement 4, Hollin Crag 05:01:** “Wren wants to eat first. I like that she can have her own need. The page now says Skip returns after reading if nothing needs attention; that answers why it disappeared before.”
+- **40.169 s — note, engagement 3, Hollin Crag 05:14:** “Wren finished eating and agreed. I asked everyone gently and each answered. This is warm, although I am already waiting again.”
+- **44.565 s — note, engagement 4, Hollin Crag 05:15:** “Nell promised her mother a call. I remember that journal detail from my last visit, confidently. Wren leaving without breakfast makes her request make sense to me.”
+- **46.986 s — want_quit, TASTE, engagement 4, Hollin Crag 05:15:** “I enjoyed Wren and the journal, but I have seen this beginning again and would stop the phone now. I want to try the larger screen.”
+- **58.019 s — stop, TASTE, engagement 4, Hollin Crag 05:15:** “I stop on the phone. Wren eating and the journal pleased me, and Skip now explains when it returns. I have seen this beginning again and would close it for tonight.”
+
+**Desktop**
+
+- **12.248 s — note, engagement 4, Hollin Crag 05:01:** “The large screen shows the answers as speech bubbles. Wren asks to eat first again, as on my phone tonight. I like seeing her answer in her own words.”
+- **36.989 s — want_quit, BORED, engagement 3, Hollin Crag 05:13:** “Wren ate and agreed again, as on my phone. I like her answer, but I am waiting through the same beginning and would stop for tonight.”
+- **48.694 s — stop, BORED, engagement 3, Hollin Crag 05:14:** “I stop on the big screen. The speech bubbles are easy to read and Wren is kind to see again, but I have waited through this beginning twice tonight. I would close it.”
+
+Both quit wishes remained through the Feedback check. Neither was a game ending. Both sessions stopped before **60 seconds**, so first-minute checkpoints were untested; neither reached **180 seconds**, so no pulse was due. I did not reach steep ground, the later mountains or an ending.
+
+The title prompted confident recognition of my earlier Rope visits at **5.258 seconds**. At **44.565 seconds**, the visible journal line about Nell’s promise prompted a confident memory of that detail from my prior visit. On desktop, Wren’s request reminded me of the phone session earlier that evening. I recorded no other recognition of a person from an earlier game.
+
+I did **not reread a sentence** on either device, so my two-reread rule did not trigger. The turn-back choice, Wren’s delay, the gentle request and the individual answers were clear. The new line saying Skip returns after reading if nothing else needs attention answered part of my previous question. Skip appeared after the reading period on both devices. I still did not see an advance estimate before pressing it: on the phone I pressed it at 05:07 and later saw 05:13.
+
+My retrospective counts below cover the screens I reached, including settings and lab topics. They are counts of concepts presented, including familiar ones; no sentence on these screens required a reread.
+
+| Screen | Concepts encountered | Count | Reread |
+| --- | --- | ---: | --- |
+| Title, both | All games; Journal; information; menu; linked recording; five climbers; three named mountains; leading them home; refusal; New game | 10 | None |
+| Turn-back choice, both | Hollin Crag; climb 1 of 3; game clock; hut; turn-back time; remembered promise; four time choices; saving and pause; group and individual selection; requests | 10 | None |
+| Climb and answers, both | Individual answers; delayed answer; eating; insistence and trust; reading time; Skip’s return; Skip to next event; people’s positions and walking; group requests; lead on; go down; stop; stay with them; more requests; more moves; all answers | 16 | None |
+| Request choice, phone | Everyone selected; climb on; ask gently; urge and pressure; insist and trust; time stops; Back | 7 | None |
+| Journal, phone | Timed entries; departure; boots; summit; breakfast; mother’s call; Ezra’s map; turn-back promise; Wren’s request; Back | 10 | None |
+| Game menu, both | Time stops; Feedback; full screen; All games; Recording; New game; People across games; automatic pace; four pace choices; download; open run file; title page; Lab privacy; Debug; Resume | 15 | None |
+| Feedback, both | Stopping; confused; three keep-playing verdicts; note; optional name; linked history; what is sent; Lab privacy; Submit; Back | 10 | None |
+
+I viewed three screenshots:
+
+- [Phone title](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/rosa/phone/a-001.png>) showed readable text, the three mountain drawings, a large New game button and the recording notice at the bottom.
+- [Desktop title](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/rosa/desktop/b-001.png>) showed the same content in a spacious centered layout. The title was filled in, unlike the empty first desktop image in my first Rope report.
+- [Desktop climb](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/rosa/desktop/b-002.png>) showed speech bubbles over the slope on the left and people and request buttons on the right. The answers were easy to read. I did not view the phone climb layout in an image.
+
+On both devices, I opened Feedback when I decided to stop. **“I’m stopping”** became pressed, and **Back** returned to the game. The note box filled itself with “I’m stopping”; I typed nothing and pressed no Submit.
+
+Compared with my last Rope return, the new explanation of **when Skip returns** addresses why it appeared and disappeared. It did not say how far the jump would go. I did not encounter the earlier sentence about stopping where nobody behind can hear me, so I cannot assess whether it changed. I also did not reach the earlier waiting-for-the-group message or the rope-up interaction. No new blocking ask arose in the part I reached.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; `git worktree list` is not applicable to my work.
+```
+
+<!-- selected-continuity-key: light-1030:stairwell-retest2:rosa:free -->
+
+## stairwell-retest2: rosa
+
+Exact own report. Source-epoch method qualifications S1–S6 and inherited selected-history limits remain binding; reported image views and perception are UNVERIFIABLE. Ending or acceptance is not inferred. Packet map: docs/lab/reviews/light-2026-10-30/stairwell-retest2/publication-map.json. Root qualification: docs/lab/reviews/light-2026-10-30/stairwell-retest2/stairwell-retest2-root-qualification.json.txt.
+
+```text
+I would return voluntarily another evening, on either device, to spend more time with the neighbours and see the Sunday vote; I would close the game now, not leave it running.
+
+My ranked asks are:
+
+1. Explain in plain words how the Sunday vote is decided. I know it concerns my extra pay, but I still do not know how the decision is made.
+2. Keep the explanation of the newspaper prank and say that it may upset someone.
+3. Say how far Skip will take me. I did not reach Skip on this visit, so this remains a question from my earlier play.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit to *The Stairwell*. I started a fresh game on each device at the supplied agent-marked URL. No old save or matched seed was imported.
+
+The phone was a **360×690 touch** session, stopped at **62.882 seconds**. The desktop was a **1280×800 keyboard-and-mouse** session later the same evening, stopped at **42.903 seconds**; I used mouse actions. Recording and consent remained at their defaults. I typed no Feedback note and pressed no Submit.
+
+I read the supplied history in explicit ranges through line **3526**. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. It is selected history, not my complete archive. Earlier qualifications in that history still apply, including the separate, coordinator-cut Hearsay attempt and the limits on earlier history reads.
+
+The familiar title and Sunday tea-money goal gave me an immediate reason to begin. The phone delivery was clear: Sevim needed bread and a newspaper, and the page gave the walking time and deadline. I liked sitting with her and hearing that she still hears children reading aloud in the evenings. On desktop, Hacer’s invitation and family paperwork felt like the ordinary human details I had enjoyed before.
+
+Neither session reached an ending. I stopped because I had enjoyed a short visit and had seen this beginning again, not because I had completed the week.
+
+**Diary — successful log lines, unchanged and in order**
+
+Phone:
+
+- **6.210 s, note, engagement 4:** “The title and Sunday tea money bring back my earlier deliveries. I am confident this is the same building. The text is readable; the button covers the lower explanation. Title concepts: caretaker, five flats, deliveries, Sunday vote, extra pay, notebook, six days, saving, two four-week options, character transfer, download, other starts, information, menu, all games, recording and linked play: 17. No reread.”
+- **13.790 s, note, engagement 4, Monday 07:02:** “Sevim needs bread and a newspaper. Her name reminds me of delivering to her and the crossword swap before, fairly confidently. The order and deadline are plain. Main screen concepts: clock, building and flats, residents in or out, five orders, deadline, walking time, bakery, shop, four views, gate and possible consequence, break, journal: 12. No reread.”
+- **21.100 s, note, engagement 4, Monday 07:12:** “The swap says prank and each gets the other crossword. I remember Hacer seeing me do this before, confidently, and leave the papers alone. It still does not say someone may be upset. Bakery adds three concepts: swap, prank and being seen. No reread.”
+- **34.428 s, note, engagement 4, Monday 07:22:** “Sevim remembers children reading aloud for forty years. As a school administrator I like that ordinary detail. I do not recall this particular story from before. Conversation concepts: hidden feelings and trust, paused time, ask news, tell, sit, break, raise question from Thursday, notebook line, sitting time: 9. No reread.”
+- **52.049 s, want_quit, TASTE, engagement 4, Monday 07:34:** “I liked hearing Sevim speak about children, and I understand she wants to leave the subject. I have had a pleasant short visit and would stop on the phone now.”
+- **62.882 s, stop, TASTE, engagement 4, Monday 07:34:** “I stop on the phone. Sevim and her memories of children pleased me, and the delivery was clear. I would close it and try the larger screen.”
+
+Desktop:
+
+- **14.810 s, note, engagement 4, Monday 07:04:** “Hacer is first on this fresh game. Her name reminds me of her shop counter story, fairly confidently. The notebook says feelings and trust are hidden and stamps are things I have done. I still do not see how the Sunday vote is decided. Notebook concepts: pause, outside observations, hidden feelings, hidden trust, readings, no promise about vote, mood, learned facts, stamps: 9. No reread.”
+- **30.066 s, note, engagement 4, Monday 07:20:** “Her shop counter and family paperwork confirm the story I remembered. I am confident. The journal calls five lira a tip, as before. I like that she asks me to sit. The conversation and reply have nine concepts, as on the phone; no reread.”
+- **32.315 s, want_quit, TASTE, engagement 4, Monday 07:20:** “I enjoyed hearing Hacer again, but I have seen this beginning twice tonight. I would stop and come back another evening for the vote.”
+- **42.903 s, stop, TASTE, engagement 4, Monday 07:20:** “I stop on the big screen. Hacer and her family paperwork are familiar and warm. The notebook helps, but I still want to know how the Sunday vote works. I would close it for tonight.”
+
+Both quit wishes remained through the Feedback check. The phone wish occurred before 60 seconds; its stop followed the check. I did **not** log a first-minute checkpoint. Desktop stopped before 60 seconds. Neither session reached 180 seconds, so no pulse was due. The first-minute checkpoints and pulses are untested.
+
+I did not reread a sentence on either device. The two-sentence quitting rule did not trigger. The notebook clearly said that residents’ feelings and trust are hidden, and the journal identified Hacer’s ₺5 as a tip. The vote itself remained unclear to me. No new blocking ask arose in the part I reached.
+
+My recognition came from visible cues: the title and tea-money goal at 6.210 seconds prompted confident recognition of the earlier game; Sevim’s name and order at 13.790 seconds reminded me fairly confidently of delivering to her; the crossword prank at 21.100 seconds brought back Hacer seeing my earlier swap. On desktop, Hacer’s name prompted a fairly confident memory of her shop story at 14.810 seconds, and the shop-counter and paperwork text confirmed it for me at 30.066 seconds. Sevim’s children-reading story did **not** prompt a memory of that particular encounter.
+
+The concept counts in the diary are my contemporaneous estimates. The other screens I reached presented these additional groups, with no rereads:
+
+| Screen | Concepts encountered | Count |
+| --- | --- | ---: |
+| Phone reply | Two reply choices; two-minute cost; resident decides whether to continue; wording does not change that decision; returning to sit tomorrow | 5 |
+| Game menu, both | Close; Feedback; download; full screen; new game; title page; All games; Recording; Lab privacy; Debug; Resume | 11 |
+| Feedback, both | Close; stopping and confused labels; three optional keep-playing answers; note; optional name; what is sent; copy; Submit | 10 |
+
+Compared with my last Stairwell visit, the notebook again explained hidden feelings, trust and stamps, but I still did not learn how the vote is decided. The newspaper control still called the swap a prank and explained the exchanged crosswords; it did not explicitly say someone might be upset. I did not revisit Tell or reach Skip, so I cannot assess them this time.
+
+I viewed two screenshots:
+
+- [Phone title](</Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/phone/a-001.png>) at **2.084 s** showed readable text, unchecked choices, the red Begin button and the recording notice. The fixed button covered part of the lower explanation.
+- [Desktop title](</Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/desktop/b-001.png>) at **2.050 s** showed the title and introduction in a large centered column. The Begin button covered lower text.
+
+I viewed no game-screen screenshot on either device, so I cannot describe those layouts visually. On both, the first Begin input left the title visible in its immediate response; a short wait showed the game had opened.
+
+On both devices, Feedback offered **“I'm stopping”** and **“I'm confused.”** I selected **“I'm stopping”**; it showed as pressed. **Close feedback** returned to the game menu. I typed nothing and submitted nothing.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers. A `git worktree list` is not applicable to my work.
+```
+
+<!-- selected-continuity-key: light-1030:murmur-retest2:rosa:free -->
+
+## murmur-retest2: rosa
+
+Exact own report. Source-epoch M1–M6 and inherited selected-history limits remain binding. Image perception and complete model delivery/comprehension remain unverified. No ending or owner acceptance is inferred. Packet map: docs/lab/reviews/light-2026-10-30/murmur-retest2/publication-map.json. Root qualification: docs/lab/reviews/light-2026-10-30/murmur-retest2/murmur-retest2-root-qualification.json.txt.
+
+```text
+I would return voluntarily another evening on either device to see more of Dilan’s week, though I still want to understand what trust changes; I would close it now and not leave it running.
+
+My ranked asks are:
+
+1. Explain what trust changes and whether I can see how much remains.
+2. Explain the choice labels together before the first choice, including “She wants to do it later,” which I did not encounter this time.
+3. Say how far Skip will advance before I press it.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit to Murmur, titled **Two Voices** on the page. Both sessions used fresh, independent games at the supplied agent-marked URL, with no imported save or matched seed. Recording and consent stayed at their defaults.
+
+- **Phone:** 360×690 touch. I stopped at **59.865 seconds**.
+- **Desktop:** 1280×800 keyboard and mouse, later the same evening. I used mouse actions and stopped at **50.268 seconds**.
+
+I read the supplied history in explicit ranges through line **3685**. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. The history is selected, not my complete archive. The original Murmur history read reached only lines 1–865 of 1,203; that earlier limit remains.
+
+The familiar people gave me a reason to start. On the phone I insisted that Dilan get up and help Ece, then felt pleased when Ece delivered her parcel. On desktop I let Dilan sleep and saw her miss her alarms; I then asked her to tell Murat the truth. His ordinary response held me. I stopped both sessions because I had seen those parts of Monday again, not because the game ended.
+
+**Diary — successful log lines, unchanged and in order**
+
+Phone:
+
+- **5.969 s, note, engagement 4:** “Dilan and her parcel work bring back my earlier visits. I am confident I remember helping Ece and asking Dilan to call Mum. The title is readable. I want to see her week again.”
+- **29.181 s, note, engagement 4, Mon 07:16:** “She got up before the second alarm, as I remember from insisting before. Aylin asking about Mum is familiar too. I like that my suggestion has a clear result. The timer still makes me hurry.”
+- **42.772 s, note, engagement 4, Mon 10:41:** “Ece lost and trying not to cry reminds me of guiding her before. I am confident it is the same encounter. I want to help her again, though I have already insisted twice.”
+- **49.799 s, want_quit, TASTE, engagement 4, Mon 11:42:** “Ece delivered the parcel and I am glad. I have seen these scenes again, and I would stop the phone for tonight and try the big screen.”
+- **59.865 s, stop, TASTE, engagement 4, Mon 12:41:** “I stop on the phone. I liked helping Ece and seeing her parcel delivered, but I have seen this Monday before. I would close it and try the big screen.”
+
+Desktop:
+
+- **15.425 s, note, engagement 4, Monday 06:41:** “The same familiar alarm on the large screen. I let her sleep this time. I remember she missed alarms before, and I want to see her answer without pushing.”
+- **27.246 s, note, engagement 4, Monday 07:16:** “She slept through the second and third alarms, as I remembered from my earlier visit. I see the difference from getting her up on the phone. The result is plain.”
+- **41.288 s, want_quit, TASTE, engagement 4, Monday 09:01:** “Murat accepts her honest apology, as I remember, and I like his ordinary answer. I have seen this morning again and would stop for tonight.”
+- **50.268 s, stop, TASTE, engagement 4, Monday 10:41:** “I stop on the big screen. Murat accepted the truth and the result was clear, but I have seen this morning again. I would close it and return another evening for more of the week.”
+
+Both quit wishes remained through the Feedback check. I did not reread a sentence in either session, so my two-reread rule did not trigger. Neither stop reached 60 seconds; the first-minute checkpoints are untested. Neither reached 180 seconds, so no pulse was due. I did not reach Tuesday, Saturday’s look back, or an ending.
+
+The choices and their immediate results were clear. On the phone, getting up led to Dilan rising before the second alarm; on desktop, sleeping led to her missing the second and third. The timer made me feel hurried even though the menu said each choice allows 64 seconds. I still could not see how much trust remained. Skip’s accessible name said it went to the next event, but I did not see an advance estimate.
+
+My recognition came from visible cues: Dilan’s parcel work prompted confident memories of Ece and Mum at **5.969 s**; the second-alarm result and Aylin’s message prompted memories at **29.181 s**; Ece’s lost-van situation prompted confident recognition at **42.772 s**. On desktop, the alarm and missed-alarms result prompted memories at **15.425 s** and **27.246 s**; Murat’s apology scene prompted one at **41.288 s**. I recorded no other recognition.
+
+| Screen reached | Concepts presented, including familiar settings and lab topics | Count | Rereads |
+|---|---|---:|---|
+| Title, both | Voice in Dilan’s head; suggestions; Monday–Saturday; look back; Dilan’s parcel work; Aylin; Ece; Murat; other beginnings; third week; outcomes week; Start; linked recording; All games; Information; menu; Human Framework | 17 | None |
+| Opening transition, both | Day and clock; alarm about to ring | 2 | None |
+| First choice, both | Answer timer; other voice; pencil handwriting; tap to suggest; hold to insist; trust cost; refusal; timeout; willingness labels; Say nothing | 10 | None |
+| Later choices and results | Recorded suggestion or insistence; words kept in mind; Skip; alarms; Aylin’s message; Mum; lateness; Murat; Ece’s delivery; lunchtime response | 10 | None |
+| Game menu, both | Paused time; pace between moments; 64-second choice; Automatic, Slow, Steady and Fast; Feedback; full screen; New game; title page; All games; People across games; download; Recording; Lab privacy; Debug; Resume | 17 | None |
+| Feedback, both | Three keep-playing choices; stopping; confused; note; optional name; linked history; what is sent; Submit; Back | 10 | None |
+
+These are retrospective counts of what I encountered, not counts for unseen screens.
+
+I viewed [phone/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/phone/a-001.png) at **2.403 s**. The title and introduction were readable; the recording notice crossed the lower area, and Start was below the visible image. I viewed [desktop/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/desktop/b-001.png) at **2.089 s**. It showed the same introduction in a comfortable centered column, with the Start button visible. I viewed no game-screen screenshot, so I cannot assess those layouts visually.
+
+On both devices, I opened Feedback, selected **“I'm stopping”**, saw it marked pressed, and used **← Back** to return to the game menu. I typed no note and pressed no Submit. My first phone attempt to address the label failed in the shell before reaching the driver; the corrected attempt worked.
+
+Compared with my last Murmur visit, I again saw that suggestions can change the day and that insistence can cost trust. I did not encounter an explanation of a trust level or what happens at zero. I saw “She is willing” and “She would agree only if you insist,” but not “She wants to do it later” or a combined explanation of the labels. Skip still named the next event without telling me the advance beforehand. **No new blocking ask arose** in the part I reached.
+
+I made no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; a worktree listing does not apply to my work.
+```

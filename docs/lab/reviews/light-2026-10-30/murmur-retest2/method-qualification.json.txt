@@ -1,0 +1,116 @@
+{
+  "status": "ROOT_QUALIFIED_WITH_LIMITS",
+  "methodLimits": [
+    {
+      "id": "M1",
+      "qualification": "All five reports claim screenshot views, but retained completed stream types contain no identifiable image-tool events/returned image blocks. Saved PNGs meet quota; actual views/perception and screenshot-dependent layout claims remain UNVERIFIABLE. No full image-protocol compliance claim."
+    },
+    {
+      "id": "M2",
+      "qualification": "Three nonzero malformed-shell quote failures are retained: Aisha phone stop-log request, Rosa phone Feedback label, Soraya phone Feedback label. Corrected calls succeed. Failed shell text is not evidence of gameplay input. Preserve original strings and report/wallclock millisecond differences, such as128.687vs128.686 and255.296vs255.295."
+    },
+    {
+      "id": "M3",
+      "qualification": "Mei raw errors: phone body-text timeout82.754 and screenshot timeout117.438; desktop body-text timeouts71.617/82.953/246.829. Nia phone records five unavailable/state-changed control errors and body-text timeouts73.251/85.639/131.596. These remain actual method errors, not proof of product cause. Inputs can precede snapshot failure; later visible outcomes do not erase errors. Both producers preserve uncertainty. No terminal TOOL stop occurred."
+    },
+    {
+      "id": "M4",
+      "qualification": "Mei desktop pulse is actually retained at220.103 with its original reaction, then a note at220.104. Her report describes pulse receipt/time as uncertain. Preserve both raw completed pulse and her uncertainty; do not say pulse was absent or pretend its result was received. All retained first-minute player logs pass60-second minimum; Mei phone73.125 is late but valid. Desktop pulse220.103 passes180. No forced later checkpoint."
+    },
+    {
+      "id": "M5",
+      "qualification": "Rosa voluntary stops59.865phone/50.268desktop precede automatic first-minute screenshots60.032/60.055. Those automatic artifacts are not continued play or player first-minute compliance; no post-stop gameplay commands observed. Rosa concept counts are explicitly retrospective, not proof of contemporaneous per-screen counting. Her two-reread rule was self-reported untriggered."
+    },
+    {
+      "id": "M6",
+      "qualification": "Aisha supplies engagement only on desktop first-minute; five other desktop and four phone log entries have null engagement, as disclosed in report. Preserve missing ratings; no full diary protocol compliance claim. Reports of blank/late replies are producer receipt observations: retained completed curl outputs are nonempty, so neither model delivery nor cause of claimed blank presentation is independently established."
+    }
+  ],
+  "history": "1372/1497/1749/3685/1stdoutlines match plusreadack; delivery/comprehension independentlyunverified; inheritedlimitsretained",
+  "feedback": "Pressedlabels+Back observed; no type/Submit/settings/recordingtoggle; no fullnetworkguard/backendreceipt",
+  "images": "All actualperception UNVERIFIABLE; savedquotas pass; layoutclaimsproduceronly",
+  "rootParentRawReadScope": "All5 fullreports, actualstop/checkpoint/history/Feedback/error summaries and fullprotocolMDJSON; fullrawcommand/transcript data audited independently, not claimed fullyread byparent",
+  "testers": {
+    "aisha": {
+      "status": "audited_with_limits",
+      "reportEligible": true,
+      "history": {
+        "lineCount": 1372,
+        "literalLinesCovered": 1372,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "cut": null,
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "commandExceptions": 1,
+      "imageRelatedCompletedItems": []
+    },
+    "mei": {
+      "status": "audited_with_limits",
+      "reportEligible": true,
+      "history": {
+        "lineCount": 1497,
+        "literalLinesCovered": 1497,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "cut": null,
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "commandExceptions": 0,
+      "imageRelatedCompletedItems": []
+    },
+    "nia": {
+      "status": "audited_with_limits",
+      "reportEligible": true,
+      "history": {
+        "lineCount": 1749,
+        "literalLinesCovered": 1749,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "cut": null,
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "commandExceptions": 0,
+      "imageRelatedCompletedItems": []
+    },
+    "rosa": {
+      "status": "audited_with_limits",
+      "reportEligible": true,
+      "history": {
+        "lineCount": 3685,
+        "literalLinesCovered": 3685,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "cut": null,
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "commandExceptions": 1,
+      "imageRelatedCompletedItems": []
+    },
+    "soraya": {
+      "status": "audited_with_limits",
+      "reportEligible": true,
+      "history": {
+        "lineCount": 1,
+        "literalLinesCovered": 1,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "cut": null,
+      "unknownToolEvents": "Inspect retained event types and unparsed commands; absence is not proof",
+      "feedbackBoundary": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+      "commandExceptions": 1,
+      "imageRelatedCompletedItems": []
+    }
+  },
+  "scope": "Inherit earlier own history qualifications; no perception, network receipt or owner acceptance inferred."
+}

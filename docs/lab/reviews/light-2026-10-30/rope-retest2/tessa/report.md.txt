@@ -1,0 +1,61 @@
+I would not return voluntarily tonight or leave The Rope running; I liked choosing someone to accompany Bilal, but I could not tell what happened to their plan, and I did not want to wait through the hut path again.
+
+My ranked asks are:
+
+1. Show what happens after someone agrees to meet a climber who wants to descend. Nell agreed to meet Bilal, but his call stayed open and their displayed movements left me unsure whether they would go together.
+2. Give me a way to talk with people during the walk. Wren postponed the habitat survey first for breakfast, then for the hut path.
+3. Separate the names around the hut on the map. They overlapped on both screens I viewed.
+
+I played as Tessa Williams, 17, on the same evening: a fresh 360×690 touch-phone context followed by a fresh 1280×800 laptop context. I chose **New game** in each. I used the assigned URL with `labRunSource=agent`, imported no save or matched seed, and left recording and consent at their defaults. The coordinator’s build record was commit `ac084f6964c4b27a2562b945eb78243949c972b8`, HF 4.15.0; my observations cover only these sessions.
+
+I read all **1,026 lines** of the supplied own history using explicit ranges, including a reread of the truncated section. The last line read was **“End of supplied own history.”** Unread ranges: **none**. I followed no diary links.
+
+The cream title and drawn mountains were familiar on the phone at **0.499 s**. On the laptop, the title was visible by the **2.101 s** screenshot, centred with wide margins. The phone’s first substantive surprise was Wren already eating while the others started walking: her request to finish eating made sense to me.
+
+These are my unedited driver diary reactions, in order. Engagement is the value I logged.
+
+**Phone**
+
+- **5.658 s, note, engagement 4:** “The three drawn mountains bring back the climb and Wren saying she would answer after the hut path. I want to see if we get further this time.”
+- **11.021 s, note, engagement 4:** “Wren is eating already and answers the turn time by talking about food. The others are walking before me. I remember the hut path replies, but this one matches what she is doing.”
+- **18.799 s, note, engagement 4:** “She wants to finish breakfast before talking about the survey. Fair enough, but I want to hear the survey later.”
+- **43.739 s, note, engagement 3:** “Wren finished eating and is climbing now. The hint says I selected everyone even though Wren is selected, which is odd. The map names overlap by the hut.”
+- **48.871 s, note, engagement 3:** “There is the hut path line again. She has swapped breakfast for walking and now the survey has to wait until 06:49. I want to skip forward.”
+- **59.513 s, first_minute, engagement 3, Hollin Crag 05:17:** “Wren finished breakfast and started climbing; the survey now waits for the hut path. Oskar gives the same reason for rest. I like that I can see when they are busy, but I still want them to talk to me while walking.” This entry was early, so it does not count as the requested checkpoint.
+- **61.590 s, first_minute, engagement 3, Hollin Crag 05:17:** “Wren finished breakfast and started climbing; the survey now waits for the hut path. Oskar gives the same reason for rest. I like that I can see when they are busy, but I still want them to talk to me while walking.”
+- **67.241 s, want_quit, BORED, engagement 2, Hollin Crag 05:18:** “I want to hear Wren talk about the survey, but she and Oskar both want to finish the hut path first. I do not want to wait through the walk again. I would leave.”
+- **77.407 s, stop, BORED, engagement 2, Hollin Crag 05:19:** “Stopping the phone. Wren finishing breakfast made sense, but the survey and Oskar rest both wait for the hut path and I do not want to wait through it again.”
+
+**Laptop**
+
+- **5.154 s, note, engagement 4:** “Same evening, laptop. The three mountains are familiar. I want to try splitting the group again and see what they say.”
+- **17.743 s, note, engagement 4:** “Bilal wants company down, like Oskar did on my first phone visit. Funny that he is still walking up while he asks. I will send someone with him.”
+- **28.923 s, note, engagement 3:** “Nell agreed but stopped while Bilal keeps walking up. Are they actually meeting? The names are piled over the hut again.”
+- **42.516 s, note, engagement 3:** “I asked Bilal to wait and he did, with his my friend wording. The call still asks who goes down even after Nell agreed. I cannot tell if they have met.”
+- **49.075 s, note, engagement 2:** “Now Nell is walking up and says after the hut path, while Bilal waits. I thought sending her settled the company question. I do not know what happens to that agreement.”
+- **51.304 s, want_quit, CONFUSED, engagement 2, Hollin Crag 05:08:** “Nell agreed to meet Bilal, but the call remains and she is walking up while he waits. I do not know whether they are going together and I would leave here.”
+- **60.467 s, stop, CONFUSED, engagement 2, Hollin Crag 05:09:** “Stopping the laptop. I liked choosing company for Bilal, but Nell agreed and then walked up while the same call remained. I cannot tell what happened to their plan.”
+
+Both quit wishes persisted. I stayed for Feedback and the stop logs. Neither game ended. The laptop first-minute checkpoint was untested because I chose to leave before 60 seconds; its stop log happened after 60 seconds. The approximately three-minute pulse and later climb and ending checkpoints were untested on both devices.
+
+The busy-until times helped me understand Wren’s and Oskar’s delays. Wren’s breakfast reply fit her visible activity; after breakfast, the same survey request got the hut-path delay I remembered. I did not reach the later time to see whether she would discuss the survey. The phone hint said I had selected everyone while Wren’s button was selected, which was confusing.
+
+On the laptop, Nell agreed to **meet** Bilal and then **consider** descending together; that was not a promise to descend. I then asked Bilal to wait and separately asked Nell to turn back. The call still remained, and Nell resumed walking up. I could not tell whether those later requests changed the meeting plan. I did not see a confirmed meeting or descent.
+
+Recognition came from visible cues:
+
+- **Phone, 5.658 s:** The drawn mountains recalled my earlier climb and Wren’s hut-path reply. **High confidence** in the remembered encounter; my words are in the diary.
+- **Phone, 48.871 s:** Wren’s “Ask me after I climb the hut path” recalled that repeated reply from my own earlier Rope visits. **High confidence.**
+- **Laptop, 17.743 s:** Bilal’s “Who will come with me?” recalled Oskar asking for company on my first phone visit. **High confidence.**
+- I recorded no recognition of people from other games during these sessions.
+
+I viewed four screenshots:
+
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/phone/a-001.png>), **2.291 s**: cream title, three line-drawn mountains, red New game button and recording notice.
+- [Phone gameplay](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/phone/a-002.png>), **40.412 s**: the map and person controls fit on screen, but names overlapped near the hut; Wren was selected while the hint said everyone was selected.
+- [Laptop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/desktop/b-001.png>), **2.101 s**: the same title with wide margins.
+- [Laptop gameplay](</Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/tessa/desktop/b-002.png>), **25.510 s**: a large map beside the requests; labels and figures clustered around the hut, with Nell’s reply in a speech bubble.
+
+These were automated driver inputs, not observations of physical touch. On the phone, a malformed shell command before Feedback sent no input; the corrected tap worked. I selected **“I'm stopping”**, which became pressed and filled the text box. On the laptop, I selected **“I'm confused”** when unsure about the meeting, then **“I'm stopping”** when leaving; each became pressed and filled the box. I used Back each time, typed no note and did not submit. I reached no blocking control.
+
+The coordinator owns the drivers and browsers. I started no workers, servers, browsers or worktrees and touched no repository, so no `git worktree list` applies.

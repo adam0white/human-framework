@@ -1,0 +1,175 @@
+{
+  "policy": "Exact supplied first Murmur retest history, literal own reports and separate method qualifications; selected not complete archive; no alternative continuity body imported.",
+  "segments": [
+    {
+      "role": "exact actual first-retest supplied baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/own-history.md",
+      "sha256": "744b1b5eeb1828c1f01ef6511a87220cb3d00807cf3f439b308b50578c35a2a7",
+      "outputByteRange": [
+        0,
+        163633
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/report.md",
+      "sha256": "8ef5e97e4357b6fc67a268404a0a917db682ed10ee92cd761d9c3060bb8441e4",
+      "outputByteRange": [
+        163666,
+        173739
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/report.md",
+      "sha256": "2a8153b29116f5ddf00ac51cd42f8df31eeebdfb6aec8844da7409d992600522",
+      "outputByteRange": [
+        173772,
+        185548
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/report.md",
+      "sha256": "87df8c2ffb55919d893dcd8ee724a75a6d5259d8c46ef089f00ca74e02723d3f",
+      "outputByteRange": [
+        185581,
+        193298
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/report.md",
+      "sha256": "f508974fe0ed8f9c9e478ffac8cac6d80f391d031cf7a8c333451af3112cd04b",
+      "outputByteRange": [
+        193331,
+        202251
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/report.md",
+      "sha256": "06e2b82a906945be064b590acc05724f6b7bd96d0adb3a88ec83128447660f42",
+      "outputByteRange": [
+        202284,
+        210476
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/dispatch.json",
+      "sha256": "9bfb8bba691e20ddde5d5479b66ea24ca4ad1b468eb62e55c4ca3ce90a57a1c6",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/completion.json",
+      "sha256": "9efc08b9f44a340376d1749c18cc6b49075782d8969cbda9ddcc12ff14f6fc2f",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/history-source-map.json",
+      "sha256": "544eea55e5df427cadae67d7aa6b9f7c05e26d6bf4c4f507c97a52b930987846",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/nia/director-method-qualification.json",
+      "sha256": "798fb6da207af92d75462bdc7e5e06b7fab0ef95a88533d627ce996a734d96d0",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/dispatch.json",
+      "sha256": "5b78e2d66d68963b8496df3418f6a4819f89b34131b062b80cee9584bde69656",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/completion.json",
+      "sha256": "f5507de9b06dd2088058cfc0033e00265b4e783189f27ff40324239031319cf4",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/history-source-map.json",
+      "sha256": "b1ed9b98e35ddbaf398d12e2dd49d5a396f0fe0b77ba11be1e6e85a13e31a020",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/nia/director-method-qualification.json",
+      "sha256": "5c9865d687ed9594e6be6bc25d83b157384cbb89cf1ab02d3249e7c823fbedbc",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/dispatch.json",
+      "sha256": "f25c2c201e79a5ca360ea91e0b3367fcc14e808c2e8ae66a0cac484721554a98",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/completion.json",
+      "sha256": "b1b4da67659ff93892fc6b5225ea696e672800c9035aaa97c8f2f7670a87f6cf",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/history-source-map.json",
+      "sha256": "ce9ef0eeb9524045bf15b6f33a45b783059aa0f63d6b81edf90200dec3fcf2d9",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/nia/director-method-qualification.json",
+      "sha256": "f4a6fedd6c54a9a3b0490c7405765936de0d29fdd6fe784a07f88dcf2e1219c1",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/dispatch.json",
+      "sha256": "637436e0c3ace6b3de0beb623811f16909c060eae0735102d16e848d484b4f26",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/completion.json",
+      "sha256": "5bcedf0dcbe937a0d678d44ad07781b1ab541b8f15b8bd8f69259c8057ce420a",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/history-source-map.json",
+      "sha256": "abfda404d5036988f2d81b824c4f2934d91539b2078c70594bbdd461b980a0a3",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/dispatch.json",
+      "sha256": "27823d3072d587b978cd7e98ced83422d0d420555a98db2853c609d305ea2700",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/completion.json",
+      "sha256": "0af0bbf9a1fb653a6e8c16d76326763f19b2179f3087a23080859481f7c638ee",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/history-source-map.json",
+      "sha256": "96f968bd779dde5f0f4ad9046f4c24ecd840621f192b487e44d45f315207c26d",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-controller-preparation/finalizer-audit.json",
+      "sha256": "b3d865fed79189524dac967c7bd138542887616bf61abea6eb98b3a7d5db7762",
+      "role": "Rope2 offline finalizer qualification"
+    }
+  ],
+  "qualification": {
+    "outputByteRange": [
+      210476,
+      215278
+    ],
+    "sha256": "b9c2d5689f7f5d0198fbb06757dcc7c4fa695f8129d70f7ed910ad4d1d55d3df",
+    "placement": "after unchanged reports before final marker; not memories"
+  },
+  "historySha256": "cc44f9423475128de104c2406ef995f217c68209e740ae6ac2a17f9f2255bc10",
+  "neighboursCoordinatorQualification": {
+    "sourceAudit": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-controller-preparation/finalizer-audit.json",
+    "sourceAuditSha256": "5ef553ad881163b2b2dbfb4af0e3ec631cb55a5b7eb4d283bba1f2360068c67f",
+    "outputByteRange": [
+      215278,
+      216631
+    ],
+    "sha256": "d10dd8938a6f6d4021c5d525876879fc9f8a5d113a220656a567986d3b939e0a",
+    "placement": "after unchanged report bodies and prior qualifications, before final marker; not player memory"
+  }
+}

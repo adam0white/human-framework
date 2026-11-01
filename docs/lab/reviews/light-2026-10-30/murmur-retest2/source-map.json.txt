@@ -1,0 +1,123 @@
+{
+  "status": "ROOT_QUALIFIED_WITH_LIMITS",
+  "copies": [
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/report.md",
+      "sha256": "2fd654f7105734ca55db8bbe433c5916e2fdb11f7a9990c1e945ab93941186e1",
+      "output": "aisha/report.md",
+      "outputSha256": "2fd654f7105734ca55db8bbe433c5916e2fdb11f7a9990c1e945ab93941186e1"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/brief.md",
+      "sha256": "f6fefec3be887d58b94673ba98f2eb09633575a1410ebd872407d74e83a41a15",
+      "output": "aisha/brief.md",
+      "outputSha256": "f6fefec3be887d58b94673ba98f2eb09633575a1410ebd872407d74e83a41a15"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/history-source-map.json",
+      "sha256": "4dea18a6bc3642c7a77f25f1f1c23fb2bb0bbbf8787568094c9dcbe70218fb44",
+      "output": "aisha/history-source-map.json",
+      "outputSha256": "4dea18a6bc3642c7a77f25f1f1c23fb2bb0bbbf8787568094c9dcbe70218fb44"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/report.md",
+      "sha256": "9d794cda92e68ed3a3387f66b9fa4193a76fe6c47c2246bcf1c01166cd127e81",
+      "output": "mei/report.md",
+      "outputSha256": "9d794cda92e68ed3a3387f66b9fa4193a76fe6c47c2246bcf1c01166cd127e81"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/brief.md",
+      "sha256": "d273f9661cc9a24f882c46978abafd43f760a97487c482230af538308304a8b8",
+      "output": "mei/brief.md",
+      "outputSha256": "d273f9661cc9a24f882c46978abafd43f760a97487c482230af538308304a8b8"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/history-source-map.json",
+      "sha256": "d74b9248931603c3b1f0255dc0e42240785116f0fbc4166f69cd6a0e5fc5e7f3",
+      "output": "mei/history-source-map.json",
+      "outputSha256": "d74b9248931603c3b1f0255dc0e42240785116f0fbc4166f69cd6a0e5fc5e7f3"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/report.md",
+      "sha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec",
+      "output": "nia/report.md",
+      "outputSha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/brief.md",
+      "sha256": "24d286f19ff2a7168fe6d615835ed7d70cf6125efe3598ab571a2782b861f8ca",
+      "output": "nia/brief.md",
+      "outputSha256": "24d286f19ff2a7168fe6d615835ed7d70cf6125efe3598ab571a2782b861f8ca"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/history-source-map.json",
+      "sha256": "d6b7b0f9802c785241a60acc46131a30a2223f565730f49a48201082a39b1a3a",
+      "output": "nia/history-source-map.json",
+      "outputSha256": "d6b7b0f9802c785241a60acc46131a30a2223f565730f49a48201082a39b1a3a"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/report.md",
+      "sha256": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00",
+      "output": "rosa/report.md",
+      "outputSha256": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/brief.md",
+      "sha256": "811c2451e887269931eddc818a03ba807378cab49a5a31cfce7f86690013d40d",
+      "output": "rosa/brief.md",
+      "outputSha256": "811c2451e887269931eddc818a03ba807378cab49a5a31cfce7f86690013d40d"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/history-source-map.json",
+      "sha256": "ecff04eb3aec3b82af3fbb04ca1a7f454a4ccd9b084dd0c36f364b4cb1367c89",
+      "output": "rosa/history-source-map.json",
+      "outputSha256": "ecff04eb3aec3b82af3fbb04ca1a7f454a4ccd9b084dd0c36f364b4cb1367c89"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/report.md",
+      "sha256": "67d26cb2293d52ebd6c215b1ce60de23ae8d46ce4f718b3a3951dab4fc60b5ec",
+      "output": "soraya/report.md",
+      "outputSha256": "67d26cb2293d52ebd6c215b1ce60de23ae8d46ce4f718b3a3951dab4fc60b5ec"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/brief.md",
+      "sha256": "da3a95af729a070ba05717d00911b3c5f75bdb8cc734dea89e53ea43027cfde4",
+      "output": "soraya/brief.md",
+      "outputSha256": "da3a95af729a070ba05717d00911b3c5f75bdb8cc734dea89e53ea43027cfde4"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/history-source-map.json",
+      "sha256": "574a48113c4dc75f1f26ae2f4c6c7f8299de6cd6b20a5e5d909ca818a67fc996",
+      "output": "soraya/history-source-map.json",
+      "outputSha256": "574a48113c4dc75f1f26ae2f4c6c7f8299de6cd6b20a5e5d909ca818a67fc996"
+    }
+  ],
+  "rootReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-controller-preparation/root-return.json",
+    "sha256": "62462907b71dd661d813d232b7ce254604ac8c551cac5dc4a01f83248b31eda4"
+  },
+  "audit": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-controller-preparation/finalizer-audit.json",
+    "sha256": "e36872a130d16f43833d859971a6eb65961c73a42c23a3add86542668f4a0b49"
+  },
+  "extraction": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-asks.json",
+    "sha256": "6e4b483c930f4256f44d52d5f1dfb15e130527535bf3dffe2cf728b367768368"
+  },
+  "rootQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-root-qualification.json",
+    "sha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9"
+  },
+  "triage": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-root-ask-triage.json",
+    "sha256": "8868b3501425189efce3a1baa4b1e011b855a5b9680e788e3612a83f0a795bd5"
+  },
+  "history": "Complete supplied own histories remain private at original paths and hashes in copied maps; no recursive body included.",
+  "finalRelease": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-final-live-pin.json",
+    "sha256": "487c471db6eaa15c936c3cfdaa25095f12851095e0cd2276a82cb1930d92ae65",
+    "output": "murmur-retest2-final-live-pin.json",
+    "outputSha256": "487c471db6eaa15c936c3cfdaa25095f12851095e0cd2276a82cb1930d92ae65",
+    "scope": "fresh final release pin only; not full asset graph, visual or player acceptance"
+  }
+}

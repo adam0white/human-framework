@@ -1,0 +1,40 @@
+Verdict: QUALIFIED_WITH_LIMITS
+
+Five reports and ten voluntary unfinished stops retained. Zero endings established and zero coordinator cuts.
+
+Manifest SHA256: 4bbb8eda0aad18a6f14d327f041d63c9ffd18d8d4c961403fed3cd9c95ec9493
+Root-return SHA256: 62462907b71dd661d813d232b7ce254604ac8c551cac5dc4a01f83248b31eda4
+
+M1: All five reports claim screenshot views, but retained completed stream types contain no identifiable image-tool events/returned image blocks. Saved PNGs meet quota; actual views/perception and screenshot-dependent layout claims remain UNVERIFIABLE. No full image-protocol compliance claim.
+
+M2: Three nonzero malformed-shell quote failures are retained: Aisha phone stop-log request, Rosa phone Feedback label, Soraya phone Feedback label. Corrected calls succeed. Failed shell text is not evidence of gameplay input. Preserve original strings and report/wallclock millisecond differences, such as128.687vs128.686 and255.296vs255.295.
+
+M3: Mei raw errors: phone body-text timeout82.754 and screenshot timeout117.438; desktop body-text timeouts71.617/82.953/246.829. Nia phone records five unavailable/state-changed control errors and body-text timeouts73.251/85.639/131.596. These remain actual method errors, not proof of product cause. Inputs can precede snapshot failure; later visible outcomes do not erase errors. Both producers preserve uncertainty. No terminal TOOL stop occurred.
+
+M4: Mei desktop pulse is actually retained at220.103 with its original reaction, then a note at220.104. Her report describes pulse receipt/time as uncertain. Preserve both raw completed pulse and her uncertainty; do not say pulse was absent or pretend its result was received. All retained first-minute player logs pass60-second minimum; Mei phone73.125 is late but valid. Desktop pulse220.103 passes180. No forced later checkpoint.
+
+M5: Rosa voluntary stops59.865phone/50.268desktop precede automatic first-minute screenshots60.032/60.055. Those automatic artifacts are not continued play or player first-minute compliance; no post-stop gameplay commands observed. Rosa concept counts are explicitly retrospective, not proof of contemporaneous per-screen counting. Her two-reread rule was self-reported untriggered.
+
+M6: Aisha supplies engagement only on desktop first-minute; five other desktop and four phone log entries have null engagement, as disclosed in report. Preserve missing ratings; no full diary protocol compliance claim. Reports of blank/late replies are producer receipt observations: retained completed curl outputs are nonempty, so neither model delivery nor cause of claimed blank presentation is independently established.
+
+Exact root-return hash binds original controller439efdec/finalizerfadb8947/manifest and five completion hashes. Numeric controller exit0 session96874; receipt records132 sampled original identities absent, five profiles absent, eleven ports closed and23 input/bindings stable. Conservative wholecohort1402.154s within first3300; original per-tester3300/3240/60 unchanged. Sampled cleanup is not global/unseen/foreign process proof.
+
+Five reports eligible; all cuts null and ten unique valid stop logs voluntary BORED/CONFUSED/TASTE. No FINISHED/TOOL/BUDGET/ceiling finals or coordinator cuts. No game ending established; reaching Monday reflection is not ending the complete game. Engineering return is not owner/player acceptance.
+
+Independently matched current history stdout1372/1497/1749/3685/1 and all producers acknowledge read complete/unread none. Prior selected-branch, partial-history, CONT/diagnostic, cut and perception qualifications remain. Stdout coverage is not direct delivery/attention/comprehension; missing output alone would not prove unread.
+
+Feedback selected labels show pressed and Back responses return; Soraya selects both I would stop here and I am stopping. No type operation, Submit tap, recording/settings toggle observed. Label-prefilled text is UI behavior, not tester typing. No full network guard, backend receipt or ingestion claim.
+
+Saved image totals remain within five manual plus one automatic per device. No audit image opened or created. No post-stop player gameplay operation found; only identified Rosa automatic shots. Raw report claims remain literal and governed by these limits.
+
+Read limits
+
+Read all five complete original reports, full finalizer data/root return, original completed transcript/event records, original history-read outputs and per-device raw wallclock data. Independent coverage/Feedback/risk/error/post-stop checks performed from data. PNG names/hashes used; no images opened.
+
+Cleanup rule read. Prior unchanged operator source review transfers; actual finalizer not rerun. Reviewed file hashes bind exact sources. Root resource/physical-absence statements remain receipt-bound, not freshly probed.
+
+No runtime/network/browser/process probe/test/replay/target imports or repo/source edits. No hidden-state, full network containment, linked backend receipt, model delivery/comprehension or image perception verification. Logs treated as data.
+
+Exact hashes/session timings/raw error rows are in companion JSON.
+
+Only murmur-retest2-actual-protocol-review.md/json created0600 in light-1030. No owned worktree/runtime/process/browser/screenshots created; none require cleanup. No process probe/worktree listing under scope.

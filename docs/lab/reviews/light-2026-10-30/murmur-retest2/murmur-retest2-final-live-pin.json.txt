@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-01T10:47:44.918647+00:00",
+  "release": {
+    "app": "0.10.0",
+    "framework": "4.9.0",
+    "commit": "650f56abfb6ca64ba387fddcd5f37521b16fafca",
+    "dirty": false
+  },
+  "rawSha256": "05e66cc5a3f4095fd2f0c5a439806d373fc3198a20cf93d312d5e1f4cb8a696f",
+  "scope": "Fresh final release pin; not fullassetgraph/visual/player acceptance"
+}

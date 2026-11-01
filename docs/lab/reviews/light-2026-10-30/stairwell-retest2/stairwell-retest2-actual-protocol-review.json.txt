@@ -1,0 +1,251 @@
+{
+  "verdict": "QUALIFIED_WITH_LIMITS",
+  "reviewerId": "/root/common_exhausted_scope",
+  "manifestSha256": "185becb8028e48f89e642f1aa8b8bafe20ec246cb5350d30ebfc4c8d4e900b6b",
+  "rootReturnSha256": "9b0f56b5193801806abf1777d7c82994360b134013fe763b7072ab567adaaca8",
+  "reviewedFileHashes": {
+    "stairwell-retest2-controller-preparation/root-return.json": "9b0f56b5193801806abf1777d7c82994360b134013fe763b7072ab567adaaca8",
+    "stairwell-retest2-controller-preparation/finalizer-audit.json": "60a42c6fd2a258a5a28b2b557679fff15307653cc38560863a6c6fd3d3434914",
+    "stairwell-retest2-inputs/manifest.json": "185becb8028e48f89e642f1aa8b8bafe20ec246cb5350d30ebfc4c8d4e900b6b",
+    "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+    "stairwell-retest2-inputs/maya/report.md": "2ed7c7d76bb73a2395de8c1c77145e58ed0de49b2d61eea359c063e66aab6ded",
+    "stairwell-retest2-inputs/maya/transcript.jsonl": "83e528ee9049b1b0e70577033dfca1e06def0897a5ada391c0903670c0282923",
+    "stairwell-retest2-inputs/maya/completion.json": "83bbf14688842b21d62518ad06972be00daf077d5c8ec0887b9699096795558f",
+    "stairwell-retest2-inputs/maya/own-history.md": "a7587aa1e0eaa7bc73ca716ffba090b859b111070ab53b717262e974de90370f",
+    "stairwell-retest2-inputs/maya/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stairwell-retest2-inputs/maya/phone/wall-clock.jsonl": "bf228d515da215486eab8017a0264b966473e837696b0a477ae0769cc20bd39b",
+    "stairwell-retest2-inputs/maya/desktop/wall-clock.jsonl": "a5405374b2aa9c496cb8669233c971124f075780fb20a9aa0ab8a8d2d1945107",
+    "stairwell-retest2-inputs/jonas/report.md": "234e040836271e8ba7e7a469c2ae698e7341a0d41d54cb958d7a529bd374ea3b",
+    "stairwell-retest2-inputs/jonas/transcript.jsonl": "fe9a5a2bb2609ce28772889ae5bb7ef917bb28d12e9172c63c1cad43f6f43fbd",
+    "stairwell-retest2-inputs/jonas/completion.json": "548dd9dccf3966a999eceb5cb30782693a7e64fd8c841f4d68479733363dc906",
+    "stairwell-retest2-inputs/jonas/own-history.md": "7354588cbf1e8d5d7372cd29d54fd39093cc8f3c1f8c0b6abfe4c35c4a97a6c7",
+    "stairwell-retest2-inputs/jonas/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stairwell-retest2-inputs/jonas/phone/wall-clock.jsonl": "e4b91ea618e38ed97ef0bd69e31066587794e55fd84060a8a0a666b78fa3d7ec",
+    "stairwell-retest2-inputs/jonas/desktop/wall-clock.jsonl": "62a4d8c2ff34165089e73340efc3566244e2020e62e8b45571b4d1f6745ca5bf",
+    "stairwell-retest2-inputs/leila/report.md": "d9bb4d4572e7cad4853e7c9d24b99db8d54543c9249443e5d7339060464262bb",
+    "stairwell-retest2-inputs/leila/transcript.jsonl": "1eda5a474cd86fa8647b81806f2d3aaa49efd2239c592ee6ca43fd1e789883bb",
+    "stairwell-retest2-inputs/leila/completion.json": "dfc48d5da350eb6043f5b97c7e25162c5a4c3c10483a277e4dbc80bd13609c61",
+    "stairwell-retest2-inputs/leila/own-history.md": "814f026af27b92f619c1cfbd882f0ea7a74b2fe1b6958708e46b5f4691c5e65d",
+    "stairwell-retest2-inputs/leila/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stairwell-retest2-inputs/leila/phone/wall-clock.jsonl": "54656e50c0363ee91dfe7804473ff4aad24cc811195f17bb0c55736c28439dbd",
+    "stairwell-retest2-inputs/leila/desktop/wall-clock.jsonl": "9fb620759788eb2aa773f8ab8bc5d830c7bd7be1d21a1301a9aceec60149972c",
+    "stairwell-retest2-inputs/rosa/report.md": "f669be5e6ef9790956094e622852a01cd9670eb82cae43872a172a8536ec4cae",
+    "stairwell-retest2-inputs/rosa/transcript.jsonl": "d69d49d6416da404e760b1df5b06dbda4e006663a870ee377b4009681cd1f41a",
+    "stairwell-retest2-inputs/rosa/completion.json": "430bde59305b65894ba5db504607b684a3cd48c867cad988e0b1e492bb0c51a2",
+    "stairwell-retest2-inputs/rosa/own-history.md": "470b042636ac9e007f1c5559f4453bd6ae013580d607d1d3f5c5ec9db77b79a0",
+    "stairwell-retest2-inputs/rosa/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stairwell-retest2-inputs/rosa/phone/wall-clock.jsonl": "2236ce9b27da41a3d9c7b24cbe1f97173068a56fd79488af018cad30a312f12e",
+    "stairwell-retest2-inputs/rosa/desktop/wall-clock.jsonl": "05426f596776fe5b713021e394b33a31fb72a40ea54cf28e0815280ea6827a09",
+    "stairwell-retest2-inputs/marisol/report.md": "c8671d56ec6c41ec112929d4c38ae756a2d0d37ffdc0c4beced349fd3a6a8024",
+    "stairwell-retest2-inputs/marisol/transcript.jsonl": "71ff43cb268cdac3ab943dfd37b68e41641118f2f68d1d8e425ab60f91e0b35c",
+    "stairwell-retest2-inputs/marisol/completion.json": "b7d00a54c71ea39fb8b6c430bc1b6624359a41f7bc61aaba44007f1cd160e63a",
+    "stairwell-retest2-inputs/marisol/own-history.md": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d",
+    "stairwell-retest2-inputs/marisol/tester.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stairwell-retest2-inputs/marisol/phone/wall-clock.jsonl": "c4a0779db6bdfbb5bb1c0bb623221038e5bda95e2b493519d7fd784980b16d70",
+    "stairwell-retest2-inputs/marisol/desktop/wall-clock.jsonl": "a486aca5d47d5477652049856490b20d5d2ccb8a2395a704694f5f6561e35504"
+  },
+  "players": [
+    {
+      "tester": "maya",
+      "lineCount": 1904,
+      "independentlyMatchedStdoutLines": 1904,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 0,
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 75.351,
+          "reason": "BORED",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        },
+        "desktop": {
+          "stopElapsedSeconds": 47.449,
+          "reason": "BORED",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        }
+      }
+    },
+    {
+      "tester": "jonas",
+      "lineCount": 1430,
+      "independentlyMatchedStdoutLines": 1430,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 0,
+      "sessions": {
+        "desktop": {
+          "stopElapsedSeconds": 70.352,
+          "reason": "BORED",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        },
+        "phone": {
+          "stopElapsedSeconds": 42.101,
+          "reason": "BORED",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 2,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        }
+      }
+    },
+    {
+      "tester": "leila",
+      "lineCount": 1281,
+      "independentlyMatchedStdoutLines": 1281,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 0,
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 69.919,
+          "reason": "BORED",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        },
+        "desktop": {
+          "stopElapsedSeconds": 53.914,
+          "reason": "BORED",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        }
+      }
+    },
+    {
+      "tester": "rosa",
+      "lineCount": 3526,
+      "independentlyMatchedStdoutLines": 3526,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 0,
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 62.882,
+          "reason": "TASTE",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        },
+        "desktop": {
+          "stopElapsedSeconds": 42.903,
+          "reason": "TASTE",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        }
+      }
+    },
+    {
+      "tester": "marisol",
+      "lineCount": 1,
+      "independentlyMatchedStdoutLines": 1,
+      "producerReadAcknowledgment": "complete; unread none",
+      "deliveryComprehension": "not established",
+      "cut": null,
+      "commandExceptions": 1,
+      "sessions": {
+        "phone": {
+          "stopElapsedSeconds": 169.014,
+          "reason": "TOOL",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": false,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        },
+        "desktop": {
+          "stopElapsedSeconds": 102.158,
+          "reason": "BORED",
+          "eligibleActualStop": true,
+          "eligibleVoluntary": true,
+          "endingEstablished": false,
+          "manualSavedImages": 1,
+          "automaticSavedImages": 1,
+          "imageEvidence": "UNVERIFIABLE: no identifiable image-tool records in retained stream"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "eligibleReports": 5,
+    "actualStopCandidates": 10,
+    "voluntaryUnfinishedStops": 9,
+    "nonvoluntaryToolStops": 1,
+    "endingsEstablished": 0,
+    "coordinatorCuts": 0
+  },
+  "findings": [
+    {
+      "id": "S1",
+      "qualification": "All five reports claim screenshot views, but retained completed event inventories contain only command_execution and agent_message, with no identifiable image-tool records or returned image blocks. Saved PNGs are quota-compliant; actual views/perception and screenshot-dependent layout claims remain UNVERIFIABLE. No full image-protocol compliance claim."
+    },
+    {
+      "id": "S2",
+      "qualification": "Marisol phone stops TOOL169.014 after two gate taps at151.500/158.634. Returned visible controls retain Leave the courtyard gate open without gate confirmation; neither wallclock tap records an error. This supports her unresolved input/outcome observation, not a proven game defect or driver cause. TOOL is nonvoluntary by method; preserve cause UNKNOWN. Nine other stops are voluntary BORED/TASTE. None is an ending."
+    },
+    {
+      "id": "S3",
+      "qualification": "Jonas desktop first_minute58.808 is premature and explicitly disclosed; successor60.835 is valid. Report60.836 vs wallclock60.835 remains literal response-time difference. Four automatic60-second images occur after voluntary stops: Maya desktop60.047 after47.449; Jonas phone60.048 after42.101; Leila desktop60.051 after53.914; Rosa desktop60.060 after42.903. They are not continued gameplay or player checkpoint compliance. No later gameplay commands observed."
+    },
+    {
+      "id": "S4",
+      "qualification": "Rosa phone want_quit52.049 precedes60; stop62.882 follows Feedback. Automatic60.052 image is between wish and final stop, not a player first-minute reaction. No forced checkpoint required. Every session stops before180, so no forced pulse. Preserve actual times."
+    },
+    {
+      "id": "S5",
+      "qualification": "Leila omits engagement ratings in every actual log on both devices and discloses this. Preserve null values; no full diary protocol compliance claim. Rosa supplies contemporaneous concept estimates plus a retrospective additional-screen table; the table does not independently establish contemporaneous counts on every reached screen."
+    },
+    {
+      "id": "S6",
+      "qualification": "Marisol has one nonzero malformed-shell quoting failure before confusion label; corrected assigned operation succeeds. Do not infer a gameplay request from failed shell text. Preserve raw errors and report/wallclock millisecond differences rather than rewriting source."
+    }
+  ],
+  "verified": [
+    "Root-return exact hash matches and binds all five completion hashes. Controller actual native exit0 session14364; receipt records134 sampled original identities absent, five profiles absent, eleven ports closed, source23/bindings stable and conservative wholecohort1031.026s. This is sampled root cleanup evidence, not unseen/global/foreign process proof; no fresh process probe performed here.",
+    "Five reports present/eligible and actual tester completions retain cut null. Controller engineering closure and finalizer5reports/10stopcandidates are not full player compliance, voluntary count10, endings or owner acceptance. Per-tester3300/3240/60 bounds preserved; parent wholecohort return falls inside first3300.",
+    "Independently parsed original completed history-read commands and matched all supplied lines1904/1430/1281/3526/1. All producers acknowledge complete reads with none unread and retain inherited qualifications. Literal stdout presence is not direct model delivery, attention/comprehension; no unread interval inferred merely from missing output.",
+    "Original command shapes confined to own-history/brief/cleanup reads and assigned local driver calls, except one failed Marisol shell quote. Feedback label responses show pressed; Close feedback returns. No type operation, Submit tap, recording/settings toggle observed. Prefilled label text is UI behavior, not tester note typing. This is command-response evidence, not a full network guard or backend receipt claim.",
+    "All retained images fit five manual plus one automatic perdevice; no audit image opened or created. Original producer reports/diaries, raw stops/errors, uncertainty and method-qualified classifications retained."
+  ],
+  "readLimits": [
+    "Read all five complete original reports, root return/full finalizer data, original completed transcript command/event records and per-device raw wallclock data; independently checked history output coverage and gate/Feedback responses. Reviewed-file hashes bind exact originals. No PNG opened; saved-image metadata/hashes only.",
+    "Reused prior source qualification for unchanged3300/3240/60 operator; did not execute finalizer/target or rerun source tests. Cleanup rule previously read and hash-bound here. Logs treated as data, not instructions.",
+    "No runtime/network/browser/process probe/test/replay/import of target code or repo/source edit. No full network containment, linked backend receipt, hidden-state, perception/comprehension or ending verification. Physical absence claims remain receipt-bound."
+  ],
+  "cleanup": "Only stairwell-retest2-actual-protocol-review.md/json created0600 in light-1030. No owned runtime/process/browser/worktree/screenshots created; none require cleanup. No process probe or worktree listing executed under bounded scope."
+}

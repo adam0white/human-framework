@@ -1,0 +1,102 @@
+{
+  "policy": "Exact first-retest supplied baseline, literal own reports, and coordinator method qualifications. Selected records, not a full archive. No independent CONT body.",
+  "segments": [
+    {
+      "role": "exact original first-retest supplied baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/tessa/own-history.md",
+      "sha256": "92727f9103dd5af010d4a8ba3906a6db22307816b904d8df34008b6e74528cd3",
+      "outputByteRange": [
+        0,
+        84593
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/tessa/report.md",
+      "sha256": "e726f02e42819d773069f989ddc24c13af0a5397d774657b7c20265b20238c42",
+      "outputByteRange": [
+        84626,
+        98021
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/tessa/report.md",
+      "sha256": "a1f01348f1a3fad39f5f4e4b2944b47107e2a4f64564e51d619b074e7c7c3a18",
+      "outputByteRange": [
+        98054,
+        106345
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/tessa/report.md",
+      "sha256": "ad614560248779dc1414f371edc5f1fba0ac949c46042b8fc409d35751d6f754",
+      "outputByteRange": [
+        106378,
+        114181
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/tessa/dispatch.json",
+      "sha256": "8cc86b694acc439c1a7460d5ef6be9491059b18aa7854dfaae853ad3eda2a0d8",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/tessa/completion.json",
+      "sha256": "53f03704b9060e29ca3eda62e7eff65982c1a3f692aa2c04b7bf93f9b7eb5d6f",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest/tessa/history-source-map.json",
+      "sha256": "516a343a9820e0f864251c56fb3138116038fc0e0319c50f1dc11cda4e85fc4a",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/tessa/dispatch.json",
+      "sha256": "3d842ed1e5089491ba070433ead63f331cd7ce9bcb843e6ee2872401bb27bf53",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/tessa/completion.json",
+      "sha256": "0afd45638df5c7e579b330a520f954334077379442237746c4ef2e6ecb409e99",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/tessa/history-source-map.json",
+      "sha256": "a40911376a946cb504d78aef3004dab7c065d4eeebcef0bfda3e39ea649b107f",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/tessa/dispatch.json",
+      "sha256": "28507ccebafa28ac449e7893a8bb27d4826f3c5470b5294bd3a09cd82435a37d",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/tessa/completion.json",
+      "sha256": "8764cf6739e9bcdb748a2c33e7b67eca3852d10a9b3030103716579f9a476786",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/tessa/history-source-map.json",
+      "sha256": "5b605e041e903943d2fabb12df2a301c4c08845593d7fdb48793a0f46932868b",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/tessa/director-method-qualification.json",
+      "sha256": "9158b3d831e725c3b6b5315a167659b342b824e9bb4f01c834b4346648451815",
+      "role": "historical qualification/source map"
+    }
+  ],
+  "coordinatorQualification": {
+    "outputByteRange": [
+      114181,
+      114915
+    ],
+    "sha256": "877b57d83603d9f8cce3602740305a0b9c01c3d67978b2ad4305acd7661656b6",
+    "placement": "after literal reports and before final marker; not player memories"
+  },
+  "historySha256": "293e3ae58c68aa720d9bf3eff6cf250a9615c9d5963bc3fb626f6626f2cdc0d5"
+}

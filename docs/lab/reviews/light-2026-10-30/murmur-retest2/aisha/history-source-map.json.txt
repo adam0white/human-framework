@@ -1,0 +1,83 @@
+{
+  "policy": "Exact supplied first Murmur retest history, literal own reports and separate method qualifications; selected not complete archive; no alternative continuity body imported.",
+  "segments": [
+    {
+      "role": "exact actual first-retest supplied baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/own-history.md",
+      "sha256": "a5314ca657db18ff276bf5e95e37062191b69fe4b6b9f35fac373516b6a15111",
+      "outputByteRange": [
+        0,
+        165723
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/report.md",
+      "sha256": "084b69151ac5c637192bee581a458e6f31468020338d6e09d09c7f5a2b9f789a",
+      "outputByteRange": [
+        165756,
+        176907
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/report.md",
+      "sha256": "309f2e50d616db10bbdf18412e0a9c42700bad0fd9845f8ffba3b68c5ed140c2",
+      "outputByteRange": [
+        176940,
+        184045
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/dispatch.json",
+      "sha256": "086d20402af62c06d350406b2045a3d7fd0c13a0378572edd288af73373a01a7",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/completion.json",
+      "sha256": "b44b5ad8415cb4a4e69de80d583686ea50cf41152063769ed495e26ccb115222",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/history-source-map.json",
+      "sha256": "e2e97dad69f2668a7b6ec79c079b0102aceea2afc2732abfd86b208af73e5cf9",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest-codex/aisha/director-method-qualification.json",
+      "sha256": "5d854b2bf287c3f7e0535a9c04f0f2b0c5648530ef128499181c8029fae1f782",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/dispatch.json",
+      "sha256": "f84abb73136026a15e67121dd7d5134602b65624d80a9e2dc44f6dde35499714",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/completion.json",
+      "sha256": "39bf304f3f38e9dc56edb3fc9052ac7656923251a8f0ebf001d3a19b753e5605",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/history-source-map.json",
+      "sha256": "dd646dc9ddf296f011c5f077f9f175faa8894cc144948f094ef4d40479b7dfa7",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/aisha/director-method-qualification.json",
+      "sha256": "b8d755266aac74a9044d0c674662af19f8e99bb119cd6b60b75fffe24d5bbe0e",
+      "role": "director-method-qualification.json"
+    }
+  ],
+  "qualification": {
+    "outputByteRange": [
+      184045,
+      185332
+    ],
+    "sha256": "dc5b1f00cc838bd155f5bb1a2fda7b9a81d689e13c078392ee74f16da84c35c8",
+    "placement": "after unchanged reports before final marker; not memories"
+  },
+  "historySha256": "518f7af1ba65b1a1fe4c8a16bfd174f72efe89dd48c3967e3da5bcbe995a056b"
+}

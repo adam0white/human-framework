@@ -1,0 +1,48 @@
+**I would not return voluntarily as it stands.** The notebook now records Hacer’s news in words that match what she said, and the open gate left a visible stamp, but I do not want to repeat the delivery week to discover the later consequences. I would not leave it running.
+
+**Ranked asks**
+
+1. Give sitting and replying a visible consequence I can understand before the Sunday vote.
+2. Make the conversations I reached produce more distinct outcomes.
+3. Explain why a story enters or does not enter the notebook.
+
+I have no new blocking ask from what I reached.
+
+I played as Jonas Berg in two fresh games on the same evening, using the supplied URL with the agent query. Desktop was 1280×800 with keyboard and mouse; phone was 360×690 with touch. I imported no save or matched seed. Recording and consent stayed at their defaults, and I changed no owner settings.
+
+I read the supplied history in explicit ranges through line **1430**, whose text was “End of supplied own history.” The initial large reads of lines 1–300 and 901–1050 were truncated; I reread those ranges in smaller requests. **Unread ranges: none.** The earlier Good Hands retest1 full-read claim in that history remains qualified: its documented read reached 599 of 939 lines.
+
+On desktop, the five orders and Hacer at flat 1 brought back my earlier visit: I remembered asking her for news and moving the notebook. I delivered her order, sat with her and replied. Her “I would rather leave it there” was the same closing line I remembered. The game clearly said my reply wording would not change her choice to continue. I asked for news and saw the notebook record “Tarık is said to be kind.” Last time, after the same reported news, I had seen the more specific last-lemon-candy entry. This time the notebook’s wording matched the news I heard.
+
+On phone, I tried leaving the courtyard gate open. The game said Hacer saw me, and the notebook recorded “The gate left open” as a stamp. I had not seen that in my previous visits. It was a useful record, although I stopped before seeing whether it led to anything else.
+
+**Diary — logged words in order**
+
+Desktop:
+
+- **10.304 s, note, engagement 4, Monday 07:01:** “Five orders again. The Sunday vote and Hacer at flat 1 remind me of my last visit; I remember the notebook moved after asking her for news. I want to see what talking changes this time.”
+- **43.993 s, note, engagement 3, Monday 07:32:** “Hacer says she would rather leave it there again, the same line I remember from my last visit. The game says my reply wording does not change her choice. I still cannot see what sitting did for the vote.”
+- **50.008 s, note, engagement 3, Monday 07:32:** “The notebook now records only that Tarik is said to be kind, matching what Hacer actually said. I remember last time it showed the more specific last lemon candy. This version is clearer; I still do not know why the niece story did not enter.”
+- **58.808 s, first_minute, engagement 3:** “One delivery and one sit. Hacer gave the same closing line I remember; news added a correctly qualified notebook fact. The time costs and pause are clear. I still cannot tell what sitting changes or why her niece story is absent from the notebook.” This tag was premature: I logged it before 60 seconds.
+- **60.836 s, first_minute, engagement 3, Monday 07:32:** “One delivery and one sit. Hacer gave the same closing line I remember; news added a correctly qualified notebook fact. The time costs and pause are clear. I still cannot tell what sitting changes or why her niece story is absent from the notebook.”
+- **63.440 s, want_quit, BORED, engagement 2, Monday 07:32:** “I would stop here. The notebook wording is better, but the same conversation ends the same way and I do not want to repeat six days to reach the vote.”
+- **70.352 s, stop, BORED, engagement 2, Monday 07:32:** “Stopping desktop at Monday 07:32. The notebook records the news accurately, but I do not want to repeat the familiar conversations for the Sunday vote. I selected stopping and closed Feedback without typing or sending.”
+
+Phone:
+
+- **14.392 s, note, engagement 3, Monday 07:03:** “Fresh phone week. Hacer is first again, as on desktop; the building and order fit, and the gate offer hints at a later consequence. I am curious what the open gate leads to.”
+- **29.630 s, note, engagement 3, Monday 07:22:** “The open gate has a stamp, and Hacer saw me. That is a visible record of my choice; I do not yet know its consequence. I did not see this on my previous visits.”
+- **33.039 s, want_quit, BORED, engagement 2, Monday 07:22:** “I would stop here on the phone. The gate stamp is interesting, but I do not want to repeat the delivery week tonight to wait for its consequence.”
+- **42.101 s, stop, BORED, engagement 2, Monday 07:22:** “Stopping phone at Monday 07:22. The gate left a stamp and a witness, but I do not want another delivery week tonight. I selected stopping and closed Feedback without typing or sending.”
+
+Both quit wishes held. Neither game ended; both stops were voluntary and early. The desktop pulse at 180 seconds was untested. The phone first-minute and 180-second pulse were untested. I did not reach Sunday, the gate’s later consequence, or enough of the delivery schedule to judge its difficulty.
+
+The travel estimates, delivery deadline, two-minute reply cost and paused conversation were clear. I remained confused about why Hacer’s account of her niece did not appear in the notebook while her news about Tarık did, and about what sitting or replying would mean for Sunday. I cannot conclude that they have no later effect.
+
+The recognition I recorded was prompted by visible cues: at **10.304 s**, the five orders, Sunday vote and Hacer at flat 1 recalled my prior news encounter; at **43.993 s**, her closing sentence recalled the same sentence from that visit; at **50.008 s**, the notebook entry recalled the prior lemon-candy wording. I was confident in those remembered encounters. On the phone, the gate stamp did not prompt recognition of a prior encounter.
+
+I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/jonas/desktop/a-001.png): the readable title and premise, unchecked options, and Begin button. I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/jonas/phone/b-001.png): a readable single-column opening, with the lower explanatory paragraph continuing behind the fixed button area. I also viewed [phone b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/jonas/phone/b-002.png): the building, tabs, first order and large action buttons fitted on screen. I did not view an active desktop screenshot or a phone notebook screenshot, so I cannot assess those layouts visually.
+
+For the desktop confusion, I opened Feedback, selected **“I'm confused”**, saw it marked pressed and closed it. At each stop I reopened Feedback, selected **“I'm stopping”**, saw it marked pressed and used **Close feedback**. I typed no note and submitted nothing. No production receipt is claimed.
+
+I touched no repository or worktree; the coordinator owns the drivers and browser cleanup. No `git worktree list` applies.

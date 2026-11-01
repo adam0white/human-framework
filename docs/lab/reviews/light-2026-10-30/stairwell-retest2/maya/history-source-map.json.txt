@@ -1,0 +1,181 @@
+{
+  "policy": "Exact supplied first-retest baseline plus complete own reports only; selected record, not full archive. Preserve original exclusions and method qualifications at cited source maps. No direct model delivery, comprehension or image viewing is inferred from stored output or PNG.",
+  "segments": [
+    {
+      "role": "exact last supplied Stairwell first-retest baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/own-history.md",
+      "sha256": "a29a01a9756bb8ac90d906ebdac6793895ae6cf508ee6ea0154974fdcf893e86",
+      "outputByteRange": [
+        0,
+        197086
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/report.md",
+      "sha256": "bb25a4241e623c8222a3e1d58ca873e5d41f82feb812f738b65c588b9669df2b",
+      "outputByteRange": [
+        197119,
+        209393
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/report.md",
+      "sha256": "80062e01bfa35cb0a9c9531b7f420f32653abf64f7d82a84d5b6fe1e1e087cdd",
+      "outputByteRange": [
+        209426,
+        221357
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/report.md",
+      "sha256": "91df9201fa7252f6f13e4d7bd1ab2a4fe47069ba91463de37ce5ba8c606ba190",
+      "outputByteRange": [
+        221390,
+        231729
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/report.md",
+      "sha256": "68b7fdfbbb2fdd25ab6530a95005cb2513324722ba253d7f31ba0357707405f8",
+      "outputByteRange": [
+        231762,
+        242448
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/dispatch.json",
+      "sha256": "686dcdef1eec8bfe0fc2ccaf535741284b1fab414d28886f08d5e277a04a5ed8",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/completion.json",
+      "sha256": "3e3beb3129d867fcc03a245c388add8b1c38462e46d16d17e654fc358238a894",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/director-method-qualification.json",
+      "sha256": "8f97cdcd665cd6830b23284104410e42ba4b55d9defbb90351a6dd0c418cae59",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/history-source-map.json",
+      "sha256": "735a1e90b767c7b81ce19a57ac1595ec7cbb5bf15691e5dfb9ee6bb01477eb1e",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/dispatch.json",
+      "sha256": "1fe30240129922d73fc64083cd748fc95a5de29e165dd5319ef4eb05948f272c",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/completion.json",
+      "sha256": "5317ada297f901753beab5d456aa303c045d180bc089e8dbbeffdf11d8b75ea2",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/director-method-qualification.json",
+      "sha256": "f3931309477821dcd180c168eb0b0d60805bc136b82ad8c490a5261265e7423d",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/history-source-map.json",
+      "sha256": "ef3ec2e05bcc50e4d1b5c14e00a329cbb0e7ffae2b6dd56b43136894e9f92516",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/dispatch.json",
+      "sha256": "86fb57e85fc8342859ac7fc790d2ce1ee17f24b1e1f9f9a632b68d85926a6a18",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/completion.json",
+      "sha256": "0359689f4cdc91d50e0484372a19d6c1458a25112c568bb8f5235fdd42e17a5b",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/director-method-qualification.json",
+      "sha256": "72987cdcca300422f94b2bda46aa65863891317d0cf16789d86b99512376a918",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/history-source-map.json",
+      "sha256": "b75a9399f8f2c68f2724606dee175cafb5082dde7bf22eb74acaaae68c6cd4e3",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/dispatch.json",
+      "sha256": "451fc96e7d6186a9efaf9c19b018e38e0c658f424a351ba93becf8bb29e713d9",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/completion.json",
+      "sha256": "07f22d2cf1a375896a5b0d0fdf11565660d9a17bb92659585fba6a4eb1f3cdd4",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/director-method-qualification.json",
+      "sha256": "ab32fdfc53cbd9fa2190babc16e7438a31c095b12657b8c96b268c4a77ec3b63",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/history-source-map.json",
+      "sha256": "bc3a861f5753d2fd64ad3a037ce262d14fcbe3deea2284261b8c214b22609ff3",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/history-source-map.json",
+      "sha256": "735a1e90b767c7b81ce19a57ac1595ec7cbb5bf15691e5dfb9ee6bb01477eb1e",
+      "role": "baseline provenance and exclusions"
+    }
+  ],
+  "directorQualifications": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest-codex/maya/director-method-qualification.json",
+      "sha256": "8f97cdcd665cd6830b23284104410e42ba4b55d9defbb90351a6dd0c418cae59",
+      "status": "Qualified completion",
+      "historyEvidenceScope": "Completed command_execution aggregated_output literally contains every supplied history line in its assigned reads. Producer reports a complete read. The JSONL event stream does not establish that every aggregated-output line was delivered to the model without a presentation limit. Do not call this direct model-facing delivery or comprehension proof. No actual unread interval is established either.",
+      "imageEvidenceScope": null,
+      "note": "Full qualification at hashed path governs; its absence from player history is deliberate."
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/director-method-qualification.json",
+      "sha256": "f3931309477821dcd180c168eb0b0d60805bc136b82ad8c490a5261265e7423d",
+      "status": null,
+      "historyEvidenceScope": null,
+      "imageEvidenceScope": null,
+      "note": "Full qualification at hashed path governs; its absence from player history is deliberate."
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/director-method-qualification.json",
+      "sha256": "72987cdcca300422f94b2bda46aa65863891317d0cf16789d86b99512376a918",
+      "status": null,
+      "historyEvidenceScope": null,
+      "imageEvidenceScope": null,
+      "note": "Full qualification at hashed path governs; its absence from player history is deliberate."
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/director-method-qualification.json",
+      "sha256": "ab32fdfc53cbd9fa2190babc16e7438a31c095b12657b8c96b268c4a77ec3b63",
+      "status": null,
+      "historyEvidenceScope": null,
+      "imageEvidenceScope": null,
+      "note": "Full qualification at hashed path governs; its absence from player history is deliberate."
+    }
+  ],
+  "historySha256": "a7587aa1e0eaa7bc73ca716ffba090b859b111070ab53b717262e974de90370f",
+  "coordinatorQualificationAppendix": {
+    "outputByteRange": [
+      242448,
+      244888
+    ],
+    "source": "director qualification files already hashed in evidence; Rosa recovery README/root qualification",
+    "sha256": "fee6d34593ff42c028456284a6843ede80e944c65fa55acb63c6675662742090",
+    "placement": "after literal reports, before final history marker; not a player memory"
+  }
+}

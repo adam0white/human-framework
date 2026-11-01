@@ -1,0 +1,43 @@
+I would not voluntarily return tonight, and I would not leave it running.
+
+My ranked asks:
+
+1. Give Dilan more varied responses when I insist. Her repeated sentence made the choices feel less personal.
+2. Explain why a first-time player is offered a “third week” before starting.
+
+Neither was a blocking ask. I understood enough to play.
+
+I played as Soraya Del Río on a 360×690 touch phone, then on a 1280×800 desktop with mouse controls, in separate new-game sessions the same evening. The supplied history ended at line 1: “No prior HF diary entries.” Unread range: none. This was my first visit to any HF game.
+
+The opening interested me: Dilan’s parcel work and the people around her sounded like a story about ordinary lives. The title shown was **Two Voices**. At first I wondered about the third-week options and had several names to absorb, but the first choice explained tapping, holding and trust clearly enough. I did not reach a point where confusion stopped me.
+
+On the phone, choosing five more minutes led Dilan to sleep through two more alarms. That consequence caught my attention. Insisting that she tell the truth to Murat and defend Ece produced visible outcomes, but Dilan repeated “Fine. I’m doing it because you pushed me. I don’t like it” several times. The call with Mum had a detail I liked: the neighbour who thought he could patch his roof. At Monday’s end, Dilan’s reflection said I had pushed her a lot. I stopped there after **154.948 seconds**; Tuesday through Saturday and the three-minute pulse were untested.
+
+On desktop, I remembered the phone session and tried different choices. Getting Dilan up led to her being awake before the second alarm; helping Ece by phone led to Ece delivering the parcel. Those differences were satisfying, but the familiar lunch scene made me unwilling to replay the whole day that evening. I stopped at **82.199 seconds**; the rest of Monday, Tuesday through Saturday, and the three-minute pulse were untested. Neither game ended.
+
+The screenshots I actually viewed were [the phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/phone/phone-001.png>) at 2.424 seconds and [the desktop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/soraya/desktop/desktop-001.png>) at 2.118 seconds. The phone opening filled the narrow screen with readable text; Start was below the captured viewport. The desktop opening showed the full introduction and Start together. Touch taps and holds produced visible choice results; desktop mouse taps and holds did too. I did not test keyboard play. Recording and consent remained at their defaults.
+
+Recognition was limited to my own phone session. At desktop **5.451 seconds**, the visible introduction named Dilan and the parcel depot; I recognized them with high confidence: “I recognize Dilan and the parcel depot from my phone just now.” At **34.760 seconds**, “She was up before the second alarm” reminded me of her sleeping through alarms on the phone, also with high confidence. At **65.801 seconds**, Murat’s lunch scene reminded me of the phone encounter with high confidence. There was no prior-game recognition on the first opening.
+
+The diary lines below are the reactions logged during play, in order. Engagement is the number I supplied.
+
+**Phone**
+
+- **6.490 s, note, engagement 4:** “I like that Dilan delivers parcels; I can picture a working day. There are a lot of names at once, and I wonder why a third week is offered before I have played one.”
+- **33.014 s, note, engagement 5:** “Oh, five minutes became missing two alarms. I can see my suggestion had a consequence, though I feel a little guilty. I want her to answer her sister.”
+- **64.079 s, first_minute, engagement 5, Mon 10:41:** “I understand the choices and enjoy seeing their consequences. Dilan resents being pushed, which makes me pause before doing it again. I want to help Ece, but Dilan has work too.”
+- **121.604 s, note, engagement 3:** “The call paid off in a small, lovely detail about the neighbour’s roof. But Dilan has said the same unhappy sentence several times; I am starting to feel I am pushing buttons through a pattern.”
+- **140.219 s, want_quit, BORED, engagement 3, Mon 21:32:** “I think I have had enough for now. I care about Dilan, but the same response to my insistence is wearing thin and a whole week feels long.”
+- **154.948 s, stop, BORED, engagement 3, Mon in bed:** “I am stopping after Monday; I like the people but the repeated responses have dulled my curiosity.”
+
+**Desktop**
+
+- **5.451 s, note, engagement 4:** “I recognize Dilan and the parcel depot from my phone just now. I wonder what happens if I let her choose more often this time.”
+- **34.760 s, note, engagement 4, Monday 07:16:** “This time she got up before the second alarm. I remember her sleeping through it on my phone; the difference is easy to see.”
+- **65.801 s, first_minute, engagement 3, Monday 12:41:** “Helping Ece street by street felt kinder than sending a map, and I saw her deliver the parcel. I recognize the lunch scene too, so I am less curious about repeating it.”
+- **67.896 s, want_quit, BORED, engagement 3, Monday 12:41:** “I have seen this day already and do not want to play all of it again tonight, even though the changed choices are interesting.”
+- **82.199 s, stop, BORED, engagement 3, Monday 12:42:** “I am stopping at lunch because I do not want to repeat Monday again tonight.”
+
+At each stop I opened Feedback, selected **“I’d stop here”** and **“I’m stopping”**, and saw both marked pressed. I used Back, typed no note and submitted nothing. On the phone, my first attempt to select the label failed in the shell because of quoting; the corrected attempt succeeded.
+
+No repository or worktree was touched.

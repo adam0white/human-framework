@@ -850,3 +850,86 @@ Named taps advanced the choices on both devices. At each stop, Feedback opened, 
 
 I created no worktree, server, browser or helper process and touched no repository. The coordinator owns the drivers and their cleanup; there is no worktree list for a repository I touched.
 ```
+
+<!-- selected-continuity-key: light-1030:rope-retest2:pavel:free -->
+
+## rope-retest2: pavel
+
+Exact own report. Source-epoch method qualifications A1–A5 and inherited selected-history limits remain binding; image views and perception are UNVERIFIABLE. Reported ending or acceptance is not inferred. Packet map: docs/lab/reviews/light-2026-10-30/rope-retest2/publication-map.json. Coordinator qualification: docs/lab/reviews/light-2026-10-30/rope-retest2/rope-retest2-root-qualification.json.txt.
+
+```text
+I would return voluntarily another evening on the desktop if I could see how to help a hurt climber after reaching her, but not tonight; I would not leave it running.
+
+My ranked asks:
+
+1. **Show me how to help the hurt person once I reach her.** On the phone I reached Tamar and the page said I was close enough to help, but her injury card and “turn her back” choice had disappeared. I could not find a help action among her requests. This was my blocking ask.
+2. Show whether a person asked to meet someone has met them and what happens next. Bilal agreed to meet Nell, but she was still walking up and he was not walking; later both wanted to go down.
+3. Let me move through quiet waits more readily. Skip covered hours on both devices, but it was absent during some reading periods, and I spent long stretches waiting for people to meet or catch up.
+
+I am Pavel Novak, 70, a retired tram driver from Brno. This was a return visit to *The Rope*. I played a fresh 1280×800 desktop game with keyboard and mouse, then a fresh 360×690 touch phone game the same evening. I used the assigned agent URL and drivers; no old save or matched seed was imported. Recording and consent remained at their defaults. Both menus showed Recording checked.
+
+I read all **1,052 lines** of the supplied, selected own history before play. A large output was truncated, so I reread the affected lines in smaller explicit ranges. The last line read was **“End of supplied own history.”** Unread ranges: **none**.
+
+The desktop stop was at **375.364 seconds**, game time **10:07**, with reason **BORED**. The phone stop was at **374.628 seconds**, game time **10:49**, with reason **CONFUSED**. Both were voluntary and below the 20-minute ceiling. Neither game ended. The next roughly three-minute pulse was not reached in either session. The 12:00 and 13:00 promises, later climbs, and endings remained untested.
+
+The first desktop image at **1.894 seconds** showed the familiar cream title page, three mountain outlines and one red New game button. The phone opening at **2.134 seconds** fit the width, with the same mountains and a full-width button. I liked the turn-back question again: a named time is something I can keep track of.
+
+Compared with my actual earlier Rope visits, the explanation of **stay with them** answered an old question: it moves me toward the middle person by height and stops when close; it does not move the others. The hurt-climber approach also improved for the encounter I saw. The phone’s “walk to Tamar Vale” reported a shrinking distance and then said I was close enough. I cannot say whether the earlier Bilal encounter itself is fixed. Once I reached Tamar, I could not find what to do next.
+
+**Recognition**
+
+- **Desktop, 5.328 s:** The mountain outlines and “They can say no” prompted my memory of the turn-back promise and the group drifting below me. Confidence was high. My words are in the diary below.
+- **Desktop, 283.684 s:** “Oskar cannot hear you” reminded me of the earlier visit. Confidence was high; I had recorded that same difficulty before.
+- **Desktop, 331.025 s:** Nell’s request to go down reminded me of my last phone visit, when I sent Tamar to meet her. Confidence was high.
+- **Phone, 5.304 s:** The three mountains prompted recognition of the desktop game just played. Confidence was high.
+- **Phone, 71.224 s:** Oskar adding a stone reminded me of the small event I had liked in my first Rope visit. Confidence was high.
+- **Phone, 279.114 s:** Tamar’s injury prompted my memory of hurt Bilal and the missing “walk to Bilal” control. Confidence was high. I did not claim that this was the same incident.
+
+**Diary lines, unedited and in order**
+
+Desktop:
+
+- **5.328 s — note, engagement 4:** “The three mountain outlines and They can say no are familiar. I remember the turn-back promise and the group drifting below me. I am sure this is the same game.”
+- **11.294 s — note, engagement 4, 05:01:** “The timetable question is familiar. I chose 13:00 again. Four are walking and Wren asks to eat first; that is a clear reason to wait for her.”
+- **14.976 s — note, engagement 4, 05:02:** “Now it says stay with them moves me toward the middle person and stops when close. That answers what I wanted to know last time. It does not promise to move the others.”
+- **70.003 s — first_minute, engagement 4, 05:23:** “Wren has finished eating and all five are walking. Four are above me and Wren is level. The explanation of staying with the middle person is useful; I will watch whether I catch up.”
+- **106.942 s — note, engagement 3, 05:41:** “I tried Skip just as it disappeared for another reading note. After half a minute the group still walks, four above me. I am waiting again, but I understand the instruction better.”
+- **171.672 s — note, engagement 4, 08:22:** “Skip carried the clock from 06:04 to 08:22 in that wait. Two are level and three above; nobody is marked out of earshot. This is more agreeable than the earlier wait.”
+- **196.843 s — pulse, engagement 4, 08:57:** “Skip is useful now and the group is still within hearing. Steeper ground gives me a specific reason to rope up. I want to try that before continuing.”
+- **206.997 s — note, engagement 4, 09:00:** “Tamar and Bilal both agreed to rope up. The page names the pair and their answers. They are now not walking; I will ask them on again.”
+- **283.684 s — note, engagement 3, 09:38:** “Oskar cannot hear me now, as on the earlier visit. I understand why following the middle person may leave one far away. I will try walking to Oskar directly.”
+- **289.663 s — note, engagement 4, 09:42:** “That is clear: half a kilometre, over half an hour if he stays, and he is still moving. I can see why I cannot speak to him yet.”
+- **331.025 s — note, engagement 4, 09:58:** “Nell wants to go down, as on my last phone visit. I asked Wren this time; she agreed to meet Nell and consider it, not yet to descend. That distinction is clear.”
+- **364.880 s — pulse, engagement 3, 10:05:** “I am still chasing Oskar, who keeps moving, and Nell still wants to go down. I like the clear distance, but another half minute brought only seven game minutes and I cannot see the meeting yet.”
+- **367.079 s — want_quit, BORED, engagement 3, 10:05:** “I would stop here. I understand more than last time and made a rope pair, but I am again watching a slow chase and waiting for Nell and Wren. I have not reached the promised hour.”
+- **375.364 s — stop, BORED, engagement 3, 10:07:** “I stop on desktop at 10:07. The explanations and rope choice are clearer, but I am waiting for a moving Oskar and for Nell and Wren. I chose I am stopping, went Back, typed and sent nothing.”
+
+Phone:
+
+- **5.304 s — note, engagement 4:** “Same three mountains as the desktop just now. The title and button fit the phone. I will make a fresh climb and choose an earlier turn.”
+- **71.224 s — first_minute, engagement 4, 07:30:** “The phone picture fits, though the names crowd the slope. Skip took us over two hours and Oskar added a stone, a small detail I remember liking before. Everyone is above me but still walking.”
+- **137.003 s — note, engagement 3, 09:35:** “Oskar cannot hear me again and Skip says why it stopped. I understand the middle-person rule now, but I would like the whole team close enough to speak.”
+- **208.119 s — pulse, engagement 4, 10:10:** “After I led on, Oskar and Wren no longer show the cannot-hear warning. Nell wants to go down again. The phone is workable, and I want to send someone with her.”
+- **245.408 s — note, engagement 3, 10:21:** “Nell wants to go down but is still walking up, while Bilal is not walking after agreeing to meet her. Perhaps they have not met yet; I cannot tell. I will give them a little time.”
+- **279.114 s — note, engagement 4, 10:29:** “Tamar is hurt. Last time a hurt Bilal had a go to him button and an instruction naming a missing walk button. Here the call itself says walk to Tamar Vale. I will use it.”
+- **318.842 s — note, engagement 4, 10:38:** “The distance to Tamar fell to about a hundred metres and under ten minutes. That visible progress answers the old uncertainty about whether I was walking to the hurt person.”
+- **357.738 s — note, engagement 4, 10:48:** “I am close enough to help Tamar now. The walk worked and the page says so. The injury card disappeared, so I will select her to see how to help.”
+- **365.810 s — want_quit, CONFUSED, engagement 3, 10:49:** “I reached Tamar and the page says I am close enough to help, but the injury card and turn her back choice disappeared. Three people now want to go down, and I cannot see how to help Tamar from her actions. I would stop here.”
+- **374.628 s — stop, CONFUSED, engagement 3, 10:49:** “I stop on the phone at 10:49. Walking to hurt Tamar worked and showed progress, but once close I could not find how to help her. I chose I am confused, went Back, typed and sent nothing.”
+
+Both quit wishes remained through stopping. I made an additional desktop first-minute log request while earlier driver calls were still pending, but did not receive its result; the confirmed first-minute entry is the one at 70.003 seconds above.
+
+I viewed these screenshots:
+
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/pavel/desktop/a-001.png): readable title, mountain outlines, New game and recording notice.
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/pavel/phone/b-001.png): the title, mountains and button fit the screen.
+- [Phone climb](/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/pavel/phone/b-002.png), **43.367 s**: the drawing, person buttons and movement controls fit on screen. The names crowded the slope, but the controls were readable.
+
+A desktop `a-002.png` shot was requested while the driver was busy, but I did not receive confirmation or view it; I make no visual claim about it. I did not view the automatic checkpoint images.
+
+Named taps worked for the actions I reached. Twice, Skip disappeared between the displayed control list and my tap; the driver reported that the page had changed, and I later used Skip successfully. A Tamar selection likewise became stale as her status changed; the updated named control worked. These were observed state changes, not a tool block.
+
+At each stop I opened Feedback. On desktop, **“I'm stopping”** became pressed and filled the note box with that phrase. On phone, **“I'm confused”** did the same. I typed no note or name, pressed Back, and submitted nothing on either device.
+
+I created no worktree, server, browser or helper process and touched no repository. The coordinator owns the drivers and their cleanup; there is no repository worktree list to report.
+```

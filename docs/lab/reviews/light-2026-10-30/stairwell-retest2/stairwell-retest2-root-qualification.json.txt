@@ -1,0 +1,59 @@
+{
+  "at": "2026-11-01T10:10:02.551434+00:00",
+  "status": "CLOSED_QUALIFIED_WITH_LIMITS",
+  "game": "stairwell",
+  "iteration": 2,
+  "reportsRootFullyRead": 5,
+  "voluntaryUnfinishedStops": 9,
+  "nonvoluntaryToolStops": 1,
+  "toolCase": "Marisol phone169.014,causeUNKNOWN; successful gate taps without confirmed outcome not proof product/driverfailure",
+  "endings": 0,
+  "cuts": 0,
+  "live": {
+    "app": "0.1.0",
+    "framework": "4.14.0",
+    "commit": "a7df9820b3b049efd22cf7f63d142409295fff79",
+    "dirty": false
+  },
+  "rootReturnSha256": "9b0f56b5193801806abf1777d7c82994360b134013fe763b7072ab567adaaca8",
+  "protocolReviewSha256": "5ddfb86c989fd5695ab1bc20ae9e2dde8a52fa269011fee6f7c7ab334ed748b4",
+  "rootFullProtocolReviewMdJsonRead": true,
+  "resourceReturn": "134 sampled originalidentities absent,5profilesabsent/11portsclosed/sameusertaskcwd0unknown0/source23+bindingsstable; wholecohort1031.026s",
+  "rootParentRawReadScope": "Allfive fullreports,10 actualstop/checkpoint/Feedback/error summaries and protocolMDJSON fullread; fullrawcommand/history/gateevents reviewed independently by protocolreviewer, not claimedfullyreadbyparent",
+  "methodLimits": [
+    {
+      "id": "S1",
+      "qualification": "All five reports claim screenshot views, but retained completed event inventories contain only command_execution and agent_message, with no identifiable image-tool records or returned image blocks. Saved PNGs are quota-compliant; actual views/perception and screenshot-dependent layout claims remain UNVERIFIABLE. No full image-protocol compliance claim."
+    },
+    {
+      "id": "S2",
+      "qualification": "Marisol phone stops TOOL169.014 after two gate taps at151.500/158.634. Returned visible controls retain Leave the courtyard gate open without gate confirmation; neither wallclock tap records an error. This supports her unresolved input/outcome observation, not a proven game defect or driver cause. TOOL is nonvoluntary by method; preserve cause UNKNOWN. Nine other stops are voluntary BORED/TASTE. None is an ending."
+    },
+    {
+      "id": "S3",
+      "qualification": "Jonas desktop first_minute58.808 is premature and explicitly disclosed; successor60.835 is valid. Report60.836 vs wallclock60.835 remains literal response-time difference. Four automatic60-second images occur after voluntary stops: Maya desktop60.047 after47.449; Jonas phone60.048 after42.101; Leila desktop60.051 after53.914; Rosa desktop60.060 after42.903. They are not continued gameplay or player checkpoint compliance. No later gameplay commands observed."
+    },
+    {
+      "id": "S4",
+      "qualification": "Rosa phone want_quit52.049 precedes60; stop62.882 follows Feedback. Automatic60.052 image is between wish and final stop, not a player first-minute reaction. No forced checkpoint required. Every session stops before180, so no forced pulse. Preserve actual times."
+    },
+    {
+      "id": "S5",
+      "qualification": "Leila omits engagement ratings in every actual log on both devices and discloses this. Preserve null values; no full diary protocol compliance claim. Rosa supplies contemporaneous concept estimates plus a retrospective additional-screen table; the table does not independently establish contemporaneous counts on every reached screen."
+    },
+    {
+      "id": "S6",
+      "qualification": "Marisol has one nonzero malformed-shell quoting failure before confusion label; corrected assigned operation succeeds. Do not infer a gameplay request from failed shell text. Preserve raw errors and report/wallclock millisecond differences rather than rewriting source."
+    }
+  ],
+  "history": "1904/1430/1281/3526/1literalstdout lines present plus readacknowledgments; delivery/comprehension independentlyunverified/inheritedqualifications retained",
+  "feedback": "Observedpressedlabels/Close feedback, no type/Submit/settings/recordingtoggle observed; no fullnetworkguard/backendreceipt claim",
+  "images": "UNVERIFIABLE actualperception allfive; savedPNGwithinquotas, no parentimageopened. Layoutclaims produceronly.",
+  "deferred": "14literalasks F2951\u20132964 pendingpacketreview/datesintegration:3Nov3/11Nov10; F2962primaryfix:labsecondaryfix:stairwell unknowncause. Twoiterationscollected/no3rdordinarypanel, no noblockerclaim",
+  "deploymentHold": false,
+  "browserCustodyReleased": true,
+  "lastPhysicalReturn": "2026-11-01T10:07:37.222065+00:00",
+  "nextRoundNotBefore": "2026-11-01T10:22:37.222065+00:00",
+  "noPlayerOrOwnerAcceptanceClaim": true,
+  "finished": false
+}

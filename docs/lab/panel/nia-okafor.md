@@ -1984,3 +1984,133 @@ At desktop confusion I opened Feedback, selected **“I'm confused”**, saw it 
 
 I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns driver and browser cleanup.
 ```
+
+<!-- selected-continuity-key: light-1030:rope-retest2:nia:free -->
+
+## rope-retest2: nia
+
+Exact own report. Source-epoch method qualifications A1–A5 and inherited selected-history limits remain binding; image views and perception are UNVERIFIABLE. Reported ending or acceptance is not inferred. Packet map: docs/lab/reviews/light-2026-10-30/rope-retest2/publication-map.json. Coordinator qualification: docs/lab/reviews/light-2026-10-30/rope-retest2/rope-retest2-root-qualification.json.txt.
+
+```text
+I would not return voluntarily tonight; I might come back another evening if I could reach something new sooner, and I would not leave it running.
+
+**Ranked asks**
+
+1. Let me reach new parts of the climb sooner. I enjoyed the personal answers, but I had heard both before and did not want to watch the familiar morning again.
+2. Make the first reply to a topic question specific. Nell and Tamar both began with a generic agreement before giving their real answers.
+
+I’m Nia Okafor, 19, a Lagos design student, returning to The Rope. I played two fresh, independent games at `https://rope.adamwhite.work/?labRunSource=agent`, on the same evening on my other device. No save or matched seed was imported. The coordinator supplied build record `ac084f6964c4b27a2562b945eb78243949c972b8`, HF 4.15.0; I describe only what I saw.
+
+- **Phone:** 360×690, touch. Opened at **0.292 s**, stopped at **96.011 s**, BORED, game clock **05:27**.
+- **Desktop:** 1280×800, mouse. Opened at **0.712 s**, stopped at **70.785 s**, BORED, game clock **05:13**. I did not use a keyboard key.
+
+I read supplied own-history lines **1–1595**. The last line was **“End of supplied own history.”** Unread ranges: **none**. This is selected history, not a complete archive; the earlier Rope records retain their stated continuity qualification for the excluded Warren alternative.
+
+The phone opening at **1.776 s** was familiar: three peaks and “They can say no.” At **16.538 s**, Nell’s generic agreement made me wait for the answer I remembered. Her specific answer appeared by **32.657 s**. Wren’s reluctant rest at **40.445 s** was the most satisfying action: she objected and visibly rested. On desktop, Tamar gave her familiar personal answer by **42.844 s**, but hearing that same opening again made me want to leave.
+
+**Diary — exact logged reactions**
+
+Phone:
+
+- **6.065 s, note, engagement 3:** “The three peaks and they can say no are familiar. I remember waiting for a real answer to Nell about mountain names, fairly sure. I want to see what she says this time.”
+- **18.324 s, note, engagement 3, 05:02:** “Nell starts with yes again, but now I can see the talk is unfinished and when it may reach the journal. I remember the real answer came later last visit. I will look.”
+- **34.772 s, note, engagement 4, 05:07:** “There it is, the Sunny Chair wet hollow again. I remember that from my last Rope visit, fairly sure. It is a lovely specific answer, but I still got the generic yes first.”
+- **42.141 s, note, engagement 4, 05:10:** “Wren actually rests and says she dislikes my plan. That has the bite I liked before, though not the exact line I remember. I want to see the climb move too.”
+- **63.291 s, first_minute, engagement 3, 05:18:** “Nell gave the familiar specific mountain answer after a generic yes, and Wren rested reluctantly when I insisted. Both are interesting. The clock is 05:18 and I am still near the hut; I want more to happen.”
+- **86.045 s, want_quit, BORED, engagement 2, 05:23:** “I got the familiar mountain answer and a good reluctant rest, but now I am watching the same slow climb again. I would leave here.”
+- **96.011 s, stop, BORED, engagement 2, 05:27:** “Stopping on the phone. Nell answered specifically and Wren pushed back, but I do not want to watch this slow familiar climb again. I would close it.”
+
+Desktop:
+
+- **5.893 s, note, engagement 3:** “Same evening, wider screen. I want to try Tamar rather than repeat Nell again.”
+- **20.828 s, note, engagement 3, 05:01:** “That exact considered it line reminds me of asking Tamar on my first visit, fairly sure. It still sounds like agreeing to a job, but the unfinished talk tells me to wait for her answer.”
+- **44.870 s, note, engagement 3, 05:07:** “She blamed weather when she lost confidence: I remember this answer from the last visit, fairly sure. I like her honesty, but I have heard it now and waited for it twice.”
+- **57.977 s, note, engagement 2, 05:12:** “Wren wants to climb first before turning back from the hut. I understand her delay, but 06:49 feels far away at this speed. I have heard these opening conversations before.”
+- **60.148 s, first_minute, engagement 2, 05:12:** “Tamar eventually gave her familiar honest answer after the generic agreement. Wren delayed turning back until after the hut path. The wide screen shows the answer clearly, but I have seen this morning and the climb still feels slow.”
+- **62.054 s, want_quit, BORED, engagement 2, 05:12:** “I would stop. Tamar was worth hearing the first time, but I know this answer and do not want to wait through the same climb again tonight.”
+- **70.785 s, stop, BORED, engagement 2, 05:13:** “Stopping on desktop. Tamar gave a personal answer and Wren gave a reason to wait, but the familiar morning and slow climb do not pull me on. I would close it.”
+
+Both quit wishes persisted. Neither game ended. Both sessions stopped before the **180-second pulse**, so no pulse or later checkpoint was reached.
+
+The unfinished-talk message was clear: it said the answer might appear in the journal around a named game time. Both actual answers also appeared on the main screen. I still found the generic first replies awkward for questions. Wren’s delay and the warning that insisting can harm trust were understandable; on phone I saw the requested rest happen, though I did not establish an actual trust change. I did not reach a confusion that made me choose the confusion label.
+
+The phone Skip tap returned a stale-control error: the page had changed and Nell’s answer was already visible. A later phone wait returned no output; the following screenshot showed the current state. I did not encounter an enabled control that remained inoperable after a retry.
+
+The title and peaks prompted my phone recognition at **6.065 s**, with fairly sure confidence in my memory of waiting for Nell. Her “Sunny Chair” answer prompted the recognition logged at **34.772 s**, also fairly sure. On desktop, Tamar’s generic “I have considered it” prompted my first-visit memory at **20.828 s**; her weather and confidence account prompted my last-visit memory at **44.870 s**. Both were fairly sure. I did not recognise Wren’s phone wording as the exact line I remembered, and no other recognition was recorded.
+
+**Screenshots actually viewed**
+
+- Phone [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/phone/a-001.png): cream title page, three drawn peaks, red New game button and recording strip.
+- Phone [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/phone/a-002.png) and [a-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/phone/a-003.png): the slope, large person and action buttons, and Wren’s status. The header wrapped; the drawing and people were small.
+- Desktop [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/desktop/b-001.png): the centred title and wide New game button.
+- Desktop [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/desktop/b-002.png): the slope on the left and people, actions and Tamar’s full answer on the right. The answer was readable in that view.
+
+At each stop I opened Feedback, chose **“I'm stopping”**, saw it marked pressed, and pressed **Back**. The game prefilled the note box with “I'm stopping”; I typed nothing and pressed no Submit. Recording and consent stayed at their defaults, and I changed no settings.
+
+Compared with my supplied last Rope visit, the real topic answers still arrived after generic agreements. Wren’s reluctant reply and visible rest gave me the kind of pushback I liked before. The opening remained slow enough that I chose to stop; these short, fresh runs do not establish how later parts play. My blocking ask from this visit is reaching new parts sooner: the familiar answers and wait were why I left both sessions.
+
+I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns the drivers and browser cleanup; no `git worktree list` applies.
+```
+
+<!-- selected-continuity-key: light-1030:murmur-retest2:nia:free -->
+
+## murmur-retest2: nia
+
+Exact own report. Source-epoch M1–M6 and inherited selected-history limits remain binding. Image perception and complete model delivery/comprehension remain unverified. No ending or owner acceptance is inferred. Packet map: docs/lab/reviews/light-2026-10-30/murmur-retest2/publication-map.json. Root qualification: docs/lab/reviews/light-2026-10-30/murmur-retest2/murmur-retest2-root-qualification.json.txt.
+
+```text
+I would not return voluntarily tonight; I might return another evening to explore the second week if Dilan’s replies varied, and I would close the game rather than leave it running.
+
+Ranked asks:
+
+1. Make the later starting points easier to understand and find. I selected “Play a third week” expecting to start later, then discovered “Begin at the second week” under “Other ways to begin.” Reaching new scenes is the blocking ask I brought into this visit.
+2. Give Dilan more varied replies when I insist. Her objection to reading the tenancy letter was the same line I remembered from two different choices last visit.
+3. Show less repeated day text. The driver’s visible text repeated the latest event and, around the tenancy decision, repeated the letter’s details several times.
+
+I’m Nia Okafor, 19, a Lagos design student. This was a return visit to Murmur, whose visible title is **Two Voices**. I played separate fresh games at the supplied URL with `?labRunSource=agent`: desktop first, then phone on the same evening. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+I read the supplied own history through **line 1749**. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The history is selected, not a complete archive. Its method qualification says a named tap stalled for about 31.5 seconds on my original Murmur phone visit, which qualifies some of that report’s Tuesday observations.
+
+**Desktop, 1280×800, keyboard and mouse:** I stopped at **75.764 seconds**, Monday 12:41, BORED. I used the mouse and no keyboard key. The title and Dilan’s introduction immediately brought back pushing her and hearing her push back. I selected “Play a third week,” but still reached the familiar alarm, Aylin message and Ece call. The hold instruction and willingness labels were clear; my holds were recorded and Dilan got up and helped Ece. I did not establish what the third-week checkbox changes later in a run.
+
+**Phone, 360×690, touch:** I stopped at **144.755 seconds**, Monday 07:26 of the second week, BORED. “Other ways to begin” offered a second-week start and said the first week would be played for me. That brought me to a tenancy letter I did not recognise. The deadline was clear: Friday at 17:00. The game explicitly said other terms and consequences were unknown. Several driver calls returned blank or late; subsequent screens showed that the inputs had taken effect. A retry then encountered a changed page, so I cannot attribute those delays to the game.
+
+The logged reactions below are unedited and in order. Engagement is the value I supplied on each log.
+
+**Desktop diary**
+
+- **5.878 s — note, engagement 4:** “Dilan again. I remember her pushing back when I insisted, fairly sure. Those later-week choices catch my eye; I want something new.”
+- **22.014 s — note, engagement 3, Monday 06:41:** “The alarm again, but the unfinished shelf catches me. I remember the earlier alarm and sleeping late, fairly sure. I chose a third week and still start here; let me see.”
+- **46.665 s — note, engagement 2, Monday 07:57:** “Aylin asking about Mum and the thumbs-up are familiar from my earlier runs, fairly sure. I chose third week expecting a different start, and these are still the same beats.”
+- **62.382 s — first_minute, engagement 2, Monday 10:41:** “The third-week box did not take me past the familiar alarm, Aylin and Ece opening. I can insist and see what she does, but I am confused about what that box changes. I want to see her answer Ece.”
+- **66.633 s — want_quit, BORED, engagement 2, Monday 12:35:** “She helped Ece street by street, which I liked before too, but I am replaying the same morning even after choosing third week. I would leave here.”
+- **75.764 s — stop, BORED, engagement 2, Monday 12:41:** “Stopping on desktop. I liked helping Ece, but the third-week choice still began with the familiar morning and I do not want to replay it. I would close it.”
+
+**Phone diary**
+
+- **5.906 s — note, engagement 3:** “Phone now. Third week still started at the alarm on desktop, so I want to see what outcomes week means.”
+- **10.211 s — note, engagement 4:** “Oh, second week starts here; the checkbox may add a week rather than start there. This is what I wanted to try.”
+- **47.187 s — note, engagement 4, Mon 06:41 second week:** “It worked after blank replies: second week has Mum calling back and a promise to get up. Still an alarm, but now it has a reason. I want to keep her promise.”
+- **63.624 s — first_minute, engagement 3, Mon 06:51 second week:** “The other start skips the first week and gives the alarm a remembered promise. I suggested getting up and the log confirms it. Two calls returned blank before later screens showed the actions had happened, so I am unsure why the driver went quiet.”
+- **89.459 s — note, engagement 4, Mon 07:13 second week:** “A tenancy letter is new to me and I want to read it before signing. The phone calls keep returning blank or late, but the next choice did appear.”
+- **106.975 s — note, engagement 3, Mon 07:19 second week:** “That exact Fine I am doing it because you pushed me line again, fairly sure: she said it for eating outside and water on my last visit. The letter is new, but her reply feels copied. I still want to know what is in it.”
+- **134.290 s — want_quit, BORED, engagement 2, Mon 07:26 second week:** “I got the new letter and a deadline, but the terms are not shown and the repeated insist line plus the long blank driver replies are tiring. I would stop here.”
+- **144.755 s — stop, BORED, engagement 2, Mon 07:26 second week:** “Stopping on phone. The second-week start gave me a new tenancy choice and a clear deadline, but the same insist reply and long blank driver calls drained me. I would close it.”
+
+Both quit wishes persisted. Neither game ended. Both sessions stopped before the **180-second pulse**; pulses and later checkpoints were not reached. I did not decide whether to sign the tenancy renewal or see its outcome.
+
+The recognitions I recorded were prompted by visible cues: Dilan’s introduction at **5.878 s**, the alarm at **22.014 s**, and Aylin’s message and thumbs-up at **46.665 s** on desktop, all with fairly sure confidence. On phone, Dilan’s “Fine. I’m doing it because you pushed me. I don’t like it” prompted my fairly sure memory at **106.975 s** of the eating-outside and water choices from my last visit. I did **not** recognise the tenancy letter as an earlier encounter. The second-week text’s account of Saturday was the game’s supplied setup, not an event I remember playing.
+
+At desktop confusion, I opened Feedback, selected **“I'm confused”** and saw it marked pressed, then went Back. At each stop I opened Feedback, selected **“I'm stopping”**, saw it marked pressed and went Back. I typed no note and pressed no Submit; I claim no feedback receipt.
+
+I viewed two screenshots:
+
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/desktop/a-001.png): a centred cream page, introduction, two later-week checkboxes and a visible Start button. The recording strip sat beneath “Other ways to begin.”
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/phone/b-001.png): the same introduction in a narrow column. The recording strip crossed the page above the checkboxes, and Start was below the visible edge.
+
+I requested a second phone screenshot, but the call returned no output and I did not view it. I therefore cannot assess the phone gameplay layout as an image. The visible driver text confirmed my choices and their results.
+
+Compared with my last Murmur visit, I found a way to begin in the second week and reached a new decision. That partly answers my wish to reach new scenes, although I initially misunderstood the third-week checkbox. The repeated insistence reply remained. I did not reach enough later scenes to judge how broadly the week differs.
+
+I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns driver and browser cleanup; no `git worktree list` applies.
+```
