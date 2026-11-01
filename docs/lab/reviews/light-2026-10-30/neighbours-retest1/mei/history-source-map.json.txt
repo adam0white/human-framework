@@ -1,0 +1,105 @@
+{
+  "policy": "Exact prior own-history baseline and complete own reports; selected record, not complete archive. Do not invent memory. Inherited source-map qualifications remain binding; saved images alone do not prove viewing.",
+  "segments": [
+    {
+      "role": "exact initial baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/own-history.md",
+      "sha256": "1e1d6107fe6833ba630027d30bdaa02e604a6fd6f7a1bb9cc5acd609299574d9",
+      "outputBytes": [
+        0,
+        168950
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/report.md",
+      "sha256": "10147f0058cffff6fae7f5fa851248b9bb6ce914394e78ccdb8bd386823ecc9c",
+      "outputBytes": [
+        168983,
+        180127
+      ]
+    },
+    {
+      "role": "complete own murmur-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/mei/report.md",
+      "sourceSha256": "9d794cda92e68ed3a3387f66b9fa4193a76fe6c47c2246bcf1c01166cd127e81",
+      "sourceByteRange": [
+        0,
+        10609
+      ],
+      "outputByteRange": [
+        180218,
+        190827
+      ],
+      "segmentSha256": "9d794cda92e68ed3a3387f66b9fa4193a76fe6c47c2246bcf1c01166cd127e81"
+    },
+    {
+      "role": "own Murmur2 coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-root-qualification.json",
+      "sourceSha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9",
+      "outputByteRange": [
+        190919,
+        191442
+      ],
+      "segmentSha256": "5427210b2ab93c073df8a630f812d6d2208e6853b7bfb31003f7abdeeeed2a91",
+      "sourceRelationship": "Coordinator synthesis of the bound root qualification, not a byte slice of that source."
+    },
+    {
+      "role": "Mei NQ1 additive coordinator qualification",
+      "outputByteRange": [
+        191443,
+        191886
+      ],
+      "sha256": "531e518e90e58e5e2d615fae691aeff73dd0919ed690ce8da9c43d3d4ca0d3c8",
+      "evidence": [
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-root-qualification.json",
+          "sha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-actual-protocol-review.json",
+          "sha256": "98817ef190fc740daab3f232e3025a6311a7a96fd585d46dd7f11740346d51c5"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/dispatch.json",
+      "sha256": "24c0acecc97a4da3205756112648d5050dcf82a93403118737c2e683398a4fcb"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/completion.json",
+      "sha256": "109437651a3aef9c0bf7e7a16ec8f8488158bb9cc608731fc1cf6236d7e27f4f"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/history-source-map.json",
+      "sha256": "bb3d65f88b8ccc22ada9f2cd6be7fd62236f1f26e1495860614d4167d3d024e6"
+    }
+  ],
+  "historySha256": "748f8ac62b0c135c14cd884039d738fbcbdc2a79048048f9ad179bc32aefc755",
+  "historyLineCount": 1643,
+  "latestReturnRefresh": {
+    "oldHistorySha256": "2de47db17bf3840d1255a3c49a7024814477dfadb0f2fbd52b32cd516689606f",
+    "preservedPrefixByteRange": [
+      0,
+      180129
+    ],
+    "relocatedFinalMarkerBytes": 29,
+    "smallWorksPacketManifestSha256": "a4fec8252d2be9c6caaca1f80bf6b30b1c7b1cf141ac930a0b9e726d9493e9fd",
+    "smallWorksPacketRootSealSha256": "395825d1f97d651ff20e3bf80a959b884404d740f65bc0c5d7dc6e0dad355c6b",
+    "wellRootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+    "murmurRootQualificationSha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9",
+    "scope": "Bounded selected own records, not full archive; check future completed own returns before freeze."
+  },
+  "nq1Correction": {
+    "oldHistorySha256": "45b9408fd417af76602b2c9b0541dbefe4a1d4b312564db20399e1b50c141d75",
+    "preservedPrefixByteRange": [
+      0,
+      191443
+    ],
+    "relocatedFinalMarkerBytes": 29,
+    "reviewPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-latest-own1101-qualification-review.json",
+    "reviewSha256": "7ab54294388929e6d6444a3167d2881970b6f80a5036a9e59b6f5b2e9fd5af5f"
+  }
+}

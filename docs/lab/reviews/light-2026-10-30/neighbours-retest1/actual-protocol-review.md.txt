@@ -1,0 +1,54 @@
+# Neighbours first fixed retest actual protocol audit
+
+Qualified actual collection:5current engineeringPASS reports and10valid actualstops. Eight eligible-voluntary unfinished stops,oneBUDGET andoneTOOL; noending/cut. Rootqualification/release remains.
+
+| Tester | History stdout | Phone rawstop | Desktop rawstop | Current pass |
+|---|---:|---|---|---|
+| rosa | 3769/3769 | 89.356 CONFUSED | 43.681 TASTE | true |
+| mei | 1643/1643 | 75.681 BORED | 119.14 BUDGET | true |
+| emre | 1661/1661 | 137.714 BORED | 117.306 BORED | true |
+| nia | 2190/2190 | 87.943 BORED | 89.329 BORED | true |
+| laleh | 1/1 | 78.925 CONFUSED | 77.427 TOOL | true |
+
+## Confirmed
+
+- Actual native90146EXIT0/PID54973/birth1793540191.004796 matches actual identity,numeric exit,CPU receipt and underlying physical evidence. Root closure451sampled identities absent,5profiles absent,11ports recordedBIND-free,currenttaskcwd0unknown0. These are sampled returned root observations,not universal unseen-process proof or fresh reviewer probes.
+- All5 newcurrent completionsPASS,tester0/drivers[0,0],no controllercut/interruption/errors,within budget/profile removed. All5 reports match final agent-message bytes after trailing-newline normalization. Offline finalizer creates5eligible reports/10valid actual stops after physicalreturn.
+- Eight stops satisfy voluntary criterion and are unfinished. Mei desktop119.140BUDGET and Laleh desktop77.427TOOL remain excluded from voluntary counts. No FINISHED flag,actualending,automaticceiling or controllercut is recorded. A completed engineering run does not erase stop qualifiers.
+- Literal history stdout covers3769/1643/1661/2190/1 lines entirely before firstopen. Rosa/Mei/Emre follow-up range reads retained after truncated outputs. Direct model receipt/comprehension still unverified; inherited historical unread/uncertain ranges are not retroactively repaired.
+- Every successful raw diary reaction appears literally in report; ratings and exact stop words retained inJSON. Seven1ms rawwall/manuscript differences retained unnormalized; all manuscript timestamps for those differences equal returned driver response times. Nia phone rawstop87.943 versus report87.944.
+- Sixteen quicklabels return matching pressed controls;16CloseFeedback requests return visible nonempty background with Feedback controls/dialog absent. No observed Feedback typing,Submit,recording or consent-setting action. Close returns ordinary game view,not proof of save/backend/feedbackreceipt.
+- Saved images meet5manual+1automatic perdevice. No identifiable completed returned image-tool event exists in retained streams; views/perception/layout/screenshot-derived point claims remain UNVERIFIABLE. Release pre/post pins holdf6a0dcc/HF3.0/appneighbours@1. Normal pinnedSDK may consume/remove agentquery; no executed network/backend receipt inferred.
+- Rosa/Mei/Emre/Nia same originalNeighbours cohort areRETURN; Laleh fictionalneverHF cold1line. This is first fixed retest under priorcap,not newinitial collection/HF4candidate/pairedcausal proof/capreset. Sourcebound ownhistoryH1/NQ1 and earlier Well/Small/Murmur/Rope/Stairwell qualifiers remain through exact22 frozen inputs. Crossgame report verdicts are not currenttarget outcomes.
+
+## Qualifications
+
+- Mei manuscript calls desktop stop voluntary,while raw want_quit109.190 and stop119.140 both explicitlyBUDGET. Preserve her own wording and the exactBUDGET label; classify outside protocol voluntary by originalcriterion. No automaticceiling,imposed restart,controllerbudgetexhaustion or gameplayending follows from thatlabel. Her phone75.681BORED remains separate.
+- Laleh desktopTOOL: wall21 duplicate2enabled Help repair hall controls gave points858,145/998,843; after scrolling/screenshots/ArrowDown and retry,wall29 again duplicate2points858,105/998,803. Native input ambiguity afterretry supports methodTOOL stop,not proof ordinary mouse cannot use the action or a productlayoutcause. One successfulArrowDown keycall occurred; key acknowledgment is not controlactivation proof.
+- Laleh phone quote failure transcript39 exited at shell before curl; corrected confusionlabel41 succeeded. Her phone78.925CONFUSED is voluntary and independent of later desktopTOOL. All other transcriptcommands parsed as assigned reads/curls; no project/source/peerfile read observed.
+- Actual raw driver errors retained: Rosa stale Nora phonewall11 and disabled startup-tools desktopwall8; Mei desktop absentCover-hourwall16/disabledtoolswall33; Emre phone absentYourwork32/coveredNora42 and desktop absentHelptown23; Nia desktop staleNora7/8/staleTalk12 and phone staleSam7; Laleh phone staleNora36 and desktop absentYourwork16/duplicateHelp21/29. Later successes do not erase them; no specific productcause inferred.
+- Rosa desktop automaticfirst-minute60.065 follows voluntaryTASTE43.681; no other row follows stop. This is not continuedplay or diarycompliance. Other9 devices have firstminute diarylogs atvalid>=60 thresholds: Rosa65.270,Mei66.161/60.141,Emre60.553/61.687,Nia61.718/62.456,Laleh60.640/63.510. Allstops<180,no pulses due. No forcedclockwaiting established.
+- Mei says two wait calls returned no text; actual completed commandaggregated outputs are nonempty parsedJSON. Treat initial perceived delivery delay separately from final returned evidence,not proof driverfailure or noinput/noadvance.
+- Emre original desktop51.313 bus-caused-shorter-trip statement is explicitly corrected in61.687 diary/report: two unmatched fresh towns do not identifycausal bus effect. Retain both statement/correction and sourcecomparison possible-outcomes limit; no pairedcausal claim.
+- Nia phone10.628 rememberedSam before a visibleSam cue; manuscript correctly qualifies it as intention,not new cue-basedrecognition. Rosa crossgame Ece identity remains uncertain; no identity equivalence established by name/role. Laleh only sameeveningphone memory,not preexistingHFexperience.
+- Rosa concept counts are contemporaneous estimates with explicitmenu15count/list16mismatch; Feedback countednine while listedconcept grouping is subjective. No exact exhaustiveper-screen counting/cognitive measure certified; no rereadtrigger observed.
+- Browser logs retain display and shutdownGPU/network/rendezvous diagnostics; empty testerstderr/driver0 does not erase them. Cause and userimpact unestablished. Native driver logs retain fork-unverified; separatelyreviewed exactinstrument binding is distinct.
+- Inherited MeiMurmurNQ1rawtime/pulseuncertainty,NiaWelloriginalpassfalseinspection-only and selectedFREE historical limits,RosaoldWell201–3800receiptuncertainty and priorChildnonvoluntaryTOOL/recovery separation remain historical qualifications. All5currentNeighbours passes use no oldexception.
+
+## Rawwall versus manuscript diary timestamps
+
+| Tester/device | Kind | Rawwall | Manuscript | Driverresponse |
+|---|---|---:|---:|---:|
+| rosa/phone | want_quit | 79.502 | 79.503 | 79.503 |
+| rosa/desktop | note | 5.625 | 5.626 | 5.626 |
+| rosa/desktop | want_quit | 32.876 | 32.877 | 32.877 |
+| nia/desktop | want_quit | 66.037 | 66.038 | 66.038 |
+| nia/phone | stop | 87.943 | 87.944 | 87.944 |
+| laleh/phone | note | 44.81 | 44.811 | 44.811 |
+| laleh/desktop | note | 5.235 | 5.236 | 5.236 |
+
+Read all5full report manuscripts; independently parsed full completed transcripts/command outputs and all wallclock/completion/driver/browser logs; compared literal history stdout and all rawdiary words/times with manuscripts/responses. Fully read actualnumericexit/CPUreceipt and underlying physicalevidence. Finalizerrows and22frozen input hashes rechecked. Prior independentownhistory/H1/NQ1review transfers through byte-identity; no full oldarchive reread. PNGs hashed without rendering.
+
+No fresh runtime/resource/source/live/network/CPUprobe by reviewer. Root reported freshfinalrelease unchanged; this audit independently confirms actualretained pre/post pins only,not a separatelylocated finalmarker artifact. No identifiableimage-event perception proof,fullnetwork/backend/consent/save/owneracceptance or targetfixverdict. Schema alone is not proof; actualbound returned receipts inspected.
+
+Only theseprivate0600auditfiles written. No repository/worktree touched;git worktree list is not applicable.

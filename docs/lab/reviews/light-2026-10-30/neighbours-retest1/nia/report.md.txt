@@ -1,0 +1,50 @@
+I would come back another evening if I could reach a personal conversation without chasing someone or waiting for their work to finish; I would not come back tonight or leave the game running.
+
+**Ranked asks**
+
+1. Help me reach a personal conversation when someone is busy or moving. Missing Nora and finding Sam’s notebook question blocked are the reasons I stopped. This is the blocking ask I reached.
+2. Give Sam’s alternative a more personal voice. I liked that he offered the kitchen instead, but the answer sounded like a task label.
+
+I’m Nia Okafor, 19, a Lagos design student returning to **Neighbours**. I played two fresh, independent games at the assigned agent-marked URL, with no imported save or matched seed: desktop first, then phone on my other device the same evening. Recording and consent stayed at their defaults.
+
+I read supplied own-history lines **1–2190**. The last line was **“End of supplied own history.”** Unread ranges: **none**. The history is selected, not a complete archive.
+
+- **Desktop:** 1280×800, keyboard and mouse. Opened at **0.305 s**; stopped at **89.329 s**, BORED, at Day 1 12:00. I used mouse clicks and no keyboard key.
+- **Phone:** 360×690, touch. Opened at **0.284 s**; stopped at **87.944 s**, BORED, at Day 1 10:00.
+
+The flooded-hall opening brought back my last visit and my attempt to reach Nora’s handle conversation. On desktop I got to the hall, but Nora left just before I could talk. On phone I reached Sam, but his notebook question again asked me to wait until he finished work. His alternative to inspecting timber was understandable, although familiar and flatly worded.
+
+**Diary — exact logged reactions**
+
+Desktop:
+
+- **9.640 s — note, engagement 4:** “Mill Bridge and the flooded hall bring back chasing Nora for the handle conversation, fairly sure. I want to see if I can talk to her this time.”
+- **57.980 s — note, engagement 2, Day 1 10:45:** “I got to the hall but Nora left just as I tried to talk. That chase is familiar and already tiring. Her promise to repair the doors is clearly named and marked kept.”
+- **61.718 s — first_minute, engagement 2, Day 1 10:45:** “I wanted Nora and reached the hall, but she left before I could talk. The walk and her destination are clear; I still have not reached the handle question. Chasing again feels like last time.”
+- **66.038 s — want_quit, BORED, engagement 2, Day 1 10:45:** “I would leave. I came back for a conversation and missed Nora again; I do not want to follow her across town a second time.”
+- **89.329 s — stop, BORED, engagement 2, Day 1 12:00:** “Stopping on desktop. I missed Nora as she left and do not want to chase her again. Her door promise was clearly shown, but I never reached a conversation. I would close it.”
+
+Phone:
+
+- **10.628 s — note, engagement 3:** “Phone now. I remember Sam offering the kitchen instead of timber, fairly sure. I want to try talking to him again.”
+- **50.164 s — note, engagement 2, Day 1 09:45:** “The testing notebook is familiar, fairly sure, and blocked while he works again. I understand the reason but I came to hear him, not just assign work.”
+- **62.456 s — first_minute, engagement 3, Day 1 09:45:** “Sam is reachable and the walk was clear. The notebook question again says to wait; he offers kitchen work instead of inspecting timber, which I remember from last time. The alternative makes sense but sounds like a task label.”
+- **71.361 s — want_quit, BORED, engagement 2, Day 1 09:45:** “I would stop. I got the same alternative and the same busy notebook answer, and I do not want to wait around for another chance tonight.”
+- **87.944 s — stop, BORED, engagement 2, Day 1 10:00:** “Stopping on phone. Sam offered the familiar kitchen alternative, but the notebook conversation was blocked again. The page now says no hour is owed, which answers my earlier promise confusion. I would close it.”
+
+Both quit wishes persisted. Neither game ended. Both sessions stopped before the **180-second pulse**, so pulses and later checkpoints were untested. The hall was still shown as closed in the play I reached.
+
+The walking instructions and destinations were clear. Nora’s panel named her promise to repair the hall doors, its deadline and its kept status. Sam’s notebook response explained that he was busy and suggested visiting during a break. When I asked him to inspect the timber, he offered kitchen work instead; after I accepted, the later record said he continued an activity already in progress.
+
+On the phone, after I chose **Ask** and accepted Sam’s alternative, the next-step text said **“No hour is owed”** and that I had no recorded promise to keep. That answered the specific confusion from my earlier phone visit, when I saw a prompt to keep an hour-long promise after a similar choice. I did not encounter Nora’s earlier yes and later inability this time, so I cannot assess that earlier concern. These were fresh, unmatched games, and I cannot attribute differences to a particular change.
+
+Recognition came from visible cues. At **9.640 s**, Mill Bridge and the flooded hall recalled chasing Nora for the handle conversation; I was fairly sure. At **50.164 s**, the testing-notebook option recalled Sam’s blocked question, also fairly sure. His kitchen alternative at **62.456 s** recalled the alternative I received last time. I did not reach the handle cue this visit, and recorded no other recognition. My phone opening note at **10.628 s** recalled Sam, but it preceded a visible Sam cue on that device; it was an intention, not a new cue-based recognition.
+
+**Screenshots actually viewed**
+
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/desktop/a-001.png), **3.551 s:** a wide cream page with a separate Mill Bridge title banner, opening text and red Enter button. The opening text was readable in this image.
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/phone/b-001.png), **3.883 s:** the title banner, opening text, Enter button and recording strip fit in the viewport.
+
+I viewed no gameplay screenshot on either device, so my gameplay observations come from the driver’s visible text and controls. Several early person controls changed as the town advanced: two Nora taps on desktop and the first Sam tap on phone became stale. The current controls worked; Nora’s **Talk** control then became stale because she was travelling. I did not establish an inoperable enabled control.
+
+At each stop I opened Feedback, chose **“I'm stopping”**, saw it marked pressed and closed Feedback. I typed no note, pressed no Submit, and claim no feedback receipt. I made no worktree or process; the coordinator owns the drivers and browser cleanup.

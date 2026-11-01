@@ -1,0 +1,71 @@
+I would return voluntarily another evening to try an active roof plan, but I would not leave the game running or play again tonight.
+
+**Ranked asks**
+
+1. Make Yusuf’s speech-dismiss control usable. On desktop it was covered on my first attempt and gone by the retry; I could not establish that I dismissed it. This was the blocking ask I reached.
+2. Explain why “interest in something unfamiliar” means Tariq would work under protest. The wording is more readable than the reason I saw on my previous visit, but I still cannot use it to understand his objection.
+3. Explain the “This chapter could not be saved” message at the ending. I did not retry it, so I do not know whether the save could succeed.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was a return visit to Twice at the Well. I read the supplied own history through line **1614** before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The history is selected, not a complete archive.
+
+The sessions used separate fresh games at the supplied URL with the agent query retained. No save or seed was imported. Recording and consent stayed at their defaults.
+
+- **Desktop:** 1280×800, keyboard and mouse. Stopped at **37.277 seconds**, Day 1 06:48, under the assigned TOOL rule. I did not reach a voluntary stopping choice for that run.
+- **Phone:** 360×690, touch, same evening. Stopped at **380.710 seconds**, Day 3 05:00, after the game ended.
+
+On desktop, the opening goal was clear and familiar. I selected the earlier Day 2 12:00 preparation option because I remembered both roofs missing the deadline in my last Well run. Yusuf was already going to the house, but I asked him to build; he agreed. His speech dismissal interrupted the session.
+
+On the phone, I left the default preparation choice and gave no orders. Watching the Human roof catch up was satisfying, especially the moment when Yusuf and Tariq raised a beam together. Much of the session was still spent checking totals. At dawn both roofs had missed by one stage, both villages had met the meal goal, and all six people in each village lived. The report showed six Classic injuries and two Human injuries. It said Human and the “without you” comparison were the same run because I gave no orders.
+
+### Diary
+
+These are the logged reactions in order. Times are driver elapsed seconds. Engagement is included where I recorded it.
+
+**Desktop**
+
+- **4.647 s, note, engagement 4:** “The roof and twelve meals bring back my last Well run: both roofs missed the storm deadline. I want to order building earlier this time. The choice now shows preparation timing; I will try the earlier warning.”
+- **17.646 s, note, engagement 4:** “Yusuf was already going to the house, but I asked him to build early as planned. The panel now says one order is only a short task or stage, and gives the cooking threshold as 6 rising to 12. That makes the limits clearer.”
+- **27.645 s, want_quit, TOOL, engagement 3:** “Yusuf agreed and started building. The speech dismiss control was covered on my first attempt and had disappeared by the retry. I cannot establish that I dismissed it, so I stop under the tool rule.”
+- **37.277 s, stop, TOOL, engagement 3:** “I am stopping desktop because the speech dismiss control was covered, then gone at retry. Yusuf agreed to build, but I did not reach the storm or a voluntary verdict on this run. I would still like to try the earlier roof plan.”
+
+**Phone**
+
+- **4.509 s, note, engagement 4:** “The phone opening has the same goal and the title is partly covered by Show Human village, as I remember from my earlier Well phone visit. I will try this fresh village after the desktop interruption.”
+- A note about leaving Maryam cooking was requested while the driver was delayed; I did not receive its result or elapsed time, so I cannot establish whether it was logged.
+- **44.127 s, want_quit, TOOL, engagement 2:** “The phone driver has stopped returning visible results, so I cannot see what happened or continue my plan.”
+- **46.060 s, note, engagement 3:** “The driver returned again. My tool concern has passed; the roof has progressed to 3 on Human and 6 on Classic, with 7 Human meals. The cedar suggestion names a gain and injury risk, so I can weigh it.”
+- **51.597 s, note, engagement 3:** “Classic Yusuf is recovering after a beam fell; Human Yusuf is building and the next stage is nearly done. The panel tells me a concrete cause for his recovery. I leave him working.”
+- **67.615 s, first_minute, engagement 3, Day 1 10:49:** “The goal is clear and the phone lets me inspect both villages. Human roof is 4, Classic 6, and Human meals fell from 7 to 4 while people ate. The food threshold explanation helps; I cannot yet attribute the whole fall. I am mostly watching automatic work.”
+- **102.529 s, note, engagement 3:** “Human roof caught up to 7 and meals rose to 23. Yusuf and Tariq raised a beam together. It is satisfying to see the work move without interrupting them, though I am still watching more than deciding.”
+- **144.569 s, note, engagement 3:** “The forest suggestion now says under protest: interest in something unfamiliar. That reads better than the curiosity:unknown wording I saw last time, but I still do not understand why curiosity means protest. Yusuf is nearly done with stage eight, so I leave him.”
+- **189.879 s, pulse, engagement 3, Day 2 06:09:** “The night passed and Yusuf is building again. I like the visible work and clear food threshold, but I am mostly checking totals. I want to see the warning and whether the roof finishes.”
+- **272.421 s, note, engagement 3:** “Both roofs are nine of ten and the warning says they are at risk. People are sheltering or praying. I remember both roofs missing last time; I will not pull people out into the storm for the last stage.”
+- **307.810 s, note, engagement 3:** “Both roofs failed at the deadline, meals met. Opening the injury now says Idris was hurt in the storm out in the open. That answers the kind of question I had about Samira last time. The current roof can advance after the deadline without changing the failed result.”
+- **374.055 s, want_quit, FINISHED, engagement 3, Day 3 05:00:** “The dawn report ends the run: both roofs failed at nine, meals met, everyone lived, with six Classic injuries and two Human. I got the storm outcome and am done tonight. The chapter could not be saved message appeared again.”
+- **380.710 s, stop, FINISHED, engagement 3, Day 3 05:00:** “I am stopping at dawn on the phone. The roof missed by one stage again, everyone lived, and the injury notice gave a cause. I enjoyed watching the beam go up, but I would try an active roof plan another evening rather than leave it running.”
+
+The phone’s first TOOL quit wish passed when the driver returned. The later FINISHED wish persisted. The desktop ended before the 60-second first-minute checkpoint and the 180-second pulse; both are untested there. The phone reached one valid first-minute and one pulse. I stopped before a second pulse.
+
+### Clarity and comparison with my earlier Well visit
+
+The person panel now states that a building order requests a short task or stage, not a completed roof. It also gives the Human cooking offer threshold as six, rising to twelve at the chosen preparation time, and says it is neither a capacity nor a guarantee. Those details made the food and building limits easier to understand.
+
+At **144.569 s on phone**, the visible Tariq-to-Forest suggestion prompted a high-confidence recognition of my earlier “Under protest: curiosity:unknown” encounter. My words are in the diary above. The replacement wording is clearer English, but the connection between interest and protest remained unclear to me.
+
+At **307.810 s**, opening the Classic Idris injury notice prompted a high-confidence comparison with my earlier attempt to understand Samira’s injury. This notice gave a coarse cause: hurt in the storm while out in the open. I cannot say whether every injury notice now gives the same detail.
+
+The phone’s nine-of-ten warning at **272.421 s** recalled the previous desktop’s two missed roofs, also with high confidence. These were fresh games, so I cannot attribute the similar outcome to a particular change. I made no further recognition claim from the other games in my supplied history.
+
+The ending’s save message also appeared in my earlier Well report, where I did not investigate it. I did not press **Try again** this time either. It did not prevent me from seeing the ending.
+
+### Device behavior and feedback
+
+I actually viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/desktop/a-001.png) immediately after opening. It showed the two village maps and totals beside the opening goal and preparation choices.
+
+I actually viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/phone/b-001.png) immediately after opening. The goal and start button were readable; **Show Human village** covered part of the title. A later phone screenshot was requested during the driver delay, but I received no completion and did not view it. Other phone gameplay and the ending above are from the driver’s visible text.
+
+On desktop, the first dismissal attempt returned “covered or off screen.” At retry the control was no longer present; the speech had disappeared, but I cannot say why. Earlier, a Yusuf activity label became stale and I used the current label successfully. On phone, some changing suggestions and activity labels also became stale. The delayed phone response recovered, and I continued.
+
+For desktop stopping, I opened Feedback, selected **“I’m stopping”**, saw it pressed, and used Back. On phone, when the protest reason confused me, I selected **“I’m confused”**, saw it pressed, and went Back. At the ending I selected **“I’m stopping”**, saw it pressed, and went Back. I typed no note and submitted nothing.
+
+I owned no driver, browser, server, branch or worktree; the coordinator owns driver cleanup. I touched no repository, so there is no worktree listing to report.

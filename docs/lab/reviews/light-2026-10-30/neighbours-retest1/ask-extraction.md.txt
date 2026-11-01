@@ -1,0 +1,89 @@
+# Neighbours first fixed retest — literal extraction
+
+Private extraction; protocol review and root triage pending. No IDs, routing, targets or verdicts assigned.
+
+## Rosa
+
+Return: I would return voluntarily another evening to see whether the hall reopens, if I can tell what happened when I accept a neighbour’s offer; I would close it now, not leave it running.
+
+Final agent message and report are byte-identical. Report SHA-256 `810b08be8a7881837e27bd94e71fa9d9068200ed4e26da8a7baf25f9af42cbff`; transcript SHA-256 `1c8d6ec7fde448f5f22a17ba8c776af9211ff1833a09faab860f24c3c8523fd1`, item `item_78`.
+
+1. **Show what changed when I accept a suggested alternative.** Ece offered to repair the hall after her visit. After I accepted and asked again, the same offer and waiting status remained. This was the question that stopped me on the phone.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/report.md:5; Unicode [205, 446), UTF-8 [207, 448); terminator '\n'.
+
+2. Remove the previous person’s response when I move to another conversation. Nora’s message about finishing work remained visible when I opened Ece’s conversation.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/report.md:6; Unicode [447, 611), UTF-8 [449, 619); terminator '\n'.
+
+3. Tell me how far Skip will advance before I press it. This remains my question from the earlier Neighbours visit; I did not use Skip this time.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/report.md:7; Unicode [612, 757), UTF-8 [620, 765); terminator '\n'.
+
+## Mei
+
+Return: I would return another evening on the laptop if my town were saved, to see the hall progress; I would not leave it running.
+
+Final agent message and report are byte-identical. Report SHA-256 `930a3f3a7de3f770acf695e4b63dd7b418eadf8669dcf2ee3b6724fe56b825f3`; transcript SHA-256 `3f21159db7eade9c7aff3541e16a27104ea3b2ca2c1685a81ca48ae7ffd750e5`, item `item_80`.
+
+1. Explain how “I will do it” relates to “waiting for a later decision.” Ece’s answer and the recorded status left me unsure what she had committed to.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/report.md:5; Unicode [142, 293), UTF-8 [142, 303); terminator '\n'.
+
+2. Say whether a released hour can become owed again if the neighbour later does what I requested. The current release was clear; its future scope was not.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/report.md:6; Unicode [294, 449), UTF-8 [304, 459); terminator '\n'.
+
+3. Make the phone conversation form easier to survey. The choices extend below the screen while the Ask button stays fixed at the bottom.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/report.md:7; Unicode [450, 587), UTF-8 [460, 597); terminator '\n'.
+
+## Emre
+
+Return: I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight.
+
+Final agent message and report are byte-identical. Report SHA-256 `d4bcdb6156e6484b6aaf09555a9d588f48f2c928fe370112bb6e114091bba80d`; transcript SHA-256 `057f78b6ec19232ccb29d3c37ca3721f69caafdf28cd0fae57527ba4be80f0d5`, item `item_120`.
+
+1. Confirm an accepted alternative immediately in the conversation. On phone, Nora’s offer and the waiting status remained after I accepted; the journal later confirmed the acceptance.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/report.md:5; Unicode [154, 338), UTF-8 [154, 340); terminator '\n'.
+
+2. Show what remains to make the hall safe and what I can usefully do next. My hour on the timber had a concrete result, but it still felt damp.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/report.md:6; Unicode [339, 483), UTF-8 [341, 485); terminator '\n'.
+
+3. Show the tool count before and after lending, including tools in use. The comparison showed a possible future with six available; the later live purchase said three were available, and I could not reconcile the figures.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/report.md:7; Unicode [484, 706), UTF-8 [486, 708); terminator '\n'.
+
+## Nia
+
+Return: I would come back another evening if I could reach a personal conversation without chasing someone or waiting for their work to finish; I would not come back tonight or leave the game running.
+
+Final agent message and report are byte-identical. Report SHA-256 `e5a42de303e2e510f77fefbd9bc151700b82eab9a15025d3822b63cbd5082b1b`; transcript SHA-256 `1b31c7f9713e8ae4b307b8eb9a64cd07aed30f3194ed586de85242b9f13522bb`, item `item_58`.
+
+1. Help me reach a personal conversation when someone is busy or moving. Missing Nora and finding Sam’s notebook question blocked are the reasons I stopped. This is the blocking ask I reached.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/report.md:5; Unicode [211, 403), UTF-8 [211, 405); terminator '\n'.
+
+2. Give Sam’s alternative a more personal voice. I liked that he offered the kitchen instead, but the answer sounded like a task label.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/report.md:6; Unicode [404, 539), UTF-8 [406, 543); terminator '\n'.
+
+## Laleh
+
+Return: I would not voluntarily return yet; I would leave the game rather than leave it running.
+
+Final agent message and report are byte-identical. Report SHA-256 `b90926c5c34b647b48667a60eb8eb17ee4786aa4057cdee5f7ddc42682f8ac50`; transcript SHA-256 `7232e11673efe7c44283d73f515b0edeb2ced1f561a3cbe54d710811d56a9d9d`, item `item_79`.
+
+1. Show me how to start work I have promised, especially from the promise reminder or the hall. This was the blocking ask I reached on the phone.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/laleh/report.md:5; Unicode [111, 256), UTF-8 [111, 256); terminator '\n'.
+
+2. Make “Your work” easier to find and distinguish it from offering work in exchange for a request.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/laleh/report.md:6; Unicode [257, 356), UTF-8 [257, 360); terminator '\n'.
+
+3. Make the conversation choices easier to take in at once; I struggled to see why I should redirect Nora while she was already repairing the hall.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/laleh/report.md:7; Unicode [357, 504), UTF-8 [361, 508); terminator '\n'.

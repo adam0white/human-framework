@@ -1,0 +1,258 @@
+{
+  "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-actual-protocol-review.json",
+  "sourceSha256": "b289fdefd0d22447ff68341bba2656bb37c7c497119ddf21562b038928bd7a33",
+  "players": [
+    {
+      "tester": "rosa",
+      "sessions": {
+        "phone": {
+          "stopRow": 39,
+          "stop": {
+            "t": "2026-11-01T13:38:51.115Z",
+            "elapsed_s": 89.356,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop on the phone. I liked Nora working and Ece having her own visit, but I cannot tell whether accepting her later offer did anything. I would close it and try the larger screen.",
+            "game_clock": "Day 1 09:00",
+            "engagement": 3,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": true,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        },
+        "desktop": {
+          "stopRow": 17,
+          "stop": {
+            "t": "2026-11-01T13:39:37.711Z",
+            "elapsed_s": 43.681,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop on the big screen. The title is clear and the tools gave a clear result again. I would return another evening to see the hall, and close it now.",
+            "game_clock": "Day 1 10:45",
+            "engagement": 4,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": true,
+          "actualEndingEstablished": false,
+          "afterStopRows": [
+            {
+              "t": "2026-11-01T13:39:54.095Z",
+              "elapsed_s": 60.065,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 62,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tester": "mei",
+      "sessions": {
+        "desktop": {
+          "stopRow": 41,
+          "stop": {
+            "t": "2026-11-01T13:42:22.329Z",
+            "elapsed_s": 119.14,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on Day 1 at 13:30. Nora chose other work, the journal says my hour was released, and I lent three tools for one credit. I chose I am stopping and closed Feedback without typing or submitting. I would return to a saved town.",
+            "game_clock": "Day 1 13:30",
+            "engagement": 4,
+            "reason": "BUDGET",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": false,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        },
+        "phone": {
+          "stopRow": 31,
+          "stop": {
+            "t": "2026-11-01T13:43:40.328Z",
+            "elapsed_s": 75.681,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on the phone at Day 1 09:00. Ece showed me her rest map and acted on my request; I have already played the opening on the laptop tonight. I chose I am stopping and closed Feedback without typing or submitting.",
+            "game_clock": "Day 1 09:00",
+            "engagement": 3,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": true,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "emre",
+      "sessions": {
+        "phone": {
+          "stopRow": 60,
+          "stop": {
+            "t": "2026-11-01T13:46:45.068Z",
+            "elapsed_s": 137.714,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping the phone run after keeping my hour. The journal explained Nora’s later decision and the damp timber, but I am checking and skipping again. I would try the hall another evening, not leave it running.",
+            "game_clock": "Day 2 04:30",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": true,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        },
+        "desktop": {
+          "stopRow": 49,
+          "stop": {
+            "t": "2026-11-01T13:48:45.485Z",
+            "elapsed_s": 117.306,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping desktop at six of twelve repairs. The comparison and the bus gave me choices with stated costs, but I am back to checking and skipping. I would return another evening to see the hall open, not leave it running.",
+            "game_clock": "Day 2 05:15",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": true,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "nia",
+      "sessions": {
+        "desktop": {
+          "stopRow": 21,
+          "stop": {
+            "t": "2026-11-01T13:51:15.587Z",
+            "elapsed_s": 89.329,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on desktop. I missed Nora as she left and do not want to chase her again. Her door promise was clearly shown, but I never reached a conversation. I would close it.",
+            "game_clock": "Day 1 12:00",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": true,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        },
+        "phone": {
+          "stopRow": 26,
+          "stop": {
+            "t": "2026-11-01T13:52:47.452Z",
+            "elapsed_s": 87.943,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on phone. Sam offered the familiar kitchen alternative, but the notebook conversation was blocked again. The page now says no hour is owed, which answers my earlier promise confusion. I would close it.",
+            "game_clock": "Day 1 10:00",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": true,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "laleh",
+      "sessions": {
+        "phone": {
+          "stopRow": 44,
+          "stop": {
+            "t": "2026-11-01T13:54:33.786Z",
+            "elapsed_s": 78.925,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping with the promise unfinished because I cannot find how to do it.",
+            "game_clock": "Day 1 11:30",
+            "engagement": 2,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": true,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        },
+        "desktop": {
+          "stopRow": 35,
+          "stop": {
+            "t": "2026-11-01T13:55:53.414Z",
+            "elapsed_s": 77.427,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping here because I could not operate the work choice with this driver after retrying.",
+            "game_clock": "Day 1 09:30",
+            "engagement": 2,
+            "reason": "TOOL",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "stopCount": 1,
+          "eligibleVoluntaryUnderCriterion": false,
+          "actualEndingEstablished": false,
+          "afterStopRows": []
+        }
+      }
+    }
+  ]
+}

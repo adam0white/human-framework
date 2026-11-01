@@ -1,0 +1,287 @@
+{
+  "status": "DRAFT extraction and dated inspection leads; protocol review and root triage pending. No packet, acceptance, or third ordinary panel. Two iterations complete.",
+  "offsetConvention": "Zero-based decoded Unicode codepoints and UTF-8 bytes; exclusive ends. Lines one-based.",
+  "ids": "F2991–F3002 allocated to the 12 literal asks; F3003–F3010 unused.",
+  "method": "Original session 24423 EXIT1 and Nia pass false persist; corrective resource return d5ba5d and remainder root return be5b3218. Remainder session 7938 EXIT0; Rosa and Mireya PASS. Unchanged finalizer: four eligible, Nia ineligible, ten stop candidates. Protocol review pending.",
+  "players": [
+    {
+      "tester": "maya",
+      "wouldReturn": {
+        "text": "I would not return voluntarily tonight; I might come back another evening if I could have a more personal conversation with Yusuf, including about Zehra and the timber token. I would not leave the villages running.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 214,
+        "byteStart": 0,
+        "byteEndExclusive": 214,
+        "sourceSha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357"
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Let me follow up with Yusuf about the timber token and Zehra when that thread comes up.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md",
+          "line": 5,
+          "unicodeStart": 233,
+          "unicodeEndExclusive": 323,
+          "byteStart": 233,
+          "byteEndExclusive": 323,
+          "sourceSha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357",
+          "id": "F2991",
+          "rank": 1,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Inspection lead; cause unknown."
+        },
+        {
+          "text": "2. Give Yusuf a more specific answer when he changes my request. “I adapted the advice” tells me the result, but leaves me wanting his reason.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md",
+          "line": 6,
+          "unicodeStart": 324,
+          "unicodeEndExclusive": 466,
+          "byteStart": 324,
+          "byteEndExclusive": 470,
+          "sourceSha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357",
+          "id": "F2992",
+          "rank": 2,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Inspection lead; cause unknown."
+        },
+        {
+          "text": "3. Make personal conversation easier to find among the construction and decision details.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md",
+          "line": 7,
+          "unicodeStart": 467,
+          "unicodeEndExclusive": 556,
+          "byteStart": 471,
+          "byteEndExclusive": 560,
+          "sourceSha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357",
+          "id": "F2993",
+          "rank": 3,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Inspection lead; cause unknown."
+        }
+      ]
+    },
+    {
+      "tester": "emre",
+      "wouldReturn": {
+        "text": "I would return voluntarily another evening to try an active roof plan, but I would not leave the game running or play again tonight.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 132,
+        "byteStart": 0,
+        "byteEndExclusive": 132,
+        "sourceSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d"
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Make Yusuf’s speech-dismiss control usable. On desktop it was covered on my first attempt and gone by the retry; I could not establish that I dismissed it. This was the blocking ask I reached.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md",
+          "line": 5,
+          "unicodeStart": 151,
+          "unicodeEndExclusive": 346,
+          "byteStart": 151,
+          "byteEndExclusive": 348,
+          "sourceSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+          "id": "F2994",
+          "rank": 1,
+          "proposedRoute": "fix:lab primary; fix:well secondary only if independently reproduced",
+          "proposedTarget": "2026-11-03",
+          "status": "Deferred",
+          "blocking": true,
+          "qualification": "Speech-dismiss appeared covered first, then absent; TOOL method limit. No proven product cause. Secondary fix:well only if independently reproduced."
+        },
+        {
+          "text": "2. Explain why “interest in something unfamiliar” means Tariq would work under protest. The wording is more readable than the reason I saw on my previous visit, but I still cannot use it to understand his objection.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md",
+          "line": 6,
+          "unicodeStart": 347,
+          "unicodeEndExclusive": 562,
+          "byteStart": 349,
+          "byteEndExclusive": 568,
+          "sourceSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+          "id": "F2995",
+          "rank": 2,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Inspection lead; cause unknown."
+        },
+        {
+          "text": "3. Explain the “This chapter could not be saved” message at the ending. I did not retry it, so I do not know whether the save could succeed.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md",
+          "line": 7,
+          "unicodeStart": 563,
+          "unicodeEndExclusive": 703,
+          "byteStart": 569,
+          "byteEndExclusive": 713,
+          "sourceSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+          "id": "F2996",
+          "rank": 3,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Save error at the actual ending; no retry and no save or backend cause established."
+        }
+      ]
+    },
+    {
+      "tester": "nia",
+      "wouldReturn": {
+        "text": "I would not return voluntarily tonight or plan another evening as it is; I like seeing people refuse, but the familiar generic replies and managing the villages through the storm do not pull me back.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/report.md",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 199,
+        "byteStart": 0,
+        "byteEndExclusive": 199,
+        "sourceSha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535"
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Give people specific reasons in their own voices. Maryam’s “duties to the others” remained vague, and Danyal’s “I adapted the advice” recalled Samira’s generic answer from my last visit. This is the blocking ask I reached: the replies and management together made me leave both sessions.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/report.md",
+          "line": 5,
+          "unicodeStart": 218,
+          "unicodeEndExclusive": 508,
+          "byteStart": 218,
+          "byteEndExclusive": 522,
+          "sourceSha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+          "id": "F2997",
+          "rank": 1,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-03",
+          "status": "Deferred",
+          "blocking": true,
+          "qualification": "Nia explicitly calls the replies and management together a blocker."
+        },
+        {
+          "text": "2. Show what an insistence actually cost when that information is available. The new explanation says no matching retained trust change is shown, but I still could not tell what happened to trust.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/report.md",
+          "line": 6,
+          "unicodeStart": 509,
+          "unicodeEndExclusive": 705,
+          "byteStart": 523,
+          "byteEndExclusive": 719,
+          "sourceSha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+          "id": "F2998",
+          "rank": 2,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Trust cost unknown; missing history is not established."
+        }
+      ]
+    },
+    {
+      "tester": "rosa",
+      "wouldReturn": {
+        "text": "I would return voluntarily if the game explained the cooking threshold in plain words; I would close it now rather than leave it running.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/report.md",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 137,
+        "byteStart": 0,
+        "byteEndExclusive": 137,
+        "sourceSha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b"
+      },
+      "rankedAsks": [
+        {
+          "text": "1. **Explain when Maryam will offer to cook and how those meals serve both ordinary eating and storm preparation.** “Offer threshold” stopped me on desktop.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/report.md",
+          "line": 5,
+          "unicodeStart": 155,
+          "unicodeEndExclusive": 311,
+          "byteStart": 155,
+          "byteEndExclusive": 315,
+          "sourceSha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b",
+          "id": "F2999",
+          "rank": 1,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-03",
+          "status": "Deferred",
+          "blocking": true,
+          "qualification": "Clarity remained an issue after two sentence rereads."
+        }
+      ]
+    },
+    {
+      "tester": "mireya",
+      "wouldReturn": {
+        "text": "I would not voluntarily return to Twice at the Well or leave it running; I wanted to meet the people, but managing their orders lost my interest.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/report.md",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 145,
+        "byteStart": 0,
+        "byteEndExclusive": 145,
+        "sourceSha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b"
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Show the reason an order could not happen beside its result. Samira’s Classic kitchen order said “could not”; I found “no grain or water” later on the map.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/report.md",
+          "line": 5,
+          "unicodeStart": 194,
+          "unicodeEndExclusive": 352,
+          "byteStart": 194,
+          "byteEndExclusive": 362,
+          "sourceSha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b",
+          "id": "F3000",
+          "rank": 1,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Inspection lead; cause unknown."
+        },
+        {
+          "text": "2. Give me a clearer sense of which action would matter now, especially when suggested or available work is already underway.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/report.md",
+          "line": 6,
+          "unicodeStart": 353,
+          "unicodeEndExclusive": 478,
+          "byteStart": 363,
+          "byteEndExclusive": 488,
+          "sourceSha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b",
+          "id": "F3001",
+          "rank": 2,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Inspection lead; cause unknown."
+        },
+        {
+          "text": "3. Shorten or fold away the repeated rules on the person screen so I can follow the people and their responses.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/report.md",
+          "line": 7,
+          "unicodeStart": 479,
+          "unicodeEndExclusive": 590,
+          "byteStart": 489,
+          "byteEndExclusive": 600,
+          "sourceSha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b",
+          "id": "F3002",
+          "rank": 3,
+          "proposedRoute": "fix:well inspection lead; cause unknown",
+          "proposedTarget": "2026-11-10",
+          "status": "Deferred",
+          "blocking": false,
+          "qualification": "Text repetition remains the literal ask; visual crowding is UNVERIFIABLE."
+        }
+      ]
+    }
+  ]
+}

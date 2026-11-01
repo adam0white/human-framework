@@ -1,0 +1,119 @@
+{
+  "qualifications": [
+    {
+      "id": "W1",
+      "qualification": "All image perception and screenshot-dependent layout claims remain UNVERIFIABLE: no identifiable returned image-tool events. Saved PNG quota is not a view receipt."
+    },
+    {
+      "id": "W2",
+      "qualification": "Literal completed-command stdout matches2244/1614/1991/3829/1 supplied history lines, not direct delivery or comprehension. Rosa explicitly leaves201–3800 receipt unverified and her concept counts retrospective. Inherited history limits remain. Nia/Rosa latest own Murmur reports and actual method qualifiers are byte-bound; no peer histories."
+    },
+    {
+      "id": "W3",
+      "qualification": "Original24423EXIT1/Nia passfalse cleanup exception remains. Completed tester0/drivers0 and report bytes are verified; root accepts Nia report as qualified inspection evidence only after corrective P1 returnd5ba and full P2 returnbe5b. Finalizer still counts four eligible, never five controllerPASS. Unknown five historical cwd occupants lack birth/exe/ownership; no cause/fix inferred. Cleanup failure is separate from her earlier actual voluntary game stops; no restart cut or tester refusal invented."
+    },
+    {
+      "id": "W4",
+      "qualification": "Maya/Rosa/Mireya malformed apostrophe shell calls failed before curl; corrected calls retained. Mireya invalid reason5.673 was rejected and successful note7.505 followed. State-changing control misses remain errors, not product-cause proof. Emre desktop and Rosa phone TOOL stops are nonvoluntary. Emre phone transient TOOL wish passed before continued play."
+    },
+    {
+      "id": "W5",
+      "qualification": "Automatic first-minute shots after stops on Maya phone/Nia phone/Emre desktop/Rosa phone/Mireya phone are not continued play or diary compliance. Mireya desktop quit52.233, automatic image60.081, stop62.202; no first-minute diary despite crossing60 in stopping-feedback sequence. Preserve qualified checkpoint noncompliance and untested actionable gameplay. Emre phone has actual67.615first-minute/189.879pulse; no forced later checkpoint."
+    },
+    {
+      "id": "W6",
+      "qualification": "Emre phone raw successful note44.126/engagement3 is omitted from manuscript because receipt/time were uncertain. Preserve both the raw words and receipt uncertainty. Several manuscript/raw timestamps differ by1ms (Maya18.469/18.468 and16.950/16.949; Emre4.647/4.646,51.597/51.596,374.055/374.054; Nia13.511/13.510; Mireya50.779/50.778). Do not normalize the original words or raw timestamps."
+    },
+    {
+      "id": "W7",
+      "qualification": "Quick labels returned pressed controls and Back was used. No Feedback typing/Submit or recording/consent changes observed. No full network guard/backend ingestion/feedback/save receipt proof. Emre dawn ending is independently supported by returned tally/end controls; failed chapter-save message was observed, Try again untested, cause unknown."
+    },
+    {
+      "id": "W8",
+      "qualification": "Same live26b/HF4.15 held through both epochs and final marker; prior11asset/immutableSDK/relevant-object proof stays bounded. Source/merge whole trees DIFFER. No independent full rebuild/fullassetgraph/font/visual acceptance or owner/player acceptance inferred. First finalizer noarg UsageEXIT1 is retained separately from correct bound invocationEXIT0 and original cleanupEXIT1."
+    }
+  ],
+  "rootReadScope": "Full five report manuscripts, full audit MD, JSON operative confirmations/unknowns/errors/prefix/history/controller fields and all10 actual stop/error/checkpoint records; Emre omitted raw44.126 note read separately. All129 evidence hashes verified. Root did not semantically reread every redundant command classification or every large JSON member; independent audit remains qualified evidence.",
+  "unknown": [
+    "No identifiable returned image-tool event in any transcript. View/perception requirements remain UNVERIFIABLE despite manuscript actually-viewed statements. No visual-layout acceptance inferred.",
+    "No full network guard or backend ingestion/feedback receipt proof. Agent query launch and static SDK consumption do not establish runtime network behavior.",
+    "Historical five cwd-only PIDs lack birth/executable/ownership proof. No cause or supervisor fix inferred.",
+    "Source and merge whole trees differ. Prior bounded relevant-object/assets/SDK proof remains bounded; no whole-tree equality or independent rebuild inferred."
+  ],
+  "prefixChecks": {
+    "maya": {
+      "fileCount": 20,
+      "matches": {
+        "brief.md": true,
+        "browser.log": true,
+        "completion.json": true,
+        "desktop/b-001.png": true,
+        "desktop/b-002.png": true,
+        "desktop/driver.out": true,
+        "desktop/release-start.json": true,
+        "desktop/wall-clock.jsonl": true,
+        "dispatch.json": true,
+        "history-source-map.json": true,
+        "own-history.md": true,
+        "phone/a-001.png": true,
+        "phone/a-002.png": true,
+        "phone/driver.out": true,
+        "phone/first-minute.png": true,
+        "phone/release-start.json": true,
+        "phone/wall-clock.jsonl": true,
+        "report.md": true,
+        "tester.stderr": true,
+        "transcript.jsonl": true
+      }
+    },
+    "emre": {
+      "fileCount": 20,
+      "matches": {
+        "brief.md": true,
+        "browser.log": true,
+        "completion.json": true,
+        "desktop/a-001.png": true,
+        "desktop/driver.out": true,
+        "desktop/first-minute.png": true,
+        "desktop/release-start.json": true,
+        "desktop/wall-clock.jsonl": true,
+        "dispatch.json": true,
+        "history-source-map.json": true,
+        "own-history.md": true,
+        "phone/b-001.png": true,
+        "phone/b-002.png": true,
+        "phone/driver.out": true,
+        "phone/first-minute.png": true,
+        "phone/release-start.json": true,
+        "phone/wall-clock.jsonl": true,
+        "report.md": true,
+        "tester.stderr": true,
+        "transcript.jsonl": true
+      }
+    },
+    "nia": {
+      "fileCount": 18,
+      "matches": {
+        "brief.md": true,
+        "browser.log": true,
+        "completion.json": true,
+        "desktop/b-001.png": true,
+        "desktop/driver.out": true,
+        "desktop/release-start.json": true,
+        "desktop/wall-clock.jsonl": true,
+        "dispatch.json": true,
+        "history-source-map.json": true,
+        "own-history.md": true,
+        "phone/a-001.png": true,
+        "phone/driver.out": true,
+        "phone/first-minute.png": true,
+        "phone/release-start.json": true,
+        "phone/wall-clock.jsonl": true,
+        "report.md": true,
+        "tester.stderr": true,
+        "transcript.jsonl": true
+      }
+    }
+  },
+  "inspectionOnly": true
+}

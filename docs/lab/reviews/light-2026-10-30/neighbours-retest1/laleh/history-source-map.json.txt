@@ -1,0 +1,4 @@
+{
+  "premise": "Fictional never-HF assigned premise; no own HF diary",
+  "historySha256": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d"
+}

@@ -1,0 +1,47 @@
+# Well second actual retest protocol review
+
+QUALIFIED. Four reports satisfy the unchanged engineering eligibility criterion. All ten devices have valid actual stop logs. Nia remains original controller FAIL and requires explicit root exception reconciliation for report use. This is not five controller PASS or full protocol compliance.
+
+| Tester | History stdout lines | Phone stop | Desktop stop | Original controller pass |
+|---|---:|---|---|---|
+| maya | 2244/2244 | 44.242 TASTE | 35.802 TASTE | True |
+| emre | 1614/1614 | 380.71 FINISHED | 37.277 TOOL | True |
+| nia | 1991/1991 | 59.775 TASTE | 39.327 TASTE | False |
+| rosa | 3829/3829 | 25.617 TOOL | 27.095 CONFUSED | True |
+| mireya | 1/1 | 59.718 BORED | 62.202 TASTE | True |
+
+## Confirmed within scope
+
+- Four original-criterion eligible reports; ten valid actual device stop records. Nia original pass false remains ineligible under unchanged finalizer.
+- Original native session24423 exit1 followed completed Maya/Emre/Nia tester returns; Rosa/Mireya were undispatched. Separate session7938 exit0 ran only Rosa/Mireya.
+- Corrective P1 return and full P2 root return retain original failure. P2 return binds actual exit and fresh CPU return,351 sampled identities absent,5 profiles absent,11 ports closed,current taskcwd0 unknown0.
+- Every supplied history line matches retained completed-command aggregated stdout before play; this is not proof of direct delivery or understanding.
+- All observed quick-label taps return matching pressed controls. No Feedback typing, Submit tap, recording toggle, key or select operation observed.
+- PNG count stays within five manual plus one automatic per device. Saved paths are not image-view receipts.
+- Emre phone FINISHED is supported by returned dawn ending tally and replay controls, including chapter-save-failure message. Other sessions unfinished; TOOL desktop Emre and phone Rosa are nonvoluntary. No BUDGET final stops.
+- All report bodies match their final agent-message bytes after trailing-newline normalization. All ten stop logs have original reasons, engagement ratings and exact words retained in JSON.
+- Nia and Rosa latest own Murmur reports plus separate method qualifiers are present and hash-match supplied byte ranges. Maya/Emre have no Murmur2 segment; no requirement inferred beyond actually supplied history.
+
+## Errors and qualifications
+
+- Malformed shell quoting: Maya transcript74,Rosa65,Mireya38, all failed before assigned curl request; corrected calls followed.
+- Mireya phone invalid-reason log5.673 is rejected; successful equivalent note7.505 retained.
+- Emre transient phone tool-return uncertainty passed before continued play; failed/delayed calls do not prove no input or product cause. Emre27.645 desktop TOOL wish persists; phone44.127 TOOL wish passes.
+- Mireya manuscript want_quit50.779 differs from wall-clock50.778 by0.001s. Preserve raw timestamp; no substantive behavior difference.
+- Mireya desktop crossed60s in stopping-feedback sequence (quit52.233, automatic shot60.081,stop62.202); no first_minute diary log. Treat as qualified checkpoint noncompliance/untested actionable gameplay, never blanket compliance.
+- Rosa explicitly cannot establish receipt of history201-3800 despite literal stdout coverage. Her concept counts are retrospective estimates; contemporaneous per-screen counting not established.
+- First no-argument finalizer Usage exit1 was invocation failure before audit body; subsequent correctly bound invocation exit0 does not erase it. Original cleanup exit1 is separate.
+- Automatic first-minute shots after stops: Maya phone,Nia phone,Emre desktop,Rosa phone,Mireya phone. These are not continued play or diary compliance.
+
+- Emre phone wall-clock row13 contains a successful note at44.126 (engagement3) about leaving Maryam cooking; manuscript says result/time not received and omits its exact words. This is a literal diary-report omission qualified by model receipt uncertainty, not proof no note was logged.
+
+## Unknown
+
+- No identifiable returned image-tool event in any transcript. View/perception requirements remain UNVERIFIABLE despite manuscript actually-viewed statements. No visual-layout acceptance inferred.
+- No full network guard or backend ingestion/feedback receipt proof. Agent query launch and static SDK consumption do not establish runtime network behavior.
+- Historical five cwd-only PIDs lack birth/executable/ownership proof. No cause or supervisor fix inferred.
+- Source and merge whole trees differ. Prior bounded relevant-object/assets/SDK proof remains bounded; no whole-tree equality or independent rebuild inferred.
+
+The JSON records exact SHA256 for every reviewed cohort file, bound controller/finalizer/closure evidence, all diary ratings and stop words, every command classification, errors, checkpoints, PNG quotas and immutable-prefix comparisons. All 58 original-prefix files still match. No report wording or original receipt was edited. No release, player acceptance or all-asks-fixed conclusion follows.
+
+No runtime resources, worktrees, branches or screenshots were created. No repository was touched; git worktree list is not applicable.

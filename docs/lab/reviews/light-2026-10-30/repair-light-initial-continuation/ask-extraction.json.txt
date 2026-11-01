@@ -1,0 +1,292 @@
+{
+  "status": "DRAFT literal extraction only; root triage and protocol qualification pending",
+  "scope": "Partial initial collection continuation on later build; not same-four retest or iteration-cap reset. No IDs, blocking or causal adjudication. F1473–F1487 remain as separately recorded; this extraction does not adjudicate them.",
+  "offsetConvention": "Zero-based decoded Unicode codepoints and UTF-8 bytes, exclusive ends; line one-based. Text offsets exclude original line terminator; separate line-end offsets and sourceLineTerminator preserve it.",
+  "testerLedgerRows": [
+    {
+      "tester": "maya",
+      "returnSentence": {
+        "text": "I would not return voluntarily tonight; I would come back another evening to hear Nora’s answer about the gear if I knew when I could ask her. I would not leave it running.",
+        "sourceLineTerminator": "\n",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/report.md",
+        "sourceSha256": "ee0673b52ac3e535b522dd64c0aa40f11f22599035d1dcb351c849868f68b71d",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 172,
+        "utf8Start": 0,
+        "utf8EndExclusive": 174,
+        "unicodeLineEndExclusive": 173,
+        "utf8LineEndExclusive": 175
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Tell me when I can ask Nora about the gear, or let me leave the question for her to consider. I found the specific question I wanted, but she was unavailable and I could not tell how to catch her.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/report.md",
+          "sourceSha256": "ee0673b52ac3e535b522dd64c0aa40f11f22599035d1dcb351c849868f68b71d",
+          "line": 5,
+          "unicodeStart": 191,
+          "unicodeEndExclusive": 390,
+          "utf8Start": 193,
+          "utf8EndExclusive": 392,
+          "unicodeLineEndExclusive": 391,
+          "utf8LineEndExclusive": 393,
+          "rank": 1,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        },
+        {
+          "text": "2. Make the music box card easier to reach on the desktop workboard. It sat below the fixed bottom bar until I scrolled.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/report.md",
+          "sourceSha256": "ee0673b52ac3e535b522dd64c0aa40f11f22599035d1dcb351c849868f68b71d",
+          "line": 6,
+          "unicodeStart": 391,
+          "unicodeEndExclusive": 511,
+          "utf8Start": 393,
+          "utf8EndExclusive": 513,
+          "unicodeLineEndExclusive": 512,
+          "utf8LineEndExclusive": 514,
+          "rank": 2,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        }
+      ]
+    },
+    {
+      "tester": "emre",
+      "returnSentence": {
+        "text": "I would return voluntarily another evening on desktop for the remaining jobs, and I would not leave it running.",
+        "sourceLineTerminator": "\n",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/report.md",
+        "sourceSha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 111,
+        "utf8Start": 0,
+        "utf8EndExclusive": 111,
+        "unicodeLineEndExclusive": 112,
+        "utf8LineEndExclusive": 112
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Set the meter to the new object’s required test condition, or draw my attention to the carried-over condition. Nora’s reading light needed “work harder,” but the meter still had “carry” selected from the lantern.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/report.md",
+          "sourceSha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd",
+          "line": 5,
+          "unicodeStart": 134,
+          "unicodeEndExclusive": 349,
+          "utf8Start": 134,
+          "utf8EndExclusive": 361,
+          "unicodeLineEndExclusive": 350,
+          "utf8LineEndExclusive": 362,
+          "rank": 1,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        },
+        {
+          "text": "2. Keep the cash-change explanation visible on later mornings. Day 2 clearly said no cost was taken; I did not reach a night when a cost was taken.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/report.md",
+          "sourceSha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd",
+          "line": 6,
+          "unicodeStart": 350,
+          "unicodeEndExclusive": 497,
+          "utf8Start": 362,
+          "utf8EndExclusive": 509,
+          "unicodeLineEndExclusive": 498,
+          "utf8LineEndExclusive": 510,
+          "rank": 2,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        },
+        {
+          "text": "3. Keep offering faults that need different reasoning. Diagnosing Nora’s contact was satisfying; the theatre’s ring setting was a puzzle I remembered solving before.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/report.md",
+          "sourceSha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd",
+          "line": 7,
+          "unicodeStart": 498,
+          "unicodeEndExclusive": 663,
+          "utf8Start": 510,
+          "utf8EndExclusive": 679,
+          "unicodeLineEndExclusive": 664,
+          "utf8LineEndExclusive": 680,
+          "rank": 3,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        }
+      ]
+    },
+    {
+      "tester": "nia",
+      "returnSentence": {
+        "text": "I would come back another evening to try more repairs and conversations, but I would not return again tonight or leave the game running.",
+        "sourceLineTerminator": "\n",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/report.md",
+        "sourceSha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 136,
+        "utf8Start": 0,
+        "utf8EndExclusive": 136,
+        "unicodeLineEndExclusive": 137,
+        "utf8LineEndExclusive": 137
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Give Nora’s repair conversation a more natural voice. I liked that she answered the specific proposal and remembered it on return; repeating the full object name made her answer sound formal.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/report.md",
+          "sourceSha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349",
+          "line": 5,
+          "unicodeStart": 152,
+          "unicodeEndExclusive": 346,
+          "utf8Start": 152,
+          "utf8EndExclusive": 348,
+          "unicodeLineEndExclusive": 347,
+          "utf8LineEndExclusive": 349,
+          "rank": 1,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        },
+        {
+          "text": "2. Keep giving owners specific responses to the repair I actually made. Nora’s agreed-gear return was the moment that made this visit feel worthwhile.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/report.md",
+          "sourceSha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349",
+          "line": 6,
+          "unicodeStart": 347,
+          "unicodeEndExclusive": 497,
+          "utf8Start": 349,
+          "utf8EndExclusive": 501,
+          "unicodeLineEndExclusive": 498,
+          "utf8LineEndExclusive": 502,
+          "rank": 2,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        }
+      ]
+    },
+    {
+      "tester": "rosa",
+      "returnSentence": {
+        "text": "I would return voluntarily another evening if the game helped me understand the meter reading and shortened the repair conversation; I would close it now, not leave it running.",
+        "sourceLineTerminator": "\n",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/report.md",
+        "sourceSha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 176,
+        "utf8Start": 0,
+        "utf8EndExclusive": 176,
+        "unicodeLineEndExclusive": 177,
+        "utf8LineEndExclusive": 177
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Explain beside the reading why **6.00 V across the switch** points to a fault. The reference helped once I found it on desktop.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/report.md",
+          "sourceSha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99",
+          "line": 5,
+          "unicodeStart": 199,
+          "unicodeEndExclusive": 329,
+          "utf8Start": 199,
+          "utf8EndExclusive": 329,
+          "unicodeLineEndExclusive": 330,
+          "utf8LineEndExclusive": 330,
+          "rank": 1,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        },
+        {
+          "text": "2. Explain “keep their plans” and “Personal acknowledgment is separate” in the conversation with Sam’s mother.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/report.md",
+          "sourceSha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99",
+          "line": 6,
+          "unicodeStart": 330,
+          "unicodeEndExclusive": 440,
+          "utf8Start": 330,
+          "utf8EndExclusive": 450,
+          "unicodeLineEndExclusive": 441,
+          "utf8LineEndExclusive": 451,
+          "rank": 2,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        },
+        {
+          "text": "3. Keep the first repair guide’s clear, one-step instructions. They helped me carry the lantern and place the probes.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/report.md",
+          "sourceSha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99",
+          "line": 7,
+          "unicodeStart": 441,
+          "unicodeEndExclusive": 558,
+          "utf8Start": 451,
+          "utf8EndExclusive": 570,
+          "unicodeLineEndExclusive": 559,
+          "utf8LineEndExclusive": 571,
+          "rank": 3,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        }
+      ]
+    },
+    {
+      "tester": "alma",
+      "returnSentence": {
+        "text": "I might return to the phone workshop, but I would not voluntarily restart the opening on the laptop; I would close the game rather than leave it running.",
+        "sourceLineTerminator": "\n",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/report.md",
+        "sourceSha256": "2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960",
+        "line": 1,
+        "unicodeStart": 0,
+        "unicodeEndExclusive": 153,
+        "utf8Start": 0,
+        "utf8EndExclusive": 153,
+        "unicodeLineEndExclusive": 154,
+        "utf8LineEndExclusive": 154
+      },
+      "rankedAsks": [
+        {
+          "text": "1. Help me understand what a meter reading means at the moment it identifies a fault. The lantern guide told me the switch was suspect, but I did not understand why.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/report.md",
+          "sourceSha256": "2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960",
+          "line": 5,
+          "unicodeStart": 176,
+          "unicodeEndExclusive": 341,
+          "utf8Start": 176,
+          "utf8EndExclusive": 341,
+          "unicodeLineEndExclusive": 342,
+          "utf8LineEndExclusive": 342,
+          "rank": 1,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        },
+        {
+          "text": "2. Make the first step for diagnosing the music box easier to grasp. I reached a blocking question about where to place probes on a mechanical object; the reference answered it, but the ratios then felt like homework.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/report.md",
+          "sourceSha256": "2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960",
+          "line": 6,
+          "unicodeStart": 342,
+          "unicodeEndExclusive": 559,
+          "utf8Start": 342,
+          "utf8EndExclusive": 559,
+          "unicodeLineEndExclusive": 560,
+          "utf8LineEndExclusive": 560,
+          "rank": 2,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        },
+        {
+          "text": "3. Help me continue a workshop on another device if I choose to. On the laptop I found the opening again and lost interest in repeating it.",
+          "sourceLineTerminator": "\n",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/report.md",
+          "sourceSha256": "2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960",
+          "line": 7,
+          "unicodeStart": 560,
+          "unicodeEndExclusive": 699,
+          "utf8Start": 560,
+          "utf8EndExclusive": 699,
+          "unicodeLineEndExclusive": 700,
+          "utf8LineEndExclusive": 700,
+          "rank": 3,
+          "routeCandidate": "fix:repair inspection lead; draft, subject to root triage; cause unknown"
+        }
+      ]
+    }
+  ]
+}

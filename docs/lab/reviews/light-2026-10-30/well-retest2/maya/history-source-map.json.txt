@@ -1,0 +1,149 @@
+{
+  "policy": "Exact first-retest baseline, literal own reports and separate coordinator qualifications; selected not complete archive; no independent alternative continuity body imported.",
+  "segments": [
+    {
+      "role": "exact actual last supplied Well first-retest baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/own-history.md",
+      "sha256": "b5471415d6dc71b37e68696e19039cf2c595a6fd5442fc0a4c459b2afa5eb231",
+      "outputByteRange": [
+        0,
+        230008
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/report.md",
+      "sha256": "80062e01bfa35cb0a9c9531b7f420f32653abf64f7d82a84d5b6fe1e1e087cdd",
+      "outputByteRange": [
+        230041,
+        241972
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/report.md",
+      "sha256": "91df9201fa7252f6f13e4d7bd1ab2a4fe47069ba91463de37ce5ba8c606ba190",
+      "outputByteRange": [
+        242005,
+        252344
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/report.md",
+      "sha256": "68b7fdfbbb2fdd25ab6530a95005cb2513324722ba253d7f31ba0357707405f8",
+      "outputByteRange": [
+        252377,
+        263063
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/report.md",
+      "sha256": "2ed7c7d76bb73a2395de8c1c77145e58ed0de49b2d61eea359c063e66aab6ded",
+      "outputByteRange": [
+        263096,
+        270329
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/dispatch.json",
+      "sha256": "1fe30240129922d73fc64083cd748fc95a5de29e165dd5319ef4eb05948f272c",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/completion.json",
+      "sha256": "5317ada297f901753beab5d456aa303c045d180bc089e8dbbeffdf11d8b75ea2",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/history-source-map.json",
+      "sha256": "ef3ec2e05bcc50e4d1b5c14e00a329cbb0e7ffae2b6dd56b43136894e9f92516",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/maya/director-method-qualification.json",
+      "sha256": "f3931309477821dcd180c168eb0b0d60805bc136b82ad8c490a5261265e7423d",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/dispatch.json",
+      "sha256": "86fb57e85fc8342859ac7fc790d2ce1ee17f24b1e1f9f9a632b68d85926a6a18",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/completion.json",
+      "sha256": "0359689f4cdc91d50e0484372a19d6c1458a25112c568bb8f5235fdd42e17a5b",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/history-source-map.json",
+      "sha256": "b75a9399f8f2c68f2724606dee175cafb5082dde7bf22eb74acaaae68c6cd4e3",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/maya/director-method-qualification.json",
+      "sha256": "72987cdcca300422f94b2bda46aa65863891317d0cf16789d86b99512376a918",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/dispatch.json",
+      "sha256": "451fc96e7d6186a9efaf9c19b018e38e0c658f424a351ba93becf8bb29e713d9",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/completion.json",
+      "sha256": "07f22d2cf1a375896a5b0d0fdf11565660d9a17bb92659585fba6a4eb1f3cdd4",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/history-source-map.json",
+      "sha256": "bc3a861f5753d2fd64ad3a037ce262d14fcbe3deea2284261b8c214b22609ff3",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/maya/director-method-qualification.json",
+      "sha256": "ab32fdfc53cbd9fa2190babc16e7438a31c095b12657b8c96b268c4a77ec3b63",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/dispatch.json",
+      "sha256": "41e853420e75497ff4ca044443d9102867e6594c6725a8a4e5b727c657a92c94",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/completion.json",
+      "sha256": "83bbf14688842b21d62518ad06972be00daf077d5c8ec0887b9699096795558f",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/maya/history-source-map.json",
+      "sha256": "52d64ef15f801af8e1db35750b7f8a389630167a38c0b4a9aa48913e2452ee2b",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-controller-preparation/finalizer-audit.json",
+      "sha256": "60a42c6fd2a258a5a28b2b557679fff15307653cc38560863a6c6fd3d3434914",
+      "role": "stairwell-retest2-inputs offline finalizer"
+    }
+  ],
+  "qualification": {
+    "outputByteRange": [
+      270329,
+      274425
+    ],
+    "sha256": "479fc9625877c4e5437fa750bd58fec7ca8bd46b105db861f4bd37eac163ec4b",
+    "placement": "after unchanged own reports and before final marker; not player memories"
+  },
+  "historySha256": "0360b964de0a4489dd8c220e477c4967637b3500a834708f8c04fd8d9ec3dc5d",
+  "additionalQualification": {
+    "outputByteRange": [
+      274425,
+      277362
+    ],
+    "sha256": "c1ed007974fd2190b463de68005b1236ed510a51003a4b3597bb37a19d7b689a",
+    "placement": "coordinator metadata before final marker; source hashes in evidence"
+  }
+}

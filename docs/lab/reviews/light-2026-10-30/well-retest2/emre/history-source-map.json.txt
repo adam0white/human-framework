@@ -1,0 +1,120 @@
+{
+  "policy": "Exact first-retest baseline, literal own reports and separate coordinator qualifications; selected not complete archive; no independent alternative continuity body imported.",
+  "segments": [
+    {
+      "role": "exact actual last supplied Well first-retest baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/own-history.md",
+      "sha256": "1d7960efc3cdeb74d787126bec8308881f0876d084658ca176cd144631a24e76",
+      "outputByteRange": [
+        0,
+        161744
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/report.md",
+      "sha256": "b4539aab5cb759d04a5d5cf2de61e8ed83da3ba0e4bf2bc530cb5f31ae0ad41c",
+      "outputByteRange": [
+        161777,
+        175526
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/report.md",
+      "sha256": "4b460210b3c07a630229fc57a572118b8409bf4ad8dfa71cddf5150cc3ec0449",
+      "outputByteRange": [
+        175559,
+        185257
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/report.md",
+      "sha256": "fbf71b1ba8c55054a0cf62ed680adf0c19d75b5fc0ca3e86d6ee053918b1a68e",
+      "outputByteRange": [
+        185290,
+        194656
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/dispatch.json",
+      "sha256": "75622acc09fc644690d11cf40f9d06a02a67c5f3787d579bb76a4b020826e131",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/completion.json",
+      "sha256": "9022ce9a6386a6b7d321a07214ba54c5060b22614e7faa38edf7c52ed5a45b64",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/history-source-map.json",
+      "sha256": "fcc75b3f8e7122b735ec8de05d3018aff38b779a80e9b405881e59750379b706",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/director-method-qualification.json",
+      "sha256": "ca4a3124eea643248f90aaf6fdf01ed96415481c122208080f12f1038e92d708",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/dispatch.json",
+      "sha256": "3572d2ea84bc00b9917868438b2798b9e6e7cc1995f8c324b239d219bb0dad89",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/completion.json",
+      "sha256": "018d9dc2cc92efd4086f58ea4bd4ce842fbbb414bbf559e9c7c88ef7b46cc3c5",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/history-source-map.json",
+      "sha256": "a7f7712eb70fa5d0b64a7931db583d1a13aea9282a672abcea689509a4970924",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/emre/director-method-qualification.json",
+      "sha256": "d16b8c0f77c6461d9d1627601dc454bc1dea65d56e8579bf02b63ee0dca9dd2e",
+      "role": "director-method-qualification.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/dispatch.json",
+      "sha256": "8ecaf2848fb17f1f9e9cadc85c61fcc1dbc97e8ba5656682fba50fbca9d2b46b",
+      "role": "dispatch.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/completion.json",
+      "sha256": "0991b2cc519353c1a6f0ff8910d20d423dd51290a744fb1a0e6b4fcff7d649c1",
+      "role": "completion.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/history-source-map.json",
+      "sha256": "68630c38b4cadee897b924dceb5133d2f02f442649cf4afb3a5ccb0411171f91",
+      "role": "history-source-map.json"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-controller-preparation/finalizer-audit.json",
+      "sha256": "5ef553ad881163b2b2dbfb4af0e3ec631cb55a5b7eb4d283bba1f2360068c67f",
+      "role": "neighbours-initial-inputs offline finalizer"
+    }
+  ],
+  "qualification": {
+    "outputByteRange": [
+      194656,
+      197414
+    ],
+    "sha256": "af175ff313c976f9f6fde4cd66fab56dc7738ca59f4df9784fa36409b8224c04",
+    "placement": "after unchanged own reports and before final marker; not player memories"
+  },
+  "historySha256": "8fe52bf2ff58f9b882c3a6b744d64844c640f6d3a8f7e0030efd9677a674f31b",
+  "additionalQualification": {
+    "outputByteRange": [
+      197414,
+      199432
+    ],
+    "sha256": "4cd805e461de2afc5c02279b2137e290ead068d887d13f23d3ad6aa9b4697080",
+    "placement": "coordinator metadata before final marker; source hashes in evidence"
+  }
+}

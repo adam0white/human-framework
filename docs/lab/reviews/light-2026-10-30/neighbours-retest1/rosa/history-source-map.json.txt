@@ -1,0 +1,233 @@
+{
+  "policy": "Exact prior own-history baseline and complete own reports; selected record, not complete archive. Do not invent memory. Inherited source-map qualifications remain binding; saved images alone do not prove viewing.",
+  "segments": [
+    {
+      "role": "exact initial baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/own-history.md",
+      "sha256": "4f262b839bfb523a680068fd494e7605118642f29802f97cce3eb0d042b1e008",
+      "outputBytes": [
+        0,
+        410572
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/report.md",
+      "sha256": "a9c4dc4e8af05b47ac41dba2d3c58ca2e6f577f5929be97f3db93cad837e2a13",
+      "outputBytes": [
+        410605,
+        420291
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/rosa/report.md",
+      "sha256": "8b63b114dc7c2fcc6db06a11db8383e0d575928f9725c43ee1194132317a50aa",
+      "outputBytes": [
+        420324,
+        426629
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/child-rosa-recovery1/report.md",
+      "sha256": "cef4c6b6d6ffdf8d79d2431db8cb41bb87688d9f56f844f8f5f626eafa7005bf",
+      "outputBytes": [
+        426662,
+        433628
+      ]
+    },
+    {
+      "role": "complete own rope-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/rosa/report.md",
+      "sourceSha256": "c1bc42de378c2c070569b1512e78c33436d33272fe21405e4588ca3df0557bb3",
+      "sourceByteRange": [
+        0,
+        8164
+      ],
+      "outputByteRange": [
+        434426,
+        442590
+      ],
+      "segmentSha256": "c1bc42de378c2c070569b1512e78c33436d33272fe21405e4588ca3df0557bb3"
+    },
+    {
+      "role": "complete own stairwell-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-inputs/rosa/report.md",
+      "sourceSha256": "f669be5e6ef9790956094e622852a01cd9670eb82cae43872a172a8536ec4cae",
+      "sourceByteRange": [
+        0,
+        8708
+      ],
+      "outputByteRange": [
+        442682,
+        451390
+      ],
+      "segmentSha256": "f669be5e6ef9790956094e622852a01cd9670eb82cae43872a172a8536ec4cae"
+    },
+    {
+      "role": "own inherited coordinator qualification qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/own-history.md",
+      "sourceSha256": "4bdccade3f4f865325d01f2cc68e4a83ad47fe50ced5e446d6e5e1ceac6047d3",
+      "sourceByteRange": [
+        391951,
+        399575
+      ],
+      "outputByteRange": [
+        451498,
+        459122
+      ],
+      "segmentSha256": "e6f047884f133ce0782436c9f2cdce1ddd2c0bad18ccaa155cafb81c6202d547"
+    },
+    {
+      "role": "own inherited coordinator qualification additionalQualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/own-history.md",
+      "sourceSha256": "4bdccade3f4f865325d01f2cc68e4a83ad47fe50ced5e446d6e5e1ceac6047d3",
+      "sourceByteRange": [
+        399575,
+        402072
+      ],
+      "outputByteRange": [
+        459240,
+        461737
+      ],
+      "segmentSha256": "fb40a39450f046bb99fc7f1a9693f382a2c6252cc0ffe7a297fcae76393e9e78"
+    },
+    {
+      "role": "complete own murmur-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/report.md",
+      "sourceSha256": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00",
+      "sourceByteRange": [
+        0,
+        7811
+      ],
+      "outputByteRange": [
+        461826,
+        469637
+      ],
+      "segmentSha256": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00"
+    },
+    {
+      "role": "own Murmur2 coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/own-history.md",
+      "sourceSha256": "4bdccade3f4f865325d01f2cc68e4a83ad47fe50ced5e446d6e5e1ceac6047d3",
+      "sourceByteRange": [
+        409923,
+        410811
+      ],
+      "outputByteRange": [
+        469729,
+        470617
+      ],
+      "segmentSha256": "1246f7eda192e28d5273781356e3e4beb7f61cf51b58aee5aec27af67c3dfd82"
+    },
+    {
+      "role": "complete own well-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/report.md",
+      "sourceSha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b",
+      "sourceByteRange": [
+        0,
+        6338
+      ],
+      "outputByteRange": [
+        470704,
+        477042
+      ],
+      "segmentSha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b"
+    },
+    {
+      "role": "own Well2 new coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/own-history.md",
+      "sourceSha256": "17dd80289f0e78ef8c32113f7af71618a15f5dbebe6ed3a7708090bf0658d142",
+      "sourceByteRange": [
+        417283,
+        418139
+      ],
+      "outputByteRange": [
+        477136,
+        477992
+      ],
+      "segmentSha256": "89049a734d75a066ffcc5cdaae909ef19e7554847480466f760add2911276831"
+    },
+    {
+      "role": "complete own Small Works initial continuation report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/rosa/report.md",
+      "sourceSha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99",
+      "sourceByteRange": [
+        0,
+        8629
+      ],
+      "outputByteRange": [
+        478099,
+        486728
+      ],
+      "segmentSha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99"
+    },
+    {
+      "role": "own Small Works coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/rosa/diary-continuation.md",
+      "sourceSha256": "0e2a6363b9d1f92ff6d1dd688a76be16d8d5cd0c9093e9d1b9a1574a6b23aa47",
+      "sourceByteRange": [
+        8629,
+        9427
+      ],
+      "outputByteRange": [
+        486824,
+        487622
+      ],
+      "segmentSha256": "13b4f965e53ac1c354e8fd53530e22ee5fbf260d7d8b8c492d9f8df5c7a852db"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/dispatch.json",
+      "sha256": "19e3666891e9fdfa18e6c8269da13eae8e84e7f109e9245ee35231fa4d580c48"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/completion.json",
+      "sha256": "f7fb2672c90dc15a79233c9c300e1426bf45c67c645a0ae9d2cb279a634b7a1f"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/history-source-map.json",
+      "sha256": "e9d59cd61e776d9deaa5eb8e7e57a13fe51ddf0900563138e6e6910e28bd5551"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/rosa/dispatch.json",
+      "sha256": "0e930f56dfba04d31e9f5b5c0cce0da9fe35abf82c1299c8ea332a088396e51f"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/rosa/completion.json",
+      "sha256": "91cd4c258a7a7867f2991da16e11cac56d8edb2638cdabd8eca250dbc8cbf9ce"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/child-rosa-recovery1/root-qualification.json",
+      "sha256": "145b24170f108fa7880b0af933513fd02435bec3be591eaa459797ede3ed122f"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/child-rosa-recovery1/README.md",
+      "sha256": "77bdd0d8c45f962ea2078a23b5f2cd9a57eb9cf5dbb03b0c025790837c9e67a2"
+    }
+  ],
+  "historySha256": "d373217f523d3d385a1f91f0c9ddffa8a26f1893af1257c58d3c0e1036bebcb0",
+  "directorQualification": "Earlier Child history lines 401–3177 unverified; aggregate stdout is not direct delivery or comprehension. Child retest1 original TOOL stops nonvoluntary and cause unknown. Recovery report image views unverifiable; 201–3200 history lines unverified despite matching stdout; concept counts incomplete. See linked recovery README and root qualification.",
+  "historyLineCount": 3769,
+  "suppliedCoordinatorQualification": {
+    "text": "## Coordinator qualification of the preceding Child recovery record\n\nThis paragraph is test metadata, not a new event you experienced. The recovery report's image-view claims are UNVERIFIABLE in the retained events. Saved images and the report alone do not prove a view. Its history lines 201–3200 remain unverified despite matching aggregate stdout; matching output does not establish delivery or comprehension. Its screen-concept counts are incomplete. The original Child retest TOOL stops were nonvoluntary; their cause remains unknown. The later recovery stops were voluntary TASTE and do not change the original stops. Preserve those limits when recalling this record; do not invent missing memories.\n\n",
+    "placement": "after literal recovery report, before final history marker",
+    "authority": "source-packets/child-rosa-recovery1/root-qualification.json",
+    "reviewFinding": "H1"
+  },
+  "latestReturnRefresh": {
+    "oldHistorySha256": "8a91f5eb2218d1ff7052b641b05aedbc19d712acdcb180688b96dea68708b146",
+    "preservedPrefixByteRange": [
+      0,
+      434339
+    ],
+    "relocatedFinalMarkerBytes": 29,
+    "smallWorksPacketManifestSha256": "a4fec8252d2be9c6caaca1f80bf6b30b1c7b1cf141ac930a0b9e726d9493e9fd",
+    "smallWorksPacketRootSealSha256": "395825d1f97d651ff20e3bf80a959b884404d740f65bc0c5d7dc6e0dad355c6b",
+    "wellRootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+    "murmurRootQualificationSha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9",
+    "scope": "Bounded selected own records, not full archive; check future completed own returns before freeze."
+  }
+}

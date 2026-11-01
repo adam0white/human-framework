@@ -1,0 +1,143 @@
+{
+  "status": "ROOT QUALIFIED; two independent packet reviews pending",
+  "sourceBindings": {
+    "root-qualification.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-root-qualification.json",
+      "sha256": "082b49c8192175b6999295e47bba20fa19da3aa9a0530e37e65b6ceab8dba8c7"
+    },
+    "root-ask-triage.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-root-ask-triage.json",
+      "sha256": "a3885cac6a46db95e77bce9c5c76689aa7f6f3f974d5c1b42114a8cb5e76b3d1"
+    },
+    "actual-protocol-review.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-actual-protocol-review.md",
+      "sha256": "a6d466731cc278ce600d4f99228245cadb0e0f75edfe11c04dc35b19c9255bbe"
+    },
+    "ask-extraction.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-ask-extraction.json",
+      "sha256": "70703b22a085c29b26f4b0e0305ba2037a06bcbc2babcca10e6fef331bfb08c0"
+    },
+    "ask-extraction.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-ask-extraction.md",
+      "sha256": "ac4d9b2024213b16e97d0ca9750bb44b300e16b15fb1e9cc5b9ef3f2e71f36c8"
+    },
+    "delivery-verification.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-root-source-delivery-verification.json",
+      "sha256": "aec4b4189bd4eba0950783eb173c4b336e063a8df224a9d6cf1482532f9de5bf"
+    },
+    "sdk-source-proof.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-sdk-live-source-proof/proof.json",
+      "sha256": "d265630bc69912ff71e901d68d24c3665cae8971c89c047c7e117451240ad7b2"
+    },
+    "draft-review-receipt.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-latest-own-root-review.json",
+      "sha256": "5e6b351e0a850367673dd498032a563a70c6fccf57ac8810c0ed95d984384628"
+    },
+    "input-freeze.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/input-freeze.json",
+      "sha256": "2c5f2c40a53bcddd24bbf9bcdfac18f3625c0ff2cf5b4c3d3f1271c7f64d6b8a"
+    },
+    "input-manifest.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/manifest.json",
+      "sha256": "9886d237bd0ccf7ce2acfb4cd2cf268e2dd54f715fe80745ac5d823341232e06"
+    },
+    "final-live-release.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-controller-preparation/final-live-release.json",
+      "sha256": "ead47de699018dfcc0b29924a0080b883f0014f59d2ae831fdddf4010eb9a952"
+    },
+    "cleanup-rule.md": {
+      "path": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03"
+    },
+    "rosa/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/report.md",
+      "sha256": "810b08be8a7881837e27bd94e71fa9d9068200ed4e26da8a7baf25f9af42cbff"
+    },
+    "rosa/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/brief.md",
+      "sha256": "be9e7e32c9ce586a6bd8f8fd11cf10540db1206ed3cf0cee8d143e059039e2b0"
+    },
+    "rosa/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/history-source-map.json",
+      "sha256": "9f33f6c3019de2fc45171a6de129ee1cee16860d0ae1ad96589ef346d63fc80b"
+    },
+    "rosa/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/own-history.md",
+      "sha256": "d373217f523d3d385a1f91f0c9ddffa8a26f1893af1257c58d3c0e1036bebcb0"
+    },
+    "mei/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/report.md",
+      "sha256": "930a3f3a7de3f770acf695e4b63dd7b418eadf8669dcf2ee3b6724fe56b825f3"
+    },
+    "mei/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/brief.md",
+      "sha256": "06bbdf8a08f67377507fd4db235a90381d184704524f41585badbf7d4e96156a"
+    },
+    "mei/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/history-source-map.json",
+      "sha256": "963401bc89fed559c2819e5b3552f43fb5b81f5da0fd9ee79606fff22dfbe028"
+    },
+    "mei/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/own-history.md",
+      "sha256": "748f8ac62b0c135c14cd884039d738fbcbdc2a79048048f9ad179bc32aefc755"
+    },
+    "emre/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/report.md",
+      "sha256": "d4bcdb6156e6484b6aaf09555a9d588f48f2c928fe370112bb6e114091bba80d"
+    },
+    "emre/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/brief.md",
+      "sha256": "dd32ee96ea83ad4b550468cadc5fae12e0281e657657fd14ab93dc7f7ee03b53"
+    },
+    "emre/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/history-source-map.json",
+      "sha256": "b592d564c16f3ab64a8a878ed66e85fd9b47f16498ac497b05c0ff5145b9240f"
+    },
+    "emre/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/own-history.md",
+      "sha256": "3d41785a8a9fabbbc002e5335815b1f3c4a90f2da5e5989d98ddc60ae2dc4244"
+    },
+    "nia/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/report.md",
+      "sha256": "e5a42de303e2e510f77fefbd9bc151700b82eab9a15025d3822b63cbd5082b1b"
+    },
+    "nia/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/brief.md",
+      "sha256": "96accdde845a476dd203a5360c818c9734ef33d2d85abedb9147565e61623b15"
+    },
+    "nia/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/history-source-map.json",
+      "sha256": "93cbe5782f2b23ac38b05fece814ece2df5863a702f4b59967ee5afbf5b25660"
+    },
+    "nia/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/own-history.md",
+      "sha256": "43ddad1c6444edbf3cfdf1dbc788b438f3bc8a528693b65bcbdaf7c9dcf22667"
+    },
+    "laleh/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/laleh/report.md",
+      "sha256": "b90926c5c34b647b48667a60eb8eb17ee4786aa4057cdee5f7ddc42682f8ac50"
+    },
+    "laleh/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/laleh/brief.md",
+      "sha256": "47e0fef3f1813548eb7a5810495bf42097ca1e3d268bc9984c0695d3c82f7a00"
+    },
+    "laleh/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/laleh/history-source-map.json",
+      "sha256": "7da64a0975715e81af7029535a2109a7f53346fc87ae3950f848d83915ec3459"
+    },
+    "laleh/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/laleh/own-history.md",
+      "sha256": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d"
+    }
+  },
+  "fullProtocolSource": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-actual-protocol-review.json",
+    "sha256": "b289fdefd0d22447ff68341bba2656bb37c7c497119ddf21562b038928bd7a33",
+    "packetProjection": "actual-protocol-review.safe.json; raw commands and wall captures excluded"
+  },
+  "rootReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-controller-preparation/root-return.json",
+    "sha256": "0d88042734d44151e798beed80040ad8cf5a1e32eb8397809a3faeea4a9f9c60"
+  },
+  "standingAppendices": "Exact own report prefix followed by separate applicable coordinator qualification. Full own histories not copied."
+}

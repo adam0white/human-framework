@@ -1,0 +1,84 @@
+{
+  "policy": "Selected own cross-game baseline plus complete actual own FREE report for exposed returners; no CONT body imported as sequential memory. Inherited qualifications bind; selected history is not complete archive.",
+  "segments": [
+    {
+      "role": "exact selected own cross-game history baseline with inherited qualifications",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-preparation/rosa/own-history.md",
+      "sha256": "2d7b2801e8ad2e0d20c0dc72dcd3a937724c475dfe49913ad5351ecfa84bcc0c",
+      "outputByteRange": [
+        0,
+        402102
+      ]
+    },
+    {
+      "role": "exact own Murmur2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/rosa/report.md",
+      "sha256": "902437cf005507b38d3d7da43874a9a7a79e631b0c7b937c6fcf722fbe0f3b00",
+      "sourceByteRange": [
+        0,
+        7811
+      ],
+      "outputByteRange": [
+        402176,
+        409987
+      ]
+    },
+    {
+      "role": "existing own Murmur2 coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-preparation/rosa/own-history.md",
+      "sourceByteRange": [
+        409923,
+        410811
+      ],
+      "sha256": "1246f7eda192e28d5273781356e3e4beb7f61cf51b58aee5aec27af67c3dfd82",
+      "outputByteRange": [
+        409987,
+        410875
+      ]
+    },
+    {
+      "role": "exact own Well2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/report.md",
+      "sourceByteRange": [
+        0,
+        6338
+      ],
+      "sha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b",
+      "outputByteRange": [
+        410945,
+        417283
+      ]
+    },
+    {
+      "role": "new coordinator qualification",
+      "outputByteRange": [
+        417283,
+        418139
+      ],
+      "sha256": "89049a734d75a066ffcc5cdaae909ef19e7554847480466f760add2911276831",
+      "evidencePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-qualification.json",
+      "evidenceSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-preparation/rosa/history-source-map.json",
+      "sha256": "5fed4f620a62a69f5c8ae82e1c26e355cd7b3f974b7b21951f166bb8e102a372",
+      "role": "inherited source provenance and qualifications"
+    }
+  ],
+  "originalFreeQualification": null,
+  "historySha256": "17dd80289f0e78ef8c32113f7af71618a15f5dbebe6ed3a7708090bf0658d142",
+  "futureRefresh": "Check for intervening completed own returns before freeze.",
+  "latestReturnRefresh": {
+    "priorHistorySha256": "6c92af7f5ffdfba7620d60f9c63cb8de9373e207a30745b63778fe5490136ae7",
+    "preservedPrefixByteRange": [
+      0,
+      402104
+    ],
+    "relocatedFinalMarkerBytes": 29,
+    "newFinalLine": 3882,
+    "wellRootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+    "futureGate": "Check for intervening completed own returns before freeze."
+  }
+}

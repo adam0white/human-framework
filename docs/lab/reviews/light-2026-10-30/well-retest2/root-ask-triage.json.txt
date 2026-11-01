@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-01T12:08:14.889927+00:00",
+  "status": "ROOT_DATED_TRIAGE_ADOPTED_PACKET_NOT_SEALED",
+  "rootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+  "protocolReviewSha256": "d0c9ff0787c047a30339b5e8cb462c840e2fe59de32b99e1982f4eb5662c0e10",
+  "extractionSha256": "826630aaeb388d59fc09753e98b0d42ed39971268ba9e92a22fbcb238625c682",
+  "ledgerJsonSha256": "a5ecd37ccd9400421364241127281b8871b0cdc5b20908d5ed3134dd31352c6e",
+  "ledgerMdSha256": "c3cd5997888ee16fd09e5ccf989e447e6899b5920173d75d480fd260841283fe",
+  "all12AskAnd5ReturnUnicodeUtf8SpansVerified": true,
+  "askCount": 12,
+  "idRange": "F2991\u2013F3002",
+  "unused": "F3003\u2013F3010",
+  "targets": {
+    "2026-11-03": [
+      "F2994",
+      "F2997",
+      "F2999"
+    ],
+    "2026-11-10": [
+      "F2991",
+      "F2992",
+      "F2993",
+      "F2995",
+      "F2996",
+      "F2998",
+      "F3000",
+      "F3001",
+      "F3002"
+    ]
+  },
+  "routing": {
+    "F2994": "primaryfix:lab; secondaryfix:well onlyif independentlyreproduced; coveredthenabsentTOOL causeUNKNOWN",
+    "others": "fix:well inspection leads; cause unknown"
+  },
+  "twoIterationsCollected": true,
+  "thirdOrdinaryPanel": false,
+  "noAllAsksFixedClaim": true,
+  "sourceEpochDraftHeaders": "Current extraction/ledger draft headers predate this triage; words/offsets/hashes remain unchanged. Packet author must explain source epoch, not silently turn prior draft into an earlier acceptance.",
+  "auditTableHeadingLimit": "Original controller pass in audit table means recorded completion.pass per tester; Rosa/Mireya are ONLY new epoch7938, never original24423. Both epochs explicitly bound in root qualification.",
+  "rootNiaScope": "Qualified report adoption under W3, original passfalse/finalizerineligible retained; cleanup failure doesnotstandinforvoluntarychoice",
+  "packetReviewPending": true
+}

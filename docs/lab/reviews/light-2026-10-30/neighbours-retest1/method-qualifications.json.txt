@@ -1,0 +1,96 @@
+{
+  "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-root-qualification.json",
+  "sourceSha256": "082b49c8192175b6999295e47bba20fa19da3aa9a0530e37e65b6ceab8dba8c7",
+  "methodQualifications": {
+    "NR1": "All5imageviews/perception/layoutclaimsUNVERIFIABLE: noidentifiablereturnedimageevent. PNG quotaspass is notperception.",
+    "NR2": "History3769/1643/1661/2190/1literalstdoutbeforefirstopen, not directmodelreceipt/comprehension. InheritedH1/NQ1/RosaWell201–3800/NiaWelloriginalpassfalse/FREE-onlylimitsretained; current5passes no historicalexception.",
+    "NR3": "8voluntaryunfinished+Meidesktop119.140BUDGET+Lalehdesktop77.427TOOL. Mei manuscriptvoluntary wording conflictsraw109.190wantquit+119.140stopBUDGET; preserveboth, excludeprotocolvoluntary. Noending/FINISHED/ceiling/controllercut orautomaticforcedbudgetinference.",
+    "NR4": "LalehphoneCONFUSED independentdesktopTOOL. Duplicate2enabledHelprepairhall names persistafterretry/points858,145+998,843 then858,105+998,803; nameddriverambiguity is notordinarymousefailure/productcause. ArrowDownack notactivation. Phonequotefailurebeforecurlthenlabelcorrected.",
+    "NR5": "Allrawstale/absent/covered/disabledcontrolerrors retained with actuallaterrecovery, no productcauses. Browserdisplay/GPU/networkshutdown/rendezvousdiagnosticsremainunknownimpact; driver0/emptystderr do noterase.",
+    "NR6": "Sevenraw/manuscript1msdifferences retained; allmanuscriptvaluesmatchreturneddriverresponse. Rosa desktop automatic60.065 afterTASTE43.681 is notcontinuedplay/checkpointcompliance. Other9validfirstminutelogs;allstops<180/no pulsesdue/no forcedwaitingestablished.",
+    "NR7": "Rootdirectverified16quicklabelspressed/16CloseFeedbackreturnednonemptybackgroundwithoutfeedbackcontrols. Noobservedtyping/Submit/recording/consentsetting. Boundedactionrecord, nofullnetworkguard/backend/save/feedbackreceipt.",
+    "NR8": "Mei2waitcallsperceivedempty butcompletedoutputsnonemptyJSON; receiptuncertainty notdriverfailure/noadvance. Emrebuscausalstatementcorrectedat61.687; crossdeviceunmatchedtowns/comparisonpossiblefuturesvs laterlivecounts do notproveeffects/defects.",
+    "NR9": "Nia10.628Samintentionprecedesdevicecue/notnewrecognition; RosacrossgameEceidentityuncertain. Rosaestimatesmenu15/list16plusFeedbacksubjectivegrouping, noexhaustiveconceptmeasure. ColdLalehonlysameeveningphonememory.",
+    "NR10": "FirstfixedretetHF3f6a separateunmergedHF4; unmatchedfreshcontexts/no pairedcausalclaim/no capreset. BoundedsourceSDK/live4bodyproofnotfullrootrebuild/assetgraph/fonts/visual/backend/owneracceptance.14asks6Nov3/8Nov10/openblockers/onefurtheriteration; original15notbulkresolved."
+  },
+  "allTimestampDifferences": [
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "kind": "want_quit",
+      "rawWallElapsed_s": 79.502,
+      "manuscriptElapsed_s": 79.503,
+      "driverResponseElapsed_s": 79.503,
+      "literalReactionPresent": true,
+      "engagement": 3,
+      "responseTranscriptLine": 112
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "kind": "note",
+      "rawWallElapsed_s": 5.625,
+      "manuscriptElapsed_s": 5.626,
+      "driverResponseElapsed_s": 5.626,
+      "literalReactionPresent": true,
+      "engagement": 4,
+      "responseTranscriptLine": 129
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "kind": "want_quit",
+      "rawWallElapsed_s": 32.876,
+      "manuscriptElapsed_s": 32.877,
+      "driverResponseElapsed_s": 32.877,
+      "literalReactionPresent": true,
+      "engagement": 4,
+      "responseTranscriptLine": 145
+    },
+    {
+      "tester": "nia",
+      "device": "desktop",
+      "kind": "want_quit",
+      "rawWallElapsed_s": 66.037,
+      "manuscriptElapsed_s": 66.038,
+      "driverResponseElapsed_s": 66.038,
+      "literalReactionPresent": true,
+      "engagement": 2,
+      "responseTranscriptLine": 56
+    },
+    {
+      "tester": "nia",
+      "device": "phone",
+      "kind": "stop",
+      "rawWallElapsed_s": 87.943,
+      "manuscriptElapsed_s": 87.944,
+      "driverResponseElapsed_s": 87.944,
+      "literalReactionPresent": true,
+      "engagement": 2,
+      "responseTranscriptLine": 115
+    },
+    {
+      "tester": "laleh",
+      "device": "phone",
+      "kind": "note",
+      "rawWallElapsed_s": 44.81,
+      "manuscriptElapsed_s": 44.811,
+      "driverResponseElapsed_s": 44.811,
+      "literalReactionPresent": true,
+      "engagement": 3,
+      "responseTranscriptLine": 53
+    },
+    {
+      "tester": "laleh",
+      "device": "desktop",
+      "kind": "note",
+      "rawWallElapsed_s": 5.235,
+      "manuscriptElapsed_s": 5.236,
+      "driverResponseElapsed_s": 5.236,
+      "literalReactionPresent": true,
+      "engagement": 3,
+      "responseTranscriptLine": 98
+    }
+  ],
+  "rootReadScope": "RootFULLread5reports/extractionMDJSON/protocolMD/operativeprotocolJSONchecks-confirmed-qualifications-counts-times-limits.145evidencehashesfreshlyreverified. Directall10rawstoprows/checkpoint/poststopprojections/7raw-v-response timestampdifferences/16label+16CloseFeedbackreturns/Lalehduplicateerrors inspected. Largeinitial JSON display truncated hash-only middle and recovered operative content separately; full per-player rawcommands/diary repetitious tables not semantically reread byroot; reviewerreadsthem. No imagesrendered."
+}

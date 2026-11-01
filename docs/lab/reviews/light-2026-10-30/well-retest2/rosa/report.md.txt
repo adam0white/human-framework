@@ -1,0 +1,45 @@
+I would return voluntarily if the game explained the cooking threshold in plain words; I would close it now rather than leave it running.
+
+My ranked ask:
+
+1. **Explain when Maryam will offer to cook and how those meals serve both ordinary eating and storm preparation.** “Offer threshold” stopped me on desktop.
+
+I played as Rosa Alvarez, 62, on two fresh sessions on the same evening. The phone was 360×690 touch; the desktop was 1280×800 with mouse. Both used the supplied agent-marked start URL. I left recording and consent at their defaults and changed no settings.
+
+**History limit:** I attempted explicit ranges covering lines 1–3829 before play, but the combined output was truncated. I received the beginning and the final range, including the last line, “End of supplied own history.” I cannot establish the exact boundaries of the omitted output; **lines 201–3800 are unverified**, so I do not claim to have read or understood all of them. The Well excerpt at the beginning was visible: my earlier stop was about not knowing when cooking became food stored for the storm.
+
+The phone stopped at **25.617 seconds, TOOL**. Two attempts to open Maryam failed because her status changed between the driver’s listing and the tap. This was a driver interaction limit, not proof that the game’s person control was broken. On desktop, after an initial request for a name that was not current and one stale-name error, I opened Maryam. I stopped at **27.095 seconds, CONFUSED**, after rereading two sentences. Neither session reached the first-minute checkpoint or the three-minute pulse. No ending was reached.
+
+**Diary — successful log lines, unchanged and in order**
+
+Phone:
+
+- **8.205 s, note, engagement 3:** “Maryam and the roof remind me of my earlier visit. I remember asking her to cook and not knowing when meals become storm stores. I am confident of that. The timing choices are small on my phone; I leave the selected one.”
+- **15.249 s, want_quit, TOOL, engagement 2, Day 1 05:20:** “I tried to open Maryam twice, but her changing status made both names stale before the tap. I cannot get to her by that control and stop here.”
+- **25.617 s, stop, TOOL, engagement 2, Day 1 05:34:** “I stop the phone because both attempts to open Maryam were overtaken by changing status names. I cannot judge the cooking explanation from this short attempt.”
+
+Desktop:
+
+- **14.765 s, want_quit, CONFUSED, engagement 2, Day 1 05:33:** “I am glad the stores are on separate lines. I reread two sentences: Each completed pot adds to the same meal store; the Human cooking offer threshold rises from 6 to 12 at Day 2 16:00. This is an offer threshold, not a capacity or a guarantee. I still do not know what offer threshold means. I would stop here.”
+- **27.095 s, stop, CONFUSED, engagement 2, Day 1 05:38:** “I stop at Maryam. The separate roof and meal lines help, but offer threshold remains unclear after two rereads. I would close it.”
+
+The opening gave me a clear purpose: build a roof, store 12 meals and keep six people alive. The desktop person panel helped with one earlier ask: roof progress and meal totals appeared on separate lines for each village. It also said each completed pot adds to the same store and people eat from it. That partially answered my earlier question, but the two sentences in my diary introduced “offer threshold,” which I could not understand well enough to continue. That was the **blocking ask I reached**.
+
+My phone recognition was prompted by Maryam and the roof at **8.205 seconds**; I was confident in the earlier cooking encounter quoted in the diary. I recorded no separate recognition on desktop and claim no other recognition.
+
+My retrospective counts below include familiar concepts and the settings and lab items I encountered. They are estimates, not contemporaneous counts, and do not cover unseen screens.
+
+| Screen | Concepts encountered | Count | Rereads |
+|---|---|---:|---|
+| Phone title | Two villages; orders and different responses; roof; 12 meals; storm; six lives; two preparation choices and times; recording/linking; information; menu; lab privacy; debug | 13 | None recorded |
+| Phone village | Game clock and storm countdown; roof, meals and lives for each village; map selection; orders to both villages; six people and activities; all orders; village mood; elders’ signs | 10 | None recorded |
+| Desktop title and village | Above concepts, plus injuries; morale; trust; Classic does not track those social measures; deadline labels | 18 | None recorded |
+| Desktop Maryam panel | Her activity in each village; place orders; separate roof stages and meal stores; rush; insist and trust; appeal; short building stages; cooking store; offer threshold; meal duty; ingredients and weather; acceptance, refusal, delay and risk; eight destinations; construction details | 15 | Two sentences quoted in the diary |
+| Menu, both | Paused time; release record; four pace choices; feedback; full screen; new game; recording; people across games; resume; lab privacy; debug | 11 | None recorded |
+| Feedback, both | Automatic recording; stopping and confused labels; three keep-playing choices; note; optional name; Submit; Back | 8 | None recorded |
+
+I viewed [phone/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/phone/a-001.png) at **2.571 s**. The main text was readable, but the timing explanation was small; the fixed Begin button covered part of the second choice. I viewed [desktop/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/desktop/b-001.png) at **1.933 s**. It showed both village maps and their summaries beside the introduction. I viewed no game-screen image, so my account of the later panels relies on the driver’s visible text and controls.
+
+On the phone I opened Feedback, selected **“I'm stopping”**, saw it marked pressed, and used **← Back**. My first attempt to select the label failed in the shell before reaching the driver; the corrected attempt worked. On desktop I selected **“I'm confused”**, saw it marked pressed, and used **← Back**. I typed no note and pressed no Submit on either device.
+
+I made no worktree, branch, server, browser or helper process and touched no repository; the coordinator owns the drivers.

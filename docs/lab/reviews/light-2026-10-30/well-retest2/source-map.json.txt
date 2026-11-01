@@ -1,0 +1,142 @@
+{
+  "sourceBindings": {
+    "ask-extraction.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-ask-extraction.json",
+      "sha256": "826630aaeb388d59fc09753e98b0d42ed39971268ba9e92a22fbcb238625c682"
+    },
+    "ask-ledger.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-ask-ledger.json",
+      "sha256": "a5ecd37ccd9400421364241127281b8871b0cdc5b20908d5ed3134dd31352c6e"
+    },
+    "ask-ledger.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-ask-ledger.md",
+      "sha256": "c3cd5997888ee16fd09e5ccf989e447e6899b5920173d75d480fd260841283fe"
+    },
+    "root-ask-triage.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-ask-triage.json",
+      "sha256": "569a43f3b66c234cb50d675106d148bd9135ff011dc6a0929ef236f78e8d825d"
+    },
+    "root-qualification.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-qualification.json",
+      "sha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e"
+    },
+    "actual-protocol-review.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-actual-protocol-review.json",
+      "sha256": "d0c9ff0787c047a30339b5e8cb462c840e2fe59de32b99e1982f4eb5662c0e10"
+    },
+    "actual-protocol-review.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-actual-protocol-review.md",
+      "sha256": "2e310846c8d91a24334e0cbe33c904183ba15c3852b923193ae5081887d24d91"
+    },
+    "final-live-pin.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-final-live-pin.json",
+      "sha256": "0a5d92f1b538efe6d409a1d3b4aa7cbc4ab053677a505fd87c244c71be9bc38a"
+    },
+    "source-decision.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-source-decision.json",
+      "sha256": "9f75081ad4493be50305055d8bd590bed11d811762d45166bca694131d6f4319"
+    },
+    "delivery-investigation.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-delivery-investigation.json",
+      "sha256": "3afa80914583fff5a8222d39e7e5397ced05eb84cc53f3cd3770acf9da0be44e"
+    },
+    "delivery-investigation.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-delivery-investigation.md",
+      "sha256": "9df3217266b69d359bc1f9bc2c5f05392b0fe96bfbdabaa157b996e2549999a0"
+    },
+    "cleanup-rule.md": {
+      "source": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03"
+    },
+    "maya/report.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md",
+      "sha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357"
+    },
+    "maya/brief.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/brief.md",
+      "sha256": "c0be63da4a15cdccb8612ef3c1bfab4ca9ced5d920f4d9e47357c0c81829f4ef"
+    },
+    "maya/history-source-map.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/history-source-map.json",
+      "sha256": "8e74c3d65018ee23c09c65d8a5c09c65c391deb42628b850ccc4d6eb114146a0"
+    },
+    "maya/own-history.md (not copied)": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/own-history.md",
+      "sha256": "0360b964de0a4489dd8c220e477c4967637b3500a834708f8c04fd8d9ec3dc5d"
+    },
+    "emre/report.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md",
+      "sha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d"
+    },
+    "emre/brief.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/brief.md",
+      "sha256": "9f208ed504fe56fed14695daf39e3f76428fe6678fdf1fab689723b6cd153519"
+    },
+    "emre/history-source-map.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/history-source-map.json",
+      "sha256": "c9b31c5a9720282e3c8e6edf53a53632493a085d31c6532bb7c5787bda15d1b3"
+    },
+    "emre/own-history.md (not copied)": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/own-history.md",
+      "sha256": "8fe52bf2ff58f9b882c3a6b744d64844c640f6d3a8f7e0030efd9677a674f31b"
+    },
+    "nia/report.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/report.md",
+      "sha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535"
+    },
+    "nia/brief.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/brief.md",
+      "sha256": "0dc09b51fc562357972dfbd9b80f30d2b36e170642fe4d20ab0d7b34035e2d10"
+    },
+    "nia/history-source-map.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/history-source-map.json",
+      "sha256": "29e915cad1a3adae151a377b914352c7a8ded6d30c15f8aebbc3cf72906626cc"
+    },
+    "nia/own-history.md (not copied)": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/own-history.md",
+      "sha256": "382071da531ce024c3d9490f982e8db4ff7976a91cbf0d9d1aef5fa06753642b"
+    },
+    "rosa/report.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/report.md",
+      "sha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b"
+    },
+    "rosa/brief.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/brief.md",
+      "sha256": "6811f9cd2230c445afd81a73dc3f9a520e45fbbfe4c62b7540133c8b8b9e74a2"
+    },
+    "rosa/history-source-map.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/history-source-map.json",
+      "sha256": "acc267f74293fa4a6d18d51c55607ea2feffcea8f6691af127ae040b286160a5"
+    },
+    "rosa/own-history.md (not copied)": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/own-history.md",
+      "sha256": "4bdccade3f4f865325d01f2cc68e4a83ad47fe50ced5e446d6e5e1ceac6047d3"
+    },
+    "mireya/report.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/report.md",
+      "sha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b"
+    },
+    "mireya/brief.md": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/brief.md",
+      "sha256": "69f3109e7be061181b71100c38f0191d720f7848127e93862147b270a8db80a1"
+    },
+    "mireya/history-source-map.json": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/history-source-map.json",
+      "sha256": "574a48113c4dc75f1f26ae2f4c6c7f8299de6cd6b20a5e5d909ca818a67fc996"
+    },
+    "mireya/own-history.md (not copied)": {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/own-history.md",
+      "sha256": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d"
+    }
+  },
+  "derived": "actual-stops and safe completions derive from exact bound review/root qualification; standing diary continuation begins with unchanged own report bytes followed by a separate coordinator method note.",
+  "originalReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-controller-preparation/root-return.json",
+    "sha256": "d5ba5d7986e01f26c568917952744e9e18d068f23ab5528fe2fc937a9b2e79e1"
+  },
+  "remainderReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-remainder-controller-preparation/root-return.json",
+    "sha256": "be5b3218fcf2c1a80659d7ef6141ab84b65a485b084873ec066eca1aac877360"
+  },
+  "prefix": "58 original files preserved, see actual protocol review prefixChecks."
+}

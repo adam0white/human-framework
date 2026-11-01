@@ -1,0 +1,101 @@
+# Small Works LIGHT initial continuation — draft literal asks
+
+Partial initial collection continuation; no same-four retest or cap reset. Root triage and protocol qualification pending. Route candidates are inspection leads, cause unknown. No new IDs or blocking, causal or finish verdicts.
+
+## Maya
+
+Return sentence: I would not return voluntarily tonight; I would come back another evening to hear Nora’s answer about the gear if I knew when I could ask her. I would not leave it running.
+
+1. Tell me when I can ask Nora about the gear, or let me leave the question for her to consider. I found the specific question I wanted, but she was unavailable and I could not tell how to catch her.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/report.md:5; SHA-256 `ee0673b52ac3e535b522dd64c0aa40f11f22599035d1dcb351c849868f68b71d`; Unicode [191, 390), UTF-8 [193, 392); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+2. Make the music box card easier to reach on the desktop workboard. It sat below the fixed bottom bar until I scrolled.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/report.md:6; SHA-256 `ee0673b52ac3e535b522dd64c0aa40f11f22599035d1dcb351c849868f68b71d`; Unicode [391, 511), UTF-8 [393, 513); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+## Emre
+
+Return sentence: I would return voluntarily another evening on desktop for the remaining jobs, and I would not leave it running.
+
+1. Set the meter to the new object’s required test condition, or draw my attention to the carried-over condition. Nora’s reading light needed “work harder,” but the meter still had “carry” selected from the lantern.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/report.md:5; SHA-256 `f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd`; Unicode [134, 349), UTF-8 [134, 361); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+2. Keep the cash-change explanation visible on later mornings. Day 2 clearly said no cost was taken; I did not reach a night when a cost was taken.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/report.md:6; SHA-256 `f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd`; Unicode [350, 497), UTF-8 [362, 509); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+3. Keep offering faults that need different reasoning. Diagnosing Nora’s contact was satisfying; the theatre’s ring setting was a puzzle I remembered solving before.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/report.md:7; SHA-256 `f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd`; Unicode [498, 663), UTF-8 [510, 679); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+## Nia
+
+Return sentence: I would come back another evening to try more repairs and conversations, but I would not return again tonight or leave the game running.
+
+1. Give Nora’s repair conversation a more natural voice. I liked that she answered the specific proposal and remembered it on return; repeating the full object name made her answer sound formal.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/report.md:5; SHA-256 `d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349`; Unicode [152, 346), UTF-8 [152, 348); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+2. Keep giving owners specific responses to the repair I actually made. Nora’s agreed-gear return was the moment that made this visit feel worthwhile.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/report.md:6; SHA-256 `d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349`; Unicode [347, 497), UTF-8 [349, 501); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+## Rosa
+
+Return sentence: I would return voluntarily another evening if the game helped me understand the meter reading and shortened the repair conversation; I would close it now, not leave it running.
+
+1. Explain beside the reading why **6.00 V across the switch** points to a fault. The reference helped once I found it on desktop.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/report.md:5; SHA-256 `16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99`; Unicode [199, 329), UTF-8 [199, 329); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+2. Explain “keep their plans” and “Personal acknowledgment is separate” in the conversation with Sam’s mother.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/report.md:6; SHA-256 `16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99`; Unicode [330, 440), UTF-8 [330, 450); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+3. Keep the first repair guide’s clear, one-step instructions. They helped me carry the lantern and place the probes.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/report.md:7; SHA-256 `16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99`; Unicode [441, 558), UTF-8 [451, 570); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+## Alma
+
+Return sentence: I might return to the phone workshop, but I would not voluntarily restart the opening on the laptop; I would close the game rather than leave it running.
+
+1. Help me understand what a meter reading means at the moment it identifies a fault. The lantern guide told me the switch was suspect, but I did not understand why.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/report.md:5; SHA-256 `2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960`; Unicode [176, 341), UTF-8 [176, 341); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+2. Make the first step for diagnosing the music box easier to grasp. I reached a blocking question about where to place probes on a mechanical object; the reference answered it, but the ratios then felt like homework.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/report.md:6; SHA-256 `2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960`; Unicode [342, 559), UTF-8 [342, 559); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.
+
+3. Help me continue a workshop on another device if I choose to. On the laptop I found the opening again and lost interest in repeating it.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/report.md:7; SHA-256 `2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960`; Unicode [560, 699), UTF-8 [560, 699); original terminator '\n'.
+
+Draft route candidate: fix:repair inspection lead; root triage pending; cause unknown.

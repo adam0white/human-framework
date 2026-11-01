@@ -1679,3 +1679,84 @@ Compared with my last Murmur visit, the tenancy deadline is now visible after re
 
 I created no workers, browsers, servers or worktrees. The coordinator owns the drivers and their cleanup. No repository was touched, so there is no `git worktree list` output.
 ```
+
+
+## 2026-11-01 — Neighbours first fixed retest
+
+Coordinator method note: The following own report is verbatim. Image perception and history delivery remain unverified. NR1–NR10 and inherited limits apply; this is the first fixed retest, not a cap reset. The appended coordinator qualification is separate from player words.
+
+```text
+I would return another evening on the laptop if my town were saved, to see the hall progress; I would not leave it running.
+
+**Ranked asks**
+
+1. Explain how “I will do it” relates to “waiting for a later decision.” Ece’s answer and the recorded status left me unsure what she had committed to.
+2. Say whether a released hour can become owed again if the neighbour later does what I requested. The current release was clear; its future scope was not.
+3. Make the phone conversation form easier to survey. The choices extend below the screen while the Ask button stays fixed at the bottom.
+
+I am Mei Tan, 53, an accountant and carer in Singapore. This was a return visit to Neighbours. I used the assigned agent-marked URL and started a fresh town on each device, with no imported save or matched seed.
+
+- **Laptop:** 1280×800, keyboard and mouse, driver 23103. I stopped voluntarily at **119.140 real seconds**, Day 1 at 13:30.
+- **Phone:** 360×690, touch, driver 23102, later the same evening. I stopped voluntarily at **75.681 real seconds**, Day 1 at 09:00.
+
+Neither game ended. Both sessions ended before the 180-second pulse checkpoint; I did not wait to reach it. I did not see the hall reopen, complete an offered hour, or test resuming a saved town.
+
+I read all **1,643 lines** of the supplied own history before playing. I reread the truncated section in smaller ranges. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. The history is selected, not my complete archive.
+
+**First impressions and recognition**
+
+At **7.053 seconds** on the laptop, the visible Mill Bridge title and flooded-hall introduction prompted a confident memory of following Nora and being unsure whether my offered hour had been released. My exact words are in the diary below. I did not claim to recognize anything beyond that encounter.
+
+At **5.393 seconds** on the phone, the opening was familiar from the laptop town I had just played. It fit the screen, with a large entry button. I did not log another recognition of an earlier encounter.
+
+The town felt active and considerate of its neighbours’ own choices. I liked Nora’s specific 18:00 promise, the time paused during conversation, and the clear one-credit cost and three-tool result. Ece’s informal map of places to sit without buying anything was a particularly human detail for me as a carer.
+
+**Diary — laptop**
+
+These are my log reactions in order and unedited. Times are driver elapsed seconds; engagement is the value I entered.
+
+- **7.053 s, note, engagement 4:** “Mill Bridge and the flooded hall are familiar. I remember following Nora and being unsure whether my offered hour was released; I am confident of that. I want to see the town again.”
+- **37.136 s, note, engagement 3, Day 1 09:00:** “I walked to the workshop, but Nora went to the hall while I travelled. The screen now says time slows while visiting her, and her repair lasts until 10:30. I will follow.”
+- **66.161 s, first_minute, engagement 4, Day 1 10:15:** “I caught Nora at the hall this time. She will finish repairs before deciding about rest, and my offered hour is explicitly not owed yet. Talking pauses time. I like the clear deadline, though I followed her from the workshop again.”
+- **86.292 s, note, engagement 4, Day 1 10:45:** “The journal now puts the release under Your promises now: I no longer owe the hour because Nora chose something else. That answers the current status plainly. I still wonder whether a later rest could revive it, but the recorded choice gives a reason.”
+- **109.190 s, want_quit, BUDGET, engagement 4, Day 1 12:45:** “I would stop for tonight after lending tools. The released hour is clearer and I have made a small contribution. I would like to see the hall progress another evening if the town is saved.”
+- **119.140 s, stop, BUDGET, engagement 4, Day 1 13:30:** “Stopping on Day 1 at 13:30. Nora chose other work, the journal says my hour was released, and I lent three tools for one credit. I chose I am stopping and closed Feedback without typing or submitting. I would return to a saved town.”
+
+The quit wish stood. When I first tried to lend tools, the control had become disabled; after a short wait it was enabled, and the visible result confirmed three tools and two credits remaining. An attempt to open “Cover an hour for Nora” by name returned a driver message that it was not a clickable control; I moved on. Two wait calls returned no text, but subsequent responses showed the town had advanced. No enabled control remained blocked after a retry.
+
+**Diary — phone**
+
+- **5.393 s, note, engagement 4:** “The same Mill Bridge opening fits my phone. I remember the laptop town just now; I will start a fresh town and meet someone nearby.”
+- **28.904 s, note, engagement 4, Day 1 08:00:** “Ece has made a map of places to sit without buying anything, checking shade and seat backs. As a carer I like that detail. The phone form is still long, with choices below the fixed Ask button.”
+- **37.275 s, note, engagement 3, Day 1 08:00:** “Ece says she will visit, but recorded status says waiting for a later decision. I cannot tell if her yes is a commitment or still undecided. I will check the journal after time moves.”
+- **57.324 s, note, engagement 4, Day 1 08:15:** “The status now says Ece acted on my request and chose the visit. That resolves what actually happened, though the earlier yes and waiting wording still puzzled me.”
+- **60.141 s, first_minute, engagement 4, Day 1 08:15:** “The phone text is readable and conversation pauses time. Ece showed me her thoughtful rest map and then visited as requested. Her initial yes beside a later-decision status confused me until the action appeared. The form still extends below the screen.”
+- **62.399 s, want_quit, BORED, engagement 3, Day 1 08:15:** “I would stop on the phone now. I have seen Ece answer and act, and I have already spent this evening in the laptop town. I would rather return to that town later.”
+- **75.681 s, stop, BORED, engagement 3, Day 1 09:00:** “Stopping on the phone at Day 1 09:00. Ece showed me her rest map and acted on my request; I have already played the opening on the laptop tonight. I chose I am stopping and closed Feedback without typing or submitting.”
+
+The phone quit wish stood. Ece’s later action resolved what happened in this instance, but I still wanted the initial answer and status explained together. That is the new blocking question I reached; it confused me, although it did not itself cause my phone stop.
+
+**Compared with my earlier Neighbours visit**
+
+My earlier report asked for consistent status after a neighbour chose something else. This time, the conversation, Journal and next-step message explicitly showed the hour first as an offer and then as released. That made the **current** status clearer. I did not establish what would happen if Nora later rested, so I cannot say the whole uncertainty is resolved.
+
+I also asked for enough time to reach a neighbour. Nora left the workshop while I travelled, but I followed and caught her at the hall; I did not encounter the two stale controls I reported previously. This is a different journey, so I cannot conclude the earlier problem is fixed. The phone form remained long in the portion I viewed.
+
+**Screens and feedback**
+
+I actually viewed these images:
+
+- [Laptop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/desktop/a-001.png>): readable title, flood introduction, entry button and recording notice.
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/phone/b-001.png>): readable introduction and large entry button, with the recording notice at the bottom.
+- [Phone conversation](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/mei/phone/b-002.png>): readable Ece choices, with further choices below the visible area and the Ask button fixed at the bottom.
+
+I did not view a laptop gameplay screenshot or the full phone form in a screenshot.
+
+When unsure about the released hour on the laptop, and about Ece’s answer on the phone, I opened Feedback, selected **“I'm confused”**, saw it marked pressed, and closed it. At each stop I reopened Feedback, selected **“I'm stopping”**, saw it marked pressed, and closed it. I typed no note and submitted nothing. Recording and consent remained at their defaults.
+
+I would return to the laptop town if it were saved, but I did not verify a saved return. I would not leave it running because neighbours and their commitments change while time moves. The coordinator owns the drivers and browser cleanup. I started no helpers or processes and touched no repository; I have no worktree to list.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from unchanged report): Image views/perception and screenshot-dependent claims remain UNVERIFIABLE. Complete history stdout does not establish delivery or comprehension; inherited history qualifications remain. Desktop stop 119.140 was BUDGET, despite report wording describing it as voluntary; raw want_quit 109.190 and stop reason remain unchanged. Phone BORED 75.681 was voluntary unfinished. Two wait calls perceived empty had nonempty completed JSON; receipt uncertainty is not proof of driver failure or no advance. Earlier NQ1 raw/manuscript limits remain. No full network guard, backend, feedback or save receipt is established. See NR1–NR10 and the qualified protocol audit.

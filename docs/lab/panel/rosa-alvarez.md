@@ -3500,3 +3500,199 @@ Compared with my last Murmur visit, I again saw that suggestions can change the 
 
 I made no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; a worktree listing does not apply to my work.
 ```
+
+
+## 2026-11-01 — Well second fixed retest
+
+Coordinator method note: Well W1–W8: four eligible plus Nia qualified inspection with original passfalse; 8voluntary/2TOOL, one actual Emre phone ending; separate epochs24423/7938. Rosa history201–3800 receipt unverified; image perception UNVERIFIABLE. Two iterations collected; no third ordinary panel. Full protocol and qualifications remain in the round archive. Source report below is verbatim; its image/history claims are not independently verified.
+
+```text
+I would return voluntarily if the game explained the cooking threshold in plain words; I would close it now rather than leave it running.
+
+My ranked ask:
+
+1. **Explain when Maryam will offer to cook and how those meals serve both ordinary eating and storm preparation.** “Offer threshold” stopped me on desktop.
+
+I played as Rosa Alvarez, 62, on two fresh sessions on the same evening. The phone was 360×690 touch; the desktop was 1280×800 with mouse. Both used the supplied agent-marked start URL. I left recording and consent at their defaults and changed no settings.
+
+**History limit:** I attempted explicit ranges covering lines 1–3829 before play, but the combined output was truncated. I received the beginning and the final range, including the last line, “End of supplied own history.” I cannot establish the exact boundaries of the omitted output; **lines 201–3800 are unverified**, so I do not claim to have read or understood all of them. The Well excerpt at the beginning was visible: my earlier stop was about not knowing when cooking became food stored for the storm.
+
+The phone stopped at **25.617 seconds, TOOL**. Two attempts to open Maryam failed because her status changed between the driver’s listing and the tap. This was a driver interaction limit, not proof that the game’s person control was broken. On desktop, after an initial request for a name that was not current and one stale-name error, I opened Maryam. I stopped at **27.095 seconds, CONFUSED**, after rereading two sentences. Neither session reached the first-minute checkpoint or the three-minute pulse. No ending was reached.
+
+**Diary — successful log lines, unchanged and in order**
+
+Phone:
+
+- **8.205 s, note, engagement 3:** “Maryam and the roof remind me of my earlier visit. I remember asking her to cook and not knowing when meals become storm stores. I am confident of that. The timing choices are small on my phone; I leave the selected one.”
+- **15.249 s, want_quit, TOOL, engagement 2, Day 1 05:20:** “I tried to open Maryam twice, but her changing status made both names stale before the tap. I cannot get to her by that control and stop here.”
+- **25.617 s, stop, TOOL, engagement 2, Day 1 05:34:** “I stop the phone because both attempts to open Maryam were overtaken by changing status names. I cannot judge the cooking explanation from this short attempt.”
+
+Desktop:
+
+- **14.765 s, want_quit, CONFUSED, engagement 2, Day 1 05:33:** “I am glad the stores are on separate lines. I reread two sentences: Each completed pot adds to the same meal store; the Human cooking offer threshold rises from 6 to 12 at Day 2 16:00. This is an offer threshold, not a capacity or a guarantee. I still do not know what offer threshold means. I would stop here.”
+- **27.095 s, stop, CONFUSED, engagement 2, Day 1 05:38:** “I stop at Maryam. The separate roof and meal lines help, but offer threshold remains unclear after two rereads. I would close it.”
+
+The opening gave me a clear purpose: build a roof, store 12 meals and keep six people alive. The desktop person panel helped with one earlier ask: roof progress and meal totals appeared on separate lines for each village. It also said each completed pot adds to the same store and people eat from it. That partially answered my earlier question, but the two sentences in my diary introduced “offer threshold,” which I could not understand well enough to continue. That was the **blocking ask I reached**.
+
+My phone recognition was prompted by Maryam and the roof at **8.205 seconds**; I was confident in the earlier cooking encounter quoted in the diary. I recorded no separate recognition on desktop and claim no other recognition.
+
+My retrospective counts below include familiar concepts and the settings and lab items I encountered. They are estimates, not contemporaneous counts, and do not cover unseen screens.
+
+| Screen | Concepts encountered | Count | Rereads |
+|---|---|---:|---|
+| Phone title | Two villages; orders and different responses; roof; 12 meals; storm; six lives; two preparation choices and times; recording/linking; information; menu; lab privacy; debug | 13 | None recorded |
+| Phone village | Game clock and storm countdown; roof, meals and lives for each village; map selection; orders to both villages; six people and activities; all orders; village mood; elders’ signs | 10 | None recorded |
+| Desktop title and village | Above concepts, plus injuries; morale; trust; Classic does not track those social measures; deadline labels | 18 | None recorded |
+| Desktop Maryam panel | Her activity in each village; place orders; separate roof stages and meal stores; rush; insist and trust; appeal; short building stages; cooking store; offer threshold; meal duty; ingredients and weather; acceptance, refusal, delay and risk; eight destinations; construction details | 15 | Two sentences quoted in the diary |
+| Menu, both | Paused time; release record; four pace choices; feedback; full screen; new game; recording; people across games; resume; lab privacy; debug | 11 | None recorded |
+| Feedback, both | Automatic recording; stopping and confused labels; three keep-playing choices; note; optional name; Submit; Back | 8 | None recorded |
+
+I viewed [phone/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/phone/a-001.png) at **2.571 s**. The main text was readable, but the timing explanation was small; the fixed Begin button covered part of the second choice. I viewed [desktop/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/desktop/b-001.png) at **1.933 s**. It showed both village maps and their summaries beside the introduction. I viewed no game-screen image, so my account of the later panels relies on the driver’s visible text and controls.
+
+On the phone I opened Feedback, selected **“I'm stopping”**, saw it marked pressed, and used **← Back**. My first attempt to select the label failed in the shell before reaching the driver; the corrected attempt worked. On desktop I selected **“I'm confused”**, saw it marked pressed, and used **← Back**. I typed no note and pressed no Submit on either device.
+
+I made no worktree, branch, server, browser or helper process and touched no repository; the coordinator owns the drivers.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from the unchanged report): Image-view claims are UNVERIFIABLE. Matching history stdout does not establish delivery or comprehension; inherited limitations in the bound history-source map remain. See packet W1–W8 and the actual protocol review for applicable individual stops, errors and qualifications. History lines 201–3800 receipt remains unverified; concept counts are retrospective estimates.
+
+
+## 2026-11-01 — Small Works partial initial continuation
+
+Coordinator method note: Small Works SW1–SW10: partial initial continuation, not same-four fixed retest; ten voluntary unfinished stops, no endings or cuts. Rosa first RECORDED/prior unknown; Nia oldCONT unknown/Nov3 and FREE-only continuity. Image perception UNVERIFIABLE; no iteration-cap reset. Original15 asks not bulk resolved. Full protocol and qualifications remain in the round archive. Source report below is verbatim; its image/history claims are not independently verified.
+
+```text
+I would return voluntarily another evening if the game helped me understand the meter reading and shortened the repair conversation; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Explain beside the reading why **6.00 V across the switch** points to a fault. The reference helped once I found it on desktop.
+2. Explain “keep their plans” and “Personal acknowledgment is separate” in the conversation with Sam’s mother.
+3. Keep the first repair guide’s clear, one-step instructions. They helped me carry the lantern and place the probes.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was my **first recorded Small Works visit** within the checked records. Earlier exposure is unestablished.
+
+I used the assigned agent-marked page in two fresh, independent automated project-test contexts, starting with **Start repairing** in each. No old save or matched seed was imported. The phone was **360×690 touch**; the desktop was **1280×800**, used later the same evening with mouse actions. I left recording and consent at their defaults.
+
+I read the supplied 3,882-line history in explicit ranges, including follow-up reads after truncated output. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. The history is selected, not my complete archive; the earlier limits recorded in it remain.
+
+The phone title at **0.537 seconds** gave me a short, inviting question: why does the lantern go dark? Carrying it reproduced the problem, and the guide then gave me a clear next step. I liked Sam having a promise to help his sister later. On desktop, the reference explained that a working connection usually loses less than 0.2 volts. That helped me make sense of the phone’s reading. I also liked that Sam’s mother could decide whether an original part should be replaced.
+
+These are my successful diary log strings, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **10.095 s — note, engagement 4:** “The lantern and one short question invite me. The text is comfortable. The names Nora, Rafi and Halil remind me of names I have seen, but names alone do not establish who they are. Title concepts: games, information, menu, lantern, repair, saved game, four names, people across games, lab privacy, linked recording: 10. No reread.”
+- **21.658 s — note, engagement 4, Day 1 09:15:** “Carrying made the light go out, as promised. The next instruction says to open the cover. I like one clear step. New concepts: workday, money, switch, carry takes 15 minutes, Sam has a promise, last test, look inside, explore freely, evening gathering: 9. No reread.”
+- **27.984 s — note, engagement 3, Day 1 09:15:** “Reread 1: Reference in Notes lists the normal voltages and drive ratios to compare with your readings. I do not know drive ratios or which readings I need. I will choose the contact because movement makes it go dark. New concepts: cover, parts, cell pack, switch, contact, bulb, meter, repair, notes, reference, voltages, drive ratios, readings, look closely, table test: 15.”
+- **45.080 s — note, engagement 3, Day 1 09:35:** “The guide tells me where to put each probe and I got 6.00 V. I can follow the steps but I do not know whether that is good. Meter concepts: probes, terminals, voltage, continuity, power, table, carry, work harder, reading and time: 9. No second reread yet.”
+- **56.282 s — want_quit, CONFUSED, engagement 2, Day 1 09:45:** “Reread 2: The voltage drops sharply between these probes. Both readings say 6.00 V, so I cannot see a drop. The guide says switch but I do not know why. I would stop here.”
+- **68.738 s — stop, CONFUSED, engagement 2, Day 1 09:45:** “I stop on the phone. I liked the clear first steps, but two sentences needed rereading and I cannot interpret the two readings. I would close it.”
+
+**Desktop**
+
+- **20.049 s — note, engagement 3, Day 1 09:15:** “Same lantern as my phone tonight. I know where the guide led me, but I want to see the reference before choosing. The first screen has the same 10 concepts and the workshop has 9; the inside adds 15 as on the phone. No reread yet on this device.”
+- **25.832 s — note, engagement 4, Day 1 09:15:** “Reference explains that terminals are labelled points and a working connection usually loses less than 0.2 volts. That helps me understand why 6 volts across the switch mattered on the phone. New concepts: recorded observations, terminals, working source, normal loss, compare table and carried: 5. No reread.”
+- **40.421 s — note, engagement 3, Day 1 09:25:** “I like that the lantern belongs to a family and I should ask before replacing a part. Reread 1: Sam’s mother can keep the original parts or keep their plans. I do not understand whose plans or what that choice means. The panel adds proposal, diagnosis, observations, refusal, agreement, parts, time, final test, her own work and unfinished return: 10 concepts.”
+- **46.194 s — want_quit, CONFUSED, engagement 3, Day 1 09:30:** “Reread 2: Personal acknowledgment is separate. She already answered me, so I do not know what acknowledgment means here. Her agreement to replace only the switch is clear, but this long panel tires me. I would stop.”
+- **60.614 s — stop, CONFUSED, engagement 3, Day 1 09:30:** “I stop on the big screen. The reference helped and her agreement was clear, but two sentences in the long proposal needed rereading. I would close it for tonight.”
+
+Both quit wishes followed my second reread and remained through the Feedback check. The phone’s first reading was **6.00 V from A to 0**; the second was **6.00 V from B to C**. I did not understand why the second result described a sharp drop. On desktop I opened Reference and found the explanation of normal connection loss. I did not return to the phone meter afterward.
+
+On desktop, Sam’s mother agreed to replacing only the switch and asked me to check it afterward. The page said **no repair was performed**. I did not replace the switch, test the repaired lantern, or reach an ending. The meter explanation and the two proposal sentences were the blocking questions I actually reached.
+
+My concept counts in the diary are my own estimates. The other screens I reached presented these concepts; I did not reread sentences on them:
+
+| Screen | Concepts encountered | Count |
+|---|---|---:|
+| Workshop menu, phone | Saved game, time stops, workshop history, Feedback, download, open saved workshop, full screen, New game, All games, People across games, Recording, Lab privacy, Debug, older versions, Resume | 15 |
+| Workshop menu, desktop | The same items except full screen was not listed | 14 |
+| Feedback, both | Optional play-data sharing, three keep-playing choices, stopping, confused, note, optional name, what is sent, Lab privacy, Debug, Back, Submit | 11 |
+
+At **10.095 seconds**, the visible names Nora, Rafi and Halil reminded me of names in my supplied history. My confidence that they were the same people was **uncertain**; names alone did not establish identity. On desktop, the lantern prompted recognition of my phone session earlier that evening. I recorded no other recognition.
+
+I viewed two screenshots:
+
+- [Phone title](</Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/phone/a-001.png>) at **3.459 s** showed a large lantern drawing, readable title and question, a large Start repairing button, and the recording notice at the bottom.
+- [Desktop title](</Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/desktop/b-001.png>) at **4.423 s** showed the same content in a spacious centered layout.
+
+I viewed no game-screen screenshot, so my account of the workshop panels comes from the driver’s visible text and controls, not a visual inspection of their layout.
+
+On both devices, I opened Feedback, selected **“I’m confused”**, saw it marked pressed, and used **Back to the menu**. I typed no note and pressed no Submit.
+
+The phone quit wish occurred before 60 seconds; its stop log followed Feedback. The desktop quit wish also occurred before 60 seconds; its stop log followed Feedback. I did not log either **first-minute** checkpoint. Neither session reached 180 seconds, so no pulse was due. Later repairs and the ending remain untested.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers and browsers; a `git worktree list` does not apply to my work.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from unchanged own report): Image-view claims are UNVERIFIABLE; history stdout does not prove delivery or comprehension. Inherited history limits remain. Phone quit 56.282 and desktop quit 46.194 preceded 60 seconds. Automatic images 60.055/60.108 occurred during feedback before stops 68.738/60.614; no first-minute diary in either and no continued repair play established. Concept counts include contemporary estimates and later tabulation, not exhaustive proof. Older Well history lines 201–3800 receipt remains unverified. Raw/manuscript 1 ms differences: phone note 21.657/21.658 and desktop note 20.048/20.049. No full network guard, backend or feedback/save receipt is established. Current full protocol and SW1–SW10 qualify this report.
+
+
+## 2026-11-01 — Neighbours first fixed retest
+
+Coordinator method note: The following own report is verbatim. Image perception and history delivery remain unverified. NR1–NR10 and inherited limits apply; this is the first fixed retest, not a cap reset. The appended coordinator qualification is separate from player words.
+
+```text
+I would return voluntarily another evening to see whether the hall reopens, if I can tell what happened when I accept a neighbour’s offer; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. **Show what changed when I accept a suggested alternative.** Ece offered to repair the hall after her visit. After I accepted and asked again, the same offer and waiting status remained. This was the question that stopped me on the phone.
+2. Remove the previous person’s response when I move to another conversation. Nora’s message about finishing work remained visible when I opened Ece’s conversation.
+3. Tell me how far Skip will advance before I press it. This remains my question from the earlier Neighbours visit; I did not use Skip this time.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return to *Neighbours*. I entered Mill Bridge in two fresh automated contexts at the supplied agent-marked URL: a **360×690 touch phone**, followed by a **1280×800 desktop** later the same evening. No old save or matched seed was imported. I left recording and consent at their defaults.
+
+I read the supplied history in explicit ranges through line **3769**, including smaller follow-up ranges after truncated responses. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. This is selected history, not my complete archive; its earlier qualifications still apply.
+
+The opening still gave me a clear reason to act: a flooded hall needs to reopen, and neighbours make their own decisions. On the phone, I liked that Nora was already repairing the hall and that Ece had a visit to finish before helping. On desktop, lending tools again gave a clear result: five tools were available. The phone request left me uncertain about what my acceptance meant.
+
+**Diary — successful log lines, unchanged and in order**
+
+Phone:
+
+- **7.210 s — note, engagement 4:** “The flooded hall and neighbours deciding for themselves remind me of my earlier visit. I am confident I know this place; I remember asking Bilal to repair and wanting to see the hall reopen. The title is comfortable to read. Title concepts 9: games, information, menu, flood, hall, rebuilding, independent decisions, other ways in, download and linked recording. No reread.”
+- **23.263 s — note, engagement 4, Day 1 08:00:** “The hall still needs twelve repairs and inspection. I remember walking here before. The walk says when I arrive, which is clear. Town concepts 15: day, clock, rain, hall repairs, credits, hall choice, river, places, high water, closed hall, neighbours, independent decisions, walking, hearing nearby, Skip and journal. Hall detail adds four: twelve repairs, inspection, current place and arrival. No reread.”
+- **37.495 s — note, engagement 4, Day 1 09:00:** “Nora is already repairing the hall and promised the doors by evening, as I remember from last time. I am confident of that obligation. I should not interrupt her. Asking about the handle says wait until she finishes or visit on a break; that is a clear reason. Her details add five concepts: repair designer, brother, promise, deadline, reasons and records. Talk adds nine: prototype handle, request choices, offer an hour, ask, urge, my work, deadlines, obligation if agreed or acted on, covering an hour. No reread.”
+- **41.850 s — note, engagement 4, Day 1 09:00:** “Ece is a courier studying logistics; this reminds me of Ece and the lost parcel in Two Voices. I am uncertain whether she is the same person. Her visit and supply route are understandable. New concepts four: courier, studies logistics, temporary supply exchange, aunt. No reread.”
+- **58.384 s — note, engagement 3, Day 1 09:00:** “Ece says she will repair after visiting, which I understand and accept. But after I tap Accept the same offer and waiting status remain. I cannot tell whether my acceptance registered. The old Nora refusal is also shown in Ece conversation until the new answer replaces it. Ece talk adds four concepts: inspector question, section open or closed, delayed answer, accepting alternative. No reread.”
+- **65.270 s — first_minute, engagement 3, Day 1 09:00:** “I know the hall needs twelve repairs. Nora is already working and Ece offers to help after her visit. I understand her words but cannot tell whether accepting worked. The form has many choices. No reread. Menu adds 15 concepts: pause, journal, colours, pace, saved towns, studies, compare, recorded studies, feedback, full screen, all games, new game, saved people, recording, privacy and debug.”
+- **79.503 s — want_quit, CONFUSED, engagement 3, Day 1 09:00:** “The next step says accept the offer and ask again. I did both, but the same first answer and waiting status remain. I do not know if I accepted or what to do now. I would stop on the phone.”
+- **89.356 s — stop, CONFUSED, engagement 3, Day 1 09:00:** “I stop on the phone. I liked Nora working and Ece having her own visit, but I cannot tell whether accepting her later offer did anything. I would close it and try the larger screen.”
+
+Desktop:
+
+- **5.626 s — note, engagement 4:** “Same familiar title this evening. On the big screen the illustration sits above the introduction and I can read its beginning; last time I reported it covered. Nine title concepts as on phone; no reread.”
+- **30.347 s — note, engagement 4, Day 1 09:00:** “I remember lending tools on my earlier desktop visit. Again the result is plain: five tools available. The first attempt was disabled while the town was starting; after a short wait it worked. Town screen has 16 concepts including the record; help adds six: credits, bus, tools, news, later evenings, compare outcomes. No reread.”
+- **32.877 s — want_quit, TASTE, engagement 4, Day 1 09:00:** “I like the clear result for the tools and the easy title on this screen. I have visited the beginning twice tonight and would stop now, still curious about the hall.”
+- **43.681 s — stop, TASTE, engagement 4, Day 1 10:45:** “I stop on the big screen. The title is clear and the tools gave a clear result again. I would return another evening to see the hall, and close it now.”
+
+Both quit wishes remained through the Feedback check. Neither stop was a game ending. The phone’s first-minute checkpoint was logged at **65.270 s**. Desktop stopped before 60 seconds, so its first-minute checkpoint was untested. Neither session reached 180 seconds, so no pulse was due. I did not see the hall reopen or the later result of Ece’s request.
+
+I did **not reread a sentence** on either device, so my two-reread rule did not trigger. Ece’s first answer was clear: she could not repair now but offered to do it after visiting. The uncertainty came after my tap: the driver acknowledged the input, but the visible offer and “waiting for a later decision” status did not change. I cannot establish from that whether my acceptance took effect. The instruction visible behind Feedback said to accept an offer and then ask again; doing so still left me looking at the same first answer.
+
+The concept counts in the diary are my contemporaneous estimates. My menu count says 15 but lists 16 items. Feedback added **nine** concepts on each device: stopping, confused, the three keep-playing choices, note, optional name, what is sent, keeping a copy, Submit, and close. I recorded no rereads there.
+
+Recognition came from visible cues. The flooded hall and independent neighbours at **7.210 s** prompted confident recognition of my earlier Neighbours visit and Bilal request. Nora’s repair and promise at **37.495 s** prompted a confident memory of her earlier obligation. Ece’s courier work at **41.850 s** reminded me of the lost-parcel encounter in *Two Voices*, but I remain **uncertain** whether she is the same person. On desktop, the title recalled the phone visit, and the tools choice at **30.347 s** recalled my earlier desktop result. I recorded no other recognition.
+
+Compared with my earlier Neighbours report, the **desktop title** now showed its introduction below the illustration in the image I viewed; the beginning was readable. I did not ask Bilal to repair this time, so my earlier question about his repair becoming unavailable remains **untested**. I also did not use Skip, so I cannot say whether its behavior changed.
+
+I viewed two screenshots:
+
+- [Phone title](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/phone/a-001.png>) at **2.230 s** showed readable title text, a large Enter button and the recording notice along the bottom.
+- [Desktop title](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/rosa/desktop/b-001.png>) at **1.883 s** showed the introduction clearly beneath the title illustration, with a wide Enter button.
+
+I viewed no game-screen screenshot, so my account of the later layouts comes from the driver’s visible text and controls. One Nora control became stale as her activity changed; I selected the current name. On desktop, the first tools attempt encountered a disabled control during startup; after a short wait it was enabled and the visible result confirmed the tools were added.
+
+When confused on the phone, I opened Feedback, chose **“I’m confused”**, saw it marked pressed and closed Feedback. When stopping, I opened it again and chose **“I’m stopping”**; it showed as pressed and I closed it. On desktop I chose **“I’m stopping”**, saw it pressed and closed Feedback. I typed no note and pressed no Submit.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers and browsers; a `git worktree list` does not apply to my work.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from unchanged report): Image views/perception and screenshot-dependent claims remain UNVERIFIABLE. Complete history stdout does not establish delivery or comprehension; inherited history qualifications remain. Phone CONFUSED 89.356 and desktop TASTE 43.681 were voluntary unfinished. Desktop automatic 60.065 was after stop, not continued play or first-minute compliance. Raw/manuscript 1 ms differences: phone want_quit 79.502/79.503, desktop note 5.625/5.626, desktop want_quit 32.876/32.877. Ece crossgame identity was uncertain; menu/list and feedback concept counts are subjective grouping. Prior Well lines 201–3800 receipt remains unverified. No full network guard, backend, feedback or save receipt is established. See NR1–NR10 and the qualified protocol audit.

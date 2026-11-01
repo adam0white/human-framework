@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-01T12:04:26.138502+00:00",
+  "live": {
+    "app": "1.0.0",
+    "framework": "4.15.0",
+    "frameworkLibrary": "4.15.0",
+    "commit": "26b44f70a2c1874c241240f0598a47f11104f69c",
+    "dirty": false
+  },
+  "rawSha256": "8a81a4465d2503b67cdd3cdcce384ff29aafd94708b9705e8793f1cb51caf411",
+  "scope": "Fresh final release marker only; 11assets matchedbeforecontinuation; no independently rebuilt fullassetgraph/font/visual proof"
+}
