@@ -49,7 +49,8 @@ jobs:
 
   # Public repositories have free minutes and 4-CPU runners. Use six shards to reduce wall time; before this
   # change, three shards took 134/167/137 s in the Vitest step and about 195 s for the workflow run.
-  # Keep Vitest's default worker count. File-based sharding is uneven; re-check the slowest shard as tests grow.
+  # Cap each shard at two workers so complete replay/CLI controls have headroom.
+  # File-based sharding is unchanged; all original test and job limits still apply.
   test:
     name: test (shard ${{ matrix.shard }}/6)
     runs-on: ubuntu-latest
@@ -77,8 +78,10 @@ jobs:
       - name: Build workspace portable dependency
         run: npm run build -w packages/human
       - name: Runner
-        run: echo "$(nproc) CPUs, Node $(node --version)"
-      - run: npx vitest run --shard=${{ matrix.shard }}/6
+        run: |
+          echo "$(nproc) CPUs, Node $(node --version)"
+          node -e "console.log('Vitest workers: 2; Node available parallelism:', require('node:os').availableParallelism())"
+      - run: npx vitest run --maxWorkers=2 --shard=${{ matrix.shard }}/6
 
   ci:
     name: ci
