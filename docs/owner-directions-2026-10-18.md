@@ -434,10 +434,10 @@ Coordinator reading: Tests that restate code, duplicate another test or form a m
 
 > "Alright, thanks for ramping up Claude usage, let's brake on that, too. Until Tuesday 2 AM, don't run play testers on it, save Claude tokens."
 
-Coordinator reading: No Claude testers or helpers until 2026-11-03 02:00 America/Chicago.
+Coordinator reading: Run no playtesters on Claude until Tuesday 2026-11-03, 2 AM; spend fewer Claude tokens.
 
 ## 2026-11-01 — Codex returns (Adam, verbatim)
 
 > "Codex is back, but not Claude. let's keep going."
 
-Coordinator reading: Codex work resumes at full pace.
+Coordinator reading: Codex is available again, Claude is not; work continues.
