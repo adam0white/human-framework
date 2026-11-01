@@ -172,6 +172,7 @@ it('keeps the same compact disclosure node in layout without another player cont
   const notice = container.querySelector<HTMLElement>('.lk-telemetry-notice');
   expect(notice).not.toBeNull();
   expect(notice?.style.position).toBe('static');
+  expect(notice?.style.fontFamily).toBe('inherit');
   expect(notice?.textContent).toBe('We record and link play across games on this device.');
   expect(notice?.querySelector('button')).toBeNull();
   expect(document.body.querySelector(':scope > .lk-telemetry-notice')).toBeNull();

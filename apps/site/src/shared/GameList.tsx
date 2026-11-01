@@ -12,7 +12,10 @@ export function GameList({ games }: { games: Game[] }) {
   useEffect(() => {
     if (noticeNode.current === undefined) noticeNode.current = telemetryNotice();
     const node = noticeNode.current;
-    if (node) notice.current?.append(node);
+    if (node) {
+      node.style.fontFamily = 'inherit';
+      notice.current?.append(node);
+    }
     return () => node?.remove();
   }, []);
   return (
@@ -38,7 +41,7 @@ export function GameList({ games }: { games: Game[] }) {
                   {isExternal(g) && (
                     <span className="game-away" title="Opens another site">
                       {' '}
-                      ↗
+                      (another site)
                     </span>
                   )}
                 </span>

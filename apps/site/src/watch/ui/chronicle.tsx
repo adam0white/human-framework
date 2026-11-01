@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { CastMenu } from '../../shared/CastMenu.tsx';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
+import { Decoration } from '../../shared/Decoration.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { GameVersion } from '../../shared/GameVersion.tsx';
 import type { PageInfo } from '../protocol.ts';
@@ -290,17 +291,17 @@ export function Chronicle({
       <p className="w-note">The game is paused while this menu is open.</p>
       <div className="w-sheet-body w-menu-rows">
         <button type="button" className="w-menu-row" onClick={() => setPage('read')}>
-          Read the chronicle <span aria-hidden="true">▸</span>
+          Read the chronicle <Decoration kind="chevron" />
         </button>
         <button type="button" className="w-menu-row" onClick={() => setPage('hopes')}>
-          Hopes for the winter ahead <span aria-hidden="true">▸</span>
+          Hopes for the winter ahead <Decoration kind="chevron" />
         </button>
         <button
           type="button"
           className="w-menu-row"
           onClick={() => (onFeedback ? onFeedback() : setPage('feedback'))}
         >
-          Feedback <span aria-hidden="true">▸</span>
+          Feedback <Decoration kind="chevron" />
         </button>
         <FullscreenButton variant="item" className="w-menu-row w-fs-item" />
         <button

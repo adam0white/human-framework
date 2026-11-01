@@ -96,7 +96,7 @@ it('labels panel reading as slowdown while the actual game clock is running', as
   try {
     flushSync(() => root.render(createElement(App)));
     const today = [...el.querySelectorAll<HTMLButtonElement>('button')].find(
-      (b) => b.textContent?.trim() === 'Today ▸',
+      (b) => b.textContent?.trim() === 'Today',
     );
     expect(today).toBeDefined();
     flushSync(() => today?.click());

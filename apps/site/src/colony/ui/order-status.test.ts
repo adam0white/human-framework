@@ -36,14 +36,14 @@ describe('a person’s visible order', () => {
   });
   it('distinguishes waiting, work, conditions, refusal and completion without time counts', () => {
     expect(personOrderStatus(card())).toBe('House: waiting');
-    expect(personOrderStatus(card(), 'classic')).toBe('House: on it');
+    expect(personOrderStatus(card(), 'classic')).toBe('House: agreed');
     expect(personOrderStatus(card({ human: { state: 'notNow', label: 'after I eat' } }))).toBe(
       'House: later, after I eat',
     );
     expect(personOrderStatus(card({ human: { state: 'willNot', label: 'that is my work' } }))).toBe(
       "House: won't — “that is my work”",
     );
-    expect(personOrderStatus(card({ human: { state: 'notNow', settled: true } }))).toBe('House: done');
+    expect(personOrderStatus(card({ human: { state: 'notNow', settled: true } }))).toBe('House: order ended');
     expect(
       personOrderStatus(card({ status: 'done', human: { state: 'cannot', label: 'hurt', settled: true } })),
     ).toBe("House: can't — hurt");

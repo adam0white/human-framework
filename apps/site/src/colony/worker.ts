@@ -5,6 +5,7 @@
  * made and replayed here (a loaded file is replayed from its seed and log; its snapshot is never loaded).
  */
 
+import { localCastAuthority } from '../shared/cast-authority.ts';
 import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
 import { checkGameFile } from '../shared/file-sources.ts';
 import {
@@ -111,6 +112,12 @@ hostWorker<MainToWorker | FileSessionRequest, WorkerReply>((msg, host) => {
                 ? {
                     ...provenance,
                     ...file,
+                    // Current file authority is local; chapter/snapshot premises remain historical.
+                    castAuthority: localCastAuthority(),
+                    castOwnership: {},
+                    castSources: {},
+                    castLocalOnly: true,
+                    castSkipped: [],
                     build: typeof provenance.build === 'string' ? provenance.build : file.build,
                   }
                 : file,

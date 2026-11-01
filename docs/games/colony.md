@@ -368,6 +368,274 @@ What changed, and why:
 | Round-2 playtest: show the economy (timber stock, what each house stage needs).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 2026-11-05  |
 | Owner taste direction (2026-10-20): "Don't become bland and objective neutral just to satisfy everyone. It's okay to have slight controversies, for example on difficulty." The @5 promises keep people's own priorities: a promise still yields to "that is my work", and no difficulty value changed. An opt-in early-warning village is implemented under @6 (design change 2026-10-20d). A later-storm option remains deferred: it changes the shared goal/end clock, shelter duration, meals and housing as well as weather. Review after the owner plays early warning. | 2026-11-03  |
 
+### Well retest 1 — bounded source candidates, 2026-10-31
+
+Root adopted A/B/C/E/G/H/I/J and display-only matched reply context for D in the sole HF host writer. These twenty routes remain **open**. Source edits and fixture controls do not establish a browser result, same-tester return, personal-reply acceptance or a finished round. Future exact Opus CLEAR remains mandatory and held. Dates below are inspection targets, not delivery promises.
+
+Reading scope: the five complete authoritative reports, all twenty routes and their method qualifications were read. Selected cross-game history archives and ancillary briefs/administrative/driver histories remain unread here. No complete-packet textual-reading claim follows from hashes or earlier reading receipts. The source investigation and its archived packet remain unchanged.
+
+D exposes only the existing matched alternative/condition label, beside unchanged speech. It does not reconstruct Maya or Nia’s original cause, satisfy their personal-reply request, invent a motive, or auto-reveal a story. Yusuf’s timber-token/Zehra follow-up stays outside this source candidate; the actual disclosure gate and player knowledge remain unchanged.
+
+F-2739 remains investigation only. It needs a future actual browser RED, the occluder/native-touch evidence and then a bounded response. No geometric or z-index change is made here.
+
+#### F-2731 — Maya Chen — return
+
+> I would not return voluntarily tonight; I might come back another evening if I could follow up with Yusuf about the timber token and Zehra, or hear a more personal reason for his choices, but I would not return just to watch the construction stages.
+
+Source: [maya/report.md:1](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/maya/report.md) (exact quote at line 1).
+Route: **fix:well**; status: **open**; group: **D**; scope: display-only recorded context candidate; personal reply and story acceptance open.
+Owner of words: Maya Chen. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Authoring preference and return condition; later thread not reached. Maya might return another evening for the Yusuf timber-token and Zehra follow-up or a more personal explanation, but not tonight or only for construction stages. Her new return blocker is generic response and construction-detail distance; later interactions were not reached.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+Later whole-return source: maya/report.md:86-92. Exact retained section:
+
+> ## 7. Stop and return
+>
+> - **Phone:** TASTE at 96.127 s. Exact stop words are in section 3. I stopped with the game paused in the menu, before the storm.
+> - **Desktop:** TASTE at 71.123 s. Exact stop words are in section 3. I stopped with the game paused in the menu, before the storm.
+>
+> I would not return voluntarily tonight. I might come back another evening if I could follow up with Yusuf about the timber token and Zehra, or hear a more personal reason for his choices. The people and the different responses interest me; comparing construction stages alone does not hold me. I would **not leave the villages running unattended**.
+
+#### F-2732 — Emre Kaya — return
+
+> I would return voluntarily another evening on desktop to try earlier roof orders and see whether I can finish before the storm; I would not leave it running, and I would not play again tonight.
+
+Source: [emre/report.md:1](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/emre/report.md) (exact quote at line 1).
+Route: **fix:well**; status: **open**; group: **F**; scope: investigation only; actual browser/native-touch evidence required.
+Owner of words: Emre Kaya. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Positive desktop return; separate TOOL phone observation; no balance mandate. Emre would return voluntarily on desktop to try earlier roof orders, a strategy rather than a missing-feature condition. Phone ended TOOL after two covered or off-screen dismiss failures. Desktop reached the storm ending and displayed a chapter-save message; cause and persistence are unknown and lost progress was not reported.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+Later whole-return source: emre/report.md:89-100. Exact retained section:
+
+> ## 7. Stop and return
+>
+> **Desktop stop — FINISHED, 420.524 seconds:**
+>
+> > I am stopping at dawn after the full storm. The stage details and food explanation helped; both roofs missed the deadline, all lived, and the Human village had fewer injuries. I would try another evening with earlier roof orders, but not keep watching tonight.
+>
+> > **Phone stop — TOOL, 47.010 seconds:**
+>
+> > I am stopping the phone session because the speech dismiss control was covered or off screen twice. Yusuf agreed to build, and I selected stopping in Feedback without typing or submitting. The storm and later phone play are untested.
+>
+> > Would I return voluntarily? **I would return voluntarily another evening on desktop to try earlier roof orders and see whether I can finish before the storm; I would not leave it running, and I would not play again tonight.** I saw enough of the outcome to have a practical plan for another attempt. I cannot judge the later phone game from this short, blocked session.
+
+Unranked save OBS, retained within this whole-return route: **“This chapter could not be saved.”** Source: emre/report.md:67-76 (section 5).
+Cause and persistence remain unknown. Emre did not report lost progress. This is not a fourth ranked ask, proved loss or save-corruption finding. Earlier roof orders are his proposed next strategy, not a balance or completion guarantee.
+
+#### F-2733 — Nia Okafor — return
+
+> I would not return voluntarily tonight or plan another evening as it is; I liked seeing people refuse and choose different work, but I do not want to manage the villages through the storm, and the replies I heard were less personal than I hoped.
+
+Source: [nia/report.md:1](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/nia/report.md) (exact quote at line 1).
+Route: **fix:well**; status: **open**; group: **D**; scope: display-only recorded context candidate; personal reply and story acceptance open.
+Owner of words: Nia Okafor. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Return/taste condition; preserve refusal and management dislike. Nia would not plan another evening as it stands. She liked refusal and different work but found replies generic and did not want to manage both villages. Do not infer an actual trust cost from a warning.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+Later whole-return source: nia/report.md:80-89. Exact retained section:
+
+> ## 7. Stop and return
+>
+> **Phone — TASTE, 81.992 seconds:** “Stopping on the phone. I liked Maryam refusing again, but Danyal sounded like an error and I do not want to manage the roof and meals. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+>
+> **Desktop — TASTE, 52.123 seconds:** “Stopping on desktop. Seeing Samira choose grain while her other self built was interesting, but her generic reply and the construction management do not pull me on. I would close it. Feedback marked I am stopping; nothing typed or submitted.”
+>
+> On both devices I opened Game menu and Feedback, selected **“I'm stopping”**, saw it marked pressed, went Back and closed the menu. Both also offered **“I'm confused”**. I typed no note, changed no consent or recording setting, and pressed no Submit.
+>
+> I would close it rather than leave it running. I would not come back tonight, and I would not plan another evening with it as it is. More personal answers could interest me, but the prospect of managing both villages through the storm still puts me off.
+
+#### F-2734 — Rosa Alvarez — return
+
+> I would return voluntarily another evening if someone explained when cooking starts filling the storm reserve; I would close the game now and not leave it running.
+
+Source: [rosa/report.md:1](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/rosa/report.md) (exact quote at line 1).
+Route: **fix:well**; status: **open**; group: **C**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Rosa Alvarez. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Conditional return; one-pool wording and unrelated-stage copy. Rosa would return another evening if the cooking and storm-reserve question were explained. She also names construction-stage text beside cooking as a new blocker. Her two title images do not establish person-panel geometry, and her two-stores wording is perception, not established mechanics.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+Later whole-return source: rosa/report.md:110-116. Exact retained section:
+
+> ## 7. Stop and return
+>
+> - **Phone, CONFUSED, 24.975 seconds:** “I stop on the phone. Maryam accepted cooking and the roof and meals have separate lines. But two sentences needed rereading, and I still do not know when cooking fills the storm reserve.”
+> - **Desktop, TASTE, 23.395 seconds:** “I stop on the big screen for tonight. The two villages are easier to see together, but I have seen the same explanations again and want a shorter answer about the storm meals.”
+>
+> I would return voluntarily another evening if someone explained when cooking begins to fill the storm reserve. I like that Maryam can answer and that the people have their own work, but I would not choose another evening alone with the same unanswered meal question yet. I would close it now and **not leave it running**.
+
+#### F-2735 — Petra Horvat — return
+
+> I would not return voluntarily as it stands; I liked comparing the villages, but following the orders did not hold my attention.
+
+Source: [petra/report.md:1](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/petra/report.md) (exact quote at line 1).
+Route: **fix:well**; status: **open**; group: **I**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Petra Horvat. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Return condition; reachable-after-scroll and unclear agreement. Petra would not return as it stands but might reconsider with more reachable choices and clearer agreed-order status. Phone scrolling reached an operable kitchen control; no globally unusable control or order guarantee follows.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+Later whole-return source: petra/report.md:86-92. Exact retained section:
+
+> ## 7. Stop and return
+>
+> - **Desktop stop:** “I am stopping now; the comparison was interesting but the work of following orders has lost me.” Reason: **BORED**, at 90.745 seconds.
+> - **Phone stop:** “I am stopping on the phone; I do not want to scroll through all of that again to give another order.” Reason: **BORED**, at 51.620 seconds.
+>
+> I would not return voluntarily as it stands; I liked comparing the villages, but following the orders did not hold my attention. I might reconsider if the choices were easier to reach and the status of an agreed order were clearer. I would not leave it running: I would want to know what was happening before letting time pass. I would not come back another evening for this version.
+
+#### F-2736 — Maya Chen — ranked ask
+
+> Let me follow up with Yusuf about the timber token and Zehra when he brings them up.
+
+Source: [maya/report.md:5](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/maya/report.md) (exact quote at line 5).
+Route: **fix:well**; status: **open**; group: **D**; scope: display-only recorded context candidate; personal reply and story acceptance open.
+Owner of words: Maya Chen. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Authoring expansion only; actual disclosure gate exists, no complete follow-up implemented in inspected path. Review how Yusuf’s timber-token and Zehra thread can be followed when actually reached. Maya did not encounter it in either short visit, so absence is not established.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2737 — Maya Chen — ranked ask
+
+> Give Yusuf a more specific answer when he changes my request. “I adapted the advice” showed what happened, but left me wanting to know why.
+
+Source: [maya/report.md:6](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/maya/report.md) (exact quote at line 6).
+Route: **fix:well**; status: **open**; group: **D**; scope: display-only recorded context candidate; personal reply and story acceptance open.
+Owner of words: Maya Chen. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Generic reply source confirmed; personal reason depends on matched evidence. Inspect the generic adapted-advice answer in the reached interaction. Maya wants a specific personal reason, without inventing a hidden motive or forcing assent.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2738 — Maya Chen — ranked ask
+
+> Put the personal interaction somewhere easier to find among the construction details.
+
+Source: [maya/report.md:7](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/maya/report.md) (exact quote at line 7).
+Route: **fix:well**; status: **open**; group: **A**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Maya Chen. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Presentation preference; personal thread not absent merely because unvisited. Review the placement of personal interactions among construction details. Maya says the presentation contributed to a new return blocker; later interactions were not reached.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2739 — Emre Kaya — ranked ask
+
+> Make the speech-dismiss control usable on the phone. The driver reported it covered or off screen twice, including after I closed Yusuf’s panel.
+
+Source: [emre/report.md:5](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/emre/report.md) (exact quote at line 5).
+Route: **fix:well**; status: **open**; group: **F**; scope: investigation only; actual browser/native-touch evidence required.
+Owner of words: Emre Kaya. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Actual two-attempt driver obstruction; exact occluder unknown. Investigate the two phone dismiss failures, including the attempt after closing the person panel. This is a bounded driver obstruction, not proof all phone controls fail or a known hitbox cause.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2740 — Emre Kaya — ranked ask
+
+> Explain the suggestion reason “Under protest: curiosity:unknown” in words I can use to decide.
+
+Source: [emre/report.md:6](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/emre/report.md) (exact quote at line 6).
+Route: **fix:well**; status: **open**; group: **E**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Emre Kaya. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Raw reason fallback source defect. Inspect the displayed under-protest reason for usable plain wording. Do not infer the person’s private state or fabricate a reason.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2741 — Emre Kaya — ranked ask
+
+> Explain how a person was injured when I open the injury notice. Samira’s panel showed her sheltering, but I did not see the cause.
+
+Source: [emre/report.md:7](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/emre/report.md) (exact quote at line 7).
+Route: **fix:well**; status: **open**; group: **G**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Emre Kaya. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Notice context lost on navigation; no invented injury cause. Inspect what can truthfully be shown when an injury notice is opened. Samira’s panel showed sheltering and the cause was not seen; do not invent an injury cause.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2742 — Nia Okafor — ranked ask
+
+> Give me more specific personal replies explaining a person’s choice. Danyal’s unavailable-option line and Samira’s “adapted the advice” sounded generic.
+
+Source: [nia/report.md:5](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/nia/report.md) (exact quote at line 5).
+Route: **fix:well**; status: **open**; group: **D**; scope: display-only recorded context candidate; personal reply and story acceptance open.
+Owner of words: Nia Okafor. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Generic replies source confirmed; unavailable is not established system failure. Review the reached generic replies from Danyal and Samira as Nia’s new return blocker. Preserve personal agency and distinguish unavailable options from an established system defect.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2743 — Nia Okafor — ranked ask
+
+> Put the action choices ahead of the long construction inventories, especially on phone.
+
+Source: [nia/report.md:6](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/nia/report.md) (exact quote at line 6).
+Route: **fix:well**; status: **open**; group: **A**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Nia Okafor. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Source ordering confirmed; reachability failure not established. Review placement of action choices before repeated construction inventory, especially on phone. Nia saw actions below the visible edge; that does not establish they were unreachable by scrolling.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2744 — Nia Okafor — ranked ask
+
+> Show me what insisting actually cost, if anything, after the answer.
+
+Source: [nia/report.md:7](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/nia/report.md) (exact quote at line 7).
+Route: **fix:well**; status: **open**; group: **H**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Nia Okafor. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Actual cost unproven; use bounded recorded consequences only. Review how an actual consequence of insistence can be shown if one occurs. A warning that trust may be affected does not prove a cost or authorize a hidden-state forecast.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2745 — Rosa Alvarez — ranked ask
+
+> Tell me in one short sentence when cooking changes from ordinary meals to the storm reserve.
+
+Source: [rosa/report.md:5](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/rosa/report.md) (exact quote at line 5).
+Route: **fix:well**; status: **open**; group: **C**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Rosa Alvarez. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: One meal pool source confirmed; misleading reserve wording. Investigate the ordinary-food and storm-reserve explanation using source rules before describing when cooking fills the reserve. Rosa’s two-store interpretation is not proof of separate pools or a switch rule.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2746 — Rosa Alvarez — ranked ask
+
+> Explain why “An incomplete stage does not establish why work is delayed” appears beside a person who is cooking, or leave it out there.
+
+Source: [rosa/report.md:6](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/rosa/report.md) (exact quote at line 6).
+Route: **fix:well**; status: **open**; group: **B**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Rosa Alvarez. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Unconditional unrelated disclaimer source confirmed. Inspect why incomplete-stage copy appears beside cooking and whether it is useful there. Rosa names it a new blocker; do not infer construction or food mechanics from placement.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2747 — Rosa Alvarez — ranked ask
+
+> Keep the roof and meal totals on separate short lines.
+
+Source: [rosa/report.md:7](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/rosa/report.md) (exact quote at line 7).
+Route: **fix:well**; status: **open**; group: **A**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Rosa Alvarez. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Preserve existing short distinct roof/meal lines; reached panels only. Preserve the short separate roof and meal lines Rosa saw in reached person panels. She did not inspect every later screen.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2748 — Petra Horvat — ranked ask
+
+> Put the available orders before the long construction details, especially on the phone.
+
+Source: [petra/report.md:5](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/petra/report.md) (exact quote at line 5).
+Route: **fix:well**; status: **open**; group: **A**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Petra Horvat. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Source ordering confirmed; Petra operated Kitchen after scrolling. Review placement of available orders before long construction details. Petra scrolled and reached an operable kitchen order; her concern is effort and reach, not proof of a broken control.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2749 — Petra Horvat — ranked ask
+
+> Explain what an agreement means when the person is doing something else.
+
+Source: [petra/report.md:6](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/petra/report.md) (exact quote at line 6).
+Route: **fix:well**; status: **open**; group: **I**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Petra Horvat. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Assent/work distinction; no immediate compliance promise. Inspect how agreement and current activity are explained when a person is doing something else. Preserve agency and do not promise immediate execution or infer a cause.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+#### F-2750 — Petra Horvat — ranked ask
+
+> Explain what the opening conversation selection changes.
+
+Source: [petra/report.md:7](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/petra/report.md) (exact quote at line 7).
+Route: **fix:well**; status: **open**; group: **J**; scope: bounded source candidate; actual same-tester/browser acceptance open.
+Owner of words: Petra Horvat. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
+Reason: Opening choice effect source confirmed, not cosmetic. Explain the opening conversation selection according to its actual source behavior. Petra did not establish an effect and her first phone session followed her cold desktop visit.
+Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+
+Remaining: actual phone/layout/touch observations, same-tester retest and owner acceptance; source exact Opus review is held. Historical C2 remains 0 PASS / 10 FAIL / 4 dependent UNRUN and all 30 qualification offline cases remain UNRUN. No package, actor, RNG, persistent-order, faith, tuning, SDK or qualification change belongs to this clarity candidate.
+
 ## Design change 2026-10-20 (owner may veto)
 
 The phone now shows one large village map and a short order sheet. Classic and Human view buttons keep the same prepared order. Worker and place chips stay behind labelled pickers. The selected worker, destination and connecting line stay visible while composing. Confirm shrinks the sheet, keeps the worker selected, and follows their actual movement. Dragging looks elsewhere; Follow restores tracking. Names, current work postures and nearby Human replies make activity visible. The log retains replies. Switching workers preserves the destination. Suggestions warn that availability may have changed, and preparation refreshes the forecast as the village changes. Ordinary moments retain the previous round's continuous clock; only pending suggestions slow playback.

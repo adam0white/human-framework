@@ -7,6 +7,7 @@ import { phoneStage } from '@adam0white/lab-kit';
 import { type ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
 import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
 import { checkpointCast, fileSession, readGameFile, selectCast } from '../../shared/cast-runtime.ts';
+import { Decoration } from '../../shared/Decoration.tsx';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
@@ -385,7 +386,8 @@ export function App() {
               else setMenu(true);
             }}
           >
-            ≡<span>Menu</span>
+            <Decoration kind="menu" />
+            <span>Menu</span>
           </button>
         </header>
         {!fileSession && <CastLifeNote game="watch" />}
@@ -749,11 +751,11 @@ export function GoalPage({
         {frame.winterSetting?.next === 'milder'
           ? 'Let the winter go easier.'
           : 'Take the winter as it comes.'}
-        ” ▸
+        ” <Decoration kind="chevron" />
       </button>
       {shelf.length ? (
         <button type="button" className="w-menu-row" onClick={() => setSheet('shelf')}>
-          The shelf · {new Set(shelf.map((p) => p.chronicle)).size} chronicles ▸
+          The shelf · {new Set(shelf.map((p) => p.chronicle)).size} chronicles <Decoration kind="chevron" />
         </button>
       ) : null}
       {note ? <p className="w-soft-fail">{note}</p> : null}
@@ -965,7 +967,9 @@ export function DuskPanel({
         ) : null}
         {!sel && frame.day?.lines.length ? (
           <details className="w-day" open={frame.day.lines.some((l) => l.came)}>
-            <summary>Today ▸</summary>
+            <summary>
+              Today <Decoration kind="chevron" />
+            </summary>
             <ul>
               {frame.day.lines.map((l) => (
                 <li key={l.text}>{watchWords(l.text)}</li>
@@ -1504,7 +1508,7 @@ function NightAccount({
           </p>
           {frame.moment ? (
             <button type="button" className="w-decision-banner" onClick={onClose}>
-              {nameIn(frame, frame.moment.who)} is deciding ▸
+              {nameIn(frame, frame.moment.who)} is deciding <Decoration kind="chevron" />
             </button>
           ) : null}
         </footer>
@@ -1585,7 +1589,9 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
       ) : null}
       {t.said.length > 1 ? (
         <details className="w-earlier">
-          <summary>Earlier this morning ▸</summary>
+          <summary>
+            Earlier this morning <Decoration kind="chevron" />
+          </summary>
           <ul className="w-voices">
             {t.said.slice(0, -1).map((x) => (
               <li key={`${x.who}-${x.topic}-${x.text}`}>

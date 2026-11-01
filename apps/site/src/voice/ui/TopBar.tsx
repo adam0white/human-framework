@@ -1,5 +1,6 @@
 /** Top bar (voice.md §7.2) with the sky band (§4): the hour's light, prayer notches, the fast, and a "now" mark. */
 import { memo } from 'react';
+import { Decoration } from '../../shared/Decoration.tsx';
 import type { Frame } from '../protocol.ts';
 import { storyDate } from './dates.ts';
 import { explainTerms } from './terms.tsx';
@@ -137,7 +138,8 @@ export const TopBar = memo(function TopBar({
           i
         </button>
         <button type="button" aria-label="Game menu" aria-expanded={menuOpen} onClick={onMenu}>
-          ≡<span className="v-menu-word"> Menu</span>
+          <Decoration kind="menu" />
+          <span className="v-menu-word"> Menu</span>
         </button>
       </div>
     </header>

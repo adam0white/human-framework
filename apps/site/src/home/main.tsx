@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { FACULTIES, GAMES } from '../games.ts';
+import { Decoration } from '../shared/Decoration.tsx';
 import { GameList } from '../shared/GameList.tsx';
 import './home.css';
 
@@ -32,10 +33,10 @@ function Home() {
     <div className="page">
       <header className="top">
         <a className="mark" href="/">
-          <span aria-hidden="true">◇</span> human framework
+          <Decoration kind="diamond" /> human framework
         </a>
         <a className="top-link" href={REPO}>
-          GitHub ↗
+          GitHub
         </a>
       </header>
 
@@ -55,7 +56,7 @@ function Home() {
           </p>
           <p className="ctas">
             <a className="cta" href={TOP_GAME.href}>
-              Play {TOP_GAME.name} →
+              Play {TOP_GAME.name}
             </a>
             <a href="/games/">All games</a>
           </p>
@@ -66,7 +67,7 @@ function Home() {
           <GameList games={ACTIVE_GAMES.slice(0, 3)} />
           <p className="note">
             <a className="ranking-link" href="/games/">
-              All games, ranked →
+              All games, ranked
             </a>
           </p>
         </section>
@@ -127,7 +128,7 @@ function Home() {
 
       <footer className="foot">
         <span>
-          <span aria-hidden="true">◇</span> human framework v{__HF_LIBRARY_VERSION__} · games v
+          <Decoration kind="diamond" /> human framework v{__HF_LIBRARY_VERSION__} · games v
           {__HF_PACKAGE_VERSION__}
         </span>
         <span>

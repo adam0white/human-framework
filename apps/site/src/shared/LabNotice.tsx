@@ -15,6 +15,7 @@ export function LabNotice() {
     const node = notice.current;
     if (!node) return;
     Object.assign(node.style, {
+      fontFamily: 'inherit',
       position: 'static',
       transform: 'none',
       width: '100%',

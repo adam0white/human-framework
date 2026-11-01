@@ -3,6 +3,7 @@ import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type ChipState, inferAction, type OrderCard } from '../sim/orders.ts';
+import type { Village } from '../sim/village.ts';
 import {
   type ActionId,
   clockOf,
@@ -32,6 +33,7 @@ import { Icon, type IconName, RingTimer } from './Icon.tsx';
 import { homeOrderMeaning, PLACE_LABEL } from './order-status.ts';
 import { LOOKS } from './renderer.ts';
 import { suggestionChoice } from './suggestion-choice.ts';
+import { mealContext } from './village-words.ts';
 import { forecastWords, wellWords as settingWords } from './words.ts';
 
 export const ROLE_LABEL: Record<string, string> = {
@@ -655,6 +657,7 @@ export function SuggestionCard(props: {
           </p>
           {!choice.refusal && <p className="nudge-text">{settingWords(history ?? n.text)}</p>}
           <TaskContext
+            village={props.frame?.village}
             job={
               props.frame
                 ? inferredJob(props.frame, n.order.placeId)
@@ -758,7 +761,15 @@ export function keepOneDisclosure(current: HTMLDetailsElement): void {
 }
 
 /** Presentation only: short requests do not promise autonomous continuation. */
-export function TaskContext({ job, compact = false }: { job: string | null; compact?: boolean }) {
+export function TaskContext({
+  job,
+  compact = false,
+  village,
+}: {
+  job: string | null;
+  compact?: boolean;
+  village?: Village;
+}) {
   if (job === 'build' || job === 'raise-beam')
     return compact ? (
       <span className="well-task-context">
@@ -772,13 +783,9 @@ export function TaskContext({ job, compact = false }: { job: string | null; comp
     );
   if (job === 'cook')
     return compact ? (
-      <span className="well-task-context">Ordinary meals are separate from the 12-meal storm reserve.</span>
+      <span className="well-task-context">{mealContext(village, true)}</span>
     ) : (
-      <p className="well-task-context">
-        Villagers cook for ordinary meals before storm preparations. “Enough food stored” can mean enough for
-        ordinary meals, below the separate twelve-meal storm reserve. Grain is gathered in the field, and
-        water is drawn at the well. Ingredients, meal duties and weather still affect cooking.
-      </p>
+      <p className="well-task-context">{mealContext(village)}</p>
     );
   if (job === 'fell-cedar')
     return (
@@ -941,7 +948,7 @@ export function Composer(props: {
           </span>
         )}
       </p>
-      <TaskContext job={props.job} />
+      <TaskContext job={props.job} village={props.frame?.village} />
       {s.reason && <p className="composer-reason">{settingWords(s.reason)}</p>}
       <details className="order-options" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
         <summary>

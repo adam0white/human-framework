@@ -995,23 +995,32 @@ const REASON_WORDS: Record<string, string> = {
   'norm:abandon-dependents': 'the others would go unfed',
   'norm:aid-injured': 'someone is hurt',
   capacity: 'too weak for it now',
+  'curiosity:unknown': 'interest in something unfamiliar',
+  'curiosity:progress': 'interest in making progress',
+  'curiosity:vary': 'interest in a different activity',
   'goal:role': 'busy with own work',
   unavailable: 'nothing to do there now',
+  'norm:feed-village': 'the duty to feed the village',
+  'norm:salah': 'prayer is due',
+  'norm:daily-prayer': 'the person’s own prayer',
+  'norm:theft': 'theft',
+  'norm:keep-promise': 'keeping a promise',
+  'norm:help-neighbor': 'helping a neighbour',
 };
 
-function readableReason(reason: string): string {
+/** Conditional forecast wording only; never stored narration or an inferred personal motive. */
+export function readableReason(reason: string): string {
   const words = REASON_WORDS[reason.startsWith('goal:role:') ? 'goal:role' : reason];
   if (words) return words;
   if (reason.startsWith('need:'))
     return (
       { food: 'hungry', water: 'thirsty', sleep: 'tired', rest: 'worn out' }[reason.slice(5)] ??
-      reason.slice(5)
+      'a usable forecast reason is unavailable'
     );
-  if (reason.startsWith('norm:')) return reason.slice(5).replace(/-/g, ' ');
   if (reason.startsWith('commitment:')) return 'something is due';
   if (reason.startsWith('skill:')) return 'doesn’t know how';
   if (reason === 'distrust') return 'doesn’t trust you';
-  return reason.replace(/-/g, ' ');
+  return 'a usable forecast reason is unavailable';
 }
 
 export const createFrameworkHumanSide = (rules: ColonyRules = CURRENT_RULES): HumanSide =>

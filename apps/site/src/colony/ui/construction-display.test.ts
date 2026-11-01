@@ -44,7 +44,10 @@ function details(game: ColonyGame, side: 'Human' | 'Classic'): string {
   );
   if (!row?.textContent) throw new Error(`Missing ${side} building details`);
   expect(row.closest('details:not([open])')).toBeNull();
-  const body = row.closest('.well-building-side');
+  const body = [...node.querySelectorAll('.well-construction-inventory .well-building-side')].find((p) =>
+    p.querySelector('.well-building-progress')?.textContent?.startsWith(`${side} village:`),
+  );
+  expect(body?.closest('details')?.querySelector('summary')?.textContent).toContain('Construction details');
   expect(row.textContent).not.toContain('meals');
   expect(body?.querySelector('.well-building-meals')).not.toBeNull();
   return body?.textContent ?? '';

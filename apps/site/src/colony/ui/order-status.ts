@@ -38,7 +38,10 @@ export function personOrderStatus(
   else if (chip.state === 'cannot' || chip.state === 'noop')
     answer = `can't${reason && reason.length <= 28 ? ` — ${reason}` : ''}`;
   else if (chip.settled || chip.state === 'done') {
-    answer = chip.outcome ?? 'done';
+    // Classic ok + settled comes only from its completed event; Human assent has no such contract.
+    answer =
+      chip.outcome ??
+      (chip.state === 'done' || (side === 'classic' && chip.state === 'ok') ? 'done' : 'order ended');
     if (compact && chip.outcome) {
       const result = chip.outcome.replace(/^Day \d+ · \d{2}:\d{2} · /, '').split('. Day ')[0] ?? chip.outcome;
       const now = chip.outcome.split('. Now: ')[1];
@@ -50,7 +53,7 @@ export function personOrderStatus(
     const condition = label?.match(/(?:after|when)\b.*$/i)?.[0];
     answer = condition && condition.length <= 42 ? `later, ${condition}` : 'waiting';
   } else if (chip.state === 'pending') answer = 'waiting';
-  else answer = chip.state === 'complied' ? 'on it, under protest' : 'on it';
+  else answer = chip.state === 'complied' ? 'agreed under protest' : 'agreed';
   return `${PLACE_LABEL[card.order.placeId]}: ${answer}`;
 }
 

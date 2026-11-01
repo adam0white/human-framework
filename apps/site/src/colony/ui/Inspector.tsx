@@ -83,7 +83,7 @@ export function TrustMeter({ trust, name }: { trust: TrustView; name?: string })
         </strong>
       </p>
       {trust.history.length === 0 ? (
-        <p className="muted small">Nothing has moved it today.</p>
+        <p className="muted small">No retained trust change is shown.</p>
       ) : (
         <ul className="trust-history">
           {trust.history.slice(0, 3).map((e) => (
