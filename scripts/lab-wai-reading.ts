@@ -223,10 +223,16 @@ export function validateWordings(
   return result;
 }
 
+export class ReadingResponseError extends Error {}
 function parseJson(text: string): unknown {
-  const value: unknown = JSON.parse(text);
+  let value: unknown;
+  try {
+    value = JSON.parse(text);
+  } catch {
+    throw new ReadingResponseError('Model response is not valid JSON');
+  }
   if (!value || typeof value !== 'object' || Array.isArray(value))
-    throw new Error('Model response must be a JSON object');
+    throw new ReadingResponseError('Model response must be a JSON object');
   return value;
 }
 export async function runReadingAndVariants({
@@ -458,15 +464,23 @@ export async function refillReading({
       throw error;
     }
     try {
-      const result = parseJson(
-        await budget.infer(
-          model,
-          [{ role: 'user', content: buildReadingPrompt(live.game, guide, [], live) }],
-          1024,
-          undefined,
-          day,
-        ),
+      const raw = await budget.infer(
+        model,
+        [{ role: 'user', content: buildReadingPrompt(live.game, guide, [], live) }],
+        1024,
+        undefined,
+        day,
       );
+      let result: unknown;
+      try {
+        result = parseJson(raw);
+      } catch {
+        await appendFile(
+          report,
+          `\nCaptured live text ${live.game} ${hash.slice(0, 12)} returned invalid JSON; no result recorded.\n`,
+        );
+        continue;
+      }
       await appendFile(
         report,
         `\n## Captured live text ${live.game}: ${hash.slice(0, 12)}\n\nObserved state receipt (not a complete playthrough):\n\n    ${JSON.stringify(live)}\n\nModel suggestions, unreviewed:\n\n    ${JSON.stringify(result)}\n`,
@@ -523,15 +537,23 @@ export async function refillReading({
         throw error;
       }
       try {
-        const result = parseJson(
-          await budget.infer(
-            model,
-            [{ role: 'user', content: buildReadingPrompt(game, guide, chunk) }],
-            1024,
-            undefined,
-            day,
-          ),
+        const raw = await budget.infer(
+          model,
+          [{ role: 'user', content: buildReadingPrompt(game, guide, chunk) }],
+          1024,
+          undefined,
+          day,
         );
+        let result: unknown;
+        try {
+          result = parseJson(raw);
+        } catch {
+          await appendFile(
+            report,
+            `\nRefill ${game} ${hash.slice(0, 12)} returned invalid JSON; no result recorded.\n`,
+          );
+          continue;
+        }
         await appendFile(
           report,
           `\n## Refill ${game}: ${hash.slice(0, 12)}\n\nSource: ${repo}. Source candidates are not confirmed live screen text.\n\n\`\`\`json\n${JSON.stringify(result, null, 2)}\n\`\`\`\n`,

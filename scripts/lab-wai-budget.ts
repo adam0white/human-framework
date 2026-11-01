@@ -104,9 +104,90 @@ export interface AccountUsage {
   date: string;
   neurons: number;
   remaining: number;
+  measuredAt: string;
+  localCompletedAtRead: number;
 }
+const CACHE_MS = 5 * 60_000;
+interface UsageCache {
+  date: string;
+  retryAt: number;
+  failures: number;
+  usage: AccountUsage | null;
+}
+const usagePath = join(ROOT, 'account-usage.json');
+const usageLock = join(ROOT, 'account-usage.lock');
+function readUsageCache(): UsageCache | null {
+  try {
+    const value = JSON.parse(readFileSync(usagePath, 'utf8')) as UsageCache;
+    if (
+      typeof value.date !== 'string' ||
+      !Number.isFinite(value.retryAt) ||
+      !Number.isInteger(value.failures) ||
+      value.failures < 0
+    )
+      return null;
+    if (
+      value.usage &&
+      (value.usage.date !== value.date ||
+        !Number.isFinite(value.usage.neurons) ||
+        value.usage.neurons < 0 ||
+        !Number.isFinite(value.usage.localCompletedAtRead) ||
+        value.usage.localCompletedAtRead < 0 ||
+        !Number.isFinite(Date.parse(value.usage.measuredAt)))
+    )
+      return null;
+    return value;
+  } catch {
+    return null;
+  }
+}
+function saveUsageCache(value: UsageCache): void {
+  const next = `${usagePath}.${process.pid}.tmp`;
+  writeFileSync(next, `${JSON.stringify(value)}\n`, { mode: 0o600 });
+  renameSync(next, usagePath);
+}
+/** Shared across inbox, heartbeat and sweep processes. Errors are cached as unknown.
+ * A crash leaves a lock: inspect its exact PID before removing it, as with budget.lock.
+ */
 export async function waiUsage(): Promise<AccountUsage | null> {
   const date = utcDate();
+  mkdirSync(ROOT, { recursive: true, mode: 0o700 });
+  const cached = readUsageCache();
+  if (cached && Date.now() < cached.retryAt) return cached.date === date ? cached.usage : null;
+  try {
+    writeFileSync(usageLock, `${process.pid}\n`, { flag: 'wx', mode: 0o600 });
+  } catch {
+    return null;
+  }
+  try {
+    // Another process may have refreshed between our read and lock acquisition.
+    const current = readUsageCache();
+    if (current && Date.now() < current.retryAt) return current.date === date ? current.usage : null;
+    const failures = Math.min(6, (current?.failures ?? 0) + 1);
+    saveUsageCache({ date, retryAt: Date.now() + CACHE_MS, failures, usage: null });
+    const localCompletedAtRead = waiSummary().days[date]?.neurons ?? 0;
+    const usage = await queryUsage(date, localCompletedAtRead);
+    // Back off on all failures, including GraphQL rate errors returned with HTTP 200.
+    saveUsageCache({
+      date,
+      retryAt: Date.now() + (usage ? CACHE_MS : Math.min(30 * 60_000, CACHE_MS * 2 ** (failures - 1))),
+      failures: usage ? 0 : failures,
+      usage,
+    });
+    return usage?.date === utcDate() ? usage : null;
+  } catch {
+    return null;
+  } finally {
+    unlinkSync(usageLock);
+  }
+}
+/** Charge reservations above completed usage at query time on top of the account snapshot.
+ * Never baseline on refundable reservations: another process may read during an inference. */
+export function admissionAccount(account: AccountUsage | null, localReserved: number): number | null {
+  if (!account || account.date !== utcDate()) return null;
+  return account.neurons + Math.max(0, localReserved - account.localCompletedAtRead);
+}
+async function queryUsage(date: string, localCompletedAtRead: number): Promise<AccountUsage | null> {
   const next = new Date(`${date}T00:00:00Z`);
   next.setUTCDate(next.getUTCDate() + 1);
   const query = `query { viewer { accounts(filter: { accountTag: "${ACCOUNT}" }) { aiInferenceAdaptiveGroups(limit: 1, filter: {datetime_geq: "${date}T00:00:00Z", datetime_lt: "${next.toISOString()}"}) { sum { totalNeurons } } } } }`;
@@ -137,7 +218,13 @@ export async function waiUsage(): Promise<AccountUsage | null> {
     if (!groups) return null;
     const neurons = groups.length === 0 ? 0 : groups[0]?.sum?.totalNeurons;
     if (typeof neurons !== 'number' || !Number.isFinite(neurons) || neurons < 0) return null;
-    return { date, neurons, remaining: Math.max(0, 10_000 - neurons) };
+    return {
+      date,
+      neurons,
+      remaining: Math.max(0, 10_000 - neurons),
+      measuredAt: new Date().toISOString(),
+      localCompletedAtRead,
+    };
   } catch {
     return null;
   }
@@ -252,13 +339,14 @@ export async function waiRun(
       throw new Error('Invalid daily budget');
     const reserve = reservation(model, body);
     const account = await waiUsage();
+    const accountNeurons = admissionAccount(account, day.reservedNeurons);
     if (utcDate() !== date) throw new Error('STOP: UTC day ended');
-    if (!admissionAllowed(account?.neurons ?? null, day.reservedNeurons, reserve))
+    if (!admissionAllowed(accountNeurons, day.reservedNeurons, reserve))
       throw new Error('STOP: daily neuron cap reached');
     const usdReserve = reserve * 0.000011;
     if (state.reservedUSD + usdReserve > LOCAL_BUDGET_USD)
       throw new Error('STOP: $4 local experiments allocation exhausted');
-    if (!headroomAllowed(phase, account?.neurons ?? null, day.reservedNeurons, reserve, state.reservedUSD))
+    if (!headroomAllowed(phase, accountNeurons, day.reservedNeurons, reserve, state.reservedUSD))
       throw new Error(HEADROOM_STOP);
     state.reservedUSD += usdReserve;
     day.reservedNeurons += reserve;
