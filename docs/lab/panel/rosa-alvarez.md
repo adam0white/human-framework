@@ -3696,3 +3696,101 @@ I created no worktree, branch, server, browser or helper process and touched no 
 ---
 
 COORDINATOR METHOD QUALIFICATION (separate from unchanged report): Image views/perception and screenshot-dependent claims remain UNVERIFIABLE. Complete history stdout does not establish delivery or comprehension; inherited history qualifications remain. Phone CONFUSED 89.356 and desktop TASTE 43.681 were voluntary unfinished. Desktop automatic 60.065 was after stop, not continued play or first-minute compliance. Raw/manuscript 1 ms differences: phone want_quit 79.502/79.503, desktop note 5.625/5.626, desktop want_quit 32.876/32.877. Ece crossgame identity was uncertain; menu/list and feedback concept counts are subjective grouping. Prior Well lines 201–3800 receipt remains unverified. No full network guard, backend, feedback or save receipt is established. See NR1–NR10 and the qualified protocol audit.
+
+
+## 2026-11-01 — Small Works first fixed retest
+
+I would return voluntarily another evening if the repair conversation explained “own plans” and personal forgiveness in plain words; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Explain whose plans Sam’s mother may keep and why personal forgiveness appears before I have repaired anything. This was the blocking question I reached.
+2. Keep the explanation beside the switch reading. It answered my earlier question about why 6.00 V points to a problem.
+3. Keep the first repair guide’s one-step instructions.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit to **Small Works**. My supplied history contains one recorded Small Works visit; earlier exposure remains unestablished.
+
+I read all **4013 lines** of my supplied history before play, in separate explicit ranges of at most 40 lines. No response was truncated. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. This is selected history, not my complete archive. Earlier reading, image and continuity qualifications remain attached to those earlier records.
+
+Both sessions began with **Start repairing** on the driver-opened agent-marked page, in fresh automated project-test contexts. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+| Session | Device                          | Stop elapsed_s | Reason   | Game clock  |
+| ------- | ------------------------------- | -------------: | -------- | ----------- |
+| A       | 360×690 touch phone             |        116.717 | CONFUSED | Day 1 09:45 |
+| B       | 1280×800 desktop, mouse actions |         51.648 | TASTE    | Day 1 09:15 |
+
+Neither session reached the 20-minute ceiling or a game ending.
+
+The phone title appeared at **0.619 seconds**. The lantern and short question were inviting. Carrying it made the light go out, and the guide gave me a clear next step. Sam’s promise to help his sister felt like an ordinary obligation I could understand.
+
+This time, the switch reading explicitly said it was **not a second battery reading**. It explained that a working connection usually loses less than 0.2 V. I understood why six volts between B and C indicated a problem. That was satisfying: the explanation answered the question that ended my earlier phone visit.
+
+The repair conversation then lost me. I opened **Discuss this repair method with Sam’s mother** before doing any repair. It introduced retained records, unknown methods, her plans, personal forgiveness and repair permission. I needed two sentences reread and chose to leave.
+
+The desktop title appeared at **0.480 seconds**. The large lantern and instructions were comfortable. After carrying it and opening the cover, I felt I had seen the beginning twice that evening. I did not want to repeat the measurements.
+
+The following are my successful diary strings, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **13.972 s — note, engagement 4, title:** “The lantern and the question remind me of carrying it and losing the light before. I am confident I recognise this game. The large button and text are comfortable. Title concepts 10: games, information, menu, lantern, repair question, saved game, four people, their later lives, privacy, linked recording. No reread.”
+- **24.070 s — note, engagement 4, Day 1 09:15:** “Carrying gives the same clear result I remember: the light goes out. Sam promising to help his sister is familiar and human. I am confident I remember that detail. Workshop concepts 9: day, workday, money, switch, carrying time, last test, Sam company and promise, cover, evening gathering. No reread.”
+- **36.680 s — note, engagement 4, Day 1 09:15:** “Open Reference is beside the sentence now, so I can find the explanation. I remember learning on desktop that a working connection loses less than 0.2 volts. This says that plainly again. Inside concepts 15: parts, cell pack, switch, contact, bulb, meter, repair, notes, reference, voltages, drive ratios, readings, examine, table test, terminals. Reference adds 5: observations, probes, working source, normal loss, comparing conditions. No reread; drive ratios remains unfamiliar but I do not need it for this lantern.”
+- **67.981 s — first_minute, engagement 4, Day 1 09:35:** “I can follow the guide and the reference helps me understand the six-volt battery. I have had no reread yet. I want to compare the switch next. Meter concepts 9: red and black probes, terminals, voltage, continuity, power, table or carrying condition, work harder, reading time, recorded reading.”
+- **81.095 s — note, engagement 4, Day 1 09:45:** “Now it says this is not a second battery reading and that a working connection loses less than 0.2 V. That answers what stopped me last time. I understand why six volts here is a problem. New concepts 5: voltage difference, poor connection, only new switch, spare lantern, removal may ruin the spare. No reread.”
+- **96.356 s — want_quit, CONFUSED, engagement 2, Day 1 09:45:** “Reread 1: Sam’s mother may keep their own plans. Reread 2: A successful test, this response, returning the object and personal forgiveness are separate. I do not know which plans or why forgiveness is here before I have repaired anything. The meter explanation helped, but this conversation loses me. I would stop. Repair concepts 11: family object, ask about switch, discuss method, original request, unknown method, work records, five-minute exchange, refusal, own plans, forgiveness separate from repair, no permission.”
+- **116.717 s — stop, CONFUSED, engagement 2, Day 1 09:45:** “I stop on the phone. The new explanation beside six volts answered my old meter question. But own plans and personal forgiveness needed two rereads in the conversation before I repaired anything. I would close it. Menu concepts 15: saved game, stopped time, history, feedback, download, saved workshop, full screen, new game, games, people, recording, privacy, debug, older versions, resume. Feedback adds 11: optional sharing, three verdicts, stopping, confused, note, optional name, what is sent, privacy, debug, back, submit. I chose confused, saw it pressed and went back; I typed and submitted nothing.”
+
+**Desktop**
+
+- **11.007 s — note, engagement 4, title:** “Same lantern on my larger screen brings back this phone visit and my earlier repair visit. I am confident I recognise it. The wide title is comfortable. The same ten title concepts are here. No new person recognition and no reread.”
+- **34.411 s — want_quit, TASTE, engagement 3, Day 1 09:15:** “The large lantern and the next instruction are easy to see. The little circuit labels are tiny, but the named part buttons below help. I have carried it again and seen this beginning twice tonight. I would stop now, rather than repeat the meter work. Workshop concepts 9 and inside concepts 15 are the same as on the phone. No reread on this device.”
+- **51.648 s — stop, TASTE, engagement 3, Day 1 09:15:** “I stop on the big screen for tonight. The lantern and instructions are comfortable, and the part buttons help with the tiny diagram. I have seen the beginning twice tonight and do not want to repeat the measurements now. No sentence needed rereading here. Menu concepts 14, the same as phone except full screen is absent. Feedback has the same 11 groups. I chose stopping, saw it pressed and went back; I typed and submitted nothing. I would close it and might return another evening if the repair conversation were plain.”
+
+The phone’s two exact reread sentences were:
+
+1. **“Sam’s mother may keep their own plans.”**
+2. **“A successful test, this response, returning the object and personal forgiveness are separate.”**
+
+Both were on the expanded repair-method discussion screen. My phone quit wish followed the second reread and remained through Feedback. Desktop had no reread; its quit wish came from having seen the beginning again and also remained.
+
+My concept counts were contemporaneous estimates using grouped ideas. They cover the reached screens, including visible settings and lab topics. They are not precise cognitive measurements. The separate repair controls also offered **Clean, Adjust and Replace**, with time and stock costs; my logged discussion count did not separately enumerate all three.
+
+Recognition came from ordinary visible cues:
+
+| Time             | Cue                                 | Remembered encounter                                           | Confidence |
+| ---------------- | ----------------------------------- | -------------------------------------------------------------- | ---------- |
+| Phone 13.972 s   | Lantern and opening question        | Carrying the lantern and losing its light in my recorded visit | Confident  |
+| Phone 24.070 s   | Sam’s promise to help his sister    | The same promise in my recorded visit                          | Confident  |
+| Phone 36.680 s   | Reference’s normal-loss explanation | Finding that explanation on my earlier desktop visit           | Confident  |
+| Desktop 11.007 s | Same lantern and title              | Earlier recorded visit and this evening’s phone session        | Confident  |
+
+I recorded no new recognition of another person. Shared names did not prompt a claim that these were people from another game.
+
+I actually viewed these three screenshots:
+
+- [Phone a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/rosa/phone/a-001.png), captured at **3.529 s**: dark green page, large lantern drawing, readable question and broad Start repairing button. The recording notice ran along the bottom.
+- [Desktop b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/rosa/desktop/b-001.png), captured at **3.036 s**: the same title in a spacious centered layout, with a wide button and comfortable text.
+- [Desktop b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/rosa/desktop/b-002.png), captured at **26.050 s**: large lantern on the left; guide, tabs, circuit drawing and part buttons on the right. The circuit’s labels were tiny. The larger named buttons below made choosing parts easier.
+
+I viewed no phone gameplay image or expanded-discussion image. My account of those screens comes from the driver’s visible text and controls. I took one manual shot on phone and two on desktop, within the limit. I did not request or view an automatic checkpoint image.
+
+There were **no driver errors or retries** in these sessions. Start repairing briefly returned “Your workshop is opening…”; subsequent actions showed the workshop and advancing game clock. Each measurement produced a visible reading.
+
+On both devices, Feedback offered **“I'm confused”** and **“I'm stopping.”** On phone I selected **“I'm confused”** at **106.657 s**. On desktop I selected **“I'm stopping”** at **42.690 s**. Each showed as pressed. **Back to the menu** worked at **111.675 s** and **45.742 s**, respectively. I typed no note and pressed no Submit.
+
+Compared only with my recorded Small Works visit:
+
+- **Explain the 6.00 V switch reading beside the reading — met for what I reached on phone.** The text distinguished it from the battery reading and gave the normal connection loss.
+- **Explain “keep their plans” and “Personal acknowledgment is separate” — unresolved in the discussion I reached.** I encountered “own plans” and a sentence separating personal forgiveness from tests and returning the object. Those caused my two rereads. I did not reach the earlier proposal-and-agreement exchange, so I cannot assess its current wording.
+- **Keep the clear first repair guide — met through the measurement steps I used.**
+
+The phone first-minute note was recorded at **67.981 s**. Desktop stopped before 60 seconds, so its first-minute checkpoint is untested. Neither reached 180 seconds, so no pulse was due. I replaced no part, performed no repaired-lantern test, returned no object and reached no ending. Those outcomes and later repairs remain untested.
+
+I would consider another evening because the meter explanation now lets me understand something that previously stopped me. I would still want the conversation made plain. I would close the game now.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns driver and browser cleanup. `git worktree list`: not applicable; no repository was touched and no worktree was created by me.
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from unchanged own report): Complete history stdout does not prove delivery or comprehension. Saved screenshots do not prove perception; inherited qualifications remain. Recovery2 session 9536 exit 0 qualifies this report independently of the first three. Phone first-minute 67.981; desktop stop 51.648 preceded automatic 60.092, which is not further play or viewing. Earlier history-read refusals are administrative; first retained stdout matched 1–4013 while receipt 401–3800 was uncertain, second reported only 1–520 received. No cause is established. Two reread and concept counts are reported estimates. Raw versus report time differences remain unnormalized. No full network guard, feedback or backend receipt is established. See SWF1–SWF14 and the exact epoch qualifications.

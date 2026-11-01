@@ -1,0 +1,165 @@
+{
+  "scope": "Source identities only; source files remain private and immutable.",
+  "sources": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-root-qualification.json",
+      "sha256": "ca6d9d2020eeb57b2f006d1f4bea2ce19e9b752e469c8cbc49e919cda8635f8a",
+      "bytes": 2964
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-root-partial-qualification.json",
+      "sha256": "889b80d75e87f20397f136364cb652ddaf74336af3fc35758c31969ef28967bf",
+      "bytes": 2801
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-root-qualification.json",
+      "sha256": "2018a807c8bfa46427b4aef0b6ba3c825fcfb2990d9774c034703fcce604b053",
+      "bytes": 6639
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-partial-audit.json",
+      "sha256": "9d2a1b72ee4bc73fde234fde3991a32f87b1c58610989c3511f799942e78b356",
+      "bytes": 53555
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-controller/finalizer-audit.json",
+      "sha256": "30d97df02ce535bb7f8116f10efaeedddee204f03c0c2abad6c042322ee4a957",
+      "bytes": 1443124
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-root-triage-directive.json",
+      "sha256": "2348c03f8a0fe8ba44bca16551917a5e04cdb53f06c669c0c220b387c4220551",
+      "bytes": 2138
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-controller-preparation/failed-first-tester-root-physical-return.json",
+      "sha256": "f835771184c58c2f87c584316d08100f5a55839e03c5d53958f4bb19362a65ce",
+      "bytes": 1463
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-controller/failed-dispatch2-root-physical-return.json",
+      "sha256": "c365d5ff1d70e7a703851ab9dd3f6dfe831880bbdeb6d651aa022e143835187a",
+      "bytes": 3333
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery-controller/failed-recovery-root-physical-return.json",
+      "sha256": "4d1c0e3813661b66703476d730f44d4c86862f2b7a34cdf2d2df363061aca3bc",
+      "bytes": 1703
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-controller/root-return.json",
+      "sha256": "5f12699bdcfabd3fecfcf94deb29a621a106078028ecdb2a2ed0c17cc80d25dc",
+      "bytes": 2964
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-root-source-delivery-verification.json",
+      "sha256": "a8dfdac6602c1c6b7ad54940b7d0dca24c2de4a4670c8fcc0a09c8b146b32900",
+      "bytes": 11203
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-sdk-live-source-proof/proof.json",
+      "sha256": "08ef3e9e1284e667799a781a39fd92279520a412edb2f693b3cf055db16e14d1",
+      "bytes": 1770
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-input-binding-decision.json",
+      "sha256": "0eef1c84c11844993f6ec8830b306e003934e9c6d42ce3528272ad833daf2b2f",
+      "bytes": 2563
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-input-binding-decision.json",
+      "sha256": "b751789cfbaf7e90f0e069dd2fae741b5d92bff3d0c0d114e3afd7dbdaa19268",
+      "bytes": 3168
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/manifest.json",
+      "sha256": "312b8d15337eeb3de4d923aed39db8001289d2cc23b4286bcea156be2554bf47",
+      "bytes": 3125
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/maya/report.md",
+      "sha256": "039d188ac5a2599a69937c83132df110bdf18530088ef4d87b38475c354ceb94",
+      "bytes": 9064
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/maya/brief.md",
+      "sha256": "9f328f44fe11e24a2718e46d359e9a60c1be0cf897bfbb8fc37cd3877cc09b9f",
+      "bytes": 7857
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/maya/history-source-map.json",
+      "sha256": "2494edfefb1e15e4995e7194f8c4bda09f920cdf53227097b2056c17aa7ef058",
+      "bytes": 1697
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/emre/report.md",
+      "sha256": "39c1a6ffaa1610a7678fbcb0f39492177f1533184dc8e60067a8c78768ac0b12",
+      "bytes": 10508
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/emre/brief.md",
+      "sha256": "39671ff9719b9eef684e31cebdaea0bed78d996a2f32217282c66af0d0d7fc87",
+      "bytes": 7779
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/emre/history-source-map.json",
+      "sha256": "59435c92dd99f4216d84d70500ce7098513d2564de7cc32e5abeac9a17058916",
+      "bytes": 2358
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/nia/report.md",
+      "sha256": "2f77fbfd16d5598959423a9bac0c2312d172ae999b6faee5e2ee9054817f6713",
+      "bytes": 9202
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/nia/brief.md",
+      "sha256": "9997875ef22b32b5dea7b0f0ad8206e4e57c62a150dbfd1c8ea68dcecd403070",
+      "bytes": 7790
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/nia/history-source-map.json",
+      "sha256": "a232a15094533fcf02e2bb94e7b775074ea822c2107ac3473a1f185ff83ff792",
+      "bytes": 2351
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/manifest.json",
+      "sha256": "674c82597058759b45c58c7053c27ed9e9aadcd041f00149d5dbd2b4ed8d7922",
+      "bytes": 1436
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/rosa/report.md",
+      "sha256": "2537f41cf94db96ac8a164a0ebdbcc4a1dc2172579f943e02ab9602877809e4a",
+      "bytes": 12270
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/rosa/brief.md",
+      "sha256": "0c2fd7ebf052bbefc4f39a6f9a6a1964703031467c6c3aa9472c237bcda401dd",
+      "bytes": 8795
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/rosa/history-source-map.json",
+      "sha256": "63fab4150af681855cf584b513be09cb597abf2fd291baa03820bc57df30a630",
+      "bytes": 2355
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/talia/report.md",
+      "sha256": "ce84032ea10b1ccb8319e2677258a8551199b732114a78c5b8b0490bdb3d9ee2",
+      "bytes": 5777
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/talia/brief.md",
+      "sha256": "2f27c0dff483872f39961ee76a2713e904dd9e30cc3be0666c022c184ce09b88",
+      "bytes": 7997
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-inputs/talia/history-source-map.json",
+      "sha256": "eb2362e2e844cd65dba899e04456780e21960c90963de1b40dad4aac36dce1b5",
+      "bytes": 216
+    }
+  ],
+  "cleanupRule": {
+    "path": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+    "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03"
+  },
+  "historyPolicy": "Only report-only standing appendices are included; full supplied histories remain outside packet."
+}

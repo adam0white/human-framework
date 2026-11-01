@@ -1,0 +1,220 @@
+{
+  "schema": "bounded-source-epoch-publication-map/v1",
+  "packet": "repair-retest1",
+  "sourceManifestSha256": "552bfa1249a8f6939eb07b343386254f3c7caadb65e29ef133291e9d09806bdd",
+  "laterRootSealSha256": "e50ada7191898543f45b7784e7c97a22aa714a1e03b7f8e36fefed17754354a6",
+  "files": {
+    "README.md": {
+      "sha256": "fbb9344daeb48c33df7ad0157431af8e05679ff1b07e19ebca1c1d547fb0d169",
+      "bytes": 1375,
+      "publishedPath": "README.md.txt"
+    },
+    "manifest.json": {
+      "sha256": "552bfa1249a8f6939eb07b343386254f3c7caadb65e29ef133291e9d09806bdd",
+      "bytes": 6335,
+      "publishedPath": "manifest.json.txt"
+    },
+    "source-map.json": {
+      "sha256": "5547d962b9c1ce314bbd1d8fa8059842625b18d969d62a8d06b4b11ee31890a2",
+      "bytes": 7789,
+      "publishedPath": "source-map.json.txt"
+    },
+    "root-ask-triage.json": {
+      "sha256": "ca661f8ae97acea2d20dd8a6630641d8a0d04d1483b42c27e8a5aedadf225ca1",
+      "bytes": 16080,
+      "publishedPath": "root-ask-triage.json.txt"
+    },
+    "root-qualification.json": {
+      "sha256": "ca6d9d2020eeb57b2f006d1f4bea2ce19e9b752e469c8cbc49e919cda8635f8a",
+      "bytes": 2964,
+      "publishedPath": "root-qualification.json.txt"
+    },
+    "partial-root-qualification.json": {
+      "sha256": "889b80d75e87f20397f136364cb652ddaf74336af3fc35758c31969ef28967bf",
+      "bytes": 2801,
+      "publishedPath": "partial-root-qualification.json.txt"
+    },
+    "recovery2-root-qualification.json": {
+      "sha256": "2018a807c8bfa46427b4aef0b6ba3c825fcfb2990d9774c034703fcce604b053",
+      "bytes": 6639,
+      "publishedPath": "recovery2-root-qualification.json.txt"
+    },
+    "protocol.md": {
+      "sha256": "91847744a8f7be7cc5b12079131621b8e7d171741454ad02580087bc7c1b74b9",
+      "bytes": 1273,
+      "publishedPath": "protocol.md.txt"
+    },
+    "protocol.safe.json": {
+      "sha256": "9549e343c3e84b5ea25faab85781228895c1d440c4183d3f8880ce6ad6f3603e",
+      "bytes": 29558,
+      "publishedPath": "protocol.safe.json.txt"
+    },
+    "actual-stops.json": {
+      "sha256": "eabe1fba0981e24a488598238ff3a292360dae2625f857c1e07ed5e425e047de",
+      "bytes": 6957,
+      "publishedPath": "actual-stops.json.txt"
+    },
+    "completions.safe.json": {
+      "sha256": "08ff503928baa9c61982ca1fe993c131b660cbc6ea027e64c07dd42904d281ab",
+      "bytes": 2055,
+      "publishedPath": "completions.safe.json.txt"
+    },
+    "method-qualifications.md": {
+      "sha256": "43d06ef5330a4b7deba3f1ade84e6823e4358335dc8a568cdb3358fbfa5aaa9b",
+      "bytes": 3176,
+      "publishedPath": "method-qualifications.md.txt"
+    },
+    "ask-extraction.md": {
+      "sha256": "82a7efd9b14b92040fe8148256136c3b23ec62834920ea8b95cafd407c5ea225",
+      "bytes": 7069,
+      "publishedPath": "ask-extraction.md.txt"
+    },
+    "ask-extraction.json": {
+      "sha256": "9ec85c06ab5a05a3e12419ae8bfc17ff9c263ed39316c1f93908e9cad673f567",
+      "bytes": 16318,
+      "publishedPath": "ask-extraction.json.txt"
+    },
+    "maya/report.md": {
+      "sha256": "039d188ac5a2599a69937c83132df110bdf18530088ef4d87b38475c354ceb94",
+      "bytes": 9064,
+      "publishedPath": "maya/report.md.txt"
+    },
+    "maya/history-source-map.json": {
+      "sha256": "2494edfefb1e15e4995e7194f8c4bda09f920cdf53227097b2056c17aa7ef058",
+      "bytes": 1697,
+      "publishedPath": "maya/history-source-map.json.txt"
+    },
+    "emre/report.md": {
+      "sha256": "39c1a6ffaa1610a7678fbcb0f39492177f1533184dc8e60067a8c78768ac0b12",
+      "bytes": 10508,
+      "publishedPath": "emre/report.md.txt"
+    },
+    "emre/history-source-map.json": {
+      "sha256": "59435c92dd99f4216d84d70500ce7098513d2564de7cc32e5abeac9a17058916",
+      "bytes": 2358,
+      "publishedPath": "emre/history-source-map.json.txt"
+    },
+    "nia/report.md": {
+      "sha256": "2f77fbfd16d5598959423a9bac0c2312d172ae999b6faee5e2ee9054817f6713",
+      "bytes": 9202,
+      "publishedPath": "nia/report.md.txt"
+    },
+    "nia/history-source-map.json": {
+      "sha256": "a232a15094533fcf02e2bb94e7b775074ea822c2107ac3473a1f185ff83ff792",
+      "bytes": 2351,
+      "publishedPath": "nia/history-source-map.json.txt"
+    },
+    "rosa/report.md": {
+      "sha256": "2537f41cf94db96ac8a164a0ebdbcc4a1dc2172579f943e02ab9602877809e4a",
+      "bytes": 12270,
+      "publishedPath": "rosa/report.md.txt"
+    },
+    "rosa/history-source-map.json": {
+      "sha256": "63fab4150af681855cf584b513be09cb597abf2fd291baa03820bc57df30a630",
+      "bytes": 2355,
+      "publishedPath": "rosa/history-source-map.json.txt"
+    },
+    "talia/report.md": {
+      "sha256": "ce84032ea10b1ccb8319e2677258a8551199b732114a78c5b8b0490bdb3d9ee2",
+      "bytes": 5777,
+      "publishedPath": "talia/report.md.txt"
+    },
+    "talia/history-source-map.json": {
+      "sha256": "eb2362e2e844cd65dba899e04456780e21960c90963de1b40dad4aac36dce1b5",
+      "bytes": 216,
+      "publishedPath": "talia/history-source-map.json.txt"
+    },
+    "external-root-seal": {
+      "sha256": "e50ada7191898543f45b7784e7c97a22aa714a1e03b7f8e36fefed17754354a6",
+      "bytes": 2325,
+      "publishedPath": "root-seal.json.txt"
+    }
+  },
+  "excluded": {
+    "cleanup-rule.md": {
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "delivery-verification.json": {
+      "sha256": "a8dfdac6602c1c6b7ad54940b7d0dca24c2de4a4670c8fcc0a09c8b146b32900",
+      "bytes": 11203,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "dispatch2-input-binding-decision.json": {
+      "sha256": "0eef1c84c11844993f6ec8830b306e003934e9c6d42ce3528272ad833daf2b2f",
+      "bytes": 2563,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "dispatch2-input-manifest.json": {
+      "sha256": "312b8d15337eeb3de4d923aed39db8001289d2cc23b4286bcea156be2554bf47",
+      "bytes": 3125,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "emre/brief.md": {
+      "sha256": "39671ff9719b9eef684e31cebdaea0bed78d996a2f32217282c66af0d0d7fc87",
+      "bytes": 7779,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "emre/diary-continuation.md": {
+      "sha256": "eed6730dda7a551722c9aede44085a87eb0de12928b0badf047f4246fd5d4cc9",
+      "bytes": 11200,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "maya/brief.md": {
+      "sha256": "9f328f44fe11e24a2718e46d359e9a60c1be0cf897bfbb8fc37cd3877cc09b9f",
+      "bytes": 7857,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "maya/diary-continuation.md": {
+      "sha256": "406d53a2d1590496139d184b4b2db1adf4297f4e9332f0c8ba1545c06650219b",
+      "bytes": 9733,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "nia/brief.md": {
+      "sha256": "9997875ef22b32b5dea7b0f0ad8206e4e57c62a150dbfd1c8ea68dcecd403070",
+      "bytes": 7790,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "nia/diary-continuation.md": {
+      "sha256": "e842ad84d202cfbff7286180428519fcb4b8b84035e2457b98a60a83bb6a4680",
+      "bytes": 9937,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "recovery2-input-binding-decision.json": {
+      "sha256": "b751789cfbaf7e90f0e069dd2fae741b5d92bff3d0c0d114e3afd7dbdaa19268",
+      "bytes": 3168,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "recovery2-input-manifest.json": {
+      "sha256": "674c82597058759b45c58c7053c27ed9e9aadcd041f00149d5dbd2b4ed8d7922",
+      "bytes": 1436,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "root-triage-directive.json": {
+      "sha256": "2348c03f8a0fe8ba44bca16551917a5e04cdb53f06c669c0c220b387c4220551",
+      "bytes": 2138,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "rosa/brief.md": {
+      "sha256": "0c2fd7ebf052bbefc4f39a6f9a6a1964703031467c6c3aa9472c237bcda401dd",
+      "bytes": 8795,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "rosa/diary-continuation.md": {
+      "sha256": "ce695aa7341d5076066f318f54c7ad3fa5d1b4f8297638fb1e0587edffb1cbd2",
+      "bytes": 13110,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "sdk-source-proof.json": {
+      "sha256": "08ef3e9e1284e667799a781a39fd92279520a412edb2f693b3cf055db16e14d1",
+      "bytes": 1770,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "talia/brief.md": {
+      "sha256": "2f27c0dff483872f39961ee76a2713e904dd9e30cc3be0666c022c184ce09b88",
+      "bytes": 7997,
+      "reason": "private source retained outside bounded inert publication selection"
+    }
+  }
+}

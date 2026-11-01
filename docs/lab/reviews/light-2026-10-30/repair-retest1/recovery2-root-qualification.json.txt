@@ -1,0 +1,157 @@
+{
+  "at": "2026-11-01T17:17:44.264054+00:00",
+  "status": "ROOT_QUALIFIED_TWO_RECOVERY2_REPORTS_ONLY",
+  "actualSession": 9536,
+  "actualExit": 0,
+  "physicalReturnSha256": "5f12699bdcfabd3fecfcf94deb29a621a106078028ecdb2a2ed0c17cc80d25dc",
+  "finalizerAuditSha256": "30d97df02ce535bb7f8116f10efaeedddee204f03c0c2abad6c042322ee4a957",
+  "reportsRootFullRead": [
+    "rosa",
+    "talia"
+  ],
+  "reportsHashes": {
+    "rosa": "2537f41cf94db96ac8a164a0ebdbcc4a1dc2172579f943e02ab9602877809e4a",
+    "talia": "ce84032ea10b1ccb8319e2677258a8551199b732114a78c5b8b0490bdb3d9ee2"
+  },
+  "rawStops": [
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "t": "2026-11-01T17:00:51.471Z",
+      "elapsed_s": 116.717,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stop on the phone. The new explanation beside six volts answered my old meter question. But own plans and personal forgiveness needed two rereads in the conversation before I repaired anything. I would close it. Menu concepts 15: saved game, stopped time, history, feedback, download, saved workshop, full screen, new game, games, people, recording, privacy, debug, older versions, resume. Feedback adds 11: optional sharing, three verdicts, stopping, confused, note, optional name, what is sent, privacy, debug, back, submit. I chose confused, saw it pressed and went back; I typed and submitted nothing.",
+      "game_clock": "Day 1 09:45",
+      "engagement": 2,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "t": "2026-11-01T17:01:49.734Z",
+      "elapsed_s": 51.648,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stop on the big screen for tonight. The lantern and instructions are comfortable, and the part buttons help with the tiny diagram. I have seen the beginning twice tonight and do not want to repeat the measurements now. No sentence needed rereading here. Menu concepts 14, the same as phone except full screen is absent. Feedback has the same 11 groups. I chose stopping, saw it pressed and went back; I typed and submitted nothing. I would close it and might return another evening if the repair conversation were plain.",
+      "game_clock": "Day 1 09:15",
+      "engagement": 3,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    {
+      "tester": "talia",
+      "device": "phone",
+      "t": "2026-11-01T17:04:57.274Z",
+      "elapsed_s": 125.538,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping after two satisfying repairs; I would return for another short session.",
+      "game_clock": null,
+      "engagement": 4,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    {
+      "tester": "talia",
+      "device": "desktop",
+      "t": "2026-11-01T17:06:35.929Z",
+      "elapsed_s": 96.198,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping after the fan. I enjoyed the repairs and would return, but I am done for tonight.",
+      "game_clock": null,
+      "engagement": 4,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "eligibleReports": 2,
+  "eligibleStops": 4,
+  "voluntaryUnfinishedStops": 4,
+  "observedEndings": 0,
+  "cuts": 0,
+  "historyLineCounts": {
+    "rosa": 4013,
+    "talia": 2
+  },
+  "historyStdoutFullLiteralMatch": true,
+  "modelDeliveryComprehension": "independentlyunverified; Rosa/Taliaselfreportfullread; no inferredservingidentity",
+  "requestedModels": {
+    "rosa": "gpt-6.1-sol MEDIUM",
+    "talia": "gpt-6.1-terra LOW"
+  },
+  "reactionTimestampDifferences": [
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "kind": "note",
+      "wall": 13.971,
+      "report": 13.972
+    },
+    {
+      "tester": "talia",
+      "device": "phone",
+      "kind": "note",
+      "wall": 6.136,
+      "report": 6.137
+    },
+    {
+      "tester": "talia",
+      "device": "phone",
+      "kind": "note",
+      "wall": 16.154,
+      "report": 16.155
+    }
+  ],
+  "unmatchedReactions": [],
+  "supplementalQualifiers": {
+    "SWF9": "Recovery9536TWOonlypositivecurrentreturn; first3qualifiedseparate9285EXIT1epoch. Earlier92669/9285Rosa/64549Rosa administrativefailuresnotgameplays/stops/iterations. Mixedrequestedmodelsnotcausalimprovementproof.",
+    "SWF10": "Rosa firstminute67.981,Talia62.660/61.736 recordedafter60; RosaDstop51.648 thenautomaticshot60.092notcontinuedplay/view. Allpulseuntestedbefore180. No retroactivecheckpoint/no forcedwait.",
+    "SWF11": "Rosa3manualimages/Talia6manualimages with≤5manual+1auto/devicequota. SavedPNG/imageclaimnotindependentperceptionproof. Rosaexpandeddiscussion/phonegameplaynotvisuallyviewed. Taliavisualclaimsboundedtostatedshots.",
+    "SWF12": "Taliaone malformed shell request for stopping label and one invalid-log-reason rejection retained as instrument errors; correctedacceptedreactionsalonecount. No gamecause fromtoolerrors. Feedbacklabel/Backobservablecommands/pressedresponse, no typednote/Submitrequestseen, no backendreceipt/defaultconsentuniversalproof.",
+    "SWF13": "Rosa2rereadverbatims/conceptcounts areherreportedestimates, notcognitivemeasurements. Nia29.478memoryconfidence not separatelystated; donotretrofitconfidence. AllW/SW/NR/SWF1–8 retained.",
+    "SWF14": "Five recovery2 1ms raw-versus-report differences retained alongside14 earlier3 differences (19listedtotal). Rejected4.737invalidlog andaccepted6.136/claimed6.137 are differentattempts, not a1.4s timestamp mismatch."
+  },
+  "blockingReached": {
+    "rosa": "ownplans/personalforgivenessbeforework, followupF3019",
+    "talia": "none; keepExplorefreelypreference"
+  },
+  "scope": "2qualifiedreports, notindependentrebuild/UI/owneracceptance. Whole5joinseparate rootrecordrequired.",
+  "otherTimestampDifferences": [
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "kind": "open",
+      "wall": 0.479,
+      "report": 0.48
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "kind": "manualshot b-001.png",
+      "wall": 3.035,
+      "report": 3.036
+    }
+  ],
+  "oneMsDifferenceCount": 5,
+  "rejectedLogAttemptTiming": {
+    "taliaPhoneToolRejected": 4.737,
+    "acceptedSameReactionWall": 6.136,
+    "acceptedReport": 6.137,
+    "qualification": "Differentattempts, NOT a1.4sreportdiscrepancy; rejectedinvalidreason notcountedaccepteddiary."
+  }
+}

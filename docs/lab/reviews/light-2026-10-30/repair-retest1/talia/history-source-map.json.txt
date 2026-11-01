@@ -1,0 +1,7 @@
+{
+  "policy": "Fictional never-HF; no prior player memory supplied.",
+  "segments": [],
+  "outputSha256": "dead41e3dbad6fca641838cb852299efc11ddb169d1ceac9d34a87b27b1941a8",
+  "outputBytes": 88,
+  "outputLines": 2
+}

@@ -1,0 +1,7 @@
+# Protocol and limits
+
+Two actual epochs: dispatch2 session 9285 exited 1 after three completed players, and recovery2 session 9536 exited 0 after two. Their individual qualifications are separate; no five-player single-controller success is claimed. The three administrative failures are not game stops or iterations.
+
+The root qualification and the two epoch qualifications govern SWF1–SWF14 and inherited W/SW/NR limits. The safe projection preserves applicable checkpoints, history coverage, image hashes, error limits and timestamp differences. Stored stdout matching supplied lines does not prove delivery or comprehension. Images and reported visual impressions do not independently prove perception. No ending, budget stop, tool stop or gameplay cut was observed among these ten voluntary unfinished stops. Requested model settings do not establish serving identity or explain outcomes.
+
+There are 19 listed one-millisecond differences: 14 in the first epoch and five in recovery2. Talia’s rejected invalid-reason request at 4.737 and accepted request at 6.136, reported at 6.137, are different attempts. The malformed shell request and rejected reason are instrument errors, not evidence of a game cause. Full raw audit stays in its private original location.

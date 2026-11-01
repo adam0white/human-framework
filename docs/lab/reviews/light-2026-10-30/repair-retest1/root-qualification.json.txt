@@ -1,0 +1,78 @@
+{
+  "at": "2026-11-01T17:18:31.648170+00:00",
+  "status": "ROOT_QUALIFIED_FIVE_PERSON_FIRST_FIXED_RETEST_CLOSED",
+  "game": "Small Works/repair",
+  "source": "bbe631d28f5b7fce51521da231c9f98ef156c1fb",
+  "app": "4.3.0",
+  "framework": "4.11.0",
+  "reportsRootFullRead": [
+    "maya",
+    "emre",
+    "nia",
+    "rosa",
+    "talia"
+  ],
+  "actualEpochs": [
+    {
+      "session": 9285,
+      "outerExit": 1,
+      "acceptedReports": [
+        "maya",
+        "emre",
+        "nia"
+      ],
+      "qualificationPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-root-partial-qualification.json",
+      "qualificationSha256": "889b80d75e87f20397f136364cb652ddaf74336af3fc35758c31969ef28967bf",
+      "physicalReturnSha256": "c365d5ff1d70e7a703851ab9dd3f6dfe831880bbdeb6d651aa022e143835187a",
+      "sampledGone": 362,
+      "profilesAbsent": 4,
+      "portsBindFree": 11,
+      "qualification": "FourthRosaadministrativehistoryrefusalnotgame; oldfull5finalizercorrectlyUNRUN"
+    },
+    {
+      "session": 9536,
+      "outerExit": 0,
+      "acceptedReports": [
+        "rosa",
+        "talia"
+      ],
+      "qualificationPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-recovery2-root-qualification.json",
+      "qualificationSha256": "2018a807c8bfa46427b4aef0b6ba3c825fcfb2990d9774c034703fcce604b053",
+      "physicalReturnSha256": "5f12699bdcfabd3fecfcf94deb29a621a106078028ecdb2a2ed0c17cc80d25dc",
+      "sampledGone": 202,
+      "profilesAbsent": 2,
+      "portsBindFree": 5,
+      "qualification": "Twoonlyreturn/finalizer guardPASS; noclaimfivefromonecontroller"
+    }
+  ],
+  "completedReports": 5,
+  "actualVoluntaryUnfinishedStops": 10,
+  "observedEndings": 0,
+  "budgetToolStops": 0,
+  "cuts": 0,
+  "adminFailures": [
+    "92669 Maya NOTADMITTED directorbrieferror beforeplay",
+    "9285 Rosa reportedhistoryreceiptuncertain vsstored4013line stdout beforeplay",
+    "64549 Rosa1\u2013520read/521\u20134013unread beforeplay/no causeestablished"
+  ],
+  "methodLabels": "SWF1\u2013SWF14 plusinheritedW/SW/NR; methodqualificationfilesgovern specifics",
+  "rawVersusReportOneMsDifferences": 19,
+  "requestedModelPolicy": {
+    "maya": "TerraLOW",
+    "emre": "TerraLOW",
+    "nia": "TerraLOW",
+    "rosa": "SolMEDIUM",
+    "talia": "TerraLOW"
+  },
+  "servingIdentity": "independentlyUNVERIFIED; modelchange notcausalproof",
+  "blockingReached": [
+    "NiaopeningSamlessonlookup, existingF1475followup",
+    "Rosapre-repairplans/forgivenessplainwording, existingF3019followup"
+  ],
+  "rankedItemCount": 12,
+  "next": "Onefinalfix/retestiterationafterqualifieddelivery; no adminattemptcapreset/no wholeaskclosure/owneracceptance.",
+  "repairDeploymentHold": false,
+  "cpuReturned": true,
+  "earliestNextOrdinary": "2026-11-01T17:22:24.236222+00:00",
+  "packet": "Privatepacketdraft/tworeviews/rootsealstillrequired before canonical publication; prelimhandoffof2blockingqueries mayrouteexistingopenasks."
+}

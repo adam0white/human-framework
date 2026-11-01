@@ -1,0 +1,185 @@
+{
+  "scope": "Ten actual voluntary unfinished stops, from two qualified epochs.",
+  "stops": [
+    {
+      "tester": "maya",
+      "device": "phone",
+      "literal": {
+        "t": "2026-11-01T16:07:35.840Z",
+        "elapsed_s": 82.998,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone. Nora answered my gear question after a clear wait, and the returned box acknowledged our agreement. I want to try the other device. I selected stopping and went back without sending.",
+        "game_clock": "Day 1 12:15",
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "maya",
+      "device": "desktop",
+      "literal": {
+        "t": "2026-11-01T16:08:39.141Z",
+        "elapsed_s": 61.865,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on desktop. Rafi gave me a story I want to follow, but his response to my reply was only a receipt. I do not want another full diagnosis tonight. I selected stopping and went back without sending.",
+        "game_clock": "Day 1 10:35",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "emre",
+      "device": "desktop",
+      "literal": {
+        "t": "2026-11-01T16:14:15.622Z",
+        "elapsed_s": 284.531,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on Day 1 after returning the lantern, fan and music box. The gear diagnosis and Nora’s limited agreement made a satisfying repair. I would return another evening for other jobs, not leave it running.",
+        "game_clock": "Day 1 15:25",
+        "engagement": 5,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "emre",
+      "device": "phone",
+      "literal": {
+        "t": "2026-11-01T16:14:58.964Z",
+        "elapsed_s": 41.677,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone after returning the lantern. The direct replacement worked, but I have already played this opening tonight. I would return on desktop for other jobs, not leave it running.",
+        "game_clock": "Day 1 10:10",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "nia",
+      "device": "phone",
+      "literal": {
+        "t": "2026-11-01T16:17:44.792Z",
+        "elapsed_s": 110.273,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on phone. Sam watched the fan repair and learned from the check, which I liked. Rafi returned to a status line. I would close it; Feedback marked I am stopping, nothing typed or submitted.",
+        "game_clock": "Day 1 11:55",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "nia",
+      "device": "desktop",
+      "literal": {
+        "t": "2026-11-01T16:18:34.172Z",
+        "elapsed_s": 47.709,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on desktop. I could not find how to invite Sam during the lantern, and I already saw the fan lesson on the phone. I would close it. Feedback marked I am stopping; nothing typed or submitted.",
+        "game_clock": "Day 1 10:10",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "literal": {
+        "t": "2026-11-01T17:00:51.471Z",
+        "elapsed_s": 116.717,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop on the phone. The new explanation beside six volts answered my old meter question. But own plans and personal forgiveness needed two rereads in the conversation before I repaired anything. I would close it. Menu concepts 15: saved game, stopped time, history, feedback, download, saved workshop, full screen, new game, games, people, recording, privacy, debug, older versions, resume. Feedback adds 11: optional sharing, three verdicts, stopping, confused, note, optional name, what is sent, privacy, debug, back, submit. I chose confused, saw it pressed and went back; I typed and submitted nothing.",
+        "game_clock": "Day 1 09:45",
+        "engagement": 2,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "literal": {
+        "t": "2026-11-01T17:01:49.734Z",
+        "elapsed_s": 51.648,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop on the big screen for tonight. The lantern and instructions are comfortable, and the part buttons help with the tiny diagram. I have seen the beginning twice tonight and do not want to repeat the measurements now. No sentence needed rereading here. Menu concepts 14, the same as phone except full screen is absent. Feedback has the same 11 groups. I chose stopping, saw it pressed and went back; I typed and submitted nothing. I would close it and might return another evening if the repair conversation were plain.",
+        "game_clock": "Day 1 09:15",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "talia",
+      "device": "phone",
+      "literal": {
+        "t": "2026-11-01T17:04:57.274Z",
+        "elapsed_s": 125.538,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping after two satisfying repairs; I would return for another short session.",
+        "game_clock": null,
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "talia",
+      "device": "desktop",
+      "literal": {
+        "t": "2026-11-01T17:06:35.929Z",
+        "elapsed_s": 96.198,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping after the fan. I enjoyed the repairs and would return, but I am done for tonight.",
+        "game_clock": null,
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    }
+  ]
+}

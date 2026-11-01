@@ -1,0 +1,87 @@
+{
+  "scope": "Five individual completions; no five-player single-controller success is claimed.",
+  "completions": [
+    {
+      "tester": "maya",
+      "epoch": "dispatch2 session 9285; outer exit 1",
+      "completion": {
+        "start": "2026-11-01T16:05:36.666550+00:00",
+        "end": "2026-11-01T16:09:01.843655+00:00",
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "pass": true,
+        "errors": []
+      }
+    },
+    {
+      "tester": "emre",
+      "epoch": "dispatch2 session 9285; outer exit 1",
+      "completion": {
+        "start": "2026-11-01T16:09:01.845530+00:00",
+        "end": "2026-11-01T16:15:25.215267+00:00",
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "pass": true,
+        "errors": []
+      }
+    },
+    {
+      "tester": "nia",
+      "epoch": "dispatch2 session 9285; outer exit 1",
+      "completion": {
+        "start": "2026-11-01T16:15:25.217584+00:00",
+        "end": "2026-11-01T16:18:59.112430+00:00",
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "pass": true,
+        "errors": []
+      }
+    },
+    {
+      "tester": "rosa",
+      "epoch": "recovery2 session 9536; outer exit 0",
+      "completion": {
+        "tester": "rosa",
+        "start": "2026-11-01T16:53:48.280039+00:00",
+        "end": "2026-11-01T17:02:45.714540+00:00",
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "pass": true,
+        "errors": []
+      }
+    },
+    {
+      "tester": "talia",
+      "epoch": "recovery2 session 9536; outer exit 0",
+      "completion": {
+        "tester": "talia",
+        "start": "2026-11-01T17:02:45.716115+00:00",
+        "end": "2026-11-01T17:06:51.962283+00:00",
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "pass": true,
+        "errors": []
+      }
+    }
+  ]
+}

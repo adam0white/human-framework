@@ -1,0 +1,52 @@
+[
+  {
+    "packet": "repair-retest1",
+    "game": "repair",
+    "tester": "maya",
+    "name": "Maya Chen",
+    "returnSentence": "I would come back voluntarily another evening to follow Rafi’s story and try his fan, but I would not return tonight or leave the workshop running.",
+    "reportSha256": "039d188ac5a2599a69937c83132df110bdf18530088ef4d87b38475c354ceb94",
+    "asks": ["F3071", "F3072"],
+    "scope": "one logical tester row; exact conditional return retained; no overall verdict invented"
+  },
+  {
+    "packet": "repair-retest1",
+    "game": "repair",
+    "tester": "emre",
+    "name": "Emre Kaya",
+    "returnSentence": "I would return voluntarily another evening on desktop for other repair jobs, and I would not leave it running.",
+    "reportSha256": "39c1a6ffaa1610a7678fbcb0f39492177f1533184dc8e60067a8c78768ac0b12",
+    "asks": ["F3073", "F3074", "F3075"],
+    "scope": "one logical tester row; exact conditional return retained; no overall verdict invented"
+  },
+  {
+    "packet": "repair-retest1",
+    "game": "repair",
+    "tester": "nia",
+    "name": "Nia Okafor",
+    "returnSentence": "I would come back another evening to see Sam use what he learned, but I would not return tonight or leave the game running.",
+    "reportSha256": "2f77fbfd16d5598959423a9bac0c2312d172ae999b6faee5e2ee9054817f6713",
+    "asks": ["F3076", "F3077", "F3078"],
+    "scope": "one logical tester row; exact conditional return retained; no overall verdict invented"
+  },
+  {
+    "packet": "repair-retest1",
+    "game": "repair",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily another evening if the repair conversation explained “own plans” and personal forgiveness in plain words; I would close it now, not leave it running.",
+    "reportSha256": "2537f41cf94db96ac8a164a0ebdbcc4a1dc2172579f943e02ab9602877809e4a",
+    "asks": ["F3079", "F3080", "F3081"],
+    "scope": "one logical tester row; exact conditional return retained; no overall verdict invented"
+  },
+  {
+    "packet": "repair-retest1",
+    "game": "repair",
+    "tester": "talia",
+    "name": "Talia Solano",
+    "returnSentence": "I would voluntarily return for another short session; I would not leave the game running.",
+    "reportSha256": "ce84032ea10b1ccb8319e2677258a8551199b732114a78c5b8b0490bdb3d9ee2",
+    "asks": ["F3082"],
+    "scope": "one logical tester row; exact conditional return retained; no overall verdict invented"
+  }
+]

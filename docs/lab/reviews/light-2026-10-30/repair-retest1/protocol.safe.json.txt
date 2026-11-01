@@ -1,0 +1,618 @@
+{
+  "scope": "Safe projection; excludes raw commands, stdout, transcript and full histories. Original source paths and hashes are in source-map.json.",
+  "rootMethodLabels": "SWF1–SWF14 plusinheritedW/SW/NR; methodqualificationfilesgovern specifics",
+  "partialNotes": [
+    "This is a partial offline mechanical audit; three completed reports are eligible for root review, not accepted as a full five-person round. No ranked-ask judgment, source acceptance, iteration reset, or new stop is inferred.",
+    "All four retained transcripts parse without JSON errors. Complete aggregated stdout lines match all supplied history lines for each of Maya, Emre, Nia, and Rosa, but this cannot prove delivery to the model or comprehension. Rosa expressly reported a truncated combined read and could not establish receipt of 401–3800; her narrower 201–400 and 3801–4013 follow-up claims are recorded, while the retained individual command outputs collectively cover 1–4013. Do not override her refusal with aggregate-output coverage.",
+    "The six tester stop rows are TASTE or BORED, one per session, and occur below 1200 seconds. They evidence logged voluntary stops, not a game ending. The reports say neither game ended; the evidence reviewed does not independently prove absence of every possible ending.",
+    "Wall-clock vs reported times differ by 0.001 s in places: Maya phone open 0.580/0.581, notes 6.924/6.925 and 25.148/25.149; desktop open 0.468/0.469, screenshot 23.752/23.753 and 32.386/32.387, stop 61.865/61.866. Emre desktop note 6.040/6.041 and 48.786/48.787; phone note 10.533/10.534 and stop 41.677/41.678. Nia desktop open 0.507/0.508, note 5.569/5.570 and stop 47.709/47.710. First number is wall-clock, second is report. Driver command responses can have a separately rounded elapsed value; retain both, do not normalize.",
+    "Automatic first-minute screenshots exist even after Emre phone stop and Nia desktop stop; they are not diary logs or proof of viewing. Maya desktop quit wish was at 52.401 s, automatic shot 60.056 s, stop 61.865 s, with no first-minute log; report says she decided to stop before 60 s while completing Feedback. Whether a checkpoint was owed requires targeted review of actionable state and sequence. Other logged first-minute entries: Maya phone 61.144; Emre desktop 60.912 and pulse 182.942; Nia phone 63.546. Other timed checkpoints not established.",
+    "PNG files and hashes establish retained images, not model perception. Reports claim particular screenshots were viewed; transcript event types do not independently establish perception. Automatic screenshot does not establish a viewed screenshot.",
+    "Feedback quick-label and Back requests are present in retained commands for each reported interaction; no parsed Submit or recording-toggle request was found in classified commands. This is bounded evidence, not proof of submission outcome or unchanged consent. Reports say no note, no Submit and default recording/consent. Driver response truncation and unknown event schemas remain unverified.",
+    "Emre transcript line 112 records a failed malformed shell command exit 1; preserve it without attributing a cause. His report calls it a malformed desktop confused-label command that failed before a request. The following corrected confused-label request appears at line 114. Other command outputs, errors, raw signal and wall rows remain in retained evidence.",
+    "Elapsed times and op_ms describe driver instrumentation, not isolated end-user latency, network or game performance. The agent-marked query is present in assigned URL and recorded startup metadata; it is not evidence of ordinary-user behavior. Two source epochs remain distinct: historical df583792438ebd7b343e5307c6f8bfc3bc9af1f1 and current bbe631d28f5b7fce51521da231c9f98ef156c1fb; no sequential history inference for Nia’s unsupplied older continuation.",
+    "Rosa completed CLI exit 0 but completion pass false. Her transcript contains only history read commands, no driver requests; no screenshots or stop rows appear. Talia is outside this audit and remains undispatched according to root coordination. The full-five gated finalizer was not imported, executed, or weakened."
+  ],
+  "recoveryQualifiers": {
+    "SWF9": "Recovery9536TWOonlypositivecurrentreturn; first3qualifiedseparate9285EXIT1epoch. Earlier92669/9285Rosa/64549Rosa administrativefailuresnotgameplays/stops/iterations. Mixedrequestedmodelsnotcausalimprovementproof.",
+    "SWF10": "Rosa firstminute67.981,Talia62.660/61.736 recordedafter60; RosaDstop51.648 thenautomaticshot60.092notcontinuedplay/view. Allpulseuntestedbefore180. No retroactivecheckpoint/no forcedwait.",
+    "SWF11": "Rosa3manualimages/Talia6manualimages with≤5manual+1auto/devicequota. SavedPNG/imageclaimnotindependentperceptionproof. Rosaexpandeddiscussion/phonegameplaynotvisuallyviewed. Taliavisualclaimsboundedtostatedshots.",
+    "SWF12": "Taliaone malformed shell request for stopping label and one invalid-log-reason rejection retained as instrument errors; correctedacceptedreactionsalonecount. No gamecause fromtoolerrors. Feedbacklabel/Backobservablecommands/pressedresponse, no typednote/Submitrequestseen, no backendreceipt/defaultconsentuniversalproof.",
+    "SWF13": "Rosa2rereadverbatims/conceptcounts areherreportedestimates, notcognitivemeasurements. Nia29.478memoryconfidence not separatelystated; donotretrofitconfidence. AllW/SW/NR/SWF1–8 retained.",
+    "SWF14": "Five recovery2 1ms raw-versus-report differences retained alongside14 earlier3 differences (19listedtotal). Rejected4.737invalidlog andaccepted6.136/claimed6.137 are differentattempts, not a1.4s timestamp mismatch."
+  },
+  "players": [
+    {
+      "tester": "maya",
+      "history": {
+        "lineCount": 2531,
+        "literalLinesCovered": 2531,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "parseErrors": [],
+      "commandExceptionCount": 0,
+      "sessions": {
+        "phone": {
+          "checkpoints": [
+            {
+              "row": 31,
+              "literal": {
+                "t": "2026-11-01T16:07:12.929Z",
+                "elapsed_s": 60.087,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 85,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            },
+            {
+              "row": 32,
+              "literal": {
+                "t": "2026-11-01T16:07:13.986Z",
+                "elapsed_s": 61.144,
+                "kind": "first_minute",
+                "op": "log",
+                "input": null,
+                "reaction": "The lantern was familiar, so I replaced its switch from memory and reached Nora. Her question now names the end of her break and lets me wait to it; she agreed to the gear only. I am testing the repair next.",
+                "game_clock": "Day 1 11:50",
+                "engagement": 5,
+                "reason": null,
+                "op_ms": 0,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": false,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "startPinClean": true,
+          "pngHashes": {
+            "first-minute.png": "5b6466e668f9f3afd20d467c66a3310798facf780c78304d46aee330dff58c3a",
+            "a-002.png": "33639bece2ccb31683b774e50a0716dd9a77ba06cce5daffb1e9e3028ae76ae8",
+            "a-003.png": "8a1ce0ee643b06a8384f984962ef460c11d4f7b6e4e9b2860ba31be77742a3db",
+            "a-001.png": "a980c1d03e09d18ef0122bb85798a92b6c463abf700f28e80a509918c81c9caf"
+          }
+        },
+        "desktop": {
+          "checkpoints": [
+            {
+              "row": 32,
+              "literal": {
+                "t": "2026-11-01T16:08:37.332Z",
+                "elapsed_s": 60.056,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 54,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "startPinClean": true,
+          "pngHashes": {
+            "b-001.png": "0ffe9262e6e05c460b3b4e6d8a7e9bacd1bff1d49d5041c92f4354006a8ae908",
+            "first-minute.png": "dd3962d80ff103d12a25d078922a4479df0b7de3c765ef367e1c807c0f8ff958",
+            "b-002.png": "f38ae2e3f774aeef755fe8acb144bcbe1e2695c39dc89300b5d5155bf4cac3e0",
+            "b-003.png": "78dc051869e50f2a5fd5b84bfb00639b9c2a7f06cffc6c1a71111f91b567d167"
+          }
+        }
+      }
+    },
+    {
+      "tester": "emre",
+      "history": {
+        "lineCount": 1979,
+        "literalLinesCovered": 1979,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "parseErrors": [],
+      "commandExceptionCount": 1,
+      "sessions": {
+        "desktop": {
+          "checkpoints": [
+            {
+              "row": 29,
+              "literal": {
+                "t": "2026-11-01T16:10:31.224Z",
+                "elapsed_s": 60.133,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 131,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            },
+            {
+              "row": 30,
+              "literal": {
+                "t": "2026-11-01T16:10:32.003Z",
+                "elapsed_s": 60.912,
+                "kind": "first_minute",
+                "op": "log",
+                "input": null,
+                "reaction": "The familiar lantern diagnosis and replacement were clear, including the stock count and a test before return. The board now asks me to accept a deadline and payment; I chose the fan to see a different job.",
+                "game_clock": "Day 1 10:40",
+                "engagement": 4,
+                "reason": null,
+                "op_ms": 0,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": false,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            },
+            {
+              "row": 77,
+              "literal": {
+                "t": "2026-11-01T16:12:34.033Z",
+                "elapsed_s": 182.942,
+                "kind": "pulse",
+                "op": "log",
+                "input": null,
+                "reaction": "The music box has given me a proper diagnosis to think through, and Nora wants the old parts kept. I am interested, although the negative speed notation still leaves me unsure.",
+                "game_clock": "Day 1 12:45",
+                "engagement": 4,
+                "reason": null,
+                "op_ms": 0,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": false,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "startPinClean": true,
+          "pngHashes": {
+            "first-minute.png": "04c71f2ab1cd04ecf6b54f1c49e0134bee18bbb6f4d29c80751359a82f1e41b4",
+            "a-004.png": "2e143940cd48e5b62aec5ebc5f87e4189ba47eeda8bb9cbf650bd3be7e7b424f",
+            "a-005.png": "b92a3a3e12a1043b0c2a181a0d0494cc5cf947c7d5d2eeac04bac9b3ce396c8a",
+            "a-002.png": "a54229d765a7f1af11ab12de1619f49ec1e6713081d39daca277be4536a29ede",
+            "a-003.png": "3825f2cf9cd01a1ca83944290db6f67ac1caacc1d7caee39295d0e61e2482f3b",
+            "a-001.png": "0ffe9262e6e05c460b3b4e6d8a7e9bacd1bff1d49d5041c92f4354006a8ae908"
+          }
+        },
+        "phone": {
+          "checkpoints": [
+            {
+              "row": 20,
+              "literal": {
+                "t": "2026-11-01T16:15:17.320Z",
+                "elapsed_s": 60.033,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 31,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "startPinClean": true,
+          "pngHashes": {
+            "b-001.png": "a980c1d03e09d18ef0122bb85798a92b6c463abf700f28e80a509918c81c9caf",
+            "first-minute.png": "628510faaaa5d447702f370d7be938b596c73c25ed03d7448b386f2b7cc5ce10"
+          }
+        }
+      }
+    },
+    {
+      "tester": "nia",
+      "history": {
+        "lineCount": 2330,
+        "literalLinesCovered": 2330,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "parseErrors": [],
+      "commandExceptionCount": 0,
+      "sessions": {
+        "phone": {
+          "checkpoints": [
+            {
+              "row": 25,
+              "literal": {
+                "t": "2026-11-01T16:16:54.555Z",
+                "elapsed_s": 60.036,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 34,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            },
+            {
+              "row": 27,
+              "literal": {
+                "t": "2026-11-01T16:16:58.065Z",
+                "elapsed_s": 63.546,
+                "kind": "first_minute",
+                "op": "log",
+                "input": null,
+                "reaction": "I fixed the familiar lantern from memory and found a lesson with Sam, which is exactly the company I wanted before. He agreed, but I had already returned the lantern, so I accepted Rafi’s fan to try with him. The board needs scrolling and its repeated buttons make me look carefully.",
+                "game_clock": "Day 1 10:45",
+                "engagement": 4,
+                "reason": null,
+                "op_ms": 0,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": false,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "startPinClean": true,
+          "pngHashes": {
+            "first-minute.png": "3bc94bab6b1ce8ba280778eca884e1c901d6da3962f44411df16831544e9e92b",
+            "a-002.png": "3bc94bab6b1ce8ba280778eca884e1c901d6da3962f44411df16831544e9e92b",
+            "a-003.png": "2a1664328dd44e9e368bfbd6f96dc2030870ae1a6ef5faca69d295b4eb256393",
+            "a-001.png": "a980c1d03e09d18ef0122bb85798a92b6c463abf700f28e80a509918c81c9caf"
+          }
+        },
+        "desktop": {
+          "checkpoints": [
+            {
+              "row": 27,
+              "literal": {
+                "t": "2026-11-01T16:18:46.511Z",
+                "elapsed_s": 60.048,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 46,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "startPinClean": true,
+          "pngHashes": {
+            "b-001.png": "0ffe9262e6e05c460b3b4e6d8a7e9bacd1bff1d49d5041c92f4354006a8ae908",
+            "first-minute.png": "ebb22d7d8e06c8efaf1dd4027ca07b62428018eacf9984988fd962072cc2eb01"
+          }
+        }
+      }
+    },
+    {
+      "tester": "rosa",
+      "history": {
+        "lineCount": 4013,
+        "literalLinesCovered": 4013,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "commandExceptionCount": 0,
+      "sessions": {
+        "phone": {
+          "checkpoints": [
+            {
+              "row": 17,
+              "literal": {
+                "t": "2026-11-01T16:59:54.850Z",
+                "elapsed_s": 60.096,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 94,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            },
+            {
+              "row": 19,
+              "literal": {
+                "t": "2026-11-01T17:00:02.735Z",
+                "elapsed_s": 67.981,
+                "kind": "first_minute",
+                "op": "log",
+                "input": null,
+                "reaction": "I can follow the guide and the reference helps me understand the six-volt battery. I have had no reread yet. I want to compare the switch next. Meter concepts 9: red and black probes, terminals, voltage, continuity, power, table or carrying condition, work harder, reading time, recorded reading.",
+                "game_clock": "Day 1 09:35",
+                "engagement": 4,
+                "reason": null,
+                "op_ms": 0,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": false,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "missingCheckpoint": "UNVERIFIED: root must review timing, actionable state and stopping sequence; no forced wait and automatic images do not establish diary compliance",
+          "pngHashes": {
+            "first-minute.png": "eb2d2f3aaab1e8d45802772e11ca4f48ba4a379c606f3e2f86a601c1e192cb45",
+            "a-001.png": "a980c1d03e09d18ef0122bb85798a92b6c463abf700f28e80a509918c81c9caf"
+          },
+          "startPinClean": true,
+          "imageView": "UNVERIFIABLE: saved image is not perception evidence",
+          "stopQualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review."
+        },
+        "desktop": {
+          "checkpoints": [
+            {
+              "row": 15,
+              "literal": {
+                "t": "2026-11-01T17:01:58.178Z",
+                "elapsed_s": 60.092,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 88,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "missingCheckpoint": "UNVERIFIED: root must review timing, actionable state and stopping sequence; no forced wait and automatic images do not establish diary compliance",
+          "pngHashes": {
+            "b-001.png": "0ffe9262e6e05c460b3b4e6d8a7e9bacd1bff1d49d5041c92f4354006a8ae908",
+            "first-minute.png": "524341f07e9ec3c53358c39e8331fce52ea6cebb1bf9f858c9283dc4bcbc772a",
+            "b-002.png": "b5955b94406d5be394eb1e0ce4014372fce62b214754dfe8f9049dfa3b8e26fc"
+          },
+          "startPinClean": true,
+          "imageView": "UNVERIFIABLE: saved image is not perception evidence",
+          "stopQualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review."
+        }
+      }
+    },
+    {
+      "tester": "talia",
+      "history": {
+        "lineCount": 2,
+        "literalLinesCovered": 2,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "commandExceptionCount": 1,
+      "sessions": {
+        "phone": {
+          "checkpoints": [
+            {
+              "row": 35,
+              "literal": {
+                "t": "2026-11-01T17:03:51.781Z",
+                "elapsed_s": 60.045,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 45,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            },
+            {
+              "row": 36,
+              "literal": {
+                "t": "2026-11-01T17:03:54.396Z",
+                "elapsed_s": 62.66,
+                "kind": "first_minute",
+                "op": "log",
+                "input": null,
+                "reaction": "I like that there is another real problem to figure out myself. The guided first repair was clear, though I followed it more than I reasoned through it.",
+                "game_clock": null,
+                "engagement": 4,
+                "reason": null,
+                "op_ms": 0,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": false,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "missingCheckpoint": "UNVERIFIED: root must review timing, actionable state and stopping sequence; no forced wait and automatic images do not establish diary compliance",
+          "pngHashes": {
+            "first-minute.png": "e4bebf500332e5186501dc632e15cda9d57e7b5db4cab8f8d33f20da2fa34604",
+            "a-002.png": "f70a732dee99253951b0514da9c77a584c232ed5142027e29edf6ff2f9f8ce6e",
+            "a-003.png": "ca90f3c9f2f9cc4dcde0dbebe2cbd01f087bf1ca834a8a246b12b89a642e9535",
+            "a-001.png": "a980c1d03e09d18ef0122bb85798a92b6c463abf700f28e80a509918c81c9caf"
+          },
+          "startPinClean": true,
+          "imageView": "UNVERIFIABLE: saved image is not perception evidence",
+          "stopQualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review."
+        },
+        "desktop": {
+          "checkpoints": [
+            {
+              "row": 27,
+              "literal": {
+                "t": "2026-11-01T17:05:59.867Z",
+                "elapsed_s": 60.136,
+                "kind": "first_minute",
+                "op": "shot",
+                "input": {
+                  "file": "first-minute.png"
+                },
+                "reaction": null,
+                "game_clock": null,
+                "engagement": null,
+                "reason": null,
+                "op_ms": 133,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": true,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            },
+            {
+              "row": 28,
+              "literal": {
+                "t": "2026-11-01T17:06:01.467Z",
+                "elapsed_s": 61.736,
+                "kind": "first_minute",
+                "op": "log",
+                "input": null,
+                "reaction": "Skipping the guide let me move on, and the failed adjustment made the test matter. I am curious about a fan instead of another light.",
+                "game_clock": null,
+                "engagement": 4,
+                "reason": null,
+                "op_ms": 0,
+                "error": null,
+                "requested_control_present_before": null
+              },
+              "automaticScreenshot": false,
+              "thresholdValid": true,
+              "actionableScreen": "UNVERIFIED"
+            }
+          ],
+          "missingCheckpoint": "UNVERIFIED: root must review timing, actionable state and stopping sequence; no forced wait and automatic images do not establish diary compliance",
+          "pngHashes": {
+            "first-minute.png": "26a9cc3c95c90cdc8d69810359387e7a7d86e4727daa896860bdcf49d712d4ef",
+            "a-002.png": "7120ce3f5bc26eadf8b17869b8088ac8fda521633277adaf16bb242537ccd4b6",
+            "a-003.png": "10178546de2380df58275335b6ddd793f4f12d5b46ad7b2402fea81567a9873d",
+            "a-001.png": "0ffe9262e6e05c460b3b4e6d8a7e9bacd1bff1d49d5041c92f4354006a8ae908"
+          },
+          "startPinClean": true,
+          "imageView": "UNVERIFIABLE: saved image is not perception evidence",
+          "stopQualification": "FINISHED does not establish game ending. Later automatic ceilings are separate; root must examine intervening and later play. Ceiling-only is automatic and nonvoluntary; BUDGET/TOOL are not counted voluntary. Duplicates/errors require review."
+        }
+      }
+    }
+  ],
+  "reactionTimestampDifferences": [
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "kind": "note",
+      "wall": 13.971,
+      "report": 13.972
+    },
+    {
+      "tester": "talia",
+      "device": "phone",
+      "kind": "note",
+      "wall": 6.136,
+      "report": 6.137
+    },
+    {
+      "tester": "talia",
+      "device": "phone",
+      "kind": "note",
+      "wall": 16.154,
+      "report": 16.155
+    }
+  ],
+  "otherTimestampDifferences": [
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "kind": "open",
+      "wall": 0.479,
+      "report": 0.48
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "kind": "manualshot b-001.png",
+      "wall": 3.035,
+      "report": 3.036
+    }
+  ],
+  "rejectedLogAttemptTiming": {
+    "taliaPhoneToolRejected": 4.737,
+    "acceptedSameReactionWall": 6.136,
+    "acceptedReport": 6.137,
+    "qualification": "Differentattempts, NOT a1.4sreportdiscrepancy; rejectedinvalidreason notcountedaccepteddiary."
+  },
+  "rootCombinedOneMsCount": 19,
+  "servingIdentity": "independentlyUNVERIFIED; modelchange notcausalproof"
+}
