@@ -17,6 +17,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it, vi } from 'vitest';
 import * as castRuntime from '../../shared/cast-runtime.ts';
 import { requireValue } from '../../shared/require-value.ts';
+import { applyDuskRest } from '../sim/dusk-rest.ts';
 import { applyInput, newGame, stepMinute } from '../sim/night.ts';
 import { buildFrame } from '../sim/view.ts';
 import type { WatchActions } from './useWatch.ts';
@@ -25,9 +26,31 @@ vi.mock('../../shared/lab.tsx', () => ({
   gameLabs: { watch: { telemetryOn: true, screen: vi.fn(), milestone: vi.fn() } },
 }));
 vi.mock('./useWatch.ts', () => ({ useWatch: vi.fn() }));
-vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: () => null }));
+// Exercise App's map-hit route without a canvas, geometry or animation loop.
+vi.mock('./MapCanvas.tsx', () => ({
+  MapCanvas: ({ frame, onHit }: Parameters<typeof import('./MapCanvas.tsx').MapCanvas>[0]) =>
+    createElement(
+      'div',
+      { className: 'test-map' },
+      frame.sections.flatMap((section) =>
+        section.posts.map((post) =>
+          createElement(
+            'button',
+            {
+              key: post.id,
+              type: 'button',
+              'data-map-post': post.id,
+              onClick: () => onHit({ kind: 'post', post: post.id }),
+            },
+            post.id,
+          ),
+        ),
+      ),
+    ),
+}));
 const { App, GoalPage, DuskPanel, NightPanel, DawnPanel, WatchStrip, headerLine } = await import('./App.tsx');
 const { Chronicle, Shelf } = await import('./chronicle.tsx');
+const { FairPage } = await import('./pages.tsx');
 const actions = {
   input: vi.fn(),
   hold: vi.fn(),
@@ -68,6 +91,278 @@ it('separates starting lantern from the selected person’s post actions', () =>
   expect(selected.textContent).toContain('Ask them to take tonight off, until dawn.');
   expect(selected.querySelectorAll('.game-help-button')).toHaveLength(0);
 });
+it('shows the fair limit and the need mark on both granary drawings', () => {
+  const frame = {
+    ...dusk,
+    grain: 12,
+    need: 8,
+    fair: {
+      picksLeft: 2,
+      offers: [
+        {
+          id: 'seed' as const,
+          label: 'Seed',
+          text: 'Seed',
+          affordable: true,
+          taken: false,
+          after: 9,
+          named: false,
+        },
+      ],
+    },
+  };
+  const page = render(createElement(FairPage, { frame, actions }));
+  expect(frame.fair.picksLeft).toBeGreaterThan(frame.fair.offers.length);
+  expect(page.querySelector('.w-picks')?.textContent).toContain(
+    'up to two more offers, if the granary can spare them',
+  );
+  const unaffordable = render(
+    createElement(FairPage, {
+      frame: {
+        ...frame,
+        fair: { ...frame.fair, offers: frame.fair.offers.map((offer) => ({ ...offer, affordable: false })) },
+      },
+      actions,
+    }),
+  );
+  expect(unaffordable.querySelector('.w-picks')?.textContent).toContain(
+    'up to two more offers, if the granary can spare them',
+  );
+  expect(unaffordable.querySelector('.w-offers button')?.hasAttribute('disabled')).toBe(true);
+  const drawings = page.querySelectorAll('.w-sacks');
+  expect(drawings).toHaveLength(2);
+  for (const drawing of drawings) {
+    expect(drawing.querySelector('.sack-need')?.getAttribute('x1')).toBe('145');
+    expect(drawing.getAttribute('aria-label')).toContain('mark');
+  }
+  const last = render(
+    createElement(FairPage, { frame: { ...frame, fair: { ...frame.fair, picksLeft: 0 } }, actions }),
+  );
+  expect(last.querySelector('.w-picks')?.textContent).toContain('nothing more');
+});
+
+// UNRUN: source-only correction; parent owns runtime verification.
+it('keeps the latest mounted pressure intent until a frame and resets selection, run and refusal', async () => {
+  const { useWatch } = await import('./useWatch.ts');
+  const watcher = requireValue(dusk.watchers[0]);
+  const post = requireValue(dusk.sections.flatMap((s) => s.posts)[0]);
+  let frame = {
+    ...dusk,
+    watchers: dusk.watchers.map((w) =>
+      w.id === watcher.id ? { ...w, posted: post.id, press: 'insist' as const } : w,
+    ),
+  };
+  const input = vi.fn();
+  let current = 'first';
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  const publish = async () => {
+    vi.mocked(useWatch).mockReturnValue({
+      frame,
+      speed: 'watch',
+      error: null,
+      seed: 42,
+      shelf: [],
+      saving: true,
+      current,
+      actions: { ...actions, input },
+    });
+    await act(() => root.render(createElement(App)));
+  };
+  const click = async (selector: string) => {
+    await act(() => requireValue(container.querySelector<HTMLButtonElement>(selector)).click());
+  };
+  const chosen = () => container.querySelector('.w-press[aria-pressed=true]')?.textContent;
+  await publish();
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Insist');
+  await click('.w-press:nth-of-type(3)');
+  expect(input).not.toHaveBeenCalled();
+  await click('.w-press:nth-of-type(1)');
+  expect(input).toHaveBeenLastCalledWith({ k: 'post', watcher: watcher.id, post: post.id, press: 'ask' });
+  // Deliver Ask, then freeze the worker frame through the reversal and duplicate tap.
+  frame = {
+    ...frame,
+    watchers: frame.watchers.map((w) => (w.id === watcher.id ? { ...w, press: 'ask' as const } : w)),
+  };
+  await publish();
+  input.mockClear();
+  await click('.w-press:nth-of-type(2)');
+  await click('.w-press:nth-of-type(2)');
+  expect(input).toHaveBeenCalledTimes(1);
+  expect(chosen()).toBe('Urge');
+  await click('.w-press:nth-of-type(1)');
+  expect(input.mock.calls.map(([command]) => command)).toEqual([
+    { k: 'post', watcher: watcher.id, post: post.id, press: 'urge' },
+    { k: 'post', watcher: watcher.id, post: post.id, press: 'ask' },
+  ]);
+  expect(chosen()).toBe('Ask');
+  await click('.w-press:nth-of-type(2)');
+  // A replacement frame still saying Ask may be a refusal; do not keep an optimistic Urge.
+  frame = { ...frame };
+  await publish();
+  expect(chosen()).toBe('Ask');
+  await click('.w-press:nth-of-type(2)');
+  expect(input).toHaveBeenCalledTimes(4);
+  await click('.w-order-back');
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  await click('.w-press:nth-of-type(2)');
+  current = 'loaded-run';
+  await publish();
+  expect(container.querySelector('.w-press')).toBeNull();
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  // An unposted pick sends nothing and persists across ordinary frames until selection changes.
+  frame = {
+    ...frame,
+    watchers: frame.watchers.map((w) =>
+      w.id === watcher.id ? { ...w, posted: null, press: 'ask' as const } : w,
+    ),
+  };
+  await publish();
+  input.mockClear();
+  await click('.w-press:nth-of-type(3)');
+  expect(input).not.toHaveBeenCalled();
+  frame = { ...frame };
+  await publish();
+  expect(chosen()).toBe('Insist');
+  const other = requireValue(frame.watchers.find((w) => w.id !== watcher.id));
+  await click('.w-order-back');
+  await click(`.w-person-${other.id}`);
+  expect(chosen()).toBe('Ask');
+  await click('.w-order-back');
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  await click('.w-press:nth-of-type(3)');
+  vi.mocked(useWatch).mockReturnValue({
+    frame,
+    speed: 'watch',
+    error: 'Request refused',
+    seed: 42,
+    shelf: [],
+    saving: true,
+    current,
+    actions: { ...actions, input },
+  });
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.w-press')).toBeNull();
+  await publish();
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  await act(() => root.unmount());
+  container.remove();
+});
+
+it('keeps explicit active night-off cancellation through sheet, map and pressure controls', async () => {
+  const { useWatch } = await import('./useWatch.ts');
+  const state = newGame(2026);
+  applyInput(state, { k: 'start' });
+  applyInput(state, { k: 'post', watcher: 'tamar', post: 'east-1', press: 'ask' });
+  applyInput(state, { k: 'lantern', section: 'east' });
+  const input = vi.fn((command: Parameters<WatchActions['input']>[0]) => {
+    applyInput(state, command);
+  });
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  const publish = async () => {
+    vi.mocked(useWatch).mockReturnValue({
+      frame: buildFrame(state, 0, false),
+      speed: 'watch',
+      error: null,
+      seed: 2026,
+      shelf: [],
+      saving: true,
+      current: 'night-off',
+      actions: { ...actions, input },
+    });
+    await act(() => root.render(createElement(App)));
+  };
+  const click = async (selector: string) => {
+    await act(() => requireValue(container.querySelector<HTMLButtonElement>(selector)).click());
+  };
+  for (const route of ['sheet', 'map', 'pressure'] as const) {
+    // Canonical pending request, without stepping HF to an unpredictable answer.
+    expect(applyDuskRest(state, { k: 'dusk-rest', who: 'tamar', until: 'dawn' })).toBe(true);
+    expect(buildFrame(state, 0, false).watchers.find((w) => w.id === 'tamar')?.duskRest?.active).toBe(true);
+    await publish();
+    await click('.w-person-tamar');
+    input.mockClear();
+    await click(
+      route === 'sheet'
+        ? '.w-place[aria-pressed=true]'
+        : route === 'map'
+          ? '[data-map-post="east-1"]'
+          : '.w-press[aria-pressed=true]',
+    );
+    expect(input).toHaveBeenCalledExactlyOnceWith({
+      k: 'post',
+      watcher: 'tamar',
+      post: 'east-1',
+      press: 'ask',
+    });
+    expect(state.duskRest?.requests.tamar?.endReason).toBe('reposted');
+    expect(buildFrame(state, 0, false).watchers.find((w) => w.id === 'tamar')?.duskRest?.active).toBe(false);
+    await publish();
+    if (route === 'pressure') await click('.w-order-back');
+  }
+  await act(() => root.unmount());
+  container.remove();
+});
+
+it('sends a changed post once and does not resend the same post and press', async () => {
+  const { useWatch } = await import('./useWatch.ts');
+  const watcher = requireValue(dusk.watchers[0]);
+  const section = requireValue(dusk.sections.find((s) => s.posts.length > 0));
+  const post = requireValue(section.posts[0]);
+  const frame = {
+    ...dusk,
+    watchers: dusk.watchers.map((w) =>
+      w.id === watcher.id ? { ...w, posted: post.id, press: 'ask' as const } : w,
+    ),
+    sections: dusk.sections.map((s) =>
+      s.id === section.id
+        ? {
+            ...s,
+            posts: s.posts.map((p) => (p.id === post.id ? { ...p, posted: watcher.id } : p)),
+          }
+        : s,
+    ),
+  };
+  const input = vi.fn();
+  vi.mocked(useWatch).mockReturnValue({
+    frame,
+    speed: 'watch',
+    error: null,
+    seed: 42,
+    shelf: [],
+    saving: true,
+    current: 'new',
+    actions: { ...actions, input },
+  });
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  await act(() => root.render(createElement(App)));
+  const select = () => requireValue(container.querySelector<HTMLButtonElement>(`.w-person-${watcher.id}`));
+  await act(() => select().click());
+  const same = requireValue(container.querySelector<HTMLButtonElement>('.w-place[aria-pressed=true]'));
+  await act(() => same.click());
+  expect(input).not.toHaveBeenCalled();
+  await act(() => select().click());
+  const other = requireValue(
+    container.querySelector<HTMLButtonElement>('.w-place[aria-pressed=false]:not(:disabled)'),
+  );
+  await act(() => other.click());
+  expect(input).toHaveBeenCalledTimes(1);
+  expect(input.mock.calls[0]?.[0]).toMatchObject({ k: 'post', watcher: watcher.id, press: 'ask' });
+  expect(input.mock.calls[0]?.[0].post).not.toBe(post.id);
+  await act(() => root.unmount());
+  container.remove();
+});
+
 it('keeps lantern and bell in the night action bar and people in the sheet', () => {
   const night = render(createElement(NightPanel, { frame: { ...dusk, phase: 'night' }, actions }));
   expect(night.querySelectorAll('.w-lantern-track button')).toHaveLength(4);
@@ -765,6 +1060,8 @@ it('shows each shelf page’s fictional date without version or save timestamps'
   expect(el.querySelectorAll('.w-pagerow button')).toHaveLength(3);
   const rows = [...el.querySelectorAll('.w-pagerow')].map((r) => r.textContent);
   expect(new Set(rows).size).toBe(3);
+  expect(rows.find((row) => row?.includes('second year'))).toContain('Older edition. Start fresh');
+  expect(rows.filter((row) => row?.includes('Older edition'))).toHaveLength(1);
 });
 
 it('shows a saving failure during play without opening the menu', async () => {

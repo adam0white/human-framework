@@ -176,14 +176,15 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
         Traders and families come up the valley. What you take here is paid from the granary and{' '}
         <strong>cannot be undone</strong>.
       </p>
-      <p className="w-picks">
-        {fair.picksLeft <= 0
-          ? picksWords(0)
-          : 'Take as many as the grain store can spare. Everyone still needs food through the winter.'}
-      </p>
+      <p className="w-picks">{picksWords(fair.picksLeft)} Everyone still needs food through the winter.</p>
       <div className="w-granary">
         <span>The granary</span>
-        <Sacks have={frame.grain} lost={0} label="The granary, drawn as sacks" />
+        <Sacks
+          have={frame.grain}
+          lost={0}
+          need={frame.need}
+          label="The granary, drawn as sacks; the mark is what the village needs until harvest"
+        />
       </div>
       <ul className="w-offers">
         {fair.offers.map((o) => (
@@ -193,7 +194,12 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
             {!o.taken && o.affordable && o.after < frame.grain ? (
               <div className="w-offer-after">
                 <span className="w-note">Grain remaining after this offer</span>
-                <Sacks have={o.after} lost={frame.grain - o.after} label="The granary if you take it" />
+                <Sacks
+                  have={o.after}
+                  lost={frame.grain - o.after}
+                  need={frame.need}
+                  label="The granary if you take it; the mark is what the village needs until harvest"
+                />
               </div>
             ) : null}
             {o.taken ? (

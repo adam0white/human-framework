@@ -6,6 +6,7 @@ import { Decoration } from '../../shared/Decoration.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { GameVersion } from '../../shared/GameVersion.tsx';
 import type { PageInfo } from '../protocol.ts';
+import { OLDEST_LOADABLE_SCENARIO } from '../sim/run.ts';
 import type { Frame, FrameVolume } from '../sim/view.ts';
 import { DownloadRun, FeedbackScreen, RecordingPreference } from './exporting.tsx';
 import { Icon } from './icons.tsx';
@@ -77,6 +78,12 @@ export function HopesSheet({
 }
 
 /** Only this title-page sheet loads a save or branches a closed volume. */
+function OlderEdition({ page }: { page: PageInfo }) {
+  return page.scenario !== undefined && page.scenario < OLDEST_LOADABLE_SCENARIO ? (
+    <span className="w-note"> · Older edition. Start fresh to play.</span>
+  ) : null;
+}
+
 export function Shelf({
   shelf,
   current,
@@ -130,6 +137,7 @@ export function Shelf({
                     <span className="w-note">
                       {' '}
                       · {yearWords(g.auto.year)}, {pageWhen(g.auto.when)}
+                      <OlderEdition page={g.auto} />
                     </span>
                   </span>
                   <button
@@ -148,6 +156,7 @@ export function Shelf({
                     Earlier page · {yearWords(p.year)}, {pageWhen(p.when)}
                     <span className="w-note">
                       Earlier local progress. Restores this page’s exact accepted cast heads.
+                      <OlderEdition page={p} />
                     </span>
                   </span>
                   <button
@@ -181,6 +190,7 @@ export function Shelf({
                     <span className="w-note">
                       {' '}
                       · {watchWords(p.volume?.end ?? '')} · {yearWords(p.year)}, {pageWhen(p.when)}
+                      <OlderEdition page={p} />
                     </span>
                   </span>
                   <button

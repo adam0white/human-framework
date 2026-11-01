@@ -54,8 +54,7 @@ export function ordinalWord(n: number): string {
 /** How many fair choices are left, in words. */
 export function picksWords(n: number): string {
   if (n <= 0) return 'You can take nothing more this year.';
-  if (n === 1) return 'You can take one more.';
-  return `You can take ${SMALL[n] ?? 'a few'} more.`;
+  return `You may take up to ${SMALL[n] ?? 'a few'} more ${n === 1 ? 'offer' : 'offers'}, if the granary can spare them.`;
 }
 
 /** The daylight left for talks, in words (the pips draw it). */
