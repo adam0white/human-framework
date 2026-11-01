@@ -364,6 +364,7 @@ export type InspectQuery = {
   people: readonly PersonId[];
   select: readonly (
     | 'current'
+    | 'control'
     | 'summary'
     | 'skills'
     | 'body'
@@ -400,6 +401,8 @@ export type SkillSuccess = {
   successChance: Unit;
 };
 export type Inspection = {
+  /** Current world revision in the same snapshot as a host control selection. */
+  worldRevision?: number;
   /** Host control data only: exact exported current, with the same duplicate journal windows. */
   current?: RunState;
   lifecycle?: LifecycleInspection;
@@ -2791,6 +2794,7 @@ export type Knowledge<T> =
 export type InspectSelection = InspectQuery['select'][number];
 export type BeliefReading = Omit<Belief, 'logOdds'> & { credence: Unit };
 export type HostParts = {
+  control: { offers: ReceivedOfferBook | null; activity: ActorActivity | null };
   needs: readonly NeedReading[];
   condition: ConditionReading;
   affect: AffectReading;
