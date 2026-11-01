@@ -428,7 +428,7 @@ Coordinator reading:
 
 > "Deleting tests is fine, too. I'm sure there's some bloat."
 
-Coordinator reading: Tests that restate code, duplicate another test or form a matrix may go; keep replay-hash and one control per faculty.
+Coordinator reading: Deleting tests is allowed; the owner expects some are bloat.
 
 ## 2026-10-31 — Brake on Claude (Adam, verbatim)
 
