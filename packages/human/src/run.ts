@@ -228,7 +228,8 @@ export function inspect(
     if (!life.ok) return life;
     value = { ...value, lifecycle: life.value };
   }
-  return { ok: true, value: freezeData(cloneData(value)) };
+  // Both projectors return detached, deeply frozen data. Only the aggregate can be new.
+  return { ok: true, value: Object.freeze(value) };
 }
 export { preview } from './run-preview.ts';
 export { step } from './run-step.ts';
