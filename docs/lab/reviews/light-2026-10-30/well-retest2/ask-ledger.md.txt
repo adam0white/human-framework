@@ -1,0 +1,105 @@
+# Well second retest ask ledger — DRAFT
+
+DRAFT extraction and dated inspection leads; protocol review and root triage pending. No packet, acceptance, or third ordinary panel. Two iterations complete.
+
+All rows are deferred inspection leads. Causes remain unknown. Protocol review and root triage remain pending.
+
+Original session 24423 EXIT1 and Nia pass false persist; corrective resource return d5ba5d and remainder root return be5b3218. Remainder session 7938 EXIT0; Rosa and Mireya PASS. Unchanged finalizer: four eligible, Nia ineligible, ten stop candidates. Protocol review pending.
+
+## F2991 — Maya, rank 1
+
+1. Let me follow up with Yusuf about the timber token and Zehra when that thread comes up.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md:5; Unicode [233, 323), UTF-8 bytes [233, 323); SHA-256 `a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Inspection lead; cause unknown.
+
+## F2992 — Maya, rank 2
+
+2. Give Yusuf a more specific answer when he changes my request. “I adapted the advice” tells me the result, but leaves me wanting his reason.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md:6; Unicode [324, 466), UTF-8 bytes [324, 470); SHA-256 `a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Inspection lead; cause unknown.
+
+## F2993 — Maya, rank 3
+
+3. Make personal conversation easier to find among the construction and decision details.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md:7; Unicode [467, 556), UTF-8 bytes [471, 560); SHA-256 `a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Inspection lead; cause unknown.
+
+## F2994 — Emre, rank 1
+
+1. Make Yusuf’s speech-dismiss control usable. On desktop it was covered on my first attempt and gone by the retry; I could not establish that I dismissed it. This was the blocking ask I reached.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md:5; Unicode [151, 346), UTF-8 bytes [151, 348); SHA-256 `3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d`.
+
+Deferred; target 2026-11-03; fix:lab primary; fix:well secondary only if independently reproduced. Speech-dismiss appeared covered first, then absent; TOOL method limit. No proven product cause. Secondary fix:well only if independently reproduced.
+
+## F2995 — Emre, rank 2
+
+2. Explain why “interest in something unfamiliar” means Tariq would work under protest. The wording is more readable than the reason I saw on my previous visit, but I still cannot use it to understand his objection.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md:6; Unicode [347, 562), UTF-8 bytes [349, 568); SHA-256 `3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Inspection lead; cause unknown.
+
+## F2996 — Emre, rank 3
+
+3. Explain the “This chapter could not be saved” message at the ending. I did not retry it, so I do not know whether the save could succeed.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md:7; Unicode [563, 703), UTF-8 bytes [569, 713); SHA-256 `3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Save error at the actual ending; no retry and no save or backend cause established.
+
+## F2997 — Nia, rank 1
+
+1. Give people specific reasons in their own voices. Maryam’s “duties to the others” remained vague, and Danyal’s “I adapted the advice” recalled Samira’s generic answer from my last visit. This is the blocking ask I reached: the replies and management together made me leave both sessions.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/report.md:5; Unicode [218, 508), UTF-8 bytes [218, 522); SHA-256 `fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535`.
+
+Deferred; target 2026-11-03; fix:well inspection lead; cause unknown. Nia explicitly calls the replies and management together a blocker.
+
+## F2998 — Nia, rank 2
+
+2. Show what an insistence actually cost when that information is available. The new explanation says no matching retained trust change is shown, but I still could not tell what happened to trust.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/report.md:6; Unicode [509, 705), UTF-8 bytes [523, 719); SHA-256 `fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Trust cost unknown; missing history is not established.
+
+## F2999 — Rosa, rank 1
+
+1. **Explain when Maryam will offer to cook and how those meals serve both ordinary eating and storm preparation.** “Offer threshold” stopped me on desktop.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/rosa/report.md:5; Unicode [155, 311), UTF-8 bytes [155, 315); SHA-256 `8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b`.
+
+Deferred; target 2026-11-03; fix:well inspection lead; cause unknown. Clarity remained an issue after two sentence rereads.
+
+## F3000 — Mireya, rank 1
+
+1. Show the reason an order could not happen beside its result. Samira’s Classic kitchen order said “could not”; I found “no grain or water” later on the map.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/report.md:5; Unicode [194, 352), UTF-8 bytes [194, 362); SHA-256 `c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Inspection lead; cause unknown.
+
+## F3001 — Mireya, rank 2
+
+2. Give me a clearer sense of which action would matter now, especially when suggested or available work is already underway.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/report.md:6; Unicode [353, 478), UTF-8 bytes [363, 488); SHA-256 `c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Inspection lead; cause unknown.
+
+## F3002 — Mireya, rank 3
+
+3. Shorten or fold away the repeated rules on the person screen so I can follow the people and their responses.
+
+Source: /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/report.md:7; Unicode [479, 590), UTF-8 bytes [489, 600); SHA-256 `c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b`.
+
+Deferred; target 2026-11-10; fix:well inspection lead; cause unknown. Text repetition remains the literal ask; visual crowding is UNVERIFIABLE.
+
+F3003–F3010 remain unused.

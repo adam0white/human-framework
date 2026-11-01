@@ -1,0 +1,214 @@
+{
+  "at": "2026-11-01T13:06:20.777826+00:00",
+  "status": "ROOT_QUALIFIED_ACTUAL_INITIAL_CONTINUATION_NOT_FINISHED",
+  "actualToolSession": 47750,
+  "actualExit": 0,
+  "rootReturnSha256": "e85f75694081139a589ccd5adad613e07976934051d557c7d43d9c511c1ae2a6",
+  "rootPhysicalCpuEvidenceSha256": "95cffb83c511d3ad6f1c2167b70b3f3e71725b85be61874e994951335e1f201b",
+  "protocolReviewSha256": "311c4a00d81ba631c222dc48ebaaf5d9ad863e7ade5809e82d6321d058068d46",
+  "protocolReviewMdSha256": "c0471ab96aa87aa49b7ee95ef70bf4a66d84c977f70fed3f27f7654d2c0938a2",
+  "protocolEvidenceRehashed": 151,
+  "allChecks": 53,
+  "reportsRootFullyRead": true,
+  "actualCounts": {
+    "actualStops": 10,
+    "voluntaryStops": 10,
+    "voluntaryUnfinishedStops": 10,
+    "nonvoluntaryToolStops": 0,
+    "terminalBudgetStops": 0,
+    "cuts": 0,
+    "finishedFlags": 0,
+    "actualEndings": 0,
+    "reasons": {
+      "TASTE": 5,
+      "CONFUSED": 3,
+      "BORED": 2
+    }
+  },
+  "engineeringEligible": 5,
+  "labelsAndBacks": 13,
+  "source": "df583792438ebd7b343e5307c6f8bfc3bc9af1f1",
+  "hf": "4.11.0",
+  "finalLiveSha256": "039e25e74a9c3b89835a7aa1a3f1c888aaf3dce4e41329aa57060e4d18332aa5",
+  "rootAskTriageSha256": "9460b4b210f90ec004bfb4a5a2fc5b283384f32911f8a410660a0241d76a59c8",
+  "askIds": "F3011–3023",
+  "askDates": {
+    "2026-11-03": 5,
+    "2026-11-10": 8
+  },
+  "oldUnusedIds": "F3003–3010",
+  "noPriorAskBulkResolution": true,
+  "original15Ids": "F1473–1487",
+  "methodQualifications": [
+    {
+      "id": "SW1",
+      "qualification": "Image protocol: every opening shot was saved, but no identifiable returned image-view event proves perception. Any screenshot-derived point choice can establish requested input and visible text outcome, not that the model actually viewed pixels. Stage movement is untested; Nia manuscript itself does not infer motion from a still."
+    },
+    {
+      "id": "SW2",
+      "qualification": "Rosa phone quit56.282/desktop quit46.194 preceded60. Feedback/menu steps crossed60 to stops68.738/60.614. Automatic shots60.055/60.108 occurred in that stop sequence; neither has first-minute diary. Retain qualified checkpoint omission/noncompliance and untested actionable gameplay, never promote automatic shot to diary compliance or continued gameplay."
+    },
+    {
+      "id": "SW3",
+      "qualification": "Maya phone automatic shot60.048 followed voluntary stop57.680; Emre phone automatic60.054 followed voluntary stop49.621. Only automatic shot follows each; no continued play inferred."
+    },
+    {
+      "id": "SW4",
+      "qualification": "Valid-threshold diary checkpoints: Maya desktop63.559; Emre desktop63.183 plus pulse180.559; Nia phone60.865 and desktop64.331; Alma phone61.022. Nia desktop checkpoint followed quit58.729 while stopping/menu actions continued, not a new change of intent; no forced waiting proved. No other pulse threshold reached."
+    },
+    {
+      "id": "SW5",
+      "qualification": "Alma transcript43 malformed apostrophe shell command failed before curl; corrected label request45 succeeded. All other parsed commands are assigned reads/curls. Emre desktop driver errors: duplicate Open-on-bench controls at wall41 and61, then unavailable Governor at67; current point/Repair navigation resolved them. These are method/input-state errors, not proven product causes."
+    },
+    {
+      "id": "SW6",
+      "qualification": "Browser logs retain CVDisplayLink/display errors and shutdown GPU/network-service/rendezvous messages. Empty tester stderr and driver0 do not erase those messages; product/network failure cause is not established by them."
+    },
+    {
+      "id": "SW7",
+      "qualification": "Nia corrected Sam-vanished inference at raw23.965/manuscript23.966. Preserve original mistaken note and correction; accessible control omission alone did not establish the character leaving."
+    },
+    {
+      "id": "SW8",
+      "qualification": "Rosa concept counts include contemporaneous numbered diary estimates plus retrospectively tabulated menu/Feedback counts. Do not certify exact exhaustive per-screen counting. Her two-reread quit rule triggered before60 on both devices; feedback completion afterward does not establish further repair play."
+    },
+    {
+      "id": "SW9",
+      "qualification": "Small1ms time discrepancies reflect distinct retained raw wall versus returned driver elapsed values where shown in JSON; report words remain untouched. All11 differences listed separately; Nia stop durations raw109.342/72.696 differ from manuscript109.343/72.697."
+    },
+    {
+      "id": "SW10",
+      "qualification": "Bounded source/liveSDK/delivery and14body proof only; no full root rebuild/allassetgraph/font/visual or backend proof. FREE-only initialcontinuation, Rosa firstRECORDED/priorunestablished/NiaCONTunknown; no capreset, paired causal comparison or whole original15asksresolved."
+    }
+  ],
+  "timestampDifferences": [
+    {
+      "tester": "maya",
+      "device": "phone",
+      "kind": "note",
+      "rawWallElapsed_s": 5.484,
+      "manuscriptElapsed_s": 5.485,
+      "driverResponseElapsed_s": 5.485,
+      "literalReactionPresent": true,
+      "engagement": 4,
+      "responseTranscriptLine": 50
+    },
+    {
+      "tester": "maya",
+      "device": "desktop",
+      "kind": "note",
+      "rawWallElapsed_s": 71.591,
+      "manuscriptElapsed_s": 71.592,
+      "driverResponseElapsed_s": 71.592,
+      "literalReactionPresent": true,
+      "engagement": 4,
+      "responseTranscriptLine": 167
+    },
+    {
+      "tester": "emre",
+      "device": "desktop",
+      "kind": "note",
+      "rawWallElapsed_s": 142.434,
+      "manuscriptElapsed_s": 142.435,
+      "driverResponseElapsed_s": 142.435,
+      "literalReactionPresent": true,
+      "engagement": 5,
+      "responseTranscriptLine": 183
+    },
+    {
+      "tester": "emre",
+      "device": "phone",
+      "kind": "want_quit",
+      "rawWallElapsed_s": 36.234,
+      "manuscriptElapsed_s": 36.235,
+      "driverResponseElapsed_s": 36.235,
+      "literalReactionPresent": true,
+      "engagement": 2,
+      "responseTranscriptLine": 259
+    },
+    {
+      "tester": "nia",
+      "device": "phone",
+      "kind": "note",
+      "rawWallElapsed_s": 23.965,
+      "manuscriptElapsed_s": 23.966,
+      "driverResponseElapsed_s": 23.966,
+      "literalReactionPresent": true,
+      "engagement": 3,
+      "responseTranscriptLine": 58
+    },
+    {
+      "tester": "nia",
+      "device": "phone",
+      "kind": "stop",
+      "rawWallElapsed_s": 109.342,
+      "manuscriptElapsed_s": 109.343,
+      "driverResponseElapsed_s": 109.343,
+      "literalReactionPresent": true,
+      "engagement": 3,
+      "responseTranscriptLine": 124
+    },
+    {
+      "tester": "nia",
+      "device": "desktop",
+      "kind": "note",
+      "rawWallElapsed_s": 6.627,
+      "manuscriptElapsed_s": 6.628,
+      "driverResponseElapsed_s": 6.628,
+      "literalReactionPresent": true,
+      "engagement": 4,
+      "responseTranscriptLine": 131
+    },
+    {
+      "tester": "nia",
+      "device": "desktop",
+      "kind": "first_minute",
+      "rawWallElapsed_s": 64.331,
+      "manuscriptElapsed_s": 64.332,
+      "driverResponseElapsed_s": 64.332,
+      "literalReactionPresent": true,
+      "engagement": 4,
+      "responseTranscriptLine": 177
+    },
+    {
+      "tester": "nia",
+      "device": "desktop",
+      "kind": "stop",
+      "rawWallElapsed_s": 72.696,
+      "manuscriptElapsed_s": 72.697,
+      "driverResponseElapsed_s": 72.697,
+      "literalReactionPresent": true,
+      "engagement": 4,
+      "responseTranscriptLine": 185
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "kind": "note",
+      "rawWallElapsed_s": 21.657,
+      "manuscriptElapsed_s": 21.658,
+      "driverResponseElapsed_s": 21.658,
+      "literalReactionPresent": true,
+      "engagement": 4,
+      "responseTranscriptLine": 57
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "kind": "note",
+      "rawWallElapsed_s": 20.048,
+      "manuscriptElapsed_s": 20.049,
+      "driverResponseElapsed_s": 20.049,
+      "literalReactionPresent": true,
+      "engagement": 3,
+      "responseTranscriptLine": 106
+    }
+  ],
+  "controllerFailureException": null,
+  "cpuBrowserCustodyReturned": true,
+  "repairDeploymentHoldReleased": true,
+  "earliestOrdinaryNext": "2026-11-01T13:15:05.399309+00:00",
+  "remaining": "Seal two-reviewed packet, hand literal clarity asks to GD, deliver needed blocking corrections and same-standing retest within original cap.",
+  "rootReadScope": "All5 fullreports;10rawstopobjects; fullprotocolMD; operativeJSONchecks/confirmed/qualifications/timestamps/completion/history summaries; all errors/poststop/checkpoints;13quick-label+Backreturned projections. All151evidencehashesverified. Not every redundant raw command classification semantically reread; independent reviewer read full retained streams. No PNG rendering.",
+  "epochNote": "Extraction/roottriage/protocol headers predate this root qualification. Their pending labels are preserved historical preparation epochs; this later bound qualification governs. No player/owner acceptance or game finished claim."
+}

@@ -1,0 +1,40 @@
+I would not voluntarily return yet; I would leave the game rather than leave it running.
+
+My ranked asks are:
+
+1. Show me how to start work I have promised, especially from the promise reminder or the hall. This was the blocking ask I reached on the phone.
+2. Make “Your work” easier to find and distinguish it from offering work in exchange for a request.
+3. Make the conversation choices easier to take in at once; I struggled to see why I should redirect Nora while she was already repairing the hall.
+
+These were two new games on the same evening: a 360×690 touch phone and a 1280×800 keyboard-and-mouse desktop. Recording and consent stayed at their defaults. The supplied history ended at line 1: “No prior HF diary entries.” Unread range: none. I had no prior HF experience.
+
+On the phone, the flood and closed hall gave me a clear purpose. Nora’s own promise and deadline made her feel like someone with work of her own. The conversation was harder to understand: I offered hall repairs in exchange for her drinking water, and she later did so. The game clearly told me when the offer became a commitment, but the hall and journal did not show me how to fulfill it. I stopped voluntarily at **78.925 seconds**, with the promise unfinished. The three-minute pulse and later checkpoints were untested; the game did not end.
+
+On desktop, I recognized the introduction from the phone and found **Your work** inside Nora’s conversation. I could see a possible direct repair action in the driver’s text, but two enabled controls shared the name “Help repair the hall.” The driver could not resolve my named selection after a retry, and the lower action remained outside the visible area in the screenshots I viewed. I stopped at **77.427 seconds**, recorded as **TOOL**; this does not establish that a player using an ordinary mouse could not operate it. The three-minute pulse and later checkpoints were untested; the game did not end.
+
+The phone’s Feedback flow opened when I was confused. I selected **“I'm confused”**, confirmed it was pressed, and closed Feedback. At the phone stop I reopened it, selected **“I'm stopping”**, and closed it. On desktop I selected **“I'm stopping”** and closed it. I typed no note and submitted nothing. The first attempt to select the phone’s confusion label failed at the shell because of quoting; the corrected call succeeded.
+
+The phone opening screenshot was viewed at 1.478 seconds: the introduction and red entry button fit the narrow screen. The desktop opening screenshot was viewed at 1.617 seconds: the same introduction appeared in a wide layout. I also viewed desktop screenshots at 41.411, 55.268, and 59.655 seconds. They showed the map beside a long conversation panel, with the work section low in the panel and a fixed “Ask Nora” button at the bottom. No other screenshots were viewed.
+
+Recognition was limited to my own phone visit. At desktop **5.236 seconds**, the visible flood-and-hall introduction reminded me of that visit, with high confidence: “I recognize the flood and hall introduction from my phone visit tonight.” At **49.812 seconds**, “Your work” prompted my uncertain connection to the action I had not found on the phone: “perhaps this is how I help directly.” There was no earlier HF recognition.
+
+The diary entries, in order, were:
+
+**Phone**
+
+- **4.065 s, engagement 4:** “The flood and hall give me a clear reason to enter. I like that the neighbours decide for themselves.”
+- **22.139 s, engagement 4, Day 1 08:45:** “Nora already has a promise and a deadline, which makes her feel like someone with her own work. I am walking to meet her.”
+- **30.547 s, engagement 3, Day 1 09:30:** “This is a lot of choices at once. She is already repairing the hall, so I do not understand why I would ask her to do these other things.”
+- **44.811 s, engagement 3, Day 1 09:30:** “I offered to repair the hall if Nora drinks water. Her answer is understandable, but the bargain feels odd and I still do not know how to simply help.”
+- **52.690 s, engagement 4, Day 1 10:00:** “Lending tools makes immediate sense, and the confirmation tells me what changed. I would like that same clarity about my own work.”
+- **60.640 s, first minute, engagement 3, Day 1 10:30:** “I understand the hall goal and that my offer became a promise, but at the hall I cannot see how to do the work I owe.”
+- **70.198 s, want quit, CONFUSED, engagement 2, Day 1 10:45:** “I want to leave; I have a promise to repair the hall but the hall and journal do not show me how to start.”
+- **78.925 s, stop, CONFUSED, engagement 2, Day 1 11:30:** “I am stopping with the promise unfinished because I cannot find how to do it.”
+
+**Desktop**
+
+- **5.236 s, engagement 3:** “I recognize the flood and hall introduction from my phone visit tonight. I want to see if I can find a more direct way to help here.”
+- **49.812 s, engagement 4, Day 1 09:30:** “I found Your work under Nora. I recognize this as the kind of action I could not find on my phone; perhaps this is how I help directly.”
+- **63.510 s, first minute, engagement 3, Day 1 09:30:** “I found a possible direct work menu, but the panel is long and I am having trouble reaching the action below it.”
+- **69.026 s, want quit, TOOL, engagement 2, Day 1 09:30:** “I want to stop because I found the work option but cannot reach it through this control.”
+- **77.427 s, stop, TOOL, engagement 2, Day 1 09:30:** “I am stopping here because I could not operate the work choice with this driver after retrying.”

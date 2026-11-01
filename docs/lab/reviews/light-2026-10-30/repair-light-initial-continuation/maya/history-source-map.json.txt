@@ -1,0 +1,108 @@
+{
+  "policy": "Selected own cross-game baseline plus complete actual own FREE report for exposed returners; no CONT body imported as sequential memory. Inherited qualifications bind; selected history is not complete archive.",
+  "segments": [
+    {
+      "role": "exact selected own cross-game history baseline with inherited qualifications",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-preparation/maya/own-history.md",
+      "sha256": "0360b964de0a4489dd8c220e477c4967637b3500a834708f8c04fd8d9ec3dc5d",
+      "outputByteRange": [
+        0,
+        277392
+      ]
+    },
+    {
+      "role": "complete own original FREE report only; chosen continuity branch",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-source-recovery-canonical/maya-free.report.txt",
+      "sha256": "c8a72f4ddf6112456dde17b5238b2539eddeec04c9a4e007f32313565e193a9c",
+      "outputByteRange": [
+        277442,
+        291410
+      ]
+    },
+    {
+      "role": "exact own Well2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/maya/report.md",
+      "sourceByteRange": [
+        0,
+        7508
+      ],
+      "sha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357",
+      "outputByteRange": [
+        293382,
+        300890
+      ]
+    },
+    {
+      "role": "new coordinator qualification",
+      "outputByteRange": [
+        300890,
+        301590
+      ],
+      "sha256": "aa62fcc2af2870f774d9bab901fa038708759f46f1657d946d89a47c30b23e47",
+      "evidencePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-qualification.json",
+      "evidenceSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e"
+    },
+    {
+      "role": "additive coordinator qualification Q1",
+      "outputByteRange": [
+        301590,
+        301732
+      ],
+      "sha256": "ad1aec097d09723d0644e5d494fa979cbf7310595e67eb0ab8dcf9be71082364",
+      "evidencePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-qualification.json",
+      "evidenceSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-preparation/maya/history-source-map.json",
+      "sha256": "8e74c3d65018ee23c09c65d8a5c09c65c391deb42628b850ccc4d6eb114146a0",
+      "role": "inherited source provenance and qualifications"
+    },
+    {
+      "path": "/Users/abdul/code/human-framework/docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "sha256": "f6a203e3580107dc6daafa0b0a29ed4457aba48aa6886e965a72c13cbf2eb0cd",
+      "sectionAnchor": "<a id=\"repair-game-hf3-repair-r1-maya-free\"></a>",
+      "role": "own FREE method qualification"
+    }
+  ],
+  "originalFreeQualification": {
+    "outputByteRange": [
+      291410,
+      292913
+    ],
+    "sha256": "27c295a52b7a985a8733d3a37a3af2add2c53d024d96ed76d4de92d97d77f27a"
+  },
+  "historySha256": "d3057fce59095d56b2196aa5859c8f9a4e84dad908632b1b6fee27afe12a4825",
+  "futureRefresh": "Check for intervening completed own returns before freeze.",
+  "currentFreeContinuityClarification": {
+    "outputByteRange": [
+      292913,
+      293310
+    ],
+    "sha256": "5bd3c1deedf789c15a4047c0ce689fd08de54fbde0a82bb5a2fe15406fb698e5",
+    "date": "2026-11-01",
+    "sourceReview": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-continuation-draft-protocol-review.json",
+    "sourceReviewSha256": "77429d27c04e96c71d287778a3f0e3a9be2764c790cd2aa3d77819ae7d6fb78c",
+    "placement": "coordinator clarification before final marker; not player memory"
+  },
+  "latestReturnRefresh": {
+    "priorHistorySha256": "6485e8a8b6e49f4b0faf57f34cf3bf1b5933da59631d9d9bcf641f3d1080746e",
+    "preservedPrefixByteRange": [
+      0,
+      293312
+    ],
+    "relocatedFinalMarkerBytes": 29,
+    "newFinalLine": 2455,
+    "wellRootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+    "futureGate": "Check for intervening completed own returns before freeze."
+  },
+  "q1q2Correction": {
+    "priorHistorySha256": "3111f788f53098381d85d07a12071f5832e471d51b926432eac363b2544750c0",
+    "preservedPrefixByteRange": [
+      0,
+      301590
+    ],
+    "relocatedFinalMarkerBytes": 29
+  }
+}

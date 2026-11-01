@@ -22174,6 +22174,515 @@
     "fix:murmur inspection lead, cause unknown, target 2026-11-10 (deferred)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/murmur-retest2/soraya/report.md.txt"
+  },
+  {
+   "id": "F-2991",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "1. Let me follow up with Yusuf about the timber token and Zehra when that thread comes up.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/maya/report.md.txt"
+  },
+  {
+   "id": "F-2992",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "2. Give Yusuf a more specific answer when he changes my request. “I adapted the advice” tells me the result, but leaves me wanting his reason.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/maya/report.md.txt"
+  },
+  {
+   "id": "F-2993",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "3. Make personal conversation easier to find among the construction and decision details.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/maya/report.md.txt"
+  },
+  {
+   "id": "F-2994",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "1. Make Yusuf’s speech-dismiss control usable. On desktop it was covered on my first attempt and gone by the retry; I could not establish that I dismissed it. This was the blocking ask I reached.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab inspect unconfirmed speech-dismiss outcome, cause unknown, target 2026-11-03 (deferred)",
+    "fix:well inspect only if independently reproduced, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/emre/report.md.txt"
+  },
+  {
+   "id": "F-2995",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "2. Explain why “interest in something unfamiliar” means Tariq would work under protest. The wording is more readable than the reason I saw on my previous visit, but I still cannot use it to understand his objection.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/emre/report.md.txt"
+  },
+  {
+   "id": "F-2996",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "3. Explain the “This chapter could not be saved” message at the ending. I did not retry it, so I do not know whether the save could succeed.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/emre/report.md.txt"
+  },
+  {
+   "id": "F-2997",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "1. Give people specific reasons in their own voices. Maryam’s “duties to the others” remained vague, and Danyal’s “I adapted the advice” recalled Samira’s generic answer from my last visit. This is the blocking ask I reached: the replies and management together made me leave both sessions.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/nia/report.md.txt"
+  },
+  {
+   "id": "F-2998",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "2. Show what an insistence actually cost when that information is available. The new explanation says no matching retained trust change is shown, but I still could not tell what happened to trust.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/nia/report.md.txt"
+  },
+  {
+   "id": "F-2999",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "1. **Explain when Maryam will offer to cook and how those meals serve both ordinary eating and storm preparation.** “Offer threshold” stopped me on desktop.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3000",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Mireya",
+   "words": "1. Show the reason an order could not happen beside its result. Samira’s Classic kitchen order said “could not”; I found “no grain or water” later on the map.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/mireya/report.md.txt"
+  },
+  {
+   "id": "F-3001",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Mireya",
+   "words": "2. Give me a clearer sense of which action would matter now, especially when suggested or available work is already underway.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/mireya/report.md.txt"
+  },
+  {
+   "id": "F-3002",
+   "date": "2026-11-01",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Mireya",
+   "words": "3. Shorten or fold away the repeated rules on the person screen so I can follow the people and their responses.",
+   "verdict": "-",
+   "routes": [
+    "fix:well inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/well-retest2/mireya/report.md.txt"
+  },
+  {
+   "id": "F-3011",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "1. Tell me when I can ask Nora about the gear, or let me leave the question for her to consider. I found the specific question I wanted, but she was unavailable and I could not tell how to catch her.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/maya/report.md.txt"
+  },
+  {
+   "id": "F-3012",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "2. Make the music box card easier to reach on the desktop workboard. It sat below the fixed bottom bar until I scrolled.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/maya/report.md.txt"
+  },
+  {
+   "id": "F-3013",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "1. Set the meter to the new object’s required test condition, or draw my attention to the carried-over condition. Nora’s reading light needed “work harder,” but the meter still had “carry” selected from the lantern.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/emre/report.md.txt"
+  },
+  {
+   "id": "F-3014",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "2. Keep the cash-change explanation visible on later mornings. Day 2 clearly said no cost was taken; I did not reach a night when a cost was taken.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/emre/report.md.txt"
+  },
+  {
+   "id": "F-3015",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "3. Keep offering faults that need different reasoning. Diagnosing Nora’s contact was satisfying; the theatre’s ring setting was a puzzle I remembered solving before.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/emre/report.md.txt"
+  },
+  {
+   "id": "F-3016",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "1. Give Nora’s repair conversation a more natural voice. I liked that she answered the specific proposal and remembered it on return; repeating the full object name made her answer sound formal.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/nia/report.md.txt"
+  },
+  {
+   "id": "F-3017",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "2. Keep giving owners specific responses to the repair I actually made. Nora’s agreed-gear return was the moment that made this visit feel worthwhile.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/nia/report.md.txt"
+  },
+  {
+   "id": "F-3018",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "1. Explain beside the reading why **6.00 V across the switch** points to a fault. The reference helped once I found it on desktop.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3019",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "2. Explain “keep their plans” and “Personal acknowledgment is separate” in the conversation with Sam’s mother.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3020",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "3. Keep the first repair guide’s clear, one-step instructions. They helped me carry the lantern and place the probes.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3021",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Alma",
+   "words": "1. Help me understand what a meter reading means at the moment it identifies a fault. The lantern guide told me the switch was suspect, but I did not understand why.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/alma/report.md.txt"
+  },
+  {
+   "id": "F-3022",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Alma",
+   "words": "2. Make the first step for diagnosing the music box easier to grasp. I reached a blocking question about where to place probes on a mechanical object; the reference answered it, but the ratios then felt like homework.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/alma/report.md.txt"
+  },
+  {
+   "id": "F-3023",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Alma",
+   "words": "3. Help me continue a workshop on another device if I choose to. On the laptop I found the opening again and lost interest in repeating it.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-light-initial-continuation/alma/report.md.txt"
+  },
+  {
+   "id": "F-3031",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "1. **Show what changed when I accept a suggested alternative.** Ece offered to repair the hall after her visit. After I accepted and asked again, the same offer and waiting status remained. This was the question that stopped me on the phone.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3032",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "2. Remove the previous person’s response when I move to another conversation. Nora’s message about finishing work remained visible when I opened Ece’s conversation.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3033",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "3. Tell me how far Skip will advance before I press it. This remains my question from the earlier Neighbours visit; I did not use Skip this time.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3034",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Mei",
+   "words": "1. Explain how “I will do it” relates to “waiting for a later decision.” Ece’s answer and the recorded status left me unsure what she had committed to.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/mei/report.md.txt"
+  },
+  {
+   "id": "F-3035",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Mei",
+   "words": "2. Say whether a released hour can become owed again if the neighbour later does what I requested. The current release was clear; its future scope was not.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/mei/report.md.txt"
+  },
+  {
+   "id": "F-3036",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Mei",
+   "words": "3. Make the phone conversation form easier to survey. The choices extend below the screen while the Ask button stays fixed at the bottom.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/mei/report.md.txt"
+  },
+  {
+   "id": "F-3037",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "1. Confirm an accepted alternative immediately in the conversation. On phone, Nora’s offer and the waiting status remained after I accepted; the journal later confirmed the acceptance.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/emre/report.md.txt"
+  },
+  {
+   "id": "F-3038",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "2. Show what remains to make the hall safe and what I can usefully do next. My hour on the timber had a concrete result, but it still felt damp.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/emre/report.md.txt"
+  },
+  {
+   "id": "F-3039",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "3. Show the tool count before and after lending, including tools in use. The comparison showed a possible future with six available; the later live purchase said three were available, and I could not reconcile the figures.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/emre/report.md.txt"
+  },
+  {
+   "id": "F-3040",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "1. Help me reach a personal conversation when someone is busy or moving. Missing Nora and finding Sam’s notebook question blocked are the reasons I stopped. This is the blocking ask I reached.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/nia/report.md.txt"
+  },
+  {
+   "id": "F-3041",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "2. Give Sam’s alternative a more personal voice. I liked that he offered the kitchen instead, but the answer sounded like a task label.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/nia/report.md.txt"
+  },
+  {
+   "id": "F-3042",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Laleh",
+   "words": "1. Show me how to start work I have promised, especially from the promise reminder or the hall. This was the blocking ask I reached on the phone.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-03 (deferred)",
+    "fix:lab inspect desktop duplicate-name TOOL outcome, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/laleh/report.md.txt"
+  },
+  {
+   "id": "F-3043",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Laleh",
+   "words": "2. Make “Your work” easier to find and distinguish it from offering work in exchange for a request.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-03 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/laleh/report.md.txt"
+  },
+  {
+   "id": "F-3044",
+   "date": "2026-11-01",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Laleh",
+   "words": "3. Make the conversation choices easier to take in at once; I struggled to see why I should redirect Nora while she was already repairing the hall.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/laleh/report.md.txt"
   }
  ],
  "lessons": [
@@ -22798,7 +23307,7 @@
   }
  ],
  "routes": {
-  "fix": 2027,
+  "fix": 2068,
   "lesson": 291,
   "hf": 14,
   "calibration": 81,

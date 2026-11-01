@@ -1,0 +1,44 @@
+I would not voluntarily return to Twice at the Well or leave it running; I wanted to meet the people, but managing their orders lost my interest.
+
+My ranked asks, based only on what I reached:
+
+1. Show the reason an order could not happen beside its result. Samira’s Classic kitchen order said “could not”; I found “no grain or water” later on the map.
+2. Give me a clearer sense of which action would matter now, especially when suggested or available work is already underway.
+3. Shorten or fold away the repeated rules on the person screen so I can follow the people and their responses.
+
+**Sessions and history.** This was my first visit to any HF game. I read the supplied history through its final line, “No prior HF diary entries.” Unread range: none. I played a new phone game at 360×690 with touch, then a fresh desktop game at 1280×800 with mouse controls, as the same evening’s other-device session. I left recording and consent at their defaults. Neither game ended.
+
+The phone session stopped at **59.718 seconds**, on Day 1 07:10. The desktop session stopped at **62.202 seconds**, on Day 1 07:02. I had already decided to leave desktop before 60 seconds; the feedback steps took it past that point. Neither session reached a first-minute diary checkpoint during play, and neither reached the three-minute pulse. The storm, later preparation, and ending remain untested.
+
+**Phone diary, in order.** Engagement is the value I logged.
+
+- **7.505 s, engagement 4, before first morning:** “The two villages and the storm give me a clear reason to begin. The preparation timing choice is a lot to understand before I know the people.”
+- **16.152 s, engagement 3, Day 1 05:31:** “Maryam is already cooking, and the choices say whether she will agree. The long explanation about offer thresholds loses me; I want to see what an order does.”
+- **48.493 s, engagement 2, Day 1 06:45:** “Both people accepted, but I told them to do things they were already doing. The repeated explanation fills the phone and I am unsure what meaningful choice to make next.”
+- **50.779 s, want quit, BORED, engagement 2:** “I would stop here; I am reading rules and repeating work more than getting to know the people.”
+- **59.718 s, stop, BORED, engagement 2:** “I am stopping because I have lost interest in reading repeated rules and directing work already underway.”
+
+The goal—roof, meals, survival—was clear. I ordered Maryam to cook, and both villages reported agreement. I then ordered Yusuf to build; both agreed, though he was already building in the Human village. The phone view felt crowded: the map occupied the upper portion, while the long order explanation and choices filled the rest. The initial name-based taps for Maryam missed because her activity changed between the visible listing and the input; a later tap succeeded. The suggested Send control also disappeared before my tap, after which I used the house order directly. These were reported as changing game state, not driver failures.
+
+For my confusion, Feedback showed **“I’m confused” pressed**; I went Back. At my decision to stop, **“I’m stopping” was pressed**; I went Back again. I typed no note and submitted nothing. My first attempt to select the confusion label produced a shell quoting error; the corrected input succeeded.
+
+**Desktop diary, in order.**
+
+- **5.510 s, engagement 3, before first morning:** “The same two opening choices remind me of the phone session. I can see both villages at once here, which makes the comparison easier to notice.”
+- **27.265 s, engagement 3, Day 1 05:47:** “Samira agreed to cook but is gathering grain; Classic says could not. I understand agreement is not completion, but I do not know why the other order could not happen or what to do next.”
+- **49.776 s, engagement 2, Day 1 06:29:** “I see Samira on the Classic map saying there is no grain or water, which explains the failed kitchen order. I missed that while reading her order panel. The two maps are interesting, but the repeated detail still feels like work.”
+- **52.233 s, want quit, TASTE, engagement 2:** “I would leave now. I understand a little more, but I do not feel drawn to keep managing these orders.”
+- **62.202 s, stop, TASTE, engagement 2:** “I am stopping because managing the orders does not hold my interest, even though the side-by-side villages are easier to see here.”
+
+On desktop I chose the earlier storm-preparation option, opened the village comparison, and sent Samira to the kitchen. Human Samira agreed but was still gathering grain when I checked; Classic showed “could not.” The map later supplied the missing reason. I sent the Yusuf house suggestion and saw both villages report agreement. Feedback showed **“I’m confused” pressed** for the order result, and later **“I’m stopping” pressed**; each time I went Back without a note or submission.
+
+**Recognition.** At desktop **5.510 s**, the opening choices visibly prompted a confident memory of seeing those same choices on my phone earlier that evening; my words are in the diary above. On the phone, I recognized no prior HF encounter. I did not infer any other prior-game recognition.
+
+**Screenshots actually viewed.**
+
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/phone/phone-001.png): the beginning button was prominent, while the second opening choice extended below the visible area.
+- [Phone Yusuf order](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/phone/phone-002.png): the map, speech, repeated explanation, and compact place buttons shared a narrow screen.
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/desktop/desktop-001.png): both village maps and both opening choices were visible together.
+- [Desktop Yusuf order](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/mireya/desktop/desktop-002.png): both maps remained visible beside the order panel; Samira’s Classic map label supplied the missing ingredient reason.
+
+No blocking ask was reached. Both sessions were left paused in their game menus. I touched no repository or worktree.

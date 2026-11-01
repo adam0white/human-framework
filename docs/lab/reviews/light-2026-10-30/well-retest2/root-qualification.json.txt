@@ -1,0 +1,214 @@
+{
+  "at": "2026-11-01T12:07:32.454432+00:00",
+  "status": "QUALIFIED_SECOND_ITERATION_COLLECTION_CLOSED_DATED_INTEGRATION_PENDING",
+  "sourcePin": "26b44f70a2c1874c241240f0598a47f11104f69c",
+  "framework": "4.15.0",
+  "protocolReviewSha256": "d0c9ff0787c047a30339b5e8cb462c840e2fe59de32b99e1982f4eb5662c0e10",
+  "protocolReviewMdSha256": "2e310846c8d91a24334e0cbe33c904183ba15c3852b923193ae5081887d24d91",
+  "all129ReviewedHashesRechecked": true,
+  "all5ReportsRootFullRead": true,
+  "rootReadScope": "Full five report manuscripts, full audit MD, JSON operative confirmations/unknowns/errors/prefix/history/controller fields and all10 actual stop/error/checkpoint records; Emre omitted raw44.126 note read separately. All129 evidence hashes verified. Root did not semantically reread every redundant command classification or every large JSON member; independent audit remains qualified evidence.",
+  "originalEpoch": {
+    "nativeSession": 24423,
+    "actualExit": 1,
+    "niaOriginalPass": false,
+    "correctiveReturnSha256": "d5ba5d7986e01f26c568917952744e9e18d068f23ab5528fe2fc937a9b2e79e1"
+  },
+  "remainderEpoch": {
+    "nativeSession": 7938,
+    "actualExit": 0,
+    "players": [
+      "rosa",
+      "mireya"
+    ],
+    "physicalReturnSha256": "be5b3218fcf2c1a80659d7ef6141ab84b65a485b084873ec066eca1aac877360"
+  },
+  "unchangedFinalizer": {
+    "sha256": "fb750e1582c440ffe49bd9747a7ef56bc04faf4bf277808c6233b325292d3465",
+    "eligibleReports": 4,
+    "validDeviceStops": 10,
+    "niaStillIneligible": true
+  },
+  "qualifiedNiaReportAdopted": true,
+  "niaAdoptionScope": "Literal report/actual stop and inspection evidence with W3; does not rewrite engineering eligibility or original controller failure.",
+  "players": [
+    {
+      "tester": "maya",
+      "completionPass": true,
+      "epoch": 24423,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357",
+      "stops": {
+        "phone": {
+          "elapsed_s": 44.242,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        },
+        "desktop": {
+          "elapsed_s": 35.802,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        }
+      }
+    },
+    {
+      "tester": "emre",
+      "completionPass": true,
+      "epoch": 24423,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+      "stops": {
+        "desktop": {
+          "elapsed_s": 37.277,
+          "reason": "TOOL",
+          "voluntary": false,
+          "actualEnding": false
+        },
+        "phone": {
+          "elapsed_s": 380.71,
+          "reason": "FINISHED",
+          "voluntary": true,
+          "actualEnding": true
+        }
+      }
+    },
+    {
+      "tester": "nia",
+      "completionPass": false,
+      "epoch": 24423,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+      "stops": {
+        "phone": {
+          "elapsed_s": 59.775,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        },
+        "desktop": {
+          "elapsed_s": 39.327,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        }
+      }
+    },
+    {
+      "tester": "rosa",
+      "completionPass": true,
+      "epoch": 7938,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b",
+      "stops": {
+        "phone": {
+          "elapsed_s": 25.617,
+          "reason": "TOOL",
+          "voluntary": false,
+          "actualEnding": false
+        },
+        "desktop": {
+          "elapsed_s": 27.095,
+          "reason": "CONFUSED",
+          "voluntary": true,
+          "actualEnding": false
+        }
+      }
+    },
+    {
+      "tester": "mireya",
+      "completionPass": true,
+      "epoch": 7938,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b",
+      "stops": {
+        "phone": {
+          "elapsed_s": 59.718,
+          "reason": "BORED",
+          "voluntary": true,
+          "actualEnding": false
+        },
+        "desktop": {
+          "elapsed_s": 62.202,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        }
+      }
+    }
+  ],
+  "voluntaryStops": 8,
+  "voluntaryUnfinishedStops": 7,
+  "nonvoluntaryToolStops": 2,
+  "actualEndings": 1,
+  "cuts": 0,
+  "terminalBudgetStops": 0,
+  "qualification": [
+    {
+      "id": "W1",
+      "qualification": "All image perception and screenshot-dependent layout claims remain UNVERIFIABLE: no identifiable returned image-tool events. Saved PNG quota is not a view receipt."
+    },
+    {
+      "id": "W2",
+      "qualification": "Literal completed-command stdout matches2244/1614/1991/3829/1 supplied history lines, not direct delivery or comprehension. Rosa explicitly leaves201\u20133800 receipt unverified and her concept counts retrospective. Inherited history limits remain. Nia/Rosa latest own Murmur reports and actual method qualifiers are byte-bound; no peer histories."
+    },
+    {
+      "id": "W3",
+      "qualification": "Original24423EXIT1/Nia passfalse cleanup exception remains. Completed tester0/drivers0 and report bytes are verified; root accepts Nia report as qualified inspection evidence only after corrective P1 returnd5ba and full P2 returnbe5b. Finalizer still counts four eligible, never five controllerPASS. Unknown five historical cwd occupants lack birth/exe/ownership; no cause/fix inferred. Cleanup failure is separate from her earlier actual voluntary game stops; no restart cut or tester refusal invented."
+    },
+    {
+      "id": "W4",
+      "qualification": "Maya/Rosa/Mireya malformed apostrophe shell calls failed before curl; corrected calls retained. Mireya invalid reason5.673 was rejected and successful note7.505 followed. State-changing control misses remain errors, not product-cause proof. Emre desktop and Rosa phone TOOL stops are nonvoluntary. Emre phone transient TOOL wish passed before continued play."
+    },
+    {
+      "id": "W5",
+      "qualification": "Automatic first-minute shots after stops on Maya phone/Nia phone/Emre desktop/Rosa phone/Mireya phone are not continued play or diary compliance. Mireya desktop quit52.233, automatic image60.081, stop62.202; no first-minute diary despite crossing60 in stopping-feedback sequence. Preserve qualified checkpoint noncompliance and untested actionable gameplay. Emre phone has actual67.615first-minute/189.879pulse; no forced later checkpoint."
+    },
+    {
+      "id": "W6",
+      "qualification": "Emre phone raw successful note44.126/engagement3 is omitted from manuscript because receipt/time were uncertain. Preserve both the raw words and receipt uncertainty. Several manuscript/raw timestamps differ by1ms (Maya18.469/18.468 and16.950/16.949; Emre4.647/4.646,51.597/51.596,374.055/374.054; Nia13.511/13.510; Mireya50.779/50.778). Do not normalize the original words or raw timestamps."
+    },
+    {
+      "id": "W7",
+      "qualification": "Quick labels returned pressed controls and Back was used. No Feedback typing/Submit or recording/consent changes observed. No full network guard/backend ingestion/feedback/save receipt proof. Emre dawn ending is independently supported by returned tally/end controls; failed chapter-save message was observed, Try again untested, cause unknown."
+    },
+    {
+      "id": "W8",
+      "qualification": "Same live26b/HF4.15 held through both epochs and final marker; prior11asset/immutableSDK/relevant-object proof stays bounded. Source/merge whole trees DIFFER. No independent full rebuild/fullassetgraph/font/visual acceptance or owner/player acceptance inferred. First finalizer noarg UsageEXIT1 is retained separately from correct bound invocationEXIT0 and original cleanupEXIT1."
+    }
+  ],
+  "remaining": [
+    "Dated12ask triage and two-reviewed source packet",
+    "GD datedDeferred integration with exactreview/CI/mergeCI/cleanup",
+    "Canonical HF evidence import separate"
+  ],
+  "twoIterationRule": true,
+  "thirdOrdinaryPanel": false,
+  "playerAcceptance": false,
+  "ownerAcceptance": false,
+  "labFollowup": {
+    "target": "2026-11-03",
+    "issue": "Investigate original cleanup cwdSweep unowned-identity gap using retained evidence; no product cause or supervisor fix claimed."
+  }
+}

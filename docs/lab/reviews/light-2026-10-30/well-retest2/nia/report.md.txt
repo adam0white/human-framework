@@ -1,0 +1,54 @@
+I would not return voluntarily tonight or plan another evening as it is; I like seeing people refuse, but the familiar generic replies and managing the villages through the storm do not pull me back.
+
+**Ranked asks**
+
+1. Give people specific reasons in their own voices. Maryam’s “duties to the others” remained vague, and Danyal’s “I adapted the advice” recalled Samira’s generic answer from my last visit. This is the blocking ask I reached: the replies and management together made me leave both sessions.
+2. Show what an insistence actually cost when that information is available. The new explanation says no matching retained trust change is shown, but I still could not tell what happened to trust.
+
+I’m Nia Okafor, 19, a Lagos design student, returning to **Twice at the Well**. I played two fresh, independent games at `https://human.adamwhite.work/colony/?labRunSource=agent`, with no imported save or matched seed. The phone came first; the desktop was my other device the same evening.
+
+- **Phone:** 360×690 touch. Opened at **0.491 s**, stopped at **59.775 s**, TASTE; final visible clock **Day 1 07:20**.
+- **Desktop:** 1280×800 mouse and keyboard. Opened at **0.338 s**, stopped at **39.327 s**, TASTE; final visible clock **Day 1 06:12**. I used mouse clicks, no keyboard key.
+
+I read supplied own-history lines **1–1991**. The last line was **“End of supplied own history.”** Unread ranges: **none**. This is selected history, not a complete archive. My older Well raw diary was not supplied; the excerpt and my later full Well report were.
+
+The phone opening brought Maryam back to me. I wanted to hear her answer again, and I liked that she refused the house order even after I insisted. On desktop I tried Danyal: his Human version drew water while his Classic version built, which made the difference visible, but his explanation did not make him feel more distinct.
+
+**Diary — exact logged reactions**
+
+Phone:
+
+- **4.398 s, note, engagement 3:** “Maryam and the two villages bring back her refusal and cooking from my last visit, fairly sure. I want to hear someone answer again.”
+- **13.511 s, note, engagement 4, Day 1 05:30:** “The actions are ahead of the construction details now. I want to ask Maryam to build and hear her reason again.”
+- **29.263 s, note, engagement 3, Day 1 06:09:** “Same duties to the others line I remember, fairly sure. She goes to the mosque while her other self builds. I want to push once.”
+- **46.906 s, note, engagement 3, Day 1 06:59:** “She refuses again and cooks, which I like. The trust line is more explicit about what it can show, but I still do not know whether this insist cost anything.”
+- **53.706 s, want_quit, TASTE, engagement 2, Day 1 07:20:** “I got the refusal again, but it is the same vague reason and I do not want to manage the roof and meals. I would leave here.”
+- **59.775 s, stop, TASTE, engagement 2, Day 1 07:20:** “Stopping on phone. I liked that Maryam still refused, but the same vague reason and the village management do not pull me on. I would close it.”
+
+Desktop:
+
+- **7.344 s, note, engagement 3:** “Two villages side by side again. I remember Samira choosing grain instead of building; I want another person this time.”
+- **27.960 s, note, engagement 2, Day 1 05:44:** “Danyal draws water instead, but adapted the advice is the same generic phrasing I remember from Samira. I can see what he chose, not why.”
+- **30.213 s, want_quit, TASTE, engagement 2, Day 1 05:44:** “I have seen the two versions diverge again, but the answer sounds generic and I do not want another session managing the roof. I would leave.”
+- **39.327 s, stop, TASTE, engagement 2, Day 1 06:12:** “Stopping on desktop. Danyal chose water while his other self built, but his generic answer and the roof management do not pull me on. I would close it.”
+
+Both quit wishes persisted. Neither game ended or reached the storm. Both stops came before **60 seconds**, so no first-minute checkpoint was due; the **180-second pulse** and later checkpoints were also untested.
+
+The order result clearly distinguished **Classic agreed** from **Human will not**, and showed the work each version was doing. The phone panel placed the actions before the collapsed construction-details section in the visible text, unlike the long inventories I encountered before. I did not view a gameplay screenshot this time, so I cannot assess where those actions sat in the phone viewport.
+
+The insistence result said **Insist on**, showed Maryam’s second refusal, and warned that asking again may cost trust. It also said no matching retained trust change was shown and that only the last three rounded records were available. That is clearer about the limit of the evidence; it does not establish whether trust changed.
+
+At phone confusion about that cost, I opened Feedback and selected **“I'm confused”**; it appeared pressed, and I went Back. At each stop I opened Feedback, selected **“I'm stopping”**, saw it pressed, and went Back. I typed no note and pressed no Submit. Recording and consent stayed at their defaults; I changed no settings and claim no feedback receipt.
+
+The visible cues that prompted recognition were Maryam and the villages at **4.398 s**, recalling her refusal and cooking with fairly sure confidence; her **“duties to the others”** line at **29.263 s**, recalling the same reason with fairly sure confidence; and the two villages at **7.344 s** on desktop, recalling Samira gathering grain while her other self built. Danyal’s wording at **27.960 s** recalled Samira’s “adapted the advice” phrasing. I recorded no other recognition, and did not encounter another string puzzle.
+
+I viewed two screenshots:
+
+- [Phone opening]( /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/phone/a-001.png): the village drawing, opening choices and Begin button. The “Show Human village” control covered part of the title. The second opening choice continued below the visible area.
+- [Desktop opening]( /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/desktop/b-001.png): both village maps side by side, with the opening card and Begin button on the right.
+
+On the phone, two Maryam taps became stale as her activity changed from waiting to walking and then cooking; the current **Maryam Cooking** control opened her panel. On desktop, Danyal’s waiting control became stale as he started drawing water; the current control worked. I did not encounter an enabled control that remained inoperable after a retry.
+
+Compared with my last Well visit, I saw the same kind of refusal and visible divergence that interested me. The construction details were placed after the actions in the text I reached, and the trust record explanation was more explicit, though the actual cost remained unknown. These were short, fresh games with different choices, so I cannot attribute the differences to a particular change.
+
+I would close the game and not leave it running. I created no browser, server, process, branch or worktree and touched no repository; the coordinator owns driver and browser cleanup. No worktree listing applies.

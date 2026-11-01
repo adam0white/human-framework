@@ -1,0 +1,195 @@
+{
+  "schema": "bounded-source-epoch-publication-map/v1",
+  "packet": "repair-light-initial-continuation",
+  "sourceManifestSha256": "a4fec8252d2be9c6caaca1f80bf6b30b1c7b1cf141ac930a0b9e726d9493e9fd",
+  "files": {
+    "README.md": {
+      "sha256": "617c6e0d9fe8ec6fe708e944395c8025db4b32b231f4ef8605319f96fdaf9beb",
+      "bytes": 2373,
+      "publishedPath": "README.md.txt"
+    },
+    "actual-protocol-review.md": {
+      "sha256": "c0471ab96aa87aa49b7ee95ef70bf4a66d84c977f70fed3f27f7654d2c0938a2",
+      "bytes": 7529,
+      "publishedPath": "actual-protocol-review.md.txt"
+    },
+    "actual-protocol-review.safe.json": {
+      "sha256": "6abc3be50b44cc60ff6b17a2ca9fdda47075da36d76caa41d9fe60df0a13c110",
+      "bytes": 12399,
+      "publishedPath": "actual-protocol-review.safe.json.txt"
+    },
+    "actual-stops.json": {
+      "sha256": "f27c4692dbc3288a245c7030d9b7cad475ac395686afff6811ea4cad6a375467",
+      "bytes": 9182,
+      "publishedPath": "actual-stops.json.txt"
+    },
+    "alma/history-source-map.json": {
+      "sha256": "574a48113c4dc75f1f26ae2f4c6c7f8299de6cd6b20a5e5d909ca818a67fc996",
+      "bytes": 154,
+      "publishedPath": "alma/history-source-map.json.txt"
+    },
+    "alma/report.md": {
+      "sha256": "2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960",
+      "bytes": 5728,
+      "publishedPath": "alma/report.md.txt"
+    },
+    "ask-extraction.json": {
+      "sha256": "c5bcdb8164015c29b85324fc4382521ddabe4baa956a750f839532c8ee890066",
+      "bytes": 15051,
+      "publishedPath": "ask-extraction.json.txt"
+    },
+    "ask-extraction.md": {
+      "sha256": "be69f61316adabb174cd252a55a1483899bdfb9548b31b4a35a0d03555fe1587",
+      "bytes": 7817,
+      "publishedPath": "ask-extraction.md.txt"
+    },
+    "completions.safe.json": {
+      "sha256": "f571d27de848ef34752862c592606c2add0105b1a32824f54c3a394c47a97013",
+      "bytes": 5384,
+      "publishedPath": "completions.safe.json.txt"
+    },
+    "emre/history-source-map.json": {
+      "sha256": "7e5a64a8e673168d294830be65267d51c562813464c7ed979abaeecd1ad3fbee",
+      "bytes": 4330,
+      "publishedPath": "emre/history-source-map.json.txt"
+    },
+    "emre/report.md": {
+      "sha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd",
+      "bytes": 9716,
+      "publishedPath": "emre/report.md.txt"
+    },
+    "manifest.json": {
+      "sha256": "a4fec8252d2be9c6caaca1f80bf6b30b1c7b1cf141ac930a0b9e726d9493e9fd",
+      "bytes": 3622,
+      "publishedPath": "manifest.json.txt"
+    },
+    "maya/history-source-map.json": {
+      "sha256": "a79378c7793580c6cbe3cca86b1309fb89023e7cd06bb68d794d0f8b066c754c",
+      "bytes": 4329,
+      "publishedPath": "maya/history-source-map.json.txt"
+    },
+    "maya/report.md": {
+      "sha256": "ee0673b52ac3e535b522dd64c0aa40f11f22599035d1dcb351c849868f68b71d",
+      "bytes": 9272,
+      "publishedPath": "maya/report.md.txt"
+    },
+    "nia/history-source-map.json": {
+      "sha256": "8ed59255852f28186d25a3d359236708d97a9cdfebee967a4313883435825e27",
+      "bytes": 4580,
+      "publishedPath": "nia/history-source-map.json.txt"
+    },
+    "nia/report.md": {
+      "sha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349",
+      "bytes": 9213,
+      "publishedPath": "nia/report.md.txt"
+    },
+    "root-ask-triage.json": {
+      "sha256": "9460b4b210f90ec004bfb4a5a2fc5b283384f32911f8a410660a0241d76a59c8",
+      "bytes": 20800,
+      "publishedPath": "root-ask-triage.json.txt"
+    },
+    "root-qualification.json": {
+      "sha256": "1247dc866b312ba7165d6260753e6e860be820250f7759de07e8539417b501c0",
+      "bytes": 9136,
+      "publishedPath": "root-qualification.json.txt"
+    },
+    "rosa/history-source-map.json": {
+      "sha256": "e9f42a437ae649c5a10ecb8f377943dc52f896329cfbd69c141533c19753fb76",
+      "bytes": 3112,
+      "publishedPath": "rosa/history-source-map.json.txt"
+    },
+    "rosa/report.md": {
+      "sha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99",
+      "bytes": 8629,
+      "publishedPath": "rosa/report.md.txt"
+    },
+    "source-map.json": {
+      "sha256": "7fcef22917b8eca93534fa05ceddd83cc770fb4ceedaa2fdb9fc62f9b43117f4",
+      "bytes": 6159,
+      "publishedPath": "source-map.json.txt"
+    }
+  },
+  "excluded": {
+    "alma/brief.md": {
+      "sha256": "5094dc8c1c94ee9060a4f4a522d00d315eb557d156f98d5ab5c7df563fdc113e",
+      "bytes": 7952,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "cleanup-rule.md": {
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "delivery-verification.json": {
+      "sha256": "f619f84c98e2a55cac1ca6cd235845b31c3b8b7e52b28aa0aee26d3170eefbbf",
+      "bytes": 3788,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "draft-review-receipt.json": {
+      "sha256": "e4d9c2072f401a6efec2d66422eb24e851192ba6d27aa29c85da2dc8fbc5a486",
+      "bytes": 1760,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "emre/brief.md": {
+      "sha256": "0478a1383d09fb1baaf26adc27d593959c4eb53515337698dbbfec95b3d0012e",
+      "bytes": 7786,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "emre/diary-continuation.md": {
+      "sha256": "6208e76a83bd16f963c2ef38d6d7c0f4d2539956a9860084ecd0b6653b0c8267",
+      "bytes": 10399,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "input-freeze.json": {
+      "sha256": "c0d00aee2707767bc791100c8cf83ab80db121b6e3883d1c649229c5e1762677",
+      "bytes": 1405,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "input-manifest.json": {
+      "sha256": "fdb71bc39b0b040ab0c90a06675bf13c54bde2ed66a8b1b5c1792b842abaa7bc",
+      "bytes": 3674,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "maya/brief.md": {
+      "sha256": "4bf90490566fdec9060c71a8d5c79ece1a8717f9c9070c98774fcfea3258c5eb",
+      "bytes": 7864,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "maya/diary-continuation.md": {
+      "sha256": "0cb6564967a3936b616ff70ce3e8674288f8b2b617dbbd8f4c373b9cc409a919",
+      "bytes": 9795,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "method-qualifications.json": {
+      "sha256": "5a448643ca5a7a668b3952aa5711fbb0b66509831996d0a5349e07c23de83836",
+      "bytes": 7304,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "nia/brief.md": {
+      "sha256": "cb57480e675056f4b931925adaadc5580d74b49912df413eb2cd439d41f8e6dc",
+      "bytes": 7797,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "nia/diary-continuation.md": {
+      "sha256": "1093ea9820c9d004fb0a839fda7f6a466794e125f8d3b97f5cffe7e6a4635ffb",
+      "bytes": 9898,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "rosa/brief.md": {
+      "sha256": "d3c2800f8b3725fb266147995a76d7a92777260f9dec1d6b3dd465b3939dda7a",
+      "bytes": 8126,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "rosa/diary-continuation.md": {
+      "sha256": "0e2a6363b9d1f92ff6d1dd688a76be16d8d5cd0c9093e9d1b9a1574a6b23aa47",
+      "bytes": 9427,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "sdk-agent-source-proof.json": {
+      "sha256": "74f5140643f5ae7d65aac65a4f62ff1365d5080491d142908b74152be2581ad9",
+      "bytes": 2076,
+      "reason": "private source retained outside bounded inert publication selection"
+    }
+  },
+  "scope": "PRIVATE CANDIDATE: inert snapshots only; no PNG, raw transcript, private full histories, briefs or runtime commands. Source-epoch pending headers remain literal; later root seal governs. Semantic/privacy review and source integration pending."
+}

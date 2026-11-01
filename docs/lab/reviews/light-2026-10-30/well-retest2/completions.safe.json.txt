@@ -1,0 +1,152 @@
+{
+  "source": "root-qualification.json and actual-protocol-review.json",
+  "epochMeaning": "completion pass applies to the actual session epoch: Maya, Emre, Nia 24423; Rosa and Mireya 7938",
+  "players": [
+    {
+      "tester": "maya",
+      "completionPass": true,
+      "epoch": 24423,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357",
+      "stops": {
+        "phone": {
+          "elapsed_s": 44.242,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        },
+        "desktop": {
+          "elapsed_s": 35.802,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        }
+      }
+    },
+    {
+      "tester": "emre",
+      "completionPass": true,
+      "epoch": 24423,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+      "stops": {
+        "desktop": {
+          "elapsed_s": 37.277,
+          "reason": "TOOL",
+          "voluntary": false,
+          "actualEnding": false
+        },
+        "phone": {
+          "elapsed_s": 380.71,
+          "reason": "FINISHED",
+          "voluntary": true,
+          "actualEnding": true
+        }
+      }
+    },
+    {
+      "tester": "nia",
+      "completionPass": false,
+      "epoch": 24423,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+      "stops": {
+        "phone": {
+          "elapsed_s": 59.775,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        },
+        "desktop": {
+          "elapsed_s": 39.327,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        }
+      }
+    },
+    {
+      "tester": "rosa",
+      "completionPass": true,
+      "epoch": 7938,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b",
+      "stops": {
+        "phone": {
+          "elapsed_s": 25.617,
+          "reason": "TOOL",
+          "voluntary": false,
+          "actualEnding": false
+        },
+        "desktop": {
+          "elapsed_s": 27.095,
+          "reason": "CONFUSED",
+          "voluntary": true,
+          "actualEnding": false
+        }
+      }
+    },
+    {
+      "tester": "mireya",
+      "completionPass": true,
+      "epoch": 7938,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "reportSha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b",
+      "stops": {
+        "phone": {
+          "elapsed_s": 59.718,
+          "reason": "BORED",
+          "voluntary": true,
+          "actualEnding": false
+        },
+        "desktop": {
+          "elapsed_s": 62.202,
+          "reason": "TASTE",
+          "voluntary": true,
+          "actualEnding": false
+        }
+      }
+    }
+  ],
+  "originalEpoch": {
+    "nativeSession": 24423,
+    "actualExit": 1,
+    "niaOriginalPass": false,
+    "correctiveReturnSha256": "d5ba5d7986e01f26c568917952744e9e18d068f23ab5528fe2fc937a9b2e79e1"
+  },
+  "remainderEpoch": {
+    "nativeSession": 7938,
+    "actualExit": 0,
+    "players": [
+      "rosa",
+      "mireya"
+    ],
+    "physicalReturnSha256": "be5b3218fcf2c1a80659d7ef6141ab84b65a485b084873ec066eca1aac877360"
+  },
+  "unchangedFinalizer": {
+    "sha256": "fb750e1582c440ffe49bd9747a7ef56bc04faf4bf277808c6233b325292d3465",
+    "eligibleReports": 4,
+    "validDeviceStops": 10,
+    "niaStillIneligible": true
+  }
+}

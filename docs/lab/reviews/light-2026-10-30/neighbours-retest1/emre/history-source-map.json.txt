@@ -1,0 +1,122 @@
+{
+  "policy": "Exact prior own-history baseline and complete own reports; selected record, not complete archive. Do not invent memory. Inherited source-map qualifications remain binding; saved images alone do not prove viewing.",
+  "segments": [
+    {
+      "role": "exact initial baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/own-history.md",
+      "sha256": "1c57518f67d175e497e634020feaef14958ae9aa417090cd989c0ac3cd12c6f2",
+      "outputBytes": [
+        0,
+        175913
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/report.md",
+      "sha256": "fbf71b1ba8c55054a0cf62ed680adf0c19d75b5fc0ca3e86d6ee053918b1a68e",
+      "outputBytes": [
+        175946,
+        185312
+      ]
+    },
+    {
+      "role": "complete own well-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/report.md",
+      "sourceSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+      "sourceByteRange": [
+        0,
+        10261
+      ],
+      "outputByteRange": [
+        185401,
+        195662
+      ],
+      "segmentSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d"
+    },
+    {
+      "role": "own Well2 new coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/own-history.md",
+      "sourceSha256": "df402d7166f50ae0d21056002ab93cdd0f0d5f3f7b15c80eb6dee4ca557683a8",
+      "sourceByteRange": [
+        221224,
+        222210
+      ],
+      "outputByteRange": [
+        195756,
+        196742
+      ],
+      "segmentSha256": "e1b3819a54f45672962af2f0d1544b29f16d6361a595749a9e6b620d46456eb0"
+    },
+    {
+      "role": "own Well2 additive coordinator qualification Q2",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/own-history.md",
+      "sourceSha256": "df402d7166f50ae0d21056002ab93cdd0f0d5f3f7b15c80eb6dee4ca557683a8",
+      "sourceByteRange": [
+        222210,
+        222421
+      ],
+      "outputByteRange": [
+        196844,
+        197055
+      ],
+      "segmentSha256": "ae256fc70962e9e0f0b0242b6fef4aa807fdc5611d30a22a563fbbdbe79608b2"
+    },
+    {
+      "role": "complete own Small Works initial continuation report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/emre/report.md",
+      "sourceSha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd",
+      "sourceByteRange": [
+        0,
+        9716
+      ],
+      "outputByteRange": [
+        197162,
+        206878
+      ],
+      "segmentSha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd"
+    },
+    {
+      "role": "own Small Works coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/emre/diary-continuation.md",
+      "sourceSha256": "6208e76a83bd16f963c2ef38d6d7c0f4d2539956a9860084ecd0b6653b0c8267",
+      "sourceByteRange": [
+        9716,
+        10399
+      ],
+      "outputByteRange": [
+        206974,
+        207657
+      ],
+      "segmentSha256": "38ec174515763585eb3bdd5774870758e9285f535804d3883d2e4553dfcb9289"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/dispatch.json",
+      "sha256": "8ecaf2848fb17f1f9e9cadc85c61fcc1dbc97e8ba5656682fba50fbca9d2b46b"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/completion.json",
+      "sha256": "0991b2cc519353c1a6f0ff8910d20d423dd51290a744fb1a0e6b4fcff7d649c1"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/history-source-map.json",
+      "sha256": "68630c38b4cadee897b924dceb5133d2f02f442649cf4afb3a5ccb0411171f91"
+    }
+  ],
+  "historySha256": "3d41785a8a9fabbbc002e5335815b1f3c4a90f2da5e5989d98ddc60ae2dc4244",
+  "historyLineCount": 1661,
+  "latestReturnRefresh": {
+    "oldHistorySha256": "bddba2d159170023c5f9ad53356c863316c8f756655eb0b861916e21fbcd63d5",
+    "preservedPrefixByteRange": [
+      0,
+      185314
+    ],
+    "relocatedFinalMarkerBytes": 29,
+    "smallWorksPacketManifestSha256": "a4fec8252d2be9c6caaca1f80bf6b30b1c7b1cf141ac930a0b9e726d9493e9fd",
+    "smallWorksPacketRootSealSha256": "395825d1f97d651ff20e3bf80a959b884404d740f65bc0c5d7dc6e0dad355c6b",
+    "wellRootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+    "murmurRootQualificationSha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9",
+    "scope": "Bounded selected own records, not full archive; check future completed own returns before freeze."
+  }
+}

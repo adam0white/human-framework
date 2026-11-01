@@ -1,0 +1,237 @@
+{
+  "schema": "bounded-source-epoch-publication-map/v1",
+  "packet": "well-retest2",
+  "sourceManifestSha256": "0d241dbbb79a8f7a01a9e59905ea483e71020af4ce2331a945255716f25a212d",
+  "files": {
+    "README.md": {
+      "sha256": "855de5bd19a85bc5844a03bb8edb41606013a25fe36751f9f2f64fe40cf1271d",
+      "bytes": 2342,
+      "publishedPath": "README.md.txt"
+    },
+    "actual-protocol-review.md": {
+      "sha256": "2e310846c8d91a24334e0cbe33c904183ba15c3852b923193ae5081887d24d91",
+      "bytes": 5160,
+      "publishedPath": "actual-protocol-review.md.txt"
+    },
+    "actual-stops.json": {
+      "sha256": "1758de644c7a47851ba22d593cb54833a17275b86181544958f91d9874d24396",
+      "bytes": 10093,
+      "publishedPath": "actual-stops.json.txt"
+    },
+    "ask-extraction.json": {
+      "sha256": "826630aaeb388d59fc09753e98b0d42ed39971268ba9e92a22fbcb238625c682",
+      "bytes": 14207,
+      "publishedPath": "ask-extraction.json.txt"
+    },
+    "ask-ledger.json": {
+      "sha256": "a5ecd37ccd9400421364241127281b8871b0cdc5b20908d5ed3134dd31352c6e",
+      "bytes": 10204,
+      "publishedPath": "ask-ledger.json.txt"
+    },
+    "ask-ledger.md": {
+      "sha256": "c3cd5997888ee16fd09e5ccf989e447e6899b5920173d75d480fd260841283fe",
+      "bytes": 7101,
+      "publishedPath": "ask-ledger.md.txt"
+    },
+    "completions.safe.json": {
+      "sha256": "95a48fe90b35b7856e22f2ab03e8719eeffb8e862b9a54e7554ce5705524d5c7",
+      "bytes": 3754,
+      "publishedPath": "completions.safe.json.txt"
+    },
+    "emre/history-source-map.json": {
+      "sha256": "c9b31c5a9720282e3c8e6edf53a53632493a085d31c6532bb7c5787bda15d1b3",
+      "bytes": 5057,
+      "publishedPath": "emre/history-source-map.json.txt"
+    },
+    "emre/report.md": {
+      "sha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+      "bytes": 10261,
+      "publishedPath": "emre/report.md.txt"
+    },
+    "final-live-pin.json": {
+      "sha256": "0a5d92f1b538efe6d409a1d3b4aa7cbc4ab053677a505fd87c244c71be9bc38a",
+      "bytes": 446,
+      "publishedPath": "final-live-pin.json.txt"
+    },
+    "manifest.json": {
+      "sha256": "0d241dbbb79a8f7a01a9e59905ea483e71020af4ce2331a945255716f25a212d",
+      "bytes": 3610,
+      "publishedPath": "manifest.json.txt"
+    },
+    "maya/history-source-map.json": {
+      "sha256": "8e74c3d65018ee23c09c65d8a5c09c65c391deb42628b850ccc4d6eb114146a0",
+      "bytes": 6362,
+      "publishedPath": "maya/history-source-map.json.txt"
+    },
+    "maya/report.md": {
+      "sha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357",
+      "bytes": 7508,
+      "publishedPath": "maya/report.md.txt"
+    },
+    "method-qualification.json": {
+      "sha256": "9b8df7538042df7da3cf821f10f38dcb9e559b7a5646ed4a83d497b09e5e4771",
+      "bytes": 6777,
+      "publishedPath": "method-qualification.json.txt"
+    },
+    "mireya/history-source-map.json": {
+      "sha256": "574a48113c4dc75f1f26ae2f4c6c7f8299de6cd6b20a5e5d909ca818a67fc996",
+      "bytes": 154,
+      "publishedPath": "mireya/history-source-map.json.txt"
+    },
+    "mireya/report.md": {
+      "sha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b",
+      "bytes": 6255,
+      "publishedPath": "mireya/report.md.txt"
+    },
+    "nia/history-source-map.json": {
+      "sha256": "29e915cad1a3adae151a377b914352c7a8ded6d30c15f8aebbc3cf72906626cc",
+      "bytes": 8314,
+      "publishedPath": "nia/history-source-map.json.txt"
+    },
+    "nia/report.md": {
+      "sha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+      "bytes": 7220,
+      "publishedPath": "nia/report.md.txt"
+    },
+    "root-ask-triage.json": {
+      "sha256": "569a43f3b66c234cb50d675106d148bd9135ff011dc6a0929ef236f78e8d825d",
+      "bytes": 1883,
+      "publishedPath": "root-ask-triage.json.txt"
+    },
+    "root-qualification.json": {
+      "sha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+      "bytes": 8717,
+      "publishedPath": "root-qualification.json.txt"
+    },
+    "rosa/history-source-map.json": {
+      "sha256": "acc267f74293fa4a6d18d51c55607ea2feffcea8f6691af127ae040b286160a5",
+      "bytes": 13661,
+      "publishedPath": "rosa/history-source-map.json.txt"
+    },
+    "rosa/report.md": {
+      "sha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b",
+      "bytes": 6338,
+      "publishedPath": "rosa/report.md.txt"
+    },
+    "source-map.json": {
+      "sha256": "979c37ccf549931dca1b698f3e0c900524b4fda1e8a0fa0b067a5e8691d046ee",
+      "bytes": 8116,
+      "publishedPath": "source-map.json.txt"
+    }
+  },
+  "excluded": {
+    "cleanup-rule.md": {
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "delivery-investigation.json": {
+      "sha256": "3afa80914583fff5a8222d39e7e5397ced05eb84cc53f3cd3770acf9da0be44e",
+      "bytes": 5552,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "delivery-investigation.md": {
+      "sha256": "9df3217266b69d359bc1f9bc2c5f05392b0fe96bfbdabaa157b996e2549999a0",
+      "bytes": 3289,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "emre/brief.md": {
+      "sha256": "9f208ed504fe56fed14695daf39e3f76428fe6678fdf1fab689723b6cd153519",
+      "bytes": 7565,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "emre/diary-continuation.md": {
+      "sha256": "20f2d83053dcffc1ba71043945d98a96a962f73e543f76c8931e4a9ceceaa7d5",
+      "bytes": 10776,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "maya/brief.md": {
+      "sha256": "c0be63da4a15cdccb8612ef3c1bfab4ca9ced5d920f4d9e47357c0c81829f4ef",
+      "bytes": 7643,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "maya/diary-continuation.md": {
+      "sha256": "189ff2bb4b2f94f6281df0d07ca354d02886f88b8cd327bc77acc953950781e5",
+      "bytes": 7864,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "mireya/brief.md": {
+      "sha256": "69f3109e7be061181b71100c38f0191d720f7848127e93862147b270a8db80a1",
+      "bytes": 7785,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "nia/brief.md": {
+      "sha256": "0dc09b51fc562357972dfbd9b80f30d2b36e170642fe4d20ab0d7b34035e2d10",
+      "bytes": 7576,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "nia/diary-continuation.md": {
+      "sha256": "3845084015e7530ed311b23087e6f44f0aaf90d88096c11317aca5cb4b076a9f",
+      "bytes": 7772,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "rosa/brief.md": {
+      "sha256": "6811f9cd2230c445afd81a73dc3f9a520e45fbbfe4c62b7540133c8b8b9e74a2",
+      "bytes": 7872,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "rosa/diary-continuation.md": {
+      "sha256": "43af38a30347f0fa51d9e4ef6c92814314d0599bd4c9a28ffd255d9fd2caec6f",
+      "bytes": 6791,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "source-decision.json": {
+      "sha256": "9f75081ad4493be50305055d8bd590bed11d811762d45166bca694131d6f4319",
+      "bytes": 1458,
+      "reason": "private source retained outside bounded inert publication selection"
+    },
+    "actual-protocol-review.json": {
+      "sha256": "d0c9ff0787c047a30339b5e8cb462c840e2fe59de32b99e1982f4eb5662c0e10",
+      "bytes": 197185,
+      "reason": "BQ1: full original audit includes294 per-command records and raw wall/diary/action projections; retain privately, publish bounded hash-bound projection instead."
+    }
+  },
+  "scope": "Exact inert source snapshots plus explicitly derived safe Well audit projection; raw full audit and private bodies withheld by hash. Local paths are provenance, not image assets.",
+  "derived": {
+    "actual-protocol-review.safe.json.txt": {
+      "sha256": "a4fa493583ea959d7baebda0efb86e8be348636bc9ab7f5544d060bc51c902d4",
+      "bytes": 18276,
+      "sourceName": "actual-protocol-review.json",
+      "sourceSha256": "d0c9ff0787c047a30339b5e8cb462c840e2fe59de32b99e1982f4eb5662c0e10",
+      "rootQualificationName": "root-qualification.json",
+      "rootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+      "algorithm": "Exact selected audit top-level fields excluding players/reviewedSha256; exact bounded root-qualified summary; seven timestamp differences and one omitted-note reaction with original source pointers. No per-command operation or raw wall/diary/action tables.",
+      "auditFields": [
+        "created",
+        "verdict",
+        "scope",
+        "prefixChecks",
+        "confirmed",
+        "unknown",
+        "errorsAndQualifications",
+        "successfulReportsEligibleForRoot",
+        "eligibleDeviceStops",
+        "resourceBoundary"
+      ],
+      "rootQualifiedFields": [
+        "originalEpoch",
+        "remainderEpoch",
+        "unchangedFinalizer",
+        "qualifiedNiaReportAdopted",
+        "niaAdoptionScope",
+        "players",
+        "voluntaryStops",
+        "voluntaryUnfinishedStops",
+        "nonvoluntaryToolStops",
+        "actualEndings",
+        "cuts",
+        "terminalBudgetStops",
+        "qualification",
+        "twoIterationRule",
+        "thirdOrdinaryPanel",
+        "playerAcceptance",
+        "ownerAcceptance"
+      ]
+    }
+  }
+}

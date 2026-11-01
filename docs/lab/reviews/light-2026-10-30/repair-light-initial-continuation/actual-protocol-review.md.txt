@@ -1,0 +1,57 @@
+# Small Works actual full-five protocol audit
+
+Qualified actual collection:5 new engineering-eligible reports and10 valid voluntary unfinished stops. Actual native47750 EXIT0 and physical/CPU return are bound. Root qualification/release remains.
+
+| Tester | History stdout lines | Phone raw stop | Desktop raw stop | Current pass |
+|---|---:|---|---|---|
+| maya | 2455/2455 | 57.68 TASTE | 101.58 CONFUSED | true |
+| emre | 1831/1831 | 49.621 BORED | 206.583 TASTE | true |
+| nia | 2203/2203 | 109.342 TASTE | 72.696 TASTE | true |
+| rosa | 3882/3882 | 68.738 CONFUSED | 60.614 CONFUSED | true |
+| alma | 1/1 | 116.941 TASTE | 32.373 BORED | true |
+
+## Confirmed
+
+- All five new current Small Works completions PASS, tester0/drivers[0,0],no cuts/interruptions,within budget/profile removed. No historical Well Nia exception is used. Unchanged finalizer returns5 engineering-eligible reports and10 valid actual device stops.
+- Actual native47750 EXIT0/PID82739 birth1793536740.618676 is bound to stored identity, actual numeric exit receipt, CPU-return receipt and underlying physical evidence.485 sampled identities gone,5 profiles absent,11 ports independently recorded BIND-free,current taskcwd0 unknown0. This audit makes no new process/port probe or exhaustive unseen/global absence claim.
+- All10 stops are voluntary and unfinished: 5 TASTE, 3 CONFUSED, 2 BORED. No TOOL/BUDGET/FINISHED final stops,cuts,automatic ceilings or actual endings.
+- All5 report bodies match final agent-message bytes after trailing newline normalization. Every successful raw diary reaction appears literally in its manuscript; ratings and exact words remain in JSON. 11 1ms raw-wall/manuscript discrepancies are enumerated without normalizing either source.
+- Literal completed-command stdout covers2455/1831/2203/3882/1 lines entirely before first gameplay open. Rosa made follow-up range reads after truncation. Direct delivery/comprehension remain independently unverifiable; her older Well201–3800 receipt uncertainty is still inherited, not retroactively fixed.
+- All quick-label taps return matching pressed controls and Back requests return visible menus; no observed Feedback typing/Submit or recording/consent-setting input. No full network guard, backend ingestion,feedback or save receipt established.
+- All device PNG counts stay within5 manual+1 automatic. No identifiable completed returned image-tool schema exists in any transcript. Manuscript actually-viewed/layout/stage-picture assertions remain UNVERIFIABLE as perception evidence. Native driver fork-unverified labels remain, with prior independently reviewed instrument bindings distinct.
+- Current source pre/post device pins and final marker agree df583792/HF4.11/app4.3.0. Assigned agent-marked URL is used; normal pinned SDK may consume/remove query from history. No executed network marker/backend receipt inferred.
+- This remains a later-build continuation of the partial initial Small Works collection. Maya/Emre/Nia selectedFREE sole continuity; old Nia CONT/pair disposition UNKNOWN/Nov3 persists. Rosa firstRECORDED/prior exposure unestablished; Alma fictional never-HF. No same-four fixed retest,paired causal inference,cap reset,owner acceptance or global all-asks-fixed conclusion follows.
+
+## Qualifications
+
+- Image protocol: every opening shot was saved, but no identifiable returned image-view event proves perception. Any screenshot-derived point choice can establish requested input and visible text outcome, not that the model actually viewed pixels. Stage movement is untested; Nia manuscript itself does not infer motion from a still.
+- Rosa phone quit56.282/desktop quit46.194 preceded60. Feedback/menu steps crossed60 to stops68.738/60.614. Automatic shots60.055/60.108 occurred in that stop sequence; neither has first-minute diary. Retain qualified checkpoint omission/noncompliance and untested actionable gameplay, never promote automatic shot to diary compliance or continued gameplay.
+- Maya phone automatic shot60.048 followed voluntary stop57.680; Emre phone automatic60.054 followed voluntary stop49.621. Only automatic shot follows each; no continued play inferred.
+- Valid-threshold diary checkpoints: Maya desktop63.559; Emre desktop63.183 plus pulse180.559; Nia phone60.865 and desktop64.331; Alma phone61.022. Nia desktop checkpoint followed quit58.729 while stopping/menu actions continued, not a new change of intent; no forced waiting proved. No other pulse threshold reached.
+- Alma transcript43 malformed apostrophe shell command failed before curl; corrected label request45 succeeded. All other parsed commands are assigned reads/curls. Emre desktop driver errors: duplicate Open-on-bench controls at wall41 and61, then unavailable Governor at67; current point/Repair navigation resolved them. These are method/input-state errors, not proven product causes.
+- Browser logs retain CVDisplayLink/display errors and shutdown GPU/network-service/rendezvous messages. Empty tester stderr and driver0 do not erase those messages; product/network failure cause is not established by them.
+- Nia corrected Sam-vanished inference at raw23.965/manuscript23.966. Preserve original mistaken note and correction; accessible control omission alone did not establish the character leaving.
+- Rosa concept counts include contemporaneous numbered diary estimates plus retrospectively tabulated menu/Feedback counts. Do not certify exact exhaustive per-screen counting. Her two-reread quit rule triggered before60 on both devices; feedback completion afterward does not establish further repair play.
+- Small1ms time discrepancies reflect distinct retained raw wall versus returned driver elapsed values where shown in JSON; report words remain untouched. All11 differences listed separately; Nia stop durations raw109.342/72.696 differ from manuscript109.343/72.697.
+
+## Raw wall versus manuscript diary timestamps
+
+| Tester/device | Kind | Raw wall | Manuscript | Driver response |
+|---|---|---:|---:|---:|
+| maya/phone | note | 5.484 | 5.485 | 5.485 |
+| maya/desktop | note | 71.591 | 71.592 | 71.592 |
+| emre/desktop | note | 142.434 | 142.435 | 142.435 |
+| emre/phone | want_quit | 36.234 | 36.235 | 36.235 |
+| nia/phone | note | 23.965 | 23.966 | 23.966 |
+| nia/phone | stop | 109.342 | 109.343 | 109.343 |
+| nia/desktop | note | 6.627 | 6.628 | 6.628 |
+| nia/desktop | first_minute | 64.331 | 64.332 | 64.332 |
+| nia/desktop | stop | 72.696 | 72.697 | 72.697 |
+| rosa/phone | note | 21.657 | 21.658 | 21.658 |
+| rosa/desktop | note | 20.048 | 20.049 | 20.049 |
+
+Read complete five manuscripts; parsed all full retained transcripts/command outputs/completions/wall-clock rows/driver and browser logs/finalizer audit. Source-bound histories/maps/provenance were inspected as needed with previous independent H1/Q1Q2 qualification audit transferring only through frozen input bytes; all23 actual input hashes rechecked. Actual numeric/CPU receipts and underlying physical evidence fully read and hash-bound. No rendering of PNGs or speculative hidden/network state.
+
+Complete transcript stdout is not direct delivery or comprehension. No identifiable image-tool result proves perception. No full network/backend/owner acceptance. Physical evidence is root sampled returned evidence, not fresh independent reviewer probes. Schema fields alone not actual proof; actual external receipts supplied here are separately bound.
+
+Only these private0600 audit files were written. No repository/worktree touched; git worktree list is not applicable.

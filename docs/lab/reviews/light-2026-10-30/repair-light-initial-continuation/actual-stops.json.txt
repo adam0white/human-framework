@@ -1,0 +1,274 @@
+{
+  "source": "actual-protocol-review.json",
+  "players": [
+    {
+      "tester": "maya",
+      "sessions": {
+        "phone": {
+          "stopRow": 30,
+          "stop": {
+            "t": "2026-11-01T12:40:38.776Z",
+            "elapsed_s": 57.68,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on the phone. Sam watched the failed test and the owner question is specific, but I want the wider screen now. I selected I am stopping and went back without sending.",
+            "game_clock": "Day 1 10:00",
+            "engagement": 3,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": [
+            {
+              "t": "2026-11-01T12:40:41.144Z",
+              "elapsed_s": 60.048,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 46,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        },
+        "desktop": {
+          "stopRow": 47,
+          "stop": {
+            "t": "2026-11-01T12:42:22.870Z",
+            "elapsed_s": 101.58,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on desktop. The specific gear question is what I wanted last time, but Nora was unavailable and I could not tell when to catch her. I selected confused and stopping locally, typed nothing and sent nothing.",
+            "game_clock": "Day 1 11:35",
+            "engagement": 2,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "emre",
+      "sessions": {
+        "desktop": {
+          "stopRow": 83,
+          "stop": {
+            "t": "2026-11-01T12:46:52.775Z",
+            "elapsed_s": 206.583,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on Day 2 after returning both lights and getting the theatre to pass. I enjoyed the contact diagnosis and clear part counts. I would return another evening for the remaining jobs, and I would not leave it running.",
+            "game_clock": "Day 2 09:00",
+            "engagement": 4,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": []
+        },
+        "phone": {
+          "stopRow": 20,
+          "stop": {
+            "t": "2026-11-01T12:47:44.946Z",
+            "elapsed_s": 49.621,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on the phone after returning the lantern. The direct replacement worked, but I have already played this opening tonight. I would return on desktop for other jobs, not leave it running.",
+            "game_clock": "Day 1 10:10",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": [
+            {
+              "t": "2026-11-01T12:47:55.379Z",
+              "elapsed_s": 60.054,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 52,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tester": "nia",
+      "sessions": {
+        "phone": {
+          "stopRow": 45,
+          "stop": {
+            "t": "2026-11-01T12:50:37.510Z",
+            "elapsed_s": 109.342,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on phone after Nora agreed to the gear and acknowledged it on return. I got the experiment I wanted and would close it. Feedback marked I am stopping; nothing typed or submitted.",
+            "game_clock": "Day 1 12:30",
+            "engagement": 3,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": []
+        },
+        "desktop": {
+          "stopRow": 32,
+          "stop": {
+            "t": "2026-11-01T12:51:52.476Z",
+            "elapsed_s": 72.696,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on desktop after opening the paper theatre stage. I liked seeing the figures after fixing the pace. I would close it; Feedback marked I am stopping, nothing typed or submitted.",
+            "game_clock": "Day 1 10:45",
+            "engagement": 4,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "rosa",
+      "sessions": {
+        "phone": {
+          "stopRow": 27,
+          "stop": {
+            "t": "2026-11-01T12:54:13.065Z",
+            "elapsed_s": 68.738,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop on the phone. I liked the clear first steps, but two sentences needed rereading and I cannot interpret the two readings. I would close it.",
+            "game_clock": "Day 1 09:45",
+            "engagement": 2,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": []
+        },
+        "desktop": {
+          "stopRow": 23,
+          "stop": {
+            "t": "2026-11-01T12:55:16.459Z",
+            "elapsed_s": 60.614,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop on the big screen. The reference helped and her agreement was clear, but two sentences in the long proposal needed rereading. I would close it for tonight.",
+            "game_clock": "Day 1 09:30",
+            "engagement": 3,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "alma",
+      "sessions": {
+        "phone": {
+          "stopRow": 53,
+          "stop": {
+            "t": "2026-11-01T12:57:47.192Z",
+            "elapsed_s": 116.941,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping with the music box unfinished; the ratios have taken the pleasure out of this short phone session.",
+            "game_clock": "Day 1 11:15",
+            "engagement": 2,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": []
+        },
+        "desktop": {
+          "stopRow": 16,
+          "stop": {
+            "t": "2026-11-01T12:58:23.079Z",
+            "elapsed_s": 32.373,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am leaving the repeated opening here. I would rather return to the phone workshop if I want to continue.",
+            "game_clock": "Day 1 09:25",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "actualStopCount": 1,
+          "voluntary": true,
+          "actualEnding": false,
+          "afterStopRows": []
+        }
+      }
+    }
+  ]
+}

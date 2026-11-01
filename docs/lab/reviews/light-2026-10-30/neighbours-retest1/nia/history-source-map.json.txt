@@ -1,0 +1,192 @@
+{
+  "policy": "Exact prior own-history baseline and complete own reports; selected record, not complete archive. Do not invent memory. Inherited source-map qualifications remain binding; saved images alone do not prove viewing.",
+  "segments": [
+    {
+      "role": "exact initial baseline",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/own-history.md",
+      "sha256": "8677d44fdd553d5e1f6cfb9b0fdf194c89528caa9ac71de752b3e775e19a44e1",
+      "outputBytes": [
+        0,
+        208466
+      ]
+    },
+    {
+      "role": "complete literal own report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/report.md",
+      "sha256": "f508974fe0ed8f9c9e478ffac8cac6d80f391d031cf7a8c333451af3112cd04b",
+      "outputBytes": [
+        208499,
+        217419
+      ]
+    },
+    {
+      "role": "complete own rope-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/rope-retest2-inputs/nia/report.md",
+      "sourceSha256": "06e2b82a906945be064b590acc05724f6b7bd96d0adb3a88ec83128447660f42",
+      "sourceByteRange": [
+        0,
+        8192
+      ],
+      "outputByteRange": [
+        217508,
+        225700
+      ],
+      "segmentSha256": "06e2b82a906945be064b590acc05724f6b7bd96d0adb3a88ec83128447660f42"
+    },
+    {
+      "role": "own inherited coordinator qualification qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/own-history.md",
+      "sourceSha256": "382071da531ce024c3d9490f982e8db4ff7976a91cbf0d9d1aef5fa06753642b",
+      "sourceByteRange": [
+        222320,
+        226756
+      ],
+      "outputByteRange": [
+        225808,
+        230244
+      ],
+      "segmentSha256": "3b9fcacd101901a739d2d67d278ac521dfe7a21bd6ab13653ba59420a7ff1fbe"
+    },
+    {
+      "role": "own inherited coordinator qualification additionalQualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/own-history.md",
+      "sourceSha256": "382071da531ce024c3d9490f982e8db4ff7976a91cbf0d9d1aef5fa06753642b",
+      "sourceByteRange": [
+        226756,
+        228752
+      ],
+      "outputByteRange": [
+        230362,
+        232358
+      ],
+      "segmentSha256": "65e7a3bd5473364d97c3c37edb8f2171e3e2ad6e2ae457b8ee2e1a4f0c063568"
+    },
+    {
+      "role": "complete own murmur-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/report.md",
+      "sourceSha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec",
+      "sourceByteRange": [
+        0,
+        8293
+      ],
+      "outputByteRange": [
+        232447,
+        240740
+      ],
+      "segmentSha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec"
+    },
+    {
+      "role": "own Murmur2 coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/own-history.md",
+      "sourceSha256": "382071da531ce024c3d9490f982e8db4ff7976a91cbf0d9d1aef5fa06753642b",
+      "sourceByteRange": [
+        237085,
+        237935
+      ],
+      "outputByteRange": [
+        240832,
+        241682
+      ],
+      "segmentSha256": "7b1575453594b63f54475d5bbfe765792a6ba60ed2421c903ecce2e5b3f92f76"
+    },
+    {
+      "role": "complete own well-retest2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/report.md",
+      "sourceSha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+      "sourceByteRange": [
+        0,
+        7220
+      ],
+      "outputByteRange": [
+        241769,
+        248989
+      ],
+      "segmentSha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535"
+    },
+    {
+      "role": "own Well2 new coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/own-history.md",
+      "sourceSha256": "d6e5f0b7a687b520dc1b5f36b2d552f569505672f1d16066ba926d7479eaff3e",
+      "sourceByteRange": [
+        261702,
+        262672
+      ],
+      "outputByteRange": [
+        249083,
+        250053
+      ],
+      "segmentSha256": "9c6d6bf2159bfd90dc14c8987277ee8d0cc43280770d9a4b120f0353ba60cdb0"
+    },
+    {
+      "role": "own Well2 additive coordinator qualification Q1",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/own-history.md",
+      "sourceSha256": "d6e5f0b7a687b520dc1b5f36b2d552f569505672f1d16066ba926d7479eaff3e",
+      "sourceByteRange": [
+        262672,
+        262795
+      ],
+      "outputByteRange": [
+        250155,
+        250278
+      ],
+      "segmentSha256": "dcfa0fa9088223e33a22031010ad5bfa11fde9b0922322165488c355d30fdbca"
+    },
+    {
+      "role": "complete own Small Works initial continuation report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/nia/report.md",
+      "sourceSha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349",
+      "sourceByteRange": [
+        0,
+        9213
+      ],
+      "outputByteRange": [
+        250385,
+        259598
+      ],
+      "segmentSha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349"
+    },
+    {
+      "role": "own Small Works coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/nia/diary-continuation.md",
+      "sourceSha256": "1093ea9820c9d004fb0a839fda7f6a466794e125f8d3b97f5cffe7e6a4635ffb",
+      "sourceByteRange": [
+        9213,
+        9898
+      ],
+      "outputByteRange": [
+        259694,
+        260379
+      ],
+      "segmentSha256": "7a2e8d9f3db84552d2303ee1204d086ef62bc37277f33c94968aa413c709eec2"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/dispatch.json",
+      "sha256": "637436e0c3ace6b3de0beb623811f16909c060eae0735102d16e848d484b4f26"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/completion.json",
+      "sha256": "5bcedf0dcbe937a0d678d44ad07781b1ab541b8f15b8bd8f69259c8057ce420a"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/history-source-map.json",
+      "sha256": "abfda404d5036988f2d81b824c4f2934d91539b2078c70594bbdd461b980a0a3"
+    }
+  ],
+  "historySha256": "43ddad1c6444edbf3cfdf1dbc788b438f3bc8a528693b65bcbdaf7c9dcf22667",
+  "historyLineCount": 2190,
+  "latestReturnRefresh": {
+    "oldHistorySha256": "17e05d516aa0483020637ded64860f804eaadd772257728f3e71d442ef7cc41e",
+    "preservedPrefixByteRange": [
+      0,
+      217421
+    ],
+    "relocatedFinalMarkerBytes": 29,
+    "smallWorksPacketManifestSha256": "a4fec8252d2be9c6caaca1f80bf6b30b1c7b1cf141ac930a0b9e726d9493e9fd",
+    "smallWorksPacketRootSealSha256": "395825d1f97d651ff20e3bf80a959b884404d740f65bc0c5d7dc6e0dad355c6b",
+    "wellRootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+    "murmurRootQualificationSha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9",
+    "scope": "Bounded selected own records, not full archive; check future completed own returns before freeze."
+  }
+}

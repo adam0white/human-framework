@@ -1,0 +1,123 @@
+{
+  "policy": "Selected own cross-game baseline plus complete actual own FREE report for exposed returners; no CONT body imported as sequential memory. Inherited qualifications bind; selected history is not complete archive.",
+  "segments": [
+    {
+      "role": "exact selected own cross-game history baseline with inherited qualifications",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-preparation/nia/own-history.md",
+      "sha256": "3308c17f6e928f47220b777e204f7786b857ad4b6c30081469878fe01e9cad04",
+      "outputByteRange": [
+        0,
+        228782
+      ]
+    },
+    {
+      "role": "complete own original FREE report only; chosen continuity branch",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-source-recovery-canonical/nia-free.report.txt",
+      "sha256": "08d4b791219316d1cce8fac92d4d6a10998eac3485bb4d05b1a7d31eb82e1afc",
+      "outputByteRange": [
+        228832,
+        244117
+      ]
+    },
+    {
+      "role": "exact own Murmur2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/nia/report.md",
+      "sha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec",
+      "sourceByteRange": [
+        0,
+        8293
+      ],
+      "outputByteRange": [
+        245269,
+        253562
+      ]
+    },
+    {
+      "role": "existing own Murmur2 coordinator qualification",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-preparation/nia/own-history.md",
+      "sourceByteRange": [
+        237085,
+        237935
+      ],
+      "sha256": "7b1575453594b63f54475d5bbfe765792a6ba60ed2421c903ecce2e5b3f92f76",
+      "outputByteRange": [
+        253562,
+        254412
+      ]
+    },
+    {
+      "role": "exact own Well2 report",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/report.md",
+      "sourceByteRange": [
+        0,
+        7220
+      ],
+      "sha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+      "outputByteRange": [
+        254482,
+        261702
+      ]
+    },
+    {
+      "role": "new coordinator qualification",
+      "outputByteRange": [
+        261702,
+        262672
+      ],
+      "sha256": "9c6d6bf2159bfd90dc14c8987277ee8d0cc43280770d9a4b120f0353ba60cdb0",
+      "evidencePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-qualification.json",
+      "evidenceSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e"
+    },
+    {
+      "role": "additive coordinator qualification Q1",
+      "outputByteRange": [
+        262672,
+        262795
+      ],
+      "sha256": "dcfa0fa9088223e33a22031010ad5bfa11fde9b0922322165488c355d30fdbca",
+      "evidencePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-root-qualification.json",
+      "evidenceSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-preparation/nia/history-source-map.json",
+      "sha256": "63d456521389cbbb3cb83a72ad263fd7b34176072fb6898c1ea1ab9967a408a1",
+      "role": "inherited source provenance and qualifications"
+    },
+    {
+      "path": "/Users/abdul/code/human-framework/docs/lab/reviews/games-deferred-intake-2026-10-26.md",
+      "sha256": "f6a203e3580107dc6daafa0b0a29ed4457aba48aa6886e965a72c13cbf2eb0cd",
+      "sectionAnchor": "<a id=\"repair-game-hf3-repair-r1-nia-free\"></a>",
+      "role": "own FREE method qualification"
+    }
+  ],
+  "originalFreeQualification": {
+    "outputByteRange": [
+      244117,
+      244985
+    ],
+    "sha256": "085d62ca0ac5581090e66f0b48300619b7d5a923aa6c097aba14690a9851d09b"
+  },
+  "historySha256": "d6e5f0b7a687b520dc1b5f36b2d552f569505672f1d16066ba926d7479eaff3e",
+  "futureRefresh": "Check for intervening completed own returns before freeze.",
+  "latestReturnRefresh": {
+    "priorHistorySha256": "0aec9e7bbc82a4659cc81ba9a13cf065abffae8a7f6adc8a86461b774bda202f",
+    "preservedPrefixByteRange": [
+      0,
+      245197
+    ],
+    "relocatedFinalMarkerBytes": 29,
+    "newFinalLine": 2203,
+    "wellRootQualificationSha256": "cb7ecd23434a867268e991c57c47eb83cba3dcd2907a4c510bbc157f6e4d3c6e",
+    "futureGate": "Check for intervening completed own returns before freeze."
+  },
+  "q1q2Correction": {
+    "priorHistorySha256": "e66b5e194a12270553390cebc629d4f96a09c75b0e14da8e2c0a8d02d0856160",
+    "preservedPrefixByteRange": [
+      0,
+      262672
+    ],
+    "relocatedFinalMarkerBytes": 29
+  }
+}

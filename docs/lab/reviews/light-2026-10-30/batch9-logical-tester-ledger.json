@@ -1,0 +1,152 @@
+[
+  {
+    "packet": "well-retest2",
+    "game": "well",
+    "tester": "maya",
+    "name": "Maya Chen",
+    "returnSentence": "I would not return voluntarily tonight; I might come back another evening if I could have a more personal conversation with Yusuf, including about Zehra and the timber token. I would not leave the villages running.",
+    "reportSha256": "a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357",
+    "asks": ["F2991", "F2992", "F2993"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "well-retest2",
+    "game": "well",
+    "tester": "emre",
+    "name": "Emre Kaya",
+    "returnSentence": "I would return voluntarily another evening to try an active roof plan, but I would not leave the game running or play again tonight.",
+    "reportSha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+    "asks": ["F2994", "F2995", "F2996"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "well-retest2",
+    "game": "well",
+    "tester": "nia",
+    "name": "Nia Okafor",
+    "returnSentence": "I would not return voluntarily tonight or plan another evening as it is; I like seeing people refuse, but the familiar generic replies and managing the villages through the storm do not pull me back.",
+    "reportSha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+    "asks": ["F2997", "F2998"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "well-retest2",
+    "game": "well",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily if the game explained the cooking threshold in plain words; I would close it now rather than leave it running.",
+    "reportSha256": "8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b",
+    "asks": ["F2999"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "well-retest2",
+    "game": "well",
+    "tester": "mireya",
+    "name": "Mireya Solís",
+    "returnSentence": "I would not voluntarily return to Twice at the Well or leave it running; I wanted to meet the people, but managing their orders lost my interest.",
+    "reportSha256": "c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b",
+    "asks": ["F3000", "F3001", "F3002"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "repair-light-initial-continuation",
+    "game": "repair",
+    "tester": "maya",
+    "name": "Maya Chen",
+    "returnSentence": "I would not return voluntarily tonight; I would come back another evening to hear Nora’s answer about the gear if I knew when I could ask her. I would not leave it running.",
+    "reportSha256": "ee0673b52ac3e535b522dd64c0aa40f11f22599035d1dcb351c849868f68b71d",
+    "asks": ["F3011", "F3012"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "repair-light-initial-continuation",
+    "game": "repair",
+    "tester": "emre",
+    "name": "Emre Kaya",
+    "returnSentence": "I would return voluntarily another evening on desktop for the remaining jobs, and I would not leave it running.",
+    "reportSha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd",
+    "asks": ["F3013", "F3014", "F3015"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "repair-light-initial-continuation",
+    "game": "repair",
+    "tester": "nia",
+    "name": "Nia Okafor",
+    "returnSentence": "I would come back another evening to try more repairs and conversations, but I would not return again tonight or leave the game running.",
+    "reportSha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349",
+    "asks": ["F3016", "F3017"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "repair-light-initial-continuation",
+    "game": "repair",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily another evening if the game helped me understand the meter reading and shortened the repair conversation; I would close it now, not leave it running.",
+    "reportSha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99",
+    "asks": ["F3018", "F3019", "F3020"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "repair-light-initial-continuation",
+    "game": "repair",
+    "tester": "alma",
+    "name": "Alma Vendrell",
+    "returnSentence": "I might return to the phone workshop, but I would not voluntarily restart the opening on the laptop; I would close the game rather than leave it running.",
+    "reportSha256": "2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960",
+    "asks": ["F3021", "F3022", "F3023"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "neighbours-retest1",
+    "game": "neighbours",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily another evening to see whether the hall reopens, if I can tell what happened when I accept a neighbour’s offer; I would close it now, not leave it running.",
+    "reportSha256": "810b08be8a7881837e27bd94e71fa9d9068200ed4e26da8a7baf25f9af42cbff",
+    "asks": ["F3031", "F3032", "F3033"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "neighbours-retest1",
+    "game": "neighbours",
+    "tester": "mei",
+    "name": "Mei Tan",
+    "returnSentence": "I would return another evening on the laptop if my town were saved, to see the hall progress; I would not leave it running.",
+    "reportSha256": "930a3f3a7de3f770acf695e4b63dd7b418eadf8669dcf2ee3b6724fe56b825f3",
+    "asks": ["F3034", "F3035", "F3036"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "neighbours-retest1",
+    "game": "neighbours",
+    "tester": "emre",
+    "name": "Emre Kaya",
+    "returnSentence": "I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight.",
+    "reportSha256": "d4bcdb6156e6484b6aaf09555a9d588f48f2c928fe370112bb6e114091bba80d",
+    "asks": ["F3037", "F3038", "F3039"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "neighbours-retest1",
+    "game": "neighbours",
+    "tester": "nia",
+    "name": "Nia Okafor",
+    "returnSentence": "I would come back another evening if I could reach a personal conversation without chasing someone or waiting for their work to finish; I would not come back tonight or leave the game running.",
+    "reportSha256": "e5a42de303e2e510f77fefbd9bc151700b82eab9a15025d3822b63cbd5082b1b",
+    "asks": ["F3040", "F3041"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "neighbours-retest1",
+    "game": "neighbours",
+    "tester": "laleh",
+    "name": "Laleh Vaziri",
+    "returnSentence": "I would not voluntarily return yet; I would leave the game rather than leave it running.",
+    "reportSha256": "b90926c5c34b647b48667a60eb8eb17ee4786aa4057cdee5f7ddc42682f8ac50",
+    "asks": ["F3042", "F3043", "F3044"],
+    "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  }
+]

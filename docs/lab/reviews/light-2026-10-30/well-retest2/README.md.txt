@@ -1,0 +1,11 @@
+# Well second retest source packet — independent review pending
+
+Private packet; not sealed, published, or accepted. Two iterations are complete; no third ordinary panel is planned. All twelve asks are deferred inspection leads, not established causes or completed fixes. F3003–F3010 are unused. Source extraction and ledger headers predate root triage; they are preserved byte-for-byte as contemporaneous drafts. The later root-triage and qualification receipts govern their current routing and scope.
+
+The original session 24423 exited 1 after Maya, Emre and Nia. Nia completion remains pass false; corrective P1 return d5ba and P2 physical return be5b qualify her report for inspection only. Session 7938 exited 0 and collected Rosa and Mireya. The audit table's “original controller pass” means each tester's completion in that tester's actual epoch, not that Rosa or Mireya ran in session 24423. The unchanged finalizer has four eligible reports and ten valid stops, not five controller passes. All 58 original prefix files remained immutable. Five historical cwd-only occupants remain unidentified; no cause, ownership or fix follows.
+
+Eight voluntary stops comprise seven unfinished and Emre's independently supported phone dawn ending; two TOOL stops were nonvoluntary. No cuts or terminal BUDGET stops. Emre's raw phone note at 44.126 and uncertainty about its receipt are retained in the audit, separate from his unedited report. W1–W8 and inherited history qualifications apply. No image-view, backend, full network-guard, owner or player acceptance is established.
+
+Live 26b44f70/HF 4.15.0 and the distinct source/merge were checked within the supplied delivery evidence. Their whole trees differ. Prior 11-asset, SDK and relevant-object evidence is bounded; it is not an independent full rebuild or full asset graph, font or visual acceptance. Root's actual read scope and all 129 hash checks are stated in root-qualification.json; not every redundant audit command was semantically reread.
+
+Each standing diary continuation starts with that person's exact report bytes, then a separately labelled coordinator method note. No full historical diary, PNG, or raw runtime bundle is included. The four history maps preserve references and inherited limitations. Two independent packet reviews and root seal remain pending.

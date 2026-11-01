@@ -1,0 +1,242 @@
+{
+  "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-actual-protocol-review.json",
+  "sourceSha256": "b289fdefd0d22447ff68341bba2656bb37c7c497119ddf21562b038928bd7a33",
+  "players": [
+    {
+      "tester": "rosa",
+      "completionState": {
+        "pass": true,
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "controllerInterruption": null,
+        "errors": [],
+        "supervisorErrors": [],
+        "withinTotalBudget": true,
+        "profileRemoved": true,
+        "pins": [
+          {
+            "phase": "before",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          },
+          {
+            "phase": "after",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tester": "mei",
+      "completionState": {
+        "pass": true,
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "controllerInterruption": null,
+        "errors": [],
+        "supervisorErrors": [],
+        "withinTotalBudget": true,
+        "profileRemoved": true,
+        "pins": [
+          {
+            "phase": "before",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          },
+          {
+            "phase": "after",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tester": "emre",
+      "completionState": {
+        "pass": true,
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "controllerInterruption": null,
+        "errors": [],
+        "supervisorErrors": [],
+        "withinTotalBudget": true,
+        "profileRemoved": true,
+        "pins": [
+          {
+            "phase": "before",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          },
+          {
+            "phase": "after",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tester": "nia",
+      "completionState": {
+        "pass": true,
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "controllerInterruption": null,
+        "errors": [],
+        "supervisorErrors": [],
+        "withinTotalBudget": true,
+        "profileRemoved": true,
+        "pins": [
+          {
+            "phase": "before",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          },
+          {
+            "phase": "after",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tester": "laleh",
+      "completionState": {
+        "pass": true,
+        "testerExit": 0,
+        "driverExits": [
+          0,
+          0
+        ],
+        "cut": null,
+        "controllerInterruption": null,
+        "errors": [],
+        "supervisorErrors": [],
+        "withinTotalBudget": true,
+        "profileRemoved": true,
+        "pins": [
+          {
+            "phase": "before",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          },
+          {
+            "phase": "after",
+            "value": {
+              "commit": "f6a0dcc890993332fffb4072af1a7f1172f10ce9",
+              "dirty": false,
+              "app": "neighbours@1",
+              "framework": "3.0.0",
+              "hf": "3.0.0",
+              "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+              "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+              "runtime": "Browser-local Python Concordia and released HF",
+              "pyodide": "314.0.7"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "rootReturnSha256": "0d88042734d44151e798beed80040ad8cf5a1e32eb8397809a3faeea4a9f9c60"
+}

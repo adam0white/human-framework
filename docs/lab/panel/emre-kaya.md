@@ -1892,3 +1892,242 @@ When confused on each device, I opened Feedback, selected **“I’m confused”
 
 I owned no browser, driver, process, branch or worktree. The coordinator owns driver cleanup; I touched no repository.
 ```
+
+
+## 2026-11-01 — Well second fixed retest
+
+Coordinator method note: Well W1–W8: four eligible plus Nia qualified inspection with original passfalse; 8voluntary/2TOOL, one actual Emre phone ending; separate epochs24423/7938. Rosa history201–3800 receipt unverified; image perception UNVERIFIABLE. Two iterations collected; no third ordinary panel. Full protocol and qualifications remain in the round archive. Source report below is verbatim; its image/history claims are not independently verified.
+
+```text
+I would return voluntarily another evening to try an active roof plan, but I would not leave the game running or play again tonight.
+
+**Ranked asks**
+
+1. Make Yusuf’s speech-dismiss control usable. On desktop it was covered on my first attempt and gone by the retry; I could not establish that I dismissed it. This was the blocking ask I reached.
+2. Explain why “interest in something unfamiliar” means Tariq would work under protest. The wording is more readable than the reason I saw on my previous visit, but I still cannot use it to understand his objection.
+3. Explain the “This chapter could not be saved” message at the ending. I did not retry it, so I do not know whether the save could succeed.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was a return visit to Twice at the Well. I read the supplied own history through line **1614** before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The history is selected, not a complete archive.
+
+The sessions used separate fresh games at the supplied URL with the agent query retained. No save or seed was imported. Recording and consent stayed at their defaults.
+
+- **Desktop:** 1280×800, keyboard and mouse. Stopped at **37.277 seconds**, Day 1 06:48, under the assigned TOOL rule. I did not reach a voluntary stopping choice for that run.
+- **Phone:** 360×690, touch, same evening. Stopped at **380.710 seconds**, Day 3 05:00, after the game ended.
+
+On desktop, the opening goal was clear and familiar. I selected the earlier Day 2 12:00 preparation option because I remembered both roofs missing the deadline in my last Well run. Yusuf was already going to the house, but I asked him to build; he agreed. His speech dismissal interrupted the session.
+
+On the phone, I left the default preparation choice and gave no orders. Watching the Human roof catch up was satisfying, especially the moment when Yusuf and Tariq raised a beam together. Much of the session was still spent checking totals. At dawn both roofs had missed by one stage, both villages had met the meal goal, and all six people in each village lived. The report showed six Classic injuries and two Human injuries. It said Human and the “without you” comparison were the same run because I gave no orders.
+
+### Diary
+
+These are the logged reactions in order. Times are driver elapsed seconds. Engagement is included where I recorded it.
+
+**Desktop**
+
+- **4.647 s, note, engagement 4:** “The roof and twelve meals bring back my last Well run: both roofs missed the storm deadline. I want to order building earlier this time. The choice now shows preparation timing; I will try the earlier warning.”
+- **17.646 s, note, engagement 4:** “Yusuf was already going to the house, but I asked him to build early as planned. The panel now says one order is only a short task or stage, and gives the cooking threshold as 6 rising to 12. That makes the limits clearer.”
+- **27.645 s, want_quit, TOOL, engagement 3:** “Yusuf agreed and started building. The speech dismiss control was covered on my first attempt and had disappeared by the retry. I cannot establish that I dismissed it, so I stop under the tool rule.”
+- **37.277 s, stop, TOOL, engagement 3:** “I am stopping desktop because the speech dismiss control was covered, then gone at retry. Yusuf agreed to build, but I did not reach the storm or a voluntary verdict on this run. I would still like to try the earlier roof plan.”
+
+**Phone**
+
+- **4.509 s, note, engagement 4:** “The phone opening has the same goal and the title is partly covered by Show Human village, as I remember from my earlier Well phone visit. I will try this fresh village after the desktop interruption.”
+- A note about leaving Maryam cooking was requested while the driver was delayed; I did not receive its result or elapsed time, so I cannot establish whether it was logged.
+- **44.127 s, want_quit, TOOL, engagement 2:** “The phone driver has stopped returning visible results, so I cannot see what happened or continue my plan.”
+- **46.060 s, note, engagement 3:** “The driver returned again. My tool concern has passed; the roof has progressed to 3 on Human and 6 on Classic, with 7 Human meals. The cedar suggestion names a gain and injury risk, so I can weigh it.”
+- **51.597 s, note, engagement 3:** “Classic Yusuf is recovering after a beam fell; Human Yusuf is building and the next stage is nearly done. The panel tells me a concrete cause for his recovery. I leave him working.”
+- **67.615 s, first_minute, engagement 3, Day 1 10:49:** “The goal is clear and the phone lets me inspect both villages. Human roof is 4, Classic 6, and Human meals fell from 7 to 4 while people ate. The food threshold explanation helps; I cannot yet attribute the whole fall. I am mostly watching automatic work.”
+- **102.529 s, note, engagement 3:** “Human roof caught up to 7 and meals rose to 23. Yusuf and Tariq raised a beam together. It is satisfying to see the work move without interrupting them, though I am still watching more than deciding.”
+- **144.569 s, note, engagement 3:** “The forest suggestion now says under protest: interest in something unfamiliar. That reads better than the curiosity:unknown wording I saw last time, but I still do not understand why curiosity means protest. Yusuf is nearly done with stage eight, so I leave him.”
+- **189.879 s, pulse, engagement 3, Day 2 06:09:** “The night passed and Yusuf is building again. I like the visible work and clear food threshold, but I am mostly checking totals. I want to see the warning and whether the roof finishes.”
+- **272.421 s, note, engagement 3:** “Both roofs are nine of ten and the warning says they are at risk. People are sheltering or praying. I remember both roofs missing last time; I will not pull people out into the storm for the last stage.”
+- **307.810 s, note, engagement 3:** “Both roofs failed at the deadline, meals met. Opening the injury now says Idris was hurt in the storm out in the open. That answers the kind of question I had about Samira last time. The current roof can advance after the deadline without changing the failed result.”
+- **374.055 s, want_quit, FINISHED, engagement 3, Day 3 05:00:** “The dawn report ends the run: both roofs failed at nine, meals met, everyone lived, with six Classic injuries and two Human. I got the storm outcome and am done tonight. The chapter could not be saved message appeared again.”
+- **380.710 s, stop, FINISHED, engagement 3, Day 3 05:00:** “I am stopping at dawn on the phone. The roof missed by one stage again, everyone lived, and the injury notice gave a cause. I enjoyed watching the beam go up, but I would try an active roof plan another evening rather than leave it running.”
+
+The phone’s first TOOL quit wish passed when the driver returned. The later FINISHED wish persisted. The desktop ended before the 60-second first-minute checkpoint and the 180-second pulse; both are untested there. The phone reached one valid first-minute and one pulse. I stopped before a second pulse.
+
+### Clarity and comparison with my earlier Well visit
+
+The person panel now states that a building order requests a short task or stage, not a completed roof. It also gives the Human cooking offer threshold as six, rising to twelve at the chosen preparation time, and says it is neither a capacity nor a guarantee. Those details made the food and building limits easier to understand.
+
+At **144.569 s on phone**, the visible Tariq-to-Forest suggestion prompted a high-confidence recognition of my earlier “Under protest: curiosity:unknown” encounter. My words are in the diary above. The replacement wording is clearer English, but the connection between interest and protest remained unclear to me.
+
+At **307.810 s**, opening the Classic Idris injury notice prompted a high-confidence comparison with my earlier attempt to understand Samira’s injury. This notice gave a coarse cause: hurt in the storm while out in the open. I cannot say whether every injury notice now gives the same detail.
+
+The phone’s nine-of-ten warning at **272.421 s** recalled the previous desktop’s two missed roofs, also with high confidence. These were fresh games, so I cannot attribute the similar outcome to a particular change. I made no further recognition claim from the other games in my supplied history.
+
+The ending’s save message also appeared in my earlier Well report, where I did not investigate it. I did not press **Try again** this time either. It did not prevent me from seeing the ending.
+
+### Device behavior and feedback
+
+I actually viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/desktop/a-001.png) immediately after opening. It showed the two village maps and totals beside the opening goal and preparation choices.
+
+I actually viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/emre/phone/b-001.png) immediately after opening. The goal and start button were readable; **Show Human village** covered part of the title. A later phone screenshot was requested during the driver delay, but I received no completion and did not view it. Other phone gameplay and the ending above are from the driver’s visible text.
+
+On desktop, the first dismissal attempt returned “covered or off screen.” At retry the control was no longer present; the speech had disappeared, but I cannot say why. Earlier, a Yusuf activity label became stale and I used the current label successfully. On phone, some changing suggestions and activity labels also became stale. The delayed phone response recovered, and I continued.
+
+For desktop stopping, I opened Feedback, selected **“I’m stopping”**, saw it pressed, and used Back. On phone, when the protest reason confused me, I selected **“I’m confused”**, saw it pressed, and went Back. At the ending I selected **“I’m stopping”**, saw it pressed, and went Back. I typed no note and submitted nothing.
+
+I owned no driver, browser, server, branch or worktree; the coordinator owns driver cleanup. I touched no repository, so there is no worktree listing to report.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from the unchanged report): Image-view claims are UNVERIFIABLE. Matching history stdout does not establish delivery or comprehension; inherited limitations in the bound history-source map remain. See packet W1–W8 and the actual protocol review for applicable individual stops, errors and qualifications. The successful phone note at 44.126 is omitted from the manuscript; receipt/time were uncertain. Raw words and timestamp remain in the actual protocol review.
+
+
+## 2026-11-01 — Small Works partial initial continuation
+
+Coordinator method note: Small Works SW1–SW10: partial initial continuation, not same-four fixed retest; ten voluntary unfinished stops, no endings or cuts. Rosa first RECORDED/prior unknown; Nia oldCONT unknown/Nov3 and FREE-only continuity. Image perception UNVERIFIABLE; no iteration-cap reset. Original15 asks not bulk resolved. Full protocol and qualifications remain in the round archive. Source report below is verbatim; its image/history claims are not independently verified.
+
+```text
+I would return voluntarily another evening on desktop for the remaining jobs, and I would not leave it running.
+
+My ranked asks are:
+
+1. Set the meter to the new object’s required test condition, or draw my attention to the carried-over condition. Nora’s reading light needed “work harder,” but the meter still had “carry” selected from the lantern.
+2. Keep the cash-change explanation visible on later mornings. Day 2 clearly said no cost was taken; I did not reach a night when a cost was taken.
+3. Keep offering faults that need different reasoning. Diagnosing Nora’s contact was satisfying; the theatre’s ring setting was a puzzle I remembered solving before.
+
+I reached **no blocking ask**. I could play and chose when to leave.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was a return visit to Small Works. I read the supplied own history through line **1831** before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. That history is selected, not a complete archive.
+
+Both sessions began from the page opened by the assigned driver at the agent-marked URL. Each was a fresh game; no old save or matched seed was imported. They were the same evening on my other device. Recording and consent stayed at their defaults.
+
+- **Desktop, 1280×800, keyboard and mouse:** stopped voluntarily at **206.583 seconds**, Day 2 09:00, reason **TASTE**. The game had not ended.
+- **Phone, 360×690, touch:** stopped voluntarily at **49.621 seconds**, Day 1 10:10, reason **BORED**. The game had not ended.
+
+The desktop opening gave me a familiar, practical objective: find why a lantern goes dark. The guide took me through the moving test and probe positions. I enjoyed finding a different fault on Nora’s reading light: the contact dropped 2.67 V, cleaning it made the light pass, and the £18 payment appeared. I also liked that the recovered switch had an explicit drawer count. I was satisfied after two returned lights and the familiar theatre repair; there were still jobs available when I left.
+
+On the phone I used what I had just learned on desktop and replaced the lantern switch directly. It worked, but I did not want to repeat the same opening and board that evening.
+
+**Diary — original logged reactions in order**
+
+Desktop:
+
+- **6.634 s, note, engagement 4:** “The lantern going dark recalls Halil’s lantern from my last visit, where measuring while carried led me to the switch. I want to see this fresh repair.”
+- **33.019 s, note, engagement 4:** “The guide walks me through the moving switch test. Six volts across it points to the switch, as in my earlier lantern. The spare carries a time and usability risk; I want to see it.”
+- **54.374 s, note, engagement 4:** “The recovered switch explicitly raises the drawer from one to two. Last time my recovered cell seemed to disappear; this is a clear result, though it is a different part.”
+- **63.183 s, first_minute, engagement 4, Day 1 10:10:** “The goal is clear and the guide tells me where to put the probes. I measured six volts across the switch while carried and recovered a spare, with a clear drawer count. I want to fit it and test the lantern.”
+- **77.621 s, note, engagement 4:** “The replacement passes the carrying test and Sam’s mother can use it. The drawer went two to one, so I can follow the part. A family favour pays zero, clearly stated.”
+- **108.556 s, note, engagement 4:** “Nora’s reading test says work harder, but the meter has retained carry from the previous object. I need to change it before measuring; I remember checking that condition last time too.”
+- **142.435 s, note, engagement 5:** “The contact dropped 2.67 volts. Cleaning it made the reading light pass, and Nora paid the promised eighteen pounds. That is the practical diagnosis and result I enjoy.”
+- **152.333 s, note, engagement 5:** “The little paper theatre recalls my governor arithmetic and the show that everyone chose last time. I would like that kind of puzzle again, though I do not know if this fresh one has the same fault.”
+- **175.347 s, note, engagement 4:** “The theatre uses the same arithmetic I remember: 150 divided by five, times 0.8, divided by two gives twelve. Ring one passes. Satisfying, although I used the reference rather than measuring the spring this time.”
+- **180.559 s, pulse, engagement 4, Day 1 13:15:** “Two lamps are returned and the theatre passes. The measurements and the clear payment are enjoyable; the theatre solution is familiar, so I am curious whether the remaining jobs offer a different problem.”
+- **188.566 s, note, engagement 4:** “The new morning explicitly says no workshop cost and shows 42 to 42. Last time four pounds vanished without explanation; this morning is clear, though it does not tell me what would happen on later nights.”
+- **191.574 s, want_quit, TASTE, engagement 4, Day 2 09:00:** “I have repaired two lights and revisited the theatre. I am satisfied for tonight; the remaining fan and music box can wait for another evening.”
+- **206.583 s, stop, TASTE, engagement 4, Day 2 09:00:** “I am stopping on Day 2 after returning both lights and getting the theatre to pass. I enjoyed the contact diagnosis and clear part counts. I would return another evening for the remaining jobs, and I would not leave it running.”
+
+Phone:
+
+- **8.357 s, note, engagement 3:** “The same lantern opening fits the phone. I have just repaired it on desktop, so I will try the direct stocked switch path here.”
+- **36.235 s, want_quit, BORED, engagement 2, Day 1 10:10:** “The same switch repair worked again on the phone, but I already did this opening on desktop. I do not want to repeat the board tonight.”
+- **49.621 s, stop, BORED, engagement 2, Day 1 10:10:** “I am stopping on the phone after returning the lantern. The direct replacement worked, but I have already played this opening tonight. I would return on desktop for other jobs, not leave it running.”
+
+Both quit wishes persisted. The desktop reached a valid first-minute checkpoint and one pulse; later pulses were untested. The phone stopped before 60 seconds, so its first-minute and pulse checkpoints were untested. The fan, music box, later nights and an ending were untested on both sessions.
+
+The meter condition was the main point I had to watch. On Nora’s light, the object test identified “work harder” as required, while the meter retained “carry.” I noticed and changed it before measuring. I did not open Feedback at that moment; I treated it as a condition to correct rather than stopping over it.
+
+The new morning’s **£42 → £42** message was clear, but it does not establish what happens when a later cost is charged. The recovered switch went **1 → 2**, then fitting a switch went **2 → 1**. That is better evidence for this switch than I had for the cell in my earlier visit; I did not repeat the earlier cell recovery.
+
+The visible cues prompted these recognitions:
+
+- **6.634 s, desktop:** the lantern going dark recalled my earlier carried lantern and switch diagnosis, with high confidence. My words are in the diary.
+- **54.374 s:** the recovered-part drawer count recalled my earlier cell that appeared not to reach the drawer, with high confidence. This was a different part.
+- **108.556 s:** the meter retaining “carry” recalled checking its condition in my earlier session, with high confidence.
+- **152.333–175.347 s:** the paper theatre recalled my earlier governor calculation and community show, with high confidence. The new theatre’s ring-one test passed, but I did not measure its spring.
+- **188.566 s:** the morning cash message recalled the unexplained £4 losses in my earlier visit, with high confidence.
+
+I made no new cross-game person recognition. The phone lantern was a recognition of the desktop session just played, not a separate earlier memory.
+
+I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/desktop/a-001.png), [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/desktop/a-002.png), [a-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/desktop/a-003.png), [a-004.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/desktop/a-004.png) and [a-005.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/desktop/a-005.png). The opening was readable, and the board displayed the jobs in columns; the lower cards extended beneath the fixed bottom controls. Several cards shared “Open on bench,” so the driver required a point choice. I also made one stale “Governor” tap while Notes was open; selecting Repair first resolved it.
+
+I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/phone/b-001.png) and [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/phone/b-002.png). The opening fit the narrow screen. The returned-lantern page showed the result, with more of the receipt below the visible area. Other gameplay details come from the driver’s visible text.
+
+At each stop I opened Feedback, selected **“I’m stopping,”** saw it pressed, and used **Back to the menu**. I typed no note and submitted nothing. The coordinator owns the drivers and browser cleanup. I created no worktree, branch, server, browser or worker and touched no repository; no worktree listing applies.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from unchanged own report): Image-view claims are UNVERIFIABLE; history stdout does not prove delivery or comprehension. Inherited history limits remain. Phone automatic 60.054 followed voluntary stop 49.621, not continued play. Desktop checkpoint 63.183 and pulse 180.559. Duplicate controls and later unavailable Governor were input-state errors resolved by navigation, with no product cause established. Raw/manuscript 1 ms differences: desktop note 142.434/142.435 and phone want_quit 36.234/36.235. No full network guard, backend or feedback/save receipt is established. Current full protocol and SW1–SW10 qualify this report.
+
+
+## 2026-11-01 — Neighbours first fixed retest
+
+Coordinator method note: The following own report is verbatim. Image perception and history delivery remain unverified. NR1–NR10 and inherited limits apply; this is the first fixed retest, not a cap reset. The appended coordinator qualification is separate from player words.
+
+```text
+I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight.
+
+My ranked asks are:
+
+1. Confirm an accepted alternative immediately in the conversation. On phone, Nora’s offer and the waiting status remained after I accepted; the journal later confirmed the acceptance.
+2. Show what remains to make the hall safe and what I can usefully do next. My hour on the timber had a concrete result, but it still felt damp.
+3. Show the tool count before and after lending, including tools in use. The comparison showed a possible future with six available; the later live purchase said three were available, and I could not reconcile the figures.
+
+I reached no blocking ask. I could continue on both devices and chose to leave.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was a return visit to Neighbours. I read supplied own-history.md through **line 1661** before play, including smaller rereads where output was truncated. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The supplied history is selected, not a complete archive.
+
+The two sessions began at the assigned agent-marked URL in separate fresh contexts, with no imported save or matched seed. They were the same evening on my other device. Recording and consent stayed at their defaults.
+
+- **Phone:** 360×690 touch, port 23104. Voluntary stop at **137.714 seconds**, Day 2 04:30, **BORED**.
+- **Desktop:** 1280×800 keyboard and mouse, port 23105. Voluntary stop at **117.306 seconds**, Day 2 05:15, **BORED**.
+
+On the phone, the flooded hall was a practical reason to act. I asked Nora to leave a note about the supports and accepted her offer to do it later. The conversation did not visibly change, so I was unsure whether acceptance registered. The journal answered that question and showed that she considered my request but chose repairs instead. Later, she acted on a different request, making my offered hour due. I kept it; the timber still felt damp. I liked having a specific account of the exchange and the work, but I left when I was checking and skipping again.
+
+On desktop, I spent one credit restoring the bus, then used a comparison to consider lending tools. The comparison showed **6 versus 9 completed repairs** in two possible six-hour futures and warned that they did not establish a general effect. I liked the numerical tradeoff and spent another credit on tools. By the next morning the live hall showed **6 of 12** repairs complete. I did not establish what the tools caused.
+
+**Diary — logged reactions in order**
+
+Phone:
+
+- **6.608 s, note, engagement 4:** “The flooded hall brings back my earlier visit: Nora kept her promise, but the inspection still found wet timber and loose supports. I want to see what useful work follows. The phone opening is readable.”
+- **34.856 s, note, engagement 3, Day 1 08:45:** “Nora offered to leave a note after keeping the section closed. I accepted, but the same offer and waiting status remain; I cannot tell what accepting changed.”
+- **56.057 s, note, engagement 4, Day 1 09:00:** “The journal confirms I accepted, and says Nora considered the request but chose repairs instead. That resolves whether my tap registered; she made a different choice. The inspection again names wet timber and loose supports.”
+- **60.553 s, first_minute, engagement 4, Day 1 09:45:** “The hall and inspection give me a practical goal. Nora deferred my request, and the journal shows both my acceptance and her later choice to repair instead. I like that record, though the conversation did not immediately confirm acceptance.”
+- **80.339 s, note, engagement 4, Day 1 10:30:** “One repair is complete. I offered an hour on the timber if Nora repairs; she deferred and the game clearly says my hour is not owed yet. I will see her next decision.”
+- **116.768 s, note, engagement 3, Day 1 12:15:** “Nora acted on my request, then interrupted the repair for other work. I kept my hour; the timber still felt damp. The result is concrete, as on my last visit, though I do not know how close it is to safe.”
+- **128.412 s, want_quit, BORED, engagement 2, Day 2 04:30:** “I kept the hour and saw Nora make her own choice. Skip carried me into the next night while I was looking at the journal; I am back to checking and waiting for the hall. I would leave this run here.”
+- **137.714 s, stop, BORED, engagement 2, Day 2 04:30:** “I am stopping the phone run after keeping my hour. The journal explained Nora’s later decision and the damp timber, but I am checking and skipping again. I would try the hall another evening, not leave it running.”
+
+Desktop:
+
+- **6.822 s, note, engagement 4:** “The desktop opening is clear: the artwork no longer covers the goal as it did in my earlier screenshot. I will try a different way to help the hall from the phone run.”
+- **20.374 s, note, engagement 4, Day 1 08:15:** “I spent one credit on the bus instead of tools. The game says future trips can use it and current activities keep their durations; I can understand what I bought, although I have not measured the saving.”
+- **51.313 s, note, engagement 3, Day 1 10:45:** “The bus reduced the displayed hall trip from the phone run’s 45 minutes to 30 here, though these are separate towns. Nora finished her work and the hall now says one repair; I still cannot see partial progress before a repair completes.”
+- **61.687 s, first_minute, engagement 3, Day 1 11:45:** “The opening and costs are clear. The bus says future trips can use it, and the hall trip was shorter than on the phone, but these are separate games so I cannot prove the bus caused all of that difference. One repair is complete and the inspection still says wet timber and loose supports.”
+- **76.763 s, note, engagement 4, Day 1 13:00:** “The comparison gives 6 versus 9 repairs with extra tools over six simulated hours, and explicitly says these are possible outcomes rather than a general effect. That is enough for me to try lending tools.”
+- **84.183 s, note, engagement 3, Day 1 13:30:** “The tool purchase says three tools are now available, while the comparison started from three available and showed six with help. I do not know whether tools were in use or the live state changed in between.”
+- **105.752 s, want_quit, BORED, engagement 2, Day 2 05:15:** “Six repairs are complete by the next morning, but I have mostly skipped and checked the same hall again. I liked the comparison and the bus choice; I do not want to wait through another day tonight.”
+- **117.306 s, stop, BORED, engagement 2, Day 2 05:15:** “I am stopping desktop at six of twelve repairs. The comparison and the bus gave me choices with stated costs, but I am back to checking and skipping. I would return another evening to see the hall open, not leave it running.”
+
+The desktop diary’s 51.313-second wording was too definite about the bus. The displayed trip was shorter across two separate fresh games; as I corrected at 61.687 seconds, that comparison alone does not prove the cause.
+
+Both quit wishes persisted. Both sessions reached a valid first-minute note and ended before the 180-second pulse, so **no pulses were due**. The hall opening, hall evening, later days and any ending were untested.
+
+**Clarity and recognition**
+
+The conditional promise was clear: I did not owe the hour until Nora agreed or acted, and the next-step text and journal later said it was owed. The journal recorded the hour as completed and the timber as still damp. I did not see how close the hall was to passing inspection.
+
+At **6.608 seconds on phone**, the visible flooded-hall goal prompted a **high-confidence** memory of my supplied Neighbours visit: Nora kept her door promise and a later inspection still found wet timber and loose supports. My words are in the first diary line. At **116.768 seconds**, the damp-timber result prompted a high-confidence memory of completing that same kind of hour on the prior desktop visit. At **6.822 seconds on desktop**, the visible opening prompted a high-confidence comparison with my earlier screenshot, where the title artwork covered the beginning of the goal. This time the goal was clear of the artwork. I made no other cross-game recognition claim.
+
+Compared with my earlier Neighbours asks, the desktop opening overlap was **not present in the opening image I viewed**. The inspection still named wet timber and loose supports, and the phone work result still did not tell me how close the hall was to safe. I saw completed-repair counts change, but did not find partial progress toward the next repair. These observations do not establish that repairs failed.
+
+**Device behavior and feedback**
+
+I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/phone/b-001.png) immediately after opening. The goal and large entry button fit and were readable. I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/emre/desktop/a-001.png) immediately after opening; the title artwork and goal were separate and readable. These were the only manual screenshots I took and viewed. Gameplay and Feedback details come from the driver’s visible text.
+
+On phone, a “Your work” text tap was not a current clickable control. A Nora tap was covered by the open journal; I closed the journal and selected her current activity label successfully. On desktop, “Help the town” was unavailable while place details were open; closing those details exposed it. None stopped play. Skip continued advancing until I stopped it on each run; on phone it carried the town into Day 2 while the journal was open.
+
+When confused, I opened Feedback on each device, selected **“I’m confused”**, saw it pressed, and closed Feedback. Before each stop I selected **“I’m stopping”**, saw it pressed, and closed Feedback. I typed no note and submitted nothing.
+
+I owned no driver, browser, server, branch or worktree. The coordinator owns driver cleanup. I touched no repository.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from unchanged report): Image views/perception and screenshot-dependent claims remain UNVERIFIABLE. Complete history stdout does not establish delivery or comprehension; inherited history qualifications remain. Phone BORED 137.714 and desktop BORED 117.306 were voluntary unfinished. Bus causal statement was corrected at 61.687; unmatched separate towns and comparison possible futures versus later live counts do not establish causal effects or defects. No full network guard, backend, feedback or save receipt is established. See NR1–NR10 and the qualified protocol audit.

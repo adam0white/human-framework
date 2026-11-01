@@ -1,0 +1,100 @@
+{
+  "sourceBindings": {
+    "maya/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/report.md",
+      "sha256": "ee0673b52ac3e535b522dd64c0aa40f11f22599035d1dcb351c849868f68b71d"
+    },
+    "maya/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/brief.md",
+      "sha256": "4bf90490566fdec9060c71a8d5c79ece1a8717f9c9070c98774fcfea3258c5eb"
+    },
+    "maya/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/history-source-map.json",
+      "sha256": "a79378c7793580c6cbe3cca86b1309fb89023e7cd06bb68d794d0f8b066c754c"
+    },
+    "maya/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/own-history.md",
+      "sha256": "d3057fce59095d56b2196aa5859c8f9a4e84dad908632b1b6fee27afe12a4825"
+    },
+    "emre/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/report.md",
+      "sha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd"
+    },
+    "emre/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/brief.md",
+      "sha256": "0478a1383d09fb1baaf26adc27d593959c4eb53515337698dbbfec95b3d0012e"
+    },
+    "emre/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/history-source-map.json",
+      "sha256": "7e5a64a8e673168d294830be65267d51c562813464c7ed979abaeecd1ad3fbee"
+    },
+    "emre/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/own-history.md",
+      "sha256": "df402d7166f50ae0d21056002ab93cdd0f0d5f3f7b15c80eb6dee4ca557683a8"
+    },
+    "nia/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/report.md",
+      "sha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349"
+    },
+    "nia/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/brief.md",
+      "sha256": "cb57480e675056f4b931925adaadc5580d74b49912df413eb2cd439d41f8e6dc"
+    },
+    "nia/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/history-source-map.json",
+      "sha256": "8ed59255852f28186d25a3d359236708d97a9cdfebee967a4313883435825e27"
+    },
+    "nia/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/own-history.md",
+      "sha256": "d6e5f0b7a687b520dc1b5f36b2d552f569505672f1d16066ba926d7479eaff3e"
+    },
+    "rosa/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/report.md",
+      "sha256": "16d6fb13da9a3c3403070ca18634e47be346d1bdd83e84ce6871b882af28bc99"
+    },
+    "rosa/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/brief.md",
+      "sha256": "d3c2800f8b3725fb266147995a76d7a92777260f9dec1d6b3dd465b3939dda7a"
+    },
+    "rosa/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/history-source-map.json",
+      "sha256": "e9f42a437ae649c5a10ecb8f377943dc52f896329cfbd69c141533c19753fb76"
+    },
+    "rosa/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/rosa/own-history.md",
+      "sha256": "17dd80289f0e78ef8c32113f7af71618a15f5dbebe6ed3a7708090bf0658d142"
+    },
+    "alma/report.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/report.md",
+      "sha256": "2c79b6c21e9f24e542d5507466c4c0ca0553112d75fa3aa0669d5df69f4d1960"
+    },
+    "alma/brief.md": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/brief.md",
+      "sha256": "5094dc8c1c94ee9060a4f4a522d00d315eb557d156f98d5ab5c7df563fdc113e"
+    },
+    "alma/history-source-map.json": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/history-source-map.json",
+      "sha256": "574a48113c4dc75f1f26ae2f4c6c7f8299de6cd6b20a5e5d909ca818a67fc996"
+    },
+    "alma/own-history.md (not copied)": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/alma/own-history.md",
+      "sha256": "09295af1bbdf78402e258eb0d23e84c401d0903d2cc232f7153f96ef3bcbdc7d"
+    }
+  },
+  "reportAppendix": "Each standing appendix starts with exact own report bytes followed by a separately labeled coordinator method note.",
+  "status": "ROOT QUALIFIED; independent packet review pending",
+  "rootQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-root-qualification.json",
+    "sha256": "1247dc866b312ba7165d6260753e6e860be820250f7759de07e8539417b501c0"
+  },
+  "protocolReview": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-actual-protocol-review.json",
+    "sha256": "311c4a00d81ba631c222dc48ebaaf5d9ad863e7ade5809e82d6321d058068d46",
+    "safeProjection": "actual-protocol-review.safe.json; raw wall log projections omitted"
+  },
+  "sourceDelivery": "delivery-verification.json and sdk-agent-source-proof.json retain bounded evidence; input-freeze binds reviewed source",
+  "actualRootReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-controller-preparation/root-return.json",
+    "sha256": "e85f75694081139a589ccd5adad613e07976934051d557c7d43d9c511c1ae2a6"
+  }
+}

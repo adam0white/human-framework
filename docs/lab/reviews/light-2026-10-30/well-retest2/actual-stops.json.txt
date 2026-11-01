@@ -1,0 +1,305 @@
+{
+  "source": "actual-protocol-review.json",
+  "players": [
+    {
+      "tester": "maya",
+      "sessions": {
+        "phone": {
+          "stopRow": 21,
+          "stop": {
+            "t": "2026-11-01T11:10:50.019Z",
+            "elapsed_s": 44.242,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on the phone. The two answers to my timber request were clear, but Yusuf gave the familiar generic line and I wanted a conversation. I selected I am stopping and went Back without typing or sending.",
+            "game_clock": "Day 1 06:21",
+            "engagement": 2,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": true,
+          "afterStopRows": [
+            {
+              "t": "2026-11-01T11:11:05.865Z",
+              "elapsed_s": 60.088,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 86,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        },
+        "desktop": {
+          "stopRow": 19,
+          "stop": {
+            "t": "2026-11-01T11:11:27.861Z",
+            "elapsed_s": 35.802,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on desktop. Maryam kept cooking for the others and Classic completed the water order, a clear difference. I enjoyed her reason but do not want to continue the construction comparison tonight. I selected I am stopping and went Back without sending.",
+            "game_clock": "Day 1 06:18",
+            "engagement": 3,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": true,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "emre",
+      "sessions": {
+        "desktop": {
+          "stopRow": 19,
+          "stop": {
+            "t": "2026-11-01T11:12:46.632Z",
+            "elapsed_s": 37.277,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping desktop because the speech dismiss control was covered, then gone at retry. Yusuf agreed to build, but I did not reach the storm or a voluntary verdict on this run. I would still like to try the earlier roof plan.",
+            "game_clock": null,
+            "engagement": 3,
+            "reason": "TOOL",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": false,
+          "afterStopRows": [
+            {
+              "t": "2026-11-01T11:13:09.424Z",
+              "elapsed_s": 60.069,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 68,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        },
+        "phone": {
+          "stopRow": 56,
+          "stop": {
+            "t": "2026-11-01T11:19:10.384Z",
+            "elapsed_s": 380.71,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping at dawn on the phone. The roof missed by one stage again, everyone lived, and the injury notice gave a cause. I enjoyed watching the beam go up, but I would try an active roof plan another evening rather than leave it running.",
+            "game_clock": "Day 3 05:00",
+            "engagement": 3,
+            "reason": "FINISHED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": true,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "nia",
+      "sessions": {
+        "phone": {
+          "stopRow": 24,
+          "stop": {
+            "t": "2026-11-01T11:20:58.558Z",
+            "elapsed_s": 59.775,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on phone. I liked that Maryam still refused, but the same vague reason and the village management do not pull me on. I would close it.",
+            "game_clock": "Day 1 07:20",
+            "engagement": 2,
+            "reason": "TASTE",
+            "op_ms": 1,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": true,
+          "afterStopRows": [
+            {
+              "t": "2026-11-01T11:20:58.834Z",
+              "elapsed_s": 60.051,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 49,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        },
+        "desktop": {
+          "stopRow": 16,
+          "stop": {
+            "t": "2026-11-01T11:21:40.318Z",
+            "elapsed_s": 39.327,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping on desktop. Danyal chose water while his other self built, but his generic answer and the roof management do not pull me on. I would close it.",
+            "game_clock": "Day 1 06:12",
+            "engagement": 2,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": true,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "rosa",
+      "sessions": {
+        "phone": {
+          "stopRow": 13,
+          "stop": {
+            "t": "2026-11-01T11:55:45.794Z",
+            "elapsed_s": 25.617,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop the phone because both attempts to open Maryam were overtaken by changing status names. I cannot judge the cooking explanation from this short attempt.",
+            "game_clock": "Day 1 05:34",
+            "engagement": 2,
+            "reason": "TOOL",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": false,
+          "afterStopRows": [
+            {
+              "t": "2026-11-01T11:56:20.247Z",
+              "elapsed_s": 60.07,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 68,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        },
+        "desktop": {
+          "stopRow": 13,
+          "stop": {
+            "t": "2026-11-01T11:56:14.945Z",
+            "elapsed_s": 27.095,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop at Maryam. The separate roof and meal lines help, but offer threshold remains unclear after two rereads. I would close it.",
+            "game_clock": "Day 1 05:38",
+            "engagement": 2,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": true,
+          "afterStopRows": []
+        }
+      }
+    },
+    {
+      "tester": "mireya",
+      "sessions": {
+        "phone": {
+          "stopRow": 30,
+          "stop": {
+            "t": "2026-11-01T11:57:40.827Z",
+            "elapsed_s": 59.718,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping because I have lost interest in reading repeated rules and directing work already underway.",
+            "game_clock": "Day 1 07:10",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": true,
+          "afterStopRows": [
+            {
+              "t": "2026-11-01T11:57:41.176Z",
+              "elapsed_s": 60.067,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 65,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        },
+        "desktop": {
+          "stopRow": 29,
+          "stop": {
+            "t": "2026-11-01T11:58:45.315Z",
+            "elapsed_s": 62.202,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping because managing the orders does not hold my interest, even though the side-by-side villages are easier to see here.",
+            "game_clock": "Day 1 07:02",
+            "engagement": 2,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "voluntary": true,
+          "afterStopRows": []
+        }
+      }
+    }
+  ]
+}

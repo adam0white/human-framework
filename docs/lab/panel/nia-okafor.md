@@ -2114,3 +2114,204 @@ Compared with my last Murmur visit, I found a way to begin in the second week an
 
 I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns driver and browser cleanup; no `git worktree list` applies.
 ```
+
+
+## 2026-11-01 — Well second fixed retest
+
+Coordinator method note: Well W1–W8: four eligible plus Nia qualified inspection with original passfalse; 8voluntary/2TOOL, one actual Emre phone ending; separate epochs24423/7938. Rosa history201–3800 receipt unverified; image perception UNVERIFIABLE. Two iterations collected; no third ordinary panel. Full protocol and qualifications remain in the round archive. Source report below is verbatim; its image/history claims are not independently verified.
+
+```text
+I would not return voluntarily tonight or plan another evening as it is; I like seeing people refuse, but the familiar generic replies and managing the villages through the storm do not pull me back.
+
+**Ranked asks**
+
+1. Give people specific reasons in their own voices. Maryam’s “duties to the others” remained vague, and Danyal’s “I adapted the advice” recalled Samira’s generic answer from my last visit. This is the blocking ask I reached: the replies and management together made me leave both sessions.
+2. Show what an insistence actually cost when that information is available. The new explanation says no matching retained trust change is shown, but I still could not tell what happened to trust.
+
+I’m Nia Okafor, 19, a Lagos design student, returning to **Twice at the Well**. I played two fresh, independent games at `https://human.adamwhite.work/colony/?labRunSource=agent`, with no imported save or matched seed. The phone came first; the desktop was my other device the same evening.
+
+- **Phone:** 360×690 touch. Opened at **0.491 s**, stopped at **59.775 s**, TASTE; final visible clock **Day 1 07:20**.
+- **Desktop:** 1280×800 mouse and keyboard. Opened at **0.338 s**, stopped at **39.327 s**, TASTE; final visible clock **Day 1 06:12**. I used mouse clicks, no keyboard key.
+
+I read supplied own-history lines **1–1991**. The last line was **“End of supplied own history.”** Unread ranges: **none**. This is selected history, not a complete archive. My older Well raw diary was not supplied; the excerpt and my later full Well report were.
+
+The phone opening brought Maryam back to me. I wanted to hear her answer again, and I liked that she refused the house order even after I insisted. On desktop I tried Danyal: his Human version drew water while his Classic version built, which made the difference visible, but his explanation did not make him feel more distinct.
+
+**Diary — exact logged reactions**
+
+Phone:
+
+- **4.398 s, note, engagement 3:** “Maryam and the two villages bring back her refusal and cooking from my last visit, fairly sure. I want to hear someone answer again.”
+- **13.511 s, note, engagement 4, Day 1 05:30:** “The actions are ahead of the construction details now. I want to ask Maryam to build and hear her reason again.”
+- **29.263 s, note, engagement 3, Day 1 06:09:** “Same duties to the others line I remember, fairly sure. She goes to the mosque while her other self builds. I want to push once.”
+- **46.906 s, note, engagement 3, Day 1 06:59:** “She refuses again and cooks, which I like. The trust line is more explicit about what it can show, but I still do not know whether this insist cost anything.”
+- **53.706 s, want_quit, TASTE, engagement 2, Day 1 07:20:** “I got the refusal again, but it is the same vague reason and I do not want to manage the roof and meals. I would leave here.”
+- **59.775 s, stop, TASTE, engagement 2, Day 1 07:20:** “Stopping on phone. I liked that Maryam still refused, but the same vague reason and the village management do not pull me on. I would close it.”
+
+Desktop:
+
+- **7.344 s, note, engagement 3:** “Two villages side by side again. I remember Samira choosing grain instead of building; I want another person this time.”
+- **27.960 s, note, engagement 2, Day 1 05:44:** “Danyal draws water instead, but adapted the advice is the same generic phrasing I remember from Samira. I can see what he chose, not why.”
+- **30.213 s, want_quit, TASTE, engagement 2, Day 1 05:44:** “I have seen the two versions diverge again, but the answer sounds generic and I do not want another session managing the roof. I would leave.”
+- **39.327 s, stop, TASTE, engagement 2, Day 1 06:12:** “Stopping on desktop. Danyal chose water while his other self built, but his generic answer and the roof management do not pull me on. I would close it.”
+
+Both quit wishes persisted. Neither game ended or reached the storm. Both stops came before **60 seconds**, so no first-minute checkpoint was due; the **180-second pulse** and later checkpoints were also untested.
+
+The order result clearly distinguished **Classic agreed** from **Human will not**, and showed the work each version was doing. The phone panel placed the actions before the collapsed construction-details section in the visible text, unlike the long inventories I encountered before. I did not view a gameplay screenshot this time, so I cannot assess where those actions sat in the phone viewport.
+
+The insistence result said **Insist on**, showed Maryam’s second refusal, and warned that asking again may cost trust. It also said no matching retained trust change was shown and that only the last three rounded records were available. That is clearer about the limit of the evidence; it does not establish whether trust changed.
+
+At phone confusion about that cost, I opened Feedback and selected **“I'm confused”**; it appeared pressed, and I went Back. At each stop I opened Feedback, selected **“I'm stopping”**, saw it pressed, and went Back. I typed no note and pressed no Submit. Recording and consent stayed at their defaults; I changed no settings and claim no feedback receipt.
+
+The visible cues that prompted recognition were Maryam and the villages at **4.398 s**, recalling her refusal and cooking with fairly sure confidence; her **“duties to the others”** line at **29.263 s**, recalling the same reason with fairly sure confidence; and the two villages at **7.344 s** on desktop, recalling Samira gathering grain while her other self built. Danyal’s wording at **27.960 s** recalled Samira’s “adapted the advice” phrasing. I recorded no other recognition, and did not encounter another string puzzle.
+
+I viewed two screenshots:
+
+- [Phone opening]( /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/phone/a-001.png): the village drawing, opening choices and Begin button. The “Show Human village” control covered part of the title. The second opening choice continued below the visible area.
+- [Desktop opening]( /Users/abdul/code/.lab-scratch/playtest/light-1030/well-retest2-inputs/nia/desktop/b-001.png): both village maps side by side, with the opening card and Begin button on the right.
+
+On the phone, two Maryam taps became stale as her activity changed from waiting to walking and then cooking; the current **Maryam Cooking** control opened her panel. On desktop, Danyal’s waiting control became stale as he started drawing water; the current control worked. I did not encounter an enabled control that remained inoperable after a retry.
+
+Compared with my last Well visit, I saw the same kind of refusal and visible divergence that interested me. The construction details were placed after the actions in the text I reached, and the trust record explanation was more explicit, though the actual cost remained unknown. These were short, fresh games with different choices, so I cannot attribute the differences to a particular change.
+
+I would close the game and not leave it running. I created no browser, server, process, branch or worktree and touched no repository; the coordinator owns driver and browser cleanup. No worktree listing applies.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from the unchanged report): Image-view claims are UNVERIFIABLE. Matching history stdout does not establish delivery or comprehension; inherited limitations in the bound history-source map remain. See packet W1–W8 and the actual protocol review for applicable individual stops, errors and qualifications. Original session 24423 exited 1; Nia remains ineligible under the unchanged finalizer. Root adopts her report only as qualified inspection evidence after corrective and remainder physical returns.
+
+
+## 2026-11-01 — Small Works partial initial continuation
+
+Coordinator method note: Small Works SW1–SW10: partial initial continuation, not same-four fixed retest; ten voluntary unfinished stops, no endings or cuts. Rosa first RECORDED/prior unknown; Nia oldCONT unknown/Nov3 and FREE-only continuity. Image perception UNVERIFIABLE; no iteration-cap reset. Original15 asks not bulk resolved. Full protocol and qualifications remain in the round archive. Source report below is verbatim; its image/history claims are not independently verified.
+
+```text
+I would come back another evening to try more repairs and conversations, but I would not return again tonight or leave the game running.
+
+Ranked asks:
+
+1. Give Nora’s repair conversation a more natural voice. I liked that she answered the specific proposal and remembered it on return; repeating the full object name made her answer sound formal.
+2. Keep giving owners specific responses to the repair I actually made. Nora’s agreed-gear return was the moment that made this visit feel worthwhile.
+
+I reached no blocking ask on this visit.
+
+I’m Nia Okafor, 19, a Lagos design student returning to **Small Works**. I played two fresh, independent games at the assigned agent-marked URL, with no imported save or matched seed: phone first, then desktop on my other device the same evening. Recording and consent stayed at their defaults.
+
+I read the supplied own history through **line 2203**. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The supplied history is selected, not my complete archive. Its earlier Small Works report records a desktop visit; the independent old continuation was not supplied as a sequential memory.
+
+The phone opened at **0.559 s** and I stopped at **109.343 s**, Day 1 12:30. The desktop opened at **0.716 s** and I stopped at **72.697 s**, Day 1 10:45. Neither game ended.
+
+The opening lantern and short prompt felt familiar at **7.068 s** on phone. I remembered finding the switch fault and used that memory to move quickly. Nora’s music box then brought back the sting of replacing her grandmother’s gear without knowing her wishes. This time, the repair tab showed her request, I asked about the gear, and she answered that specific proposal. On desktop, I went straight for the paper theatre I remembered wanting to see perform.
+
+**Diary — exact logged reactions, in order**
+
+Phone, 360×690 touch:
+
+- **7.068 s — note, engagement 4:** “The lantern and that short line bring back probing the broken switch, fairly sure. I want to see the people again.”
+- **21.716 s — note, engagement 3, Day 1 09:25:** “Sam vanished after I looked closely, like I remember from last time, fairly sure. I know the switch was the fault then; I want to see if it is again.”
+- **23.966 s — note, engagement 3:** “Correction: the visible text still shows Sam, though the control snapshot omitted his line. I cannot tell from that alone whether he left.”
+- **37.519 s — note, engagement 4, Day 1 10:20:** “The switch worked again without probing because I remembered it. The music box on the board brings back Nora upset about the new gear, fairly sure. I want to see her request this time.”
+- **55.955 s — note, engagement 5, Day 1 10:20:** “There it is beside the repair choices: grandmother and no new parts. That is what I wished I had seen before replacing her gear. I want to try a gentler fix.”
+- **60.865 s — first_minute, engagement 5, Day 1 10:20:** “I remembered the switch and fixed the lantern quickly. Nora’s music box brought back the new gear sting, and her no-new-parts request now appears on the repair tab. I want to see if I can respect it this time.”
+- **83.970 s — note, engagement 5, Day 1 11:35:** “She agreed to this gear only after I showed the failed test. That is a real conversation about the repair I wanted last time, although her wording sounds formal. I will replace it and see her reaction.”
+- **95.967 s — note, engagement 5, Day 1 12:30:** “She remembers we agreed to the gear and says the other originals matter. That answers my actual repair, even if the full object name sounds stiff. I like getting a different return from last time.”
+- **98.415 s — want_quit, TASTE, engagement 3, Day 1 12:30:** “I got the conversation and return I came for. I am satisfied and do not want to repeat the other repairs tonight. I would leave here.”
+- **109.343 s — stop, TASTE, engagement 3, Day 1 12:30:** “Stopping on phone after Nora agreed to the gear and acknowledged it on return. I got the experiment I wanted and would close it. Feedback marked I am stopping; nothing typed or submitted.”
+
+Desktop, 1280×800 keyboard and mouse; I used mouse clicks and no keyboard key:
+
+- **6.628 s — note, engagement 4:** “Same evening on the big screen. I want to see the paper theatre again and whether it does more after repair.”
+- **36.121 s — note, engagement 4, Day 1 10:10:** “The paper theatre and governor at 4 bring back the little dial game, fairly sure. I want to make it perform this time.”
+- **56.495 s — note, engagement 5, Day 1 10:45:** “Oh! Watch the paper theatre opens a little stage with figures. That is the payoff I wanted last time. I see the picture and the checked pace, though a still shot cannot show me movement.”
+- **58.729 s — want_quit, TASTE, engagement 4, Day 1 10:45:** “I got my little stage and the Nora experiment on the phone. I am happy to stop without repeating the other jobs tonight.”
+- **64.332 s — first_minute, engagement 4, Day 1 10:45:** “I used my memory to get through the lantern and set the theatre governor to 1. The test passed and Watch opens a stage with figures. I got what I came for and am ready to stop.”
+- **72.697 s — stop, TASTE, engagement 4, Day 1 10:45:** “Stopping on desktop after opening the paper theatre stage. I liked seeing the figures after fixing the pace. I would close it; Feedback marked I am stopping, nothing typed or submitted.”
+
+Both quit wishes persisted. Both sessions stopped before the **180-second pulse**, so pulses and later checkpoints were untested. I did not play the remaining jobs, reach a later day, or finish either game.
+
+On the phone, I adjusted the music-box gear first; the subsequent test said the drum still barely turned. The proposal initially said Nora was unavailable, and after a fresh inspection and test it became available. She agreed only to replacing that gear. After replacement and a passing test, her return line referred to that agreement and the remaining original parts. The conditions and result were clear to me, though her phrasing felt stiff. I did not establish whether a different repair or refusal would produce a different conversation.
+
+Compared with my earlier Small Works visit, the owner’s own words were visible on the repair tab beside the repair choices I reached. Nora also responded to the specific gear agreement on return; last time, her objection to my unasked replacement was the memorable sting. On desktop, **Watch the paper theatre** opened a stage with figures after the successful test. The image description said they move at the checked pace, but the still image I viewed does not establish movement. These were fresh games with different choices, so I cannot attribute the differences to a particular change.
+
+Recognition came from visible cues: the lantern and opening line at **7.068 s**, recalling the switch fault; the music-box card at **37.519 s**, recalling Nora’s reaction to the new gear; and the theatre with its governor at **36.121 s** on desktop, recalling the earlier dial experiment. I was fairly sure of each. I initially claimed Sam had vanished, then corrected that at **23.966 s** because the visible text still showed him. I recorded no other recognition.
+
+**Screenshots actually viewed**
+
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/phone/a-001.png): lantern illustration, title, start button and recording strip, all visible.
+- [Phone board](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/phone/a-002.png): large cards and touch targets; the music-box card was partly below the visible area and the fixed bottom controls covered the lower edge.
+- [Phone board after scrolling](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/phone/a-003.png): the accepted music box and its **Open on bench** control were visible. I used its position because several controls shared that name.
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/desktop/b-001.png): the same opening centred in a wide layout.
+- [Desktop board](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/desktop/b-002.png): the project and requested-work columns were visible together; I selected the theatre by its card position.
+- [Desktop theatre](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/nia/desktop/b-003.png): the object on the left and a small stage with figures on the right, above the test result.
+
+At each stop I opened Feedback, selected **“I'm stopping”**, saw it marked pressed, and went **Back to the menu**. I typed no note, changed no recording or consent setting, and pressed no Submit. I claim no feedback receipt. I did not have a confusion that led me to select **“I'm confused.”**
+
+I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns driver and browser cleanup; no `git worktree list` applies.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from unchanged own report): Image-view claims are UNVERIFIABLE; history stdout does not prove delivery or comprehension. Inherited history limits remain. Desktop checkpoint 64.331 followed quit 58.729 during stopping/menu actions, not a new intent; phone checkpoint 60.865. Corrected Sam-vanished inference remains qualified. Raw/manuscript 1 ms differences: phone note 23.965/23.966, phone stop 109.342/109.343, desktop note 6.627/6.628, desktop first_minute 64.331/64.332 and desktop stop 72.696/72.697. No full network guard, backend or feedback/save receipt is established. Current full protocol and SW1–SW10 qualify this report.
+
+
+## 2026-11-01 — Neighbours first fixed retest
+
+Coordinator method note: The following own report is verbatim. Image perception and history delivery remain unverified. NR1–NR10 and inherited limits apply; this is the first fixed retest, not a cap reset. The appended coordinator qualification is separate from player words.
+
+```text
+I would come back another evening if I could reach a personal conversation without chasing someone or waiting for their work to finish; I would not come back tonight or leave the game running.
+
+**Ranked asks**
+
+1. Help me reach a personal conversation when someone is busy or moving. Missing Nora and finding Sam’s notebook question blocked are the reasons I stopped. This is the blocking ask I reached.
+2. Give Sam’s alternative a more personal voice. I liked that he offered the kitchen instead, but the answer sounded like a task label.
+
+I’m Nia Okafor, 19, a Lagos design student returning to **Neighbours**. I played two fresh, independent games at the assigned agent-marked URL, with no imported save or matched seed: desktop first, then phone on my other device the same evening. Recording and consent stayed at their defaults.
+
+I read supplied own-history lines **1–2190**. The last line was **“End of supplied own history.”** Unread ranges: **none**. The history is selected, not a complete archive.
+
+- **Desktop:** 1280×800, keyboard and mouse. Opened at **0.305 s**; stopped at **89.329 s**, BORED, at Day 1 12:00. I used mouse clicks and no keyboard key.
+- **Phone:** 360×690, touch. Opened at **0.284 s**; stopped at **87.944 s**, BORED, at Day 1 10:00.
+
+The flooded-hall opening brought back my last visit and my attempt to reach Nora’s handle conversation. On desktop I got to the hall, but Nora left just before I could talk. On phone I reached Sam, but his notebook question again asked me to wait until he finished work. His alternative to inspecting timber was understandable, although familiar and flatly worded.
+
+**Diary — exact logged reactions**
+
+Desktop:
+
+- **9.640 s — note, engagement 4:** “Mill Bridge and the flooded hall bring back chasing Nora for the handle conversation, fairly sure. I want to see if I can talk to her this time.”
+- **57.980 s — note, engagement 2, Day 1 10:45:** “I got to the hall but Nora left just as I tried to talk. That chase is familiar and already tiring. Her promise to repair the doors is clearly named and marked kept.”
+- **61.718 s — first_minute, engagement 2, Day 1 10:45:** “I wanted Nora and reached the hall, but she left before I could talk. The walk and her destination are clear; I still have not reached the handle question. Chasing again feels like last time.”
+- **66.038 s — want_quit, BORED, engagement 2, Day 1 10:45:** “I would leave. I came back for a conversation and missed Nora again; I do not want to follow her across town a second time.”
+- **89.329 s — stop, BORED, engagement 2, Day 1 12:00:** “Stopping on desktop. I missed Nora as she left and do not want to chase her again. Her door promise was clearly shown, but I never reached a conversation. I would close it.”
+
+Phone:
+
+- **10.628 s — note, engagement 3:** “Phone now. I remember Sam offering the kitchen instead of timber, fairly sure. I want to try talking to him again.”
+- **50.164 s — note, engagement 2, Day 1 09:45:** “The testing notebook is familiar, fairly sure, and blocked while he works again. I understand the reason but I came to hear him, not just assign work.”
+- **62.456 s — first_minute, engagement 3, Day 1 09:45:** “Sam is reachable and the walk was clear. The notebook question again says to wait; he offers kitchen work instead of inspecting timber, which I remember from last time. The alternative makes sense but sounds like a task label.”
+- **71.361 s — want_quit, BORED, engagement 2, Day 1 09:45:** “I would stop. I got the same alternative and the same busy notebook answer, and I do not want to wait around for another chance tonight.”
+- **87.944 s — stop, BORED, engagement 2, Day 1 10:00:** “Stopping on phone. Sam offered the familiar kitchen alternative, but the notebook conversation was blocked again. The page now says no hour is owed, which answers my earlier promise confusion. I would close it.”
+
+Both quit wishes persisted. Neither game ended. Both sessions stopped before the **180-second pulse**, so pulses and later checkpoints were untested. The hall was still shown as closed in the play I reached.
+
+The walking instructions and destinations were clear. Nora’s panel named her promise to repair the hall doors, its deadline and its kept status. Sam’s notebook response explained that he was busy and suggested visiting during a break. When I asked him to inspect the timber, he offered kitchen work instead; after I accepted, the later record said he continued an activity already in progress.
+
+On the phone, after I chose **Ask** and accepted Sam’s alternative, the next-step text said **“No hour is owed”** and that I had no recorded promise to keep. That answered the specific confusion from my earlier phone visit, when I saw a prompt to keep an hour-long promise after a similar choice. I did not encounter Nora’s earlier yes and later inability this time, so I cannot assess that earlier concern. These were fresh, unmatched games, and I cannot attribute differences to a particular change.
+
+Recognition came from visible cues. At **9.640 s**, Mill Bridge and the flooded hall recalled chasing Nora for the handle conversation; I was fairly sure. At **50.164 s**, the testing-notebook option recalled Sam’s blocked question, also fairly sure. His kitchen alternative at **62.456 s** recalled the alternative I received last time. I did not reach the handle cue this visit, and recorded no other recognition. My phone opening note at **10.628 s** recalled Sam, but it preceded a visible Sam cue on that device; it was an intention, not a new cue-based recognition.
+
+**Screenshots actually viewed**
+
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/desktop/a-001.png), **3.551 s:** a wide cream page with a separate Mill Bridge title banner, opening text and red Enter button. The opening text was readable in this image.
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-retest1-inputs/nia/phone/b-001.png), **3.883 s:** the title banner, opening text, Enter button and recording strip fit in the viewport.
+
+I viewed no gameplay screenshot on either device, so my gameplay observations come from the driver’s visible text and controls. Several early person controls changed as the town advanced: two Nora taps on desktop and the first Sam tap on phone became stale. The current controls worked; Nora’s **Talk** control then became stale because she was travelling. I did not establish an inoperable enabled control.
+
+At each stop I opened Feedback, chose **“I'm stopping”**, saw it marked pressed and closed Feedback. I typed no note, pressed no Submit, and claim no feedback receipt. I made no worktree or process; the coordinator owns the drivers and browser cleanup.
+```
+
+---
+
+COORDINATOR METHOD QUALIFICATION (separate from unchanged report): Image views/perception and screenshot-dependent claims remain UNVERIFIABLE. Complete history stdout does not establish delivery or comprehension; inherited history qualifications remain. Desktop BORED 89.329 and phone BORED raw 87.943 were voluntary unfinished; manuscript/driver phone stop 87.944. Desktop want_quit raw 66.037/manuscript 66.038. Sam intention at 10.628 preceded the device cue and is not new recognition. Earlier original Well pass-false qualification remains; current completion passed. No full network guard, backend, feedback or save receipt is established. See NR1–NR10 and the qualified protocol audit.
