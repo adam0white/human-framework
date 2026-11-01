@@ -22683,6 +22683,162 @@
     "fix:neighbours inspection lead, cause unknown, target 2026-11-10 (deferred)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/neighbours-retest1/laleh/report.md.txt"
+  },
+  {
+   "id": "F-3071",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "1. Let me follow up with Rafi about what he will tell his customer. His confession interested me; after my reply, I saw a receipt but no words from him.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/maya/report.md.txt"
+  },
+  {
+   "id": "F-3072",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Maya",
+   "words": "2. Make the music box card easier to reach on the desktop workboard. I still had to scroll past the fixed bottom area to see it.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/maya/report.md.txt"
+  },
+  {
+   "id": "F-3073",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "1. Explain the minus sign on motion readings beside the positive reference speed. I could compare magnitudes, but I did not know what the sign meant.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/emre/report.md.txt"
+  },
+  {
+   "id": "F-3074",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "2. Draw attention to the meter condition when changing objects. The fan required “work harder,” while the meter retained “carry” from the lantern.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/emre/report.md.txt"
+  },
+  {
+   "id": "F-3075",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Emre",
+   "words": "3. Keep offering different faults that require diagnosis. The music box gave me a satisfying new problem; the fan repeated a weak-cell reading I remembered.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/emre/report.md.txt"
+  },
+  {
+   "id": "F-3076",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "1. Show me how to invite Sam during the opening lantern repair. He offered to watch, but I found the lesson request only after returning the lantern. This was the blocking question I reached on desktop; I do not know whether another route exists.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/nia/report.md.txt"
+  },
+  {
+   "id": "F-3077",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "2. Give Rafi a more personal response to the repair. His fan was fixed, but his return line felt like a status update.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/nia/report.md.txt"
+  },
+  {
+   "id": "F-3078",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Nia",
+   "words": "3. Give Sam a more natural voice during the lesson. I liked seeing him learn, though his explanation sounded like instructions.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-10 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/nia/report.md.txt"
+  },
+  {
+   "id": "F-3079",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "1. Explain whose plans Sam’s mother may keep and why personal forgiveness appears before I have repaired anything. This was the blocking question I reached.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair inspection lead, cause unknown, target 2026-11-03 (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3080",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "2. Keep the explanation beside the switch reading. It answered my earlier question about why 6.00 V points to a problem.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair preserve immediately during blocker work, tracking review 2026-11-10"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3081",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Rosa",
+   "words": "3. Keep the first repair guide’s one-step instructions.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair preserve immediately during blocker work, tracking review 2026-11-10"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3082",
+   "date": "2026-11-01",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Talia",
+   "words": "1. Keep “Explore freely” easy to find when starting again on another device. It let me move past instructions I had just followed on the phone. This was a preference, not a blocker.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair preserve immediately during blocker work, tracking review 2026-11-10"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/repair-retest1/talia/report.md.txt"
   }
  ],
  "lessons": [
@@ -23307,7 +23463,7 @@
   }
  ],
  "routes": {
-  "fix": 2068,
+  "fix": 2080,
   "lesson": 291,
   "hf": 14,
   "calibration": 81,

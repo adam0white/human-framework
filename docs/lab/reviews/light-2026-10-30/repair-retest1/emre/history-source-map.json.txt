@@ -1,0 +1,67 @@
+{
+  "policy": "Exact prior own history plus complete own reports and separate method qualifications; no peer report. Selected history is not a complete archive. History delivery and understanding remain unproved. Image views UNVERIFIABLE. W1–8, SW1–10, NR1–10 and raw timestamp qualifications inherited. Ten Small Works stops voluntary unfinished; Neighbours eight voluntary unfinished plus Mei BUDGET and Laleh TOOL; no FINISHED ending.",
+  "segments": [
+    {
+      "role": "exact prior own history, including inherited qualifications",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/emre/own-history.md",
+      "sha256": "df402d7166f50ae0d21056002ab93cdd0f0d5f3f7b15c80eb6dee4ca557683a8",
+      "outputByteRange": [
+        0,
+        222450
+      ],
+      "outputLineRange": [
+        1,
+        1831
+      ]
+    },
+    {
+      "role": "complete own actual report prefix and separately marked method qualification suffix",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/emre/diary-continuation.md",
+      "sha256": "6208e76a83bd16f963c2ef38d6d7c0f4d2539956a9860084ecd0b6653b0c8267",
+      "sourceReportByteRange": [
+        0,
+        9716
+      ],
+      "sourceMethodByteRange": [
+        9716,
+        10399
+      ],
+      "outputByteRange": [
+        222554,
+        232953
+      ],
+      "outputLineRange": [
+        1836,
+        1904
+      ],
+      "reportPrefixExact": true,
+      "methodSuffixExact": true
+    },
+    {
+      "role": "complete own actual report prefix and separately marked method qualification suffix",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-retest1/emre/diary-continuation.md",
+      "sha256": "d771f0130c7a3806f1a0ed299efe83972ca532f71bab9629bc5de2736ff13b72",
+      "sourceReportByteRange": [
+        0,
+        10166
+      ],
+      "sourceMethodByteRange": [
+        10166,
+        10793
+      ],
+      "outputByteRange": [
+        233042,
+        243835
+      ],
+      "outputLineRange": [
+        1909,
+        1977
+      ],
+      "reportPrefixExact": true,
+      "methodSuffixExact": true
+    }
+  ],
+  "outputSha256": "fa281f12919d200ea0536e307b2c6129265fc5d229e385cb4b4a20e3a6084cb5",
+  "outputBytes": 243865,
+  "outputLines": 1979
+}

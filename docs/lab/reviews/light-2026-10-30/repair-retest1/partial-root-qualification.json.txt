@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-01T16:25:18.484188+00:00",
+  "status": "ROOT_QUALIFIED_PARTIAL_THREE_ONLY_NOT_FINISHED_ROUND",
+  "actualSession": 9285,
+  "actualExit": 1,
+  "physicalReturnProof": "repair-retest1-dispatch2-controller/failed-dispatch2-root-physical-return.json",
+  "physicalReturnSha256": "c365d5ff1d70e7a703851ab9dd3f6dfe831880bbdeb6d651aa022e143835187a",
+  "reportsRootReadFull": [
+    "maya",
+    "emre",
+    "nia"
+  ],
+  "acceptedQualifiedReports": [
+    "maya",
+    "emre",
+    "nia"
+  ],
+  "administrativeRefusalRead": "rosa",
+  "undispatched": "talia",
+  "partialAuditJsonSha256": "9d2a1b72ee4bc73fde234fde3991a32f87b1c58610989c3511f799942e78b356",
+  "partialAuditMdSha256": "1d12d026639808e3dd8fb0e27ea24e38df684fdf4128a9a1958964dcd3f599e6",
+  "mechanicalDetailSha256": "2e768130c08002271200279ff57c02c5c30a4e708a44b2c8abb2379ceae3d450",
+  "evidenceFilesVerified": 92,
+  "source": "bbe631d28f5b7fce51521da231c9f98ef156c1fb",
+  "qualifications": {
+    "SWF1": "All3 ownhistory stdout exactlinecoverage; modeldelivery/comprehension independentlyunknown. Rosa storedstdoutfull4013 vs reported401\u20133800receiptuncertain preserved; refusal no game/no playerstop.",
+    "SWF2": "6TASTE/BORED wantquit+stop below20minute caps; 6unfinished reportclaims/no observedending, not proofno possibleending.",
+    "SWF3": "Maya desktop wantquit52.401\u2192Menu54.112\u2192Feedback55.923\u2192stopping58.368\u2192Back59.741\u2192automaticshot60.056\u2192stop61.865; report61.866. No firstminute diary. Roottargetedsequence read confirms wrapcrossesthreshold; actionablecheckpointobligation remainsUNVERIFIED, not declarednone/complete/failedgame. Neverretrofitentry.",
+    "SWF4": "Otherfirstminute logs MayaP61.144/EmreD60.912/NiaP63.546; EmreD pulse182.942. Automaticpoststopimages not diaries/viewing. Alllatercheckpointsoutsideobservedtimes untested.",
+    "SWF5": "14 explicitly listed raw-versus-report 1ms differences retained in originalaudit. Instrumentelapsed/op_ms isnotisolateduser/network/gameperformance.",
+    "SWF6": "PNGhashes/savedimages and claimedviews donotindependentlyproveperception. Drivertext/object/control observations have statedvisualscope.",
+    "SWF7": "Quicklabel+Back requests and responses/no parsedSubmit/toggle; no typednotes seen in classifiedcommands, no backendreceipt/defaultsettingindependentproof. Emre failedmalformedshellcommand retained/no causeassertion.",
+    "SWF8": "Historicaldf583 vs currentbbe631 epochs distinct; FREE-onlyMayaEmreNia/NiaolderCONTunknownNov3/Rosaolderexposureunknown and inheritedW/SW/NR limits remain. No samecontroller5positiveclaim orcapreset."
+  },
+  "preliminaryAsks": "Maya2/Emre3/Nia3 literalrankedasks. NiaopeningSamlookupselfrankedblocking; noearlierroute/sourcecauseinferred. WaitsamecohortRosa+Talia beforewhole5 triage."
+}

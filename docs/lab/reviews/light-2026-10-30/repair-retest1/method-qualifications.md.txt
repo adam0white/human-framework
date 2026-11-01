@@ -1,0 +1,18 @@
+# Coordinator method qualifications
+
+The following are the root qualification labels, retained verbatim. The compressed wording is from the qualification records. Inherited W/SW/NR limits also apply.
+
+- SWF1: All3 ownhistory stdout exactlinecoverage; modeldelivery/comprehension independentlyunknown. Rosa storedstdoutfull4013 vs reported401–3800receiptuncertain preserved; refusal no game/no playerstop.
+- SWF2: 6TASTE/BORED wantquit+stop below20minute caps; 6unfinished reportclaims/no observedending, not proofno possibleending.
+- SWF3: Maya desktop wantquit52.401→Menu54.112→Feedback55.923→stopping58.368→Back59.741→automaticshot60.056→stop61.865; report61.866. No firstminute diary. Roottargetedsequence read confirms wrapcrossesthreshold; actionablecheckpointobligation remainsUNVERIFIED, not declarednone/complete/failedgame. Neverretrofitentry.
+- SWF4: Otherfirstminute logs MayaP61.144/EmreD60.912/NiaP63.546; EmreD pulse182.942. Automaticpoststopimages not diaries/viewing. Alllatercheckpointsoutsideobservedtimes untested.
+- SWF5: 14 explicitly listed raw-versus-report 1ms differences retained in originalaudit. Instrumentelapsed/op_ms isnotisolateduser/network/gameperformance.
+- SWF6: PNGhashes/savedimages and claimedviews donotindependentlyproveperception. Drivertext/object/control observations have statedvisualscope.
+- SWF7: Quicklabel+Back requests and responses/no parsedSubmit/toggle; no typednotes seen in classifiedcommands, no backendreceipt/defaultsettingindependentproof. Emre failedmalformedshellcommand retained/no causeassertion.
+- SWF8: Historicaldf583 vs currentbbe631 epochs distinct; FREE-onlyMayaEmreNia/NiaolderCONTunknownNov3/Rosaolderexposureunknown and inheritedW/SW/NR limits remain. No samecontroller5positiveclaim orcapreset.
+- SWF9: Recovery9536TWOonlypositivecurrentreturn; first3qualifiedseparate9285EXIT1epoch. Earlier92669/9285Rosa/64549Rosa administrativefailuresnotgameplays/stops/iterations. Mixedrequestedmodelsnotcausalimprovementproof.
+- SWF10: Rosa firstminute67.981,Talia62.660/61.736 recordedafter60; RosaDstop51.648 thenautomaticshot60.092notcontinuedplay/view. Allpulseuntestedbefore180. No retroactivecheckpoint/no forcedwait.
+- SWF11: Rosa3manualimages/Talia6manualimages with≤5manual+1auto/devicequota. SavedPNG/imageclaimnotindependentperceptionproof. Rosaexpandeddiscussion/phonegameplaynotvisuallyviewed. Taliavisualclaimsboundedtostatedshots.
+- SWF12: Taliaone malformed shell request for stopping label and one invalid-log-reason rejection retained as instrument errors; correctedacceptedreactionsalonecount. No gamecause fromtoolerrors. Feedbacklabel/Backobservablecommands/pressedresponse, no typednote/Submitrequestseen, no backendreceipt/defaultconsentuniversalproof.
+- SWF13: Rosa2rereadverbatims/conceptcounts areherreportedestimates, notcognitivemeasurements. Nia29.478memoryconfidence not separatelystated; donotretrofitconfidence. AllW/SW/NR/SWF1–8 retained.
+- SWF14: Five recovery2 1ms raw-versus-report differences retained alongside14 earlier3 differences (19listedtotal). Rejected4.737invalidlog andaccepted6.136/claimed6.137 are differentattempts, not a1.4s timestamp mismatch.

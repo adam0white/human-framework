@@ -1,0 +1,44 @@
+{
+  "policy": "Exact prior own history plus complete own reports and separate method qualifications; no peer report. Selected history is not a complete archive. History delivery and understanding remain unproved. Image views UNVERIFIABLE. W1–8, SW1–10, NR1–10 and raw timestamp qualifications inherited. Ten Small Works stops voluntary unfinished; Neighbours eight voluntary unfinished plus Mei BUDGET and Laleh TOOL; no FINISHED ending.",
+  "segments": [
+    {
+      "role": "exact prior own history, including inherited qualifications",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-light-initial-continuation-inputs/maya/own-history.md",
+      "sha256": "d3057fce59095d56b2196aa5859c8f9a4e84dad908632b1b6fee27afe12a4825",
+      "outputByteRange": [
+        0,
+        301761
+      ],
+      "outputLineRange": [
+        1,
+        2455
+      ]
+    },
+    {
+      "role": "complete own actual report prefix and separately marked method qualification suffix",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/maya/diary-continuation.md",
+      "sha256": "0cb6564967a3936b616ff70ce3e8674288f8b2b617dbbd8f4c373b9cc409a919",
+      "sourceReportByteRange": [
+        0,
+        9272
+      ],
+      "sourceMethodByteRange": [
+        9272,
+        9795
+      ],
+      "outputByteRange": [
+        301865,
+        311660
+      ],
+      "outputLineRange": [
+        2460,
+        2529
+      ],
+      "reportPrefixExact": true,
+      "methodSuffixExact": true
+    }
+  ],
+  "outputSha256": "e7fdd2b8b59266128d8c32904de369a4327665a67011508842c3fb10cc0540cc",
+  "outputBytes": 311690,
+  "outputLines": 2531
+}

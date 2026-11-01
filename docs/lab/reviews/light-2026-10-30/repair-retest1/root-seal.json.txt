@@ -1,0 +1,48 @@
+{
+  "at": "2026-11-01T17:30:27.851942+00:00",
+  "status": "ROOT_SEALED_QUALIFIED_FIRST_FIXED_RETEST",
+  "packet": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-retest1",
+  "packetManifestSha256": "552bfa1249a8f6939eb07b343386254f3c7caadb65e29ef133291e9d09806bdd",
+  "payloadCount": 40,
+  "twoIndependentClearReviews": {
+    "mechanical": {
+      "json": "198bb530e76953eea46fd8db2462c6b994a2f8b177bfe3a4898caa59507fda51",
+      "md": "6717f076898dee53391d94693fb74b5d5503d1246d6dd1c863506279a8999e8c"
+    },
+    "qualification": {
+      "json": "92f20c5329ba24e8764281039bdb7df60209b960d30880b6bc954207279e3747",
+      "md": "319c9200027861fa75c6dfeee7dbf17031ad71fb3799fc3dcf16e8061a8fd0f3"
+    }
+  },
+  "rootFullReadReviewMdOperativeJson": true,
+  "rootDraftVerificationSha256": "2188bad90de0208022a88db23e27d462d7b8b679a04f4dbc7f542d94d42bd871",
+  "rootTriageAdoptedSha256": "ca661f8ae97acea2d20dd8a6630641d8a0d04d1483b42c27e8a5aedadf225ca1",
+  "rootQualificationSha256": "ca6d9d2020eeb57b2f006d1f4bea2ce19e9b752e469c8cbc49e919cda8635f8a",
+  "allPayloadsAnd31SourcesRehashed": true,
+  "copyByteExact": true,
+  "sourceEpochDraftLabelsPreserved": "External later root seal governs unchanged author-draft labels; no retroactive execution admission.",
+  "actualEpochs": [
+    {
+      "session": 9285,
+      "outerExit": 1,
+      "acceptedPlayers": [
+        "maya",
+        "emre",
+        "nia"
+      ],
+      "physicalReturnSha256": "c365d5ff1d70e7a703851ab9dd3f6dfe831880bbdeb6d651aa022e143835187a"
+    },
+    {
+      "session": 9536,
+      "outerExit": 0,
+      "acceptedPlayers": [
+        "rosa",
+        "talia"
+      ],
+      "physicalReturnSha256": "5f12699bdcfabd3fecfcf94deb29a621a106078028ecdb2a2ed0c17cc80d25dc"
+    }
+  ],
+  "counts": "5reports/10voluntaryunfinished/0observedendingsbudgettoolcuts;3 administrative failures not player stops/iterations",
+  "items": "F3071-F3082:2Nov3 blockers,7Nov10 preferences,3 immediate positive Keep constraints/Nov10tracking. 5exact tester rows;F3083-F3100unused.",
+  "scope": "First fixed retest only; one final fix/retest remains. SWF1-14/inheritedW/SW/NR/19listed1msdifferences. No bulkclosure, fake5controllerreturn, cause/visual/backend/historycomprehension/owneracceptance proof. Raw full audits and PNGs private, safe projections only."
+}
