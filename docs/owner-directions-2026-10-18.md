@@ -423,3 +423,21 @@ Coordinator reading:
 - **Panels:** lab panels resume at a light pace, with a small round per game and retests only where a round raised a blocking ask.
 - **Allowance:** until Tuesday 2026-11-03, Claude subagents take more of the build work and Codex takes less. Sonnet handles bounded work, and Opus handles hard work and reviews.
 - **Scratch:** `~/code/.lab-scratch` is disposable. It is evaluated and cleaned up, keeping only what running workers and the heartbeat need.
+
+## 2026-10-30 — Delete bloated tests (Adam, verbatim)
+
+> "Deleting tests is fine, too. I'm sure there's some bloat."
+
+Coordinator reading: Tests that restate code, duplicate another test or form a matrix may go; keep replay-hash and one control per faculty.
+
+## 2026-10-31 — Brake on Claude (Adam, verbatim)
+
+> "Alright, thanks for ramping up Claude usage, let's brake on that, too. Until Tuesday 2 AM, don't run play testers on it, save Claude tokens."
+
+Coordinator reading: No Claude testers or helpers until 2026-11-03 02:00 America/Chicago.
+
+## 2026-11-01 — Codex returns (Adam, verbatim)
+
+> "Codex is back, but not Claude. let's keep going."
+
+Coordinator reading: Codex work resumes at full pace.
