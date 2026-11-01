@@ -2,7 +2,7 @@
  * Public authored work and public world receipts supply the headless control. */
 import { expect, test } from 'vitest';
 import * as HF from '../src/index.ts';
-import type { DeepReadonly, Run, RunState } from '../src/run-schema.ts';
+import type { DeepReadonly, InspectQuery, Run, RunState } from '../src/run-schema.ts';
 import { emptyRunSpec } from './run-fixture.ts';
 import {
   actionRequest,
@@ -22,6 +22,12 @@ function current(run: Run): DeepReadonly<RunState> {
   const value = need(HF.inspect(run, { perspective: { kind: 'host' }, people: [], select: ['current'] }));
   if (!value.current) throw new Error('Missing selected current');
   return value.current;
+}
+
+function expectDeepFrozen(value: unknown): void {
+  if (value === null || typeof value !== 'object') return;
+  expect(Object.isFrozen(value)).toBe(true);
+  for (const child of Object.values(value)) expectDeepFrozen(child);
 }
 
 test('host current is exact, detached, omitted when unselected and coherent with mixed selections', () => {
@@ -85,6 +91,42 @@ test('headless current reads preserve native history, journals, RNG, cold replay
   const pendingCopy = structuredClone(pending);
   expect(pending.pending.map((item) => item.id)).toContain(request.id);
   expect(pending).toStrictEqual(HF.exportRun(run).current);
+  // Catch a shallow-only projection or a lifecycle aggregate that aliases caller/live data.
+  const beforeReads = HF.exportRun(run);
+  const query = {
+    perspective: { kind: 'host' },
+    people: ['ada'],
+    select: ['current', 'events'],
+    lifecycle: { kind: 'host', query: { kind: 'age', person: 'ada', at: START } },
+  } satisfies InspectQuery;
+  const composed = need(HF.inspect(run, query));
+  const composedCopy = structuredClone(composed);
+  expectDeepFrozen(composed);
+  query.people.push('missing');
+  if (!query.lifecycle || query.lifecycle.query.kind !== 'age') throw new Error('Missing age query');
+  query.lifecycle.query.person = 'missing';
+  query.lifecycle.query.at++;
+  expect(Reflect.set(composed, 'at', -1)).toBe(false);
+  expect(Reflect.set(composed, 'extra', true)).toBe(false);
+  expect(Reflect.deleteProperty(composed, 'current')).toBe(false);
+  expect(() => (composed.events as unknown[]).push(null)).toThrow(TypeError);
+  if (!composed.current) throw new Error('Missing composed current');
+  expect(Reflect.set(composed.current.world, 'revision', -1)).toBe(false);
+  const held = need(
+    HF.inspect(run, {
+      perspective: { kind: 'person', observer: 'ada' },
+      people: ['ada'],
+      select: [],
+      lifecycle: {
+        kind: 'person',
+        query: { kind: 'held-kin', person: 'ada', other: { kind: 'entity', id: 'unseen' } },
+      },
+    }),
+  );
+  expectDeepFrozen(held);
+  expect(composed).toStrictEqual(composedCopy);
+  expect(current(run)).toStrictEqual(pending);
+  expect(HF.exportRun(run)).toStrictEqual(beforeReads);
   const host = freshHost();
   serve(run, host, book, START, [], reached);
   expect(current(run).people.ada?.activity).toBeDefined();
@@ -160,4 +202,5 @@ test('headless current reads preserve native history, journals, RNG, cold replay
   expect(current(run)).toStrictEqual(HF.exportRun(run).current);
   expect(retained).toStrictEqual(before.current);
   expect(pending).toStrictEqual(pendingCopy);
+  expect(composed).toStrictEqual(composedCopy);
 });
