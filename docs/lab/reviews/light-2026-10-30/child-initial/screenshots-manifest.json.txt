@@ -1,0 +1,176 @@
+{
+  "scope": "Hashes only, no PNG copied or image opened. All ten opening-image views are producer self-reports; no recognized CLI image-view evidence. Automatic images do not imply perception or continuation.",
+  "files": [
+    {
+      "tester": "Rosa Alvarez",
+      "device": "phone",
+      "filename": "a-001.png",
+      "bytes": 117749,
+      "sha256": "f5cb13b59eab254b9d0c5230bd64e7a15b80f9e393596d8c19979dc90f504060",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 53489,
+      "sha256": "5a659cdc831f3fd09b029f880098c903c325fb51323b58f591701c85258fb0d4",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "desktop",
+      "filename": "b-001.png",
+      "bytes": 505137,
+      "sha256": "a056cdae6bfe47ac2f9b901ce83216e013bf182a6aec25860ce889002ede1ff0",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Samir Haddad",
+      "device": "phone",
+      "filename": "b-001.png",
+      "bytes": 117749,
+      "sha256": "f5cb13b59eab254b9d0c5230bd64e7a15b80f9e393596d8c19979dc90f504060",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Samir Haddad",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 53291,
+      "sha256": "d47f7c055ac6a0d3a5ccfa806e80a4af275effd77614549a52507a1284fa1cd8",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    },
+    {
+      "tester": "Samir Haddad",
+      "device": "desktop",
+      "filename": "a-001.png",
+      "bytes": 505137,
+      "sha256": "a056cdae6bfe47ac2f9b901ce83216e013bf182a6aec25860ce889002ede1ff0",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Samir Haddad",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 220660,
+      "sha256": "a2cce8aef1e10aaad2fc0ab31a64c94756cb805231229b5db305346308f3a971",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    },
+    {
+      "tester": "Pavel Novak",
+      "device": "phone",
+      "filename": "b-001.png",
+      "bytes": 117749,
+      "sha256": "f5cb13b59eab254b9d0c5230bd64e7a15b80f9e393596d8c19979dc90f504060",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Pavel Novak",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 135601,
+      "sha256": "bca9fc83777e4e5c0ae4c09b8e93cb23e2d045f3688de3c0676224548394483b",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    },
+    {
+      "tester": "Pavel Novak",
+      "device": "desktop",
+      "filename": "a-001.png",
+      "bytes": 505137,
+      "sha256": "a056cdae6bfe47ac2f9b901ce83216e013bf182a6aec25860ce889002ede1ff0",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Pavel Novak",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 548443,
+      "sha256": "152f3096bfeb15fdb1a2aa9a0f32145b277885e8f196187248e05f14fa80a565",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    },
+    {
+      "tester": "Tessa Williams",
+      "device": "phone",
+      "filename": "a-001.png",
+      "bytes": 117749,
+      "sha256": "f5cb13b59eab254b9d0c5230bd64e7a15b80f9e393596d8c19979dc90f504060",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Tessa Williams",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 194001,
+      "sha256": "65ed17c6b21168c4ce7716ab358ca905564536a356d891621601a321c025ee6f",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    },
+    {
+      "tester": "Tessa Williams",
+      "device": "desktop",
+      "filename": "b-001.png",
+      "bytes": 505137,
+      "sha256": "a056cdae6bfe47ac2f9b901ce83216e013bf182a6aec25860ce889002ede1ff0",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Tessa Williams",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 548714,
+      "sha256": "fa5c961f53d668f08798bde0c4e47bfc744c80f71b1853a6d460878742866066",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    },
+    {
+      "tester": "Ilinca Pavelescu",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 187130,
+      "sha256": "2468a1566c8d3682818167fd3725e6bdb30e8965b44abe0437c067bf75d8d9ac",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    },
+    {
+      "tester": "Ilinca Pavelescu",
+      "device": "phone",
+      "filename": "phone-001.png",
+      "bytes": 117749,
+      "sha256": "f5cb13b59eab254b9d0c5230bd64e7a15b80f9e393596d8c19979dc90f504060",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Ilinca Pavelescu",
+      "device": "desktop",
+      "filename": "desktop-001.png",
+      "bytes": 505137,
+      "sha256": "a056cdae6bfe47ac2f9b901ce83216e013bf182a6aec25860ce889002ede1ff0",
+      "kind": "manual opening capture",
+      "viewEvidence": "producer self-report only for opening capture; image delivery and perception not independently verified"
+    },
+    {
+      "tester": "Ilinca Pavelescu",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 103486,
+      "sha256": "64ab3cc22675051af1911c871e94ce5d49dd37337bd013aa8c0a122b9948a0a4",
+      "kind": "automatic first-minute capture",
+      "viewEvidence": "automatic capture; not evidence of tester view or continuation"
+    }
+  ]
+}

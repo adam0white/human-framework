@@ -1,0 +1,32 @@
+{
+  "cutoff": "2026-10-31T19:00:22.724102+00:00",
+  "policy": "selected prior own FREE history plus literal latest own report; not complete archive; no independent CONT body",
+  "priorHistory": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/rosa/own-history.md",
+    "sha256": "da68c53d09d08ceb5cca792c124568319fdd8c23e61952724f198a4b0e7f6693",
+    "sourceStartLine": 1,
+    "sourceEndLine": 3178,
+    "excludedSpans": [],
+    "selectedSha256": "da68c53d09d08ceb5cca792c124568319fdd8c23e61952724f198a4b0e7f6693",
+    "unchangedFullPrefix": true
+  },
+  "inheritedSourceMap": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/rosa/history-source-map.json",
+    "sha256": "66d3b2769754d98458ca833d8c52034634ab4fe7e6aefa26039f3edc2f74dc73",
+    "selection": "retain exact prior source mappings and exclusion/continuity qualifications"
+  },
+  "latestOwnReport": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/rosa/report.md",
+    "sha256": "7c6b940479aa1dd812f7182c7da7a2bcda1b4cf485e68deef02f69c663a72087",
+    "sourceStartLine": 1,
+    "sourceEndLine": 37,
+    "selection": "complete verbatim literal appendix",
+    "selectedSha256": "7c6b940479aa1dd812f7182c7da7a2bcda1b4cf485e68deef02f69c663a72087"
+  },
+  "methodQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/rosa/director-method-qualification.json",
+    "sha256": "9dc1affc1bb33f63e839e7d126d97e8c047ee62422476903e23aa31cf5752c82",
+    "suppliedText": "Aggregated stdout covered 3178 assigned earlier history lines, but direct delivery and comprehension are not established. The report above leaves lines 401–3177 unverified. Saved PNGs do not establish image viewing."
+  },
+  "historySha256": "4f262b839bfb523a680068fd494e7605118642f29802f97cce3eb0d042b1e008"
+}

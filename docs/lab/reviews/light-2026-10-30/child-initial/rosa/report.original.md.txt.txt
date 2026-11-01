@@ -1,0 +1,37 @@
+I would not return voluntarily as it stands; I would close it, not leave it running.
+
+My ranked asks are:
+
+1. Explain what Elif already learned and how that affects the three afternoon choices, in a short example.
+2. Explain the emergency water shares in plain words: when one is used and what can replace it.
+3. Make the Feedback choices and “Not now” operable in the supplied driver. I reached this blocker on both devices.
+
+This was my **first visit** to *What the Child Saw*, as Rosa Alvarez, 62, a retired school administrator from Puebla reading English as a second language. The phone was 360×690 touch; the desktop was 1280×800 keyboard and mouse, used later the same evening. I used the supplied `labRunSource=agent` start page. Recording and consent stayed at their defaults. I typed no Feedback note and submitted nothing.
+
+There are two important limits to this visit. I opened the phone’s fresh context but did **not** select New game before stopping. On desktop I tapped New game twice, but the visible opening and menu did not change, so I cannot confirm whether it started. Neither session reached a work choice or a game ending.
+
+I did **not** complete the required history read before play. Output was truncated despite continued reads. I can confirm receiving lines 1–400; portions of lines 401–3177 appeared, but I cannot identify every omitted line exactly, so that entire range remains **unverified**. The last line I received was line 3178: “End of supplied own history.” I should not have represented the history intake as complete.
+
+The opening gave me a human situation I could understand: a mother’s daughter watches what the adults do, and the household needs to keep water for the evening. The picture was gentle. But the explanation of the earlier task and the emergency shares made me stop before choosing. I could see five possible jobs in the driver’s text, but I had not learned what any choice would actually do through play.
+
+The diary below contains the successful log words exactly. My first attempted phone note was rejected as invalid JSON and did not become a diary entry.
+
+- **Phone, 13.186 s — want_quit, CONFUSED, engagement 2:** “I reread two sentences: She uses the way she has watched most often, counting the task that stayed with her from the years before. A shortfall uses one emergency household share; ordinary daily supplies do not refill this store. I do not know what stayed with her or how the shares work. I want to stop.”
+- **Phone, 33.109 s — stop, CONFUSED, engagement 2:** “I stop at the opening after two sentences I had to reread. I understand a mother teaching her daughter, but not the old task or emergency shares. Feedback was offered, but the confused label and Not now could not be tapped after retry. I typed nothing and sent nothing.”
+- **Desktop, 13.871 s — want_quit, TOOL, engagement 2:** “I asked for a new game twice. The menu and opening look unchanged, so I cannot confirm the new game started. I stop here.”
+- **Desktop, 24.608 s — stop, TOOL, engagement 2:** “I stop because I cannot confirm New game worked after two taps. Feedback opened, but the stopping label and Not now could not be tapped after retry. I typed nothing and sent nothing.”
+
+The two exact sentences I reread on the phone were:
+
+1. “She uses the way she has watched most often, counting the task that stayed with her from the years before.”
+2. “A shortfall uses one emergency household share; ordinary daily supplies do not refill this store.”
+
+My opening-screen count was **18 concepts**: Zehra; Elif; copying work; Yusuf and paths; Maryam and shares; Danyal and the well; three afternoons; going alone; the most-watched way; the prior task; ties; the evening jar; the neighbour’s request; the emergency store; a shortfall; daily supplies; Danyal being away; and the five work choices. I did not record a complete concept count for the menu and Feedback screens, including their lab and settings controls. The desktop showed the same opening, followed by the menu and Feedback; I did not separately count its concepts.
+
+The viewed screenshots were [phone/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/rosa/phone/a-001.png) at 2.348 s and [desktop/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/rosa/desktop/b-001.png) at 2.180 s. The phone image showed the village picture and readable opening text, with the recording notice covering the lower part of the screen. The desktop image showed the same picture and text in a wider, readable column; its notice also covered lower content. These are the only screenshots I viewed.
+
+On the phone, Feedback offered “I’m confused” and “I’m stopping.” “I’m confused” could not be tapped by name, including after scrolling and one retry. “Not now” also failed after a retry, so Feedback remained open. On desktop, “I’m stopping” and “Not now” each failed after a retry. The driver reported the controls covered or off screen. Under the assignment’s rule, these are **TOOL** limitations; I cannot establish their cause from the screenshots I viewed.
+
+The names Zehra, Yusuf and Danyal appeared on the opening screen and were familiar from my supplied history, but I did not successfully log recognition during play. I cannot say these are the same people; the shared names alone do not establish that.
+
+Both stops came before 60 seconds, so neither first-minute checkpoint nor any three-minute pulse was due. The afternoons, consequences, child’s errand, and ending remain untested. No repository, worktree, server, browser, or helper process was created by me; the coordinator owns the drivers and browsers.

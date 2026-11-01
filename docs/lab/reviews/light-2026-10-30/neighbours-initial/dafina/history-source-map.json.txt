@@ -1,0 +1,19 @@
+{
+  "cutoff": "2026-10-31T18:58:47.967177+00:00",
+  "sources": [],
+  "historySha256": "6a696f4ae739abcf3f054eee4885000464f32293affe4ea08ab45dc9efb5c4a6",
+  "coldCheck": {
+    "candidate": "Dafina Kelmendi",
+    "normalization": "NFKD, casefold, alphanumeric",
+    "roots": [
+      "/Users/abdul/code/.lab-scratch/playtest",
+      "/Users/abdul/code/.lab-scratch/playtest-b",
+      "/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/docs/lab/panel"
+    ],
+    "scope": "report/plan/roster/registry/cohort md/json/txt and panel files at most 2MB; excludes this directory, images, encoded sessions, larger files",
+    "filesScanned": 1298,
+    "hits": [],
+    "limitation": "bounded identity check, not proof of no prior exposure; starting premise is no HF exposure and must remain true at dispatch"
+  },
+  "reviewRequired": "Inspect for editorial comparisons naming other players; exclude those only with exact mapped line spans, preserving own actual words and method qualifications. Verify bounded target exposure before admission."
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "tester": "Rosa Alvarez",
+    "exposure": "first within supplied own history; outside exposure unknown",
+    "openingReturnExact": "I would return voluntarily another evening to see whether the hall reopens; I would close it now, not leave it running.",
+    "report": "rosa/report.md",
+    "reportSha256": "a9c4dc4e8af05b47ac41dba2d3c58ca2e6f577f5929be97f3db93cad837e2a13",
+    "rankedAskIds": [
+      "F-2891",
+      "F-2892",
+      "F-2893"
+    ],
+    "scope": "one complete source report; no extra return or reconstructed visit"
+  },
+  {
+    "tester": "Mei Tan",
+    "exposure": "first within supplied own history; outside exposure unknown",
+    "openingReturnExact": "I would return another evening on the laptop if my town were saved and I could tell whether an offered hour was still a commitment; I would not leave it running.",
+    "report": "mei/report.md",
+    "reportSha256": "10147f0058cffff6fae7f5fa851248b9bb6ce914394e78ccdb8bd386823ecc9c",
+    "rankedAskIds": [
+      "F-2894",
+      "F-2895",
+      "F-2896"
+    ],
+    "scope": "one complete source report; no extra return or reconstructed visit"
+  },
+  {
+    "tester": "Emre Kaya",
+    "exposure": "first within supplied own history; outside exposure unknown",
+    "openingReturnExact": "I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight.",
+    "report": "emre/report.md",
+    "reportSha256": "fbf71b1ba8c55054a0cf62ed680adf0c19d75b5fc0ca3e86d6ee053918b1a68e",
+    "rankedAskIds": [
+      "F-2897",
+      "F-2898",
+      "F-2899"
+    ],
+    "scope": "one complete source report; no extra return or reconstructed visit"
+  },
+  {
+    "tester": "Nia Okafor",
+    "exposure": "first within supplied own history; outside exposure unknown",
+    "openingReturnExact": "I would return another evening if I could reach Nora’s handle conversation without chasing her between places; I would not return tonight or leave the game running.",
+    "report": "nia/report.md",
+    "reportSha256": "f508974fe0ed8f9c9e478ffac8cac6d80f391d031cf7a8c333451af3112cd04b",
+    "rankedAskIds": [
+      "F-2900",
+      "F-2901",
+      "F-2902"
+    ],
+    "scope": "one complete source report; no extra return or reconstructed visit"
+  },
+  {
+    "tester": "Dafina Kelmendi",
+    "exposure": "cold first within supplied records",
+    "openingReturnExact": "I would not voluntarily return to Neighbours tonight, and I would leave it rather than keep it running.",
+    "report": "dafina/report.md",
+    "reportSha256": "bd79a21a87a9b2c594e53a814dfcd74880999d3c5b2baf92e0ac9e2994a620b2",
+    "rankedAskIds": [
+      "F-2903",
+      "F-2904",
+      "F-2905"
+    ],
+    "scope": "one complete source report; no extra return or reconstructed visit"
+  }
+]

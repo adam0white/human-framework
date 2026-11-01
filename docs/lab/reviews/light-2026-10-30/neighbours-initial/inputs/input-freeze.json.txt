@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-31T19:00:22.724102+00:00",
+  "state": "READY_FOR_REVIEW / NOT ADMITTED",
+  "players": [
+    {
+      "tester": "rosa",
+      "briefSha256": "67c8db2ba06f9bfb846219b3bca6870e48f030a89f0762b067045d549ac641fb",
+      "historySha256": "4f262b839bfb523a680068fd494e7605118642f29802f97cce3eb0d042b1e008",
+      "mapSha256": "e9d59cd61e776d9deaa5eb8e7e57a13fe51ddf0900563138e6e6910e28bd5551",
+      "historyLines": 3224
+    },
+    {
+      "tester": "mei",
+      "briefSha256": "21dc50104f433a01e6eaeaa605a9311aa9233f5baa53a753e2214d7f18e9ab37",
+      "historySha256": "1e1d6107fe6833ba630027d30bdaa02e604a6fd6f7a1bb9cc5acd609299574d9",
+      "mapSha256": "bb3d65f88b8ccc22ada9f2cd6be7fd62236f1f26e1495860614d4167d3d024e6",
+      "historyLines": 1473
+    },
+    {
+      "tester": "emre",
+      "briefSha256": "7fb7d0a6449b6b2209f08a470495680b9a85ba87afdad8132a30ba73c79ed37b",
+      "historySha256": "1c57518f67d175e497e634020feaef14958ae9aa417090cd989c0ac3cd12c6f2",
+      "mapSha256": "68630c38b4cadee897b924dceb5133d2f02f442649cf4afb3a5ccb0411171f91",
+      "historyLines": 1431
+    },
+    {
+      "tester": "nia",
+      "briefSha256": "aafcb2ed1157c18ab6acb21af00b54735eebab945735f6bb0ec353637807fa3f",
+      "historySha256": "8677d44fdd553d5e1f6cfb9b0fdf194c89528caa9ac71de752b3e775e19a44e1",
+      "mapSha256": "abfda404d5036988f2d81b824c4f2934d91539b2078c70594bbdd461b980a0a3",
+      "historyLines": 1814
+    },
+    {
+      "tester": "dafina",
+      "briefSha256": "ec9c93224ba19727f2f990a80a21f570c1a20e25c08537b5f3d815905c00bc0e",
+      "historySha256": "6a696f4ae739abcf3f054eee4885000464f32293affe4ea08ab45dc9efb5c4a6",
+      "mapSha256": "f21fff9f0180b3ce6d483243d7715caa0703e759770324b76c6734b983b047f7",
+      "historyLines": 9
+    }
+  ],
+  "planSha256": "2a9c803e049209aaa462a45f3532c3377b94c9248e694ffd7475c2650d0e29a1",
+  "cohortSha256": "3e0e364c40f0d5482dee56840a965a2e435d6cf0c7da9da887e0133c3683f363",
+  "provenanceAuditSha256": "a24ab74b5c580fdf8b7fdaadaace2693e238b34d4e4658c139a5dd7f56739288",
+  "targetAuditSha256": "d2699eff6f9ae431499d37f7cc84bc219b7449773c311216b24ed3ba357f5e56",
+  "earliest": "2026-10-31T18:52:03.861098+00:00; fresh admission required",
+  "instrument": "native-tap-v2/cdp-root-owned exact eb73, CDP fork and stale guard qualification",
+  "claudeBrake": "2026-11-03T08:00:00Z",
+  "sourceCustody": "GD confirmed current HF3 stay and Nov 3 port checkpoint; broader owner QA separate",
+  "controllerCompatibility": "Plan fields added for approved Child controller successor; no dispatch grant."
+}

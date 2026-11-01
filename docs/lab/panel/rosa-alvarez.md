@@ -3075,3 +3075,220 @@ The blocking question I actually reached was where the chalk plan remained after
 
 I created no worktree, branch, server, browser process or helper. The coordinator owns the drivers. I touched no repository, so there is no worktree list for my work.
 ```
+
+<!-- selected-continuity-key: light-1030:child-initial:rosa:free -->
+
+## child-initial: rosa
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/child-initial/publication-map.json. Individual method qualifications: docs/lab/reviews/light-2026-10-30/child-initial/rosa/director-method-qualification.json.txt.
+
+```text
+I would not return voluntarily as it stands; I would close it, not leave it running.
+
+My ranked asks are:
+
+1. Explain what Elif already learned and how that affects the three afternoon choices, in a short example.
+2. Explain the emergency water shares in plain words: when one is used and what can replace it.
+3. Make the Feedback choices and “Not now” operable in the supplied driver. I reached this blocker on both devices.
+
+This was my **first visit** to *What the Child Saw*, as Rosa Alvarez, 62, a retired school administrator from Puebla reading English as a second language. The phone was 360×690 touch; the desktop was 1280×800 keyboard and mouse, used later the same evening. I used the supplied `labRunSource=agent` start page. Recording and consent stayed at their defaults. I typed no Feedback note and submitted nothing.
+
+There are two important limits to this visit. I opened the phone’s fresh context but did **not** select New game before stopping. On desktop I tapped New game twice, but the visible opening and menu did not change, so I cannot confirm whether it started. Neither session reached a work choice or a game ending.
+
+I did **not** complete the required history read before play. Output was truncated despite continued reads. I can confirm receiving lines 1–400; portions of lines 401–3177 appeared, but I cannot identify every omitted line exactly, so that entire range remains **unverified**. The last line I received was line 3178: “End of supplied own history.” I should not have represented the history intake as complete.
+
+The opening gave me a human situation I could understand: a mother’s daughter watches what the adults do, and the household needs to keep water for the evening. The picture was gentle. But the explanation of the earlier task and the emergency shares made me stop before choosing. I could see five possible jobs in the driver’s text, but I had not learned what any choice would actually do through play.
+
+The diary below contains the successful log words exactly. My first attempted phone note was rejected as invalid JSON and did not become a diary entry.
+
+- **Phone, 13.186 s — want_quit, CONFUSED, engagement 2:** “I reread two sentences: She uses the way she has watched most often, counting the task that stayed with her from the years before. A shortfall uses one emergency household share; ordinary daily supplies do not refill this store. I do not know what stayed with her or how the shares work. I want to stop.”
+- **Phone, 33.109 s — stop, CONFUSED, engagement 2:** “I stop at the opening after two sentences I had to reread. I understand a mother teaching her daughter, but not the old task or emergency shares. Feedback was offered, but the confused label and Not now could not be tapped after retry. I typed nothing and sent nothing.”
+- **Desktop, 13.871 s — want_quit, TOOL, engagement 2:** “I asked for a new game twice. The menu and opening look unchanged, so I cannot confirm the new game started. I stop here.”
+- **Desktop, 24.608 s — stop, TOOL, engagement 2:** “I stop because I cannot confirm New game worked after two taps. Feedback opened, but the stopping label and Not now could not be tapped after retry. I typed nothing and sent nothing.”
+
+The two exact sentences I reread on the phone were:
+
+1. “She uses the way she has watched most often, counting the task that stayed with her from the years before.”
+2. “A shortfall uses one emergency household share; ordinary daily supplies do not refill this store.”
+
+My opening-screen count was **18 concepts**: Zehra; Elif; copying work; Yusuf and paths; Maryam and shares; Danyal and the well; three afternoons; going alone; the most-watched way; the prior task; ties; the evening jar; the neighbour’s request; the emergency store; a shortfall; daily supplies; Danyal being away; and the five work choices. I did not record a complete concept count for the menu and Feedback screens, including their lab and settings controls. The desktop showed the same opening, followed by the menu and Feedback; I did not separately count its concepts.
+
+The viewed screenshots were [phone/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/rosa/phone/a-001.png) at 2.348 s and [desktop/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/rosa/desktop/b-001.png) at 2.180 s. The phone image showed the village picture and readable opening text, with the recording notice covering the lower part of the screen. The desktop image showed the same picture and text in a wider, readable column; its notice also covered lower content. These are the only screenshots I viewed.
+
+On the phone, Feedback offered “I’m confused” and “I’m stopping.” “I’m confused” could not be tapped by name, including after scrolling and one retry. “Not now” also failed after a retry, so Feedback remained open. On desktop, “I’m stopping” and “Not now” each failed after a retry. The driver reported the controls covered or off screen. Under the assignment’s rule, these are **TOOL** limitations; I cannot establish their cause from the screenshots I viewed.
+
+The names Zehra, Yusuf and Danyal appeared on the opening screen and were familiar from my supplied history, but I did not successfully log recognition during play. I cannot say these are the same people; the shared names alone do not establish that.
+
+Both stops came before 60 seconds, so neither first-minute checkpoint nor any three-minute pulse was due. The afternoons, consequences, child’s errand, and ending remain untested. No repository, worktree, server, browser, or helper process was created by me; the coordinator owns the drivers and browsers.
+```
+
+<!-- selected-continuity-key: light-1030:neighbours-initial:rosa:free -->
+
+## neighbours-initial: rosa
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/neighbours-initial/publication-map.json.
+
+```text
+I would return voluntarily another evening to see whether the hall reopens; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Explain why a repair becomes unavailable after someone agrees to do it. Bilal’s answer mattered to me, and I could not understand what happened afterward.
+2. Tell me how far Skip will advance, or make it clearer when it is still advancing.
+3. Keep the desktop title picture from covering the beginning of the introduction.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was my **first recorded Neighbours visit** in the supplied own history. Exposure outside those records is unknown. I read lines **1–3224** in explicit ranges before play; the last line read was **“End of supplied own history.”** Unread ranges: **none**.
+
+The phone session used a 360×690 touch context and stopped at **104.761 seconds**. The desktop session used a fresh 1280×800 context later the same evening and stopped at **50.894 seconds**. Both began from the supplied agent-marked page; neither imported a save or matched seed. I used mouse actions on desktop. Recording and consent stayed at their defaults.
+
+The opening was inviting. Reopening a flooded hall is a clear reason to help, and I liked being told that neighbours decide for themselves. On the phone I walked to the hall and asked Bilal to repair it. His “I will do it” pleased me. Later, “That is not available here now” left me uncertain about the result. On desktop, lending tools gave an immediate, clear answer: five tools were available.
+
+The name **Derya** at **23.043 seconds** reminded me that I had seen that name in my own history; **Bilal** also appeared in earlier records. My words were: “Derya and Bilal are names I have seen elsewhere, but names alone do not tell me whether these are the same people.” Confidence in a shared identity: **uncertain**. At **54.147 seconds**, Bilal’s spouse, stepchild and limited visit gave me an understandable situation, but did not prompt confident recognition of a particular earlier Bilal. I recognised no other person from an earlier game.
+
+The diary lines below are the successful log strings, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **9.769 s — note, engagement 4:** “The flood and reopening the hall are clear. I like that the neighbours decide for themselves. The text and large button are comfortable on my phone. Title concepts: 9: all games, information, menu, flood, rebuilding, hall, independent decisions, other ways in, download and recording linked across games.”
+- **23.043 s — note, engagement 4, Day 1 08:00:** “I see the hall and a clear next step to explore. Derya and Bilal are names I have seen elsewhere, but names alone do not tell me whether these are the same people. New concepts 15: day, clock, rain, hall repairs, town credits, hall choice, river, eight places, high water, closed hall, six neighbours, free to choose, walking takes time, same place to hear, skip, help and journal. No reread.”
+- **31.916 s — note, engagement 4, Day 1 08:45:** “Nora promised to repair the doors before evening. That is a clear human obligation. I am walking to her. New concepts 7: twelve repairs, safety inspection, Nora repair designer, her brother, promise and deadline, walking arrival, walk must finish. No reread.”
+- **45.080 s — note, engagement 3, Day 1 12:30:** “Skip went from 09:00 to 12:30 before I could select Nora; she has gone to the workshop. I wanted to meet her at the hall. I do not know how far Skip will go. New concepts 3: inspection story, next step asks for an answer, skipping continues until stopped. No reread.”
+- **54.147 s — note, engagement 3, Day 1 12:30:** “Bilal has a spouse and stepchild at home and a limited visit. That is a person I can understand; I do not recognise him as a particular earlier Bilal from those details. The talk screen has many choices. New concepts 8: folding lamp, request choices, offer an hour, ask, urge, my work choices, deadline choices, obligation if he agrees or acts later. No reread yet.”
+- **61.817 s — first_minute, engagement 3, Day 1 12:30:** “I understand the hall needs twelve repairs and people have their own work. I walked there and found Bilal, but he is busy when I ask about his lamp. The request screen gives me many choices at once. No sentence reread yet.”
+- **76.310 s — note, engagement 4, Day 1 12:30:** “He says I will do it. That is a clear answer and makes me feel I helped. I asked gently, without promising my hour. I would like to see the repair happen.”
+- **84.840 s — want_quit, TASTE, engagement 4, Day 1 12:30:** “I enjoyed his clear answer, but the long request form and the jump while skipping tired me. I have had a short visit and would stop on the phone now.”
+- **92.247 s — note, engagement 3, Day 1 12:45:** “Oh, later he says that is not available here now and goes home. I do not know what made the repair unavailable after he agreed. Menu concepts 15: pause, journal, colours, pace and four speeds, saved towns, studies, compare outcomes, recorded studies, feedback, full screen, all games, new game, saved people, recording, lab privacy, debug, resume. No reread.”
+- **104.761 s — stop, TASTE, engagement 3, Day 1 12:45:** “I stop on the phone. I liked the people and the clear answer, but I do not know why Bilal could not repair after agreeing. I would close it and try the larger screen.”
+
+**Desktop**
+
+- **9.268 s — note, engagement 3:** “Same title as my phone tonight. The large title picture covers the beginning of the introduction on this screen. I know the goal from the phone. Title concepts 9: games, information, menu, flood, rebuilding, hall, independent decisions, other ways in, download and linked recording.”
+- **24.430 s — note, engagement 4, Day 1 08:00:** “I can spend one of three credits on tools, the bus or news. The results are stated plainly. I want tools for the hall. New concepts on town screen 16: day, time, rain, repairs, credits, hall choice, river, places, six neighbours, independent activities, walking, hearing nearby, skip, help, journal, town record. Help panel adds 5: compare outcomes, spending credits, bus, tools, news and later hall evenings. No reread.”
+- **29.376 s — note, engagement 4, Day 1 09:00:** “The tools were added and five are available. That is a clear result and satisfying. I do not know when the hall will be ready, but I have helped.”
+- **38.674 s — want_quit, TASTE, engagement 4, Day 1 09:00:** “The map is lovely and the tools gave a clear result. I have seen the beginning twice tonight and would stop now, curious about whether the hall opens.”
+- **50.894 s — stop, TASTE, engagement 4, Day 1 10:45:** “I stop on the big screen for tonight. The map is lovely and lending tools gave a clear result. I would return to see the hall reopen, and I would close it now.”
+
+I did not reread a sentence on either device, so my two-reread quitting rule did not trigger. The phone request form was long, though its ordinary **Ask** option and Bilal’s immediate reply were plain. My strongest unanswered question was what made the repair unavailable after his agreement. I cannot establish the cause from what I saw. The phone’s Skip showed “Stop” while advancing; by the next attempted selection, the clock had reached 12:30 and Nora’s activity had changed. The driver identified my selection as a stale control because the game state had changed.
+
+The concept counts are my contemporaneous counts, reproduced in the diary. They are estimates, and some combine related items; the desktop help-panel list contains six named items despite my logged count of five. I did not record separate complete counts for the Feedback screens. Each showed the stopping and confused labels, three keep-playing choices, a note field, optional name, what is sent, a copy control, Submit and close.
+
+I viewed these screenshots:
+
+- [Phone title, a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/phone/a-001.png): readable introduction, a large red Enter button and the recording notice at the bottom. I did not view the phone game layout in an image.
+- [Desktop title, b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/desktop/b-001.png): large text and button, but the title illustration covered the beginning of the introduction.
+- [Desktop game, b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/desktop/b-002.png): a drawn town map on the left and a readable town-support panel on the right. I liked seeing the places together.
+
+On both devices I opened Feedback when stopping, selected **“I’m stopping”**, saw it marked pressed, and used **Close Feedback**. I typed no note and pressed no Submit. The phone’s quit wish remained through the Feedback check, although Bilal’s later result gave me a new question. The desktop quit wish also remained.
+
+The phone first-minute checkpoint was recorded at **61.817 seconds**. Desktop stopped before 60 seconds, so its first-minute checkpoint was untested. Neither session reached 180 seconds, so no pulse was due. I did not reach a game ending, a reopened hall, or the later consequences of the tools and repairs. The question about Bilal’s unavailable repair is the blocking ask I actually reached.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; a `git worktree list` is not applicable to my work.
+```
+
+<!-- selected-continuity-key: light-1030:child-retest1:rosa:free -->
+
+## child-retest1: rosa
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/child-retest1/publication-map.json. Individual method qualifications: docs/lab/reviews/light-2026-10-30/child-retest1/rosa/method-qualification.json.txt.
+
+```text
+I would return voluntarily if I could tell that a new game had started; I would close it now, not leave it running.
+
+My ranked ask is:
+
+1. **Show a clear result when I choose New game.** On both devices I tapped it twice and saw the same opening and menu afterward. I wanted to try a work choice, but could not confirm that the requested fresh game had started.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return to *What the Child Saw*. I used the supplied agent-marked page in fresh automated project-test contexts: a **360×690 touch phone**, then a **1280×800 desktop** later the same evening. No old save or matched seed was imported. I left recording and consent at their defaults.
+
+**History limit:** I received lines 1–400 in full and lines 3201–3283 in full. My combined request for lines 401–3200 was truncated, so portions of that range were not delivered; I cannot identify the individual omitted lines. Treat **401–3200 as unread or unverified**. The last line I read was **“End of supplied own history.”** I did receive my earlier Child report. It says I stopped after rereading the explanation of Elif’s earlier task and the emergency shares, and that Feedback controls failed in that visit.
+
+The opening felt more inviting this time. The example of one remembered counting task and two checking tasks helped me understand how earlier work counts. “Nothing refills this emergency store” also made the water situation clearer. I wanted to choose an afternoon’s work. I did not reread a sentence on either device, so the two-reread rule did not trigger.
+
+At **4.362 seconds on the phone**, the visible mother-and-daughter situation and water problem prompted recognition of my earlier Child opening. My confidence that it was the same game and situation was high; my recorded words are below. I did not recognise another person or encounter beyond that.
+
+These are all my successful diary log lines, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **4.362 s — note, engagement 4:** “I recognise the mother and daughter and the water problem from my last visit. The counting and checking example now helps me understand the earlier task. The emergency store says nothing refills it; that is clearer. I want to try a choice.”
+- **10.435 s — want_quit, TOOL, engagement 2:** “I asked for New game twice, and the screen and menu did not change. I cannot tell whether it started, just as on my earlier desktop visit. I would stop here.”
+- **15.291 s — stop, TOOL, engagement 2:** “I stop because I cannot confirm New game worked after two taps. Feedback let me choose stopping and close it this time. I typed nothing and sent nothing.”
+
+**Desktop**
+
+- **9.989 s — want_quit, TOOL, engagement 2:** “The same opening is easier to read on the large screen, but New game again leaves the menu unchanged after two taps. I cannot confirm a new game and would stop.”
+- **19.219 s — stop, TOOL, engagement 2:** “I stop on the large screen because I cannot confirm New game started after two taps. Feedback stopping and Not now worked. I typed nothing and sent nothing.”
+
+On each device, the driver acknowledged both New game inputs, but the visible opening and menu remained unchanged. That does not establish whether a reset happened internally. Under the assignment’s retry rule, I treated the unconfirmed outcome as **TOOL** and stopped. I made no work choice and reached no ending.
+
+For each screen I visited, these are my retrospective counts of the concepts presented. The desktop repeated the phone screens, so it introduced no additional concepts within this evening’s visit.
+
+| Screen and purpose | Concepts encountered | Count | Sentences reread |
+|---|---|---:|---|
+| Opening: understand the family and choose work | All-games link; menu; Zehra; Elif copying work; Yusuf checking paths; Maryam counting shares; Danyal keeping the well; three afternoons; Elif going alone; most-watched way; earlier task counts; counting/checking example; tied ways; keeping the evening jar; neighbour’s request; emergency store with two shares; shortfall spends a share; store cannot be refilled; Danyal away; Maryam choice and meal tradeoff; Yusuf choice and field tradeoff; Danyal choice and rope tradeoff; staying home and food tradeoff; field work and its effects; current food, water and rope status; recording and linked play; privacy and Continue | 27 | None. The example and shorter emergency-store wording helped. |
+| Menu: start a new game and access controls | Resume; Feedback; recording on; full screen; all games; New game; export playtest; replay playtest; other ways to begin; lab privacy; debug | 11 | None. |
+| Feedback: indicate why I was stopping | Keep-playing verdicts; stopping and confused labels; optional note; optional name; run and note queued with recorded history; what is sent; private note and possible public quote; lab privacy; Not now; Submit | 10 | None. |
+
+I viewed two screenshots:
+
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/rosa/phone/a-001.png), captured at **1.547 s**: a gentle village illustration and readable opening text. The recording notice covered the lower part of the page.
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/rosa/desktop/b-001.png), captured at **1.751 s**: the same illustration and a wider, comfortable text column. The recording notice covered lower content.
+
+On **both devices**, Feedback opened, **“I’m stopping”** visibly became pressed, and **Not now** returned me to the menu. This differs from my earlier report, where those Feedback actions could not be completed. I typed no note and pressed no Submit.
+
+The phone stopped at **15.291 seconds** and the desktop at **19.219 seconds**. Neither session reached 60 seconds, so no first-minute checkpoint was due; neither reached 180 seconds, so no pulse was due. The afternoon choices, their consequences, Elif’s errand and the ending remain untested.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers and browsers; a `git worktree list` is not applicable.
+```
+
+<!-- selected-continuity-key: light-1030:child-rosa-recovery1:rosa:free -->
+
+## child-rosa-recovery1: rosa
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/child-rosa-recovery1/publication-map.json. Earlier TOOL stops remain nonvoluntary and cause unknown. This fresh exposure does not prove previous browser state, history comprehension, or reported image views. Concept counts were incomplete.
+
+```text
+I would return voluntarily another evening to see Elif grow; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Explain why food returned between years. I saw it change from low to available without understanding what caused that.
+2. Keep the worked example of how an earlier task counts. It helped me understand a sentence that stopped me on my previous visit.
+
+I played *What the Child Saw* as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit. The phone session used a fresh 360×690 touch context; the desktop session used a fresh 1280×800 keyboard-and-mouse context later the same evening. I accepted the native **“Start a new upbringing?”** confirmation on each device. The opening then changed from Danyal being away to being on duty, and I made new choices. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+**History limit:** I did not complete the required verified history read before playing. I received lines 1–200 and 3201–3283; the combined output for the middle was truncated. Lines **201–3200 remain unverified**, although portions appeared. The last line I read was line **3283: “End of supplied own history.”** I cannot claim to have understood the omitted history. The supplied earlier Child report described a phone stop after two rereads and a desktop TOOL stop; neither had reached a confirmed work choice.
+
+The opening felt more approachable this time. At **5.787 seconds** on the phone, the mother and daughter prompted recognition of my previous Child opening, with high confidence. The visible names Zehra, Yusuf and Danyal also reminded me of names in my earlier history; confidence that they are the same people is **uncertain**. I did not recognize another person during these sessions. The new example of counting and checking helped me understand how an earlier task could matter. I did not reread a sentence on either device.
+
+On the phone, I liked the ordinary detail of Elif arranging cups and the practical cost of Maryam leaving meal work undone. Choosing Maryam twice led Elif to keep the evening jar. At six, she checked the dry upper path and brought water home. On desktop, I tried teaching her to say no; she kept the jar, while the neighbour had to wait. Both outcomes gave me something human to consider. I did not reach a game ending.
+
+The successful diary entries below are unchanged. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **5.787 s — note, engagement 4:** “I remember this mother and daughter from my last visit. The example now helps me understand how an earlier task counts. The picture is gentle and the text is readable, though the recording notice covers the lower text. Zehra, Yusuf and Danyal also remind me of names in my earlier history; I am uncertain they are the same people.”
+- **19.270 s — note, engagement 4:** “The cups in a row are easy to picture. Food is low after Maryam leaves meal work; I see the cost of my choice. I want to put food by now.”
+- **25.485 s — note, engagement 4:** “Food came back after field work and is low again after counting. I chose Maryam twice because I want Elif to keep water at home. I am curious whether she can do it alone.”
+- **36.766 s — note, engagement 4:** “She kept the jar and told me how. That is satisfying. But Maryam misses meal work again, and food is already low. I would like to see what happens as she grows.”
+- **40.128 s — note, engagement 4:** “Now she is six and the flooded lower path gives a clear reason to check. I am pleased there is food again, though I do not know why it returned between years.”
+- **56.597 s — want_quit, TASTE, engagement 4:** “She brought the water and explained the dry path. I feel satisfied with this visit and would stop here tonight.”
+- **65.810 s — stop, TASTE, engagement 4:** “I stop after Elif brought the water. I enjoyed seeing her learn and explain her choice. I would close it and try my other device.”
+
+**Desktop**
+
+- **15.716 s — note, engagement 4:** “The same mother and daughter on my other device. The wide text is comfortable. I will try staying home this time, to see her say no.”
+- **24.286 s — note, engagement 4:** “Her hand on the lid is a small clear picture of saying no. Food is still low after field work this time; the warning said it might be. I want to see her answer.”
+- **34.200 s — want_quit, TASTE, engagement 4:** “She kept the jar, but the neighbour must wait. I understand both sides. I have seen a different answer and would stop for the evening.”
+- **44.206 s — stop, TASTE, engagement 4:** “I stop after seeing Elif protect the jar and the cost to her neighbour. I would close it for tonight and return to see her grow.”
+
+On both devices, **“I’m stopping”** became pressed in Feedback and **“Not now”** returned to the menu. I typed no note and did not submit. In my prior Child report, those controls had failed through the driver; they worked in these sessions. No blocking ask was reached this time.
+
+I viewed [phone/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-rosa-c8-recovery-controller-source4/phone/a-001.png) at **2.643 s**: the illustration and opening text were readable, with the recording notice covering lower text. I viewed [desktop/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-rosa-c8-recovery-controller-source4/desktop/b-001.png) at **4.390 s**: the opening was comfortable in a wide column, with the notice covering lower content. I did not view screenshots of later screens.
+
+My screen-concept accounting is incomplete. I did not record complete counts for each screen while playing, including the menu and Feedback, so I cannot honestly supply exact counts for them afterward. The opening introduced the family and their work, three afternoons, remembered tasks and ties, the evening jar, the neighbour, emergency shares and shortfalls, Danyal’s availability, five work choices, food and rope status, and linked recording. Later screens introduced the observed consequences of those choices, the child’s independent errand, choices for the intervening years, age six and the flooded path. The menu exposed recording, full screen, new game, playtest export and replay, other beginnings, lab privacy and debug; Feedback exposed verdicts, quick labels, optional fields, what is sent, privacy, Not now and Submit. No sentence was recorded as reread on any screen.
+
+The phone quit wish occurred before 60 seconds; the stop log followed the required Feedback check. I did not log a first-minute checkpoint. Desktop stopped before 60 seconds. Neither session reached 180 seconds, so no pulse was due. Later ages and the ending remain untested.
+
+I created no worktree, browser, server or helper process. The coordinator owns the drivers and browsers; no repository worktree listing applies.
+```

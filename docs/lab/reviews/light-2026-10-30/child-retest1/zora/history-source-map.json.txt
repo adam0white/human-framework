@@ -1,0 +1,6 @@
+{
+  "policy": "Assigned never-HF cold premise; no prior game memories",
+  "continuityBranch": "new cold identity",
+  "identityCheckSha256": "c31ee2a5dffd5045031b6a77fed706ef656e612b1366f850d38852a21fc8168c",
+  "historySha256": "9a32e38e897d848dbd08b650add9913686c4a6f762b686dc9e5f1442bd6b107d"
+}

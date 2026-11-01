@@ -1,0 +1,62 @@
+{
+  "policy": "Immediate frozen prior own-history file is the primary source for this selected history, not a complete archive. Actual model delivery and comprehension of earlier history are not established. Historical source references are provenance only, not revalidated segment claims.",
+  "continuityBranch": "FREE selected prior history then Child initial",
+  "byteRangeBasis": "zero-based, half-open offsets into own-history.md",
+  "composition": {
+    "operation": "concatenate entire frozen prior bytes, wrapper bytes, complete literal report bytes, final marker bytes; no trimming or newline normalization",
+    "prior": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/samir/own-history.md",
+      "sha256": "a9d3698ff60034b27f3d10f178905bb4017eb94c1a57a67a12ddfd55f8b4978a",
+      "sourceByteRange": [
+        0,
+        167111
+      ],
+      "outputByteRange": [
+        0,
+        167111
+      ],
+      "sourceLineCount": 1319
+    },
+    "wrapper": {
+      "utf8": "\n## Your own later full report\n\n",
+      "outputByteRange": [
+        167111,
+        167143
+      ]
+    },
+    "report": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/samir/report.md",
+      "sha256": "c4b813608190f292f3657a334f4664ed49e6330fe5452640d26aa488793baebe",
+      "sourceByteRange": [
+        0,
+        7500
+      ],
+      "outputByteRange": [
+        167143,
+        174643
+      ],
+      "sourceLineCount": 43
+    },
+    "finalMarker": {
+      "utf8": "\n\nEnd of supplied own history.\n",
+      "outputByteRange": [
+        174643,
+        174674
+      ]
+    },
+    "outputBytes": 174674,
+    "outputLineCount": 1367,
+    "outputSha256": "3c91da7355814821881489036309d8f6141d39b14765c05a0b9c5146c7f7cb5e"
+  },
+  "historicalProvenance": {
+    "mapPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/samir/history-source-map.json",
+    "mapSha256": "2c33d7a918c717082479268d1fcf8ad8def3089af7398f15490c4fc52ae55b17",
+    "qualification": "Historical record of upstream selections, exclusions and qualifications; referenced segment selections and current mutable paths are not asserted revalidated by this correction.",
+    "knownIssues": "Inherited Word source map cites lines 805–852, but the same-hash current source has 851 lines and the cited selected segment hash does not match. This is retained as an unresolved historical discrepancy, not validated or silently repaired. Samir inherited canonical panel path has changed from its historical hash; current path is not evidence of the old body."
+  },
+  "childMethodQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/samir/director-method-qualification.json",
+    "sha256": "638ec3644c9b2a1d6e779c2b5acefcbee82e5d400368d1a2191557c5816b7589",
+    "selection": "unchanged coordinator qualification; not a player memory"
+  }
+}

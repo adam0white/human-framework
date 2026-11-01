@@ -1,0 +1,19 @@
+{
+  "cutoff": "2026-10-31T17:19:20.562898+00:00",
+  "policy": "own canonical candidate selected FREE entries plus bounded additional own published reports; no other player bodies; no target report or source knowledge",
+  "sources": [],
+  "historySha256": "775197e3c402c45fb652e68b86cdba31702d906885c51f021db7a90bdb545af2",
+  "coldCheck": {
+    "candidate": "Ilinca Pavelescu",
+    "normalization": "NFKD/casefold/alphanumeric",
+    "roots": [
+      "/Users/abdul/code/.lab-scratch/playtest",
+      "/Users/abdul/code/.lab-scratch/playtest-b",
+      "/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/docs/lab/panel"
+    ],
+    "scope": "report/plan/roster/registry/cohort text plus own panel filenames; <=2MB each, excludes new preparation directory, images/encoded sessions excluded",
+    "filesScanned": 1231,
+    "hits": [],
+    "limitation": "bounded local collision check, not exhaustive exposure proof; no prior HF is the assigned premise and must remain true at dispatch"
+  }
+}

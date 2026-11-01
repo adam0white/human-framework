@@ -1,0 +1,13 @@
+{
+  "tester": "Nia Okafor",
+  "sourceSha256": "5bcedf0dcbe937a0d678d44ad07781b1ab541b8f15b8bd8f69259c8057ce420a",
+  "rootReturnSha256": "3a8796bb623146bb6ebd8b332ada499f833ae23499d2345460ca5cfed15a6c85",
+  "testerExit": 0,
+  "driverExits": [
+    0,
+    0
+  ],
+  "cut": null,
+  "rootPass": true,
+  "scope": "Hash-bound safe projection, not original completion; process argv and profile paths withheld."
+}

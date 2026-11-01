@@ -1,0 +1,195 @@
+{
+  "scope": "Actual stop records from copied wall clocks; raw fields and timestamps retained",
+  "stops": [
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "source": "rosa/phone/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:04:22.741Z",
+        "elapsed_s": 15.29,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop because I cannot confirm New game worked after two taps. Feedback let me choose stopping and close it this time. I typed nothing and sent nothing.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "TOOL",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "source": "rosa/desktop/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:04:43.714Z",
+        "elapsed_s": 19.218,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop on the large screen because I cannot confirm New game started after two taps. Feedback stopping and Not now worked. I typed nothing and sent nothing.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "TOOL",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "samir",
+      "device": "phone",
+      "source": "samir/phone/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:07:33.616Z",
+        "elapsed_s": 28.61,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone after the first errand. I have just finished the story on desktop and do not want to repeat the years tonight. I selected stopping and closed Feedback; I typed and sent nothing.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "samir",
+      "device": "desktop",
+      "source": "samir/desktop/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:07:02.514Z",
+        "elapsed_s": 104.491,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping at the yearbook. Everyone got water, the emergency share and repair cost were clear, and Feedback let me select stopping and close it. I liked Elif copying small acts, but the repeated preparation felt predictable.",
+        "game_clock": null,
+        "engagement": 3,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "pavel",
+      "device": "phone",
+      "source": "pavel/phone/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:10:55.604Z",
+        "elapsed_s": 53.048,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at age six on the phone. The different result was worth seeing, but I have had enough of the repeated afternoons tonight. The stopping label was pressed and Not now returned to the menu. I typed and sent nothing.",
+        "game_clock": "age 6",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "pavel",
+      "device": "desktop",
+      "source": "pavel/desktop/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:10:01.305Z",
+        "elapsed_s": 113.668,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at the yearbook with every household supplied and no emergency water left. This time the stopping label was marked pressed and Not now returned to the menu. I typed and sent nothing.",
+        "game_clock": "age 18",
+        "engagement": 4,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "tessa",
+      "device": "phone",
+      "source": "tessa/phone/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:12:56.249Z",
+        "elapsed_s": 85.015,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone at ten. Hearing Elif tell me what happened and seeing her make room for another child were lovely, but I am tired of choosing the same work each age.",
+        "game_clock": "Elif at 10",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "tessa",
+      "device": "desktop",
+      "source": "tessa/desktop/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:14:14.047Z",
+        "elapsed_s": 75.776,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the laptop at six. Her small jars explanation feels personal, but the failed Danyal attempt is still vague and I have had enough of picking the same work.",
+        "game_clock": "Elif at 6",
+        "engagement": 2,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "zora",
+      "device": "phone",
+      "source": "zora/phone/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:16:07.982Z",
+        "elapsed_s": 90.139,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am leaving after the winter sharing; I have had enough of the repeated choices.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "zora",
+      "device": "desktop",
+      "source": "zora/desktop/wall-clock.jsonl",
+      "raw": {
+        "t": "2026-10-31T21:16:55.342Z",
+        "elapsed_s": 45.455,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am leaving after seeing the different first outcome; repeating the rest does not appeal tonight.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    }
+  ]
+}

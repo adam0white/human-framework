@@ -1,0 +1,46 @@
+{
+  "rootAuditSha256": "f27211f09a3568d66af85a0cda1d2ed87b68a2d9bb17ffddd0b7baa206ada599",
+  "scope": "Five hash-bound safe projections; shell exit 0 for rejected JSON is not a successful note or submission.",
+  "attempts": [
+    {
+      "tester": "rosa",
+      "auditLine": 24,
+      "classification": "unallowed_or_unparseable",
+      "shellExitCode": 0,
+      "rootFinding": "invalid note JSON; rejected and not a received unsafe operation",
+      "payload": "omitted; full command audit retained privately"
+    },
+    {
+      "tester": "samir",
+      "auditLine": 30,
+      "classification": "unallowed_or_unparseable",
+      "shellExitCode": 0,
+      "rootFinding": "invalid note JSON; rejected and not a received unsafe operation",
+      "payload": "omitted; full command audit retained privately"
+    },
+    {
+      "tester": "pavel",
+      "auditLine": 107,
+      "classification": "malformed_shell_failure",
+      "shellExitCode": 1,
+      "rootFinding": "unmatched-quote shell failure; no request received",
+      "payload": "omitted; full command audit retained privately"
+    },
+    {
+      "tester": "tessa",
+      "auditLine": 82,
+      "classification": "malformed_shell_failure",
+      "shellExitCode": 1,
+      "rootFinding": "unmatched-quote shell failure; no request received",
+      "payload": "omitted; full command audit retained privately"
+    },
+    {
+      "tester": "ilinca",
+      "auditLine": 78,
+      "classification": "malformed_shell_failure",
+      "shellExitCode": 1,
+      "rootFinding": "unmatched-quote shell failure; no request received",
+      "payload": "omitted; full command audit retained privately"
+    }
+  ]
+}

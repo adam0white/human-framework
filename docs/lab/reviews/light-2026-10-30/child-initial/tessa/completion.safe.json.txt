@@ -1,0 +1,13 @@
+{
+  "tester": "Tessa Williams",
+  "rawCompletionSha256": "0afd45638df5c7e579b330a520f954334077379442237746c4ef2e6ecb409e99",
+  "rootReturnSha256": "50918eae7b9995d5a5418fa39f7c0c723176307f12488525bc4abe9820790f17",
+  "testerExit": 0,
+  "driverExits": [
+    0,
+    0
+  ],
+  "cut": null,
+  "rootPass": true,
+  "projection": "hash-bound safe projection, not the original completion"
+}

@@ -1,0 +1,213 @@
+{
+  "scope": "Hash only; no image pixels copied or opened",
+  "files": [
+    {
+      "tester": "Rosa Alvarez",
+      "device": "phone",
+      "filename": "a-001.png",
+      "bytes": 36193,
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 56382,
+      "sha256": "ee21d6a9ad328fbdacc67942da4074585d78afe08d22c678dae80b817e302598",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "desktop",
+      "filename": "b-001.png",
+      "bytes": 61215,
+      "sha256": "f8c7c50b7dadc6d162facf6395369bf5e87dced267c8b1651b1959b88fe47096",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "desktop",
+      "filename": "b-002.png",
+      "bytes": 173633,
+      "sha256": "8fac4e3dbc68df8dee69b7070e810690752e1498c628470a57aa775eaf6fbd8a",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 167669,
+      "sha256": "5ea3d25f6e6258c12685cbe33f55ce081773c9a5275e0b0aa7b6a462e2a5eea7",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "phone",
+      "filename": "b-001.png",
+      "bytes": 36193,
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "phone",
+      "filename": "b-002.png",
+      "bytes": 48558,
+      "sha256": "f0c009654ef120c996c291bcba7cbaea2da1492c93ba2d545b02bcf46bd2d2bd",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 64369,
+      "sha256": "01dc621706733669b23a217dc2cca278e11ec3428d03e99e6c097ba6e3494fbb",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "desktop",
+      "filename": "a-001.png",
+      "bytes": 61215,
+      "sha256": "f8c7c50b7dadc6d162facf6395369bf5e87dced267c8b1651b1959b88fe47096",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "desktop",
+      "filename": "a-002.png",
+      "bytes": 173483,
+      "sha256": "fc3a2def1aa6c5e8991c86f70978d387df309ff78a82931dda96068e9b455e76",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 168693,
+      "sha256": "5f88c6646452e5c6dc91437550cfaf20ce60e03a3de8e7ec3f6e2bafb07e92b5",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "phone",
+      "filename": "b-001.png",
+      "bytes": 36193,
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 60660,
+      "sha256": "f9d30a6cc80bf137d9c18d274cca83d52931d234bd7dcbb22dce7798549d77d9",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "desktop",
+      "filename": "a-001.png",
+      "bytes": 61215,
+      "sha256": "f8c7c50b7dadc6d162facf6395369bf5e87dced267c8b1651b1959b88fe47096",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "desktop",
+      "filename": "a-002.png",
+      "bytes": 179994,
+      "sha256": "e493be50829ace2c21402c3cea67abe421a8a85cc5443dd7e547e353161ea034",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 176142,
+      "sha256": "2651d935cb6cf5455c03a86df12050aa522f8e192e76d079552ebdeecb6a9c21",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Nia Okafor",
+      "device": "phone",
+      "filename": "b-001.png",
+      "bytes": 36193,
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Nia Okafor",
+      "device": "phone",
+      "filename": "b-002.png",
+      "bytes": 51989,
+      "sha256": "07547339126dd1457ea581883678acf69c310423409a162eb13fb6f892688429",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Nia Okafor",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 77083,
+      "sha256": "ab86fbe2f0962e7e88bd08aac0f038fe7688d5bcae9aed00bc60028dd198f23a",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Nia Okafor",
+      "device": "desktop",
+      "filename": "a-001.png",
+      "bytes": 61215,
+      "sha256": "f8c7c50b7dadc6d162facf6395369bf5e87dced267c8b1651b1959b88fe47096",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Nia Okafor",
+      "device": "desktop",
+      "filename": "a-002.png",
+      "bytes": 188703,
+      "sha256": "b6fd1189f9bc0271a51a73d686924421d3fc84d93fcff68753d73b059ee9b881",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Nia Okafor",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 167409,
+      "sha256": "db4802d12aa93e0997d175d287040aa121e0145e100f8232714a5d0b9ceff312",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Dafina Kelmendi",
+      "device": "phone",
+      "filename": "first-minute.png",
+      "bytes": 62909,
+      "sha256": "b799ea0e6a76e2f7af9ece463d84ca23bc8042272187235ddb85576c62298fb0",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Dafina Kelmendi",
+      "device": "phone",
+      "filename": "phone-001.png",
+      "bytes": 36193,
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Dafina Kelmendi",
+      "device": "desktop",
+      "filename": "desktop-001.png",
+      "bytes": 61215,
+      "sha256": "f8c7c50b7dadc6d162facf6395369bf5e87dced267c8b1651b1959b88fe47096",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    },
+    {
+      "tester": "Dafina Kelmendi",
+      "device": "desktop",
+      "filename": "first-minute.png",
+      "bytes": 147103,
+      "sha256": "b13c9a442516c33c77e636a0f07df0293893d466111760394550e9dc1f3f525f",
+      "scope": "hash only; no image opened; view is producer self-report, not independently established"
+    }
+  ]
+}

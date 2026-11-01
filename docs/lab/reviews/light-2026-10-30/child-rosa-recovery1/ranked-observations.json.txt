@@ -1,0 +1,24 @@
+{
+  "tester": "rosa",
+  "globalIds": "UNASSIGNED; reserved2931\u20132950 not consumed here",
+  "rows": [
+    {
+      "literal": "Explain why food returned between years. I saw it change from low to available without understanding what caused that.",
+      "unicodeCodepointHalfOpen": [
+        130,
+        248
+      ],
+      "routeIsDirectorInterpretation": true,
+      "route": "Preference consider2026-11-10; no newblockingask"
+    },
+    {
+      "literal": "Keep the worked example of how an earlier task counts. It helped me understand a sentence that stopped me on my previous visit.",
+      "unicodeCodepointHalfOpen": [
+        252,
+        379
+      ],
+      "routeIsDirectorInterpretation": true,
+      "route": "Positive preserveexistingexample; no newcode request"
+    }
+  ]
+}

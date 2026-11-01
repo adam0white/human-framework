@@ -1,0 +1,39 @@
+{
+  "cutoff": "2026-10-31T19:00:22.724102+00:00",
+  "policy": "selected prior own FREE history plus literal latest own report; not complete archive; no independent CONT body",
+  "priorHistory": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/word-retest1/mei/own-history.md",
+    "sha256": "dc6ee4f035dd7369fec67e16ba7e56bbcb43bb616df92f890c1101f7fe6d1008",
+    "sourceStartLine": 1,
+    "sourceEndLine": 1359,
+    "excludedSpans": [
+      {
+        "startLine": 1349,
+        "endLine": 1349,
+        "sha256": "130d1e8b040109235754e458de74a8253e8d0f0fa7e6946dbf5508a5810731cd",
+        "reason": "unrelated editorial audit comparing other players history-read coverage; no own play words"
+      }
+    ],
+    "selectedSha256": "471d6fe0bfb1684f57df422f259fb8d5eedd8639e8e1a29e0c0a89c04e27f77f",
+    "unchangedFullPrefix": false
+  },
+  "inheritedSourceMap": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/word-retest1/mei/history-source-map.json",
+    "sha256": "0b2b050d48e43d34a5a38d7d55ee01a20535f43f5992f8f50235dd123c31f327",
+    "selection": "retain exact prior source mappings and exclusion/continuity qualifications"
+  },
+  "latestOwnReport": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/word-retest1/mei/report.md",
+    "sha256": "055fd136469f7861e3184393cb469c0e9a7df17a247c983b15318a7ebb235e7a",
+    "sourceStartLine": 1,
+    "sourceEndLine": 106,
+    "selection": "complete verbatim literal appendix",
+    "selectedSha256": "055fd136469f7861e3184393cb469c0e9a7df17a247c983b15318a7ebb235e7a"
+  },
+  "methodQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/word-retest1/mei/director-method-qualification.json",
+    "sha256": "57451574c65bda93685c7bc0776b004f17b1cd05f6bdf6bf3c77ff5e3edff26c",
+    "suppliedText": "All 1359 earlier history lines matched aggregated stdout and completion-bound retained responses; repeated-line alignment can be ambiguous. Attention and comprehension are not established. Retained image blocks do not prove perception; no desktop agreement or ending image and no lower phone agreement options were viewed."
+  },
+  "historySha256": "1e1d6107fe6833ba630027d30bdaa02e604a6fd6f7a1bb9cc5acd609299574d9"
+}

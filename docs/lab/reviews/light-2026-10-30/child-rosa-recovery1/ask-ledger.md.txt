@@ -1,0 +1,5 @@
+Rosa recovery: one tester row. Routes and dates are director interpretations. No global ID allocated.
+
+| date (UTC) | tester | words | routing | limits |
+| --- | --- | --- | --- | --- |
+| 2026-11-01 | Fictional returning Rosa | Explain why food returned between years. I saw it change from low to available without understanding what caused that. / Keep the worked example of how an earlier task counts. It helped me understand a sentence that stopped me on my previous visit. | Food preference consider2026-11-10; keep-example positive observation/no new code; no newblocking ask. | History201–3200 unverified; imageviewsunverifiable; conceptcountsincomplete; earlierTOOLcauseunknown. |

@@ -1,0 +1,39 @@
+{
+  "cutoff": "2026-10-31T19:00:22.724102+00:00",
+  "policy": "selected prior own FREE history plus literal latest own report; not complete archive; no independent CONT body",
+  "priorHistory": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/warren-retest2/nia/own-history.md",
+    "sha256": "35f4421e4ef8c32de1c13298f5ce813255c1a5e84629b1d92f25afb186ae17fc",
+    "sourceStartLine": 1,
+    "sourceEndLine": 1749,
+    "excludedSpans": [
+      {
+        "startLine": 1739,
+        "endLine": 1739,
+        "sha256": "130d1e8b040109235754e458de74a8253e8d0f0fa7e6946dbf5508a5810731cd",
+        "reason": "unrelated editorial audit comparing other players history-read coverage; no own play words"
+      }
+    ],
+    "selectedSha256": "b1a58952ae50a0e1bcc267bc9e061ee985de4784b497f643216a71847b3df99a",
+    "unchangedFullPrefix": false
+  },
+  "inheritedSourceMap": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/warren-retest2/nia/history-source-map.json",
+    "sha256": "ce9ef0eeb9524045bf15b6f33a45b783059aa0f63d6b81edf90200dec3fcf2d9",
+    "selection": "retain exact prior source mappings and exclusion/continuity qualifications"
+  },
+  "latestOwnReport": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/warren-retest2/nia/report.md",
+    "sha256": "87df8c2ffb55919d893dcd8ee724a75a6d5259d8c46ef089f00ca74e02723d3f",
+    "sourceStartLine": 1,
+    "sourceEndLine": 57,
+    "selection": "complete verbatim literal appendix",
+    "selectedSha256": "87df8c2ffb55919d893dcd8ee724a75a6d5259d8c46ef089f00ca74e02723d3f"
+  },
+  "methodQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/warren-retest2/nia/director-method-qualification.json",
+    "sha256": "f4a6fedd6c54a9a3b0490c7405765936de0d29fdd6fe784a07f88dcf2e1219c1",
+    "suppliedText": "All 1749 earlier history lines matched stdout and completion-bound retained responses; attention and comprehension are not established. A saved phone image had no retained view. Phone selection timeouts have unknown cause."
+  },
+  "historySha256": "8677d44fdd553d5e1f6cfb9b0fdf194c89528caa9ac71de752b3e775e19a44e1"
+}

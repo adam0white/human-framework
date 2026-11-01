@@ -1,0 +1,17 @@
+{
+  "tester": "Rosa Alvarez",
+  "history": {
+    "assignedLines": 3178,
+    "retainedAggregatedStdoutCovered": 3178,
+    "source": "root method summary; coverage of aggregated command stdout only",
+    "directDeliveryAndComprehension": "not established",
+    "producerQualification": "Rosa reports lines 401–3177 unverified despite aggregate coverage"
+  },
+  "images": "opening-image views are producer self-reports; no recognized CLI image-view evidence, saved PNG/hash does not prove perception",
+  "feedback": "driver reports quick labels/Not now blocked; cause unknown, lab verification before product attribution; no successful submission inferred",
+  "freshContext": "phone New game not selected; desktop New game tapped twice with unchanged visible menu/opening, outcome unproved",
+  "rootMethodSummarySha256": "79b9d73cd7bc477603b34828b82f1e16697d50becbc38539196a70c70057cbf0",
+  "rawCompletionSha256": "efa84a01e1099d6cde415340e09e575b43fc77442f8f81afcbfff3c62c97cde5",
+  "rawFinalizerAuditSha256": "f27211f09a3568d66af85a0cda1d2ed87b68a2d9bb17ffddd0b7baa206ada599",
+  "projection": "No provider session, command transcript, process argv, port or profile path copied. Root full audit and completion retained privately."
+}

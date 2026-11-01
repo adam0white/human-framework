@@ -1,0 +1,187 @@
+{
+  "reservation": "F2921–F2950",
+  "unused": "F2931–F2950",
+  "offset_basis": "zero-based half-open Unicode code points in exact UTF-8 decoded full report",
+  "rows": [
+    {
+      "id": "F2921",
+      "tester": "rosa",
+      "rank": 1,
+      "literal": "Show a clear result when I choose New game.",
+      "source": "rosa/report.md",
+      "unicode_codepoint_half_open": [
+        141,
+        184
+      ],
+      "route": "lab blocker target 2026-11-03",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "**Show a clear result when I choose New game.** On both devices I tapped it twice and saw the same opening and menu afterward. I wanted to try a work choice, but could not confirm that the requested fresh game had started.",
+      "full_item_unicode_codepoint_half_open": [
+        139,
+        361
+      ]
+    },
+    {
+      "id": "F2922",
+      "tester": "samir",
+      "rank": 1,
+      "literal": "Let me know the neighbour who needs water.",
+      "source": "samir/report.md",
+      "unicode_codepoint_half_open": [
+        234,
+        276
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Let me know the neighbour who needs water. I understand that they wait until morning, but I still do not know what they need or why.",
+      "full_item_unicode_codepoint_half_open": [
+        234,
+        366
+      ]
+    },
+    {
+      "id": "F2923",
+      "tester": "samir",
+      "rank": 2,
+      "literal": "Give the choices less predictable outcomes.",
+      "source": "samir/report.md",
+      "unicode_codepoint_half_open": [
+        370,
+        413
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Give the choices less predictable outcomes. I liked watching Elif learn, but I often felt I was selecting the indicated method for a known test.",
+      "full_item_unicode_codepoint_half_open": [
+        370,
+        514
+      ]
+    },
+    {
+      "id": "F2924",
+      "tester": "samir",
+      "rank": 3,
+      "literal": "Give the eighteen-year situation a little more room to breathe.",
+      "source": "samir/report.md",
+      "unicode_codepoint_half_open": [
+        518,
+        581
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Give the eighteen-year situation a little more room to breathe. The water accounting is clearer now, but I still had to read a dense paragraph carefully.",
+      "full_item_unicode_codepoint_half_open": [
+        518,
+        671
+      ]
+    },
+    {
+      "id": "F2925",
+      "tester": "pavel",
+      "rank": 1,
+      "literal": "Give the repeated afternoons more variation.",
+      "source": "pavel/report.md",
+      "unicode_codepoint_half_open": [
+        152,
+        196
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Give the repeated afternoons more variation. I like comparing Elif’s lessons and their costs, but on the phone I knew the sequence well enough that I stopped at age six.",
+      "full_item_unicode_codepoint_half_open": [
+        152,
+        321
+      ]
+    },
+    {
+      "id": "F2926",
+      "tester": "tessa",
+      "rank": 1,
+      "literal": "Give me more to do with Elif herself as she grows, alongside choosing whose work she watches.",
+      "source": "tessa/report.md",
+      "unicode_codepoint_half_open": [
+        197,
+        290
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Give me more to do with Elif herself as she grows, alongside choosing whose work she watches.",
+      "full_item_unicode_codepoint_half_open": [
+        197,
+        290
+      ]
+    },
+    {
+      "id": "F2927",
+      "tester": "tessa",
+      "rank": 2,
+      "literal": "Show what she actually tries when Danyal is away.",
+      "source": "tessa/report.md",
+      "unicode_codepoint_half_open": [
+        294,
+        343
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Show what she actually tries when Danyal is away. “It did not fit today” still leaves that moment vague.",
+      "full_item_unicode_codepoint_half_open": [
+        294,
+        398
+      ]
+    },
+    {
+      "id": "F2928",
+      "tester": "zora",
+      "rank": 1,
+      "literal": "Give Elif’s unsuccessful actions the same concrete detail as her hand on the jar lid.",
+      "source": "zora/report.md",
+      "unicode_codepoint_half_open": [
+        116,
+        201
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Give Elif’s unsuccessful actions the same concrete detail as her hand on the jar lid. I understood the shortfall, but wanted to know what she actually did.",
+      "full_item_unicode_codepoint_half_open": [
+        116,
+        271
+      ]
+    },
+    {
+      "id": "F2929",
+      "tester": "zora",
+      "rank": 2,
+      "literal": "Give later afternoons more variation in the situations and choices.",
+      "source": "zora/report.md",
+      "unicode_codepoint_half_open": [
+        275,
+        342
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Give later afternoons more variation in the situations and choices. By age 14, I was following the pattern more than the family.",
+      "full_item_unicode_codepoint_half_open": [
+        275,
+        403
+      ]
+    },
+    {
+      "id": "F2930",
+      "tester": "zora",
+      "rank": 3,
+      "literal": "Ease me into the rules and names.",
+      "source": "zora/report.md",
+      "unicode_codepoint_half_open": [
+        407,
+        440
+      ],
+      "route": "preference target 2026-11-10",
+      "route_is_director_interpretation": true,
+      "full_ranked_item_literal": "Ease me into the rules and names. The opening asked me to hold a lot before making my first choice.",
+      "full_item_unicode_codepoint_half_open": [
+        407,
+        506
+      ]
+    }
+  ]
+}

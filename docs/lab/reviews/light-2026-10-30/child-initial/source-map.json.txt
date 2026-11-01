@@ -1,0 +1,320 @@
+{
+  "scope": "Byte-exact source copies relative to child-initial-inputs; derived safe projections separately labeled. Original completion/transcript and full audit retained privately.",
+  "files": [
+    {
+      "source": "rosa/report.md",
+      "destination": "rosa/report.md",
+      "sha256": "7c6b940479aa1dd812f7182c7da7a2bcda1b4cf485e68deef02f69c663a72087"
+    },
+    {
+      "source": "rosa/report.md",
+      "destination": "rosa/report.original.md.txt",
+      "sha256": "7c6b940479aa1dd812f7182c7da7a2bcda1b4cf485e68deef02f69c663a72087"
+    },
+    {
+      "source": "rosa/brief.md",
+      "destination": "rosa/brief.original.md.txt",
+      "sha256": "8de93d6e15f67286e87abec61c3bd0ecb8b281449a861338a3022c575aadf05f"
+    },
+    {
+      "source": "rosa/own-history.md",
+      "destination": "rosa/own-history.original.md.txt",
+      "sha256": "da68c53d09d08ceb5cca792c124568319fdd8c23e61952724f198a4b0e7f6693"
+    },
+    {
+      "source": "rosa/history-source-map.json",
+      "destination": "rosa/history-source-map.json",
+      "sha256": "66d3b2769754d98458ca833d8c52034634ab4fe7e6aefa26039f3edc2f74dc73"
+    },
+    {
+      "source": "rosa/dispatch.json",
+      "destination": "rosa/dispatch.json",
+      "sha256": "de0552dab98b1d514369f0af48099239efe91335db5880ee7a9bfb06157bf1b5"
+    },
+    {
+      "source": "rosa/phone/wall-clock.jsonl",
+      "destination": "rosa/phone/wall-clock.jsonl",
+      "sha256": "0ddc9716616515793c35efbf8d3accd095fd373e9da20461d5c35ba6c73b437e"
+    },
+    {
+      "source": "rosa/phone/release-start.json",
+      "destination": "rosa/phone/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "rosa/phone/driver.out",
+      "destination": "rosa/phone/driver.out",
+      "sha256": "9c3b7592614c39d0142d66a0aaa348941f6a0b2f194f7cdf6d46ded2ce1862cd"
+    },
+    {
+      "source": "rosa/desktop/wall-clock.jsonl",
+      "destination": "rosa/desktop/wall-clock.jsonl",
+      "sha256": "07e0c72878c726f26302910b67c2e4cd783104f315ec84b15a0e6d65af04bb09"
+    },
+    {
+      "source": "rosa/desktop/release-start.json",
+      "destination": "rosa/desktop/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "rosa/desktop/driver.out",
+      "destination": "rosa/desktop/driver.out",
+      "sha256": "329120b899aae1dd185c22775818ecdd67a0f4efc6b57bad9506e3eed4b9316e"
+    },
+    {
+      "source": "samir/report.md",
+      "destination": "samir/report.md",
+      "sha256": "c4b813608190f292f3657a334f4664ed49e6330fe5452640d26aa488793baebe"
+    },
+    {
+      "source": "samir/report.md",
+      "destination": "samir/report.original.md.txt",
+      "sha256": "c4b813608190f292f3657a334f4664ed49e6330fe5452640d26aa488793baebe"
+    },
+    {
+      "source": "samir/brief.md",
+      "destination": "samir/brief.original.md.txt",
+      "sha256": "99251cca406e3c1f329384ed379f40ed2b22872e84f46495f2a09d6cf41d4a8e"
+    },
+    {
+      "source": "samir/own-history.md",
+      "destination": "samir/own-history.original.md.txt",
+      "sha256": "a9d3698ff60034b27f3d10f178905bb4017eb94c1a57a67a12ddfd55f8b4978a"
+    },
+    {
+      "source": "samir/history-source-map.json",
+      "destination": "samir/history-source-map.json",
+      "sha256": "2c33d7a918c717082479268d1fcf8ad8def3089af7398f15490c4fc52ae55b17"
+    },
+    {
+      "source": "samir/dispatch.json",
+      "destination": "samir/dispatch.json",
+      "sha256": "f1d5a6b7edb9992b04fe0973e103482b8529041d4ea02216a800516255aac78a"
+    },
+    {
+      "source": "samir/phone/wall-clock.jsonl",
+      "destination": "samir/phone/wall-clock.jsonl",
+      "sha256": "aa9dd1271e9b99e32d298204a956e1c227726803231b3acf612f7236dea62fda"
+    },
+    {
+      "source": "samir/phone/release-start.json",
+      "destination": "samir/phone/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "samir/phone/driver.out",
+      "destination": "samir/phone/driver.out",
+      "sha256": "bea23b610151f3850c25c49ffd60a77cb78aa00b22c7340c77399ba61d9e9767"
+    },
+    {
+      "source": "samir/desktop/wall-clock.jsonl",
+      "destination": "samir/desktop/wall-clock.jsonl",
+      "sha256": "9a2e07fdf40b7bb22e314d71febfcfe27e1a0ba0ec38b6e676b605d3f475ac2c"
+    },
+    {
+      "source": "samir/desktop/release-start.json",
+      "destination": "samir/desktop/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "samir/desktop/driver.out",
+      "destination": "samir/desktop/driver.out",
+      "sha256": "783eb2589740a02b49ffa2b8a7390232f9324f6e8aa503f3057f32be7c36ffea"
+    },
+    {
+      "source": "pavel/report.md",
+      "destination": "pavel/report.md",
+      "sha256": "1efd7546f1dc4eb50e70977e3118e30694918e9937560cdbf4a3cee233b82a00"
+    },
+    {
+      "source": "pavel/report.md",
+      "destination": "pavel/report.original.md.txt",
+      "sha256": "1efd7546f1dc4eb50e70977e3118e30694918e9937560cdbf4a3cee233b82a00"
+    },
+    {
+      "source": "pavel/brief.md",
+      "destination": "pavel/brief.original.md.txt",
+      "sha256": "c62affe9c3a8427ab71c93a697b519dbd7c3e47723b5b1558fbc2b7ce5810861"
+    },
+    {
+      "source": "pavel/own-history.md",
+      "destination": "pavel/own-history.original.md.txt",
+      "sha256": "3e781b22497b0b93fb7fde48515ef698c3241f8a697a883d58eb38b3f0c6293c"
+    },
+    {
+      "source": "pavel/history-source-map.json",
+      "destination": "pavel/history-source-map.json",
+      "sha256": "236448c130bbf15aac30e67f3ccefc4b6112039794ddbd0627e067db55c66776"
+    },
+    {
+      "source": "pavel/dispatch.json",
+      "destination": "pavel/dispatch.json",
+      "sha256": "84a3c1aa53e41c521253fc446e6b34ae2f3b61548176e623346e8fde06128ae7"
+    },
+    {
+      "source": "pavel/phone/wall-clock.jsonl",
+      "destination": "pavel/phone/wall-clock.jsonl",
+      "sha256": "db824c44e2dc7ba38468498a8a83966a701fe6c621f5b758dc0fc1c6ca9b1dcf"
+    },
+    {
+      "source": "pavel/phone/release-start.json",
+      "destination": "pavel/phone/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "pavel/phone/driver.out",
+      "destination": "pavel/phone/driver.out",
+      "sha256": "c7092c73e728fe173d3dc81a7134c523cf11971467829acb0a13645b7485ed79"
+    },
+    {
+      "source": "pavel/desktop/wall-clock.jsonl",
+      "destination": "pavel/desktop/wall-clock.jsonl",
+      "sha256": "ebdc56b5cc91650ce6758a99065b821f58f7bc2fead4fad6f5220ed0c75a5a85"
+    },
+    {
+      "source": "pavel/desktop/release-start.json",
+      "destination": "pavel/desktop/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "pavel/desktop/driver.out",
+      "destination": "pavel/desktop/driver.out",
+      "sha256": "acc03082ce0eb316f6bf55ac39d958ad3076a77bcd484d998ba97cb31116ca9a"
+    },
+    {
+      "source": "tessa/report.md",
+      "destination": "tessa/report.md",
+      "sha256": "a1f01348f1a3fad39f5f4e4b2944b47107e2a4f64564e51d619b074e7c7c3a18"
+    },
+    {
+      "source": "tessa/report.md",
+      "destination": "tessa/report.original.md.txt",
+      "sha256": "a1f01348f1a3fad39f5f4e4b2944b47107e2a4f64564e51d619b074e7c7c3a18"
+    },
+    {
+      "source": "tessa/brief.md",
+      "destination": "tessa/brief.original.md.txt",
+      "sha256": "d949aa40e532ecac440690d0e0ff9cf09abc3306e41755a1dbe57097edc4a68a"
+    },
+    {
+      "source": "tessa/own-history.md",
+      "destination": "tessa/own-history.original.md.txt",
+      "sha256": "962c819bfc6485505e6b71b4536995a745730635fac8ac8029fa50a684ff984e"
+    },
+    {
+      "source": "tessa/history-source-map.json",
+      "destination": "tessa/history-source-map.json",
+      "sha256": "a40911376a946cb504d78aef3004dab7c065d4eeebcef0bfda3e39ea649b107f"
+    },
+    {
+      "source": "tessa/dispatch.json",
+      "destination": "tessa/dispatch.json",
+      "sha256": "3d842ed1e5089491ba070433ead63f331cd7ce9bcb843e6ee2872401bb27bf53"
+    },
+    {
+      "source": "tessa/phone/wall-clock.jsonl",
+      "destination": "tessa/phone/wall-clock.jsonl",
+      "sha256": "ee4237ca4f86b4ea43b64c0a759b1bcb453f4b4a5fe51626f3cc03c70dc5e8e4"
+    },
+    {
+      "source": "tessa/phone/release-start.json",
+      "destination": "tessa/phone/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "tessa/phone/driver.out",
+      "destination": "tessa/phone/driver.out",
+      "sha256": "d99e2d6437e87ef5293008d02907c2ba95e1a80248bead3ea6900e91de5c347a"
+    },
+    {
+      "source": "tessa/desktop/wall-clock.jsonl",
+      "destination": "tessa/desktop/wall-clock.jsonl",
+      "sha256": "8f9a0344cf38ea2461a54d7324532a2d489874a804a6b88ac159a77cb3fca966"
+    },
+    {
+      "source": "tessa/desktop/release-start.json",
+      "destination": "tessa/desktop/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "tessa/desktop/driver.out",
+      "destination": "tessa/desktop/driver.out",
+      "sha256": "2c89703f343545fd4fa923f8119d8a3a636c21ba35cd0da190af49c23571071f"
+    },
+    {
+      "source": "ilinca/report.md",
+      "destination": "ilinca/report.md",
+      "sha256": "e1c3a704ac764a28eb9a76f247e2b49caa586f008280e9c1a0a248dcaab775ac"
+    },
+    {
+      "source": "ilinca/report.md",
+      "destination": "ilinca/report.original.md.txt",
+      "sha256": "e1c3a704ac764a28eb9a76f247e2b49caa586f008280e9c1a0a248dcaab775ac"
+    },
+    {
+      "source": "ilinca/brief.md",
+      "destination": "ilinca/brief.original.md.txt",
+      "sha256": "64f53796def4dbaf788c383d765be6c4e451a0d2644f8248d61e5633612a358d"
+    },
+    {
+      "source": "ilinca/own-history.md",
+      "destination": "ilinca/own-history.original.md.txt",
+      "sha256": "775197e3c402c45fb652e68b86cdba31702d906885c51f021db7a90bdb545af2"
+    },
+    {
+      "source": "ilinca/history-source-map.json",
+      "destination": "ilinca/history-source-map.json",
+      "sha256": "9a6bf82666d59091b4db847d8f5b0d202f987ed70613d1d906b4e9c5db6a6792"
+    },
+    {
+      "source": "ilinca/dispatch.json",
+      "destination": "ilinca/dispatch.json",
+      "sha256": "f30f78d0166b55646b1104f24a2d6a85cc6a49038e36eb751df805ce4721d81c"
+    },
+    {
+      "source": "ilinca/phone/wall-clock.jsonl",
+      "destination": "ilinca/phone/wall-clock.jsonl",
+      "sha256": "7d5566f8f12c5aac128c470c09b814eb83474b41cc6cc4da035ce3973092e1ea"
+    },
+    {
+      "source": "ilinca/phone/release-start.json",
+      "destination": "ilinca/phone/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "ilinca/phone/driver.out",
+      "destination": "ilinca/phone/driver.out",
+      "sha256": "88717479b280b8192ae8db2819177ad8df9bfffef37c8f35b174eeb5e0e2cdf7"
+    },
+    {
+      "source": "ilinca/desktop/wall-clock.jsonl",
+      "destination": "ilinca/desktop/wall-clock.jsonl",
+      "sha256": "d37cc91d07f2ca5aaba2f2765ea1acd5c73becac3a6db5d7fc32225e6e89ca3d"
+    },
+    {
+      "source": "ilinca/desktop/release-start.json",
+      "destination": "ilinca/desktop/release-start.json",
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9"
+    },
+    {
+      "source": "ilinca/desktop/driver.out",
+      "destination": "ilinca/desktop/driver.out",
+      "sha256": "480f317224a8067d2f3424fe56bc97dae20f282527ca8284c22509ec0a753650"
+    },
+    {
+      "source": "plan.json",
+      "destination": "inputs/plan.json",
+      "sha256": "44c816b9fed1e8317b5b84621865c3001ddf22d2ccf6092fcc5f76166e5c136c"
+    },
+    {
+      "source": "cohort.json",
+      "destination": "inputs/cohort.json",
+      "sha256": "ac9418c88c4ac7a7d363ce5ed80a43c8ece4dca74aa520ebf40129daad39e1f1"
+    },
+    {
+      "source": "input-freeze.json",
+      "destination": "inputs/input-freeze.json",
+      "sha256": "10512efe6e107ec689a3cdb506e30353b5d8e2474e972c7cefe26e86e4c8cc5c"
+    }
+  ]
+}

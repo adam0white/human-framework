@@ -1,0 +1,37 @@
+I would not voluntarily return tonight, and I would not leave the game running.
+
+1. Make the Feedback choices and “Not now” operable. This blocked me on both devices; the driver reported the controls covered or off screen after a retry.
+2. Give me less repeated text and more variation between the three-afternoon cycles. I began skimming and stopped because the pattern felt predictable.
+
+The village illustration drew me in, and I liked the practical problem of keeping water at home. I understood that Elif would use the approach she watched most often. Seeing her count the cups, check a path, or put her hand on the jar made my choices feel tangible. The consequences for other people also mattered: keeping the jar meant the neighbour had to wait.
+
+I was initially unsure whether working in the field wasted one of her lessons. The game did say no adult showed her a new way that day, but I still had to think through how that affected the count. I did not reach a point where that uncertainty stopped me. The repeated instructions and choice cycle were what made me leave.
+
+I read the supplied history through line 9. The last line read was **“End of supplied own history.”** Unread ranges: **none**. It supplied no previous HF encounters. On the desktop at 4.944 seconds, the visible house and well prompted recognition of my own phone session earlier that evening; confidence was high. My words were: “I recognise the little house and well from my phone just now.” I had no prior HF recognition before the phone session.
+
+**Phone — 360 × 690 touch.** The first screen appeared at 0.475 seconds. I viewed [phone-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/ilinca/phone/phone-001.png): the village image and opening text fit the narrow page, while the recording notice covered the lower part of the screen. Continue dismissed the notice. I chose Maryam, worked in the field, then chose Maryam again; Elif kept the evening jar. At age six I chose Yusuf twice and worked in the field; she checked the path and brought water. At age ten I chose Maryam for the queue, and she set out places. I stopped during the first afternoon at age fourteen.
+
+**Desktop — 1280 × 800 keyboard and mouse.** The first screen appeared at 0.415 seconds. I viewed [desktop-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/ilinca/desktop/desktop-001.png): the same illustration and opening appeared in a wider centered column, with the recording notice over the lower text. Continue dismissed it. I tried staying home twice and working in the field; Elif kept the jar and the neighbour waited. At age six I tried Danyal twice and worked in the field; he helped her bring the water. I stopped there.
+
+The diary entries below are the unedited reactions logged during play. Times are driver elapsed seconds; engagement is the value I entered.
+
+**Phone diary**
+
+- 4.752 s, note, engagement 4: “The little village picture is inviting. There are many names and rules before I can try anything; I want to see what happens with the water.”
+- 9.710 s, note, engagement 4: “The cups are a nice small detail. Food is already low, so I want to work in the field, though I wonder whether that wastes one of her lessons.”
+- 23.358 s, note, engagement 5: “She kept the jar, so my choice made sense. I like seeing her do the counting herself. I will keep her with Maryam.”
+- 56.536 s, note, engagement 3: “I can see the pattern now. The queue problem was clear, but the same long water-store paragraph keeps coming back and I am starting to skim it.”
+- 61.404 s, first_minute, engagement 3: “I understand that she repeats the most watched way, and I like watching the result. The repeated afternoons are becoming predictable and I am less curious now.”
+- 63.390 s, want_quit, **BORED**, engagement 2: “I think I would leave here; I have seen the same choice cycle several times.”
+- 77.084 s, stop, **BORED**, engagement 2: “I am leaving at the first afternoon at 14. The repeated choices have lost my interest.”
+
+**Desktop diary**
+
+- 4.944 s, note, engagement 3: “I recognise the little house and well from my phone just now. This is the same beginning; I want to try saying no this time.”
+- 22.309 s, note, engagement 4: “She kept the jar this way too, but the neighbour has to wait. That feels more personal than counting cups. I am curious about another way.”
+- 40.342 s, want_quit, **BORED**, engagement 2: “That answered my curiosity about another choice. I do not feel like repeating the afternoons again tonight.”
+- 52.428 s, stop, **BORED**, engagement 2: “I am leaving after seeing Danyal help her bring water. I have had enough of the repeated afternoons tonight.”
+
+Both Feedback dialogs opened. On phone, “I'm stopping” failed twice, including after a scroll, and “Not now” failed twice. On desktop, “I’d stop here” and “Not now” each failed twice. The driver reported each as covered or off screen. Under the assignment’s rule, these are **TOOL** limitations; no label selection or dismissal was confirmed. I typed no note and submitted nothing. Recording and consent remained at their defaults.
+
+The phone stop was at 77.084 seconds and the desktop stop at 52.428 seconds. Neither game ended. The desktop first-minute checkpoint and both three-minute pulse checkpoints were untested because I left before reaching them. The later game and ending were also untested.

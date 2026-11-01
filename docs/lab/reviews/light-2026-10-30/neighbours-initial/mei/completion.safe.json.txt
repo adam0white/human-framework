@@ -1,0 +1,13 @@
+{
+  "tester": "Mei Tan",
+  "sourceSha256": "109437651a3aef9c0bf7e7a16ec8f8488158bb9cc608731fc1cf6236d7e27f4f",
+  "rootReturnSha256": "3a8796bb623146bb6ebd8b332ada499f833ae23499d2345460ca5cfed15a6c85",
+  "testerExit": 0,
+  "driverExits": [
+    0,
+    0
+  ],
+  "cut": null,
+  "rootPass": true,
+  "scope": "Hash-bound safe projection, not original completion; process argv and profile paths withheld."
+}

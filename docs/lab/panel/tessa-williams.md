@@ -738,3 +738,133 @@ Source: [readable report view](../reviews/light-2026-10-30/rope-retest1/tessa/re
 **New this time that would stop me returning:** nothing beyond the same-shaped yes lines. The group stopped and waited for me on the laptop after I walked ahead. Bilal stopped on his own with no reason shown.
 
 I started no workers, servers, browsers or worktrees and touched no repository, so no `git worktree list` applies. The coordinator owns the drivers.
+
+<!-- selected-continuity-key: light-1030:child-initial:tessa:free -->
+
+## child-initial: tessa
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/child-initial/publication-map.json. Individual method qualifications: docs/lab/reviews/light-2026-10-30/child-initial/tessa/director-method-qualification.json.txt.
+
+```text
+I would not return voluntarily tonight or leave the game running; I liked watching Elif copy small gestures, but choosing the same work at each age became repetitive.
+
+My ranked asks are:
+
+1. Give me something more to do with Elif herself as she grows, alongside choosing whose work she watches.
+2. Show more of what she actually tries when a learned approach fails. “It did not fit today” told me the result, but I wanted the moment itself.
+3. Make the Feedback quick labels operable. **“I'm stopping” was a blocking control I reached on both devices:** the driver could not tap it after one retry.
+
+I played *What the Child Saw* for the first time as Tessa Williams, 17, in Adelaide. The sessions were on the same evening: a 360×690 touch-phone context followed by a 1280×800 laptop context. Both opened at Elif age three with two emergency shares. I used the supplied `labRunSource=agent` URL and left recording and consent at their defaults.
+
+There was one start-method deviation: on the phone I played the fresh opening directly and did **not** select the menu’s New game control. On the laptop I selected New game before playing; the screen remained at the opening, and I resumed from it. I imported no save or seed. These were separate automated contexts, not a comparison of matched choices.
+
+I read all 1,197 lines of the supplied own history before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. I did not follow diary links.
+
+The phone opening at **0.455 s** introduced Zehra, her daughter Elif, and the rule that Elif copies the work she has watched most. The stitched village in the screenshot was immediately appealing. On the laptop at **0.467 s**, the same opening appeared with a much larger illustration. The phone’s first choice put Elif’s hand across the jar lid; seeing her repeat that gesture alone was my favourite moment.
+
+The following are my unedited driver diary reactions, in order. Times are driver elapsed seconds; engagement is the value I logged.
+
+**Phone**
+
+- **4.711 s, note, engagement 4:** “The little stitched village is cute. Zehra, Yusuf and Danyal make me think of visiting the Çoban house and the village well in my other games, but I cannot tell if these are the same people.”
+- **9.895 s, note, engagement 4:** “Her hand on the lid is sweet. I chose to teach her to say no, but food is already low. I want to see her do something herself.”
+- **23.076 s, note, engagement 5:** “She copied the hand on the lid! That is lovely, though the neighbour has to wait. I thought that was the end, but now we choose years together. I want her to see the paths too.”
+- **40.678 s, note, engagement 3:** “Little jars worked and wore the rope. I like seeing the cost. The same afternoon choices are starting to feel like a puzzle I solve by repeating one person twice.”
+- **45.952 s, note, engagement 4:** “Tariq! That name reminds me of the neighbour who stopped me on the lantern walk. I do not know if it is him; half-brother alone is not enough to tell.”
+- **60.828 s, first_minute, engagement 3, Elif at 14:** “Elif copies the way she sees most, including one old task. I like the little gestures and the consequences, but each age is the same three choices then watching her. I am choosing people more than playing with her.”
+- **64.682 s, want_quit, BORED, engagement 2, Elif at 14:** “The hand on the lid is the same scene from when she was three. I like her growing up but I am choosing from the same work again and I would leave here.”
+- **79.946 s, stop, BORED, engagement 2, Elif at 14:** “Stopping the phone at fourteen. I liked seeing Elif copy the little gestures and the costs of her choices, but the same afternoon work keeps returning and I want to do something with her myself.”
+
+**Laptop**
+
+- **20.839 s, note, engagement 4:** “Laptop, same evening. The stitched picture is bigger and lovely. This time I want to see what happens if she learns to wait for Danyal when he is away.”
+- **41.079 s, note, engagement 4:** “Oh, she came home short and used a share. I asked for that and the game warned me Danyal was away, so it feels fair. I wish she told me what she actually tried, though.”
+- **57.968 s, note, engagement 3:** “I mixed the three people and she chose Yusuf, whose task carried over. The checked stones line is more vivid than the short answer. I think I understand the old task tipping the count.”
+- **62.358 s, first_minute, engagement 3, Elif at 10:** “The laptop run let me try a bad fit on purpose and the missing share was explained. Mixing teachers then used the carried-over Yusuf task. The result changes, but I am still choosing work from the same list and watching.”
+- **64.575 s, want_quit, TASTE, engagement 2, Elif at 10:** “I saw a different result and a fair failure, but I know what I would do next: pick a teacher three more times. I would leave now rather than play the same pattern again.”
+- **74.328 s, stop, TASTE, engagement 2, Elif at 10:** “Stopping the laptop at ten. I liked the fair consequence when Danyal was away and the way the older task tipped her choice, but I have had enough of selecting the same work and watching the result.”
+
+The rules were clear enough for me to try things deliberately. On the phone, staying home twice led Elif to protect the jar; counting with Maryam led to small jars and a stated cost to the rope. On the laptop, I deliberately taught her to wait with Danyal while the page said he would be away. She came home short and one emergency share covered it. That felt fair, although I wanted a more concrete account of what happened. The carried-over Yusuf task appeared to tip the later choice after I mixed teachers; that is my interpretation of the stated rule and result.
+
+I did not encounter a gameplay confusion that made me stop. I initially thought the age-three result might be the end, then the game offered the choice of whom Elif would work beside through the years. The repeated work and repeated jar scene were what made me leave. Neither game ended: the phone stopped after the first age-14 afternoon, and the laptop at the start of age 10. Later outcomes, endings, and the approximately three-minute pulse checkpoints were untested. Both quit wishes persisted; I stayed only for Feedback and the stop log.
+
+The names were **uncertain recognition**, not confirmed identities. At **4.711 s**, the visible names Zehra and Yusuf and Danyal at the well reminded me of my own Çoban-house and Well play; confidence that they were the same people was low. At **45.952 s**, “her half-brother Tariq” reminded me of Tariq stopping me on my lantern walk; confidence was low. I did not recognise Elif or Maryam from a specific prior encounter.
+
+I actually viewed two screenshots:
+
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/tessa/phone/a-001.png>), captured at **1.896 s**: a small stitched village illustration above the opening text. The recording notice covered the lower part of the phone screen.
+- [Laptop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/tessa/desktop/b-001.png>), captured at **2.163 s**: the same illustration much larger, with the opening text beneath it and the recording notice near the bottom.
+
+I did not view a later gameplay screenshot or an automatic checkpoint, so I cannot assess later layouts visually. The driver’s named taps produced the gameplay results described above; these were automated inputs, not physical touch observations.
+
+On both devices I opened Feedback and tried **“I'm stopping.”** The driver reported it covered or off screen on the first attempt and retry, so under the assignment’s rule I record that as **TOOL**; it did not determine either play stop. A phone scroll did not resolve it. On the phone, **Not now** also reported covered or off screen on its one attempt. Escape closed Feedback on both devices. No label selection was confirmed, I typed no note, and I did not submit. The menu showed **Recording: on**; I changed no setting.
+
+The coordinator owns the drivers and browsers. I started no workers, servers, browsers, or worktrees and touched no repository; no `git worktree list` applies.
+```
+
+<!-- selected-continuity-key: light-1030:child-retest1:tessa:free -->
+
+## child-retest1: tessa
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/child-retest1/publication-map.json. Individual method qualifications: docs/lab/reviews/light-2026-10-30/child-retest1/tessa/method-qualification.json.txt.
+
+```text
+I would not return voluntarily tonight or leave the game running; I liked hearing Elif explain some of her choices, but I had enough of choosing the same work at each age.
+
+My ranked asks are:
+
+1. Give me more to do with Elif herself as she grows, alongside choosing whose work she watches.
+2. Show what she actually tries when Danyal is away. “It did not fit today” still leaves that moment vague.
+
+I played *What the Child Saw* as Tessa Williams, 17, in Adelaide. This was a return visit. I played a fresh 360×690 touch-phone context, then a fresh 1280×800 laptop context the same evening. I selected **New game** in each menu before playing; the opening remained at Elif age three. No save or matched seed was imported. I used the assigned URL with `labRunSource=agent` and left recording and consent at their defaults.
+
+I read all **1,256 lines** of the supplied own history before play, using explicit ranges and rereading the initially truncated portion. The last line read was **“End of supplied own history.”** Unread ranges: **none**. I followed no diary links.
+
+The stitched village at **0.440 s** on the phone brought back the jar-lid gesture I liked on my earlier visit. The laptop opened at **0.483 s** with the same scene, larger. My earlier ask for more of Elif’s failed attempt was partly met by the specific wet-path account on the phone, but the laptop’s Danyal-absent outcome still used the vague line I remembered. These were different choices, so they do not establish a change to the same outcome.
+
+**My unedited diary lines**, in order, follow. Times are driver elapsed seconds.
+
+**Phone**
+
+- **5.193 s, note, engagement 4:** “The stitched village and Elif watching hands bring back the jar lid she copied last time. I want to see whether there is more to do with her now.”
+- **17.420 s, note, engagement 4:** “She follows his footprints and reaches for the smallest cup. That little extra detail is lovely. I want to try leaving her home while I work too.”
+- **32.480 s, note, engagement 5:** “She actually tells me she checked for another jar, and the wet path explains the shortfall. That is more of her attempt than I remember getting when Danyal was away. I like hearing her voice.”
+- **50.810 s, note, engagement 4:** “She found Danyal and tells me they carried jars together. Sweet, and I can see the cost in his delayed repairs. I am still choosing the same work, though.”
+- **56.712 s, note, engagement 3:** “There is the hand on the lid again, but now she shows Tariq. I like the extra person; the same scene at ten still feels a bit familiar.”
+- **62.781 s, first_minute, engagement 4, Elif at 10:** “Elif now tells me what she did when she comes home, and the small cup and sharing with Tariq make her feel more present. I still pick work for three afternoons each age and watch the result. I understand why the wet path cost a share and why Danyal helped when on duty.”
+- **75.107 s, want_quit, BORED, engagement 2, Elif at 10:** “I like that she held her place and the other children got angry, but I am back to choosing the same people again. I would leave here.”
+- **85.015 s, stop, BORED, engagement 2, Elif at 10:** “Stopping the phone at ten. Hearing Elif tell me what happened and seeing her make room for another child were lovely, but I am tired of choosing the same work each age.”
+
+**Laptop**
+
+- **5.257 s, note, engagement 4:** “Same stitched village on the laptop, bigger and lovely. I want to see the away Danyal attempt again, because I wanted more of what she tried last time.”
+- **36.135 s, note, engagement 3:** “That is the same vague Danyal line I remember: it did not fit today. I know he was away, but I still want to see what she actually did while waiting.”
+- **59.460 s, note, engagement 3:** “Small jars again, but now she says why she chose them. I like hearing her reasoning more than a verdict. I am already back at the same four people though.”
+- **62.113 s, first_minute, engagement 3, Elif at 6:** “I tried Danyal while he was away again. The cost is clear but her account still says only his way did not fit. Small jars give a more specific explanation. I like her voice, but the same work choices keep returning.”
+- **65.592 s, want_quit, TASTE, engagement 2, Elif at 6:** “I have seen the Danyal failure and another small jars result. I like the more specific words, but I do not want to pick three more afternoons of work. I would leave now.”
+- **75.776 s, stop, TASTE, engagement 2, Elif at 6:** “Stopping the laptop at six. Her small jars explanation feels personal, but the failed Danyal attempt is still vague and I have had enough of picking the same work.”
+
+The rules were clear enough for me to choose deliberately. On the phone, I practised checking with Yusuf; Elif said she had looked for another jar, and the wet path cost an emergency share. At six, she found Danyal on duty and brought water with him, delaying his repairs. At ten, she held the household’s place and the older children left angry. Those consequences made her feel present, even as the choice pattern became familiar.
+
+On the laptop I deliberately chose Danyal while the opening said he would be away. The share paid for the shortfall, as expected, but I could not picture her attempt from “It did not fit today.” Later, her explanation of carrying small jars on the safe path was more specific. I did not reach a gameplay confusion that made me quit.
+
+My recognition was prompted by visible cues:
+
+- **Phone, 5.193 s:** The stitched village and “She watches your hands” recalled Elif copying the jar-lid gesture in my earlier Child visit. **High confidence** in that memory; my words are in the diary above.
+- **Phone, 56.712 s:** The hand on the lid recalled that earlier scene; Elif showing Tariq was the detail I noticed this time. **High confidence** in the repeated gesture.
+- **Laptop, 36.135 s:** “It did not fit today” recalled my earlier failed Danyal attempt. **High confidence** in that wording and encounter.
+- I recorded no new recognition of people from other games during these sessions. My earlier uncertainty about whether shared names identify the same people remains unresolved.
+
+I actually viewed these screenshots:
+
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/tessa/phone/a-001.png>), captured at **1.825 s**: the stitched village above the opening text; the recording notice covered the lower part of the screen.
+- [Laptop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/tessa/desktop/b-001.png>), captured at **2.182 s**: the larger stitched village and centred text, with the recording notice near the bottom.
+
+I did not view later gameplay or automatic checkpoint screenshots, so I cannot assess those layouts visually. Inputs were automated driver taps, not physical touch. A malformed shell command before the phone Feedback selection produced a shell error and sent no gameplay input; the corrected call worked.
+
+At both stops, **Feedback → “I'm stopping”** visibly became pressed, and **Not now** returned to the menu. I typed no note and did not submit. This time the quick label that blocked me on both devices during my earlier visit was operable on both. No blocking ask remained in the controls I reached.
+
+Both quit wishes persisted. I stayed only to open Feedback and log the stops. Neither game ended: I stopped the phone at **85.015 s**, age ten, and the laptop at **75.776 s**, age six. Later outcomes, endings and the approximately three-minute pulse checkpoints were untested.
+
+The coordinator owns the drivers and browsers. I started no workers, servers, browsers or worktrees and touched no repository, so no `git worktree list` applies.
+```

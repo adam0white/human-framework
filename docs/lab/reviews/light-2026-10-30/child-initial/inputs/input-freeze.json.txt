@@ -1,0 +1,85 @@
+{
+  "at": "2026-10-31T17:27:41.559921+00:00",
+  "state": "PREPARED ONLY / ADMISSION HOLD",
+  "planSha256": "44c816b9fed1e8317b5b84621865c3001ddf22d2ccf6092fcc5f76166e5c136c",
+  "cohortSha256": "ac9418c88c4ac7a7d363ce5ed80a43c8ece4dca74aa520ebf40129daad39e1f1",
+  "players": [
+    {
+      "tester": "Rosa Alvarez",
+      "historySha256": "da68c53d09d08ceb5cca792c124568319fdd8c23e61952724f198a4b0e7f6693",
+      "briefSha256": "8de93d6e15f67286e87abec61c3bd0ecb8b281449a861338a3022c575aadf05f",
+      "historySourceMapSha256": "66d3b2769754d98458ca833d8c52034634ab4fe7e6aefa26039f3edc2f74dc73",
+      "lines": 3178,
+      "characters": 402798,
+      "ownSourceCount": 7
+    },
+    {
+      "tester": "Samir Haddad",
+      "historySha256": "a9d3698ff60034b27f3d10f178905bb4017eb94c1a57a67a12ddfd55f8b4978a",
+      "briefSha256": "99251cca406e3c1f329384ed379f40ed2b22872e84f46495f2a09d6cf41d4a8e",
+      "historySourceMapSha256": "2c33d7a918c717082479268d1fcf8ad8def3089af7398f15490c4fc52ae55b17",
+      "lines": 1319,
+      "characters": 166645,
+      "ownSourceCount": 9
+    },
+    {
+      "tester": "Pavel Novak",
+      "historySha256": "3e781b22497b0b93fb7fde48515ef698c3241f8a697a883d58eb38b3f0c6293c",
+      "briefSha256": "c62affe9c3a8427ab71c93a697b519dbd7c3e47723b5b1558fbc2b7ce5810861",
+      "historySourceMapSha256": "236448c130bbf15aac30e67f3ccefc4b6112039794ddbd0627e067db55c66776",
+      "lines": 1259,
+      "characters": 187290,
+      "ownSourceCount": 9
+    },
+    {
+      "tester": "Tessa Williams",
+      "historySha256": "962c819bfc6485505e6b71b4536995a745730635fac8ac8029fa50a684ff984e",
+      "briefSha256": "d949aa40e532ecac440690d0e0ff9cf09abc3306e41755a1dbe57097edc4a68a",
+      "historySourceMapSha256": "a40911376a946cb504d78aef3004dab7c065d4eeebcef0bfda3e39ea649b107f",
+      "lines": 1197,
+      "characters": 138244,
+      "ownSourceCount": 9
+    },
+    {
+      "tester": "Ilinca Pavelescu",
+      "historySha256": "775197e3c402c45fb652e68b86cdba31702d906885c51f021db7a90bdb545af2",
+      "briefSha256": "64f53796def4dbaf788c383d765be6c4e451a0d2644f8248d61e5633612a358d",
+      "historySourceMapSha256": "9a6bf82666d59091b4db847d8f5b0d202f987ed70613d1d906b4e9c5db6a6792",
+      "lines": 9,
+      "characters": 204,
+      "ownSourceCount": 0
+    }
+  ],
+  "coldExposureCheck": {
+    "candidate": "Ilinca Pavelescu",
+    "normalization": "NFKD/casefold/alphanumeric",
+    "roots": [
+      "/Users/abdul/code/.lab-scratch/playtest",
+      "/Users/abdul/code/.lab-scratch/playtest-b",
+      "/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/docs/lab/panel"
+    ],
+    "scope": "report/plan/roster/registry/cohort text plus own panel filenames; <=2MB each, excludes new preparation directory, images/encoded sessions excluded",
+    "filesScanned": 1231,
+    "hits": [],
+    "limitation": "bounded local collision check, not exhaustive exposure proof; no prior HF is the assigned premise and must remain true at dispatch"
+  },
+  "driverApprovalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/native-tap-v2-approved.json",
+  "driverApprovalSha256": "f650087efbafde5b091e6f1c5c285eaefd2856920ed62ce872de1f03ee3b41cb",
+  "runner": "existing approved native-v2 operator only; no Child runner created or launched",
+  "requiredBeforeDispatch": [
+    "named current Child custody and bounded ordinary fresh-game handback",
+    "root independent input review and exact hash-bound admission",
+    "fresh release/served/source/signature/exactCI binding",
+    "actual CPU/browser technical-window return, no engineering overlap",
+    "fresh disk at least8GB before launch and stop floor5GB",
+    "at most4 concurrent fresh test browser sessions, one tester serial",
+    "15 real minutes after actual preceding round closure",
+    "fresh cold context and exposure recheck",
+    "native-v2 exact instrument hashes/closed assigned ports/cleanup supervisor qualification",
+    "no Claude before2026-11-03T08:00Z; Terra6.1low serial only",
+    "hold target deployment during actual panel; root owns scheduling"
+  ],
+  "predecessorManifestSha256": "566860ccadc59749dc61e3d29e0c7a1d5bb2389673e72d5ea55d7b16baee6585",
+  "rootEligibilitySuccessorSha256": "f70bc0ade39ebd950993ea8f0b8d605859f7e5183b6d4eafb159c2064b4e438e",
+  "eligibilityQualification": "Root successor supersedes only director named-custody/ordinary-handback preparation gate. Product custodian and handback remain unknown. This does not admit a round. Original requiredBeforeDispatch gate text is historical where superseded."
+}

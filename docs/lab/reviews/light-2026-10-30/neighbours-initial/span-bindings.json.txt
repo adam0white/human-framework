@@ -1,0 +1,155 @@
+{
+  "indexBasis": "Unicode code points in decoded report; one-based line; sha256 of UTF-8 literal span",
+  "spans": [
+    {
+      "id": "F-2891",
+      "tester": "rosa",
+      "file": "rosa/report.md",
+      "line": 5,
+      "startCodepoint": 145,
+      "endCodepoint": 299,
+      "sha256": "83e29d59dcde17334854bb621b669aacf6829090f81a48d912929176a032df3e",
+      "verbatim": "Explain why a repair becomes unavailable after someone agrees to do it. Bilal’s answer mattered to me, and I could not understand what happened afterward."
+    },
+    {
+      "id": "F-2892",
+      "tester": "rosa",
+      "file": "rosa/report.md",
+      "line": 6,
+      "startCodepoint": 303,
+      "endCodepoint": 384,
+      "sha256": "6851332c411ea233154750df425041bb5d687a7aa335d880d1a25e74dfb1b130",
+      "verbatim": "Tell me how far Skip will advance, or make it clearer when it is still advancing."
+    },
+    {
+      "id": "F-2893",
+      "tester": "rosa",
+      "file": "rosa/report.md",
+      "line": 7,
+      "startCodepoint": 388,
+      "endCodepoint": 467,
+      "sha256": "1de7a376bc5f3a1ea23842982ec9c106528dbb200327a2ebd0908733863dcf72",
+      "verbatim": "Keep the desktop title picture from covering the beginning of the introduction."
+    },
+    {
+      "id": "F-2894",
+      "tester": "mei",
+      "file": "mei/report.md",
+      "line": 5,
+      "startCodepoint": 183,
+      "endCodepoint": 451,
+      "sha256": "77d1ef99c12365c00025d958eefe4eb024aa3b92b494bdde119bd431ac616a4c",
+      "verbatim": "Show the current status of an offered hour consistently after a neighbour chooses something else. Nora’s conversation said my offer could become binding later; the journal subsequently said I no longer needed to give it. That uncertainty contributed to my laptop stop."
+    },
+    {
+      "id": "F-2895",
+      "tester": "mei",
+      "file": "mei/report.md",
+      "line": 6,
+      "startCodepoint": 455,
+      "endCodepoint": 609,
+      "sha256": "006c866d2b195924ebbf0b3c768969e4b8c4eece64734df720c13965a0261dd6",
+      "verbatim": "Give me enough time to reach and select a neighbour while reading their details. Twice Nora’s location or availability changed before my attempted action."
+    },
+    {
+      "id": "F-2896",
+      "tester": "mei",
+      "file": "mei/report.md",
+      "line": 7,
+      "startCodepoint": 613,
+      "endCodepoint": 757,
+      "sha256": "c64602306aea29ed6186664bf12de4a876daf8873ebd67ed76fb512feb9cf3ca",
+      "verbatim": "On the phone, make the long conversation form easier to survey. The choices extended below the screen while the Ask button stayed at the bottom."
+    },
+    {
+      "id": "F-2897",
+      "tester": "emre",
+      "file": "emre/report.md",
+      "line": 5,
+      "startCodepoint": 153,
+      "endCodepoint": 369,
+      "sha256": "bdd048c5d159233801c0da6c9af6321028d2954a31ac79d9669ab67e83efde23",
+      "verbatim": "After an inspection, show what remains to make the hall safe and what I can usefully do next. My hour propping and airing the timber was recorded, but the next inspection still reported wet timber and loose supports."
+    },
+    {
+      "id": "F-2898",
+      "tester": "emre",
+      "file": "emre/report.md",
+      "line": 6,
+      "startCodepoint": 373,
+      "endCodepoint": 572,
+      "sha256": "970641043898878742e3db9ecfe16610186b0956bd7e076aa258c4d2e2b85739",
+      "verbatim": "Show whether repair work is progressing toward the next completed repair. On the phone, Nora worked on the hall and I still saw 0 of 12; later I saw 3 of 12, without knowing which work produced them."
+    },
+    {
+      "id": "F-2899",
+      "tester": "emre",
+      "file": "emre/report.md",
+      "line": 7,
+      "startCodepoint": 576,
+      "endCodepoint": 707,
+      "sha256": "4f6c1d84e5586cd346ca027b18d9d8a4049ba4ec0537a82bd0370c4f968cc025",
+      "verbatim": "Keep the desktop opening text clear of the title artwork. The artwork covered the beginning of the goal in the screenshot I viewed."
+    },
+    {
+      "id": "F-2900",
+      "tester": "nia",
+      "file": "nia/report.md",
+      "line": 5,
+      "startCodepoint": 186,
+      "endCodepoint": 393,
+      "sha256": "135bae35118a6f3f5a2c6370164a1f8a3825f3feeeff37f8e0f86b4dac0dcd8e",
+      "verbatim": "Help me reach a personal conversation when someone is busy. Nora’s handle and Sam’s notebook interested me, but both questions told me to wait; following Nora then took me to the workshop after she had left."
+    },
+    {
+      "id": "F-2901",
+      "tester": "nia",
+      "file": "nia/report.md",
+      "line": 6,
+      "startCodepoint": 397,
+      "endCodepoint": 658,
+      "sha256": "dbc931ea2180d5a3218408fa421b18edf87c93434f7e21f6fa9fb3e3c4ceabe7",
+      "verbatim": "Make the “Keep your promise” prompt identify the work and deadline, or explain why it appeared. On phone I chose **Ask**, then accepted Sam’s alternative, and could not find my supposed promise in the journal. This was a blocking question for me when I stopped."
+    },
+    {
+      "id": "F-2902",
+      "tester": "nia",
+      "file": "nia/report.md",
+      "line": 7,
+      "startCodepoint": 662,
+      "endCodepoint": 890,
+      "sha256": "99e9223d2ca7fd202553d762e8e9526b9b483eb6ce81847665540d01f0d46ae5",
+      "verbatim": "Put a person’s later response closer to their first answer. Nora said she would open the section, while the town record said it stayed closed. Her later “I cannot do that here now” appeared in her details, which I had to reopen."
+    },
+    {
+      "id": "F-2903",
+      "tester": "dafina",
+      "file": "dafina/report.md",
+      "line": 5,
+      "startCodepoint": 150,
+      "endCodepoint": 343,
+      "sha256": "94885e7603fbc2f59d43fd5c390eaa82818891baa32e006d528aca22bd9fe745",
+      "verbatim": "Explain why Bilal’s agreed hall repair became unavailable at the hall. That was the blocking question I reached: he said “I will do it,” then went home because “That is not available here now.”"
+    },
+    {
+      "id": "F-2904",
+      "tester": "dafina",
+      "file": "dafina/report.md",
+      "line": 6,
+      "startCodepoint": 347,
+      "endCodepoint": 483,
+      "sha256": "a101d3a2c0a1bf346e5cf40642b8c63f314aac8cf2bd4022d4e113e1af75bd26",
+      "verbatim": "Help me judge whether I can reach a neighbour before they leave. I missed Sam at the kitchen and again after travelling toward the quay."
+    },
+    {
+      "id": "F-2905",
+      "tester": "dafina",
+      "file": "dafina/report.md",
+      "line": 7,
+      "startCodepoint": 487,
+      "endCodepoint": 610,
+      "sha256": "e57e002d970810ce6d0af0efe90caabadc2721585808ee9622d3d4218a3cd810",
+      "verbatim": "Make the desktop introduction fully visible; the title panel covered the beginnings of its text in the screenshot I viewed."
+    }
+  ]
+}

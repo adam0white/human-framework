@@ -1,0 +1,85 @@
+{
+  "qualification": "Ten manual views self-reported; no recognized independent CLI image event. Six automatic images, including Pavel phone after actualstop, are not perception or continuedplay. All16 PNG hashesverified and withincaps.",
+  "items": [
+    {
+      "source": "rosa/phone/a-001.png",
+      "sha256": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "rosa/desktop/b-001.png",
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "samir/desktop/first-minute.png",
+      "sha256": "9ccf6868b75776e306116099066ed1b021a2030059e35594c7b799f254750db6",
+      "class": "automatic"
+    },
+    {
+      "source": "samir/desktop/a-001.png",
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "samir/phone/b-001.png",
+      "sha256": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "pavel/desktop/first-minute.png",
+      "sha256": "3d52fc8a665b11fdab68917d7e9999094046bce3551ab3df53a60d44ac955bb1",
+      "class": "automatic"
+    },
+    {
+      "source": "pavel/desktop/a-001.png",
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "pavel/phone/b-001.png",
+      "sha256": "f1124873e62a91e3d90a5827a1f1663b3e9453ba0948097403f4048407bedf60",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "pavel/phone/first-minute.png",
+      "sha256": "c90848ff1c4758142a6f35aaadbdd67f542d67b239663ddeded1f195b470bc75",
+      "class": "automatic"
+    },
+    {
+      "source": "tessa/phone/first-minute.png",
+      "sha256": "c443552a564ab94159f7b0c6024c66764e1a07883c747ed07d4770c14152e6a6",
+      "class": "automatic"
+    },
+    {
+      "source": "tessa/phone/a-001.png",
+      "sha256": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "tessa/desktop/b-001.png",
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "tessa/desktop/first-minute.png",
+      "sha256": "9056e339cad944152af104d8a7127ba08d8add64e8abdcf1e25b7f4c1c0cd67f",
+      "class": "automatic"
+    },
+    {
+      "source": "zora/phone/first-minute.png",
+      "sha256": "6247bcae6fdafeb8f620081179d6961c53a6431c25f8c506e19322369f9cd4b3",
+      "class": "automatic"
+    },
+    {
+      "source": "zora/phone/a-001.png",
+      "sha256": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d",
+      "class": "manual self-reported view"
+    },
+    {
+      "source": "zora/desktop/a-001.png",
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+      "class": "manual self-reported view"
+    }
+  ]
+}

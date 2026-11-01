@@ -1,0 +1,107 @@
+{
+  "cutoff": "2026-10-31T17:19:20.562898+00:00",
+  "policy": "own canonical candidate selected FREE entries plus bounded additional own published reports; no other player bodies; no target report or source knowledge",
+  "sources": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/docs/lab/panel/tessa-williams.md",
+      "sourceSha256": "9c8698820dc73830d8bec532577c8b66c23677905db3db8b3120aca19b8d4dac",
+      "selection": "all own canonical candidate diary except listed independent alternatives and obsolete empty-history line",
+      "excludedSpans": [
+        {
+          "start": 150,
+          "end": 154,
+          "reason": "independent continued alternative excluded"
+        },
+        {
+          "start": 160,
+          "end": 160,
+          "reason": "excluded alternative metadata"
+        }
+      ],
+      "selectedSha256": "60f59d51c12107d9159f65b2de2e70cb8a13c739ea88a8f469375c5d624d99fa",
+      "selectedContinuityKeys": [
+        "hf3-voice-r1:tessa-williams:free",
+        "light-1030:rope:tessa:free",
+        "light-1030:days:tessa:free",
+        "light-1030:rope-retest1:tessa:free"
+      ],
+      "editorialNonOwnExclusions": [
+        {
+          "finding": "F3",
+          "suppliedLineBefore": 436,
+          "canonicalSourceLine": 439,
+          "excludedExactPhrase": ", which disagrees with other testers' asks about unaffordable visits (see the packet README). The disagreement is preserved and is not a vote.",
+          "replacement": ".",
+          "reason": "editorial cross-player preference/ask comparison; not producer own words or own method fact"
+        }
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/tessa/own-history.md",
+      "sourceSha256": "09217dbc7c0d30769481b1c00ebbde547cb9fc33343d896f5965b5258c5e9c01",
+      "selection": "## Your own Well FREE return and asks — published excerpt, older raw diary not supplied",
+      "sourceStartLine": 7,
+      "sourceEndLine": 32,
+      "selectedSha256": "26ab001ea1ecfccc36e4fa79eeec3c9b256e2b0863133695c05095b13d6e4a6d"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/tessa/own-history.md",
+      "sourceSha256": "09217dbc7c0d30769481b1c00ebbde547cb9fc33343d896f5965b5258c5e9c01",
+      "selection": "## Your own selected Warren FREE visit",
+      "sourceStartLine": 33,
+      "sourceEndLine": 163,
+      "selectedSha256": "a02b566727f31f59959ac709d1071a0e5b43fe0dfe47da7f006ba67e0318ddbb"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/tessa/own-history.md",
+      "sourceSha256": "09217dbc7c0d30769481b1c00ebbde547cb9fc33343d896f5965b5258c5e9c01",
+      "selection": "## Your own published report — human-framework/docs/games/voice-playtest-2026-10-27-retest.md",
+      "sourceStartLine": 604,
+      "sourceEndLine": 655,
+      "selectedSha256": "7a2ccf46e28f6a2dfc48a7f1d6250704ccf60e299b0d07967f5080314c63d50a"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/tessa/own-history.md",
+      "sourceSha256": "09217dbc7c0d30769481b1c00ebbde547cb9fc33343d896f5965b5258c5e9c01",
+      "selection": "## Your own published report — human-framework/docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "sourceStartLine": 656,
+      "sourceEndLine": 693,
+      "selectedSha256": "4529afa91a1a0596d6bf51ac8d766b897511ac0a11c095304f01dc9a8986872a"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/tessa/own-history.md",
+      "sourceSha256": "09217dbc7c0d30769481b1c00ebbde547cb9fc33343d896f5965b5258c5e9c01",
+      "selection": "## Your own published report — pass/docs/playtests/panel-2026-10-27.md",
+      "sourceStartLine": 694,
+      "sourceEndLine": 755,
+      "selectedSha256": "8a7e2f8af4c379830031a5d8883aebc0ec5930c3957366b1756dc89a95a93820"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/tessa/own-history.md",
+      "sourceSha256": "09217dbc7c0d30769481b1c00ebbde547cb9fc33343d896f5965b5258c5e9c01",
+      "selection": "## Your own published report — valley/docs/playtests/2026-10-27-retest2.md",
+      "sourceStartLine": 756,
+      "sourceEndLine": 802,
+      "selectedSha256": "7ec675bf84abac509f725c340f5aa003de2e9f5019a0eb21f419cee73ed0efe4"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/tessa/own-history.md",
+      "sourceSha256": "09217dbc7c0d30769481b1c00ebbde547cb9fc33343d896f5965b5258c5e9c01",
+      "selection": "## Your own published report — commonstead/docs/games/commonstead-playtest-2026-10-27b.md",
+      "sourceStartLine": 803,
+      "sourceEndLine": 851,
+      "selectedSha256": "8eda9864da56f75884c04def70dc8ea3e9288b6f50104fea3e0746e2118916da"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/tessa/own-history.md",
+      "sourceSha256": "09217dbc7c0d30769481b1c00ebbde547cb9fc33343d896f5965b5258c5e9c01",
+      "selection": "## Your own published report — lefthand/docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "sourceStartLine": 852,
+      "sourceEndLine": 899,
+      "selectedSha256": "a9e886609fb9c227f7fb63b0de74e0c8b3afe67e217ff941b3496802b5838a9d"
+    }
+  ],
+  "historySha256": "962c819bfc6485505e6b71b4536995a745730635fac8ac8029fa50a684ff984e",
+  "coldCheck": null,
+  "successorAt": "2026-10-31T17:27:41.559921+00:00"
+}

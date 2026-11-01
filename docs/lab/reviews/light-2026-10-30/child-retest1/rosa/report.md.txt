@@ -1,0 +1,47 @@
+I would return voluntarily if I could tell that a new game had started; I would close it now, not leave it running.
+
+My ranked ask is:
+
+1. **Show a clear result when I choose New game.** On both devices I tapped it twice and saw the same opening and menu afterward. I wanted to try a work choice, but could not confirm that the requested fresh game had started.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return to *What the Child Saw*. I used the supplied agent-marked page in fresh automated project-test contexts: a **360×690 touch phone**, then a **1280×800 desktop** later the same evening. No old save or matched seed was imported. I left recording and consent at their defaults.
+
+**History limit:** I received lines 1–400 in full and lines 3201–3283 in full. My combined request for lines 401–3200 was truncated, so portions of that range were not delivered; I cannot identify the individual omitted lines. Treat **401–3200 as unread or unverified**. The last line I read was **“End of supplied own history.”** I did receive my earlier Child report. It says I stopped after rereading the explanation of Elif’s earlier task and the emergency shares, and that Feedback controls failed in that visit.
+
+The opening felt more inviting this time. The example of one remembered counting task and two checking tasks helped me understand how earlier work counts. “Nothing refills this emergency store” also made the water situation clearer. I wanted to choose an afternoon’s work. I did not reread a sentence on either device, so the two-reread rule did not trigger.
+
+At **4.362 seconds on the phone**, the visible mother-and-daughter situation and water problem prompted recognition of my earlier Child opening. My confidence that it was the same game and situation was high; my recorded words are below. I did not recognise another person or encounter beyond that.
+
+These are all my successful diary log lines, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **4.362 s — note, engagement 4:** “I recognise the mother and daughter and the water problem from my last visit. The counting and checking example now helps me understand the earlier task. The emergency store says nothing refills it; that is clearer. I want to try a choice.”
+- **10.435 s — want_quit, TOOL, engagement 2:** “I asked for New game twice, and the screen and menu did not change. I cannot tell whether it started, just as on my earlier desktop visit. I would stop here.”
+- **15.291 s — stop, TOOL, engagement 2:** “I stop because I cannot confirm New game worked after two taps. Feedback let me choose stopping and close it this time. I typed nothing and sent nothing.”
+
+**Desktop**
+
+- **9.989 s — want_quit, TOOL, engagement 2:** “The same opening is easier to read on the large screen, but New game again leaves the menu unchanged after two taps. I cannot confirm a new game and would stop.”
+- **19.219 s — stop, TOOL, engagement 2:** “I stop on the large screen because I cannot confirm New game started after two taps. Feedback stopping and Not now worked. I typed nothing and sent nothing.”
+
+On each device, the driver acknowledged both New game inputs, but the visible opening and menu remained unchanged. That does not establish whether a reset happened internally. Under the assignment’s retry rule, I treated the unconfirmed outcome as **TOOL** and stopped. I made no work choice and reached no ending.
+
+For each screen I visited, these are my retrospective counts of the concepts presented. The desktop repeated the phone screens, so it introduced no additional concepts within this evening’s visit.
+
+| Screen and purpose | Concepts encountered | Count | Sentences reread |
+|---|---|---:|---|
+| Opening: understand the family and choose work | All-games link; menu; Zehra; Elif copying work; Yusuf checking paths; Maryam counting shares; Danyal keeping the well; three afternoons; Elif going alone; most-watched way; earlier task counts; counting/checking example; tied ways; keeping the evening jar; neighbour’s request; emergency store with two shares; shortfall spends a share; store cannot be refilled; Danyal away; Maryam choice and meal tradeoff; Yusuf choice and field tradeoff; Danyal choice and rope tradeoff; staying home and food tradeoff; field work and its effects; current food, water and rope status; recording and linked play; privacy and Continue | 27 | None. The example and shorter emergency-store wording helped. |
+| Menu: start a new game and access controls | Resume; Feedback; recording on; full screen; all games; New game; export playtest; replay playtest; other ways to begin; lab privacy; debug | 11 | None. |
+| Feedback: indicate why I was stopping | Keep-playing verdicts; stopping and confused labels; optional note; optional name; run and note queued with recorded history; what is sent; private note and possible public quote; lab privacy; Not now; Submit | 10 | None. |
+
+I viewed two screenshots:
+
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/rosa/phone/a-001.png), captured at **1.547 s**: a gentle village illustration and readable opening text. The recording notice covered the lower part of the page.
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/rosa/desktop/b-001.png), captured at **1.751 s**: the same illustration and a wider, comfortable text column. The recording notice covered lower content.
+
+On **both devices**, Feedback opened, **“I’m stopping”** visibly became pressed, and **Not now** returned me to the menu. This differs from my earlier report, where those Feedback actions could not be completed. I typed no note and pressed no Submit.
+
+The phone stopped at **15.291 seconds** and the desktop at **19.219 seconds**. Neither session reached 60 seconds, so no first-minute checkpoint was due; neither reached 180 seconds, so no pulse was due. The afternoon choices, their consequences, Elif’s errand and the ending remain untested.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers and browsers; a `git worktree list` is not applicable.

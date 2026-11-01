@@ -1,0 +1,37 @@
+{
+  "sourceSha256": "a70e3064cf5a9562c984014af0fb356e572c3dc0e72b077b9fa81ea8000c9003",
+  "rootReturnSha256": "50918eae7b9995d5a5418fa39f7c0c723176307f12488525bc4abe9820790f17",
+  "finalizerAuditSha256": "f27211f09a3568d66af85a0cda1d2ed87b68a2d9bb17ffddd0b7baa206ada599",
+  "status": "ROUND_CLOSED_WITH_METHOD_QUALIFICATIONS",
+  "live": {
+    "commit": "c6f74826cb1ae4590ee321202da097b344bea131",
+    "humanFramework": "3.2.0",
+    "dirty": false
+  },
+  "actualLastReturn": "2026-10-31T18:37:03.861098+00:00",
+  "counts": {
+    "reports": 5,
+    "stops": 10,
+    "voluntaryStops": 8,
+    "toolStops": 2,
+    "actualEndings": 1,
+    "pngHashes": 19,
+    "automaticPostStop": 3,
+    "sampledIdentitiesAbsent": 390,
+    "portsClosed": 11,
+    "profilesAbsent": 5
+  },
+  "methodQualifications": [
+    "All histories completely match retained aggregated stdout; delivery/comprehension remain unverified. Rosa explicitly reports 401-3177 unverified; preserve her report despite complete retained aggregate.",
+    "All10 opening-image views are tester self-reports; currentCLI event schema has no independently recognized image-view evidence. SavedPNG/hash is not perception.",
+    "Rosa phone and Tessa phone used fresh actionable context without menu Newgame. Preserve deviations. Rosa desktop Newgame twice returned same initialstate/menu/no taperror; not proof it failed or succeeded.",
+    "Five malformed shell/JSON attempts retained;2invalid note requests plus3unmatchedquote shellfailures, no received unsafe request proven. Corrected later logs/taps retain actual evidence.",
+    "Three automatic firstminute shots occurred after actual stops; no player checkpoint or extra gameplay inferred. No wait/pulse obligation.",
+    "All5 reports show repeated Feedback quicklabel/Notnow native-tap failures; driver parenthetical game-state causalclaim unverified. Lab-only diagnosis before attributingproductfault.",
+    "Allparsedtoolrequests show no type/select/Submit/send/recordingtoggle;5exceptions inspected as failed note/tap/stop JSON/shell requests. No fake livefeedbacknote submitted.",
+    "Tessa report times79.946/60.828 differ1ms from raw79.945/60.827; keep both exact source representations.",
+    "Names recognised as uncertain identity guesses; no shared-character canon accepted.",
+    "No restart/coordinator cuts or automatic ceilings. Ten rawstops preserved, no poststopgameplay."
+  ],
+  "scope": "safe projection of private root receipt; not the original; closure does not establish outcome or acceptance"
+}

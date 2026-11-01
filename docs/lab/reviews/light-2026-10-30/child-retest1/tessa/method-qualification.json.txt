@@ -1,0 +1,6 @@
+{
+  "tester": "tessa",
+  "editorial": true,
+  "qualification": "History reported all 1,256 lines read. New game was pressed, but the actual reset is unconfirmed. Phone stopped at age ten and desktop at age six. The detailed wet-path and vague Danyal outcomes were different choices, so do not establish a change to the same outcome. A malformed quotation sent no gameplay call; corrected call worked.",
+  "common": "Immediate frozen maps establish byte continuity, not full archive, individual model delivery or comprehension. Reports are verbatim; their diary timestamps and root raw times are not normalized. The tester self-reported two manual screenshot views; no independent CLI image event was recognized."
+}
