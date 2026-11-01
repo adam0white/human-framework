@@ -1,0 +1,79 @@
+[
+  {
+    "tester": "maya",
+    "returnLiteral": "I would not return voluntarily tonight; I might come back another evening if I could hear what Rafi tells his customer or try a fresh repair puzzle, but I would not leave the workshop running.",
+    "returnSourceByteRange": [
+      0,
+      192
+    ],
+    "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/report.md",
+    "reportSha256": "802062039a3f827ee2a7ba4e401c49140e8f71d8467f30b84d882384a1536b5f",
+    "askIds": [
+      "F-3101",
+      "F-3102",
+      "F-3103"
+    ],
+    "verdict": "NOT_INVENTED"
+  },
+  {
+    "tester": "emre",
+    "returnLiteral": "I would return voluntarily another evening on desktop for a different repair, and I would not leave it running.",
+    "returnSourceByteRange": [
+      0,
+      111
+    ],
+    "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/emre/report.md",
+    "reportSha256": "101c3f4a7aaa851b048c9bd3fe6f5bba369a19c83b3e8519f5a1d1068ba38030",
+    "askIds": [
+      "F-3104",
+      "F-3105"
+    ],
+    "verdict": "NOT_INVENTED"
+  },
+  {
+    "tester": "nia",
+    "returnLiteral": "I would come back another evening to see Sam use what he learned on his own, but I would not return tonight or leave the game running.",
+    "returnSourceByteRange": [
+      0,
+      134
+    ],
+    "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/report.md",
+    "reportSha256": "de970bc8e4ba9a31ba45fc9b4b10e1db8f0cc721b7efeca9aaecf8c1ba9a2b9d",
+    "askIds": [
+      "F-3106",
+      "F-3107",
+      "F-3108"
+    ],
+    "verdict": "NOT_INVENTED"
+  },
+  {
+    "tester": "rosa",
+    "returnLiteral": "I would return voluntarily another evening if the repair conversation were shorter and explained its records and rules plainly; I would close it now, not leave it running.",
+    "returnSourceByteRange": [
+      0,
+      171
+    ],
+    "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/report.md",
+    "reportSha256": "069e60eac6ae27581fe9f9edf68cde6923e5480e732ed94e64a243166ba7e811",
+    "askIds": [
+      "F-3109",
+      "F-3110",
+      "F-3111"
+    ],
+    "verdict": "NOT_INVENTED"
+  },
+  {
+    "tester": "ines",
+    "returnLiteral": "I would not voluntarily return tonight; I would leave the game saved rather than running.",
+    "returnSourceByteRange": [
+      0,
+      89
+    ],
+    "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/report.md",
+    "reportSha256": "62e5dd5666a5264fd712bd76cb5ad7bca67c82079221c65ec8f239ae76c88fa4",
+    "askIds": [
+      "F-3112"
+    ],
+    "verdict": "NOT_INVENTED"
+  }
+]

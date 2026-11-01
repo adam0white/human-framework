@@ -1,6 +1,7 @@
 /** SCOPE: detached current reads. Subjective views use only the observer's own
  * stores. Unknown other-person facts stay unknown. Host-only current reuses the
  * exported duplicate-journal window, without accepted-history packing or hashes.
+ * Host control reads existing offers, activity and current world revision.
  * No new player knowledge, actor mutation or RNG draw. */
 
 import { readCapacities } from './body/injury.ts';
@@ -39,6 +40,8 @@ export function inspectCurrentRun(
   const q = admitted.value;
   if (q.select.includes('current') && q.perspective.kind !== 'host')
     return fail('$.select', 'current requires privileged host perspective');
+  if (q.select.includes('control') && q.perspective.kind !== 'host')
+    return fail('$.select', 'control requires privileged host perspective');
   const record = readKernel(run),
     state = record.current;
   if (new Set(q.people).size !== q.people.length || new Set(q.select).size !== q.select.length)
@@ -155,6 +158,9 @@ export function inspectCurrentRun(
       const parts: T.DeepReadonly<T.SelectedPart<T.HostParts>>[] = [];
       for (const select of q.select)
         switch (select) {
+          case 'control':
+            parts.push({ select, value: { offers: state.offers[id] ?? null, activity: actor.activity } });
+            break;
           case 'summary':
             parts.push({
               select,
@@ -474,6 +480,7 @@ export function inspectCurrentRun(
     perspective: q.perspective,
     people,
     events,
+    ...(q.select.includes('control') ? { worldRevision: state.world.revision } : {}),
     ...(q.select.includes('current') ? { current: archiveSnapshot(state) } : {}),
     ...(skill ? { skill } : {}),
     ...(method ? { method } : {}),

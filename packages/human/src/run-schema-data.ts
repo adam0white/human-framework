@@ -7320,6 +7320,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
             kind: 'union',
             options: [
               { kind: 'literal', value: 'current' },
+              { kind: 'literal', value: 'control' },
               { kind: 'literal', value: 'summary' },
               { kind: 'literal', value: 'skills' },
               { kind: 'literal', value: 'body' },

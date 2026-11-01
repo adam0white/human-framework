@@ -29,6 +29,18 @@ absolute links in sections, since they are copied into the release page.
 - Migration: none; hosts bump the pin, and kit's peer range accepts 0.5.15.
 - Kit 0.5.32 adds client 0.5.15 to its optional peer list. Both candidates retain HF 4.15.0. The site continues to use published client 0.5.14 and kit 0.5.31 until the companion artifacts are released and adopted. These versions are candidates, not published releases.
 
+## [4.16.0] — 2026-11-01
+
+Engine: 4.16.0.
+
+### Added
+
+- Host inspection can select `control` for each requested person's current offer book and activity, with `null` for an absent book. The same snapshot supplies `worldRevision`, including for empty people lists. Person perspectives refuse this selection. Read again after mutation or restore; full `current` is unchanged.
+
+### Migration
+
+- Use the inspection's current world revision for host receipts; an issued request's revision can be stale. Archives require the exact package, build and schema identity.
+
 ## [4.15.1] — 2026-11-01
 
 Engine: 4.15.1.
