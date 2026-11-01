@@ -1,0 +1,61 @@
+{
+  "policy": "Immediate frozen prior own-history file is the primary source for this selected history, not a complete archive. Actual model delivery and comprehension of earlier history are not established. Historical source references are provenance only, not revalidated segment claims.",
+  "continuityBranch": "FREE selected prior history then Child initial",
+  "byteRangeBasis": "zero-based, half-open offsets into own-history.md",
+  "composition": {
+    "operation": "concatenate entire frozen prior bytes, wrapper bytes, complete literal report bytes, final marker bytes; no trimming or newline normalization",
+    "prior": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/pavel/own-history.md",
+      "sha256": "3e781b22497b0b93fb7fde48515ef698c3241f8a697a883d58eb38b3f0c6293c",
+      "sourceByteRange": [
+        0,
+        187626
+      ],
+      "outputByteRange": [
+        0,
+        187626
+      ],
+      "sourceLineCount": 1259
+    },
+    "wrapper": {
+      "utf8": "\n## Your own later full report\n\n",
+      "outputByteRange": [
+        187626,
+        187658
+      ]
+    },
+    "report": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/pavel/report.md",
+      "sha256": "1efd7546f1dc4eb50e70977e3118e30694918e9937560cdbf4a3cee233b82a00",
+      "sourceByteRange": [
+        0,
+        7671
+      ],
+      "outputByteRange": [
+        187658,
+        195329
+      ],
+      "sourceLineCount": 50
+    },
+    "finalMarker": {
+      "utf8": "\n\nEnd of supplied own history.\n",
+      "outputByteRange": [
+        195329,
+        195360
+      ]
+    },
+    "outputBytes": 195360,
+    "outputLineCount": 1314,
+    "outputSha256": "ec8f15dbd226e0e04dcf740ad3aa5802438de4b59b5844ca46b1c38c3da7d343"
+  },
+  "historicalProvenance": {
+    "mapPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/pavel/history-source-map.json",
+    "mapSha256": "236448c130bbf15aac30e67f3ccefc4b6112039794ddbd0627e067db55c66776",
+    "qualification": "Historical record of upstream selections, exclusions and qualifications; referenced segment selections and current mutable paths are not asserted revalidated by this correction."
+  },
+  "childMethodQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/pavel/director-method-qualification.json",
+    "sha256": "12fac77083e621b3728b8513de3d971f0b74896e7a47b41f08e46316245ff53a",
+    "selection": "unchanged coordinator qualification; not a player memory"
+  }
+}

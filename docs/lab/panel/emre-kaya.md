@@ -1821,3 +1821,74 @@ The blocking ask I reached is the first ranked ask: I need a useful decision dur
 
 I created no worktree, branch, server, browser or worker. The coordinator owns the drivers. No repository was touched, so there is no `git worktree list` result to report.
 ```
+
+<!-- selected-continuity-key: light-1030:neighbours-initial:emre:free -->
+
+## neighbours-initial: emre
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/neighbours-initial/publication-map.json.
+
+```text
+I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight.
+
+**Ranked asks**
+
+1. After an inspection, show what remains to make the hall safe and what I can usefully do next. My hour propping and airing the timber was recorded, but the next inspection still reported wet timber and loose supports.
+2. Show whether repair work is progressing toward the next completed repair. On the phone, Nora worked on the hall and I still saw 0 of 12; later I saw 3 of 12, without knowing which work produced them.
+3. Keep the desktop opening text clear of the title artwork. The artwork covered the beginning of the goal in the screenshot I viewed.
+
+I reached no blocking ask: I could play, make a promise and complete my hour. My first two asks concern understanding and planning, not a proven failure of the repair system.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was my **first recorded Neighbours visit within the supplied own history**. Exposure outside those records is unknown. I read lines **1–1431** of the supplied history, including rereading the truncated portions. The last line read was **“End of supplied own history.”** Unread ranges: **none**. I did not recognize a prior Neighbours encounter from an ordinary visible cue. I recognized the desktop opening and hall situation from the phone session earlier that evening; that was the same evening’s play, not an earlier recorded visit.
+
+Both sessions used the supplied page and separate fresh game contexts, with the agent query retained. Recording and consent stayed at their defaults.
+
+- **Phone:** 360×690 touch, driver port 23104. Stopped at **130.628 seconds**, Day 1 16:15.
+- **Desktop:** 1280×800 keyboard and mouse, driver port 23105, same evening. Stopped at **124.268 seconds**, Day 1 16:00.
+
+The phone opening at 1.587 seconds gave me a practical objective: reopen the flooded hall. The text and button were readable. On desktop at 1.835 seconds, the artwork overlapped the start of the opening text; I knew its wording from the phone.
+
+The phone run felt like looking for a useful way into an active town. I liked the explicit cost of lending tools and the comparison’s numerical results. The comparison was a possible future from the current state, not proof of what my already-spent credit caused. Nora’s kept door promise and the inspection’s reason gave the town a tangible story. I left when I was mostly checking people and skipping time.
+
+On desktop I made a more personal trade: I asked Nora to drink and offered an hour supporting the timber. She deferred, later drank, and my hour became due. I started it and the game said I kept my promise; Nora remembered, and the timber still felt damp. That was satisfying because the outcome was specific. The next inspection still named wet timber and loose supports, and I did not know what useful step would change that result.
+
+**Diary: original logged reactions, in order**
+
+Phone:
+
+- **4.285 s, note:** “A flooded hall is a clear practical goal. The phone opening is readable and I want to see what the neighbours need."”  
+  The final quotation mark was accidentally included in the logged reaction.
+- **23.612 s, note:** “Twelve repairs and an inspection give me a plan. Nora has promised the doors by 18:00, so I am walking there to see how I can help.”
+- **34.170 s, note:** “Nora is already repairing, so I do not want to pull her away. The handle question says to wait until her work ends; that is clear. I am looking for a way to help directly.”
+- **42.713 s, note:** “I spent one of three credits on tools; the game confirms five tools now. I know the cost, but not yet whether tools were a bottleneck.”
+- **59.431 s, first_minute:** “The hall goal and Nora deadline are clear. I lent tools and the comparison shows a possible extra repair, but it compares adding more tools from the current town, not the credit I already spent. I like the numbers and want to see the actual progress.” This was premature, before 60 seconds.
+- **61.413 s, first_minute:** “The hall goal and Nora deadline are clear. I lent tools and the comparison shows a possible extra repair, but it compares adding more tools from the current town, not the credit I already spent. I like the numbers and want to see the actual progress.”
+- **67.738 s, note:** “Nora worked on repairs for an hour, but the hall still says zero of twelve. I cannot tell whether her work made partial progress or why none completed.”
+- **94.508 s, note:** “Now three repairs are complete. Progress happens, though I do not know which work produced it. I want to reach the evening and see Nora promise resolve.”
+- **115.037 s, note:** “The inspection says wet timber and loose supports keep the hall closed. That is a concrete reason. I remember the support and dry timber option in the conversation, and want to find how to do it.”
+- **118.317 s, note:** “Nora kept the door promise before 18:00. That is satisfying even though the hall is still unsafe. She is travelling home, so I will not chase her tonight.”
+- **120.269 s, want_quit, BORED:** “I have seen the promise kept and the inspection reason. I am mostly checking and skipping now, and I want to leave this phone run here.”
+- **130.628 s, stop, BORED:** “I am stopping the phone run after Nora kept her promise. The inspection gave a useful reason and the comparison interested me, but I am checking and skipping more than deciding. I would try the hall again on desktop, not leave this running.”
+
+Desktop:
+
+- **4.670 s, note:** “The desktop title art covers the beginning of the goal text. I know the goal from the phone, and I want to try helping with the wet timber this time.”
+- **40.744 s, note:** “I can offer to support the timber if I ask Nora to drink. She is already repairing, so this interrupts her; I will try the trade and keep my hour if she agrees.”
+- **44.449 s, note:** “Nora will drink after finishing her task. My offer is not owed yet unless she acts; that is explicit. I need to watch for that and find how to do the work.”
+- **62.937 s, first_minute:** “I asked Nora to drink and offered to support the timber. She deferred until after her work, and my hour is conditional. The response is clear, but I have not found where to perform the work or whether she acted on the request.”
+- **75.954 s, note:** “Reopening Nora showed she drank and made my hour due. I started it; the status now says my hour continues automatically. That is the concrete work I wanted.”
+- **89.292 s, note:** “I kept the promise and Nora remembers. The timber still felt damp, so the work has a result without pretending it solved the whole problem. I like that.”
+- **106.109 s, note:** “The next inspection still reports wet timber and loose supports after my hour. I can see my work was not enough yet, but I do not know how much drying remains or what to do next.”
+- **115.385 s, want_quit, BORED:** “I kept my hour and saw the next inspection, but now I am back at the same closed-hall report. I would stop for tonight rather than keep skipping for another inspection.”
+- **124.268 s, stop, BORED:** “I am stopping on desktop after keeping my promise. Nora remembered and the timber result was concrete, but the next inspection repeated the same safety problem and I do not know the next useful step. I would return another evening to see the hall open, not leave it running.”
+
+Neither session reached 180 seconds, so there were **no engagement pulses**. Both quit wishes persisted to their stops. The hall reopening, later days and any ending were untested; neither game ended.
+
+The initial goal, travel time, Nora’s deadline and the conditional promise were clear. The phone comparison reported 5 → 6 repairs over six simulated hours with additional tools, and explicitly cautioned that the two runs did not establish a general effect or explain the mechanism. I do not know whether my earlier tool purchase was necessary. On desktop, the record showed Nora later drank and my hour became due; reopening her was how I found it.
+
+I actually viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/phone/b-001.png), [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/desktop/a-001.png), and [desktop a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/emre/desktop/a-002.png). The last showed the town map beside Nora’s conversation and the work-offer choices. Other gameplay and Feedback details above come from the driver’s visible text, not viewed screenshots. A phone text-match attempt for “Your work” was not a current clickable control; a later Skip target had become stale. One Feedback command had a shell quoting error before the corrected tap. I saw no control block that stopped play.
+
+When confused on each device, I opened Feedback, selected **“I’m confused”**, saw it pressed and closed Feedback. Before each stop I selected **“I’m stopping”**, saw it pressed and closed Feedback. I typed no note and submitted nothing.
+
+I owned no browser, driver, process, branch or worktree. The coordinator owns driver cleanup; I touched no repository.
+```

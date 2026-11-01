@@ -1,0 +1,6 @@
+{
+  "tester": "pavel",
+  "editorial": true,
+  "qualification": "History reported all 1,314 lines read; selected history is not the complete archive. Desktop reached visible yearbook; phone stopped at age six. An automatic phone first-minute image was captured after the 53.048 stop and is not continued play or perception. A malformed quotation sent no gameplay call; corrected call worked.",
+  "common": "Immediate frozen maps establish byte continuity, not full archive, individual model delivery or comprehension. Reports are verbatim; their diary timestamps and root raw times are not normalized. The tester self-reported two manual screenshot views; no independent CLI image event was recognized."
+}

@@ -1,0 +1,101 @@
+{
+  "cutoff": "2026-10-31T17:19:20.562898+00:00",
+  "policy": "own canonical candidate selected FREE entries plus bounded additional own published reports; no other player bodies; no target report or source knowledge",
+  "sources": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/docs/lab/panel/rosa-alvarez.md",
+      "sourceSha256": "2a1536f3e0a314eb4775d2d24d697dd7b5f6be84dd229de6a435884465c3102e",
+      "selection": "all own canonical candidate diary except listed independent alternatives and obsolete empty-history line",
+      "excludedSpans": [
+        {
+          "start": 114,
+          "end": 117,
+          "reason": "independent continued alternative excluded"
+        },
+        {
+          "start": 219,
+          "end": 398,
+          "reason": "independent continued alternative excluded"
+        },
+        {
+          "start": 404,
+          "end": 404,
+          "reason": "excluded alternative metadata"
+        }
+      ],
+      "selectedSha256": "1d60e6cb4d395d11e8f7a06169ef6828161d3e8e8a5bfce0c9cffd3ac314a47b",
+      "selectedContinuityKeys": [
+        "hf3-voice-r1:rosa-alvarez:free",
+        "light-1030:pass:rosa:free",
+        "light-1030:goodhands:rosa:free",
+        "glance-light-1030:rosa-alvarez:free",
+        "light-1030:rope:rosa:free",
+        "light-1030:hearsay:rosa:free",
+        "light-1030:stairwell:rosa:free",
+        "light-1030:murmur:rosa:free",
+        "light-1030:glance-retest1:rosa:free",
+        "light-1030:hearsay-retest1:rosa:free",
+        "light-1030:pass-retest2:rosa:free",
+        "light-1030:goodhands-retest1:rosa:free",
+        "light-1030:glance-retest2:rosa:free",
+        "light-1030:rope-retest1:rosa:free",
+        "light-1030:goodhands-retest2:rosa:free",
+        "light-1030:hearsay-retest2:rosa:free",
+        "light-1030:stairwell-retest1:rosa:free",
+        "light-1030:murmur-retest1:rosa:free",
+        "light-1030:well-retest1:rosa:free",
+        "light-1030:warren-retest2:rosa:free"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/own-history.md",
+      "sourceSha256": "9a9077adc7313538a763c1bcbde1f5e725be3345697e3387bade48efd4f860a6",
+      "selection": "## Your own Well FREE return and asks — published excerpt, older raw diary not supplied",
+      "sourceStartLine": 9,
+      "sourceEndLine": 28,
+      "selectedSha256": "3b591c9f060cf67b7cd8cfe22e8fb3c2bc1ca1ac6515eef7a7fa1cff14e448f8"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/own-history.md",
+      "sourceSha256": "9a9077adc7313538a763c1bcbde1f5e725be3345697e3387bade48efd4f860a6",
+      "selection": "## Your own published report — human-framework/docs/games/voice-playtest-2026-10-27-retest.md",
+      "sourceStartLine": 2864,
+      "sourceEndLine": 2925,
+      "selectedSha256": "959dc34f451c1ef233daa55d406092bfb0b3ca44eda30c2320a51b8db61c48b9"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/own-history.md",
+      "sourceSha256": "9a9077adc7313538a763c1bcbde1f5e725be3345697e3387bade48efd4f860a6",
+      "selection": "## Your own published report — human-framework/docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "sourceStartLine": 2926,
+      "sourceEndLine": 2990,
+      "selectedSha256": "c9c8bfccc3de49f9ad1bf3942a4e4234693c4029b8e216a172e9b634c888d168"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/own-history.md",
+      "sourceSha256": "9a9077adc7313538a763c1bcbde1f5e725be3345697e3387bade48efd4f860a6",
+      "selection": "## Your own published report — valley/docs/playtests/2026-10-27-retest2.md",
+      "sourceStartLine": 2991,
+      "sourceEndLine": 3033,
+      "selectedSha256": "f7a2d5cd8db517d58fcb59cf6b0a803d27c5c9704818433fa5620feab7a0fd44"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/own-history.md",
+      "sourceSha256": "9a9077adc7313538a763c1bcbde1f5e725be3345697e3387bade48efd4f860a6",
+      "selection": "## Your own published report — commonstead/docs/games/commonstead-playtest-2026-10-27b.md",
+      "sourceStartLine": 3034,
+      "sourceEndLine": 3075,
+      "selectedSha256": "70e69d159f9e72b6032575f57d725ca90c91ca8f25082183bf0390735b90b2ac"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/warren-codex/rosa/own-history.md",
+      "sourceSha256": "9a9077adc7313538a763c1bcbde1f5e725be3345697e3387bade48efd4f860a6",
+      "selection": "## Your own published report — lefthand/docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "sourceStartLine": 3076,
+      "sourceEndLine": 3124,
+      "selectedSha256": "67895d85fabe8f15aeb72c19de1a7c77788bfe71c574d2537303984a1e1070b1"
+    }
+  ],
+  "historySha256": "da68c53d09d08ceb5cca792c124568319fdd8c23e61952724f198a4b0e7f6693",
+  "coldCheck": null
+}

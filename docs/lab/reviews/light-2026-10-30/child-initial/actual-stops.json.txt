@@ -1,0 +1,195 @@
+{
+  "stops": [
+    {
+      "tester": "Rosa Alvarez",
+      "device": "phone",
+      "source": "rosa/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:21:44.557Z",
+        "elapsed_s": 33.109,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at the opening after two sentences I had to reread. I understand a mother teaching her daughter, but not the old task or emergency shares. Feedback was offered, but the confused label and Not now could not be tapped after retry. I typed nothing and sent nothing.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "desktop",
+      "source": "rosa/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:22:11.724Z",
+        "elapsed_s": 24.608,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop because I cannot confirm New game worked after two taps. Feedback opened, but the stopping label and Not now could not be tapped after retry. I typed nothing and sent nothing.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "TOOL",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Samir Haddad",
+      "device": "phone",
+      "source": "samir/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:26:01.904Z",
+        "elapsed_s": 49.588,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on the phone after the first errand. I have already played these years on desktop and do not want to repeat them tonight. I tried I am stopping and Not now twice each; both were reported covered or off screen. I typed and sent nothing.",
+        "game_clock": "Elif at 3",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Samir Haddad",
+      "device": "desktop",
+      "source": "samir/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:25:09.907Z",
+        "elapsed_s": 137.986,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping at eighteen because Feedback would not let me select confused or close it after retries. I liked watching Elif copy small acts and wanted to see the last errand. I do not know how the empty household store relates to the two emergency shares.",
+        "game_clock": "Elif at 18",
+        "engagement": 3,
+        "reason": "TOOL",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Pavel Novak",
+      "device": "phone",
+      "source": "pavel/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:30:58.233Z",
+        "elapsed_s": 101.534,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop on the phone at age ten. I liked the different costs of the lessons, but I have seen enough of the repeated pattern tonight. The stopping label and Not now each failed twice as covered or off screen. Feedback remains open; I typed and sent nothing.",
+        "game_clock": "Elif at 10",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Pavel Novak",
+      "device": "desktop",
+      "source": "pavel/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:29:14.674Z",
+        "elapsed_s": 152.475,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop at the yearbook: everyone has water. I tried the stopping label and Not now twice each, but the driver says both are covered or off screen; Feedback remains open. I typed and sent nothing.",
+        "game_clock": "Elif at 18",
+        "engagement": 4,
+        "reason": "FINISHED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Tessa Williams",
+      "device": "phone",
+      "source": "tessa/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:32:56.014Z",
+        "elapsed_s": 79.945,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the phone at fourteen. I liked seeing Elif copy the little gestures and the costs of her choices, but the same afternoon work keeps returning and I want to do something with her myself.",
+        "game_clock": "Elif at 14",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Tessa Williams",
+      "device": "desktop",
+      "source": "tessa/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:34:12.217Z",
+        "elapsed_s": 74.328,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping the laptop at ten. I liked the fair consequence when Danyal was away and the way the older task tipped her choice, but I have had enough of selecting the same work and watching the result.",
+        "game_clock": "Elif at 10",
+        "engagement": 2,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Ilinca Pavelescu",
+      "device": "phone",
+      "source": "ilinca/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:35:56.129Z",
+        "elapsed_s": 77.084,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am leaving at the first afternoon at 14. The repeated choices have lost my interest.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Ilinca Pavelescu",
+      "device": "desktop",
+      "source": "ilinca/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T18:36:50.304Z",
+        "elapsed_s": 52.428,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am leaving after seeing Danyal help her bring water. I have had enough of the repeated afternoons tonight.",
+        "game_clock": null,
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    }
+  ],
+  "scope": "Ten exact raw stop objects. Labels alone do not establish game endings; Pavel desktop ending independently visible per root."
+}

@@ -1,0 +1,54 @@
+I would return voluntarily another evening to see whether the hall reopens; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Explain why a repair becomes unavailable after someone agrees to do it. Bilal’s answer mattered to me, and I could not understand what happened afterward.
+2. Tell me how far Skip will advance, or make it clearer when it is still advancing.
+3. Keep the desktop title picture from covering the beginning of the introduction.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was my **first recorded Neighbours visit** in the supplied own history. Exposure outside those records is unknown. I read lines **1–3224** in explicit ranges before play; the last line read was **“End of supplied own history.”** Unread ranges: **none**.
+
+The phone session used a 360×690 touch context and stopped at **104.761 seconds**. The desktop session used a fresh 1280×800 context later the same evening and stopped at **50.894 seconds**. Both began from the supplied agent-marked page; neither imported a save or matched seed. I used mouse actions on desktop. Recording and consent stayed at their defaults.
+
+The opening was inviting. Reopening a flooded hall is a clear reason to help, and I liked being told that neighbours decide for themselves. On the phone I walked to the hall and asked Bilal to repair it. His “I will do it” pleased me. Later, “That is not available here now” left me uncertain about the result. On desktop, lending tools gave an immediate, clear answer: five tools were available.
+
+The name **Derya** at **23.043 seconds** reminded me that I had seen that name in my own history; **Bilal** also appeared in earlier records. My words were: “Derya and Bilal are names I have seen elsewhere, but names alone do not tell me whether these are the same people.” Confidence in a shared identity: **uncertain**. At **54.147 seconds**, Bilal’s spouse, stepchild and limited visit gave me an understandable situation, but did not prompt confident recognition of a particular earlier Bilal. I recognised no other person from an earlier game.
+
+The diary lines below are the successful log strings, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **9.769 s — note, engagement 4:** “The flood and reopening the hall are clear. I like that the neighbours decide for themselves. The text and large button are comfortable on my phone. Title concepts: 9: all games, information, menu, flood, rebuilding, hall, independent decisions, other ways in, download and recording linked across games.”
+- **23.043 s — note, engagement 4, Day 1 08:00:** “I see the hall and a clear next step to explore. Derya and Bilal are names I have seen elsewhere, but names alone do not tell me whether these are the same people. New concepts 15: day, clock, rain, hall repairs, town credits, hall choice, river, eight places, high water, closed hall, six neighbours, free to choose, walking takes time, same place to hear, skip, help and journal. No reread.”
+- **31.916 s — note, engagement 4, Day 1 08:45:** “Nora promised to repair the doors before evening. That is a clear human obligation. I am walking to her. New concepts 7: twelve repairs, safety inspection, Nora repair designer, her brother, promise and deadline, walking arrival, walk must finish. No reread.”
+- **45.080 s — note, engagement 3, Day 1 12:30:** “Skip went from 09:00 to 12:30 before I could select Nora; she has gone to the workshop. I wanted to meet her at the hall. I do not know how far Skip will go. New concepts 3: inspection story, next step asks for an answer, skipping continues until stopped. No reread.”
+- **54.147 s — note, engagement 3, Day 1 12:30:** “Bilal has a spouse and stepchild at home and a limited visit. That is a person I can understand; I do not recognise him as a particular earlier Bilal from those details. The talk screen has many choices. New concepts 8: folding lamp, request choices, offer an hour, ask, urge, my work choices, deadline choices, obligation if he agrees or acts later. No reread yet.”
+- **61.817 s — first_minute, engagement 3, Day 1 12:30:** “I understand the hall needs twelve repairs and people have their own work. I walked there and found Bilal, but he is busy when I ask about his lamp. The request screen gives me many choices at once. No sentence reread yet.”
+- **76.310 s — note, engagement 4, Day 1 12:30:** “He says I will do it. That is a clear answer and makes me feel I helped. I asked gently, without promising my hour. I would like to see the repair happen.”
+- **84.840 s — want_quit, TASTE, engagement 4, Day 1 12:30:** “I enjoyed his clear answer, but the long request form and the jump while skipping tired me. I have had a short visit and would stop on the phone now.”
+- **92.247 s — note, engagement 3, Day 1 12:45:** “Oh, later he says that is not available here now and goes home. I do not know what made the repair unavailable after he agreed. Menu concepts 15: pause, journal, colours, pace and four speeds, saved towns, studies, compare outcomes, recorded studies, feedback, full screen, all games, new game, saved people, recording, lab privacy, debug, resume. No reread.”
+- **104.761 s — stop, TASTE, engagement 3, Day 1 12:45:** “I stop on the phone. I liked the people and the clear answer, but I do not know why Bilal could not repair after agreeing. I would close it and try the larger screen.”
+
+**Desktop**
+
+- **9.268 s — note, engagement 3:** “Same title as my phone tonight. The large title picture covers the beginning of the introduction on this screen. I know the goal from the phone. Title concepts 9: games, information, menu, flood, rebuilding, hall, independent decisions, other ways in, download and linked recording.”
+- **24.430 s — note, engagement 4, Day 1 08:00:** “I can spend one of three credits on tools, the bus or news. The results are stated plainly. I want tools for the hall. New concepts on town screen 16: day, time, rain, repairs, credits, hall choice, river, places, six neighbours, independent activities, walking, hearing nearby, skip, help, journal, town record. Help panel adds 5: compare outcomes, spending credits, bus, tools, news and later hall evenings. No reread.”
+- **29.376 s — note, engagement 4, Day 1 09:00:** “The tools were added and five are available. That is a clear result and satisfying. I do not know when the hall will be ready, but I have helped.”
+- **38.674 s — want_quit, TASTE, engagement 4, Day 1 09:00:** “The map is lovely and the tools gave a clear result. I have seen the beginning twice tonight and would stop now, curious about whether the hall opens.”
+- **50.894 s — stop, TASTE, engagement 4, Day 1 10:45:** “I stop on the big screen for tonight. The map is lovely and lending tools gave a clear result. I would return to see the hall reopen, and I would close it now.”
+
+I did not reread a sentence on either device, so my two-reread quitting rule did not trigger. The phone request form was long, though its ordinary **Ask** option and Bilal’s immediate reply were plain. My strongest unanswered question was what made the repair unavailable after his agreement. I cannot establish the cause from what I saw. The phone’s Skip showed “Stop” while advancing; by the next attempted selection, the clock had reached 12:30 and Nora’s activity had changed. The driver identified my selection as a stale control because the game state had changed.
+
+The concept counts are my contemporaneous counts, reproduced in the diary. They are estimates, and some combine related items; the desktop help-panel list contains six named items despite my logged count of five. I did not record separate complete counts for the Feedback screens. Each showed the stopping and confused labels, three keep-playing choices, a note field, optional name, what is sent, a copy control, Submit and close.
+
+I viewed these screenshots:
+
+- [Phone title, a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/phone/a-001.png): readable introduction, a large red Enter button and the recording notice at the bottom. I did not view the phone game layout in an image.
+- [Desktop title, b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/desktop/b-001.png): large text and button, but the title illustration covered the beginning of the introduction.
+- [Desktop game, b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/desktop/b-002.png): a drawn town map on the left and a readable town-support panel on the right. I liked seeing the places together.
+
+On both devices I opened Feedback when stopping, selected **“I’m stopping”**, saw it marked pressed, and used **Close Feedback**. I typed no note and pressed no Submit. The phone’s quit wish remained through the Feedback check, although Bilal’s later result gave me a new question. The desktop quit wish also remained.
+
+The phone first-minute checkpoint was recorded at **61.817 seconds**. Desktop stopped before 60 seconds, so its first-minute checkpoint was untested. Neither session reached 180 seconds, so no pulse was due. I did not reach a game ending, a reopened hall, or the later consequences of the tools and repairs. The question about Bilal’s unavailable repair is the blocking ask I actually reached.
+
+I created no worktree, branch, server, browser or helper process and touched no repository. The coordinator owns the drivers; a `git worktree list` is not applicable to my work.

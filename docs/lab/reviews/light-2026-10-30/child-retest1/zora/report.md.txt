@@ -1,0 +1,31 @@
+I would not voluntarily return tonight, and I would leave the game paused rather than running.
+
+My ranked asks:
+
+1. Give Elif’s unsuccessful actions the same concrete detail as her hand on the jar lid. I understood the shortfall, but wanted to know what she actually did.
+2. Give later afternoons more variation in the situations and choices. By age 14, I was following the pattern more than the family.
+3. Ease me into the rules and names. The opening asked me to hold a lot before making my first choice.
+
+I played as Zora, a first-time visitor with no prior HF play, watching, reading, reviews, or game memories. I read all nine lines of the supplied history before playing. The last line read was `End of supplied own history.` Unread ranges: none.
+
+**Phone — 360 × 690 touch.** I opened the fresh game at 0.486 seconds and stopped at 90.139 seconds, after Elif’s age-14 winter sharing. The stitched village was inviting, and her copying my hand on the jar lid made the premise feel personal. I understood that the most-practised way guided her, including the remembered task, but the repeated scenario and choice structure began to feel mechanical. I wanted to stop at 76.107 seconds. The game had not ended; anything after the age-14 result, including the ending, remained untested. The three-minute pulse was not reached.
+
+**Desktop — 1280 × 800 keyboard and mouse.** I opened a fresh game at 0.488 seconds and stopped at 45.455 seconds, after the age-3 outcome. I chose Danyal twice to see a different result. I expected waiting to be a poor fit because he would be away; Elif came home short and used one emergency water share. I was unclear what happened with the neighbour. I wanted to stop at 36.947 seconds because I did not want to repeat the later afternoons that evening. The first-minute and three-minute checkpoints, later ages, and ending were untested.
+
+On desktop, the visible village illustration and “ELIF AT 3” prompted recognition at 6.489 seconds: I remembered the phone opening from moments earlier, with high confidence. My words were: “I recognise the stitched village and Elif at three from my phone just now. It is starting over on this device; I would try a different choice.” On the initial phone visit, I had no prior encounter to recognise.
+
+The screenshots I actually viewed were [phone a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/zora/phone/a-001.png) and [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/zora/desktop/a-001.png). The phone view showed the illustration, introductory text and recording notice filling much of the narrow screen; choices lay below the visible area. The desktop view showed the same content in a wider centred column. The operated choices visibly advanced the story on both devices. I did not encounter an in-game blocking ask or an inoperable control.
+
+At the phone stop, Feedback showed **“I’d stop here”** and **“I'm stopping”** as pressed; **Not now** returned to the menu. On desktop, I first selected **“I'm confused”** and closed with **Not now**. When stopping, I reopened Feedback, selected **“I’d stop here”** and **“I'm stopping,”** then chose **Not now**. I typed no note and submitted nothing. Recording remained on. The initial phone diary attempt at 6.332 seconds returned `Invalid reason (invalid request, not a driver failure)`; the same reaction was logged successfully without that reason at 7.792 seconds.
+
+The successful diary lines, unedited and in order, were:
+
+- **Phone 7.792 s, note, engagement 3:** “The little stitched village is lovely, but I have a lot of rules and names to hold before I have done anything.”
+- **Phone 24.457 s, note, engagement 4:** “Her hand on the lid is a sweet concrete echo of what I chose. I want to see her grow, though the repeated neighbour text feels mechanical.”
+- **Phone 60.988 s, first_minute, engagement 3:** “I understand that the most practised action guides her, but I am starting to choose by the hint in each scenario rather than feel involved in her life.”
+- **Phone 76.107 s, want_quit, BORED, engagement 2:** “I have seen the pattern several times and I am ready to leave; I do not feel curious enough to repeat it again.”
+- **Phone 90.139 s, stop, BORED, engagement 2:** “I am leaving after the winter sharing; I have had enough of the repeated choices.”
+- **Desktop 6.489 s, note, engagement 3:** “I recognise the stitched village and Elif at three from my phone just now. It is starting over on this device; I would try a different choice.”
+- **Desktop 26.855 s, note, engagement 3:** “I expected waiting to fail because Danyal was away, but I wanted to see it. Her explanation is very abstract: what did she actually do when the neighbour asked?”
+- **Desktop 36.947 s, want_quit, BORED, engagement 2:** “I have seen a different outcome, but I do not want to go through the same afternoons again tonight.”
+- **Desktop 45.455 s, stop, BORED, engagement 2:** “I am leaving after seeing the different first outcome; repeating the rest does not appeal tonight.”

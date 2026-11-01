@@ -1,0 +1,61 @@
+{
+  "policy": "Immediate frozen prior own-history file is the primary source for this selected history, not a complete archive. Actual model delivery and comprehension of earlier history are not established. Historical source references are provenance only, not revalidated segment claims.",
+  "continuityBranch": "FREE selected prior history then Child initial",
+  "byteRangeBasis": "zero-based, half-open offsets into own-history.md",
+  "composition": {
+    "operation": "concatenate entire frozen prior bytes, wrapper bytes, complete literal report bytes, final marker bytes; no trimming or newline normalization",
+    "prior": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/tessa/own-history.md",
+      "sha256": "962c819bfc6485505e6b71b4536995a745730635fac8ac8029fa50a684ff984e",
+      "sourceByteRange": [
+        0,
+        138616
+      ],
+      "outputByteRange": [
+        0,
+        138616
+      ],
+      "sourceLineCount": 1197
+    },
+    "wrapper": {
+      "utf8": "\n## Your own later full report\n\n",
+      "outputByteRange": [
+        138616,
+        138648
+      ]
+    },
+    "report": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/tessa/report.md",
+      "sha256": "a1f01348f1a3fad39f5f4e4b2944b47107e2a4f64564e51d619b074e7c7c3a18",
+      "sourceByteRange": [
+        0,
+        8291
+      ],
+      "outputByteRange": [
+        138648,
+        146939
+      ],
+      "sourceLineCount": 54
+    },
+    "finalMarker": {
+      "utf8": "\n\nEnd of supplied own history.\n",
+      "outputByteRange": [
+        146939,
+        146970
+      ]
+    },
+    "outputBytes": 146970,
+    "outputLineCount": 1256,
+    "outputSha256": "69fec4aab2c484a1bccdae5afcadc56344ec95dc2081dc3dab19bb91065cac27"
+  },
+  "historicalProvenance": {
+    "mapPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/tessa/history-source-map.json",
+    "mapSha256": "a40911376a946cb504d78aef3004dab7c065d4eeebcef0bfda3e39ea649b107f",
+    "qualification": "Historical record of upstream selections, exclusions and qualifications; referenced segment selections and current mutable paths are not asserted revalidated by this correction."
+  },
+  "childMethodQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/tessa/director-method-qualification.json",
+    "sha256": "9158b3d831e725c3b6b5315a167659b342b824e9bb4f01c834b4346648451815",
+    "selection": "unchanged coordinator qualification; not a player memory"
+  }
+}

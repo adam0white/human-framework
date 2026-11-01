@@ -1,0 +1,60 @@
+{
+  "schema": "bounded-source-epoch-publication-map/v1",
+  "packet": "child-rosa-recovery1",
+  "files": {
+    "README.md": {
+      "publishedPath": "README.md.txt",
+      "sha256": "77bdd0d8c45f962ea2078a23b5f2cd9a57eb9cf5dbb03b0c025790837c9e67a2",
+      "bytes": 775
+    },
+    "actual-stops.json": {
+      "publishedPath": "actual-stops.json.txt",
+      "sha256": "787ced581ec82636762a5ff15223622bcc47039b7f5eeed6a95fe7fdd7aa28d9",
+      "bytes": 1078
+    },
+    "ask-ledger.md": {
+      "publishedPath": "ask-ledger.md.txt",
+      "sha256": "c1343c5f31451d629c5c6f25c82ec43fadbd44405ec0c99f6378992e05db8e0f",
+      "bytes": 690
+    },
+    "manifest.json": {
+      "publishedPath": "manifest.json.txt",
+      "sha256": "5a4161cebaa59a2a9d527c95bd7ef30aa695e845862e2fbe35861be80c808da4",
+      "bytes": 3082
+    },
+    "png-hashes.json": {
+      "publishedPath": "png-hashes.json.txt",
+      "sha256": "6c2692110c7a48d848a940245cb4d4edf304e9d44f0ecb90cf0ea4f193495fe1",
+      "bytes": 787
+    },
+    "ranked-observations.json": {
+      "publishedPath": "ranked-observations.json.txt",
+      "sha256": "1b8fa7cade6d34d782f5d2bfa5cccf22e7f521c2ddf72f1e8ba74f576164fbe0",
+      "bytes": 789
+    },
+    "report.md": {
+      "publishedPath": "report.md.txt",
+      "sha256": "cef4c6b6d6ffdf8d79d2431db8cb41bb87688d9f56f844f8f5f626eafa7005bf",
+      "bytes": 6966
+    }
+  },
+  "excluded": {
+    "completion.json": {
+      "sha256": "a7cf6df0dc73705e4036f9ea4c87168237b07af833ec453ea2ce0547ef363e69",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "finalizer-audit.json": {
+      "sha256": "508f7e07ce7896ca8b3630e2a914cdd5b6846ddb0f899bcc0663aa03634fca3e",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "root-qualification.json": {
+      "sha256": "145b24170f108fa7880b0af933513fd02435bec3be591eaa459797ede3ed122f",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "root-return.json": {
+      "sha256": "d6a1d9fe4a137ace7101ce1845cec93800217a831c9e34eb568777e1e5f873c9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    }
+  },
+  "scope": "Byte-exact selected snapshots; source-epoch manifest may list withheld files. Local paths are provenance, not public assets."
+}

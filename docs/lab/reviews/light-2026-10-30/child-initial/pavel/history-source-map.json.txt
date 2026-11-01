@@ -1,0 +1,107 @@
+{
+  "cutoff": "2026-10-31T17:19:20.562898+00:00",
+  "policy": "own canonical candidate selected FREE entries plus bounded additional own published reports; no other player bodies; no target report or source knowledge",
+  "sources": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/docs/lab/panel/pavel-novak.md",
+      "sourceSha256": "aac424d89f35abcc307501542a688d2f85d2f9032917ea685eec55aca4f59b84",
+      "selection": "all own canonical candidate diary except listed independent alternatives and obsolete empty-history line",
+      "excludedSpans": [
+        {
+          "start": 174,
+          "end": 178,
+          "reason": "independent continued alternative excluded"
+        },
+        {
+          "start": 184,
+          "end": 184,
+          "reason": "excluded alternative metadata"
+        }
+      ],
+      "selectedSha256": "f87b89a3b4311a742d1cd12bae64cf343fcaaee106ca884577eac08d97048247",
+      "selectedContinuityKeys": [
+        "hf3-voice-r1:pavel-novak:free",
+        "light-1030:rope:pavel:free",
+        "light-1030:days:pavel:free",
+        "light-1030:rope-retest1:pavel:free"
+      ],
+      "editorialNonOwnExclusions": [
+        {
+          "finding": "F2",
+          "suppliedLineBefore": 432,
+          "canonicalSourceLine": 435,
+          "excludedExactPhrase": "Another tester's differing preference about allowed failure is recorded in the packet README, not here; ",
+          "replacement": "",
+          "reason": "editorial cross-player preference/ask comparison; not producer own words or own method fact"
+        }
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/pavel/own-history.md",
+      "sourceSha256": "e44e23a4bcb7bcd7e7fc1320b6fff49db9cc1ef44f7be10875a80c097de5ef25",
+      "selection": "## Your own Well FREE return and asks — published excerpt, older raw diary not supplied",
+      "sourceStartLine": 7,
+      "sourceEndLine": 26,
+      "selectedSha256": "337dc1ab157d42e87413ac1c9e3375ec4a36a8ac6f2048190aca43ff8325cc97"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/pavel/own-history.md",
+      "sourceSha256": "e44e23a4bcb7bcd7e7fc1320b6fff49db9cc1ef44f7be10875a80c097de5ef25",
+      "selection": "## Your own selected Warren FREE visit",
+      "sourceStartLine": 27,
+      "sourceEndLine": 184,
+      "selectedSha256": "300deb821b487dd09d0f23c6cfa5f1987003b254993b228a3ab967a8b27f7c8b"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/pavel/own-history.md",
+      "sourceSha256": "e44e23a4bcb7bcd7e7fc1320b6fff49db9cc1ef44f7be10875a80c097de5ef25",
+      "selection": "## Your own published report — human-framework/docs/games/voice-playtest-2026-10-27-retest.md",
+      "sourceStartLine": 599,
+      "sourceEndLine": 650,
+      "selectedSha256": "2ffe750c2be7dc5211399b20dd7d82c162c4ec8b7fa0a7fdd81b3be4b35c35d8"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/pavel/own-history.md",
+      "sourceSha256": "e44e23a4bcb7bcd7e7fc1320b6fff49db9cc1ef44f7be10875a80c097de5ef25",
+      "selection": "## Your own published report — human-framework/docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "sourceStartLine": 651,
+      "sourceEndLine": 722,
+      "selectedSha256": "8963458ae5668a4129df908c1af675d2e1d845f0b53c584c9295c26791e976a7"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/pavel/own-history.md",
+      "sourceSha256": "e44e23a4bcb7bcd7e7fc1320b6fff49db9cc1ef44f7be10875a80c097de5ef25",
+      "selection": "## Your own published report — pass/docs/playtests/panel-2026-10-27.md",
+      "sourceStartLine": 723,
+      "sourceEndLine": 801,
+      "selectedSha256": "8b61fe522733d64e1bacd43c98930ec8e24927a37fb037696b249ae438def7fa"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/pavel/own-history.md",
+      "sourceSha256": "e44e23a4bcb7bcd7e7fc1320b6fff49db9cc1ef44f7be10875a80c097de5ef25",
+      "selection": "## Your own published report — valley/docs/playtests/2026-10-27-retest2.md",
+      "sourceStartLine": 802,
+      "sourceEndLine": 851,
+      "selectedSha256": "a1161b51b8b98a9ea0919242529614c1d0688370cc91864a92a5bee948c7a8cd"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/pavel/own-history.md",
+      "sourceSha256": "e44e23a4bcb7bcd7e7fc1320b6fff49db9cc1ef44f7be10875a80c097de5ef25",
+      "selection": "## Your own published report — commonstead/docs/games/commonstead-playtest-2026-10-27b.md",
+      "sourceStartLine": 852,
+      "sourceEndLine": 897,
+      "selectedSha256": "61ea95954ba5db4e9071f31b361885e0c4a7c6ca42c078e9ee62470e9349a465"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-codex/pavel/own-history.md",
+      "sourceSha256": "e44e23a4bcb7bcd7e7fc1320b6fff49db9cc1ef44f7be10875a80c097de5ef25",
+      "selection": "## Your own published report — lefthand/docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "sourceStartLine": 898,
+      "sourceEndLine": 939,
+      "selectedSha256": "9d5679a68c685857895aaaf0d93062794edc19c62936e47aeca13eb1b8bbed51"
+    }
+  ],
+  "historySha256": "3e781b22497b0b93fb7fde48515ef698c3241f8a697a883d58eb38b3f0c6293c",
+  "coldCheck": null,
+  "successorAt": "2026-10-31T17:27:41.559921+00:00"
+}

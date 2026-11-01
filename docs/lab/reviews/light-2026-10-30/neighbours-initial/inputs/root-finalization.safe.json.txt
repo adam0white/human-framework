@@ -1,0 +1,42 @@
+{
+  "sourceSha256": "58b0b2f4c81fe7efc401973c80ebeeff978cba8ea016083eac123bc0ba27f21b",
+  "rootReturnSha256": "3a8796bb623146bb6ebd8b332ada499f833ae23499d2345460ca5cfed15a6c85",
+  "identitySupplementSha256": "2828d17f83989f6f3efe10a0d7d4b8ae4ddc5c40251e4ffc5dca69abf7b2ad60",
+  "finalizerAuditSha256": "5ef553ad881163b2b2dbfb4af0e3ec631cb55a5b7eb4d283bba1f2360068c67f",
+  "status": "ROOT_QUALIFIED_INITIAL_COLLECTION_NOT_PLAYER_ACCEPTANCE",
+  "live": {
+    "commit": "7b0dcd1c494b39975219df5ed6ee05d616ba731b",
+    "dirty": false,
+    "app": "neighbours@1",
+    "framework": "3.0.0",
+    "hf": "3.0.0",
+    "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+    "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+    "runtime": "Browser-local Python Concordia and released HF",
+    "pyodide": "314.0.7"
+  },
+  "actualLastReturn": "2026-10-31T20:06:16.303555+00:00",
+  "counts": {
+    "reports": 5,
+    "stops": 10,
+    "voluntary": 9,
+    "budget": 1,
+    "endings": 0,
+    "cuts": 0,
+    "pngHashes": 26,
+    "sampledIdentitiesAbsent": 486,
+    "portsClosed": 11,
+    "profilesAbsent": 5
+  },
+  "methodQualifications": [
+    "All five report complete assigned history read; finalizer literal aggregate stdout covers each whole supplied history. Direct model delivery/comprehension not independently established.",
+    "CLI event schemas contain no recognized image-view events; reported views are self-reports, PNG hashes are not perception.",
+    "Mei desktop report120.823s versus raw120.822s preserved.",
+    "Emre phone59.431 and Nia phone59.381 premature first-minute entries retained beside valid later checkpoints. Rosa desktop automatic first-minute PNG60.065 after stop50.894 is not continued play or tester checkpoint.",
+    "Nine voluntary stops plus one BUDGET, not ten voluntary. No endings/180second pulses.",
+    "All ten stopping quick labels pressed; confused labels pressed in six devices across Mei,Emre,Nia,Dafina. Close controls returned to game. No successful or requested Submit/type/fill/recording toggle in parsed commands; two malformed confused taps failed shell then corrected. Backend receipt and unchanged consent not inferred beyond records.",
+    "Stale/covered/nonexistent controls and snapshot overhead qualify chase/Skip leads. No product cause inferred. Recognition confidence remains tester judgment, not cast canon."
+  ],
+  "deployHoldReleased": true,
+  "scope": "Hash-bound safe projection; original root receipt, audit and completions remain private. Point-in-time closure does not establish acceptance."
+}

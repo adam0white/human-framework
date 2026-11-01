@@ -1,0 +1,765 @@
+{
+  "exact_copies": [
+    {
+      "payload": "rosa/report.md",
+      "source": "child-retest1-inputs/rosa/report.md"
+    },
+    {
+      "payload": "rosa/history-source-map.json",
+      "source": "child-retest1-inputs/rosa/history-source-map.json"
+    },
+    {
+      "payload": "rosa/dispatch.json",
+      "source": "child-retest1-inputs/rosa/dispatch.json"
+    },
+    {
+      "payload": "rosa/phone/wall-clock.jsonl",
+      "source": "child-retest1-inputs/rosa/phone/wall-clock.jsonl"
+    },
+    {
+      "payload": "rosa/phone/release-start.json",
+      "source": "child-retest1-inputs/rosa/phone/release-start.json"
+    },
+    {
+      "payload": "rosa/desktop/wall-clock.jsonl",
+      "source": "child-retest1-inputs/rosa/desktop/wall-clock.jsonl"
+    },
+    {
+      "payload": "rosa/desktop/release-start.json",
+      "source": "child-retest1-inputs/rosa/desktop/release-start.json"
+    },
+    {
+      "payload": "samir/report.md",
+      "source": "child-retest1-inputs/samir/report.md"
+    },
+    {
+      "payload": "samir/history-source-map.json",
+      "source": "child-retest1-inputs/samir/history-source-map.json"
+    },
+    {
+      "payload": "samir/dispatch.json",
+      "source": "child-retest1-inputs/samir/dispatch.json"
+    },
+    {
+      "payload": "samir/phone/wall-clock.jsonl",
+      "source": "child-retest1-inputs/samir/phone/wall-clock.jsonl"
+    },
+    {
+      "payload": "samir/phone/release-start.json",
+      "source": "child-retest1-inputs/samir/phone/release-start.json"
+    },
+    {
+      "payload": "samir/desktop/wall-clock.jsonl",
+      "source": "child-retest1-inputs/samir/desktop/wall-clock.jsonl"
+    },
+    {
+      "payload": "samir/desktop/release-start.json",
+      "source": "child-retest1-inputs/samir/desktop/release-start.json"
+    },
+    {
+      "payload": "pavel/report.md",
+      "source": "child-retest1-inputs/pavel/report.md"
+    },
+    {
+      "payload": "pavel/history-source-map.json",
+      "source": "child-retest1-inputs/pavel/history-source-map.json"
+    },
+    {
+      "payload": "pavel/dispatch.json",
+      "source": "child-retest1-inputs/pavel/dispatch.json"
+    },
+    {
+      "payload": "pavel/phone/wall-clock.jsonl",
+      "source": "child-retest1-inputs/pavel/phone/wall-clock.jsonl"
+    },
+    {
+      "payload": "pavel/phone/release-start.json",
+      "source": "child-retest1-inputs/pavel/phone/release-start.json"
+    },
+    {
+      "payload": "pavel/desktop/wall-clock.jsonl",
+      "source": "child-retest1-inputs/pavel/desktop/wall-clock.jsonl"
+    },
+    {
+      "payload": "pavel/desktop/release-start.json",
+      "source": "child-retest1-inputs/pavel/desktop/release-start.json"
+    },
+    {
+      "payload": "tessa/report.md",
+      "source": "child-retest1-inputs/tessa/report.md"
+    },
+    {
+      "payload": "tessa/history-source-map.json",
+      "source": "child-retest1-inputs/tessa/history-source-map.json"
+    },
+    {
+      "payload": "tessa/dispatch.json",
+      "source": "child-retest1-inputs/tessa/dispatch.json"
+    },
+    {
+      "payload": "tessa/phone/wall-clock.jsonl",
+      "source": "child-retest1-inputs/tessa/phone/wall-clock.jsonl"
+    },
+    {
+      "payload": "tessa/phone/release-start.json",
+      "source": "child-retest1-inputs/tessa/phone/release-start.json"
+    },
+    {
+      "payload": "tessa/desktop/wall-clock.jsonl",
+      "source": "child-retest1-inputs/tessa/desktop/wall-clock.jsonl"
+    },
+    {
+      "payload": "tessa/desktop/release-start.json",
+      "source": "child-retest1-inputs/tessa/desktop/release-start.json"
+    },
+    {
+      "payload": "zora/report.md",
+      "source": "child-retest1-inputs/zora/report.md"
+    },
+    {
+      "payload": "zora/history-source-map.json",
+      "source": "child-retest1-inputs/zora/history-source-map.json"
+    },
+    {
+      "payload": "zora/dispatch.json",
+      "source": "child-retest1-inputs/zora/dispatch.json"
+    },
+    {
+      "payload": "zora/phone/wall-clock.jsonl",
+      "source": "child-retest1-inputs/zora/phone/wall-clock.jsonl"
+    },
+    {
+      "payload": "zora/phone/release-start.json",
+      "source": "child-retest1-inputs/zora/phone/release-start.json"
+    },
+    {
+      "payload": "zora/desktop/wall-clock.jsonl",
+      "source": "child-retest1-inputs/zora/desktop/wall-clock.jsonl"
+    },
+    {
+      "payload": "zora/desktop/release-start.json",
+      "source": "child-retest1-inputs/zora/desktop/release-start.json"
+    },
+    {
+      "payload": "cold-identity-check.json",
+      "source": "child-retest1-inputs/cold-identity-check.json"
+    },
+    {
+      "payload": "root-finalization.json",
+      "source": "child-retest1-root-finalization.json"
+    },
+    {
+      "payload": "root-return.json",
+      "source": "child-retest1-controller-preparation-correction1/root-return.json"
+    },
+    {
+      "payload": "boundary-projection.json",
+      "source": "child-retest1-boundary-projection.json"
+    },
+    {
+      "payload": "boundary-compact-proof.json",
+      "source": "child-retest1-boundary-compact-proof.json"
+    },
+    {
+      "payload": "rosa/phone/driver.out",
+      "source": "child-retest1-inputs/rosa/phone/driver.out"
+    },
+    {
+      "payload": "rosa/desktop/driver.out",
+      "source": "child-retest1-inputs/rosa/desktop/driver.out"
+    },
+    {
+      "payload": "samir/phone/driver.out",
+      "source": "child-retest1-inputs/samir/phone/driver.out"
+    },
+    {
+      "payload": "samir/desktop/driver.out",
+      "source": "child-retest1-inputs/samir/desktop/driver.out"
+    },
+    {
+      "payload": "pavel/phone/driver.out",
+      "source": "child-retest1-inputs/pavel/phone/driver.out"
+    },
+    {
+      "payload": "pavel/desktop/driver.out",
+      "source": "child-retest1-inputs/pavel/desktop/driver.out"
+    },
+    {
+      "payload": "tessa/phone/driver.out",
+      "source": "child-retest1-inputs/tessa/phone/driver.out"
+    },
+    {
+      "payload": "tessa/desktop/driver.out",
+      "source": "child-retest1-inputs/tessa/desktop/driver.out"
+    },
+    {
+      "payload": "zora/phone/driver.out",
+      "source": "child-retest1-inputs/zora/phone/driver.out"
+    },
+    {
+      "payload": "zora/desktop/driver.out",
+      "source": "child-retest1-inputs/zora/desktop/driver.out"
+    }
+  ],
+  "editorial": [
+    "README.md",
+    "ranked-asks.json",
+    "png-hashes.json",
+    "rosa/method-qualification.json",
+    "samir/method-qualification.json",
+    "pavel/method-qualification.json",
+    "tessa/method-qualification.json",
+    "zora/method-qualification.json",
+    "ask-ledger.md",
+    "actual-stops.json",
+    "all-driver-reactions.json"
+  ],
+  "source_hashes": [
+    {
+      "path": "child-retest1-inputs/README.md",
+      "bytes": 736,
+      "sha256": "cf092180be0f6458d2a7248fbe7d37c57353c5fac499be4f7f7e5ad12b50a6a5"
+    },
+    {
+      "path": "child-retest1-inputs/cohort.json",
+      "bytes": 2130,
+      "sha256": "aa64db87ba8490518f2d1508507356e88319e77dcac307b0967b2a8713e2fc14"
+    },
+    {
+      "path": "child-retest1-inputs/cold-identity-check.json",
+      "bytes": 597,
+      "sha256": "c31ee2a5dffd5045031b6a77fed706ef656e612b1366f850d38852a21fc8168c"
+    },
+    {
+      "path": "child-retest1-inputs/input-freeze.json",
+      "bytes": 2612,
+      "sha256": "97b05343f4403c1e25e19b08cc7dfe0e85c24eef52e0084aeef2c2932444a531"
+    },
+    {
+      "path": "child-retest1-inputs/manifest.json",
+      "bytes": 3576,
+      "sha256": "f4e798567911a96f0c194ca84fa22b1742ad82300e249392b22943a0d43000a6"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/brief.md",
+      "bytes": 7009,
+      "sha256": "bf476eb1500c6a7e813bf7f917652866f29c2d959ad758d710fc104ebf6237a6"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/browser.log",
+      "bytes": 5076,
+      "sha256": "a7d67c723519b871a78b97091fcb26a41d2e53595a41bd7ba293a58aebffa957"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/completion.json",
+      "bytes": 95254,
+      "sha256": "325b6959e034968dee1b00b19124c75c4e02a477d4d6788c77deeb585ac5fea5"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/desktop/a-001.png",
+      "bytes": 507471,
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/desktop/driver.out",
+      "bytes": 85,
+      "sha256": "7f93de932c8e59be8406a8e61d37215e45fcc57813a0fffe6f69c6f1ddda90ee"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/desktop/first-minute.png",
+      "bytes": 223017,
+      "sha256": "3d52fc8a665b11fdab68917d7e9999094046bce3551ab3df53a60d44ac955bb1"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/desktop/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/desktop/wall-clock.jsonl",
+      "bytes": 14440,
+      "sha256": "38a633c661d5770fa708af448dc992b9027fbfc77f6f05f15f2584ecd8372862"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/dispatch.json",
+      "bytes": 378,
+      "sha256": "d5925c6b9bbe60c11fc5570e60ba88fa7b601056b220c818cd7b1dcd11374b30"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/history-source-map.json",
+      "bytes": 2575,
+      "sha256": "6bf3fa1f898b0df1f95d166d9b73ac0c1b298973bdb4fb3f725627788984427f"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/own-history.md",
+      "bytes": 195360,
+      "sha256": "ec8f15dbd226e0e04dcf740ad3aa5802438de4b59b5844ca46b1c38c3da7d343"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/phone/b-001.png",
+      "bytes": 160161,
+      "sha256": "f1124873e62a91e3d90a5827a1f1663b3e9453ba0948097403f4048407bedf60"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/phone/driver.out",
+      "bytes": 85,
+      "sha256": "2d40ee4387075b4b29d1bb71f309ececc393f34bc0546eca36faaa0a03cfb796"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/phone/first-minute.png",
+      "bytes": 78090,
+      "sha256": "c90848ff1c4758142a6f35aaadbdd67f542d67b239663ddeded1f195b470bc75"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/phone/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/phone/wall-clock.jsonl",
+      "bytes": 7391,
+      "sha256": "30dac1a187e00a42448c57a720c9f060df0337cef296c12098dcce1598e08591"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/report.md",
+      "bytes": 6578,
+      "sha256": "7f8df435484d288cdaaedd53a86e32a0617b5c34937f7b73ba6ebf6318d1015d"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/tester.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "child-retest1-inputs/pavel/transcript.jsonl",
+      "bytes": 531108,
+      "sha256": "55c77f3b3729b697daa4226abb345bb185a686846158fdbbe541317341f4259a"
+    },
+    {
+      "path": "child-retest1-inputs/plan.json",
+      "bytes": 7410,
+      "sha256": "ce1f2f3a84b5c3d714d727b033965a6722aa755386a249011ae093132e15affb"
+    },
+    {
+      "path": "child-retest1-inputs/preparation-audit.json",
+      "bytes": 1344,
+      "sha256": "d329a2fb63b00e90fd384d627160f7248cceeec3b3161efc25fcbf69949de3a7"
+    },
+    {
+      "path": "child-retest1-inputs/provenance-audit.json",
+      "bytes": 2185,
+      "sha256": "6800a98a353d2f01a3f0f6098faec35835428bb1f98d09a1b777da4aea2ac41a"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/brief.md",
+      "bytes": 7501,
+      "sha256": "db4f10b09027d5326c99029002313a4b5040783f7fe5fc0f31467587d5bfef27"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/browser.log",
+      "bytes": 6367,
+      "sha256": "db82fbfe147b5496a0cb4279e1705fff80b4751db0c691c2a37e68af1c2c5252"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/completion.json",
+      "bytes": 75246,
+      "sha256": "91cd4c258a7a7867f2991da16e11cac56d8edb2638cdabd8eca250dbc8cbf9ce"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/desktop/b-001.png",
+      "bytes": 507471,
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/desktop/driver.out",
+      "bytes": 85,
+      "sha256": "9384bd3c928359991f8341f35f1ed9232bfd0e7bf45c0371494e84bed1fcba31"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/desktop/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/desktop/wall-clock.jsonl",
+      "bytes": 3136,
+      "sha256": "f5c204d7ce788d7f75ae481733c26bca8b0824de5c0092f4d5ff8cb885510607"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/dispatch.json",
+      "bytes": 378,
+      "sha256": "0e930f56dfba04d31e9f5b5c0cce0da9fe35abf82c1299c8ea332a088396e51f"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/history-source-map.json",
+      "bytes": 3336,
+      "sha256": "7ca8878d0fccaa88d9fd3008ca6452f0018b96ddfdb266dbeaa706819d43760a"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/own-history.md",
+      "bytes": 420321,
+      "sha256": "d730ea0cf72e172ee1a9602d16639b2eee75fd9d38e62a3c4f90e57a9d038f2d"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/phone/a-001.png",
+      "bytes": 160202,
+      "sha256": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/phone/driver.out",
+      "bytes": 85,
+      "sha256": "f41cff50209aebfddab7e49e40c0b66f0d26baa073cba344dffa8a233cef5dd2"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/phone/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/phone/wall-clock.jsonl",
+      "bytes": 3585,
+      "sha256": "316e30348907bc7fc6e1d7e0ff4573650bc3fa8060185dbd11db5951946bdcdc"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/report.md",
+      "bytes": 6305,
+      "sha256": "8b63b114dc7c2fcc6db06a11db8383e0d575928f9725c43ee1194132317a50aa"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/tester.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "child-retest1-inputs/rosa/transcript.jsonl",
+      "bytes": 679255,
+      "sha256": "438956e42fcadcf4732c4d5ff90d59c085868aad8a99e299a8515faf2587aa42"
+    },
+    {
+      "path": "child-retest1-inputs/samir/brief.md",
+      "bytes": 6963,
+      "sha256": "493f3d79c3b92e75a424abc5cb5fe2655d815e3f9a2e42539e092d7464145879"
+    },
+    {
+      "path": "child-retest1-inputs/samir/browser.log",
+      "bytes": 7608,
+      "sha256": "942e27794c6e6a4f6cf93a8a97e647bbddf5bb9f4170fd0e7dee3892f289f46a"
+    },
+    {
+      "path": "child-retest1-inputs/samir/completion.json",
+      "bytes": 94022,
+      "sha256": "df5f5a69c57c12d3cec2f6cf2f3a6a2a6086efce2f5798f4383de50036b25fea"
+    },
+    {
+      "path": "child-retest1-inputs/samir/desktop/a-001.png",
+      "bytes": 507471,
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0"
+    },
+    {
+      "path": "child-retest1-inputs/samir/desktop/driver.out",
+      "bytes": 85,
+      "sha256": "d47fcfc3102303f827c637c7c91a4e6b03c4eb96fa573803570b080b76255a4f"
+    },
+    {
+      "path": "child-retest1-inputs/samir/desktop/first-minute.png",
+      "bytes": 259466,
+      "sha256": "9ccf6868b75776e306116099066ed1b021a2030059e35594c7b799f254750db6"
+    },
+    {
+      "path": "child-retest1-inputs/samir/desktop/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/samir/desktop/wall-clock.jsonl",
+      "bytes": 14965,
+      "sha256": "63cda9df7509ca33948a31734158451bd94bef301c32223d3779b0aa769874ed"
+    },
+    {
+      "path": "child-retest1-inputs/samir/dispatch.json",
+      "bytes": 378,
+      "sha256": "e7def2ffea8809313b5f923c7d39ec91bd4bba30539d395b7ef3b8dddd4a6dfa"
+    },
+    {
+      "path": "child-retest1-inputs/samir/history-source-map.json",
+      "bytes": 2960,
+      "sha256": "cd04f569e0a6f2e609805df5b07b799df09530522c04b0a2ec7a1055c791869b"
+    },
+    {
+      "path": "child-retest1-inputs/samir/own-history.md",
+      "bytes": 174674,
+      "sha256": "3c91da7355814821881489036309d8f6141d39b14765c05a0b9c5146c7f7cb5e"
+    },
+    {
+      "path": "child-retest1-inputs/samir/phone/b-001.png",
+      "bytes": 160202,
+      "sha256": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d"
+    },
+    {
+      "path": "child-retest1-inputs/samir/phone/driver.out",
+      "bytes": 85,
+      "sha256": "3d9bb156cdcd4308827d4b8b8a9f6a9e580963ac477507748b11dc1b60199aae"
+    },
+    {
+      "path": "child-retest1-inputs/samir/phone/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/samir/phone/wall-clock.jsonl",
+      "bytes": 4772,
+      "sha256": "734c585b1bd35f3c39c6248f7c8d833b1f693d803b3f26e360a4df7b764007dc"
+    },
+    {
+      "path": "child-retest1-inputs/samir/report.md",
+      "bytes": 7523,
+      "sha256": "b1c28d9f147a44be34cae5de2db31a2c65f312f33492007cfd12bddcc2530066"
+    },
+    {
+      "path": "child-retest1-inputs/samir/tester.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "child-retest1-inputs/samir/transcript.jsonl",
+      "bytes": 521409,
+      "sha256": "ac61b2a223dd8e41c4dda026eefc26fc55b3370891fdd80308c59bf34abb621f"
+    },
+    {
+      "path": "child-retest1-inputs/target-exposure-audit.json",
+      "bytes": 179,
+      "sha256": "1cc84a90f64803abea8afb55569116a8002b1ca1667432675f41a045cb29f691"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/brief.md",
+      "bytes": 7025,
+      "sha256": "a37a3883c9da30c5badd3f18710ae0be8a006c2ec0f868c5f2d15c53a3345aa7"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/browser.log",
+      "bytes": 6116,
+      "sha256": "4b3ccabcd5a2c8eb63b02064b246f18620cf9a9d7e49820c9470219294931289"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/completion.json",
+      "bytes": 91048,
+      "sha256": "8764cf6739e9bcdb748a2c33e7b67eca3852d10a9b3030103716579f9a476786"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/desktop/b-001.png",
+      "bytes": 507471,
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/desktop/driver.out",
+      "bytes": 85,
+      "sha256": "4ca663edc59d6c4ba233d5933f9951cdd74d5e9f7b7cecaf3cf297e8fb18253c"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/desktop/first-minute.png",
+      "bytes": 220740,
+      "sha256": "9056e339cad944152af104d8a7127ba08d8add64e8abdcf1e25b7f4c1c0cd67f"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/desktop/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/desktop/wall-clock.jsonl",
+      "bytes": 8833,
+      "sha256": "4ca314c7dd345c6c8d34315204a90a703bf23d0f847873b9f3a17e34ef028a5d"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/dispatch.json",
+      "bytes": 378,
+      "sha256": "28507ccebafa28ac449e7893a8bb27d4826f3c5470b5294bd3a09cd82435a37d"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/history-source-map.json",
+      "bytes": 2575,
+      "sha256": "5b605e041e903943d2fabb12df2a301c4c08845593d7fdb48793a0f46932868b"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/own-history.md",
+      "bytes": 146970,
+      "sha256": "69fec4aab2c484a1bccdae5afcadc56344ec95dc2081dc3dab19bb91065cac27"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/phone/a-001.png",
+      "bytes": 160202,
+      "sha256": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/phone/driver.out",
+      "bytes": 85,
+      "sha256": "6f72607d8755af6d7828a29c0aaf4d1b948b30159fa9e1750a845e98c8656641"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/phone/first-minute.png",
+      "bytes": 130351,
+      "sha256": "c443552a564ab94159f7b0c6024c66764e1a07883c747ed07d4770c14152e6a6"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/phone/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/phone/wall-clock.jsonl",
+      "bytes": 11475,
+      "sha256": "6cefbf1833998c41dd66819fee29aaec190908053a4c1ec30ba62022b6978b67"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/report.md",
+      "bytes": 7803,
+      "sha256": "ad614560248779dc1414f371edc5f1fba0ac949c46042b8fc409d35751d6f754"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/tester.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "child-retest1-inputs/tessa/transcript.jsonl",
+      "bytes": 465785,
+      "sha256": "f14f6aceb89808c9eb7d049d634b36267a851c205042dbdcc4df1f2f1ae01815"
+    },
+    {
+      "path": "child-retest1-inputs/zora/brief.md",
+      "bytes": 6759,
+      "sha256": "319f9b0b35ffa998bc2465658f5822ecbedec7a4bfec93a81afc6cf4427f8719"
+    },
+    {
+      "path": "child-retest1-inputs/zora/browser.log",
+      "bytes": 5076,
+      "sha256": "75e9d0a94715c189e9c96e1653933657e0390c31f96afc4c3fb40e4eb4cdad2a"
+    },
+    {
+      "path": "child-retest1-inputs/zora/completion.json",
+      "bytes": 91211,
+      "sha256": "26302a390d67ee8c5753945cc4a58f3efc049271b47146847285b3e22b718193"
+    },
+    {
+      "path": "child-retest1-inputs/zora/desktop/a-001.png",
+      "bytes": 507471,
+      "sha256": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0"
+    },
+    {
+      "path": "child-retest1-inputs/zora/desktop/driver.out",
+      "bytes": 85,
+      "sha256": "7237610a73ecf337f0e4eff6184db4a955f13d3e1d093f595e66a2b0b8e972e8"
+    },
+    {
+      "path": "child-retest1-inputs/zora/desktop/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/zora/desktop/wall-clock.jsonl",
+      "bytes": 5914,
+      "sha256": "fc35197ee16546098cb11508b08301d59ef9eaf4ff5745cacc31c559841fd44b"
+    },
+    {
+      "path": "child-retest1-inputs/zora/dispatch.json",
+      "bytes": 378,
+      "sha256": "e1e5d76f618cc53ab17beea560633e45da2a9634a8ca28bb069697e839a981e3"
+    },
+    {
+      "path": "child-retest1-inputs/zora/history-source-map.json",
+      "bytes": 296,
+      "sha256": "39266ccd7dfbaf59131e29e65cefb089087322c5fb8a4b30219be1aeff1e67c2"
+    },
+    {
+      "path": "child-retest1-inputs/zora/own-history.md",
+      "bytes": 204,
+      "sha256": "9a32e38e897d848dbd08b650add9913686c4a6f762b686dc9e5f1442bd6b107d"
+    },
+    {
+      "path": "child-retest1-inputs/zora/phone/a-001.png",
+      "bytes": 160202,
+      "sha256": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d"
+    },
+    {
+      "path": "child-retest1-inputs/zora/phone/driver.out",
+      "bytes": 85,
+      "sha256": "15536389d00d43c37649e1d9b89d697b6ec1d3340d63b19ca52f9d8dc08490b0"
+    },
+    {
+      "path": "child-retest1-inputs/zora/phone/first-minute.png",
+      "bytes": 199918,
+      "sha256": "6247bcae6fdafeb8f620081179d6961c53a6431c25f8c506e19322369f9cd4b3"
+    },
+    {
+      "path": "child-retest1-inputs/zora/phone/release-start.json",
+      "bytes": 125,
+      "sha256": "dc24904aafc8903af62a2c21fdcda7a83653751b589b6264d4ee5a08afa499d6"
+    },
+    {
+      "path": "child-retest1-inputs/zora/phone/wall-clock.jsonl",
+      "bytes": 12010,
+      "sha256": "cae10a9677143783040687707658a8603cf445d03313064628567d4eeaf10774"
+    },
+    {
+      "path": "child-retest1-inputs/zora/report.md",
+      "bytes": 5159,
+      "sha256": "c7ce2b493a3c2f625dd361bf8af956b5813d8b65b8f80314df47ce4570546790"
+    },
+    {
+      "path": "child-retest1-inputs/zora/tester.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "child-retest1-inputs/zora/transcript.jsonl",
+      "bytes": 241345,
+      "sha256": "32b05eae9c976a4a4c591f5881c76092e548648ac2d43c6d9300343f14b8bc37"
+    },
+    {
+      "path": "child-retest1-root-finalization.json",
+      "bytes": 8856,
+      "sha256": "5fa53544649e38309be4834dcc1aff7c81a5f3223a50f01cfe1b8ab630d8f74f"
+    },
+    {
+      "path": "child-retest1-controller-preparation-correction1/controller.py",
+      "bytes": 15788,
+      "sha256": "85af7864f1f5c8dc653a7014ffb2b28af1273d64deda1c86d7707048ff3ff44a"
+    },
+    {
+      "path": "child-retest1-controller-preparation-correction1/finalize.py",
+      "bytes": 11740,
+      "sha256": "d19059ded1ef4c3b88d51526ad3b1ba858708179ffb2e8b069f59cec64e75eef"
+    },
+    {
+      "path": "child-retest1-controller-preparation-correction1/root-grant.json",
+      "bytes": 2331,
+      "sha256": "a04e2fd0ba2e0b039be79026db0792d1fc196b6fb4fbed99d63d33c0c06def97"
+    },
+    {
+      "path": "child-retest1-controller-preparation-correction1/root-return.json",
+      "bytes": 438789,
+      "sha256": "4a1786aa3afb63add31741bbd433a336cb09e2dbe16fcc626af94ad904ad74d5"
+    },
+    {
+      "path": "child-retest1-controller-preparation-correction1/finalizer-audit.json",
+      "bytes": 2873751,
+      "sha256": "4e0e9de6487c690ebd596df2cdfa39734995a71508c3c5aba81a57b7947d294e"
+    },
+    {
+      "path": "child-retest1-controller-preparation-correction1/root-return.json",
+      "bytes": 438789,
+      "sha256": "4a1786aa3afb63add31741bbd433a336cb09e2dbe16fcc626af94ad904ad74d5"
+    },
+    {
+      "path": "child-retest1-boundary-projection.json",
+      "bytes": 223879,
+      "sha256": "6a21e554e55703f4f24d93fc7ac05cbff8af107b1fd1d88e25da592c7568c1b5"
+    },
+    {
+      "path": "child-retest1-boundary-compact-proof.json",
+      "bytes": 11346,
+      "sha256": "71de1256e3d799e045c950a591a99d026223e810d80751c699998a3ebccee882"
+    }
+  ],
+  "warning": "Source hashes bind frozen files only; private transcripts and histories referenced by hashes are unpublished and omitted, not publicly recoverable. Historical references and model delivery are qualified."
+}

@@ -1,0 +1,73 @@
+{
+  "policy": "Immediate frozen prior own-history file is the primary source for this selected history, not a complete archive. Actual model delivery and comprehension of earlier history are not established. Historical source references are provenance only, not revalidated segment claims.",
+  "continuityBranch": "FREE selected prior history; Rosa Child then Neighbours",
+  "byteRangeBasis": "zero-based, half-open offsets into own-history.md",
+  "composition": {
+    "operation": "concatenate entire frozen prior bytes, wrapper bytes, complete literal report bytes, final marker bytes; no trimming or newline normalization",
+    "prior": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/own-history.md",
+      "sha256": "4f262b839bfb523a680068fd494e7605118642f29802f97cce3eb0d042b1e008",
+      "sourceByteRange": [
+        0,
+        410572
+      ],
+      "outputByteRange": [
+        0,
+        410572
+      ],
+      "sourceLineCount": 3224
+    },
+    "wrapper": {
+      "utf8": "\n## Your own later full report\n\n",
+      "outputByteRange": [
+        410572,
+        410604
+      ]
+    },
+    "report": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-packet-preparation/ready/rosa/report.md",
+      "sha256": "a9c4dc4e8af05b47ac41dba2d3c58ca2e6f577f5929be97f3db93cad837e2a13",
+      "sourceByteRange": [
+        0,
+        9686
+      ],
+      "outputByteRange": [
+        410604,
+        420290
+      ],
+      "sourceLineCount": 54
+    },
+    "finalMarker": {
+      "utf8": "\n\nEnd of supplied own history.\n",
+      "outputByteRange": [
+        420290,
+        420321
+      ]
+    },
+    "outputBytes": 420321,
+    "outputLineCount": 3283,
+    "outputSha256": "d730ea0cf72e172ee1a9602d16639b2eee75fd9d38e62a3c4f90e57a9d038f2d"
+  },
+  "historicalProvenance": {
+    "mapPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/rosa/history-source-map.json",
+    "mapSha256": "e9d59cd61e776d9deaa5eb8e7e57a13fe51ddf0900563138e6e6910e28bd5551",
+    "qualification": "Historical record of upstream selections, exclusions and qualifications; referenced segment selections and current mutable paths are not asserted revalidated by this correction.",
+    "knownDrift": "Rosa inherited canonical panel path has changed from its historical hash; the current path is not evidence of the old body."
+  },
+  "childMethodQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/rosa/director-method-qualification.json",
+    "sha256": "9dc1affc1bb33f63e839e7d126d97e8c047ee62422476903e23aa31cf5752c82",
+    "selection": "unchanged coordinator qualification; not a player memory"
+  },
+  "nestedChildReport": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-packet-preparation/ready/rosa/report.md",
+    "sha256": "7c6b940479aa1dd812f7182c7da7a2bcda1b4cf485e68deef02f69c663a72087",
+    "occurrencesInPrior": 1,
+    "priorByteRange": [
+      404531,
+      410290
+    ],
+    "sequence": "Child report occurs within frozen prior; appended Neighbours report follows",
+    "historicalMethodQualification": "Prior map retains original Rosa qualification: lines 401–3177 unverified despite aggregate stdout coverage; saved PNG does not establish perception."
+  }
+}

@@ -1,0 +1,43 @@
+I would return another evening on desktop to see Elif’s eighteenth-year errand, if I could get past Feedback; I would not leave the game running or repeat the opening on my phone tonight.
+
+1. Let me select a Feedback label and close the dialog. This blocked my desktop session while I wanted to continue. The driver reported both controls covered or off screen after a retry; I cannot tell the underlying cause.
+2. Explain how the empty household water store relates to the two emergency household shares at age 18.
+3. Let me know the neighbour who needs water. I could understand the cost of making them wait, but I wanted to know what they needed and why.
+
+I am Samir Haddad. This was my **first visit to What the Child Saw**. I played a fresh game on each device at the supplied URL with `labRunSource=agent`: desktop at 1280×800 with keyboard and mouse, then phone at 360×690 with touch, the same evening. Recording and consent remained at their defaults. I did not change the owner profile or settings.
+
+I read all 1,319 lines of the supplied own history in explicit ranges. The last line read was **“End of supplied own history.”** Unread ranges: **none**. An initial large read was truncated, so I reread that portion in smaller ranges. I followed no diary links.
+
+The desktop stopped at **137.986 seconds**, with Elif at 18, before that errand or an ending. The phone stopped at **49.588 seconds**, after the age-three errand. Neither session reached 180 seconds, so there were no pulses. The phone ended before 60 seconds, so it has no first-minute entry. Later checkpoints and the game ending remain untested.
+
+The opening caught me. Elif reaches for the smallest cup, then later uses the counting she watched to divide water. I liked the way an ordinary movement became something she could do alone. The repeated choice of a teaching method became more like preparing for a known test, though, and the people waiting for water remained distant.
+
+The visible opening named Zehra, Yusuf and old Maryam. At **9.291 seconds** I recognised the names as a possible connection to the Çoban household I visited in Valley, where Zehra’s child was born. I was fairly sure of the names, but **not** that these were the same people. At **90.702 seconds**, “half-brother Tariq” reminded me of a Tariq in Lefthand; a name alone was too little to establish identity. I had no other recognition to report.
+
+These are all my accepted diary reactions, unchanged, in order. Times are the driver’s `elapsed_s`; engagement is out of five where supplied.
+
+**Desktop**
+
+- **9.291, note, engagement 4:** “Zehra and Yusuf with old Maryam: I remember a Zehra and Yusuf in the Coban house in Valley, where their child was born. I am fairly sure of the names, not that these are the same people. Seeing Elif at three makes me curious.”
+- **14.956, note, engagement 4:** “The smallest cup is a lovely detail. But food is already low after one afternoon; I want to feed them before teaching more.”
+- **36.433, note, engagement 3:** “She divided water among houses and kept theirs. I like seeing her copy the cups, but I do not know why the neighbour needs the jar or who might go short. Food is low again. Years is a large jump.”
+- **63.694, first_minute, engagement 3:** “Elif learned counting and then checking a path; I can see her use what she watched. I like the small actions, but the neighbour remains a faceless need and the choices feel like selecting a method for a known test. I am curious what happens as she grows.”
+- **90.702, note, engagement 3:** “Tariq is her half-brother? I remember a Tariq in Lefthand, but a name alone is not enough to know. The queue outcome is clear, though again a neat solution. I want to see her older.”
+- **118.565, note, engagement 3:** “At eighteen the explanation suddenly becomes dense. Two emergency shares but our own water store is empty: are those separate stores? I can follow the spring or Danyal instruction, but I have to reread the water accounting.”
+- **133.571, want_quit, TOOL, engagement 3:** “I wanted to continue to see Elif at eighteen, but Feedback covers or puts its controls off screen and I cannot close it after a retry. I would leave this session here.”
+- **137.986, stop, TOOL, engagement 3:** “I am stopping at eighteen because Feedback would not let me select confused or close it after retries. I liked watching Elif copy small acts and wanted to see the last errand. I do not know how the empty household store relates to the two emergency shares.”
+
+**Phone**
+
+- **6.846, note, engagement 3:** “Phone, same evening and a new game. The picture fits, but the recording notice covers the lower opening text and choices are below the screen. I know this family from the desktop visit.”
+- **33.254, note, engagement 2:** “She keeps the jar and the neighbour waits until morning. That is a cost I can picture, but I still do not know the neighbour. I have already seen these years and want the eighteenth-year errand, not another sequence tonight.”
+- **35.864, want_quit, BORED, engagement 2:** “I would leave the phone here. I have just played these ages on desktop and do not want to repeat them to reach the errand I missed.”
+- **49.588, stop, BORED, engagement 2:** “I am stopping on the phone after the first errand. I have already played these years on desktop and do not want to repeat them tonight. I tried I am stopping and Not now twice each; both were reported covered or off screen. I typed and sent nothing.”
+
+The three-afternoon structure and the link between what Elif watched and what she did were clear in the outcomes I reached. At age 18, the instruction to inspect the spring or work with Danyal was clear, but the water accounting was not clear to me: the screen said both that the emergency store had two household shares and that the household’s own water store was empty. I do not know whether those are separate stores.
+
+I viewed [desktop/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/samir/desktop/a-001.png) at **2.324 seconds**: the opening illustration and text were readable, with the recording notice covering part of the lower page. I viewed [phone/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/samir/phone/b-001.png) at **2.725 seconds**: the illustration fit the width, while the notice covered lower opening text and the choices were below the visible screen. I did not view a later game-screen image or an automatic checkpoint on either device, and I did not test phone scrolling.
+
+When confused on desktop, I opened Feedback and tried **“I’m confused”** twice. Both attempts returned “control is covered or off screen.” I then tried **“Not now”** twice with the same result. The dialog remained open. On the phone, after deciding to stop, I opened Feedback and tried **“I’m stopping”** and **“Not now”** twice each; all four attempts returned the same error and the dialog remained open. Under the assigned rule, those unoperable controls are **TOOL** observations; they do not establish why the controls could not be operated. I typed no feedback note and submitted nothing.
+
+One desktop diary request at **7.409 seconds** was invalid because extra text followed the JSON; the corrected recognition note was accepted at **9.291 seconds**. No repository, worktree, server or browser was created by me; the coordinator owns the drivers and browsers.

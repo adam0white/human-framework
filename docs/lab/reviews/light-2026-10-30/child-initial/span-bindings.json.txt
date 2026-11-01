@@ -1,0 +1,135 @@
+{
+  "indexBasis": "Unicode code points in decoded report text; line is one-based; hash is UTF-8 encoding of literal span",
+  "spans": [
+    {
+      "id": "F-2861",
+      "tester": "rosa",
+      "file": "rosa/report.md",
+      "line": 5,
+      "startCodepoint": 110,
+      "endCodepoint": 213,
+      "sha256": "cd3388936a914bd6b984c7e3e57290620f97f4f7827799ac9507e0f84af1fa27",
+      "verbatim": "Explain what Elif already learned and how that affects the three afternoon choices, in a short example."
+    },
+    {
+      "id": "F-2862",
+      "tester": "rosa",
+      "file": "rosa/report.md",
+      "line": 6,
+      "startCodepoint": 217,
+      "endCodepoint": 309,
+      "sha256": "083d9dc86ff06f2d2cf6425f9d465ce138fdf565f061ff083f4a08a7dbbd4557",
+      "verbatim": "Explain the emergency water shares in plain words: when one is used and what can replace it."
+    },
+    {
+      "id": "F-2863",
+      "tester": "rosa",
+      "file": "rosa/report.md",
+      "line": 7,
+      "startCodepoint": 313,
+      "endCodepoint": 425,
+      "sha256": "9c54b8fd8a181e9b3b2b7f69c79a3b5084b819006bd152d83710eae6116f6809",
+      "verbatim": "Make the Feedback choices and “Not now” operable in the supplied driver. I reached this blocker on both devices."
+    },
+    {
+      "id": "F-2864",
+      "tester": "samir",
+      "file": "samir/report.md",
+      "line": 3,
+      "startCodepoint": 192,
+      "endCodepoint": 411,
+      "sha256": "227f246a21bedd3b211f6d2184c3d4468c4d228c73db521b028e7cf9b9d1424c",
+      "verbatim": "Let me select a Feedback label and close the dialog. This blocked my desktop session while I wanted to continue. The driver reported both controls covered or off screen after a retry; I cannot tell the underlying cause."
+    },
+    {
+      "id": "F-2865",
+      "tester": "samir",
+      "file": "samir/report.md",
+      "line": 4,
+      "startCodepoint": 415,
+      "endCodepoint": 515,
+      "sha256": "2d4bdb7ee3f600335bda0b0edca5827d9ffcb418a47c1602026cd3ce26615f1f",
+      "verbatim": "Explain how the empty household water store relates to the two emergency household shares at age 18."
+    },
+    {
+      "id": "F-2866",
+      "tester": "samir",
+      "file": "samir/report.md",
+      "line": 5,
+      "startCodepoint": 519,
+      "endCodepoint": 657,
+      "sha256": "b4a68144c1dc523cc33669af0501d6cceb57bdb4cf31170dc5b9e858aa8237f5",
+      "verbatim": "Let me know the neighbour who needs water. I could understand the cost of making them wait, but I wanted to know what they needed and why."
+    },
+    {
+      "id": "F-2867",
+      "tester": "pavel",
+      "file": "pavel/report.md",
+      "line": 5,
+      "startCodepoint": 161,
+      "endCodepoint": 472,
+      "sha256": "18cc540ad06760b278de1fcadf655da6d121f33264a9c002a8bbf169cd070aa0",
+      "verbatim": "**Let me select a Feedback label and close Feedback.** On both devices, the driver reported “I'm stopping” and “Not now” as covered or off screen on both attempts. This was a **TOOL block** under the assignment’s rule; I cannot tell from the evidence whether an ordinary player would encounter the same problem."
+    },
+    {
+      "id": "F-2868",
+      "tester": "pavel",
+      "file": "pavel/report.md",
+      "line": 6,
+      "startCodepoint": 476,
+      "endCodepoint": 673,
+      "sha256": "769910c058329c6e2ce485f2787832d6620bfac98a154ff8e90560b79ff82122",
+      "verbatim": "Give the repeated afternoons a little more variation. I liked seeing what Elif learned, but by the second session I knew the sequence of three choices followed by a watch, and I stopped at age ten."
+    },
+    {
+      "id": "F-2869",
+      "tester": "tessa",
+      "file": "tessa/report.md",
+      "line": 5,
+      "startCodepoint": 192,
+      "endCodepoint": 295,
+      "sha256": "48a2040598e16dda10c66b27d5c77f209b7d39aecf3a4f4dc72b017b70a9688f",
+      "verbatim": "Give me something more to do with Elif herself as she grows, alongside choosing whose work she watches."
+    },
+    {
+      "id": "F-2870",
+      "tester": "tessa",
+      "file": "tessa/report.md",
+      "line": 6,
+      "startCodepoint": 299,
+      "endCodepoint": 441,
+      "sha256": "0465d0ff815238eeb01892b38791d4a51594ef8636f2e98bdeeb9ea02eec30ab",
+      "verbatim": "Show more of what she actually tries when a learned approach fails. “It did not fit today” told me the result, but I wanted the moment itself."
+    },
+    {
+      "id": "F-2871",
+      "tester": "tessa",
+      "file": "tessa/report.md",
+      "line": 7,
+      "startCodepoint": 445,
+      "endCodepoint": 599,
+      "sha256": "a12566c2267a2890e9bf8a4b1191f3d64d8cf39e79f0859ac0970aec64253ad1",
+      "verbatim": "Make the Feedback quick labels operable. **“I'm stopping” was a blocking control I reached on both devices:** the driver could not tap it after one retry."
+    },
+    {
+      "id": "F-2872",
+      "tester": "ilinca",
+      "file": "ilinca/report.md",
+      "line": 3,
+      "startCodepoint": 84,
+      "endCodepoint": 236,
+      "sha256": "6c1834fd294950aa98a053ac9448b1079a60d01ce4d28235f0aa4bff0401d9b9",
+      "verbatim": "Make the Feedback choices and “Not now” operable. This blocked me on both devices; the driver reported the controls covered or off screen after a retry."
+    },
+    {
+      "id": "F-2873",
+      "tester": "ilinca",
+      "file": "ilinca/report.md",
+      "line": 4,
+      "startCodepoint": 240,
+      "endCodepoint": 388,
+      "sha256": "0136858585aa0823301fa09875f514620d20074017e310f224755b353cab14b4",
+      "verbatim": "Give me less repeated text and more variation between the three-afternoon cycles. I began skimming and stopped because the pattern felt predictable."
+    }
+  ]
+}

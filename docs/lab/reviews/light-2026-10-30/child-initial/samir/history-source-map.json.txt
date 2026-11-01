@@ -1,0 +1,109 @@
+{
+  "cutoff": "2026-10-31T17:19:20.562898+00:00",
+  "policy": "own canonical candidate selected FREE entries plus bounded additional own published reports; no other player bodies; no target report or source knowledge",
+  "sources": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/docs/lab/panel/samir-haddad.md",
+      "sourceSha256": "53327eb6c95fa469b6fcc9603083f4d30fd74cfef21899dbad80f54413e0e2cf",
+      "selection": "all own canonical candidate diary except listed independent alternatives and obsolete empty-history line",
+      "excludedSpans": [
+        {
+          "start": 185,
+          "end": 189,
+          "reason": "independent continued alternative excluded"
+        },
+        {
+          "start": 195,
+          "end": 195,
+          "reason": "excluded alternative metadata"
+        }
+      ],
+      "selectedSha256": "5a48d768117d04ce583c453f8917b3163381b7f3cbfe786e22d72b104117e5cb",
+      "selectedContinuityKeys": [
+        "hf3-voice-r1:samir-haddad:free",
+        "glance-light-1030:samir-haddad:free",
+        "light-1030:glance-retest1:samir:free",
+        "light-1030:word:samir:free",
+        "light-1030:glance-retest2:samir:free",
+        "light-1030:word-retest1:samir:free"
+      ],
+      "editorialNonOwnExclusions": [
+        {
+          "finding": "F1",
+          "suppliedLineBefore": 541,
+          "canonicalSourceLine": 544,
+          "excludedExactPhrase": " Another tester disagrees (see the packet README); the disagreement is kept.",
+          "replacement": "",
+          "reason": "editorial cross-player preference/ask comparison; not producer own words or own method fact"
+        }
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+      "sourceSha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "selection": "## Your own Well FREE return and asks — published excerpt, older raw diary not supplied",
+      "sourceStartLine": 5,
+      "sourceEndLine": 17,
+      "selectedSha256": "cadb35badc32e7688639258ab6b74e2301c506a1f5099c693b384cf0943cae4d"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+      "sourceSha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "selection": "## Your own selected Warren FREE visit",
+      "sourceStartLine": 18,
+      "sourceEndLine": 121,
+      "selectedSha256": "43e7a3b211927ecbc46ac223dd9485bf07fe0053e5defe75ddaf6d0c5dc1f3ba"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+      "sourceSha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "selection": "## Your own published report — human-framework/docs/games/voice-playtest-2026-10-27-retest.md",
+      "sourceStartLine": 528,
+      "sourceEndLine": 587,
+      "selectedSha256": "c25c35304ba709c2cf2989d15673085a5bb7532939881c6c145561efe9dd9fd1"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+      "sourceSha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "selection": "## Your own published report — human-framework/docs/games/watch-playtest-2026-10-27-panel-retest.md",
+      "sourceStartLine": 588,
+      "sourceEndLine": 639,
+      "selectedSha256": "3cf6e6777d60e40eb5217e2fa3488636caefc66a903df5f4507dcc072318d978"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+      "sourceSha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "selection": "## Your own published report — pass/docs/playtests/panel-2026-10-27.md",
+      "sourceStartLine": 640,
+      "sourceEndLine": 717,
+      "selectedSha256": "2505bc3263b70b3a693df19897bd846a2127da28ba4df0f0309c1dcc223704bd"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+      "sourceSha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "selection": "## Your own published report — valley/docs/playtests/2026-10-27-retest2.md",
+      "sourceStartLine": 718,
+      "sourceEndLine": 761,
+      "selectedSha256": "15ba32bd65bd55054d21b22081f1f373dbf17465917326c2cc4676c00b176da3"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+      "sourceSha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "selection": "## Your own published report — commonstead/docs/games/commonstead-playtest-2026-10-27b.md",
+      "sourceStartLine": 762,
+      "sourceEndLine": 804,
+      "selectedSha256": "d7acc5e0a9f8051e3a2df800329e2a3993dc774d4301603e2da19cb484a4aa7b"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/word-retest-codex/samir/own-history.md",
+      "sourceSha256": "e4a88e3786d68481b739fe2eccf432411917eeb6a3c9ad4dba1b32e608e6d6fc",
+      "selection": "## Your own published report — lefthand/docs/games/lefthand-playtest-2026-10-27-panel-retest.md",
+      "sourceStartLine": 805,
+      "sourceEndLine": 852,
+      "selectedSha256": "6e65f7eb41ab6c9b28bf6ba3e9cc2ca0115c2fe8af01ffc922fd2c797ee994c9"
+    }
+  ],
+  "historySha256": "a9d3698ff60034b27f3d10f178905bb4017eb94c1a57a67a12ddfd55f8b4978a",
+  "coldCheck": null,
+  "successorAt": "2026-10-31T17:27:41.559921+00:00"
+}

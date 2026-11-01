@@ -1,0 +1,30 @@
+{
+  "child-initial-seal.json": {
+    "sha256": "354de07897c02535d93101e6fb5367c1b15fdf8bd3d11189f1ddacd4b8107580",
+    "scope": "Private source receipt; hash only"
+  },
+  "child-initial-root-finalization.json": {
+    "sha256": "a70e3064cf5a9562c984014af0fb356e572c3dc0e72b077b9fa81ea8000c9003",
+    "scope": "Private source receipt; hash only"
+  },
+  "neighbours-initial-seal.json": {
+    "sha256": "9234de0122ea2f59dae187a8d87d2c141e1ad1376ed589b29c7b158721a19bb7",
+    "scope": "Private source receipt; hash only"
+  },
+  "neighbours-initial-root-finalization.json": {
+    "sha256": "58b0b2f4c81fe7efc401973c80ebeeff978cba8ea016083eac123bc0ba27f21b",
+    "scope": "Private source receipt; hash only"
+  },
+  "child-retest1-seal.json": {
+    "sha256": "ccc348ff4e1771d27b7637cf2351415ca01c7c3a4725eeccdb4b1de3db8c2a86",
+    "scope": "Private source receipt; hash only"
+  },
+  "child-retest1-root-finalization.json": {
+    "sha256": "5fa53544649e38309be4834dcc1aff7c81a5f3223a50f01cfe1b8ab630d8f74f",
+    "scope": "Private source receipt; hash only"
+  },
+  "child-rosa-c8-source4-root-qualification.json": {
+    "sha256": "145b24170f108fa7880b0af933513fd02435bec3be591eaa459797ede3ed122f",
+    "scope": "Private source receipt; hash only"
+  }
+}

@@ -1,0 +1,84 @@
+I would return another evening on the laptop if my town were saved and I could tell whether an offered hour was still a commitment; I would not leave it running.
+
+**Ranked asks**
+
+1. Show the current status of an offered hour consistently after a neighbour chooses something else. Nora’s conversation said my offer could become binding later; the journal subsequently said I no longer needed to give it. That uncertainty contributed to my laptop stop.
+2. Give me enough time to reach and select a neighbour while reading their details. Twice Nora’s location or availability changed before my attempted action.
+3. On the phone, make the long conversation form easier to survey. The choices extended below the screen while the Ask button stayed at the bottom.
+
+I am Mei Tan, 53, an accountant and carer in Singapore. This was my **first recorded Neighbours visit** in the supplied history. Exposure outside those records is unknown. I saw no cue that prompted recognition of a prior Neighbours encounter.
+
+I read all 1,473 lines of the supplied own history, including the portion whose first response was truncated, which I reread in smaller ranges. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. The supplied history is selected and is not my complete archive.
+
+I used the assigned URL with `?labRunSource=agent` and started independent fresh towns:
+
+- **Laptop:** 1280×800, keyboard and mouse, driver port 23103. Stopped at **120.823 real seconds**, Day 1 at 15:00.
+- **Phone:** 360×690, touch, driver port 23102, the same evening on my other device. Stopped at **86.148 real seconds**, Day 1 at 10:00.
+
+Neither game ended. Neither session reached the 180-second pulse checkpoint; I did not wait for it.
+
+**First impressions**
+
+At **4.724 seconds** on the laptop, the flooded hall and the statement that neighbours decide for themselves made me want to inspect the situation before committing. Nora’s door promise had a specific Day 1, 18:00 deadline, and the hall showed 0 of 12 repairs. I liked having figures I could compare. The town moved while I read: my first attempt to walk to Nora’s workshop became stale when she left, and my later attempt to talk at the hall became stale when she left again.
+
+At **5.410 seconds** on the phone, the opening fit the screen and the entry button was large. I found Ece at my starting location and could talk to her immediately. Conversation paused time.
+
+**Diary — laptop**
+
+These are my log reactions in order, with the driver’s elapsed seconds. Engagement is the value I recorded.
+
+- **4.724 s, note, engagement 4:** “A flooded hall and neighbours who decide for themselves. I want to see what needs doing before I promise anything. I do not recognize this town.”
+- **17.357 s, note, engagement 4, Day 1 08:00:** “Nora has promised the doors by 18:00, and the hall says 0 of 12 repairs. The time and promise are concrete. I will visit her workshop.”
+- **20.738 s, note, engagement 4, Day 1 08:30:** “Nora left for the hall while I was reading. My workshop walk did not happen; the choice disappeared. I will follow her instead.”
+- **52.200 s, note, engagement 3, Day 1 10:45:** “I arrived, but Nora left just as I tried to talk. One repair is complete, which is encouraging, but I am chasing her while the clock moves even in the details.”
+- **60.776 s, first_minute, engagement 3, Day 1 10:45:** “The hall needs twelve repairs and Nora has a clear 18:00 promise. I followed her to the hall, but twice the person or walk choice changed before I could act. One repair happened without me. I understand where to go, but not how to catch someone long enough to ask.”
+- **78.862 s, note, engagement 4, Day 1 12:30:** “I caught Nora at the workshop. Talking pauses time, and I can offer my own hour with a deadline. She already kept her door promise, so I will offer to help repair the hall rather than urge her.”
+- **90.295 s, note, engagement 4, Day 1 12:30:** “Nora chose her workshop work instead. My hour is not owed yet, but becomes binding if she acts later. I like the clear conditional promise; I need to keep track of it.”
+- **93.709 s, note, engagement 3, Day 1 12:30:** “The next step says promise an hour and then ask again, but I already offered an hour and she chose otherwise. I do not want to keep pressing her. I will look at my own work instead.”
+- **106.191 s, note, engagement 4, Day 1 13:00:** “I spent one of three town credits on the bus, because trips should be faster. The result and two credits remaining are explicit. I still want to see how to do my own hour.”
+- **109.880 s, note, engagement 3, Day 1 14:00:** “The journal now says I no longer need to give the hour because Nora chose something else. That is a firmer answer than the conditional message I saw before. I am relieved, but surprised it changed.”
+- **112.001 s, want_quit, CONFUSED, engagement 3, Day 1 14:00:** “I would stop here tonight. I like the promises and the town moving on its own, but I spent much of the visit trying to catch Nora and I am unsure whether the conditional hour is still open after the journal says it is released.”
+- **120.823 s, stop, CONFUSED, engagement 3, Day 1 15:00:** “Stopping on Day 1 at 15:00. Nora kept her door promise, I restored the bus, and the hall had one repair when I last checked. I liked the named deadlines but missed her twice and remain unsure about my released hour. I chose I am stopping and closed Feedback without typing or submitting.”
+
+The quit wish stood. I stopped while the hall was still closed.
+
+**Diary — phone**
+
+- **5.410 s, note, engagement 4:** “Same town on my phone this evening. The opening fits and the entry button is large. I will start a new town and try meeting someone at home.”
+- **21.370 s, note, engagement 4, Day 1 08:00:** “I reached Ece immediately at home. The phone conversation is readable but the choices run below the screen; the Ask button stays at the bottom. She prefers visiting neighbours, so I will ask that without offering an hour.”
+- **28.652 s, note, engagement 3, Day 1 08:00:** “Ece said she will visit. That was easy to understand, though she already preferred it, so I cannot tell what difference my request makes.”
+- **41.474 s, note, engagement 4, Day 1 08:15:** “The journal says Ece acted on my request and began the visit at 08:15. It follows through visibly, although she had already wanted to go.”
+- **61.208 s, first_minute, engagement 4, Day 1 09:30:** “Phone text and buttons are readable, and talking pauses time. Ece agreed and the journal recorded her action. The hall is still at zero repairs and I am walking there; the journal had to be closed before I could tap the map.”
+- **70.571 s, note, engagement 4, Day 1 10:00:** “I caught Nora at the hall this time. She plans to keep repairing, so I do not want to divert her. Ece finished her visit, and that is reported plainly.”
+- **74.644 s, note, engagement 3, Day 1 10:00:** “I asked about the handle, but the game says wait until Nora finishes or visit on a break. That is a clear reason. I would leave her to work.”
+- **77.561 s, want_quit, BUDGET, engagement 3, Day 1 10:00:** “I would stop here on the phone tonight. I have seen a request answered and followed through, and I want to leave Nora to her repairs. I would prefer to return on the laptop with the town saved.”
+- **86.148 s, stop, BUDGET, engagement 3, Day 1 10:00:** “Stopping on the phone at Day 1 10:00. Ece agreed to visit and the journal recorded her doing it; Nora is repairing and I will leave her to it. The phone text is readable but the choices extend below the screen. I chose I am stopping and closed Feedback without typing or submitting.”
+
+The phone quit wish stood. The game had not ended.
+
+**What playing felt like**
+
+The town felt active without waiting for me. Nora repaired a door and kept her promise without my instruction; Ece answered and the journal later recorded her visit. I liked the explicit times, the repair count, the bus’s one-credit cost and remaining balance, and the fact that talking paused time. Nora’s refusal to change jobs also felt like an answer from a person with her own work.
+
+The laptop was less comfortable when I tried to coordinate with her. The game told me only people in the same place could hear me, and the travel estimates were clear. But two controls changed before I could use them. I eventually met Nora at the workshop. After she chose her existing work, the immediate response described my hour as conditional; a later journal entry said I no longer needed to give it. I did not establish whether a later action could reopen that obligation. That was the blocking question I actually reached.
+
+On the phone I caught Nora at the hall. The handle question returned a specific reason I could not ask yet: wait until her work finishes or visit during a break. I accepted that. I did not test a later break, complete my own hour, reopen the hall, or return to a saved town.
+
+**Screens and controls**
+
+I viewed four screenshots:
+
+- [Laptop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/desktop/a-001.png>): the town introduction, entry button and recording notice. The large title graphic overlapped the start of the introductory text.
+- [Laptop hall](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/desktop/a-002.png>): a map on the left and hall details on the right, with Nora present and the repair count visible.
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/phone/b-001.png>): readable introduction, large entry button and recording notice at the bottom.
+- [Phone conversation](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/mei/phone/b-002.png>): readable Ece choices in a long vertical form, with the fixed Ask button at the bottom and further choices below the visible area.
+
+On the phone, the Journal covered the map when I first tried to inspect the hall. Closing it and retrying worked. On the laptop, the two stale Nora controls returned explanations that the game state had changed; they were not established driver failures. One laptop wait returned no text, and the next response showed I had arrived. No exposed control remained inoperable after a retry.
+
+**Feedback and return**
+
+When confused on the laptop, I opened Feedback, selected **“I'm confused”**, saw it marked pressed, and closed it. At the laptop stop and phone stop, I selected **“I'm stopping”**, saw it marked pressed, and closed Feedback. I typed no note and submitted nothing. I left recording and consent at their defaults.
+
+I would return on the laptop to see the hall progress if the town were saved and the status of my offered hour were clear. I did not verify a saved return. I would not leave the town running: people move and commitments can change while I am away.
+
+The coordinator owns the drivers and browser cleanup. I started no helpers or processes and touched no repository; I have no worktree to list.

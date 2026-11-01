@@ -1,0 +1,20 @@
+{
+  "phone": {
+    "originalDir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-rosa-c8-recovery-controller-source4/phone",
+    "hashes": {
+      "first-minute.png": "9a5d1e62515d4bb6b0269f5f0996f71ba8ddc8e1722da327a18b0810a4a0184f",
+      "a-001.png": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d"
+    },
+    "copied": false,
+    "view": "UNVERIFIABLE"
+  },
+  "desktop": {
+    "originalDir": "/Users/abdul/code/.lab-scratch/playtest/light-1030/child-rosa-c8-recovery-controller-source4/desktop",
+    "hashes": {
+      "b-001.png": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+      "first-minute.png": "9409e88d64145d707395cf50ab75080134e8cda9ffb492adf87eb79a02887fe8"
+    },
+    "copied": false,
+    "view": "UNVERIFIABLE"
+  }
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "tester": "Rosa Alvarez",
+    "exposure": "standing first Child visit",
+    "openingReturnExact": "I would not return voluntarily as it stands; I would close it, not leave it running.",
+    "report": "rosa/report.md",
+    "reportSha256": "7c6b940479aa1dd812f7182c7da7a2bcda1b4cf485e68deef02f69c663a72087",
+    "rankedAskIds": [
+      "F-2861",
+      "F-2862",
+      "F-2863"
+    ],
+    "conversation": "one complete producer report, copied unchanged; no reconstructed or extra visit"
+  },
+  {
+    "tester": "Samir Haddad",
+    "exposure": "standing first Child visit",
+    "openingReturnExact": "I would return another evening on desktop to see Elif’s eighteenth-year errand, if I could get past Feedback; I would not leave the game running or repeat the opening on my phone tonight.",
+    "report": "samir/report.md",
+    "reportSha256": "c4b813608190f292f3657a334f4664ed49e6330fe5452640d26aa488793baebe",
+    "rankedAskIds": [
+      "F-2864",
+      "F-2865",
+      "F-2866"
+    ],
+    "conversation": "one complete producer report, copied unchanged; no reconstructed or extra visit"
+  },
+  {
+    "tester": "Pavel Novak",
+    "exposure": "standing first Child visit",
+    "openingReturnExact": "I would return voluntarily another evening on the desktop to try a different upbringing, but not tonight; I would not leave it running.",
+    "report": "pavel/report.md",
+    "reportSha256": "1efd7546f1dc4eb50e70977e3118e30694918e9937560cdbf4a3cee233b82a00",
+    "rankedAskIds": [
+      "F-2867",
+      "F-2868"
+    ],
+    "conversation": "one complete producer report, copied unchanged; no reconstructed or extra visit"
+  },
+  {
+    "tester": "Tessa Williams",
+    "exposure": "standing first Child visit",
+    "openingReturnExact": "I would not return voluntarily tonight or leave the game running; I liked watching Elif copy small gestures, but choosing the same work at each age became repetitive.",
+    "report": "tessa/report.md",
+    "reportSha256": "a1f01348f1a3fad39f5f4e4b2944b47107e2a4f64564e51d619b074e7c7c3a18",
+    "rankedAskIds": [
+      "F-2869",
+      "F-2870",
+      "F-2871"
+    ],
+    "conversation": "one complete producer report, copied unchanged; no reconstructed or extra visit"
+  },
+  {
+    "tester": "Ilinca Pavelescu",
+    "exposure": "cold first Child visit",
+    "openingReturnExact": "I would not voluntarily return tonight, and I would not leave the game running.",
+    "report": "ilinca/report.md",
+    "reportSha256": "e1c3a704ac764a28eb9a76f247e2b49caa586f008280e9c1a0a248dcaab775ac",
+    "rankedAskIds": [
+      "F-2872",
+      "F-2873"
+    ],
+    "conversation": "one complete producer report, copied unchanged; no reconstructed or extra visit"
+  }
+]

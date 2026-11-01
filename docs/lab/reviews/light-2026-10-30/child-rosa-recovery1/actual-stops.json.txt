@@ -1,0 +1,40 @@
+{
+  "phone": [
+    {
+      "row": 51,
+      "literal": {
+        "t": "2026-11-01T03:24:11.176Z",
+        "elapsed_s": 65.809,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop after Elif brought the water. I enjoyed seeing her learn and explain her choice. I would close it and try my other device.",
+        "game_clock": null,
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    }
+  ],
+  "desktop": [
+    {
+      "row": 35,
+      "literal": {
+        "t": "2026-11-01T03:25:12.015Z",
+        "elapsed_s": 44.205,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop after seeing Elif protect the jar and the cost to her neighbour. I would close it for tonight and return to see her grow.",
+        "game_clock": null,
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    }
+  ]
+}

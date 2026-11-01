@@ -1,0 +1,6 @@
+{
+  "tester": "samir",
+  "editorial": true,
+  "qualification": "History reported all 1,367 lines read, but historical lines 805–852 selected-hash discrepancy and canonical path drift remain. Desktop reached visible yearbook; phone stopped after first errand. First-minute 58.181 was premature and 61.535 is a separate corrected entry. A malformed quotation sent no gameplay call; corrected call worked. Raw logs and response/report can differ by 1 ms.",
+  "common": "Immediate frozen maps establish byte continuity, not full archive, individual model delivery or comprehension. Reports are verbatim; their diary timestamps and root raw times are not normalized. The tester self-reported two manual screenshot views; no independent CLI image event was recognized."
+}

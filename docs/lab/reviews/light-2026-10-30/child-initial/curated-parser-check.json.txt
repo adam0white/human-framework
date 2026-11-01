@@ -1,0 +1,25 @@
+{
+  "baseline": 1493,
+  "total": 1506,
+  "oldEqual": true,
+  "problems": [],
+  "baselineProblems": [],
+  "ids": [
+    "F-2861",
+    "F-2862",
+    "F-2863",
+    "F-2864",
+    "F-2865",
+    "F-2866",
+    "F-2867",
+    "F-2868",
+    "F-2869",
+    "F-2870",
+    "F-2871",
+    "F-2872",
+    "F-2873"
+  ],
+  "lessons": true,
+  "asks": true,
+  "requests": true
+}

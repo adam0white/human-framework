@@ -1,0 +1,17 @@
+{
+  "tester": "Samir Haddad",
+  "history": {
+    "assignedLines": 1319,
+    "retainedAggregatedStdoutCovered": 1319,
+    "source": "root method summary; coverage of aggregated command stdout only",
+    "directDeliveryAndComprehension": "not established",
+    "producerQualification": "producer reports complete read; model-facing delivery not independently established"
+  },
+  "images": "opening-image views are producer self-reports; no recognized CLI image-view evidence, saved PNG/hash does not prove perception",
+  "feedback": "driver reports quick labels/Not now blocked; cause unknown, lab verification before product attribution; no successful submission inferred",
+  "freshContext": "see exact producer report and logs",
+  "rootMethodSummarySha256": "79b9d73cd7bc477603b34828b82f1e16697d50becbc38539196a70c70057cbf0",
+  "rawCompletionSha256": "d1f2e20be255831c0118ff1d2fd2b30c108061f6970f40d3cdc0cad0fcec0f78",
+  "rawFinalizerAuditSha256": "f27211f09a3568d66af85a0cda1d2ed87b68a2d9bb17ffddd0b7baa206ada599",
+  "projection": "No provider session, command transcript, process argv, port or profile path copied. Root full audit and completion retained privately."
+}

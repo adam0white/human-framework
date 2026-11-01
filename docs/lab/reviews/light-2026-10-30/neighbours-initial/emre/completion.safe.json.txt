@@ -1,0 +1,13 @@
+{
+  "tester": "Emre Kaya",
+  "sourceSha256": "0991b2cc519353c1a6f0ff8910d20d423dd51290a744fb1a0e6b4fcff7d649c1",
+  "rootReturnSha256": "3a8796bb623146bb6ebd8b332ada499f833ae23499d2345460ca5cfed15a6c85",
+  "testerExit": 0,
+  "driverExits": [
+    0,
+    0
+  ],
+  "cut": null,
+  "rootPass": true,
+  "scope": "Hash-bound safe projection, not original completion; process argv and profile paths withheld."
+}

@@ -1,0 +1,400 @@
+{
+  "schema": "bounded-source-epoch-publication-map/v1",
+  "packet": "child-initial",
+  "files": {
+    "README.md": {
+      "publishedPath": "README.md.txt",
+      "sha256": "a83899a31fceb6426caec5b3de8828790c20d58fd876972fb14118b95d8c6d03",
+      "bytes": 2561
+    },
+    "actual-stops.json": {
+      "publishedPath": "actual-stops.json.txt",
+      "sha256": "0d6579368c160a6b050a0267c37536ff85bed4ce1c2b02f23bd15aedcadac6c3",
+      "bytes": 6994
+    },
+    "all-driver-reactions.json": {
+      "publishedPath": "all-driver-reactions.json.txt",
+      "sha256": "ec523cfe2b40fd18a90af90892b7546ddb53a478b252400b91fa891e8587f81c",
+      "bytes": 32587
+    },
+    "curated-parser-check.json": {
+      "publishedPath": "curated-parser-check.json.txt",
+      "sha256": "934774284313cef40f3f388d480613ae755f266060eeebb9d3c14f3a9e23d7b4",
+      "bytes": 356
+    },
+    "ilinca/completion.safe.json": {
+      "publishedPath": "ilinca/completion.safe.json.txt",
+      "sha256": "3b3f8105543098f85765d1ef0a0c315e9c98254af4810e423c0ffb7c08783d9e",
+      "bytes": 384
+    },
+    "ilinca/director-method-qualification.json": {
+      "publishedPath": "ilinca/director-method-qualification.json.txt",
+      "sha256": "5416c3849c935b208cae57102035795062975b8be1cf0c7beff1fe5d03453a36",
+      "bytes": 1169
+    },
+    "ilinca/history-source-map.json": {
+      "publishedPath": "ilinca/history-source-map.json.txt",
+      "sha256": "9a6bf82666d59091b4db847d8f5b0d202f987ed70613d1d906b4e9c5db6a6792",
+      "bytes": 1015
+    },
+    "ilinca/report.md": {
+      "publishedPath": "ilinca/report.md.txt",
+      "sha256": "e1c3a704ac764a28eb9a76f247e2b49caa586f008280e9c1a0a248dcaab775ac",
+      "bytes": 5496
+    },
+    "ilinca/report.original.md.txt": {
+      "publishedPath": "ilinca/report.original.md.txt.txt",
+      "sha256": "e1c3a704ac764a28eb9a76f247e2b49caa586f008280e9c1a0a248dcaab775ac",
+      "bytes": 5496
+    },
+    "inputs/input-freeze.json": {
+      "publishedPath": "inputs/input-freeze.json.txt",
+      "sha256": "10512efe6e107ec689a3cdb506e30353b5d8e2474e972c7cefe26e86e4c8cc5c",
+      "bytes": 4539
+    },
+    "inputs/root-finalization.safe.json": {
+      "publishedPath": "inputs/root-finalization.safe.json.txt",
+      "sha256": "ebd4404888c423a795a2055714b25abf8908071aed7a76f35468da5fc9543a3d",
+      "bytes": 2525
+    },
+    "ledger-additions.md": {
+      "publishedPath": "ledger-additions.md.txt",
+      "sha256": "9b6545ce182e4316822a56271dba50d5beca5cf8858315c2f3feea464e86d983",
+      "bytes": 7082
+    },
+    "ledger-rows.json": {
+      "publishedPath": "ledger-rows.json.txt",
+      "sha256": "a6004b9f604c9425903ebb937feaddd2d1a9a4e7d76254ae515f642ef91e60a8",
+      "bytes": 6941
+    },
+    "logical-testers.json": {
+      "publishedPath": "logical-testers.json.txt",
+      "sha256": "fe8c15ca9cb1d812749af2ef577271412b3592b6056088ec3d5de864faf1ead4",
+      "bytes": 2695
+    },
+    "malformed-attempts.safe.json": {
+      "publishedPath": "malformed-attempts.safe.json.txt",
+      "sha256": "f7b196da9dbd6d904e205dc7052b5b418617e14069a01f392c82709d6013aa3e",
+      "bytes": 1655
+    },
+    "manifest.json": {
+      "publishedPath": "manifest.json.txt",
+      "sha256": "fc9893a947a175cb2d917951a9c4e4e929c02f56f63203bf50f38bab0af3da79",
+      "bytes": 8711
+    },
+    "pavel/completion.safe.json": {
+      "publishedPath": "pavel/completion.safe.json.txt",
+      "sha256": "6a335116b33662ef8b58f7fa92a615690b992cb846618ae4030ecdfee6eee82f",
+      "bytes": 379
+    },
+    "pavel/director-method-qualification.json": {
+      "publishedPath": "pavel/director-method-qualification.json.txt",
+      "sha256": "12fac77083e621b3728b8513de3d971f0b74896e7a47b41f08e46316245ff53a",
+      "bytes": 1170
+    },
+    "pavel/history-source-map.json": {
+      "publishedPath": "pavel/history-source-map.json.txt",
+      "sha256": "236448c130bbf15aac30e67f3ccefc4b6112039794ddbd0627e067db55c66776",
+      "bytes": 5444
+    },
+    "pavel/report.md": {
+      "publishedPath": "pavel/report.md.txt",
+      "sha256": "1efd7546f1dc4eb50e70977e3118e30694918e9937560cdbf4a3cee233b82a00",
+      "bytes": 7671
+    },
+    "pavel/report.original.md.txt": {
+      "publishedPath": "pavel/report.original.md.txt.txt",
+      "sha256": "1efd7546f1dc4eb50e70977e3118e30694918e9937560cdbf4a3cee233b82a00",
+      "bytes": 7671
+    },
+    "rosa/completion.safe.json": {
+      "publishedPath": "rosa/completion.safe.json.txt",
+      "sha256": "903b783bbbab3eef029e44c4c672078376e73ab546bab27f77fa393b23d24aaa",
+      "bytes": 380
+    },
+    "rosa/director-method-qualification.json": {
+      "publishedPath": "rosa/director-method-qualification.json.txt",
+      "sha256": "9dc1affc1bb33f63e839e7d126d97e8c047ee62422476903e23aa31cf5752c82",
+      "bytes": 1233
+    },
+    "rosa/history-source-map.json": {
+      "publishedPath": "rosa/history-source-map.json.txt",
+      "sha256": "66d3b2769754d98458ca833d8c52034634ab4fe7e6aefa26039f3edc2f74dc73",
+      "bytes": 4961
+    },
+    "rosa/report.md": {
+      "publishedPath": "rosa/report.md.txt",
+      "sha256": "7c6b940479aa1dd812f7182c7da7a2bcda1b4cf485e68deef02f69c663a72087",
+      "bytes": 5759
+    },
+    "rosa/report.original.md.txt": {
+      "publishedPath": "rosa/report.original.md.txt.txt",
+      "sha256": "7c6b940479aa1dd812f7182c7da7a2bcda1b4cf485e68deef02f69c663a72087",
+      "bytes": 5759
+    },
+    "samir/completion.safe.json": {
+      "publishedPath": "samir/completion.safe.json.txt",
+      "sha256": "5cae18da349e717d14ddcc66d97b5aa7a661f49f3538f2e74a614d187ee8c5fd",
+      "bytes": 380
+    },
+    "samir/director-method-qualification.json": {
+      "publishedPath": "samir/director-method-qualification.json.txt",
+      "sha256": "638ec3644c9b2a1d6e779c2b5acefcbee82e5d400368d1a2191557c5816b7589",
+      "bytes": 1171
+    },
+    "samir/history-source-map.json": {
+      "publishedPath": "samir/history-source-map.json.txt",
+      "sha256": "2c33d7a918c717082479268d1fcf8ad8def3089af7398f15490c4fc52ae55b17",
+      "bytes": 5579
+    },
+    "samir/report.md": {
+      "publishedPath": "samir/report.md.txt",
+      "sha256": "c4b813608190f292f3657a334f4664ed49e6330fe5452640d26aa488793baebe",
+      "bytes": 7500
+    },
+    "samir/report.original.md.txt": {
+      "publishedPath": "samir/report.original.md.txt.txt",
+      "sha256": "c4b813608190f292f3657a334f4664ed49e6330fe5452640d26aa488793baebe",
+      "bytes": 7500
+    },
+    "screenshots-manifest.json": {
+      "publishedPath": "screenshots-manifest.json.txt",
+      "sha256": "49eb241ae152ceda677fadd2ce0f76e6f437d788dc70ddd98422e16063d09eb7",
+      "bytes": 7186
+    },
+    "source-map.json": {
+      "publishedPath": "source-map.json.txt",
+      "sha256": "171f84e1ae2c337c49c3978443f897008d1468df90e7f88619b8ea07a61cd3c2",
+      "bytes": 12157
+    },
+    "span-bindings.json": {
+      "publishedPath": "span-bindings.json.txt",
+      "sha256": "9c8481626d7f0c001b676998aeb4badf7f7574d950ff7ef2881e919bf2bbb026",
+      "bytes": 5658
+    },
+    "tessa/completion.safe.json": {
+      "publishedPath": "tessa/completion.safe.json.txt",
+      "sha256": "5e45a83f23e07430606901e12cafbd169d9377346cac6484f8641cdce8aa62fb",
+      "bytes": 382
+    },
+    "tessa/director-method-qualification.json": {
+      "publishedPath": "tessa/director-method-qualification.json.txt",
+      "sha256": "9158b3d831e725c3b6b5315a167659b342b824e9bb4f01c834b4346648451815",
+      "bytes": 1212
+    },
+    "tessa/history-source-map.json": {
+      "publishedPath": "tessa/history-source-map.json.txt",
+      "sha256": "a40911376a946cb504d78aef3004dab7c065d4eeebcef0bfda3e39ea649b107f",
+      "bytes": 5489
+    },
+    "tessa/report.md": {
+      "publishedPath": "tessa/report.md.txt",
+      "sha256": "a1f01348f1a3fad39f5f4e4b2944b47107e2a4f64564e51d619b074e7c7c3a18",
+      "bytes": 8291
+    },
+    "tessa/report.original.md.txt": {
+      "publishedPath": "tessa/report.original.md.txt.txt",
+      "sha256": "a1f01348f1a3fad39f5f4e4b2944b47107e2a4f64564e51d619b074e7c7c3a18",
+      "bytes": 8291
+    }
+  },
+  "excluded": {
+    "curated-parser-check.mjs.original.txt": {
+      "sha256": "955af8cca14e9d0b25df2f0066da53237851b1db5ee8a0077f3b49aad90d28f8",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/brief.original.md.txt": {
+      "sha256": "64f53796def4dbaf788c383d765be6c4e451a0d2644f8248d61e5633612a358d",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/desktop/driver.out": {
+      "sha256": "480f317224a8067d2f3424fe56bc97dae20f282527ca8284c22509ec0a753650",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/desktop/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/desktop/wall-clock.jsonl": {
+      "sha256": "d37cc91d07f2ca5aaba2f2765ea1acd5c73becac3a6db5d7fc32225e6e89ca3d",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/dispatch.json": {
+      "sha256": "f30f78d0166b55646b1104f24a2d6a85cc6a49038e36eb751df805ce4721d81c",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/own-history.original.md.txt": {
+      "sha256": "775197e3c402c45fb652e68b86cdba31702d906885c51f021db7a90bdb545af2",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/phone/driver.out": {
+      "sha256": "88717479b280b8192ae8db2819177ad8df9bfffef37c8f35b174eeb5e0e2cdf7",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/phone/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "ilinca/phone/wall-clock.jsonl": {
+      "sha256": "7d5566f8f12c5aac128c470c09b814eb83474b41cc6cc4da035ce3973092e1ea",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "inputs/cohort.json": {
+      "sha256": "ac9418c88c4ac7a7d363ce5ed80a43c8ece4dca74aa520ebf40129daad39e1f1",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "inputs/plan.json": {
+      "sha256": "44c816b9fed1e8317b5b84621865c3001ddf22d2ccf6092fcc5f76166e5c136c",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/brief.original.md.txt": {
+      "sha256": "c62affe9c3a8427ab71c93a697b519dbd7c3e47723b5b1558fbc2b7ce5810861",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/desktop/driver.out": {
+      "sha256": "acc03082ce0eb316f6bf55ac39d958ad3076a77bcd484d998ba97cb31116ca9a",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/desktop/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/desktop/wall-clock.jsonl": {
+      "sha256": "ebdc56b5cc91650ce6758a99065b821f58f7bc2fead4fad6f5220ed0c75a5a85",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/dispatch.json": {
+      "sha256": "84a3c1aa53e41c521253fc446e6b34ae2f3b61548176e623346e8fde06128ae7",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/own-history.original.md.txt": {
+      "sha256": "3e781b22497b0b93fb7fde48515ef698c3241f8a697a883d58eb38b3f0c6293c",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/phone/driver.out": {
+      "sha256": "c7092c73e728fe173d3dc81a7134c523cf11971467829acb0a13645b7485ed79",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/phone/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "pavel/phone/wall-clock.jsonl": {
+      "sha256": "db824c44e2dc7ba38468498a8a83966a701fe6c621f5b758dc0fc1c6ca9b1dcf",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/brief.original.md.txt": {
+      "sha256": "8de93d6e15f67286e87abec61c3bd0ecb8b281449a861338a3022c575aadf05f",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/desktop/driver.out": {
+      "sha256": "329120b899aae1dd185c22775818ecdd67a0f4efc6b57bad9506e3eed4b9316e",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/desktop/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/desktop/wall-clock.jsonl": {
+      "sha256": "07e0c72878c726f26302910b67c2e4cd783104f315ec84b15a0e6d65af04bb09",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/dispatch.json": {
+      "sha256": "de0552dab98b1d514369f0af48099239efe91335db5880ee7a9bfb06157bf1b5",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/own-history.original.md.txt": {
+      "sha256": "da68c53d09d08ceb5cca792c124568319fdd8c23e61952724f198a4b0e7f6693",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/phone/driver.out": {
+      "sha256": "9c3b7592614c39d0142d66a0aaa348941f6a0b2f194f7cdf6d46ded2ce1862cd",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/phone/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "rosa/phone/wall-clock.jsonl": {
+      "sha256": "0ddc9716616515793c35efbf8d3accd095fd373e9da20461d5c35ba6c73b437e",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/brief.original.md.txt": {
+      "sha256": "99251cca406e3c1f329384ed379f40ed2b22872e84f46495f2a09d6cf41d4a8e",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/desktop/driver.out": {
+      "sha256": "783eb2589740a02b49ffa2b8a7390232f9324f6e8aa503f3057f32be7c36ffea",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/desktop/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/desktop/wall-clock.jsonl": {
+      "sha256": "9a2e07fdf40b7bb22e314d71febfcfe27e1a0ba0ec38b6e676b605d3f475ac2c",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/dispatch.json": {
+      "sha256": "f1d5a6b7edb9992b04fe0973e103482b8529041d4ea02216a800516255aac78a",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/own-history.original.md.txt": {
+      "sha256": "a9d3698ff60034b27f3d10f178905bb4017eb94c1a57a67a12ddfd55f8b4978a",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/phone/driver.out": {
+      "sha256": "bea23b610151f3850c25c49ffd60a77cb78aa00b22c7340c77399ba61d9e9767",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/phone/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "samir/phone/wall-clock.jsonl": {
+      "sha256": "aa9dd1271e9b99e32d298204a956e1c227726803231b3acf612f7236dea62fda",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/brief.original.md.txt": {
+      "sha256": "d949aa40e532ecac440690d0e0ff9cf09abc3306e41755a1dbe57097edc4a68a",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/desktop/driver.out": {
+      "sha256": "2c89703f343545fd4fa923f8119d8a3a636c21ba35cd0da190af49c23571071f",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/desktop/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/desktop/wall-clock.jsonl": {
+      "sha256": "8f9a0344cf38ea2461a54d7324532a2d489874a804a6b88ac159a77cb3fca966",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/dispatch.json": {
+      "sha256": "3d842ed1e5089491ba070433ead63f331cd7ce9bcb843e6ee2872401bb27bf53",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/own-history.original.md.txt": {
+      "sha256": "962c819bfc6485505e6b71b4536995a745730635fac8ac8029fa50a684ff984e",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/phone/driver.out": {
+      "sha256": "d99e2d6437e87ef5293008d02907c2ba95e1a80248bead3ea6900e91de5c347a",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/phone/release-start.json": {
+      "sha256": "513244218e808a78a0d4a93d7271c14261c4ec4e747c3ee680ddf6803ba2e3e9",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "tessa/phone/wall-clock.jsonl": {
+      "sha256": "ee4237ca4f86b4ea43b64c0a759b1bcb453f4b4a5fe51626f3cc03c70dc5e8e4",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    },
+    "verify.py": {
+      "sha256": "47c82c870893499034901803a6912ebe4c2768f6976b957328289c1eccfacb71",
+      "reason": "Not in bounded safe publication selection; original remains private"
+    }
+  },
+  "scope": "Byte-exact selected snapshots; source-epoch manifest may list withheld files. Local paths are provenance, not public assets."
+}

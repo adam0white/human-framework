@@ -1,0 +1,6 @@
+{
+  "tester": "rosa",
+  "editorial": true,
+  "qualification": "History: own report explicitly marks lines 401–3200 unread or unverified despite aggregate stdout coverage. Inherited lines 401–3177 also unverified; canonical path drift remains. Four acknowledged New game taps left menu unchanged; reset is unconfirmed. Two stops are TOOL. Both were under one minute. The exact source native confirm and absent driver handler plus Playwright default dismissal are an instrument lead, not evidence of a particular observed dialog or product bug.",
+  "common": "Immediate frozen maps establish byte continuity, not full archive, individual model delivery or comprehension. Reports are verbatim; their diary timestamps and root raw times are not normalized. The tester self-reported two manual screenshot views; no independent CLI image event was recognized."
+}

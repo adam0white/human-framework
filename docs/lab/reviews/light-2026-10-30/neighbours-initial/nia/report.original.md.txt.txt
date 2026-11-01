@@ -1,0 +1,54 @@
+I would return another evening if I could reach Nora’s handle conversation without chasing her between places; I would not return tonight or leave the game running.
+
+**Ranked asks**
+
+1. Help me reach a personal conversation when someone is busy. Nora’s handle and Sam’s notebook interested me, but both questions told me to wait; following Nora then took me to the workshop after she had left.
+2. Make the “Keep your promise” prompt identify the work and deadline, or explain why it appeared. On phone I chose **Ask**, then accepted Sam’s alternative, and could not find my supposed promise in the journal. This was a blocking question for me when I stopped.
+3. Put a person’s later response closer to their first answer. Nora said she would open the section, while the town record said it stayed closed. Her later “I cannot do that here now” appeared in her details, which I had to reopen.
+
+I’m Nia Okafor, 19, a Lagos design student. This was my **first recorded visit to Neighbours** in the supplied own history; exposure outside those records is unknown. I played desktop first, then phone on the same evening, using separate fresh games at the supplied URL with `?labRunSource=agent`. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+I read the supplied history through **line 1814**. The last line was **“End of supplied own history.”** Unread ranges: **none**. The supplied records are selected history, not a complete archive.
+
+The opening gave me a clear goal: reopen a flooded hall while neighbours make their own decisions. I liked that promise, and finding Nora’s prototype handle made me curious. The strongest friction was getting to a personal answer: both people I approached were working, and Nora moved while I followed her. Sam’s alternative was a real choice, although his wording sounded like a job label. Restoring the bus gave me an immediate, understandable result.
+
+**Diary: exact logged reactions**
+
+Desktop, 1280×800, keyboard and mouse:
+
+- **5.770 s, note, engagement 3:** “A flooded hall and neighbours who decide for themselves: I want to ask someone something and see them push back.”
+- **26.351 s, note, engagement 4, Day 1 09:00:** “Nora is a repair designer, which reminds me of Nora and the unfinished handle in Commonstead. I am not sure it is the same person. I want to talk to her about the hall.”
+- **46.560 s, note, engagement 5, Day 1 10:30:** “The prototype handle is here! That is the detail I remember from Nora in Commonstead, so I am fairly sure this is her. I want to ask about it.”
+- **61.733 s, first_minute, engagement 4, Day 1 10:30:** “The town opens quickly after a download and the walk to Nora was clear. The handle brought back Commonstead, but she was too busy to discuss it. I asked her to open the unsafe section and she said I will do it, even though her plan still says keep it closed. I want to see what happens.”
+- **79.222 s, note, engagement 3, Day 1 11:15:** “She said she would open it, then the record says she kept it closed again. I cannot tell whether she changed her mind or that first answer meant something else. I still want the handle conversation.”
+- **94.296 s, note, engagement 4, Day 1 12:30:** “Ah, her details say later I cannot do that here now and she chose workshop fittings. That explains more, though I had to follow her to find it. I will try the handle once more.”
+- **108.617 s, want_quit, BORED, engagement 2, Day 1 13:30:** “I chased Nora to the workshop and she left for home before I arrived. I want the handle answer, but I do not want to chase her around town for it. I would leave here.”
+- **117.550 s, stop, BORED, engagement 2, Day 1 14:00:** “Stopping on desktop. I liked finding Nora and the handle, but she was busy and then left while I followed. Her initial yes and later inability confused me until I checked her details. I would close it.”
+
+Phone, 360×690, touch:
+
+- **5.885 s, note, engagement 3:** “Phone now, same evening. I want to try someone else and see a real answer without chasing Nora again.”
+- **35.889 s, note, engagement 3, Day 1 09:00:** “Another intriguing personal question, another busy answer. I understand why, but I want to talk to someone now. I will ask him to inspect the timber instead.”
+- **44.236 s, note, engagement 3, Day 1 09:00:** “He offers the kitchen instead, which fits his plan, but the words sound like the button talking. I like that he has an alternative. I will accept it.”
+- **59.381 s, premature first_minute, engagement 3, Day 1 09:15:** “Sam offered an alternative and the journal shows him acting on it, which is clear. But the personal notebook question was blocked while he worked. The prompt says I promised an hour, though I chose Ask and accepted his alternative; I do not know what I promised.”
+- **61.936 s, first_minute, engagement 3, Day 1 09:15:** “Sam offered an alternative and the journal shows him acting on it, which is clear. The notebook question was blocked while he worked. The prompt says I promised an hour, though I chose Ask and accepted his alternative; I do not know what I promised.”
+- **74.190 s, note, engagement 3, Day 1 09:45:** “A bus for one credit makes sense after the chase. It says future trips are faster. I still cannot find the supposed promise in the journal.”
+- **76.554 s, want_quit, CONFUSED, engagement 2, Day 1 09:45:** “I got an alternative from Sam and restored the bus, but the personal question was blocked and the promise prompt does not match what I remember doing. I do not want to spend the evening figuring it out. I would stop.”
+- **87.294 s, stop, CONFUSED, engagement 2, Day 1 10:15:** “Stopping on the phone. Sam offered another job and the bus was a satisfying immediate change, but the blocked notebook and unexplained promise prompt lost me. I would close it.”
+
+The phone’s first checkpoint was logged **before 60 seconds**, so it is not a valid first-minute checkpoint; the 61.936-second entry is. Both quit wishes persisted. Neither game ended, and neither session reached the 180-second pulse or later checkpoints. The hall remained closed in the play I saw.
+
+At **26.351 seconds**, Nora’s name and repair-design role reminded me of my Commonstead encounter with the unfinished handle; I was unsure whether she was the same person. At **46.560 seconds**, the visible “Ask about the prototype handle” cue made me fairly sure. That is recognition of an encounter in another game, not a prior Neighbours visit. I did not recognise another person or cue during these sessions.
+
+The walk control told me where I was going and roughly how long it would take. The game also explained that only people at the same place could hear me. Nora’s personal question explicitly said to wait for her to finish work or visit during a break. Her later inability to open the section explained more than the initial answer, though I cannot establish why she could not do it. On phone, Sam’s alternative and the journal’s account of him acting on it were clear. The separate instruction to keep an hour-long promise was not clear to me; I did not establish whether an actual promise existed.
+
+I viewed four screenshots:
+
+- Desktop [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/desktop/a-001.png): the opening and Enter button. The title graphic covered the left edge of the opening text.
+- Desktop [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/desktop/a-002.png): the town map beside Nora’s details and a visible Talk button. I used mouse clicks; I did not use a keyboard key.
+- Phone [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/phone/b-001.png): the opening, with the Enter button and recording strip visible.
+- Phone [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/nia/phone/b-002.png): Sam’s answer, personal question, task choices and bottom Ask button. The lower form choices were outside that view.
+
+At desktop confusion I opened Feedback, selected **“I'm confused”**, saw it pressed and closed Feedback. At the desktop stop I reopened it, selected **“I'm stopping”**, saw it pressed and closed it. I did the same for phone confusion and phone stopping. I typed no note, pressed no Submit and claim no feedback receipt. One initial desktop Feedback command failed at the shell because of quoting; the corrected input worked. Two earlier Nora taps became stale as her activity changed; the driver reported the changed page, and Follow Nora opened her details. One desktop wait returned no output; the following screenshot showed the game state.
+
+I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns driver and browser cleanup.

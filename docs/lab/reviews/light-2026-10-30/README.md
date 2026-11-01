@@ -96,3 +96,7 @@ Retained current responses and image blocks do not establish attention or percep
 The [publication path policy](batch6-publication-path-policy.json) permits non-secret local workspace locators in these fictional reports and source maps so the tester words and source bytes remain exact. Those paths are nonportable provenance references. They are not public asset links and do not make the files at those paths available. Screenshot files are not published; packet manifests retain their hashes only. Source-epoch scripts are retained as historical evidence, not as portable tools or validators of this prepared view. Provider session or rollout paths and contents, UUIDs, credentials, and actual private account, correspondence, health or financial records are excluded; any concrete sensitive content remains a blocker for publication.
 
 Each packet publication map resolves original source filenames to exact inert `.txt` snapshots. They are source-epoch evidence, not runnable tools or public screenshot downloads. The [external receipt map](batch6-external-publication-map.json) preserves the Well seal as an inert exact snapshot.
+
+## Batch 7 source-only candidate
+
+[Integration qualification](batch7-integration.md) and publication maps: [Child initial](child-initial/publication-map.json), [Neighbours initial](neighbours-initial/publication-map.json), [Child retest](child-retest1/publication-map.json), [Rosa recovery](child-rosa-recovery1/publication-map.json). Cold session reports remain in their round archives.

@@ -1,0 +1,162 @@
+{
+  "at": "2026-10-31T21:23:28.259638+00:00",
+  "status": "QUALIFIED_COLLECTION_ROSA_INSTRUMENT_GATE_REMAINS_NOT_FINISHED",
+  "actualLastReturn": "2026-10-31T21:17:08.164268+00:00",
+  "controllerExit": 0,
+  "reports": 5,
+  "rootReadAllFiveCompleteReports": true,
+  "reportHashes": {
+    "rosa": "8b63b114dc7c2fcc6db06a11db8383e0d575928f9725c43ee1194132317a50aa",
+    "samir": "b1c28d9f147a44be34cae5de2db31a2c65f312f33492007cfd12bddcc2530066",
+    "pavel": "7f8df435484d288cdaaedd53a86e32a0617b5c34937f7b73ba6ebf6318d1015d",
+    "tessa": "ad614560248779dc1414f371edc5f1fba0ac949c46042b8fc409d35751d6f754",
+    "zora": "c7ce2b493a3c2f625dd361bf8af956b5813d8b65b8f80314df47ce4570546790"
+  },
+  "rootReturnSha256": "4a1786aa3afb63add31741bbd433a336cb09e2dbe16fcc626af94ad904ad74d5",
+  "finalizerSha256": "4e0e9de6487c690ebd596df2cdfa39734995a71508c3c5aba81a57b7947d294e",
+  "finalAssetsSha256": "bf680240d1982907a5e9a9ffb6b3dbfd9c58a3ee65be6750d3505094a4d535db",
+  "boundaryProjectionSha256": "6a21e554e55703f4f24d93fc7ac05cbff8af107b1fd1d88e25da592c7568c1b5",
+  "compactBoundarySha256": "71de1256e3d799e045c950a591a99d026223e810d80751c699998a3ebccee882",
+  "stops": [
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "reason": "TOOL",
+      "elapsed_s": 15.29,
+      "reaction": "I stop because I cannot confirm New game worked after two taps. Feedback let me choose stopping and close it this time. I typed nothing and sent nothing.",
+      "voluntary": false
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "reason": "TOOL",
+      "elapsed_s": 19.218,
+      "reaction": "I stop on the large screen because I cannot confirm New game started after two taps. Feedback stopping and Not now worked. I typed nothing and sent nothing.",
+      "voluntary": false
+    },
+    {
+      "tester": "samir",
+      "device": "desktop",
+      "reason": "FINISHED",
+      "elapsed_s": 104.491,
+      "reaction": "I am stopping at the yearbook. Everyone got water, the emergency share and repair cost were clear, and Feedback let me select stopping and close it. I liked Elif copying small acts, but the repeated preparation felt predictable.",
+      "voluntary": true
+    },
+    {
+      "tester": "samir",
+      "device": "phone",
+      "reason": "BORED",
+      "elapsed_s": 28.61,
+      "reaction": "I am stopping on the phone after the first errand. I have just finished the story on desktop and do not want to repeat the years tonight. I selected stopping and closed Feedback; I typed and sent nothing.",
+      "voluntary": true
+    },
+    {
+      "tester": "pavel",
+      "device": "desktop",
+      "reason": "FINISHED",
+      "elapsed_s": 113.668,
+      "reaction": "I stop at the yearbook with every household supplied and no emergency water left. This time the stopping label was marked pressed and Not now returned to the menu. I typed and sent nothing.",
+      "voluntary": true
+    },
+    {
+      "tester": "pavel",
+      "device": "phone",
+      "reason": "TASTE",
+      "elapsed_s": 53.048,
+      "reaction": "I stop at age six on the phone. The different result was worth seeing, but I have had enough of the repeated afternoons tonight. The stopping label was pressed and Not now returned to the menu. I typed and sent nothing.",
+      "voluntary": true
+    },
+    {
+      "tester": "tessa",
+      "device": "phone",
+      "reason": "BORED",
+      "elapsed_s": 85.015,
+      "reaction": "Stopping the phone at ten. Hearing Elif tell me what happened and seeing her make room for another child were lovely, but I am tired of choosing the same work each age.",
+      "voluntary": true
+    },
+    {
+      "tester": "tessa",
+      "device": "desktop",
+      "reason": "TASTE",
+      "elapsed_s": 75.776,
+      "reaction": "Stopping the laptop at six. Her small jars explanation feels personal, but the failed Danyal attempt is still vague and I have had enough of picking the same work.",
+      "voluntary": true
+    },
+    {
+      "tester": "zora",
+      "device": "phone",
+      "reason": "BORED",
+      "elapsed_s": 90.139,
+      "reaction": "I am leaving after the winter sharing; I have had enough of the repeated choices.",
+      "voluntary": true
+    },
+    {
+      "tester": "zora",
+      "device": "desktop",
+      "reason": "BORED",
+      "elapsed_s": 45.455,
+      "reaction": "I am leaving after seeing the different first outcome; repeating the rest does not appeal tonight.",
+      "voluntary": true
+    }
+  ],
+  "stopCounts": {
+    "TOOL": 2,
+    "FINISHED": 2,
+    "BORED": 4,
+    "TASTE": 2
+  },
+  "voluntaryStops": 8,
+  "toolStops": 2,
+  "actualEndings": [
+    {
+      "tester": "samir",
+      "device": "desktop"
+    },
+    {
+      "tester": "pavel",
+      "device": "desktop"
+    }
+  ],
+  "actualEndingsBasis": "Complete reports plus actual visible ending text in recorded driver responses, not FINISHED alone",
+  "cuts": 0,
+  "automaticCeilings": 0,
+  "pngs": {
+    "rosa/phone/a-001.png": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d",
+    "rosa/desktop/b-001.png": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+    "samir/desktop/first-minute.png": "9ccf6868b75776e306116099066ed1b021a2030059e35594c7b799f254750db6",
+    "samir/desktop/a-001.png": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+    "samir/phone/b-001.png": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d",
+    "pavel/desktop/first-minute.png": "3d52fc8a665b11fdab68917d7e9999094046bce3551ab3df53a60d44ac955bb1",
+    "pavel/desktop/a-001.png": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+    "pavel/phone/b-001.png": "f1124873e62a91e3d90a5827a1f1663b3e9453ba0948097403f4048407bedf60",
+    "pavel/phone/first-minute.png": "c90848ff1c4758142a6f35aaadbdd67f542d67b239663ddeded1f195b470bc75",
+    "tessa/phone/first-minute.png": "c443552a564ab94159f7b0c6024c66764e1a07883c747ed07d4770c14152e6a6",
+    "tessa/phone/a-001.png": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d",
+    "tessa/desktop/b-001.png": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0",
+    "tessa/desktop/first-minute.png": "9056e339cad944152af104d8a7127ba08d8add64e8abdcf1e25b7f4c1c0cd67f",
+    "zora/phone/first-minute.png": "6247bcae6fdafeb8f620081179d6961c53a6431c25f8c506e19322369f9cd4b3",
+    "zora/phone/a-001.png": "c8b520ceeb70a8c8b05e5df008f69dd5ba660f45e535d7f67258f789edcb166d",
+    "zora/desktop/a-001.png": "9e1e1f043586675e40edc59bed1c4c1bf2bb280edd2b3e9f58d13c81f32ca2c0"
+  },
+  "imageViewQualification": "Ten manual views self-reported; no recognized independent CLI image event. Six automatic images, including Pavel phone after actualstop, are not perception or continuedplay. All16 PNG hashesverified and withincaps.",
+  "historyQualification": "All5 supplied file contents covered by aggregate commandstdout, not independently modeldelivery/comprehension. Rosa explicitly reports 401\u20133200 unread/unverified; preserved despite stdoutcoverage. Historical Rosa401\u20133177, Samir805\u2013852 selectedhash discrepancy, Rosa/Samir canonicalpathdrift remain qualified.",
+  "timingQualifications": [
+    "Samir premature first_minute58.181 retained; later61.535 separatecorrected entry.",
+    "Several report driverresponse times exceed raw log times by0.001seconds; neither normalized.",
+    "Pavel phone firstminuteautomaticshot after53.048stop is notcontinuedplay."
+  ],
+  "exceptions": "Three malformed shell quotation failures Samir/Pavel/Tessa; no gameplay call from those failures. Zora rejected Invalid reason request retained, corrected next successful note separate.",
+  "boundaryOutcome": "All ten stopping labels actuallypressed and Notnow returnedmenu. Zora desktop confusedalso pressed+closed. No observedSubmit/type/Recordingtoggle in allparsedcalls; backend automaticrun/receipt outcomesunverified.",
+  "sourceLead": {
+    "gameNewGame": "Exact f3dc src/main.ts258 uses native confirm before reset/menuclose",
+    "driver": "Approved frozen driver/helper/text have no native dialog handler/decision operation",
+    "primaryDocs": "https://playwright.dev/docs/dialogs",
+    "inference": "Documented default dismissal + exact source is strong instrumentlead, not observed native dialog evidence for any particular Rosa tap. Preserve four acknowledged Newgamecalls with unchangedmenu; Tessa resetclaimsnotconfirmed.",
+    "proposal": "New private driver-only explicit visible confirmation design underway; no source/productfix or recoveryadmitted."
+  },
+  "asks": 10,
+  "askRouting": "Rosa Newgame confirmation blocking instrumentask targetlabNov3; remaining9 ranked characterization/repetition/density preferences targetNov10. No old or new ask erased; no allclear/owneracceptance.",
+  "deploymentHold": true,
+  "cpuReturned": true,
+  "nextOrdinaryNotBefore": "2026-10-31T21:32:08.164268+00:00"
+}

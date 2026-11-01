@@ -1,0 +1,13 @@
+{
+  "tester": "Dafina Kelmendi",
+  "sourceSha256": "91b37acdc2c06e16bf5fef8d440de64a34f2bde114460f505eeac2d0db2df715",
+  "rootReturnSha256": "3a8796bb623146bb6ebd8b332ada499f833ae23499d2345460ca5cfed15a6c85",
+  "testerExit": 0,
+  "driverExits": [
+    0,
+    0
+  ],
+  "cut": null,
+  "rootPass": true,
+  "scope": "Hash-bound safe projection, not original completion; process argv and profile paths withheld."
+}

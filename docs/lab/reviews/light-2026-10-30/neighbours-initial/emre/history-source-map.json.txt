@@ -1,0 +1,32 @@
+{
+  "cutoff": "2026-10-31T19:00:22.724102+00:00",
+  "policy": "selected prior own FREE history plus literal latest own report; not complete archive; no independent CONT body",
+  "priorHistory": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/own-history.md",
+    "sha256": "1d7960efc3cdeb74d787126bec8308881f0876d084658ca176cd144631a24e76",
+    "sourceStartLine": 1,
+    "sourceEndLine": 1305,
+    "excludedSpans": [],
+    "selectedSha256": "1d7960efc3cdeb74d787126bec8308881f0876d084658ca176cd144631a24e76",
+    "unchangedFullPrefix": true
+  },
+  "inheritedSourceMap": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/well-codex/emre/history-source-map.json",
+    "sha256": "fcc75b3f8e7122b735ec8de05d3018aff38b779a80e9b405881e59750379b706",
+    "selection": "retain exact prior source mappings and exclusion/continuity qualifications"
+  },
+  "latestOwnReport": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/well-retest1/emre/report.md",
+    "sha256": "b4539aab5cb759d04a5d5cf2de61e8ed83da3ba0e4bf2bc530cb5f31ae0ad41c",
+    "sourceStartLine": 1,
+    "sourceEndLine": 117,
+    "selection": "complete verbatim literal appendix",
+    "selectedSha256": "b4539aab5cb759d04a5d5cf2de61e8ed83da3ba0e4bf2bc530cb5f31ae0ad41c"
+  },
+  "methodQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/batch6-preparation/ready/docs/lab/reviews/light-2026-10-30/well-retest1/emre/director-method-qualification.json",
+    "sha256": "ca4a3124eea643248f90aaf6fdf01ed96415481c122208080f12f1038e92d708",
+    "suppliedText": "All 1305 earlier history lines matched aggregated stdout and completion-bound retained outputs; repeated-line alignment can be ambiguous. Attention and comprehension are not established. Three image blocks do not prove perception. Phone control obstruction is a tool observation; cause was not established."
+  },
+  "historySha256": "1c57518f67d175e497e634020feaef14958ae9aa417090cd989c0ac3cd12c6f2"
+}

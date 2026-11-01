@@ -1,0 +1,49 @@
+I would not voluntarily return to Neighbours tonight, and I would leave it rather than keep it running.
+
+My ranked asks, based on what I reached:
+
+1. Explain why Bilal’s agreed hall repair became unavailable at the hall. That was the blocking question I reached: he said “I will do it,” then went home because “That is not available here now.”
+2. Help me judge whether I can reach a neighbour before they leave. I missed Sam at the kitchen and again after travelling toward the quay.
+3. Make the desktop introduction fully visible; the title panel covered the beginnings of its text in the screenshot I viewed.
+
+I played first on a **360×690 touch phone**, then on a **1280×800 desktop with keyboard and mouse**, in separate fresh sessions on the same evening. The phone session stopped at **115.314 seconds**; the desktop session stopped at **63.309 seconds**. Neither game ended. I kept recording and consent at their defaults and did not change settings. I entered no feedback note and sent nothing.
+
+I read all nine supplied history lines before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. There was no earlier HF experience to recognize on the phone.
+
+The phone introduction made the purpose clear: a flooded hall needed reopening, and the neighbours would decide for themselves. The walking explanation and the hall’s repair count were understandable. Nora’s promise and deadline made me curious about her, but her conversation presented many choices before I understood why I should redirect someone already repairing the hall. Lending tools felt good because the game immediately showed five tools available. Later, three of twelve repairs were complete, though I could not tell exactly whose work accounted for them.
+
+On desktop, I recognized the opening from the phone and tried restoring the bus. I then went to the kitchen hoping to meet Sam, but he had left after I skipped time. I followed toward the quay and found he had gone home. The town felt active, but following people became a chore.
+
+The screenshots I actually viewed were [phone-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/dafina/phone/phone-001.png), showing the readable phone introduction and large entry button, and [desktop-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-initial-inputs/dafina/desktop/desktop-001.png), showing the title panel overlapping the start of the introductory text. On the phone, an attempt to inspect the hall while the Help panel covered it returned a covered-or-off-screen error; closing the panel and using the hall control worked. A later attempt to stop advancing arrived after the page had already changed.
+
+Recognition on desktop was prompted by visible cues, not an imported save:
+
+- **6.280 s:** “Mill Bridge” and the flooded hall introduction recalled the phone opening. Confidence: high. My recorded words were: “I recognise the flooded hall and Mill Bridge from my phone visit this evening.”
+- **25.826 s:** The “Lend tools” option recalled lending tools on the phone. Confidence: high. My recorded words were: “I remember the tools from the phone and try the bus this time.”
+
+The diary below preserves my logged reaction words in order. Engagement is the number I recorded; game times are shown where logged.
+
+**Phone diary**
+
+- **5.450 s — note, engagement 4:** “The flood and the hall give me a clear reason to enter. I wonder what it means that the neighbours decide for themselves.”
+- **26.111 s — note, engagement 4, Day 1 08:45:** “I chose the hall because that is what needs help. Nora has a promise and a deadline, which makes her feel like a person with her own work. I am walking but cannot talk yet.”
+- **35.152 s — note, engagement 3, Day 1 09:30:** “There is a lot to choose at once. Nora is already repairing the hall, so I do not know why I should ask her to do one of these other things. The prototype handle catches my eye.”
+- **52.941 s — note, engagement 4, Day 1 09:30:** “Lending tools is a relief: I understand what I contributed and see the number change. I want to see whether the repairs move.”
+- **60.658 s — first minute, engagement 4, Day 1 12:30:** “I understand the hall goal and walking, but the conversation asks me to redirect someone already working. Lending tools feels more useful. I am still curious whether the hall is improving.”
+- **84.719 s — note, engagement 3, Day 1 12:45:** “Bilal said he would repair it, then the work was not available and he went home. I have started my promised hour anyway. I do not understand why the repair was unavailable at the hall.”
+- **99.797 s — note, engagement 2, Day 1 13:30:** “Three repairs are complete now. Seeing that is satisfying, though I cannot tell exactly whose work counted. Everyone nearby has gone and I am losing interest in chasing them.”
+- **102.085 s — want quit, BORED, engagement 2, Day 1 13:30:** “I would leave here; I helped a little but I do not feel pulled to follow everyone around.”
+- **115.314 s — stop, BORED, engagement 2, Day 1 14:00:** “I am leaving after helping with tools and one hour; I do not want to chase another conversation now.”
+
+I opened Feedback when confused about Nora’s conversation and again after Bilal’s response. Each time, “I’m confused” showed as pressed, and closing Feedback returned me to the game. At stopping, “I’m stopping” showed as pressed; I closed Feedback without submitting.
+
+**Desktop diary**
+
+- **6.280 s — note, engagement 3:** “I recognise the flooded hall and Mill Bridge from my phone visit this evening. The large title panel covers the start of the introduction on this wider screen.”
+- **25.826 s — note, engagement 4, Day 1 09:00:** “I remember the tools from the phone and try the bus this time. It says future trips can use it, so I have a practical reason to see another place.”
+- **34.697 s — note, engagement 2, Day 1 10:45:** “I went to the kitchen hoping to meet Sam, but the skip carried time on and Sam has left. The empty kitchen gives me little to do.”
+- **51.352 s — note, engagement 2, Day 1 12:30:** “Sam has gone home by the time I reach the quay too. It feels like I am following a timetable that keeps moving faster than I can meet anyone.”
+- **53.355 s — want quit, BORED, engagement 2, Day 1 12:30:** “I would stop now. I wanted to meet Sam, but following him has become a chore.”
+- **63.309 s — stop, BORED, engagement 2, Day 1 13:45:** “I am leaving after missing Sam twice. The town moves, but I do not feel like pursuing him again.”
+
+On desktop, “I’m stopping” showed as pressed in Feedback; I closed it without submitting. I had already decided to leave before the 60-second first-minute checkpoint, so I did not force one. Neither session reached the 180-second pulse checkpoint. The hall reopening, later hall choices, and a completed game remain untested.

@@ -734,3 +734,119 @@ My three earlier asks:
 - Two of five still "cannot hear you" on the phone at 09:57, with no way I could see to fix it.
 
 Cleanup: I created no worktree, server, browser, helper script or file. I started no helper processes. Both drivers belong to the coordinator. I touched no repository, so there is no `git worktree list` to show.
+
+<!-- selected-continuity-key: light-1030:child-initial:pavel:free -->
+
+## child-initial: pavel
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/child-initial/publication-map.json. Individual method qualifications: docs/lab/reviews/light-2026-10-30/child-initial/pavel/director-method-qualification.json.txt.
+
+```text
+I would return voluntarily another evening on the desktop to try a different upbringing, but not tonight; I would not leave it running.
+
+My ranked asks are:
+
+1. **Let me select a Feedback label and close Feedback.** On both devices, the driver reported “I'm stopping” and “Not now” as covered or off screen on both attempts. This was a **TOOL block** under the assignment’s rule; I cannot tell from the evidence whether an ordinary player would encounter the same problem.
+2. Give the repeated afternoons a little more variation. I liked seeing what Elif learned, but by the second session I knew the sequence of three choices followed by a watch, and I stopped at age ten.
+
+I am Pavel Novak, 70, a retired tram driver from Brno. This was my **first visit** to What the Child Saw. I played the desktop session first at 1280×800 with keyboard and mouse, then a fresh game on the 360×690 touch phone the same evening. Both used the supplied project-test drivers and the requested `labRunSource=agent` URL. The opened pages began at the first actionable screen; there was no New game button on that screen. No old save or matched seed was imported.
+
+I read all 1,259 supplied history lines before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. One large read was truncated, so I reread that portion in smaller explicit ranges. The supplied history contained no previous Child visit.
+
+The desktop game ended after **152.475 seconds** at the stop log. I stopped the phone game voluntarily after **101.534 seconds**, with Elif aged ten. Neither reached the 180-second pulse checkpoint. The phone’s ages 14 and 18 and its ending were untested; I did not wait to reach any later checkpoint.
+
+I liked the concrete connection between a lesson and an outcome. Maryam’s cups became a way for Elif to reserve water; later, Yusuf’s path-checking became the way she brought water to everyone. The age-18 instruction explicitly said counting alone would not suffice, which made me change my established routine. The final yearbook let me compare the five ages. On the phone, saying no kept the family’s jar but left the neighbour waiting; holding a queue place left the older children angry. Those costs made the choices feel human.
+
+The rules were mostly clear to me: three afternoons, a carried task from earlier years, then the most-watched way; a tie prevents a choice. I did not encounter a tie, so I did not see its outcome. At age six on desktop, both the lower and upper paths were described as dry; I could not tell whether checking the upper path had mattered beyond the stated cost of the longer walk. I was not sufficiently confused to stop for that.
+
+The opening paths and title on the phone prompted recognition of the desktop session just played: **7.008 seconds**, high confidence, “The same paths and opening as the desktop a few minutes ago.” I did not recognise this game at the desktop opening. I made no claim that its characters were people from another game.
+
+**Diary lines, unchanged and in order**
+
+Desktop:
+
+- **5.338 s — note, engagement 4:** “A child learns from what she sees, and three afternoons before she goes alone. I like the paths in the drawing. The earlier task counts too, so I must watch for a tie. I do not recognize this game.”
+- **11.032 s — note, engagement 4, afternoon 1 of 3:** “Maryam sets out a jar for each house and Elif lines up cups. A small concrete lesson. Food is already low, so I will work the field once before repeating the count.”
+- **31.095 s — note, engagement 4, age 3:** “She kept the jar by counting, as I hoped. I like seeing her own words. Food is low again; I wonder whether the years ahead will make that cost matter.”
+- **56.294 s — note, engagement 4, age 6:** “She checked the upper path and brought the water. The lower path was also dry, so I cannot tell whether the extra checking mattered, but the longer walk cost field work. I want to see her grow further.”
+- **60.507 s — first_minute, engagement 4, age 10:** “I understand the three afternoons and the carried task. She kept the jar at three and brought water at six. I choose Maryam for the queue because a marked place is respected. The outcomes come quickly, with a short watch between.”
+- **111.363 s — note, engagement 4, age 18:** “At eighteen the familiar counting is explicitly not enough. I appreciate the warning; I must change her routine to the spring or Danyal despite the task she carries from Maryam.”
+- **135.730 s — want_quit, FINISHED, engagement 4, age 18:** “Everyone has water and the yearbook tells me what she carried from each age. I am satisfied with this route and would stop here on desktop.”
+- **152.475 s — stop, FINISHED, engagement 4, age 18:** “I stop at the yearbook: everyone has water. I tried the stopping label and Not now twice each, but the driver says both are covered or off screen; Feedback remains open. I typed and sent nothing.”
+
+Phone:
+
+- **7.008 s — note, engagement 4:** “The same paths and opening as the desktop a few minutes ago. The picture fits the phone; the recording notice covers the lower text. I will try teaching her to say no this time.”
+- **31.173 s — note, engagement 4, age 3:** “She kept the jar, but the neighbour waits for morning. The same goal as desktop has a different human cost. I like that the answer names it.”
+- **61.025 s — first_minute, engagement 4, age 10:** “On the phone the different lesson worked too: Danyal helped her carry water, but the repair waits. The sequence is familiar now. I am curious whether a different lesson at the queue also works.”
+- **85.282 s — want_quit, TASTE, engagement 3, age 10:** “She held her place, but the older children are angry. I have seen two different lessons and their costs. The same three choices and watch repeat each age, and I would leave the phone here tonight.”
+- **101.534 s — stop, TASTE, engagement 3, age 10:** “I stop on the phone at age ten. I liked the different costs of the lessons, but I have seen enough of the repeated pattern tonight. The stopping label and Not now each failed twice as covered or off screen. Feedback remains open; I typed and sent nothing.”
+
+The desktop quit wish came after the game actually ended, with every household supplied and one emergency share remaining. The phone quit wish did not pass; I stopped after the age-ten result. I did not encounter a blocking gameplay ask before either stop.
+
+I viewed two screenshots:
+
+- [Desktop opening]( /Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/pavel/desktop/a-001.png): a wide drawing of the house, paths and well above readable introductory text. The recording notice covered part of the lower page.
+- [Phone opening]( /Users/abdul/code/.lab-scratch/playtest/light-1030/child-initial-inputs/pavel/phone/b-001.png): the drawing fit the width and the text was readable; the recording notice covered the lower portion. I did not view a later phone screenshot, so I cannot assess its later layout.
+
+Named taps advanced the game on both devices. Feedback opened on both. Neither attempted “I'm stopping” selection showed a successful result, and “Not now” also failed after one retry on each device. Both Feedback dialogs remained open. I entered no note or name and pressed no Submit button. Recording and consent stayed at their defaults; the menus showed **Recording: on**.
+
+I created no worktree, server, browser or helper process and touched no repository. The coordinator owns the drivers and their cleanup; there is no worktree list for a repository I touched.
+```
+
+<!-- selected-continuity-key: light-1030:child-retest1:pavel:free -->
+
+## child-retest1: pavel
+
+Exact own report; local paths are provenance, not public image assets. Source-epoch qualifications remain binding. Packet map: docs/lab/reviews/light-2026-10-30/child-retest1/publication-map.json. Individual method qualifications: docs/lab/reviews/light-2026-10-30/child-retest1/pavel/method-qualification.json.txt.
+
+```text
+I would return voluntarily another evening on the desktop to try another upbringing, but not tonight; I would not leave it running.
+
+My ranked ask:
+
+1. Give the repeated afternoons more variation. I like comparing Elif’s lessons and their costs, but on the phone I knew the sequence well enough that I stopped at age six.
+
+I’m Pavel Novak, 70, a retired tram driver from Brno. This was a return visit to *What the Child Saw*. I played a fresh desktop game at 1280×800 with keyboard and mouse, then a fresh game on the 360×690 touch phone the same evening. Both opened directly at Elif’s first actionable screen, with the assigned agent query retained. No old save or matched seed was imported.
+
+I read all **1,314 lines** of the supplied own history before play. One output was truncated, so I reread that portion in smaller explicit ranges. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The history is a selected record, not my complete archive.
+
+The desktop game ended at the yearbook; my stop log was at **113.668 seconds**. I stopped the phone voluntarily at age six, at **53.048 seconds**. The phone’s first-minute checkpoint and both sessions’ 180-second pulses were not reached. Phone ages 10, 14 and 18 and the ending were untested in this session. I did not wait to reach a checkpoint.
+
+The lesson and consequence were easy to follow. On desktop, checking the path at three left the household short and used an emergency share. At six, counting produced smaller jars that Elif could carry, although the extra trips wore the rope. At eighteen, everyone received water, using the final emergency share while carriers returned. I liked the yearbook’s side-by-side account of what she watched and did.
+
+On the phone, I deliberately chose Danyal’s way at three although the page said he would be away. It did not fit, and the household came home short. At six he was on duty, and he helped her bring the jars; repairs waited. That contrast was worth seeing. Afterward I had had enough of the familiar three-afternoon pattern for the evening.
+
+The basic rules and the outcomes I reached were clear: one carried task counts alongside the three afternoons, and the page names the costs. I did not encounter a tie, so its actual outcome remains untested. I did not reach a blocking gameplay ask or stop from confusion.
+
+**Recognition.** At desktop **4.355 s**, the visible paths and “Elif at 3” prompted my memory of Maryam counting cups and the jar in my earlier visit. Confidence: high. My words were: “The paths and Elif at three are familiar. I remember Maryam counting cups and the jar from my last visit.” At phone **4.886 s**, the same paths and opening prompted recognition of the desktop session just played, also high confidence. I did not recognise anyone from a different game.
+
+**Diary lines, unedited and in order**
+
+Desktop:
+
+- **4.355 s — note, engagement 4, age 3:** “The paths and Elif at three are familiar. I remember Maryam counting cups and the jar from my last visit. I want to try a different lesson this time.”
+- **24.032 s — note, engagement 4, age 3:** “Checking the wet path did not keep the jar. The emergency share covers it, but only one remains. I understand the result and want a different lesson for the next years.”
+- **45.021 s — note, engagement 4, age 6:** “Small jars worked, and the extra trips wear the rope. That is a clear trade. I remember last time checking the path also brought water, but I could not tell why the check mattered.”
+- **64.129 s — first_minute, engagement 4, age 10:** “The routine is familiar, but choosing the wrong lesson at three cost an emergency share. Small jars worked at six and Danyal settled the queue at ten. I like seeing the cost alongside the result.”
+- **105.572 s — want_quit, FINISHED, engagement 4, age 18:** “Everyone has water, but I used the last emergency share because of my earlier mistake. The yearbook lets me compare the lessons. I would stop here tonight.”
+- **113.668 s — stop, FINISHED, engagement 4, age 18:** “I stop at the yearbook with every household supplied and no emergency water left. This time the stopping label was marked pressed and Not now returned to the menu. I typed and sent nothing.”
+
+Phone:
+
+- **4.886 s — note, engagement 4, age 3:** “Same paths and opening as the desktop just now. The picture fits the phone, and the recording notice covers the lower text as before. I will try a different lesson.”
+- **25.022 s — note, engagement 3, age 3:** “Danyal was away, as the page warned, and waiting did not fit. Another emergency share spent. The result is clear but the same sequence is familiar again.”
+- **45.799 s — want_quit, TASTE, engagement 3, age 6:** “Danyal helped at six, just as the page said he could. I have seen the difference from his absence at three. I know the remaining pattern and would put the phone down now.”
+- **53.048 s — stop, TASTE, engagement 3, age 6:** “I stop at age six on the phone. The different result was worth seeing, but I have had enough of the repeated afternoons tonight. The stopping label was pressed and Not now returned to the menu. I typed and sent nothing.”
+
+The desktop quit wish followed the actual ending. The phone quit wish remained through my stop. No pulse was due.
+
+I viewed two screenshots:
+
+- [Desktop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/pavel/desktop/a-001.png>), taken at **1.720 s**: a wide drawing of the house, paths and well above readable introduction text. The recording notice covered some lower text.
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/child-retest1-inputs/pavel/phone/b-001.png>), taken at **2.192 s**: the drawing fit the width, and the recording notice covered the lower introduction. I did not view later phone layouts, so I cannot assess them visually.
+
+Named taps advanced the choices on both devices. At each stop, Feedback opened, **“I'm stopping”** was visibly marked pressed, and **“Not now”** returned to the menu. I typed no note or name and submitted nothing. That answers the Feedback control problem in my earlier report for these two attempts; it does not establish why the earlier attempts failed. Recording and consent stayed at their defaults; both menus showed Recording on.
+
+I created no worktree, server, browser or helper process and touched no repository. The coordinator owns the drivers and their cleanup; there is no worktree list for a repository I touched.
+```

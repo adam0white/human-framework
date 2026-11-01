@@ -1,0 +1,13 @@
+{
+  "tester": "Rosa Alvarez",
+  "sourceSha256": "f7fb2672c90dc15a79233c9c300e1426bf45c67c645a0ae9d2cb279a634b7a1f",
+  "rootReturnSha256": "3a8796bb623146bb6ebd8b332ada499f833ae23499d2345460ca5cfed15a6c85",
+  "testerExit": 0,
+  "driverExits": [
+    0,
+    0
+  ],
+  "cut": null,
+  "rootPass": true,
+  "scope": "Hash-bound safe projection, not original completion; process argv and profile paths withheld."
+}

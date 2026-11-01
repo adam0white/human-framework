@@ -1,0 +1,13 @@
+{
+  "candidate": "Zora Vukelic",
+  "normalization": "NFKD casefold alphanumeric",
+  "roots": [
+    "/Users/abdul/code/.lab-scratch/playtest",
+    "/Users/abdul/code/.lab-scratch/playtest-b",
+    "/Users/abdul/code/.lab-scratch/wt/human-framework/playtest-evidence-batch5-1031/docs/lab/panel"
+  ],
+  "scope": "panel files and report/plan/roster/registry/cohort/identity/brief md/json/txt at most 2 MB; excludes this output, images, encoded sessions, larger files",
+  "filesScanned": 2357,
+  "hits": [],
+  "limitation": "bounded identity check; never-HF is assigned premise, not proven by search"
+}

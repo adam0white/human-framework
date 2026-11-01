@@ -1,0 +1,195 @@
+{
+  "scope": "Ten exact raw stops; stop labels do not establish endings",
+  "stops": [
+    {
+      "tester": "Rosa Alvarez",
+      "device": "phone",
+      "source": "rosa/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T19:48:04.633Z",
+        "elapsed_s": 104.761,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop on the phone. I liked the people and the clear answer, but I do not know why Bilal could not repair after agreeing. I would close it and try the larger screen.",
+        "game_clock": "Day 1 12:45",
+        "engagement": 3,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "device": "desktop",
+      "source": "rosa/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T19:48:59.233Z",
+        "elapsed_s": 50.894,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I stop on the big screen for tonight. The map is lovely and lending tools gave a clear result. I would return to see the hall reopen, and I would close it now.",
+        "game_clock": "Day 1 10:45",
+        "engagement": 4,
+        "reason": "TASTE",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "phone",
+      "source": "mei/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T19:53:08.246Z",
+        "elapsed_s": 86.148,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on the phone at Day 1 10:00. Ece agreed to visit and the journal recorded her doing it; Nora is repairing and I will leave her to it. The phone text is readable but the choices extend below the screen. I chose I am stopping and closed Feedback without typing or submitting.",
+        "game_clock": "Day 1 10:00",
+        "engagement": 3,
+        "reason": "BUDGET",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Mei Tan",
+      "device": "desktop",
+      "source": "mei/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T19:51:40.223Z",
+        "elapsed_s": 120.822,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on Day 1 at 15:00. Nora kept her door promise, I restored the bus, and the hall had one repair when I last checked. I liked the named deadlines but missed her twice and remain unsure about my released hour. I chose I am stopping and closed Feedback without typing or submitting.",
+        "game_clock": "Day 1 15:00",
+        "engagement": 3,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "phone",
+      "source": "emre/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T19:56:05.085Z",
+        "elapsed_s": 130.628,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping the phone run after Nora kept her promise. The inspection gave a useful reason and the comparison interested me, but I am checking and skipping more than deciding. I would try the hall again on desktop, not leave this running.",
+        "game_clock": "Day 1 16:15",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Emre Kaya",
+      "device": "desktop",
+      "source": "emre/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T19:58:10.938Z",
+        "elapsed_s": 124.268,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am stopping on desktop after keeping my promise. Nora remembered and the timber result was concrete, but the next inspection repeated the same safety problem and I do not know the next useful step. I would return another evening to see the hall open, not leave it running.",
+        "game_clock": "Day 1 16:00",
+        "engagement": null,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Nia Okafor",
+      "device": "phone",
+      "source": "nia/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T20:02:31.685Z",
+        "elapsed_s": 87.294,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on the phone. Sam offered another job and the bus was a satisfying immediate change, but the blocked notebook and unexplained promise prompt lost me. I would close it.",
+        "game_clock": "Day 1 10:15",
+        "engagement": 2,
+        "reason": "CONFUSED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Nia Okafor",
+      "device": "desktop",
+      "source": "nia/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T20:01:01.685Z",
+        "elapsed_s": 117.55,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "Stopping on desktop. I liked finding Nora and the handle, but she was busy and then left while I followed. Her initial yes and later inability confused me until I checked her details. I would close it.",
+        "game_clock": "Day 1 14:00",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Dafina Kelmendi",
+      "device": "phone",
+      "source": "dafina/phone/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T20:04:54.042Z",
+        "elapsed_s": 115.314,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am leaving after helping with tools and one hour; I do not want to chase another conversation now.",
+        "game_clock": "Day 1 14:00",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    },
+    {
+      "tester": "Dafina Kelmendi",
+      "device": "desktop",
+      "source": "dafina/desktop/wall-clock.jsonl",
+      "stop": {
+        "t": "2026-10-31T20:05:59.308Z",
+        "elapsed_s": 63.309,
+        "kind": "stop",
+        "op": "log",
+        "input": null,
+        "reaction": "I am leaving after missing Sam twice. The town moves, but I do not feel like pursuing him again.",
+        "game_clock": "Day 1 13:45",
+        "engagement": 2,
+        "reason": "BORED",
+        "op_ms": 0,
+        "error": null,
+        "requested_control_present_before": null
+      }
+    }
+  ]
+}

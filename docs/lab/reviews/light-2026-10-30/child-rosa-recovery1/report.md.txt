@@ -1,0 +1,43 @@
+I would return voluntarily another evening to see Elif grow; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Explain why food returned between years. I saw it change from low to available without understanding what caused that.
+2. Keep the worked example of how an earlier task counts. It helped me understand a sentence that stopped me on my previous visit.
+
+I played *What the Child Saw* as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit. The phone session used a fresh 360×690 touch context; the desktop session used a fresh 1280×800 keyboard-and-mouse context later the same evening. I accepted the native **“Start a new upbringing?”** confirmation on each device. The opening then changed from Danyal being away to being on duty, and I made new choices. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+**History limit:** I did not complete the required verified history read before playing. I received lines 1–200 and 3201–3283; the combined output for the middle was truncated. Lines **201–3200 remain unverified**, although portions appeared. The last line I read was line **3283: “End of supplied own history.”** I cannot claim to have understood the omitted history. The supplied earlier Child report described a phone stop after two rereads and a desktop TOOL stop; neither had reached a confirmed work choice.
+
+The opening felt more approachable this time. At **5.787 seconds** on the phone, the mother and daughter prompted recognition of my previous Child opening, with high confidence. The visible names Zehra, Yusuf and Danyal also reminded me of names in my earlier history; confidence that they are the same people is **uncertain**. I did not recognize another person during these sessions. The new example of counting and checking helped me understand how an earlier task could matter. I did not reread a sentence on either device.
+
+On the phone, I liked the ordinary detail of Elif arranging cups and the practical cost of Maryam leaving meal work undone. Choosing Maryam twice led Elif to keep the evening jar. At six, she checked the dry upper path and brought water home. On desktop, I tried teaching her to say no; she kept the jar, while the neighbour had to wait. Both outcomes gave me something human to consider. I did not reach a game ending.
+
+The successful diary entries below are unchanged. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **5.787 s — note, engagement 4:** “I remember this mother and daughter from my last visit. The example now helps me understand how an earlier task counts. The picture is gentle and the text is readable, though the recording notice covers the lower text. Zehra, Yusuf and Danyal also remind me of names in my earlier history; I am uncertain they are the same people.”
+- **19.270 s — note, engagement 4:** “The cups in a row are easy to picture. Food is low after Maryam leaves meal work; I see the cost of my choice. I want to put food by now.”
+- **25.485 s — note, engagement 4:** “Food came back after field work and is low again after counting. I chose Maryam twice because I want Elif to keep water at home. I am curious whether she can do it alone.”
+- **36.766 s — note, engagement 4:** “She kept the jar and told me how. That is satisfying. But Maryam misses meal work again, and food is already low. I would like to see what happens as she grows.”
+- **40.128 s — note, engagement 4:** “Now she is six and the flooded lower path gives a clear reason to check. I am pleased there is food again, though I do not know why it returned between years.”
+- **56.597 s — want_quit, TASTE, engagement 4:** “She brought the water and explained the dry path. I feel satisfied with this visit and would stop here tonight.”
+- **65.810 s — stop, TASTE, engagement 4:** “I stop after Elif brought the water. I enjoyed seeing her learn and explain her choice. I would close it and try my other device.”
+
+**Desktop**
+
+- **15.716 s — note, engagement 4:** “The same mother and daughter on my other device. The wide text is comfortable. I will try staying home this time, to see her say no.”
+- **24.286 s — note, engagement 4:** “Her hand on the lid is a small clear picture of saying no. Food is still low after field work this time; the warning said it might be. I want to see her answer.”
+- **34.200 s — want_quit, TASTE, engagement 4:** “She kept the jar, but the neighbour must wait. I understand both sides. I have seen a different answer and would stop for the evening.”
+- **44.206 s — stop, TASTE, engagement 4:** “I stop after seeing Elif protect the jar and the cost to her neighbour. I would close it for tonight and return to see her grow.”
+
+On both devices, **“I’m stopping”** became pressed in Feedback and **“Not now”** returned to the menu. I typed no note and did not submit. In my prior Child report, those controls had failed through the driver; they worked in these sessions. No blocking ask was reached this time.
+
+I viewed [phone/a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-rosa-c8-recovery-controller-source4/phone/a-001.png) at **2.643 s**: the illustration and opening text were readable, with the recording notice covering lower text. I viewed [desktop/b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/child-rosa-c8-recovery-controller-source4/desktop/b-001.png) at **4.390 s**: the opening was comfortable in a wide column, with the notice covering lower content. I did not view screenshots of later screens.
+
+My screen-concept accounting is incomplete. I did not record complete counts for each screen while playing, including the menu and Feedback, so I cannot honestly supply exact counts for them afterward. The opening introduced the family and their work, three afternoons, remembered tasks and ties, the evening jar, the neighbour, emergency shares and shortfalls, Danyal’s availability, five work choices, food and rope status, and linked recording. Later screens introduced the observed consequences of those choices, the child’s independent errand, choices for the intervening years, age six and the flooded path. The menu exposed recording, full screen, new game, playtest export and replay, other beginnings, lab privacy and debug; Feedback exposed verdicts, quick labels, optional fields, what is sent, privacy, Not now and Submit. No sentence was recorded as reread on any screen.
+
+The phone quit wish occurred before 60 seconds; the stop log followed the required Feedback check. I did not log a first-minute checkpoint. Desktop stopped before 60 seconds. Neither session reached 180 seconds, so no pulse was due. Later ages and the ending remain untested.
+
+I created no worktree, browser, server or helper process. The coordinator owns the drivers and browsers; no repository worktree listing applies.
