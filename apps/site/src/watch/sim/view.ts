@@ -32,7 +32,7 @@ import {
   type WatcherId,
   WINTER_RULES,
 } from './config.ts';
-import { duskRestAccount, duskRestUnavailable } from './dusk-rest.ts';
+import { activeRest, duskRestAccount, duskRestUnavailable } from './dusk-rest.ts';
 import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
 import { localWarningAccount, localWarningUnavailable } from './local-warning.ts';
 import { type Moment, readPosting, readWords } from './moments.ts';
@@ -257,7 +257,8 @@ export type Posture = 'stand' | 'sit' | 'doze' | 'eat' | 'pray' | 'down' | 'froz
 
 export interface FrameWatcher {
   localWarning?: { unavailable: string | null; account: string | null };
-  duskRest?: { unavailable: string | null; account: string | null };
+  /** Public request status from activeRest; no inferred assent or new person state. */
+  duskRest?: { readonly active: boolean; unavailable: string | null; account: string | null };
   id: WatcherId;
   name: string;
   /** Which figure the map draws. */
@@ -594,6 +595,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       ...(s.duskRest
         ? {
             duskRest: {
+              active: activeRest(s.duskRest.requests[w.id], s.minute),
               unavailable: duskRestUnavailable(s, w.id),
               account: ((request) => (request ? duskRestAccount(request) : null))(s.duskRest.requests[w.id]),
             },

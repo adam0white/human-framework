@@ -1,11 +1,14 @@
 let usePolicyWatch: typeof import('./useWatch.ts').useWatch;
 function PolicyWatch({
   capture,
+  render,
 }: {
   capture(value: ReturnType<typeof import('./useWatch.ts').useWatch>): void;
+  render?(value: ReturnType<typeof import('./useWatch.ts').useWatch>): import('react').ReactNode;
 }) {
-  capture(usePolicyWatch());
-  return null;
+  const watch = usePolicyWatch();
+  capture(watch);
+  return render?.(watch) ?? null;
 }
 
 // @vitest-environment happy-dom
@@ -17,6 +20,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it, vi } from 'vitest';
 import * as castRuntime from '../../shared/cast-runtime.ts';
 import { requireValue } from '../../shared/require-value.ts';
+import type { MainToWorker, WorkerToMain } from '../protocol.ts';
+import { applyDuskRest } from '../sim/dusk-rest.ts';
 import { applyInput, newGame, stepMinute } from '../sim/night.ts';
 import { buildFrame } from '../sim/view.ts';
 import type { WatchActions } from './useWatch.ts';
@@ -25,9 +30,31 @@ vi.mock('../../shared/lab.tsx', () => ({
   gameLabs: { watch: { telemetryOn: true, screen: vi.fn(), milestone: vi.fn() } },
 }));
 vi.mock('./useWatch.ts', () => ({ useWatch: vi.fn() }));
-vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: () => null }));
+// Exercise App's map-hit route without a canvas, geometry or animation loop.
+vi.mock('./MapCanvas.tsx', () => ({
+  MapCanvas: ({ frame, onHit }: Parameters<typeof import('./MapCanvas.tsx').MapCanvas>[0]) =>
+    createElement(
+      'div',
+      { className: 'test-map' },
+      frame.sections.flatMap((section) =>
+        section.posts.map((post) =>
+          createElement(
+            'button',
+            {
+              key: post.id,
+              type: 'button',
+              'data-map-post': post.id,
+              onClick: () => onHit({ kind: 'post', post: post.id }),
+            },
+            post.id,
+          ),
+        ),
+      ),
+    ),
+}));
 const { App, GoalPage, DuskPanel, NightPanel, DawnPanel, WatchStrip, headerLine } = await import('./App.tsx');
 const { Chronicle, Shelf } = await import('./chronicle.tsx');
+const { FairPage } = await import('./pages.tsx');
 const actions = {
   input: vi.fn(),
   hold: vi.fn(),
@@ -68,6 +95,298 @@ it('separates starting lantern from the selected person’s post actions', () =>
   expect(selected.textContent).toContain('Ask them to take tonight off, until dawn.');
   expect(selected.querySelectorAll('.game-help-button')).toHaveLength(0);
 });
+it('shows the fair limit and the need mark on both granary drawings', () => {
+  const frame = {
+    ...dusk,
+    grain: 12,
+    need: 8,
+    fair: {
+      picksLeft: 2,
+      offers: [
+        {
+          id: 'seed' as const,
+          label: 'Seed',
+          text: 'Seed',
+          affordable: true,
+          taken: false,
+          after: 9,
+          named: false,
+        },
+      ],
+    },
+  };
+  const page = render(createElement(FairPage, { frame, actions }));
+  expect(frame.fair.picksLeft).toBeGreaterThan(frame.fair.offers.length);
+  expect(page.querySelector('.w-picks')?.textContent).toContain(
+    'up to two more offers, if the granary can spare them',
+  );
+  const unaffordable = render(
+    createElement(FairPage, {
+      frame: {
+        ...frame,
+        fair: { ...frame.fair, offers: frame.fair.offers.map((offer) => ({ ...offer, affordable: false })) },
+      },
+      actions,
+    }),
+  );
+  expect(unaffordable.querySelector('.w-picks')?.textContent).toContain(
+    'up to two more offers, if the granary can spare them',
+  );
+  expect(unaffordable.querySelector('.w-offers button')?.hasAttribute('disabled')).toBe(true);
+  const drawings = page.querySelectorAll('.w-sacks');
+  expect(drawings).toHaveLength(2);
+  for (const drawing of drawings) {
+    expect(drawing.querySelector('.sack-need')?.getAttribute('x1')).toBe('145');
+    expect(drawing.getAttribute('aria-label')).toContain('mark');
+  }
+  const last = render(
+    createElement(FairPage, { frame: { ...frame, fair: { ...frame.fair, picksLeft: 0 } }, actions }),
+  );
+  expect(last.querySelector('.w-picks')?.textContent).toContain('nothing more');
+});
+
+// UNRUN: source-only correction; parent owns runtime verification.
+it('keeps the latest mounted pressure intent until a frame and resets selection, run and refusal', async () => {
+  const { useWatch } = await import('./useWatch.ts');
+  const watcher = requireValue(dusk.watchers[0]);
+  const post = requireValue(dusk.sections.flatMap((s) => s.posts)[0]);
+  let frame = {
+    ...dusk,
+    watchers: dusk.watchers.map((w) =>
+      w.id === watcher.id ? { ...w, posted: post.id, press: 'insist' as const } : w,
+    ),
+  };
+  const input = vi.fn();
+  let current = 'first';
+  let runIdentity = 1;
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  const publish = async () => {
+    vi.mocked(useWatch).mockReturnValue({
+      frame,
+      runIdentity,
+      inputPending: false,
+      speed: 'watch',
+      error: null,
+      seed: 42,
+      shelf: [],
+      saving: true,
+      current,
+      actions: { ...actions, input },
+    });
+    await act(() => root.render(createElement(App)));
+  };
+  const click = async (selector: string) => {
+    await act(() => requireValue(container.querySelector<HTMLButtonElement>(selector)).click());
+  };
+  const chosen = () => container.querySelector('.w-press[aria-pressed=true]')?.textContent;
+  await publish();
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Insist');
+  await click('.w-press:nth-of-type(3)');
+  expect(input).not.toHaveBeenCalled();
+  await click('.w-press:nth-of-type(1)');
+  expect(input).toHaveBeenLastCalledWith({ k: 'post', watcher: watcher.id, post: post.id, press: 'ask' });
+  // Deliver Ask, then freeze the worker frame through the reversal and duplicate tap.
+  frame = {
+    ...frame,
+    watchers: frame.watchers.map((w) => (w.id === watcher.id ? { ...w, press: 'ask' as const } : w)),
+  };
+  await publish();
+  input.mockClear();
+  await click('.w-press:nth-of-type(2)');
+  await click('.w-press:nth-of-type(2)');
+  expect(input).toHaveBeenCalledTimes(1);
+  expect(chosen()).toBe('Urge');
+  await click('.w-press:nth-of-type(1)');
+  expect(input.mock.calls.map(([command]) => command)).toEqual([
+    { k: 'post', watcher: watcher.id, post: post.id, press: 'urge' },
+    { k: 'post', watcher: watcher.id, post: post.id, press: 'ask' },
+  ]);
+  expect(chosen()).toBe('Ask');
+  await click('.w-press:nth-of-type(2)');
+  // A replacement frame still saying Ask may be a refusal; do not keep an optimistic Urge.
+  frame = { ...frame };
+  await publish();
+  expect(chosen()).toBe('Ask');
+  await click('.w-press:nth-of-type(2)');
+  expect(input).toHaveBeenCalledTimes(4);
+  await click('.w-order-back');
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  await click('.w-press:nth-of-type(2)');
+  current = 'loaded-run';
+  await publish();
+  expect(container.querySelector('.w-press')).toBeNull();
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  // An unposted pick sends nothing and persists across ordinary frames until selection changes.
+  frame = {
+    ...frame,
+    watchers: frame.watchers.map((w) =>
+      w.id === watcher.id ? { ...w, posted: null, press: 'ask' as const } : w,
+    ),
+  };
+  await publish();
+  input.mockClear();
+  await click('.w-press:nth-of-type(3)');
+  expect(input).not.toHaveBeenCalled();
+  frame = { ...frame };
+  await publish();
+  expect(chosen()).toBe('Insist');
+  // Accepted replacement with seed and shelf key unchanged clears both the mounted and synchronous picks.
+  runIdentity++;
+  await publish();
+  expect(container.querySelector('.w-press')).toBeNull();
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  input.mockClear();
+  await click('.w-place:not(:disabled)');
+  expect(input).toHaveBeenCalledTimes(1);
+  expect(input.mock.calls[0]?.[0].press).toBe('ask');
+  await click(`.w-person-${watcher.id}`);
+  const other = requireValue(frame.watchers.find((w) => w.id !== watcher.id));
+  await click('.w-order-back');
+  await click(`.w-person-${other.id}`);
+  expect(chosen()).toBe('Ask');
+  await click('.w-order-back');
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  await click('.w-press:nth-of-type(3)');
+  vi.mocked(useWatch).mockReturnValue({
+    frame,
+    runIdentity,
+    inputPending: false,
+    speed: 'watch',
+    error: 'Request refused',
+    seed: 42,
+    shelf: [],
+    saving: true,
+    current,
+    actions: { ...actions, input },
+  });
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.w-press')).toBeNull();
+  await publish();
+  await click(`.w-person-${watcher.id}`);
+  expect(chosen()).toBe('Ask');
+  await act(() => root.unmount());
+  container.remove();
+});
+
+it('keeps explicit active night-off cancellation through sheet, map and pressure controls', async () => {
+  const { useWatch } = await import('./useWatch.ts');
+  const state = newGame(2026);
+  applyInput(state, { k: 'start' });
+  applyInput(state, { k: 'post', watcher: 'tamar', post: 'east-1', press: 'ask' });
+  applyInput(state, { k: 'lantern', section: 'east' });
+  const input = vi.fn((command: Parameters<WatchActions['input']>[0]) => {
+    applyInput(state, command);
+  });
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  const publish = async () => {
+    vi.mocked(useWatch).mockReturnValue({
+      frame: buildFrame(state, 0, false),
+      runIdentity: 1,
+      inputPending: false,
+      speed: 'watch',
+      error: null,
+      seed: 2026,
+      shelf: [],
+      saving: true,
+      current: 'night-off',
+      actions: { ...actions, input },
+    });
+    await act(() => root.render(createElement(App)));
+  };
+  const click = async (selector: string) => {
+    await act(() => requireValue(container.querySelector<HTMLButtonElement>(selector)).click());
+  };
+  for (const route of ['sheet', 'map', 'pressure'] as const) {
+    // Canonical pending request, without stepping HF to an unpredictable answer.
+    expect(applyDuskRest(state, { k: 'dusk-rest', who: 'tamar', until: 'dawn' })).toBe(true);
+    expect(buildFrame(state, 0, false).watchers.find((w) => w.id === 'tamar')?.duskRest?.active).toBe(true);
+    await publish();
+    await click('.w-person-tamar');
+    input.mockClear();
+    await click(
+      route === 'sheet'
+        ? '.w-place[aria-pressed=true]'
+        : route === 'map'
+          ? '[data-map-post="east-1"]'
+          : '.w-press[aria-pressed=true]',
+    );
+    expect(input).toHaveBeenCalledExactlyOnceWith({
+      k: 'post',
+      watcher: 'tamar',
+      post: 'east-1',
+      press: 'ask',
+    });
+    expect(state.duskRest?.requests.tamar?.endReason).toBe('reposted');
+    expect(buildFrame(state, 0, false).watchers.find((w) => w.id === 'tamar')?.duskRest?.active).toBe(false);
+    await publish();
+    if (route === 'pressure') await click('.w-order-back');
+  }
+  await act(() => root.unmount());
+  container.remove();
+});
+
+it('sends a changed post once and does not resend the same post and press', async () => {
+  const { useWatch } = await import('./useWatch.ts');
+  const watcher = requireValue(dusk.watchers[0]);
+  const section = requireValue(dusk.sections.find((s) => s.posts.length > 0));
+  const post = requireValue(section.posts[0]);
+  const frame = {
+    ...dusk,
+    watchers: dusk.watchers.map((w) =>
+      w.id === watcher.id ? { ...w, posted: post.id, press: 'ask' as const } : w,
+    ),
+    sections: dusk.sections.map((s) =>
+      s.id === section.id
+        ? {
+            ...s,
+            posts: s.posts.map((p) => (p.id === post.id ? { ...p, posted: watcher.id } : p)),
+          }
+        : s,
+    ),
+  };
+  const input = vi.fn();
+  vi.mocked(useWatch).mockReturnValue({
+    frame,
+    runIdentity: 1,
+    inputPending: false,
+    speed: 'watch',
+    error: null,
+    seed: 42,
+    shelf: [],
+    saving: true,
+    current: 'new',
+    actions: { ...actions, input },
+  });
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  await act(() => root.render(createElement(App)));
+  const select = () => requireValue(container.querySelector<HTMLButtonElement>(`.w-person-${watcher.id}`));
+  await act(() => select().click());
+  const same = requireValue(container.querySelector<HTMLButtonElement>('.w-place[aria-pressed=true]'));
+  await act(() => same.click());
+  expect(input).not.toHaveBeenCalled();
+  await act(() => select().click());
+  const other = requireValue(
+    container.querySelector<HTMLButtonElement>('.w-place[aria-pressed=false]:not(:disabled)'),
+  );
+  await act(() => other.click());
+  expect(input).toHaveBeenCalledTimes(1);
+  expect(input.mock.calls[0]?.[0]).toMatchObject({ k: 'post', watcher: watcher.id, press: 'ask' });
+  expect(input.mock.calls[0]?.[0].post).not.toBe(post.id);
+  await act(() => root.unmount());
+  container.remove();
+});
+
 it('keeps lantern and bell in the night action bar and people in the sheet', () => {
   const night = render(createElement(NightPanel, { frame: { ...dusk, phase: 'night' }, actions }));
   expect(night.querySelectorAll('.w-lantern-track button')).toHaveLength(4);
@@ -104,6 +423,8 @@ it('holds the clock for the single top-bar info and menu without simulation inpu
   const { useWatch } = await import('./useWatch.ts');
   vi.mocked(useWatch).mockReturnValue({
     frame: { ...dusk, phase: 'night' },
+    runIdentity: 1,
+    inputPending: false,
     speed: 'watch',
     error: null,
     seed: 42,
@@ -471,16 +792,114 @@ it('explains stairs in saved volume endings and epilogues without changing saved
   expect(JSON.stringify(frame)).toBe(before);
 });
 
+// UNRUN: actual hook, synthetic worker boundary; cast admission and native storage stay outside this control.
+it('changes native run identity only after acceptance, including a same-seed same-page reload', async () => {
+  vi.resetModules();
+  window.history.replaceState(null, '', '/watch/?seed=42');
+  const post = vi.fn();
+  let worker: EventTarget | undefined;
+  vi.stubGlobal(
+    'Worker',
+    class extends EventTarget {
+      postMessage = post;
+      constructor() {
+        super();
+        worker = this;
+      }
+      terminate() {}
+    },
+  );
+  const runtime = await import('../../shared/cast-runtime.ts');
+  const bind = vi.spyOn(runtime, 'bindCastWorker').mockReturnValue(() => {});
+  const dispatch = vi
+    .spyOn(runtime, 'postCastMessage')
+    .mockImplementation((worker, _game, message) => worker.postMessage(message));
+  const { useWatch: useCurrent } = await vi.importActual<typeof import('./useWatch.ts')>('./useWatch.ts');
+  usePolicyWatch = useCurrent;
+  let current: ReturnType<typeof useCurrent> | undefined;
+  const node = document.createElement('div'),
+    root = createRoot(node);
+  const deliver = async (message: WorkerToMain) => {
+    // The hook and telemetry both subscribe. Broadcast through actual EventTarget semantics.
+    await act(() => {
+      requireValue(worker).dispatchEvent(new MessageEvent('message', { data: message }));
+    });
+  };
+  try {
+    await act(() =>
+      root.render(
+        createElement(PolicyWatch, {
+          capture: (value) => {
+            current = value;
+          },
+        }),
+      ),
+    );
+    const init = post.mock.calls
+      .map(([message]) => message as MainToWorker)
+      .find((message) => message.type === 'init');
+    if (init?.type !== 'init') throw new Error('Missing native init');
+    await deliver({ type: 'frame', gen: init.gen, frame: dusk, speed: 'watch', inputAck: 0 });
+    expect(requireValue(current).runIdentity).toBe(init.gen);
+    const load = async (id: string, ok: boolean) => {
+      let done = Promise.resolve(false);
+      const identity = requireValue(current).runIdentity;
+      await act(() => {
+        done = requireValue(current).actions.load(id);
+      });
+      expect(requireValue(current).runIdentity).toBe(identity);
+      const request = post.mock.calls
+        .map(([message]) => message as MainToWorker)
+        .filter((message) => message.type === 'load')
+        .at(-1);
+      if (request?.type !== 'load') throw new Error('Missing native load');
+      await deliver({ type: 'loaded', id, gen: request.gen, ok, ...(ok ? { seed: 42 } : {}) });
+      expect(await done).toBe(ok);
+      return request.gen;
+    };
+    const accepted = await load('same:auto', true);
+    await deliver({ type: 'frame', gen: accepted, frame: dusk, speed: 'watch', inputAck: 0 });
+    expect(requireValue(current).runIdentity).toBe(accepted);
+    await load('missing:auto', false);
+    expect(requireValue(current).runIdentity).toBe(accepted);
+    // Reload the same seed and page again. The failed attempt may reuse a transport generation.
+    let done = Promise.resolve(false);
+    await act(() => {
+      done = requireValue(current).actions.load('same:auto');
+    });
+    const replacement = post.mock.calls
+      .map(([message]) => message as MainToWorker)
+      .filter((message) => message.type === 'load')
+      .at(-1);
+    if (replacement?.type !== 'load') throw new Error('Missing replacement');
+    await deliver({ type: 'loaded', id: 'same:auto', gen: replacement.gen, ok: true, seed: 42 });
+    expect(await done).toBe(true);
+    await deliver({ type: 'frame', gen: replacement.gen, frame: dusk, speed: 'watch', inputAck: 0 });
+    expect(requireValue(current).runIdentity).toBe(replacement.gen);
+    expect(requireValue(current).seed).toBe(42);
+    expect(requireValue(current).current).toBe('');
+  } finally {
+    await act(() => root.unmount());
+    bind.mockRestore();
+    dispatch.mockRestore();
+    vi.unstubAllGlobals();
+    window.history.replaceState(null, '', '/');
+  }
+});
+
 it('file entry renders the ordinary chooser with no authored worker or native shelf access', async () => {
   vi.resetModules();
   window.history.replaceState(null, '', '/watch/?file=1');
   const post = vi.fn();
+  let worker: EventTarget | undefined;
   vi.stubGlobal(
     'Worker',
-    class {
+    class extends EventTarget {
       postMessage = post;
-      addEventListener() {}
-      removeEventListener() {}
+      constructor() {
+        super();
+        worker = this;
+      }
       terminate() {}
     },
   );
@@ -508,13 +927,160 @@ it('file entry renders the ordinary chooser with no authored worker or native sh
     expect(() => requireValue(current).actions.restart(1)).toThrow(/file/i);
     expect(() => requireValue(current).actions.refreshShelf()).toThrow(/file/i);
     await expect(requireValue(current).actions.load('native:auto')).rejects.toThrow(/file/i);
+    // Real hook load/ack path with synthetic worker replies; no file validation or replay claim.
+    const deliver = async (message: WorkerToMain) => {
+      // Do not let a later telemetry subscription replace the hook's listener.
+      await act(() => {
+        requireValue(worker).dispatchEvent(new MessageEvent('message', { data: message }));
+      });
+    };
+    const loadFile = async () => {
+      await act(() => requireValue(current).actions.loadFile('synthetic worker-accepted file'));
+      const message = post.mock.calls
+        .map(([message]) => message as MainToWorker)
+        .filter((message) => message.type === 'loadFile')
+        .at(-1);
+      if (message?.type !== 'loadFile') throw new Error('Missing file request');
+      return message.gen;
+    };
+    const first = await loadFile();
+    expect(requireValue(current).runIdentity).toBe(0);
+    await deliver({ type: 'fileLoaded', ok: true, gen: first, seed: 42 });
+    await deliver({ type: 'frame', gen: first, frame: dusk, speed: 'watch', inputAck: 0 });
+    expect(requireValue(current).runIdentity).toBe(first);
+    await act(() => {
+      requireValue(current).actions.input({ k: 'post', watcher: 'tamar', post: 'east-1', press: 'urge' });
+      requireValue(current).actions.input({ k: 'post', watcher: 'tamar', post: 'east-1', press: 'ask' });
+    });
+    const sent = post.mock.calls
+      .map(([message]) => message as MainToWorker)
+      .filter((message) => message.type === 'input');
+    const urge = requireValue(sent.at(-2)),
+      ask = requireValue(sent.at(-1));
+    expect(urge.requestId).toBeLessThan(requireValue(ask.requestId));
+    await deliver({ type: 'frame', gen: first, frame: dusk, speed: 'watch', inputAck: urge.requestId });
+    expect(requireValue(current).inputPending).toBe(true);
+    await deliver({ type: 'frame', gen: first, frame: dusk, speed: 'watch', inputAck: ask.requestId });
+    expect(requireValue(current).inputPending).toBe(false);
+    expect(requireValue(current).runIdentity).toBe(first);
+    const failed = await loadFile();
+    await deliver({ type: 'fileLoaded', ok: false, gen: failed, error: 'Synthetic refusal' });
+    expect(requireValue(current).runIdentity).toBe(first);
+    const cancelledGen = await loadFile();
+    await act(() => requireValue(current).actions.cancelFileLoad());
+    await deliver({ type: 'fileLoaded', ok: true, gen: cancelledGen, seed: 42 });
+    expect(requireValue(current).runIdentity).toBe(first);
+    const replacement = await loadFile();
+    await deliver({ type: 'fileLoaded', ok: true, gen: replacement, seed: 42 });
+    await deliver({ type: 'frame', gen: replacement, frame: dusk, speed: 'watch', inputAck: ask.requestId });
+    expect(requireValue(current).runIdentity).toBe(replacement);
+    expect(requireValue(current).seed).toBe(42);
+    expect(requireValue(current).current).toBe('');
     const mocked = await import('./useWatch.ts');
+    const { App: FileApp } = await import('./App.tsx');
+    // Connect App to the still-mounted real hook. Final click must reach Worker.postMessage,
+    // even though its press matches the intermediate frame and a later Ask remains unprocessed.
+    await act(() =>
+      root.render(
+        createElement(PolicyWatch, {
+          capture: (value) => {
+            current = value;
+          },
+          render: (watch) => {
+            vi.mocked(mocked.useWatch).mockReturnValue(watch);
+            return createElement(FileApp);
+          },
+        }),
+      ),
+    );
+    const watcher = requireValue(dusk.watchers[0]);
+    const postId = requireValue(dusk.sections.flatMap((s) => s.posts)[0]).id;
+    const posted = {
+      ...dusk,
+      watchers: dusk.watchers.map((w) =>
+        w.id === watcher.id ? { ...w, posted: postId, press: 'ask' as const } : w,
+      ),
+      sections: dusk.sections.map((s) => ({
+        ...s,
+        posts: s.posts.map((p) => ({
+          ...p,
+          posted: p.id === postId ? watcher.id : p.posted === watcher.id ? null : p.posted,
+        })),
+      })),
+    };
+    await deliver({
+      type: 'frame',
+      gen: replacement,
+      frame: posted,
+      speed: 'watch',
+      inputAck: ask.requestId,
+    });
+    const click = async (selector: string) => {
+      await act(() => requireValue(node.querySelector<HTMLButtonElement>(selector)).click());
+    };
+    const inputs = () =>
+      post.mock.calls
+        .map(([message]) => message as MainToWorker)
+        .filter((message) => message.type === 'input');
+    const before = inputs().length;
+    await click(`.w-person-${watcher.id}`);
+    await click('.w-press:nth-of-type(2)');
+    await click('.w-press:nth-of-type(1)');
+    const firstUrge = requireValue(inputs().at(-2));
+    await deliver({
+      type: 'frame',
+      gen: replacement,
+      speed: 'watch',
+      inputAck: firstUrge.requestId,
+      frame: {
+        ...posted,
+        watchers: posted.watchers.map((w) => (w.id === watcher.id ? { ...w, press: 'urge' as const } : w)),
+      },
+    });
+    await click('.w-press:nth-of-type(2)');
+    await click('.w-press:nth-of-type(2)');
+    expect(
+      inputs()
+        .slice(before)
+        .map((message) => message.input),
+    ).toEqual([
+      { k: 'post', watcher: watcher.id, post: postId, press: 'urge' },
+      { k: 'post', watcher: watcher.id, post: postId, press: 'ask' },
+      { k: 'post', watcher: watcher.id, post: postId, press: 'urge' },
+    ]);
+    await click('.w-press:nth-of-type(1)');
+    await click('.w-order-back');
+    await click(`.w-person-${watcher.id}`);
+    await click('.w-press:nth-of-type(2)');
+    expect(inputs()).toHaveLength(before + 5);
+    expect(inputs().at(-1)?.input).toEqual({ k: 'post', watcher: watcher.id, post: postId, press: 'urge' });
+    await click('.w-press:nth-of-type(1)');
+    await click('.w-order-back');
+    await click(`.w-person-${watcher.id}`);
+    await click('.w-place[aria-pressed=true]');
+    expect(inputs()).toHaveLength(before + 7);
+    expect(inputs().at(-1)?.input).toEqual({ k: 'post', watcher: watcher.id, post: postId, press: 'urge' });
+    // A fully processed frame can still report Ask (a refusal). Do not retry or retain optimistic Urge.
+    await deliver({
+      type: 'frame',
+      gen: replacement,
+      frame: posted,
+      speed: 'watch',
+      inputAck: requireValue(inputs().at(-1)).requestId,
+    });
+    expect(requireValue(current).inputPending).toBe(false);
+    expect(inputs()).toHaveLength(before + 7);
+    await click(`.w-person-${watcher.id}`);
+    expect(node.querySelector('.w-press[aria-pressed=true]')?.textContent).toBe('Ask');
+    await click('.w-press:nth-of-type(1)');
+    expect(inputs()).toHaveLength(before + 7);
+    await click('.w-press:nth-of-type(2)');
+    expect(inputs()).toHaveLength(before + 8);
     const fileLoads = vi.fn();
     vi.mocked(mocked.useWatch).mockReturnValue({
       ...requireValue(current),
       actions: { ...requireValue(current).actions, loadFile: fileLoads, cancelFileLoad: vi.fn() },
     });
-    const { App: FileApp } = await import('./App.tsx');
     await act(() => root.render(createElement(FileApp)));
     expect(node.textContent).toContain('This file stays in this tab.');
     expect(node.querySelector('input[type=file]')).not.toBeNull();
@@ -765,12 +1331,16 @@ it('shows each shelf page’s fictional date without version or save timestamps'
   expect(el.querySelectorAll('.w-pagerow button')).toHaveLength(3);
   const rows = [...el.querySelectorAll('.w-pagerow')].map((r) => r.textContent);
   expect(new Set(rows).size).toBe(3);
+  expect(rows.find((row) => row?.includes('second year'))).toContain('Older edition. Start fresh');
+  expect(rows.filter((row) => row?.includes('Older edition'))).toHaveLength(1);
 });
 
 it('shows a saving failure during play without opening the menu', async () => {
   const { useWatch } = await import('./useWatch.ts');
   vi.mocked(useWatch).mockReturnValue({
     frame: { ...dusk, phase: 'night' },
+    runIdentity: 1,
+    inputPending: false,
     speed: 'watch',
     error: null,
     seed: 42,

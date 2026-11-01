@@ -33,6 +33,10 @@ export interface WatchActions {
 
 export interface Watch {
   frame: Frame | null;
+  /** Changes only when a replacement run is accepted, never for an ordinary frame or failed load. */
+  runIdentity: number;
+  /** Some dispatched input has not yet appeared in a worker frame. Not a simulation receipt. */
+  inputPending: boolean;
   speed: Speed;
   error: string | null;
   seed: number;
@@ -63,6 +67,10 @@ export function useWatch(): Watch {
   const loadedPace = useRef(false);
   const latest = useRef<{ speed: Speed; frame: Frame | null }>({ speed: 'watch', frame: null });
   const gen = useRef(0);
+  const acceptedGen = useRef(0);
+  const [runIdentity, setRunIdentity] = useState(0);
+  const inputSeq = useRef(0);
+  const [inputProgress, setInputProgress] = useState({ sent: 0, acknowledged: 0 });
   const [seed, setSeed] = useState(initialSeed);
   const seedRef = useRef(seed);
   const [frame, setFrame] = useState<Frame | null>(null);
@@ -91,6 +99,13 @@ export function useWatch(): Watch {
     const w = new WatchWorker();
     const stopCast = bindCastWorker(w, 'watch', gameLabs.watch);
     worker.current = w;
+    const acceptRun = (generation: number) => {
+      if (acceptedGen.current === generation) return;
+      acceptedGen.current = generation;
+      setRunIdentity(generation);
+      // Inputs from the replaced run no longer constrain this run's UI deduplication.
+      setInputProgress({ sent: inputSeq.current, acknowledged: inputSeq.current });
+    };
     w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
       const msg = e.data;
       if (msg.type === 'fileLoaded') {
@@ -98,6 +113,7 @@ export function useWatch(): Watch {
         if (!msg.ok) setError(msg.error ?? 'The file could not be loaded.');
         else {
           gen.current = msg.gen;
+          acceptRun(msg.gen);
           setError(null);
           if (msg.seed !== undefined) {
             seedRef.current = msg.seed;
@@ -111,6 +127,7 @@ export function useWatch(): Watch {
         const wait = loads.current.get(msg.id);
         loads.current.delete(msg.id);
         if (!msg.ok && wait && gen.current === msg.gen) gen.current = wait.prev;
+        if (msg.ok && wait && gen.current === msg.gen) acceptRun(msg.gen);
         if (msg.ok && msg.seed !== undefined) {
           loadedPace.current = true;
           seedRef.current = msg.seed;
@@ -128,6 +145,14 @@ export function useWatch(): Watch {
           setCurrent(msg.current);
           return;
         case 'frame':
+          acceptRun(msg.gen);
+          if (msg.inputAck !== undefined) {
+            const acknowledged = msg.inputAck;
+            setInputProgress((before) => ({
+              ...before,
+              acknowledged: Math.max(before.acknowledged, acknowledged),
+            }));
+          }
           if (loadedPace.current) {
             loadedPace.current = false;
             const phase = msg.frame.phase;
@@ -196,7 +221,11 @@ export function useWatch(): Watch {
 
   const actions = useMemo<WatchActions>(
     () => ({
-      input: (input) => send({ type: 'input', input }),
+      input: (input) => {
+        const requestId = ++inputSeq.current;
+        setInputProgress((before) => ({ ...before, sent: requestId }));
+        send({ type: 'input', input, requestId });
+      },
       cancelFileLoad: () => {
         if (!fileSession) throw new Error('File cancellation requires a file session.');
         setError(null);
@@ -263,5 +292,16 @@ export function useWatch(): Watch {
     [send],
   );
 
-  return { frame, speed, error, seed, shelf, saving, current, actions };
+  return {
+    frame,
+    runIdentity,
+    inputPending: inputProgress.sent > inputProgress.acknowledged,
+    speed,
+    error,
+    seed,
+    shelf,
+    saving,
+    current,
+    actions,
+  };
 }
