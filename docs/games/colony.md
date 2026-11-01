@@ -636,6 +636,95 @@ Target: 2026-11-03 (inspection, not a delivery or acceptance date).
 
 Remaining: actual phone/layout/touch observations, same-tester retest and owner acceptance; source exact Opus review is held. Historical C2 remains 0 PASS / 10 FAIL / 4 dependent UNRUN and all 30 qualification offline cases remain UNRUN. No package, actor, RNG, persistent-order, faith, tuning, SDK or qualification change belongs to this clarity candidate.
 
+### Second iteration — dated inspection leads (2026-11-01)
+
+Two iterations were collected; no third ordinary panel is planned. These twelve records are deferred inspection leads, not established causes or fixes. F3003–F3010 remain unused. Source extraction and ledger draft headers predate root triage and sealing; the later triage and qualification govern. The sealed private packet manifest SHA-256 is `0d241dbbb79a8f7a01a9e59905ea483e71020af4ce2331a945255716f25a212d`. Source report hashes and exact ranks are retained below.
+
+Original session 24423 exited 1 after Maya, Emre and Nia; Nia's original completion remains pass false and the unchanged finalizer excludes her. Corrective P1 return `d5ba5d7986e01f26c568917952744e9e18d068f23ab5528fe2fc937a9b2e79e1` and P2 return `be5b3218fcf2c1a80659d7ef6141ab84b65a485b084873ec066eca1aac877360` qualify her report for inspection only. Separate session 7938 exited 0 and ran Rosa and Mireya, both PASS in that epoch. Four reports meet unchanged engineering eligibility; Nia is a qualified fifth inspection report, never five controller passes. Eight stops were voluntary (seven unfinished and Emre's independently supported phone dawn ending); Emre desktop and Rosa phone were nonvoluntary TOOL stops. No cuts or terminal BUDGET stops.
+
+**W1.** All image perception and screenshot-dependent layout claims remain UNVERIFIABLE: no identifiable returned image-tool events. Saved PNG quota is not a view receipt.
+**W2.** Literal completed-command stdout matches2244/1614/1991/3829/1 supplied history lines, not direct delivery or comprehension. Rosa explicitly leaves201–3800 receipt unverified and her concept counts retrospective. Inherited history limits remain. Nia/Rosa latest own Murmur reports and actual method qualifiers are byte-bound; no peer histories.
+**W3.** Original24423EXIT1/Nia passfalse cleanup exception remains. Completed tester0/drivers0 and report bytes are verified; root accepts Nia report as qualified inspection evidence only after corrective P1 returnd5ba and full P2 returnbe5b. Finalizer still counts four eligible, never five controllerPASS. Unknown five historical cwd occupants lack birth/exe/ownership; no cause/fix inferred. Cleanup failure is separate from her earlier actual voluntary game stops; no restart cut or tester refusal invented.
+**W4.** Maya/Rosa/Mireya malformed apostrophe shell calls failed before curl; corrected calls retained. Mireya invalid reason5.673 was rejected and successful note7.505 followed. State-changing control misses remain errors, not product-cause proof. Emre desktop and Rosa phone TOOL stops are nonvoluntary. Emre phone transient TOOL wish passed before continued play.
+**W5.** Automatic first-minute shots after stops on Maya phone/Nia phone/Emre desktop/Rosa phone/Mireya phone are not continued play or diary compliance. Mireya desktop quit52.233, automatic image60.081, stop62.202; no first-minute diary despite crossing60 in stopping-feedback sequence. Preserve qualified checkpoint noncompliance and untested actionable gameplay. Emre phone has actual67.615first-minute/189.879pulse; no forced later checkpoint.
+**W6.** Emre phone raw successful note44.126/engagement3 is omitted from manuscript because receipt/time were uncertain. Preserve both the raw words and receipt uncertainty. Several manuscript/raw timestamps differ by1ms (Maya18.469/18.468 and16.950/16.949; Emre4.647/4.646,51.597/51.596,374.055/374.054; Nia13.511/13.510; Mireya50.779/50.778). Do not normalize the original words or raw timestamps.
+**W7.** Quick labels returned pressed controls and Back was used. No Feedback typing/Submit or recording/consent changes observed. No full network guard/backend ingestion/feedback/save receipt proof. Emre dawn ending is independently supported by returned tally/end controls; failed chapter-save message was observed, Try again untested, cause unknown.
+**W8.** Same live26b/HF4.15 held through both epochs and final marker; prior11asset/immutableSDK/relevant-object proof stays bounded. Source/merge whole trees DIFFER. No independent full rebuild/fullassetgraph/font/visual acceptance or owner/player acceptance inferred. First finalizer noarg UsageEXIT1 is retained separately from correct bound invocationEXIT0 and original cleanupEXIT1.
+
+The source reports contain the following ranked asks verbatim. Dates are inspection targets, not promises of fixes or acceptance.
+
+**F2991 — Maya, rank 1; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+1. Let me follow up with Yusuf about the timber token and Zehra when that thread comes up.
+
+Source: `well-retest2/maya/report.md` line 5; SHA-256 `a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357`; Unicode [233, 323), UTF-8 bytes [233, 323). Inspection lead; cause unknown.
+
+**F2992 — Maya, rank 2; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+2. Give Yusuf a more specific answer when he changes my request. “I adapted the advice” tells me the result, but leaves me wanting his reason.
+
+Source: `well-retest2/maya/report.md` line 6; SHA-256 `a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357`; Unicode [324, 466), UTF-8 bytes [324, 470). Inspection lead; cause unknown.
+
+**F2993 — Maya, rank 3; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+3. Make personal conversation easier to find among the construction and decision details.
+
+Source: `well-retest2/maya/report.md` line 7; SHA-256 `a60ab377a978e7238f4a92f6dffa286d9bb1e78ea22a38e75f3d51c38be9a357`; Unicode [467, 556), UTF-8 bytes [471, 560). Inspection lead; cause unknown.
+
+**F2994 — Emre, rank 1; target 2026-11-03; fix:lab primary; fix:well secondary only if independently reproduced.**
+
+1. Make Yusuf’s speech-dismiss control usable. On desktop it was covered on my first attempt and gone by the retry; I could not establish that I dismissed it. This was the blocking ask I reached.
+
+Source: `well-retest2/emre/report.md` line 5; SHA-256 `3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d`; Unicode [151, 346), UTF-8 bytes [151, 348). Speech-dismiss appeared covered first, then absent; TOOL method limit. No proven product cause. Secondary fix:well only if independently reproduced.
+
+**F2995 — Emre, rank 2; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+2. Explain why “interest in something unfamiliar” means Tariq would work under protest. The wording is more readable than the reason I saw on my previous visit, but I still cannot use it to understand his objection.
+
+Source: `well-retest2/emre/report.md` line 6; SHA-256 `3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d`; Unicode [347, 562), UTF-8 bytes [349, 568). Inspection lead; cause unknown.
+
+**F2996 — Emre, rank 3; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+3. Explain the “This chapter could not be saved” message at the ending. I did not retry it, so I do not know whether the save could succeed.
+
+Source: `well-retest2/emre/report.md` line 7; SHA-256 `3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d`; Unicode [563, 703), UTF-8 bytes [569, 713). Save error at the actual ending; no retry and no save or backend cause established.
+
+**F2997 — Nia, rank 1; target 2026-11-03; fix:well inspection lead; cause unknown.**
+
+1. Give people specific reasons in their own voices. Maryam’s “duties to the others” remained vague, and Danyal’s “I adapted the advice” recalled Samira’s generic answer from my last visit. This is the blocking ask I reached: the replies and management together made me leave both sessions.
+
+Source: `well-retest2/nia/report.md` line 5; SHA-256 `fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535`; Unicode [218, 508), UTF-8 bytes [218, 522). Nia explicitly calls the replies and management together a blocker.
+
+**F2998 — Nia, rank 2; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+2. Show what an insistence actually cost when that information is available. The new explanation says no matching retained trust change is shown, but I still could not tell what happened to trust.
+
+Source: `well-retest2/nia/report.md` line 6; SHA-256 `fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535`; Unicode [509, 705), UTF-8 bytes [523, 719). Trust cost unknown; missing history is not established.
+
+**F2999 — Rosa, rank 1; target 2026-11-03; fix:well inspection lead; cause unknown.**
+
+1. **Explain when Maryam will offer to cook and how those meals serve both ordinary eating and storm preparation.** “Offer threshold” stopped me on desktop.
+
+Source: `well-retest2/rosa/report.md` line 5; SHA-256 `8b0e2354dabca5007840b51829c897db744ed3aa638fb3b87227cf28d298443b`; Unicode [155, 311), UTF-8 bytes [155, 315). Clarity remained an issue after two sentence rereads.
+
+**F3000 — Mireya, rank 1; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+1. Show the reason an order could not happen beside its result. Samira’s Classic kitchen order said “could not”; I found “no grain or water” later on the map.
+
+Source: `well-retest2/mireya/report.md` line 5; SHA-256 `c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b`; Unicode [194, 352), UTF-8 bytes [194, 362). Inspection lead; cause unknown.
+
+**F3001 — Mireya, rank 2; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+2. Give me a clearer sense of which action would matter now, especially when suggested or available work is already underway.
+
+Source: `well-retest2/mireya/report.md` line 6; SHA-256 `c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b`; Unicode [353, 478), UTF-8 bytes [363, 488). Inspection lead; cause unknown.
+
+**F3002 — Mireya, rank 3; target 2026-11-10; fix:well inspection lead; cause unknown.**
+
+3. Shorten or fold away the repeated rules on the person screen so I can follow the people and their responses.
+
+Source: `well-retest2/mireya/report.md` line 7; SHA-256 `c188ca25e01ddf333939c4870a7fc8d7cf7712b2bc70f9178092cc40588c967b`; Unicode [479, 590), UTF-8 bytes [489, 600). Text repetition remains the literal ask; visual crowding is UNVERIFIABLE.
+
 ## Design change 2026-10-20 (owner may veto)
 
 The phone now shows one large village map and a short order sheet. Classic and Human view buttons keep the same prepared order. Worker and place chips stay behind labelled pickers. The selected worker, destination and connecting line stay visible while composing. Confirm shrinks the sheet, keeps the worker selected, and follows their actual movement. Dragging looks elsewhere; Follow restores tracking. Names, current work postures and nearby Human replies make activity visible. The log retains replies. Switching workers preserves the destination. Suggestions warn that availability may have changed, and preparation refreshes the forecast as the village changes. Ordinary moments retain the previous round's continuous clock; only pending suggestions slow playback.
