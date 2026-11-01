@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  admissionAccount,
   admissionAllowed,
   DAILY_HARD_NEURONS,
   headroomAllowed,
@@ -16,6 +17,23 @@ describe('Workers AI admission and response accounting', () => {
     expect(admissionAllowed(null, 7_900, 101)).toBe(false);
     expect(admissionAllowed(0, 9_850, 51)).toBe(false);
     expect(admissionAllowed(0, 11_900, 101)).toBe(false);
+  });
+  it('adds local growth to a cached account snapshot and rejects a previous UTC day', () => {
+    const account = {
+      date: utcDate(),
+      neurons: 7000,
+      remaining: 3000,
+      localCompletedAtRead: 1000,
+      measuredAt: new Date().toISOString(),
+    };
+    expect(admissionAccount(account, 1500)).toBe(7500);
+    expect(admissionAccount(account, 500)).toBe(7000);
+    // A snapshot during an in-flight 100-neuron reservation has only 1000 completed.
+    // Refunding that request to 10 must not hide the next reservation of 90.
+    const pending = { ...account, neurons: 9800, localCompletedAtRead: 1000 };
+    expect(admissionAccount(pending, 1100)).toBe(9900);
+    expect(admissionAllowed(admissionAccount(pending, 1100), 1100, 90)).toBe(false);
+    expect(admissionAccount({ ...account, date: '2000-01-01' }, 1500)).toBeNull();
   });
   it('preserves best-effort play and control headroom against both admission gates', () => {
     expect(headroomAllowed('preplay', 4_300, 4_000, 100, 1)).toBe(true);

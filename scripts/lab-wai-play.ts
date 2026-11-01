@@ -8,6 +8,7 @@ import { GAMES } from '../apps/site/src/games.ts';
 import { buildNoteRequest, parseSuggestion } from './lab-inbox-suggest.ts';
 import { namedTapRoles, type PlayOp, validatePlayOp } from './lab-play-helpers.ts';
 import { type BudgetPhase, HEADROOM_STOP } from './lab-wai-budget.ts';
+import { ReadingResponseError } from './lab-wai-reading.ts';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = join(homedir(), 'code/.lab-scratch/wai-daily');
@@ -257,54 +258,6 @@ export async function runDaily(budget: PlayerBudget, now = new Date()) {
     claimed = true;
     const available = await budget.models();
     await writeFile(join(directory, 'catalogue.json'), JSON.stringify(available));
-    if (!probe) {
-      try {
-        const { runReadingAndVariants } = await import('./lab-wai-reading.ts');
-        await runReadingAndVariants({
-          budget: {
-            ...budget,
-            infer: (model, messages, maxTokens, image, day) =>
-              budget.infer(model, messages, maxTokens, image, day, 'preplay'),
-          },
-          now,
-          directory: attemptDirectory(now, option('attempt')),
-          root: ROOT,
-        });
-        if (process.argv.includes('--suggest')) {
-          await new Promise<void>((done, reject) => {
-            const inbox = spawn(
-              '/opt/homebrew/bin/node',
-              [
-                'scripts/lab-inbox.ts',
-                '--suggest',
-                `--expected-day=${expectedDay}`,
-                '--budget-phase=preplay',
-              ],
-              { cwd: ROOT, stdio: 'ignore' },
-            );
-            inbox.once('error', reject);
-            inbox.once('exit', (code, signal) =>
-              code === 0 && !signal
-                ? done()
-                : reject(
-                    new Error(code === 2 && !signal ? HEADROOM_STOP : 'Inbox suggestion run incomplete'),
-                  ),
-            );
-          });
-        }
-      } catch (error) {
-        const reason = error instanceof Error ? error.message : 'Reading or inbox failed';
-        const protectedHeadroom = sweepFailure(reason) === 'next';
-        await appendFile(
-          join(directory, 'skipped.jsonl'),
-          `${JSON.stringify(protectedHeadroom ? { stage: 'remaining pre-play work', reason } : { remaining: plan, reason })}\n`,
-        );
-        if (!protectedHeadroom) {
-          halted = true;
-          return { halted, directory, now };
-        }
-      }
-    }
     const protocol = await readFile(join(ROOT, 'docs/lab/playtester-prompt.md'), 'utf8');
     const panel = await readFile(join(ROOT, 'docs/lab/lab-personas.md'), 'utf8');
     const round = 0;
@@ -530,6 +483,54 @@ export async function runDaily(budget: PlayerBudget, now = new Date()) {
         break;
       }
       await writeFile(join(directory, 'usage.json'), JSON.stringify(await budget.summary(), null, 2));
+    }
+    if (!halted && !probe && process.argv.includes('--scheduled')) {
+      try {
+        const { runReadingAndVariants } = await import('./lab-wai-reading.ts');
+        await runReadingAndVariants({
+          budget: {
+            ...budget,
+            infer: (model, messages, maxTokens, image, day) =>
+              budget.infer(model, messages, maxTokens, image, day, 'control'),
+          },
+          now,
+          directory: attemptDirectory(now, option('attempt')),
+          root: ROOT,
+        });
+        if (process.argv.includes('--suggest')) {
+          await new Promise<void>((done, reject) => {
+            const inbox = spawn(
+              '/opt/homebrew/bin/node',
+              [
+                'scripts/lab-inbox.ts',
+                '--suggest',
+                `--expected-day=${expectedDay}`,
+                '--budget-phase=control',
+              ],
+              { cwd: ROOT, stdio: 'ignore' },
+            );
+            inbox.once('error', reject);
+            inbox.once('exit', (code, signal) =>
+              code === 0 && !signal
+                ? done()
+                : reject(
+                    new Error(code === 2 && !signal ? HEADROOM_STOP : 'Inbox suggestion run incomplete'),
+                  ),
+            );
+          });
+        }
+      } catch (error) {
+        const reason = error instanceof Error ? error.message : 'Reading or inbox failed';
+        const protectedHeadroom = sweepFailure(reason) === 'next' || error instanceof ReadingResponseError;
+        await appendFile(
+          join(directory, 'skipped.jsonl'),
+          `${JSON.stringify({ stage: 'reading and inbox', reason })}\n`,
+        );
+        if (!protectedHeadroom) {
+          halted = true;
+          return { halted, directory, now };
+        }
+      }
     }
     if (!halted && !probe && process.argv.includes('--scheduled')) {
       try {
