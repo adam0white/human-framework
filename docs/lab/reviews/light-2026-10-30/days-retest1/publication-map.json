@@ -1,0 +1,111 @@
+{
+  "schema": "sealed-source-publication-map/v1",
+  "packet": "days-retest1",
+  "scope": "Exact sealed source payloads and external seal/reviews under inert .txt names. Internal CANDIDATE/HOLD labels preserve freeze provenance. First fixed retest; second fix/retest remains required. No source or owner approval inferred.",
+  "files": {
+    "evidence/days-retest1102-ask-review.json": {
+      "publishedPath": "evidence/days-retest1102-ask-review.json.txt",
+      "sha256": "d602fcc21790861f8191fb1a5ca6b323cd56b916e5be372a1f0c1aa85116af70"
+    },
+    "evidence/days-retest1102-ask-review.md": {
+      "publishedPath": "evidence/days-retest1102-ask-review.md.txt",
+      "sha256": "0a6f01d2a2c7fded74176175ead736c28f6770a8721fdd8f050f73821541bd04"
+    },
+    "evidence/days-retest1102-literal-extraction.json": {
+      "publishedPath": "evidence/days-retest1102-literal-extraction.json.txt",
+      "sha256": "7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05"
+    },
+    "evidence/days-retest1102-protocol-review.json": {
+      "publishedPath": "evidence/days-retest1102-protocol-review.json.txt",
+      "sha256": "5ae33676a6780dd9d09a77dc25476cd413935e90e4f37bf29346242be215da44"
+    },
+    "evidence/days-retest1102-protocol-review.md": {
+      "publishedPath": "evidence/days-retest1102-protocol-review.md.txt",
+      "sha256": "ba066ad9cf0fc53448873ccccef1e0e79a478968d1959200867c8a01d13c4103"
+    },
+    "evidence/days-retest1102-root-literal-check.json": {
+      "publishedPath": "evidence/days-retest1102-root-literal-check.json.txt",
+      "sha256": "e12341e9707390aa5b6417bd69848ba1a689a539c08a4d40d6892dabfc78a038"
+    },
+    "evidence/days-retest1102-root-qualification.json": {
+      "publishedPath": "evidence/days-retest1102-root-qualification.json.txt",
+      "sha256": "1c4cd337d0fe605b06cc86f50dd358278960c1b27a9f3614fb1561221113f296"
+    },
+    "evidence/days-retest1102-root-raw-check.json": {
+      "publishedPath": "evidence/days-retest1102-root-raw-check.json.txt",
+      "sha256": "8b5217a4a17edb2852319efaceb16b46a96ee343a9b23c780211fad9c56af0cf"
+    },
+    "evidence/finalizer-audit.json": {
+      "publishedPath": "evidence/finalizer-audit.json.txt",
+      "sha256": "7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc"
+    },
+    "evidence/root-return.json": {
+      "publishedPath": "evidence/root-return.json.txt",
+      "sha256": "3b75b1202b9a07a812ddab96c4f2c9fe91fe76052f609163214def7c348be742"
+    },
+    "integration-notes.md": {
+      "publishedPath": "integration-notes.md.txt",
+      "sha256": "b2c936eadfd3d2bf7485311037b6d5d1fe120200cfdbb59f2cd3792808ce46d3"
+    },
+    "ledger.json": {
+      "publishedPath": "ledger.json.txt",
+      "sha256": "f243fdfd199d655b07357c568f2cb5f27000f043df24f69d3ebd97f4f7e3afe0"
+    },
+    "logical-testers.md": {
+      "publishedPath": "logical-testers.md.txt",
+      "sha256": "6987a8f85f84cb7bf3b6f56ccc32d4153bec69c2c17bbd6202f062eda47bc0d1"
+    },
+    "reports/emre/report.md": {
+      "publishedPath": "reports/emre/report.md.txt",
+      "sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67"
+    },
+    "reports/leire/report.md": {
+      "publishedPath": "reports/leire/report.md.txt",
+      "sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70"
+    },
+    "reports/pavel/report.md": {
+      "publishedPath": "reports/pavel/report.md.txt",
+      "sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1"
+    },
+    "reports/rosa/report.md": {
+      "publishedPath": "reports/rosa/report.md.txt",
+      "sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a"
+    },
+    "reports/tessa/report.md": {
+      "publishedPath": "reports/tessa/report.md.txt",
+      "sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526"
+    },
+    "source-png-hashes.json": {
+      "publishedPath": "source-png-hashes.json.txt",
+      "sha256": "e78cbf34a86ed05446ae911585078055173e3009d9292831821633b09ee30467"
+    },
+    "source-references.json": {
+      "publishedPath": "source-references.json.txt",
+      "sha256": "4aee02b8c9506d566a033e575f7c82fc80169e28bec76dedc54e43e4bb6d0506"
+    },
+    "manifest.json": {
+      "publishedPath": "manifest.json.txt",
+      "sha256": "7633e1245555311301c41e12be3563e1ec7f196a3e3f294a3695ab02b67f941d"
+    },
+    "root-seal.json": {
+      "publishedPath": "root-seal.json.txt",
+      "sha256": "3e2c170e5c6f13c0c00cbfb89fc9dec17b4c80160eb3757f1428afa6d4efe2e8"
+    },
+    "packet-review-1.json": {
+      "publishedPath": "packet-review-1.json.txt",
+      "sha256": "b9d76f467214a52f7db7286ac6a2f0d7cdfd0486e2beec59ea6da3d4dfc3c30d"
+    },
+    "packet-review-1.md": {
+      "publishedPath": "packet-review-1.md.txt",
+      "sha256": "481aa671b6f3afef8681a1b3cf2e93652280797978cfe74aacb347af1fe45aa2"
+    },
+    "packet-review-2.json": {
+      "publishedPath": "packet-review-2.json.txt",
+      "sha256": "b62dea2280059cdf242e42806933ad778e06de97249219413f63a490f479c160"
+    },
+    "packet-review-2.md": {
+      "publishedPath": "packet-review-2.md.txt",
+      "sha256": "5bc8bb138073f231f32fbb1ce8a13629b8ca63bd4f7eba172e999cb50488d822"
+    }
+  }
+}

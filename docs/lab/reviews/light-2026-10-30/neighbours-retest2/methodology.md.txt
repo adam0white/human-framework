@@ -1,0 +1,31 @@
+# Methodology and qualifications — derived; NOT SEALED
+
+Root read the five reports, full audit Markdown and operative JSON fields, rehashed 32 evidence files and verified 59 reaction strings and 26 literal spans. Initial default Sol auditor exited for capacity with no artifact; interim messages were provisional. A bounded Terra audit recovered the work, and root verified raw evidence.
+
+The following NC1–NC11 and NF1–NF9 are copied as text from the exact root qualification records. Prior selected histories and W/SW/NR/SWF limits remain in force; see prior method qualification and prior root qualification and their referenced sources.
+
+## Current NC qualifications
+
+- NC1: No observed image-view event in any current completed transcript despite report viewing claims. Saved images and DOM/text do not prove visual perception.
+- NC2: All selected own-history lines match command stdout in <=40-line ranges:2130/2480/4205/2. This does not independently prove delivery or comprehension. Prior selected histories/exclusions/W/SW/NR/SWF remain.
+- NC3: Current audit retains12 report timestamp mention differences of1ms:Emre1,Nia2,Rosa8,Leonie1. PriorMei retains2 additional differences. Preserve original values; response and wall clocks can differ.
+- NC4: Nia phone automatic60.037s image follows56.041s stop; no further gameplay. It is not continued play or a first-minute diary. BothNia sessions stoppedbefore60.
+- NC5: Leonie phone59.155s first-minute note was premature;61.439s correctednote retained separately. Automatic images do not establish viewing. Rosa desktop68.325 first-minute note occurred during stopping checks, not more repair play. No180s pulse due.
+- NC6: Leonie transcript27 failed quoted command produced no feedback request; corrected call succeeded. Emre one disabled-control response and one absent-name response; Rosa3stalecontrols; Leoniecoveredcontrol and ended-skip errors retained. Do not erase errors or infer broken UI.
+- NC7: Feedback quick-label responses visibly include pressed states; closes recorded. Rosa desktop chose confused rather than stopping. No typing,Submit,recordingtoggle observed; defaults are tester claims, no backendreceipt/recordingstate established.
+- NC8: Emre toolavailability afterlending changed across12:15→13:00; consumer/cause unknown. Nia busy-question refusal is explained; lateravailability untested. Rosa did notinspectdesktopjournal: zero-afterwork is uncertainty, not proof workfailed/noresult. Preserve independentchoices/difficulty.
+- NC9: Rosa dynamic-control timing not reproduced at human1–3second pace. Route stable-selection preference only, no timingbug claim. Her conceptcounts are grouped/incomplete/internallyinconsistent as disclosed; no rereads reported, two-reread rule untriggered.
+- NC10: Leonie directed-to-ask-again is her interpretation; raw acceptance records waiting for laterdecision/noguarantee. Her3asks explicitly nonblocking. Mei save desire untested; priorofferedhour situation unreached.
+- NC11: Original75213exit1/qualifiedMei singleton and new72317exit0/four reports staydistinct; originalEmre missingpath report administrative/no gameplay. No fullfive native0, thirdpanel, capreset, owneracceptance, humanenjoymentprediction or servingmodelidentity claim.
+
+## Mei inherited NF qualifications
+
+- NF1: Saved screenshots and claimed views are not perception proof. No view-image event observed; opening visual/readability claims unverified.
+- NF2: All1721 history lines match aggregated command stdout, not independent delivery/comprehension. Final1681–1721 call spans41 lines, over40-line cap.
+- NF3: One disallowed ls and one failed unmatched-quote first-minute command are retained. Cleanup rule was supplied inline; no extra file-read requirement is inferred from absent separate cat.
+- NF4: Raw desktopstop74.518 vs report74.519; raw phonefirstnote5.489 vs report5.490. Original bytes remain unchanged.
+- NF5: Phone automatic60.104 screenshot is after41.117 stop, not continued play or first-minute diary. Desktop first-minute62.232 follows actual actions; neither session reached180s.
+- NF6: Desktop BUDGET is not counted voluntary retention; phone BORED is one voluntary unfinished stop and same-evening carryover, not cold.
+- NF7: Durable resume is an untested desire, not save-failure evidence. Prior conditional-hour question was not reached and is not a new blocker/reproduction. Ece clarity is bounded player wording, not blanket product acceptance.
+- NF8: Two observed stopping labels were pressed and closed; no observed typed note, Submit/send or setting change. Agent-query consumption, backend receipt and actual recording/consent state remain unproved; staticSDK intent is separate.
+- NF9: Actual original epoch75213 exited1 after Mei completed and Emre administrative no-play report. Mei has no recorded cut or observed ending. No full-five native0, new iteration or owner acceptance follows.

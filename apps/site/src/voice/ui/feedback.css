@@ -5,10 +5,13 @@
   height: var(--v-feedback-height, calc(100dvh - 44px));
   display: flex;
   flex-direction: column;
-  background: var(--v-bg, #101718);
-  color: var(--v-text, #eee7d6);
+  background: var(--paper, var(--surface));
+  color: var(--text);
   padding: 12px 16px max(16px, env(safe-area-inset-bottom));
   box-sizing: border-box;
+}
+.voice .v-feedback-overlay {
+  color: var(--ink);
 }
 .v-feedback-menu-head {
   display: flex;
@@ -39,7 +42,7 @@
 }
 .v-feedback-overlay button {
   padding: 9px 12px;
-  border: 1px solid #77786c;
+  border: 1px solid var(--edge-strong, var(--line-strong));
   background: transparent;
   color: inherit;
   border-radius: 6px;
@@ -47,8 +50,9 @@
   font: inherit;
 }
 .v-feedback-overlay button[aria-pressed="true"] {
-  border-color: #d8b877;
-  background: #38352b;
+  border-color: var(--fill, var(--accent));
+  background: var(--fill, var(--accent));
+  color: var(--fill-ink, var(--accent-ink));
 }
 .v-feedback-overlay button:disabled {
   opacity: 0.45;
@@ -57,8 +61,8 @@
 .v-feedback-sheet-actions button {
   width: 100%;
   min-height: 52px;
-  background: #d8b877;
-  color: #181b19;
+  background: var(--fill, var(--accent));
+  color: var(--fill-ink, var(--accent-ink));
 }
 .v-feedback-verdicts {
   display: flex;
@@ -76,11 +80,11 @@ textarea.v-feedback-feedback-note {
   width: 100%;
   min-height: 100px;
   resize: vertical;
-  background: #1e2524;
+  background: var(--paper-3, var(--surface-2));
   color: inherit;
   padding: 10px;
   font: inherit;
-  border: 1px solid #77786c;
+  border: 1px solid var(--edge-strong, var(--line-strong));
 }
 .v-feedback-feedback-name input {
   display: block;
@@ -89,6 +93,9 @@ textarea.v-feedback-feedback-note {
   min-height: 44px;
   margin-top: 6px;
   padding: 8px;
+  background: var(--paper-3, var(--surface-2));
+  color: inherit;
+  border: 1px solid var(--edge-strong, var(--line-strong));
   font: inherit;
 }
 .v-feedback-overlay summary {
@@ -115,7 +122,7 @@ textarea.v-feedback-feedback-note {
   margin: 11px;
 }
 .v-feedback-overlay a {
-  color: #d8b877;
+  color: var(--fill, var(--accent));
   display: inline-flex;
   min-height: 44px;
   align-items: center;
@@ -127,7 +134,7 @@ textarea.v-feedback-feedback-note {
     transform: translateX(-50%);
     max-height: 720px;
     top: 56px;
-    border: 1px solid #77786c;
+    border: 1px solid var(--edge-strong, var(--line-strong));
     border-radius: 8px;
   }
 }

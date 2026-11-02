@@ -1,0 +1,100 @@
+{
+  "at": "2026-11-02T10:09:02.318334+00:00",
+  "sourceAuditSha256": "4f3baf820dd278beaa98cd8c4c1646cf82d28983c6ba21936469f7c1a272aacb",
+  "rawWantQuitResponsesChecked": 10,
+  "observedEndings": 6,
+  "voluntaryUnfinished": 4,
+  "rows": [
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "stopRawElapsed": 83.017,
+      "reason": "FINISHED",
+      "wantQuitCommandSourceLine": 186,
+      "endingObserved": true,
+      "endingLiteral": "THE STREET, AFTER THE FIRE / Everyone is out."
+    },
+    {
+      "tester": "jonas",
+      "device": "phone",
+      "stopRawElapsed": 114.154,
+      "reason": "FINISHED",
+      "wantQuitCommandSourceLine": 238,
+      "endingObserved": true,
+      "endingLiteral": "THE STREET, AFTER THE FIRE / Everyone is out."
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "stopRawElapsed": 131.369,
+      "reason": "FRUSTRATED",
+      "wantQuitCommandSourceLine": 206,
+      "endingObserved": false,
+      "endingLiteral": null
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "stopRawElapsed": 83.542,
+      "reason": "FINISHED",
+      "wantQuitCommandSourceLine": 259,
+      "endingObserved": true,
+      "endingLiteral": "THE STREET, AFTER THE FIRE / Everyone is out."
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "stopRawElapsed": 113.34,
+      "reason": "FINISHED",
+      "wantQuitCommandSourceLine": 156,
+      "endingObserved": true,
+      "endingLiteral": "THE STREET, AFTER THE FIRE / Everyone is out."
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "stopRawElapsed": 131.769,
+      "reason": "FINISHED",
+      "wantQuitCommandSourceLine": 220,
+      "endingObserved": true,
+      "endingLiteral": "THE STREET, AFTER THE FIRE / Everyone is out."
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "stopRawElapsed": 121.494,
+      "reason": "CONFUSED",
+      "wantQuitCommandSourceLine": 270,
+      "endingObserved": false,
+      "endingLiteral": null
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "stopRawElapsed": 95.331,
+      "reason": "TASTE",
+      "wantQuitCommandSourceLine": 310,
+      "endingObserved": false,
+      "endingLiteral": null
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "stopRawElapsed": 118.709,
+      "reason": "FINISHED",
+      "wantQuitCommandSourceLine": 62,
+      "endingObserved": true,
+      "endingLiteral": "THE STREET, AFTER THE FIRE / Everyone is out."
+    },
+    {
+      "tester": "iria",
+      "device": "desktop",
+      "stopRawElapsed": 166.281,
+      "reason": "TASTE",
+      "wantQuitCommandSourceLine": 149,
+      "endingObserved": false,
+      "endingLiteral": null
+    }
+  ],
+  "scope": "Root explicit retained visible-text ending check; no image/perception/difficulty/owneracceptance inferred."
+}

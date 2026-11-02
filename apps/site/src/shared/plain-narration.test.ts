@@ -25,7 +25,7 @@ it('pins the adopted runtime and keeps a named duty counter from the public Well
   const game = new ColonyGame(7, createFrameworkHumanSide);
   const person = (game.human as FrameworkHumanSide).person('samira');
   const duty = requireValue(person.agenda.commitments.find((commitment) => commitment.label === 'Maghrib'));
-  expect(FRAMEWORK_PACKAGE_VERSION).toBe('4.15.0');
+  expect(FRAMEWORK_PACKAGE_VERSION).toBe('4.16.0');
   expect(
     counterIdentity(person, {
       voiceId: 'player',

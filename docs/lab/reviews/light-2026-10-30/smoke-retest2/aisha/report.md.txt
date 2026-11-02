@@ -1,0 +1,49 @@
+I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.
+
+My ranked asks are:
+
+1. When someone dies, acknowledge what I tried. Derya died while following me down, and the line I saw did not mention that I had reached her.
+2. Keep the walking destination, estimate and smoke slowdown messages. They made movement much clearer to me.
+3. Keep the neighbours able to help one another. Burak checking the stair and helping Sevim gave him a place in the night beyond my instructions.
+
+I reached no new blocking ask. The death account was an earlier ask that I encountered again.
+
+I am Aisha Rahman, 45, a community pharmacist from Birmingham. I played two fresh, independent games at the assigned agent-query URL, on the same evening: a 1280×800 desktop session with keyboard and mouse, then a 360×690 touch-phone session. I stopped the desktop at **131.370 seconds**, frustrated after Derya died. The phone game ended with everyone who was home outside; I stopped at **83.543 seconds**.
+
+My history reading has a qualification. I issued explicit reads through line **1436**, whose last line is **“End of supplied own history.”** The combined output was truncated, and subsequent smaller reads did not resolve every truncated portion before play. I cannot establish the exact unread ranges; portions within **161–440 and 881–1320** were not reliably delivered to me. I did read the later Smoke report and the actual final line. I cannot claim complete history delivery or invent memories from the missing portions.
+
+On desktop, the familiar title and Sevim brought the earlier visit back. The introduction was clear at the opening, and at **11.448 seconds** selecting Sevim gave me a destination and estimated walk time. She had been asleep in this night. I helped with her books, showed her the stair and led her outside. Burak checked the stair and left on his own; Hacer later told me she could not have found the stair alone.
+
+Derya was having difficulty breathing by the time I returned for her. I showed her the stair and she agreed to follow. The game said thick smoke slowed our walk, and then said she died before firefighters arrived. I knew she was in danger, but the single death line felt abrupt after I had reached her. I stopped without seeing an ending.
+
+On the phone, the introduction fit the screen at **2.525 seconds**. Derya was away. I went to Hacer first while Burak helped Sevim tie her books. Hacer and then Sevim walked out with me, and Burak escaped alone. The ending said everyone home was out. I felt relieved and did not want another night immediately.
+
+These are my diary lines exactly as logged, in order:
+
+**Desktop**
+
+- **8.091 s, note:** “I recognise the stairwell and Sevim, but she was asleep this time. I want to reach her first and see whether the walking remains clear.”
+- **14.547 s, note:** “The walk to landing 1 has a destination and estimate again. I know my selection worked.”
+- **45.013 s, note:** “Sevim and her books are outside; Burak checked the stair and left on his own. I like that he acts without waiting for me.”
+- **62.312 s, first_minute, engagement 4:** “Sevim is outside with her books and Burak checked the stair himself. I am on my way to Hacer; the destination and estimate make the walk understandable.”
+- **120.215 s, want_quit, FRUSTRATED:** “Derya died while following me down. I knew the smoke was dangerous, but the single line is abrupt after I reached her and tried to lead her out. I would stop here.”
+- **131.370 s, stop, FRUSTRATED:** “I am stopping after Derya died on the way down with me. I liked Sevim keeping her books and Burak checking the stair, but I wanted the death line to acknowledge that I had reached her and tried.”
+
+**Phone**
+
+- **7.286 s, note:** “The introduction fits my phone. Derya is away in this night; after the laptop I am relieved she is not in the smoke here.”
+- **61.949 s, first_minute, engagement 4:** “Hacer is outside and Burak helped Sevim with her books while I went upstairs. I know where I am walking and I want to get Sevim out too.”
+- **76.799 s, want_quit, FINISHED:** “Everyone who was home got out. I am relieved, and I have had enough of this night after the laptop.”
+- **83.543 s, stop, FINISHED:** “I am stopping with everyone home outside. Burak helped Sevim while I led Hacer, and Sevim brought her books. I am relieved and do not want another night now.”
+
+Both first-minute entries were after 60 seconds. Neither session reached 180 seconds, so no pulse was due; the pulse and later checkpoints were untested.
+
+The instructions and the neighbour-following loop were clear to me. I twice tried **Show the stair** on desktop while it was disabled: first before the books were ready, then before turning on the torch. The on-screen instruction clarified the next step. Two named neighbour selections also failed because their status text changed before the tap; selecting the newly displayed name worked. I did not encounter the old uncertainty about whether my walk had started.
+
+At the desktop stop, I opened Feedback through **I’m stopping** in the pause menu. The draft contained the automatically inserted text “I’m stopping.” A second named tap was ambiguous because two controls had that name; I selected **I’d stop here**, saw it marked pressed, and chose **Not now**. On the phone I opened Feedback from the ending, selected **I’m stopping**, saw it marked pressed, and chose **Not now**. I typed no note and submitted neither draft. Recording and consent remained at their defaults.
+
+I viewed [the desktop introduction](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/desktop/a-001.png), a cream modal over the dark stairwell, and [the phone introduction](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/phone/b-001.png), which fit the narrow screen. I did not view a gameplay screenshot on either device, so my gameplay observations come from the driver’s visible text and control responses.
+
+I revisited my earlier question about whether a walk tap had registered. On both devices, the game named my destination and gave an estimate; it also said when thick smoke slowed me. That answered the uncertainty in the walks I reached. I also revisited my earlier request for a death account that acknowledges my attempt: the line I saw for Derya did not do that. I stopped before an ending, so I cannot say whether an ending would have added context.
+
+I touched no repository and created no worktree, server, browser or helper. The coordinator owns the drivers; there is no repository for which I can report `git worktree list`.

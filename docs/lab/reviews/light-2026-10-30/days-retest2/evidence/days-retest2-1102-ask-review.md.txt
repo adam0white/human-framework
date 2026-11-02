@@ -1,0 +1,7 @@
+# Days second fixed retest: panel asks
+
+The companion JSON preserves every ranked ask, each opening return statement, the tester's blocking statement, report hashes, and report-line references. References point to the reports and their own logged reactions; they are not independently verified transcripts. Classifications are testers' words, not a bug finding or owner acceptance.
+
+All five testers reported no new blocking ask, using the exact qualifications in the JSON. Rosa's third ranked ask is a positive request to retain the new hour explanation, not a request for a change. Tessa could not establish that she had read every supplied history line (tessa/report.md:10).
+
+This is the second fixed retest. The user’s iteration cap rules out a third ordinary round. Any residual work is datedDeferred; no acceptance or implementation is inferred here. No process, browser, worker, or worktree was created.

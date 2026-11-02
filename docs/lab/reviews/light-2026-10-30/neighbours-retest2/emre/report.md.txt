@@ -1,0 +1,65 @@
+I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight.
+
+My ranked asks are:
+
+1. Show what remains before the timber is safe and what another hour of work might do. Both timber hours ended with “still felt damp.”
+2. Show when a tool may become available for my own repair hour. On desktop, I lent three tools, then found every tool in use when I returned to the hall.
+
+The second ask was the immediate blocker to the repair hour I wanted on desktop. Other actions remained available; it did not block the whole game.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was a return visit to Neighbours. I read the supplied own history in explicit ranges through **line 2130**. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The history is selected, not a complete archive.
+
+Both sessions used the assigned agent-marked URL in separate fresh contexts, without an imported save or matched seed. They were on the same evening, desktop first and phone second. Recording and consent stayed at their defaults.
+
+- **Desktop:** 1280×800, keyboard and mouse. Voluntary stop at **94.323 seconds**, Day 1 13:30, **BORED**.
+- **Phone:** 360×690, touch. Voluntary stop at **102.825 seconds**, Day 1 14:30, **BORED**.
+
+Neither game ended. Both reached a valid first-minute entry and stopped before the 180-second pulse, so pulses and later checkpoints were untested. The hall opening, hall evenings, later days and an ending were also untested.
+
+The direct work held my attention. On desktop, I could walk to the hall and spend an hour propping and airing timber without first making a bargain. The journal recorded the work, but said the timber still felt damp. When I tried an hour of repairs, the game clearly said every tool was in use. I spent a credit to lend three tools; the game reported three available, but after time passed and I reopened the hall, it again said every tool was in use. I could not tell when one would be free. I chose to leave rather than keep checking.
+
+On phone, I tried repairs first and the journal explained the setback: the repair on damp timber did not hold. I liked having a reason I could understand. I used my remaining hour to support and air the timber; it still felt damp. One repair was later shown as complete, but I do not know whose work produced it.
+
+**Diary — my logged words, in order**
+
+Desktop:
+
+- **5.115 s, note, engagement 4:** “The flooded hall brings back Nora keeping my hour and the inspection still finding wet timber and loose supports. I want to see what I can do next in this fresh town.”
+- **18.619 s, note, engagement 4:** “I can give an hour directly now, including supporting the timber. That gives me a practical action without first bargaining with Nora. I will walk to the hall.”
+- **40.793 s, note, engagement 4:** “The inspection again names wet timber and loose supports, exactly the problem I remember. I have started an hour on it directly and want to see its result.”
+- **51.245 s, note, engagement 3:** “My hour is recorded and the timber still felt damp, as before. I still cannot tell how close it is to safe or what another hour would change.”
+- **61.558 s, first_minute, engagement 3, Day 1 11:00:** “The hall goal is clear and I can work directly for an hour. The record says the timber still felt damp, but I cannot judge what remains before it is safe. I will try repairs as well.”
+- **65.024 s, note, engagement 3:** “The repair hour is unavailable because every tool is in use. That is a clear reason. I will lend tools and see whether I can work.”
+- **76.300 s, note, engagement 2:** “I lent three tools and was told three were available, but on returning to the hall the repair hour says every tool is in use. Time passed between screens, so I cannot tell who took them or whether I can plan around it.”
+- **84.545 s, want_quit, BORED, engagement 2, Day 1 13:15:** “I have done the timber hour again and spent a credit on tools, but the repair hour is still unavailable and the hall is at zero. I do not want to keep checking for a free tool tonight.”
+- **94.323 s, stop, BORED, engagement 2, Day 1 13:30:** “I am stopping on desktop after one timber hour and lending tools. The work and cost were clear, but I cannot tell what remains for safety or when a tool will be free for my repair hour. I would return another evening, not leave it running.”
+
+Phone:
+
+- **7.668 s, note, engagement 3:** “The phone opening fits and repeats the hall goal I just saw on desktop. I will try the direct repair hour first in this fresh town.”
+- **37.002 s, note, engagement 4:** “On the phone I started the repair hour before the tools were all occupied. It says exactly when the work ends; I want to see whether the count changes.”
+- **56.190 s, note, engagement 4:** “The journal says my repair on damp timber did not hold. That explains the zero and makes the setback understandable. I should support and dry it first, though I still cannot see how much drying is enough.”
+- **68.587 s, first_minute, engagement 4, Day 1 10:45:** “The phone goal and direct work are clear. My repair did not hold on damp timber, and the journal explains why. I will use the remaining hour to support and dry it, though I do not know how much is needed.”
+- **93.108 s, want_quit, BORED, engagement 2, Day 1 13:45:** “The failed repair has a clear reason, and I used my other hour on the timber. It still felt damp, as on desktop, and I have no work hours left today. I do not want to repeat the waiting tonight.”
+- **102.825 s, stop, BORED, engagement 2, Day 1 14:30:** “I am stopping on the phone after a failed repair and a timber hour. The journal explained why the repair failed, which I liked, but the timber still felt damp and I have no work hours left. I would return another evening on desktop, not leave it running.”
+
+Both quit wishes persisted to their stops. The direct repair failure was explained; the amount of drying needed was not clear to me. The tool message explained why the desktop action was unavailable at that moment, but not when it might become available. The change between “3 tools are now available” and “Every tool is in use” followed game time passing; I cannot say what happened to them.
+
+**Recognition and comparison**
+
+- At **5.115 s on desktop**, the visible flooded-hall goal recalled my earlier Neighbours work hour and the inspection finding wet timber and loose supports. My exact words are in the diary; confidence is **high**, based on my supplied report.
+- At **40.793–51.245 s**, the inspection and “still felt damp” result recalled that earlier inspection and timber hour, also with **high confidence**. These were separate fresh towns.
+- At **7.668 s on phone**, the opening recalled the desktop session just played, with **high confidence**.
+- I made no cross-game person recognition.
+
+My earlier ask to understand what remains for hall safety is still unresolved in what I reached. The journal gave a useful explanation for the phone repair failure, but I did not learn how close the timber was to safe. I did not revisit the earlier accepted-alternative conversation, so I cannot assess its immediate confirmation.
+
+**Device and feedback observations**
+
+I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/a-001.png) immediately after opening. The goal and entry button were readable, and the artwork did not cover the goal. I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/b-001.png) immediately after opening. The goal and large entry button fit the narrow screen. These were the only manual screenshots I viewed; later gameplay and Feedback observations come from the driver’s visible text.
+
+On desktop, one attempt to select the hall used a name absent from the current panel; the current **Inspect Flooded hall** control worked. The repair-hour control was disabled with a game-state explanation, not a driver block. On phone, the support-hour tap initially showed “Sending your action”; the later journal confirmed that the hour was completed.
+
+For confusion, I opened Feedback, selected **“I’m confused,”** saw it pressed and closed Feedback: twice on desktop and once on phone. Before each stop, I selected **“I’m stopping,”** saw it pressed and closed Feedback. I typed no note and submitted nothing.
+
+The coordinator owns the drivers and browser cleanup. I created no worktree, branch, server, browser or worker and touched no repository; no `git worktree list` applies.

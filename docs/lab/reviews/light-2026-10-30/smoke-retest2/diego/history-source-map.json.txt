@@ -1,0 +1,75 @@
+{
+  "status": "PRIVATE_PERSON_HISTORY_DRAFT_NOT_ADMITTED",
+  "tester": "diego",
+  "baseline": {
+    "history": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/own-history.md",
+      "sha256": "3760c02047070a841cafb17547b3b2dd62767614e2fbf69b461e8c76a02ab619"
+    },
+    "map": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/history-source-map.json",
+      "sha256": "615e018398f0f18098c9b634b3916f42410da484bca60779d1194218559753e6"
+    },
+    "outputByteRange": [
+      0,
+      180806
+    ],
+    "byteExactPrefix": true,
+    "lines": 1760
+  },
+  "segments": [
+    {
+      "packet": "smoke-retest1",
+      "order": 1,
+      "actualCompletionEnd": "2026-10-31T15:35:16.142696+00:00",
+      "source": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/diego/report.md",
+        "sha256": "e7be6d73cdf88da46eca4d8e695620e0b4e6986ecc88b969a37999e13ab400e9"
+      },
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/diego/report.md",
+        "sha256": "e7be6d73cdf88da46eca4d8e695620e0b4e6986ecc88b969a37999e13ab400e9"
+      },
+      "composition": "exact_report_in_text_fence",
+      "reportByteRange": [
+        180857,
+        190091
+      ],
+      "reportLineRange": [
+        1767,
+        1838
+      ],
+      "continuationByteRange": [
+        180849,
+        190096
+      ],
+      "qualificationByteRange": [
+        190096,
+        190782
+      ],
+      "qualificationSources": [
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/diego/director-method-qualification.json",
+          "sha256": "200d5931fe3aa8c7e3eb46e9cc52ba8721f946fa7931c8cf1e59440fb3066644"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke1-root-finalization.json",
+          "sha256": "36debae88ccaa269a389eb85f4879dafcc3a5e2717a341d8561559295152a476"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-root-closure.json",
+          "sha256": "b323a4c426fae9b3a435c0f723a9a18b7505ac605ffc28cbba50bbbae59d1f6e"
+        }
+      ],
+      "reportOccurrences": 1
+    }
+  ],
+  "historySha256": "9c28a772d2ff19d8d3f76d388fe348a3e5b81e0249414243c9c8ae0bd35e014a",
+  "historyBytes": 190812,
+  "historyLines": 1843,
+  "warning": "Earlier embedded end markers do not end the current file. Read through the stated final marker. Selected history is not a full archive; preserve inherited limits.",
+  "qualificationSource": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-gap-qualification.json",
+    "sha256": "53ce48c0c6dc925121c407522cc5f3a0a110a8b3b8566ab59bdcc7ab1fe3e534"
+  }
+}

@@ -1,0 +1,48 @@
+I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.
+
+My ranked asks are:
+
+1. Show the amount paid and the savings remaining. I could follow who owed the mistaken payment, but I could not price either payment from savings.
+2. Keep the phone choice cards visible sooner. The story filled the screen, and I had to scroll to see the choices.
+
+I reached no new blocking ask. Both games ended.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was my first fixed-build retest of Days. I read the supplied selected own history through **line 2205** before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. These records are not my complete archive.
+
+Both sessions used the driver-opened agent-marked page in separate fresh contexts, without an imported save or matched seed. They were on the same evening, desktop first and phone second. I left recording and consent at their defaults and changed no owner settings.
+
+- **Desktop:** 1280×800, keyboard and mouse. The game ended at **44.599 seconds**; I logged my stop at **55.106 seconds**, reason **FINISHED**.
+- **Phone:** 360×690, touch. The game ended at **48.268 seconds**; I logged my stop at **62.269 seconds**, reason **FINISHED**.
+
+The familiar six-hour budget gave me a practical plan. On desktop I paid the first claim, then learned it was a mistaken payment Burak owed back. I checked the original, paid the verified boiler bill, made the visit and told Selin. I liked that the ending named the notebook and mistaken payment as still owed. On phone I kept the notebook and recorded the claim myself; those hours left too little time for the visit. The card warned me, and I arranged a later delivery. The ending made clear that delivery was agreed, not completed.
+
+The hour costs and the consequences of my choices were mostly clear. The savings remained vague: “Her savings are smaller” did not tell me how much I had spent or had left. On the phone, exhaustion was explained as adding a checking or travel hour. After rest, the private-check card said the original was already available and gave a one-hour cost. That helped me understand the cost I faced.
+
+**Diary — my logged words in order**
+
+Desktop:
+
+- **5.369 s, note, engagement 4:** “The familiar six-hour account and promised visit give me a practical plan. I want to try paying the bill myself and telling Selin, as I intended last time.”
+- **15.370 s, note, engagement 3:** “The mistaken payment is clearly assigned to Burak to return, but my savings are still only described as smaller. I cannot price that choice.”
+- **33.071 s, note, engagement 4:** “The original distinguishes the two bills and Burak acknowledges the return. Two hours remain and the visit costs two; that is a plan I can follow.”
+- **46.521 s, want_quit, FINISHED, engagement 4:** “I made the visit, paid the verified bill and told Selin. The ending names the notebook and mistaken payment still owed, so I understand what remains. I am done for tonight.”
+- **55.106 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.”
+
+Phone:
+
+- **7.291 s, note, engagement 3:** “The phone opening fits. I have just seen the account and visit on desktop; I will try the alternate opening and see what changes.”
+- **18.224 s, note, engagement 3:** “The exhausted state explains an extra checking and travel hour. The phone story fills the screen again and the choices lie below it; I will scroll to choose.”
+- **31.181 s, note, engagement 4:** “Rest makes the private check one hour, and the card says the original is already here. I can see why it differs from the two-hour desktop check.”
+- **41.529 s, note, engagement 4:** “I spent the hour keeping the notebook and another recording the claim. One hour remains, so I cannot make the two-hour visit. The card warns me before choosing and offers delivery; that is an understandable setback.”
+- **50.141 s, want_quit, FINISHED, engagement 3:** “The phone story ended with delivery agreed but not yet made. I understand the lost visit and the account follow-up; I have played enough paths for tonight.”
+- **62.269 s, stop, FINISHED, engagement 3:** “I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.”
+
+Both quit wishes came after an explicit ending and persisted. I logged no first-minute entry or pulse: desktop stopped before 60 seconds; phone reached 60 seconds during the Feedback wrap after the story had ended. The first-minute and later pulse checkpoints were untested on both devices.
+
+I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/a-001.png) immediately after opening. The notice and start button were readable over the two-column room. I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-001.png) immediately after opening; the notice and buttons fit the narrow screen. On phone, [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-002.png) showed the story occupying most of the screen with the choices below, and [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-003.png) showed both choice cards after scrolling. Later observations came from the driver’s visible text. No control blocked either session.
+
+For the savings confusion on desktop, I opened Feedback and chose **“I’m confused.”** The quick label filled the feedback box; I used Back. At each stop I chose **“I’m stopping,”** which filled the box, and used Back. I typed no note, submitted nothing and changed no recording or consent setting.
+
+My earlier Days question about **savings as a number** came up again: the payment was still described without an amount in the path I played. My earlier question about **why a cost changed** was clearer in the phone check I reached: the card identified the original receipt as already present, and the story explained exhaustion. I also revisited my phone layout concern and confirmed that scrolling exposed the cards in this scene.
+
+The coordinator owns the drivers and browser cleanup. I created no worktree, branch, server, browser or worker and touched no repository, so no `git worktree list` applies.

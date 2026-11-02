@@ -1,0 +1,1183 @@
+{
+  "offset_convention": "zero-based UTF-8 byte and Unicode codepoint half-open offsets in exact report; line numbers one-based inclusive; line text excludes newline",
+  "reports": {
+    "jonas": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/report.md",
+      "sha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+      "last_agent_message_exact_byte_equal": true,
+      "last_agent_message_equal_with_one_report_terminal_newline": false,
+      "last_agent_message_bytes": 5898,
+      "report_bytes": 5898,
+      "extracts": [
+        {
+          "categories": [
+            "voluntary_return"
+          ],
+          "line": 1,
+          "byte_start": 0,
+          "byte_end": 137,
+          "codepoint_start": 0,
+          "codepoint_end": 137,
+          "text": "**I would not return voluntarily for another attempt tonight; I have seen the two orders I wanted to try. I would not leave it running.**"
+        },
+        {
+          "categories": [
+            "ranked_ask"
+          ],
+          "line": 5,
+          "byte_start": 155,
+          "byte_end": 429,
+          "codepoint_start": 155,
+          "codepoint_end": 427,
+          "text": "1. Give me a harder choice after I learn the torch-and-follow routine, with visible clues about its cost. Both orders succeeded here, although Derya’s breathing warning made the second trip feel consequential. I cannot tell from two runs how often either order would work."
+        },
+        {
+          "categories": [
+            "blocking_qualifier"
+          ],
+          "line": 7,
+          "byte_start": 431,
+          "byte_end": 461,
+          "codepoint_start": 429,
+          "codepoint_end": 459,
+          "text": "I reached no new blocking ask."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 13,
+          "byte_start": 1171,
+          "byte_end": 1647,
+          "codepoint_start": 1161,
+          "codepoint_end": 1637,
+          "text": "On desktop, the opening at **0.514 s** gave me a familiar evacuation: find who was home, show them the stair, and ask them to leave. Burak checked the stair and escaped alone. I took Derya up to Hacer, then led both down together. The game warned that thick smoke could stop followers, so I watched their statuses. Both reached the street, and the ending said everyone was out at **71.996 s**. The batch worked on this attempt; it did not tell me that batching is always safe."
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 30,
+          "byte_start": 3034,
+          "byte_end": 3209,
+          "codepoint_start": 3020,
+          "codepoint_end": 3191,
+          "text": "- **9.618 s, note, engagement 4:** “Burak is checking the stair himself. I will go to Derya and try gathering people before going down, watching whether smoke stops them.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 31,
+          "byte_start": 3210,
+          "byte_end": 3459,
+          "codepoint_start": 3192,
+          "codepoint_end": 3437,
+          "text": "- **58.754 s, first_minute, engagement 4:** “Burak got out on his own. I gathered Derya and Hacer and Street gives a clear walking estimate; I am watching whether both keep following through the smoke.” This tag was premature, before 60 seconds."
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 32,
+          "byte_start": 3460,
+          "byte_end": 3666,
+          "codepoint_start": 3438,
+          "codepoint_end": 3640,
+          "text": "- **61.561 s, first_minute, engagement 4:** “Burak got out on his own. I gathered Derya and Hacer and Street gives a clear walking estimate; I am watching whether both keep following through the smoke.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 33,
+          "byte_start": 3667,
+          "byte_end": 3840,
+          "codepoint_start": 3641,
+          "codepoint_end": 3810,
+          "text": "- **74.856 s, want_quit, FINISHED, engagement 3:** “Everyone got out, including both followers. I would stop this run here; the batch worked and I have seen its result.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 34,
+          "byte_start": 3841,
+          "byte_end": 4000,
+          "codepoint_start": 3811,
+          "codepoint_end": 3966,
+          "text": "- **83.017 s, stop, FINISHED, engagement 3:** “Everyone is out. I am stopping at the ending after selecting stopping and closing Feedback without sending.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 38,
+          "byte_start": 4010,
+          "byte_end": 4158,
+          "codepoint_start": 3976,
+          "codepoint_end": 4120,
+          "text": "- **12.183 s, note, engagement 4:** “Hacer is away this time and Sevim needs waking. I will take Sevim out first instead of gathering everyone.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 39,
+          "byte_start": 4159,
+          "byte_end": 4364,
+          "codepoint_start": 4121,
+          "codepoint_end": 4322,
+          "text": "- **67.587 s, first_minute, engagement 3:** “Sevim got out with the books and Burak got out alone. I am going back for Derya. The steps are clear, but I am repeating the same torch and follow routine.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 40,
+          "byte_start": 4365,
+          "byte_end": 4554,
+          "codepoint_start": 4323,
+          "codepoint_end": 4508,
+          "text": "- **104.444 s, want_quit, FINISHED, engagement 3:** “Everyone is out. Derya had a breathing warning, but I got her down. I would stop here; the routine is familiar and I have finished.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 41,
+          "byte_start": 4555,
+          "byte_end": 4773,
+          "codepoint_start": 4509,
+          "codepoint_end": 4723,
+          "text": "- **114.154 s, stop, FINISHED, engagement 3:** “Everyone is out. I am stopping at the ending; the separate trips worked, though Derya had trouble breathing. I selected stopping and closed Feedback without sending.”"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 43,
+          "byte_start": 4775,
+          "byte_end": 5073,
+          "codepoint_start": 4725,
+          "codepoint_end": 5023,
+          "text": "Both quit wishes held at actual endings. The stop logs were at **83.017 s** and **114.154 s**. Neither session reached the 180-second pulse, so both pulses were untested. The valid first-minute entries were at 61.561 and 67.587 seconds; the earlier desktop entry remains recorded as a timing error."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 45,
+          "byte_start": 5075,
+          "byte_end": 5289,
+          "codepoint_start": 5025,
+          "codepoint_end": 5227,
+          "text": "At each ending I opened Feedback through **“Tell us about this night,”** selected **“I'm stopping,”** saw it marked pressed, and closed with **“Not now.”** I typed no note or name and submitted nothing."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 47,
+          "byte_start": 5291,
+          "byte_end": 5750,
+          "codepoint_start": 5229,
+          "codepoint_end": 5688,
+          "text": "I revisited my earlier Smoke question about whether **Street** moves me and carries followers along. It showed a walking destination and estimate on both devices, and the followers reached the street in these attempts. In my previous phone attempt, Derya stopped and I had to return for her; this time both desktop followers stayed with me, and Derya completed the separate phone trip. These are observations from different games, not a controlled comparison."
+        }
+      ]
+    },
+    "aisha": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/report.md",
+      "sha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+      "last_agent_message_exact_byte_equal": true,
+      "last_agent_message_equal_with_one_report_terminal_newline": false,
+      "last_agent_message_bytes": 6782,
+      "report_bytes": 6782,
+      "extracts": [
+        {
+          "categories": [
+            "voluntary_return"
+          ],
+          "line": 1,
+          "byte_start": 0,
+          "byte_end": 164,
+          "codepoint_start": 0,
+          "codepoint_end": 164,
+          "text": "I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running."
+        },
+        {
+          "categories": [
+            "ranked_ask"
+          ],
+          "line": 5,
+          "byte_start": 187,
+          "byte_end": 329,
+          "codepoint_start": 187,
+          "codepoint_end": 329,
+          "text": "1. When someone dies, acknowledge what I tried. Derya died while following me down, and the line I saw did not mention that I had reached her."
+        },
+        {
+          "categories": [
+            "ranked_ask"
+          ],
+          "line": 6,
+          "byte_start": 330,
+          "byte_end": 439,
+          "codepoint_start": 330,
+          "codepoint_end": 439,
+          "text": "2. Keep the walking destination, estimate and smoke slowdown messages. They made movement much clearer to me."
+        },
+        {
+          "categories": [
+            "ranked_ask"
+          ],
+          "line": 7,
+          "byte_start": 440,
+          "byte_end": 585,
+          "codepoint_start": 440,
+          "codepoint_end": 585,
+          "text": "3. Keep the neighbours able to help one another. Burak checking the stair and helping Sevim gave him a place in the night beyond my instructions."
+        },
+        {
+          "categories": [
+            "blocking_qualifier"
+          ],
+          "line": 9,
+          "byte_start": 587,
+          "byte_end": 680,
+          "codepoint_start": 587,
+          "codepoint_end": 680,
+          "text": "I reached no new blocking ask. The death account was an earlier ask that I encountered again."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 11,
+          "byte_start": 682,
+          "byte_end": 1091,
+          "codepoint_start": 682,
+          "codepoint_end": 1089,
+          "text": "I am Aisha Rahman, 45, a community pharmacist from Birmingham. I played two fresh, independent games at the assigned agent-query URL, on the same evening: a 1280×800 desktop session with keyboard and mouse, then a 360×690 touch-phone session. I stopped the desktop at **131.370 seconds**, frustrated after Derya died. The phone game ended with everyone who was home outside; I stopped at **83.543 seconds**."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 17,
+          "byte_start": 2043,
+          "byte_end": 2381,
+          "codepoint_start": 2033,
+          "codepoint_end": 2371,
+          "text": "Derya was having difficulty breathing by the time I returned for her. I showed her the stair and she agreed to follow. The game said thick smoke slowed our walk, and then said she died before firefighters arrived. I knew she was in danger, but the single death line felt abrupt after I had reached her. I stopped without seeing an ending."
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 25,
+          "byte_start": 2763,
+          "byte_end": 2925,
+          "codepoint_start": 2753,
+          "codepoint_end": 2911,
+          "text": "- **8.091 s, note:** “I recognise the stairwell and Sevim, but she was asleep this time. I want to reach her first and see whether the walking remains clear.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 26,
+          "byte_start": 2926,
+          "byte_end": 3041,
+          "codepoint_start": 2912,
+          "codepoint_end": 3023,
+          "text": "- **14.547 s, note:** “The walk to landing 1 has a destination and estimate again. I know my selection worked.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 27,
+          "byte_start": 3042,
+          "byte_end": 3191,
+          "codepoint_start": 3024,
+          "codepoint_end": 3169,
+          "text": "- **45.013 s, note:** “Sevim and her books are outside; Burak checked the stair and left on his own. I like that he acts without waiting for me.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 28,
+          "byte_start": 3192,
+          "byte_end": 3394,
+          "codepoint_start": 3170,
+          "codepoint_end": 3368,
+          "text": "- **62.312 s, first_minute, engagement 4:** “Sevim is outside with her books and Burak checked the stair himself. I am on my way to Hacer; the destination and estimate make the walk understandable.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 29,
+          "byte_start": 3395,
+          "byte_end": 3604,
+          "codepoint_start": 3369,
+          "codepoint_end": 3574,
+          "text": "- **120.215 s, want_quit, FRUSTRATED:** “Derya died while following me down. I knew the smoke was dangerous, but the single line is abrupt after I reached her and tried to lead her out. I would stop here.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 30,
+          "byte_start": 3605,
+          "byte_end": 3840,
+          "codepoint_start": 3575,
+          "codepoint_end": 3806,
+          "text": "- **131.370 s, stop, FRUSTRATED:** “I am stopping after Derya died on the way down with me. I liked Sevim keeping her books and Burak checking the stair, but I wanted the death line to acknowledge that I had reached her and tried.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 34,
+          "byte_start": 3853,
+          "byte_end": 4001,
+          "codepoint_start": 3819,
+          "codepoint_end": 3963,
+          "text": "- **7.286 s, note:** “The introduction fits my phone. Derya is away in this night; after the laptop I am relieved she is not in the smoke here.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 35,
+          "byte_start": 4002,
+          "byte_end": 4188,
+          "codepoint_start": 3964,
+          "codepoint_end": 4146,
+          "text": "- **61.949 s, first_minute, engagement 4:** “Hacer is outside and Burak helped Sevim with her books while I went upstairs. I know where I am walking and I want to get Sevim out too.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 36,
+          "byte_start": 4189,
+          "byte_end": 4331,
+          "codepoint_start": 4147,
+          "codepoint_end": 4285,
+          "text": "- **76.799 s, want_quit, FINISHED:** “Everyone who was home got out. I am relieved, and I have had enough of this night after the laptop.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 37,
+          "byte_start": 4332,
+          "byte_end": 4527,
+          "codepoint_start": 4286,
+          "codepoint_end": 4477,
+          "text": "- **83.543 s, stop, FINISHED:** “I am stopping with everyone home outside. Burak helped Sevim while I led Hacer, and Sevim brought her books. I am relieved and do not want another night now.”"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 43,
+          "byte_start": 5151,
+          "byte_end": 5674,
+          "codepoint_start": 5101,
+          "codepoint_end": 5612,
+          "text": "At the desktop stop, I opened Feedback through **I’m stopping** in the pause menu. The draft contained the automatically inserted text “I’m stopping.” A second named tap was ambiguous because two controls had that name; I selected **I’d stop here**, saw it marked pressed, and chose **Not now**. On the phone I opened Feedback from the ending, selected **I’m stopping**, saw it marked pressed, and chose **Not now**. I typed no note and submitted neither draft. Recording and consent remained at their defaults."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 47,
+          "byte_start": 6152,
+          "byte_end": 6604,
+          "codepoint_start": 6088,
+          "codepoint_end": 6540,
+          "text": "I revisited my earlier question about whether a walk tap had registered. On both devices, the game named my destination and gave an estimate; it also said when thick smoke slowed me. That answered the uncertainty in the walks I reached. I also revisited my earlier request for a death account that acknowledges my attempt: the line I saw for Derya did not do that. I stopped before an ending, so I cannot say whether an ending would have added context."
+        }
+      ]
+    },
+    "diego": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/report.md",
+      "sha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+      "last_agent_message_exact_byte_equal": true,
+      "last_agent_message_equal_with_one_report_terminal_newline": false,
+      "last_agent_message_bytes": 6634,
+      "report_bytes": 6634,
+      "extracts": [
+        {
+          "categories": [
+            "voluntary_return"
+          ],
+          "line": 1,
+          "byte_start": 0,
+          "byte_end": 155,
+          "codepoint_start": 0,
+          "codepoint_end": 155,
+          "text": "**Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running."
+        },
+        {
+          "categories": [
+            "ranked_ask",
+            "stop_context"
+          ],
+          "line": 5,
+          "byte_start": 174,
+          "byte_end": 304,
+          "codepoint_start": 174,
+          "codepoint_end": 304,
+          "text": "1. Make it easier to notice when someone stops following. I reached the street on desktop before I saw Derya had stopped upstairs."
+        },
+        {
+          "categories": [
+            "ranked_ask"
+          ],
+          "line": 6,
+          "byte_start": 305,
+          "byte_end": 489,
+          "codepoint_start": 305,
+          "codepoint_end": 485,
+          "text": "2. Show more clearly how much danger a neighbour is in before I choose who waits. “Smoke is making breathing difficult” gave me urgency, but not a sense of how much time Derya had."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 8,
+          "byte_start": 491,
+          "byte_end": 900,
+          "codepoint_start": 487,
+          "codepoint_end": 888,
+          "text": "I’m Diego Silva, a 28-year-old sound editor from Recife. I played two fresh games on the same evening: **360×690 touch phone**, then **1280×800 desktop with keyboard and mouse**. Neither used an imported save or matched seed. Both reached “Everyone is out.” I stopped at **113.341 seconds** on phone and **131.770 seconds** on desktop, so the three-minute pulse and later checkpoints were not reached."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 14,
+          "byte_start": 1807,
+          "byte_end": 2185,
+          "codepoint_start": 1785,
+          "codepoint_end": 2163,
+          "text": "On desktop I tried taking Derya along while collecting Hacer. Both were marked following, but by the time I reached the street Derya had stopped upstairs and asked me to come back. I missed the moment she stopped and do not know exactly why. Going back cost time and made the choice feel consequential; finding her again and getting everyone out was the best part of this visit."
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 20,
+          "byte_start": 2314,
+          "byte_end": 2432,
+          "codepoint_start": 2290,
+          "codepoint_end": 2404,
+          "text": "- **6.594s, note, 4:** “Hacer is home and Sevim is away. I remember losing Hacer before, so I want her out first.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 21,
+          "byte_start": 2433,
+          "byte_end": 2604,
+          "codepoint_start": 2405,
+          "codepoint_end": 2572,
+          "text": "- **33.993s, note, 4:** “Hacer follows and Burak got himself out. The walk estimate gives me something to watch; Derya is catching her breath while I take Hacer down.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 22,
+          "byte_start": 2605,
+          "byte_end": 2803,
+          "codepoint_start": 2573,
+          "codepoint_end": 2767,
+          "text": "- **64.552s, first minute, 3:** “Hacer is out and that feels good. Now Derya changes status between my named taps and I cannot select her; the clock keeps going. I will try the screen directly.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 23,
+          "byte_start": 2804,
+          "byte_end": 2944,
+          "codepoint_start": 2768,
+          "codepoint_end": 2904,
+          "text": "- **85.102s, note, 4:** “The direct tap worked. Derya follows, but now her breathing is difficult; I do not know how much time she has.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 24,
+          "byte_start": 2945,
+          "byte_end": 3134,
+          "codepoint_start": 2905,
+          "codepoint_end": 3090,
+          "text": "- **100.317s, note, 4:** “I am waiting for Derya to reach the street. The warning makes this trip tense.” The returned screen showed that she had reached it and the ending had appeared."
+        },
+        {
+          "categories": [
+            "stop_context",
+            "diary_line"
+          ],
+          "line": 25,
+          "byte_start": 3135,
+          "byte_end": 3247,
+          "codepoint_start": 3091,
+          "codepoint_end": 3199,
+          "text": "- **102.434s, want quit, FINISHED, 4:** “Everyone is out. I am satisfied with this run and would stop here.”"
+        },
+        {
+          "categories": [
+            "stop_context",
+            "diary_line"
+          ],
+          "line": 26,
+          "byte_start": 3248,
+          "byte_end": 3443,
+          "codepoint_start": 3200,
+          "codepoint_end": 3391,
+          "text": "- **113.341s, stop, FINISHED, 4:** “Stopping after everyone got out. Hacer and Derya followed me; Burak escaped alone. I selected I am stopping and closed Feedback without typing or sending.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 30,
+          "byte_start": 3468,
+          "byte_end": 3610,
+          "codepoint_start": 3414,
+          "codepoint_end": 3552,
+          "text": "- **7.062s, note, 3:** “Another night on desktop. Sevim is away again, so I cannot revisit the books. I will go to Derya first this time.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 31,
+          "byte_start": 3611,
+          "byte_end": 3778,
+          "codepoint_start": 3553,
+          "codepoint_end": 3716,
+          "text": "- **33.039s, note, 4:** “Derya follows. I am collecting Hacer on the way instead of making two trips; the keys respond and the stated walk time helps me judge it.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 32,
+          "byte_start": 3779,
+          "byte_end": 4037,
+          "codepoint_start": 3717,
+          "codepoint_end": 3969,
+          "text": "- **59.997s, first minute, 4 — premature:** “Both women are following and Burak is out. I chose one combined trip; thick smoke now makes the estimate 29 seconds. I can understand the tradeoff, though I still cannot see their individual breathing time.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 33,
+          "byte_start": 4038,
+          "byte_end": 4282,
+          "codepoint_start": 3970,
+          "codepoint_end": 4210,
+          "text": "- **62.384s, first minute, 4:** “Both women are following and Burak is out. I chose one combined trip; thick smoke now makes the estimate 29 seconds. I can understand the tradeoff, though I still cannot see their individual breathing time.”"
+        },
+        {
+          "categories": [
+            "stop_context",
+            "diary_line"
+          ],
+          "line": 34,
+          "byte_start": 4283,
+          "byte_end": 4449,
+          "codepoint_start": 4211,
+          "codepoint_end": 4373,
+          "text": "- **84.430s, note, 4:** “Hacer made it but Derya stopped upstairs and asks me to come back. I missed when she stopped; I thought both were beside me. Going back.”"
+        },
+        {
+          "categories": [
+            "stop_context",
+            "diary_line"
+          ],
+          "line": 35,
+          "byte_start": 4450,
+          "byte_end": 4659,
+          "codepoint_start": 4374,
+          "codepoint_end": 4579,
+          "text": "- **121.173s, note, 4:** “I have gone back for Derya and she follows again. I am watching for her to stop this time.” The returned screen showed that she had reached the street and the ending had appeared."
+        },
+        {
+          "categories": [
+            "stop_context",
+            "diary_line"
+          ],
+          "line": 36,
+          "byte_start": 4660,
+          "byte_end": 4828,
+          "codepoint_start": 4580,
+          "codepoint_end": 4744,
+          "text": "- **124.068s, want quit, FINISHED, 4:** “Everyone is out again. I would stop here; going back for Derya gave my mistake a consequence and recovering her felt good.”"
+        },
+        {
+          "categories": [
+            "stop_context",
+            "diary_line"
+          ],
+          "line": 37,
+          "byte_start": 4829,
+          "byte_end": 5024,
+          "codepoint_start": 4745,
+          "codepoint_end": 4936,
+          "text": "- **131.770s, stop, FINISHED, 4:** “Stopping after everyone got out. I had to return for Derya, and I am glad I could. I selected I am stopping and closed Feedback without typing or sending.”"
+        },
+        {
+          "categories": [
+            "blocking_qualifier"
+          ],
+          "line": 39,
+          "byte_start": 5026,
+          "byte_end": 5418,
+          "codepoint_start": 4938,
+          "codepoint_end": 5330,
+          "text": "I revisited my earlier question about **movement feedback**: the phone gave a destination and walk estimate after selection, and the viewed stairwell showed the labelled YOU figure. I also saw the breathing warning again, but no individual time remaining. I could not revisit the earlier **Sevim tied-versus-tying conflict** because she was away in both nights. I reached no new blocking ask."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 43,
+          "byte_start": 6112,
+          "byte_end": 6470,
+          "codepoint_start": 6024,
+          "codepoint_end": 6378,
+          "text": "At each ending, Feedback offered “I'm stopping.” I selected it, saw it marked pressed, and closed with **Not now**. I typed no note and pressed no Submit. I did not open Feedback during the phone selection confusion; that was a missed instruction. Recording, consent, owner profile and settings remained at their defaults, and I retained the agent query."
+        }
+      ]
+    },
+    "rosa": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/report.md",
+      "sha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+      "last_agent_message_exact_byte_equal": true,
+      "last_agent_message_equal_with_one_report_terminal_newline": false,
+      "last_agent_message_bytes": 13599,
+      "report_bytes": 13599,
+      "extracts": [
+        {
+          "categories": [
+            "voluntary_return"
+          ],
+          "line": 1,
+          "byte_start": 0,
+          "byte_end": 143,
+          "codepoint_start": 0,
+          "codepoint_end": 143,
+          "text": "I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running."
+        },
+        {
+          "categories": [
+            "ranked_ask",
+            "blocking_qualifier"
+          ],
+          "line": 5,
+          "byte_start": 166,
+          "byte_end": 407,
+          "codepoint_start": 166,
+          "codepoint_end": 399,
+          "text": "1. **Keep the current instruction consistent with the latest answer.** On the phone, “The bundle is tied” appeared while Sevim still showed “tying the books” and the hint told me to wait. This was the new blocking question I reached."
+        },
+        {
+          "categories": [
+            "ranked_ask"
+          ],
+          "line": 6,
+          "byte_start": 408,
+          "byte_end": 531,
+          "codepoint_start": 400,
+          "codepoint_end": 519,
+          "text": "2. Put “Turn on Torch, then Show the stair” at the first moment I need it. That instruction was clear when it appeared."
+        },
+        {
+          "categories": [
+            "ranked_ask"
+          ],
+          "line": 7,
+          "byte_start": 532,
+          "byte_end": 687,
+          "codepoint_start": 520,
+          "codepoint_end": 673,
+          "text": "3. Keep the neighbours’ concrete answers and the confirmation that they reached the street with their belongings. Sevim keeping her books mattered to me."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 15,
+          "byte_start": 1568,
+          "byte_end": 1635,
+          "codepoint_start": 1546,
+          "codepoint_end": 1613,
+          "text": "| Session | Device | Stop elapsed_s | Reason | State when stopped |"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 17,
+          "byte_start": 1659,
+          "byte_end": 1751,
+          "codepoint_start": 1637,
+          "codepoint_end": 1728,
+          "text": "| A | 360×690 touch phone | 121.495 | CONFUSED | Paused on landing 1; stair closes in 93s |"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 18,
+          "byte_start": 1752,
+          "byte_end": 1879,
+          "codepoint_start": 1729,
+          "codepoint_end": 1855,
+          "text": "| B | 1280×800 desktop, keyboard and mouse | 95.331 | TASTE | Paused at street; Sevim and Burak outside; stair closes in 86s |"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 24,
+          "byte_start": 2326,
+          "byte_end": 2863,
+          "codepoint_start": 2300,
+          "codepoint_end": 2833,
+          "text": "The countdown made me hurry. At **52.228 seconds**, the log said the bundle was tied, while her status and instruction still told me she was tying it and I should wait. The gameplay image at **86.317 seconds** showed those messages together. I reread two sentences and chose to stop. During the stopping check at **102.203 seconds**, her status finally changed and the hint said, “Turn on Torch, then Show the stair.” I understood that instruction, but my wish to leave remained. I cannot establish why the earlier messages differed."
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 32,
+          "byte_start": 3448,
+          "byte_end": 3933,
+          "codepoint_start": 3418,
+          "codepoint_end": 3897,
+          "text": "- **14.269 s — note, engagement 4:** “The smoke and getting neighbours to the street are clear. The large title and button are comfortable. I have not seen Smoke before. Title concepts 18: flats in Istanbul, smoke, rescue everyone home, approach by name, torch, speech, listening, following, stopped, Street leads down, landing movement, arrows or WASD, number selection, speech keys, recording, linked play, 180-day retention, privacy and menu recording control. No reread yet.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 33,
+          "byte_start": 3934,
+          "byte_end": 4539,
+          "codepoint_start": 3898,
+          "codepoint_end": 4497,
+          "text": "- **32.782 s — note, engagement 4:** “Sevim and her exercise books remind me of the school memories I liked in The Stairwell, but I do not know this is the same woman. I want to help her carry them. The countdown makes me hurry. Main screen concepts 20: countdown, thick and thin smoke, stair closing, breath cost, four named neighbours, away tonight, each stopped reason, selected neighbour, nearby speech, Come now, books, Walk with me, Show the stair, Torch toggle, Street destination, five walking destinations, current position, travel estimate, event log, catching breath. No sentence reread.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 34,
+          "byte_start": 4540,
+          "byte_end": 5205,
+          "codepoint_start": 4498,
+          "codepoint_end": 5157,
+          "text": "- **75.598 s — first_minute, engagement 3:** “I understand the rescue goal and reached Sevim. Helping tie her school books pleased me. Now the log says the bundle is tied, but her status still says tying and Show the stair is disabled. I am unsure which message to follow. No sentence needed rereading; the messages disagree. I opened confused Feedback, which filled the note itself. I typed nothing. Title count correction: 22 groups, adding Enter, feedback review, possible death and no effect on other games; the earlier 18 label was a miscount. Menu has 13 groups and Feedback 12, including recording, retention, privacy, queued history and public quote.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 35,
+          "byte_start": 5206,
+          "byte_end": 5578,
+          "codepoint_start": 5158,
+          "codepoint_end": 5524,
+          "text": "- **98.367 s — want_quit, CONFUSED, engagement 2:** “I reread two sentences: The bundle is tied. Wait while the bundle is tied. They give me opposite instructions, and Show the stair stays grey. I like helping with the books, but I cannot tell what to do and the seconds keep going. I would stop now. The picture confirms the same tying status and wait instruction.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 36,
+          "byte_start": 5579,
+          "byte_end": 6054,
+          "codepoint_start": 5525,
+          "codepoint_end": 5994,
+          "text": "- **121.495 s — stop, CONFUSED, engagement 2:** “I stop on the phone after the two rereads. Helping Sevim with the books pleased me, but the tied and still tying messages confused me while the countdown ran. Opening the pause menu finally changed the hint to Turn on Torch, then Show the stair. That is clear now, but I am ready to leave. I chose confused Feedback twice and closed with Not now. The note filled itself; I typed and submitted nothing. I would close it.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 40,
+          "byte_start": 6069,
+          "byte_end": 6507,
+          "codepoint_start": 6009,
+          "codepoint_end": 6441,
+          "text": "- **21.203 s — note, engagement 4:** “The large title is comfortable and I know the rescue goal from my phone tonight. Burak is home and checking the stair this time; on phone he was away. I press 1 and begin walking to Sevim, so the keyboard gives a visible result. Title has the same 22 concept groups. Main screen has the same 20 plus checking the way, waking Derya and the 06:10 instruction panel: 23. No reread on this device.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 41,
+          "byte_start": 6508,
+          "byte_end": 6922,
+          "codepoint_start": 6442,
+          "codepoint_end": 6850,
+          "text": "- **61.723 s — note, engagement 5:** “Sevim is outside with her books. That pleases me much more than just a score. Burak helped with the books and got himself out. B, F, R and T each gave a clear result here, and Street led her down. New concepts in this sequence 6: tying takes time, Burak helps, torch must be on, showing lights the route, following needs my movement, outside confirms rescue. No reread.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 42,
+          "byte_start": 6923,
+          "byte_end": 7280,
+          "codepoint_start": 6851,
+          "codepoint_end": 7202,
+          "text": "- **68.553 s — first_minute, engagement 5:** “The large screen and keyboard are clearer for me tonight. Sevim reached the street with her books, and Burak is outside too. I understand approach, help, light the stair, ask her to follow, then walk down. I have reread no sentence here. The countdown still makes me hurry, even with a satisfying rescue.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 43,
+          "byte_start": 7281,
+          "byte_end": 7605,
+          "codepoint_start": 7203,
+          "codepoint_end": 7521,
+          "text": "- **78.171 s — want_quit, TASTE, engagement 4:** “I am glad Sevim and the books are outside. I understand this sequence now, but the emergency countdown is more hurried than I want this evening. I would stop after this rescue rather than climb for the other two tonight. No reread; this is my choice of pace and mood.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 44,
+          "byte_start": 7606,
+          "byte_end": 8127,
+          "codepoint_start": 7522,
+          "codepoint_end": 8037,
+          "text": "- **95.331 s — stop, TASTE, engagement 4:** “I stop on the big screen for tonight. Sevim reached the street with her books and Burak is outside too. That was satisfying and the keys gave clear answers. I have reread no sentence here, but I do not want another hurried climb tonight. Menu has the same 13 groups and Feedback 12 as phone. I chose stopping, the note filled itself, and Not now returned to the menu. I typed and submitted nothing. I would close it and might return another evening on the large screen.”"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 46,
+          "byte_start": 8129,
+          "byte_end": 8179,
+          "codepoint_start": 8039,
+          "codepoint_end": 8089,
+          "text": "My phone quit wish followed these exact sentences:"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 51,
+          "byte_start": 8259,
+          "byte_end": 8522,
+          "codepoint_start": 8161,
+          "codepoint_end": 8424,
+          "text": "Both appeared on the rescue screen. I understood each sentence separately; together they made me reread to decide which instruction applied. That triggered my two-sentence stopping rule. I reread no sentence on desktop. Both quit wishes remained through Feedback."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 57,
+          "byte_start": 8854,
+          "byte_end": 9213,
+          "codepoint_start": 8756,
+          "codepoint_end": 9115,
+          "text": "| Opening, both | Istanbul flats; smoke; rescue everyone home; approach by name; torch; speech; listening; following; stopped; Street leads down; landing movement; arrows/WASD; numbered selection; speech keys; Enter; recording; linked play; retention; recording control in menu; Feedback review; privacy; possible death; no effect on other games | 23 | None |"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 58,
+          "byte_start": 9214,
+          "byte_end": 9545,
+          "codepoint_start": 9116,
+          "codepoint_end": 9447,
+          "text": "| Phone rescue screen | Countdown; thick/thin smoke; closing stair; breath cost; four neighbours; absence; stopped reasons; selection; nearby speech; Come now; books; Walk with me; Show the stair; torch toggle; Street; landing destinations; position; travel estimate; event log; catching breath | 20 groups | Two quoted sentences |"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 61,
+          "byte_start": 9869,
+          "byte_end": 10136,
+          "codepoint_start": 9771,
+          "codepoint_end": 10038,
+          "text": "| Pause menu, both | Pause; Keep going; New game; full screen; All games; People across games; stopping; confused; download; recording control; linked history and retention; privacy; Feedback draft/submission boundary; Debug | 14 groups, correcting logged 13 | None |"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 62,
+          "byte_start": 10137,
+          "byte_end": 10350,
+          "codepoint_start": 10039,
+          "codepoint_end": 10252,
+          "text": "| Feedback, both | Three keep-playing choices; stopping; confused; optional note; optional name; queued history; What is sent; private note; possible public quote; lab privacy; Not now; Submit | 12 groups | None |"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 73,
+          "byte_start": 11659,
+          "byte_end": 11919,
+          "codepoint_start": 11557,
+          "codepoint_end": 11815,
+          "text": "Phone controls used were Enter, Sevim’s full named control, The books, pause, the confused shortcut, Not now and Keep going. Desktop used Enter, keys **1, B, F, R, T**, Street, pause, the stopping shortcut and Not now. There were no driver errors or retries."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 77,
+          "byte_start": 12254,
+          "byte_end": 12827,
+          "codepoint_start": 12146,
+          "codepoint_end": 12707,
+          "text": "On phone, selecting **“I'm confused”** opened Feedback at **62.257 s** and again at **109.274 s**. The note automatically contained “I'm confused.” **Not now** closed it at **79.643 s** and **114.478 s**. On desktop, **“I'm stopping”** opened Feedback at **85.211 s**, automatically filled that text, and **Not now** returned to the menu at **88.597 s**. Both quick labels were offered. The responses did not mark a Feedback label as pressed, so I claim the observed draft text and successful closing, not a pressed state. I typed nothing and pressed no Submit."
+        },
+        {
+          "categories": [
+            "voluntary_return"
+          ],
+          "line": 81,
+          "byte_start": 13168,
+          "byte_end": 13384,
+          "codepoint_start": 13048,
+          "codepoint_end": 13262,
+          "text": "I would return on a quieter evening because Sevim’s books made the rescue personal. I would prefer the large screen. I would close both games now; I would not leave the emergency running while doing something else."
+        }
+      ]
+    },
+    "iria": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/report.md",
+      "sha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+      "last_agent_message_exact_byte_equal": true,
+      "last_agent_message_equal_with_one_report_terminal_newline": false,
+      "last_agent_message_bytes": 5477,
+      "report_bytes": 5477,
+      "extracts": [
+        {
+          "categories": [
+            "voluntary_return"
+          ],
+          "line": 1,
+          "byte_start": 0,
+          "byte_end": 91,
+          "codepoint_start": 0,
+          "codepoint_end": 91,
+          "text": "I would not voluntarily return tonight; I would leave the desktop game paused, not running."
+        },
+        {
+          "categories": [
+            "ranked_ask",
+            "blocking_qualifier"
+          ],
+          "line": 5,
+          "byte_start": 106,
+          "byte_end": 329,
+          "codepoint_start": 106,
+          "codepoint_end": 329,
+          "text": "1. Help me understand how urgently a neighbour needs air, separate from the time until the stair closes. Hacer died while following me, and I did not understand how much time she had. This is the new blocking ask I reached."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 11,
+          "byte_start": 845,
+          "byte_end": 1235,
+          "codepoint_start": 843,
+          "codepoint_end": 1233,
+          "text": "On the phone, the opening gave me a concrete purpose. The warning that people could die made me feel rushed, but the individual prompts helped me act. Derya reached the street, and I went back for Hacer when she lost sight of me in the smoke. Everyone home got out. The game ended, and I stopped at **118.709 seconds**, satisfied. The three-minute pulse and later checkpoints were untested."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 13,
+          "byte_start": 1237,
+          "byte_end": 1906,
+          "codepoint_start": 1235,
+          "codepoint_end": 1902,
+          "text": "On desktop, the larger opening was easier to read. Sevim’s concern for her exercise books gave her an ordinary motive I liked. I helped her tie them, then led her out; Burak and Derya also reached the street. Hacer was marked as having difficulty breathing, then as at risk of dying. I reached her, showed her the stair, and she followed, but she died on the way down while the stair still had time remaining. I understood that smoke could kill her, but I had thought reaching her before the stair closed might be enough. I stopped at **166.281 seconds**, with the game paused and no ending screen observed. The three-minute pulse and later checkpoints were untested."
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 19,
+          "byte_start": 2029,
+          "byte_end": 2210,
+          "codepoint_start": 2025,
+          "codepoint_end": 2202,
+          "text": "- **10.628 s, note, engagement 4:** “I understand the purpose: get the neighbours out. The warning about people dying makes me hurry, but I want to read the instructions first.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 20,
+          "byte_start": 2211,
+          "byte_end": 2376,
+          "codepoint_start": 2203,
+          "codepoint_end": 2364,
+          "text": "- **46.508 s, note, engagement 4:** “Derya is outside; that is satisfying. The prompts told me what to do one step at a time, though I feel rushed by the smoke.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 21,
+          "byte_start": 2377,
+          "byte_end": 2546,
+          "codepoint_start": 2365,
+          "codepoint_end": 2530,
+          "text": "- **61.070 s, first_minute, engagement 4:** “I want to get Hacer down too. I can follow the instructions, and the little responses make the neighbours feel present.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 22,
+          "byte_start": 2547,
+          "byte_end": 2689,
+          "codepoint_start": 2531,
+          "codepoint_end": 2669,
+          "text": "- **110.175 s, want_quit, FINISHED, engagement 4:** “Everyone is out. I am relieved and satisfied; I do not need another attempt tonight.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 23,
+          "byte_start": 2690,
+          "byte_end": 2827,
+          "codepoint_start": 2670,
+          "codepoint_end": 2803,
+          "text": "- **118.709 s, stop, FINISHED, engagement 4:** “Everyone is out. I am relieved and satisfied; I do not need another attempt tonight.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 27,
+          "byte_start": 2842,
+          "byte_end": 3016,
+          "codepoint_start": 2818,
+          "codepoint_end": 2988,
+          "text": "- **5.773 s, note, engagement 4:** “I remember the phone rescue, and I am curious about the woman with the books. The opening is easier to take in on this larger screen.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 28,
+          "byte_start": 3017,
+          "byte_end": 3199,
+          "codepoint_start": 2989,
+          "codepoint_end": 3167,
+          "text": "- **63.570 s, first_minute, engagement 4:** “I like that Sevim cares about her books and that helping her has a visible result. I am anxious about the two people still upstairs.”"
+        },
+        {
+          "categories": [
+            "diary_line"
+          ],
+          "line": 29,
+          "byte_start": 3200,
+          "byte_end": 3418,
+          "codepoint_start": 3168,
+          "codepoint_end": 3382,
+          "text": "- **144.221 s, note, engagement 4:** “Oh, Hacer died while we were going down. I thought getting to her before the stair closed might be enough. That is upsetting, and I wonder if I spent too long with the others.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 30,
+          "byte_start": 3419,
+          "byte_end": 3628,
+          "codepoint_start": 3383,
+          "codepoint_end": 3588,
+          "text": "- **155.776 s, want_quit, TASTE, engagement 3:** “I want to stop. Hacer died despite following me, and I am sad and unsure what I could have done differently. I do not want to repeat the whole rescue now.”"
+        },
+        {
+          "categories": [
+            "diary_line",
+            "stop_context"
+          ],
+          "line": 31,
+          "byte_start": 3629,
+          "byte_end": 3833,
+          "codepoint_start": 3589,
+          "codepoint_end": 3789,
+          "text": "- **166.281 s, stop, TASTE, engagement 3:** “I want to stop. Hacer died despite following me, and I am sad and unsure what I could have done differently. I do not want to repeat the whole rescue now.”"
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 35,
+          "byte_start": 4531,
+          "byte_end": 5110,
+          "codepoint_start": 4487,
+          "codepoint_end": 5042,
+          "text": "At the phone ending, I opened Feedback, selected **“I'm stopping”**, and chose **“Not now.”** The dialog closed; I typed and submitted nothing. On desktop, the pause-menu **“I'm confused”** opened Feedback and automatically populated the optional note with “I'm confused.” I did not type it. I selected the Feedback quick label **“I'm confused”** and chose **“Not now”**; the dialog closed without submission. A repeated name-based tap was ambiguous because both the pause menu and Feedback contained that label; the point tap selected the Feedback label."
+        },
+        {
+          "categories": [
+            "stop_context"
+          ],
+          "line": 37,
+          "byte_start": 5112,
+          "byte_end": 5403,
+          "codepoint_start": 5044,
+          "codepoint_end": 5327,
+          "text": "The phone’s first diary attempt returned **“Invalid reason”** because I supplied an unsupported reason; the next log succeeded. A desktop neighbour selection missed because Derya’s displayed status changed before the tap; selecting her current full name worked. Neither stopped play."
+        }
+      ]
+    }
+  }
+}

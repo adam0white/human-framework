@@ -1,0 +1,17 @@
+{
+  "rootVerified": true,
+  "physicalReturnConfirmed": true,
+  "status": "ORDINARY_ROUND_PHYSICALLY_CLOSED",
+  "actualToolSession": 72317,
+  "controllerExit": 0,
+  "controllerExited": true,
+  "sameIdentityLive": false,
+  "unknownObserved": [],
+  "unknownCurrent": [],
+  "at": "2026-11-02T08:29:56.656085+00:00",
+  "underlyingPhysicalReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/root-return.json",
+    "sha256": "d18925d5c5b66215713d4839e4ef07ec22d398296d0babe79d38092040636f07"
+  },
+  "scope": "Actual preceding ordinary four-person Neighbours continuation, not a Smoke exposure or fullfive Neighbours run."
+}

@@ -1,0 +1,502 @@
+{
+  "at": "2026-11-02T10:07:19.611914+00:00",
+  "sourceAuditSha256": "4f3baf820dd278beaa98cd8c4c1646cf82d28983c6ba21936469f7c1a272aacb",
+  "scope": "Root checks every retained rawreaction string against exactreport literaltext; successfulvsfailed qualification remains for audit. No timing equality inferred.",
+  "rows": [
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "elapsed_s": 9.617,
+      "kind": "note",
+      "reaction": "Burak is checking the stair himself. I will go to Derya and try gathering people before going down, watching whether smoke stops them.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "elapsed_s": 58.754,
+      "kind": "first_minute",
+      "reaction": "Burak got out on his own. I gathered Derya and Hacer and Street gives a clear walking estimate; I am watching whether both keep following through the smoke.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "elapsed_s": 61.56,
+      "kind": "first_minute",
+      "reaction": "Burak got out on his own. I gathered Derya and Hacer and Street gives a clear walking estimate; I am watching whether both keep following through the smoke.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "elapsed_s": 74.856,
+      "kind": "want_quit",
+      "reaction": "Everyone got out, including both followers. I would stop this run here; the batch worked and I have seen its result.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "elapsed_s": 83.017,
+      "kind": "stop",
+      "reaction": "Everyone is out. I am stopping at the ending after selecting stopping and closing Feedback without sending.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "jonas",
+      "device": "phone",
+      "elapsed_s": 12.182,
+      "kind": "note",
+      "reaction": "Hacer is away this time and Sevim needs waking. I will take Sevim out first instead of gathering everyone.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "jonas",
+      "device": "phone",
+      "elapsed_s": 67.587,
+      "kind": "first_minute",
+      "reaction": "Sevim got out with the books and Burak got out alone. I am going back for Derya. The steps are clear, but I am repeating the same torch and follow routine.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "jonas",
+      "device": "phone",
+      "elapsed_s": 104.444,
+      "kind": "want_quit",
+      "reaction": "Everyone is out. Derya had a breathing warning, but I got her down. I would stop here; the routine is familiar and I have finished.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "jonas",
+      "device": "phone",
+      "elapsed_s": 114.154,
+      "kind": "stop",
+      "reaction": "Everyone is out. I am stopping at the ending; the separate trips worked, though Derya had trouble breathing. I selected stopping and closed Feedback without sending.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "elapsed_s": 8.091,
+      "kind": "note",
+      "reaction": "I recognise the stairwell and Sevim, but she was asleep this time. I want to reach her first and see whether the walking remains clear.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "elapsed_s": 14.547,
+      "kind": "note",
+      "reaction": "The walk to landing 1 has a destination and estimate again. I know my selection worked.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "elapsed_s": 45.013,
+      "kind": "note",
+      "reaction": "Sevim and her books are outside; Burak checked the stair and left on his own. I like that he acts without waiting for me.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "elapsed_s": 62.312,
+      "kind": "first_minute",
+      "reaction": "Sevim is outside with her books and Burak checked the stair himself. I am on my way to Hacer; the destination and estimate make the walk understandable.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "elapsed_s": 120.215,
+      "kind": "want_quit",
+      "reaction": "Derya died while following me down. I knew the smoke was dangerous, but the single line is abrupt after I reached her and tried to lead her out. I would stop here.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "elapsed_s": 131.369,
+      "kind": "stop",
+      "reaction": "I am stopping after Derya died on the way down with me. I liked Sevim keeping her books and Burak checking the stair, but I wanted the death line to acknowledge that I had reached her and tried.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "elapsed_s": 7.286,
+      "kind": "note",
+      "reaction": "The introduction fits my phone. Derya is away in this night; after the laptop I am relieved she is not in the smoke here.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "elapsed_s": 61.948,
+      "kind": "first_minute",
+      "reaction": "Hacer is outside and Burak helped Sevim with her books while I went upstairs. I know where I am walking and I want to get Sevim out too.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "elapsed_s": 76.799,
+      "kind": "want_quit",
+      "reaction": "Everyone who was home got out. I am relieved, and I have had enough of this night after the laptop.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "elapsed_s": 83.542,
+      "kind": "stop",
+      "reaction": "I am stopping with everyone home outside. Burak helped Sevim while I led Hacer, and Sevim brought her books. I am relieved and do not want another night now.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "elapsed_s": 6.594,
+      "kind": "note",
+      "reaction": "Hacer is home and Sevim is away. I remember losing Hacer before, so I want her out first.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "elapsed_s": 33.993,
+      "kind": "note",
+      "reaction": "Hacer follows and Burak got himself out. The walk estimate gives me something to watch; Derya is catching her breath while I take Hacer down.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "elapsed_s": 64.551,
+      "kind": "first_minute",
+      "reaction": "Hacer is out and that feels good. Now Derya changes status between my named taps and I cannot select her; the clock keeps going. I will try the screen directly.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "elapsed_s": 85.102,
+      "kind": "note",
+      "reaction": "The direct tap worked. Derya follows, but now her breathing is difficult; I do not know how much time she has.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "elapsed_s": 100.317,
+      "kind": "note",
+      "reaction": "I am waiting for Derya to reach the street. The warning makes this trip tense.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "elapsed_s": 102.434,
+      "kind": "want_quit",
+      "reaction": "Everyone is out. I am satisfied with this run and would stop here.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "elapsed_s": 113.34,
+      "kind": "stop",
+      "reaction": "Stopping after everyone got out. Hacer and Derya followed me; Burak escaped alone. I selected I am stopping and closed Feedback without typing or sending.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "elapsed_s": 7.062,
+      "kind": "note",
+      "reaction": "Another night on desktop. Sevim is away again, so I cannot revisit the books. I will go to Derya first this time.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "elapsed_s": 33.039,
+      "kind": "note",
+      "reaction": "Derya follows. I am collecting Hacer on the way instead of making two trips; the keys respond and the stated walk time helps me judge it.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "elapsed_s": 59.997,
+      "kind": "first_minute",
+      "reaction": "Both women are following and Burak is out. I chose one combined trip; thick smoke now makes the estimate 29 seconds. I can understand the tradeoff, though I still cannot see their individual breathing time.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "elapsed_s": 62.384,
+      "kind": "first_minute",
+      "reaction": "Both women are following and Burak is out. I chose one combined trip; thick smoke now makes the estimate 29 seconds. I can understand the tradeoff, though I still cannot see their individual breathing time.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "elapsed_s": 84.43,
+      "kind": "note",
+      "reaction": "Hacer made it but Derya stopped upstairs and asks me to come back. I missed when she stopped; I thought both were beside me. Going back.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "elapsed_s": 121.172,
+      "kind": "note",
+      "reaction": "I have gone back for Derya and she follows again. I am watching for her to stop this time.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "elapsed_s": 124.068,
+      "kind": "want_quit",
+      "reaction": "Everyone is out again. I would stop here; going back for Derya gave my mistake a consequence and recovering her felt good.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "elapsed_s": 131.769,
+      "kind": "stop",
+      "reaction": "Stopping after everyone got out. I had to return for Derya, and I am glad I could. I selected I am stopping and closed Feedback without typing or sending.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "elapsed_s": 14.269,
+      "kind": "note",
+      "reaction": "The smoke and getting neighbours to the street are clear. The large title and button are comfortable. I have not seen Smoke before. Title concepts 18: flats in Istanbul, smoke, rescue everyone home, approach by name, torch, speech, listening, following, stopped, Street leads down, landing movement, arrows or WASD, number selection, speech keys, recording, linked play, 180-day retention, privacy and menu recording control. No reread yet.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "elapsed_s": 32.781,
+      "kind": "note",
+      "reaction": "Sevim and her exercise books remind me of the school memories I liked in The Stairwell, but I do not know this is the same woman. I want to help her carry them. The countdown makes me hurry. Main screen concepts 20: countdown, thick and thin smoke, stair closing, breath cost, four named neighbours, away tonight, each stopped reason, selected neighbour, nearby speech, Come now, books, Walk with me, Show the stair, Torch toggle, Street destination, five walking destinations, current position, travel estimate, event log, catching breath. No sentence reread.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "elapsed_s": 75.598,
+      "kind": "first_minute",
+      "reaction": "I understand the rescue goal and reached Sevim. Helping tie her school books pleased me. Now the log says the bundle is tied, but her status still says tying and Show the stair is disabled. I am unsure which message to follow. No sentence needed rereading; the messages disagree. I opened confused Feedback, which filled the note itself. I typed nothing. Title count correction: 22 groups, adding Enter, feedback review, possible death and no effect on other games; the earlier 18 label was a miscount. Menu has 13 groups and Feedback 12, including recording, retention, privacy, queued history and public quote.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "elapsed_s": 98.366,
+      "kind": "want_quit",
+      "reaction": "I reread two sentences: The bundle is tied. Wait while the bundle is tied. They give me opposite instructions, and Show the stair stays grey. I like helping with the books, but I cannot tell what to do and the seconds keep going. I would stop now. The picture confirms the same tying status and wait instruction.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "elapsed_s": 121.494,
+      "kind": "stop",
+      "reaction": "I stop on the phone after the two rereads. Helping Sevim with the books pleased me, but the tied and still tying messages confused me while the countdown ran. Opening the pause menu finally changed the hint to Turn on Torch, then Show the stair. That is clear now, but I am ready to leave. I chose confused Feedback twice and closed with Not now. The note filled itself; I typed and submitted nothing. I would close it.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "elapsed_s": 21.203,
+      "kind": "note",
+      "reaction": "The large title is comfortable and I know the rescue goal from my phone tonight. Burak is home and checking the stair this time; on phone he was away. I press 1 and begin walking to Sevim, so the keyboard gives a visible result. Title has the same 22 concept groups. Main screen has the same 20 plus checking the way, waking Derya and the 06:10 instruction panel: 23. No reread on this device.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "elapsed_s": 61.723,
+      "kind": "note",
+      "reaction": "Sevim is outside with her books. That pleases me much more than just a score. Burak helped with the books and got himself out. B, F, R and T each gave a clear result here, and Street led her down. New concepts in this sequence 6: tying takes time, Burak helps, torch must be on, showing lights the route, following needs my movement, outside confirms rescue. No reread.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "elapsed_s": 68.552,
+      "kind": "first_minute",
+      "reaction": "The large screen and keyboard are clearer for me tonight. Sevim reached the street with her books, and Burak is outside too. I understand approach, help, light the stair, ask her to follow, then walk down. I have reread no sentence here. The countdown still makes me hurry, even with a satisfying rescue.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "elapsed_s": 78.171,
+      "kind": "want_quit",
+      "reaction": "I am glad Sevim and the books are outside. I understand this sequence now, but the emergency countdown is more hurried than I want this evening. I would stop after this rescue rather than climb for the other two tonight. No reread; this is my choice of pace and mood.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "elapsed_s": 95.331,
+      "kind": "stop",
+      "reaction": "I stop on the big screen for tonight. Sevim reached the street with her books and Burak is outside too. That was satisfying and the keys gave clear answers. I have reread no sentence here, but I do not want another hurried climb tonight. Menu has the same 13 groups and Feedback 12 as phone. I chose stopping, the note filled itself, and Not now returned to the menu. I typed and submitted nothing. I would close it and might return another evening on the large screen.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "elapsed_s": 8.897,
+      "kind": "tool",
+      "reaction": "I understand the purpose: get the neighbours out. The warning about people dying makes me hurry, but I want to read the instructions first.",
+      "literalPresentInReport": true,
+      "error": "Invalid reason (invalid request, not a driver failure)"
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "elapsed_s": 10.628,
+      "kind": "note",
+      "reaction": "I understand the purpose: get the neighbours out. The warning about people dying makes me hurry, but I want to read the instructions first.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "elapsed_s": 46.508,
+      "kind": "note",
+      "reaction": "Derya is outside; that is satisfying. The prompts told me what to do one step at a time, though I feel rushed by the smoke.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "elapsed_s": 61.069,
+      "kind": "first_minute",
+      "reaction": "I want to get Hacer down too. I can follow the instructions, and the little responses make the neighbours feel present.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "elapsed_s": 110.174,
+      "kind": "want_quit",
+      "reaction": "Everyone is out. I am relieved and satisfied; I do not need another attempt tonight.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "elapsed_s": 118.709,
+      "kind": "stop",
+      "reaction": "Everyone is out. I am relieved and satisfied; I do not need another attempt tonight.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "desktop",
+      "elapsed_s": 5.773,
+      "kind": "note",
+      "reaction": "I remember the phone rescue, and I am curious about the woman with the books. The opening is easier to take in on this larger screen.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "desktop",
+      "elapsed_s": 63.57,
+      "kind": "first_minute",
+      "reaction": "I like that Sevim cares about her books and that helping her has a visible result. I am anxious about the two people still upstairs.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "desktop",
+      "elapsed_s": 144.221,
+      "kind": "note",
+      "reaction": "Oh, Hacer died while we were going down. I thought getting to her before the stair closed might be enough. That is upsetting, and I wonder if I spent too long with the others.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "desktop",
+      "elapsed_s": 155.775,
+      "kind": "want_quit",
+      "reaction": "I want to stop. Hacer died despite following me, and I am sad and unsure what I could have done differently. I do not want to repeat the whole rescue now.",
+      "literalPresentInReport": true,
+      "error": null
+    },
+    {
+      "tester": "iria",
+      "device": "desktop",
+      "elapsed_s": 166.281,
+      "kind": "stop",
+      "reaction": "I want to stop. Hacer died despite following me, and I am sad and unsure what I could have done differently. I do not want to repeat the whole rescue now.",
+      "literalPresentInReport": true,
+      "error": null
+    }
+  ]
+}

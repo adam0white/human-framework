@@ -1,0 +1,231 @@
+{
+  "created": "2026-11-02T06:37:12.817971+00:00",
+  "rootVerified": true,
+  "source": "7b45927a17c77eb529fc5d8dc8ca19d66ab74033",
+  "merge": "6077ea23f5307ca02da1001c0f840bdb6826eee6",
+  "sourceCiSuccess": true,
+  "targetCiSuccess": true,
+  "sourceSignatureAndTrailerVerified": true,
+  "mergeSignatureAndTrailerVerified": true,
+  "sourceMergeEqualTree": true,
+  "servedSdkAgentProofVerified": true,
+  "live": {
+    "commit": "6077ea23f5307ca02da1001c0f840bdb6826eee6",
+    "dirty": false,
+    "app": "neighbours@1",
+    "framework": "3.0.0",
+    "hf": "3.0.0",
+    "concordiaUpstream": "6fbfbc58f324aa74f78568c488713210889a801e",
+    "pythonBundle": "c08df2c5516a0332939f8cd8c93d5788c3e52a306079965ec419b034e00d0e1d",
+    "runtime": "Browser-local Python Concordia and released HF",
+    "pyodide": "314.0.7"
+  },
+  "freshPublicBodies": [
+    {
+      "path": "/assets/dist-B3fzCSU3.js",
+      "sha256": "fe9bebd34f8ac623093deb7f48dd76d7e2e354203781482a5399b3dc84c231ed",
+      "bytes": 54
+    },
+    {
+      "path": "/assets/index-DsWYEOPg.js",
+      "sha256": "3ee25965840a36e36b6c7cdbe1ff4054a039b9546e7ca07181bc497e8351c9ce",
+      "bytes": 2975
+    },
+    {
+      "path": "/assets/render-DNCxTKar.js",
+      "sha256": "cd60b43bb23107069ee6e6ad3f2c3b870bc94bd5385453dbf37cbaf623a4a098",
+      "bytes": 987064
+    },
+    {
+      "path": "/assets/render-Dk1Uvitb.css",
+      "sha256": "4f258d6c56e9dceae8a09663ee38ac5234f246d15b7586b3774deaf54db6a561",
+      "bytes": 59088
+    },
+    {
+      "path": "/assets/runtime.worker-B8PrX97h.js",
+      "sha256": "f0914480e47b98fe5cfd7f024e0afaba4b5c130dd453aeb1cfd651cd0b2935ee",
+      "bytes": 512356
+    },
+    {
+      "path": "/concordia-license.txt",
+      "sha256": "8c6db340475136df3c1201d458fa5755698eace76e510471ecc9d857d6083dac",
+      "bytes": 11359
+    },
+    {
+      "path": "/experiments/bench-choices-summary.json",
+      "sha256": "6afabdacca25dcc2119d0c0373b1de61479dc3be4793764817b27fc141a90574",
+      "bytes": 11908
+    },
+    {
+      "path": "/experiments/bench-choices.json",
+      "sha256": "b053ae5225bbc29d67ca8d98af8b4309d2225d75a26ef3bd9cb9f291c5a2e7e4",
+      "bytes": 15285186
+    },
+    {
+      "path": "/experiments/bench-director.json",
+      "sha256": "f6d94784f5db66fcbfdc69e1518efdd50873934df2674f1aa571b578c31a1c33",
+      "bytes": 4270068
+    },
+    {
+      "path": "/experiments/cart-choice-probe.json",
+      "sha256": "142d766b51bb2e3a785948fda4b768f018577cd807d295a5d4ca19b5b5386a52",
+      "bytes": 5268
+    },
+    {
+      "path": "/experiments/gm-director.json",
+      "sha256": "62c4a9b1d5a4dfb214651eb43a66b98b9d0fa43039e1ec0a65705b93fba1d6cf",
+      "bytes": 1951001
+    },
+    {
+      "path": "/experiments/hf-config.json",
+      "sha256": "968537ce03e00dc32a94eb606e7d85566a2d753b9ebc9c2dc9c366546dad0b62",
+      "bytes": 2201354
+    },
+    {
+      "path": "/experiments/inspection-comparison.json",
+      "sha256": "cc5ab22ea391fd046c3ffe11e42dceb75a86829fdb9dfbfaaa49aae3a85a705c",
+      "bytes": 43261
+    },
+    {
+      "path": "/experiments/native-mixed-town.json",
+      "sha256": "4e6df9b11227bc6051ea483d35ee5fd5e26b5eb479d50a58ecd8e1f0e8ad044d",
+      "bytes": 512984
+    },
+    {
+      "path": "/experiments/received-assistance.json",
+      "sha256": "7dab5998b96e85ac29681c711484aa183e1d34c4d8d6e208c70039c07dbacbfd",
+      "bytes": 33114
+    },
+    {
+      "path": "/experiments/received-routes.json",
+      "sha256": "79435e53a4f22898bc5bcb7268b4c18719d654a388d1673ca91653c3d972a8e3",
+      "bytes": 33703
+    },
+    {
+      "path": "/experiments/social-episodes.json",
+      "sha256": "a2d096cd42f926ff81382279a0ccf57cd9a7af26ef3fdb945e863fbc85173a58",
+      "bytes": 90245
+    },
+    {
+      "path": "/file/",
+      "sha256": "05570b98c25e2ed026a499a5469306bd9b65649cd4c86072cc3b14b15b17d21d",
+      "bytes": 870,
+      "buildPath": "/file/index.html"
+    },
+    {
+      "path": "/fonts/caveat-latin-wght-normal.woff2",
+      "sha256": "891951df5e8b5b0f0bc760d31375405e795c666b5add70437de12d4a6482b33f",
+      "bytes": 74932
+    },
+    {
+      "path": "/fonts/literata-latin-wght-italic.woff2",
+      "sha256": "ab198d6616c7cc966f26a4a5b28a3977dc47439640f09d9b3361226bd465c404",
+      "bytes": 53728
+    },
+    {
+      "path": "/fonts/literata-latin-wght-normal.woff2",
+      "sha256": "9adbeac5b167fe5ad6c49d9e29aa0c76e2f1bb3b46bf4ebf12a9eca7d3525384",
+      "bytes": 52496
+    },
+    {
+      "path": "/",
+      "sha256": "05570b98c25e2ed026a499a5469306bd9b65649cd4c86072cc3b14b15b17d21d",
+      "bytes": 870,
+      "buildPath": "/index.html"
+    },
+    {
+      "path": "/release.json",
+      "sha256": "9306f968be33d32e488968fc8e37075d052020923d37f6252c95ac1dfbf078aa",
+      "bytes": 382
+    },
+    {
+      "path": "/runtime/absl.whl",
+      "sha256": "721200f2f0e9960f2ca9dc3a2a706b201f5f75d812c158f059cbbe29eeafbdb8",
+      "bytes": 137673
+    },
+    {
+      "path": "/runtime/pyodide-lock.json",
+      "sha256": "5dc2fc119108bc148c7457dc86e7675b5c87e1cafd420b9c34c1eaef7b36c010",
+      "bytes": 119077
+    },
+    {
+      "path": "/runtime/pyodide.asm.mjs",
+      "sha256": "f7cdc8ece80678ceb712f8e65ebe6d3a83203a180c399865f49612a051693635",
+      "bytes": 1250344
+    },
+    {
+      "path": "/runtime/pyodide.asm.wasm",
+      "sha256": "cc36e3cab04fdfc9a63ff13eb52eae2b911bf46c025cc7b281f394bd3de1d5e6",
+      "bytes": 9598218
+    },
+    {
+      "path": "/runtime/pyodide.mjs",
+      "sha256": "6f1d60f7bf529beb300f0f47983c921d3982363640ba20af0e38efdddbc66109",
+      "bytes": 17931
+    },
+    {
+      "path": "/runtime/python-files.json",
+      "sha256": "106eacb2adab903ac1c056590ef1d06bf92953353b2dd1b8b903b6ec95d5b7ff",
+      "bytes": 31842
+    },
+    {
+      "path": "/runtime/python_stdlib.zip",
+      "sha256": "fa1957e5777068fc4f7437f96d860ae2fbe9c19732ba06c84e004ec16dd7dd7a",
+      "bytes": 2545637
+    },
+    {
+      "path": "/third-party-notices.txt",
+      "sha256": "08d3a771e33bf8724593a3d8c5680979cd82913e58b29c4ff825e75654c12bd3",
+      "bytes": 67147
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-7b45-source-ci-success.json",
+      "sha256": "847c46a5b9b34511b7ec395dea105e9a76365c09d2363453f3a513b0a47879dc"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-6077-target-ci-success.json",
+      "sha256": "0674eeb2787afa44885f8914ba550ee3f923ce4c241c71f77893da016e73bcbb"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-6077-integration-root-proof.json",
+      "sha256": "6917a605707138c0203468a22cdb627ffdf51f34ee1a85660a845d6aa9720294"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/restart-1102-neighbours-served-root-verification.json",
+      "sha256": "e142e08c5519befd80faea02b275ac044c225e4bf9cfbfc5fe0ca9fa007f4038"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/restart-1102-neighbours-static-sdk-proof.json",
+      "sha256": "4ae8604c2f710e450865a8ef080944213ceeb10c0486a5f9e0e0d168b5cddf37"
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-7b45-source-review-adoption.json",
+      "sha256": "18a5a5b548c5e87243e24662687f162e1edde660739b96002fb646b696f1f317"
+    }
+  ],
+  "limits": "Root actual prior reviews/signatures/CI plus fresh31body and9sourcehash/staticSDKmarkers. Historical technicalopening proof is inherited with its limits, not current gameplay/consent/backend/playeracceptance. No CPU or panel admission.",
+  "canonicalHtmlCorrection": {
+    "at": "2026-11-02T07:00:02.439255+00:00",
+    "reason": "Build index aliases return empty307 redirects. Admission uses no-follow curl; bind actual canonical200 paths matching the exact same previously verified HTML hashes. No hash/assertion/count/timeout relaxation.",
+    "verifiedCanonicalBodies": [
+      {
+        "buildPath": "/file/index.html",
+        "canonicalPath": "/file/",
+        "sha256": "05570b98c25e2ed026a499a5469306bd9b65649cd4c86072cc3b14b15b17d21d",
+        "bytes": 870
+      },
+      {
+        "buildPath": "/index.html",
+        "canonicalPath": "/",
+        "sha256": "05570b98c25e2ed026a499a5469306bd9b65649cd4c86072cc3b14b15b17d21d",
+        "bytes": 870
+      }
+    ],
+    "failedAttemptDiagnostic": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-admission-attempt1-body-diagnostic.json",
+      "sha256": "07e842349e696255e98717a45c878e507de3345eedf4023c27b79c63afb9bd50"
+    }
+  }
+}

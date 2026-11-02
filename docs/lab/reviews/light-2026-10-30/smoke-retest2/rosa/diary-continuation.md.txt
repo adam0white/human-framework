@@ -1,0 +1,89 @@
+# Rosa standing diary continuation
+
+Coordinator note: Full current report follows verbatim. Root qualifications, including visual access UNVERIFIABLE and history delivery limits, are outside the report in ../methodology.md and ../evidence/root-qualification.json.
+
+I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.
+
+My ranked asks are:
+
+1. **Keep the current instruction consistent with the latest answer.** On the phone, “The bundle is tied” appeared while Sevim still showed “tying the books” and the hint told me to wait. This was the new blocking question I reached.
+2. Put “Turn on Torch, then Show the stair” at the first moment I need it. That instruction was clear when it appeared.
+3. Keep the neighbours’ concrete answers and the confirmation that they reached the street with their belongings. Sevim keeping her books mattered to me.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla reading English as a second language. This was my **first Smoke visit**, with prior franchise experience from my supplied history.
+
+I read all **4304 supplied history lines** before play, using explicit ranges of at most 40 lines and follow-up reads after truncated output. The final range was **4281–4304**. The actual last line read was **“End of supplied own history.” Exact unread ranges: none.** Earlier qualifications remain attached to those earlier records. This selected history supplies no earlier Smoke ask.
+
+Both sessions began through **Enter the stairwell →** on the driver-opened page at `https://smoke.adamwhite.work/?labRunSource=agent`. Each used its own fresh automated project-test context. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+| Session | Device | Stop elapsed_s | Reason | State when stopped |
+|---|---|---:|---|---|
+| A | 360×690 touch phone | 121.495 | CONFUSED | Paused on landing 1; stair closes in 93s |
+| B | 1280×800 desktop, keyboard and mouse | 95.331 | TASTE | Paused at street; Sevim and Burak outside; stair closes in 86s |
+
+Neither session reached the 20-minute ceiling or a game ending.
+
+The phone’s opening image at **3.439 seconds** felt inviting and readable. The goal was immediately understandable: get everyone who is home to the street. Helping Sevim tie her exercise books felt like an ordinary, considerate action. Her name and books reminded me of the school memories I enjoyed in *The Stairwell*, but I remained uncertain whether she was the same woman.
+
+The countdown made me hurry. At **52.228 seconds**, the log said the bundle was tied, while her status and instruction still told me she was tying it and I should wait. The gameplay image at **86.317 seconds** showed those messages together. I reread two sentences and chose to stop. During the stopping check at **102.203 seconds**, her status finally changed and the hint said, “Turn on Torch, then Show the stair.” I understood that instruction, but my wish to leave remained. I cannot establish why the earlier messages differed.
+
+Desktop was more satisfying. Burak was home this time, whereas he had been away on the phone. The number and speech keys produced visible results. I helped with the books, turned on the torch, showed Sevim the stair and asked her to follow. At **52.940 seconds**, the game confirmed that she reached the street with her books. Burak was outside too. I felt I had helped someone. I chose to leave after that rescue because I did not want another hurried climb that evening.
+
+These are all my successful diary strings, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **14.269 s — note, engagement 4:** “The smoke and getting neighbours to the street are clear. The large title and button are comfortable. I have not seen Smoke before. Title concepts 18: flats in Istanbul, smoke, rescue everyone home, approach by name, torch, speech, listening, following, stopped, Street leads down, landing movement, arrows or WASD, number selection, speech keys, recording, linked play, 180-day retention, privacy and menu recording control. No reread yet.”
+- **32.782 s — note, engagement 4:** “Sevim and her exercise books remind me of the school memories I liked in The Stairwell, but I do not know this is the same woman. I want to help her carry them. The countdown makes me hurry. Main screen concepts 20: countdown, thick and thin smoke, stair closing, breath cost, four named neighbours, away tonight, each stopped reason, selected neighbour, nearby speech, Come now, books, Walk with me, Show the stair, Torch toggle, Street destination, five walking destinations, current position, travel estimate, event log, catching breath. No sentence reread.”
+- **75.598 s — first_minute, engagement 3:** “I understand the rescue goal and reached Sevim. Helping tie her school books pleased me. Now the log says the bundle is tied, but her status still says tying and Show the stair is disabled. I am unsure which message to follow. No sentence needed rereading; the messages disagree. I opened confused Feedback, which filled the note itself. I typed nothing. Title count correction: 22 groups, adding Enter, feedback review, possible death and no effect on other games; the earlier 18 label was a miscount. Menu has 13 groups and Feedback 12, including recording, retention, privacy, queued history and public quote.”
+- **98.367 s — want_quit, CONFUSED, engagement 2:** “I reread two sentences: The bundle is tied. Wait while the bundle is tied. They give me opposite instructions, and Show the stair stays grey. I like helping with the books, but I cannot tell what to do and the seconds keep going. I would stop now. The picture confirms the same tying status and wait instruction.”
+- **121.495 s — stop, CONFUSED, engagement 2:** “I stop on the phone after the two rereads. Helping Sevim with the books pleased me, but the tied and still tying messages confused me while the countdown ran. Opening the pause menu finally changed the hint to Turn on Torch, then Show the stair. That is clear now, but I am ready to leave. I chose confused Feedback twice and closed with Not now. The note filled itself; I typed and submitted nothing. I would close it.”
+
+**Desktop**
+
+- **21.203 s — note, engagement 4:** “The large title is comfortable and I know the rescue goal from my phone tonight. Burak is home and checking the stair this time; on phone he was away. I press 1 and begin walking to Sevim, so the keyboard gives a visible result. Title has the same 22 concept groups. Main screen has the same 20 plus checking the way, waking Derya and the 06:10 instruction panel: 23. No reread on this device.”
+- **61.723 s — note, engagement 5:** “Sevim is outside with her books. That pleases me much more than just a score. Burak helped with the books and got himself out. B, F, R and T each gave a clear result here, and Street led her down. New concepts in this sequence 6: tying takes time, Burak helps, torch must be on, showing lights the route, following needs my movement, outside confirms rescue. No reread.”
+- **68.553 s — first_minute, engagement 5:** “The large screen and keyboard are clearer for me tonight. Sevim reached the street with her books, and Burak is outside too. I understand approach, help, light the stair, ask her to follow, then walk down. I have reread no sentence here. The countdown still makes me hurry, even with a satisfying rescue.”
+- **78.171 s — want_quit, TASTE, engagement 4:** “I am glad Sevim and the books are outside. I understand this sequence now, but the emergency countdown is more hurried than I want this evening. I would stop after this rescue rather than climb for the other two tonight. No reread; this is my choice of pace and mood.”
+- **95.331 s — stop, TASTE, engagement 4:** “I stop on the big screen for tonight. Sevim reached the street with her books and Burak is outside too. That was satisfying and the keys gave clear answers. I have reread no sentence here, but I do not want another hurried climb tonight. Menu has the same 13 groups and Feedback 12 as phone. I chose stopping, the note filled itself, and Not now returned to the menu. I typed and submitted nothing. I would close it and might return another evening on the large screen.”
+
+My phone quit wish followed these exact sentences:
+
+1. **“The bundle is tied.”**
+2. **“Wait while the bundle is tied.”**
+
+Both appeared on the rescue screen. I understood each sentence separately; together they made me reread to decide which instruction applied. That triggered my two-sentence stopping rule. I reread no sentence on desktop. Both quit wishes remained through Feedback.
+
+My concept counts were grouped estimates. The title count was mistaken in my first diary and still one short in its correction. The fuller accounting below includes familiar controls, settings and lab topics rather than counting only unfamiliar words.
+
+| Reached screen | Concepts presented | Count | Rereads |
+|---|---|---:|---|
+| Opening, both | Istanbul flats; smoke; rescue everyone home; approach by name; torch; speech; listening; following; stopped; Street leads down; landing movement; arrows/WASD; numbered selection; speech keys; Enter; recording; linked play; retention; recording control in menu; Feedback review; privacy; possible death; no effect on other games | 23 | None |
+| Phone rescue screen | Countdown; thick/thin smoke; closing stair; breath cost; four neighbours; absence; stopped reasons; selection; nearby speech; Come now; books; Walk with me; Show the stair; torch toggle; Street; landing destinations; position; travel estimate; event log; catching breath | 20 groups | Two quoted sentences |
+| Desktop rescue screen | Phone groups, plus checking the route, waking Derya and the 06:10 instruction panel | 23 groups | None |
+| Books and escort sequence | Tying time; help from Burak; torch prerequisite; showing the route; followers need my movement; outside confirms rescue | 6 additional groups | None on desktop |
+| Pause menu, both | Pause; Keep going; New game; full screen; All games; People across games; stopping; confused; download; recording control; linked history and retention; privacy; Feedback draft/submission boundary; Debug | 14 groups, correcting logged 13 | None |
+| Feedback, both | Three keep-playing choices; stopping; confused; optional note; optional name; queued history; What is sent; private note; possible public quote; lab privacy; Not now; Submit | 12 groups | None |
+
+I actually viewed four screenshots through successful `view_image` calls:
+
+- [Phone a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/a-001.png), **3.439 s**: cream introduction over a dark background, readable text and a broad Enter button. The privacy and recording text was smaller.
+- [Phone a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/a-002.png), **86.317 s**: building above the log and controls. “You” helped locate me beside Sevim. The tied answer, tying status and wait hint were visible together. The status text and key letters were small.
+- [Desktop b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/b-001.png), **2.970 s**: spacious centered introduction with comfortable text and a wide Enter button.
+- [Desktop b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/b-002.png), **41.013 s**: building above the log and action controls, with a short instruction panel at left. I could see Sevim beside me, the torchlight and the street destination. The status text was easier to read than on the phone.
+
+I took two manual screenshots per device. I requested and viewed no automatic checkpoint image.
+
+Phone controls used were Enter, Sevim’s full named control, The books, pause, the confused shortcut, Not now and Keep going. Desktop used Enter, keys **1, B, F, R, T**, Street, pause, the stopping shortcut and Not now. There were no driver errors or retries.
+
+The driver’s log responses sometimes repeated the previous visible snapshot with a nonzero `snapshot_ms`; later input responses showed a newer countdown or status. I cannot separate the cause of that behavior from the game’s displayed updates. My confusion was real, but it does not establish a permanently broken books action.
+
+On phone, selecting **“I'm confused”** opened Feedback at **62.257 s** and again at **109.274 s**. The note automatically contained “I'm confused.” **Not now** closed it at **79.643 s** and **114.478 s**. On desktop, **“I'm stopping”** opened Feedback at **85.211 s**, automatically filled that text, and **Not now** returned to the menu at **88.597 s**. Both quick labels were offered. The responses did not mark a Feedback label as pressed, so I claim the observed draft text and successful closing, not a pressed state. I typed nothing and pressed no Submit.
+
+Both first-minute notes were logged after 60 seconds. Neither session reached 180 seconds, so no pulse was due. I did not rescue anyone on the phone. On desktop, Sevim and Burak were confirmed outside, while Derya and Hacer remained inside. Their conversations, rescues, the closing stair, possible deaths and the ending remain untested.
+
+I would return on a quieter evening because Sevim’s books made the rescue personal. I would prefer the large screen. I would close both games now; I would not leave the emergency running while doing something else.
+
+I created no worktree, branch, server, browser or helper process. The coordinator owns driver and browser cleanup.
+
+`git worktree list`: not applicable; no repository was touched and no worktree was created by me.

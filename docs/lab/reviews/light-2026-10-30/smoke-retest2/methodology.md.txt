@@ -1,0 +1,89 @@
+# Methodology and qualifications
+
+Fictional AI panel; model serving identity is unknown. Source clean pin f71 / HF 4.8 is bounded by included final pin and source evidence. Root read all five full reports, checked 100 literal spans, all 55 requested reaction strings (54 successful and one rejected), and 124 audit bindings. Root did not claim a second full semantic reread of all 596 raw commands. See exact audit for scope and exceptions.
+
+## Root qualifications, verbatim
+
+### SF1 — visual-access
+
+All five reports claim successful image views (Jonas2,Aisha2,Diego4,Rosa4,Iria2); no actual view_image call or image-tool return is retained in any current stream. UNVERIFIABLE visual access, not evidence that images were unseen. Saved PNGs and this audit cannot establish tester perception.
+
+### SF2 — history-delivery
+
+Stored stdout is complete and exact for all selected histories. Jonas/Aisha/Diego explicitly report truncated direct delivery and uncertain unread ranges; retain their statements. Rosa claims all read, but literal stdout does not prove model delivery or comprehension. Prior selected-history composition review transfers by exact prefix/hash, not full archive completeness.
+
+### SF3 — shell-failures
+
+Diego line160 and Iria line66 each issued malformed literal apostrophe curl; exit1, stdout zsh:1: unmatched quote. Retry succeeds with Unicode escape. Reports omit these failed shell commands. Preserve failures and retries; no gameplay action from failed shell inferred.
+
+### SF4 — checkpoint-timing
+
+Jonas desktop58.754 and Diego desktop59.997 first_minute are premature. Corrected61.561/62.384 do not erase them. All sessions reached actionable play before valid after60 note. Rosa phone75.598 note occurs while paused in Feedback; snapshot_ms13342. All sessions stop before180; no pulse owed. All ten automatic first-minute shots occur before stop and do not establish image viewing or diary compliance. No late autoscreenshot or automatic ceiling in retained wall rows.
+
+### SF5 — raw-diary
+
+All55 requested diary reaction strings (54 successful entries plus Iria’s failed initial attempt) occur verbatim in full reports; no word corrections authorized. Response/report and wall timestamps differ by1ms in listed rows; retain both clocks. Failed Iria opening Invalid reason is not a successful diary. All five final captured agent messages exactly match report file bytes, with no terminal newline added or removed.
+
+### SF6 — stops
+
+Ten actual stop logs, one per device, with no later tester gameplay. Six FINISHED stops have Everyone is out ending text. Aisha desktop FRUSTRATED,Rosa phone CONFUSED,Rosa desktop TASTE,Iria desktop TASTE are nonending. No BUDGET/TOOL stops or coordinator cuts. This supports participant stopping, not game-wide completion or predicted enjoyment.
+
+### SF7 — feedback
+
+Feedback dialogs visibly open and Not now closes them on all10 devices. Jonas/both, Aisha/both, Diego/both, Iria/both show selected pressed label after retries. Rosa menu shortcuts auto-fill draft but no explicit Feedback quick-label press observed; offered label is not proof selection. Diego misses Feedback during phone confusion. No type/select/Submit/toggle/owner-settings/link-opening command observed. Backend absence of send, attribution, actual consent defaults remain unverified.
+
+### SF8 — rosa-reread
+
+Rosa actual phone quit98.367 reports rereading The bundle is tied. and Wait while the bundle is tied.; stop121.495 CONFUSED persists after later clearer hint. No desktop reread; desktop95.331 TASTE. Rule is conditional, not a quota. Counts include settings/retention/privacy/recording/Feedback/Debug and lab subjects, but are grouped selfreports with18->22->23 opening and13->14 menu corrections. Do not call counts exhaustive measured concepts or invent rereads.
+
+### SF9 — rosa-cause
+
+Phone wait52.228 snapshot_ms1 and shot86.317 snapshot_ms1 contain new tied log with old selected Hold these steady answer, tying status, Wait while bundle is tied hint. first_minute75.598 snapshot_ms13342 and quit98.367 snapshot_ms12051 repeat prior snapshot. Pause102.203 snapshot_ms0 updates needs-to-see-stair and Torch hint. Cause unknown; do not infer a persistent books-action bug, driver-only cause, or human1-3s reproduction.
+
+### SF10 — cohort-comparison
+
+Jonas/Aisha/Diego only target returners. Rosa FIRST Smoke/franchise experienced. Iria assigned fictional cold/empty2line history. Requested Terra low / Rosa Sol medium is not serving identity. Jonas revisits Street/followers; Aisha movement and death acknowledgment; Diego movement/danger and cannot revisit Sevim (away both). Current different nights do not prove causal improvement.
+
+### SF11 — new-asks
+
+Rosa consistency and Iria individual-air-danger clarity are two participant-reached new blocking questions, not established defects. Aisha death acknowledgment is an earlier ask revisited before ending; later ending context untested. Jonas and Diego say no new blocking ask. Preserve observations versus preference versus unknown cause.
+
+### SF12 — boundaries
+
+All596 completed commands:302sed,4cat cleanup,288 parsed assigned local gameplay,2 failed quoting calls. No source/peer/hidden-state reads observed outside supplied own history, no helper/script/network-other commands. Unknown omitted tool events remain unverified. Dynamic named-control failures/disabled controls/ambiguities remain raw; no bug causality inferred. Diego4 selection errors and point recovery preserve uneven tool evidence; not silently converted into game failure or forced TOOL stop.
+
+### SF13 — physical-source-bounds
+
+Stored root receipts say89152/e852f6 exit0;480 sampled original identities gone,5 profiles absent,11 BINDfree ports,17 stable payloads before report reads. Initial EADDRINUSE at unknown port remains unexplained. Source delivery and SDK released/archive/served markers are bounded static evidence, not backend/player/source-wide equivalence proof. This audit did no runtime probe.
+
+### SF14 — authority
+
+Finalizer5reports/10eligible stops are audit counts, not protocol enforcement. Root manual full report/raw evidence audit remains mandatory. This independent audit does not grant rootVerified, admission, owner acceptance, third panel or iteration cap reset. Final Smoke ordinary cap remains.
+
+## Response and wall clock differences
+
+The 17 rows below retain both clocks, in seconds.
+
+| Tester | Device | Transcript line | Wall row | Response | Wall | Difference seconds |
+|---|---|---:|---:|---:|---:|---:|
+| jonas | phone | 202 | 5 | 12.183 | 12.182 | 0.001 |
+| jonas | desktop | 157 | 5 | 9.618 | 9.617 | 0.001 |
+| jonas | desktop | 181 | 18 | 61.561 | 61.56 | 0.001 |
+| aisha | phone | 251 | 18 | 61.949 | 61.948 | 0.001 |
+| aisha | phone | 267 | 26 | 83.543 | 83.542 | 0.001 |
+| aisha | desktop | 218 | 41 | 131.37 | 131.369 | 0.001 |
+| diego | phone | 135 | 20 | 64.552 | 64.551 | 0.001 |
+| diego | phone | 166 | 34 | 113.341 | 113.34 | 0.001 |
+| diego | desktop | 217 | 28 | 121.173 | 121.172 | 0.001 |
+| diego | desktop | 228 | 33 | 131.77 | 131.769 | 0.001 |
+| rosa | phone | 249 | 7 | 32.782 | 32.781 | 0.001 |
+| rosa | phone | 270 | 18 | 98.367 | 98.366 | 0.001 |
+| rosa | phone | 278 | 22 | 121.495 | 121.494 | 0.001 |
+| rosa | desktop | 308 | 16 | 68.553 | 68.552 | 0.001 |
+| iria | phone | 43 | 20 | 61.07 | 61.069 | 0.001 |
+| iria | phone | 62 | 29 | 110.175 | 110.174 | 0.001 |
+| iria | desktop | 149 | 40 | 155.776 | 155.775 | 0.001 |
+
+## Inherited history limits
+
+The exact per-person history maps and their qualification sources control inherited W/SW/NR/SWF/NC and prior Smoke method limits. Selected-history exact prefix/hash transfer is not a full archive audit. Stored stdout does not establish delivery or comprehension. Jonas, Aisha and Diego explicitly report truncated delivery and uncertain unread ranges. Rosa reports all read; this is not proof of model delivery or comprehension. Qualification source paths and hashes are listed in source-map.json.

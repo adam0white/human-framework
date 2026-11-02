@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-02T10:13:08.063122+00:00",
+  "rootVerified": true,
+  "evidenceBindingsRootRehashed": 124,
+  "reports": [
+    {
+      "name": "jonas",
+      "lastAgentMessageExactByteEquality": true,
+      "reportSha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+      "bytes": 5898
+    },
+    {
+      "name": "aisha",
+      "lastAgentMessageExactByteEquality": true,
+      "reportSha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+      "bytes": 6782
+    },
+    {
+      "name": "diego",
+      "lastAgentMessageExactByteEquality": true,
+      "reportSha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+      "bytes": 6634
+    },
+    {
+      "name": "rosa",
+      "lastAgentMessageExactByteEquality": true,
+      "reportSha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+      "bytes": 13599
+    },
+    {
+      "name": "iria",
+      "lastAgentMessageExactByteEquality": true,
+      "reportSha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+      "bytes": 5477
+    }
+  ],
+  "sourceAuditPendingWordingCorrection": true
+}

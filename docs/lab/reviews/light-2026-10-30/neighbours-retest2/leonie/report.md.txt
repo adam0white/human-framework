@@ -1,0 +1,41 @@
+I would not voluntarily return tonight or leave the game running; I might be curious about the hall another evening, but these sessions did not draw me back.
+
+My ranked asks are: **1.** Show the result of my work where I chose it, so I do not have to find the journal to understand it. **2.** Make a neighbour’s response feel less repetitive and administrative. **3.** Give me a more natural way to meet someone without chasing their schedule. None was a blocking ask: I could continue, but chose to leave.
+
+This was my first visit to an HF game, as Léonie Paredes. I played a fresh 360×690 touch-phone session, followed by a fresh 1280×800 desktop session with mouse, both on the same evening. No save or seed was imported. Recording and consent stayed at their defaults.
+
+The supplied history was read through line 2. The last line received was **“End of supplied own history.”** Unread ranges: **none**.
+
+On the phone, the opening at 0.297 seconds gave me a clear purpose: reopen the flooded hall. I liked being able to volunteer straight away. I was initially unsure whether time would advance, then saw it do so. My first repair ended with the hall still at 0 of 12; the journal explained at 65.443 seconds that the damp timber had not held. That was a satisfying, ordinary consequence once I found it. My second hour propping and airing the timber ended with it still damp, and I lost interest in continuing that evening.
+
+On desktop, I recognised the flooded hall from my phone session: at 7.074 seconds the opening’s flooded-hall cue reminded me of the repair I had just attempted; confidence was high. My words were, “I recognise the flooded hall from my phone visit tonight.” There was no recognition of any earlier game or encounter. I walked to Nora’s workshop, but she left before I arrived, as the game had warned she might. I followed her to the hall, asked her to drink water, and accepted her offer to do it after her work. I liked her ability to defer. The repeated explanations and the prompt to ask again made the exchange feel more like managing a request than meeting a person.
+
+**Diary, in recorded order** — engagement values are the values I logged; times are driver `elapsed_s`.
+
+Phone:
+
+- 5.889 s, note, engagement 4: “The flood and reopening a hall give me a clear reason to enter. The quiet page feels inviting.”
+- 21.598 s, note, engagement 4, Day 1 08:00: “I chose to repair the hall and apparently the walk is included. I like that I can help immediately, though I am not sure whether time will pass by itself.”
+- 47.721 s, note, engagement 3, Day 1 09:45: “My hour ended but the hall still says 0 of 12 repairs. I cannot tell what my work achieved, and I want to ask Nora.”
+- 59.155 s, `first_minute`, engagement 3, Day 1 09:45: “The place has a clear purpose, but I am reading a lot of scheduling and conditions instead of meeting a neighbour. Nora is busy and my repair has no visible result yet.” This was logged prematurely, before 60 seconds.
+- 61.439 s, `first_minute`, engagement 3, Day 1 09:45: “The place has a clear purpose, but I am reading a lot of scheduling and conditions instead of meeting a neighbour. Nora is busy and my repair has no visible result yet.”
+- 67.640 s, note, engagement 4, Day 1 09:45: “The journal explains it: the damp timber did not hold my repair. That makes sense, and now supporting the timber seems worth trying.”
+- 90.469 s, `want_quit`, **BORED**, engagement 2, Day 1 12:30: “I would leave for now. Both hours are spent and the timber is still damp; I am curious, but the remaining work feels slow for this evening.”
+- 99.621 s, `stop`, **BORED**, engagement 2, Day 1 12:30: “I am stopping here for the evening; I want a little more immediate payoff than this repair has given me.”
+
+Desktop:
+
+- 7.074 s, note, engagement 3: “I recognise the flooded hall from my phone visit tonight. I want to see whether talking to someone first gives me a different way in.”
+- 28.913 s, note, engagement 3, Day 1 09:00: “Nora left before I arrived, just as the warning said. It feels plausible but disappointing to walk to an empty workshop.”
+- 54.896 s, note, engagement 3, Day 1 09:30: “I like that Nora can defer my request. The repeated caveats make a small request to drink water feel strangely bureaucratic, though.”
+- 62.740 s, `first_minute`, engagement 2, Day 1 09:30: “I finally got an answer, but I am being directed to ask again after accepting her later offer. I would rather let her work than press her about water.”
+- 67.050 s, `want_quit`, **TASTE**, engagement 2, Day 1 09:30: “I would stop here. I got an answer, but the interaction feels more like managing a request than getting to know Nora.”
+- 80.000 s, `stop`, **TASTE**, engagement 2, Day 1 10:30: “I am stopping; the neighbours have independence, but this exchange did not make me want to keep managing their schedules.”
+
+The phone session lasted 99.621 seconds; desktop lasted 80.000 seconds. Neither reached the three-minute pulse checkpoint or the game ending. Later play and outcome checkpoints remain untested.
+
+At the phone confusion, I opened Feedback, selected **“I'm confused”**, and closed it. At each stop I opened Feedback, selected **“I'm stopping”**, and closed it. The selected labels appeared pressed; I typed no note and sent nothing. One initial phone label command failed due to shell quoting; the corrected call selected it. A phone map tap was covered by the journal, and I continued after closing the panel. A later attempt to stop advancing arrived after the skip had already ended.
+
+I actually viewed [the phone opening screenshot](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/phone/phone-001.png) and [the desktop opening screenshot](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/desktop/desktop-001.png). The phone opening placed the red entry button near the bottom of the narrow screen; the desktop opening spread the same material across a wide page. Both displayed the device-recording notice. I did not view gameplay screenshots, so the gameplay observations above come from the driver’s visible text and controls.
+
+No repository, worktree, driver, browser, or process was created or owned by me. The coordinator owns driver cleanup.

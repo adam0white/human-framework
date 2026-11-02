@@ -1,0 +1,2836 @@
+{
+  "status": "PRIVATE_DRAFT_NOT_FROZEN_NOT_ADMITTED",
+  "historySha256": "a790c94a524ba24d67cac6c619ffa6da169d32685969d943c1dbb75e4510cf6a",
+  "historyLineCount": 2480,
+  "selectedHistoryNotFullArchive": true,
+  "baseline": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/own-history.md",
+    "sha256": "24fac79414d27f676aa14c44f342733b93b43d71000af21353051c8812ee5e2d",
+    "preservedPrefixByteRange": [
+      0,
+      290502
+    ],
+    "relocatedFinalMarkerBytes": 29
+  },
+  "priorSourceMap": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/history-source-map.json",
+    "sha256": "b521d58179e35aa096ddb48a51eaf5c8e9c6b0db9d5c6799fd7fb9daef29cf49",
+    "content": {
+      "status": "CANDIDATE NOT FROZEN OR ADMITTED; canonical unmatched ranges require review",
+      "tester": "nia",
+      "baseline": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/nia/own-history.md",
+        "sha256": "a7e06659b80f398059df6c8bda2e95ba3af9c12fbc0e17f8d51f014a8b0499c9",
+        "bytes": 280489,
+        "lines": 2330,
+        "sourceMap": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/nia/history-source-map.json",
+        "sourceMapSha256": "a232a15094533fcf02e2bb94e7b775074ea822c2107ac3473a1f185ff83ff792",
+        "retainedByteRange": [
+          0,
+          280460
+        ],
+        "terminalMarkerRelocated": "End of supplied own history."
+      },
+      "appendix": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-retest1/nia/diary-continuation.md",
+        "sha256": "e842ad84d202cfbff7286180428519fcb4b8b84035e2457b98a60a83bb6a4680",
+        "bytes": 9937,
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-retest1/nia/report.md",
+        "reportSha256": "2f77fbfd16d5598959423a9bac0c2312d172ae999b6faee5e2ee9054817f6713",
+        "reportBytes": 9202,
+        "reportSourceByteRange": [
+          0,
+          9202
+        ],
+        "separateQualificationSourceByteRange": [
+          9202,
+          9937
+        ],
+        "candidateAppendixByteRange": [
+          280563,
+          290500
+        ],
+        "candidateAppendixLineRange": [
+          2334,
+          2406
+        ],
+        "reportOccurrencesBefore": 0,
+        "reportOccurrencesAfter": 1
+      },
+      "candidate": {
+        "sha256": "24fac79414d27f676aa14c44f342733b93b43d71000af21353051c8812ee5e2d",
+        "bytes": 290531,
+        "lines": 2409
+      },
+      "canonical": {
+        "commit": "4a5a37314452497c79417355e49d558f64ae2218",
+        "path": "docs/lab/panel/nia-okafor.md",
+        "sha256": "57417cae1bf5d945004efb96f4780af8ae7bf80b20153e70a469ef7068322ee7",
+        "bytes": 304688,
+        "lines": 2317,
+        "wholeContained": false,
+        "orderPreservingExactMatchingLines": 1387,
+        "matchingBlocks": [
+          {
+            "canonicalLines": [
+              2,
+              2
+            ],
+            "historyLines": [
+              2,
+              2
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              4,
+              4
+            ],
+            "historyLines": [
+              4,
+              4
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              6,
+              6
+            ],
+            "historyLines": [
+              6,
+              6
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              8,
+              8
+            ],
+            "historyLines": [
+              9,
+              9
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              11,
+              11
+            ],
+            "historyLines": [
+              11,
+              11
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              13,
+              13
+            ],
+            "historyLines": [
+              13,
+              13
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              15,
+              15
+            ],
+            "historyLines": [
+              15,
+              15
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              18,
+              18
+            ],
+            "historyLines": [
+              17,
+              17
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              20,
+              20
+            ],
+            "historyLines": [
+              19,
+              19
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              21,
+              22
+            ],
+            "historyLines": [
+              28,
+              29
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              24,
+              26
+            ],
+            "historyLines": [
+              44,
+              46
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              28,
+              28
+            ],
+            "historyLines": [
+              48,
+              48
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              31,
+              31
+            ],
+            "historyLines": [
+              50,
+              50
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              41,
+              43
+            ],
+            "historyLines": [
+              62,
+              64
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              45,
+              45
+            ],
+            "historyLines": [
+              66,
+              66
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              47,
+              49
+            ],
+            "historyLines": [
+              133,
+              135
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              51,
+              51
+            ],
+            "historyLines": [
+              137,
+              137
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              53,
+              53
+            ],
+            "historyLines": [
+              139,
+              139
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              55,
+              55
+            ],
+            "historyLines": [
+              141,
+              141
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              57,
+              57
+            ],
+            "historyLines": [
+              143,
+              143
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              72,
+              74
+            ],
+            "historyLines": [
+              171,
+              173
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              83,
+              85
+            ],
+            "historyLines": [
+              188,
+              190
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              87,
+              87
+            ],
+            "historyLines": [
+              192,
+              192
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              89,
+              89
+            ],
+            "historyLines": [
+              194,
+              194
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              93,
+              93
+            ],
+            "historyLines": [
+              196,
+              196
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              787,
+              789
+            ],
+            "historyLines": [
+              198,
+              200
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              792,
+              792
+            ],
+            "historyLines": [
+              204,
+              204
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              797,
+              798
+            ],
+            "historyLines": [
+              206,
+              207
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              800,
+              800
+            ],
+            "historyLines": [
+              210,
+              210
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              802,
+              884
+            ],
+            "historyLines": [
+              212,
+              294
+            ],
+            "lines": 83
+          },
+          {
+            "canonicalLines": [
+              885,
+              885
+            ],
+            "historyLines": [
+              297,
+              297
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              888,
+              888
+            ],
+            "historyLines": [
+              298,
+              298
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              890,
+              890
+            ],
+            "historyLines": [
+              299,
+              299
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              891,
+              892
+            ],
+            "historyLines": [
+              301,
+              302
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              894,
+              894
+            ],
+            "historyLines": [
+              307,
+              307
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              907,
+              907
+            ],
+            "historyLines": [
+              309,
+              309
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              909,
+              909
+            ],
+            "historyLines": [
+              316,
+              316
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              916,
+              916
+            ],
+            "historyLines": [
+              323,
+              323
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              918,
+              918
+            ],
+            "historyLines": [
+              326,
+              326
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              921,
+              921
+            ],
+            "historyLines": [
+              338,
+              338
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              923,
+              923
+            ],
+            "historyLines": [
+              344,
+              344
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              927,
+              927
+            ],
+            "historyLines": [
+              356,
+              356
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              929,
+              929
+            ],
+            "historyLines": [
+              362,
+              362
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              930,
+              939
+            ],
+            "historyLines": [
+              388,
+              397
+            ],
+            "lines": 10
+          },
+          {
+            "canonicalLines": [
+              941,
+              949
+            ],
+            "historyLines": [
+              398,
+              406
+            ],
+            "lines": 9
+          },
+          {
+            "canonicalLines": [
+              951,
+              961
+            ],
+            "historyLines": [
+              407,
+              417
+            ],
+            "lines": 11
+          },
+          {
+            "canonicalLines": [
+              963,
+              998
+            ],
+            "historyLines": [
+              418,
+              453
+            ],
+            "lines": 36
+          },
+          {
+            "canonicalLines": [
+              1000,
+              1013
+            ],
+            "historyLines": [
+              454,
+              467
+            ],
+            "lines": 14
+          },
+          {
+            "canonicalLines": [
+              1015,
+              1026
+            ],
+            "historyLines": [
+              468,
+              479
+            ],
+            "lines": 12
+          },
+          {
+            "canonicalLines": [
+              1028,
+              1041
+            ],
+            "historyLines": [
+              480,
+              493
+            ],
+            "lines": 14
+          },
+          {
+            "canonicalLines": [
+              1043,
+              1050
+            ],
+            "historyLines": [
+              494,
+              501
+            ],
+            "lines": 8
+          },
+          {
+            "canonicalLines": [
+              1052,
+              1056
+            ],
+            "historyLines": [
+              502,
+              506
+            ],
+            "lines": 5
+          },
+          {
+            "canonicalLines": [
+              1058,
+              1061
+            ],
+            "historyLines": [
+              507,
+              510
+            ],
+            "lines": 4
+          },
+          {
+            "canonicalLines": [
+              1064,
+              1064
+            ],
+            "historyLines": [
+              511,
+              511
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1073,
+              1080
+            ],
+            "historyLines": [
+              513,
+              520
+            ],
+            "lines": 8
+          },
+          {
+            "canonicalLines": [
+              1082,
+              1090
+            ],
+            "historyLines": [
+              521,
+              529
+            ],
+            "lines": 9
+          },
+          {
+            "canonicalLines": [
+              1092,
+              1097
+            ],
+            "historyLines": [
+              530,
+              535
+            ],
+            "lines": 6
+          },
+          {
+            "canonicalLines": [
+              1099,
+              1135
+            ],
+            "historyLines": [
+              536,
+              572
+            ],
+            "lines": 37
+          },
+          {
+            "canonicalLines": [
+              1137,
+              1154
+            ],
+            "historyLines": [
+              573,
+              590
+            ],
+            "lines": 18
+          },
+          {
+            "canonicalLines": [
+              1156,
+              1167
+            ],
+            "historyLines": [
+              591,
+              602
+            ],
+            "lines": 12
+          },
+          {
+            "canonicalLines": [
+              1169,
+              1182
+            ],
+            "historyLines": [
+              603,
+              616
+            ],
+            "lines": 14
+          },
+          {
+            "canonicalLines": [
+              1184,
+              1189
+            ],
+            "historyLines": [
+              617,
+              622
+            ],
+            "lines": 6
+          },
+          {
+            "canonicalLines": [
+              1191,
+              1195
+            ],
+            "historyLines": [
+              623,
+              627
+            ],
+            "lines": 5
+          },
+          {
+            "canonicalLines": [
+              1197,
+              1200
+            ],
+            "historyLines": [
+              628,
+              631
+            ],
+            "lines": 4
+          },
+          {
+            "canonicalLines": [
+              1203,
+              1203
+            ],
+            "historyLines": [
+              632,
+              632
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1215,
+              1222
+            ],
+            "historyLines": [
+              634,
+              641
+            ],
+            "lines": 8
+          },
+          {
+            "canonicalLines": [
+              1224,
+              1232
+            ],
+            "historyLines": [
+              642,
+              650
+            ],
+            "lines": 9
+          },
+          {
+            "canonicalLines": [
+              1234,
+              1240
+            ],
+            "historyLines": [
+              651,
+              657
+            ],
+            "lines": 7
+          },
+          {
+            "canonicalLines": [
+              1242,
+              1266
+            ],
+            "historyLines": [
+              658,
+              682
+            ],
+            "lines": 25
+          },
+          {
+            "canonicalLines": [
+              1268,
+              1279
+            ],
+            "historyLines": [
+              683,
+              694
+            ],
+            "lines": 12
+          },
+          {
+            "canonicalLines": [
+              1281,
+              1290
+            ],
+            "historyLines": [
+              695,
+              704
+            ],
+            "lines": 10
+          },
+          {
+            "canonicalLines": [
+              1292,
+              1301
+            ],
+            "historyLines": [
+              705,
+              714
+            ],
+            "lines": 10
+          },
+          {
+            "canonicalLines": [
+              1303,
+              1307
+            ],
+            "historyLines": [
+              715,
+              719
+            ],
+            "lines": 5
+          },
+          {
+            "canonicalLines": [
+              1309,
+              1313
+            ],
+            "historyLines": [
+              720,
+              724
+            ],
+            "lines": 5
+          },
+          {
+            "canonicalLines": [
+              1315,
+              1318
+            ],
+            "historyLines": [
+              725,
+              728
+            ],
+            "lines": 4
+          },
+          {
+            "canonicalLines": [
+              1321,
+              1321
+            ],
+            "historyLines": [
+              729,
+              729
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1331,
+              1338
+            ],
+            "historyLines": [
+              731,
+              738
+            ],
+            "lines": 8
+          },
+          {
+            "canonicalLines": [
+              1340,
+              1352
+            ],
+            "historyLines": [
+              739,
+              751
+            ],
+            "lines": 13
+          },
+          {
+            "canonicalLines": [
+              1354,
+              1361
+            ],
+            "historyLines": [
+              752,
+              759
+            ],
+            "lines": 8
+          },
+          {
+            "canonicalLines": [
+              1363,
+              1401
+            ],
+            "historyLines": [
+              760,
+              798
+            ],
+            "lines": 39
+          },
+          {
+            "canonicalLines": [
+              1403,
+              1417
+            ],
+            "historyLines": [
+              799,
+              813
+            ],
+            "lines": 15
+          },
+          {
+            "canonicalLines": [
+              1419,
+              1429
+            ],
+            "historyLines": [
+              814,
+              824
+            ],
+            "lines": 11
+          },
+          {
+            "canonicalLines": [
+              1431,
+              1442
+            ],
+            "historyLines": [
+              825,
+              836
+            ],
+            "lines": 12
+          },
+          {
+            "canonicalLines": [
+              1444,
+              1451
+            ],
+            "historyLines": [
+              837,
+              844
+            ],
+            "lines": 8
+          },
+          {
+            "canonicalLines": [
+              1453,
+              1457
+            ],
+            "historyLines": [
+              845,
+              849
+            ],
+            "lines": 5
+          },
+          {
+            "canonicalLines": [
+              1459,
+              1466
+            ],
+            "historyLines": [
+              850,
+              857
+            ],
+            "lines": 8
+          },
+          {
+            "canonicalLines": [
+              1469,
+              1469
+            ],
+            "historyLines": [
+              858,
+              858
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1471,
+              1471
+            ],
+            "historyLines": [
+              859,
+              859
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1473,
+              1473
+            ],
+            "historyLines": [
+              869,
+              869
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1474,
+              1483
+            ],
+            "historyLines": [
+              934,
+              943
+            ],
+            "lines": 10
+          },
+          {
+            "canonicalLines": [
+              1485,
+              1493
+            ],
+            "historyLines": [
+              944,
+              952
+            ],
+            "lines": 9
+          },
+          {
+            "canonicalLines": [
+              1495,
+              1501
+            ],
+            "historyLines": [
+              953,
+              959
+            ],
+            "lines": 7
+          },
+          {
+            "canonicalLines": [
+              1503,
+              1557
+            ],
+            "historyLines": [
+              960,
+              1014
+            ],
+            "lines": 55
+          },
+          {
+            "canonicalLines": [
+              1559,
+              1577
+            ],
+            "historyLines": [
+              1015,
+              1033
+            ],
+            "lines": 19
+          },
+          {
+            "canonicalLines": [
+              1579,
+              1588
+            ],
+            "historyLines": [
+              1034,
+              1043
+            ],
+            "lines": 10
+          },
+          {
+            "canonicalLines": [
+              1590,
+              1601
+            ],
+            "historyLines": [
+              1044,
+              1055
+            ],
+            "lines": 12
+          },
+          {
+            "canonicalLines": [
+              1603,
+              1610
+            ],
+            "historyLines": [
+              1056,
+              1063
+            ],
+            "lines": 8
+          },
+          {
+            "canonicalLines": [
+              1612,
+              1616
+            ],
+            "historyLines": [
+              1064,
+              1068
+            ],
+            "lines": 5
+          },
+          {
+            "canonicalLines": [
+              1618,
+              1633
+            ],
+            "historyLines": [
+              1069,
+              1084
+            ],
+            "lines": 16
+          },
+          {
+            "canonicalLines": [
+              1636,
+              1636
+            ],
+            "historyLines": [
+              1085,
+              1085
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1638,
+              1638
+            ],
+            "historyLines": [
+              1086,
+              1086
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1640,
+              1640
+            ],
+            "historyLines": [
+              1097,
+              1097
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1642,
+              1743
+            ],
+            "historyLines": [
+              1101,
+              1202
+            ],
+            "lines": 102
+          },
+          {
+            "canonicalLines": [
+              1747,
+              1747
+            ],
+            "historyLines": [
+              1203,
+              1203
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1749,
+              1749
+            ],
+            "historyLines": [
+              1204,
+              1204
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1751,
+              1751
+            ],
+            "historyLines": [
+              1249,
+              1249
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1753,
+              1856
+            ],
+            "historyLines": [
+              1601,
+              1704
+            ],
+            "lines": 104
+          },
+          {
+            "canonicalLines": [
+              1860,
+              1860
+            ],
+            "historyLines": [
+              1705,
+              1705
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1862,
+              1862
+            ],
+            "historyLines": [
+              1707,
+              1707
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1866,
+              1922
+            ],
+            "historyLines": [
+              1708,
+              1764
+            ],
+            "lines": 57
+          },
+          {
+            "canonicalLines": [
+              1924,
+              1924
+            ],
+            "historyLines": [
+              1765,
+              1765
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1926,
+              1926
+            ],
+            "historyLines": [
+              1767,
+              1767
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1932,
+              1985
+            ],
+            "historyLines": [
+              1768,
+              1821
+            ],
+            "lines": 54
+          },
+          {
+            "canonicalLines": [
+              1987,
+              1987
+            ],
+            "historyLines": [
+              1822,
+              1822
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1989,
+              1989
+            ],
+            "historyLines": [
+              1824,
+              1824
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1995,
+              2052
+            ],
+            "historyLines": [
+              1825,
+              1882
+            ],
+            "lines": 58
+          },
+          {
+            "canonicalLines": [
+              2054,
+              2054
+            ],
+            "historyLines": [
+              1883,
+              1883
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2056,
+              2056
+            ],
+            "historyLines": [
+              1885,
+              1885
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2058,
+              2058
+            ],
+            "historyLines": [
+              1887,
+              1887
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2060,
+              2060
+            ],
+            "historyLines": [
+              1889,
+              1889
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2062,
+              2115
+            ],
+            "historyLines": [
+              2081,
+              2134
+            ],
+            "lines": 54
+          },
+          {
+            "canonicalLines": [
+              2117,
+              2118
+            ],
+            "historyLines": [
+              2140,
+              2141
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              2124,
+              2177
+            ],
+            "historyLines": [
+              2143,
+              2196
+            ],
+            "lines": 54
+          },
+          {
+            "canonicalLines": [
+              2179,
+              2179
+            ],
+            "historyLines": [
+              2197,
+              2197
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2183,
+              2184
+            ],
+            "historyLines": [
+              2199,
+              2200
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              2186,
+              2186
+            ],
+            "historyLines": [
+              2202,
+              2202
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2188,
+              2188
+            ],
+            "historyLines": [
+              2204,
+              2204
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2190,
+              2250
+            ],
+            "historyLines": [
+              2208,
+              2268
+            ],
+            "lines": 61
+          },
+          {
+            "canonicalLines": [
+              2252,
+              2253
+            ],
+            "historyLines": [
+              2269,
+              2270
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              2255,
+              2257
+            ],
+            "historyLines": [
+              2271,
+              2273
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              2259,
+              2259
+            ],
+            "historyLines": [
+              2275,
+              2275
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2263,
+              2312
+            ],
+            "historyLines": [
+              2276,
+              2325
+            ],
+            "lines": 50
+          },
+          {
+            "canonicalLines": [
+              2314,
+              2315
+            ],
+            "historyLines": [
+              2326,
+              2327
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              2316,
+              2316
+            ],
+            "historyLines": [
+              2329,
+              2329
+            ],
+            "lines": 1
+          }
+        ],
+        "unmatchedRanges": [
+          {
+            "canonicalLines": [
+              1,
+              1
+            ],
+            "sha256": "6f18720eb433283a67f5557f7d3666573c9ac8c35e78d1fe3332061081caf333",
+            "bytes": 28,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              3,
+              3
+            ],
+            "sha256": "bbac2ea62daad5398a7fffae7ac81691fda2e6b0588c92cb32e5e8c22373093c",
+            "bytes": 59,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              5,
+              5
+            ],
+            "sha256": "469efa8c23105fe1652ec6c7dd1b6e082922c260a675e3cfc42033be45f2960b",
+            "bytes": 196,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              7,
+              7
+            ],
+            "sha256": "3bf98443f4b66adee734e19ffbc6ace611117b609a6c4e427448bd7b4a87a477",
+            "bytes": 227,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              9,
+              10
+            ],
+            "sha256": "33cd2575b87be5f16593d87140eba43dec694c7913bd4f8eeb5451d77dc0c48f",
+            "bytes": 111,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              12,
+              12
+            ],
+            "sha256": "4efa4967a64b6069ae53e06450b2d73c37ad9fe0d257d703db36379b0c3a9509",
+            "bytes": 119,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              14,
+              14
+            ],
+            "sha256": "3a835c3fc6564dc0c5230dd40b271af671ccf5dce0136cd1bcf00f24cc3e0772",
+            "bytes": 138,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              16,
+              17
+            ],
+            "sha256": "14628222c21f7be9cbf779931ef9210244e597caefa91eb08198d7138943baaf",
+            "bytes": 75,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              19,
+              19
+            ],
+            "sha256": "7bd6ce74e0d6d381e13bb703d7979a4b708de29f3f0094ac99cdf08fd9309988",
+            "bytes": 35,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              23,
+              23
+            ],
+            "sha256": "b5e992e001c0412ca8dadadae8d801eb7aef2398b9afc9306ac8495cde8a8d9f",
+            "bytes": 668,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              27,
+              27
+            ],
+            "sha256": "213a5ceb88cd4942cc782936ffc57d68ac5c80fd2e8b45fe4378521612e8fbd6",
+            "bytes": 359,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              29,
+              30
+            ],
+            "sha256": "6aed8926a6bc1dc76974ebdf90f045c682894768e6ab3f42d512f615876ac29e",
+            "bytes": 663,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              32,
+              40
+            ],
+            "sha256": "31bbf9aa9032f649c1c38dfe3bab06f78ba1a319e6509fd5a5c3f0453d681d8a",
+            "bytes": 2645,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              44,
+              44
+            ],
+            "sha256": "ec7b659b52c48581e28ed0abf40dc5084ed70e7bb68760efc929feb6c222e40a",
+            "bytes": 831,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              46,
+              46
+            ],
+            "sha256": "f1d94415d12143a2ac256f1d696537ff196515632748af54288041e5c590f892",
+            "bytes": 458,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              50,
+              50
+            ],
+            "sha256": "cc8e209f7ac011376620fd7a0cb850f7f087a391f9c476f15ca11f9ada46ab5a",
+            "bytes": 497,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              52,
+              52
+            ],
+            "sha256": "c2a8620b304de84607734a0fe454c80903f0bfa44d7855a7930412c1f7756977",
+            "bytes": 33,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              54,
+              54
+            ],
+            "sha256": "74fc3cfb164d2b569fb0864dbd33d6ea60d5b583bb0df0c29a81b90b97b8f29d",
+            "bytes": 655,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              56,
+              56
+            ],
+            "sha256": "1c6af7fc3ba61444f7a925f7d48f8c818cdb4acf0987b93c711d6505887926fa",
+            "bytes": 217,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              58,
+              71
+            ],
+            "sha256": "726274d7c85fcf2dea07313d6b6c828935ffecf3763db602bd07a4386e06ef5d",
+            "bytes": 7464,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              75,
+              82
+            ],
+            "sha256": "5ad55f2306248fb79d44d637019c35dc41b3e221bf95e659221d43c9549b7ce3",
+            "bytes": 1901,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              86,
+              86
+            ],
+            "sha256": "2b200cb8bc04de15aaf9d330146d44c16c9d299ad48aee4996efffe733dd18a8",
+            "bytes": 325,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              88,
+              88
+            ],
+            "sha256": "b8a97b0643e5cfafd8aea83a79c7b2a5e6d71446dd6ed27b137f44c15fa20275",
+            "bytes": 27,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              90,
+              92
+            ],
+            "sha256": "e3792bf1022ae212332d547e9ef78dac79e943b408787dc693c32ab2ec2013ee",
+            "bytes": 256,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              94,
+              786
+            ],
+            "sha256": "b3d6ddc4c22aa2b0f44d51d5ec8615b9b429284307b6ff69c9b92a9a8138c01f",
+            "bytes": 121640,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              790,
+              791
+            ],
+            "sha256": "721d1484815c81d5e3dceada3f8709f8d75a6857dbd64d4e311497c54d24d05c",
+            "bytes": 144,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              793,
+              796
+            ],
+            "sha256": "4e3c36c35c723d5f4d988100b2be46ebc32c24c9b9a3000c03ce9add46b5cb8a",
+            "bytes": 369,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              799,
+              799
+            ],
+            "sha256": "e81ce00ecd32e5aab0b5a8e84a7feb72ee83181061e9291c7bed70ba0a3c4dce",
+            "bytes": 52,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              801,
+              801
+            ],
+            "sha256": "2fc496dc23b7f75a97d39fd217f5510cf112d9b7646f67cb06037c5b72c078ef",
+            "bytes": 469,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              886,
+              887
+            ],
+            "sha256": "22475d32b5cd872dd0c50a64a8a2266d6a120dd3401980e580e69aa9e249e4d9",
+            "bytes": 121,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              889,
+              889
+            ],
+            "sha256": "f6f1c35b81ae1bd327a893dabd94931dd0d78e507e3dee9ec4337fe0b4af2bdf",
+            "bytes": 365,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              893,
+              893
+            ],
+            "sha256": "3e0c7f07346def1728a77cccadeb1cf62dd9f9aa434629be0f5cf7f48e783da2",
+            "bytes": 38,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              895,
+              906
+            ],
+            "sha256": "32c5a18bfa80f24642196a20d229f1525003fbcabc5e1446897bd5d59970bd94",
+            "bytes": 2424,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              908,
+              908
+            ],
+            "sha256": "0e8280d9c5a588578b4265f66cb9a5614610ad389511c84921b70219c6bf54dd",
+            "bytes": 40,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              910,
+              915
+            ],
+            "sha256": "91982bd9643bf2c9ca3deea74ef72a41f8a6d113383b1e666f9cf4c9b5c0ad1c",
+            "bytes": 1320,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              917,
+              917
+            ],
+            "sha256": "1250963931db5dde279d5407d3bfc57369b8f3c094f8497677e4674130a42da3",
+            "bytes": 190,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              919,
+              920
+            ],
+            "sha256": "959c642c7e96586eb82f0c5aae9d6aa74dfc74f1caf2b9fb6993758c07d9fe8f",
+            "bytes": 110,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              922,
+              922
+            ],
+            "sha256": "355a6fe2ba61bc5d5574f609a3b2f64c78f25f1a00763cfe68cf13bb003d49d5",
+            "bytes": 753,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              924,
+              926
+            ],
+            "sha256": "6d34833b559fcec2941985f0d714da8bc1e67483d535c0240173c8f122548e42",
+            "bytes": 599,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              928,
+              928
+            ],
+            "sha256": "6450752f7a6a5c4482b9babd51caca1b03a2e2de840080b17916c80a43d72a29",
+            "bytes": 109,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              940,
+              940
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              950,
+              950
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              962,
+              962
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              999,
+              999
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1014,
+              1014
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1027,
+              1027
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1042,
+              1042
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1051,
+              1051
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1057,
+              1057
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1062,
+              1063
+            ],
+            "sha256": "c259a6ceb6cb2696486b61b2627d77f919e48c2c28f086240aae02aa7501d27c",
+            "bytes": 127,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1065,
+              1072
+            ],
+            "sha256": "05a79a5ef83e7c061d6e78e74957431573aeb4d709d53eff83f482ce35ecba8c",
+            "bytes": 1490,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1081,
+              1081
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1091,
+              1091
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1098,
+              1098
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1136,
+              1136
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1155,
+              1155
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1168,
+              1168
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1183,
+              1183
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1190,
+              1190
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1196,
+              1196
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1201,
+              1202
+            ],
+            "sha256": "f9ef896993a1ad86db662973690cc1ed9dddedbd0b3bce1dd9704384b6258253",
+            "bytes": 110,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1204,
+              1214
+            ],
+            "sha256": "32b11d49f96c2fccc9294607c8278d655bb1024c3ab390aa15d95a1cbce696e0",
+            "bytes": 2383,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1223,
+              1223
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1233,
+              1233
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1241,
+              1241
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1267,
+              1267
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1280,
+              1280
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1291,
+              1291
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1302,
+              1302
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1308,
+              1308
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1314,
+              1314
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1319,
+              1320
+            ],
+            "sha256": "051d69d04a8239d14508cee1bd1d4e5c0b9d4a5d6044a73a3658e9c99965e96c",
+            "bytes": 120,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1322,
+              1330
+            ],
+            "sha256": "fa1ba6dae014c097db01fc07e784ba15dd29ff67ebca0ce3b36460a0b77884e5",
+            "bytes": 2624,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1339,
+              1339
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1353,
+              1353
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1362,
+              1362
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1402,
+              1402
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1418,
+              1418
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1430,
+              1430
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1443,
+              1443
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1452,
+              1452
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1458,
+              1458
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1467,
+              1468
+            ],
+            "sha256": "24cc60cced7bc693450932c40d4bf14e64350236d4c11cd90c76b359691c7774",
+            "bytes": 108,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1470,
+              1470
+            ],
+            "sha256": "ff29cd8b9f6b717c75ad14bab190eab1b1b6ce186b47573f601b6616ff875174",
+            "bytes": 378,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1472,
+              1472
+            ],
+            "sha256": "bcb4288b6c39e08991b53dfec48c053453e82eeeb525907a68596631d86fb506",
+            "bytes": 97,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1484,
+              1484
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1494,
+              1494
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1502,
+              1502
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1558,
+              1558
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1578,
+              1578
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1589,
+              1589
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1602,
+              1602
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1611,
+              1611
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1617,
+              1617
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              1634,
+              1635
+            ],
+            "sha256": "be4bd2ead0667d410e6e89d4e6283031b23186461b20866acb4a88ada8825399",
+            "bytes": 112,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1637,
+              1637
+            ],
+            "sha256": "3fe7f89322acd84fb09f8771bb72e88c11d4de968cd5620ff98611300c299bd8",
+            "bytes": 443,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1639,
+              1639
+            ],
+            "sha256": "31c1c99c0c19b4c2a84ea8d455fdbd72afb6f57d95daa7744fe17525b22b7e3f",
+            "bytes": 51,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1641,
+              1641
+            ],
+            "sha256": "d6f1fa7b57337afbb66754f2ed1e7eb7c1afb830e9efef50b338105bf948bac6",
+            "bytes": 8,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1744,
+              1746
+            ],
+            "sha256": "bf35c407cf72848cb11e66130071736f5d6809e23228da01b77715d4908e2b11",
+            "bytes": 112,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1748,
+              1748
+            ],
+            "sha256": "112af5a6d61549abdff312c0bcde0146f920a2362568d4b315cd2f258177f8a7",
+            "bytes": 439,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1750,
+              1750
+            ],
+            "sha256": "31c1c99c0c19b4c2a84ea8d455fdbd72afb6f57d95daa7744fe17525b22b7e3f",
+            "bytes": 51,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1752,
+              1752
+            ],
+            "sha256": "d6f1fa7b57337afbb66754f2ed1e7eb7c1afb830e9efef50b338105bf948bac6",
+            "bytes": 8,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1857,
+              1859
+            ],
+            "sha256": "6926e7a720347973d4871ddd25c97aa28ceb5b846748509b9e14efc0a85020a3",
+            "bytes": 116,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1861,
+              1861
+            ],
+            "sha256": "00f838f8f559c53c6886d83b4a3b7e8c323ecfa3e68356164ef840b19673fa5a",
+            "bytes": 443,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1863,
+              1865
+            ],
+            "sha256": "9eaa4030c0d595c5c09de8c2cea97e425b64037a0f99b0a4298353f85649250a",
+            "bytes": 60,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1923,
+              1923
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1925,
+              1925
+            ],
+            "sha256": "9b2d0575398e58af7c5cde1950433f395400c197186df79b284f0ba03bd3a290",
+            "bytes": 73,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1927,
+              1931
+            ],
+            "sha256": "a6a8d17e65741d5558ca96c84f03c1e477e389d880b22aceb549f419d6aa86b5",
+            "bytes": 239,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1986,
+              1986
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1988,
+              1988
+            ],
+            "sha256": "f75932e661dc2c4a1a8f62d239a4f20c58f1c59d1cfc16ef23567a588efe1b65",
+            "bytes": 67,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1990,
+              1994
+            ],
+            "sha256": "d6a0b8780fb517c6929443f7afbae9de4a34f074ff60095c7c98aa3deb946431",
+            "bytes": 435,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2053,
+              2053
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2055,
+              2055
+            ],
+            "sha256": "e75c319cbd96712c42e30dbb12d150feba8f29444ead362b64f23c4aa51a5e6b",
+            "bytes": 69,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2057,
+              2057
+            ],
+            "sha256": "07fb37081aae9dc1d4e4d591ea06717a90cbf18950e492b4ff87bc577566237f",
+            "bytes": 23,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2059,
+              2059
+            ],
+            "sha256": "d1b8b69c4cb863a63dd992405b433735373f01c3cf665c7bcf0958a6cdc6586e",
+            "bytes": 410,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2061,
+              2061
+            ],
+            "sha256": "d6f1fa7b57337afbb66754f2ed1e7eb7c1afb830e9efef50b338105bf948bac6",
+            "bytes": 8,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2116,
+              2116
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2119,
+              2123
+            ],
+            "sha256": "972db8088e339835732b4714500a9fba317d6e55d19fd370ec9e52bd3c0bb703",
+            "bytes": 513,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2178,
+              2178
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2180,
+              2182
+            ],
+            "sha256": "fe6ed406546050333655f7fbb2a98199a0d692f187a3bb24bbfffd96d69b7c25",
+            "bytes": 551,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2185,
+              2185
+            ],
+            "sha256": "f308cfaad332bce2538be0b8d498f80ea0474ef4ad55bd1f91ce6d26550bfccd",
+            "bytes": 59,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2187,
+              2187
+            ],
+            "sha256": "396bd96865b4a8e81d937889de3d4dd6d42a3e544abe4b6ea96690d6dffc6273",
+            "bytes": 487,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2189,
+              2189
+            ],
+            "sha256": "d6f1fa7b57337afbb66754f2ed1e7eb7c1afb830e9efef50b338105bf948bac6",
+            "bytes": 8,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2251,
+              2251
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2254,
+              2254
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              2258,
+              2258
+            ],
+            "sha256": "6afe0c8883bc3e7edfa35fe6fa99cff179d5d13416f01effe613892ab57f8bde",
+            "bytes": 48,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2260,
+              2262
+            ],
+            "sha256": "24ddab8e8d19393811b65303b3bd8989f5decede420dab1a5bfedae9cc0774b9",
+            "bytes": 287,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2313,
+              2313
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2317,
+              2317
+            ],
+            "sha256": "e8aef4a84331b941b02c0696b56ac042a870839777c3de25f71cb7f42a739d83",
+            "bytes": 695,
+            "blankOnly": false
+          }
+        ],
+        "interpretation": "Unmatched ranges require person-specific qualification and chronology review. Matching blocks do not establish delivery or authorize alternate histories."
+      },
+      "directSourcePacketChecks": [
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days/nia/report.md",
+          "sha256": "7b561855e877ac186d7b25e82d23bdf49c7221df313efdd705792a38d75ea067",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur/nia/report.md",
+          "sha256": "df1ce68439754070bf1a175b3bb3e00399ea8d34ef4cc99f3fb5a2f1d39299b9",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest1/nia/report.md",
+          "sha256": "8ef5e97e4357b6fc67a268404a0a917db682ed10ee92cd761d9c3060bb8441e4",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest2/nia/report.md",
+          "sha256": "03248e2eb3160bdcd595e33831fd20660d3724de9b678b1ded64cc95daad56ec",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-initial/nia/report.md",
+          "sha256": "f508974fe0ed8f9c9e478ffac8cac6d80f391d031cf7a8c333451af3112cd04b",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-retest1/nia/report.md",
+          "sha256": "e5a42de303e2e510f77fefbd9bc151700b82eab9a15025d3822b63cbd5082b1b",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/pass/nia/report.md",
+          "sha256": "956a0f4f99948c75f6fff02129742ad2ae27fda3e8ed1dc95140346fab183ed3",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/pass-retest2/nia/report.md",
+          "sha256": "c2f21abf75e5076c9ef974c121d806fdc89935aba23d7bf44c1d954dc135639d",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/nia/report.md",
+          "sha256": "d62c77f1fa22c7d6593b22db610b5296e86f3b28a71ab64ddaef722cabf8f349",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-retest1/nia/report.md",
+          "sha256": "2f77fbfd16d5598959423a9bac0c2312d172ae999b6faee5e2ee9054817f6713",
+          "occurrencesInBaseline": 0,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/rope/nia/report.md",
+          "sha256": "238cfec43f48920da23e227aa09b745d71fbde77e8f90fc05103e3999cc9a482",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/rope-retest1/nia/report.md",
+          "sha256": "33491cf4fba8ca3b366f56e7cd6177f018a0aaccdeccdc3c445dfaa2959d199c",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/rope-retest2/nia/report.md",
+          "sha256": "06e2b82a906945be064b590acc05724f6b7bd96d0adb3a88ec83128447660f42",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/warren-retest2/nia/report.md",
+          "sha256": "87df8c2ffb55919d893dcd8ee724a75a6d5259d8c46ef089f00ca74e02723d3f",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/nia/report.md",
+          "sha256": "2a8153b29116f5ddf00ac51cd42f8df31eeebdfb6aec8844da7409d992600522",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest2/nia/report.md",
+          "sha256": "fc970bbcb93412f8c10a088c43ed1406e67299aa78e9c9c51d32e4454298c535",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        }
+      ],
+      "directOtherReportExceptions": [],
+      "limits": "Bounded direct-child and source-packet inventory; recheck newly arriving returns. Preserve inherited qualifications; no peer reports or alternative CONT."
+    }
+  },
+  "appendedOwnContinuation": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-packet-preparation/ready/nia/diary-continuation.md",
+    "sha256": "1c78f5cae7e7a3d23999790cfa71eda5b47e7f42ce9a21ef695e47bbd88b7c63",
+    "outputByteRange": [
+      290549,
+      301263
+    ],
+    "reportSource": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-packet-preparation/ready/nia/report.md",
+    "reportSha256": "de970bc8e4ba9a31ba45fc9b4b10e1db8f0cc721b7efeca9aaecf8c1ba9a2b9d",
+    "literalReportOccursOnce": true
+  },
+  "coordinatorQualification": {
+    "rootQualificationPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-root-qualification.json",
+    "rootQualificationSha256": "ebbc136e89f5e1921585aa14e5992eaf83f0f0d6e15ea26b2faee4d7e7e5413a",
+    "protocolPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-actual-protocol-review.json",
+    "protocolSha256": "c6fd9cb60dcd8d7292ce4507187eee719c9d76a0fde18d8592c3469171e95b9d",
+    "additionalOwnConfidenceQualification": false,
+    "relationship": "Own report is literal; separate own method notes are coordinator synthesis. No peer reports or administrative attempt memories added."
+  },
+  "pending": "Packet reviews/root seal, independent own-history reconciliation, current canonical check and eventual final live fix/inputs/helpers/fresh admission. Canonical copies are same encounters; never append twice."
+}

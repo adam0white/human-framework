@@ -1,0 +1,1114 @@
+{
+  "status": "PRIVATE_DRAFT_NOT_FROZEN_NOT_ADMITTED",
+  "historySha256": "aec2b9f96ebb4eecac3499f6c7b778deb394c0b1f3dd10d3725d08badc667ef8",
+  "historyLineCount": 2130,
+  "selectedHistoryNotFullArchive": true,
+  "baseline": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/emre/own-history.md",
+    "sha256": "3ed815e4a8dcbac8bb3dc5dad66cb05ef6b44179c0f38af13751aeea2c6ea022",
+    "preservedPrefixByteRange": [
+      0,
+      255141
+    ],
+    "relocatedFinalMarkerBytes": 29
+  },
+  "priorSourceMap": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/emre/history-source-map.json",
+    "sha256": "edb01c024765c30c1d125164b008c820bc0474110dc7eb8de24a9bb72c6dfa1f",
+    "content": {
+      "status": "CANDIDATE NOT FROZEN OR ADMITTED; canonical unmatched ranges require review",
+      "tester": "emre",
+      "baseline": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/emre/own-history.md",
+        "sha256": "fa281f12919d200ea0536e307b2c6129265fc5d229e385cb4b4a20e3a6084cb5",
+        "bytes": 243865,
+        "lines": 1979,
+        "sourceMap": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-retest1-dispatch2-inputs/emre/history-source-map.json",
+        "sourceMapSha256": "59435c92dd99f4216d84d70500ce7098513d2564de7cc32e5abeac9a17058916",
+        "retainedByteRange": [
+          0,
+          243836
+        ],
+        "terminalMarkerRelocated": "End of supplied own history."
+      },
+      "appendix": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-retest1/emre/diary-continuation.md",
+        "sha256": "eed6730dda7a551722c9aede44085a87eb0de12928b0badf047f4246fd5d4cc9",
+        "bytes": 11200,
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-retest1/emre/report.md",
+        "reportSha256": "39c1a6ffaa1610a7678fbcb0f39492177f1533184dc8e60067a8c78768ac0b12",
+        "reportBytes": 10508,
+        "reportSourceByteRange": [
+          0,
+          10508
+        ],
+        "separateQualificationSourceByteRange": [
+          10508,
+          11200
+        ],
+        "candidateAppendixByteRange": [
+          243939,
+          255139
+        ],
+        "candidateAppendixLineRange": [
+          1983,
+          2058
+        ],
+        "reportOccurrencesBefore": 0,
+        "reportOccurrencesAfter": 1
+      },
+      "candidate": {
+        "sha256": "3ed815e4a8dcbac8bb3dc5dad66cb05ef6b44179c0f38af13751aeea2c6ea022",
+        "bytes": 255170,
+        "lines": 2061
+      },
+      "canonical": {
+        "commit": "4a5a37314452497c79417355e49d558f64ae2218",
+        "path": "docs/lab/panel/emre-kaya.md",
+        "sha256": "2625f963fb7770564c54350b9c7f5e3f87ac4fc8fc6784a6caf0971d858dece4",
+        "bytes": 227962,
+        "lines": 2133,
+        "wholeContained": false,
+        "orderPreservingExactMatchingLines": 493,
+        "matchingBlocks": [
+          {
+            "canonicalLines": [
+              2,
+              2
+            ],
+            "historyLines": [
+              2,
+              2
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              4,
+              4
+            ],
+            "historyLines": [
+              4,
+              4
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              6,
+              6
+            ],
+            "historyLines": [
+              7,
+              7
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              8,
+              8
+            ],
+            "historyLines": [
+              9,
+              9
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              11,
+              11
+            ],
+            "historyLines": [
+              11,
+              11
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              13,
+              13
+            ],
+            "historyLines": [
+              13,
+              13
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              15,
+              15
+            ],
+            "historyLines": [
+              14,
+              14
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              18,
+              20
+            ],
+            "historyLines": [
+              27,
+              29
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              22,
+              22
+            ],
+            "historyLines": [
+              45,
+              45
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              24,
+              24
+            ],
+            "historyLines": [
+              47,
+              47
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              26,
+              26
+            ],
+            "historyLines": [
+              49,
+              49
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              28,
+              28
+            ],
+            "historyLines": [
+              51,
+              51
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              30,
+              30
+            ],
+            "historyLines": [
+              61,
+              61
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              32,
+              32
+            ],
+            "historyLines": [
+              63,
+              63
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              34,
+              34
+            ],
+            "historyLines": [
+              65,
+              65
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              68,
+              70
+            ],
+            "historyLines": [
+              95,
+              97
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              80,
+              80
+            ],
+            "historyLines": [
+              103,
+              103
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              82,
+              82
+            ],
+            "historyLines": [
+              105,
+              105
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              84,
+              84
+            ],
+            "historyLines": [
+              113,
+              113
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              230,
+              234
+            ],
+            "historyLines": [
+              127,
+              131
+            ],
+            "lines": 5
+          },
+          {
+            "canonicalLines": [
+              238,
+              238
+            ],
+            "historyLines": [
+              137,
+              137
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              244,
+              246
+            ],
+            "historyLines": [
+              143,
+              145
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              252,
+              254
+            ],
+            "historyLines": [
+              151,
+              153
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              258,
+              259
+            ],
+            "historyLines": [
+              157,
+              158
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              261,
+              261
+            ],
+            "historyLines": [
+              161,
+              161
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              638,
+              744
+            ],
+            "historyLines": [
+              163,
+              269
+            ],
+            "lines": 107
+          },
+          {
+            "canonicalLines": [
+              745,
+              745
+            ],
+            "historyLines": [
+              272,
+              272
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              747,
+              747
+            ],
+            "historyLines": [
+              273,
+              273
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              749,
+              749
+            ],
+            "historyLines": [
+              274,
+              274
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              751,
+              871
+            ],
+            "historyLines": [
+              1619,
+              1739
+            ],
+            "lines": 121
+          },
+          {
+            "canonicalLines": [
+              873,
+              874
+            ],
+            "historyLines": [
+              1744,
+              1745
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              877,
+              877
+            ],
+            "historyLines": [
+              1747,
+              1747
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1895,
+              1896
+            ],
+            "historyLines": [
+              1749,
+              1750
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              1898,
+              1898
+            ],
+            "historyLines": [
+              1751,
+              1751
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1900,
+              1900
+            ],
+            "historyLines": [
+              1752,
+              1752
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1902,
+              1972
+            ],
+            "historyLines": [
+              1754,
+              1824
+            ],
+            "lines": 71
+          },
+          {
+            "canonicalLines": [
+              1974,
+              1974
+            ],
+            "historyLines": [
+              1825,
+              1825
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1978,
+              1979
+            ],
+            "historyLines": [
+              1827,
+              1828
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              1981,
+              1981
+            ],
+            "historyLines": [
+              1830,
+              1830
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1983,
+              1983
+            ],
+            "historyLines": [
+              1832,
+              1832
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              1985,
+              2050
+            ],
+            "historyLines": [
+              1836,
+              1901
+            ],
+            "lines": 66
+          },
+          {
+            "canonicalLines": [
+              2052,
+              2053
+            ],
+            "historyLines": [
+              1902,
+              1903
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              2055,
+              2057
+            ],
+            "historyLines": [
+              1904,
+              1906
+            ],
+            "lines": 3
+          },
+          {
+            "canonicalLines": [
+              2059,
+              2059
+            ],
+            "historyLines": [
+              1908,
+              1908
+            ],
+            "lines": 1
+          },
+          {
+            "canonicalLines": [
+              2063,
+              2128
+            ],
+            "historyLines": [
+              1909,
+              1974
+            ],
+            "lines": 66
+          },
+          {
+            "canonicalLines": [
+              2130,
+              2131
+            ],
+            "historyLines": [
+              1975,
+              1976
+            ],
+            "lines": 2
+          },
+          {
+            "canonicalLines": [
+              2132,
+              2132
+            ],
+            "historyLines": [
+              1978,
+              1978
+            ],
+            "lines": 1
+          }
+        ],
+        "unmatchedRanges": [
+          {
+            "canonicalLines": [
+              1,
+              1
+            ],
+            "sha256": "73f0b2480a9f8b45e10a86911adff93e60b6b23abc143e69803fe17e97783e2b",
+            "bytes": 27,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              3,
+              3
+            ],
+            "sha256": "bbac2ea62daad5398a7fffae7ac81691fda2e6b0588c92cb32e5e8c22373093c",
+            "bytes": 59,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              5,
+              5
+            ],
+            "sha256": "c5053ccabcb649754796cae21437bad53be99cbdd5c970a5284275208fdb7d10",
+            "bytes": 195,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              7,
+              7
+            ],
+            "sha256": "3bf98443f4b66adee734e19ffbc6ace611117b609a6c4e427448bd7b4a87a477",
+            "bytes": 227,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              9,
+              10
+            ],
+            "sha256": "baf61b64b643d635ab6867a6ac06eb0b9e1a08ab850057dda2c2c45ff084bc15",
+            "bytes": 110,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              12,
+              12
+            ],
+            "sha256": "4efa4967a64b6069ae53e06450b2d73c37ad9fe0d257d703db36379b0c3a9509",
+            "bytes": 119,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              14,
+              14
+            ],
+            "sha256": "7cf7acf3c5f519ca19afbdb0223851476beb235edc5f8dea64dfd5b6e1a1fea3",
+            "bytes": 140,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              16,
+              17
+            ],
+            "sha256": "14628222c21f7be9cbf779931ef9210244e597caefa91eb08198d7138943baaf",
+            "bytes": 75,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              21,
+              21
+            ],
+            "sha256": "4e2cc1513aa5a9ecf264574ce27e4ff7dcb3d0b166357efbdead68a686ea2ff5",
+            "bytes": 206,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              23,
+              23
+            ],
+            "sha256": "c2e028d921f7fe418564a52c78cd211e593e1e5072486d2ebaabff2665a734f7",
+            "bytes": 122,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              25,
+              25
+            ],
+            "sha256": "0d0b0319e4f1526d5ea4a266777b9b56c199df375033f6c487b58b22d154e3a6",
+            "bytes": 279,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              27,
+              27
+            ],
+            "sha256": "685f322a4da8000c32d805b97e5d7c45bc86f91f3245f29428ba32d14913d05a",
+            "bytes": 24,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              29,
+              29
+            ],
+            "sha256": "6da8c10026d73bb5a320690e5acc5042e18531271033cd901c926deaef2ef20e",
+            "bytes": 81,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              31,
+              31
+            ],
+            "sha256": "aad137eae7add70de498f29545ecb8dfcdc30477282bbb3e675c042fdc529d11",
+            "bytes": 119,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              33,
+              33
+            ],
+            "sha256": "9de3020b6e0cd075f298b8a0e699792e55168b73c2ba6e6c2a16b9d5d56c25a7",
+            "bytes": 140,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              35,
+              67
+            ],
+            "sha256": "981edf882e1d3d136925c1d4d63f33c023cbd88ed7d593ce36b3729ba4ec94d4",
+            "bytes": 2369,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              71,
+              79
+            ],
+            "sha256": "072aac242ab560a7a564b5753a0dc9f5a1c14815326a66a351fc9332afccb1d4",
+            "bytes": 1471,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              81,
+              81
+            ],
+            "sha256": "0583f17e09ef296cfd326856e0963d536c9622bad55712755823281c39d46d82",
+            "bytes": 182,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              83,
+              83
+            ],
+            "sha256": "923f7a912c48310ba3235f89e34cc1a1750d0b015a36fa96171a58dd3296bc1f",
+            "bytes": 28,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              85,
+              229
+            ],
+            "sha256": "5858980b88771fd116f28bd3f7f1372eae2adbe3427b27637b46ba9e5429c434",
+            "bytes": 17739,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              235,
+              237
+            ],
+            "sha256": "350bd691f244eecaf72ecfca638a3b293452e0e0fc03f71dfd370ca6c51e408e",
+            "bytes": 483,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              239,
+              243
+            ],
+            "sha256": "b729e805dc64bb8665745228755bda1f483f791dce7de05679e1a74386dbb47b",
+            "bytes": 808,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              247,
+              251
+            ],
+            "sha256": "884ce875a3b5c9077b8e3d57f3653b4bcce78a39e9b6196cd84b927bbccc7466",
+            "bytes": 439,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              255,
+              257
+            ],
+            "sha256": "a61d943a8b527f79195ec2c69bc75b0fd5d2116d07a61c6e78c8fdbdfd282849",
+            "bytes": 389,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              260,
+              260
+            ],
+            "sha256": "dc5fe86b9d4b51e4d39c701b6f343bd3825888f6f2d13ae632e77ef21e101c6d",
+            "bytes": 26,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              262,
+              637
+            ],
+            "sha256": "c282c443a77496e7de919cd68326de4239e7c1bec0fdeede61030c81e9b6374a",
+            "bytes": 43115,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              746,
+              746
+            ],
+            "sha256": "3aabfa8a8282b986fd4128b39f5724a21b29d219e6605acb8e447da81bb2dd5d",
+            "bytes": 52,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              748,
+              748
+            ],
+            "sha256": "63519304cef71b5292cfd0f4ae9c0fae13538018f00d15aad475fcc4c3e45d57",
+            "bytes": 473,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              750,
+              750
+            ],
+            "sha256": "d6f1fa7b57337afbb66754f2ed1e7eb7c1afb830e9efef50b338105bf948bac6",
+            "bytes": 8,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              872,
+              872
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              875,
+              876
+            ],
+            "sha256": "9e79238bc724a9b270062402c04f70985df017f65b8856994ad4f75913e31b11",
+            "bytes": 122,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              878,
+              1894
+            ],
+            "sha256": "3c13c5edb58d8d3c208f082c445d359e6b4aa02b3058f6b4dc3516be84e06275",
+            "bytes": 106700,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1897,
+              1897
+            ],
+            "sha256": "a4b074c912d4c94c49fcf067cddaf5574b605a29f33d0bfba6019b02db73514c",
+            "bytes": 43,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1899,
+              1899
+            ],
+            "sha256": "bcf51c85a6b680f6b30bd8b78ddeb9359ec3ba31848675d6fcd3300db65984e6",
+            "bytes": 460,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1901,
+              1901
+            ],
+            "sha256": "d6f1fa7b57337afbb66754f2ed1e7eb7c1afb830e9efef50b338105bf948bac6",
+            "bytes": 8,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1973,
+              1973
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1975,
+              1977
+            ],
+            "sha256": "21a525c7f47589785811b420489668763fbb089ed7abb169a39a0ed5526b9de4",
+            "bytes": 513,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1980,
+              1980
+            ],
+            "sha256": "f308cfaad332bce2538be0b8d498f80ea0474ef4ad55bd1f91ce6d26550bfccd",
+            "bytes": 59,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1982,
+              1982
+            ],
+            "sha256": "396bd96865b4a8e81d937889de3d4dd6d42a3e544abe4b6ea96690d6dffc6273",
+            "bytes": 487,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              1984,
+              1984
+            ],
+            "sha256": "d6f1fa7b57337afbb66754f2ed1e7eb7c1afb830e9efef50b338105bf948bac6",
+            "bytes": 8,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2051,
+              2051
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2054,
+              2054
+            ],
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "bytes": 1,
+            "blankOnly": true
+          },
+          {
+            "canonicalLines": [
+              2058,
+              2058
+            ],
+            "sha256": "6afe0c8883bc3e7edfa35fe6fa99cff179d5d13416f01effe613892ab57f8bde",
+            "bytes": 48,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2060,
+              2062
+            ],
+            "sha256": "24ddab8e8d19393811b65303b3bd8989f5decede420dab1a5bfedae9cc0774b9",
+            "bytes": 287,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2129,
+              2129
+            ],
+            "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+            "bytes": 4,
+            "blankOnly": false
+          },
+          {
+            "canonicalLines": [
+              2133,
+              2133
+            ],
+            "sha256": "7b9aea39e3905013435aa9b442ded03a176cb6b06c4e6131ad3b045c4213b200",
+            "bytes": 621,
+            "blankOnly": false
+          }
+        ],
+        "interpretation": "Unmatched ranges require person-specific qualification and chronology review. Matching blocks do not establish delivery or authorize alternate histories."
+      },
+      "directSourcePacketChecks": [
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days/emre/report.md",
+          "sha256": "8ef6e3c21bfc2db91db9823978bfcf66d537e14e813da9084df51a8594894f4e",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/hearsay/emre/report.md",
+          "sha256": "bb231761cdea04ab281073fa3df58f878dd3f23246f2d59a5859a36c5fd2a2cc",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/hearsay-retest1/emre/report.md",
+          "sha256": "30d7afdabee82b8e5aff4dc3fce84ecf1742a72394504eeb781e81e613dbedd1",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/hearsay-retest2/emre/report.md",
+          "sha256": "27041fef2d5a4a68b188f3f1d90935dd3338aafa1147dd8e3cd7d3fc6670ba14",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-initial/emre/report.md",
+          "sha256": "fbf71b1ba8c55054a0cf62ed680adf0c19d75b5fc0ca3e86d6ee053918b1a68e",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-retest1/emre/report.md",
+          "sha256": "d4bcdb6156e6484b6aaf09555a9d588f48f2c928fe370112bb6e114091bba80d",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/pass/emre/report.md",
+          "sha256": "58b6c76ca4c5f77f143c2a01406ae1f715964dbc43071e7619c04496aec91e30",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/pass-retest2/emre/report.md",
+          "sha256": "d0bfccb7a52da2bac5ebf03263b8bab87d8483a487d3d5c75090073b88660b39",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-light-initial-continuation/emre/report.md",
+          "sha256": "f96964300f27cf84222ae6ebd892d7c95b56493d0bd4bfe86f2862305136fafd",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-retest1/emre/report.md",
+          "sha256": "39c1a6ffaa1610a7678fbcb0f39492177f1533184dc8e60067a8c78768ac0b12",
+          "occurrencesInBaseline": 0,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/warren-retest2/emre/report.md",
+          "sha256": "4b460210b3c07a630229fc57a572118b8409bf4ad8dfa71cddf5150cc3ec0449",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/emre/report.md",
+          "sha256": "b4539aab5cb759d04a5d5cf2de61e8ed83da3ba0e4bf2bc530cb5f31ae0ad41c",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest2/emre/report.md",
+          "sha256": "3d5229667c38d5960424d8d3e696c9d007e6f800dcbc33817dfeaeceb98fd64d",
+          "occurrencesInBaseline": 1,
+          "occurrencesInCandidate": 1
+        }
+      ],
+      "directOtherReportExceptions": [],
+      "limits": "Bounded direct-child and source-packet inventory; recheck newly arriving returns. Preserve inherited qualifications; no peer reports or alternative CONT."
+    }
+  },
+  "appendedOwnContinuation": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-packet-preparation/ready/emre/diary-continuation.md",
+    "sha256": "13c14cc69a29bc65ef9fb740d338c42583c2102225d40c410ca28cd3b1dc69f1",
+    "outputByteRange": [
+      255188,
+      264120
+    ],
+    "reportSource": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-packet-preparation/ready/emre/report.md",
+    "reportSha256": "101c3f4a7aaa851b048c9bd3fe6f5bba369a19c83b3e8519f5a1d1068ba38030",
+    "literalReportOccursOnce": true
+  },
+  "coordinatorQualification": {
+    "rootQualificationPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-root-qualification.json",
+    "rootQualificationSha256": "ebbc136e89f5e1921585aa14e5992eaf83f0f0d6e15ea26b2faee4d7e7e5413a",
+    "protocolPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-actual-protocol-review.json",
+    "protocolSha256": "c6fd9cb60dcd8d7292ce4507187eee719c9d76a0fde18d8592c3469171e95b9d",
+    "additionalOwnConfidenceQualification": true,
+    "relationship": "Own report is literal; separate own method notes are coordinator synthesis. No peer reports or administrative attempt memories added."
+  },
+  "pending": "Packet reviews/root seal, independent own-history reconciliation, current canonical check and eventual final live fix/inputs/helpers/fresh admission. Canonical copies are same encounters; never append twice."
+}

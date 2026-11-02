@@ -1,0 +1,346 @@
+# Days first fixed retest: ask review
+
+**Second fix/retest needed.** Rosa’s rank 1 is a new blocking comprehension ask in this retest. She stopped CONFUSED before completing a choice or story. The two-cycle cap has not been reached.
+
+Done if the first fixed retest raises no NEW blocker OR after two fix cycles. This is only the FIRST fixed retest.
+
+One new blocking comprehension ask: Rosa cannot interpret the one-hour private receipt check while Rested with 3 hours free and stops CONFUSED before completion. Three returners finishing does not negate the first-visit stop.
+
+“New” means newly raised by this retest evidence. It does not prove the fix introduced the wording. Rosa is FIRST Days/franchise-experienced. Leire is fictional and cold. Emre, Pavel and Tessa are the three Days returners. None supplies human or owner acceptance.
+
+## Decision and limits
+
+Clarify the private-check hour and rest consequence in plain language next to the action, with wording consistent with Rested status. Review the nearby already-rested/recover-enough-to-read wording reported by Rosa and Leire. Then run the authorized second fix/retest cycle. Do not make the two-choice format, duration, savings numbers, or replay redesign prerequisites on this evidence alone.
+
+Rosa’s first reread did not stop play. Her second reread concerned the next action’s cost: “1 hour to check the original you already have; no time to recuperate.” Her raw stop stayed CONFUSED at 120.975 seconds, with three hours free. The retained driver text independently contains that cost line together with Rested and three hours free (tester transcript line 278, preserved in JSON). Her screenshot did not show the cost sentence.
+
+Leire also questions recovery while Rested but finishes phone. That supports a wording review, not a second blocking finding. Rosa’s desktop TASTE stop and Leire’s desktop BORED stop occur on same-evening second runs. They do not establish a first-play completion failure or general replay consensus.
+
+The original Days history confirms Emre’s savings and phone-card asks, Pavel’s short-duration request, and Tessa’s two-button/own-words and replay requests. Pavel’s receipt wording and small-cost-text asks remain nonblocking: he finished and explicitly reports no new blocker. Do not upgrade a ranked preference into a blocker merely because it remains ranked.
+
+## Observed, assumed, unknown
+
+**Observed**
+
+- Five reports and ten device stops are eligible in the finalizer audit; roundStatus remains HOLD; root qualification and release required.
+- All three Days returners finished both stories. Leire finished phone and stopped desktop BORED after seeing one ending. Rosa stopped phone CONFUSED and desktop TASTE before either ending.
+- Raw driver response at Rosa transcript line 278 simultaneously shows Rested, 3 hours free, and 1 hour to check the original you already have; no time to recuperate.
+- Rosa first reread concerned religious figurative wording; she understood the fear and continued. The second action-cost reread triggered her configured stopping rule.
+- Feedback quick labels filled drafts in reports. No human/owner acceptance exists in this record.
+
+**Assumed**
+
+- Treat persistent inability to understand a reached actionable cost, followed by a CONFUSED stop, as blocking for this done rule even when controls remain operable. This is the reviewer judgment, not a claim of five-player agreement.
+
+**Unknown**
+
+- Whether rest/check mechanics are wrong, versus the text alone. Source code was not examined.
+- Whether the ambiguity was introduced by this fix.
+- Whether revised text will resolve Rosa’s confusion or a cold reader’s related question; requires retest.
+- General human usability, voluntary future return, and owner acceptance are unproven.
+- Rosa’s unreached comparison, visit, account settlement and endings remain untested. These sessions are fresh unseeded contexts, not matched device comparisons.
+
+## Literal ask and full return-intention record
+
+Every quote below is copied from its report. Each locator gives report SHA-256, UTF-8 byte offsets [start,end), and inclusive source lines. The JSON also retains all input extraction excerpts and raw stop evidence.
+
+### emre
+
+Days returner; source `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md`; SHA-256 `762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67`.
+
+```text
+1. Show the amount paid and the savings remaining. I could follow who owed the mistaken payment, but I could not price either payment from savings.
+```
+Source bytes [153, 300]; lines [5, 5].
+
+Judgment: **existing_nonblocking_preference**. Savings remain unpriced; this repeats the original ask. Both stories ended. He explicitly reports no new blocking ask.
+
+```text
+2. Keep the phone choice cards visible sooner. The story filled the screen, and I had to scroll to see the choices.
+```
+Source bytes [301, 416]; lines [6, 6].
+
+Judgment: **existing_nonblocking_layout_preference**. Phone cards require scrolling; scrolling exposed them. No control blocked either session.
+
+```text
+I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.
+```
+Source bytes [0, 130]; lines [1, 1].
+
+```text
+- **5.369 s, note, engagement 4:** “The familiar six-hour account and promised visit give me a practical plan. I want to try paying the bill myself and telling Selin, as I intended last time.”
+- **15.370 s, note, engagement 3:** “The mistaken payment is clearly assigned to Burak to return, but my savings are still only described as smaller. I cannot price that choice.”
+- **33.071 s, note, engagement 4:** “The original distinguishes the two bills and Burak acknowledges the return. Two hours remain and the visit costs two; that is a plan I can follow.”
+- **46.521 s, want_quit, FINISHED, engagement 4:** “I made the visit, paid the verified bill and told Selin. The ending names the notebook and mistaken payment still owed, so I understand what remains. I am done for tonight.”
+- **55.106 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.”
+```
+Source bytes [2317, 3404]; lines [25, 29].
+
+```text
+- **7.291 s, note, engagement 3:** “The phone opening fits. I have just seen the account and visit on desktop; I will try the alternate opening and see what changes.”
+- **18.224 s, note, engagement 3:** “The exhausted state explains an extra checking and travel hour. The phone story fills the screen again and the choices lie below it; I will scroll to choose.”
+- **31.181 s, note, engagement 4:** “Rest makes the private check one hour, and the card says the original is already here. I can see why it differs from the two-hour desktop check.”
+- **41.529 s, note, engagement 4:** “I spent the hour keeping the notebook and another recording the claim. One hour remains, so I cannot make the two-hour visit. The card warns me before choosing and offers delivery; that is an understandable setback.”
+- **50.141 s, want_quit, FINISHED, engagement 3:** “The phone story ended with delivery agreed but not yet made. I understand the lost visit and the account follow-up; I have played enough paths for tonight.”
+- **62.269 s, stop, FINISHED, engagement 3:** “I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.”
+```
+Source bytes [3414, 4711]; lines [33, 38].
+
+```text
+- **46.521 s, want_quit, FINISHED, engagement 4:** “I made the visit, paid the verified bill and told Selin. The ending names the notebook and mistaken payment still owed, so I understand what remains. I am done for tonight.”
+```
+Source bytes [2886, 3115]; lines [28, 28].
+
+```text
+- **55.106 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.”
+```
+Source bytes [3116, 3404]; lines [29, 29].
+
+```text
+- **50.141 s, want_quit, FINISHED, engagement 3:** “The phone story ended with delivery agreed but not yet made. I understand the lost visit and the account follow-up; I have played enough paths for tonight.”
+```
+Source bytes [4230, 4442]; lines [37, 37].
+
+```text
+- **62.269 s, stop, FINISHED, engagement 3:** “I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.”
+```
+Source bytes [4443, 4711]; lines [38, 38].
+
+### pavel
+
+Days returner; source `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md`; SHA-256 `103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1`.
+
+```text
+1. Make the receipt wording clear. Burak had a receipt in his hands, then fetched his original receipt. I could not tell whether those were different papers.
+```
+Source bytes [138, 295]; lines [5, 5].
+
+Judgment: **new_nonblocking_clarity_ask**. Receipt versus original receipt remains unclear, but he explicitly says it did not make him leave early and no new blocking gameplay ask arose.
+
+```text
+2. Make the small cost text on the phone room drawing easier to read.
+```
+Source bytes [296, 365]; lines [6, 6].
+
+Judgment: **nonblocking_readability_ask**. Small pale phone cost text was harder to read; he distinguished the actions and finished.
+
+```text
+3. Give me a little more time with the days. The choices and their consequences interested me, but both stories passed quickly.
+```
+Source bytes [366, 493]; lines [7, 7].
+
+Judgment: **existing_nonblocking_pacing_preference**. Short duration repeats the original desire for more to read over time; both stories ended.
+
+```text
+I would return voluntarily another evening to try a different route, but not tonight; I would not leave it running.
+```
+Source bytes [0, 115]; lines [1, 1].
+
+```text
+I’m Pavel Novak, 70, a retired tram driver from Brno. This was a return to *Three Days*. I played a fresh 1280×800 desktop game with keyboard and mouse, then a fresh 360×690 touch-phone game the same evening, using the assigned drivers and agent URL. No old save or matched seed was imported.
+```
+Source bytes [495, 791]; lines [9, 9].
+
+```text
+- **7.125 s — note, engagement 4:** “Same opening on the phone as the desktop just now. The notice fits. This time Leyla is tired rather than very tired; I will keep the door and try to save the journey hours.”
+- **29.548 s — note, engagement 4, third day, 2 hours free:** “Two hours left and two for the visit. Resting made the paper check shorter, and lending the closed notebook saved the other hour. I can keep the appointment this time.”
+- **37.410 s — note, engagement 4, third day, 0 hours free:** “The visit happened, and the borrowed table gives Kemal a small unfinished obligation of his own. On the phone I see the story text but not the choices in this view; I will scroll down.”
+- **45.048 s — note, engagement 4, third day, 0 hours free:** “After scrolling I can see both choices on the room drawing. The small pale cost text is harder to read than the story, but the two actions are distinct.”
+- **50.989 s — want_quit, FINISHED, engagement 4, leave ended:** “The visit was kept and Burak still owes the notebook back. I have seen the two routes tonight and would stop here. The story is gentle but goes by quickly.”
+- **60.750 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days on the phone. The visit was kept, the account has a next step, and the notebook must still come back. I chose I am stopping, went Back, typed and sent nothing.”
+```
+Source bytes [4194, 5619]; lines [34, 39].
+
+```text
+- **44.061 s — want_quit, FINISHED, engagement 4, leave ended:** “The three days are over. The delivery is agreed but not yet made, and the account is clear. I like that distinction. I would stop this game here.”
+```
+Source bytes [3708, 3926]; lines [29, 29].
+
+```text
+- **54.619 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days. I arranged a later delivery instead of the visit, and the ending says it has not yet happened. I chose I am stopping, went Back, typed and sent nothing.”
+```
+Source bytes [3927, 4184]; lines [30, 30].
+
+```text
+- **50.989 s — want_quit, FINISHED, engagement 4, leave ended:** “The visit was kept and Burak still owes the notebook back. I have seen the two routes tonight and would stop here. The story is gentle but goes by quickly.”
+```
+Source bytes [5127, 5355]; lines [38, 38].
+
+```text
+- **60.750 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days on the phone. The visit was kept, the account has a next step, and the notebook must still come back. I chose I am stopping, went Back, typed and sent nothing.”
+```
+Source bytes [5356, 5619]; lines [39, 39].
+
+### tessa
+
+Days returner; source `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md`; SHA-256 `7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526`.
+
+```text
+1. Give me more ways to speak or act with Hacer, Burak and Selin, including something in my own words.
+```
+Source bytes [206, 308]; lines [5, 5].
+
+Judgment: **existing_nonblocking_breadth_preference**. More ways to act or speak repeats the original two-button/own-words ask. Both stories ended without gameplay confusion.
+
+```text
+2. Give me more reason to revisit the three days beyond choosing the other option on familiar screens.
+```
+Source bytes [309, 411]; lines [6, 6].
+
+Judgment: **existing_nonblocking_replay_preference**. Replay motivation repeats the original ask. Not returning tonight is a dated preference, not evidence of a new blocker.
+
+```text
+I would not return voluntarily tonight or leave Days running; I liked the specific consequences and the chance to apologise, but I have had enough of choosing between two set options.
+```
+Source bytes [0, 183]; lines [1, 1].
+
+```text
+- **13.806 s, note, engagement 4:** “The door and soup are familiar. I remember the two choices and want to see the room on the phone this time.”
+- **19.479 s, note, engagement 4:** “Oh, the room is actually here now: soup and door are visible together under the story. I like seeing what I am choosing.”
+- **25.800 s, note, engagement 4:** “Paying is less mysterious now: it says it went against Burak and he must return it, while the boiler still needs checking. Selin and Halil bring back his quiet workshop.”
+- **37.513 s, note, engagement 4:** “I like that the mistaken payment and separate boiler bill are spelled out, and Şükrü wanted the photograph. I want to go see him.”
+- **48.709 s, note, engagement 5:** “I got the visit, and the unreturned folding table makes Kemal feel like an actual messy person. Selin saying she will not ask Leyla to stop missing him is lovely.”
+- **54.967 s, want_quit, FINISHED, engagement 3:** “The three days ended. I like the folding table and the ending remembering the money and notebook, but I have had enough of the two choices for now.”
+- **64.975 s, stop, FINISHED, engagement 3:** “Stopping the phone. I liked visiting Şükrü and the ending naming what Burak still owes, but the three days are over and I do not want another pass right now.”
+```
+Source bytes [1608, 2930]; lines [18, 24].
+
+```text
+- **54.967 s, want_quit, FINISHED, engagement 3:** “The three days ended. I like the folding table and the ending remembering the money and notebook, but I have had enough of the two choices for now.”
+```
+Source bytes [2513, 2717]; lines [23, 23].
+
+```text
+- **64.975 s, stop, FINISHED, engagement 3:** “Stopping the phone. I liked visiting Şükrü and the ending naming what Burak still owes, but the three days are over and I do not want another pass right now.”
+```
+Source bytes [2718, 2930]; lines [24, 24].
+
+```text
+- **47.776 s, want_quit, FINISHED, engagement 3:** “The story ended and remembered the disclosure and apology. I like that, but I have seen two passes tonight and do not want another one.”
+```
+Source bytes [3691, 3883]; lines [32, 32].
+
+```text
+- **59.762 s, stop, FINISHED, engagement 3:** “Stopping the laptop. The apology and the visit were satisfying, and the story remembered the harm, but I am done choosing between the same two kinds of options tonight.”
+```
+Source bytes [3884, 4104]; lines [33, 33].
+
+### rosa
+
+FIRST Days visit; franchise-experienced; source `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md`; SHA-256 `248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a`.
+
+```text
+1. Explain “no time to recuperate” beside the choice. I could not tell whether it meant no rest during that hour or no time left afterward.
+```
+Source bytes [180, 323]; lines [5, 5].
+
+Judgment: **new_blocking_comprehension_ask**. Phone ambiguity about no time to recuperate prevented her choosing with confidence. Want-quit CONFUSED at 92.072 s persisted to stop at 120.975 s, second day, 3 hours free. She did not finish either session. New to this retest evidence, not proof the wording was introduced by the fix.
+
+```text
+2. Keep the concrete results and personal boundaries: soup helps, checking costs an hour, and Selin can offer company without requiring the private story.
+```
+Source bytes [324, 478]; lines [6, 6].
+
+Judgment: **preserve_positive_behavior**. Preserve concrete consequences and personal boundaries. This is a keep request, not a new change blocker.
+
+```text
+I would return voluntarily another evening on the large screen if the hour and rest costs were explained plainly; I would close it now, not leave it running.
+```
+Source bytes [0, 157]; lines [1, 1].
+
+```text
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla reading English as a second language. This was my **first Days visit**, with franchise experience from my supplied own history. The page called the game **Three Days**. This was the first fixed-build retest assignment, not a return visit for me.
+```
+Source bytes [480, 798]; lines [8, 8].
+
+```text
+- **15.359 s — note, engagement 4, Before the door opens:** “The opening is sober and readable. A parent has died; I can understand wanting to help with ordinary promises. Disputed account is vague so far, but I expect the story to explain. Opening dialog concepts 12: death, estrangement, grief, three days leave, disputed account, promise, disclosure, recording, menu recording control, private Feedback, recording explanation, two begin choices. No reread.”
+- **33.956 s — note, engagement 4, First day; 5 hours free:** “Hacer bringing soup and Leyla feeling steadier are kind and clear. Hacer and Burak are names from my supplied stories, but I do not know these are the same people. Reread 1: I believe the saying that a believer's soul remains suspended by a debt until it is paid. Suspended by a debt is difficult English for me; I understand he is frightened and wants payment. This screen has 14 groups: soup and steadiness, hour cost, two repair bills, advance returned, two payers, crossed-out uncertainty, receipt, religious fear, urgent demand, checking an open bill, free hours after visitors, second reader, savings payment, later recovery cost. I will check the paper.”
+- **64.198 s — first_minute, engagement 4, First day; 4 hours free:** “I understand the choices and their costs: soup helped, checking the receipt used an hour but no money. Selin, Halil and Nuran together remind me confidently of the widower and daughter in my supplied Voice record. Her offer to sit without the whole story is warm. One reread so far. This page adds 9 groups: notebook entries, private marriage, untold separation, last visit instruction, envelope, Selin and her family, company without disclosure, private comparison, help versus exposure and later harm.”
+- **80.430 s — note, engagement 4, Second day; 4 hours free:** “I like that Selin has her own family and can agree to a limited shift. Nobody needs my answer this minute is reassuring after Smoke. I am already rested, so another meal to recover enough to read seems unnecessary, but skipping makes me tired. I can understand the tradeoff. Envelope added 9 groups: preserved trust, later sorting, photograph and unsent letter, cross-city visit, broken lift, receiving visitors, family cost, bounded help, condolences once. Second morning adds 5: shift agreed, visit hour, no immediate hurry, rest hour, tiredness adding work or travel time. No second reread.”
+- **92.072 s — want_quit, CONFUSED, engagement 2, Second day; 3 hours free:** “Reread 2: 1 hour to check the original you already have; no time to recuperate. I have three hours and am rested. Does no time mean I cannot rest during this choice, or that I will have no time afterward? Recuperate is another word I must work at. Burak correcting his mistake is clear and I like it, but that is my second reread and I would leave here. This screen adds 7 groups: restored reading ability, receipt repayment to Burak, separate boiler debt, merged entries, correction, private comparison without rest, longer phone check with rest.”
+- **120.975 s — stop, CONFUSED, engagement 2, Second day; 3 hours free:** “I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.”
+```
+Source bytes [3186, 6930]; lines [35, 40].
+
+```text
+- **92.072 s — want_quit, CONFUSED, engagement 2, Second day; 3 hours free:** “Reread 2: 1 hour to check the original you already have; no time to recuperate. I have three hours and am rested. Does no time mean I cannot rest during this choice, or that I will have no time afterward? Recuperate is another word I must work at. Burak correcting his mistake is clear and I like it, but that is my second reread and I would leave here. This screen adds 7 groups: restored reading ability, receipt repayment to Burak, separate boiler debt, merged entries, correction, private comparison without rest, longer phone check with rest.”
+```
+Source bytes [5631, 6264]; lines [39, 39].
+
+```text
+- **120.975 s — stop, CONFUSED, engagement 2, Second day; 3 hours free:** “I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.”
+```
+Source bytes [6265, 6930]; lines [40, 40].
+
+```text
+- **38.487 s — want_quit, TASTE, engagement 4, First day; 4 hours free:** “Selin offering company without asking for the whole story still moves me. The large room and notebooks are easy to understand, although the gold cost lines are small. Hacer has the receipt in this run, unlike Burak on the phone. I have read this beginning twice tonight and would stop here rather than repeat the account work. No sentence needed rereading on this device. Folded account has 14 groups and notebook has 9 as on phone.”
+```
+Source bytes [7607, 8121]; lines [45, 45].
+
+```text
+- **57.253 s — stop, TASTE, engagement 4, First day; 4 hours free:** “I stop on the large screen for tonight. I liked Selin offering company without requiring the whole story, and the room is comfortable to see. I have read this beginning twice tonight and do not want to repeat the account work now. No reread here. I chose stopping and Back; the note filled itself, and I typed and submitted nothing. Menu and Feedback show the same groups as phone. I would close it and consider another evening to see the visit, with the hour and rest cost explained plainly.”
+```
+Source bytes [8122, 8691]; lines [46, 46].
+
+### leire
+
+fictional cold first Human Framework visit; source `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md`; SHA-256 `9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70`.
+
+```text
+1. Clarify why Leyla needs to recover enough to read when her status already says “Rested.”
+```
+Source bytes [138, 233]; lines [5, 5].
+
+Judgment: **new_nonblocking_clarity_ask_related_to_blocker**. Rested/recovery wording confused her, but she finished phone. Supports reviewing state-aware wording; does not independently establish a blocking stop.
+
+```text
+2. Give me a reason to revisit a completed story without rereading so much familiar material.
+```
+Source bytes [234, 327]; lines [6, 6].
+
+Judgment: **new_nonblocking_replay_preference**. Desktop BORED stop followed completion on phone the same evening. This is evidence of limited immediate replay interest, not failed first-play completion.
+
+```text
+I would not voluntarily return tonight or leave the game running; I finished one story and lost interest in a second pass.
+```
+Source bytes [0, 122]; lines [1, 1].
+
+```text
+- Phone, **51.760 s**, want quit, **FINISHED**, engagement **3**: “I am done; the visit happened and the ending tells me what remains. I do not feel a need to replay now.”
+```
+Source bytes [2142, 2317]; lines [19, 19].
+
+```text
+- Phone, **59.207 s**, stop, **FINISHED**, engagement **3**: “I finished the three days and am ready to leave.”
+```
+Source bytes [2318, 2433]; lines [20, 20].
+
+```text
+- Desktop, **18.410 s**, want quit, **BORED**, engagement **2**: “I want to stop here. I have seen this story end once and another pass tonight feels repetitive.”
+```
+Source bytes [3009, 3175]; lines [24, 24].
+
+```text
+- Desktop, **27.425 s**, stop, **BORED**, engagement **2**: “I am leaving the second run because repeating the story tonight no longer interests me.”
+```
+Source bytes [3176, 3329]; lines [25, 25].
+
+## Source hashes
+
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md` — SHA-256 `762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67` (6776 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md` — SHA-256 `103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1` (7505 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md` — SHA-256 `7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526` (6487 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md` — SHA-256 `248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a` (13601 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md` — SHA-256 `9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70` (4814 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/own-history.md` — SHA-256 `0fa7c75c55177d54989792862f6e85ee0585e191dc5ad432eaedc0045fed2306` (274209 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/own-history.md` — SHA-256 `d2335f0c40332f51facc6ce745bffc22abe907c223b87966b101314ade5fcdff` (228663 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/own-history.md` — SHA-256 `a2d3a34220a51e2d9de2c906fe296b603de0af8fb4cb8fa1cf2443b961f3f415` (164671 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/wall-clock.jsonl` — SHA-256 `d84c18cbc13bd4d8d5a11ea40b58959fec4d63a14d347c82b402d38d2d06af04` (10018 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl` — SHA-256 `e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49` (9565 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-literal-extraction.json` — SHA-256 `7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05` (55274 bytes).
+- `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/finalizer-audit.json` — SHA-256 `7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc` (2693869 bytes).
+
+All five report hashes match the supplied literal extraction. Every supplied excerpt’s byte slice was checked against its report.
+
+No repository, worktree, branch, browser, server, or worker created or changed. Only the two requested review artifacts written. git worktree list: not applicable; no repository touched.

@@ -1,0 +1,1050 @@
+{
+  "reviewerId": "days-final-protocol-independent-20261102",
+  "created": "2026-11-02T13:00:14.079385+00:00",
+  "verdict": "QUALIFIED",
+  "scope": "Source-only independent final collection protocol audit. No project execution, imports, tests, network, browser, helpers, worktrees or workers.",
+  "recommendation": "Accept reports as qualified synthetic automated-session evidence; preserve original tester words and attach these qualifications. Do not promote to verified visual perception, human comprehension, backend identity, causal improvement or owner acceptance.",
+  "qualifications": [
+    {
+      "id": "Q1",
+      "severity": "material",
+      "finding": "No retained image-tool event establishes that a tester perceived any screenshot. Every transcript contains only command_execution and agent_message completed items. Shot commands return visible text and a screenshot path; image files and report claims alone do not prove perception. Keep visual claims as tester self-report, not independently verified visual findings.",
+      "pointers": [
+        "days-retest2-1102-inputs/emre/report.md:43",
+        "days-retest2-1102-inputs/pavel/report.md:43-48",
+        "days-retest2-1102-inputs/tessa/report.md:40-44",
+        "days-retest2-1102-inputs/rosa/report.md:74-81",
+        "days-retest2-1102-inputs/lucia/report.md:16",
+        "days-retest2-1102-inputs/emre/transcript.jsonl:332",
+        "days-retest2-1102-inputs/pavel/transcript.jsonl:320",
+        "days-retest2-1102-inputs/tessa/transcript.jsonl:182",
+        "days-retest2-1102-inputs/rosa/transcript.jsonl:268",
+        "days-retest2-1102-inputs/lucia/transcript.jsonl:11"
+      ]
+    },
+    {
+      "id": "Q2",
+      "severity": "material",
+      "finding": "Complete aggregate history stdout content is supported for all five. This does not prove delivery to the model, reading, retention or comprehension. Tessa explicitly reports truncated presentation and uncertain coverage; do not replace that account with a claim of verified complete reading. Prior coordinator qualifications in history remain part of the supplied history.",
+      "pointers": [
+        "days-retest2-1102-inputs/tessa/report.md:10",
+        "days-retest2-1102-inputs/emre/report.md:9",
+        "days-retest2-1102-inputs/pavel/report.md:11",
+        "days-retest2-1102-inputs/rosa/report.md:11",
+        "days-retest2-1102-inputs/lucia/report.md:10"
+      ]
+    },
+    {
+      "id": "Q3",
+      "severity": "material",
+      "finding": "Only Emre phone and Rosa phone have elapsed>=60 first_minute reaction logs during continuing story play. Emre phone 57.587 attempt is premature; corrected wall value is 61.996. Rosa wall value is 73.833. All ten automatic first-minute screenshots exist in device streams, but eight devices have no valid active-play first-minute reaction. Pavel desktop, Lucia phone and Rosa desktop automatic shots occur after their stop logs. Other post-ending shots also do not prove continued play. No device reaches 180 seconds; pulses and later checkpoints are untested.",
+      "pointers": [
+        "days-retest2-1102-inputs/emre/phone/wall-clock.jsonl:20-22",
+        "days-retest2-1102-inputs/rosa/phone/wall-clock.jsonl:25",
+        "days-retest2-1102-inputs/pavel/desktop/wall-clock.jsonl:26-27",
+        "days-retest2-1102-inputs/lucia/phone/wall-clock.jsonl:25-26",
+        "days-retest2-1102-inputs/rosa/desktop/wall-clock.jsonl:14-15"
+      ]
+    },
+    {
+      "id": "Q4",
+      "severity": "bounded",
+      "finding": "Raw logged reaction strings are all present verbatim in reports. Some printed elapsed values differ from device wall clocks by 0.001 seconds, consistent with separate command response/record timestamps; preserve both. Use wall clocks for event ordering and do not relabel a stop as an ending. Nine device sessions finish the story; Rosa desktop stops for TASTE on first day with four hours free.",
+      "pointers": [
+        "days-retest2-1102-inputs/rosa/report.md:15-18",
+        "days-retest2-1102-inputs/rosa/desktop/wall-clock.jsonl:9-14",
+        "days-retest2-1102-inputs/emre/report.md:26",
+        "days-retest2-1102-inputs/emre/desktop/wall-clock.jsonl:4",
+        "days-retest2-1102-inputs/rosa/report.md:38",
+        "days-retest2-1102-inputs/rosa/phone/wall-clock.jsonl:25"
+      ]
+    },
+    {
+      "id": "Q5",
+      "severity": "bounded",
+      "finding": "Feedback phrase inputs and Back are recorded on all ten devices. Confusion drafts occur on Emre phone, Rosa phone and Lucia desktop. No Submit or Recording input appears in retained device streams. Text/control snapshots support phrase-filled drafts and checked recording controls where exposed; this does not prove backend receipt, attribution, recording execution or consent identity. Do not treat phrase choice as a selected-state marker.",
+      "pointers": [
+        "days-retest2-1102-inputs/emre/phone/wall-clock.jsonl:11-12",
+        "days-retest2-1102-inputs/rosa/phone/wall-clock.jsonl:22-23",
+        "days-retest2-1102-inputs/lucia/desktop/wall-clock.jsonl:19-20",
+        "days-retest2-1102-inputs/rosa/report.md:83-85",
+        "days-retest2-1102-inputs/lucia/report.md:18"
+      ]
+    },
+    {
+      "id": "Q6",
+      "severity": "bounded",
+      "finding": "Four malformed shell commands failed before a successful driver input: Pavel one, Tessa one, Lucia two. These are harness command errors, not demonstrated game control failures. Tessa and Lucia disclose them; Pavel omits his corrected quoting failure. Rosa reports no driver errors, consistent with retained commands.",
+      "pointers": [
+        "days-retest2-1102-inputs/pavel/transcript.jsonl:332",
+        "days-retest2-1102-inputs/tessa/transcript.jsonl:198",
+        "days-retest2-1102-inputs/lucia/transcript.jsonl:23",
+        "days-retest2-1102-inputs/lucia/transcript.jsonl:36",
+        "days-retest2-1102-inputs/tessa/report.md:38",
+        "days-retest2-1102-inputs/lucia/report.md:16"
+      ]
+    },
+    {
+      "id": "Q7",
+      "severity": "material",
+      "finding": "Rosa concept counts are self-defined groups, not measured unique or newly introduced concepts. They include familiar concepts and lab controls, and the phone door/third-evening counts are retrospective. They cannot establish concept load, comprehension, a threshold pass or a comparative improvement. Preserve her wording and named-visit reread report.",
+      "pointers": [
+        "days-retest2-1102-inputs/rosa/report.md:32-40",
+        "days-retest2-1102-inputs/rosa/report.md:50-72"
+      ]
+    },
+    {
+      "id": "Q8",
+      "severity": "material",
+      "finding": "Current release-start receipts consistently identify Days b312bcdb7fc264d98eb9118d5737dde8d57d9691, HF/engine 4.8.1. The adopted SDK source-proof receipt bounds source/archive transfer and served markers; it explicitly excludes runtime execution, backend identity, attribution, recording/consent/Submit and image perception. This audit reads that receipt, not every referenced source artifact. Named automated taps do not establish physical mouse/touch operation, human-speed reading or human participants. Requested model/effort do not establish serving identity.",
+      "pointers": [
+        "days-retest2-1102-inputs/emre/desktop/release-start.json:1-7",
+        "days-retest2-1102-sdk-source-proof.json:150",
+        "days-retest2-1102-inputs/pavel/report.md:50"
+      ]
+    },
+    {
+      "id": "Q9",
+      "severity": "bounded",
+      "finding": "Root return receipt records native session 11503 exited 0, 453/453 sampled original identities gone, five profiles absent, eleven ports closed and stable frozen inputs before root report reads. This is adopted bounded physical-return evidence, not independently resampled process state or proof of unseen processes. Finalizer eligibility is a source audit, not release/acceptance. No new ordinary round is warranted after the stated iteration cap.",
+      "pointers": [
+        "days-retest2-1102-controller/root-return.json:39-71",
+        "days-retest2-1102-controller/finalizer-audit.json:1-7"
+      ]
+    }
+  ],
+  "players": [
+    {
+      "tester": "emre",
+      "historyLines": 2263,
+      "historyLiteralContentPresentInCompletedStdout": 2263,
+      "imageToolEvents": 0,
+      "manualShotTranscriptLines": [
+        332,
+        381
+      ],
+      "failedShellTranscriptLines": [],
+      "sessions": {
+        "phone": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 2.658,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "b-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 11,
+              "elapsed_s": 29.561,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm confused"
+              },
+              "reason": null
+            },
+            {
+              "line": 12,
+              "elapsed_s": 31.893,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 20,
+              "elapsed_s": 57.587,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reason": null
+            },
+            {
+              "line": 21,
+              "elapsed_s": 60.06,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 22,
+              "elapsed_s": 61.996,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reason": null
+            },
+            {
+              "line": 27,
+              "elapsed_s": 78.638,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 30,
+              "elapsed_s": 85.825,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 31,
+              "elapsed_s": 87.541,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 32,
+              "elapsed_s": 91.493,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        },
+        "desktop": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 2.399,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "a-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 20,
+              "elapsed_s": 53.477,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 22,
+              "elapsed_s": 60.067,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 24,
+              "elapsed_s": 62.137,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 25,
+              "elapsed_s": 64.537,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 26,
+              "elapsed_s": 66.918,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        }
+      }
+    },
+    {
+      "tester": "pavel",
+      "historyLines": 1682,
+      "historyLiteralContentPresentInCompletedStdout": 1682,
+      "imageToolEvents": 0,
+      "manualShotTranscriptLines": [
+        320,
+        373,
+        403,
+        407
+      ],
+      "failedShellTranscriptLines": [
+        332
+      ],
+      "sessions": {
+        "phone": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 2.662,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "b-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 18,
+              "elapsed_s": 42.777,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "b-002.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 20,
+              "elapsed_s": 50.798,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "b-003.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 24,
+              "elapsed_s": 60.039,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 25,
+              "elapsed_s": 61.947,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 28,
+              "elapsed_s": 67.812,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 29,
+              "elapsed_s": 69.429,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 30,
+              "elapsed_s": 71.435,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        },
+        "desktop": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 2.089,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "a-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 21,
+              "elapsed_s": 45.123,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 24,
+              "elapsed_s": 51.413,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 25,
+              "elapsed_s": 53.33,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 26,
+              "elapsed_s": 55.572,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 27,
+              "elapsed_s": 60.07,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        }
+      }
+    },
+    {
+      "tester": "tessa",
+      "historyLines": 1457,
+      "historyLiteralContentPresentInCompletedStdout": 1457,
+      "imageToolEvents": 0,
+      "manualShotTranscriptLines": [
+        182,
+        241
+      ],
+      "failedShellTranscriptLines": [
+        198
+      ],
+      "sessions": {
+        "phone": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 2.108,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "a-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 24,
+              "elapsed_s": 54.951,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 27,
+              "elapsed_s": 60.048,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 28,
+              "elapsed_s": 60.223,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 29,
+              "elapsed_s": 62.323,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 30,
+              "elapsed_s": 64.491,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        },
+        "desktop": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 2.392,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "b-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 24,
+              "elapsed_s": 57.716,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 25,
+              "elapsed_s": 60.054,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 28,
+              "elapsed_s": 63.582,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 29,
+              "elapsed_s": 66.432,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 30,
+              "elapsed_s": 68.416,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        }
+      }
+    },
+    {
+      "tester": "rosa",
+      "historyLines": 4532,
+      "historyLiteralContentPresentInCompletedStdout": 4532,
+      "imageToolEvents": 0,
+      "manualShotTranscriptLines": [
+        268,
+        294,
+        342,
+        352
+      ],
+      "failedShellTranscriptLines": [],
+      "sessions": {
+        "phone": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 0.609,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "a-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 16,
+              "elapsed_s": 41.687,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "a-002.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 21,
+              "elapsed_s": 60.046,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 22,
+              "elapsed_s": 64.073,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm confused"
+              },
+              "reason": null
+            },
+            {
+              "line": 23,
+              "elapsed_s": 64.241,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 25,
+              "elapsed_s": 73.833,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reason": null
+            },
+            {
+              "line": 33,
+              "elapsed_s": 109.034,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 36,
+              "elapsed_s": 109.554,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 37,
+              "elapsed_s": 109.704,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 38,
+              "elapsed_s": 109.761,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        },
+        "desktop": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 0.651,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "b-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 8,
+              "elapsed_s": 16.298,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "b-002.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 9,
+              "elapsed_s": 30.802,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "TASTE"
+            },
+            {
+              "line": 12,
+              "elapsed_s": 31.353,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 13,
+              "elapsed_s": 31.536,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 14,
+              "elapsed_s": 31.569,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "TASTE"
+            },
+            {
+              "line": 15,
+              "elapsed_s": 60.064,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        }
+      }
+    },
+    {
+      "tester": "lucia",
+      "historyLines": 2,
+      "historyLiteralContentPresentInCompletedStdout": 2,
+      "imageToolEvents": 0,
+      "manualShotTranscriptLines": [
+        11,
+        65
+      ],
+      "failedShellTranscriptLines": [
+        23,
+        36
+      ],
+      "sessions": {
+        "phone": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 1.828,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "phone-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 20,
+              "elapsed_s": 47.303,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 23,
+              "elapsed_s": 52.656,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 24,
+              "elapsed_s": 54.19,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 25,
+              "elapsed_s": 56.816,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 26,
+              "elapsed_s": 60.053,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        },
+        "desktop": {
+          "release": {
+            "game": "days",
+            "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+            "dirty": false,
+            "hf": "4.8.1",
+            "engine": "4.8.1"
+          },
+          "selectedRawEvents": [
+            {
+              "line": 3,
+              "elapsed_s": 1.96,
+              "kind": "input",
+              "op": "shot",
+              "input": {
+                "file": "desktop-001.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 19,
+              "elapsed_s": 38.952,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm confused"
+              },
+              "reason": null
+            },
+            {
+              "line": 20,
+              "elapsed_s": 41.304,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 25,
+              "elapsed_s": 50.531,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            },
+            {
+              "line": 28,
+              "elapsed_s": 58.501,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "I'm stopping"
+              },
+              "reason": null
+            },
+            {
+              "line": 29,
+              "elapsed_s": 60.059,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reason": null
+            },
+            {
+              "line": 30,
+              "elapsed_s": 60.202,
+              "kind": "input",
+              "op": "tap",
+              "input": {
+                "name": "Back"
+              },
+              "reason": null
+            },
+            {
+              "line": 31,
+              "elapsed_s": 64.386,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reason": "FINISHED"
+            }
+          ],
+          "allReactionStringsPresentVerbatimInReport": true
+        }
+      }
+    }
+  ],
+  "inputHashes": {
+    "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-controller/root-return.json": "8a26ca0b731fc5b83b2b472a3624badc90f4efd0021d52aec834099dbf598272",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-controller/finalizer-audit.json": "2df89d011bfd08ff2085b57db3935c9abc7e2c7f33a398c06274c6260d00ac60",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-sdk-source-proof.json": "0d051468593cc420812266dfb955859f3bf6c9021a1e0dabb9c53f0513726de6",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/transcript.jsonl": "8c6dd6af3dbbade98a85f775aa1e4afeb1e038963a754612db20822727586a78",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/own-history.md": "77d33e5b39c3404ab0f5c9d8228a366ab9a24d8d6eb453b26fc3724f27c19657",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/phone/wall-clock.jsonl": "ca676327f9ace8f2aced5d12caddd409f028674fabbb4fdc709e2f80c22bd567",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/phone/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/phone/driver.out": "09538be63339c874eae4a23674ff926b9ccbe19bbbd5d54125688ff612430d41",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/desktop/wall-clock.jsonl": "5aeb3f6e647b9d84977a1347e78ee96227193d4318a762f9bad21f1e4ec4b0b7",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/desktop/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/desktop/driver.out": "3e6a3f9d4ba209d026742bb9ea0e93be0ba6e5883816e955f8013c565b85f926",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/transcript.jsonl": "fae234a6c39d2d43c4eac130696341b901fd7c8ef623469b96cba278f11bd16d",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/own-history.md": "f4791adff20bc0507a6f734cd0431970123f20eaa64b57cac939f894c92bdc7b",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/phone/wall-clock.jsonl": "6e5ae7b91bfe04470c7af9f2a848066bdd6bdef826c4fd6e36405b5576591f4d",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/phone/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/phone/driver.out": "337f301c271c116c50e5d380f5113505ed6f8f0df565303bb75d5bd5367c911d",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/desktop/wall-clock.jsonl": "3653a40b294338421411a402b2beb5ad942a6ee50bd6e84ffda7db2297656550",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/desktop/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/desktop/driver.out": "4f85a943e3e6f90f47a97a6c3fd0232b15a61b5288db08e92bd50f0a1193511e",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/transcript.jsonl": "944bd98b13164af4e832157453fcf0c0a341e96fee982dc9f0a24ca708512a5a",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/own-history.md": "037c9c5ec6a9368afb20229110518291e546462ebbfb57c5a63369e9f94e1beb",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/phone/wall-clock.jsonl": "922831a86a096ce57ce2413faece9ef1e0f84581fab02161db41c8d228b50775",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/phone/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/phone/driver.out": "f8dfa6d7525f5a9b9f12f2aa4070782e9072835993ed3ae65e0fae3005d64ac5",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/desktop/wall-clock.jsonl": "45be6e501a2f087cc27668734397ef4b64880afd4d4a9d2d65f36ddf8eef7a15",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/desktop/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/desktop/driver.out": "564239f81ebe5683352d0f36defe157e89a2d1a150c847fde938cfd2a7bb1c08",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/transcript.jsonl": "5c080667f1bff84c60b724a997e84f358e5d9cf9050caa2e81fea19c586574c9",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/own-history.md": "bf095a91df61d2129efc21695dd85acfaeca9813dad7acdd637396b27679bb90",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/phone/wall-clock.jsonl": "0607460a550ab62bfac95cfcfe51ab017ed798f1ab8fb628fd02b2731140e9f3",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/phone/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/phone/driver.out": "7672a9271c2a2b87c29f30370b1792fd01f63cc8325e2bde42fed420c1c0cbeb",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/desktop/wall-clock.jsonl": "6e12750eac48e08523cda254cbd290bb6c7e21af6c3eb085a01d60c847e8bec9",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/desktop/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/desktop/driver.out": "4eec72c821c3b0e790a58089afb359137c28939e815b081b2542321f24a4954e",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/report.md": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/transcript.jsonl": "0ad38f1b7f5335331faff2384e15b1c1a465b14e32ff42732844589e7a2eb26e",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/own-history.md": "f9aa4005f35d32158993c1614696c317879ed9147a8b74e3b3e43d3d9d6cc084",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/phone/wall-clock.jsonl": "074c16499097e675d896140132f9e6254fc3c98c049ada70481ab12103355db1",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/phone/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/phone/driver.out": "58d3966f1b1dce7b0bf6d237630b0a9d0b3efb2e527f5417e20477a3dd64be71",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/desktop/wall-clock.jsonl": "6919a15490fabf90f54e2f830491998f9c35035a99e599c83c7b84d46f39715b",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/desktop/release-start.json": "98c15b42a64e2b5ef89d720d02218caa3d7d8399b772f0e5c37121900c956658",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/desktop/driver.out": "b8f7426465cf2811abff16e2d886e4ad00b230632c44e0de3de2ada40c48de1f"
+  },
+  "cleanup": "No tree, process, browser, server, branch or worker created; no repository touched. git worktree list not applicable."
+}

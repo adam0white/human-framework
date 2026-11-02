@@ -1,0 +1,124 @@
+# Integration notes — CANDIDATE
+
+Second fixed retest, final ordinary iteration. Allfive report no newblockingask; nine actual endings, one voluntary unfinishedRosa desktopTASTE31.569, zero cuts. Eleven ranked requests include positive retain-wording request. No thirdordinarypanel. Residual preferences dated2026-11-03; exact source/CI/merge publication stillrequired. No human/owneracceptance or cohort-widecausal improvement.
+
+## Independent protocol review (Q namespace)
+
+# Independent Days final collection protocol review
+
+Reviewer: days-final-protocol-independent-20261102
+
+Verdict: **QUALIFIED**. Accept reports as qualified synthetic automated-session evidence; preserve original tester words and attach these qualifications. Do not promote to verified visual perception, human comprehension, backend identity, causal improvement or owner acceptance.
+
+Source-only independent final collection protocol audit. No project execution, imports, tests, network, browser, helpers, worktrees or workers.
+
+## Q1 — material
+
+No retained image-tool event establishes that a tester perceived any screenshot. Every transcript contains only command_execution and agent_message completed items. Shot commands return visible text and a screenshot path; image files and report claims alone do not prove perception. Keep visual claims as tester self-report, not independently verified visual findings.
+
+Evidence: `days-retest2-1102-inputs/emre/report.md:43`; `days-retest2-1102-inputs/pavel/report.md:43-48`; `days-retest2-1102-inputs/tessa/report.md:40-44`; `days-retest2-1102-inputs/rosa/report.md:74-81`; `days-retest2-1102-inputs/lucia/report.md:16`; `days-retest2-1102-inputs/emre/transcript.jsonl:332`; `days-retest2-1102-inputs/pavel/transcript.jsonl:320`; `days-retest2-1102-inputs/tessa/transcript.jsonl:182`; `days-retest2-1102-inputs/rosa/transcript.jsonl:268`; `days-retest2-1102-inputs/lucia/transcript.jsonl:11`.
+
+## Q2 — material
+
+Complete aggregate history stdout content is supported for all five. This does not prove delivery to the model, reading, retention or comprehension. Tessa explicitly reports truncated presentation and uncertain coverage; do not replace that account with a claim of verified complete reading. Prior coordinator qualifications in history remain part of the supplied history.
+
+Evidence: `days-retest2-1102-inputs/tessa/report.md:10`; `days-retest2-1102-inputs/emre/report.md:9`; `days-retest2-1102-inputs/pavel/report.md:11`; `days-retest2-1102-inputs/rosa/report.md:11`; `days-retest2-1102-inputs/lucia/report.md:10`.
+
+## Q3 — material
+
+Only Emre phone and Rosa phone have elapsed>=60 first_minute reaction logs during continuing story play. Emre phone 57.587 attempt is premature; corrected wall value is 61.996. Rosa wall value is 73.833. All ten automatic first-minute screenshots exist in device streams, but eight devices have no valid active-play first-minute reaction. Pavel desktop, Lucia phone and Rosa desktop automatic shots occur after their stop logs. Other post-ending shots also do not prove continued play. No device reaches 180 seconds; pulses and later checkpoints are untested.
+
+Evidence: `days-retest2-1102-inputs/emre/phone/wall-clock.jsonl:20-22`; `days-retest2-1102-inputs/rosa/phone/wall-clock.jsonl:25`; `days-retest2-1102-inputs/pavel/desktop/wall-clock.jsonl:26-27`; `days-retest2-1102-inputs/lucia/phone/wall-clock.jsonl:25-26`; `days-retest2-1102-inputs/rosa/desktop/wall-clock.jsonl:14-15`.
+
+## Q4 — bounded
+
+Raw logged reaction strings are all present verbatim in reports. Some printed elapsed values differ from device wall clocks by 0.001 seconds, consistent with separate command response/record timestamps; preserve both. Use wall clocks for event ordering and do not relabel a stop as an ending. Nine device sessions finish the story; Rosa desktop stops for TASTE on first day with four hours free.
+
+Evidence: `days-retest2-1102-inputs/rosa/report.md:15-18`; `days-retest2-1102-inputs/rosa/desktop/wall-clock.jsonl:9-14`; `days-retest2-1102-inputs/emre/report.md:26`; `days-retest2-1102-inputs/emre/desktop/wall-clock.jsonl:4`; `days-retest2-1102-inputs/rosa/report.md:38`; `days-retest2-1102-inputs/rosa/phone/wall-clock.jsonl:25`.
+
+## Q5 — bounded
+
+Feedback phrase inputs and Back are recorded on all ten devices. Confusion drafts occur on Emre phone, Rosa phone and Lucia desktop. No Submit or Recording input appears in retained device streams. Text/control snapshots support phrase-filled drafts and checked recording controls where exposed; this does not prove backend receipt, attribution, recording execution or consent identity. Do not treat phrase choice as a selected-state marker.
+
+Evidence: `days-retest2-1102-inputs/emre/phone/wall-clock.jsonl:11-12`; `days-retest2-1102-inputs/rosa/phone/wall-clock.jsonl:22-23`; `days-retest2-1102-inputs/lucia/desktop/wall-clock.jsonl:19-20`; `days-retest2-1102-inputs/rosa/report.md:83-85`; `days-retest2-1102-inputs/lucia/report.md:18`.
+
+## Q6 — bounded
+
+Four malformed shell commands failed before a successful driver input: Pavel one, Tessa one, Lucia two. These are harness command errors, not demonstrated game control failures. Tessa and Lucia disclose them; Pavel omits his corrected quoting failure. Rosa reports no driver errors, consistent with retained commands.
+
+Evidence: `days-retest2-1102-inputs/pavel/transcript.jsonl:332`; `days-retest2-1102-inputs/tessa/transcript.jsonl:198`; `days-retest2-1102-inputs/lucia/transcript.jsonl:23`; `days-retest2-1102-inputs/lucia/transcript.jsonl:36`; `days-retest2-1102-inputs/tessa/report.md:38`; `days-retest2-1102-inputs/lucia/report.md:16`.
+
+## Q7 — material
+
+Rosa concept counts are self-defined groups, not measured unique or newly introduced concepts. They include familiar concepts and lab controls, and the phone door/third-evening counts are retrospective. They cannot establish concept load, comprehension, a threshold pass or a comparative improvement. Preserve her wording and named-visit reread report.
+
+Evidence: `days-retest2-1102-inputs/rosa/report.md:32-40`; `days-retest2-1102-inputs/rosa/report.md:50-72`.
+
+## Q8 — material
+
+Current release-start receipts consistently identify Days b312bcdb7fc264d98eb9118d5737dde8d57d9691, HF/engine 4.8.1. The adopted SDK source-proof receipt bounds source/archive transfer and served markers; it explicitly excludes runtime execution, backend identity, attribution, recording/consent/Submit and image perception. This audit reads that receipt, not every referenced source artifact. Named automated taps do not establish physical mouse/touch operation, human-speed reading or human participants. Requested model/effort do not establish serving identity.
+
+Evidence: `days-retest2-1102-inputs/emre/desktop/release-start.json:1-7`; `days-retest2-1102-sdk-source-proof.json:150`; `days-retest2-1102-inputs/pavel/report.md:50`.
+
+## Q9 — bounded
+
+Root return receipt records native session 11503 exited 0, 453/453 sampled original identities gone, five profiles absent, eleven ports closed and stable frozen inputs before root report reads. This is adopted bounded physical-return evidence, not independently resampled process state or proof of unseen processes. Finalizer eligibility is a source audit, not release/acceptance. No new ordinary round is warranted after the stated iteration cap.
+
+Evidence: `days-retest2-1102-controller/root-return.json:39-71`; `days-retest2-1102-controller/finalizer-audit.json:1-7`.
+
+The JSON contains per-device selected raw events, release receipts and SHA-256 hashes for every input read. No tester words were rewritten. No new play round was run.
+
+No tree, process, browser, server, branch or worker created; no repository touched. git worktree list not applicable.
+
+
+## Root qualification (RQ namespace)
+
+### RQ1
+
+Physical collection closed before report reading: actual11503/33223d EXIT0; exact reviewed return453sampled identities gone/5profiles11ports/input17stable/cwd0unknown0. Sampled coverage only.
+
+### RQ2
+
+Five fictional reports on exact cleanb312/HF4.8.1. Four Days RETURN plus Lucia fictional cold under bounded scan. Same evening devices are not independent human samples; requested model does not prove serving identity.
+
+### RQ3
+
+Nine actual ending responses; one voluntary unfinished Rosa desktopTASTE31.569. Ten quit wishes/stops, zero coordinatorcuts. Finish requires final dated record and canonical publication, not human or owner acceptance.
+
+### RQ4
+
+Rosa phone reached revised comparison wording and reported it answered prior rest/hour question; a one-hour action left two hours. Fresh runs/no matchedseed; no cohort-wide causal improvement claim. Keep positive ranked retain request.
+
+### RQ5
+
+All265parsedresponse literals parseexact;59retainedreactionstrings occur verbatim in reports;five finalcapturedmessages equal reportbytes.11one-ms response/wallclock differences retained separately. EarlyEmre first-minute57.587 belowthreshold; retry61.997 qualifies.
+
+### RQ6
+
+All supplied history lines occur in retained aggregate stdout (2263/1682/1457/4532/2); not proof everyline delivered or comprehended. Tessa explicitly could not establish complete reading/unreadranges. Preserve her uncertainty unchanged.
+
+### RQ7
+
+No image-tool events in any retained transcript despite report claims of actual viewing. PNG creation/hashes are observed; image perception/layout assertions remain UNVERIFIABLE.
+
+### RQ8
+
+Four malformed shell quote failures: Pavel line332 omitted from report; Tessa198 and Lucia23/36 disclosed. Corrected commands proceeded; no input from failedshell. Preserve raw/report distinction.
+
+### RQ9
+
+Automaticfirstminute screenshots afterstop: Pavel desktop, Rosa desktop, Lucia phone. Other automaticcaptures afterstoryending/quitwish are not active-playdiaries. Active phonefirstminute Emre61.997 andRosa73.834; none reached180s; no forcedwaiting.
+
+### RQ10
+
+Recorded namedinputs use Feedbackstopping/confused+Back. No recorded Submit/type/recordingtoggle; drafts are not submission/pressedstate/backend receipt. Agentquery/SDKsource markers static attribution evidence only; consent/backendwho/actualSDKexecution unverified.
+
+### RQ11
+
+Rosa grouped concept counts are self-report estimates, not measured unique/new concepts or a threshold test. Root initially considered a notebook count mismatch, then counted nine comma-separated groups, matching her label; no raw correction is needed. Recognition firstnote recalls suppliedDaysmemory beforeSelinvisible; laterdirectcue separately stated.
+
+### RQ12
+
+All11rankedrequests and5fullreturns retained. Allfive say nonewblockingask. Residualnonblockingpreferences route dated2026-11-03; Rosa retainwording nochange. Secondfixedretet completes ordinaryloop under cap; no thirdordinarypanel or difficulty/faith/sourcefeaturechange authorized by preferences alone.
+
+Root qualified collection after actual453identityclosure and full report reads. Finalizer HOLD and CANDIDATE labels remain freeze provenance pending exact packet reviews/seal. Rawtesterwords remain unchanged. No diary append is precreated: canonicalwriter should append each fullreport once to its ownstandingdiary under recordedmethodqualifications; create fictionalcold diary onlyunder itsownidentity. Preserve Nia and alloriginalrecords.

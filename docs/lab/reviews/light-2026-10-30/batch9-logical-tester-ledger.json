@@ -148,5 +148,215 @@
     "reportSha256": "b90926c5c34b647b48667a60eb8eb17ee4786aa4057cdee5f7ddc42682f8ac50",
     "asks": ["F3042", "F3043", "F3044"],
     "scope": "one logical tester row; full conditional return preserved, no overall verdict invented"
+  },
+  {
+    "packet": "neighbours-retest2",
+    "game": "neighbours",
+    "tester": "mei",
+    "name": "Mei Tan",
+    "returnSentence": "I would return another evening on the laptop if my town were saved, to see the hall progress; I would not leave it running.",
+    "reportSha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+    "asks": ["F3113", "F3114"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "neighbours-retest2",
+    "game": "neighbours",
+    "tester": "emre",
+    "name": "Emre Kaya",
+    "returnSentence": "I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight.",
+    "reportSha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+    "asks": ["F3115", "F3116"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "neighbours-retest2",
+    "game": "neighbours",
+    "tester": "nia",
+    "name": "Nia Okafor",
+    "returnSentence": "I would come back another evening if I could reach a personal conversation without chasing someone or waiting for their work to finish; I would not return tonight or leave the game running.",
+    "reportSha256": "7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e",
+    "asks": ["F3117"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "neighbours-retest2",
+    "game": "neighbours",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily another evening if I could understand the result of my work and meet a neighbour without hurrying; I would close it now, not leave it running.",
+    "reportSha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+    "asks": ["F3118", "F3119"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "neighbours-retest2",
+    "game": "neighbours",
+    "tester": "leonie",
+    "name": "Leonie",
+    "returnSentence": "I would not voluntarily return tonight or leave the game running; I might be curious about the hall another evening, but these sessions did not draw me back.",
+    "reportSha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+    "asks": ["F3120", "F3121", "F3122"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "smoke-retest2",
+    "game": "smoke",
+    "tester": "jonas",
+    "name": "Jonas Berg",
+    "returnSentence": "**I would not return voluntarily for another attempt tonight; I have seen the two orders I wanted to try. I would not leave it running.**",
+    "reportSha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+    "asks": ["F3123"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "smoke-retest2",
+    "game": "smoke",
+    "tester": "aisha",
+    "name": "Aisha Rahman",
+    "returnSentence": "I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.",
+    "reportSha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+    "asks": ["F3124", "F3125", "F3126"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "smoke-retest2",
+    "game": "smoke",
+    "tester": "diego",
+    "name": "Diego Silva",
+    "returnSentence": "**Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.",
+    "reportSha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+    "asks": ["F3127", "F3128"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "smoke-retest2",
+    "game": "smoke",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.",
+    "reportSha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+    "asks": ["F3129", "F3130", "F3131"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "smoke-retest2",
+    "game": "smoke",
+    "tester": "iria",
+    "name": "Iria",
+    "returnSentence": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+    "reportSha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+    "asks": ["F3132"],
+    "scope": "one logical tester row; full conditional return preserved; fictional AI evidence with packet methodology qualifications, no overall verdict or owner acceptance invented"
+  },
+  {
+    "packet": "days-retest1",
+    "game": "days",
+    "tester": "emre",
+    "name": "Emre Kaya",
+    "returnSentence": "I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.",
+    "reportSha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+    "asks": ["F3133", "F3134"],
+    "scope": "one logical fictional tester; full conditional return retained. First fixed retest, second fix/retest required; protocol D1-D11 and root D1-D12 remain distinct. No owner acceptance."
+  },
+  {
+    "packet": "days-retest1",
+    "game": "days",
+    "tester": "pavel",
+    "name": "Pavel Novak",
+    "returnSentence": "I would return voluntarily another evening to try a different route, but not tonight; I would not leave it running.",
+    "reportSha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+    "asks": ["F3135", "F3136", "F3137"],
+    "scope": "one logical fictional tester; full conditional return retained. First fixed retest, second fix/retest required; protocol D1-D11 and root D1-D12 remain distinct. No owner acceptance."
+  },
+  {
+    "packet": "days-retest1",
+    "game": "days",
+    "tester": "tessa",
+    "name": "Tessa Williams",
+    "returnSentence": "I would not return voluntarily tonight or leave Days running; I liked the specific consequences and the chance to apologise, but I have had enough of choosing between two set options.",
+    "reportSha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+    "asks": ["F3138", "F3139"],
+    "scope": "one logical fictional tester; full conditional return retained. First fixed retest, second fix/retest required; protocol D1-D11 and root D1-D12 remain distinct. No owner acceptance."
+  },
+  {
+    "packet": "days-retest1",
+    "game": "days",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily another evening on the large screen if the hour and rest costs were explained plainly; I would close it now, not leave it running.",
+    "reportSha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+    "asks": ["F3140", "F3141"],
+    "scope": "one logical fictional tester; full conditional return retained. First fixed retest, second fix/retest required; protocol D1-D11 and root D1-D12 remain distinct. No owner acceptance."
+  },
+  {
+    "packet": "days-retest1",
+    "game": "days",
+    "tester": "leire",
+    "name": "Leire",
+    "returnSentence": "I would not voluntarily return tonight or leave the game running; I finished one story and lost interest in a second pass.",
+    "reportSha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+    "asks": ["F3142", "F3143"],
+    "scope": "one logical fictional tester; full conditional return retained. First fixed retest, second fix/retest required; protocol D1-D11 and root D1-D12 remain distinct. No owner acceptance."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "emre",
+    "name": "Emre Kaya",
+    "returnSentence": "I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.",
+    "reportSha256": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+    "asks": ["F3144"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md",
+    "noNewBlocking": "I reached no new blocking ask.",
+    "scope": "one standing fictional tester across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "pavel",
+    "name": "Pavel Novak",
+    "returnSentence": "I would return voluntarily another evening on the desktop to try a different route, but not tonight; I would not leave it running.",
+    "reportSha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+    "asks": ["F3145", "F3146", "F3147"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md",
+    "noNewBlocking": "I reached no new blocking gameplay ask.",
+    "scope": "one standing fictional tester across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "tessa",
+    "name": "Tessa Williams",
+    "returnSentence": "I would not return voluntarily tonight or leave Days running; I liked how it remembered the unfinished obligations and the harm of the disclosure, but I have had enough of these familiar choices.",
+    "reportSha256": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+    "asks": ["F3148", "F3149"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md",
+    "noNewBlocking": "I reached no new blocking control or blocking ask.",
+    "scope": "one standing fictional tester across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily another evening on the large screen to try a different choice; I would close it now, not leave it running.",
+    "reportSha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+    "asks": ["F3150", "F3151", "F3152"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md",
+    "noNewBlocking": "No new blocking ask arose.",
+    "scope": "one standing fictional tester across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "lucia",
+    "name": "Lucia Ferraro",
+    "returnSentence": "I would not voluntarily return for another run now; I would leave the game after the ending rather than leave it running.",
+    "reportSha256": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+    "asks": ["F3153", "F3154"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/report.md",
+    "noNewBlocking": "No blocking ask arose. I could choose delivery and continue.",
+    "scope": "one fictional cold tester, not a standing panel member across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
   }
 ]

@@ -2281,3 +2281,194 @@ The coordinator owns the drivers and browser cleanup. I created no worktree, bra
 ---
 COORDINATOR METHOD QUALIFICATION (separate from the unchanged own report): Retained history stdout does not prove delivery or comprehension; inherited W/SW/NR/SWF and image-view limits remain. Screenshot files do not independently establish perception. Both actual stops were voluntary and unfinished; no ending was observed. Checkpoint obligation during a stopping wrap is unverified; automatic post-stop screenshots do not establish continued play. Requested model does not prove serving identity or causation. Current own stop projections: [{"tester":"emre","device":"desktop","wallRow":47,"elapsed":89.011,"reason":"TASTE","engagement":3,"unfinished":"Report says unfinished; no observed ending flag","qualification":"Voluntary actor stop; not automatic ceiling or controller interruption."},{"tester":"emre","device":"phone","wallRow":18,"elapsed":33.657,"reason":"BORED","engagement":2,"unfinished":"Report says unfinished; no observed ending flag","qualification":"Voluntary actor stop; not automatic ceiling or controller interruption."}]; current own reported time differences: [{"tester":"emre","device":"desktop","wallRow":33,"transcriptLine":170,"wallElapsedLiteral":"61.512","driverResponseElapsedLiteral":"61.513","manuscriptTimeLiterals":["61.513"],"qualification":"Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."}]. No backend or owner acceptance is established.
 ```
+
+
+## 2026-11-02 — neighbours final fixed retest
+
+Coordinator metadata: qualified fictional AI evidence. Complete own report follows in the unedited continuation. All inherited and current qualifications remain attached in [methodology](../reviews/light-2026-10-30/neighbours-retest2/methodology.md.txt) and [external seal](../reviews/light-2026-10-30/neighbours-retest2/root-seal.json.txt). Internal pre-review labels are historical. No owner acceptance follows.
+
+```text
+# Coordinator metadata — derived diary continuation; candidate frozen for independent review, NOT SEALED
+
+Standing tester: emre. The complete current report follows, unchanged, beginning immediately after the marker. This file is derived; report.md is the exact source copy.
+
+--- BEGIN VERBATIM REPORT ---
+I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight.
+
+My ranked asks are:
+
+1. Show what remains before the timber is safe and what another hour of work might do. Both timber hours ended with “still felt damp.”
+2. Show when a tool may become available for my own repair hour. On desktop, I lent three tools, then found every tool in use when I returned to the hall.
+
+The second ask was the immediate blocker to the repair hour I wanted on desktop. Other actions remained available; it did not block the whole game.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was a return visit to Neighbours. I read the supplied own history in explicit ranges through **line 2130**. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The history is selected, not a complete archive.
+
+Both sessions used the assigned agent-marked URL in separate fresh contexts, without an imported save or matched seed. They were on the same evening, desktop first and phone second. Recording and consent stayed at their defaults.
+
+- **Desktop:** 1280×800, keyboard and mouse. Voluntary stop at **94.323 seconds**, Day 1 13:30, **BORED**.
+- **Phone:** 360×690, touch. Voluntary stop at **102.825 seconds**, Day 1 14:30, **BORED**.
+
+Neither game ended. Both reached a valid first-minute entry and stopped before the 180-second pulse, so pulses and later checkpoints were untested. The hall opening, hall evenings, later days and an ending were also untested.
+
+The direct work held my attention. On desktop, I could walk to the hall and spend an hour propping and airing timber without first making a bargain. The journal recorded the work, but said the timber still felt damp. When I tried an hour of repairs, the game clearly said every tool was in use. I spent a credit to lend three tools; the game reported three available, but after time passed and I reopened the hall, it again said every tool was in use. I could not tell when one would be free. I chose to leave rather than keep checking.
+
+On phone, I tried repairs first and the journal explained the setback: the repair on damp timber did not hold. I liked having a reason I could understand. I used my remaining hour to support and air the timber; it still felt damp. One repair was later shown as complete, but I do not know whose work produced it.
+
+**Diary — my logged words, in order**
+
+Desktop:
+
+- **5.115 s, note, engagement 4:** “The flooded hall brings back Nora keeping my hour and the inspection still finding wet timber and loose supports. I want to see what I can do next in this fresh town.”
+- **18.619 s, note, engagement 4:** “I can give an hour directly now, including supporting the timber. That gives me a practical action without first bargaining with Nora. I will walk to the hall.”
+- **40.793 s, note, engagement 4:** “The inspection again names wet timber and loose supports, exactly the problem I remember. I have started an hour on it directly and want to see its result.”
+- **51.245 s, note, engagement 3:** “My hour is recorded and the timber still felt damp, as before. I still cannot tell how close it is to safe or what another hour would change.”
+- **61.558 s, first_minute, engagement 3, Day 1 11:00:** “The hall goal is clear and I can work directly for an hour. The record says the timber still felt damp, but I cannot judge what remains before it is safe. I will try repairs as well.”
+- **65.024 s, note, engagement 3:** “The repair hour is unavailable because every tool is in use. That is a clear reason. I will lend tools and see whether I can work.”
+- **76.300 s, note, engagement 2:** “I lent three tools and was told three were available, but on returning to the hall the repair hour says every tool is in use. Time passed between screens, so I cannot tell who took them or whether I can plan around it.”
+- **84.545 s, want_quit, BORED, engagement 2, Day 1 13:15:** “I have done the timber hour again and spent a credit on tools, but the repair hour is still unavailable and the hall is at zero. I do not want to keep checking for a free tool tonight.”
+- **94.323 s, stop, BORED, engagement 2, Day 1 13:30:** “I am stopping on desktop after one timber hour and lending tools. The work and cost were clear, but I cannot tell what remains for safety or when a tool will be free for my repair hour. I would return another evening, not leave it running.”
+
+Phone:
+
+- **7.668 s, note, engagement 3:** “The phone opening fits and repeats the hall goal I just saw on desktop. I will try the direct repair hour first in this fresh town.”
+- **37.002 s, note, engagement 4:** “On the phone I started the repair hour before the tools were all occupied. It says exactly when the work ends; I want to see whether the count changes.”
+- **56.190 s, note, engagement 4:** “The journal says my repair on damp timber did not hold. That explains the zero and makes the setback understandable. I should support and dry it first, though I still cannot see how much drying is enough.”
+- **68.587 s, first_minute, engagement 4, Day 1 10:45:** “The phone goal and direct work are clear. My repair did not hold on damp timber, and the journal explains why. I will use the remaining hour to support and dry it, though I do not know how much is needed.”
+- **93.108 s, want_quit, BORED, engagement 2, Day 1 13:45:** “The failed repair has a clear reason, and I used my other hour on the timber. It still felt damp, as on desktop, and I have no work hours left today. I do not want to repeat the waiting tonight.”
+- **102.825 s, stop, BORED, engagement 2, Day 1 14:30:** “I am stopping on the phone after a failed repair and a timber hour. The journal explained why the repair failed, which I liked, but the timber still felt damp and I have no work hours left. I would return another evening on desktop, not leave it running.”
+
+Both quit wishes persisted to their stops. The direct repair failure was explained; the amount of drying needed was not clear to me. The tool message explained why the desktop action was unavailable at that moment, but not when it might become available. The change between “3 tools are now available” and “Every tool is in use” followed game time passing; I cannot say what happened to them.
+
+**Recognition and comparison**
+
+- At **5.115 s on desktop**, the visible flooded-hall goal recalled my earlier Neighbours work hour and the inspection finding wet timber and loose supports. My exact words are in the diary; confidence is **high**, based on my supplied report.
+- At **40.793–51.245 s**, the inspection and “still felt damp” result recalled that earlier inspection and timber hour, also with **high confidence**. These were separate fresh towns.
+- At **7.668 s on phone**, the opening recalled the desktop session just played, with **high confidence**.
+- I made no cross-game person recognition.
+
+My earlier ask to understand what remains for hall safety is still unresolved in what I reached. The journal gave a useful explanation for the phone repair failure, but I did not learn how close the timber was to safe. I did not revisit the earlier accepted-alternative conversation, so I cannot assess its immediate confirmation.
+
+**Device and feedback observations**
+
+I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/a-001.png) immediately after opening. The goal and entry button were readable, and the artwork did not cover the goal. I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/b-001.png) immediately after opening. The goal and large entry button fit the narrow screen. These were the only manual screenshots I viewed; later gameplay and Feedback observations come from the driver’s visible text.
+
+On desktop, one attempt to select the hall used a name absent from the current panel; the current **Inspect Flooded hall** control worked. The repair-hour control was disabled with a game-state explanation, not a driver block. On phone, the support-hour tap initially showed “Sending your action”; the later journal confirmed that the hour was completed.
+
+For confusion, I opened Feedback, selected **“I’m confused,”** saw it pressed and closed Feedback: twice on desktop and once on phone. Before each stop, I selected **“I’m stopping,”** saw it pressed and closed Feedback. I typed no note and submitted nothing.
+
+The coordinator owns the drivers and browser cleanup. I created no worktree, branch, server, browser or worker and touched no repository; no `git worktree list` applies.
+```
+
+
+## 2026-11-02 - Days first fixed retest
+
+Coordinator metadata: this is a complete unchanged own report from fictional AI play. First fixed retest; second fix/retest remains required. All inherited limits, protocol D1-D11 and separate root D1-D12 remain in [integration notes](../reviews/light-2026-10-30/days-retest1/integration-notes.md.txt) and [root qualification](../reviews/light-2026-10-30/days-retest1/evidence/days-retest1102-root-qualification.json.txt). No image perception, history comprehension, backend state or owner acceptance follows. Original CANDIDATE/HOLD labels preserve freeze provenance; [external seal](../reviews/light-2026-10-30/days-retest1/root-seal.json.txt) qualifies collection only.
+
+```text
+I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.
+
+My ranked asks are:
+
+1. Show the amount paid and the savings remaining. I could follow who owed the mistaken payment, but I could not price either payment from savings.
+2. Keep the phone choice cards visible sooner. The story filled the screen, and I had to scroll to see the choices.
+
+I reached no new blocking ask. Both games ended.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was my first fixed-build retest of Days. I read the supplied selected own history through **line 2205** before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. These records are not my complete archive.
+
+Both sessions used the driver-opened agent-marked page in separate fresh contexts, without an imported save or matched seed. They were on the same evening, desktop first and phone second. I left recording and consent at their defaults and changed no owner settings.
+
+- **Desktop:** 1280×800, keyboard and mouse. The game ended at **44.599 seconds**; I logged my stop at **55.106 seconds**, reason **FINISHED**.
+- **Phone:** 360×690, touch. The game ended at **48.268 seconds**; I logged my stop at **62.269 seconds**, reason **FINISHED**.
+
+The familiar six-hour budget gave me a practical plan. On desktop I paid the first claim, then learned it was a mistaken payment Burak owed back. I checked the original, paid the verified boiler bill, made the visit and told Selin. I liked that the ending named the notebook and mistaken payment as still owed. On phone I kept the notebook and recorded the claim myself; those hours left too little time for the visit. The card warned me, and I arranged a later delivery. The ending made clear that delivery was agreed, not completed.
+
+The hour costs and the consequences of my choices were mostly clear. The savings remained vague: “Her savings are smaller” did not tell me how much I had spent or had left. On the phone, exhaustion was explained as adding a checking or travel hour. After rest, the private-check card said the original was already available and gave a one-hour cost. That helped me understand the cost I faced.
+
+**Diary — my logged words in order**
+
+Desktop:
+
+- **5.369 s, note, engagement 4:** “The familiar six-hour account and promised visit give me a practical plan. I want to try paying the bill myself and telling Selin, as I intended last time.”
+- **15.370 s, note, engagement 3:** “The mistaken payment is clearly assigned to Burak to return, but my savings are still only described as smaller. I cannot price that choice.”
+- **33.071 s, note, engagement 4:** “The original distinguishes the two bills and Burak acknowledges the return. Two hours remain and the visit costs two; that is a plan I can follow.”
+- **46.521 s, want_quit, FINISHED, engagement 4:** “I made the visit, paid the verified bill and told Selin. The ending names the notebook and mistaken payment still owed, so I understand what remains. I am done for tonight.”
+- **55.106 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.”
+
+Phone:
+
+- **7.291 s, note, engagement 3:** “The phone opening fits. I have just seen the account and visit on desktop; I will try the alternate opening and see what changes.”
+- **18.224 s, note, engagement 3:** “The exhausted state explains an extra checking and travel hour. The phone story fills the screen again and the choices lie below it; I will scroll to choose.”
+- **31.181 s, note, engagement 4:** “Rest makes the private check one hour, and the card says the original is already here. I can see why it differs from the two-hour desktop check.”
+- **41.529 s, note, engagement 4:** “I spent the hour keeping the notebook and another recording the claim. One hour remains, so I cannot make the two-hour visit. The card warns me before choosing and offers delivery; that is an understandable setback.”
+- **50.141 s, want_quit, FINISHED, engagement 3:** “The phone story ended with delivery agreed but not yet made. I understand the lost visit and the account follow-up; I have played enough paths for tonight.”
+- **62.269 s, stop, FINISHED, engagement 3:** “I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.”
+
+Both quit wishes came after an explicit ending and persisted. I logged no first-minute entry or pulse: desktop stopped before 60 seconds; phone reached 60 seconds during the Feedback wrap after the story had ended. The first-minute and later pulse checkpoints were untested on both devices.
+
+I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/a-001.png) immediately after opening. The notice and start button were readable over the two-column room. I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-001.png) immediately after opening; the notice and buttons fit the narrow screen. On phone, [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-002.png) showed the story occupying most of the screen with the choices below, and [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-003.png) showed both choice cards after scrolling. Later observations came from the driver’s visible text. No control blocked either session.
+
+For the savings confusion on desktop, I opened Feedback and chose **“I’m confused.”** The quick label filled the feedback box; I used Back. At each stop I chose **“I’m stopping,”** which filled the box, and used Back. I typed no note, submitted nothing and changed no recording or consent setting.
+
+My earlier Days question about **savings as a number** came up again: the payment was still described without an amount in the path I played. My earlier question about **why a cost changed** was clearer in the phone check I reached: the card identified the original receipt as already present, and the story explained exhaustion. I also revisited my phone layout concern and confirmed that scrolling exposed the cards in this scene.
+
+The coordinator owns the drivers and browser cleanup. I created no worktree, branch, server, browser or worker and touched no repository, so no `git worktree list` applies.
+```
+
+
+## Days second fixed retest — 2026-11-02
+
+Qualified final ordinary iteration; source: `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md`; SHA-256: `73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8`. See packet integration notes for protocol and evidence qualifications.
+
+```text
+I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.
+
+My ranked ask is:
+
+1. Show the amount paid and the savings remaining. On the phone, I understood that Burak owed the mistaken payment back, but I could not tell how much Leyla had paid.
+
+I reached no new blocking ask.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was my second fixed-build retest of Days. I read the supplied selected history through line **2263** before play, including rereading truncated portions. The last line was **“End of supplied own history.”** Unread ranges: **none**. The supplied history is not my complete archive.
+
+Both sessions used the driver-opened agent-marked page in separate fresh contexts, with no imported save or matched seed. They were on the same evening, desktop first and phone second. Recording and consent stayed at their defaults; I changed no owner settings.
+
+- **Desktop:** 1280×800, keyboard and mouse. The game ended at **51.280 seconds**. I stopped at **66.918 seconds**, **FINISHED**.
+- **Phone:** 360×690, touch. The game ended at **75.265 seconds**. I stopped at **91.493 seconds**, **FINISHED**.
+
+The six-hour budget gave me a practical plan again. On desktop, I checked the account before paying, kept the notebook private, and asked Selin for cover. I liked that the game stated the cost to her evening. I recorded the claim, made the visit with my last hour, and told Selin what Leyla had wished to tell her father. The ending said the visit was kept and named a next step for the account.
+
+On the phone I paid the first claim and read the page aloud. I could understand both setbacks: Burak owed the mistaken payment back, and apologising and asking people not to repeat the disclosure could limit the harm without undoing it. I still made the visit. The ending remembered the disclosure and the money owed.
+
+The hour costs and account follow-up were clear in the paths I played. The payment amount was not: “Her savings are smaller” left me unable to price the choice. That confused me, but it did not stop me playing.
+
+**Diary — my logged words, in order**
+
+Desktop:
+
+- **6.197 s, note, engagement 4:** “The six-hour account and promised visit are familiar. I want to see a different path, while keeping enough time for the visit.”
+- **23.121 s, note, engagement 4:** “Selin agreed to a short shift, and the cost to her evening is stated. Four hours remain and the visit now needs one; that gives me a plan.”
+- **42.146 s, note, engagement 4:** “The original separates the bills, and recording the claim leaves exactly one hour for the covered visit. I can follow where my hours went.”
+- **53.477 s, want_quit, FINISHED, engagement 4:** “The visit happened, the notebook stayed private, and the account has a named next step. I am satisfied with this path and done with it tonight.”
+- **66.918 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. I kept the visit and privacy and left a clear account follow-up. I would try another path another evening, not leave it running.”
+
+Phone:
+
+- **10.370 s, note, engagement 3:** “The phone opening fits. I have just kept the visit on desktop; I will choose differently here and see where the time goes.”
+- **20.170 s, note, engagement 3:** “The mistaken payment belongs back from Burak, which is clear. Again I only see that savings are smaller, so I cannot tell the size of the loss.”
+- **57.587 s, first_minute attempt, engagement 4:** “The phone path makes the privacy cost concrete: I apologised and the listeners agreed not to repeat it, but cannot undo the disclosure. The account and hours are clear; the amount paid is still unknown.” This was premature and does not count as the first-minute checkpoint.
+- **61.997 s, first_minute, engagement 4, third day, 3 hours free:** “The phone path makes the privacy cost concrete: I apologised and the listeners agreed not to repeat it, but cannot undo the disclosure. The account and hours are clear; the amount paid is still unknown.”
+- **78.638 s, want_quit, FINISHED, engagement 4:** “The visit happened and the ending remembers both the disclosure and the money Burak owes. I have seen enough of these choices tonight.”
+- **91.493 s, stop, FINISHED, engagement 4:** “I am stopping on the phone after the three days ended. The privacy repair and mistaken payment remain in the ending, and the visit was kept. I would return another evening, not leave it running.”
+
+Both quit wishes came after an explicit ending and persisted. The desktop story ended before 60 seconds; its first-minute checkpoint was untested, although the Feedback wrap continued past 60 seconds. The phone reached a valid first-minute entry. Both sessions ended before 180 seconds, so pulses and later timed checkpoints were untested.
+
+I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/desktop/a-001.png) immediately after opening. The notice and start buttons were readable over the two-column room. I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/phone/b-001.png) immediately after opening. The notice and buttons fit the narrow screen. These were the only manual screenshots I viewed; later gameplay and Feedback observations come from the driver’s visible text. I did not inspect a phone gameplay screenshot, so I cannot assess the choice-card layout this time. No control blocked either session.
+
+For the savings confusion on phone, I opened Feedback and chose **“I’m confused.”** It filled the feedback box, and I used Back. At each stop I chose **“I’m stopping,”** which filled the box, and used Back. The phone’s earlier “I’m confused” draft was still present when I reopened Feedback and was replaced by “I’m stopping.” I typed no note, submitted nothing and did not toggle recording.
+
+My earlier Days question about **savings as a number** came up again: the phone payment was still described without an amount. I did not revisit my earlier phone choice-card visibility question with a gameplay image, so I cannot compare it from this visit.
+
+The coordinator owns the drivers and browser cleanup. I created no worktree, branch, server, browser or worker and touched no repository, so no `git worktree list` applies.
+```

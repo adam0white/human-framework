@@ -1,0 +1,53 @@
+# Jonas standing diary continuation
+
+Coordinator note: Full current report follows verbatim. Root qualifications, including visual access UNVERIFIABLE and history delivery limits, are outside the report in ../methodology.md and ../evidence/root-qualification.json.
+
+**I would not return voluntarily for another attempt tonight; I have seen the two orders I wanted to try. I would not leave it running.**
+
+My ranked ask:
+
+1. Give me a harder choice after I learn the torch-and-follow routine, with visible clues about its cost. Both orders succeeded here, although Derya’s breathing warning made the second trip feel consequential. I cannot tell from two runs how often either order would work.
+
+I reached no new blocking ask.
+
+I played as Jonas Berg in two fresh games on the same evening: desktop at 1280×800 with keyboard and mouse, then phone at 360×690 with touch. Each used its assigned driver and the supplied agent URL. I imported no save or matched seed. I left recording and consent at their defaults and did not change owner settings.
+
+The history read was incomplete as delivered to me. I requested explicit ranges covering lines 1–2445, but the combined output was truncated; a subsequent partial reread was also truncated. The last line delivered was line 2445, **“End of supplied own history.”** I cannot establish the exact unread ranges from the truncated output. I did not use the missing material as memory.
+
+On desktop, the opening at **0.514 s** gave me a familiar evacuation: find who was home, show them the stair, and ask them to leave. Burak checked the stair and escaped alone. I took Derya up to Hacer, then led both down together. The game warned that thick smoke could stop followers, so I watched their statuses. Both reached the street, and the ending said everyone was out at **71.996 s**. The batch worked on this attempt; it did not tell me that batching is always safe.
+
+On phone, the opening at **0.435 s** had Hacer away and Sevim at home. I chose separate trips. Sevim tied her books, followed me out, and Burak escaped alone. When I returned for Derya, her status said smoke was making breathing difficult. She followed me out and the game showed everyone out at **102.473 s**. The warning gave the extra trip a visible cost, even though she survived. By then the torch-and-follow steps felt repetitive.
+
+The instructions, walking destination and estimated travel time were clear in the interactions I reached. I did not encounter confusion that made me open Feedback during play. I used the driver’s named controls on both devices; that confirms the visible outcomes returned by the driver, but does not establish physical touch-target usability.
+
+The opening screenshots were actually viewed with the image tool:
+
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/desktop/a-001.png): a centered, readable instruction panel and entry button.
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/phone/b-001.png): a readable single-column panel with the entry button and recording notice.
+
+I did not view an active-play screenshot on either device, so I cannot assess the active layout visually.
+
+**Diary — exact logged reactions, in order**
+
+Desktop:
+
+- **9.618 s, note, engagement 4:** “Burak is checking the stair himself. I will go to Derya and try gathering people before going down, watching whether smoke stops them.”
+- **58.754 s, first_minute, engagement 4:** “Burak got out on his own. I gathered Derya and Hacer and Street gives a clear walking estimate; I am watching whether both keep following through the smoke.” This tag was premature, before 60 seconds.
+- **61.561 s, first_minute, engagement 4:** “Burak got out on his own. I gathered Derya and Hacer and Street gives a clear walking estimate; I am watching whether both keep following through the smoke.”
+- **74.856 s, want_quit, FINISHED, engagement 3:** “Everyone got out, including both followers. I would stop this run here; the batch worked and I have seen its result.”
+- **83.017 s, stop, FINISHED, engagement 3:** “Everyone is out. I am stopping at the ending after selecting stopping and closing Feedback without sending.”
+
+Phone:
+
+- **12.183 s, note, engagement 4:** “Hacer is away this time and Sevim needs waking. I will take Sevim out first instead of gathering everyone.”
+- **67.587 s, first_minute, engagement 3:** “Sevim got out with the books and Burak got out alone. I am going back for Derya. The steps are clear, but I am repeating the same torch and follow routine.”
+- **104.444 s, want_quit, FINISHED, engagement 3:** “Everyone is out. Derya had a breathing warning, but I got her down. I would stop here; the routine is familiar and I have finished.”
+- **114.154 s, stop, FINISHED, engagement 3:** “Everyone is out. I am stopping at the ending; the separate trips worked, though Derya had trouble breathing. I selected stopping and closed Feedback without sending.”
+
+Both quit wishes held at actual endings. The stop logs were at **83.017 s** and **114.154 s**. Neither session reached the 180-second pulse, so both pulses were untested. The valid first-minute entries were at 61.561 and 67.587 seconds; the earlier desktop entry remains recorded as a timing error.
+
+At each ending I opened Feedback through **“Tell us about this night,”** selected **“I'm stopping,”** saw it marked pressed, and closed with **“Not now.”** I typed no note or name and submitted nothing.
+
+I revisited my earlier Smoke question about whether **Street** moves me and carries followers along. It showed a walking destination and estimate on both devices, and the followers reached the street in these attempts. In my previous phone attempt, Derya stopped and I had to return for her; this time both desktop followers stayed with me, and Derya completed the separate phone trip. These are observations from different games, not a controlled comparison.
+
+I created no server, browser, process, repository or worktree. The coordinator owns the drivers and their cleanup; no `git worktree list` applies.

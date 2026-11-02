@@ -1,0 +1,644 @@
+{
+  "verdict": "CLEAR",
+  "scope": "Private packet fidelity only. No source, CI, mechanics correctness, human acceptance, game completion or release approval.",
+  "manifest_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/manifest.json",
+  "manifest_sha256": "7633e1245555311301c41e12be3563e1ec7f196a3e3f294a3695ab02b67f941d",
+  "payload_count": 20,
+  "findings": [],
+  "checks": {
+    "exact_report_copies": 5,
+    "exact_referenced_source_copies": 14,
+    "additional_root_qualification_copy": true,
+    "verbatim_ranked_asks": 11,
+    "verbatim_full_opening_return_clauses": 5,
+    "extraction_spans_verified": 102,
+    "reserved_ids": "F-3133 through F-3143, consecutive and unique",
+    "route_dates": "Nov 3 clarity/readability; Nov 10 taste/preservation, director-assigned follow-up targets per root message; not tester deadlines or fixer commitments.",
+    "classification": "Rosa rank 1 is the only newly raised blocking ask. Leire related question remains nonblocking; completed phone. Other asks preserve individual preferences and positive behavior.",
+    "raw_dispute": "Original Rosa transcript line 278 has the one-hour/no-time-to-recuperate cost with Rested and 3 hours free. Original phone log has persistent CONFUSED stop at 120.975 s.",
+    "consensus": "No invented cohort consensus or causal improvement claim found. Three Days returners remain distinct from first-Days Rosa and fictional cold Leire.",
+    "historical_qualifications": "Finalizer HOLD and audit-not-approval remain historical evidence. Root qualification requires second fix/retest and does not claim owner acceptance. Image-access uncertainty, raw/report clock differences and post-stop screenshots remain qualified.",
+    "source_pngs_hashed": 26
+  },
+  "files_checked": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/manifest.json",
+      "sha256": "7633e1245555311301c41e12be3563e1ec7f196a3e3f294a3695ab02b67f941d",
+      "bytes": 3150,
+      "checks": [
+        "JSON parsed"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-ask-review.json",
+      "sha256": "d602fcc21790861f8191fb1a5ca6b323cd56b916e5be372a1f0c1aa85116af70",
+      "bytes": 118304,
+      "checks": [
+        "JSON parsed",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-ask-review.md",
+      "sha256": "0a6f01d2a2c7fded74176175ead736c28f6770a8721fdd8f050f73821541bd04",
+      "bytes": 29627,
+      "checks": [
+        "full text read",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-literal-extraction.json",
+      "sha256": "7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05",
+      "bytes": 55274,
+      "checks": [
+        "JSON parsed",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-protocol-review.json",
+      "sha256": "5ae33676a6780dd9d09a77dc25476cd413935e90e4f37bf29346242be215da44",
+      "bytes": 163523,
+      "checks": [
+        "manifest SHA256 and byte count",
+        "source copy comparison",
+        "structure and source bindings parsed"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-protocol-review.md",
+      "sha256": "ba066ad9cf0fc53448873ccccef1e0e79a478968d1959200867c8a01d13c4103",
+      "bytes": 6610,
+      "checks": [
+        "full text read",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-literal-check.json",
+      "sha256": "e12341e9707390aa5b6417bd69848ba1a689a539c08a4d40d6892dabfc78a038",
+      "bytes": 20460,
+      "checks": [
+        "JSON parsed",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-qualification.json",
+      "sha256": "1c4cd337d0fe605b06cc86f50dd358278960c1b27a9f3614fb1561221113f296",
+      "bytes": 3636,
+      "checks": [
+        "JSON parsed",
+        "manifest SHA256 and byte count",
+        "root qualification copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-raw-check.json",
+      "sha256": "8b5217a4a17edb2852319efaceb16b46a96ee343a9b23c780211fad9c56af0cf",
+      "bytes": 913649,
+      "checks": [
+        "JSON parsed",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/finalizer-audit.json",
+      "sha256": "7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc",
+      "bytes": 2693869,
+      "checks": [
+        "historical audit parsed; not approval",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/root-return.json",
+      "sha256": "3b75b1202b9a07a812ddab96c4f2c9fe91fe76052f609163214def7c348be742",
+      "bytes": 3572,
+      "checks": [
+        "bounded root receipt parsed",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/integration-notes.md",
+      "sha256": "b2c936eadfd3d2bf7485311037b6d5d1fe120200cfdbb59f2cd3792808ce46d3",
+      "bytes": 8394,
+      "checks": [
+        "full text read",
+        "manifest SHA256 and byte count"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/ledger.json",
+      "sha256": "f243fdfd199d655b07357c568f2cb5f27000f043df24f69d3ebd97f4f7e3afe0",
+      "bytes": 12671,
+      "checks": [
+        "JSON parsed",
+        "manifest SHA256 and byte count"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/logical-testers.md",
+      "sha256": "6987a8f85f84cb7bf3b6f56ccc32d4153bec69c2c17bbd6202f062eda47bc0d1",
+      "bytes": 1331,
+      "checks": [
+        "full text read",
+        "manifest SHA256 and byte count"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/emre/report.md",
+      "sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+      "bytes": 6776,
+      "checks": [
+        "full report read and exact copy comparison",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/leire/report.md",
+      "sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+      "bytes": 4814,
+      "checks": [
+        "full report read and exact copy comparison",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/pavel/report.md",
+      "sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+      "bytes": 7505,
+      "checks": [
+        "full report read and exact copy comparison",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/rosa/report.md",
+      "sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+      "bytes": 13601,
+      "checks": [
+        "full report read and exact copy comparison",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/tessa/report.md",
+      "sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+      "bytes": 6487,
+      "checks": [
+        "full report read and exact copy comparison",
+        "manifest SHA256 and byte count",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/source-png-hashes.json",
+      "sha256": "e78cbf34a86ed05446ae911585078055173e3009d9292831821633b09ee30467",
+      "bytes": 5493,
+      "checks": [
+        "JSON parsed",
+        "manifest SHA256 and byte count"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/source-references.json",
+      "sha256": "4aee02b8c9506d566a033e575f7c82fc80169e28bec76dedc54e43e4bb6d0506",
+      "bytes": 3279,
+      "checks": [
+        "JSON parsed",
+        "manifest SHA256 and byte count"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+      "sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+      "bytes": 6776,
+      "checks": [
+        "full report read and literal verification",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+      "sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+      "bytes": 7505,
+      "checks": [
+        "full report read and literal verification",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+      "sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+      "bytes": 6487,
+      "checks": [
+        "full report read and literal verification",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+      "sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+      "bytes": 13601,
+      "checks": [
+        "full report read and literal verification",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+      "sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+      "bytes": 4814,
+      "checks": [
+        "full report read and literal verification",
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-ask-review.md",
+      "sha256": "0a6f01d2a2c7fded74176175ead736c28f6770a8721fdd8f050f73821541bd04",
+      "bytes": 29627,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-ask-review.json",
+      "sha256": "d602fcc21790861f8191fb1a5ca6b323cd56b916e5be372a1f0c1aa85116af70",
+      "bytes": 118304,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-protocol-review.md",
+      "sha256": "ba066ad9cf0fc53448873ccccef1e0e79a478968d1959200867c8a01d13c4103",
+      "bytes": 6610,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-protocol-review.json",
+      "sha256": "5ae33676a6780dd9d09a77dc25476cd413935e90e4f37bf29346242be215da44",
+      "bytes": 163523,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-root-literal-check.json",
+      "sha256": "e12341e9707390aa5b6417bd69848ba1a689a539c08a4d40d6892dabfc78a038",
+      "bytes": 20460,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-root-raw-check.json",
+      "sha256": "8b5217a4a17edb2852319efaceb16b46a96ee343a9b23c780211fad9c56af0cf",
+      "bytes": 913649,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-literal-extraction.json",
+      "sha256": "7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05",
+      "bytes": 55274,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/root-return.json",
+      "sha256": "3b75b1202b9a07a812ddab96c4f2c9fe91fe76052f609163214def7c348be742",
+      "bytes": 3572,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/finalizer-audit.json",
+      "sha256": "7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc",
+      "bytes": 2693869,
+      "checks": [
+        "source copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-root-qualification.json",
+      "sha256": "1c4cd337d0fe605b06cc86f50dd358278960c1b27a9f3614fb1561221113f296",
+      "bytes": 3636,
+      "checks": [
+        "root qualification copy comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/own-history.md",
+      "sha256": "0fa7c75c55177d54989792862f6e85ee0585e191dc5ad432eaedc0045fed2306",
+      "bytes": 274209,
+      "checks": [
+        "source excerpt offsets and hash"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/own-history.md",
+      "sha256": "d2335f0c40332f51facc6ce745bffc22abe907c223b87966b101314ade5fcdff",
+      "bytes": 228663,
+      "checks": [
+        "source excerpt offsets and hash"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/own-history.md",
+      "sha256": "a2d3a34220a51e2d9de2c906fe296b603de0af8fb4cb8fa1cf2443b961f3f415",
+      "bytes": 164671,
+      "checks": [
+        "source excerpt offsets and hash"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/wall-clock.jsonl",
+      "sha256": "d84c18cbc13bd4d8d5a11ea40b58959fec4d63a14d347c82b402d38d2d06af04",
+      "bytes": 10018,
+      "checks": [
+        "raw phone stop/reaction comparison",
+        "source excerpt offsets and hash"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl",
+      "sha256": "e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49",
+      "bytes": 9565,
+      "checks": [
+        "raw phone stop/reaction comparison",
+        "source excerpt offsets and hash"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/wall-clock.jsonl",
+      "sha256": "cc58781d58f992fc708689baabddc6a9b0d2427357752cfb469791ca5f6bc2e0",
+      "bytes": 9357,
+      "checks": [
+        "raw phone stop/reaction comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/wall-clock.jsonl",
+      "sha256": "8dfc6d7697a1d4e5e39b57ea6bef328d522dbc40baee3f573ff709d37f602593",
+      "bytes": 9439,
+      "checks": [
+        "raw phone stop/reaction comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/wall-clock.jsonl",
+      "sha256": "f3f994cbf5828077f6aa88395f78d706eff3655e4985268672d4e29a1c73b69b",
+      "bytes": 9807,
+      "checks": [
+        "raw phone stop/reaction comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/transcript.jsonl",
+      "sha256": "e92ff0e28f705760c1d5f15534b3418e7d20002ea40237e8058992b664211132",
+      "bytes": 781158,
+      "checks": [
+        "raw disputed action at source line 278"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/a-001.png",
+      "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+      "bytes": 210855,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/first-minute.png",
+      "sha256": "055926eed991253bfaf64e31030ccdacf8349699a8b2f181f1ece6dc5b74c4da",
+      "bytes": 136882,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-001.png",
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "bytes": 58630,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-002.png",
+      "sha256": "c06df76fe43eda4d744ec92934a0415174ed54c1a710ce79711c5d0a31d6db2f",
+      "bytes": 68427,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-003.png",
+      "sha256": "54e46c626f19c4f4d63731ce6d2c4b5c4940a17ce14df864f26aab0ff7991a96",
+      "bytes": 101416,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/first-minute.png",
+      "sha256": "7044d9c7052b4cf4619117adea036af54253bed08a2fc3d3acd4b326aa3c3712",
+      "bytes": 46911,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/a-001.png",
+      "sha256": "7e2ff18d4213be45744b2382187d43a03e559c11b823f1dbd1131abebf2f12d4",
+      "bytes": 212869,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/first-minute.png",
+      "sha256": "d30078a97615dd381b177e58dbd44ea9c38cd9b6b2792be52df4534e30bff50a",
+      "bytes": 132268,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-001.png",
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "bytes": 58630,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-002.png",
+      "sha256": "ff909b3031db262c0658bfd033fc1340a5290156d55a8889d9012577a3c676ae",
+      "bytes": 64949,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-003.png",
+      "sha256": "f59c01fbf79da3c7a34e1b32f2f7b72a5ddee4707e76b5df0b8fbdc67a5d15b6",
+      "bytes": 91794,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/first-minute.png",
+      "sha256": "50847f3825f676615831d50b50f8a937a93f9042b9a80c8279514e4ea877368e",
+      "bytes": 48809,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/b-001.png",
+      "sha256": "7e2ff18d4213be45744b2382187d43a03e559c11b823f1dbd1131abebf2f12d4",
+      "bytes": 212869,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/first-minute.png",
+      "sha256": "944d5292fbae1f0ee116e61cdccf287a27508a9f3d363bf42b09ba335f7d8bcd",
+      "bytes": 133161,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-001.png",
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "bytes": 58630,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-002.png",
+      "sha256": "25526fa0e4085208f662f276f59603c63a7eab66f1e675644c570569f6a3db07",
+      "bytes": 88468,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/first-minute.png",
+      "sha256": "56efdb1a6ed469fd8ff3a4d0c60eae1cace6bdefb0a60f1743263b95f13639bb",
+      "bytes": 45055,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-001.png",
+      "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+      "bytes": 210855,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-002.png",
+      "sha256": "2b81bd721ac462244c6010943741ce1db31077d57075416668e03f465b39222b",
+      "bytes": 188585,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/first-minute.png",
+      "sha256": "44c3e3f22485a6d23a777e7b074e8b491c12d4304c1b146735a19f691bcdb599",
+      "bytes": 174899,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-001.png",
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "bytes": 58630,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-002.png",
+      "sha256": "418d988c5403144c1e910f4b3b9d3cf98039f2b669057156e6e28e816e020ec2",
+      "bytes": 64731,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/first-minute.png",
+      "sha256": "8e4740d48a0d6b6ff0c6ef1ba039beb330bc6ba413acce63ee1648b9072294dc",
+      "bytes": 71011,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/a-001.png",
+      "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+      "bytes": 210855,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/a-001.png",
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "bytes": 58630,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/first-minute.png",
+      "sha256": "2d6b925ca48b8e5f2e760069726f2a599ef7f5873187ca211ba34e84697cf29c",
+      "bytes": 48810,
+      "checks": [
+        "PNG bytes hashed only; no visual interpretation"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234,
+      "checks": [
+        "full instruction read"
+      ]
+    }
+  ],
+  "cleanup": "No repository, worktree, browser, worker, server or runtime created or touched. Only the two requested review artifacts written. git worktree list: not applicable; no repository touched."
+}

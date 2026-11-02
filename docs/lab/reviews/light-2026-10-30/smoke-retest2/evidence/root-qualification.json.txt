@@ -1,0 +1,278 @@
+{
+  "at": "2026-11-02T10:13:57.642804+00:00",
+  "rootVerified": true,
+  "status": "SMOKE_FINAL_COLLECTION_QUALIFIED_DATED_RECORD_PENDING",
+  "actualSession": 89152,
+  "actualExit": 0,
+  "actualCompletionChunk": "e852f6",
+  "physicalReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-return.json",
+    "sha256": "e4b2038ae652ec6f89ac4e65de00b22e22de1960057f86922c4588b38b497bcd"
+  },
+  "audit": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-protocol-audit.json",
+    "sha256": "7c405469472fb8660a96336524d99c408706be0b9fb6c2b4f1042c9c4cbc6371",
+    "markdownSha256": "543a356d4e05ac5445c27d910a62fbf21f1b34e6014531155dbdf9e322943998",
+    "evidenceRecordsRootRehashed": 124
+  },
+  "rootReadScope": "All5fullreports,fullauditMD/operativeJSON/14qualifications;all100literaloffsets/all55rawreactionstrings/all10endingresponsechecks/criticalcauseandfailedcommandexcerpts/actual5lastmessagebyteequality. Auditor parsedall596commands;root does not claim a secondfullraw596commandsemanticreread.",
+  "qualifications": [
+    {
+      "id": "SF1",
+      "topic": "visual-access",
+      "qualification": "All five reports claim successful image views (Jonas2,Aisha2,Diego4,Rosa4,Iria2); no actual view_image call or image-tool return is retained in any current stream. UNVERIFIABLE visual access, not evidence that images were unseen. Saved PNGs and this audit cannot establish tester perception."
+    },
+    {
+      "id": "SF2",
+      "topic": "history-delivery",
+      "qualification": "Stored stdout is complete and exact for all selected histories. Jonas/Aisha/Diego explicitly report truncated direct delivery and uncertain unread ranges; retain their statements. Rosa claims all read, but literal stdout does not prove model delivery or comprehension. Prior selected-history composition review transfers by exact prefix/hash, not full archive completeness."
+    },
+    {
+      "id": "SF3",
+      "topic": "shell-failures",
+      "qualification": "Diego line160 and Iria line66 each issued malformed literal apostrophe curl; exit1, stdout zsh:1: unmatched quote. Retry succeeds with Unicode escape. Reports omit these failed shell commands. Preserve failures and retries; no gameplay action from failed shell inferred."
+    },
+    {
+      "id": "SF4",
+      "topic": "checkpoint-timing",
+      "qualification": "Jonas desktop58.754 and Diego desktop59.997 first_minute are premature. Corrected61.561/62.384 do not erase them. All sessions reached actionable play before valid after60 note. Rosa phone75.598 note occurs while paused in Feedback; snapshot_ms13342. All sessions stop before180; no pulse owed. All ten automatic first-minute shots occur before stop and do not establish image viewing or diary compliance. No late autoscreenshot or automatic ceiling in retained wall rows."
+    },
+    {
+      "id": "SF5",
+      "topic": "raw-diary",
+      "qualification": "All55 requested diary reaction strings (54 successful entries plus Iria\u2019s failed initial attempt) occur verbatim in full reports; no word corrections authorized. Response/report and wall timestamps differ by1ms in listed rows; retain both clocks. Failed Iria opening Invalid reason is not a successful diary. All five final captured agent messages exactly match report file bytes, with no terminal newline added or removed."
+    },
+    {
+      "id": "SF6",
+      "topic": "stops",
+      "qualification": "Ten actual stop logs, one per device, with no later tester gameplay. Six FINISHED stops have Everyone is out ending text. Aisha desktop FRUSTRATED,Rosa phone CONFUSED,Rosa desktop TASTE,Iria desktop TASTE are nonending. No BUDGET/TOOL stops or coordinator cuts. This supports participant stopping, not game-wide completion or predicted enjoyment."
+    },
+    {
+      "id": "SF7",
+      "topic": "feedback",
+      "qualification": "Feedback dialogs visibly open and Not now closes them on all10 devices. Jonas/both, Aisha/both, Diego/both, Iria/both show selected pressed label after retries. Rosa menu shortcuts auto-fill draft but no explicit Feedback quick-label press observed; offered label is not proof selection. Diego misses Feedback during phone confusion. No type/select/Submit/toggle/owner-settings/link-opening command observed. Backend absence of send, attribution, actual consent defaults remain unverified."
+    },
+    {
+      "id": "SF8",
+      "topic": "rosa-reread",
+      "qualification": "Rosa actual phone quit98.367 reports rereading The bundle is tied. and Wait while the bundle is tied.; stop121.495 CONFUSED persists after later clearer hint. No desktop reread; desktop95.331 TASTE. Rule is conditional, not a quota. Counts include settings/retention/privacy/recording/Feedback/Debug and lab subjects, but are grouped selfreports with18->22->23 opening and13->14 menu corrections. Do not call counts exhaustive measured concepts or invent rereads."
+    },
+    {
+      "id": "SF9",
+      "topic": "rosa-cause",
+      "qualification": "Phone wait52.228 snapshot_ms1 and shot86.317 snapshot_ms1 contain new tied log with old selected Hold these steady answer, tying status, Wait while bundle is tied hint. first_minute75.598 snapshot_ms13342 and quit98.367 snapshot_ms12051 repeat prior snapshot. Pause102.203 snapshot_ms0 updates needs-to-see-stair and Torch hint. Cause unknown; do not infer a persistent books-action bug, driver-only cause, or human1-3s reproduction."
+    },
+    {
+      "id": "SF10",
+      "topic": "cohort-comparison",
+      "qualification": "Jonas/Aisha/Diego only target returners. Rosa FIRST Smoke/franchise experienced. Iria assigned fictional cold/empty2line history. Requested Terra low / Rosa Sol medium is not serving identity. Jonas revisits Street/followers; Aisha movement and death acknowledgment; Diego movement/danger and cannot revisit Sevim (away both). Current different nights do not prove causal improvement."
+    },
+    {
+      "id": "SF11",
+      "topic": "new-asks",
+      "qualification": "Rosa consistency and Iria individual-air-danger clarity are two participant-reached new blocking questions, not established defects. Aisha death acknowledgment is an earlier ask revisited before ending; later ending context untested. Jonas and Diego say no new blocking ask. Preserve observations versus preference versus unknown cause."
+    },
+    {
+      "id": "SF12",
+      "topic": "boundaries",
+      "qualification": "All596 completed commands:302sed,4cat cleanup,288 parsed assigned local gameplay,2 failed quoting calls. No source/peer/hidden-state reads observed outside supplied own history, no helper/script/network-other commands. Unknown omitted tool events remain unverified. Dynamic named-control failures/disabled controls/ambiguities remain raw; no bug causality inferred. Diego4 selection errors and point recovery preserve uneven tool evidence; not silently converted into game failure or forced TOOL stop."
+    },
+    {
+      "id": "SF13",
+      "topic": "physical-source-bounds",
+      "qualification": "Stored root receipts say89152/e852f6 exit0;480 sampled original identities gone,5 profiles absent,11 BINDfree ports,17 stable payloads before report reads. Initial EADDRINUSE at unknown port remains unexplained. Source delivery and SDK released/archive/served markers are bounded static evidence, not backend/player/source-wide equivalence proof. This audit did no runtime probe."
+    },
+    {
+      "id": "SF14",
+      "topic": "authority",
+      "qualification": "Finalizer5reports/10eligible stops are audit counts, not protocol enforcement. Root manual full report/raw evidence audit remains mandatory. This independent audit does not grant rootVerified, admission, owner acceptance, third panel or iteration cap reset. Final Smoke ordinary cap remains."
+    }
+  ],
+  "responseWallTimingDifferences": [
+    {
+      "tester": "jonas",
+      "device": "phone",
+      "transcriptLine": 202,
+      "wallRow": 5,
+      "response": 12.183,
+      "wall": 12.182,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "transcriptLine": 157,
+      "wallRow": 5,
+      "response": 9.618,
+      "wall": 9.617,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "transcriptLine": 181,
+      "wallRow": 18,
+      "response": 61.561,
+      "wall": 61.56,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "transcriptLine": 251,
+      "wallRow": 18,
+      "response": 61.949,
+      "wall": 61.948,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "transcriptLine": 267,
+      "wallRow": 26,
+      "response": 83.543,
+      "wall": 83.542,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "transcriptLine": 218,
+      "wallRow": 41,
+      "response": 131.37,
+      "wall": 131.369,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "transcriptLine": 135,
+      "wallRow": 20,
+      "response": 64.552,
+      "wall": 64.551,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "transcriptLine": 166,
+      "wallRow": 34,
+      "response": 113.341,
+      "wall": 113.34,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "transcriptLine": 217,
+      "wallRow": 28,
+      "response": 121.173,
+      "wall": 121.172,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "transcriptLine": 228,
+      "wallRow": 33,
+      "response": 131.77,
+      "wall": 131.769,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "transcriptLine": 249,
+      "wallRow": 7,
+      "response": 32.782,
+      "wall": 32.781,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "transcriptLine": 270,
+      "wallRow": 18,
+      "response": 98.367,
+      "wall": 98.366,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "transcriptLine": 278,
+      "wallRow": 22,
+      "response": 121.495,
+      "wall": 121.494,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "transcriptLine": 308,
+      "wallRow": 16,
+      "response": 68.553,
+      "wall": 68.552,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "transcriptLine": 43,
+      "wallRow": 20,
+      "response": 61.07,
+      "wall": 61.069,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "transcriptLine": 62,
+      "wallRow": 29,
+      "response": 110.175,
+      "wall": 110.174,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "iria",
+      "device": "desktop",
+      "transcriptLine": 149,
+      "wallRow": 40,
+      "response": 155.776,
+      "wall": 155.775,
+      "differenceSeconds": 0.001
+    }
+  ],
+  "summary": {
+    "completedCommands": 596,
+    "parsedAssignedGameplayCommands": 288,
+    "failedShellCommands": 2,
+    "sedCommands": 302,
+    "cleanupCatCommands": 4,
+    "successfulDiaryStrings": 54,
+    "actualStops": 10,
+    "finishedWithActualEndingText": 6,
+    "nonEndingStops": 4,
+    "actualCurrentImageViewEventsObserved": 0,
+    "all17ManifestFilesMatch": true,
+    "requestedDiaryStringsIncludingFailedAttempt": 55
+  },
+  "inheritedQualifications": "Selectedownhistory maps and prior root/source qualifications remain attached in full, including W/SW/NR/SWF/NC and per-person priorSmoke method limits. Exactprefixtransfer is not fullarchive audit.",
+  "cohort": {
+    "returners": [
+      "jonas",
+      "aisha",
+      "diego"
+    ],
+    "firstTargetFranchiseExperienced": "rosa",
+    "coldFictionalFirstHF": "iria",
+    "omittedPriorStanding": "leila originalreportsretained;no full4-returnercomparison"
+  },
+  "cap": "Two fixed iterations;no third ordinarypanel. Remainingdatedasks/integration pending.",
+  "finalCleanPin": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-final-live-pin.json",
+    "sha256": "d6386c3e3d8c914063f4c14bdaaaf7a8425524716b5eacd9afe513a3fade9ae5"
+  },
+  "ownerAcceptance": false,
+  "finished": false
+}

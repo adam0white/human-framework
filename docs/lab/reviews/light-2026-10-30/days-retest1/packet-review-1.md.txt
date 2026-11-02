@@ -1,0 +1,94 @@
+# Exact packet fidelity review
+
+**CLEAR** — private packet fidelity only.
+
+Manifest SHA-256: `7633e1245555311301c41e12be3563e1ec7f196a3e3f294a3695ab02b67f941d`.
+
+All 20 payloads match manifest hashes and sizes. The packet has no missing or unmanifested files. All 5 reports and 15 referenced source copies match exactly; the root qualification also matches its original. All 11 asks and 5 complete opening return clauses match the original reports, including byte, codepoint and line locators. All 102 extraction spans and root literal span hashes match. F-3133–F-3143 are consecutive and unique.
+
+Nov 3 clarity/readability and Nov 10 taste/preservation dates match the director-assigned follow-up schedule confirmed by root. They are routing targets, not tester deadlines or fixer commitments.
+
+Rosa rank 1 remains the only newly raised blocking ask. Her original transcript line 278 contains the disputed one-hour cost with Rested and 3 hours free; the original log retains her CONFUSED stop at 120.975 seconds. Leire asks a related question and finishes phone. The other asks remain individual preferences or preservation requests. No missing blocking ask or invented consensus was found.
+
+The integration notes retain the finalizer HOLD as historical evidence and distinguish root collection qualification from acceptance and completion. They preserve the image-access limit, post-stop capture qualification, clock differences, cohort exposure and second-fix requirement. This verdict does not approve source, CI, game completion, mechanics, release or owner acceptance.
+
+Findings: none.
+
+Every file checked is bound below. PNGs were hashed only; their visual content was not reviewed.
+
+| File | SHA-256 | Bytes |
+|---|---|---:|
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/manifest.json` | `7633e1245555311301c41e12be3563e1ec7f196a3e3f294a3695ab02b67f941d` | 3150 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-ask-review.json` | `d602fcc21790861f8191fb1a5ca6b323cd56b916e5be372a1f0c1aa85116af70` | 118304 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-ask-review.md` | `0a6f01d2a2c7fded74176175ead736c28f6770a8721fdd8f050f73821541bd04` | 29627 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-literal-extraction.json` | `7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05` | 55274 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-protocol-review.json` | `5ae33676a6780dd9d09a77dc25476cd413935e90e4f37bf29346242be215da44` | 163523 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-protocol-review.md` | `ba066ad9cf0fc53448873ccccef1e0e79a478968d1959200867c8a01d13c4103` | 6610 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-literal-check.json` | `e12341e9707390aa5b6417bd69848ba1a689a539c08a4d40d6892dabfc78a038` | 20460 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-qualification.json` | `1c4cd337d0fe605b06cc86f50dd358278960c1b27a9f3614fb1561221113f296` | 3636 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-raw-check.json` | `8b5217a4a17edb2852319efaceb16b46a96ee343a9b23c780211fad9c56af0cf` | 913649 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/finalizer-audit.json` | `7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc` | 2693869 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/root-return.json` | `3b75b1202b9a07a812ddab96c4f2c9fe91fe76052f609163214def7c348be742` | 3572 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/integration-notes.md` | `b2c936eadfd3d2bf7485311037b6d5d1fe120200cfdbb59f2cd3792808ce46d3` | 8394 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/ledger.json` | `f243fdfd199d655b07357c568f2cb5f27000f043df24f69d3ebd97f4f7e3afe0` | 12671 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/logical-testers.md` | `6987a8f85f84cb7bf3b6f56ccc32d4153bec69c2c17bbd6202f062eda47bc0d1` | 1331 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/emre/report.md` | `762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67` | 6776 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/leire/report.md` | `9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70` | 4814 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/pavel/report.md` | `103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1` | 7505 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/rosa/report.md` | `248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a` | 13601 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/tessa/report.md` | `7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526` | 6487 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/source-png-hashes.json` | `e78cbf34a86ed05446ae911585078055173e3009d9292831821633b09ee30467` | 5493 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/source-references.json` | `4aee02b8c9506d566a033e575f7c82fc80169e28bec76dedc54e43e4bb6d0506` | 3279 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md` | `762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67` | 6776 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md` | `103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1` | 7505 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md` | `7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526` | 6487 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md` | `248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a` | 13601 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md` | `9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70` | 4814 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-ask-review.md` | `0a6f01d2a2c7fded74176175ead736c28f6770a8721fdd8f050f73821541bd04` | 29627 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-ask-review.json` | `d602fcc21790861f8191fb1a5ca6b323cd56b916e5be372a1f0c1aa85116af70` | 118304 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-protocol-review.md` | `ba066ad9cf0fc53448873ccccef1e0e79a478968d1959200867c8a01d13c4103` | 6610 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-protocol-review.json` | `5ae33676a6780dd9d09a77dc25476cd413935e90e4f37bf29346242be215da44` | 163523 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-root-literal-check.json` | `e12341e9707390aa5b6417bd69848ba1a689a539c08a4d40d6892dabfc78a038` | 20460 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-root-raw-check.json` | `8b5217a4a17edb2852319efaceb16b46a96ee343a9b23c780211fad9c56af0cf` | 913649 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-literal-extraction.json` | `7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05` | 55274 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/root-return.json` | `3b75b1202b9a07a812ddab96c4f2c9fe91fe76052f609163214def7c348be742` | 3572 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/finalizer-audit.json` | `7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc` | 2693869 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-root-qualification.json` | `1c4cd337d0fe605b06cc86f50dd358278960c1b27a9f3614fb1561221113f296` | 3636 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/own-history.md` | `0fa7c75c55177d54989792862f6e85ee0585e191dc5ad432eaedc0045fed2306` | 274209 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/own-history.md` | `d2335f0c40332f51facc6ce745bffc22abe907c223b87966b101314ade5fcdff` | 228663 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/own-history.md` | `a2d3a34220a51e2d9de2c906fe296b603de0af8fb4cb8fa1cf2443b961f3f415` | 164671 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/wall-clock.jsonl` | `d84c18cbc13bd4d8d5a11ea40b58959fec4d63a14d347c82b402d38d2d06af04` | 10018 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl` | `e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49` | 9565 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/wall-clock.jsonl` | `cc58781d58f992fc708689baabddc6a9b0d2427357752cfb469791ca5f6bc2e0` | 9357 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/wall-clock.jsonl` | `8dfc6d7697a1d4e5e39b57ea6bef328d522dbc40baee3f573ff709d37f602593` | 9439 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/wall-clock.jsonl` | `f3f994cbf5828077f6aa88395f78d706eff3655e4985268672d4e29a1c73b69b` | 9807 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/transcript.jsonl` | `e92ff0e28f705760c1d5f15534b3418e7d20002ea40237e8058992b664211132` | 781158 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/a-001.png` | `4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554` | 210855 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/first-minute.png` | `055926eed991253bfaf64e31030ccdacf8349699a8b2f181f1ece6dc5b74c4da` | 136882 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-001.png` | `3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035` | 58630 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-002.png` | `c06df76fe43eda4d744ec92934a0415174ed54c1a710ce79711c5d0a31d6db2f` | 68427 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-003.png` | `54e46c626f19c4f4d63731ce6d2c4b5c4940a17ce14df864f26aab0ff7991a96` | 101416 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/first-minute.png` | `7044d9c7052b4cf4619117adea036af54253bed08a2fc3d3acd4b326aa3c3712` | 46911 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/a-001.png` | `7e2ff18d4213be45744b2382187d43a03e559c11b823f1dbd1131abebf2f12d4` | 212869 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/first-minute.png` | `d30078a97615dd381b177e58dbd44ea9c38cd9b6b2792be52df4534e30bff50a` | 132268 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-001.png` | `3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035` | 58630 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-002.png` | `ff909b3031db262c0658bfd033fc1340a5290156d55a8889d9012577a3c676ae` | 64949 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-003.png` | `f59c01fbf79da3c7a34e1b32f2f7b72a5ddee4707e76b5df0b8fbdc67a5d15b6` | 91794 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/first-minute.png` | `50847f3825f676615831d50b50f8a937a93f9042b9a80c8279514e4ea877368e` | 48809 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/b-001.png` | `7e2ff18d4213be45744b2382187d43a03e559c11b823f1dbd1131abebf2f12d4` | 212869 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/first-minute.png` | `944d5292fbae1f0ee116e61cdccf287a27508a9f3d363bf42b09ba335f7d8bcd` | 133161 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-001.png` | `3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035` | 58630 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-002.png` | `25526fa0e4085208f662f276f59603c63a7eab66f1e675644c570569f6a3db07` | 88468 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/first-minute.png` | `56efdb1a6ed469fd8ff3a4d0c60eae1cace6bdefb0a60f1743263b95f13639bb` | 45055 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-001.png` | `4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554` | 210855 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-002.png` | `2b81bd721ac462244c6010943741ce1db31077d57075416668e03f465b39222b` | 188585 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/first-minute.png` | `44c3e3f22485a6d23a777e7b074e8b491c12d4304c1b146735a19f691bcdb599` | 174899 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-001.png` | `3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035` | 58630 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-002.png` | `418d988c5403144c1e910f4b3b9d3cf98039f2b669057156e6e28e816e020ec2` | 64731 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/first-minute.png` | `8e4740d48a0d6b6ff0c6ef1ba039beb330bc6ba413acce63ee1648b9072294dc` | 71011 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/a-001.png` | `4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554` | 210855 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/a-001.png` | `3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035` | 58630 |
+| `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/first-minute.png` | `2d6b925ca48b8e5f2e760069726f2a599ef7f5873187ca211ba34e84697cf29c` | 48810 |
+| `/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md` | `f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03` | 1234 |
+
+No repository, worktree, browser, worker, server or runtime created or touched. Only the two requested review artifacts written. git worktree list: not applicable; no repository touched.

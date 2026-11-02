@@ -938,3 +938,119 @@ These were automated driver inputs, not observations of physical touch. On the p
 
 The coordinator owns the drivers and browsers. I started no workers, servers, browsers or worktrees and touched no repository, so no `git worktree list` applies.
 ```
+
+
+## 2026-11-02 - Days first fixed retest
+
+Coordinator metadata: this is a complete unchanged own report from fictional AI play. First fixed retest; second fix/retest remains required. All inherited limits, protocol D1-D11 and separate root D1-D12 remain in [integration notes](../reviews/light-2026-10-30/days-retest1/integration-notes.md.txt) and [root qualification](../reviews/light-2026-10-30/days-retest1/evidence/days-retest1102-root-qualification.json.txt). No image perception, history comprehension, backend state or owner acceptance follows. Original CANDIDATE/HOLD labels preserve freeze provenance; [external seal](../reviews/light-2026-10-30/days-retest1/root-seal.json.txt) qualifies collection only.
+
+```text
+I would not return voluntarily tonight or leave Days running; I liked the specific consequences and the chance to apologise, but I have had enough of choosing between two set options.
+
+My ranked asks are:
+
+1. Give me more ways to speak or act with Hacer, Burak and Selin, including something in my own words.
+2. Give me more reason to revisit the three days beyond choosing the other option on familiar screens.
+
+I played as Tessa Williams, 17, in Adelaide: first on a 360×690 touch-phone context, then on a separate 1280×800 desktop context the same evening. I confirmed **New game → Yes, start again** on each. The phone returned to the opening with a changed tiredness state; the desktop returned to the opening. No old save or matched seed was imported. I used the supplied URL with `labRunSource=agent` and left recording and consent at their defaults.
+
+I read the supplied own history through line **1395**, including the material after older end markers. The last line was **“End of supplied own history.”** Unread ranges: **none**. I followed no diary links.
+
+The phone opened at **0.382 s** with the familiar warning and door choice. At **15.679 s**, I saw the room and its soup and door choices together below the story. The desktop opened at **0.462 s**, with the larger room behind the warning. The story’s small details held me: Selin pulled her chair back after I read a private page aloud, and Şükrü mentioned a folding table Kemal had never returned.
+
+These are my unedited driver diary lines, in order. Times are driver elapsed seconds; engagement is what I logged.
+
+**Phone**
+
+- **13.806 s, note, engagement 4:** “The door and soup are familiar. I remember the two choices and want to see the room on the phone this time.”
+- **19.479 s, note, engagement 4:** “Oh, the room is actually here now: soup and door are visible together under the story. I like seeing what I am choosing.”
+- **25.800 s, note, engagement 4:** “Paying is less mysterious now: it says it went against Burak and he must return it, while the boiler still needs checking. Selin and Halil bring back his quiet workshop.”
+- **37.513 s, note, engagement 4:** “I like that the mistaken payment and separate boiler bill are spelled out, and Şükrü wanted the photograph. I want to go see him.”
+- **48.709 s, note, engagement 5:** “I got the visit, and the unreturned folding table makes Kemal feel like an actual messy person. Selin saying she will not ask Leyla to stop missing him is lovely.”
+- **54.967 s, want_quit, FINISHED, engagement 3:** “The three days ended. I like the folding table and the ending remembering the money and notebook, but I have had enough of the two choices for now.”
+- **64.975 s, stop, FINISHED, engagement 3:** “Stopping the phone. I liked visiting Şükrü and the ending naming what Burak still owes, but the three days are over and I do not want another pass right now.”
+
+**Desktop**
+
+- **14.040 s, note, engagement 4:** “The bigger room is familiar. I want to keep the door and see if I can still get to Şükrü without Selin covering it.”
+- **21.870 s, note, engagement 4:** “Selin pulls her chair back when I read the page aloud. That is a small reaction I can picture, and it makes my nosy choice feel real.”
+- **35.636 s, note, engagement 4:** “I can apologise for the disclosure now, and it says that does not undo it. I like getting to answer for the messy choice rather than just carrying it to the end.”
+- **41.867 s, note, engagement 3:** “I managed the visit without cover after resting; the cost changed from three hours to two. The same folding table appears again, and I am feeling ready to finish.”
+- **47.776 s, want_quit, FINISHED, engagement 3:** “The story ended and remembered the disclosure and apology. I like that, but I have seen two passes tonight and do not want another one.”
+- **59.762 s, stop, FINISHED, engagement 3:** “Stopping the laptop. The apology and the visit were satisfying, and the story remembered the harm, but I am done choosing between the same two kinds of options tonight.”
+
+Both stories explicitly ended. I stayed after each quit wish only for Feedback and the stop log. The phone ended before 60 seconds and the desktop stopped before 60 seconds, so neither has a first-minute checkpoint; neither reached the approximately three-minute pulse. I did not wait to force either checkpoint.
+
+The hours and costs were clear enough for me to plan. On the phone, Selin’s cover let me make the visit with one hour left. On desktop, resting reduced the stated uncovered visit cost from three hours to two, and I made it with time remaining. I did not encounter gameplay confusion that made me stop.
+
+On each device, **Feedback → “I'm stopping”** filled the feedback field with that phrase, and **Back** returned to the menu. I typed no note and submitted nothing. I reached no new blocking control. One phone command for the private-page choice had a shell quoting error and sent no input; the corrected call worked.
+
+I actually viewed these screenshots:
+
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-001.png>), **1.995 s**: the warning dialog over the dimmed game.
+- [Phone gameplay](</Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-002.png>), **15.679 s**: the story above a room picture with the soup and door choices visible together. Their cost text was small.
+- [Desktop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/b-001.png>), **2.468 s**: the warning centred over a larger room beside the story.
+
+These were automated driver inputs, not physical touch observations. I did not view a later desktop gameplay screenshot or an automatic checkpoint.
+
+I revisited my earlier question about seeing the room objects on the phone. Previously I saw only a narrow strip and did not scroll; this time the soup and door were both visible in the gameplay screenshot. I also revisited reading the private page aloud: previously my ending named the disclosure as unaddressed. This time I chose an offered apology, and the ending said the agreement to limit its spread did not undo the harm. Those are observations from different runs and choices.
+
+The coordinator owns the drivers and browsers. I started no workers, servers, browsers or worktrees and touched no repository, so no worktree inventory applies.
+```
+
+
+## Days second fixed retest — 2026-11-02
+
+Qualified final ordinary iteration; source: `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md`; SHA-256: `beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463`. See packet integration notes for protocol and evidence qualifications.
+
+```text
+I would not return voluntarily tonight or leave Days running; I liked how it remembered the unfinished obligations and the harm of the disclosure, but I have had enough of these familiar choices.
+
+My ranked asks are:
+
+1. Give me more ways to speak or act with Selin, Hacer and Burak, including something in my own words.
+2. Give me more reason to revisit the three days beyond choosing another option on familiar screens.
+
+I played as Tessa Williams, 17, in Adelaide: first in a fresh **360×690 phone** context, then in a separate **1280×800 desktop** context the same evening. I selected **New game → Yes, start again** in each. Both returned to the opening; on the phone the tiredness state changed. I used the supplied `labRunSource=agent` URL, imported no save or matched seed, and left recording and consent at their defaults.
+
+I requested the supplied history in explicit ranges through line **1457**, whose final line was **“End of supplied own history.”** The combined tool output was truncated, however, and my attempted reread was also truncated. I cannot honestly establish that I read every line or give an exact unread range. The latest Days retest report at lines 1401–1457 was visible. I followed no diary links.
+
+The phone opening at **0.448 s** brought back the door and soup. The desktop opening at **0.465 s** had the longer room description and familiar coat. I liked the small gestures: Selin turned the page face down on the phone and pulled her chair back after I read it aloud on desktop.
+
+These are my unedited driver diary lines, in order. Times are elapsed seconds and engagement is the value I logged.
+
+**Phone**
+
+- **13.709 s, note, engagement 4:** “The door and soup are familiar. I remember Selin and the folding table, and I want to see a different path through the three days.”
+- **26.060 s, note, engagement 4:** “Selin turns the page face down for me. I like that small gesture; I want to let her go home and see whether I can keep the promise anyway.”
+- **36.751 s, note, engagement 4:** “The bill explanation is clear, and I have two hours left. I remember the visit cost changing with tiredness, so promising it now feels risky.”
+- **47.955 s, note, engagement 3:** “I like that the delivery has a person and date but has not magically happened yet. Selin is gentle again, though these two choices feel very familiar now.”
+- **54.951 s, want_quit, FINISHED, engagement 3:** “The three days ended. The unfinished delivery and borrowed notebook are remembered, which I like, but I am ready to leave this pass.”
+- **64.491 s, stop, FINISHED, engagement 3:** “Stopping the phone. The delivery and notebook still have obligations after the ending, and Selin was kind, but I have finished this pass.”
+
+**Desktop**
+
+- **16.220 s, note, engagement 4:** “The big room and the coat are familiar. I want to be nosy again and see what happens if I do not repair the disclosure this time.”
+- **26.237 s, note, engagement 4:** “Selin pulls her chair back again. I remember apologising last time; I want to see how the story carries it if I let the moment stand.”
+- **31.946 s, note, engagement 4:** “Selin refuses the shift after I read the page. I like that she has her own answer, even if I cannot tell exactly why she said no.”
+- **44.820 s, note, engagement 4:** “It explicitly says lending the notebook does not answer the disclosure. That feels fair, and I am curious whether the ending will remember it too.”
+- **57.717 s, want_quit, FINISHED, engagement 3:** “The story ended and it remembers the disclosure and what Burak owes. I like that consequence, but I have had enough familiar choices for tonight.”
+- **68.416 s, stop, FINISHED, engagement 3:** “Stopping the desktop. Selin refused the shift and the ending kept the disclosure unresolved; I liked those consequences, but I am done with these three days tonight.”
+
+Both stories explicitly ended before my quit wishes. I stayed only for Feedback and the stop logs. Neither session had an active-play first-minute checkpoint: each quit wish came before 60 seconds, although Feedback and the stop log continued past it. Neither reached the approximately three-minute pulse. I did not wait to force a checkpoint.
+
+The hours and account were clear enough to make choices. On the phone, I arranged delivery and the ending said it had an agreed person and date but had not happened. On desktop, Selin declined to cover the door after the disclosure; I could not tell exactly why, but the possibility of refusal had been stated. I reached no new blocking control or blocking ask.
+
+On both devices, **Feedback → “I'm stopping”** filled the feedback field with that phrase; **Back** returned to the menu. I typed no note, submitted nothing and did not toggle recording. One phone command for keeping the page private had a shell quoting error and sent no input; the corrected command worked.
+
+I actually viewed two screenshots:
+
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/phone/a-001.png), **2.108 s**: the warning dialog fills most of the narrow screen, with the room dimmed behind it.
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/desktop/b-001.png), **2.392 s**: the warning is centred over the story and a larger illustrated room.
+
+I did not view gameplay screenshots this visit, so I cannot assess their layout. Inputs were automated driver actions; they do not establish physical touch or keyboard usability.
+
+I revisited my earlier question about reading the private page aloud. In my previous fixed retest I apologised, and the ending acknowledged both the apology and continuing harm. This time I lent the notebook and left the disclosure unresolved; the ending explicitly said nobody had addressed the harm. These were different runs and choices.
+
+The coordinator owns both drivers and browsers. I started no workers, servers, browsers or worktrees and touched no repository, so no `git worktree list` applies.
+```

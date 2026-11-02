@@ -1,0 +1,105 @@
+{
+  "verdict": "CLEAR",
+  "reviewerId": "days-final-packet-fidelity-independent-20261102",
+  "created": "2026-11-02T13:03:55.746871+00:00",
+  "manifestSha256": "60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89",
+  "scope": "Independent source-only fidelity review of exact final Days packet. No runtime, project imports, tests, browser, network, git, worktree or new worker. Standard-library parsing and hashing only. Method-limits audit is separate.",
+  "inputHashes": {
+    "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/completion.json": "e721176f407391577544c5f25055fdc6d39850ec4bf54de4357731bbada8c841",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/desktop/wall-clock.jsonl": "5aeb3f6e647b9d84977a1347e78ee96227193d4318a762f9bad21f1e4ec4b0b7",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/history-source-map.json": "cf72a5da113383eac67bb8263b51ab569eb2faf6c765030b062d9f4cfb904e25",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/own-history.md": "77d33e5b39c3404ab0f5c9d8228a366ab9a24d8d6eb453b26fc3724f27c19657",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/phone/wall-clock.jsonl": "ca676327f9ace8f2aced5d12caddd409f028674fabbb4fdc709e2f80c22bd567",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/transcript.jsonl": "8c6dd6af3dbbade98a85f775aa1e4afeb1e038963a754612db20822727586a78",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/completion.json": "98c4b27b265035bddb06e88951b0eab704876cf4bee33abcf95b5928ed798d8c",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/desktop/wall-clock.jsonl": "6919a15490fabf90f54e2f830491998f9c35035a99e599c83c7b84d46f39715b",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/history-source-map.json": "aa352b7864c19104285412016698b0bdca27640d0ecc276f053ce0f24fcfcbe7",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/own-history.md": "f9aa4005f35d32158993c1614696c317879ed9147a8b74e3b3e43d3d9d6cc084",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/phone/wall-clock.jsonl": "074c16499097e675d896140132f9e6254fc3c98c049ada70481ab12103355db1",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/report.md": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/transcript.jsonl": "0ad38f1b7f5335331faff2384e15b1c1a465b14e32ff42732844589e7a2eb26e",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/completion.json": "e82dddb22907162e351849bfa1c3969ec2747738a5e60568a7459320128acf94",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/desktop/wall-clock.jsonl": "3653a40b294338421411a402b2beb5ad942a6ee50bd6e84ffda7db2297656550",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/history-source-map.json": "0ed34477c72ba96f309899770910e74f957c64accbfcc8d5647a4573e4052c31",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/own-history.md": "f4791adff20bc0507a6f734cd0431970123f20eaa64b57cac939f894c92bdc7b",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/phone/wall-clock.jsonl": "6e5ae7b91bfe04470c7af9f2a848066bdd6bdef826c4fd6e36405b5576591f4d",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/transcript.jsonl": "fae234a6c39d2d43c4eac130696341b901fd7c8ef623469b96cba278f11bd16d",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/completion.json": "b64ac7dab7f51c0302272e5f51184324aa0d6a326583dee57a1f6315792b15d7",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/desktop/wall-clock.jsonl": "6e12750eac48e08523cda254cbd290bb6c7e21af6c3eb085a01d60c847e8bec9",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/history-source-map.json": "bee11aa537cbb00dc4236b7e43d650233914e5723ebe866a4a1fca6c686db9ea",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/own-history.md": "bf095a91df61d2129efc21695dd85acfaeca9813dad7acdd637396b27679bb90",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/phone/wall-clock.jsonl": "0607460a550ab62bfac95cfcfe51ab017ed798f1ab8fb628fd02b2731140e9f3",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/transcript.jsonl": "5c080667f1bff84c60b724a997e84f358e5d9cf9050caa2e81fea19c586574c9",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/completion.json": "11b98f8ed1ee8fe8ddab552ab3f95a95a52f7164f2247524560e05606ccdbfc9",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/desktop/wall-clock.jsonl": "45be6e501a2f087cc27668734397ef4b64880afd4d4a9d2d65f36ddf8eef7a15",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/history-source-map.json": "f0f78227c7523278ed108da0453454ccb08e339dede36a4e6b372a9fa6c610e2",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/own-history.md": "037c9c5ec6a9368afb20229110518291e546462ebbfb57c5a63369e9f94e1beb",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/phone/wall-clock.jsonl": "922831a86a096ce57ce2413faece9ef1e0f84581fab02161db41c8d228b50775",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/transcript.jsonl": "944bd98b13164af4e832157453fcf0c0a341e96fee982dc9f0a24ca708512a5a",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-ask-extraction.json": "639d9bcd5384bb506f1e477446b735e81c601aff442ca2b02280bccb1f3becb2",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-ask-review.md": "39449736707287ef4078e941369fbc0c92ea542597e185383a34482eef21a022",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-protocol-review.json": "cfc32e6cc4cdefc070bd1b8d47050f13e23cf8729ce394a083ad0b4a648ceb34",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-protocol-review.md": "232b3b239996b3ebaf65acf5f2591aa6e71149e86828452c7e43dd1a1c948522",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-literal-check.json": "616e20139560aa4735732513d8a3d886043c0b09e11e28b737400ca2bd37cf22",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-qualification.json": "e4363942bffcf57afc629b0121e5e1ad93979dad943d4b62e721db4a5b29889a",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-raw-check.json": "b388241d017bb87af9ed53a4db18df4e5afc7d724e701ac4ebe34d7ae18339e0",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-sdk-source-proof.json": "0d051468593cc420812266dfb955859f3bf6c9021a1e0dabb9c53f0513726de6",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/finalizer-audit.json": "2df89d011bfd08ff2085b57db3935c9abc7e2c7f33a398c06274c6260d00ac60",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/root-return.json": "8a26ca0b731fc5b83b2b472a3624badc90f4efd0021d52aec834099dbf598272",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/integration-notes.md": "a2634b19b1f95b1c205fafe7cbacc413bf6d7f8c6ac5197faf773cefc48dd806",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/ledger.json": "6e7e2a79e920066e5f3514d2cab10762bf4afb0b62ef15e57c7db4b1736f648b",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/logical-testers.md": "ddd642d1c00d57bb9d533c04ef6f02536f86a85abba3161fc0ed7343d2e21a39",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/manifest.json": "60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/emre/report.md": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/lucia/report.md": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/pavel/report.md": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/rosa/report.md": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/tessa/report.md": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/source-png-hashes.json": "1f6bc2987e25ab204143053b92c83ddf941ff34cd7f31f418c4f641208f13aa7",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/source-references.json": "403cdad1475e40eb46671d7f955ec75597c29657ee0911cef9a7095f31e9ded0"
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "status": "CLEAR",
+      "text": "Exact manifest SHA-256 matches the assigned 60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89. All 20 payload hashes and byte sizes match. All 25 source-reference hashes and byte sizes match. Exactly five report copies equal their actual source bytes."
+    },
+    {
+      "id": "F2",
+      "status": "CLEAR",
+      "text": "All 11 ranked asks are present, in source order, without omission: F-3144 through F-3154. All 16 ask/full-return spans match source UTF-8 bytes, codepoints and line ranges. Every full return and every literal no-new-blocking statement occurs in the source and logical-testers copy. Rosa positive retain request is F-3152, classified retain_wording_request and routed no-change / retain current wording."
+    },
+    {
+      "id": "F3",
+      "status": "CLEAR",
+      "text": "Independent parsing reproduces 265 response objects (54/53/56/49/53) and 59 successful reaction strings (11/12/12/14/10), in Emre/Pavel/Tessa/Rosa/Lucia order. All reaction strings occur verbatim in reports, in recorded order. All five final captured messages equal report bytes. All 11 listed 0.001-second response/wall-clock differences reproduce at their cited source rows and remain separately retained."
+    },
+    {
+      "id": "F4",
+      "status": "CLEAR",
+      "text": "Independent response parsing finds nine device endings. Ten wall-clock stop records preserve nine FINISHED and Rosa desktop voluntary unfinished TASTE at 31.569 seconds; Rosa desktop has no ending. The retained finalizer has cut=null for each of five testers and ten eligible device stops. Zero coordinator cuts is supported within retained collection evidence, not a claim about unseen events."
+    },
+    {
+      "id": "F5",
+      "status": "CLEAR",
+      "text": "Packet preserves four standing Days RETURN testers and Lucia as a new fictional cold tester. Ten device sessions are not ten people. All five literal no-new-blocking statements remain attached to full returns. Dated nonblocking routing is 2026-11-03, with Rosa retain wording unchanged. Final ordinary iteration cap and no third ordinary panel are explicit."
+    },
+    {
+      "id": "F6",
+      "status": "CLEAR",
+      "text": "Raw tester words remain unchanged, including image-view claims and Tessa history-reading uncertainty. Integration notes preserve protocol Q1-Q9 and root RQ1-RQ12 qualifications: unverified image perception; stdout versus comprehension; early/post-stop first-minute captures; two valid active-play phone reactions; no 180-second pulse; shell failures; draft Feedback versus submission/backend/consent identity; grouped concept estimates; fresh runs without matched seed; sampled cleanup scope. This fidelity review does not independently establish every method claim or verify PNG content."
+    },
+    {
+      "id": "F7",
+      "status": "CLEAR",
+      "text": "Root-qualified collection remains distinct from final dated integration and canonical publication, both false/pending in the packet. CANDIDATE/HOLD are freeze provenance pending exact-packet review and future external root seal. The packet does not turn synthetic reports into human/owner acceptance or cohort-wide causal improvement. No further reviewer loop is needed if these exact bytes receive CLEAR from the separate limits review and root seal."
+    }
+  ],
+  "blockers": [],
+  "cleanup": "No runtime, tree, process, browser, server, branch or worker created. No repository touched. git worktree list not applicable under source-only/no-git scope."
+}

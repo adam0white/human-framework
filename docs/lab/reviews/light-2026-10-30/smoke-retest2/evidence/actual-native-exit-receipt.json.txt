@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-02T10:04:35.868800+00:00",
+  "actualToolSession": 89152,
+  "actualStartChunk": "3863b2",
+  "actualCompletionChunk": "e852f6",
+  "controllerExit": 0,
+  "controllerExited": true,
+  "actualControllerPid": 98022,
+  "controllerIdentitySha256": "331aca909a9ac4b567b6dd2b27af0118b68c2663827bef19323bdd03bb2af392",
+  "source": "root observed actual native session return",
+  "reportsRead": false
+}

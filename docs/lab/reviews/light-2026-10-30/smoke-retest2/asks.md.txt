@@ -1,0 +1,104 @@
+# Final dated ask routing
+
+Root final triage is copied in evidence. Its field `rootQualificationDraft` contains current final root triage routing despite the field name. Dates are routing dates, not completion or acceptance. Literal asks and returns are reproduced below with coordinator qualification separate.
+
+## F-3123 — jonas — 2026-11-10
+
+**Literal ranked ask:** 1. Give me a harder choice after I learn the torch-and-follow routine, with visible clues about its cost. Both orders succeeded here, although Derya’s breathing warning made the second trip feel consequential. I cannot tell from two runs how often either order would work.
+
+**Full literal return:** **I would not return voluntarily for another attempt tonight; I have seen the two orders I wanted to try. I would not leave it running.**
+
+**Routing:** preference; fix:smoke.
+
+**Root qualification:** Taste request after two successes, not evidence every order is easy; keep danger and difficulty.
+
+## F-3124 — aisha — 2026-11-03
+
+**Literal ranked ask:** 1. When someone dies, acknowledge what I tried. Derya died while following me down, and the line I saw did not mention that I had reached her.
+
+**Full literal return:** I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.
+
+**Routing:** unresolved-prior-clarity-lead; fix:smoke.
+
+**Root qualification:** Earlier death-account ask encountered again; reached death while following, quit before ending. No ending-context absence proved.
+
+## F-3125 — aisha — 2026-11-10
+
+**Literal ranked ask:** 2. Keep the walking destination, estimate and smoke slowdown messages. They made movement much clearer to me.
+
+**Full literal return:** I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.
+
+**Routing:** preservation-preference; fix:smoke.
+
+**Root qualification:** Preserve observed walking destination/estimate/smoke slowdown clarity; no new blocker.
+
+## F-3126 — aisha — 2026-11-10
+
+**Literal ranked ask:** 3. Keep the neighbours able to help one another. Burak checking the stair and helping Sevim gave him a place in the night beyond my instructions.
+
+**Full literal return:** I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.
+
+**Routing:** preservation-preference; fix:smoke.
+
+**Root qualification:** Preserve independent neighbour help and motives; no guaranteed compliance or new blocker.
+
+## F-3127 — diego — 2026-11-03
+
+**Literal ranked ask:** 1. Make it easier to notice when someone stops following. I reached the street on desktop before I saw Derya had stopped upstairs.
+
+**Full literal return:** **Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.
+
+**Routing:** reached-clarity-lead-not-new-blocker; fix:smoke.
+
+**Root qualification:** Stopped follower discovered at street; missed transition, exact stop cause unknown. Inspect notice without removing follower autonomy or difficulty.
+
+## F-3128 — diego — 2026-11-03
+
+**Literal ranked ask:** 2. Show more clearly how much danger a neighbour is in before I choose who waits. “Smoke is making breathing difficult” gave me urgency, but not a sense of how much time Derya had.
+
+**Full literal return:** **Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.
+
+**Routing:** reached-clarity-lead-not-new-blocker; fix:smoke.
+
+**Root qualification:** Breathing warning observed but individual urgency unclear; inspect qualitative danger without mandated numerical countdown or softened danger.
+
+## F-3129 — rosa — 2026-11-03
+
+**Literal ranked ask:** 1. **Keep the current instruction consistent with the latest answer.** On the phone, “The bundle is tied” appeared while Sevim still showed “tying the books” and the hint told me to wait. This was the new blocking question I reached.
+
+**Full literal return:** I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.
+
+**Routing:** reached-blocker-qualified-cause; fix:smoke.
+
+**Root qualification:** Tied event plus tying status/wait hint retained in driver response; later hint corrected. Snapshot delay complicates cause; no permanently broken books action or human-speed reproduction established.
+
+## F-3130 — rosa — 2026-11-10
+
+**Literal ranked ask:** 2. Put “Turn on Torch, then Show the stair” at the first moment I need it. That instruction was clear when it appeared.
+
+**Full literal return:** I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.
+
+**Routing:** preference; fix:smoke.
+
+**Root qualification:** Instruction was understood when reached during stopping; inspect earlier placement, preserve action prerequisites.
+
+## F-3131 — rosa — 2026-11-10
+
+**Literal ranked ask:** 3. Keep the neighbours’ concrete answers and the confirmation that they reached the street with their belongings. Sevim keeping her books mattered to me.
+
+**Full literal return:** I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.
+
+**Routing:** preservation-preference; fix:smoke.
+
+**Root qualification:** Preserve concrete replies, belongings and outside confirmation; no new blocker.
+
+## F-3132 — iria — 2026-11-03
+
+**Literal ranked ask:** 1. Help me understand how urgently a neighbour needs air, separate from the time until the stair closes. Hacer died while following me, and I did not understand how much time she had. This is the new blocking ask I reached.
+
+**Full literal return:** I would not voluntarily return tonight; I would leave the desktop game paused, not running.
+
+**Routing:** reached-blocker-qualified-cause; fix:smoke.
+
+**Root qualification:** Hacer death while following occurred before stair closure; participant did not understand separate air urgency. Inspect qualitative communication, not survival guarantee or numerical countdown mandate.
+

@@ -1,0 +1,39 @@
+I would not voluntarily return tonight; I would leave the desktop game paused, not running.
+
+Ranked ask:
+
+1. Help me understand how urgently a neighbour needs air, separate from the time until the stair closes. Hacer died while following me, and I did not understand how much time she had. This is the new blocking ask I reached.
+
+I played as Iria Salcedo, first on a 360×690 touch phone and then on a 1280×800 desktop with mouse and keyboard, the same evening. Each was a new game in its assigned browser context. I retained the agent query and left recording and consent at their defaults.
+
+The supplied history was empty. I read both lines of [own-history.md](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/own-history.md); the last line read was exactly `End of supplied own history.` Unread ranges: none.
+
+On the phone, the opening gave me a concrete purpose. The warning that people could die made me feel rushed, but the individual prompts helped me act. Derya reached the street, and I went back for Hacer when she lost sight of me in the smoke. Everyone home got out. The game ended, and I stopped at **118.709 seconds**, satisfied. The three-minute pulse and later checkpoints were untested.
+
+On desktop, the larger opening was easier to read. Sevim’s concern for her exercise books gave her an ordinary motive I liked. I helped her tie them, then led her out; Burak and Derya also reached the street. Hacer was marked as having difficulty breathing, then as at risk of dying. I reached her, showed her the stair, and she followed, but she died on the way down while the stair still had time remaining. I understood that smoke could kill her, but I had thought reaching her before the stair closed might be enough. I stopped at **166.281 seconds**, with the game paused and no ending screen observed. The three-minute pulse and later checkpoints were untested.
+
+The logged diary lines below are unedited. Times are driver `elapsed_s`; engagement is the value I supplied.
+
+**Phone**
+
+- **10.628 s, note, engagement 4:** “I understand the purpose: get the neighbours out. The warning about people dying makes me hurry, but I want to read the instructions first.”
+- **46.508 s, note, engagement 4:** “Derya is outside; that is satisfying. The prompts told me what to do one step at a time, though I feel rushed by the smoke.”
+- **61.070 s, first_minute, engagement 4:** “I want to get Hacer down too. I can follow the instructions, and the little responses make the neighbours feel present.”
+- **110.175 s, want_quit, FINISHED, engagement 4:** “Everyone is out. I am relieved and satisfied; I do not need another attempt tonight.”
+- **118.709 s, stop, FINISHED, engagement 4:** “Everyone is out. I am relieved and satisfied; I do not need another attempt tonight.”
+
+**Desktop**
+
+- **5.773 s, note, engagement 4:** “I remember the phone rescue, and I am curious about the woman with the books. The opening is easier to take in on this larger screen.”
+- **63.570 s, first_minute, engagement 4:** “I like that Sevim cares about her books and that helping her has a visible result. I am anxious about the two people still upstairs.”
+- **144.221 s, note, engagement 4:** “Oh, Hacer died while we were going down. I thought getting to her before the stair closed might be enough. That is upsetting, and I wonder if I spent too long with the others.”
+- **155.776 s, want_quit, TASTE, engagement 3:** “I want to stop. Hacer died despite following me, and I am sad and unsure what I could have done differently. I do not want to repeat the whole rescue now.”
+- **166.281 s, stop, TASTE, engagement 3:** “I want to stop. Hacer died despite following me, and I am sad and unsure what I could have done differently. I do not want to repeat the whole rescue now.”
+
+I viewed the actual opening screenshots on both devices: [phone](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/phone/a-001.png) and [desktop](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/desktop/a-001.png). The phone opening filled most of the narrow screen, with a large entry button and smaller privacy text. The desktop opening appeared as a centered panel with more surrounding space. I did not view gameplay screenshots, so my account of gameplay behavior comes from the visible text and control responses. The desktop letter keys I tried produced the indicated actions; I used the mouse for neighbour and Street controls.
+
+At the phone ending, I opened Feedback, selected **“I'm stopping”**, and chose **“Not now.”** The dialog closed; I typed and submitted nothing. On desktop, the pause-menu **“I'm confused”** opened Feedback and automatically populated the optional note with “I'm confused.” I did not type it. I selected the Feedback quick label **“I'm confused”** and chose **“Not now”**; the dialog closed without submission. A repeated name-based tap was ambiguous because both the pause menu and Feedback contained that label; the point tap selected the Feedback label.
+
+The phone’s first diary attempt returned **“Invalid reason”** because I supplied an unsupported reason; the next log succeeded. A desktop neighbour selection missed because Derya’s displayed status changed before the tap; selecting her current full name worked. Neither stopped play.
+
+I created no worktrees and touched no repository worktree for this task.

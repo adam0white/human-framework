@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-02T13:01:43.103225+00:00",
+  "status": "ROOT_QUALIFIED_FINAL_COLLECTION_PENDING_PACKET_REVIEW",
+  "qualifications": [
+    {
+      "id": "RQ1",
+      "text": "Physical collection closed before report reading: actual11503/33223d EXIT0; exact reviewed return453sampled identities gone/5profiles11ports/input17stable/cwd0unknown0. Sampled coverage only."
+    },
+    {
+      "id": "RQ2",
+      "text": "Five fictional reports on exact cleanb312/HF4.8.1. Four Days RETURN plus Lucia fictional cold under bounded scan. Same evening devices are not independent human samples; requested model does not prove serving identity."
+    },
+    {
+      "id": "RQ3",
+      "text": "Nine actual ending responses; one voluntary unfinished Rosa desktopTASTE31.569. Ten quit wishes/stops, zero coordinatorcuts. Finish requires final dated record and canonical publication, not human or owner acceptance."
+    },
+    {
+      "id": "RQ4",
+      "text": "Rosa phone reached revised comparison wording and reported it answered prior rest/hour question; a one-hour action left two hours. Fresh runs/no matchedseed; no cohort-wide causal improvement claim. Keep positive ranked retain request."
+    },
+    {
+      "id": "RQ5",
+      "text": "All265parsedresponse literals parseexact;59retainedreactionstrings occur verbatim in reports;five finalcapturedmessages equal reportbytes.11one-ms response/wallclock differences retained separately. EarlyEmre first-minute57.587 belowthreshold; retry61.997 qualifies."
+    },
+    {
+      "id": "RQ6",
+      "text": "All supplied history lines occur in retained aggregate stdout (2263/1682/1457/4532/2); not proof everyline delivered or comprehended. Tessa explicitly could not establish complete reading/unreadranges. Preserve her uncertainty unchanged."
+    },
+    {
+      "id": "RQ7",
+      "text": "No image-tool events in any retained transcript despite report claims of actual viewing. PNG creation/hashes are observed; image perception/layout assertions remain UNVERIFIABLE."
+    },
+    {
+      "id": "RQ8",
+      "text": "Four malformed shell quote failures: Pavel line332 omitted from report; Tessa198 and Lucia23/36 disclosed. Corrected commands proceeded; no input from failedshell. Preserve raw/report distinction."
+    },
+    {
+      "id": "RQ9",
+      "text": "Automaticfirstminute screenshots afterstop: Pavel desktop, Rosa desktop, Lucia phone. Other automaticcaptures afterstoryending/quitwish are not active-playdiaries. Active phonefirstminute Emre61.997 andRosa73.834; none reached180s; no forcedwaiting."
+    },
+    {
+      "id": "RQ10",
+      "text": "Recorded namedinputs use Feedbackstopping/confused+Back. No recorded Submit/type/recordingtoggle; drafts are not submission/pressedstate/backend receipt. Agentquery/SDKsource markers static attribution evidence only; consent/backendwho/actualSDKexecution unverified."
+    },
+    {
+      "id": "RQ11",
+      "text": "Rosa grouped concept counts are self-report estimates, not measured unique/new concepts or a threshold test. Root initially considered a notebook count mismatch, then counted nine comma-separated groups, matching her label; no raw correction is needed. Recognition firstnote recalls suppliedDaysmemory beforeSelinvisible; laterdirectcue separately stated."
+    },
+    {
+      "id": "RQ12",
+      "text": "All11rankedrequests and5fullreturns retained. Allfive say nonewblockingask. Residualnonblockingpreferences route dated2026-11-03; Rosa retainwording nochange. Secondfixedretet completes ordinaryloop under cap; no thirdordinarypanel or difficulty/faith/sourcefeaturechange authorized by preferences alone."
+    }
+  ],
+  "rootVerified": true,
+  "protocolVerdict": "QUALIFIED",
+  "protocolFilesRehashed": 49,
+  "noNewBlockingAsk": true,
+  "ordinaryRoundFinished": true,
+  "finalDatedRecordIntegrated": false,
+  "canonicalPublicationComplete": false,
+  "sourceEvidence": {
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-controller/root-return.json": "8a26ca0b731fc5b83b2b472a3624badc90f4efd0021d52aec834099dbf598272",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-controller/finalizer-audit.json": "2df89d011bfd08ff2085b57db3935c9abc7e2c7f33a398c06274c6260d00ac60",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-root-raw-check.json": "b388241d017bb87af9ed53a4db18df4e5afc7d724e701ac4ebe34d7ae18339e0",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-root-literal-check.json": "616e20139560aa4735732513d8a3d886043c0b09e11e28b737400ca2bd37cf22",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-protocol-review.json": "cfc32e6cc4cdefc070bd1b8d47050f13e23cf8729ce394a083ad0b4a648ceb34",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-protocol-review.md": "232b3b239996b3ebaf65acf5f2591aa6e71149e86828452c7e43dd1a1c948522"
+  },
+  "reachedCorrection": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/transcript.jsonl",
+    "sourceSha256": "5c080667f1bff84c60b724a997e84f358e5d9cf9050caa2e81fea19c586574c9",
+    "beforeLine": 288,
+    "actionLine": 292,
+    "afterReactionLine": 297,
+    "beforeHours": 3,
+    "afterHours": 2,
+    "restedBeforeAndAfter": true,
+    "subjectiveAnswer": "Rosa reports old question answered on this phone path only; not causal or owner acceptance."
+  }
+}

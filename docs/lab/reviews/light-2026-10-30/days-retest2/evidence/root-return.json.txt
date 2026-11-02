@@ -1,0 +1,72 @@
+{
+  "at": "2026-11-02T12:56:29.363220+00:00",
+  "status": "DAYS_RETEST2_PHYSICAL_RETURN",
+  "controllerExited": true,
+  "controllerExit": 0,
+  "actualToolSession": 11503,
+  "actualControllerPid": 65232,
+  "controllerSha256": "3945a233abb01234d5d2cc9c097d4b099d66fa991c1b1bdbec1213b3d318f1eb",
+  "finalizerSha256": "563cf053d6b1ed32370e69e42afb768765f218376eec248d11e0350e78061953",
+  "manifestSha256": "a6b1e5afbcef1b181cdd68c0ddefe7f65f86143b2fb3ebe7949754fb453476ef",
+  "completionHashes": {
+    "emre": "e721176f407391577544c5f25055fdc6d39850ec4bf54de4357731bbada8c841",
+    "pavel": "e82dddb22907162e351849bfa1c3969ec2747738a5e60568a7459320128acf94",
+    "tessa": "11b98f8ed1ee8fe8ddab552ab3f95a95a52f7164f2247524560e05606ccdbfc9",
+    "rosa": "b64ac7dab7f51c0302272e5f51184324aa0d6a326583dee57a1f6315792b15d7",
+    "lucia": "98c4b27b265035bddb06e88951b0eab704876cf4bee33abcf95b5928ed798d8c"
+  },
+  "helperHashes": {
+    "controller.py": "3945a233abb01234d5d2cc9c097d4b099d66fa991c1b1bdbec1213b3d318f1eb",
+    "finalize.py": "563cf053d6b1ed32370e69e42afb768765f218376eec248d11e0350e78061953",
+    "same-pid-bootstrap.py": "10950bdf5e368feb5ba7ddcd17396bda9311ebc4027f4c15562346ec3ef25c23",
+    "observe.py": "5584e99694953f37f861ee6041899a6b322ac0e12d115897a4b78a4518495820",
+    "root-return-check.py": "17da09a5c18e9a64082679e80b13dcdd2174aea9199f05505731b20a43366935",
+    "fresh-admission-root.py": "380011118445a91894b3293ca93f388585ebdd40ba4aa8923eea1f98e4514c41"
+  },
+  "helperCandidateSha256": "8ae650b05c0975bf8a56ad02f5ad31370a732eeaecfc4c6d03b87e6750356e3c",
+  "underlyingCpuEvidence": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-controller/root-fresh-cpu-evidence.json",
+    "sha256": "592c5771c5c9a13aa47d458e605fb5f5fa42b5719c7898780b9ae4c6cf4f9f79"
+  },
+  "actualNativeExitReceipt": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-controller/actual-native-exit-receipt.json",
+    "sha256": "945e85c24f61c76905416b6fc83fe9c5efc6d675c4b6d716ca4d89020d201e1b"
+  },
+  "freshCpuReturnReceipt": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-controller/root-fresh-cpu-return.json",
+    "sha256": "5fae723740fe2cb5ef3f5733cafa85c0716ef66732036d7791b84577812a1c93"
+  },
+  "sampledIdentityCount": 453,
+  "originalGone": 453,
+  "freshObservedLive": [],
+  "freshUnknownObserved": [],
+  "reusedPidOriginalIdentityGone": [],
+  "taskCwdSurvivors": [],
+  "sameUserCwdUnknown": [],
+  "profilesAbsent": {
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/days-retest2-1102-light1030-emre-s86izocz": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/days-retest2-1102-light1030-pavel-rnvrgbrn": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/days-retest2-1102-light1030-tessa-sricumov": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/days-retest2-1102-light1030-rosa-uf00sl1z": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/days-retest2-1102-light1030-lucia-twldq59_": true
+  },
+  "portsClosed": {
+    "27000": true,
+    "27001": true,
+    "27002": true,
+    "27003": true,
+    "27004": true,
+    "27005": true,
+    "27006": true,
+    "27007": true,
+    "27008": true,
+    "27009": true,
+    "27020": true
+  },
+  "allFrozenInputsStable": true,
+  "admittedBindingsStable": true,
+  "cleanupConfirmed": true,
+  "cpuReturned": true,
+  "reportsReadBeforeRootReturn": false,
+  "scope": "Five current completions, sampled PID/birth/exe identities, five profiles, eleven ports and current same-user task cwd; no global/unseen proof."
+}

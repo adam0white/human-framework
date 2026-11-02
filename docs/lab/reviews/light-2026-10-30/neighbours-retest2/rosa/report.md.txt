@@ -1,0 +1,89 @@
+I would return voluntarily another evening if I could understand the result of my work and meet a neighbour without hurrying; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. **Tell me what my repair hour accomplished.** After it ended, the hall still showed zero of twelve repairs. This was the blocking question I reached on desktop.
+2. Let me select a neighbour without their changing activity making the listed control disappear before my tap. This frustrated me on the phone.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit to *Neighbours*. Both sessions started through **Enter Mill Bridge** on the driver-opened agent-marked page. Each used a fresh automated project-test context. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+| Session | Device | Stop elapsed_s | Reason | Game clock |
+|---|---|---:|---|---|
+| A | 360×690 touch phone | 88.892 | FRUSTRATED | Day 1 13:45 |
+| B | 1280×800 desktop, mouse actions | 86.727 | CONFUSED | Day 1 13:00 |
+
+Both stops were my choice. Neither session reached the 20-minute ceiling or a game ending.
+
+I read all **4,205 supplied history lines** before play, in separate explicit ranges of at most 40 lines. No response was truncated. The final range was **4201–4205**. The last line read was **“End of supplied own history.” Exact unread ranges: none.** The history is selected, not my complete archive. Its earlier reading, image and continuity qualifications remain attached to the earlier records.
+
+The phone title appeared at **0.318 seconds**. Reopening a flooded hall remained an understandable reason to help. The text and broad Enter button were comfortable. I wanted to find out whether accepting Ece’s later offer was clearer than on my previous visit.
+
+Instead, I spent the morning trying to meet people. I reached the hall, but Ece changed activities before my next selection. Nora then moved before my tap. Selecting her current workshop activity worked, and I liked seeing that she had kept her promise to repair the doors. Later, Bilal’s activity changed before another selection. I felt hurried and stopped without speaking to anyone.
+
+The desktop title appeared at **0.301 seconds**. Its introduction was fully visible and comfortable. I chose a different action: give an hour of my own work. The game immediately said I was working until 09:45 and had one hour left that day. That felt clear and useful. Later, the work status had ended, but the hall still showed **0 of 12 repairs**. I could not tell what I had accomplished.
+
+**Diary — successful log strings, unchanged and in order**
+
+Phone:
+
+- **11.316 s — note, engagement 4, title:** “The flood and hall bring back my earlier visits. I am confident I remember Bilal agreeing and Ece offering to help later. I want to see what accepting means now. The text and broad button are comfortable. Title concepts 10: games, information, menu, flood, hall, rebuilding, independent decisions, other ways in, town download, linked recording. No reread.”
+- **33.745 s — note, engagement 4, Day 1 08:30:** “I am walking to the hall again. The arrival time is plain. Town concepts 16: day, clock, weather, repairs, credits, hall choice, river, eight places, high water, closed hall, six neighbours, their activities, nearby hearing, walking, Skip explanation, journal and help. Hall adds 6: twelve repairs, inspection, current place, arrival, own hour, separately promised hour. No reread. Loading added download size and first-visit delay: 2.”
+- **64.090 s — first_minute, engagement 3, Day 1 11:45:** “I reached the hall but Ece left before my tap, and Nora moved before the next. The morning ran from 09:15 to 11:45 while I tried to choose. I feel hurried. Nora kept her door promise, which pleases me, but I have spoken to nobody. Person screens add 10 concepts: recorded activity end, no guaranteed break, awake hearing, personal questions, refusal, privacy, return to move time, occupation, family, promise result. I recognise Nora and Ece from my previous Neighbours visit confidently; Ece being a courier does not prove she is the woman from Two Voices. No reread.”
+- **75.003 s — want_quit, FRUSTRATED, engagement 2, Day 1 12:45:** “Now Bilal has moved too. I have spent the morning trying to select people and have asked nobody anything. I like Nora keeping her promise, but chasing changing names makes me feel hurried. I would stop on the phone.”
+- **88.892 s — stop, FRUSTRATED, engagement 2, Day 1 13:45:** “I stop on the phone. I liked seeing Nora keep her promise, but Ece, Nora and Bilal changed activities before my taps and I spoke to nobody. I felt hurried rather than helped. No sentence needed rereading. Menu concepts 17: pause, journal, colours, pace, four speeds, saved towns, studies, compare outcomes, recorded studies, feedback, full screen, games, new game, saved people, recording, privacy, debug and resume. Feedback concepts 10: close, stopping, confused, three verdicts, note, name, what is sent, copy, submit. I chose stopping, saw it pressed and closed; I typed and submitted nothing. I would close it.”
+
+Desktop:
+
+- **8.991 s — note, engagement 3, title:** “The same flooded hall recalls my phone tonight and earlier Neighbours visits confidently. The wide title is comfortable and its beginning is visible. Same 10 title concepts. No new person recognition and no reread. This time I would like to do an hour myself instead of chasing someone.”
+- **43.506 s — note, engagement 4, Day 1 09:00:** “Starting my own hour gave an immediate result: working until 09:45 and one hour left today. That is clearer than chasing people. I like Nora refusing to open wet timber. Same 16 town groups and 6 hall groups as phone, plus town record and automatic work: 2. The record adds wet timber, loose supports and following a person: 3. Loading repeated 2 concepts. No reread.”
+- **58.825 s — want_quit, CONFUSED, engagement 2, Day 1 12:00:** “I gave my own hour and now it is noon, but the hall still says zero of twelve repairs. Every tool is in use. I do not know what my hour achieved. The map and plain work button pleased me, but I would stop here rather than give another hour without knowing. No reread; this is uncertainty about the result.”
+- **68.325 s — first_minute, engagement 2, Day 1 13:00:** “I understood how to start my own hour, and the large map is easy to follow. But after it ended I could not see what changed: still zero repairs. The disabled repair now explains that tools are all in use; that adds one concept. I have decided to stop and am checking Feedback, not continuing work. Menu has the same groups as phone. No reread.”
+- **86.727 s — stop, CONFUSED, engagement 2, Day 1 13:00:** “I stop on the big screen. Starting my own repair hour was clear, but afterward I still saw zero of twelve repairs and could not tell what I accomplished. The large map is comfortable; its small place labels are helped by the named buttons. No sentence needed rereading. Menu groups are the same as phone; Feedback has the same 10 groups. I chose confused, saw it pressed and closed Feedback. I typed and submitted nothing. I would close it now and return only if I could understand the result of my work.”
+
+Both quit wishes remained through Feedback. The phone engagement fell from 4 to 2. Desktop rose from 3 to 4 when my work started, then fell to 2 when I could not understand its result.
+
+I reread **no sentence** on either device. My two-reread stopping rule did not trigger. The difficulty was acting before people moved and understanding what happened after work.
+
+My concept counts were contemporaneous grouped estimates. They were not exhaustive: the phone town line says 16 but lists 17 groups; the menu line says 17 but lists 18. The Feedback line says 10 but lists nine groups when the three verdicts are grouped together. I also did not separately count every work option, family detail or milestone when it appeared. These are limits of my counting, not evidence that those screens introduced no further concepts.
+
+| Reached screen | Logged concept groups | Rereads |
+|---|---:|---|
+| Title, both | 10 | None |
+| Loading, both | 2 | None |
+| Town, both | 16 claimed; 17 listed | None |
+| Hall details, both | 6 additional groups | None |
+| Ece and Nora details, phone | 10 additional groups | None |
+| Desktop record and automatic work | 2 groups, plus 3 record details | None |
+| Desktop tools refusal | 1 additional concept | None |
+| Menu, both | 17 claimed; 18 listed | None |
+| Feedback, both | 10 claimed; nine grouped items listed | None |
+
+Recognition came from ordinary visible cues. At **11.316 seconds**, the flood and hall prompted confident memories of my recorded Bilal request and Ece’s later offer. At **64.090 seconds**, Nora’s promise result and Ece’s courier details prompted recognition of my previous Neighbours encounters. Ece’s courier work still did **not** establish that she was the person from *Two Voices*. At **8.991 seconds on desktop**, the title recalled both the phone session and earlier Neighbours visits. I recorded no new recognition of another person.
+
+I actually viewed three screenshots:
+
+- [Phone a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/a-001.png), captured at **2.612 s**: readable introduction, broad Enter button, simple river illustration and recording notice along the bottom.
+- [Desktop b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/b-001.png), captured at **2.389 s**: fully visible introduction beneath the illustration, large text and broad button.
+- [Desktop b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/b-002.png), captured at **47.222 s**: town map on the left, neighbour controls and town record on the right. The place labels were small. The named controls were readable. The red “you” marker helped me locate myself at the hall.
+
+I viewed no phone gameplay image or screenshot of the later hall result. Those observations rely on the driver’s visible text and controls. I took one manual screenshot on phone and two on desktop. I requested and viewed no automatic checkpoint image.
+
+The phone produced three stale-control errors: Ece at **47.166 s**, Nora at **51.851 s**, and Bilal at **67.162 s**. Each reply identified changed game state. Selecting Nora’s updated name worked at **56.691 s**. These do not establish broken controls. There were no desktop driver errors. I cannot establish why the clock advanced as quickly as it did between some calls.
+
+On phone, Feedback opened at **79.430 s**. **“I'm stopping”** showed as pressed at **81.519 s**, and **Close Feedback** worked at **84.396 s**. On desktop, Feedback opened at **71.638 s**. **“I'm confused”** showed as pressed at **75.526 s**, and Close Feedback worked at **78.832 s**. Both labels were offered on both devices. I typed no note and pressed no Submit.
+
+Compared with my supplied Neighbours reports:
+
+- The desktop introduction remained fully visible, as in my previous retest.
+- I did not accept Ece’s alternative, so I cannot assess my earlier acceptance question or the previous person’s response remaining in a new conversation.
+- I did not ask Bilal to repair, so his earlier unavailable-repair outcome remains untested.
+- I did not use Skip or open its explanation. My earlier question about its advance remains unanswered by this visit.
+- My own work produced a clear starting status, but its later result became the new blocking question I actually reached.
+
+Both first-minute notes were logged after 60 seconds. The desktop note occurred during the stopping check; it was not further repair play. Neither session reached 180 seconds, so no pulse was due. I did not reach a reopened hall, later evenings or an ending.
+
+I still like the ordinary purpose of helping a town recover and the neighbours having their own obligations. This evening left me less willing to continue alone. I would close the game. I would consider another evening if I could understand what my work achieved and meet someone without feeling rushed.
+
+I created no worktree, branch, server, browser or helper process. The coordinator owns driver and browser cleanup.
+
+`git worktree list`: not applicable; no repository was touched and no worktree was created by me.

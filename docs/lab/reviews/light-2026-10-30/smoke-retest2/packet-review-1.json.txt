@@ -1,0 +1,2104 @@
+{
+  "reviewerId": "/root/smoke_packet_fidelity_review",
+  "reviewType": "INDEPENDENT_DEFAULT_CODEX_STATIC_PACKET_FIDELITY",
+  "verdict": "CLEAR",
+  "exactManifestSHA": "69f183bb5d03707394136cbe3aa4e8998bcec275e986e7b111909153a0993ca1",
+  "candidatePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate",
+  "candidateStatus": "NOT_SEALED_CANDIDATE",
+  "candidateMutated": false,
+  "findings": [],
+  "checks": [
+    {
+      "id": "F1",
+      "status": "PASS",
+      "detail": "Exact manifest identity matches requested SHA. All 44 declared payload hashes and sizes match. No candidate file modified."
+    },
+    {
+      "id": "F2",
+      "status": "PASS",
+      "detail": "All 35 exact-copy bindings match source bytes, source/copy hashes and source/copy sizes. All 10 inherited-reference hashes and sizes match. All 27 unique path/hash pairs directly declared by the five history maps match; Iria profile path is readable without an invented declared hash."
+    },
+    {
+      "id": "F3",
+      "status": "PASS",
+      "detail": "All five full reports read. Last retained item.completed agent_message text from each actual transcript encodes to exactly the current report bytes, including absence of terminal newline. Those hashes and sizes match root-last-message-check and literal extraction. All 124 current protocol-audit evidence bindings rehashed without mismatch."
+    },
+    {
+      "id": "F4",
+      "status": "PASS",
+      "detail": "All four standing diary continuations fully read. Each contains its full report exact bytes once, as an unmodified suffix; coordinator note is outside report. Iria has no standing diary."
+    },
+    {
+      "id": "F5",
+      "status": "PASS",
+      "detail": "All 10 literal asks match report byte offsets and asks.md; all five complete return statements match report, asks.md and logical-testers.md. All 10 IDs, classifications, targets and root qualification texts match exact root triage. Five dates are November 3 and five November 10. Dates do not claim completion."
+    },
+    {
+      "id": "F6",
+      "status": "PASS",
+      "detail": "All SF1–SF14 qualification bodies occur verbatim once in methodology. All 17 clock rows exactly preserve tester, device, transcript line, wall row, response, wall and 0.001-second difference from root qualification."
+    },
+    {
+      "id": "F7",
+      "status": "PASS",
+      "detail": "All 100 literal extraction spans independently checked at byte, Unicode and line coordinates. All 55 requested raw reactions occur literally in reports; 54 successful plus one rejected Iria Invalid reason attempt. No claim of 55 successful diary entries."
+    },
+    {
+      "id": "F8",
+      "status": "PASS",
+      "detail": "README, logical testers, report text and SF10 retain exactly three Smoke target returners (Jonas, Aisha, Diego), Rosa FIRST Smoke with franchise experience, and fictional cold Iria with empty two-line history. Leila omitted with original reports retained; no full four-returner comparison claimed."
+    },
+    {
+      "id": "F9",
+      "status": "PASS",
+      "detail": "Six actual ending stops and four voluntary nonending stops remain distinct. Aisha desktop FRUSTRATED, Rosa phone CONFUSED, Rosa desktop TASTE and Iria desktop TASTE are nonending. No coordinator cut, BUDGET or TOOL stop is represented."
+    },
+    {
+      "id": "F10",
+      "status": "PASS",
+      "detail": "Stored native and physical receipts retain actual 89152 / e852f6 / exit 0, 480 sampled original identities gone, five absent profiles, eleven BIND-free ports and 17 stable frozen payloads before report reads. Initial BIND failure, failed exit 1, unknown port and unexplained transient cause remain explicit in SF13 and audit MD. This is stored evidence, not a fresh runtime probe."
+    },
+    {
+      "id": "F11",
+      "status": "PASS",
+      "detail": "Current own-history SHA values, four exact inherited baseline prefixes and all five appended historical report byte ranges match. Prior W/SW/NR/SWF/NC and per-person Smoke qualifications transfer by bound selected history and maps, not a new full archive audit. Jonas/Aisha/Diego truncation uncertainty is preserved; Rosa reading claim is not promoted to proven delivery/comprehension."
+    },
+    {
+      "id": "F12",
+      "status": "PASS",
+      "detail": "All claimed image viewing remains UNVERIFIABLE under SF1. Requested model identities are not serving identities. Source/SDK static receipts do not establish backend outcomes or source-wide equivalence. No consent, attribution, owner acceptance, third panel or cap reset is granted. Candidate remains NOT_SEALED_CANDIDATE; canonical import and dated record integration remain pending."
+    }
+  ],
+  "counts": {
+    "payloads": 44,
+    "exactCopies": 35,
+    "inheritedReferences": 10,
+    "uniqueDirectHistoryMapPathSHAReferences": 27,
+    "auditEvidenceBindingsRehashed": 124,
+    "fullReports": 5,
+    "fullStandingDiaryContinuations": 4,
+    "literalAsks": 10,
+    "fullReturnStatements": 5,
+    "november3Routes": 5,
+    "november10Routes": 5,
+    "verbatimQualifications": 14,
+    "exactClockRows": 17,
+    "literalSpans": 100,
+    "requestedReactions": 55,
+    "successfulDiaryEntries": 54,
+    "rejectedDiaryRequests": 1,
+    "endingStops": 6,
+    "nonEndingStops": 4,
+    "coordinatorCuts": 0
+  },
+  "reportLastMessageChecks": [
+    {
+      "tester": "jonas",
+      "reportSha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+      "bytes": 5898,
+      "actualLastMessageExact": true,
+      "terminalNewline": false
+    },
+    {
+      "tester": "aisha",
+      "reportSha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+      "bytes": 6782,
+      "actualLastMessageExact": true,
+      "terminalNewline": false
+    },
+    {
+      "tester": "diego",
+      "reportSha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+      "bytes": 6634,
+      "actualLastMessageExact": true,
+      "terminalNewline": false
+    },
+    {
+      "tester": "rosa",
+      "reportSha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+      "bytes": 13599,
+      "actualLastMessageExact": true,
+      "terminalNewline": false
+    },
+    {
+      "tester": "iria",
+      "reportSha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+      "bytes": 5477,
+      "actualLastMessageExact": true,
+      "terminalNewline": false
+    }
+  ],
+  "diaryChecks": [
+    {
+      "tester": "jonas",
+      "completeReportByteOccurrences": 1,
+      "reportIsExactSuffix": true,
+      "coordinatorPrefixBytes": 266
+    },
+    {
+      "tester": "aisha",
+      "completeReportByteOccurrences": 1,
+      "reportIsExactSuffix": true,
+      "coordinatorPrefixBytes": 266
+    },
+    {
+      "tester": "diego",
+      "completeReportByteOccurrences": 1,
+      "reportIsExactSuffix": true,
+      "coordinatorPrefixBytes": 266
+    },
+    {
+      "tester": "rosa",
+      "completeReportByteOccurrences": 1,
+      "reportIsExactSuffix": true,
+      "coordinatorPrefixBytes": 265
+    }
+  ],
+  "askRoutingChecks": [
+    {
+      "id": "F-3123",
+      "tester": "jonas",
+      "date": "2026-11-10",
+      "classification": "preference",
+      "target": "fix:smoke",
+      "literalAsk": "1. Give me a harder choice after I learn the torch-and-follow routine, with visible clues about its cost. Both orders succeeded here, although Derya’s breathing warning made the second trip feel consequential. I cannot tell from two runs how often either order would work.",
+      "fullReturnLiteral": "**I would not return voluntarily for another attempt tonight; I have seen the two orders I wanted to try. I would not leave it running.**",
+      "rootQualificationDraft": "Taste request after two successes, not evidence every order is easy; keep danger and difficulty."
+    },
+    {
+      "id": "F-3124",
+      "tester": "aisha",
+      "date": "2026-11-03",
+      "classification": "unresolved-prior-clarity-lead",
+      "target": "fix:smoke",
+      "literalAsk": "1. When someone dies, acknowledge what I tried. Derya died while following me down, and the line I saw did not mention that I had reached her.",
+      "fullReturnLiteral": "I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.",
+      "rootQualificationDraft": "Earlier death-account ask encountered again; reached death while following, quit before ending. No ending-context absence proved."
+    },
+    {
+      "id": "F-3125",
+      "tester": "aisha",
+      "date": "2026-11-10",
+      "classification": "preservation-preference",
+      "target": "fix:smoke",
+      "literalAsk": "2. Keep the walking destination, estimate and smoke slowdown messages. They made movement much clearer to me.",
+      "fullReturnLiteral": "I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.",
+      "rootQualificationDraft": "Preserve observed walking destination/estimate/smoke slowdown clarity; no new blocker."
+    },
+    {
+      "id": "F-3126",
+      "tester": "aisha",
+      "date": "2026-11-10",
+      "classification": "preservation-preference",
+      "target": "fix:smoke",
+      "literalAsk": "3. Keep the neighbours able to help one another. Burak checking the stair and helping Sevim gave him a place in the night beyond my instructions.",
+      "fullReturnLiteral": "I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.",
+      "rootQualificationDraft": "Preserve independent neighbour help and motives; no guaranteed compliance or new blocker."
+    },
+    {
+      "id": "F-3127",
+      "tester": "diego",
+      "date": "2026-11-03",
+      "classification": "reached-clarity-lead-not-new-blocker",
+      "target": "fix:smoke",
+      "literalAsk": "1. Make it easier to notice when someone stops following. I reached the street on desktop before I saw Derya had stopped upstairs.",
+      "fullReturnLiteral": "**Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.",
+      "rootQualificationDraft": "Stopped follower discovered at street; missed transition, exact stop cause unknown. Inspect notice without removing follower autonomy or difficulty."
+    },
+    {
+      "id": "F-3128",
+      "tester": "diego",
+      "date": "2026-11-03",
+      "classification": "reached-clarity-lead-not-new-blocker",
+      "target": "fix:smoke",
+      "literalAsk": "2. Show more clearly how much danger a neighbour is in before I choose who waits. “Smoke is making breathing difficult” gave me urgency, but not a sense of how much time Derya had.",
+      "fullReturnLiteral": "**Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.",
+      "rootQualificationDraft": "Breathing warning observed but individual urgency unclear; inspect qualitative danger without mandated numerical countdown or softened danger."
+    },
+    {
+      "id": "F-3129",
+      "tester": "rosa",
+      "date": "2026-11-03",
+      "classification": "reached-blocker-qualified-cause",
+      "target": "fix:smoke",
+      "literalAsk": "1. **Keep the current instruction consistent with the latest answer.** On the phone, “The bundle is tied” appeared while Sevim still showed “tying the books” and the hint told me to wait. This was the new blocking question I reached.",
+      "fullReturnLiteral": "I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.",
+      "rootQualificationDraft": "Tied event plus tying status/wait hint retained in driver response; later hint corrected. Snapshot delay complicates cause; no permanently broken books action or human-speed reproduction established."
+    },
+    {
+      "id": "F-3130",
+      "tester": "rosa",
+      "date": "2026-11-10",
+      "classification": "preference",
+      "target": "fix:smoke",
+      "literalAsk": "2. Put “Turn on Torch, then Show the stair” at the first moment I need it. That instruction was clear when it appeared.",
+      "fullReturnLiteral": "I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.",
+      "rootQualificationDraft": "Instruction was understood when reached during stopping; inspect earlier placement, preserve action prerequisites."
+    },
+    {
+      "id": "F-3131",
+      "tester": "rosa",
+      "date": "2026-11-10",
+      "classification": "preservation-preference",
+      "target": "fix:smoke",
+      "literalAsk": "3. Keep the neighbours’ concrete answers and the confirmation that they reached the street with their belongings. Sevim keeping her books mattered to me.",
+      "fullReturnLiteral": "I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.",
+      "rootQualificationDraft": "Preserve concrete replies, belongings and outside confirmation; no new blocker."
+    },
+    {
+      "id": "F-3132",
+      "tester": "iria",
+      "date": "2026-11-03",
+      "classification": "reached-blocker-qualified-cause",
+      "target": "fix:smoke",
+      "literalAsk": "1. Help me understand how urgently a neighbour needs air, separate from the time until the stair closes. Hacer died while following me, and I did not understand how much time she had. This is the new blocking ask I reached.",
+      "fullReturnLiteral": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+      "rootQualificationDraft": "Hacer death while following occurred before stair closure; participant did not understand separate air urgency. Inspect qualitative communication, not survival guarantee or numerical countdown mandate."
+    }
+  ],
+  "qualificationIds": [
+    "SF1",
+    "SF2",
+    "SF3",
+    "SF4",
+    "SF5",
+    "SF6",
+    "SF7",
+    "SF8",
+    "SF9",
+    "SF10",
+    "SF11",
+    "SF12",
+    "SF13",
+    "SF14"
+  ],
+  "clockRows": [
+    {
+      "tester": "jonas",
+      "device": "phone",
+      "transcriptLine": 202,
+      "wallRow": 5,
+      "response": 12.183,
+      "wall": 12.182,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "transcriptLine": 157,
+      "wallRow": 5,
+      "response": 9.618,
+      "wall": 9.617,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "jonas",
+      "device": "desktop",
+      "transcriptLine": 181,
+      "wallRow": 18,
+      "response": 61.561,
+      "wall": 61.56,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "transcriptLine": 251,
+      "wallRow": 18,
+      "response": 61.949,
+      "wall": 61.948,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "aisha",
+      "device": "phone",
+      "transcriptLine": 267,
+      "wallRow": 26,
+      "response": 83.543,
+      "wall": 83.542,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "aisha",
+      "device": "desktop",
+      "transcriptLine": 218,
+      "wallRow": 41,
+      "response": 131.37,
+      "wall": 131.369,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "transcriptLine": 135,
+      "wallRow": 20,
+      "response": 64.552,
+      "wall": 64.551,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "diego",
+      "device": "phone",
+      "transcriptLine": 166,
+      "wallRow": 34,
+      "response": 113.341,
+      "wall": 113.34,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "transcriptLine": 217,
+      "wallRow": 28,
+      "response": 121.173,
+      "wall": 121.172,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "diego",
+      "device": "desktop",
+      "transcriptLine": 228,
+      "wallRow": 33,
+      "response": 131.77,
+      "wall": 131.769,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "transcriptLine": 249,
+      "wallRow": 7,
+      "response": 32.782,
+      "wall": 32.781,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "transcriptLine": 270,
+      "wallRow": 18,
+      "response": 98.367,
+      "wall": 98.366,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "transcriptLine": 278,
+      "wallRow": 22,
+      "response": 121.495,
+      "wall": 121.494,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "transcriptLine": 308,
+      "wallRow": 16,
+      "response": 68.553,
+      "wall": 68.552,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "transcriptLine": 43,
+      "wallRow": 20,
+      "response": 61.07,
+      "wall": 61.069,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "iria",
+      "device": "phone",
+      "transcriptLine": 62,
+      "wallRow": 29,
+      "response": 110.175,
+      "wall": 110.174,
+      "differenceSeconds": 0.001
+    },
+    {
+      "tester": "iria",
+      "device": "desktop",
+      "transcriptLine": 149,
+      "wallRow": 40,
+      "response": 155.776,
+      "wall": 155.775,
+      "differenceSeconds": 0.001
+    }
+  ],
+  "evidenceBounds": [
+    "Static fidelity review only. No candidate helper import or execution; only standard-library file parsing, comparisons and hashing. No network, browser, runtime probe, test, repository/worktree mutation or subagent. Only this requested review pair written.",
+    "Full five reports, full four current diary continuations and full README/asks/logical/methodology/protocol audit MD read. Operative JSON, exact bytes and declared bindings checked. No second full semantic reread of all 596 raw commands or prior full archives claimed. Actual current transcript final messages independently compared.",
+    "The large inherited-qualification projection was tool-truncated; those files are fully readable and hash-bound, but no full semantic inherited archive reread is claimed. Direct selected-map bindings and exact baseline/report composition were checked.",
+    "Stored receipts and root qualifications carry their own original audit scope. This review grants no rootVerified, operational admission, seal, canonical import, owner acceptance or final project completion.",
+    "No owned runtime, browser, repository or worktree. git worktree list is not applicable; no repository was touched."
+  ],
+  "inspectedPaths": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/manifest.json",
+      "sha256": "69f183bb5d03707394136cbe3aa4e8998bcec275e986e7b111909153a0993ca1",
+      "bytes": 7145,
+      "inspectionScopes": [
+        "Full manifest parsed; candidate identity"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/source-map.json",
+      "sha256": "f200e4a92757ad4dc797a924fab09f74a0f43a134cbb3e7bd1d54cefaac87868",
+      "bytes": 17738,
+      "inspectionScopes": [
+        "Full source map parsed; every declared exact copy and inherited binding compared",
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/README.md",
+      "sha256": "a0116b00433cd737349bc87f2f48b991b384452b857071987a09f13465819be7",
+      "bytes": 939,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/aisha/brief.md",
+      "sha256": "f495e9ba89dc378ca546f68d3f322dd9eff71e2f4ab6bd3e524e2013f77d4e4b",
+      "bytes": 7523,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/aisha/diary-continuation.md",
+      "sha256": "bf93992ae61b6b512bce813d449895fc9d05719175db82d927a3af36f80f01d1",
+      "bytes": 7048,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/aisha/history-source-map.json",
+      "sha256": "b642b16ee7fb91e6f289dd87ce77c970101d8279e0dbdb68b0daeeb519a84365",
+      "bytes": 2865,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/aisha/report.md",
+      "sha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+      "bytes": 6782,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/asks.md",
+      "sha256": "2a8c4dc92b7279b45e863fba1a52a3dc52c60e08b1e545d15c79d8bbbf4b4b79",
+      "bytes": 6449,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/diego/brief.md",
+      "sha256": "be60aea4366d04e1c5d75986f9cf676adb52d4dbfe476f97b4ecf4e9d762b131",
+      "bytes": 7505,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/diego/diary-continuation.md",
+      "sha256": "b91cb480e37893cb7301249bbffdcea8be6b26d82691a4041e3ebdbe212b40e8",
+      "bytes": 6900,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/diego/history-source-map.json",
+      "sha256": "01cbfae5f6e9789cb769cbae46232857868a6b04854e96a4d3e143b9be1c69ae",
+      "bytes": 2823,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/diego/report.md",
+      "sha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+      "bytes": 6634,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/actual-native-exit-receipt.json",
+      "sha256": "0178420113b41e1ece6d0ba63858e0da449d01add96c06546d97784b3de0f7d6",
+      "bytes": 409,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/final-live-pin.json",
+      "sha256": "d6386c3e3d8c914063f4c14bdaaaf7a8425524716b5eacd9afe513a3fade9ae5",
+      "bytes": 419,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/input-manifest.json",
+      "sha256": "3c7bade0de493256e82360a43f7273bbf95f04df5f5ac7b699eb080342ca6872",
+      "bytes": 2876,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/literal-extraction-short.md",
+      "sha256": "80a40f1f9ff173ee2dcc3715cfc93fe054aa30989e095d36ff5a5a59b6e4eb0c",
+      "bytes": 3911,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/literal-extraction.json",
+      "sha256": "5fe08ceffb4f706ec8b088f0fb70879d8da2cc32b5aa7e356880ed7c6fc64525",
+      "bytes": 53666,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/previous-ordinary-return.json",
+      "sha256": "eab96f851453f067331f4e6e6d15231ff6ee0f4a725da7bf3b2330c6978e3322",
+      "bytes": 682,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/protocol-audit.json",
+      "sha256": "7c405469472fb8660a96336524d99c408706be0b9fb6c2b4f1042c9c4cbc6371",
+      "bytes": 2136233,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/protocol-audit.md",
+      "sha256": "543a356d4e05ac5445c27d910a62fbf21f1b34e6014531155dbdf9e322943998",
+      "bytes": 14144,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-admission.json",
+      "sha256": "abb5a4d109524f21550732e40b4a80febcb97043b718142917ca65687e112c5e",
+      "bytes": 3904,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-ask-triage.json",
+      "sha256": "5c8b4b66abc805ccd29075735a3ea0bb25069c1c028c8f08cc63493150bb079c",
+      "bytes": 10820,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-ending-check.json",
+      "sha256": "c3f9643a4ccc4b6be4c923e02a04ca01d6a31616d7448f6e18799ca64fbdecb8",
+      "bytes": 2843,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-first-bind-failure.json",
+      "sha256": "0479d481cba5e1f1c1b47ff9617a521348554e46465d075287b0c2dd32be760b",
+      "bytes": 1111,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-gd-physical-check.json",
+      "sha256": "6c27efbd1b3c2c770062583bf195ca729aa1f2eeadb12d61506bf7069c8bcc2c",
+      "bytes": 3255,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-last-message-check.json",
+      "sha256": "b904926bb11823b4156df90e6f4128b7f81a53bb5d8eab8420e6e2f78c817517",
+      "bytes": 1150,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-literal-reaction-check.json",
+      "sha256": "aa92af2c409239312c6fecbf5123cafecdeac8a90b611e42ebd25e2c18dc27a7",
+      "bytes": 21262,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-physical-evidence.json",
+      "sha256": "f00f76b5f817e1d681262b954bc9e52fdf450b9d53149c89c407c890990511b6",
+      "bytes": 2401,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-qualification.json",
+      "sha256": "a703ff8970db2bc2c793ab91134087a6540bee1879a61a11ff1a19cfb1470af9",
+      "bytes": 12445,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-return.json",
+      "sha256": "e4b2038ae652ec6f89ac4e65de00b22e22de1960057f86922c4588b38b497bcd",
+      "bytes": 3572,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/root-source-delivery.json",
+      "sha256": "03eb17be90be8d6a732c07a7fe442644acd0aac094aab5c24ad4ae664246e65d",
+      "bytes": 7944,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/evidence/sdk-source-proof.json",
+      "sha256": "2d2a10786262ce708d3d693e5e653b699c45edace581d5e617a5e8bf45e69586",
+      "bytes": 6882,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/iria/brief.md",
+      "sha256": "d463122014e2e1ba66272c35fce536545f9cdec897d2925cea24d75b8a688805",
+      "bytes": 7676,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/iria/history-source-map.json",
+      "sha256": "55ec84a6052cf424008b7a703f7d2b63097fffc9045d6665153f3ce25fa84a33",
+      "bytes": 232,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/iria/report.md",
+      "sha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+      "bytes": 5477,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/jonas/brief.md",
+      "sha256": "bcb09bc915730a442cc6299cca4c1406beb324e5b6df0549c40691ae64dc5ddf",
+      "bytes": 7503,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/jonas/diary-continuation.md",
+      "sha256": "870a1a5e2a1be47a52d871d7e936ab78517aef4d2620ff964f7229569dc9716f",
+      "bytes": 6164,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/jonas/history-source-map.json",
+      "sha256": "4a726d99eb5ed1998ad6c662ead2e2b985e84b8402eb80d957cc052307789103",
+      "bytes": 4496,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/jonas/report.md",
+      "sha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+      "bytes": 5898,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/logical-testers.md",
+      "sha256": "b10aecac13b3c511c2049a4d65ec0d3d922d98d17ef6377591a6d018e20a9914",
+      "bytes": 1321,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/methodology.md",
+      "sha256": "e268c8fcfd1062fc3166f50eb7d8d0e1382117f0b2dfcd9e986f156149d54378",
+      "bytes": 8013,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/rosa/brief.md",
+      "sha256": "cfd93f13d3e04646f966292641ed012a5bb7bea6fc3a1e525cd65b5545a91225",
+      "bytes": 7732,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/rosa/diary-continuation.md",
+      "sha256": "04e76422bd4e31c3fa377c5f6ea2fa9a8a72a34337c2fd9e6dda8d54ce2db6b7",
+      "bytes": 13864,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/rosa/history-source-map.json",
+      "sha256": "ba477603378d5acfb58a85a7ad8e7a17fc89a98f445c8dd58ed188809c86afcc",
+      "bytes": 3805,
+      "inspectionScopes": [
+        "Bytes/hash/size read; structured comparison where applicable"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate/rosa/report.md",
+      "sha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+      "bytes": 13599,
+      "inspectionScopes": [
+        "Full text read"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/report.md",
+      "sha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+      "bytes": 5898,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/brief.md",
+      "sha256": "bcb09bc915730a442cc6299cca4c1406beb324e5b6df0549c40691ae64dc5ddf",
+      "bytes": 7503,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/history-source-map.json",
+      "sha256": "4a726d99eb5ed1998ad6c662ead2e2b985e84b8402eb80d957cc052307789103",
+      "bytes": 4496,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/report.md",
+      "sha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+      "bytes": 6782,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/brief.md",
+      "sha256": "f495e9ba89dc378ca546f68d3f322dd9eff71e2f4ab6bd3e524e2013f77d4e4b",
+      "bytes": 7523,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/history-source-map.json",
+      "sha256": "b642b16ee7fb91e6f289dd87ce77c970101d8279e0dbdb68b0daeeb519a84365",
+      "bytes": 2865,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/report.md",
+      "sha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+      "bytes": 6634,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/brief.md",
+      "sha256": "be60aea4366d04e1c5d75986f9cf676adb52d4dbfe476f97b4ecf4e9d762b131",
+      "bytes": 7505,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/history-source-map.json",
+      "sha256": "01cbfae5f6e9789cb769cbae46232857868a6b04854e96a4d3e143b9be1c69ae",
+      "bytes": 2823,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/report.md",
+      "sha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+      "bytes": 13599,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/brief.md",
+      "sha256": "cfd93f13d3e04646f966292641ed012a5bb7bea6fc3a1e525cd65b5545a91225",
+      "bytes": 7732,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/history-source-map.json",
+      "sha256": "ba477603378d5acfb58a85a7ad8e7a17fc89a98f445c8dd58ed188809c86afcc",
+      "bytes": 3805,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/report.md",
+      "sha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+      "bytes": 5477,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/brief.md",
+      "sha256": "d463122014e2e1ba66272c35fce536545f9cdec897d2925cea24d75b8a688805",
+      "bytes": 7676,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/history-source-map.json",
+      "sha256": "55ec84a6052cf424008b7a703f7d2b63097fffc9045d6665153f3ce25fa84a33",
+      "bytes": 232,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-qualification.json",
+      "sha256": "a703ff8970db2bc2c793ab91134087a6540bee1879a61a11ff1a19cfb1470af9",
+      "bytes": 12445,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-ask-triage.json",
+      "sha256": "5c8b4b66abc805ccd29075735a3ea0bb25069c1c028c8f08cc63493150bb079c",
+      "bytes": 10820,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-literal-extraction.json",
+      "sha256": "5fe08ceffb4f706ec8b088f0fb70879d8da2cc32b5aa7e356880ed7c6fc64525",
+      "bytes": 53666,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-literal-extraction-short.md",
+      "sha256": "80a40f1f9ff173ee2dcc3715cfc93fe054aa30989e095d36ff5a5a59b6e4eb0c",
+      "bytes": 3911,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-protocol-audit.json",
+      "sha256": "7c405469472fb8660a96336524d99c408706be0b9fb6c2b4f1042c9c4cbc6371",
+      "bytes": 2136233,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-protocol-audit.md",
+      "sha256": "543a356d4e05ac5445c27d910a62fbf21f1b34e6014531155dbdf9e322943998",
+      "bytes": 14144,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-literal-reaction-check.json",
+      "sha256": "aa92af2c409239312c6fecbf5123cafecdeac8a90b611e42ebd25e2c18dc27a7",
+      "bytes": 21262,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-ending-check.json",
+      "sha256": "c3f9643a4ccc4b6be4c923e02a04ca01d6a31616d7448f6e18799ca64fbdecb8",
+      "bytes": 2843,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-last-message-check.json",
+      "sha256": "b904926bb11823b4156df90e6f4128b7f81a53bb5d8eab8420e6e2f78c817517",
+      "bytes": 1150,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-final-live-pin.json",
+      "sha256": "d6386c3e3d8c914063f4c14bdaaaf7a8425524716b5eacd9afe513a3fade9ae5",
+      "bytes": 419,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-source-delivery.json",
+      "sha256": "03eb17be90be8d6a732c07a7fe442644acd0aac094aab5c24ad4ae664246e65d",
+      "bytes": 7944,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-sdk-source-proof.json",
+      "sha256": "2d2a10786262ce708d3d693e5e653b699c45edace581d5e617a5e8bf45e69586",
+      "bytes": 6882,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-previous-ordinary-return.json",
+      "sha256": "eab96f851453f067331f4e6e6d15231ff6ee0f4a725da7bf3b2330c6978e3322",
+      "bytes": 682,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-gd-physical-check.json",
+      "sha256": "6c27efbd1b3c2c770062583bf195ca729aa1f2eeadb12d61506bf7069c8bcc2c",
+      "bytes": 3255,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/manifest.json",
+      "sha256": "3c7bade0de493256e82360a43f7273bbf95f04df5f5ac7b699eb080342ca6872",
+      "bytes": 2876,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-admission.json",
+      "sha256": "abb5a4d109524f21550732e40b4a80febcb97043b718142917ca65687e112c5e",
+      "bytes": 3904,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-return.json",
+      "sha256": "e4b2038ae652ec6f89ac4e65de00b22e22de1960057f86922c4588b38b497bcd",
+      "bytes": 3572,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/actual-native-exit-receipt.json",
+      "sha256": "0178420113b41e1ece6d0ba63858e0da449d01add96c06546d97784b3de0f7d6",
+      "bytes": 409,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-physical-evidence.json",
+      "sha256": "f00f76b5f817e1d681262b954bc9e52fdf450b9d53149c89c407c890990511b6",
+      "bytes": 2401,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-first-bind-failure.json",
+      "sha256": "0479d481cba5e1f1c1b47ff9617a521348554e46465d075287b0c2dd32be760b",
+      "bytes": 1111,
+      "inspectionScopes": [
+        "Exact source-copy byte/hash/size comparison",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/jonas/director-method-qualification.json",
+      "sha256": "46b8e4ff35ca92bb0db5a12bbb4a4c9a094f51d700f8e9076ebad4b51218e56b",
+      "bytes": 3357,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke1-root-finalization.json",
+      "sha256": "36debae88ccaa269a389eb85f4879dafcc3a5e2717a341d8561559295152a476",
+      "bytes": 826,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-root-closure.json",
+      "sha256": "b323a4c426fae9b3a435c0f723a9a18b7505ac605ffc28cbba50bbbae59d1f6e",
+      "bytes": 636,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-root-qualification.json",
+      "sha256": "9a6bfff826d45b737f46e96d0514371b4ea57b84538dd3d48a71b4c3a491300b",
+      "bytes": 4517,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/stairwell-retest2/method-qualification.json",
+      "sha256": "96fad930ce5c194e2ac9bb8eb8858e68ac4bc3b52e5b1a92cecce34d3532b481",
+      "bytes": 11986,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-packet-root-seal.json",
+      "sha256": "18f309e74cac5ba7afe92982cf097fc6b83451df40a67e802fefd6b069e2019a",
+      "bytes": 1100,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-root-qualification.json",
+      "sha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9",
+      "bytes": 4579,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest2/method-qualification.json",
+      "sha256": "eb409266dea19e207159668cbf4d0ccd66cc17a4a8f72628fdfb9d52e63d0c77",
+      "bytes": 7329,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-packet-root-seal.json",
+      "sha256": "6f3ab7b67b2081d1cb824511542aacf3fd7f76727d32e2114c6517e44cef0e1e",
+      "bytes": 856,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/diego/director-method-qualification.json",
+      "sha256": "200d5931fe3aa8c7e3eb46e9cc52ba8721f946fa7931c8cf1e59440fb3066644",
+      "bytes": 3003,
+      "inspectionScopes": [
+        "Inherited qualification reference readable; complete hash and size verified; selected-history scope",
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/own-history.md",
+      "sha256": "ed3384b93d16771ad845e41a4483e8c73b9d51adba8ad81a8c61643ade41ab9a",
+      "bytes": 231754,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/history-source-map.json",
+      "sha256": "c59ff973b893e45b910868bc4323883d335df418fb79f9a4258ddb2d7d6c816a",
+      "bytes": 6750,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/jonas/report.md",
+      "sha256": "ed71baf2d1b2a1448a44b1bce3334e17651bdb41d18fc6b4fe6c781a80bf8138",
+      "bytes": 7355,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/stairwell-retest2/jonas/report.md",
+      "sha256": "234e040836271e8ba7e7a469c2ae698e7341a0d41d54cb958d7a529bd374ea3b",
+      "bytes": 7322,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-gap-qualification.json",
+      "sha256": "53ce48c0c6dc925121c407522cc5f3a0a110a8b3b8566ab59bdcc7ab1fe3e534",
+      "bytes": 48086,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/own-history.md",
+      "sha256": "518f7af1ba65b1a1fe4c8a16bfd174f72efe89dd48c3967e3da5bcbe995a056b",
+      "bytes": 185362,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/history-source-map.json",
+      "sha256": "4dea18a6bc3642c7a77f25f1f1c23fb2bb0bbbf8787568094c9dcbe70218fb44",
+      "bytes": 3485,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest2/aisha/diary-continuation.md",
+      "sha256": "1bac935a3ae3ea2a438ea821aa10f4abc290aa027467a9cdf1f02ff716d24adc",
+      "bytes": 6710,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest2/aisha/report.md",
+      "sha256": "2fd654f7105734ca55db8bbe433c5916e2fdb11f7a9990c1e945ab93941186e1",
+      "bytes": 6444,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/own-history.md",
+      "sha256": "3760c02047070a841cafb17547b3b2dd62767614e2fbf69b461e8c76a02ab619",
+      "bytes": 180806,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/diego/history-source-map.json",
+      "sha256": "615e018398f0f18098c9b634b3916f42410da484bca60779d1194218559753e6",
+      "bytes": 7305,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/diego/report.md",
+      "sha256": "e7be6d73cdf88da46eca4d8e695620e0b4e6986ecc88b969a37999e13ab400e9",
+      "bytes": 9234,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/own-history.md",
+      "sha256": "384b18572a3cd4135e65985ae3da05db0198d13ae1eb425f7f6ff6a51b42a08d",
+      "bytes": 465002,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/history-source-map.json",
+      "sha256": "f2e9b989b8b112bf905484d76cd24c30762f5f2bde6f2121dee042e0f7575877",
+      "bytes": 125752,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/report.md",
+      "sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+      "bytes": 12592,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding",
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-qualification.json",
+      "sha256": "316916a19e933c0bda758649c15eee63247cc215e1ca5ac8b7c19058eb9f003e",
+      "bytes": 6592,
+      "inspectionScopes": [
+        "Direct history-map qualification source/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-neighbours-own-history-drafts/rosa/own-history.md",
+      "sha256": "41c7aa2ee038ce58cac3e60172f7a65886bbcfd2289747b185b1a7e3c7831379",
+      "bytes": 478949,
+      "inspectionScopes": [
+        "Direct history-map referenced path/hash binding"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-iria-provisional-profile1102.json",
+      "sha256": "092eacf9fa4648e86ae7eb8d998e88393509c422fc19b5e9ffc94a9d915b7400",
+      "bytes": 1273,
+      "inspectionScopes": [
+        "Cold profile path readable; no hash declared in current history map"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/finalizer-audit.json",
+      "sha256": "4f3baf820dd278beaa98cd8c4c1646cf82d28983c6ba21936469f7c1a272aacb",
+      "bytes": 3597309,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/independent-qualification-review.md",
+      "sha256": "e9b304e3c13c574d132a1105567d038bfc83977f80908edc4024c1771f7e592f",
+      "bytes": 7225,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/independent-qualification-review.json",
+      "sha256": "1e86d8366dc1b3a7a7ead05c1490a38902a2488c2bb6546dbd0c8e647b429924",
+      "bytes": 34868,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/plan.json",
+      "sha256": "5211c2a1518a3747ead3f73bab77a0d6aab6739a3af91ce42767fcee7b150733",
+      "bytes": 4055,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/plan.json",
+      "sha256": "5211c2a1518a3747ead3f73bab77a0d6aab6739a3af91ce42767fcee7b150733",
+      "bytes": 4055,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/cohort.json",
+      "sha256": "c37275de835ca109510d56229dc0bd95256350f849c3940532f4ebc8bc3ce09e",
+      "bytes": 1994,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/own-history.md",
+      "sha256": "d11e9c55197988370287a162c81a2fa6f0118644df8134ef4d92bb15900fed99",
+      "bytes": 247930,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/own-history.md",
+      "sha256": "41b68c9296ec00357c6f0042568d1a510557a2d8700579922caf3f99d2f1c8a6",
+      "bytes": 192855,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/own-history.md",
+      "sha256": "9c28a772d2ff19d8d3f76d388fe348a3e5b81e0249414243c9c8ae0bd35e014a",
+      "bytes": 190812,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/own-history.md",
+      "sha256": "41c7aa2ee038ce58cac3e60172f7a65886bbcfd2289747b185b1a7e3c7831379",
+      "bytes": 478949,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/own-history.md",
+      "sha256": "cf8b8221133092ae80ede36ff6299e7eafb74d9213b52e1a58aa689ddf627e88",
+      "bytes": 57,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-input-decision.json",
+      "sha256": "e1b8e7114da9bb0be1c7193d625d6e2ace3f67ab1c47e4fdde630ad2f090c63b",
+      "bytes": 1222,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-root-roster-decision1102.json",
+      "sha256": "3602b4e7e8c530e46a78294c9b52fa89956ba7f2051de76e696dd6520d41d644",
+      "bytes": 1964,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/completion.json",
+      "sha256": "5569d777a26a560cfefc7c33da1d3895d85c8c6e9d73eca15b591e25549be004",
+      "bytes": 89793,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/dispatch.json",
+      "sha256": "ffec2fabc18fdc2e700791c7c8690f8b6312586a4364b1832b798aeabec6454b",
+      "bytes": 907,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/dispatched-prompt.txt",
+      "sha256": "771bc51e263cdf37559739cc02af754a11e2d53a513f47c5aaa07b828ecedd88",
+      "bytes": 7784,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/tester.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/transcript.jsonl",
+      "sha256": "7b726180328b6746cc335f80b36ed3cb9527011e54eca410b889f4101fab2523",
+      "bytes": 591840,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/phone/wall-clock.jsonl",
+      "sha256": "20f2dca1cd6556989b0bcbda52da325704b2b902baeb499accaa3d092ab102c8",
+      "bytes": 7243,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/phone/driver.out",
+      "sha256": "c355e43b2bf5cb3e69ec132482d9298f7dd9329e2600232e41a4b579881f1930",
+      "bytes": 85,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/phone/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/phone/b-001.png",
+      "sha256": "f24a12da91a14f17020f7ad7be5ceb1e51282857959002fd7869041df410c3d3",
+      "bytes": 61497,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/phone/first-minute.png",
+      "sha256": "aea58d6906d2f8fc4b388cc1ff9fef10bfdb65d1847db4643779cda3affa58db",
+      "bytes": 57867,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/desktop/wall-clock.jsonl",
+      "sha256": "8ba054280afb6e4ee6bee40fd1444f4dbcbc59e48339a6c5ceef883eb2b09b6f",
+      "bytes": 6414,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/desktop/driver.out",
+      "sha256": "6e48781321e4cf9f85f4136bb70279874422aba8c8fbba0da75fcac15b9e99d9",
+      "bytes": 85,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/desktop/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/desktop/first-minute.png",
+      "sha256": "a23ea83d6113ceb8458b13601798e01242047e412a24d4291976225cb23e4265",
+      "bytes": 96288,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/desktop/a-001.png",
+      "sha256": "3065a1712ba9d6ff025cecc29db31983f08f470564b71b9b7099adf1a2e8cce0",
+      "bytes": 95855,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/completion.json",
+      "sha256": "8bbc52015b80a78c38066346e8895bb048309d8af1fb1724cb6fb8995badd716",
+      "bytes": 101235,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/dispatch.json",
+      "sha256": "13328e29bb1e0b5b8c5eaa3d7d07ddbefce25c5abaaa0ef96720f21a1e9b175c",
+      "bytes": 907,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/dispatched-prompt.txt",
+      "sha256": "26fb4df970fc5ce64b5f79220c91c1209692496625526eec18d86672b9b9b494",
+      "bytes": 7804,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/tester.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/transcript.jsonl",
+      "sha256": "ed32814736fdd4ad89b2a0dc3dc93947368af49b564710d2ae35d02b0dbcce9c",
+      "bytes": 785379,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/phone/wall-clock.jsonl",
+      "sha256": "d78335ea9fd92ccb4e1c57c9e0ec1f5ddc160b617ff2a686d174bed4d2a4dd9a",
+      "bytes": 6718,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/phone/driver.out",
+      "sha256": "b28e33376b1f82cbac71d3fc13e27e945f5592819eac0a7f6b600b333192888b",
+      "bytes": 84,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/phone/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/phone/b-001.png",
+      "sha256": "9c64fa37125dd374a51cff0d8854ac5ac2dcfb9ba564b9da750dc5e9ed234a0a",
+      "bytes": 61365,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/phone/first-minute.png",
+      "sha256": "727edc3c117560f8b7596a8c704f48471b53025a72438f41a7e7026203cc8b89",
+      "bytes": 57264,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/desktop/wall-clock.jsonl",
+      "sha256": "a8721f79ca8b403bafd9861e621e9ee894d283bfcbcacd7d10226d0fb95f7f32",
+      "bytes": 11480,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/desktop/driver.out",
+      "sha256": "9b592be961473574e5116ef96ce68f7ab8750ed3e5addcf78f6156e66822eaeb",
+      "bytes": 84,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/desktop/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/desktop/first-minute.png",
+      "sha256": "bf5eb051349fd0ed04de261ce6dd93f6783cfb1a12d61d7e1478711695d28a56",
+      "bytes": 96291,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/desktop/a-001.png",
+      "sha256": "d519677e382f9f9710ebdbbeb5c9668c42b2d3e46f61279674d70fda49ef0599",
+      "bytes": 96929,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/completion.json",
+      "sha256": "926e1149fe9ef391cec8f48b9461d9931f655697daf567871bbfa1afdb5d0402",
+      "bytes": 97334,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/dispatch.json",
+      "sha256": "9f45b8af2c01c3a7e11e95717ab0bd66a3b008d32880b4db614ef23a1ad7da7f",
+      "bytes": 907,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/dispatched-prompt.txt",
+      "sha256": "bdf9692161cbb85e74958881a479cabcd8534f7800c23d5fb0b60aec4555dd17",
+      "bytes": 7786,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/tester.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/transcript.jsonl",
+      "sha256": "df77250c314ac386d5ba820d8e458ddfa85d24d3dc85a687345babb7c7edb233",
+      "bytes": 535619,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/wall-clock.jsonl",
+      "sha256": "008be8f0c6b8c24afca00fe1c594191007fcf22bbbee40e56444e1317be59d9f",
+      "bytes": 9702,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/driver.out",
+      "sha256": "977e7f65e7f917db871c76ca94247e57eb93f9f1a9edd84ecd2ee9cd867c9325",
+      "bytes": 84,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/first-minute.png",
+      "sha256": "40e5f68ebf8fe18139b4e654448f93da94a1a750ef0e715babdb414ca5bd26e7",
+      "bytes": 57596,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/a-002.png",
+      "sha256": "2cc530bc0f6eb97fe41ede9aea108c3d7bd5445617a8a40e5465f635223048e0",
+      "bytes": 55014,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/a-003.png",
+      "sha256": "89bc4465ef0895373ce5cc833485d26d2dc56d140ea33216763be60ac6282102",
+      "bytes": 55008,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/a-001.png",
+      "sha256": "601b90bff4482e8f62e9e916e99146a3e57091fa10b39bdfccb9c98ab28b08e6",
+      "bytes": 61224,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/desktop/wall-clock.jsonl",
+      "sha256": "fb076e6b805e2ba190383d31e9d6d5f416aaace5df68eeb752bda25098c4ff3e",
+      "bytes": 8831,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/desktop/driver.out",
+      "sha256": "fa31ae910d2262dedc2d7fe616eeb765275fecc0e5b0b031cf8bbd8c892c14a5",
+      "bytes": 84,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/desktop/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/desktop/b-001.png",
+      "sha256": "3065a1712ba9d6ff025cecc29db31983f08f470564b71b9b7099adf1a2e8cce0",
+      "bytes": 95855,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/desktop/first-minute.png",
+      "sha256": "e3c6aeca97f7c570570da43e85f21ef608ff6a0ad2b4e086edb188cc0b6ab8d4",
+      "bytes": 93941,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/desktop/b-002.png",
+      "sha256": "47ea052f49a483ac4d2f6bf65e506faddc8bb0fc85202bc0c028a09d68c617c0",
+      "bytes": 87544,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/completion.json",
+      "sha256": "35e253985180d4d7610f60bab63819da6dae6dcf690df76f2b89de933a2a19c4",
+      "bytes": 85747,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/dispatch.json",
+      "sha256": "686f6f204c44421452f805d631c3e5c51dab8bd7b72a64ea2ccd52c83b774a8b",
+      "bytes": 907,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/dispatched-prompt.txt",
+      "sha256": "5a7eaa1669ff189893ebcf0010cb78e7d3a87ba4bc71701cb86f0b5c741ad3d3",
+      "bytes": 8013,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/tester.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/transcript.jsonl",
+      "sha256": "9fd9a00ada1d987d46ec62767f4010bf1a5e8f3d02af30ea3b388ad5a7fefb49",
+      "bytes": 806238,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/wall-clock.jsonl",
+      "sha256": "4b4116999160b2bb840c2693954879d645e67d0343b856cd66154c0b99e6e365",
+      "bytes": 7665,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/driver.out",
+      "sha256": "d885def09c5ed5afc43a334a08ba23b8bca2c4d8597d84b6830ead24fee7ab09",
+      "bytes": 85,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/first-minute.png",
+      "sha256": "26a621414864aa09bf57da73bca986c0c85ed77d9eb0cc03f51ef250b9f2a23a",
+      "bytes": 27570,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/a-002.png",
+      "sha256": "24aa1fd88c4106a4b79bcf3888892eec23f40660900abd335d4d3aab476068d1",
+      "bytes": 58664,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/a-001.png",
+      "sha256": "9c64fa37125dd374a51cff0d8854ac5ac2dcfb9ba564b9da750dc5e9ed234a0a",
+      "bytes": 61365,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/wall-clock.jsonl",
+      "sha256": "8f8b527ee445be0451e66027e9fb5de3acae3199d7c41098c93083cb80ded46c",
+      "bytes": 6794,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/driver.out",
+      "sha256": "11563253fb97a20a6eaed60f33d75c7014d5fba9ebf4207ad5769c2ada66d8d3",
+      "bytes": 85,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/b-001.png",
+      "sha256": "f0ef39472e305cc269dacb5e10a9a3011b4576bf7874c4664b143af710e70bdd",
+      "bytes": 97005,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/first-minute.png",
+      "sha256": "08220bc4533dad56e6c6a95e183ec86e32a9f54f2f7765d6c50091a072ce53e6",
+      "bytes": 93014,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/b-002.png",
+      "sha256": "966d0e7e3deefd9e0dbeb4085c3be8f5f33c261d021b556505563b3d20cd935d",
+      "bytes": 102463,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/completion.json",
+      "sha256": "75af53145205b5bd5512f4cd81abe39eb42b0f760e838e098205dfca4d407691",
+      "bytes": 105575,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/dispatch.json",
+      "sha256": "07bb55178cc6cf521c34bee4f5968d392fd05aba714314ae25ec70fc9804b0f8",
+      "bytes": 906,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/dispatched-prompt.txt",
+      "sha256": "b84e663fa84ff5ffab8e94070f0dc865523f1e6120b348cf3e329605ef8990fb",
+      "bytes": 7957,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/tester.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/transcript.jsonl",
+      "sha256": "f3120ab7f9a52a7600b0c761bc122c70693e0f2f1777836559c814466f2e0f61",
+      "bytes": 397146,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/phone/wall-clock.jsonl",
+      "sha256": "188de3c5e814374a554a6ed2d549bd028ce83e2a758b7e79305a399f43162492",
+      "bytes": 8690,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/phone/driver.out",
+      "sha256": "fffbe82294502d2b8f69d228099e1ace8d77d65295412f0eef5276889857743b",
+      "bytes": 85,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/phone/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/phone/first-minute.png",
+      "sha256": "c4e5809915e5ca79070541463684bbde9a225f0fdd76221cf234902896c5b625",
+      "bytes": 61162,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/phone/a-001.png",
+      "sha256": "31814eacf3320672afaecb087757282022ecc89f151789534711bd87ebab1310",
+      "bytes": 61360,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/desktop/wall-clock.jsonl",
+      "sha256": "e25e74991a6c17f2b0accd7579732032c85d1320a9698a131bcad1a327cab3cb",
+      "bytes": 12014,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/desktop/driver.out",
+      "sha256": "c58352ef8f1fad46b13a62159ee0ded49f2f5135e655df5289565fbb19b541f8",
+      "bytes": 85,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/desktop/release-start.json",
+      "sha256": "bc4367948cfd31e2eee58a270ec2b91cf31ec81a495b8f85dc0fa571413f100e",
+      "bytes": 119,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/desktop/first-minute.png",
+      "sha256": "ee6802bcaf06c6578c7f67323c2255d6c0f400c787f7146586becc3ff2985c88",
+      "bytes": 96689,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/desktop/a-001.png",
+      "sha256": "f0ef39472e305cc269dacb5e10a9a3011b4576bf7874c4664b143af710e70bdd",
+      "bytes": 97005,
+      "inspectionScopes": [
+        "Current audit evidence binding rehashed; not a new full semantic command/archive audit"
+      ]
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234,
+      "inspectionScopes": [
+        "Full cleanup instruction read"
+      ]
+    }
+  ],
+  "rootVerified": false,
+  "ownerAcceptance": false,
+  "packetSealed": false,
+  "canonicalImportPerformed": false,
+  "datedRecordIntegrationPerformed": false,
+  "ownedRuntime": false,
+  "ownedWorktree": false
+}

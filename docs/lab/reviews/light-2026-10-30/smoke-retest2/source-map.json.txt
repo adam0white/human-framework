@@ -1,0 +1,357 @@
+{
+  "status": "NOT_SEALED_CANDIDATE",
+  "exact_copies": [
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/report.md",
+      "copy": "jonas/report.md",
+      "source_sha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+      "copy_sha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+      "source_bytes": 5898,
+      "copy_bytes": 5898
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/brief.md",
+      "copy": "jonas/brief.md",
+      "source_sha256": "bcb09bc915730a442cc6299cca4c1406beb324e5b6df0549c40691ae64dc5ddf",
+      "copy_sha256": "bcb09bc915730a442cc6299cca4c1406beb324e5b6df0549c40691ae64dc5ddf",
+      "source_bytes": 7503,
+      "copy_bytes": 7503
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/history-source-map.json",
+      "copy": "jonas/history-source-map.json",
+      "source_sha256": "4a726d99eb5ed1998ad6c662ead2e2b985e84b8402eb80d957cc052307789103",
+      "copy_sha256": "4a726d99eb5ed1998ad6c662ead2e2b985e84b8402eb80d957cc052307789103",
+      "source_bytes": 4496,
+      "copy_bytes": 4496
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/report.md",
+      "copy": "aisha/report.md",
+      "source_sha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+      "copy_sha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+      "source_bytes": 6782,
+      "copy_bytes": 6782
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/brief.md",
+      "copy": "aisha/brief.md",
+      "source_sha256": "f495e9ba89dc378ca546f68d3f322dd9eff71e2f4ab6bd3e524e2013f77d4e4b",
+      "copy_sha256": "f495e9ba89dc378ca546f68d3f322dd9eff71e2f4ab6bd3e524e2013f77d4e4b",
+      "source_bytes": 7523,
+      "copy_bytes": 7523
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/history-source-map.json",
+      "copy": "aisha/history-source-map.json",
+      "source_sha256": "b642b16ee7fb91e6f289dd87ce77c970101d8279e0dbdb68b0daeeb519a84365",
+      "copy_sha256": "b642b16ee7fb91e6f289dd87ce77c970101d8279e0dbdb68b0daeeb519a84365",
+      "source_bytes": 2865,
+      "copy_bytes": 2865
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/report.md",
+      "copy": "diego/report.md",
+      "source_sha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+      "copy_sha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+      "source_bytes": 6634,
+      "copy_bytes": 6634
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/brief.md",
+      "copy": "diego/brief.md",
+      "source_sha256": "be60aea4366d04e1c5d75986f9cf676adb52d4dbfe476f97b4ecf4e9d762b131",
+      "copy_sha256": "be60aea4366d04e1c5d75986f9cf676adb52d4dbfe476f97b4ecf4e9d762b131",
+      "source_bytes": 7505,
+      "copy_bytes": 7505
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/history-source-map.json",
+      "copy": "diego/history-source-map.json",
+      "source_sha256": "01cbfae5f6e9789cb769cbae46232857868a6b04854e96a4d3e143b9be1c69ae",
+      "copy_sha256": "01cbfae5f6e9789cb769cbae46232857868a6b04854e96a4d3e143b9be1c69ae",
+      "source_bytes": 2823,
+      "copy_bytes": 2823
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/report.md",
+      "copy": "rosa/report.md",
+      "source_sha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+      "copy_sha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+      "source_bytes": 13599,
+      "copy_bytes": 13599
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/brief.md",
+      "copy": "rosa/brief.md",
+      "source_sha256": "cfd93f13d3e04646f966292641ed012a5bb7bea6fc3a1e525cd65b5545a91225",
+      "copy_sha256": "cfd93f13d3e04646f966292641ed012a5bb7bea6fc3a1e525cd65b5545a91225",
+      "source_bytes": 7732,
+      "copy_bytes": 7732
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/history-source-map.json",
+      "copy": "rosa/history-source-map.json",
+      "source_sha256": "ba477603378d5acfb58a85a7ad8e7a17fc89a98f445c8dd58ed188809c86afcc",
+      "copy_sha256": "ba477603378d5acfb58a85a7ad8e7a17fc89a98f445c8dd58ed188809c86afcc",
+      "source_bytes": 3805,
+      "copy_bytes": 3805
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/report.md",
+      "copy": "iria/report.md",
+      "source_sha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+      "copy_sha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+      "source_bytes": 5477,
+      "copy_bytes": 5477
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/brief.md",
+      "copy": "iria/brief.md",
+      "source_sha256": "d463122014e2e1ba66272c35fce536545f9cdec897d2925cea24d75b8a688805",
+      "copy_sha256": "d463122014e2e1ba66272c35fce536545f9cdec897d2925cea24d75b8a688805",
+      "source_bytes": 7676,
+      "copy_bytes": 7676
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/history-source-map.json",
+      "copy": "iria/history-source-map.json",
+      "source_sha256": "55ec84a6052cf424008b7a703f7d2b63097fffc9045d6665153f3ce25fa84a33",
+      "copy_sha256": "55ec84a6052cf424008b7a703f7d2b63097fffc9045d6665153f3ce25fa84a33",
+      "source_bytes": 232,
+      "copy_bytes": 232
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-qualification.json",
+      "copy": "evidence/root-qualification.json",
+      "source_sha256": "a703ff8970db2bc2c793ab91134087a6540bee1879a61a11ff1a19cfb1470af9",
+      "copy_sha256": "a703ff8970db2bc2c793ab91134087a6540bee1879a61a11ff1a19cfb1470af9",
+      "source_bytes": 12445,
+      "copy_bytes": 12445
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-ask-triage.json",
+      "copy": "evidence/root-ask-triage.json",
+      "source_sha256": "5c8b4b66abc805ccd29075735a3ea0bb25069c1c028c8f08cc63493150bb079c",
+      "copy_sha256": "5c8b4b66abc805ccd29075735a3ea0bb25069c1c028c8f08cc63493150bb079c",
+      "source_bytes": 10820,
+      "copy_bytes": 10820
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-literal-extraction.json",
+      "copy": "evidence/literal-extraction.json",
+      "source_sha256": "5fe08ceffb4f706ec8b088f0fb70879d8da2cc32b5aa7e356880ed7c6fc64525",
+      "copy_sha256": "5fe08ceffb4f706ec8b088f0fb70879d8da2cc32b5aa7e356880ed7c6fc64525",
+      "source_bytes": 53666,
+      "copy_bytes": 53666
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-literal-extraction-short.md",
+      "copy": "evidence/literal-extraction-short.md",
+      "source_sha256": "80a40f1f9ff173ee2dcc3715cfc93fe054aa30989e095d36ff5a5a59b6e4eb0c",
+      "copy_sha256": "80a40f1f9ff173ee2dcc3715cfc93fe054aa30989e095d36ff5a5a59b6e4eb0c",
+      "source_bytes": 3911,
+      "copy_bytes": 3911
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-protocol-audit.json",
+      "copy": "evidence/protocol-audit.json",
+      "source_sha256": "7c405469472fb8660a96336524d99c408706be0b9fb6c2b4f1042c9c4cbc6371",
+      "copy_sha256": "7c405469472fb8660a96336524d99c408706be0b9fb6c2b4f1042c9c4cbc6371",
+      "source_bytes": 2136233,
+      "copy_bytes": 2136233
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-protocol-audit.md",
+      "copy": "evidence/protocol-audit.md",
+      "source_sha256": "543a356d4e05ac5445c27d910a62fbf21f1b34e6014531155dbdf9e322943998",
+      "copy_sha256": "543a356d4e05ac5445c27d910a62fbf21f1b34e6014531155dbdf9e322943998",
+      "source_bytes": 14144,
+      "copy_bytes": 14144
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-literal-reaction-check.json",
+      "copy": "evidence/root-literal-reaction-check.json",
+      "source_sha256": "aa92af2c409239312c6fecbf5123cafecdeac8a90b611e42ebd25e2c18dc27a7",
+      "copy_sha256": "aa92af2c409239312c6fecbf5123cafecdeac8a90b611e42ebd25e2c18dc27a7",
+      "source_bytes": 21262,
+      "copy_bytes": 21262
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-ending-check.json",
+      "copy": "evidence/root-ending-check.json",
+      "source_sha256": "c3f9643a4ccc4b6be4c923e02a04ca01d6a31616d7448f6e18799ca64fbdecb8",
+      "copy_sha256": "c3f9643a4ccc4b6be4c923e02a04ca01d6a31616d7448f6e18799ca64fbdecb8",
+      "source_bytes": 2843,
+      "copy_bytes": 2843
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-last-message-check.json",
+      "copy": "evidence/root-last-message-check.json",
+      "source_sha256": "b904926bb11823b4156df90e6f4128b7f81a53bb5d8eab8420e6e2f78c817517",
+      "copy_sha256": "b904926bb11823b4156df90e6f4128b7f81a53bb5d8eab8420e6e2f78c817517",
+      "source_bytes": 1150,
+      "copy_bytes": 1150
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-final-live-pin.json",
+      "copy": "evidence/final-live-pin.json",
+      "source_sha256": "d6386c3e3d8c914063f4c14bdaaaf7a8425524716b5eacd9afe513a3fade9ae5",
+      "copy_sha256": "d6386c3e3d8c914063f4c14bdaaaf7a8425524716b5eacd9afe513a3fade9ae5",
+      "source_bytes": 419,
+      "copy_bytes": 419
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-source-delivery.json",
+      "copy": "evidence/root-source-delivery.json",
+      "source_sha256": "03eb17be90be8d6a732c07a7fe442644acd0aac094aab5c24ad4ae664246e65d",
+      "copy_sha256": "03eb17be90be8d6a732c07a7fe442644acd0aac094aab5c24ad4ae664246e65d",
+      "source_bytes": 7944,
+      "copy_bytes": 7944
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-sdk-source-proof.json",
+      "copy": "evidence/sdk-source-proof.json",
+      "source_sha256": "2d2a10786262ce708d3d693e5e653b699c45edace581d5e617a5e8bf45e69586",
+      "copy_sha256": "2d2a10786262ce708d3d693e5e653b699c45edace581d5e617a5e8bf45e69586",
+      "source_bytes": 6882,
+      "copy_bytes": 6882
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-previous-ordinary-return.json",
+      "copy": "evidence/previous-ordinary-return.json",
+      "source_sha256": "eab96f851453f067331f4e6e6d15231ff6ee0f4a725da7bf3b2330c6978e3322",
+      "copy_sha256": "eab96f851453f067331f4e6e6d15231ff6ee0f4a725da7bf3b2330c6978e3322",
+      "source_bytes": 682,
+      "copy_bytes": 682
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-root-gd-physical-check.json",
+      "copy": "evidence/root-gd-physical-check.json",
+      "source_sha256": "6c27efbd1b3c2c770062583bf195ca729aa1f2eeadb12d61506bf7069c8bcc2c",
+      "copy_sha256": "6c27efbd1b3c2c770062583bf195ca729aa1f2eeadb12d61506bf7069c8bcc2c",
+      "source_bytes": 3255,
+      "copy_bytes": 3255
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/manifest.json",
+      "copy": "evidence/input-manifest.json",
+      "source_sha256": "3c7bade0de493256e82360a43f7273bbf95f04df5f5ac7b699eb080342ca6872",
+      "copy_sha256": "3c7bade0de493256e82360a43f7273bbf95f04df5f5ac7b699eb080342ca6872",
+      "source_bytes": 2876,
+      "copy_bytes": 2876
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-admission.json",
+      "copy": "evidence/root-admission.json",
+      "source_sha256": "abb5a4d109524f21550732e40b4a80febcb97043b718142917ca65687e112c5e",
+      "copy_sha256": "abb5a4d109524f21550732e40b4a80febcb97043b718142917ca65687e112c5e",
+      "source_bytes": 3904,
+      "copy_bytes": 3904
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-return.json",
+      "copy": "evidence/root-return.json",
+      "source_sha256": "e4b2038ae652ec6f89ac4e65de00b22e22de1960057f86922c4588b38b497bcd",
+      "copy_sha256": "e4b2038ae652ec6f89ac4e65de00b22e22de1960057f86922c4588b38b497bcd",
+      "source_bytes": 3572,
+      "copy_bytes": 3572
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/actual-native-exit-receipt.json",
+      "copy": "evidence/actual-native-exit-receipt.json",
+      "source_sha256": "0178420113b41e1ece6d0ba63858e0da449d01add96c06546d97784b3de0f7d6",
+      "copy_sha256": "0178420113b41e1ece6d0ba63858e0da449d01add96c06546d97784b3de0f7d6",
+      "source_bytes": 409,
+      "copy_bytes": 409
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-physical-evidence.json",
+      "copy": "evidence/root-physical-evidence.json",
+      "source_sha256": "f00f76b5f817e1d681262b954bc9e52fdf450b9d53149c89c407c890990511b6",
+      "copy_sha256": "f00f76b5f817e1d681262b954bc9e52fdf450b9d53149c89c407c890990511b6",
+      "source_bytes": 2401,
+      "copy_bytes": 2401
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-first-bind-failure.json",
+      "copy": "evidence/root-first-bind-failure.json",
+      "source_sha256": "0479d481cba5e1f1c1b47ff9617a521348554e46465d075287b0c2dd32be760b",
+      "copy_sha256": "0479d481cba5e1f1c1b47ff9617a521348554e46465d075287b0c2dd32be760b",
+      "source_bytes": 1111,
+      "copy_bytes": 1111
+    }
+  ],
+  "inherited_qualification_references": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/jonas/director-method-qualification.json",
+      "sha256": "46b8e4ff35ca92bb0db5a12bbb4a4c9a094f51d700f8e9076ebad4b51218e56b",
+      "expected_sha256": "46b8e4ff35ca92bb0db5a12bbb4a4c9a094f51d700f8e9076ebad4b51218e56b",
+      "bytes": 3357,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke1-root-finalization.json",
+      "sha256": "36debae88ccaa269a389eb85f4879dafcc3a5e2717a341d8561559295152a476",
+      "expected_sha256": "36debae88ccaa269a389eb85f4879dafcc3a5e2717a341d8561559295152a476",
+      "bytes": 826,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-root-closure.json",
+      "sha256": "b323a4c426fae9b3a435c0f723a9a18b7505ac605ffc28cbba50bbbae59d1f6e",
+      "expected_sha256": "b323a4c426fae9b3a435c0f723a9a18b7505ac605ffc28cbba50bbbae59d1f6e",
+      "bytes": 636,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-root-qualification.json",
+      "sha256": "9a6bfff826d45b737f46e96d0514371b4ea57b84538dd3d48a71b4c3a491300b",
+      "expected_sha256": "9a6bfff826d45b737f46e96d0514371b4ea57b84538dd3d48a71b4c3a491300b",
+      "bytes": 4517,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/stairwell-retest2/method-qualification.json",
+      "sha256": "96fad930ce5c194e2ac9bb8eb8858e68ac4bc3b52e5b1a92cecce34d3532b481",
+      "expected_sha256": "96fad930ce5c194e2ac9bb8eb8858e68ac4bc3b52e5b1a92cecce34d3532b481",
+      "bytes": 11986,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-packet-root-seal.json",
+      "sha256": "18f309e74cac5ba7afe92982cf097fc6b83451df40a67e802fefd6b069e2019a",
+      "expected_sha256": "18f309e74cac5ba7afe92982cf097fc6b83451df40a67e802fefd6b069e2019a",
+      "bytes": 1100,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-root-qualification.json",
+      "sha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9",
+      "expected_sha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9",
+      "bytes": 4579,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest2/method-qualification.json",
+      "sha256": "eb409266dea19e207159668cbf4d0ccd66cc17a4a8f72628fdfb9d52e63d0c77",
+      "expected_sha256": "eb409266dea19e207159668cbf4d0ccd66cc17a4a8f72628fdfb9d52e63d0c77",
+      "bytes": 7329,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-packet-root-seal.json",
+      "sha256": "6f3ab7b67b2081d1cb824511542aacf3fd7f76727d32e2114c6517e44cef0e1e",
+      "expected_sha256": "6f3ab7b67b2081d1cb824511542aacf3fd7f76727d32e2114c6517e44cef0e1e",
+      "bytes": 856,
+      "matches": true
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/diego/director-method-qualification.json",
+      "sha256": "200d5931fe3aa8c7e3eb46e9cc52ba8721f946fa7931c8cf1e59440fb3066644",
+      "expected_sha256": "200d5931fe3aa8c7e3eb46e9cc52ba8721f946fa7931c8cf1e59440fb3066644",
+      "bytes": 3003,
+      "matches": true
+    }
+  ]
+}

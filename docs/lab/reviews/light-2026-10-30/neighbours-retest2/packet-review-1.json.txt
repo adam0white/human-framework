@@ -1,0 +1,2425 @@
+{
+  "verdict": "CLEAR",
+  "reviewer": {
+    "identity": "Codex independent fidelity reviewer /root/neighbours_packet_fidelity_review",
+    "model_effort": "Inherited default Codex request; serving model identity not independently established",
+    "independent_of": "Root qualification, packet assembly, and protocol-audit authors; no subagents or Claude used"
+  },
+  "reviewed_at_utc": "2026-11-02T08:42:31.104923+00:00",
+  "packet": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate",
+  "manifest_sha256": "2bdb21af6708556d367eeeaad4df520634a5d768ecf511025dc90f552746b2aa",
+  "payload_count": 43,
+  "scope": "Independent static byte, provenance, literal span, and derived-record fidelity review only. No current gate admission or source correctness approval.",
+  "counts": {
+    "exact_copies": 34,
+    "private_hash_references": 25,
+    "derived_records": 8,
+    "literal_spans": 26,
+    "ranked_asks": 10,
+    "reports_equal_final_agent_message": 5,
+    "standing_diaries_full_report_once": 4,
+    "cold_diaries": 0,
+    "logical_tester_rows": 5,
+    "raw_logged_reactions": 59,
+    "stops": 10,
+    "evidence_inventory_hash_checks": {
+      "evidence/root-qualification.json": 10,
+      "evidence/continuation-protocol-audit.json": 32,
+      "evidence/source-delivery-verification.json": 6
+    }
+  },
+  "defects": [],
+  "limitations": [
+    {
+      "citation": "README.md:3",
+      "text": "Artifact-only epoch evidence: original 75213 exit 1 with qualified Mei singleton; continuation 72317 exit 0 for four. No full-five native-zero inference."
+    },
+    {
+      "citation": "README.md:5",
+      "text": "Two-iteration cap reached. Dated record integration remains pending; review does not seal the packet or finish the project."
+    },
+    {
+      "citation": "methodology.md:9",
+      "text": "No observed current image-view event. Saved screenshots and report viewing claims do not establish perception."
+    },
+    {
+      "citation": "methodology.md:10",
+      "text": "Selected history stdout coverage does not establish delivery or comprehension. Prior W/SW/NR/SWF limits remain inherited, not independently recertified here."
+    },
+    {
+      "citation": "methodology.md:24",
+      "text": "Mei final history range has 41 lines. Historical deviation is retained, not silently corrected."
+    },
+    {
+      "citation": "methodology.md:15",
+      "text": "Feedback pressed labels and closure do not prove typing, submission, backend receipt, recording or consent state."
+    },
+    {
+      "citation": "methodology.md:17",
+      "text": "Rosa timing is not a human 1-3 second reproduction. Her count limitations remain disclosed."
+    },
+    {
+      "citation": "evidence/preliminary-sdk-source-proof.json:61",
+      "text": "Preliminary SDK record is historical and explicitly pending at that point; later delivery proof is separately copied. Static markers and saved receipts do not provide current admission."
+    },
+    {
+      "citation": "source-map.json:3",
+      "text": "Historical source labels, including private draft history-map statuses, are preserved in exact copies. Their presence does not supersede packet-level provenance or create new authorization."
+    }
+  ],
+  "checks": [
+    {
+      "check": "manifest pin",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "43 payloads; exhaustive manifest",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload README.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload asks.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload emre/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload emre/diary-continuation.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload emre/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload emre/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/continuation-input-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/continuation-previous-player-return.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/continuation-protocol-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/continuation-protocol-audit.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/continuation-root-admission.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/continuation-root-return.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/final-live-pin.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/literal-extraction.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/literal-extraction.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/mei-singleton-root-qualification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/original-previous-player-return.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/preliminary-sdk-source-proof.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/prior-method-qualifications.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/prior-root-qualification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/prior-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/root-ask-triage.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/root-literal-reaction-check.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/root-qualification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload evidence/source-delivery-verification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload leonie/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload leonie/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload leonie/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload logical-testers.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload mei/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload mei/diary-continuation.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload mei/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload mei/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload methodology.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload nia/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload nia/diary-continuation.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload nia/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload nia/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload rosa/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload rosa/diary-continuation.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload rosa/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload rosa/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "payload source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy mei/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy mei/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy mei/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy emre/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy emre/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy emre/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy nia/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy nia/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy nia/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy rosa/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy rosa/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy rosa/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy leonie/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy leonie/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy leonie/history-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/literal-extraction.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/literal-extraction.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/mei-singleton-root-qualification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/continuation-root-return.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/continuation-root-admission.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/continuation-input-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/continuation-previous-player-return.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/original-previous-player-return.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/source-delivery-verification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/preliminary-sdk-source-proof.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/prior-method-qualifications.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/prior-root-qualification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/prior-source-map.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/root-ask-triage.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/root-qualification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/continuation-protocol-audit.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/continuation-protocol-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/root-literal-reaction-check.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "exact original copy evidence/final-live-pin.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/desktop/a-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/desktop/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/phone/b-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/phone/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/a-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/b-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/desktop/b-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/phone/a-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/phone/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/b-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/b-002.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/a-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/desktop/desktop-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/desktop/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/phone/first-minute.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "private hash reference /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/phone/phone-001.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "derived hash README.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "derived hash asks.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "derived hash logical-testers.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "derived hash methodology.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "derived hash mei/diary-continuation.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "derived hash emre/diary-continuation.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "derived hash nia/diary-continuation.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "derived hash rosa/diary-continuation.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "source-map covers all payloads",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "last actual completed agent_message mei",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span mei ranked_ask 142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span mei ranked_ask 268",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span mei return_statement 0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span mei diary_section 2192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span mei conditional_return_sentence 3878",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span mei conditional_return_sentence 4188",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "entire report once in standing diary mei",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "last actual completed agent_message emre",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span emre ranked_ask 154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span emre ranked_ask 289",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span emre return_statement 0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span emre diary_section 2419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "entire report once in standing diary emre",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "last actual completed agent_message nia",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span nia ranked_ask 207",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span nia return_statement 0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span nia diary_section 1528",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "entire report once in standing diary nia",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "last actual completed agent_message rosa",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span rosa ranked_ask 192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span rosa ranked_ask 356",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span rosa return_statement 0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span rosa diary_section 2644",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span rosa conditional_return_sentence 7221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span rosa conditional_return_sentence 12158",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "entire report once in standing diary rosa",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "last actual completed agent_message leonie",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span leonie ranked_ask 159",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span leonie return_statement 0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span leonie diary_section 2101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span leonie ranked_ask_clause 179",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span leonie ranked_ask_clause 286",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span leonie ranked_ask_clause 362",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "literal span leonie ranked_asks_shared_qualification 444",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "no cold diary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ten exact ranked asks",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3113 ranked_ask",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3113 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3114 ranked_ask",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3114 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3115 ranked_ask",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3115 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3116",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3116 ranked_ask",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3116 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3117",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3117 ranked_ask",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3117 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3118",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3118 ranked_ask",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3118 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3119",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3119 ranked_ask",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3119 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3120",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3120 ranked_ask_clause",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3120 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3121 ranked_ask_clause",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3121 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ask table entire row F-3122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3122 ranked_ask_clause",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "triage offsets F-3122 return_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "five logical rows",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "logical row mei",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "logical row emre",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "logical row nia",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "logical row rosa",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "logical row leonie",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NC text NC11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full NF text NF9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/root-return.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/actual-native-exit-receipt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/finalizer-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-protocol-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-protocol-audit.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-literal-reaction-check.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-literal-extraction.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-ask-triage.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-mei-root-qualification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-final-live.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/finalizer-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/root-return.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/root-admission.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-mei-root-qualification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/own-history.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/completion.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/wall-clock.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/wall-clock.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/own-history.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/completion.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/phone/wall-clock.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/desktop/wall-clock.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/own-history.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/completion.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/wall-clock.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/wall-clock.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/report.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/brief.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/transcript.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/own-history.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/completion.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/phone/wall-clock.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/desktop/wall-clock.jsonl",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-7b45-source-ci-success.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-6077-target-ci-success.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-6077-integration-root-proof.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/restart-1102-neighbours-served-root-verification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/restart-1102-neighbours-static-sdk-proof.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "underlying inventory /Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-7b45-source-review-adoption.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/phone:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/phone:9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/phone:13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/phone:14",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/phone:19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/desktop:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/desktop:12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/desktop:17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/desktop:23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/desktop:28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/desktop:30",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/desktop:31",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction mei/desktop:36",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/phone:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/phone:11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/phone:15",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/phone:21",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/phone:27",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/phone:32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:22",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:24",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:30",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:35",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction emre/desktop:40",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction nia/phone:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction nia/phone:12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction nia/phone:18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction nia/phone:23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction nia/desktop:7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction nia/desktop:13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction nia/desktop:18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/phone:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/phone:9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/phone:17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/phone:19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/phone:24",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/desktop:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/desktop:11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/desktop:14",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/desktop:17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction rosa/desktop:21",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/phone:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/phone:9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/phone:21",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/phone:25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/phone:27",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/phone:30",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/phone:39",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/phone:44",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/desktop:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/desktop:12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/desktop:23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/desktop:26",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/desktop:27",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw reaction leonie/desktop:32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "59 raw reaction strings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "ten stops / nine voluntary / one BUDGET",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "packet unchanged at end",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "transcript_final_checks": [
+    {
+      "tester": "mei",
+      "last_actual_agent_message_id": "item_100",
+      "report_sha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+      "transcript_sha256": "a6109bd65721313dc23a09316f5560535ee9619ee2d9b0d1bebeee6a2cd1f478",
+      "transcript_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/transcript.jsonl"
+    },
+    {
+      "tester": "emre",
+      "last_actual_agent_message_id": "item_125",
+      "report_sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+      "transcript_sha256": "0afad06c4c39d08b3c95ba393a5885e221896e7df4775a14edd596ab24c9e81b",
+      "transcript_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/transcript.jsonl"
+    },
+    {
+      "tester": "nia",
+      "last_actual_agent_message_id": "item_104",
+      "report_sha256": "7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e",
+      "transcript_sha256": "a5206a82cf0925f79bfc9e17eb82c0ab6e724e698c3d0476f283ba0a6ccb2304",
+      "transcript_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/transcript.jsonl"
+    },
+    {
+      "tester": "rosa",
+      "last_actual_agent_message_id": "item_162",
+      "report_sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+      "transcript_sha256": "02925547fdd7c4363fb0e9bf5b54891b865d1046902b3a5d731054cf46bad238",
+      "transcript_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/transcript.jsonl"
+    },
+    {
+      "tester": "leonie",
+      "last_actual_agent_message_id": "item_77",
+      "report_sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+      "transcript_sha256": "56ff8982d8801537d6449bb637acfb55816ab65b142f2deb6215da004f39acf2",
+      "transcript_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/transcript.jsonl"
+    }
+  ],
+  "raw_stops": [
+    {
+      "tester": "mei",
+      "device": "phone",
+      "line": 19,
+      "elapsed_s": 41.117,
+      "reason": "BORED",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/phone/wall-clock.jsonl"
+    },
+    {
+      "tester": "mei",
+      "device": "desktop",
+      "line": 36,
+      "elapsed_s": 74.518,
+      "reason": "BUDGET",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/desktop/wall-clock.jsonl"
+    },
+    {
+      "tester": "emre",
+      "device": "phone",
+      "line": 32,
+      "elapsed_s": 102.825,
+      "reason": "BORED",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/wall-clock.jsonl"
+    },
+    {
+      "tester": "emre",
+      "device": "desktop",
+      "line": 40,
+      "elapsed_s": 94.323,
+      "reason": "BORED",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/wall-clock.jsonl"
+    },
+    {
+      "tester": "nia",
+      "device": "phone",
+      "line": 23,
+      "elapsed_s": 56.041,
+      "reason": "BORED",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/phone/wall-clock.jsonl"
+    },
+    {
+      "tester": "nia",
+      "device": "desktop",
+      "line": 18,
+      "elapsed_s": 36.011,
+      "reason": "BORED",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/desktop/wall-clock.jsonl"
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "line": 24,
+      "elapsed_s": 88.892,
+      "reason": "FRUSTRATED",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/wall-clock.jsonl"
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "line": 21,
+      "elapsed_s": 86.727,
+      "reason": "CONFUSED",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/wall-clock.jsonl"
+    },
+    {
+      "tester": "leonie",
+      "device": "phone",
+      "line": 44,
+      "elapsed_s": 99.621,
+      "reason": "BORED",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/phone/wall-clock.jsonl"
+    },
+    {
+      "tester": "leonie",
+      "device": "desktop",
+      "line": 32,
+      "elapsed_s": 80,
+      "reason": "TASTE",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/desktop/wall-clock.jsonl"
+    }
+  ],
+  "reviewed_paths": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-6077-integration-root-proof.json",
+      "sha256": "6917a605707138c0203468a22cdb627ffdf51f34ee1a85660a845d6aa9720294",
+      "bytes": 558
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-6077-target-ci-success.json",
+      "sha256": "0674eeb2787afa44885f8914ba550ee3f923ce4c241c71f77893da016e73bcbb",
+      "bytes": 8271
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-7b45-source-ci-success.json",
+      "sha256": "847c46a5b9b34511b7ec395dea105e9a76365c09d2363453f3a513b0a47879dc",
+      "bytes": 8232
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-6077-preliminary-sdk-source-proof.json",
+      "sha256": "bba4da93479b5e82dac4c937caa928e6d67e734ade4c8349b8bab864b2de63b5",
+      "bytes": 2260
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-7b45-source-review-adoption.json",
+      "sha256": "18a5a5b548c5e87243e24662687f162e1edde660739b96002fb646b696f1f317",
+      "bytes": 1093
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/actual-native-exit-receipt.json",
+      "sha256": "ae472d2a23cc5809f2a4d0c6cd074922ae1c9d6a7a751d545105e710dd772182",
+      "bytes": 373
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/finalizer-audit.json",
+      "sha256": "f6c0639414ac3ad85cd5d2220aa1fec17d7551cfd090b63acd1b12f75bc6b666",
+      "bytes": 2722980
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/root-admission.json",
+      "sha256": "aa8edb1f35a467a68fd1e9de6d968c33f4d4457219ebb667f0724dab948622fe",
+      "bytes": 3921
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/root-return.json",
+      "sha256": "d18925d5c5b66215713d4839e4ef07ec22d398296d0babe79d38092040636f07",
+      "bytes": 3457
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-final-live.json",
+      "sha256": "9306f968be33d32e488968fc8e37075d052020923d37f6252c95ac1dfbf078aa",
+      "bytes": 382
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/brief.md",
+      "sha256": "7dfb0e925bd389f412964a9c27a6658ee2f54a4a1ab62970eea13b91e17d07b5",
+      "bytes": 8851
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/completion.json",
+      "sha256": "e547d503a014814f809a943ce35668493e072ca851918e7742cbfa64f11e9fab",
+      "bytes": 98756
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/a-001.png",
+      "sha256": "4039c3d8ae219ea2bfc3bb0a19474b51ba30a7afeda0c6b366691b5aff855777",
+      "bytes": 59990
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/first-minute.png",
+      "sha256": "8871228bae8485303ff63d8069fdfece0e47e8b8f1be3c6b5458d39817f694f1",
+      "bytes": 187593
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/desktop/wall-clock.jsonl",
+      "sha256": "aab8060012c16e4de276a55d64f1061c3743fd2a6adccb8a4721e7fb27b715d1",
+      "bytes": 11489
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/history-source-map.json",
+      "sha256": "2464ea450be3da5e3ec6c6135a3175db2c822dd8a4a4718785f3e149a156c64f",
+      "bytes": 30650
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/own-history.md",
+      "sha256": "aec2b9f96ebb4eecac3499f6c7b778deb394c0b1f3dd10d3725d08badc667ef8",
+      "bytes": 264393
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/b-001.png",
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "bytes": 36193
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/first-minute.png",
+      "sha256": "378fe582752687ff078eee9715c53a49c51e446af27175ffadf4ff6310844dd6",
+      "bytes": 45821
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/phone/wall-clock.jsonl",
+      "sha256": "e2c375180c61a30db31aad279def4332c3e5b6a66b6a499053500efd8c7d0e1f",
+      "bytes": 8839
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/report.md",
+      "sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+      "bytes": 8768
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/transcript.jsonl",
+      "sha256": "0afad06c4c39d08b3c95ba393a5885e221896e7df4775a14edd596ab24c9e81b",
+      "bytes": 649663
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/brief.md",
+      "sha256": "4f1ba2c5627018dce8f4eecf6aa9d5f0ea5d099afb3974ffd22d9c692991a88c",
+      "bytes": 8118
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/completion.json",
+      "sha256": "d2bd95ec3a73ecc3e22ab6ad01ecfbbd44667d05ed3a643648482cc2fcb1ffa8",
+      "bytes": 97759
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/desktop/desktop-001.png",
+      "sha256": "4039c3d8ae219ea2bfc3bb0a19474b51ba30a7afeda0c6b366691b5aff855777",
+      "bytes": 59990
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/desktop/first-minute.png",
+      "sha256": "478796494b3103b853fa1fe27fb7364a31165ef8fbac7fa529a6fc0a0dff4c42",
+      "bytes": 231710
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/desktop/wall-clock.jsonl",
+      "sha256": "459415f875dfaaeb90b3aafa5e2d2cbf65051700aca7635bdb72a9990834c2ce",
+      "bytes": 8572
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/history-source-map.json",
+      "sha256": "efe965f672c345ae60a201624b87ed05f6217810e043f87e0e63ec5cb357281e",
+      "bytes": 242
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/own-history.md",
+      "sha256": "d05b54fa61062499823f5b239c284b5962529c06855a0a60e6464f3465a93def",
+      "bytes": 56
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/phone/first-minute.png",
+      "sha256": "133648741c9f373911e30203abcc31a8c085e2adca8118735dc67ecfa35b75cb",
+      "bytes": 71438
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/phone/phone-001.png",
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "bytes": 36193
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/phone/wall-clock.jsonl",
+      "sha256": "bf9bced358f4f06cbc862b0ef1d28958566f3f62542898cee0dce677da3c7b02",
+      "bytes": 12195
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/report.md",
+      "sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+      "bytes": 6385
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/transcript.jsonl",
+      "sha256": "56ff8982d8801537d6449bb637acfb55816ab65b142f2deb6215da004f39acf2",
+      "bytes": 373941
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/manifest.json",
+      "sha256": "3fc07bcf8379590a6be66bcc185eb7e10b9562fd46d25ad29b51441f974c58b6",
+      "bytes": 2351
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/brief.md",
+      "sha256": "1af6ba69f3a89adb55f503dfe7306e8f7a63a41e104da7eb7bcd6c1c97bcc0a2",
+      "bytes": 8250
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/completion.json",
+      "sha256": "580997db13bcb54b97009e0168d30248159beb16faecd8f016721402d6fb90c2",
+      "bytes": 84110
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/desktop/b-001.png",
+      "sha256": "4039c3d8ae219ea2bfc3bb0a19474b51ba30a7afeda0c6b366691b5aff855777",
+      "bytes": 59990
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/desktop/wall-clock.jsonl",
+      "sha256": "d9263b00ec41ef4c358523a9b3693dee9e754e93a75d4f7d7ef53c1da326fe8b",
+      "bytes": 4905
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/history-source-map.json",
+      "sha256": "29cd050c6bd9dea9a6b714c41655d14a60fac6b5cf2eb327eb8224a583d6009a",
+      "bytes": 71571
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/own-history.md",
+      "sha256": "a790c94a524ba24d67cac6c619ffa6da169d32685969d943c1dbb75e4510cf6a",
+      "bytes": 301293
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/phone/a-001.png",
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "bytes": 36193
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/phone/first-minute.png",
+      "sha256": "ac8a5b75f874a10778e89086809014bdae5b31c0564976fa55ebf3c362a9efbc",
+      "bytes": 73242
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/phone/wall-clock.jsonl",
+      "sha256": "f26779b8de4448d1d155e8828a035eac54220b6f14742c7e79ec5af50be6df2f",
+      "bytes": 6529
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/report.md",
+      "sha256": "7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e",
+      "bytes": 5498
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/transcript.jsonl",
+      "sha256": "a5206a82cf0925f79bfc9e17eb82c0ab6e724e698c3d0476f283ba0a6ccb2304",
+      "bytes": 534615
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/brief.md",
+      "sha256": "424aa4346a8b7dea65c43d5d25c7b9e5b5304fe071b8f2ba8137d836697d53ff",
+      "bytes": 8546
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/completion.json",
+      "sha256": "79e89191da1f47fb2510855f4b43bf8e534f073ce148b2ebd40ab435f23a2ef1",
+      "bytes": 88837
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/b-001.png",
+      "sha256": "4039c3d8ae219ea2bfc3bb0a19474b51ba30a7afeda0c6b366691b5aff855777",
+      "bytes": 59990
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/b-002.png",
+      "sha256": "13f2a34bede561168be1a940862a1bc263cfc6fb36219c830a74f33403ae92f3",
+      "bytes": 171746
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/first-minute.png",
+      "sha256": "0a8ba7926db7d4b963397e3bcb6949ba4848737c71c93217231a7494a5fa7cc6",
+      "bytes": 188220
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/wall-clock.jsonl",
+      "sha256": "d953dd594dfcf7db56485e314f62e42f51cb9502ded23aeea7b362dc49992591",
+      "bytes": 6863
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/history-source-map.json",
+      "sha256": "f2e9b989b8b112bf905484d76cd24c30762f5f2bde6f2121dee042e0f7575877",
+      "bytes": 125752
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/own-history.md",
+      "sha256": "384b18572a3cd4135e65985ae3da05db0198d13ae1eb425f7f6ff6a51b42a08d",
+      "bytes": 465002
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/a-001.png",
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "bytes": 36193
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/first-minute.png",
+      "sha256": "08383d51123f792fb07daced170da35f70c828c53dc92c0f788ffc73dbd7b2ed",
+      "bytes": 77838
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/wall-clock.jsonl",
+      "sha256": "bcb8780884c955dbeceabacb4c6604de122b4586ed2afb1edcb2c59314491c62",
+      "bytes": 8665
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/report.md",
+      "sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+      "bytes": 12592
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/transcript.jsonl",
+      "sha256": "02925547fdd7c4363fb0e9bf5b54891b865d1046902b3a5d731054cf46bad238",
+      "bytes": 748689
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-previous-player-return.json",
+      "sha256": "f248d35cf2de5daf721db96c7968f0f5dc9b90c1800fbd8767122f82c61c02a0",
+      "bytes": 1496
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-protocol-audit.json",
+      "sha256": "63a453bff8f1e7eec08a60a720aee61e72c2bad0aef295040dd40924a3acf046",
+      "bytes": 225165
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-protocol-audit.md",
+      "sha256": "43b31d35c5eb3db120937aadf9a1d465807c87ec2077a0e9776269d762b2e3e7",
+      "bytes": 14952
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/brief.md",
+      "sha256": "7fc93613746551effc26c847c071f97e01407e6242dbba90deac47c95c529b15",
+      "bytes": 8063
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/desktop/a-001.png",
+      "sha256": "4039c3d8ae219ea2bfc3bb0a19474b51ba30a7afeda0c6b366691b5aff855777",
+      "bytes": 59990
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/desktop/first-minute.png",
+      "sha256": "c1e6b34b8e924e511f55b7f49197631b78748ac05053ed5ddc6e9223a724d574",
+      "bytes": 200015
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/desktop/wall-clock.jsonl",
+      "sha256": "2f1c4125db6d80f4e5450072814f42b669d4082928c110b998920eeadbf113c3",
+      "bytes": 10172
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/history-source-map.json",
+      "sha256": "78b89b60506f715297aac4630eed3bb34b3f814c39b59675e5fdceb93ed6043f",
+      "bytes": 6578
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/phone/b-001.png",
+      "sha256": "fc4fc1cc25020d573f5612577f374dc85a19db101b4dbfe46f6820b65f05f84a",
+      "bytes": 36193
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/phone/first-minute.png",
+      "sha256": "98721be63a8efa73a11ac5e0827746bf27b470a68e8350304523bf0e760db09e",
+      "bytes": 69629
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/phone/wall-clock.jsonl",
+      "sha256": "56e4b9a33d9aa1695b45090a83cabaeeed12afbde1c5d59ff7d11481214c7f06",
+      "bytes": 5744
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/report.md",
+      "sha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+      "bytes": 7747
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/transcript.jsonl",
+      "sha256": "a6109bd65721313dc23a09316f5560535ee9619ee2d9b0d1bebeee6a2cd1f478",
+      "bytes": 482991
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-literal-extraction.json",
+      "sha256": "a8b1b0d2ce0252da9ede85baea6354cf8ba72a0b86fec34b6ff21fe8ccf1b78a",
+      "bytes": 36392
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-literal-extraction.md",
+      "sha256": "a73f90fc212b1c4ceb1d92175e151024497c0cc365edb54fc744d5bb48df97f8",
+      "bytes": 29369
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-mei-root-qualification.json",
+      "sha256": "39ab0a695628cf0de55b81849db2c246b582880eb360c97dc8d35bf78c4f6f42",
+      "bytes": 4090
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/README.md",
+      "sha256": "008ba9cc8c1ed50bdadd3a3e40ad038c199c48b99f502acffcea315b1f5a561f",
+      "bytes": 1487
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/asks.md",
+      "sha256": "3bdc32309abd1e3ec608939318e2bb54f8e94ebf80c322ac0b728c45bc11e595",
+      "bytes": 5186
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/emre/brief.md",
+      "sha256": "7dfb0e925bd389f412964a9c27a6658ee2f54a4a1ab62970eea13b91e17d07b5",
+      "bytes": 8851
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/emre/diary-continuation.md",
+      "sha256": "e13fb2489ef3100b8fc7ac9b0591886cf611346590bc160552044d4801139434",
+      "bytes": 9076
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/emre/history-source-map.json",
+      "sha256": "2464ea450be3da5e3ec6c6135a3175db2c822dd8a4a4718785f3e149a156c64f",
+      "bytes": 30650
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/emre/report.md",
+      "sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+      "bytes": 8768
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/continuation-input-manifest.json",
+      "sha256": "3fc07bcf8379590a6be66bcc185eb7e10b9562fd46d25ad29b51441f974c58b6",
+      "bytes": 2351
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/continuation-previous-player-return.json",
+      "sha256": "f248d35cf2de5daf721db96c7968f0f5dc9b90c1800fbd8767122f82c61c02a0",
+      "bytes": 1496
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/continuation-protocol-audit.json",
+      "sha256": "63a453bff8f1e7eec08a60a720aee61e72c2bad0aef295040dd40924a3acf046",
+      "bytes": 225165
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/continuation-protocol-audit.md",
+      "sha256": "43b31d35c5eb3db120937aadf9a1d465807c87ec2077a0e9776269d762b2e3e7",
+      "bytes": 14952
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/continuation-root-admission.json",
+      "sha256": "aa8edb1f35a467a68fd1e9de6d968c33f4d4457219ebb667f0724dab948622fe",
+      "bytes": 3921
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/continuation-root-return.json",
+      "sha256": "d18925d5c5b66215713d4839e4ef07ec22d398296d0babe79d38092040636f07",
+      "bytes": 3457
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/final-live-pin.json",
+      "sha256": "9306f968be33d32e488968fc8e37075d052020923d37f6252c95ac1dfbf078aa",
+      "bytes": 382
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/literal-extraction.json",
+      "sha256": "a8b1b0d2ce0252da9ede85baea6354cf8ba72a0b86fec34b6ff21fe8ccf1b78a",
+      "bytes": 36392
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/literal-extraction.md",
+      "sha256": "a73f90fc212b1c4ceb1d92175e151024497c0cc365edb54fc744d5bb48df97f8",
+      "bytes": 29369
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/mei-singleton-root-qualification.json",
+      "sha256": "39ab0a695628cf0de55b81849db2c246b582880eb360c97dc8d35bf78c4f6f42",
+      "bytes": 4090
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/original-previous-player-return.json",
+      "sha256": "d5aaab6216911a31e0b0364ff05e2f96a0fe9082a61a06b9960166c0fd7aace7",
+      "bytes": 658
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/preliminary-sdk-source-proof.json",
+      "sha256": "bba4da93479b5e82dac4c937caa928e6d67e734ade4c8349b8bab864b2de63b5",
+      "bytes": 2260
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/prior-method-qualifications.json",
+      "sha256": "2874a81565a43d5845ef33664d287810d932a02a02b38bfda72404806ea15a9c",
+      "bytes": 5348
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/prior-root-qualification.json",
+      "sha256": "082b49c8192175b6999295e47bba20fa19da3aa9a0530e37e65b6ceab8dba8c7",
+      "bytes": 7279
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/prior-source-map.json",
+      "sha256": "7a206264c1858a7c30515627bfb4ffd6ca1d7d8bdd3d447b81f2a595d5950f3c",
+      "bytes": 8272
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/root-ask-triage.json",
+      "sha256": "803f4af48a4ad6236c34dd5e9af53962244df66c30a23a56c8f5901d0e6d1aef",
+      "bytes": 17130
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/root-literal-reaction-check.json",
+      "sha256": "6f8a7974c48a60fb2325fa0fde23a461743313eef36ba48a9ef08e877b21d06c",
+      "bytes": 3073
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/root-qualification.json",
+      "sha256": "316916a19e933c0bda758649c15eee63247cc215e1ca5ac8b7c19058eb9f003e",
+      "bytes": 6592
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/evidence/source-delivery-verification.json",
+      "sha256": "3e9b3054e6a0473f7e1cb483701130c767dfe67cace2f920ac5836feec426857",
+      "bytes": 8505
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/leonie/brief.md",
+      "sha256": "4f1ba2c5627018dce8f4eecf6aa9d5f0ea5d099afb3974ffd22d9c692991a88c",
+      "bytes": 8118
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/leonie/history-source-map.json",
+      "sha256": "efe965f672c345ae60a201624b87ed05f6217810e043f87e0e63ec5cb357281e",
+      "bytes": 242
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/leonie/report.md",
+      "sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+      "bytes": 6385
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/logical-testers.md",
+      "sha256": "dd99c1117e3126a52bfc37aae21036ad90a234db8d71f2e2d4525e2d348a3836",
+      "bytes": 1413
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/manifest.json",
+      "sha256": "2bdb21af6708556d367eeeaad4df520634a5d768ecf511025dc90f552746b2aa",
+      "bytes": 7112
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/mei/brief.md",
+      "sha256": "7fc93613746551effc26c847c071f97e01407e6242dbba90deac47c95c529b15",
+      "bytes": 8063
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/mei/diary-continuation.md",
+      "sha256": "7c05835af2ac19a0fa3ceca178a1a626e70ef437dcaed0a0d4b88dfa0891d06d",
+      "bytes": 8054
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/mei/history-source-map.json",
+      "sha256": "78b89b60506f715297aac4630eed3bb34b3f814c39b59675e5fdceb93ed6043f",
+      "bytes": 6578
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/mei/report.md",
+      "sha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+      "bytes": 7747
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/methodology.md",
+      "sha256": "cdad0ff2ce4f21e4fe161c2877e9e397cb31072aef332445366d8491a9e1a09a",
+      "bytes": 4925
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/nia/brief.md",
+      "sha256": "1af6ba69f3a89adb55f503dfe7306e8f7a63a41e104da7eb7bcd6c1c97bcc0a2",
+      "bytes": 8250
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/nia/diary-continuation.md",
+      "sha256": "ba8532892e6f99d2b486a73036985661fa915f85fd1985a1d27eab66079ec516",
+      "bytes": 5805
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/nia/history-source-map.json",
+      "sha256": "29cd050c6bd9dea9a6b714c41655d14a60fac6b5cf2eb327eb8224a583d6009a",
+      "bytes": 71571
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/nia/report.md",
+      "sha256": "7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e",
+      "bytes": 5498
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/rosa/brief.md",
+      "sha256": "424aa4346a8b7dea65c43d5d25c7b9e5b5304fe071b8f2ba8137d836697d53ff",
+      "bytes": 8546
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/rosa/diary-continuation.md",
+      "sha256": "117a2d53fdfe1f1afb7f6e1063167ad3356bbf331533debfe899fe50c8cfce0d",
+      "bytes": 12900
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/rosa/history-source-map.json",
+      "sha256": "f2e9b989b8b112bf905484d76cd24c30762f5f2bde6f2121dee042e0f7575877",
+      "bytes": 125752
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/rosa/report.md",
+      "sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+      "bytes": 12592
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate/source-map.json",
+      "sha256": "ae393661d2f5e4d6520003155627f56f7d311a1a9d7384c5f7785238b9cbd5b4",
+      "bytes": 23532
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-previous-player-return.json",
+      "sha256": "d5aaab6216911a31e0b0364ff05e2f96a0fe9082a61a06b9960166c0fd7aace7",
+      "bytes": 658
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-ask-triage.json",
+      "sha256": "803f4af48a4ad6236c34dd5e9af53962244df66c30a23a56c8f5901d0e6d1aef",
+      "bytes": 17130
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-literal-reaction-check.json",
+      "sha256": "6f8a7974c48a60fb2325fa0fde23a461743313eef36ba48a9ef08e877b21d06c",
+      "bytes": 3073
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-qualification.json",
+      "sha256": "316916a19e933c0bda758649c15eee63247cc215e1ca5ac8b7c19058eb9f003e",
+      "bytes": 6592
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-source-delivery-verification.json",
+      "sha256": "3e9b3054e6a0473f7e1cb483701130c767dfe67cace2f920ac5836feec426857",
+      "bytes": 8505
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/restart-1102-neighbours-served-root-verification.json",
+      "sha256": "e142e08c5519befd80faea02b275ac044c225e4bf9cfbfc5fe0ca9fa007f4038",
+      "bytes": 12627
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/restart-1102-neighbours-static-sdk-proof.json",
+      "sha256": "4ae8604c2f710e450865a8ef080944213ceeb10c0486a5f9e0e0d168b5cddf37",
+      "bytes": 4125
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-retest1/method-qualifications.json",
+      "sha256": "2874a81565a43d5845ef33664d287810d932a02a02b38bfda72404806ea15a9c",
+      "bytes": 5348
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-retest1/root-qualification.json",
+      "sha256": "082b49c8192175b6999295e47bba20fa19da3aa9a0530e37e65b6ceab8dba8c7",
+      "bytes": 7279
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-retest1/source-map.json",
+      "sha256": "7a206264c1858a7c30515627bfb4ffd6ca1d7d8bdd3d447b81f2a595d5950f3c",
+      "bytes": 8272
+    }
+  ],
+  "authorization": "No current admission, source fix, commit, merge, publication, cap reset, owner acceptance, or seal authorized.",
+  "cleanup": "No worktrees or owned runtime/game/browser processes created. No process probes or git worktree list run; no repositories touched. Only these two neighbouring review files written."
+}

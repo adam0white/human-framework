@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-02T13:05:11.713547+00:00",
+  "status": "ROOT_SEALED_QUALIFIED_FINAL_ORDINARY_COLLECTION",
+  "packet": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2",
+  "manifestSha256": "60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89",
+  "payloads": 20,
+  "reports": 5,
+  "asks": 11,
+  "returnStatements": 5,
+  "reviews": [
+    {
+      "json": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-fidelity-review.json",
+      "jsonSha256": "33161b30a49c312c7dec4fb2f3c4e98eb9a539a165b27f6e89e845f6b285f5d3",
+      "md": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-fidelity-review.md",
+      "mdSha256": "eff04826408e1c2250b28df7dfcabac5349a2c0decb484ceeffee55e302854d5",
+      "verdict": "CLEAR",
+      "manifestSha256": "60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89",
+      "reviewerId": "days-final-packet-fidelity-independent-20261102"
+    },
+    {
+      "json": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-limits-review.json",
+      "jsonSha256": "15032dd85bbbc3797989b657d6b26e340a54ef4265318d9d22e23fd62d541aae",
+      "md": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-limits-review.md",
+      "mdSha256": "f421053663cc7e8377eabcc3772632e52014cc9633f44215d191aaed28736e22",
+      "verdict": "CLEAR",
+      "manifestSha256": "60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89",
+      "reviewerId": "days-final-packet-limits-independent-20261102"
+    }
+  ],
+  "rootReviewEvidenceRehashed": 82,
+  "rootQualification": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-root-qualification.json",
+    "sha256": "e4363942bffcf57afc629b0121e5e1ad93979dad943d4b62e721db4a5b29889a"
+  },
+  "scope": "CANDIDATE/HOLD retained as freeze provenance. Qualified synthetic collection/ordinaryloop complete under seconditeration; finaldatedrecord/canonicalpublication stillpending. No human/owneracceptance, thirdordinarypanel or cohortcausalclaim."
+}

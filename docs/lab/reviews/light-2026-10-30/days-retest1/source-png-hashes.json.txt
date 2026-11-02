@@ -1,0 +1,106 @@
+{
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/a-001.png": {
+    "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+    "size": 210855
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/first-minute.png": {
+    "sha256": "055926eed991253bfaf64e31030ccdacf8349699a8b2f181f1ece6dc5b74c4da",
+    "size": 136882
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-001.png": {
+    "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+    "size": 58630
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-002.png": {
+    "sha256": "c06df76fe43eda4d744ec92934a0415174ed54c1a710ce79711c5d0a31d6db2f",
+    "size": 68427
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-003.png": {
+    "sha256": "54e46c626f19c4f4d63731ce6d2c4b5c4940a17ce14df864f26aab0ff7991a96",
+    "size": 101416
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/first-minute.png": {
+    "sha256": "7044d9c7052b4cf4619117adea036af54253bed08a2fc3d3acd4b326aa3c3712",
+    "size": 46911
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/a-001.png": {
+    "sha256": "7e2ff18d4213be45744b2382187d43a03e559c11b823f1dbd1131abebf2f12d4",
+    "size": 212869
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/first-minute.png": {
+    "sha256": "d30078a97615dd381b177e58dbd44ea9c38cd9b6b2792be52df4534e30bff50a",
+    "size": 132268
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-001.png": {
+    "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+    "size": 58630
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-002.png": {
+    "sha256": "ff909b3031db262c0658bfd033fc1340a5290156d55a8889d9012577a3c676ae",
+    "size": 64949
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-003.png": {
+    "sha256": "f59c01fbf79da3c7a34e1b32f2f7b72a5ddee4707e76b5df0b8fbdc67a5d15b6",
+    "size": 91794
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/first-minute.png": {
+    "sha256": "50847f3825f676615831d50b50f8a937a93f9042b9a80c8279514e4ea877368e",
+    "size": 48809
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/b-001.png": {
+    "sha256": "7e2ff18d4213be45744b2382187d43a03e559c11b823f1dbd1131abebf2f12d4",
+    "size": 212869
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/first-minute.png": {
+    "sha256": "944d5292fbae1f0ee116e61cdccf287a27508a9f3d363bf42b09ba335f7d8bcd",
+    "size": 133161
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-001.png": {
+    "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+    "size": 58630
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-002.png": {
+    "sha256": "25526fa0e4085208f662f276f59603c63a7eab66f1e675644c570569f6a3db07",
+    "size": 88468
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/first-minute.png": {
+    "sha256": "56efdb1a6ed469fd8ff3a4d0c60eae1cace6bdefb0a60f1743263b95f13639bb",
+    "size": 45055
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-001.png": {
+    "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+    "size": 210855
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-002.png": {
+    "sha256": "2b81bd721ac462244c6010943741ce1db31077d57075416668e03f465b39222b",
+    "size": 188585
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/first-minute.png": {
+    "sha256": "44c3e3f22485a6d23a777e7b074e8b491c12d4304c1b146735a19f691bcdb599",
+    "size": 174899
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-001.png": {
+    "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+    "size": 58630
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-002.png": {
+    "sha256": "418d988c5403144c1e910f4b3b9d3cf98039f2b669057156e6e28e816e020ec2",
+    "size": 64731
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/first-minute.png": {
+    "sha256": "8e4740d48a0d6b6ff0c6ef1ba039beb330bc6ba413acce63ee1648b9072294dc",
+    "size": 71011
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/a-001.png": {
+    "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+    "size": 210855
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/a-001.png": {
+    "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+    "size": 58630
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/first-minute.png": {
+    "sha256": "2d6b925ca48b8e5f2e760069726f2a599ef7f5873187ca211ba34e84697cf29c",
+    "size": 48810
+  }
+}

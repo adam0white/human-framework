@@ -1,0 +1,164 @@
+{
+  "at": "2026-11-02T09:16:42.617559+00:00",
+  "rootVerified": true,
+  "sourceCiSuccess": true,
+  "targetCiSuccess": true,
+  "sourceSignatureAndTrailerVerified": true,
+  "mergeSignatureAndTrailerVerified": true,
+  "sourceMergeEqualTree": true,
+  "servedSdkAgentProofVerified": true,
+  "sdkSourceProofSha256": "2d2a10786262ce708d3d693e5e653b699c45edace581d5e617a5e8bf45e69586",
+  "sourceCommit": "72c270084c91794b03b1d04a4cc70cf87a38ddf2",
+  "mergeCommit": "f71cc0c6203c1f5c0c57daa1b33de64df51eff82",
+  "live": {
+    "app": "smoke",
+    "framework": "4.8.0",
+    "commit": "f71cc0c6203c1f5c0c57daa1b33de64df51eff82",
+    "dirty": false
+  },
+  "freshPublicBodies": [
+    {
+      "path": "/",
+      "sha256": "7ceb0028c320ecee1a0ecd36cebc120b3b3b902ff0a4b21c8e678c4aa89a34e4",
+      "bytes": 1270,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/index.html"
+    },
+    {
+      "path": "/release.json",
+      "sha256": "7545044cdb02a6313b48981662c87db8f398dea99c570cc9f85a3009dff7caf2",
+      "bytes": 102,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/release.json"
+    },
+    {
+      "path": "/assets/webworkerAll-iD3QohYz.js",
+      "sha256": "a47a05eef42746749a1f215fecb2880b72cb77653f8b46faa5ce3f8c6d4dd084",
+      "bytes": 54,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/webworkerAll-iD3QohYz.js"
+    },
+    {
+      "path": "/assets/init-DE-luo0r.js",
+      "sha256": "568fd8e30c9eca6474f7e9c062e12537c14b547cb747dbb2b223f5577d2bd630",
+      "bytes": 24292,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/init-DE-luo0r.js"
+    },
+    {
+      "path": "/assets/browserAll-DkJdsmT1.js",
+      "sha256": "97f4d559e90114ca86e875d66a560beb5ce6c02f544f3018e170a7e9f9ec205e",
+      "bytes": 40906,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/browserAll-DkJdsmT1.js"
+    },
+    {
+      "path": "/assets/GpuStencilModesToPixi-C1x-J88D.js",
+      "sha256": "6187c019fed73dc84a06be8aba966bd5a1dc3546715842328aa9fd622cbb5a37",
+      "bytes": 10522,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/GpuStencilModesToPixi-C1x-J88D.js"
+    },
+    {
+      "path": "/assets/Filter-DJqlq-wu.js",
+      "sha256": "aefe3f4d82048ba2df6c58694299a5cd3f95465263832e06d7136bdf93132b6e",
+      "bytes": 101211,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/Filter-DJqlq-wu.js"
+    },
+    {
+      "path": "/assets/WebGLRenderer-BEzs4yKH.js",
+      "sha256": "3b7a3d4c48cd16997cd60c15890083099db2d2e4732a1364a4e1bfa4d13f2233",
+      "bytes": 67636,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/WebGLRenderer-BEzs4yKH.js"
+    },
+    {
+      "path": "/assets/init-DVjcKGDM.js",
+      "sha256": "8effa0852230f4948cb7234afd472945833b6da7d8e352447d365d38f0c497eb",
+      "bytes": 11669,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/init-DVjcKGDM.js"
+    },
+    {
+      "path": "/assets/index-DoHrk18u.js",
+      "sha256": "09af72f4afed7fb0f1669c15a3ce01e6d246e6fe231b7c3a9143888a470c8041",
+      "bytes": 116098,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/index-DoHrk18u.js"
+    },
+    {
+      "path": "/assets/WebGPURenderer-4WoJ7xxb.js",
+      "sha256": "439099758c5ef57f080be359825235a85af3603126674f8938174ac9320835ce",
+      "bytes": 38456,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/WebGPURenderer-4WoJ7xxb.js"
+    },
+    {
+      "path": "/assets/ImageSource-DF5z3PHJ.js",
+      "sha256": "9722d19d284c3b15b275a1a7775c5585d9e126d935234187c15cc7c031672d5b",
+      "bytes": 374,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/ImageSource-DF5z3PHJ.js"
+    },
+    {
+      "path": "/assets/getTextureBatchBindGroup-BpSLHCw3.js",
+      "sha256": "03d52647df9bde4552272ce631c4195ff3d4a39fc9b3e54ed1145629f70e2435",
+      "bytes": 340,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/getTextureBatchBindGroup-BpSLHCw3.js"
+    },
+    {
+      "path": "/assets/CanvasRenderer-D-W4mKkB.js",
+      "sha256": "7b14311bf5a6ec2be259a7e0c8cd324687ce718b6823ba3f4c1088aad9966b87",
+      "bytes": 62,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/CanvasRenderer-D-W4mKkB.js"
+    },
+    {
+      "path": "/assets/WebGPURenderer-B9NWwhfp.js",
+      "sha256": "e1eb4c583dd021fd249dde0d84e2f32c53fb11d7840068b591545df3921745db",
+      "bytes": 62,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/WebGPURenderer-B9NWwhfp.js"
+    },
+    {
+      "path": "/assets/sim-worker-BEkutMP7.js",
+      "sha256": "82ba13853acdf55eea69ce7232c44ff71bb0e5f5a95ea0249f29a632faa3953e",
+      "bytes": 825343,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/sim-worker-BEkutMP7.js"
+    },
+    {
+      "path": "/assets/CanvasRenderer-Djvg2ccx.js",
+      "sha256": "cf19ef8ece0159ea0c2d975b0759d01c5efb68b1cc949361c7a731fab0fc91a7",
+      "bytes": 91706,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/CanvasRenderer-Djvg2ccx.js"
+    },
+    {
+      "path": "/assets/RenderTargetSystem-CwnYSRZs.js",
+      "sha256": "d80086bf459286ffdd57a11f058f157403699dcc55cb772771545b1a73832569",
+      "bytes": 70207,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/RenderTargetSystem-CwnYSRZs.js"
+    },
+    {
+      "path": "/assets/index-CpZtrb92.css",
+      "sha256": "079fa90a9787940b10ecef5a2c4a79e95573593e7ecf6aaff59a902b16a42298",
+      "bytes": 5546,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/index-CpZtrb92.css"
+    },
+    {
+      "path": "/assets/WebGLRenderer-BUjFIFIb.js",
+      "sha256": "e46b7e0a4ce4e5b911f704b39056b72933e5e59df58428c0a2762026dc48c8a1",
+      "bytes": 60,
+      "savedPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-fresh-public-bodies/assets/WebGLRenderer-BUjFIFIb.js"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-actual-api-source-evidence.json",
+      "sha256": "d1adf420a6820e2cee7df9fa00e92c049852006c4767dd8a2696698dee641b0d",
+      "bytes": 1215
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-exact-72c-codex-review.json",
+      "sha256": "2f50b7d3675fc227b530c4a385cc58553961bf20e2b6eb762cb8398236f7a764",
+      "bytes": 696
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-merged-deployment2058/receipt.json",
+      "sha256": "7a34269cabfab6310705fbd2f5dd7a99d90c47ff95eb12efe44629ba4f5e31ea",
+      "bytes": 85095
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-sdk-source-proof.json",
+      "sha256": "2d2a10786262ce708d3d693e5e653b699c45edace581d5e617a5e8bf45e69586",
+      "bytes": 6882
+    }
+  ],
+  "limits": "No newbuild/browser/playerperception/whole-source equivalence/backend or owneracceptance. ServedSDK proof means bounded static sourcecallchain/releasedarchive plus servedmarkers, not execution/attribution. Existing raw failedWatch/ETA controls and datedopenasks remain."
+}

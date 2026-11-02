@@ -1,0 +1,787 @@
+{
+  "at": "2026-11-02T12:58:45.697404+00:00",
+  "players": {
+    "emre": {
+      "reportSha256": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+      "finalMessageEqualsReport": true,
+      "parsedResponses": 54,
+      "successfulReactions": [
+        {
+          "line": 334,
+          "reaction": "The six-hour account and promised visit are familiar. I want to see a different path, while keeping enough time for the visit.",
+          "kind": "note",
+          "elapsed_s": 6.197
+        },
+        {
+          "line": 346,
+          "reaction": "Selin agreed to a short shift, and the cost to her evening is stated. Four hours remain and the visit now needs one; that gives me a plan.",
+          "kind": "note",
+          "elapsed_s": 23.121
+        },
+        {
+          "line": 358,
+          "reaction": "The original separates the bills, and recording the claim leaves exactly one hour for the covered visit. I can follow where my hours went.",
+          "kind": "note",
+          "elapsed_s": 42.146
+        },
+        {
+          "line": 366,
+          "reaction": "The visit happened, the notebook stayed private, and the account has a named next step. I am satisfied with this path and done with it tonight.",
+          "kind": "want_quit",
+          "elapsed_s": 53.477
+        },
+        {
+          "line": 376,
+          "reaction": "I am stopping after the three days ended. I kept the visit and privacy and left a clear account follow-up. I would try another path another evening, not leave it running.",
+          "kind": "stop",
+          "elapsed_s": 66.918
+        },
+        {
+          "line": 383,
+          "reaction": "The phone opening fits. I have just kept the visit on desktop; I will choose differently here and see where the time goes.",
+          "kind": "note",
+          "elapsed_s": 10.37
+        },
+        {
+          "line": 391,
+          "reaction": "The mistaken payment belongs back from Burak, which is clear. Again I only see that savings are smaller, so I cannot tell the size of the loss.",
+          "kind": "note",
+          "elapsed_s": 20.17
+        },
+        {
+          "line": 415,
+          "reaction": "The phone path makes the privacy cost concrete: I apologised and the listeners agreed not to repeat it, but cannot undo the disclosure. The account and hours are clear; the amount paid is still unknown.",
+          "kind": "first_minute",
+          "elapsed_s": 57.587
+        },
+        {
+          "line": 417,
+          "reaction": "The phone path makes the privacy cost concrete: I apologised and the listeners agreed not to repeat it, but cannot undo the disclosure. The account and hours are clear; the amount paid is still unknown.",
+          "kind": "first_minute",
+          "elapsed_s": 61.997
+        },
+        {
+          "line": 427,
+          "reaction": "The visit happened and the ending remembers both the disclosure and the money Burak owes. I have seen enough of these choices tonight.",
+          "kind": "want_quit",
+          "elapsed_s": 78.638
+        },
+        {
+          "line": 437,
+          "reaction": "I am stopping on the phone after the three days ended. The privacy repair and mistaken payment remain in the ending, and the visit was kept. I would return another evening, not leave it running.",
+          "kind": "stop",
+          "elapsed_s": 91.493
+        }
+      ],
+      "reactionNotLiteralInReport": [],
+      "clockDifferences": [
+        {
+          "transcriptLine": 334,
+          "wallRow": 4,
+          "device": "desktop",
+          "kind": "note",
+          "responseClock": 6.197,
+          "wallClock": 6.196
+        },
+        {
+          "transcriptLine": 391,
+          "wallRow": 8,
+          "device": "phone",
+          "kind": "note",
+          "responseClock": 20.17,
+          "wallClock": 20.169
+        },
+        {
+          "transcriptLine": 417,
+          "wallRow": 22,
+          "device": "phone",
+          "kind": "first_minute",
+          "responseClock": 61.997,
+          "wallClock": 61.996
+        }
+      ],
+      "actualEnds": {
+        "desktop": {
+          "transcriptLine": 364,
+          "elapsed_s": 51.28
+        },
+        "phone": {
+          "transcriptLine": 425,
+          "elapsed_s": 75.265
+        }
+      },
+      "stops": {
+        "desktop": {
+          "elapsed_s": 66.918,
+          "reason": "FINISHED"
+        },
+        "phone": {
+          "elapsed_s": 91.493,
+          "reason": "FINISHED"
+        }
+      },
+      "historyOutputCoverage": {
+        "lineCount": 2263,
+        "literalLinesCovered": 2263,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageEvents": [],
+      "failedCommands": [],
+      "literalReactionPass": true
+    },
+    "pavel": {
+      "reportSha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+      "finalMessageEqualsReport": true,
+      "parsedResponses": 53,
+      "successfulReactions": [
+        {
+          "line": 322,
+          "reaction": "The room and the three days are familiar. I remember the receipt and the visit that needed two hours. I want to see the account carefully again.",
+          "kind": "note",
+          "elapsed_s": 5.553
+        },
+        {
+          "line": 328,
+          "reaction": "Selin has the receipt, yet checking costs an hour to get the original. I still cannot tell whether these are two papers. I will check before paying.",
+          "kind": "note",
+          "elapsed_s": 13.245
+        },
+        {
+          "line": 340,
+          "reaction": "Selin now brings the original, and the comparison says I already have it. The later step is clear; I still wonder why getting it took an hour when she had a receipt before.",
+          "kind": "note",
+          "elapsed_s": 27.338
+        },
+        {
+          "line": 350,
+          "reaction": "The visit needs two hours and only one remains, as before. The warning now says an attempt can move the story on without a visit, or the choice may stay. I understand the risk, so I will arrange delivery.",
+          "kind": "note",
+          "elapsed_s": 37.893
+        },
+        {
+          "line": 358,
+          "reaction": "The leave has ended. The account has a next step and the delivery is agreed but not yet done. I like that distinction, and I would stop this game here.",
+          "kind": "want_quit",
+          "elapsed_s": 45.124
+        },
+        {
+          "line": 368,
+          "reaction": "I stop at the end of the three days. The delivery is arranged but not yet made, and Selin listened. I chose I am stopping, went Back, typed and sent nothing.",
+          "kind": "stop",
+          "elapsed_s": 55.572
+        },
+        {
+          "line": 375,
+          "reaction": "The same opening on the phone, though Leyla is very tired this time. The notice fits. I will try to preserve time for the visit.",
+          "kind": "note",
+          "elapsed_s": 8.865
+        },
+        {
+          "line": 383,
+          "reaction": "Here Burak unfolded a receipt, then fetched his original. The same question follows me from the desktop. I will keep the page private.",
+          "kind": "note",
+          "elapsed_s": 19.812
+        },
+        {
+          "line": 399,
+          "reaction": "Selin agreed to cover, so the visit now costs one hour and one remains. Her evening has a cost too. I want to keep the visit this time.",
+          "kind": "note",
+          "elapsed_s": 38.409
+        },
+        {
+          "line": 409,
+          "reaction": "The visit happened and the folding table is another small obligation. On the phone the story fills the screen; after scrolling I can see the two choices, though the pale cost text is small.",
+          "kind": "note",
+          "elapsed_s": 54.481
+        },
+        {
+          "line": 415,
+          "reaction": "The visit was kept, and Burak still owes the notebook back. I have seen enough for tonight. I would stop here at the end.",
+          "kind": "want_quit",
+          "elapsed_s": 61.947
+        },
+        {
+          "line": 425,
+          "reaction": "I stop at the end of the phone game. The visit was kept, the account has a next step, and the notebook must come back. I chose I am stopping, went Back, typed and sent nothing.",
+          "kind": "stop",
+          "elapsed_s": 71.436
+        }
+      ],
+      "reactionNotLiteralInReport": [],
+      "clockDifferences": [
+        {
+          "transcriptLine": 358,
+          "wallRow": 21,
+          "device": "desktop",
+          "kind": "want_quit",
+          "responseClock": 45.124,
+          "wallClock": 45.123
+        },
+        {
+          "transcriptLine": 375,
+          "wallRow": 4,
+          "device": "phone",
+          "kind": "note",
+          "responseClock": 8.865,
+          "wallClock": 8.864
+        },
+        {
+          "transcriptLine": 425,
+          "wallRow": 30,
+          "device": "phone",
+          "kind": "stop",
+          "responseClock": 71.436,
+          "wallClock": 71.435
+        }
+      ],
+      "actualEnds": {
+        "desktop": {
+          "transcriptLine": 356,
+          "elapsed_s": 43.253
+        },
+        "phone": {
+          "transcriptLine": 413,
+          "elapsed_s": 58.369
+        }
+      },
+      "stops": {
+        "desktop": {
+          "elapsed_s": 55.572,
+          "reason": "FINISHED"
+        },
+        "phone": {
+          "elapsed_s": 71.435,
+          "reason": "FINISHED"
+        }
+      },
+      "historyOutputCoverage": {
+        "lineCount": 1682,
+        "literalLinesCovered": 1682,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageEvents": [],
+      "failedCommands": [
+        {
+          "sourceLine": 332,
+          "id": "item_165",
+          "exitCode": 1,
+          "status": "failed",
+          "classification": "malformed_shell_failure",
+          "reason": "No closing quotation"
+        }
+      ],
+      "literalReactionPass": true
+    },
+    "tessa": {
+      "reportSha256": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+      "finalMessageEqualsReport": true,
+      "parsedResponses": 56,
+      "successfulReactions": [
+        {
+          "line": 192,
+          "reaction": "The door and soup are familiar. I remember Selin and the folding table, and I want to see a different path through the three days.",
+          "kind": "note",
+          "elapsed_s": 13.709
+        },
+        {
+          "line": 202,
+          "reaction": "Selin turns the page face down for me. I like that small gesture; I want to let her go home and see whether I can keep the promise anyway.",
+          "kind": "note",
+          "elapsed_s": 26.06
+        },
+        {
+          "line": 210,
+          "reaction": "The bill explanation is clear, and I have two hours left. I remember the visit cost changing with tiredness, so promising it now feels risky.",
+          "kind": "note",
+          "elapsed_s": 36.751
+        },
+        {
+          "line": 220,
+          "reaction": "I like that the delivery has a person and date but has not magically happened yet. Selin is gentle again, though these two choices feel very familiar now.",
+          "kind": "note",
+          "elapsed_s": 47.955
+        },
+        {
+          "line": 226,
+          "reaction": "The three days ended. The unfinished delivery and borrowed notebook are remembered, which I like, but I am ready to leave this pass.",
+          "kind": "want_quit",
+          "elapsed_s": 54.951
+        },
+        {
+          "line": 236,
+          "reaction": "Stopping the phone. The delivery and notebook still have obligations after the ending, and Selin was kind, but I have finished this pass.",
+          "kind": "stop",
+          "elapsed_s": 64.491
+        },
+        {
+          "line": 251,
+          "reaction": "The big room and the coat are familiar. I want to be nosy again and see what happens if I do not repair the disclosure this time.",
+          "kind": "note",
+          "elapsed_s": 16.22
+        },
+        {
+          "line": 259,
+          "reaction": "Selin pulls her chair back again. I remember apologising last time; I want to see how the story carries it if I let the moment stand.",
+          "kind": "note",
+          "elapsed_s": 26.237
+        },
+        {
+          "line": 263,
+          "reaction": "Selin refuses the shift after I read the page. I like that she has her own answer, even if I cannot tell exactly why she said no.",
+          "kind": "note",
+          "elapsed_s": 31.946
+        },
+        {
+          "line": 273,
+          "reaction": "It explicitly says lending the notebook does not answer the disclosure. That feels fair, and I am curious whether the ending will remember it too.",
+          "kind": "note",
+          "elapsed_s": 44.82
+        },
+        {
+          "line": 283,
+          "reaction": "The story ended and it remembers the disclosure and what Burak owes. I like that consequence, but I have had enough familiar choices for tonight.",
+          "kind": "want_quit",
+          "elapsed_s": 57.717
+        },
+        {
+          "line": 293,
+          "reaction": "Stopping the desktop. Selin refused the shift and the ending kept the disclosure unresolved; I liked those consequences, but I am done with these three days tonight.",
+          "kind": "stop",
+          "elapsed_s": 68.416
+        }
+      ],
+      "reactionNotLiteralInReport": [],
+      "clockDifferences": [
+        {
+          "transcriptLine": 251,
+          "wallRow": 8,
+          "device": "desktop",
+          "kind": "note",
+          "responseClock": 16.22,
+          "wallClock": 16.219
+        },
+        {
+          "transcriptLine": 283,
+          "wallRow": 24,
+          "device": "desktop",
+          "kind": "want_quit",
+          "responseClock": 57.717,
+          "wallClock": 57.716
+        }
+      ],
+      "actualEnds": {
+        "phone": {
+          "transcriptLine": 224,
+          "elapsed_s": 52.162
+        },
+        "desktop": {
+          "transcriptLine": 281,
+          "elapsed_s": 54.894
+        }
+      },
+      "stops": {
+        "phone": {
+          "elapsed_s": 64.491,
+          "reason": "FINISHED"
+        },
+        "desktop": {
+          "elapsed_s": 68.416,
+          "reason": "FINISHED"
+        }
+      },
+      "historyOutputCoverage": {
+        "lineCount": 1457,
+        "literalLinesCovered": 1457,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageEvents": [],
+      "failedCommands": [
+        {
+          "sourceLine": 198,
+          "id": "item_98",
+          "exitCode": 1,
+          "status": "failed",
+          "classification": "malformed_shell_failure",
+          "reason": "No closing quotation"
+        }
+      ],
+      "literalReactionPass": true
+    },
+    "rosa": {
+      "reportSha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+      "finalMessageEqualsReport": true,
+      "parsedResponses": 49,
+      "successfulReactions": [
+        {
+          "line": 270,
+          "reaction": "I remember the soup and Selin offering company from my prior Days visit. I am confident from this opening and the names together. The warning is sober and readable. Opening concepts 12: death, estrangement, grief, three days leave, disputed account, promise, disclosure, recording, menu recording control, private Feedback, recording explanation, two begin choices. No reread.",
+          "kind": "note",
+          "elapsed_s": 11.054
+        },
+        {
+          "line": 276,
+          "reaction": "Soup helps and costs one hour, as I remember. I understand the disputed bills now: one returned advance, but whose money? I recognise the difficult saying about the soul from last time and understand his fear without reading it again. Folded account concepts 14: soup and steadiness, hour cost, two bills, returned advance, two payers, crossed-out uncertainty, receipt, religious fear, urgent demand, checking open bill, hours after visitors, second reader, savings payment, later recovery cost. No reread today.",
+          "kind": "note",
+          "elapsed_s": 18.696
+        },
+        {
+          "line": 280,
+          "reaction": "Selin saying she does not need the whole story still moves me. Selin, Halil and Nuran together recall the Voice family confidently, and I remember this Days offer. I keep the marriage private. Notebook adds 9 groups: entries, private marriage, untold separation, last visit instruction, envelope, Selin family, company without disclosure, comparison, help versus exposure and later harm. No reread.",
+          "kind": "note",
+          "elapsed_s": 25.148
+        },
+        {
+          "line": 286,
+          "reaction": "Selin agrees to a short shift, and her own evening matters. Nobody needs an answer this minute is reassuring. I am already rested but skipping the meal would tire me, so I eat again. Envelope adds 9 groups: trust preserved, later sorting, photograph and unsent letter, cross-city visit, broken lift, visitors, family cost, bounded help, condolences once. Morning adds 5: agreed shift, visit hour, no hurry, rest hour, tiredness adds work or travel time. No reread.",
+          "kind": "note",
+          "elapsed_s": 35.078
+        },
+        {
+          "line": 290,
+          "reaction": "This answers my old question: work through the hour without resting, then two hours left afterward. I understand on first reading. Burak admitting his mistake is clear and kind. I will compare privately. Living witness adds 7 groups: eating restores reading, repayment to Burak, separate boiler debt, merged entries, correction, private work without rest, phone check with rest. No reread.",
+          "kind": "note",
+          "elapsed_s": 41.295
+        },
+        {
+          "line": 297,
+          "reaction": "The check used exactly one hour and left two. I feel more willing to continue than last time. Reread 1: Ask for a named visit and get Şükrü's agreement. Named visit is unusual English; I take it to mean agree on when I come. I want him to have the photograph. Across the city adds 5 groups: confirmed separate accounts, photograph wanted, unanswered years, visit agreement before travel, later delivery instead. The phone picture shows readable story but the choices are lower down.",
+          "kind": "note",
+          "elapsed_s": 52.855
+        },
+        {
+          "line": 311,
+          "reaction": "The old hour and rest question is answered, and I reached new choices without exposing the marriage. One reread so far, named visit. I can keep another person's hospital story private too. This screen adds 6 groups: agreed visit, hospital question, consent, copying bill myself, lending original, closed page staying private. Menu has 11 groups and Feedback 9 including recording, linking, privacy and Debug. I chose confused for named visit, the note filled itself, and Back worked; I typed nothing.",
+          "kind": "first_minute",
+          "elapsed_s": 73.834
+        },
+        {
+          "line": 315,
+          "reaction": "Only one hour remains, and I promised a visit. Writing the claim would take that hour, so I choose the verified payment to save the visit. I wish I could see the amount before spending my savings. Third morning adds 6 groups: bill copy delivered, notebook kept, leave ends but grief continues, corrected claim sent onward, writing hour, verified payment saves time. No new reread.",
+          "kind": "note",
+          "elapsed_s": 81.66
+        },
+        {
+          "line": 321,
+          "reaction": "He received the photograph. I am glad I kept the hour for him. The unreturned table is an ordinary unfinished duty, not a perfect ending for her father. Selin not asking grief to stop feels kind. I want Leyla to say the thing she could not tell him. Departure adds 4 groups: payment confirmed, separate entries followed, visit versus paid delivery, journey hour. Chair adds 6: visit completed, borrowed table, recording contact, last goodbye, mourning without stopping missing, speaking tires versus quiet recovery. No second reread.",
+          "kind": "note",
+          "elapsed_s": 94.494
+        },
+        {
+          "line": 327,
+          "reaction": "The three days have ended. I kept the visit and the page private. That feels enough for tonight; I do not want another run now.",
+          "kind": "want_quit",
+          "elapsed_s": 109.034
+        },
+        {
+          "line": 337,
+          "reaction": "I stop after the three days ended. I kept the visit and the private page, and Selin listened without turning it into a lesson. The hour explanation answered my old question. Named visit needed one reread and I wanted the payment amount, but I felt able to choose. I chose stopping and Back; the note filled itself, and I typed and submitted nothing. I would close it for tonight. Ending adds 4 groups: leave ended, tasks settled, grief continues, another run.",
+          "kind": "stop",
+          "elapsed_s": 109.762
+        },
+        {
+          "line": 346,
+          "reaction": "The wide opening is comfortable. I recognise the coat, Rotterdam and different views of mourners from my earlier desktop Days visit, confidently. This fresh start says very tired, while the phone said tired. I still want her fed. Opening dialog has the same 12 groups. Door has 17: father and daughter, leave and Rotterdam, house remaining, soup, religious example, Hacer, Burak and accounts, notebook, envelope and Şükrü, customs colleague, gathering disagreement, speaker phone, free hours, tiredness, privacy and marriage, action costs, menu and games. No reread.",
+          "kind": "note",
+          "elapsed_s": 10.373
+        },
+        {
+          "line": 354,
+          "reaction": "Selin's offer is still warm and the large room is comfortable. Hacer holds the receipt here, unlike Burak on the phone. I have already lived through the ending tonight and do not want to repeat the choices. I would stop now. Folded account has the same 14 groups and notebook adds the same 9. The gold cost text is small. No sentence needed rereading on this device.",
+          "kind": "want_quit",
+          "elapsed_s": 30.802
+        },
+        {
+          "line": 364,
+          "reaction": "I stop on the large screen. The room and story are comfortable and Selin's offer still matters, but I have seen the beginning and an ending tonight. I do not want another run now. No reread here. Menu has 11 groups and Feedback 9, as on phone. I chose stopping, the note filled itself, and Back returned to the menu. I typed and submitted nothing. I would close it and might return another evening for a different choice.",
+          "kind": "stop",
+          "elapsed_s": 31.569
+        }
+      ],
+      "reactionNotLiteralInReport": [],
+      "clockDifferences": [
+        {
+          "transcriptLine": 276,
+          "wallRow": 7,
+          "device": "phone",
+          "kind": "note",
+          "responseClock": 18.696,
+          "wallClock": 18.695
+        },
+        {
+          "transcriptLine": 311,
+          "wallRow": 25,
+          "device": "phone",
+          "kind": "first_minute",
+          "responseClock": 73.834,
+          "wallClock": 73.833
+        },
+        {
+          "transcriptLine": 337,
+          "wallRow": 38,
+          "device": "phone",
+          "kind": "stop",
+          "responseClock": 109.762,
+          "wallClock": 109.761
+        }
+      ],
+      "actualEnds": {
+        "phone": {
+          "transcriptLine": 325,
+          "elapsed_s": 98.547
+        },
+        "desktop": null
+      },
+      "stops": {
+        "phone": {
+          "elapsed_s": 109.761,
+          "reason": "FINISHED"
+        },
+        "desktop": {
+          "elapsed_s": 31.569,
+          "reason": "TASTE"
+        }
+      },
+      "historyOutputCoverage": {
+        "lineCount": 4532,
+        "literalLinesCovered": 4532,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageEvents": [],
+      "failedCommands": [],
+      "literalReactionPass": true
+    },
+    "lucia": {
+      "reportSha256": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+      "finalMessageEqualsReport": true,
+      "parsedResponses": 53,
+      "successfulReactions": [
+        {
+          "line": 13,
+          "reaction": "The death and the three days give me a situation I understand. I wonder what the promised visit is.",
+          "kind": "note",
+          "elapsed_s": 7.417
+        },
+        {
+          "line": 19,
+          "reaction": "The soup cost an hour and made her steadier, just as promised. I want to check the receipt before paying; the names are coming quickly.",
+          "kind": "note",
+          "elapsed_s": 13.361
+        },
+        {
+          "line": 38,
+          "reaction": "I understand why I need two hours to visit. I trust Burak with the closed notebook enough to keep that time, though it is someone else's private information.",
+          "kind": "note",
+          "elapsed_s": 33.97
+        },
+        {
+          "line": 50,
+          "reaction": "I would leave with the visit kept. The quiet ending feels fitting; I do not need another run now.",
+          "kind": "want_quit",
+          "elapsed_s": 47.303
+        },
+        {
+          "line": 60,
+          "reaction": "I am leaving after the ending; the visit and account have an answer.",
+          "kind": "stop",
+          "elapsed_s": 56.816
+        },
+        {
+          "line": 67,
+          "reaction": "I recognize the situation from my phone. The larger room and longer opening give me more context, but I am curious what happens if I keep the door myself.",
+          "kind": "note",
+          "elapsed_s": 6.805
+        },
+        {
+          "line": 73,
+          "reaction": "She is exhausted now, and the extra checking and travel hours make the choice feel costly. I can see why.",
+          "kind": "note",
+          "elapsed_s": 13.651
+        },
+        {
+          "line": 91,
+          "reaction": "I cannot make the visit in the remaining hour. The explanation of attempting it is hard to follow, so I would choose the agreed delivery instead.",
+          "kind": "note",
+          "elapsed_s": 33.063
+        },
+        {
+          "line": 109,
+          "reaction": "I would leave after this ending too. I am glad the delivery is described as agreed, not already done.",
+          "kind": "want_quit",
+          "elapsed_s": 50.531
+        },
+        {
+          "line": 119,
+          "reaction": "I am leaving at the ending; I have seen a second outcome and do not want another opening now.",
+          "kind": "stop",
+          "elapsed_s": 64.386
+        }
+      ],
+      "reactionNotLiteralInReport": [],
+      "clockDifferences": [],
+      "actualEnds": {
+        "phone": {
+          "transcriptLine": 48,
+          "elapsed_s": 44.962
+        },
+        "desktop": {
+          "transcriptLine": 107,
+          "elapsed_s": 48.545
+        }
+      },
+      "stops": {
+        "phone": {
+          "elapsed_s": 56.816,
+          "reason": "FINISHED"
+        },
+        "desktop": {
+          "elapsed_s": 64.386,
+          "reason": "FINISHED"
+        }
+      },
+      "historyOutputCoverage": {
+        "lineCount": 2,
+        "literalLinesCovered": 2,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone."
+      },
+      "imageEvents": [],
+      "failedCommands": [
+        {
+          "sourceLine": 23,
+          "id": "item_10",
+          "exitCode": 1,
+          "status": "failed",
+          "classification": "malformed_shell_failure",
+          "reason": "No closing quotation"
+        },
+        {
+          "sourceLine": 36,
+          "id": "item_17",
+          "exitCode": 1,
+          "status": "failed",
+          "classification": "malformed_shell_failure",
+          "reason": "No closing quotation"
+        }
+      ],
+      "literalReactionPass": true
+    }
+  },
+  "scope": "Root lightweight literal comparisons of retained report/final-message/raw-response/wall bytes; no product runtime.",
+  "totals": {
+    "parsedResponses": 265,
+    "successfulReactions": 59,
+    "actualEnds": 9,
+    "voluntaryUnfinished": 1
+  },
+  "clockDifferences": [
+    {
+      "tester": "emre",
+      "transcriptLine": 334,
+      "wallRow": 4,
+      "device": "desktop",
+      "kind": "note",
+      "responseClock": 6.197,
+      "wallClock": 6.196
+    },
+    {
+      "tester": "emre",
+      "transcriptLine": 391,
+      "wallRow": 8,
+      "device": "phone",
+      "kind": "note",
+      "responseClock": 20.17,
+      "wallClock": 20.169
+    },
+    {
+      "tester": "emre",
+      "transcriptLine": 417,
+      "wallRow": 22,
+      "device": "phone",
+      "kind": "first_minute",
+      "responseClock": 61.997,
+      "wallClock": 61.996
+    },
+    {
+      "tester": "pavel",
+      "transcriptLine": 358,
+      "wallRow": 21,
+      "device": "desktop",
+      "kind": "want_quit",
+      "responseClock": 45.124,
+      "wallClock": 45.123
+    },
+    {
+      "tester": "pavel",
+      "transcriptLine": 375,
+      "wallRow": 4,
+      "device": "phone",
+      "kind": "note",
+      "responseClock": 8.865,
+      "wallClock": 8.864
+    },
+    {
+      "tester": "pavel",
+      "transcriptLine": 425,
+      "wallRow": 30,
+      "device": "phone",
+      "kind": "stop",
+      "responseClock": 71.436,
+      "wallClock": 71.435
+    },
+    {
+      "tester": "tessa",
+      "transcriptLine": 251,
+      "wallRow": 8,
+      "device": "desktop",
+      "kind": "note",
+      "responseClock": 16.22,
+      "wallClock": 16.219
+    },
+    {
+      "tester": "tessa",
+      "transcriptLine": 283,
+      "wallRow": 24,
+      "device": "desktop",
+      "kind": "want_quit",
+      "responseClock": 57.717,
+      "wallClock": 57.716
+    },
+    {
+      "tester": "rosa",
+      "transcriptLine": 276,
+      "wallRow": 7,
+      "device": "phone",
+      "kind": "note",
+      "responseClock": 18.696,
+      "wallClock": 18.695
+    },
+    {
+      "tester": "rosa",
+      "transcriptLine": 311,
+      "wallRow": 25,
+      "device": "phone",
+      "kind": "first_minute",
+      "responseClock": 73.834,
+      "wallClock": 73.833
+    },
+    {
+      "tester": "rosa",
+      "transcriptLine": 337,
+      "wallRow": 38,
+      "device": "phone",
+      "kind": "stop",
+      "responseClock": 109.762,
+      "wallClock": 109.761
+    }
+  ],
+  "clockPairingQualification": "Nearest elapsed matching identical reaction/kind/device; avoids many-to-many crossmatching repeated Emre premature and valid first-minute reaction. Both attempts retained; premature57.587 does not count as active first-minute. Root initial extraction crossmatch corrected before seal."
+}

@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-02T07:27:28.559021+00:00",
+  "status": "PARTIAL_EPOCH_PHYSICALLY_CLOSED",
+  "controllerExit": 1,
+  "controllerExited": true,
+  "actualToolSession": 75213,
+  "sameIdentityLive": [],
+  "unknownObserved": [],
+  "unknownCurrent": [],
+  "underlyingPhysicalReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-controller/root-partial-physical-return.json",
+    "sha256": "1c802151547d023c8c4264e15d7774db2e0920d2c03ea4316aad8c54e641a6ea"
+  },
+  "preservedMei": {
+    "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/report.md",
+    "reportSha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+    "completionPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/completion.json",
+    "completionSha256": "527d34b9756d4ed696f9d660b7f1041bf4dcc338eb5215a911035ab56ce97251",
+    "auditPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-mei-partial-audit.json",
+    "auditSha256": "a65071842bed4ec024d474c1e49a1a2c3aeae458a0574d863d147ea4dbc60c9a",
+    "scope": "Single player, pending root raw qualification; no full panel or clean protocol inference."
+  },
+  "limits": "Historical actual partial epoch75213/EXIT1, 116 sampled identities absent/two profiles absent/eleven ports free. Original empty-profile checker invalidated and correction retained. No current CPU custody inferred; GD now owns finite release slot."
+}
